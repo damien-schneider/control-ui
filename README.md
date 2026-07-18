@@ -13,6 +13,16 @@ Control UI is an owned-source registry for building AI chat, coding-agent, and o
 > [!NOTE]
 > Control UI is currently in alpha. Stable, beta, and experimental items are labeled in the catalog; beta and experimental APIs may change.
 
+> [!IMPORTANT]
+> Upgrading from contract version 3? Contract version 4 replaces `ToolCall` with Activity's typed tool variant. Follow the [migration steps](https://control-ui.dev/get-started#install-a-skin) before reinstalling components or a skin.
+
+Remove the legacy files before reinstalling:
+
+```bash
+rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
+rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
+```
+
 ## Why Control UI
 
 - **Own the source.** Components are copied into your repository and remain fully editable.
