@@ -1,0 +1,17 @@
+node_modules
+.next
+.turbo
+apps/*/.next
+apps/*/.turbo
+apps/*/.gaps/
+apps/docs/playwright-report/
+apps/docs/test-results/
+packages/*/dist
+dist
+build
+coverage
+.DS_Store
+*.log
+*.tsbuildinfo
+.env*.local
+.vercel

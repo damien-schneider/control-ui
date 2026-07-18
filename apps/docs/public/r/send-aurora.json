@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "send-aurora",
+  "type": "registry:style",
+  "title": "SendAurora",
+  "description": "Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/send-aurora.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/extensions/send-aurora.css",
+      "target": "@components/control-ui/styles/send-aurora.css",
+      "type": "registry:file",
+      "content": "/*\n * Send aurora — anchored ChatInput extension (fills the chat-input:send-layer anchor). Token-driven,\n * the data-motion=\"reduced\" kill-switch collapses the sweep to 0ms (it finishes instantly at opacity 0).\n * One-shot replay is structural: the component remounts per send (key={sendCount}); the sweep keyframe\n * plays on mount and `forwards` parks the layer invisible until the next send remounts it.\n * Reads the shared --duration-* and --ease-* tokens.\n */\n\n@layer components {\n  :where([data-send-aurora]) {\n    /* palette knobs — baseline defaults; a skin pack re-values them, the `colors` prop overrides inline */\n    --aurora-1: oklch(0.66 0.24 356);\n    --aurora-2: oklch(0.71 0.19 41);\n    --aurora-3: oklch(0.85 0.15 91);\n    --aurora-4: oklch(0.86 0.03 235);\n    --aurora-5: oklch(0.45 0.19 262);\n    opacity: 0;\n    animation: send-aurora-sweep calc(var(--duration-slow) * 4) var(--ease-emphasized) forwards;\n  }\n}\n\n@keyframes send-aurora-sweep {\n  0% {\n    opacity: 0;\n    translate: 0 30%;\n  }\n  18% {\n    opacity: 1;\n  }\n  60% {\n    opacity: 0.85;\n    translate: 0 4%;\n  }\n  100% {\n    opacity: 0;\n    translate: 0 -14%;\n  }\n}\n"
+    },
+    {
+      "path": "src/registry/sources/control-ui/extensions/send-aurora.tsx",
+      "target": "@components/control-ui/extensions/send-aurora.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport type { CSSProperties } from \"react\";\n\nimport { cn } from \"@/components/control-ui/lib/cn\";\n\n// Anchored extension for ChatInput's `chat-input:send-layer` anchor: a blurred aurora backdrop that sweeps up\n// once per sent message. Activate it from skin.config — the component owns the anchor's positioned wrapper:\n//   adornments: { \"chat-input\": { \"send-layer\": (ctx) => <SendAurora sendCount={ctx.sendCount} /> } }\n// One-shot replay is CSS-only: `key={sendCount}` remounts the layer per send, send-aurora.css plays the sweep\n// keyframe on mount and parks it at opacity 0. Palette comes from the --aurora-1..5 tokens (skin re-valuable);\n// the `colors` prop is the caller-wins inline override.\n\nexport type SendAuroraProps = {\n  /** From the anchor ctx — increments on each successful submit; 0 renders nothing. */\n  sendCount: number;\n  /** Optional inline palette override for the five --aurora-* tokens (top to bottom band). */\n  colors?: readonly [string, string, string, string, string];\n};\n\n// Literal classes so Tailwind's scanner sees every band; order = top → bottom of a column.\nconst AURORA_BAND_CLASSES = [\n  \"w-full flex-1 bg-(--aurora-1) blur-xl\",\n  \"w-full flex-1 bg-(--aurora-2) blur-xl\",\n  \"w-full flex-1 bg-(--aurora-3) blur-xl\",\n  \"w-full flex-1 bg-(--aurora-4) blur-xl\",\n  \"w-full flex-1 bg-(--aurora-5) blur-xl\",\n] as const;\n\n// Middle column rides higher so the bands weave instead of aligning into stripes.\nconst AURORA_COLUMNS = [\n  { id: \"left\", className: \"\" },\n  { id: \"center\", className: \"-translate-y-20\" },\n  { id: \"right\", className: \"\" },\n] as const;\n\ntype AuroraPaletteStyle = CSSProperties & Record<\"--aurora-1\" | \"--aurora-2\" | \"--aurora-3\" | \"--aurora-4\" | \"--aurora-5\", string>;\n\nexport function SendAurora({ sendCount, colors }: SendAuroraProps) {\n  if (sendCount === 0) return null;\n\n  const paletteOverride: AuroraPaletteStyle | undefined = colors\n    ? {\n        \"--aurora-1\": colors[0],\n        \"--aurora-2\": colors[1],\n        \"--aurora-3\": colors[2],\n        \"--aurora-4\": colors[3],\n        \"--aurora-5\": colors[4],\n      }\n    : undefined;\n\n  return (\n    <div key={sendCount} data-send-aurora=\"\" className=\"flex size-full items-stretch\" style={paletteOverride}>\n      {AURORA_COLUMNS.map((column) => (\n        <div key={column.id} className={cn(\"flex h-full w-full flex-col items-stretch -space-y-3\", column.className)}>\n          {AURORA_BAND_CLASSES.map((bandClass) => (\n            <div key={bandClass} className={bandClass} />\n          ))}\n        </div>\n      ))}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-editor",
+  "type": "registry:component",
+  "title": "CodeBlockEditor",
+  "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "code",
+    "core",
+    "scroll-area",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/code-block-shiki.ts",
+      "target": "@components/control-ui/lib/code-block-shiki.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/code-block-editor.tsx",
+      "target": "@components/control-ui/code-block-editor.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/code-block-editor.json"
+  }
+}

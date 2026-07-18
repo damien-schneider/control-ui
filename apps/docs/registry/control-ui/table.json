@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:ui",
+  "title": "Table",
+  "description": "Responsive data table for lists, comparisons, and structured records.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/table.tsx",
+      "target": "@components/control-ui/ui/table.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/table.json"
+  }
+}

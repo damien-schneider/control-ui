@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "type": "registry:ui",
+  "title": "Empty",
+  "description": "Empty-state layout for blank lists, zero results, and new workspaces.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/empty.tsx",
+      "target": "@components/control-ui/ui/empty.tsx",
+      "type": "registry:ui",
+      "content": "import type { ComponentProps } from \"react\";\nimport type { EmptyProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, plain markup (no Base UI): icon tile + title + muted copy + action area.\n// Tracks DA via --muted-foreground/--foreground; drop in a card, list body, or full page.\nexport function Empty({ className, ...props }: EmptyProps) {\n  return (\n    <div\n      data-control-ui=\"empty\"\n      data-slot=\"root\"\n      className={cn(\n        \"flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-[var(--radius-lg)] p-6 text-center text-balance\",\n        skinSlot(\"empty\", \"root\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function EmptyHeader({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-control-ui=\"empty\"\n      data-slot=\"header\"\n      className={cn(\"flex max-w-sm flex-col items-center gap-2 text-center\", className)}\n      {...props}\n    />\n  );\n}\n\n// Icon tile: --radius-lg box, muted fill; glyph passed as children.\nexport function EmptyMedia({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-control-ui=\"empty\"\n      data-slot=\"media\"\n      className={cn(\n        \"mb-2 flex size-10 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-muted text-muted-foreground [&>svg]:size-5 [&>svg]:shrink-0\",\n        skinSlot(\"empty\", \"media\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function EmptyTitle({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-control-ui=\"empty\" data-slot=\"title\" className={cn(\"text-sm font-medium text-foreground\", className)} {...props} />;\n}\n\nexport function EmptyDescription({ className, ...props }: ComponentProps<\"p\">) {\n  return (\n    <p data-control-ui=\"empty\" data-slot=\"description\" className={cn(\"text-sm/relaxed text-muted-foreground\", className)} {...props} />\n  );\n}\n\n// Action area: buttons/links/compact form to recover from empty state.\nexport function EmptyContent({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-control-ui=\"empty\"\n      data-slot=\"content\"\n      className={cn(\"flex w-full max-w-sm flex-col items-center justify-center gap-2 text-sm text-balance\", className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

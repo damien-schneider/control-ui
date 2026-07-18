@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "type": "registry:ui",
+  "title": "Field",
+  "description": "Form field wrapper for labels, descriptions, errors, and validity state.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "core",
+    "separator"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/field.tsx",
+      "target": "@components/control-ui/ui/field.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/field.json"
+  }
+}

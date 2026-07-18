@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter",
+  "type": "registry:ui",
+  "title": "Meter",
+  "description": "Static range meter for quota, storage, score, or usage values.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/meter.tsx",
+      "target": "@components/control-ui/ui/meter.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Meter as MeterPrimitive } from \"@base-ui/react/meter\";\nimport type { MeterIndicatorProps, MeterLabelProps, MeterProps, MeterTrackProps, MeterValueProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, 100% Base UI: static gauge, Track is --muted rail, Indicator fills w/ --primary from value/min/max, no JS.\n// Unlike Progress, value always a number (role=meter, never indeterminate); optional Label+Value row above rail.\nexport function Meter({ className, ...props }: MeterProps) {\n  return (\n    <MeterPrimitive.Root\n      data-control-ui=\"meter\"\n      data-slot=\"root\"\n      className={cn(\"flex w-full flex-col gap-2\", skinSlot(\"meter\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function MeterLabel({ className, ...props }: MeterLabelProps) {\n  return (\n    <MeterPrimitive.Label\n      data-control-ui=\"meter\"\n      data-slot=\"label\"\n      className={cn(\"text-label font-medium text-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function MeterValue({ className, ...props }: MeterValueProps) {\n  return (\n    <MeterPrimitive.Value\n      data-control-ui=\"meter\"\n      data-slot=\"value\"\n      className={cn(\"text-label tabular-nums text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function MeterTrack({ className, ...props }: MeterTrackProps) {\n  return (\n    <MeterPrimitive.Track\n      data-control-ui=\"meter\"\n      data-slot=\"track\"\n      className={cn(\"relative h-2 w-full overflow-hidden rounded-full bg-muted\", skinSlot(\"meter\", \"track\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function MeterIndicator({ className, ...props }: MeterIndicatorProps) {\n  return (\n    <MeterPrimitive.Indicator\n      data-control-ui=\"meter\"\n      data-slot=\"indicator\"\n      className={cn(\n        \"h-full rounded-full bg-primary transition-[width] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)]\",\n        skinSlot(\"meter\", \"indicator\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

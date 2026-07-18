@@ -1,0 +1,837 @@
+/* Control UI theme bindings and invariant recipes. Load alongside Tailwind v4 and at least one complete skin theme.
+ * Skins own every visual contract value under [data-skin]; @theme inline maps those values to Tailwind utilities. */
+@custom-variant dark (&:is(.dark *));
+
+/* biome-ignore-start lint/complexity/noImportantStyles: Reduced motion must override skin and inline motion. */
+/* Motion collapses under OS preference; !important wins over skin-scoped tokens and editor duration overrides. */
+@media (prefers-reduced-motion: reduce) {
+  :where(:root),
+  [data-skin] {
+    --duration-fast: 0ms !important;
+    --duration-base: 0ms !important;
+    --duration-slow: 0ms !important;
+  }
+
+  :where(
+    [data-skin],
+    [data-skin] *,
+    [data-skin]::before,
+    [data-skin]::after,
+    [data-skin] *::before,
+    [data-skin] *::after
+  ) {
+    scroll-behavior: auto !important;
+    transition-delay: 0ms !important;
+    transition-duration: 0ms !important;
+    animation-delay: 0ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Explicit motion kill-switch, same collapse as above but opt-in via attribute, not OS preference.
+   Skin's `motion: "reduced"` flag or the theme editor toggle stamps [data-motion="reduced"] on <html>;
+   also targets skin-scoped portals directly since their [data-skin] tokens would beat inherited root values. */
+:root[data-motion="reduced"],
+[data-motion="reduced"][data-skin],
+[data-motion="reduced"] [data-skin] {
+  --duration-fast: 0ms !important;
+  --duration-base: 0ms !important;
+  --duration-slow: 0ms !important;
+}
+
+:where(
+  [data-motion="reduced"],
+  [data-motion="reduced"] *,
+  [data-motion="reduced"]::before,
+  [data-motion="reduced"]::after,
+  [data-motion="reduced"] *::before,
+  [data-motion="reduced"] *::after
+) {
+  scroll-behavior: auto !important;
+  transition-delay: 0ms !important;
+  transition-duration: 0ms !important;
+  animation-delay: 0ms !important;
+  animation-duration: 1ms !important;
+  animation-iteration-count: 1 !important;
+}
+/* biome-ignore-end lint/complexity/noImportantStyles: Reduced motion must override skin and inline motion. */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-canvas: var(--canvas);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: oklch(from var(--popover) l c h / var(--popover-opacity));
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-text: var(--primary-text);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-text: var(--destructive-text);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Self-references, not values: @theme merges globally across all skin packs in one Tailwind build,
+     so a value here could never differ per skin. Self-ref keeps the var alive in the emitted utility,
+     so pack-scoped declarations re-value each rung per skin (same shape as --color-primary below). */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-field: var(--radius-field);
+  --radius-panel: var(--radius-panel);
+  --radius-scene: var(--radius-scene);
+
+  /* Same self-reference shape; rungs + paired line-height/weight/tracking live in each skin theme. */
+  --text-micro: var(--text-micro);
+  --text-caption: var(--text-caption);
+  --text-label: var(--text-label);
+  --text-body: var(--text-body);
+  --text-body-lg: var(--text-body-lg);
+  --text-heading-4: var(--text-heading-4);
+  --text-heading-4--line-height: var(--text-heading-4--line-height);
+  --text-heading-4--font-weight: var(--text-heading-4--font-weight);
+  --text-heading-3: var(--text-heading-3);
+  --text-heading-3--line-height: var(--text-heading-3--line-height);
+  --text-heading-3--font-weight: var(--text-heading-3--font-weight);
+  --text-heading-2: var(--text-heading-2);
+  --text-heading-2--line-height: var(--text-heading-2--line-height);
+  --text-heading-2--font-weight: var(--text-heading-2--font-weight);
+  --text-heading-1: var(--text-heading-1);
+  --text-heading-1--line-height: var(--text-heading-1--line-height);
+  --text-heading-1--font-weight: var(--text-heading-1--font-weight);
+  --text-heading-1--letter-spacing: var(--text-heading-1--letter-spacing);
+  --text-display: var(--text-display);
+  --text-display--line-height: var(--text-display--line-height);
+  --text-display--font-weight: var(--text-display--font-weight);
+  --text-display--letter-spacing: var(--text-display--letter-spacing);
+  --text-meta: var(--text-meta);
+  --text-title-sm: var(--text-title-sm);
+  --text-title-sm--line-height: var(--text-title-sm--line-height);
+  --text-title-sm--font-weight: var(--text-title-sm--font-weight);
+  --text-title-md: var(--text-title-md);
+  --text-title-md--line-height: var(--text-title-md--line-height);
+  --text-title-md--font-weight: var(--text-title-md--font-weight);
+  --text-title-lg: var(--text-title-lg);
+  --text-title-lg--line-height: var(--text-title-lg--line-height);
+  --text-title-lg--font-weight: var(--text-title-lg--font-weight);
+
+  /* Generates font-body/font-display utilities off role tokens above; skin re-values one alone to re-face all headings/body. */
+  --font-body: var(--font-body);
+  --font-display: var(--font-display);
+
+  /* Global knobs (size/opacity/y) + tier multipliers keep control/panel/popover/modal/ambient shadows
+     distinct without per-component math. Each tier layers tight+mid+long alphas for one soft umber
+     penumbra ("soft daylight"); every length multiplies the global knobs so --shadow-size:0 flattens all. */
+  --shadow-xs: inset 0 1px 0
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    0 calc(1px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
+      calc(1.5px * var(--shadow-size) * var(--shadow-control-multiplier))
+      calc(-0.5px * var(--shadow-size) * var(--shadow-control-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(2px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
+      calc(4px * var(--shadow-size) * var(--shadow-control-multiplier))
+      calc(-2px * var(--shadow-size) * var(--shadow-control-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity)));
+  --shadow-sm: inset 0 1px 0
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    0 calc(1px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
+      calc(1px * var(--shadow-size) * var(--shadow-control-multiplier))
+      calc(-0.5px * var(--shadow-size) * var(--shadow-control-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(2px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
+      calc(4px * var(--shadow-size) * var(--shadow-control-multiplier))
+      calc(-1px * var(--shadow-size) * var(--shadow-control-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(4px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
+      calc(10px * var(--shadow-size) * var(--shadow-control-multiplier))
+      calc(-2px * var(--shadow-size) * var(--shadow-control-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity)));
+  --shadow-md: inset 0 1px 0
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    0 calc(1px * var(--shadow-size) * var(--shadow-panel-multiplier) * var(--shadow-y))
+      calc(1.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+      calc(-0.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(2.5px * var(--shadow-size) * var(--shadow-panel-multiplier) * var(--shadow-y))
+      calc(5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+      calc(-1.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(5px * var(--shadow-size) * var(--shadow-panel-multiplier) * var(--shadow-y))
+      calc(10px * var(--shadow-size) * var(--shadow-panel-multiplier))
+      calc(-2.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity)));
+  --shadow-pop: inset 0 1px 0
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    0 calc(0.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-0.25px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity))),
+    0 calc(1.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-1.5px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
+    0 calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(14px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-3px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity))); /* floating popovers */
+  --shadow-modal: inset 0 1px 0
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    0 calc(0.6px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
+      calc(1px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      calc(-0.3px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(1.6px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
+      calc(3.2px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      calc(-0.8px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
+    0 calc(3.4px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
+      calc(7px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      calc(-1.6px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity))),
+    0 calc(7px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
+      calc(16px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      calc(-3px * var(--shadow-size) * var(--shadow-modal-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity))); /* dialogs and sheets */
+  --shadow-soft: 0 calc(0.75px * var(--shadow-size) * var(--shadow-ambient-multiplier) * var(--shadow-y))
+      calc(2px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+      calc(-0.75px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.03 * var(--shadow-opacity))),
+    0 calc(2px * var(--shadow-size) * var(--shadow-ambient-multiplier) * var(--shadow-y))
+      calc(5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+      calc(-1.5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    0 calc(4.5px * var(--shadow-size) * var(--shadow-ambient-multiplier) * var(--shadow-y))
+      calc(12px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+      calc(-2.5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))); /* ambient lift */
+
+  /* bare `transition*` utilities inherit the themed curve + tempo */
+  --default-transition-duration: var(--duration-fast);
+  --default-transition-timing-function: var(--ease-standard);
+}
+
+@layer base {
+  /* v4 defaults border/divide color to currentColor; restore themed border (same rule shadcn v4 ships, host merge is harmless). */
+  *,
+  ::after,
+  ::before {
+    border-color: var(--border);
+  }
+
+  /* Optional declarative preset hook. Prefer overriding --corner-shape directly for full control. */
+  :where([data-corners="round"]) {
+    --corner-shape: round;
+  }
+
+  :where([data-corners="squircle"]) {
+    --corner-shape: squircle;
+  }
+
+  :where([data-corners="scoop"]) {
+    --corner-shape: scoop;
+  }
+
+  @supports (corner-shape: squircle) {
+    :where([data-control-ui][data-slot]) {
+      corner-shape: var(--corner-shape);
+    }
+
+    :where(
+        [data-control-ui="button"][data-slot="root"],
+        [data-control-ui="checkbox"][data-slot="root"],
+        [data-control-ui="input"][data-slot="root"],
+        [data-control-ui="input-group"][data-slot="root"],
+        [data-control-ui="menu"][data-slot="trigger"],
+        [data-control-ui="select"][data-slot="trigger"],
+        [data-control-ui="tabs"][data-slot="tab"],
+        [data-control-ui="tabs"][data-slot="indicator"],
+        [data-control-ui="tabs"][data-slot="list"],
+        [data-control-ui="menu"][data-slot="item"],
+        [data-control-ui="select"][data-slot="item"],
+        [data-control-ui="command"][data-slot="item"],
+        [data-control-ui="trigger-menu"][data-slot="item"],
+        [data-control-ui="kbd"][data-slot="root"],
+        [data-control-ui="context-menu"][data-slot="item"],
+        [data-control-ui="context-menu"][data-slot="checkbox-item"],
+        [data-control-ui="context-menu"][data-slot="radio-item"],
+        [data-control-ui="context-menu"][data-slot="sub-trigger"],
+        [data-control-ui="slider"][data-slot="indicator"],
+        [data-control-ui="slider"][data-slot="thumb"],
+        [data-control-ui="slider"][data-slot="track"],
+        [data-control-ui="badge"][data-slot="root"],
+        [data-control-ui="native-select"][data-slot="root"],
+        [data-control-ui="textarea"][data-slot="root"],
+        [data-control-ui="menubar"][data-slot="item"],
+        [data-control-ui="menubar"][data-slot="sub-trigger"],
+        [data-control-ui="navigation-menu"][data-slot="trigger"],
+        [data-control-ui="input-otp"][data-slot="slot"],
+        [data-control-ui="combobox"][data-slot="input"],
+        [data-control-ui="combobox"][data-slot="trigger"],
+        [data-control-ui="combobox"][data-slot="item"],
+        [data-control-ui="pagination"][data-slot="link"],
+        [data-control-ui="autocomplete"][data-slot="input"],
+        [data-control-ui="autocomplete"][data-slot="item"],
+        [data-control-ui="autocomplete"][data-slot="clear"],
+        [data-control-ui="toolbar"][data-slot="root"],
+        [data-control-ui="toolbar"][data-slot="button"],
+        [data-control-ui="toolbar"][data-slot="link"],
+        [data-control-ui="toolbar"][data-slot="input"],
+        [data-control-ui="dockable-panel"][data-slot="drag-handle"],
+        [data-control-ui="dockable-panel"][data-slot="toggle"],
+        [data-control-ui="dockable-panel"][data-slot="dock"],
+        [data-control-ui="dockable-panel"][data-slot="close"],
+        [data-control-ui="number-field"][data-slot="group"],
+        [data-control-ui="calendar"][data-slot="day"],
+        [data-control-ui="color-picker"][data-slot="trigger"],
+        [data-control-ui="audio-recorder"][data-slot="root"],
+        [data-control-ui="audio-recorder"][data-slot="trigger"],
+        [data-control-ui="audio-recorder"][data-slot="cancel"],
+        [data-control-ui="audio-recorder"][data-slot="submit"]
+      ) {
+      corner-shape: var(--corner-shape-control);
+    }
+
+    :where([data-control-ui][data-slot][data-surface="floating"]) {
+      corner-shape: var(--corner-shape-popover);
+    }
+
+    :where([data-control-ui][data-slot][data-surface="modal"], [data-control-ui][data-slot][data-surface="panel"]) {
+      corner-shape: var(--corner-shape-panel);
+    }
+  }
+
+  /* Squircle w/o corner-shape support falls back to plain round radius, reading over-rounded; shrink
+     fallback by --corner-radius-fit to track Chrome's squircle. Gated on live --corner-shape via style
+     query (fires only when squircle selected); re-declared on DA elements since skin-root tokens bake var(--radius) at their root, unreachable by descendant override. No style-query support = current fallback. */
+  @supports not (corner-shape: squircle) {
+    @container style(--corner-shape: squircle) {
+      :where([data-control-ui][data-slot]) {
+        /* Halve base control radius; concentric popup/popover tokens re-derive from it, no second factor needed. */
+        --radius-control: calc(var(--radius) * 2 * var(--corner-radius-fit));
+        --radius-popup-item: calc(var(--radius-control) * 0.6);
+        --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
+        --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
+        /* Each derives straight from --radius; must mirror the Refined radius scale (coverage test guards drift). */
+        --radius-sm: calc(var(--radius) * 0.6 * var(--corner-radius-fit));
+        --radius-md: calc(var(--radius) * 0.8 * var(--corner-radius-fit));
+        --radius-lg: calc(var(--radius) * var(--corner-radius-fit));
+        --radius-xl: calc(var(--radius) * 1.4 * var(--corner-radius-fit));
+        --radius-2xl: calc(var(--radius) * 1.6 * var(--corner-radius-fit));
+        --radius-field: calc(var(--radius) * 2.2 * var(--corner-radius-fit));
+        --radius-panel: calc(var(--radius) * 2.6 * var(--corner-radius-fit));
+        --radius-scene: calc(var(--radius) * 2.8 * var(--corner-radius-fit));
+      }
+    }
+  }
+}
+
+@layer components {
+  :where(
+      [data-control-ui="chat-message"][data-slot="root"],
+      [data-control-ui="chat-input"][data-slot="root"]
+    ) {
+    opacity: 1;
+    filter: none;
+    translate: 0 0;
+    scale: 1;
+    transition:
+      opacity var(--duration-slow) var(--ease-emphasized),
+      filter var(--duration-slow) var(--ease-emphasized),
+      translate var(--duration-slow) var(--ease-emphasized),
+      scale var(--duration-slow) var(--ease-emphasized);
+  }
+
+  @starting-style {
+    :where([data-control-ui="chat-message"][data-slot="root"]) {
+      opacity: 0;
+      filter: blur(8px);
+      translate: 0 0.5rem;
+      scale: 0.985;
+    }
+
+    :where([data-control-ui="chat-input"][data-slot="root"]) {
+      opacity: 0;
+      filter: blur(10px);
+      translate: 0 0.75rem;
+    }
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"]) {
+    --badge-color-background: var(--badge-neutral);
+    --badge-color-foreground: var(--badge-neutral-foreground);
+    --badge-color-border: var(--badge-neutral-border);
+    --badge-color-background-hover: var(--badge-neutral-hover);
+    --badge-background: var(--badge-color-background);
+    --badge-foreground: var(--badge-color-foreground);
+    --badge-border: transparent;
+    --badge-background-hover: var(--badge-color-background-hover);
+    background-color: var(--badge-background);
+    border-color: var(--badge-border);
+    color: var(--badge-foreground);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-variant="outline"]) {
+    --badge-background: transparent;
+    --badge-border: var(--badge-color-border);
+    --badge-background-hover: var(--badge-color-background);
+  }
+
+  :where(a[data-control-ui="badge"][data-slot="root"]:hover, button[data-control-ui="badge"][data-slot="root"]:hover) {
+    background: var(--badge-background-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="slate"]) {
+    --badge-color-background: var(--badge-slate);
+    --badge-color-foreground: var(--badge-slate-foreground);
+    --badge-color-border: var(--badge-slate-border);
+    --badge-color-background-hover: var(--badge-slate-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="gray"]) {
+    --badge-color-background: var(--badge-gray);
+    --badge-color-foreground: var(--badge-gray-foreground);
+    --badge-color-border: var(--badge-gray-border);
+    --badge-color-background-hover: var(--badge-gray-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="zinc"]) {
+    --badge-color-background: var(--badge-zinc);
+    --badge-color-foreground: var(--badge-zinc-foreground);
+    --badge-color-border: var(--badge-zinc-border);
+    --badge-color-background-hover: var(--badge-zinc-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="stone"]) {
+    --badge-color-background: var(--badge-stone);
+    --badge-color-foreground: var(--badge-stone-foreground);
+    --badge-color-border: var(--badge-stone-border);
+    --badge-color-background-hover: var(--badge-stone-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="red"]) {
+    --badge-color-background: var(--badge-red);
+    --badge-color-foreground: var(--badge-red-foreground);
+    --badge-color-border: var(--badge-red-border);
+    --badge-color-background-hover: var(--badge-red-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="orange"]) {
+    --badge-color-background: var(--badge-orange);
+    --badge-color-foreground: var(--badge-orange-foreground);
+    --badge-color-border: var(--badge-orange-border);
+    --badge-color-background-hover: var(--badge-orange-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="amber"]) {
+    --badge-color-background: var(--badge-amber);
+    --badge-color-foreground: var(--badge-amber-foreground);
+    --badge-color-border: var(--badge-amber-border);
+    --badge-color-background-hover: var(--badge-amber-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="yellow"]) {
+    --badge-color-background: var(--badge-yellow);
+    --badge-color-foreground: var(--badge-yellow-foreground);
+    --badge-color-border: var(--badge-yellow-border);
+    --badge-color-background-hover: var(--badge-yellow-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="lime"]) {
+    --badge-color-background: var(--badge-lime);
+    --badge-color-foreground: var(--badge-lime-foreground);
+    --badge-color-border: var(--badge-lime-border);
+    --badge-color-background-hover: var(--badge-lime-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="green"]) {
+    --badge-color-background: var(--badge-green);
+    --badge-color-foreground: var(--badge-green-foreground);
+    --badge-color-border: var(--badge-green-border);
+    --badge-color-background-hover: var(--badge-green-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="emerald"]) {
+    --badge-color-background: var(--badge-emerald);
+    --badge-color-foreground: var(--badge-emerald-foreground);
+    --badge-color-border: var(--badge-emerald-border);
+    --badge-color-background-hover: var(--badge-emerald-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="teal"]) {
+    --badge-color-background: var(--badge-teal);
+    --badge-color-foreground: var(--badge-teal-foreground);
+    --badge-color-border: var(--badge-teal-border);
+    --badge-color-background-hover: var(--badge-teal-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="cyan"]) {
+    --badge-color-background: var(--badge-cyan);
+    --badge-color-foreground: var(--badge-cyan-foreground);
+    --badge-color-border: var(--badge-cyan-border);
+    --badge-color-background-hover: var(--badge-cyan-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="sky"]) {
+    --badge-color-background: var(--badge-sky);
+    --badge-color-foreground: var(--badge-sky-foreground);
+    --badge-color-border: var(--badge-sky-border);
+    --badge-color-background-hover: var(--badge-sky-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="blue"]) {
+    --badge-color-background: var(--badge-blue);
+    --badge-color-foreground: var(--badge-blue-foreground);
+    --badge-color-border: var(--badge-blue-border);
+    --badge-color-background-hover: var(--badge-blue-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="indigo"]) {
+    --badge-color-background: var(--badge-indigo);
+    --badge-color-foreground: var(--badge-indigo-foreground);
+    --badge-color-border: var(--badge-indigo-border);
+    --badge-color-background-hover: var(--badge-indigo-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="violet"]) {
+    --badge-color-background: var(--badge-violet);
+    --badge-color-foreground: var(--badge-violet-foreground);
+    --badge-color-border: var(--badge-violet-border);
+    --badge-color-background-hover: var(--badge-violet-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="purple"]) {
+    --badge-color-background: var(--badge-purple);
+    --badge-color-foreground: var(--badge-purple-foreground);
+    --badge-color-border: var(--badge-purple-border);
+    --badge-color-background-hover: var(--badge-purple-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="fuchsia"]) {
+    --badge-color-background: var(--badge-fuchsia);
+    --badge-color-foreground: var(--badge-fuchsia-foreground);
+    --badge-color-border: var(--badge-fuchsia-border);
+    --badge-color-background-hover: var(--badge-fuchsia-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="pink"]) {
+    --badge-color-background: var(--badge-pink);
+    --badge-color-foreground: var(--badge-pink-foreground);
+    --badge-color-border: var(--badge-pink-border);
+    --badge-color-background-hover: var(--badge-pink-hover);
+  }
+
+  :where([data-control-ui="badge"][data-slot="root"][data-color="rose"]) {
+    --badge-color-background: var(--badge-rose);
+    --badge-color-foreground: var(--badge-rose-foreground);
+    --badge-color-border: var(--badge-rose-border);
+    --badge-color-background-hover: var(--badge-rose-hover);
+  }
+
+  /* Sliding selection pill (sidebar nav, tree) knobs; default = raised paper card, not flat alpha wash.
+     Component paints via bg/ring/shadow-(--track-highlight-*); a pack re-values these 4 vars instead
+     of re-implementing the pill. hover-bg = paint while the pill visits a hovered non-active row
+     (engine stamps data-hover): ink-tinted card, so the traveling pill stays clearly visible while
+     never matching the resting look (which also keeps ring + shadow to itself). */
+  :where([data-control-ui="track-highlight"]) {
+    --track-highlight-bg: var(--card);
+    --track-highlight-ring: oklch(from var(--foreground) l c h / 0.05);
+    --track-highlight-shadow: var(--shadow-sm);
+    --track-highlight-hover-bg: color-mix(in oklab, var(--card) 92%, var(--foreground) 8%);
+  }
+
+  :where([data-control-ui="toolbar"][data-slot="root"]) {
+    --toolbar-item-radius: var(--radius-sm);
+    --toolbar-item-radius-fit: min(var(--toolbar-item-radius), calc(var(--control-h-sm) / 2));
+    --toolbar-padding: 0.25rem;
+    --toolbar-radius-offset: clamp(0px, calc(var(--toolbar-item-radius-fit) * 1000), var(--toolbar-padding));
+    --toolbar-radius: calc(var(--toolbar-item-radius-fit) + var(--toolbar-radius-offset));
+  }
+
+  :where([data-control-ui="tabs"][data-slot="list"]) {
+    --tabs-trigger-radius: var(--radius-control);
+    --tabs-trigger-radius-fit: min(var(--tabs-trigger-radius), calc(var(--tabs-trigger-h) / 2));
+    --tabs-list-padding: 0.25rem;
+    --tabs-list-radius-offset: clamp(0px, calc(var(--tabs-trigger-radius-fit) * 1000), var(--tabs-list-padding));
+    --tabs-list-radius: calc(var(--tabs-trigger-radius-fit) + var(--tabs-list-radius-offset));
+    --tabs-list-h: calc(var(--tabs-trigger-h) + var(--tabs-list-padding) + var(--tabs-list-padding));
+    /* Recipe knobs derive from the active skin contract; skin.css may re-value them without re-implementing the recipe. */
+    --tabs-list-gap: 0.25rem;
+    --tabs-list-bg: oklch(from var(--foreground) l c h / 0.07);
+    --tabs-list-backdrop-filter: none;
+    --tabs-indicator-bg: var(--background);
+    --tabs-indicator-shadow: var(--shadow-sm);
+    --tabs-indicator-ease: var(--ease-standard);
+    --tabs-trigger-font-size: var(--text-label);
+    --tabs-trigger-focus-shadow: 0 0 0 2px oklch(from var(--foreground) l c h / 0.2);
+    --tabs-line-border-color: var(--border);
+    --tabs-line-indicator-bg: var(--foreground);
+    position: relative;
+    display: flex;
+    min-height: var(--tabs-list-h);
+    width: fit-content;
+    align-items: center;
+    gap: var(--tabs-list-gap);
+    border-radius: var(--tabs-list-radius);
+    background: var(--tabs-list-bg);
+    box-shadow: inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.06);
+    padding: var(--tabs-list-padding);
+    -webkit-backdrop-filter: var(--tabs-list-backdrop-filter);
+    backdrop-filter: var(--tabs-list-backdrop-filter);
+  }
+
+  :where([data-control-ui="tabs"][data-slot="indicator"]) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 0;
+    height: var(--tabs-trigger-h);
+    width: var(--active-tab-width);
+    transform: translateX(var(--active-tab-left)) translateY(-50%);
+    border-radius: var(--tabs-trigger-radius-fit);
+    background: var(--tabs-indicator-bg);
+    box-shadow: var(--tabs-indicator-shadow);
+    transition:
+      width var(--duration-base) var(--tabs-indicator-ease),
+      transform var(--duration-base) var(--tabs-indicator-ease),
+      background-color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-ui="tabs"][data-slot="tab"]) {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    height: var(--tabs-trigger-h);
+    flex-shrink: 0;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    white-space: nowrap;
+    border-radius: var(--tabs-trigger-radius-fit);
+    padding-inline: 0.875rem;
+    font-size: var(--tabs-trigger-font-size);
+    font-weight: 500;
+    color: var(--muted-foreground);
+    outline: none;
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-ui="tabs"][data-slot="tab"]:hover),
+  :where([data-control-ui="tabs"][data-slot="tab"][aria-selected="true"]),
+  :where([data-control-ui="tabs"][data-slot="tab"][data-active]) {
+    color: var(--foreground);
+  }
+
+  :where([data-control-ui="tabs"][data-slot="tab"]:focus-visible) {
+    box-shadow: var(--tabs-trigger-focus-shadow);
+  }
+
+  :where([data-control-ui="tabs"][data-slot="tab"][data-disabled]) {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  :where([data-control-ui="tabs"][data-slot="panel"]) {
+    translate: 0 0;
+    /* No opacity fade: panels unmount, fade-in from 0 would flash empty frame; slide-only keeps content opaque. */
+    transition: translate var(--duration-slow) var(--ease-emphasized);
+  }
+
+  /* Fallback switch (no anchor positioning): Base UI keeps the outgoing panel mounted+inert until exit
+     anim finishes; two in-flow panels would stack, so the exiting one is pulled from layout the moment
+     it's inert and the entering one gets a soft directional nudge. Active panel is `open`, never `inert`. */
+  :where([data-control-ui="tabs"][data-slot="panel"][inert]) {
+    display: none;
+  }
+
+  :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="left"]) {
+    translate: -0.35rem 0;
+  }
+
+  :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="right"]) {
+    translate: 0.35rem 0;
+  }
+
+  :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="up"]) {
+    translate: 0 -0.35rem;
+  }
+
+  :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="down"]) {
+    translate: 0 0.35rem;
+  }
+
+  /* True cross-slide (anchor positioning, Limited → @supports per the CSS-first rule): the exiting
+     panel is revived and glued edge-to-edge onto the entering panel's box (anchor = the open panel).
+     Anchor offsets track the anchor's translated box every frame, so the pair travel as ONE strip
+     driven by a single transition — the entering panel's ±100% slide — whatever wrapper the panels
+     happen to live in (they are not always the root's direct children). */
+  @supports ((anchor-name: --aui-tabs-panel) and (anchor-scope: --aui-tabs-panel)) {
+    /* Per-instance scope: without it the exiting panel would anchor onto the LAST open panel in the
+       whole document — another Tabs instance's panel. Nested Tabs re-scope, so names never leak. */
+    :where([data-control-ui="tabs"][data-slot="root"]) {
+      anchor-scope: --aui-tabs-panel;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"]:not([inert])) {
+      anchor-name: --aui-tabs-panel;
+    }
+
+    /* display:block revives the fallback-hidden panel; anchor-size clips a longer outgoing panel to
+       the incoming one's box mid-slide. The per-direction glue below does the placement; a panel with
+       direction "none" gets no glue and no hold, i.e. the instant fallback swap. */
+    :where([data-control-ui="tabs"][data-slot="panel"][inert][data-ending-style]) {
+      display: block;
+      position: absolute;
+      position-anchor: --aui-tabs-panel;
+      width: anchor-size(width);
+      height: anchor-size(height);
+      overflow: clip;
+    }
+
+    /* The panels' direct parent turns containing block + crops the ±100% travel while a switch is in
+       flight (an absolutely positioned exiting panel escapes the overflow of non-positioned ancestors). */
+    :where(:has(> [data-control-ui="tabs"][data-slot="panel"][data-ending-style])) {
+      position: relative;
+      overflow: clip;
+    }
+
+    /* Glue = trailing edge of the strip; the hold animation is what keeps Base UI from unmounting the
+       exiting panel mid-slide (it waits on the panel's own animations, and the glue isn't one). */
+    :where([data-control-ui="tabs"][data-slot="panel"][inert][data-ending-style][data-activation-direction="left"]) {
+      top: anchor(top);
+      left: anchor(right);
+      animation: aui-tabs-exit-hold var(--duration-slow) var(--ease-emphasized) both;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"][inert][data-ending-style][data-activation-direction="right"]) {
+      top: anchor(top);
+      right: anchor(left);
+      animation: aui-tabs-exit-hold var(--duration-slow) var(--ease-emphasized) both;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"][inert][data-ending-style][data-activation-direction="up"]) {
+      left: anchor(left);
+      top: anchor(bottom);
+      animation: aui-tabs-exit-hold var(--duration-slow) var(--ease-emphasized) both;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"][inert][data-ending-style][data-activation-direction="down"]) {
+      left: anchor(left);
+      bottom: anchor(top);
+      animation: aui-tabs-exit-hold var(--duration-slow) var(--ease-emphasized) both;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="left"]) {
+      translate: -100% 0;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="right"]) {
+      translate: 100% 0;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="up"]) {
+      translate: 0 -100%;
+    }
+
+    :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style][data-activation-direction="down"]) {
+      translate: 0 100%;
+    }
+
+    /* Height morph: auto→auto never transitions, so the entering panel starts at the outgoing panel's
+       measured height (--aui-tabs-prev-height, stamped on the root by tabs.tsx just before the switch)
+       and eases to its own intrinsic height — calc-size() makes the auto endpoint interpolable. The
+       glued exiting panel follows via anchor-size(height), so the whole strip resizes as one; overflow
+       mid-morph is cropped by the parent clip already active for the slide. :not([inert]) keeps this
+       off the exiting panel, whose height must stay anchor-size(height). */
+    @supports (height: calc-size(auto, size)) {
+      :where([data-control-ui="tabs"][data-slot="panel"]:not([inert])) {
+        height: calc-size(auto, size);
+        transition: translate var(--duration-slow) var(--ease-emphasized), height var(--duration-slow) var(--ease-emphasized);
+      }
+
+      :where([data-control-ui="tabs"][data-slot="panel"][data-starting-style]) {
+        height: var(--aui-tabs-prev-height, calc-size(auto, size));
+      }
+    }
+  }
+
+  /* Visually inert 0.999→1 hold: exists purely so the exiting panel reports a running animation for
+     the slide's duration. Rides the motion tokens, so reduced motion collapses it to an instant swap. */
+  @keyframes aui-tabs-exit-hold {
+    from {
+      opacity: 0.999;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  :where([data-tabs="line"]) :where([data-control-ui="tabs"][data-slot="list"]) {
+    --tabs-list-padding: 0px;
+    min-height: var(--tabs-trigger-h);
+    width: 100%;
+    gap: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--tabs-line-border-color);
+    background: transparent;
+    padding: 0;
+    /* Direct reset, not var re-value: a pack's segmented backdrop knob must never frost the flat line strip. */
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  :where([data-tabs="line"]) :where([data-control-ui="tabs"][data-slot="indicator"]) {
+    top: auto;
+    bottom: 0;
+    height: 2px;
+    transform: translateX(var(--active-tab-left));
+    border-radius: 9999px;
+    background: var(--tabs-line-indicator-bg);
+    box-shadow: none;
+  }
+
+  :where([data-tabs="line"]) :where([data-control-ui="tabs"][data-slot="tab"]) {
+    border-radius: 0;
+    padding-inline: 1rem;
+  }
+
+  :where([data-control-ui="tabs"][data-slot="list"][data-single="true"]) {
+    --tabs-list-padding: 0px;
+    min-height: auto;
+    gap: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+  }
+
+  :where([data-control-ui="tabs"][data-slot="list"][data-single="true"]) :where([data-control-ui="tabs"][data-slot="tab"]) {
+    height: auto;
+    cursor: default;
+    border-radius: 0;
+    padding-inline: 0;
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-ui="tabs"][data-slot="list"][data-single="true"]) :where([data-control-ui="tabs"][data-slot="tab"]:hover),
+  :where([data-control-ui="tabs"][data-slot="list"][data-single="true"]) :where([data-control-ui="tabs"][data-slot="tab"][aria-selected="true"]),
+  :where([data-control-ui="tabs"][data-slot="list"][data-single="true"]) :where([data-control-ui="tabs"][data-slot="tab"][data-active]) {
+    color: var(--muted-foreground);
+  }
+}

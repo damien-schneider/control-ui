@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "autocomplete",
+  "type": "registry:ui",
+  "title": "Autocomplete",
+  "description": "Free-text input with search-as-you-type suggestions.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "core",
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/autocomplete.tsx",
+      "target": "@components/control-ui/ui/autocomplete.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/autocomplete.json"
+  }
+}

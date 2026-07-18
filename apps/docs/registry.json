@@ -1,0 +1,2847 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "control-ui",
+  "homepage": "http://127.0.0.1:3000",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Stacked disclosure rows with measured panel animation.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0",
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/accordion.tsx",
+          "target": "@components/control-ui/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/accordion.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "action-bar",
+      "type": "registry:component",
+      "title": "ActionBar",
+      "description": "Reusable hover actions for message and response controls.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/action-bar.tsx",
+          "target": "@components/control-ui/action-bar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/action-bar.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "activity",
+      "type": "registry:component",
+      "title": "Activity",
+      "description": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/collapsible.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/activity.tsx",
+          "target": "@components/control-ui/activity.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/activity.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Inline status panel for callouts, errors, and notices.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/alert.tsx",
+          "target": "@components/control-ui/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/alert.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert dialog",
+      "description": "Modal confirmation dialog for destructive or blocking decisions.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/alert-dialog.tsx",
+          "target": "@components/control-ui/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/alert-dialog.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "all",
+      "type": "registry:item",
+      "title": "All Control UI components",
+      "description": "Every Control UI agent component, block, and primitive with the Refined skin.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/accordion.json",
+        "http://127.0.0.1:3000/r/action-bar.json",
+        "http://127.0.0.1:3000/r/activity.json",
+        "http://127.0.0.1:3000/r/alert.json",
+        "http://127.0.0.1:3000/r/alert-dialog.json",
+        "http://127.0.0.1:3000/r/aspect-ratio.json",
+        "http://127.0.0.1:3000/r/audio-recorder.json",
+        "http://127.0.0.1:3000/r/audio-visualizer.json",
+        "http://127.0.0.1:3000/r/autocomplete.json",
+        "http://127.0.0.1:3000/r/avatar.json",
+        "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/button-group.json",
+        "http://127.0.0.1:3000/r/calendar.json",
+        "http://127.0.0.1:3000/r/card.json",
+        "http://127.0.0.1:3000/r/chat-block.json",
+        "http://127.0.0.1:3000/r/chat-input.json",
+        "http://127.0.0.1:3000/r/chat-input-attachment.json",
+        "http://127.0.0.1:3000/r/chat-message.json",
+        "http://127.0.0.1:3000/r/chat-scene.json",
+        "http://127.0.0.1:3000/r/checkbox.json",
+        "http://127.0.0.1:3000/r/checkbox-group.json",
+        "http://127.0.0.1:3000/r/code.json",
+        "http://127.0.0.1:3000/r/code-block-editor.json",
+        "http://127.0.0.1:3000/r/code-diff.json",
+        "http://127.0.0.1:3000/r/coding-agent-block.json",
+        "http://127.0.0.1:3000/r/collapsible.json",
+        "http://127.0.0.1:3000/r/color-picker.json",
+        "http://127.0.0.1:3000/r/combobox.json",
+        "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context-menu.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/dockable-panel.json",
+        "http://127.0.0.1:3000/r/drawer.json",
+        "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/empty.json",
+        "http://127.0.0.1:3000/r/environment-variables.json",
+        "http://127.0.0.1:3000/r/field.json",
+        "http://127.0.0.1:3000/r/file-explorer-block.json",
+        "http://127.0.0.1:3000/r/form.json",
+        "http://127.0.0.1:3000/r/gradient-editor.json",
+        "http://127.0.0.1:3000/r/hover-card.json",
+        "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/input.json",
+        "http://127.0.0.1:3000/r/input-group.json",
+        "http://127.0.0.1:3000/r/input-otp.json",
+        "http://127.0.0.1:3000/r/item.json",
+        "http://127.0.0.1:3000/r/kbd.json",
+        "http://127.0.0.1:3000/r/markdown.json",
+        "http://127.0.0.1:3000/r/markdown-block.json",
+        "http://127.0.0.1:3000/r/menu.json",
+        "http://127.0.0.1:3000/r/menubar.json",
+        "http://127.0.0.1:3000/r/meter.json",
+        "http://127.0.0.1:3000/r/morphing-panel.json",
+        "http://127.0.0.1:3000/r/native-select.json",
+        "http://127.0.0.1:3000/r/navigation-menu.json",
+        "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/pagination.json",
+        "http://127.0.0.1:3000/r/phone-input.json",
+        "http://127.0.0.1:3000/r/popover.json",
+        "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/radio-group.json",
+        "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/settings-block.json",
+        "http://127.0.0.1:3000/r/sidebar.json",
+        "http://127.0.0.1:3000/r/skeleton.json",
+        "http://127.0.0.1:3000/r/skin-refined.json",
+        "http://127.0.0.1:3000/r/slider.json",
+        "http://127.0.0.1:3000/r/source-badge.json",
+        "http://127.0.0.1:3000/r/spinner.json",
+        "http://127.0.0.1:3000/r/stepper.json",
+        "http://127.0.0.1:3000/r/switch.json",
+        "http://127.0.0.1:3000/r/table.json",
+        "http://127.0.0.1:3000/r/table-of-contents.json",
+        "http://127.0.0.1:3000/r/tabs.json",
+        "http://127.0.0.1:3000/r/task-list.json",
+        "http://127.0.0.1:3000/r/textarea.json",
+        "http://127.0.0.1:3000/r/theme-toggle-block.json",
+        "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/toast.json",
+        "http://127.0.0.1:3000/r/toggle.json",
+        "http://127.0.0.1:3000/r/toolbar.json",
+        "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/tree.json",
+        "http://127.0.0.1:3000/r/trigger-menu.json",
+        "http://127.0.0.1:3000/r/typography.json",
+        "http://127.0.0.1:3000/r/user-ask.json"
+      ],
+      "files": [],
+      "css": {
+        "@import \"../components/control-ui/styles/theme.css\"": {},
+        "@import \"../components/control-ui/styles/effects.css\"": {},
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/all.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect ratio",
+      "description": "CSS aspect-ratio wrapper for media and previews.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/aspect-ratio.tsx",
+          "target": "@components/control-ui/ui/aspect-ratio.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/aspect-ratio.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "audio-recorder",
+      "type": "registry:component",
+      "title": "AudioRecorder",
+      "description": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/audio-visualizer.json",
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-audio-recorder.ts",
+          "target": "@components/control-ui/hooks/use-audio-recorder.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/lib/format-audio-recorder-duration.ts",
+          "target": "@components/control-ui/lib/format-audio-recorder-duration.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/audio-recorder.tsx",
+          "target": "@components/control-ui/audio-recorder.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/audio-recorder.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "audio-visualizer",
+      "type": "registry:component",
+      "title": "AudioVisualizer",
+      "description": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/audio-visualizer.tsx",
+          "target": "@components/control-ui/audio-visualizer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/audio-visualizer.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "audio-visualizer-line",
+      "type": "registry:component",
+      "title": "AudioVisualizer — line",
+      "description": "Line rendering of the shared realtime audio visualizer contract.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/audio-visualizer-line.tsx",
+          "target": "@components/control-ui/audio-visualizer-line.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/audio-visualizer-line.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "title": "Autocomplete",
+      "description": "Free-text input with search-as-you-type suggestions.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/autocomplete.tsx",
+          "target": "@components/control-ui/ui/autocomplete.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/autocomplete.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Profile image with initials fallback.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/avatar.tsx",
+          "target": "@components/control-ui/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/avatar.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Compact status, label, or count chip.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/badge.tsx",
+          "target": "@components/control-ui/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/badge.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Accessible action button with size, variant, and semantic tone support.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/button.tsx",
+          "target": "@components/control-ui/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/button.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button group",
+      "description": "Joined button group for toolbars, split actions, and segmented controls.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/button-group.tsx",
+          "target": "@components/control-ui/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/button-group.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Date selection grid built on react-day-picker and themed through tokens.",
+      "dependencies": [
+        "react-day-picker@^10.0.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/calendar.tsx",
+          "target": "@components/control-ui/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/calendar.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Content surface for panels, tiles, and settings groups.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/card.tsx",
+          "target": "@components/control-ui/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/card.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat",
+      "type": "registry:block",
+      "title": "Chat agents",
+      "description": "Runtime-agnostic chat components installed as a complete agent surface.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/action-bar.json",
+        "http://127.0.0.1:3000/r/activity.json",
+        "http://127.0.0.1:3000/r/chat-input.json",
+        "http://127.0.0.1:3000/r/chat-input-attachment.json",
+        "http://127.0.0.1:3000/r/chat-message.json",
+        "http://127.0.0.1:3000/r/chat-scene.json",
+        "http://127.0.0.1:3000/r/code-block-editor.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/markdown-block.json",
+        "http://127.0.0.1:3000/r/model-switcher.json",
+        "http://127.0.0.1:3000/r/source-badge.json",
+        "http://127.0.0.1:3000/r/thread-rail.json"
+      ],
+      "files": [],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/chat.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat-block",
+      "type": "registry:block",
+      "title": "Chat",
+      "description": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/chat-scene.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/chat.tsx",
+          "target": "@components/control-ui/blocks/chat.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/chat-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat-input",
+      "type": "registry:component",
+      "title": "ChatInput",
+      "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/chat-input-editor.css\";",
+      "dependencies": [
+        "prosemirror-commands@^1.7.1",
+        "prosemirror-history@^1.5.0",
+        "prosemirror-keymap@^1.2.3",
+        "prosemirror-model@^1.25.11",
+        "prosemirror-state@^1.4.4",
+        "prosemirror-view@^1.42.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/trigger-menu.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-chat-input.ts",
+          "target": "@components/control-ui/hooks/use-chat-input.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input-editor.css",
+          "target": "@components/control-ui/styles/chat-input-editor.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input-editor.tsx",
+          "target": "@components/control-ui/chat-input-editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input-editor/extensions/mention.tsx",
+          "target": "@components/control-ui/chat-input-editor/extensions/mention.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input-editor/ghost.ts",
+          "target": "@components/control-ui/chat-input-editor/ghost.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input-editor/schema.ts",
+          "target": "@components/control-ui/chat-input-editor/schema.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input-editor/serialize.ts",
+          "target": "@components/control-ui/chat-input-editor/serialize.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input-editor/types.ts",
+          "target": "@components/control-ui/chat-input-editor/types.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-input.tsx",
+          "target": "@components/control-ui/chat-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/chat-input.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat-input-attachment",
+      "type": "registry:component",
+      "title": "ChatInputAttachment",
+      "description": "Composer attachment rail with file previews, upload progress, and removal.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/chat-input-attachment.tsx",
+          "target": "@components/control-ui/chat-input-attachment.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/chat-input-attachment.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat-message",
+      "type": "registry:component",
+      "title": "ChatMessage",
+      "description": "Composable chat message with typed role, density, and tone state.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-chat-message.ts",
+          "target": "@components/control-ui/hooks/use-chat-message.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-message.tsx",
+          "target": "@components/control-ui/chat-message.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/chat-message.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat-scene",
+      "type": "registry:component",
+      "title": "ChatScene",
+      "description": "Layout primitives for full chat threads, turns, and thoughts.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/activity.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/chat-scene.tsx",
+          "target": "@components/control-ui/chat-scene.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/chat-scene.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Single checkbox control with checked and indeterminate states.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/checkbox.tsx",
+          "target": "@components/control-ui/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/checkbox.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "title": "Checkbox Group",
+      "description": "Multi-select checkbox set with shared state and select-all support.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/checkbox-group.tsx",
+          "target": "@components/control-ui/ui/checkbox-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/checkbox-group.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "code",
+      "type": "registry:ui",
+      "title": "Code",
+      "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/code.css\";",
+      "dependencies": [
+        "@tanstack/react-virtual@^3.14.6",
+        "lucide-react@^1.24.0",
+        "shiki@^4.3.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/lib/code-tokens.ts",
+          "target": "@components/control-ui/lib/code-tokens.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/code.css",
+          "target": "@components/control-ui/styles/code.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/code.tsx",
+          "target": "@components/control-ui/ui/code.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/code.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "code-block-editor",
+      "type": "registry:component",
+      "title": "CodeBlockEditor",
+      "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/code.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/lib/code-block-shiki.ts",
+          "target": "@components/control-ui/lib/code-block-shiki.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/code-block-editor.tsx",
+          "target": "@components/control-ui/code-block-editor.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/code-block-editor.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "code-diff",
+      "type": "registry:ui",
+      "title": "Code Diff",
+      "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
+      "dependencies": [
+        "@tanstack/react-virtual@^3.14.6",
+        "diff@^9.0.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/code.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/lib/diff.ts",
+          "target": "@components/control-ui/lib/diff.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/code-diff.tsx",
+          "target": "@components/control-ui/ui/code-diff.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/code-diff.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "coding-agent-block",
+      "type": "registry:block",
+      "title": "Coding agent",
+      "description": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/chat-scene.json",
+        "http://127.0.0.1:3000/r/collapsible.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/coding-agent.tsx",
+          "target": "@components/control-ui/blocks/coding-agent.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/coding-agent-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Accessible disclosure primitive with measured open and close motion.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/collapsible.tsx",
+          "target": "@components/control-ui/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/collapsible.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "Color Picker",
+      "description": "Color input with picker UI, formats, presets, and contrast helpers.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/input.json",
+        "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-color-area.ts",
+          "target": "@components/control-ui/hooks/use-color-area.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/lib/color.ts",
+          "target": "@components/control-ui/lib/color.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/lib/contrast.ts",
+          "target": "@components/control-ui/lib/contrast.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/color-picker.tsx",
+          "target": "@components/control-ui/ui/color-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/color-picker.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Searchable single-select with input and floating option list.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/combobox-disabled-selection.ts",
+          "target": "@components/control-ui/ui/combobox-disabled-selection.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/combobox.tsx",
+          "target": "@components/control-ui/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/combobox.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Command palette with token-matched dialog, input, and result rows.",
+      "dependencies": [
+        "cmdk@^1.1.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/command.tsx",
+          "target": "@components/control-ui/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/command.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/context-menu.tsx",
+          "target": "@components/control-ui/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/context-menu.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "control-effects",
+      "type": "registry:style",
+      "title": "ControlEffects",
+      "description": "CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/extensions/control-effects-root.tsx",
+          "target": "@components/control-ui/extensions/control-effects-root.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/extensions/control-effects.ts",
+          "target": "@components/control-ui/extensions/control-effects.ts",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/control-effects.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialog for focused tasks, confirmations, and custom panels.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/dialog.tsx",
+          "target": "@components/control-ui/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/dialog.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dockable-panel",
+      "type": "registry:ui",
+      "title": "Dockable Panel",
+      "description": "Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/drawer.json",
+        "http://127.0.0.1:3000/r/sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/dockable-panel-geometry.ts",
+          "target": "@components/control-ui/ui/dockable-panel-geometry.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/dockable-panel.tsx",
+          "target": "@components/control-ui/ui/dockable-panel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/dockable-panel.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/drawer.tsx",
+          "target": "@components/control-ui/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/drawer.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dynamic-notification",
+      "type": "registry:component",
+      "title": "DynamicNotification",
+      "description": "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/dynamic-notification.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/liquid-glass-optics.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-dynamic-notification.ts",
+          "target": "@components/control-ui/hooks/use-dynamic-notification.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/sources/control-ui/dynamic-notification-glass.ts",
+          "target": "@components/control-ui/dynamic-notification-glass.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/dynamic-notification-liquid.ts",
+          "target": "@components/control-ui/dynamic-notification-liquid.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/dynamic-notification-siri-wave.ts",
+          "target": "@components/control-ui/dynamic-notification-siri-wave.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/dynamic-notification.css",
+          "target": "@components/control-ui/styles/dynamic-notification.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/dynamic-notification.tsx",
+          "target": "@components/control-ui/dynamic-notification.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/dynamic-notification.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty-state layout for blank lists, zero results, and new workspaces.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/empty.tsx",
+          "target": "@components/control-ui/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/empty.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "environment-variables",
+      "type": "registry:component",
+      "title": "EnvironmentVariables",
+      "description": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/input.json",
+        "http://127.0.0.1:3000/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-environment-variables.ts",
+          "target": "@components/control-ui/hooks/use-environment-variables.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/lib/env-file.ts",
+          "target": "@components/control-ui/lib/env-file.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/environment-variables.tsx",
+          "target": "@components/control-ui/environment-variables.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/environment-variables.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Form field wrapper for labels, descriptions, errors, and validity state.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/field.tsx",
+          "target": "@components/control-ui/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/field.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "file-explorer-block",
+      "type": "registry:block",
+      "title": "File explorer",
+      "description": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/empty.json",
+        "http://127.0.0.1:3000/r/input-group.json",
+        "http://127.0.0.1:3000/r/resizable.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/file-explorer-data.ts",
+          "target": "@components/control-ui/blocks/file-explorer-data.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/registry/blocks/control-ui/file-explorer.tsx",
+          "target": "@components/control-ui/blocks/file-explorer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/file-explorer-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Form wrapper that coordinates field validation and returned errors.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/form.tsx",
+          "target": "@components/control-ui/ui/form.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/form.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "gradient-editor",
+      "type": "registry:ui",
+      "title": "Gradient Editor",
+      "description": "CSS gradient editor with draggable stops and live preview.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/color-picker.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/gradient-editor.tsx",
+          "target": "@components/control-ui/ui/gradient-editor.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/gradient-editor.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover card",
+      "description": "Hover or focus preview panel for profiles, links, and contextual details.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/hover-card.tsx",
+          "target": "@components/control-ui/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/hover-card.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "inline-attachment",
+      "type": "registry:component",
+      "title": "InlineAttachment",
+      "description": "Inline file and media previews for chat turns.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/inline-attachment.tsx",
+          "target": "@components/control-ui/inline-attachment.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/inline-attachment.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text field primitive sized and styled to match other controls.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/input.tsx",
+          "target": "@components/control-ui/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/input.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input group",
+      "description": "Joined input wrapper for addons, icons, and focus-within rings.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/input-group.tsx",
+          "target": "@components/control-ui/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/input-group.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "One-time-code field with grouped, focus-aware slots.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/input-otp.tsx",
+          "target": "@components/control-ui/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/input-otp.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "description": "List row with media, content, and trailing actions.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/item.tsx",
+          "target": "@components/control-ui/ui/item.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/item.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keyboard shortcut chip and chord group.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/kbd.tsx",
+          "target": "@components/control-ui/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/kbd.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "markdown",
+      "type": "registry:ui",
+      "title": "Markdown",
+      "description": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
+      "dependencies": [
+        "streamdown@^2.5.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/code.json",
+        "http://127.0.0.1:3000/r/code-diff.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/markdown-elements.tsx",
+          "target": "@components/control-ui/ui/markdown-elements.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/markdown.tsx",
+          "target": "@components/control-ui/ui/markdown.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/markdown.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "markdown-block",
+      "type": "registry:component",
+      "title": "MarkdownBlock",
+      "description": "Assistant markdown output rendered to prose, with a header and copy-source action.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/markdown.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/markdown-block.tsx",
+          "target": "@components/control-ui/markdown-block.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/markdown-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "Dropdown menu for actions, resources, labels, separators, and submenus.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/menu.tsx",
+          "target": "@components/control-ui/ui/menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/menu.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "Desktop command bar with nested menus, shortcuts, and separators.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/menubar.tsx",
+          "target": "@components/control-ui/ui/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/menubar.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "Static range meter for quota, storage, score, or usage values.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/meter.tsx",
+          "target": "@components/control-ui/ui/meter.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/meter.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "morphing-panel",
+      "type": "registry:ui",
+      "title": "Morphing Panel",
+      "description": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/morphing-panel.tsx",
+          "target": "@components/control-ui/ui/morphing-panel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/morphing-panel.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native select",
+      "description": "Native select control styled to match the Control UI control family.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/native-select.tsx",
+          "target": "@components/control-ui/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/native-select.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation menu",
+      "description": "Site navigation menu with a shared animated viewport.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/navigation-menu.tsx",
+          "target": "@components/control-ui/ui/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/navigation-menu.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "next-app",
+      "type": "registry:item",
+      "title": "Control UI Next.js app",
+      "description": "Minimal Next.js starter wiring for the complete Control UI registry.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/all.json",
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/starters/next/layout.tsx",
+          "target": "~/app/layout.tsx",
+          "type": "registry:page"
+        },
+        {
+          "path": "src/registry/starters/next/page.tsx",
+          "target": "~/app/page.tsx",
+          "type": "registry:page"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/next-app.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "Number Field",
+      "description": "Numeric input with stepper buttons and optional drag-to-change behavior.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/number-field.tsx",
+          "target": "@components/control-ui/ui/number-field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/number-field.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page navigation for long lists and result sets.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/pagination.tsx",
+          "target": "@components/control-ui/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/pagination.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "phone-input",
+      "type": "registry:ui",
+      "title": "Phone input",
+      "description": "International phone field with country search, E.164 values, and Zod validation helpers.",
+      "dependencies": [
+        "libphonenumber-js@^1.13.8",
+        "react-phone-number-input@^3.4.17",
+        "zod@^4.4.3"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/input-group.json",
+        "http://127.0.0.1:3000/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/lib/phone-input-format.ts",
+          "target": "@components/control-ui/lib/phone-input-format.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/lib/phone-number.ts",
+          "target": "@components/control-ui/lib/phone-number.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/phone-input.tsx",
+          "target": "@components/control-ui/ui/phone-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/phone-input.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Anchored floating panel for inline settings and contextual content.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/popover.tsx",
+          "target": "@components/control-ui/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/popover.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Determinate task progress with optional label and value rows.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/progress.tsx",
+          "target": "@components/control-ui/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/progress.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio group",
+      "description": "Single-choice radio set for plans, filters, and option lists.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/radio-group.tsx",
+          "target": "@components/control-ui/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/radio-group.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Accessible resizable panel groups and split layouts with keyboard support.",
+      "dependencies": [
+        "react-resizable-panels@^4.12.2"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/resizable.tsx",
+          "target": "@components/control-ui/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/resizable.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "responsive-dialog",
+      "type": "registry:ui",
+      "title": "Responsive dialog",
+      "description": "Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/dialog.json",
+        "http://127.0.0.1:3000/r/drawer.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/responsive-dialog.tsx",
+          "target": "@components/control-ui/ui/responsive-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/responsive-dialog.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll area",
+      "description": "Scroll container with overlay scrollbars and edge fades.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/scroll-area.tsx",
+          "target": "@components/control-ui/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/scroll-area.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Single-choice picker with a token-matched trigger and floating list.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/select.tsx",
+          "target": "@components/control-ui/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/select.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "send-aurora",
+      "type": "registry:style",
+      "title": "SendAurora",
+      "description": "Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/send-aurora.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/extensions/send-aurora.css",
+          "target": "@components/control-ui/styles/send-aurora.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/extensions/send-aurora.tsx",
+          "target": "@components/control-ui/extensions/send-aurora.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/send-aurora.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "settings-block",
+      "type": "registry:block",
+      "title": "Settings",
+      "description": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/empty.json",
+        "http://127.0.0.1:3000/r/field.json",
+        "http://127.0.0.1:3000/r/input-group.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/sidebar.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/settings-data.ts",
+          "target": "@components/control-ui/blocks/settings-data.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/registry/blocks/control-ui/settings.tsx",
+          "target": "@components/control-ui/blocks/settings.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/settings-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/sheet.json",
+        "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-mobile.ts",
+          "target": "@components/control-ui/hooks/use-mobile.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/sidebar.tsx",
+          "target": "@components/control-ui/ui/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/sidebar.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Loading placeholder with a token-driven shimmer.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/skeleton.tsx",
+          "target": "@components/control-ui/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/skeleton.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-cuicui",
+      "type": "registry:style",
+      "title": "Cuicui skin",
+      "description": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor).",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/send-aurora.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/cuicui/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/cuicui/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/cuicui/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/cuicui/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-flat",
+      "type": "registry:theme",
+      "title": "Flat skin",
+      "description": "Neutral reset skin with square corners, no shadows, and instant motion.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/flat/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/flat/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/flat/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/flat/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-linear",
+      "type": "registry:style",
+      "title": "Linear skin",
+      "description": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/linear/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/linear/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/linear/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/linear/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-liquid-metal",
+      "type": "registry:style",
+      "title": "Liquid metal skin",
+      "description": "Polished metal skin with a WebGL shader control surface.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+      "dependencies": [
+        "metal-fx@^1.0.4"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/liquid-metal/liquid-metal-runtime.tsx",
+          "target": "@components/control-ui/liquid-metal-runtime.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/skin-packs/liquid-metal/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/liquid-metal/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/liquid-metal/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/liquid-metal/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-modern-apple",
+      "type": "registry:style",
+      "title": "Modern Apple skin",
+      "description": "Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\"; Then mount ModernAppleLiquidGlassRuntime once near the app root from @/components/control-ui/modern-apple-liquid-glass-runtime. The runtime uses createImageBitmap when available; if an older browser needs its image-decoder fallback, allow data: in img-src or it will retain the CSS glass fallback.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/liquid-glass-optics.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime.tsx",
+          "target": "@components/control-ui/modern-apple-liquid-glass-runtime.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass.ts",
+          "target": "@components/control-ui/modern-apple-liquid-glass.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/modern-apple/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/modern-apple/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/modern-apple/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/modern-apple/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-refined",
+      "type": "registry:theme",
+      "title": "Refined skin",
+      "description": "Compact, calm starting skin with a complete Control UI token contract.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/refined/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/refined/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/refined/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/refined/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-rig",
+      "type": "registry:theme",
+      "title": "Rig skin",
+      "description": "Brutalist skin with coral accents, squared corners, and dense typography.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/rig/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/rig/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/rig/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/rig/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-xp",
+      "type": "registry:style",
+      "title": "Windows XP skin",
+      "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/skin-packs/xp/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/skin-packs/xp/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/xp/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/xp/skin.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Single-value range control with branded and plain treatments.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/slider.tsx",
+          "target": "@components/control-ui/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/slider.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "source-badge",
+      "type": "registry:component",
+      "title": "SourceBadge",
+      "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/avatar.json",
+        "http://127.0.0.1:3000/r/badge.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/source-badge.tsx",
+          "target": "@components/control-ui/source-badge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/source-badge.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Accessible loading indicator for pending buttons, panels, and inline waits.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/spinner.tsx",
+          "target": "@components/control-ui/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/spinner.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "Static and interactive workflow steps with horizontal and vertical layouts.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/stepper.tsx",
+          "target": "@components/control-ui/ui/stepper.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/stepper.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "On/off control with token-driven track, thumb, and press motion.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/switch.tsx",
+          "target": "@components/control-ui/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/switch.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Responsive data table for lists, comparisons, and structured records.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/table.tsx",
+          "target": "@components/control-ui/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/table.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "table-of-contents",
+      "type": "registry:ui",
+      "title": "Table of contents",
+      "description": "Sticky in-page navigation with scroll-spy range highlighting.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/track-highlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/table-of-contents.tsx",
+          "target": "@components/control-ui/ui/table-of-contents.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/table-of-contents.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Segmented navigation with a stable active indicator.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/tabs.tsx",
+          "target": "@components/control-ui/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/tabs.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "task-list",
+      "type": "registry:component",
+      "title": "TaskList",
+      "description": "Floating agent task progress pill above the composer that expands into the full task list.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/collapsible.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/task-list.tsx",
+          "target": "@components/control-ui/task-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/task-list.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multiline text field with CSS-first auto-growth.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/textarea.tsx",
+          "target": "@components/control-ui/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/textarea.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "theme-toggle-block",
+      "type": "registry:block",
+      "title": "Theme toggle",
+      "description": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/menu.json",
+        "http://127.0.0.1:3000/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/control-ui/theme-toggle.tsx",
+          "target": "@components/control-ui/blocks/theme-toggle.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/theme-toggle-block.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "thread-rail",
+      "type": "registry:component",
+      "title": "ThreadRail",
+      "description": "Conversation minimap for scanning and jumping between chat turns.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/thread-rail.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/thread-rail.css",
+          "target": "@components/control-ui/styles/thread-rail.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/thread-rail.tsx",
+          "target": "@components/control-ui/thread-rail.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/thread-rail.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Transient notifications with a callable toast API and single Toaster mount.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/toast.tsx",
+          "target": "@components/control-ui/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/toast.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Pressed-state button and toggle group built on the Button surface.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/toggle.tsx",
+          "target": "@components/control-ui/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/toggle.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Roving-focus toolbar for editor controls and compact actions.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/toolbar.tsx",
+          "target": "@components/control-ui/ui/toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/toolbar.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/tooltip.tsx",
+          "target": "@components/control-ui/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/tooltip.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tree",
+      "type": "registry:ui",
+      "title": "Tree",
+      "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0",
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/track-highlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/tree.tsx",
+          "target": "@components/control-ui/ui/tree.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/tree.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "trigger-menu",
+      "type": "registry:ui",
+      "title": "Trigger Menu",
+      "description": "Caret-anchored command or mention menu for text editors.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-textarea-trigger-menu.ts",
+          "target": "@components/control-ui/hooks/use-textarea-trigger-menu.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/hooks/use-trigger-menu.ts",
+          "target": "@components/control-ui/hooks/use-trigger-menu.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/lib/trigger-detect.ts",
+          "target": "@components/control-ui/lib/trigger-detect.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/trigger-menu.tsx",
+          "target": "@components/control-ui/ui/trigger-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/trigger-menu.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "typography",
+      "type": "registry:style",
+      "title": "Typography",
+      "description": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/type-scale.css\";",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/examples/control-ui/primitives/type-scale.css",
+          "target": "@components/control-ui/styles/type-scale.css",
+          "type": "registry:file"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/typography.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "user-ask",
+      "type": "registry:component",
+      "title": "UserAsk",
+      "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-user-ask.ts",
+          "target": "@components/control-ui/hooks/use-user-ask.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/sources/control-ui/user-ask.tsx",
+          "target": "@components/control-ui/user-ask.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/user-ask.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "view-transition",
+      "type": "registry:style",
+      "title": "viewTransition",
+      "description": "Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/extensions/view-transition.ts",
+          "target": "@components/control-ui/extensions/view-transition.ts",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/view-transition.json"
+      }
+    }
+  ]
+}

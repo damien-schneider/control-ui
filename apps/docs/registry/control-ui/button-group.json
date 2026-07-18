@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "type": "registry:ui",
+  "title": "Button group",
+  "description": "Joined button group for toolbars, split actions, and segmented controls.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/button-group.tsx",
+      "target": "@components/control-ui/ui/button-group.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/button-group.json"
+  }
+}

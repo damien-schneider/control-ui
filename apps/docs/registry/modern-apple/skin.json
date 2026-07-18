@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skin-modern-apple",
+  "type": "registry:style",
+  "title": "Modern Apple skin",
+  "description": "Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\"; Then mount ModernAppleLiquidGlassRuntime once near the app root from @/components/control-ui/modern-apple-liquid-glass-runtime. The runtime uses createImageBitmap when available; if an older browser needs its image-decoder fallback, allow data: in img-src or it will retain the CSS glass fallback.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core",
+    "liquid-glass-optics"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime.tsx",
+      "target": "@components/control-ui/modern-apple-liquid-glass-runtime.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass.ts",
+      "target": "@components/control-ui/modern-apple-liquid-glass.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin-packs/modern-apple/skin.config.tsx",
+      "target": "@components/control-ui/skin.config.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin-packs/modern-apple/skin.css",
+      "target": "@components/control-ui/styles/skin.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/modern-apple/theme.css",
+      "target": "@components/control-ui/styles/skin-theme.css",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/modern-apple/skin.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "type": "registry:ui",
+  "title": "Input OTP",
+  "description": "One-time-code field with grouped, focus-aware slots.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/input-otp.tsx",
+      "target": "@components/control-ui/ui/input-otp.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { OTPField as OTPFieldPrimitive } from \"@base-ui/react/otp-field\";\nimport { Fragment } from \"react\";\nimport type { InputOTPProps, InputOTPSeparatorProps, InputOTPSlotProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, 100% Base UI OtpField: each slot a control-shaped box sharing --radius-control/card+ring surface w/ Input & Select trigger.\n// Code reads as a row of the same control family; focused slot lifts ring in pure CSS.\nconst slotClasses =\n  \"relative flex size-[var(--control-h-md)] items-center justify-center rounded-[var(--radius-control)] bg-card/72 text-center text-body font-medium tabular-nums text-foreground shadow-sm ring-1 ring-inset ring-border outline-none transition placeholder:text-muted-foreground focus:z-[1] focus:ring-2 focus:ring-foreground/20 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50\";\n\nexport function InputOTPSlot({ index, length, className, ...props }: InputOTPSlotProps) {\n  return (\n    <OTPFieldPrimitive.Input\n      data-control-ui=\"input-otp\"\n      data-slot=\"slot\"\n      data-control=\"true\"\n      aria-label={length ? `Character ${index + 1} of ${length}` : `Character ${index + 1}`}\n      className={cn(slotClasses, skinSlot(\"input-otp\", \"slot\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function InputOTPSeparator({ className, ...props }: InputOTPSeparatorProps) {\n  return (\n    <OTPFieldPrimitive.Separator\n      data-control-ui=\"input-otp\"\n      data-slot=\"separator\"\n      className={cn(\"h-px w-2.5 shrink-0 rounded-full bg-border\", skinSlot(\"input-otp\", \"separator\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function InputOTP({ length = 6, separator = false, className, children, ...props }: InputOTPProps) {\n  return (\n    <OTPFieldPrimitive.Root\n      data-control-ui=\"input-otp\"\n      data-slot=\"root\"\n      length={length}\n      className={cn(\"flex items-center gap-2\", skinSlot(\"input-otp\", \"root\", {}), className)}\n      {...props}\n    >\n      {children ??\n        Array.from({ length }, (_, index) => `input-otp-slot-${index}`).map((slotKey, index) => (\n          <Fragment key={slotKey}>\n            {separator && index === Math.ceil(length / 2) ? <InputOTPSeparator /> : null}\n            <InputOTPSlot index={index} length={length} />\n          </Fragment>\n        ))}\n    </OTPFieldPrimitive.Root>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

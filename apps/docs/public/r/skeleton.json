@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "title": "Skeleton",
+  "description": "Loading placeholder with a token-driven shimmer.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/skeleton.tsx",
+      "target": "@components/control-ui/ui/skeleton.tsx",
+      "type": "registry:ui",
+      "content": "import type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinPaint, skinSlot } from \"@/components/control-ui/skin\";\n\n// Token-driven `shimmer` sweep instead of flat pulse — reads as \"streaming in\", follows theme colours/radius/motion tempo.\nexport function Skeleton({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-control-ui=\"skeleton\"\n      data-slot=\"root\"\n      className={cn(\"rounded-md\", skinPaint(\"skeleton\", \"shimmer\", {}) ?? \"shimmer\", skinSlot(\"skeleton\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

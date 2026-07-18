@@ -1,0 +1,36 @@
+<GuideSection id="contract" title="Compatible by contract">
+  Control UI uses shadcn registry manifests and core token names. Its source installs under `components/control-ui/*`
+  without writing to `components/ui/*`. Component props are defined by Control UI and are not promised as drop-in
+  replacements for same-named components.
+
+  <CompatibilityBridge />
+</GuideSection>
+
+<GuideSection id="tokens" title="Bring an existing theme">
+  The core color contract uses shadcn's token names, including `--background`, `--foreground`, `--card`, `--popover`,
+  `--primary`, `--secondary`, `--muted`, `--accent`, `--destructive`, `--border`, `--input`, and `--ring`. Existing values can
+  seed a Control UI skin, but the skin must explicitly complete the wider contract; core does not supply brand defaults.
+
+```css
+[data-skin="my-skin"] {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.6131 0.2067 283.83);
+  --primary-foreground: oklch(1 0 0);
+  --radius: 0.625rem;
+}
+
+.dark[data-skin="my-skin"],
+:where(.dark) [data-skin="my-skin"] {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+}
+
+/* Continue with every remaining Control UI contract token. */
+```
+
+  <GuidePoints>
+    <GuidePoint>Always install and activate one skin with `data-skin`; a missing or unknown id has no implicit token fallback.</GuidePoint>
+    <GuidePoint>Every skin resolves every color, typography, radius, shadow, motion, and surface token in both modes, either through one shared declaration or explicit light and dark declarations.</GuidePoint>
+  </GuidePoints>
+</GuideSection>

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skin-liquid-metal",
+  "type": "registry:style",
+  "title": "Liquid metal skin",
+  "description": "Polished metal skin with a WebGL shader control surface.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+  "dependencies": [
+    "metal-fx@^1.0.4"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skin-packs/liquid-metal/liquid-metal-runtime.tsx",
+      "target": "@components/control-ui/liquid-metal-runtime.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/skin-packs/liquid-metal/skin.config.tsx",
+      "target": "@components/control-ui/skin.config.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin-packs/liquid-metal/skin.css",
+      "target": "@components/control-ui/styles/skin.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/liquid-metal/theme.css",
+      "target": "@components/control-ui/styles/skin-theme.css",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/liquid-metal/skin.json"
+  }
+}

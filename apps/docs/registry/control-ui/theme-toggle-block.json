@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-toggle-block",
+  "type": "registry:block",
+  "title": "Theme toggle",
+  "description": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "menu",
+    "switch"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/theme-toggle.tsx",
+      "target": "@components/control-ui/blocks/theme-toggle.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/theme-toggle-block.json"
+  }
+}

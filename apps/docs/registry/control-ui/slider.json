@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "type": "registry:ui",
+  "title": "Slider",
+  "description": "Single-value range control with branded and plain treatments.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/slider.tsx",
+      "target": "@components/control-ui/ui/slider.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/slider.json"
+  }
+}

@@ -1,0 +1,10 @@
+engine biome(1.0)
+language js(typescript, jsx)
+
+JsCallExpression(callee=JsStaticMemberExpression(member=$method)) as $call where {
+  $method <: or {
+    `querySelector`,
+    `querySelectorAll`
+  },
+  register_diagnostic(span=$call, message="DOM queries are prohibited in React components. Register elements with React refs instead.", severity="error")
+}

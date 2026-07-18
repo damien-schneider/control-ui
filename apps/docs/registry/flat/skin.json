@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skin-flat",
+  "type": "registry:theme",
+  "title": "Flat skin",
+  "description": "Neutral reset skin with square corners, no shadows, and instant motion.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skin-packs/flat/skin.config.tsx",
+      "target": "@components/control-ui/skin.config.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin-packs/flat/skin.css",
+      "target": "@components/control-ui/styles/skin.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/flat/theme.css",
+      "target": "@components/control-ui/styles/skin-theme.css",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/flat/skin.json"
+  }
+}

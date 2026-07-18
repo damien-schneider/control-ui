@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "type": "registry:ui",
+  "title": "Toggle",
+  "description": "Pressed-state button and toggle group built on the Button surface.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/button.json",
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/toggle.tsx",
+      "target": "@components/control-ui/ui/toggle.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Toggle as TogglePrimitive } from \"@base-ui/react/toggle\";\nimport { ToggleGroup as ToggleGroupPrimitive } from \"@base-ui/react/toggle-group\";\nimport type { ToggleGroupProps, ToggleProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\nimport { buttonContentClasses, buttonRecipeClasses } from \"@/components/control-ui/ui/button\";\n\n// Toggle keeps its own anatomy while sharing Button's visual recipe.\nexport function Toggle({\n  variant = \"surface\",\n  size = \"sm\",\n  tone = \"neutral\",\n  active,\n  showCheck = false,\n  className,\n  pressed,\n  defaultPressed,\n  onPressedChange,\n  value,\n  disabled,\n  children,\n  ...props\n}: ToggleProps) {\n  return (\n    <TogglePrimitive\n      pressed={pressed}\n      defaultPressed={defaultPressed}\n      onPressedChange={onPressedChange}\n      value={value}\n      disabled={disabled}\n      render={(renderProps, state) => {\n        const isActive = active ?? state.pressed;\n        const context = { variant, tone, size, shape: \"default\" as const, active: isActive };\n        return (\n          <button\n            type=\"button\"\n            {...renderProps}\n            data-control-ui=\"toggle\"\n            data-slot=\"root\"\n            data-control=\"true\"\n            data-active={isActive ? \"true\" : undefined}\n            data-variant={variant}\n            data-tone={tone}\n            data-size={size}\n            className={cn(\n              buttonRecipeClasses(variant, tone, size),\n              skinSlot(\"toggle\", \"root\", context) ?? skinSlot(\"button\", \"root\", context),\n              renderProps.className,\n              className,\n            )}\n          >\n            <span\n              data-control-ui=\"toggle\"\n              data-slot=\"content\"\n              className={cn(buttonContentClasses, skinSlot(\"toggle\", \"content\", {}) ?? skinSlot(\"button\", \"content\", {}))}\n            >\n              {showCheck ? (\n                <span\n                  data-control-ui=\"toggle\"\n                  data-slot=\"check\"\n                  className={cn(\"flex size-3.5 shrink-0 items-center justify-center\", skinSlot(\"toggle\", \"check\", {}))}\n                >\n                  {isActive ? (\n                    <svg viewBox=\"0 0 12 12\" className=\"size-3\" aria-hidden=\"true\" fill=\"none\">\n                      <path d=\"M2.5 6.5 5 9l4.5-5\" stroke=\"currentColor\" strokeWidth=\"1.4\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n                    </svg>\n                  ) : null}\n                </span>\n              ) : null}\n              {renderProps.children}\n            </span>\n          </button>\n        );\n      }}\n      {...props}\n    >\n      {children}\n    </TogglePrimitive>\n  );\n}\n\nexport function ToggleGroup({ className, orientation = \"horizontal\", ...props }: ToggleGroupProps) {\n  return (\n    <ToggleGroupPrimitive\n      data-control-ui=\"toggle\"\n      data-slot=\"group\"\n      data-orientation={orientation}\n      orientation={orientation}\n      className={cn(\n        \"inline-flex items-center gap-1\",\n        orientation === \"vertical\" && \"flex-col\",\n        skinSlot(\"toggle\", \"group\", { orientation }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

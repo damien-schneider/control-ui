@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "view-transition",
+  "type": "registry:style",
+  "title": "viewTransition",
+  "description": "Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/extensions/view-transition.ts",
+      "target": "@components/control-ui/extensions/view-transition.ts",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/view-transition.json"
+  }
+}

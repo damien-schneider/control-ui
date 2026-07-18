@@ -1,0 +1,79 @@
+<GuideSection id="layers" title="Runtime and source ownership">
+  The host application owns model calls, transport, streaming, persistence, branching, and tool execution. Control UI owns
+  the installed component behavior, markup, local UI state, and stable anatomy. Provider-specific usage examples compose
+  native runtime messages directly at that boundary without introducing a normalized Control UI message model.
+
+  Interactive previews are host-app integration surfaces, so they can mount a provider's official client and a server-side
+  mock runtime. They render the provider's native messages directly; they do not add a Control UI message format or convert
+  one provider's shape into another. Provider code never enters installable components, blocks, hooks, or utilities.
+
+  <ArchitectureLayers />
+
+  <GuideCode kind="runtime-agnostic-message" />
+</GuideSection>
+
+<GuideSection id="skins" title="Skins over one component tree">
+  Every skin owns the same three files over one component source. Its `theme.css` explicitly resolves the complete token
+  contract for light and dark modes; it never inherits another skin's values. `skin.css` handles CSS that tokens and classes
+  cannot express, and `skin.config.tsx` supplies typed design-system choices, slot overrides, and optional adornments.
+  Resolution is static and caller `className` remains last.
+
+  <SkinFileStack />
+  <SkinResolutionMap />
+</GuideSection>
+
+<GuideSection id="anatomy" title="Stable anatomy without runtime metadata">
+  Every public part emits the same two attributes. `data-control-ui` marks Control UI ownership and names the component
+  scope; `data-slot` names a part local to that scope. `data-skin` belongs on the skin boundary, including portal
+  positioners. It is not repeated on every component.
+
+```css
+/* One exact part in one skin. */
+[data-skin="rig"] :where([data-control-ui="chat-input"][data-slot="root"]) { ... }
+
+/* Every interactive Control UI root, without touching host application controls. */
+[data-skin="rig"] [data-control-ui][data-control="true"] { ... }
+```
+
+  The generated `skin-contract.json` is the equivalent of a `defineAnatomy` catalog, but it is built from the component
+  source instead of becoming a browser-side object. It lists scopes, parts, states, paints, adornments, semantic families,
+  and registry ownership in one agent-readable artifact. Item API responses separate `ownScopes` from `installedScopes`,
+  so an agent sees both the requested component and the anatomy brought by its dependency closure.
+</GuideSection>
+
+<GuideSection id="skin-cost" title="Keep the active skin sparse">
+  `skin.config.tsx` is one shared ES module. Components do not reload or clone it: `skinSlot(scope, part, context)` performs
+  one optional property lookup against the active object. A large config does remain in the active JavaScript bundle because
+  dynamic slot lookup cannot tree-shake individual keys, so broad visual decisions belong in tokens and scoped CSS. Keep
+  slots for exceptions that need context, paints for exclusive render treatments, and adornments for optional structure.
+  Edit the installed component directly when the markup or behavior itself must change.
+
+  Bundle tests cap every shipped config at 4 kB gzip. Refined and Flat remain nearly empty; richer packs pay only for their
+  one active config, not once per rendered component.
+</GuideSection>
+
+<GuideSection id="customization-ladder" title="Choose the smallest customization surface">
+  Start at the top and stop at the first rung that expresses the change. Each step downward owns more behavior and is harder
+  to undo.
+
+  <CustomizationLadder />
+
+  <GuidePoints>
+    <GuidePoint>Change a token when the contract already names the value.</GuidePoint>
+    <GuidePoint>Use a prop when alternatives coexist at different call sites; use a skin-level choice when one decision applies across the design system.</GuidePoint>
+    <GuidePoint>Use slots, skin CSS, utilities, or an optional extension only when the shallower surfaces cannot express the result.</GuidePoint>
+    <GuidePoint>Edit the installed component source when the anatomy itself must change.</GuidePoint>
+  </GuidePoints>
+</GuideSection>
+
+<GuideSection id="registry" title="Registry source of truth">
+  The docs catalog and real source imports define file ownership, dependencies, and each transitive install closure. Source
+  manifests, public payloads, previews, API metadata, and agent documentation are generated views; validation rejects drift
+  between them.
+
+  <RegistryPipeline />
+
+  The current anatomy contract is version 4. This pre-release registry treats contract changes as a clean break rather than
+  emitting compatibility attributes. Contract version 4 replaces ToolCall with Activity's typed `kind="tool"` variant; follow
+  the deletion and reinstall steps in Get started before upgrading core, the selected components or block, and the skin.
+</GuideSection>

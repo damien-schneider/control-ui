@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "source-badge",
+  "type": "registry:component",
+  "title": "SourceBadge",
+  "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/avatar.json",
+    "http://127.0.0.1:3000/r/badge.json",
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/source-badge.tsx",
+      "target": "@components/control-ui/source-badge.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { Globe } from \"lucide-react\";\nimport type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/control-ui/ui/avatar\";\nimport { Badge } from \"@/components/control-ui/ui/badge\";\n\nexport type SourceBadgeProps = Omit<ComponentProps<\"a\">, \"href\"> & {\n  faviconSrc?: string | false;\n  href: string;\n};\n\nfunction hostnameFromHref(href: string) {\n  try {\n    return new URL(href).hostname.replace(/^www\\./, \"\") || href;\n  } catch {\n    return href;\n  }\n}\n\nfunction faviconFromHref(href: string) {\n  try {\n    const source = new URL(href);\n    if (source.protocol !== \"https:\" && source.protocol !== \"http:\") return undefined;\n    return new URL(\"/favicon.ico\", source.origin).href;\n  } catch {\n    return undefined;\n  }\n}\n\nexport function SourceBadge({ faviconSrc, href, children, className, rel, target, ...props }: SourceBadgeProps) {\n  const hostname = hostnameFromHref(href);\n  const resolvedFaviconSrc = faviconSrc === false ? undefined : (faviconSrc ?? faviconFromHref(href));\n  const resolvedRel = rel ?? (target === \"_blank\" ? \"noreferrer noopener\" : undefined);\n\n  return (\n    <Badge\n      variant=\"outline\"\n      asChild\n      className={cn(\n        \"h-6 gap-1.5 rounded-full bg-background px-1.5 py-0 pr-2 font-normal text-muted-foreground hover:bg-muted/60 hover:text-foreground\",\n        skinSlot(\"source-badge\", \"root\", {}),\n        className,\n      )}\n    >\n      <a data-control-ui=\"source-badge\" data-slot=\"root\" href={href} target={target} rel={resolvedRel} {...props}>\n        <Avatar\n          data-control-ui=\"source-badge\"\n          data-slot=\"favicon\"\n          className={cn(\"size-3.5 rounded-[3px] bg-muted\", skinSlot(\"source-badge\", \"favicon\", {}))}\n        >\n          {resolvedFaviconSrc ? <AvatarImage src={resolvedFaviconSrc} alt=\"\" /> : null}\n          <AvatarFallback className=\"rounded-[3px] bg-muted\">\n            <Globe aria-hidden=\"true\" className=\"size-2.5\" />\n          </AvatarFallback>\n        </Avatar>\n        <span data-control-ui=\"source-badge\" data-slot=\"label\" className={cn(\"max-w-44 truncate\", skinSlot(\"source-badge\", \"label\", {}))}>\n          {children ?? hostname}\n        </span>\n      </a>\n    </Badge>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

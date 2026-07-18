@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "task-list",
+  "type": "registry:component",
+  "title": "TaskList",
+  "description": "Floating agent task progress pill above the composer that expands into the full task list.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "collapsible",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/task-list.tsx",
+      "target": "@components/control-ui/task-list.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/task-list.json"
+  }
+}

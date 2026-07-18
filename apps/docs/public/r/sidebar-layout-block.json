@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-layout-block",
+  "type": "registry:block",
+  "title": "Sidebar layout",
+  "description": "Application shell composed from the Control UI Sidebar.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json",
+    "http://127.0.0.1:3000/r/sidebar.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/sidebar-layout.tsx",
+      "target": "@components/control-ui/blocks/sidebar-layout.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { BotIcon, LayoutDashboardIcon, SettingsIcon, SquareTerminalIcon, WorkflowIcon } from \"lucide-react\";\nimport type { ComponentType, ReactNode } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\nimport {\n  Sidebar,\n  SidebarContent,\n  SidebarFooter,\n  SidebarGroup,\n  SidebarGroupLabel,\n  SidebarHeader,\n  SidebarInset,\n  SidebarMenu,\n  SidebarMenuButton,\n  SidebarMenuItem,\n  SidebarProvider,\n  SidebarRail,\n  SidebarTrigger,\n} from \"@/components/control-ui/ui/sidebar\";\n\ntype SidebarLayoutNavItem = {\n  title: string;\n  icon: ComponentType<{ className?: string }>;\n};\n\nconst primaryNav: SidebarLayoutNavItem[] = [\n  { title: \"Playground\", icon: SquareTerminalIcon },\n  { title: \"Agents\", icon: BotIcon },\n  { title: \"Workflows\", icon: WorkflowIcon },\n  { title: \"Dashboard\", icon: LayoutDashboardIcon },\n];\n\n// Same AppSidebar/SidebarLayout seam as default-skin block, on Control UI Sidebar (same shadcn contract:\n// provider+icon-collapse+inset), skinned via token cascade + per-slot config; advanced packs reskin from here.\nexport function AppSidebar({ active = \"Playground\" }: { active?: string }) {\n  return (\n    <Sidebar collapsible=\"icon\" variant=\"inset\">\n      <SidebarHeader>\n        <SidebarMenu>\n          <SidebarMenuItem>\n            <SidebarMenuButton size=\"lg\">\n              <span className=\"flex size-6 shrink-0 items-center justify-center rounded-md bg-primary text-xs font-semibold text-primary-foreground\">\n                A\n              </span>\n              <span className=\"text-sm font-semibold\">Acme Studio</span>\n            </SidebarMenuButton>\n          </SidebarMenuItem>\n        </SidebarMenu>\n      </SidebarHeader>\n      <SidebarContent>\n        <SidebarGroup>\n          <SidebarGroupLabel>Platform</SidebarGroupLabel>\n          <SidebarMenu>\n            {primaryNav.map((item) => (\n              <SidebarMenuItem key={item.title}>\n                <SidebarMenuButton isActive={item.title === active} tooltip={item.title}>\n                  <item.icon />\n                  <span>{item.title}</span>\n                </SidebarMenuButton>\n              </SidebarMenuItem>\n            ))}\n          </SidebarMenu>\n        </SidebarGroup>\n      </SidebarContent>\n      <SidebarFooter>\n        <SidebarMenu>\n          <SidebarMenuItem>\n            <SidebarMenuButton tooltip=\"Settings\">\n              <SettingsIcon />\n              <span>Settings</span>\n            </SidebarMenuButton>\n          </SidebarMenuItem>\n        </SidebarMenu>\n      </SidebarFooter>\n      <SidebarRail />\n    </Sidebar>\n  );\n}\n\nexport function SidebarLayout({ children }: { children: ReactNode }) {\n  return (\n    <SidebarProvider>\n      <AppSidebar />\n      <SidebarInset>\n        <header className=\"flex h-14 shrink-0 items-center gap-2 border-b px-4\">\n          <SidebarTrigger />\n        </header>\n        <div\n          data-control-ui=\"sidebar-layout\"\n          data-slot=\"content\"\n          data-surface=\"panel\"\n          className={cn(\"flex flex-1 flex-col gap-4 p-4\", skinSlot(\"sidebar-layout\", \"content\", {}))}\n        >\n          {children}\n        </div>\n      </SidebarInset>\n    </SidebarProvider>\n  );\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

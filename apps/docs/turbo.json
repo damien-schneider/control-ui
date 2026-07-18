@@ -1,0 +1,11 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": ["BING_SITE_VERIFICATION", "GOOGLE_SITE_VERIFICATION"]
+    },
+    "dev": {
+      "passThroughEnv": ["BING_SITE_VERIFICATION", "GOOGLE_SITE_VERIFICATION"]
+    }
+  }
+}

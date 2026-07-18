@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skin-rig",
+  "type": "registry:theme",
+  "title": "Rig skin",
+  "description": "Brutalist skin with coral accents, squared corners, and dense typography.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skin-packs/rig/skin.config.tsx",
+      "target": "@components/control-ui/skin.config.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin-packs/rig/skin.css",
+      "target": "@components/control-ui/styles/skin.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/rig/theme.css",
+      "target": "@components/control-ui/styles/skin-theme.css",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/rig/skin.json"
+  }
+}

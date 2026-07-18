@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "morphing-panel",
+  "type": "registry:ui",
+  "title": "Morphing Panel",
+  "description": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/morphing-panel.tsx",
+      "target": "@components/control-ui/ui/morphing-panel.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/morphing-panel.json"
+  }
+}

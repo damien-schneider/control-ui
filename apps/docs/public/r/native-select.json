@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "type": "registry:ui",
+  "title": "Native select",
+  "description": "Native select control styled to match the Control UI control family.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/native-select.tsx",
+      "target": "@components/control-ui/ui/native-select.tsx",
+      "type": "registry:ui",
+      "content": "import type { NativeSelectProps } from \"@/components/control-ui/contracts\";\nimport { controlSize, controlSurfaceClasses } from \"@/components/control-ui/control-variants\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, NOT Base UI: real native <select> (platform widget, not floating Base UI Select).\n// Shares --radius-control/controlSize w/ Button/Input/Select; appearance-none hides OS arrow, chevron overlay matches Select icon.\n// Native options open OS menu — no portal/skin re-assert needed.\nexport function NativeSelect({ size = \"md\", className, children, ...props }: NativeSelectProps) {\n  return (\n    <div className=\"relative inline-flex w-full items-center\">\n      <select\n        data-control-ui=\"native-select\"\n        data-slot=\"root\"\n        data-size={size}\n        className={cn(\n          \"w-full min-w-0 cursor-pointer appearance-none rounded-[var(--radius-control)] pr-[calc(var(--padding-x)*1.4)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive\",\n          controlSurfaceClasses,\n          controlSize({ size }),\n          skinSlot(\"native-select\", \"root\", { size }),\n          className,\n        )}\n        {...props}\n      >\n        {children}\n      </select>\n      <span aria-hidden=\"true\" className=\"pointer-events-none absolute right-[calc(var(--padding-x)*0.6)] text-muted-foreground\">\n        <svg viewBox=\"0 0 12 12\" className=\"size-3\" aria-hidden=\"true\" fill=\"none\">\n          <path d=\"M3 4.5 6 7.5 9 4.5\" stroke=\"currentColor\" strokeWidth=\"1.3\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n        </svg>\n      </span>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

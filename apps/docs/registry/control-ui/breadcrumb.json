@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "title": "Breadcrumb",
+  "description": "Semantic breadcrumb styled with Control UI tokens.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/breadcrumb.tsx",
+      "target": "@components/control-ui/ui/breadcrumb.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/breadcrumb.json"
+  }
+}

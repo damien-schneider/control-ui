@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "model-switcher",
+  "type": "registry:component",
+  "title": "Model switcher",
+  "description": "Model selection composition used by chat surfaces.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json",
+    "http://127.0.0.1:3000/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/model-switcher.tsx",
+      "target": "@components/control-ui/model-switcher.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport type { ModelSwitcherProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@/components/control-ui/ui/select\";\n\n// Model picker on Select slot; trigger is a control, shares --radius-control with every button — proof a design direction is a theme rewrite, not a per-component edit.\nexport function ModelSwitcher({\n  models,\n  value,\n  defaultValue,\n  onValueChange,\n  size = \"sm\",\n  variant = \"surface\",\n  className,\n}: ModelSwitcherProps) {\n  const fallback = defaultValue ?? models[0]?.value;\n\n  return (\n    <Select value={value} defaultValue={fallback} onValueChange={onValueChange}>\n      <SelectTrigger\n        size={size}\n        variant={variant}\n        className={cn(\"max-w-52\", className)}\n        aria-label=\"Model\"\n        data-control-ui=\"model-switcher\"\n        data-slot=\"root\"\n      >\n        <span className=\"flex min-w-0 items-center gap-1.5\">\n          <span aria-hidden=\"true\" className=\"size-1.5 shrink-0 rounded-full bg-primary\" />\n          <SelectValue placeholder=\"Model\">\n            {(current: string) => models.find((model) => model.value === current)?.label ?? \"Model\"}\n          </SelectValue>\n        </span>\n      </SelectTrigger>\n      <SelectContent>\n        {models.map((model) => (\n          <SelectItem key={model.value} value={model.value}>\n            <span className=\"truncate\">{model.label}</span>\n            {model.hint ? <span className=\"ml-auto pl-4 text-micro text-muted-foreground\">{model.hint}</span> : null}\n          </SelectItem>\n        ))}\n      </SelectContent>\n    </Select>\n  );\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

@@ -1,0 +1,95 @@
+/*
+ * The pack's own vars + the three things Tailwind classes cannot say: body-inherited type rendering,
+ * and the Tabs component-local knobs. Everything else lives in skin.config (slots) or theme.css (tokens).
+ * All scoped [data-skin="linear"] so several packs co-compile in one build.
+ */
+
+/* Pack vars — NOT theme-contract names. Row fills derive from --foreground, so one declaration
+ * serves both modes (the token flips, the alpha recipe doesn't). Surfaces/shadows are mode-dependent. */
+[data-skin="linear"] {
+  --linear-row-hover: oklch(from var(--foreground) l c h / 0.05);
+  --linear-row-active: oklch(from var(--foreground) l c h / 0.08);
+  --linear-control-bg: var(--card);
+  --linear-control-hover: oklch(from var(--foreground) l c h / 0.04);
+  --linear-control-active: oklch(from var(--foreground) l c h / 0.07);
+
+  /* The brand ramp: Linear darkens the indigo on press rather than fading it. */
+  --linear-primary-hover: oklch(0.5897 0.1527 276.397); /* #6771d6 */
+  --linear-primary-active: oklch(0.5177 0.1507 275.398); /* #525cbd */
+
+  /* Elevation, spelled out: the sheet and its cards are held by hairlines; popups and modals lift.
+   * Own vars (not `shadow-(--shadow-pop)`) so the tiers stay legible and tunable per surface class. */
+  --linear-control-shadow: 0 1px 1px 0 oklch(from var(--shadow-color) l c h / 0.05);
+  --linear-panel-shadow: 0 1px 3px 0 oklch(from var(--shadow-color) l c h / 0.04);
+  --linear-menu-shadow:
+    0 1px 2px 0 oklch(from var(--shadow-color) l c h / 0.08),
+    0 6px 24px -4px oklch(from var(--shadow-color) l c h / 0.14);
+  --linear-modal-shadow:
+    0 4px 12px 0 oklch(from var(--shadow-color) l c h / 0.1),
+    0 20px 70px -10px oklch(from var(--shadow-color) l c h / 0.22);
+
+  --linear-tab-active-bg: var(--card);
+  --linear-tab-active-shadow:
+    0 0 0 1px var(--border),
+    0 1px 2px 0 oklch(from var(--shadow-color) l c h / 0.06);
+}
+
+/* Dark: raised surfaces get lighter, not brighter-edged; shadows go deep and neutral. */
+:where(.dark) [data-skin="linear"],
+.dark[data-skin="linear"] {
+  --linear-control-bg: oklch(1 0 0 / 0.05);
+  --linear-control-hover: oklch(1 0 0 / 0.09);
+  --linear-control-active: oklch(1 0 0 / 0.12);
+  --linear-control-shadow: 0 1px 1px 0 oklch(0 0 0 / 0.3);
+  --linear-panel-shadow: 0 1px 2px 0 oklch(0 0 0 / 0.25);
+  --linear-menu-shadow:
+    0 0 0 1px oklch(1 0 0 / 0.04),
+    0 8px 32px -4px oklch(0 0 0 / 0.6);
+  --linear-modal-shadow:
+    0 0 0 1px oklch(1 0 0 / 0.05),
+    0 24px 80px -12px oklch(0 0 0 / 0.7);
+  --linear-tab-active-bg: oklch(1 0 0 / 0.07);
+  --linear-tab-active-shadow: none;
+}
+
+/* Type rendering is inherited, not a utility: Linear ships Inter with its character variants on and
+ * a hair of negative tracking across the whole app. Scoped to the skinned document, body-level so
+ * portalled popups inherit it too. */
+:root[data-skin="linear"] body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.0075em;
+  font-feature-settings:
+    "cv01" 1,
+    "cv02" 1,
+    "cv03" 1,
+    "cv04" 1,
+    "calt" 1,
+    "liga" 1;
+}
+
+@layer components {
+  /* Sliding selection pill (apps opting into indicator="slide", the docs shell among them): Linear's
+   * selected row is a flat ink wash, never a raised card. Re-values of the library's own knobs. */
+  [data-skin="linear"] :where([data-control-ui="track-highlight"][data-slot="root"]) {
+    --track-highlight-bg: var(--linear-row-active);
+    --track-highlight-ring: transparent;
+    --track-highlight-shadow: none;
+  }
+
+  /* Tabs: no recessed well. The track is bare, the active chip is a raised card — re-values of the
+   * library's component-local knobs, so geometry, states and the `line` variant stay baseline's. */
+  [data-skin="linear"] :where([data-control-ui="tabs"][data-slot="list"]) {
+    --tabs-trigger-radius: var(--radius-control);
+    --tabs-list-padding: 0rem;
+    --tabs-list-gap: 0.25rem;
+    --tabs-list-bg: transparent;
+    --tabs-indicator-bg: var(--linear-tab-active-bg);
+    --tabs-indicator-shadow: var(--linear-tab-active-shadow);
+    --tabs-indicator-ease: var(--ease-standard);
+    --tabs-trigger-font-size: var(--text-label);
+    --tabs-trigger-focus-shadow: 0 0 0 2px oklch(from var(--ring) l c h / 0.45);
+    --tabs-line-border-color: var(--border);
+    --tabs-line-indicator-bg: var(--primary);
+  }
+}

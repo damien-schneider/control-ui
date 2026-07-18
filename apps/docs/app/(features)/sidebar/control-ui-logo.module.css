@@ -1,0 +1,59 @@
+.logo {
+  --control-ui-logo-background: var(--sidebar);
+  --control-ui-logo-foreground: var(--sidebar-primary);
+
+  position: relative;
+  display: block;
+  flex: none;
+  height: 1rem;
+  aspect-ratio: 79 / 71;
+}
+
+.shell {
+  position: absolute;
+  inset-inline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 43.662%;
+  padding: 5.063%;
+  overflow: hidden;
+  background: var(--control-ui-logo-foreground);
+  border-radius: var(--radius-control);
+  corner-shape: var(--corner-shape-control);
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.bar {
+  height: 100%;
+  background: var(--control-ui-logo-background);
+  border-radius: inherit;
+  corner-shape: inherit;
+}
+
+.shortBar {
+  width: 61.972%;
+}
+
+.fullBar {
+  position: relative;
+  width: 100%;
+}
+
+.notch {
+  position: absolute;
+  top: 13.043%;
+  left: 14.085%;
+  width: 5.634%;
+  height: 73.913%;
+  background: var(--control-ui-logo-foreground);
+  border-radius: inherit;
+  corner-shape: inherit;
+}

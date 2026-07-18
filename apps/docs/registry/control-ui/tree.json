@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree",
+  "type": "registry:ui",
+  "title": "Tree",
+  "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0",
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "core",
+    "track-highlight"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/tree.tsx",
+      "target": "@components/control-ui/ui/tree.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/tree.json"
+  }
+}

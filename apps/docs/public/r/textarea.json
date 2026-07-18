@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "title": "Textarea",
+  "description": "Multiline text field with CSS-first auto-growth.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/textarea.tsx",
+      "target": "@components/control-ui/ui/textarea.tsx",
+      "type": "registry:ui",
+      "content": "import type { TextareaProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// NOT Base UI — plain <textarea>, mirrors Input surface but drops single-line height for its own px-3/py-2 rhythm.\n// Auto-grow is CSS-first via `field-sizing-content` (bounded min-h/max-h) — no ResizeObserver, no JS measuring, resize off.\n// data-[invalid] surfaces validation inside a Field.\nexport function Textarea({ className, ...props }: TextareaProps) {\n  return (\n    <textarea\n      data-control-ui=\"textarea\"\n      data-slot=\"root\"\n      className={cn(\n        \"field-sizing-content min-h-16 max-h-64 w-full min-w-0 resize-none rounded-[var(--radius-control)] bg-card/72 px-3 py-2 text-body text-foreground shadow-sm ring-1 ring-inset ring-border outline-none transition placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive\",\n        skinSlot(\"textarea\", \"root\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

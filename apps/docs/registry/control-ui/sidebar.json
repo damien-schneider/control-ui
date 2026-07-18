@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar",
+  "type": "registry:ui",
+  "title": "Sidebar",
+  "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1",
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "scroll-area",
+    "sheet",
+    "tooltip",
+    "track-highlight"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-mobile.ts",
+      "target": "@components/control-ui/hooks/use-mobile.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/sidebar.tsx",
+      "target": "@components/control-ui/ui/sidebar.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/sidebar.json"
+  }
+}

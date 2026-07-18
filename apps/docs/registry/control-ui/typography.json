@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typography",
+  "type": "registry:style",
+  "title": "Typography",
+  "description": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/type-scale.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/examples/control-ui/primitives/type-scale.css",
+      "target": "@components/control-ui/styles/type-scale.css",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/typography.json"
+  }
+}

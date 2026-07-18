@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "activity",
+  "type": "registry:component",
+  "title": "Activity",
+  "description": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "collapsible",
+    "core",
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/activity.tsx",
+      "target": "@components/control-ui/activity.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/activity.json"
+  }
+}

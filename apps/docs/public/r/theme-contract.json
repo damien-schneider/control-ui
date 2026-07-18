@@ -1,0 +1,1199 @@
+{
+  "version": 1,
+  "tokens": [
+    {
+      "name": "--background",
+      "group": "color",
+      "tier": "core",
+      "description": "Base surface color (panels, bubbles read it via bg-background)."
+    },
+    {
+      "name": "--foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Default text color on --background."
+    },
+    {
+      "name": "--card",
+      "group": "color",
+      "tier": "core",
+      "description": "Elevated card surface."
+    },
+    {
+      "name": "--card-foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Text color on --card."
+    },
+    {
+      "name": "--popover",
+      "group": "color",
+      "tier": "core",
+      "description": "Floating surface base (popover / menu / select / dialog)."
+    },
+    {
+      "name": "--popover-foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Text color on --popover."
+    },
+    {
+      "name": "--primary",
+      "group": "color",
+      "tier": "core",
+      "description": "THE brand color; primary action surfaces route through it."
+    },
+    {
+      "name": "--primary-foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Text color on --primary."
+    },
+    {
+      "name": "--primary-text",
+      "group": "color",
+      "tier": "core",
+      "description": "Readable brand text color on base and card surfaces."
+    },
+    {
+      "name": "--muted",
+      "group": "color",
+      "tier": "core",
+      "description": "Subdued fill for quiet surfaces."
+    },
+    {
+      "name": "--muted-foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Secondary / meta text color."
+    },
+    {
+      "name": "--secondary",
+      "group": "color",
+      "tier": "core",
+      "description": "Secondary action fill (assistant bubble in chat skins)."
+    },
+    {
+      "name": "--secondary-foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Text color on --secondary."
+    },
+    {
+      "name": "--accent",
+      "group": "color",
+      "tier": "core",
+      "description": "Hover / selection highlight fill."
+    },
+    {
+      "name": "--accent-foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Text color on --accent."
+    },
+    {
+      "name": "--destructive",
+      "group": "color",
+      "tier": "core",
+      "description": "Destructive action color."
+    },
+    {
+      "name": "--destructive-foreground",
+      "group": "color",
+      "tier": "core",
+      "description": "Text color on --destructive."
+    },
+    {
+      "name": "--destructive-text",
+      "group": "color",
+      "tier": "core",
+      "description": "Readable destructive text color on base and card surfaces."
+    },
+    {
+      "name": "--border",
+      "group": "color",
+      "tier": "core",
+      "description": "Hairline border color (carries --ring-opacity)."
+    },
+    {
+      "name": "--input",
+      "group": "color",
+      "tier": "core",
+      "description": "Form field border color."
+    },
+    {
+      "name": "--ring",
+      "group": "color",
+      "tier": "core",
+      "description": "Focus ring color."
+    },
+    {
+      "name": "--canvas",
+      "group": "color",
+      "tier": "core",
+      "description": "The page paper the scene/panels float on — a level BELOW --background."
+    },
+    {
+      "name": "--ring-opacity",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Alpha of the border/ring hairlines; 0 = borderless."
+    },
+    {
+      "name": "--popup-item-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color of popup (menu/select) rows."
+    },
+    {
+      "name": "--popup-item-icon-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Icon color inside popup rows."
+    },
+    {
+      "name": "--popup-item-highlight-background",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover/highlight fill of popup rows."
+    },
+    {
+      "name": "--badge-neutral",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft neutral badge background."
+    },
+    {
+      "name": "--badge-neutral-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the neutral badge."
+    },
+    {
+      "name": "--badge-neutral-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline neutral badge variant."
+    },
+    {
+      "name": "--badge-neutral-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of neutral badge links/buttons."
+    },
+    {
+      "name": "--badge-slate",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft slate badge background."
+    },
+    {
+      "name": "--badge-slate-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the slate badge."
+    },
+    {
+      "name": "--badge-slate-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline slate badge variant."
+    },
+    {
+      "name": "--badge-slate-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of slate badge links/buttons."
+    },
+    {
+      "name": "--badge-gray",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft gray badge background."
+    },
+    {
+      "name": "--badge-gray-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the gray badge."
+    },
+    {
+      "name": "--badge-gray-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline gray badge variant."
+    },
+    {
+      "name": "--badge-gray-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of gray badge links/buttons."
+    },
+    {
+      "name": "--badge-zinc",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft zinc badge background."
+    },
+    {
+      "name": "--badge-zinc-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the zinc badge."
+    },
+    {
+      "name": "--badge-zinc-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline zinc badge variant."
+    },
+    {
+      "name": "--badge-zinc-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of zinc badge links/buttons."
+    },
+    {
+      "name": "--badge-stone",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft stone badge background."
+    },
+    {
+      "name": "--badge-stone-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the stone badge."
+    },
+    {
+      "name": "--badge-stone-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline stone badge variant."
+    },
+    {
+      "name": "--badge-stone-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of stone badge links/buttons."
+    },
+    {
+      "name": "--badge-red",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft red badge background."
+    },
+    {
+      "name": "--badge-red-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the red badge."
+    },
+    {
+      "name": "--badge-red-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline red badge variant."
+    },
+    {
+      "name": "--badge-red-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of red badge links/buttons."
+    },
+    {
+      "name": "--badge-orange",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft orange badge background."
+    },
+    {
+      "name": "--badge-orange-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the orange badge."
+    },
+    {
+      "name": "--badge-orange-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline orange badge variant."
+    },
+    {
+      "name": "--badge-orange-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of orange badge links/buttons."
+    },
+    {
+      "name": "--badge-amber",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft amber badge background."
+    },
+    {
+      "name": "--badge-amber-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the amber badge."
+    },
+    {
+      "name": "--badge-amber-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline amber badge variant."
+    },
+    {
+      "name": "--badge-amber-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of amber badge links/buttons."
+    },
+    {
+      "name": "--badge-yellow",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft yellow badge background."
+    },
+    {
+      "name": "--badge-yellow-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the yellow badge."
+    },
+    {
+      "name": "--badge-yellow-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline yellow badge variant."
+    },
+    {
+      "name": "--badge-yellow-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of yellow badge links/buttons."
+    },
+    {
+      "name": "--badge-lime",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft lime badge background."
+    },
+    {
+      "name": "--badge-lime-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the lime badge."
+    },
+    {
+      "name": "--badge-lime-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline lime badge variant."
+    },
+    {
+      "name": "--badge-lime-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of lime badge links/buttons."
+    },
+    {
+      "name": "--badge-green",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft green badge background."
+    },
+    {
+      "name": "--badge-green-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the green badge."
+    },
+    {
+      "name": "--badge-green-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline green badge variant."
+    },
+    {
+      "name": "--badge-green-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of green badge links/buttons."
+    },
+    {
+      "name": "--badge-emerald",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft emerald badge background."
+    },
+    {
+      "name": "--badge-emerald-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the emerald badge."
+    },
+    {
+      "name": "--badge-emerald-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline emerald badge variant."
+    },
+    {
+      "name": "--badge-emerald-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of emerald badge links/buttons."
+    },
+    {
+      "name": "--badge-teal",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft teal badge background."
+    },
+    {
+      "name": "--badge-teal-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the teal badge."
+    },
+    {
+      "name": "--badge-teal-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline teal badge variant."
+    },
+    {
+      "name": "--badge-teal-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of teal badge links/buttons."
+    },
+    {
+      "name": "--badge-cyan",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft cyan badge background."
+    },
+    {
+      "name": "--badge-cyan-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the cyan badge."
+    },
+    {
+      "name": "--badge-cyan-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline cyan badge variant."
+    },
+    {
+      "name": "--badge-cyan-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of cyan badge links/buttons."
+    },
+    {
+      "name": "--badge-sky",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft sky badge background."
+    },
+    {
+      "name": "--badge-sky-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the sky badge."
+    },
+    {
+      "name": "--badge-sky-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline sky badge variant."
+    },
+    {
+      "name": "--badge-sky-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of sky badge links/buttons."
+    },
+    {
+      "name": "--badge-blue",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft blue badge background."
+    },
+    {
+      "name": "--badge-blue-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the blue badge."
+    },
+    {
+      "name": "--badge-blue-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline blue badge variant."
+    },
+    {
+      "name": "--badge-blue-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of blue badge links/buttons."
+    },
+    {
+      "name": "--badge-indigo",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft indigo badge background."
+    },
+    {
+      "name": "--badge-indigo-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the indigo badge."
+    },
+    {
+      "name": "--badge-indigo-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline indigo badge variant."
+    },
+    {
+      "name": "--badge-indigo-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of indigo badge links/buttons."
+    },
+    {
+      "name": "--badge-violet",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft violet badge background."
+    },
+    {
+      "name": "--badge-violet-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the violet badge."
+    },
+    {
+      "name": "--badge-violet-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline violet badge variant."
+    },
+    {
+      "name": "--badge-violet-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of violet badge links/buttons."
+    },
+    {
+      "name": "--badge-purple",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft purple badge background."
+    },
+    {
+      "name": "--badge-purple-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the purple badge."
+    },
+    {
+      "name": "--badge-purple-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline purple badge variant."
+    },
+    {
+      "name": "--badge-purple-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of purple badge links/buttons."
+    },
+    {
+      "name": "--badge-fuchsia",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft fuchsia badge background."
+    },
+    {
+      "name": "--badge-fuchsia-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the fuchsia badge."
+    },
+    {
+      "name": "--badge-fuchsia-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline fuchsia badge variant."
+    },
+    {
+      "name": "--badge-fuchsia-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of fuchsia badge links/buttons."
+    },
+    {
+      "name": "--badge-pink",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft pink badge background."
+    },
+    {
+      "name": "--badge-pink-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the pink badge."
+    },
+    {
+      "name": "--badge-pink-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline pink badge variant."
+    },
+    {
+      "name": "--badge-pink-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of pink badge links/buttons."
+    },
+    {
+      "name": "--badge-rose",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Soft rose badge background."
+    },
+    {
+      "name": "--badge-rose-foreground",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Text color on the rose badge."
+    },
+    {
+      "name": "--badge-rose-border",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Border of the outline rose badge variant."
+    },
+    {
+      "name": "--badge-rose-hover",
+      "group": "color",
+      "tier": "advanced",
+      "description": "Hover background of rose badge links/buttons."
+    },
+    {
+      "name": "--font-sans",
+      "group": "typography",
+      "tier": "core",
+      "description": "Typeface for the whole UI."
+    },
+    {
+      "name": "--font-mono",
+      "group": "typography",
+      "tier": "core",
+      "description": "Monospace face (code, kbd)."
+    },
+    {
+      "name": "--font-body",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Font ROLE for body/UI text; defaults to --font-sans."
+    },
+    {
+      "name": "--font-display",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Font ROLE for headings; defaults to --font-sans."
+    },
+    {
+      "name": "--text-micro",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "10px rung — kbd, badge counters, dense numeric meta."
+    },
+    {
+      "name": "--text-caption",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "11px rung — overlines, timestamps, group labels."
+    },
+    {
+      "name": "--text-label",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "12px rung — form labels + small chrome."
+    },
+    {
+      "name": "--text-body",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "14px rung — DEFAULT body & control text."
+    },
+    {
+      "name": "--text-body-lg",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "16px rung — emphasized / larger body."
+    },
+    {
+      "name": "--text-heading-4",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Smallest heading rung (15px)."
+    },
+    {
+      "name": "--text-heading-4--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-heading-4."
+    },
+    {
+      "name": "--text-heading-4--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-heading-4."
+    },
+    {
+      "name": "--text-heading-3",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Heading rung (18px)."
+    },
+    {
+      "name": "--text-heading-3--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-heading-3."
+    },
+    {
+      "name": "--text-heading-3--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-heading-3."
+    },
+    {
+      "name": "--text-heading-2",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Heading rung (22px)."
+    },
+    {
+      "name": "--text-heading-2--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-heading-2."
+    },
+    {
+      "name": "--text-heading-2--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-heading-2."
+    },
+    {
+      "name": "--text-heading-1",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Largest content heading (30px — in-page / markdown h1)."
+    },
+    {
+      "name": "--text-heading-1--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-heading-1."
+    },
+    {
+      "name": "--text-heading-1--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-heading-1."
+    },
+    {
+      "name": "--text-heading-1--letter-spacing",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Tracking paired onto text-heading-1."
+    },
+    {
+      "name": "--text-display",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Display rung above h1 (36px — page titles, heroes)."
+    },
+    {
+      "name": "--text-display--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-display."
+    },
+    {
+      "name": "--text-display--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-display."
+    },
+    {
+      "name": "--text-display--letter-spacing",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Tracking paired onto text-display."
+    },
+    {
+      "name": "--text-meta",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Legacy alias of --text-caption (11px)."
+    },
+    {
+      "name": "--text-title-sm",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Legacy alias of --text-heading-4."
+    },
+    {
+      "name": "--text-title-sm--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-title-sm."
+    },
+    {
+      "name": "--text-title-sm--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-title-sm."
+    },
+    {
+      "name": "--text-title-md",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Legacy alias of --text-heading-3."
+    },
+    {
+      "name": "--text-title-md--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-title-md."
+    },
+    {
+      "name": "--text-title-md--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-title-md."
+    },
+    {
+      "name": "--text-title-lg",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Legacy alias of --text-heading-2."
+    },
+    {
+      "name": "--text-title-lg--line-height",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Line-height paired onto text-title-lg."
+    },
+    {
+      "name": "--text-title-lg--font-weight",
+      "group": "typography",
+      "tier": "advanced",
+      "description": "Weight paired onto text-title-lg."
+    },
+    {
+      "name": "--radius",
+      "group": "radius",
+      "tier": "core",
+      "description": "THE single radius knob; the whole scale multiplies from it."
+    },
+    {
+      "name": "--radius-control",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Shared control corner (button, trigger, field, chip); ×2 from --radius."
+    },
+    {
+      "name": "--radius-sm",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Scale rung: --radius × 0.6."
+    },
+    {
+      "name": "--radius-md",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Scale rung: --radius × 0.8."
+    },
+    {
+      "name": "--radius-lg",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Scale rung: --radius × 1."
+    },
+    {
+      "name": "--radius-xl",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Scale rung: --radius × 1.4."
+    },
+    {
+      "name": "--radius-2xl",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Scale rung: --radius × 1.6."
+    },
+    {
+      "name": "--radius-field",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "User bubble / composer shell corner; --radius × 2.2."
+    },
+    {
+      "name": "--radius-panel",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Code / markdown panel corner; --radius × 2.6."
+    },
+    {
+      "name": "--radius-scene",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Scene frame / large media corner; --radius × 2.8."
+    },
+    {
+      "name": "--corner-shape",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Progressive corner reshape (round | squircle | scoop | …)."
+    },
+    {
+      "name": "--corner-shape-control",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Corner shape for controls; defaults to --corner-shape."
+    },
+    {
+      "name": "--corner-shape-popover",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Corner shape for floating surfaces; defaults to --corner-shape."
+    },
+    {
+      "name": "--corner-shape-panel",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Corner shape for panels; defaults to --corner-shape."
+    },
+    {
+      "name": "--corner-radius-fit",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Fallback radius shrink where corner-shape: squircle is unsupported."
+    },
+    {
+      "name": "--radius-popup-item",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Select/menu row corner; derived from --radius-control."
+    },
+    {
+      "name": "--radius-popup-item-fit",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Row corner clamped to half the row height (browser render cap)."
+    },
+    {
+      "name": "--radius-popover",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Popup container corner, concentric with the fitted row corner."
+    },
+    {
+      "name": "--nest-safe",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Sub-pixel guard for rounded children inside clipped rounded containers."
+    },
+    {
+      "name": "--nest-corner-ratio",
+      "group": "radius",
+      "tier": "advanced",
+      "description": "Corner-fit ratio (2 + √2) capping panel corners near inset controls."
+    },
+    {
+      "name": "--shadow-color",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Hue every shadow is tinted with."
+    },
+    {
+      "name": "--shadow-highlight",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Inner top light painted along raised surfaces' top edge (carries its resting alpha)."
+    },
+    {
+      "name": "--shadow-size",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Global geometry multiplier: 1 = default depth, 0 = flat."
+    },
+    {
+      "name": "--shadow-opacity",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Global alpha multiplier: 1 = default density, 0 = invisible."
+    },
+    {
+      "name": "--shadow-y",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Vertical bias: 0 = centered, 1 = default bottom cast."
+    },
+    {
+      "name": "--shadow-control-multiplier",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Elevation tier: controls."
+    },
+    {
+      "name": "--shadow-panel-multiplier",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Elevation tier: panels."
+    },
+    {
+      "name": "--shadow-popover-multiplier",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Elevation tier: floating popovers."
+    },
+    {
+      "name": "--shadow-modal-multiplier",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Elevation tier: dialogs and sheets."
+    },
+    {
+      "name": "--shadow-ambient-multiplier",
+      "group": "shadow",
+      "tier": "advanced",
+      "description": "Elevation tier: ambient scene lift."
+    },
+    {
+      "name": "--ease-standard",
+      "group": "motion",
+      "tier": "advanced",
+      "description": "Default easing curve for color/text transitions."
+    },
+    {
+      "name": "--ease-emphasized",
+      "group": "motion",
+      "tier": "advanced",
+      "description": "Emphasized curve for entrances and larger moves."
+    },
+    {
+      "name": "--duration-fast",
+      "group": "motion",
+      "tier": "core",
+      "description": "Fast tempo (hover, color)."
+    },
+    {
+      "name": "--duration-base",
+      "group": "motion",
+      "tier": "core",
+      "description": "Base tempo (menus, indicators)."
+    },
+    {
+      "name": "--duration-slow",
+      "group": "motion",
+      "tier": "core",
+      "description": "Slow tempo (panel/message entrances)."
+    },
+    {
+      "name": "--popover-opacity",
+      "group": "surface",
+      "tier": "advanced",
+      "description": "Floating-surface translucency; <1 + blur = frosted glass."
+    },
+    {
+      "name": "--backdrop-blur-popover",
+      "group": "surface",
+      "tier": "advanced",
+      "description": "Backdrop blur behind floating surfaces."
+    },
+    {
+      "name": "--overlay-opacity",
+      "group": "surface",
+      "tier": "advanced",
+      "description": "Modal overlay (dialog backdrop) dim strength."
+    },
+    {
+      "name": "--backdrop-blur-overlay",
+      "group": "surface",
+      "tier": "advanced",
+      "description": "Backdrop blur of the modal overlay."
+    },
+    {
+      "name": "--scroll-fade-size",
+      "group": "surface",
+      "tier": "advanced",
+      "description": "Edge-fade depth of scrollable surfaces; 0 = hard edges."
+    },
+    {
+      "name": "--popup-item-disabled-opacity",
+      "group": "surface",
+      "tier": "advanced",
+      "description": "Opacity of disabled popup rows."
+    },
+    {
+      "name": "--popover-padding",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Gap between popup container edge and rows (drives concentric corners)."
+    },
+    {
+      "name": "--padding-x",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Horizontal content density of rounded surfaces (bubble, composer)."
+    },
+    {
+      "name": "--padding-y",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Vertical content density of rounded surfaces."
+    },
+    {
+      "name": "--control-h",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "THE base control height (md); the ramp derives from it."
+    },
+    {
+      "name": "--control-h-xs",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Derived control height: xs (×0.78, px-snapped)."
+    },
+    {
+      "name": "--control-h-sm",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Derived control height: sm (×0.89, px-snapped)."
+    },
+    {
+      "name": "--control-h-md",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Control height alias for the md base."
+    },
+    {
+      "name": "--control-h-lg",
+      "group": "layout",
+      "tier": "advanced",
+      "description": "Derived control height: lg (×1.11, px-snapped)."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Generated outputs — regenerate with `bun run sync`, verified by `bun run validate`.
+apps/docs/registry.json linguist-generated=true
+apps/docs/registry/** linguist-generated=true
+apps/docs/public/r/** linguist-generated=true
+apps/docs/public/llms.txt linguist-generated=true
+apps/docs/public/llms-full.txt linguist-generated=true
+apps/docs/app/generated-registry.ts linguist-generated=true
+apps/docs/components/control-ui/** linguist-generated=true
+bun.lock linguist-generated=true

@@ -1,0 +1,382 @@
+/* Refined owns the complete Control UI token contract; core only provides bindings, accessibility modifiers, and invariant recipes. */
+
+[data-skin="refined"] {
+  /* Geist via next/font (--font-geist-sans); host without it falls to system stack. */
+  --font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, "Liberation Mono", monospace;
+  /* body/display default to --font-sans; re-value one to give headings their own face. */
+  --font-body: var(--font-sans);
+  --font-display: var(--font-sans);
+
+  /* Canonical font-size source (see /primitives/typography); components use these rungs, never raw text-[Npx].
+     Declared raw (not @theme) so a skin can re-value a rung. Body/UI family = 10-16px band, ~95% of UI text. */
+  --text-micro: 0.625rem; /* 10px — kbd, badge counters, dense numeric meta */
+  --text-caption: 0.6875rem; /* 11px — overlines, timestamps, section / group labels */
+  --text-label: 0.75rem; /* 12px — form labels + small chrome (nav item, tooltip, shortcut) */
+  --text-body: 0.875rem; /* 14px — DEFAULT body & control text (the workhorse; absorbs old text-sm) */
+  --text-body-lg: 1rem; /* 16px — emphasized / larger body */
+
+  /* Heading hierarchy, numbered (heading-1 = largest); each pairs line-height+weight via v4 `--text-*--…` so one utility carries all three. */
+  --text-heading-4: 0.9375rem; /* 15px */
+  --text-heading-4--line-height: 1.4;
+  --text-heading-4--font-weight: 600;
+  --text-heading-3: 1.125rem; /* 18px */
+  --text-heading-3--line-height: 1.35;
+  --text-heading-3--font-weight: 600;
+  --text-heading-2: 1.375rem; /* 22px */
+  --text-heading-2--line-height: 1.25;
+  --text-heading-2--font-weight: 600;
+  --text-heading-1: 1.875rem; /* 30px — content h1 (in-page / markdown) */
+  --text-heading-1--line-height: 1.15;
+  --text-heading-1--font-weight: 700;
+  --text-heading-1--letter-spacing: -0.018em;
+
+  /* Biggest rung, above content h1: page titles + hero. font-family isn't a paired-token prop, apply `font-display` separately. */
+  --text-display: 2.25rem; /* 36px */
+  --text-display--line-height: 1.1;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.026em;
+
+  /* Legacy aliases, same values; delete once consumers migrate. --text-meta→--text-caption, --text-title-*→--text-heading-N. */
+  --text-meta: 0.6875rem; /* 11px → use --text-caption */
+  --text-title-sm: 0.9375rem; /* → --text-heading-4 */
+  --text-title-sm--line-height: 1.4;
+  --text-title-sm--font-weight: 600;
+  --text-title-md: 1.125rem; /* → --text-heading-3 */
+  --text-title-md--line-height: 1.35;
+  --text-title-md--font-weight: 600;
+  --text-title-lg: 1.375rem; /* → --text-heading-2 */
+  --text-title-lg--line-height: 1.25;
+  --text-title-lg--font-weight: 600;
+
+  /* shadcn base names, full colors, authored in oklch (wider gamut, matches Tailwind/shadcn v4); any format still works.
+     Refined brand = warm sand neutral ramp (hue ~60-90, low chroma), umber shadows — soft daylight, not studio gray. */
+  --background: oklch(0.9852 0.0053 84);
+  --foreground: oklch(0.3042 0.0266 63);
+  --card: oklch(0.9945 0.0031 88);
+  --card-foreground: oklch(0.3042 0.0266 63);
+  --popover: oklch(0.9945 0.0031 88);
+  --popover-foreground: oklch(0.3042 0.0266 63);
+  --primary: oklch(0.3184 0.0327 61);
+  --primary-foreground: oklch(0.9852 0.0058 85);
+  --primary-text: oklch(from var(--primary) 0.48 c h);
+  --muted: oklch(0.9425 0.0104 79);
+  --muted-foreground: oklch(0.5301 0.0224 72);
+  --secondary: oklch(0.9425 0.0104 79);
+  --secondary-foreground: oklch(0.3184 0.0327 61);
+  --accent: oklch(0.9295 0.0118 77);
+  --accent-foreground: oklch(0.3184 0.0327 61);
+  --destructive: oklch(0.568 0.1961 32);
+  --destructive-foreground: oklch(0.9852 0.0058 85);
+  --destructive-text: oklch(from var(--destructive) 0.48 c h);
+  /* Border/ring opacity. Used by ring-border and border hairlines; 0 = transparent. */
+  --ring-opacity: 1;
+  --border: oklch(0.8851 0.0135 76 / var(--ring-opacity));
+  --input: oklch(0.8851 0.0135 76);
+  --ring: oklch(0.6903 0.0198 74);
+
+  /* badge colours — soft Tailwind-palette badges with text/background tokens per hue. */
+  --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
+  --badge-neutral-foreground: var(--foreground);
+  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
+  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.12);
+  --badge-slate: oklch(from var(--color-slate-500) l c h / 0.14);
+  --badge-slate-foreground: var(--color-slate-800);
+  --badge-slate-border: oklch(from var(--color-slate-500) l c h / 0.18);
+  --badge-slate-hover: oklch(from var(--color-slate-500) l c h / 0.2);
+  --badge-gray: oklch(from var(--color-gray-500) l c h / 0.14);
+  --badge-gray-foreground: var(--color-gray-800);
+  --badge-gray-border: oklch(from var(--color-gray-500) l c h / 0.18);
+  --badge-gray-hover: oklch(from var(--color-gray-500) l c h / 0.2);
+  --badge-zinc: oklch(from var(--color-zinc-500) l c h / 0.14);
+  --badge-zinc-foreground: var(--color-zinc-800);
+  --badge-zinc-border: oklch(from var(--color-zinc-500) l c h / 0.18);
+  --badge-zinc-hover: oklch(from var(--color-zinc-500) l c h / 0.2);
+  --badge-stone: oklch(from var(--color-stone-500) l c h / 0.14);
+  --badge-stone-foreground: var(--color-stone-800);
+  --badge-stone-border: oklch(from var(--color-stone-500) l c h / 0.18);
+  --badge-stone-hover: oklch(from var(--color-stone-500) l c h / 0.2);
+  --badge-red: oklch(from var(--color-red-500) l c h / 0.14);
+  --badge-red-foreground: var(--color-red-800);
+  --badge-red-border: oklch(from var(--color-red-500) l c h / 0.18);
+  --badge-red-hover: oklch(from var(--color-red-500) l c h / 0.2);
+  --badge-orange: oklch(from var(--color-orange-500) l c h / 0.16);
+  --badge-orange-foreground: var(--color-orange-800);
+  --badge-orange-border: oklch(from var(--color-orange-500) l c h / 0.2);
+  --badge-orange-hover: oklch(from var(--color-orange-500) l c h / 0.24);
+  --badge-amber: oklch(from var(--color-amber-400) l c h / 0.2);
+  --badge-amber-foreground: var(--color-amber-800);
+  --badge-amber-border: oklch(from var(--color-amber-400) l c h / 0.24);
+  --badge-amber-hover: oklch(from var(--color-amber-400) l c h / 0.28);
+  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.2);
+  --badge-yellow-foreground: var(--color-yellow-800);
+  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.24);
+  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.28);
+  --badge-lime: oklch(from var(--color-lime-500) l c h / 0.16);
+  --badge-lime-foreground: var(--color-lime-800);
+  --badge-lime-border: oklch(from var(--color-lime-500) l c h / 0.2);
+  --badge-lime-hover: oklch(from var(--color-lime-500) l c h / 0.24);
+  --badge-green: oklch(from var(--color-green-500) l c h / 0.16);
+  --badge-green-foreground: var(--color-green-800);
+  --badge-green-border: oklch(from var(--color-green-500) l c h / 0.2);
+  --badge-green-hover: oklch(from var(--color-green-500) l c h / 0.24);
+  --badge-emerald: oklch(from var(--color-emerald-500) l c h / 0.16);
+  --badge-emerald-foreground: var(--color-emerald-800);
+  --badge-emerald-border: oklch(from var(--color-emerald-500) l c h / 0.2);
+  --badge-emerald-hover: oklch(from var(--color-emerald-500) l c h / 0.24);
+  --badge-teal: oklch(from var(--color-teal-500) l c h / 0.16);
+  --badge-teal-foreground: var(--color-teal-800);
+  --badge-teal-border: oklch(from var(--color-teal-500) l c h / 0.2);
+  --badge-teal-hover: oklch(from var(--color-teal-500) l c h / 0.24);
+  --badge-cyan: oklch(from var(--color-cyan-500) l c h / 0.16);
+  --badge-cyan-foreground: var(--color-cyan-800);
+  --badge-cyan-border: oklch(from var(--color-cyan-500) l c h / 0.2);
+  --badge-cyan-hover: oklch(from var(--color-cyan-500) l c h / 0.24);
+  --badge-sky: oklch(from var(--color-sky-500) l c h / 0.16);
+  --badge-sky-foreground: var(--color-sky-800);
+  --badge-sky-border: oklch(from var(--color-sky-500) l c h / 0.2);
+  --badge-sky-hover: oklch(from var(--color-sky-500) l c h / 0.24);
+  --badge-blue: oklch(from var(--color-blue-500) l c h / 0.16);
+  --badge-blue-foreground: var(--color-blue-800);
+  --badge-blue-border: oklch(from var(--color-blue-500) l c h / 0.2);
+  --badge-blue-hover: oklch(from var(--color-blue-500) l c h / 0.24);
+  --badge-indigo: oklch(from var(--color-indigo-500) l c h / 0.16);
+  --badge-indigo-foreground: var(--color-indigo-800);
+  --badge-indigo-border: oklch(from var(--color-indigo-500) l c h / 0.2);
+  --badge-indigo-hover: oklch(from var(--color-indigo-500) l c h / 0.24);
+  --badge-violet: oklch(from var(--color-violet-500) l c h / 0.16);
+  --badge-violet-foreground: var(--color-violet-800);
+  --badge-violet-border: oklch(from var(--color-violet-500) l c h / 0.2);
+  --badge-violet-hover: oklch(from var(--color-violet-500) l c h / 0.24);
+  --badge-purple: oklch(from var(--color-purple-500) l c h / 0.16);
+  --badge-purple-foreground: var(--color-purple-800);
+  --badge-purple-border: oklch(from var(--color-purple-500) l c h / 0.2);
+  --badge-purple-hover: oklch(from var(--color-purple-500) l c h / 0.24);
+  --badge-fuchsia: oklch(from var(--color-fuchsia-500) l c h / 0.16);
+  --badge-fuchsia-foreground: var(--color-fuchsia-800);
+  --badge-fuchsia-border: oklch(from var(--color-fuchsia-500) l c h / 0.2);
+  --badge-fuchsia-hover: oklch(from var(--color-fuchsia-500) l c h / 0.24);
+  --badge-pink: oklch(from var(--color-pink-500) l c h / 0.16);
+  --badge-pink-foreground: var(--color-pink-800);
+  --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
+  --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
+  --badge-rose: oklch(from var(--color-rose-500) l c h / 0.16);
+  --badge-rose-foreground: var(--color-rose-800);
+  --badge-rose-border: oklch(from var(--color-rose-500) l c h / 0.2);
+  --badge-rose-hover: oklch(from var(--color-rose-500) l c h / 0.24);
+
+  /* Page canvas, a level below --background/--card/--popover (all elevated surfaces); GitHub Primer calls this `canvas`. */
+  --canvas: oklch(0.9425 0.0108 80);
+
+  /* popover/dropdown/select/dialog all read bg-popover, so this pair frosts them together. 1 = solid; <1 + blur = glass. */
+  --popover-opacity: 1;
+  --backdrop-blur-popover: 0px;
+
+  /* modal overlay (dialog backdrop) — dim and blur are theme-driven; color derives from foreground/background. */
+  --overlay-opacity: 0.2;
+  --backdrop-blur-overlay: 1px;
+
+  /* Edge-fade depth shared by scroll-surface masks. 0 = hard edges. */
+  --scroll-fade-size: 2rem;
+
+  /* elevation controls */
+  --shadow-color: oklch(0.2986 0.0421 63); /* hue every shadow tints with — warm umber, not studio blue */
+  /* 1px inset top light on raised surfaces (buttons, pills, popovers) — "lit paper card" read.
+     Recipes scale it by opacity/size knobs too, so --shadow-size:0 extinguishes it with everything else. */
+  --shadow-highlight: oklch(1 0 0 / 0.62);
+  --shadow-size: 1; /* global geometry multiplier: 1 = default depth, 0 = flat */
+  --shadow-opacity: 1; /* global alpha multiplier: 1 = default density, 0 = invisible */
+  --shadow-y: 1; /* vertical bias: 0 = centered, 1 = default bottom cast */
+  --shadow-control-multiplier: 1;
+  --shadow-panel-multiplier: 2;
+  --shadow-popover-multiplier: 4;
+  --shadow-modal-multiplier: 5;
+  --shadow-ambient-multiplier: 8;
+
+  /* THE radius knob; @theme surface scale + --radius-control both derive from it — squares (0) or rounds whole UI. */
+  --radius: 0.625rem;
+  /* Shared by every control (button, select trigger, field, chip); ×2 of --radius so short controls read as pill. */
+  --radius-control: calc(var(--radius) * 2);
+
+  /* Progressive enhancement over border-radius; `round` = current look, squircle/superellipse(2)/scoop reshape Control UI surfaces. */
+  --corner-shape: round;
+  --corner-shape-control: var(--corner-shape);
+  --corner-shape-popover: var(--corner-shape);
+  --corner-shape-panel: var(--corner-shape);
+  /* Squircle reads ~half as round as a circular arc at same radius; browsers w/o corner-shape support fall back to
+     plain round and look over-rounded. This ratio shrinks the fallback radius (squircle only, see @supports not
+     below) to keep cross-browser look close. 1 = no change, 0.5 = halve. */
+  --corner-radius-fit: 0.5;
+
+  /* Floating-list (select/dropdown) concentric corners: container radius = row radius + padding, so hovered row nests exactly. */
+  --popover-padding: 0.25rem; /* gap between container edge and rows (also = p-* on the popup) */
+  --radius-popup-item: calc(var(--radius-control) * 0.6); /* select/menu row corner */
+  --popup-item-foreground: var(--foreground);
+  --popup-item-icon-foreground: currentColor;
+  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
+  --popup-item-disabled-opacity: 0.4;
+  /* Sub-pixel guard for concentric nesting in ring-clipped containers (popup rows, code-block tabs);
+     shared with `rounded-nested` (effects.css). Bump to border+~2px if a clipped container ever gets a real border. */
+  --nest-safe: 1px;
+  /* Corner-fit ratio = 2+sqrt(2): control at gap `g` from corner radius R is sliced once R > ratio*g.
+     Caps corners that can outgrow their content inset (code-block --radius-panel vs fixed tab inset)
+     at gap*ratio, so header controls never clip. */
+  --nest-corner-ratio: 3.41421356;
+  /* Browser clamps rendered radius to half the box's short side, so at large --radius a row's visible
+     corner saturates below the --radius-popup-item token. Container must match the visible corner, not
+     the token, or it out-rounds the row and the overflow clip cuts it flat. */
+  --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
+  /* Container corner = fitted row radius + padding - 1px: ring-clip nests concentric rows with slack,
+     1px tighter hugs snugly (~1.6px clearance); clamp collapses offset to 0 when --radius is 0. */
+  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
+
+  /* content density for the rounded surfaces (bubble / composer field) */
+  --padding-x: 1rem;
+  --padding-y: 0.625rem;
+
+  /* One base height; xs/sm/md/lg are computed (proportional ramp), shared by button/select/menu/input.
+     --padding-y stays for content-sized surfaces (bubble/composer). */
+  --control-h: 2.25rem; /* md — THE base height; ramp derives from it */
+  /* round() snaps to whole px: unrounded step ceils scrollHeight past clientHeight, Base UI reads as phantom 1px overflow. */
+  --control-h-xs: round(var(--control-h) * 0.78, 1px);
+  --control-h-sm: round(var(--control-h) * 0.89, 1px);
+  --control-h-md: var(--control-h);
+  --control-h-lg: round(var(--control-h) * 1.11, 1px);
+
+  /* motion — curves are raw vars so they can be swapped live */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+}
+
+/* Re-declare the derived scale on each skin root so portal-scoped radius changes resolve locally. */
+[data-skin="refined"] {
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-field: calc(var(--radius) * 2.2); /* user bubble, composer shell */
+  --radius-panel: calc(var(--radius) * 2.6); /* code / markdown surfaces */
+  --radius-scene: calc(var(--radius) * 2.8); /* scene frame, large media */
+}
+
+:where(.dark) [data-skin="refined"],
+.dark[data-skin="refined"] {
+  --background: oklch(0.1786 0.0104 62);
+  --foreground: oklch(0.9645 0.008 84);
+  --card: oklch(0.2166 0.0119 64);
+  --card-foreground: oklch(0.9645 0.008 84);
+  --popover: oklch(0.2166 0.0119 64);
+  --popover-foreground: oklch(0.9645 0.008 84);
+  --primary: oklch(0.9645 0.008 84);
+  --primary-foreground: oklch(0.2311 0.0131 64);
+  --primary-text: oklch(from var(--primary) 0.78 c h);
+  --muted: oklch(0.2668 0.0132 66);
+  --muted-foreground: oklch(0.7405 0.0175 76);
+  --secondary: oklch(0.2668 0.0132 66);
+  --secondary-foreground: oklch(0.9645 0.008 84);
+  --accent: oklch(0.2864 0.0141 67);
+  --accent-foreground: oklch(0.9645 0.008 84);
+  --destructive: oklch(0.551 0.1799 32);
+  --destructive-foreground: oklch(0.9645 0.008 84);
+  --destructive-text: oklch(from var(--destructive) 0.78 c h);
+  --ring-opacity: 1;
+  --border: oklch(0.3082 0.0147 67 / var(--ring-opacity));
+  --input: oklch(0.3082 0.0147 67);
+  --ring: oklch(0.5521 0.0181 70);
+  --badge-neutral: oklch(from var(--foreground) l c h / 0.1);
+  --badge-neutral-foreground: var(--foreground);
+  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.12);
+  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.14);
+  --badge-slate: oklch(from var(--color-slate-400) l c h / 0.18);
+  --badge-slate-foreground: var(--color-slate-300);
+  --badge-slate-border: oklch(from var(--color-slate-400) l c h / 0.22);
+  --badge-slate-hover: oklch(from var(--color-slate-400) l c h / 0.26);
+  --badge-gray: oklch(from var(--color-gray-400) l c h / 0.18);
+  --badge-gray-foreground: var(--color-gray-300);
+  --badge-gray-border: oklch(from var(--color-gray-400) l c h / 0.22);
+  --badge-gray-hover: oklch(from var(--color-gray-400) l c h / 0.26);
+  --badge-zinc: oklch(from var(--color-zinc-400) l c h / 0.18);
+  --badge-zinc-foreground: var(--color-zinc-300);
+  --badge-zinc-border: oklch(from var(--color-zinc-400) l c h / 0.22);
+  --badge-zinc-hover: oklch(from var(--color-zinc-400) l c h / 0.26);
+  --badge-stone: oklch(from var(--color-stone-400) l c h / 0.18);
+  --badge-stone-foreground: var(--color-stone-300);
+  --badge-stone-border: oklch(from var(--color-stone-400) l c h / 0.22);
+  --badge-stone-hover: oklch(from var(--color-stone-400) l c h / 0.26);
+  --badge-red: oklch(from var(--color-red-400) l c h / 0.18);
+  --badge-red-foreground: var(--color-red-300);
+  --badge-red-border: oklch(from var(--color-red-400) l c h / 0.22);
+  --badge-red-hover: oklch(from var(--color-red-400) l c h / 0.26);
+  --badge-orange: oklch(from var(--color-orange-400) l c h / 0.2);
+  --badge-orange-foreground: var(--color-orange-300);
+  --badge-orange-border: oklch(from var(--color-orange-400) l c h / 0.24);
+  --badge-orange-hover: oklch(from var(--color-orange-400) l c h / 0.28);
+  --badge-amber: oklch(from var(--color-amber-400) l c h / 0.22);
+  --badge-amber-foreground: var(--color-amber-300);
+  --badge-amber-border: oklch(from var(--color-amber-400) l c h / 0.26);
+  --badge-amber-hover: oklch(from var(--color-amber-400) l c h / 0.3);
+  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.22);
+  --badge-yellow-foreground: var(--color-yellow-300);
+  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.26);
+  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.3);
+  --badge-lime: oklch(from var(--color-lime-400) l c h / 0.2);
+  --badge-lime-foreground: var(--color-lime-300);
+  --badge-lime-border: oklch(from var(--color-lime-400) l c h / 0.24);
+  --badge-lime-hover: oklch(from var(--color-lime-400) l c h / 0.28);
+  --badge-green: oklch(from var(--color-green-400) l c h / 0.2);
+  --badge-green-foreground: var(--color-green-300);
+  --badge-green-border: oklch(from var(--color-green-400) l c h / 0.24);
+  --badge-green-hover: oklch(from var(--color-green-400) l c h / 0.28);
+  --badge-emerald: oklch(from var(--color-emerald-400) l c h / 0.2);
+  --badge-emerald-foreground: var(--color-emerald-300);
+  --badge-emerald-border: oklch(from var(--color-emerald-400) l c h / 0.24);
+  --badge-emerald-hover: oklch(from var(--color-emerald-400) l c h / 0.28);
+  --badge-teal: oklch(from var(--color-teal-400) l c h / 0.2);
+  --badge-teal-foreground: var(--color-teal-300);
+  --badge-teal-border: oklch(from var(--color-teal-400) l c h / 0.24);
+  --badge-teal-hover: oklch(from var(--color-teal-400) l c h / 0.28);
+  --badge-cyan: oklch(from var(--color-cyan-400) l c h / 0.2);
+  --badge-cyan-foreground: var(--color-cyan-300);
+  --badge-cyan-border: oklch(from var(--color-cyan-400) l c h / 0.24);
+  --badge-cyan-hover: oklch(from var(--color-cyan-400) l c h / 0.28);
+  --badge-sky: oklch(from var(--color-sky-400) l c h / 0.2);
+  --badge-sky-foreground: var(--color-sky-300);
+  --badge-sky-border: oklch(from var(--color-sky-400) l c h / 0.24);
+  --badge-sky-hover: oklch(from var(--color-sky-400) l c h / 0.28);
+  --badge-blue: oklch(from var(--color-blue-400) l c h / 0.2);
+  --badge-blue-foreground: var(--color-blue-300);
+  --badge-blue-border: oklch(from var(--color-blue-400) l c h / 0.24);
+  --badge-blue-hover: oklch(from var(--color-blue-400) l c h / 0.28);
+  --badge-indigo: oklch(from var(--color-indigo-400) l c h / 0.2);
+  --badge-indigo-foreground: var(--color-indigo-300);
+  --badge-indigo-border: oklch(from var(--color-indigo-400) l c h / 0.24);
+  --badge-indigo-hover: oklch(from var(--color-indigo-400) l c h / 0.28);
+  --badge-violet: oklch(from var(--color-violet-400) l c h / 0.2);
+  --badge-violet-foreground: var(--color-violet-300);
+  --badge-violet-border: oklch(from var(--color-violet-400) l c h / 0.24);
+  --badge-violet-hover: oklch(from var(--color-violet-400) l c h / 0.28);
+  --badge-purple: oklch(from var(--color-purple-400) l c h / 0.2);
+  --badge-purple-foreground: var(--color-purple-300);
+  --badge-purple-border: oklch(from var(--color-purple-400) l c h / 0.24);
+  --badge-purple-hover: oklch(from var(--color-purple-400) l c h / 0.28);
+  --badge-fuchsia: oklch(from var(--color-fuchsia-400) l c h / 0.2);
+  --badge-fuchsia-foreground: var(--color-fuchsia-300);
+  --badge-fuchsia-border: oklch(from var(--color-fuchsia-400) l c h / 0.24);
+  --badge-fuchsia-hover: oklch(from var(--color-fuchsia-400) l c h / 0.28);
+  --badge-pink: oklch(from var(--color-pink-400) l c h / 0.2);
+  --badge-pink-foreground: var(--color-pink-300);
+  --badge-pink-border: oklch(from var(--color-pink-400) l c h / 0.24);
+  --badge-pink-hover: oklch(from var(--color-pink-400) l c h / 0.28);
+  --badge-rose: oklch(from var(--color-rose-400) l c h / 0.2);
+  --badge-rose-foreground: var(--color-rose-300);
+  --badge-rose-border: oklch(from var(--color-rose-400) l c h / 0.24);
+  --badge-rose-hover: oklch(from var(--color-rose-400) l c h / 0.28);
+  --canvas: oklch(0.1618 0.0096 61);
+  --shadow-color: oklch(0 0 0);
+  /* In dark the inner top light is a faint edge catch, not a glow. */
+  --shadow-highlight: oklch(1 0 0 / 0.055);
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "title": "Label",
+  "description": "Accessible form label used by composed controls.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/label.tsx",
+      "target": "@components/control-ui/ui/label.tsx",
+      "type": "registry:ui",
+      "content": "import type { LabelProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot: real <label> when htmlFor ties to a control; <span> fallback for group captions.\nexport function Label({ className, htmlFor, children, ...props }: LabelProps) {\n  const classes = cn(\"text-meta font-medium text-muted-foreground\", skinSlot(\"label\", \"root\", {}), className);\n\n  if (htmlFor) {\n    return (\n      <label data-control-ui=\"label\" data-slot=\"root\" htmlFor={htmlFor} className={classes} {...props}>\n        {children}\n      </label>\n    );\n  }\n\n  return (\n    <span data-control-ui=\"label\" data-slot=\"root\" className={classes} {...props}>\n      {children}\n    </span>\n  );\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

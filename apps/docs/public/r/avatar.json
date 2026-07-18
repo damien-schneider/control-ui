@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "Avatar",
+  "description": "Profile image with initials fallback.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/avatar.tsx",
+      "target": "@components/control-ui/ui/avatar.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Avatar as AvatarPrimitive } from \"@base-ui/react/avatar\";\nimport type { AvatarFallbackProps, AvatarImageProps, AvatarProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Base UI swaps in Fallback initials when Image is missing/fails to load. size-9 default, override via className.\nexport function Avatar({ className, ...props }: AvatarProps) {\n  return (\n    <AvatarPrimitive.Root\n      data-control-ui=\"avatar\"\n      data-slot=\"root\"\n      className={cn(\n        \"relative inline-flex size-9 shrink-0 select-none items-center justify-center overflow-hidden rounded-full align-middle\",\n        skinSlot(\"avatar\", \"root\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function AvatarImage({ className, ...props }: AvatarImageProps) {\n  return (\n    <AvatarPrimitive.Image data-control-ui=\"avatar\" data-slot=\"image\" className={cn(\"size-full object-cover\", className)} {...props} />\n  );\n}\n\nexport function AvatarFallback({ className, ...props }: AvatarFallbackProps) {\n  return (\n    <AvatarPrimitive.Fallback\n      data-control-ui=\"avatar\"\n      data-slot=\"fallback\"\n      className={cn(\n        \"flex size-full items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground\",\n        skinSlot(\"avatar\", \"fallback\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

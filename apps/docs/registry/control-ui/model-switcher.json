@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "model-switcher",
+  "type": "registry:component",
+  "title": "Model switcher",
+  "description": "Model selection composition used by chat surfaces.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core",
+    "select"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/model-switcher.tsx",
+      "target": "@components/control-ui/model-switcher.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/model-switcher.json"
+  }
+}

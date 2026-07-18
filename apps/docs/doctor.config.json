@@ -1,0 +1,32 @@
+{
+  "$schema": "https://react.doctor/schema/config.json",
+  "ignore": {
+    "files": ["components/control-ui/**"],
+    "overrides": [
+      {
+        "files": ["src/registry/**"],
+        "rules": ["deslop/unused-file", "deslop/unused-export", "react-doctor/nextjs-no-img-element", "react-doctor/only-export-components"]
+      },
+      {
+        "files": ["examples/**"],
+        "rules": ["deslop/unused-file"]
+      },
+      {
+        "files": ["app/docs-seo.tsx", "components/theme-drawer-context.tsx", "components/theme-toggle.tsx"],
+        "rules": ["react-doctor/only-export-components"]
+      },
+      {
+        "files": ["src/registry/sources/control-ui/ui/item.tsx"],
+        "rules": ["react-doctor/prefer-tag-over-role"]
+      },
+      {
+        "files": ["src/registry/sources/control-ui/ui/code.tsx"],
+        "rules": ["react-doctor/no-array-index-as-key"]
+      },
+      {
+        "files": ["app/api/gaps/route.ts"],
+        "rules": ["react-doctor/server-hoist-static-io"]
+      }
+    ]
+  }
+}

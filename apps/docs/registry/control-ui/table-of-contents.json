@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table-of-contents",
+  "type": "registry:ui",
+  "title": "Table of contents",
+  "description": "Sticky in-page navigation with scroll-spy range highlighting.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "core",
+    "track-highlight"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/table-of-contents.tsx",
+      "target": "@components/control-ui/ui/table-of-contents.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/table-of-contents.json"
+  }
+}

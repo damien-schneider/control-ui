@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "type": "registry:ui",
+  "title": "Hover card",
+  "description": "Hover or focus preview panel for profiles, links, and contextual details.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/hover-card.tsx",
+      "target": "@components/control-ui/ui/hover-card.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { PreviewCard as PreviewCardPrimitive } from \"@base-ui/react/preview-card\";\nimport type { ComponentProps } from \"react\";\nimport type { HoverCardContentProps, HoverCardProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinEffects, skinId, skinSlot } from \"@/components/control-ui/skin\";\nimport { floatingContentClasses } from \"@/components/control-ui/surface-variants\";\n\n// Refined skin slot, 100% Base UI PreviewCard: hover/focus-triggered floating card.\n// Shares popover token set (--radius-popover, --popover-padding, shadow-pop) w/ menu/select/popover; re-asserts skin scope on portal.\n// shadcn-shaped facade (Root/Trigger/Content) so shadcn HoverCard snippets compose verbatim.\nexport function HoverCard(props: HoverCardProps) {\n  return <PreviewCardPrimitive.Root {...props} />;\n}\n\nexport function HoverCardTrigger({ className, ...props }: ComponentProps<typeof PreviewCardPrimitive.Trigger>) {\n  return (\n    <PreviewCardPrimitive.Trigger\n      data-control-ui=\"hover-card\"\n      data-slot=\"trigger\"\n      className={cn(skinSlot(\"hover-card\", \"trigger\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function HoverCardContent({\n  className,\n  children,\n  side = \"bottom\",\n  align = \"center\",\n  sideOffset = 8,\n  ...props\n}: HoverCardContentProps) {\n  return (\n    <PreviewCardPrimitive.Portal>\n      {/* Portal escapes token-scoped ancestor — positioner re-asserts ACTIVE skin's scope (theme.css mirrors). */}\n      <PreviewCardPrimitive.Positioner\n        data-skin={skinId()}\n        data-effects={skinEffects()}\n        side={side}\n        align={align}\n        sideOffset={sideOffset}\n        className=\"z-[80] outline-none\"\n      >\n        <PreviewCardPrimitive.Popup\n          data-control-ui=\"hover-card\"\n          data-slot=\"content\"\n          data-surface=\"floating\"\n          className={cn(\"w-64 p-[var(--popover-padding)]\", floatingContentClasses, skinSlot(\"hover-card\", \"content\", {}), className)}\n          {...props}\n        >\n          {children}\n        </PreviewCardPrimitive.Popup>\n      </PreviewCardPrimitive.Positioner>\n    </PreviewCardPrimitive.Portal>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "core",
+  "type": "registry:base",
+  "title": "Control UI core",
+  "description": "Shared contracts, skin resolver, utilities, token bindings, and invariant mechanics for Control UI.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/theme.css\"; @import \"../components/control-ui/styles/effects.css\";",
+  "dependencies": [
+    "@base-ui/react@^1.6.0",
+    "class-variance-authority@^0.7.1",
+    "clsx@^2.1.1",
+    "tailwind-merge@^3.6.0"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/registry/contracts.ts",
+      "target": "@components/control-ui/contracts.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/hooks/use-copy-to-clipboard.ts",
+      "target": "@components/control-ui/hooks/use-copy-to-clipboard.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/lib/cn.ts",
+      "target": "@components/control-ui/lib/cn.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/lib/use-as-child-render.ts",
+      "target": "@components/control-ui/lib/use-as-child-render.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin.ts",
+      "target": "@components/control-ui/skin.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/control-variants.ts",
+      "target": "@components/control-ui/control-variants.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/effects.css",
+      "target": "@components/control-ui/styles/effects.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/surface-variants.ts",
+      "target": "@components/control-ui/surface-variants.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/theme.css",
+      "target": "@components/control-ui/styles/theme.css",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/core.json"
+  }
+}

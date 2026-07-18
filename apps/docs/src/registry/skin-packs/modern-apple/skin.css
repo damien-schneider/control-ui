@@ -1,0 +1,203 @@
+/*
+ * Pack's own vars + glass utilities. Import after Tailwind+theme. The root runtime progressively
+ * replaces the CSS fallback with refractive WebGL while segmented-tab knobs remain CSS-only, all under
+ * [data-skin="modern-apple"] so multiple skins co-compile in one build (no @utility — global).
+ */
+
+/* Pack's own vars (glass tints, edge-highlight, hairlines, segmented control) — NOT in theme.css
+ * token contract. Mode-dependent, same light/dark scoping as theme.css; unlayered so consumers inherit. */
+[data-skin="modern-apple"] {
+  --hairline: oklch(0 0 0 / 0.06);
+  /* the Liquid-Glass control fill — a translucent white wafer the backdrop shows through */
+  --glass-fill: oklch(1 0 0 / 0.55);
+  --glass-fill-hover: oklch(1 0 0 / 0.7);
+  --glass-fill-active: oklch(1 0 0 / 0.42);
+  /* the bright white rim + top gloss that gives the glass its edge ("ring white") */
+  --glass-rim: oklch(1 0 0 / 0.55);
+  --glass-gloss: oklch(1 0 0 / 0.75);
+  --backdrop-blur-glass: 10px; /* DS Liquid Glass/Frost — Regular = 6 (controls frost lighter than large surfaces); 10px on the web canvas */
+  --segmented-bg: oklch(0.7907 0.0074 286.229 / 0.22); /* recessed translucent well */
+  --segmented-active-bg: oklch(1 0 0 / 0.85); /* raised glass segment */
+  /* Subtle canvas gradient: whisper of top-light + cool floor so frosted surfaces read as glass, not flat fill. Low-alpha on purpose. */
+  --canvas-gradient: linear-gradient(
+    170deg,
+    oklch(1 0 0 / 0.75) 0%,
+    oklch(0.96 0.006 255 / 0.2) 48%,
+    oklch(0.9 0.014 262 / 0.4) 100%
+  );
+  /* Float gap: wide enough that soft drop shadow renders on all sides (native p-2/8px was too tight). */
+  --sidebar-float-gap: 0.875rem;
+  /* DS menu material (Figma 2004:25200/25203) doesn't translate to CSS: Figma's stacked-fill blend
+   * modes + inner-shadow spread math produce different results in background-blend-mode/box-shadow.
+   * We reproduce the DS's VISUAL RESULT instead: one translucent grey fill + white top gloss + hairline + soft drop. */
+  --popup-fill: rgba(217, 217, 217, 0.55);
+  /* Shared glass "look" (popover, sidebar, …): white top gloss + hairline edge. Drop/lift added
+   * per-surface (popover = big soft ambient; edge-pinned sidebar = contained, avoids clipping). */
+  --surface-gloss: rgba(255, 255, 255, 0.6);
+  --surface-hairline: rgba(0, 0, 0, 0.1);
+  --menu-shadow:
+    inset 0 1px 0 0 var(--surface-gloss),
+    inset 0 0 0 0.5px var(--surface-hairline),
+    0 8px 48px 0 rgba(0, 0, 0, 0.2),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  --apple-liquid-refraction: 0.85;
+  --apple-liquid-modal-refraction: 0.92;
+  --apple-liquid-edge-band: 32;
+  --apple-liquid-edge-ratio: 0.36;
+  --apple-liquid-modal-edge-ratio: 0.25;
+  --apple-liquid-edge-darkening: 0.025;
+  --apple-liquid-specular: 0.11;
+  --apple-liquid-fresnel: 0.35;
+  --apple-liquid-edge-highlight: 0.16;
+  --apple-liquid-center-diffusion: 0.38;
+  --apple-liquid-edge-diffusion: 0.08;
+  --apple-liquid-modal-center-diffusion: 0.82;
+  --apple-liquid-modal-edge-diffusion: 0.32;
+  --apple-liquid-fill: 0.32;
+  --apple-liquid-modal-fill: 0.6;
+  --apple-liquid-shadow:
+    0 12px 28px -12px oklch(0.2244 0.0257 263.845 / 0.28),
+    0 2px 7px -3px oklch(0.2244 0.0257 263.845 / 0.16);
+  --apple-liquid-modal-shadow:
+    0 24px 48px -20px oklch(0.2244 0.0257 263.845 / 0.32),
+    0 4px 12px -5px oklch(0.2244 0.0257 263.845 / 0.18);
+  /* macOS menu selection blue (DS node 2004:25249): solid pill + white text, not translucent tint. Same both modes. */
+  --menu-selection: oklch(0.5641 0.2301 259.998);
+}
+
+:where(.dark) [data-skin="modern-apple"],
+.dark[data-skin="modern-apple"] {
+  --hairline: oklch(1 0 0 / 0.1);
+  --glass-fill: oklch(1 0 0 / 0.12);
+  --glass-fill-hover: oklch(1 0 0 / 0.18);
+  --glass-fill-active: oklch(1 0 0 / 0.08);
+  /* Dark controls over glass (DS node 2004:21141): subtle fill + whisper edge, NOT heavy rim+gloss.
+   * Old white 0.28 rim/0.30 gloss read as "big border" on dark; dropped hard. */
+  --glass-rim: oklch(1 0 0 / 0.09);
+  --glass-gloss: oklch(1 0 0 / 0.07);
+  --segmented-bg: oklch(0.559 0.0147 285.916 / 0.3);
+  --segmented-active-bg: oklch(1 0 0 / 0.16);
+  /* Canvas uses the DS Window Background with whisper top-light; the old high-contrast gradient was too uneven. */
+  --canvas-gradient: linear-gradient(180deg, oklch(0.25 0 0) 0%, oklch(0.235 0 0) 55%, oklch(0.223 0 0) 100%);
+  /* Dark menu material (DS node 2004:25203): graphite rgba(64,64,64,.8) fill + light inner ring +
+   * thin edge rim + soft drop. DS's background-blend-mode:luminosity is a no-op in CSS (see light
+   * block) so tone is baked into fill alpha instead. */
+  --popup-fill: rgba(64, 64, 64, 0.8);
+  --surface-gloss: rgba(255, 255, 255, 0.12);
+  --surface-hairline: rgba(255, 255, 255, 0.2);
+  --menu-shadow:
+    inset 0 0 0 0.5px var(--surface-hairline),
+    1.25px 0 0 -0.75px rgba(219, 219, 219, 0.55),
+    -1.25px 0 0 -0.75px rgba(219, 219, 219, 0.55),
+    0 0 0 0.5px rgba(219, 219, 219, 0.5),
+    0 8px 48px 0 rgba(0, 0, 0, 0.45);
+  --apple-liquid-shadow:
+    0 14px 32px -12px oklch(0 0 0 / 0.56),
+    0 2px 8px -3px oklch(0 0 0 / 0.42);
+  --apple-liquid-modal-shadow:
+    0 28px 56px -20px oklch(0 0 0 / 0.62),
+    0 5px 14px -5px oklch(0 0 0 / 0.46);
+  --apple-liquid-fill: 0.5;
+  --apple-liquid-modal-fill: 0.76;
+  --menu-selection: oklch(0.5641 0.2301 259.998);
+}
+
+/* DS popup material for every floating list/panel: one translucent grey fill (--popup-fill) +
+ * --menu-shadow (inner edge-darkening/ring + outer drop/hairline). The unlayered skin rule beats
+ * layered base materials while geometry stays in the shared popover classes. */
+[data-skin="modern-apple"]
+  :is([data-control-ui][data-slot][data-surface="floating"], [data-control-ui][data-slot][data-surface="modal"]) {
+  background: var(--popup-fill);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: var(--menu-shadow);
+  border: 0;
+}
+
+/* The WebGL frame owns transmission and edge light after readiness; only external elevation remains in CSS. */
+[data-skin="modern-apple"] [data-control-ui][data-apple-liquid-glass-ready="true"] {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 0;
+  box-shadow: var(--apple-liquid-shadow);
+}
+
+[data-skin="modern-apple"] [data-control-ui][data-apple-liquid-glass-profile="modal"][data-apple-liquid-glass-ready="true"] {
+  box-shadow: var(--apple-liquid-modal-shadow);
+}
+
+/* apple-glass: shared translucent material for ad-hoc panels wanting the same read as popover
+ * surfaces (--popover-opacity/--backdrop-blur-popover); adds white top-edge gloss via inset ring. */
+[data-skin="modern-apple"] .apple-glass {
+  background-color: oklch(from var(--popover) l c h / var(--popover-opacity));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
+  backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
+  box-shadow: inset 0 1px 0 0 var(--glass-gloss);
+}
+
+/* Floating-sidebar glass: uses NATIVE shadcn `floating` layout (ControlUiSkin.sidebarLayout), which
+ * already draws gap/padding/rounding/border/shadow. Here: (1) re-materialise as Liquid Glass, (2)
+ * widen float gap so drop shadow isn't clipped (native p-2/8px < shadow blur). Not an overflow bug. */
+[data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"] [data-control-ui="sidebar"][data-slot="container"] {
+  padding: var(--sidebar-float-gap);
+  overflow: visible; /* the main sidebar is not a resizable clip panel — never crop its own shadow */
+}
+
+/* Floating sidebar uses lighter --popover-based glass, NOT grey --popup-fill (distinct from menu
+ * surface, per user pref). Shares surface gloss+0.5px hairline; CONTAINED drop (popover's big
+ * ambient would clip at this edge-pinned panel's float gap). border:0 — hairline IS the edge. */
+[data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"] [data-control-ui="sidebar"][data-slot="inner"] {
+  corner-shape: var(--corner-shape-panel, var(--corner-shape, round));
+  border: 0;
+  background-color: oklch(from var(--popover) l c h / var(--popover-opacity));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
+  backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 0 var(--surface-gloss),
+    inset 0 0 0 0.5px var(--surface-hairline),
+    0 3px 12px -1px rgba(0, 0, 0, 0.14),
+    0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Collapsed icon rail: reserve wider float gap on both gap+container so ~3rem icon column isn't
+ * eaten by padding (native floating only budgets 8px). data-collapsible="icon" only while collapsed. */
+[data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"][data-collapsible="icon"] [data-control-ui="sidebar"][data-slot="gap"],
+[data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"][data-collapsible="icon"] [data-control-ui="sidebar"][data-slot="container"] {
+  width: calc(var(--sidebar-width-icon) + var(--sidebar-float-gap) * 2 + 2px);
+}
+
+/* Canvas gets glass gradient; background-attachment:fixed pins it so wrapper+inset share one seamless wash. */
+[data-skin="modern-apple"] :is([data-control-ui="sidebar"][data-slot="wrapper"], [data-control-ui="sidebar"][data-slot="inset"]) {
+  background-image: var(--canvas-gradient);
+  background-attachment: fixed;
+}
+
+/* Content stays flat: config slot already strips frame border/radius/bg/shadow; this guards against residual box-shadow. */
+[data-skin="modern-apple"] :is([data-control-ui="sidebar"][data-slot="inset"], [data-control-ui="sidebar-layout"][data-slot="content"]) {
+  box-shadow: none;
+}
+
+/* scroll fades + streaming sweep come from library effects.css (token-driven, recolor for free). */
+
+@layer components {
+  /* Apple segmented control: recessed well + raised glass segment. Pure re-values of library's
+   * component-local knobs; geometry/states/line variant stay baseline's. */
+  [data-skin="modern-apple"] :where([data-control-ui="tabs"][data-slot="list"]) {
+    --tabs-trigger-radius: 0.5625rem; /* 9px segment corner */
+    --tabs-list-padding: 0.125rem; /* the tight 2px well inset */
+    --tabs-list-gap: 0.125rem;
+    --tabs-list-bg: var(--segmented-bg);
+    --tabs-list-backdrop-filter: blur(var(--backdrop-blur-glass));
+    --tabs-indicator-bg: var(--segmented-active-bg);
+    --tabs-indicator-shadow:
+      inset 0 1px 0 0 var(--glass-gloss),
+      0 1px 3px oklch(from var(--shadow-color) l c h / 0.18),
+      0 0 0 0.5px oklch(from var(--shadow-color) l c h / 0.04);
+    --tabs-indicator-ease: var(--ease-emphasized);
+    --tabs-trigger-font-size: var(--text-body);
+    --tabs-trigger-focus-shadow: 0 0 0 3px var(--ring);
+    --tabs-line-border-color: var(--hairline);
+    --tabs-line-indicator-bg: var(--primary);
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "type": "registry:ui",
+  "title": "Sheet",
+  "description": "Side-anchored dialog for mobile and off-canvas surfaces.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/sheet.tsx",
+      "target": "@components/control-ui/ui/sheet.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Dialog as SheetPrimitive } from \"@base-ui/react/dialog\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinEffects, skinId, skinSlot } from \"@/components/control-ui/skin\";\n\n// Side-anchored Dialog: panel pins to edge, slides via starting/ending-style transform. Backdrop + panel re-assert skin scope on portal.\nexport function Sheet(props: ComponentProps<typeof SheetPrimitive.Root>) {\n  return <SheetPrimitive.Root {...props} />;\n}\n\nexport function SheetClose({ className, ...props }: ComponentProps<typeof SheetPrimitive.Close>) {\n  return (\n    <SheetPrimitive.Close data-control-ui=\"sheet\" data-slot=\"close\" className={cn(skinSlot(\"sheet\", \"close\", {}), className)} {...props} />\n  );\n}\n\nexport function SheetContent({\n  className,\n  children,\n  side = \"right\",\n  ...props\n}: ComponentProps<typeof SheetPrimitive.Popup> & { side?: \"left\" | \"right\" }) {\n  return (\n    <SheetPrimitive.Portal>\n      <SheetPrimitive.Backdrop\n        data-skin={skinId()}\n        data-effects={skinEffects()}\n        className=\"fixed inset-0 z-[70] bg-[oklch(from_var(--foreground)_l_c_h/var(--overlay-opacity))] backdrop-blur-[var(--backdrop-blur-overlay)] transition-opacity duration-[var(--duration-base)] data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 dark:bg-[oklch(from_var(--background)_l_c_h/var(--overlay-opacity))]\"\n      />\n      <SheetPrimitive.Popup\n        data-skin={skinId()}\n        data-effects={skinEffects()}\n        data-control-ui=\"sheet\"\n        data-slot=\"content\"\n        data-surface=\"modal\"\n        className={cn(\n          \"fixed inset-y-0 z-[71] flex h-full w-3/4 max-w-sm flex-col gap-4 bg-background text-foreground shadow-modal outline-none transition duration-[var(--duration-base)] ease-[var(--ease-emphasized)]\",\n          side === \"left\"\n            ? \"left-0 border-r data-[ending-style]:-translate-x-full data-[starting-style]:-translate-x-full\"\n            : \"right-0 border-l data-[ending-style]:translate-x-full data-[starting-style]:translate-x-full\",\n          skinSlot(\"sheet\", \"content\", {}),\n          className,\n        )}\n        {...props}\n      >\n        {children}\n      </SheetPrimitive.Popup>\n    </SheetPrimitive.Portal>\n  );\n}\n\nexport function SheetHeader({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-control-ui=\"sheet\" data-slot=\"header\" className={cn(\"flex flex-col gap-1.5 p-4\", className)} {...props} />;\n}\n\nexport function SheetTitle({ className, ...props }: ComponentProps<typeof SheetPrimitive.Title>) {\n  return (\n    <SheetPrimitive.Title\n      data-control-ui=\"sheet\"\n      data-slot=\"title\"\n      className={cn(\"font-semibold text-foreground\", skinSlot(\"sheet\", \"title\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function SheetDescription({ className, ...props }: ComponentProps<typeof SheetPrimitive.Description>) {\n  return (\n    <SheetPrimitive.Description\n      data-control-ui=\"sheet\"\n      data-slot=\"description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

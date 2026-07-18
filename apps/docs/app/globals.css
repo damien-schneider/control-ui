@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/* Core owns Tailwind bindings and invariant mechanics; every skin owns a complete, explicit token contract. */
+@import "../src/registry/sources/control-ui/theme.css";
+@import "../src/registry/sources/control-ui/effects.css";
+/* Docs import every complete pack so the live editor can switch data-skin without loading another stylesheet. */
+@import "../src/registry/skin-packs/refined/theme.css";
+@import "../src/registry/skin-packs/refined/skin.css";
+@import "../src/registry/skin-packs/xp/theme.css";
+@import "../src/registry/skin-packs/xp/skin.css";
+@import "../src/registry/skin-packs/flat/theme.css";
+@import "../src/registry/skin-packs/flat/skin.css";
+@import "../src/registry/skin-packs/rig/theme.css";
+@import "../src/registry/skin-packs/rig/skin.css";
+@import "../src/registry/skin-packs/liquid-metal/theme.css";
+@import "../src/registry/skin-packs/liquid-metal/skin.css";
+@import "../src/registry/skin-packs/modern-apple/theme.css";
+@import "../src/registry/skin-packs/modern-apple/skin.css";
+@import "../src/registry/skin-packs/cuicui/theme.css";
+@import "../src/registry/skin-packs/cuicui/skin.css";
+@import "../src/registry/skin-packs/linear/theme.css";
+@import "../src/registry/skin-packs/linear/skin.css";
+/* Code + diff tokens (--code-token-* syntax palette + --diff-* diff colors), read by Code/CodeDiff. */
+@import "../src/registry/sources/control-ui/code.css";
+/* ThreadRail interaction layer (fisheye + travelling card motion), the component's CSS-first half. */
+@import "../src/registry/sources/control-ui/thread-rail.css";
+/* ChatInputEditor motion (mention pill blur-in via @starting-style; pill + message blur-out ghosts). */
+@import "../src/registry/sources/control-ui/chat-input-editor.css";
+/* DynamicNotification morph (island pill→bubble, word cascade, glass fallback material). */
+@import "../src/registry/sources/control-ui/dynamic-notification.css";
+/* SendAurora anchored extension (chat-input:send-layer sweep; palette = --aurora-* tokens). */
+@import "../src/registry/sources/control-ui/extensions/send-aurora.css";
+
+/* Tailwind scans these source roots for class names (globals.css lives in app/). */
+@source "../components";
+@source "../src/registry";
+@source "../examples";
+
+/*
+ * shadcn Sidebar reads --sidebar* tokens Control UI's theme.css doesn't define; raw-shadcn.json's cssVars merges these into a consumer's globals.css on install.
+ * Docs shim declares same family mapped onto existing tokens: --sidebar reuses --canvas.
+ * Row state derives from --foreground alpha, not a hidden editable color.
+ */
+@layer base {
+  :root {
+    --sidebar: var(--canvas);
+    --sidebar-foreground: var(--foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: oklch(from var(--foreground) l c h / 0.06);
+    --sidebar-accent-foreground: var(--foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+  }
+}
+
+@theme inline {
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+ * Docs-owned paper grain (shippable theme never paints <body>; consumer opts in by copying this).
+ * Turbulence tile, cuicui-style but quieter, gives sand surfaces paper tooth.
+ * Gated on the explicit Refined skin; every rendered root carries a valid data-skin id.
+ */
+@layer base {
+  :root {
+    --control-ui-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='224'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='224' height='224' filter='url(%23p)'/%3E%3C/svg%3E");
+  }
+
+  :root[data-skin="refined"] body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    user-select: none;
+    background-image: var(--control-ui-grain);
+    background-size: 224px 224px;
+    opacity: 0.07;
+  }
+
+  :root.dark[data-skin="refined"] body::after {
+    opacity: 0.08;
+  }
+}
+
+/*
+ * Refined flat shell: app is one continuous sand surface, content-surface loses card/border/shadow so sidebar+content merge; only raised elements (nav pill, cards, popovers) keep elevation.
+ * Unlayered on purpose — must beat callsite bg/border/shadow utilities.
+ * Gated like grain: Refined opts into the flat docs shell; other packs keep the studio frame.
+ */
+:root[data-skin="refined"] [data-control-ui="sidebar-layout"][data-slot="content"] {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* docs-sidebar-resize-handle.tsx flags wrapper mid-drag so Sidebar's baked-in transition-[width] doesn't fight cursor with lagged easing. */
+[data-resizing="true"] [data-control-ui="sidebar"][data-slot="gap"],
+[data-resizing="true"] [data-control-ui="sidebar"][data-slot="container"] {
+  transition-property: none;
+}
+
+@layer components {
+  .theme-editor-desktop-panel {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+    transition:
+      opacity calc(var(--duration-slow) * 2) var(--ease-emphasized),
+      filter calc(var(--duration-slow) * 2) var(--ease-emphasized),
+      transform calc(var(--duration-slow) * 2) var(--ease-emphasized);
+  }
+
+  @starting-style {
+    .theme-editor-desktop-panel {
+      opacity: 0;
+      filter: blur(12px);
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Docs-app base resets — not shippable (consumer owns body styling/resets); theme.css already restores themed border-color on universal selector. */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  :root.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* Control UI typography sits tighter than the face defaults; headings carry their own stronger tracking. */
+    letter-spacing: -0.01em;
+  }
+
+  button,
+  textarea {
+    font: inherit;
+  }
+
+  /* Native color swatches ship own border/padding/shadow (Chrome inset ring); stripped so only theme-editor's Tailwind classes show. */
+  input[type="color"] {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: inherit;
+  }
+
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: inherit;
+  }
+
+  input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: inherit;
+  }
+}

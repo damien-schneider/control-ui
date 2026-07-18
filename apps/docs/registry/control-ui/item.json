@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item",
+  "type": "registry:ui",
+  "title": "Item",
+  "description": "List row with media, content, and trailing actions.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "core",
+    "separator"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/item.tsx",
+      "target": "@components/control-ui/ui/item.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/item.json"
+  }
+}

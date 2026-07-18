@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "title": "Breadcrumb",
+  "description": "Semantic breadcrumb styled with Control UI tokens.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/breadcrumb.tsx",
+      "target": "@components/control-ui/ui/breadcrumb.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { ChevronRight, MoreHorizontal } from \"lucide-react\";\nimport type { ComponentProps } from \"react\";\nimport type { RenderProp } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { useAsChildRender } from \"@/components/control-ui/lib/use-as-child-render\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Plain semantic breadcrumb (no positioner), themed via --muted-foreground/--foreground.\nexport function Breadcrumb({ className, ...props }: ComponentProps<\"nav\">) {\n  return (\n    <nav\n      aria-label=\"breadcrumb\"\n      data-control-ui=\"breadcrumb\"\n      data-slot=\"root\"\n      className={cn(skinSlot(\"breadcrumb\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function BreadcrumbList({ className, ...props }: ComponentProps<\"ol\">) {\n  return (\n    <ol\n      data-control-ui=\"breadcrumb\"\n      data-slot=\"list\"\n      className={cn(\"flex flex-wrap items-center gap-1.5 text-sm break-words text-muted-foreground sm:gap-2.5\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function BreadcrumbItem({ className, ...props }: ComponentProps<\"li\">) {\n  return <li data-control-ui=\"breadcrumb\" data-slot=\"item\" className={cn(\"inline-flex items-center gap-1.5\", className)} {...props} />;\n}\n\nexport function BreadcrumbLink({\n  asChild,\n  render,\n  className,\n  children,\n  ...props\n}: ComponentProps<\"a\"> & {\n  render?: RenderProp<ComponentProps<\"a\">>;\n  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */\n  asChild?: boolean;\n}) {\n  return useAsChildRender({\n    defaultTagName: \"a\",\n    asChild,\n    render,\n    children,\n    props: {\n      ...props,\n      \"data-control-ui\": \"breadcrumb\",\n      \"data-slot\": \"link\",\n      className: cn(\"transition-colors hover:text-foreground\", className),\n    },\n  });\n}\n\nexport function BreadcrumbPage({ className, ...props }: ComponentProps<\"span\">) {\n  return (\n    <span\n      data-control-ui=\"breadcrumb\"\n      data-slot=\"page\"\n      aria-current=\"page\"\n      className={cn(\"font-normal text-foreground\", skinSlot(\"breadcrumb\", \"page\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<\"li\">) {\n  return (\n    <li\n      data-control-ui=\"breadcrumb\"\n      data-slot=\"separator\"\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      className={cn(\"[&>svg]:size-3.5\", className)}\n      {...props}\n    >\n      {children ?? <ChevronRight />}\n    </li>\n  );\n}\n\nexport function BreadcrumbEllipsis({ className, ...props }: ComponentProps<\"span\">) {\n  return (\n    <span\n      data-control-ui=\"breadcrumb\"\n      data-slot=\"ellipsis\"\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      className={cn(\"flex size-9 items-center justify-center\", className)}\n      {...props}\n    >\n      <MoreHorizontal className=\"size-4\" />\n      <span className=\"sr-only\">More</span>\n    </span>\n  );\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

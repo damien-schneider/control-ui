@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code",
+  "type": "registry:ui",
+  "title": "Code",
+  "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/code.css\";",
+  "dependencies": [
+    "@tanstack/react-virtual@^3.14.6",
+    "lucide-react@^1.24.0",
+    "shiki@^4.3.1"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "scroll-area",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/code-tokens.ts",
+      "target": "@components/control-ui/lib/code-tokens.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/code.css",
+      "target": "@components/control-ui/styles/code.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/code.tsx",
+      "target": "@components/control-ui/ui/code.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/code.json"
+  }
+}

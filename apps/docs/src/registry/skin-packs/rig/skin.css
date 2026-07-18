@@ -1,0 +1,272 @@
+/*
+ * "Rig" skin.css: pack's own vars + CSS cva recipes can't express (chamfer clip-path, corner
+ * ticks, scanline, etc). Scoped to [data-skin="rig"] and layered so app utilities win.
+ */
+
+/* Pack's own vars, not part of theme.css contract; unlayered+scoped so @layer components below inherit them. */
+[data-skin="rig"] {
+  /* Diagonal corner cut: top-right + bottom-left. */
+  --rig-chamfer: 9px;
+}
+
+@layer base {
+  :root[data-skin="rig"] body {
+    background:
+      repeating-linear-gradient(
+        0deg,
+        oklch(from var(--foreground) l c h / 0.05) 0 1px,
+        transparent 1px 4px
+      ),
+      var(--background);
+  }
+}
+
+@layer components {
+  /* ---- Controls: chamfer + motion ------------------------------------------------------------ */
+
+  /* Squared + diagonal cut on two corners; clip-path removes border there, so outlined controls use
+   * an inset ring instead. Hard offset shadow rides filter:drop-shadow (honors clip-path shape;
+   * box-shadow would get clipped away). Resting=flat, hover=shadow, press=sink. */
+  [data-skin="rig"] [data-control-ui][data-control="true"] {
+    border: 0;
+    border-radius: 0;
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--rig-chamfer)) 0,
+      100% var(--rig-chamfer),
+      100% 100%,
+      var(--rig-chamfer) 100%,
+      0 calc(100% - var(--rig-chamfer))
+    );
+    box-shadow: none;
+    text-shadow: none;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition-property: transform, filter, background-color, color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  /* filter:drop-shadow paints RENDERED pixels — clean silhouette only on opaque solid fill; on
+   * translucent surface/ghost/quiet it'd trace the GLYPHS, ghosting the label. Those variants get
+   * nudge + brightness dip instead (brightness never offsets, can't duplicate). */
+  [data-skin="rig"] [data-control-ui][data-control="true"]:hover {
+    transform: translate(-1px, -1px);
+  }
+
+  [data-skin="rig"] [data-control-ui][data-control="true"]:active {
+    transform: translate(1px, 1px);
+    filter: brightness(0.94);
+    transition-duration: 40ms;
+  }
+
+  /* Solid only: box-shadow can't survive clip-path, so uses drop-shadow (safe: box is opaque); :not(disabled) guard out-specifies the disabled reset. */
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"]:not(:disabled):not([data-disabled]):hover {
+    filter: drop-shadow(3px 4px 0 oklch(from var(--foreground) l c h / 0.32));
+  }
+
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"]:not(:disabled):not([data-disabled]):active {
+    filter: drop-shadow(1px 1px 0 oklch(from var(--foreground) l c h / 0.4)) brightness(0.94);
+  }
+
+  [data-skin="rig"] [data-control-ui][data-control="true"]:disabled,
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-disabled] {
+    transform: none;
+    filter: none;
+  }
+
+  /* Solid = coral CTA; background-image sheen paints behind label (no z-index fight), chamfer still clips it. */
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"] {
+    background-color: var(--primary);
+    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.14), transparent 46%);
+    color: var(--primary-foreground);
+  }
+
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"]:hover {
+    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.22), transparent 52%);
+  }
+
+  /* Outlined: hairline ink ring via inset shadow (clip-safe); faint fill, coral glow blooms on hover. */
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="surface"],
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="ghost"],
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="quiet"] {
+    background-color: oklch(from var(--foreground) l c h / 0.04);
+    background-image: none;
+    box-shadow: inset 0 0 0 1.5px oklch(from var(--foreground) l c h / 0.5);
+  }
+
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="surface"]:hover,
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="ghost"]:hover,
+  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="quiet"]:hover {
+    background-color: oklch(from var(--foreground) l c h / 0.09);
+    box-shadow:
+      inset 0 0 0 1.5px var(--primary),
+      inset 0 0 0 5px oklch(from var(--primary) l c h / 0.12);
+  }
+
+  /* ---- Chat: user bubble ---------------------------------------------------------------------- */
+
+  /* User bubble = bg-primary coral both modes. Light: coral+near-black ink ~5.9:1 (fine). Dark:
+   * cream ink on bright coral only ~3.5:1 (fails AA), so dark deepens coral fill enough for cream
+   * to clear AA. */
+  :is(.dark[data-skin="rig"], :where(.dark) [data-skin="rig"], [data-skin="rig"] :where(.dark))
+    [data-control-ui="chat-message"][data-slot="content"][data-role="user"] {
+    background-color: oklch(0.444 0.1277 32.246);
+    color: oklch(0.9313 0.0143 81.504);
+  }
+
+  /* ---- Tabs ---------------------------------------------------------------------------------- */
+
+  [data-skin="rig"] [data-control-ui="tabs"][data-slot="list"],
+  [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"] {
+    border-radius: 0;
+  }
+
+  [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"] {
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+
+  [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"]:hover {
+    color: var(--foreground);
+  }
+
+  [data-skin="rig"] [data-control-ui="tabs"][data-slot="indicator"] {
+    border-radius: 0;
+    background: var(--primary);
+    box-shadow: 0 0 0 1px oklch(from var(--primary) l c h / 0.35);
+  }
+
+  /* ---- HUD corner ticks on the big framed surfaces ------------------------------------------- */
+
+  /* Crosshair L-ticks in 4 corners: ::before=TL+BR, ::after=TR+BL, each a horiz+vert hairline; inset so they read despite overflow clipping. */
+  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"],
+  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"],
+  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"],
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"],
+  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"] {
+    position: relative;
+    --rig-tick: 11px;
+    --rig-tick-w: 1.5px;
+    --rig-tick-inset: 7px;
+    --rig-tick-c: oklch(from var(--primary) l c h / 0.6);
+  }
+
+  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::before,
+  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::after,
+  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::before,
+  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::after,
+  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
+  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::after,
+  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::before,
+  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::after {
+    content: "";
+    position: absolute;
+    inset: var(--rig-tick-inset);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ::before → top-left + bottom-right corners. */
+  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::before,
+  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::before,
+  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
+  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::before {
+    background:
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 0 / var(--rig-tick) var(--rig-tick-w) no-repeat,
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 0 / var(--rig-tick-w) var(--rig-tick) no-repeat,
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 100% / var(--rig-tick) var(--rig-tick-w) no-repeat,
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 100% / var(--rig-tick-w) var(--rig-tick) no-repeat;
+  }
+
+  /* ::after → top-right + bottom-left corners. */
+  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::after,
+  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::after,
+  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::after,
+  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::after {
+    background:
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 0 / var(--rig-tick) var(--rig-tick-w) no-repeat,
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 0 / var(--rig-tick-w) var(--rig-tick) no-repeat,
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 100% / var(--rig-tick) var(--rig-tick-w) no-repeat,
+      linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 100% / var(--rig-tick-w) var(--rig-tick) no-repeat;
+  }
+
+  /* Composer ticks light coral + frame on focus: "armed" state. */
+  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]:focus-within {
+    --rig-tick-c: var(--primary);
+    box-shadow: inset 0 0 0 1.5px oklch(from var(--primary) l c h / 0.55);
+  }
+
+  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"][data-activity-state="running"] {
+    --rig-tick-c: var(--primary);
+  }
+
+  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"][data-activity-state="error"] {
+    --rig-tick-c: oklch(0.5988 0.2021 25.776);
+  }
+
+  /* ---- Menu / Select popups: top hairline + row accents ------------------------------------- */
+
+  [data-skin="rig"] [data-control-ui="menu"][data-slot="content"],
+  [data-skin="rig"] [data-control-ui="select"][data-slot="content"] {
+    border-radius: 0;
+    box-shadow:
+      0 0 0 1.5px oklch(from var(--foreground) l c h / 0.55),
+      inset 0 2px 0 var(--primary);
+  }
+
+  [data-skin="rig"] [data-control-ui="menu"][data-slot="item"],
+  [data-skin="rig"] [data-control-ui="select"][data-slot="item"] {
+    border-radius: 0;
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard),
+      transform var(--duration-fast) var(--ease-standard);
+  }
+
+  [data-skin="rig"] [data-control-ui="menu"][data-slot="item"]:hover,
+  [data-skin="rig"] [data-control-ui="menu"][data-slot="item"][data-highlighted],
+  [data-skin="rig"] [data-control-ui="select"][data-slot="item"]:hover,
+  [data-skin="rig"] [data-control-ui="select"][data-slot="item"][data-highlighted] {
+    box-shadow: inset 2px 0 0 var(--primary);
+    transform: translateX(2px);
+  }
+
+  /* ---- Sidebar rows + mono eyebrows ---------------------------------------------------------- */
+
+  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="menu-button"] {
+    border-radius: 0;
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard),
+      transform var(--duration-fast) var(--ease-standard);
+  }
+
+  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="menu-button"]:hover,
+  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="menu-button"][data-active="true"] {
+    box-shadow: inset 2px 0 0 var(--primary);
+    transform: translateX(2px);
+  }
+
+  /* Group labels = mono uppercase eyebrows (matches reference's "DATA EXTRACTION"/"001" style). */
+  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="group-label"],
+  [data-skin="rig"] [data-control-ui="menu"][data-slot="label"] {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    font-size: 0.68rem;
+  }
+
+  /* ---- Tooltip ------------------------------------------------------------------------------- */
+
+  [data-skin="rig"] [data-control-ui="tooltip"][data-slot="content"] {
+    border-radius: 0;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 0 1.5px oklch(from var(--primary) l c h / 0.5);
+  }
+}

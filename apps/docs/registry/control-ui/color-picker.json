@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-picker",
+  "type": "registry:ui",
+  "title": "Color Picker",
+  "description": "Color input with picker UI, formats, presets, and contrast helpers.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "input",
+    "number-field",
+    "select"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-color-area.ts",
+      "target": "@components/control-ui/hooks/use-color-area.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/lib/color.ts",
+      "target": "@components/control-ui/lib/color.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/lib/contrast.ts",
+      "target": "@components/control-ui/lib/contrast.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/color-picker.tsx",
+      "target": "@components/control-ui/ui/color-picker.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/color-picker.json"
+  }
+}

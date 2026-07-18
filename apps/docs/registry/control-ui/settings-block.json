@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "settings-block",
+  "type": "registry:block",
+  "title": "Settings",
+  "description": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "empty",
+    "field",
+    "input-group",
+    "scroll-area",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/settings-data.ts",
+      "target": "@components/control-ui/blocks/settings-data.ts",
+      "type": "registry:block"
+    },
+    {
+      "path": "src/registry/blocks/control-ui/settings.tsx",
+      "target": "@components/control-ui/blocks/settings.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/settings-block.json"
+  }
+}

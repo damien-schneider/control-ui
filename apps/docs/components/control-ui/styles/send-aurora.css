@@ -1,0 +1,38 @@
+/*
+ * Send aurora — anchored ChatInput extension (fills the chat-input:send-layer anchor). Token-driven,
+ * the data-motion="reduced" kill-switch collapses the sweep to 0ms (it finishes instantly at opacity 0).
+ * One-shot replay is structural: the component remounts per send (key={sendCount}); the sweep keyframe
+ * plays on mount and `forwards` parks the layer invisible until the next send remounts it.
+ * Reads the shared --duration-* and --ease-* tokens.
+ */
+
+@layer components {
+  :where([data-send-aurora]) {
+    /* palette knobs — baseline defaults; a skin pack re-values them, the `colors` prop overrides inline */
+    --aurora-1: oklch(0.66 0.24 356);
+    --aurora-2: oklch(0.71 0.19 41);
+    --aurora-3: oklch(0.85 0.15 91);
+    --aurora-4: oklch(0.86 0.03 235);
+    --aurora-5: oklch(0.45 0.19 262);
+    opacity: 0;
+    animation: send-aurora-sweep calc(var(--duration-slow) * 4) var(--ease-emphasized) forwards;
+  }
+}
+
+@keyframes send-aurora-sweep {
+  0% {
+    opacity: 0;
+    translate: 0 30%;
+  }
+  18% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.85;
+    translate: 0 4%;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -14%;
+  }
+}

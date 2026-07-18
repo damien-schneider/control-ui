@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "type": "registry:ui",
+  "title": "Button group",
+  "description": "Joined button group for toolbars, split actions, and segmented controls.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/button-group.tsx",
+      "target": "@components/control-ui/ui/button-group.tsx",
+      "type": "registry:ui",
+      "content": "import { cva } from \"class-variance-authority\";\nimport type { ComponentProps } from \"react\";\nimport type { ButtonGroupProps, ButtonGroupSeparatorProps, ControlSize } from \"@/components/control-ui/contracts\";\nimport { controlSize } from \"@/components/control-ui/control-variants\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Selected controls stay above adjacent focus rings so their shared seams remain visible.\nconst buttonGroupVariant = cva(\n  \"inline-flex w-fit items-stretch [&>*]:relative [&>*:focus-within:not([data-active=true])]:z-[1] [&>*[data-active=true]]:z-[2] [&>*[data-active=true]:focus-within]:z-[3]\",\n  {\n    variants: {\n      orientation: {\n        horizontal: \"flex-row [&>*:not(:first-child)]:-ml-px [&>*:not(:first-child)]:rounded-l-none [&>*:not(:last-child)]:rounded-r-none\",\n        vertical: \"flex-col [&>*:not(:first-child)]:-mt-px [&>*:not(:first-child)]:rounded-t-none [&>*:not(:last-child)]:rounded-b-none\",\n      },\n    },\n    defaultVariants: {\n      orientation: \"horizontal\",\n    },\n  },\n);\n\nexport function ButtonGroup({ orientation = \"horizontal\", className, ...props }: ButtonGroupProps) {\n  return (\n    // biome-ignore lint/a11y/useSemanticElements: a segmented control is a labelled group, not a fieldset form group.\n    <div\n      role=\"group\"\n      data-control-ui=\"button-group\"\n      data-slot=\"root\"\n      data-orientation={orientation}\n      className={cn(buttonGroupVariant({ orientation }), skinSlot(\"button-group\", \"root\", { orientation }), className)}\n      {...props}\n    />\n  );\n}\n\n// Non-interactive addon label styled to fuse with the group, e.g. a `https://` prefix or unit suffix.\ntype ButtonGroupTextProps = ComponentProps<\"div\"> & {\n  size?: ControlSize;\n};\n\nexport function ButtonGroupText({ size = \"sm\", className, ...props }: ButtonGroupTextProps) {\n  return (\n    <div\n      data-control-ui=\"button-group\"\n      data-slot=\"text\"\n      data-size={size}\n      className={cn(\n        \"inline-flex items-center whitespace-nowrap rounded-[var(--radius-control)] border bg-card/72 font-medium text-muted-foreground shadow-sm [&>svg]:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0\",\n        controlSize({ size }),\n        skinSlot(\"button-group\", \"text\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function ButtonGroupSeparator({ orientation = \"vertical\", className, ...props }: ButtonGroupSeparatorProps) {\n  return (\n    <div\n      aria-hidden=\"true\"\n      data-control-ui=\"button-group\"\n      data-slot=\"separator\"\n      data-orientation={orientation}\n      className={cn(\"shrink-0 self-stretch bg-border\", orientation === \"vertical\" ? \"w-px\" : \"h-px w-full\", className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

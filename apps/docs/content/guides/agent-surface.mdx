@@ -1,0 +1,21 @@
+<GuideSection id="envelope" title="One registry, multiple interfaces">
+  The registry API returns catalog metadata and readable source in a `{ type, data }` envelope. Static shadcn manifests,
+  agent metadata, and text indexes expose the same catalog in formats suited to their consumers.
+
+  <AgentSurfaceMap />
+</GuideSection>
+
+<GuideSection id="endpoints" title="HTTP API">
+  List the registry, inspect one item with its dependencies, source files, and anatomy, or search by query. The index links
+  the complete skin and theme contracts. An item anatomy slice exposes `ownScopes` for source it owns and `installedScopes`
+  for the complete transitive install closure.
+
+  <GuideCode kind="agent-endpoints" />
+</GuideSection>
+
+<GuideSection id="agent-docs" title="Machine-readable docs">
+  Use the official shadcn catalog, individual item manifests, the concise linked index, the extended reference, or the static
+  agent metadata directly.
+
+  <GuideCode kind="agent-llms" />
+</GuideSection>

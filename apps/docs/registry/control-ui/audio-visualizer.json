@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audio-visualizer",
+  "type": "registry:component",
+  "title": "AudioVisualizer",
+  "description": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/audio-visualizer.tsx",
+      "target": "@components/control-ui/audio-visualizer.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/audio-visualizer.json"
+  }
+}

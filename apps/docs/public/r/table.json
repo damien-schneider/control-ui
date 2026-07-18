@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:ui",
+  "title": "Table",
+  "description": "Responsive data table for lists, comparisons, and structured records.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/table.tsx",
+      "target": "@components/control-ui/ui/table.tsx",
+      "type": "registry:ui",
+      "content": "import type {\n  TableCaptionProps,\n  TableCellProps,\n  TableHeadProps,\n  TableProps,\n  TableRowProps,\n  TableSectionProps,\n} from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Plain semantic <table> (no Base UI), wrapped overflow-x-auto so wide tables scroll not burst. Hairlines/text/heads/hover all track theme tokens — no per-skin work.\nexport function Table({ className, ...props }: TableProps) {\n  return (\n    <div data-control-ui=\"table\" data-slot=\"container\" className=\"relative w-full overflow-x-auto\">\n      <table\n        data-control-ui=\"table\"\n        data-slot=\"root\"\n        className={cn(\"w-full caption-bottom border-collapse text-body\", skinSlot(\"table\", \"root\", {}), className)}\n        {...props}\n      />\n    </div>\n  );\n}\n\nexport function TableHeader({ className, ...props }: TableSectionProps) {\n  return <thead data-control-ui=\"table\" data-slot=\"header\" className={cn(\"[&_tr]:border-b [&_tr]:border-border\", className)} {...props} />;\n}\n\nexport function TableBody({ className, ...props }: TableSectionProps) {\n  return <tbody data-control-ui=\"table\" data-slot=\"body\" className={cn(\"[&_tr:last-child]:border-0\", className)} {...props} />;\n}\n\nexport function TableFooter({ className, ...props }: TableSectionProps) {\n  return (\n    <tfoot\n      data-control-ui=\"table\"\n      data-slot=\"footer\"\n      className={cn(\"border-t border-border bg-foreground/3 font-medium [&>tr]:last:border-b-0\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function TableRow({ className, ...props }: TableRowProps) {\n  return (\n    <tr\n      data-control-ui=\"table\"\n      data-slot=\"row\"\n      className={cn(\"border-b border-border transition-colors hover:bg-foreground/3 data-[state=selected]:bg-foreground/5\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function TableHead({ className, ...props }: TableHeadProps) {\n  return (\n    <th\n      data-control-ui=\"table\"\n      data-slot=\"head\"\n      className={cn(\n        \"h-10 whitespace-nowrap px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function TableCell({ className, ...props }: TableCellProps) {\n  return (\n    <td\n      data-control-ui=\"table\"\n      data-slot=\"cell\"\n      className={cn(\"whitespace-nowrap p-2 align-middle [&:has([role=checkbox])]:pr-0\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function TableCaption({ className, ...props }: TableCaptionProps) {\n  return (\n    <caption data-control-ui=\"table\" data-slot=\"caption\" className={cn(\"mt-4 text-body text-muted-foreground\", className)} {...props} />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "source-badge",
+  "type": "registry:component",
+  "title": "SourceBadge",
+  "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "avatar",
+    "badge",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/source-badge.tsx",
+      "target": "@components/control-ui/source-badge.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/source-badge.json"
+  }
+}

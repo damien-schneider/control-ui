@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox",
+  "type": "registry:ui",
+  "title": "Combobox",
+  "description": "Searchable single-select with input and floating option list.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/combobox-disabled-selection.ts",
+      "target": "@components/control-ui/ui/combobox-disabled-selection.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/combobox.tsx",
+      "target": "@components/control-ui/ui/combobox.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/combobox.json"
+  }
+}

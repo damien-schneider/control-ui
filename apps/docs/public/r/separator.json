@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "type": "registry:ui",
+  "title": "Separator",
+  "description": "Hairline divider using the shared border token.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/separator.tsx",
+      "target": "@components/control-ui/ui/separator.tsx",
+      "type": "registry:ui",
+      "content": "import { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Orientation drives axis directly (no data-attribute reliance) so it works under any DA.\nexport function Separator({ className, orientation = \"horizontal\", ...props }: ComponentProps<typeof SeparatorPrimitive>) {\n  return (\n    <SeparatorPrimitive\n      data-control-ui=\"separator\"\n      data-slot=\"root\"\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 bg-border\",\n        orientation === \"vertical\" ? \"h-full w-px\" : \"h-px w-full\",\n        skinSlot(\"separator\", \"root\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

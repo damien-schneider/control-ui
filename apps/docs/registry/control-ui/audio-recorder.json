@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audio-recorder",
+  "type": "registry:component",
+  "title": "AudioRecorder",
+  "description": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "audio-visualizer",
+    "button",
+    "command",
+    "core",
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-audio-recorder.ts",
+      "target": "@components/control-ui/hooks/use-audio-recorder.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/lib/format-audio-recorder-duration.ts",
+      "target": "@components/control-ui/lib/format-audio-recorder-duration.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/audio-recorder.tsx",
+      "target": "@components/control-ui/audio-recorder.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/audio-recorder.json"
+  }
+}

@@ -1,0 +1,368 @@
+/*
+ * ADVANCED skin (tokens + skin.css material + skin.config slots) — a reading of Linear's product UI:
+ * indigo brand on a near-neutral cool ramp, 13px chrome, 4px radius knob, hairline borders instead of
+ * elevation, and floating surfaces that are the ONLY things allowed a real shadow.
+ * Scoped under [data-skin="linear"] and complete in both modes; shared @theme bindings remain in core.
+ */
+
+[data-skin="linear"] {
+  /* Inter, self-hosted by the app shell (next/font fills --font-inter); host without it falls to the system stack. */
+  --font-sans: var(--font-inter, "Inter"), "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  /* Type scale: Linear runs one flat 13px band for ALL chrome (nav rows, controls, body) and reserves
+     the larger rungs for content headings. Label == body on purpose. */
+  --text-micro: 0.625rem; /* 10px */
+  --text-caption: 0.6875rem; /* 11px */
+  --text-label: 0.8125rem; /* 13px — sm controls, nav rows, tooltips */
+  --text-body: 0.8125rem; /* 13px — THE workhorse */
+  --text-body-lg: 0.9375rem; /* 15px */
+  --text-meta: 0.6875rem; /* 11px — label pills */
+
+  /* Headings stay tight and semibold; no 700 anywhere (Linear tops out at semibold). */
+  --text-heading-4: 0.875rem;
+  --text-heading-4--line-height: 1.4;
+  --text-heading-4--font-weight: 600;
+  --text-heading-3: 1rem;
+  --text-heading-3--line-height: 1.4;
+  --text-heading-3--font-weight: 600;
+  --text-heading-2: 1.1875rem;
+  --text-heading-2--line-height: 1.3;
+  --text-heading-2--font-weight: 600;
+  --text-heading-1: 1.5rem; /* 24px — the issue-title rung */
+  --text-heading-1--line-height: 1.25;
+  --text-heading-1--font-weight: 600;
+  --text-heading-1--letter-spacing: -0.014em;
+  --text-display: 2rem;
+  --text-display--line-height: 1.15;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.022em;
+  --text-title-sm: 0.875rem;
+  --text-title-sm--line-height: 1.4;
+  --text-title-sm--font-weight: 600;
+  --text-title-md: 1rem;
+  --text-title-md--line-height: 1.4;
+  --text-title-md--font-weight: 600;
+  --text-title-lg: 1.1875rem;
+  --text-title-lg--line-height: 1.3;
+  --text-title-lg--font-weight: 600;
+
+  /* Light: pure-white surfaces on a cool gray paper. card == background so the shell's content frame
+     reads as the one white sheet Linear floats its whole app on. */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2228 0.0079 274.573); /* #1a1b1f */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2228 0.0079 274.573);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2228 0.0079 274.573);
+  --primary: oklch(0.5674 0.1585 275.206); /* #5e6ad2 — THE Linear indigo */
+  --primary-foreground: oklch(1 0 0);
+  --primary-text: oklch(from var(--primary) 0.48 c h);
+  --muted: oklch(0.9614 0.0013 286.375); /* #f2f2f3 */
+  --muted-foreground: oklch(0.5401 0.0124 280.281); /* #6d6e76 */
+  --secondary: oklch(0.9614 0.0013 286.375);
+  --secondary-foreground: oklch(0.2228 0.0079 274.573);
+  --accent: oklch(0.9434 0.0013 286.374); /* #ececed — hover / selection fill */
+  --accent-foreground: oklch(0.2228 0.0079 274.573);
+  --destructive: oklch(0.576 0.1835 23.679);
+  --destructive-foreground: oklch(1 0 0);
+  --destructive-text: oklch(from var(--destructive) 0.48 c h);
+  --ring-opacity: 1;
+  --border: oklch(0.9255 0.0027 286.347 / var(--ring-opacity)); /* #e6e6e8 hairline */
+  --input: oklch(0.9042 0.0027 286.346); /* #dfdfe1 — fields carry a touch more edge */
+  --ring: oklch(0.5674 0.1585 275.206); /* focus == brand */
+  --canvas: oklch(0.9734 0.0013 286.375); /* #f6f6f7 — the paper the white sheet sits on */
+
+  /* Popup rows: a whisper of ink, no brand tint (Linear highlights rows, it doesn't color them).
+     Derived from --foreground so the dark block inherits the same recipe with no restatement. */
+  --popup-item-foreground: var(--foreground);
+  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.05);
+  --popup-item-disabled-opacity: 0.4;
+
+  /* Surfaces are opaque: no glass anywhere. The modal scrim is the only dim. */
+  --popover-opacity: 1;
+  --backdrop-blur-popover: 0px;
+  --overlay-opacity: 0.3;
+  --backdrop-blur-overlay: 0px;
+  --scroll-fade-size: 1.5rem;
+
+  /* Elevation is EARNED here: controls and panels are held by hairlines, only floating surfaces lift.
+     Hence a near-zero control tier, a 1x panel tier, and popover/modal tiers pushed way up. */
+  --shadow-color: oklch(0.2217 0.0084 264.39);
+  --shadow-highlight: oklch(1 0 0 / 0.08); /* matte: a whisper of top light, not a lit-paper rim */
+  --shadow-size: 1;
+  --shadow-opacity: 0.75;
+  --shadow-y: 1;
+  --shadow-control-multiplier: 0.6;
+  --shadow-panel-multiplier: 1;
+  --shadow-popover-multiplier: 5;
+  --shadow-modal-multiplier: 8;
+  --shadow-ambient-multiplier: 8;
+
+  /* THE radius knob: 4px. Controls ride 1.5x (6px), panels 3x (12px) — small, never pill-shaped by
+     token (the button pill is a deliberate slot choice, not a radius side effect). */
+  --radius: 0.25rem;
+  --radius-control: calc(var(--radius) * 1.5);
+  --radius-field: calc(var(--radius) * 2); /* 8px — composer shell, user bubble */
+  --radius-panel: calc(var(--radius) * 3); /* 12px — dialogs, code, the content sheet */
+  --radius-scene: calc(var(--radius) * 3.5); /* 14px */
+  --corner-shape: round;
+  --corner-shape-control: var(--corner-shape);
+  --corner-shape-popover: var(--corner-shape);
+  --corner-shape-panel: var(--corner-shape);
+
+  /* Concentric floating-list geometry is authored here so the pack owns the exact 4px-derived ratios. */
+  --popover-padding: 0.25rem;
+  /* Rows carry the SAME 6px corner as controls (Linear has one row corner everywhere: menus, nav,
+     tree, and the sliding selection pill, which the library shapes from this token). */
+  --radius-popup-item: var(--radius-control);
+  --nest-safe: 1px;
+  --nest-corner-ratio: 3.41421356;
+  --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
+  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
+
+  --padding-x: 0.75rem;
+  --padding-y: 0.5rem;
+
+  /* Control ramp: 32px base, so `sm` lands on Linear's 28px button. */
+  --control-h: 2rem;
+  --control-h-xs: round(var(--control-h) * 0.78, 1px);
+  --control-h-sm: round(var(--control-h) * 0.89, 1px);
+  --control-h-md: var(--control-h);
+  --control-h-lg: round(var(--control-h) * 1.11, 1px);
+
+  /* Motion is a snap, not a glide — Linear's whole feel rests on this. */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 90ms;
+  --duration-base: 130ms;
+  --duration-slow: 200ms;
+
+  --popup-item-icon-foreground: currentColor;
+  --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
+  --badge-neutral-foreground: var(--foreground);
+  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
+  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.12);
+  --badge-slate: oklch(from var(--color-slate-500) l c h / 0.14);
+  --badge-slate-foreground: var(--color-slate-800);
+  --badge-slate-border: oklch(from var(--color-slate-500) l c h / 0.18);
+  --badge-slate-hover: oklch(from var(--color-slate-500) l c h / 0.2);
+  --badge-gray: oklch(from var(--color-gray-500) l c h / 0.14);
+  --badge-gray-foreground: var(--color-gray-800);
+  --badge-gray-border: oklch(from var(--color-gray-500) l c h / 0.18);
+  --badge-gray-hover: oklch(from var(--color-gray-500) l c h / 0.2);
+  --badge-zinc: oklch(from var(--color-zinc-500) l c h / 0.14);
+  --badge-zinc-foreground: var(--color-zinc-800);
+  --badge-zinc-border: oklch(from var(--color-zinc-500) l c h / 0.18);
+  --badge-zinc-hover: oklch(from var(--color-zinc-500) l c h / 0.2);
+  --badge-stone: oklch(from var(--color-stone-500) l c h / 0.14);
+  --badge-stone-foreground: var(--color-stone-800);
+  --badge-stone-border: oklch(from var(--color-stone-500) l c h / 0.18);
+  --badge-stone-hover: oklch(from var(--color-stone-500) l c h / 0.2);
+  --badge-red: oklch(from var(--color-red-500) l c h / 0.14);
+  --badge-red-foreground: var(--color-red-800);
+  --badge-red-border: oklch(from var(--color-red-500) l c h / 0.18);
+  --badge-red-hover: oklch(from var(--color-red-500) l c h / 0.2);
+  --badge-orange: oklch(from var(--color-orange-500) l c h / 0.16);
+  --badge-orange-foreground: var(--color-orange-800);
+  --badge-orange-border: oklch(from var(--color-orange-500) l c h / 0.2);
+  --badge-orange-hover: oklch(from var(--color-orange-500) l c h / 0.24);
+  --badge-amber: oklch(from var(--color-amber-400) l c h / 0.2);
+  --badge-amber-foreground: var(--color-amber-800);
+  --badge-amber-border: oklch(from var(--color-amber-400) l c h / 0.24);
+  --badge-amber-hover: oklch(from var(--color-amber-400) l c h / 0.28);
+  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.2);
+  --badge-yellow-foreground: var(--color-yellow-800);
+  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.24);
+  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.28);
+  --badge-lime: oklch(from var(--color-lime-500) l c h / 0.16);
+  --badge-lime-foreground: var(--color-lime-800);
+  --badge-lime-border: oklch(from var(--color-lime-500) l c h / 0.2);
+  --badge-lime-hover: oklch(from var(--color-lime-500) l c h / 0.24);
+  --badge-green: oklch(from var(--color-green-500) l c h / 0.16);
+  --badge-green-foreground: var(--color-green-800);
+  --badge-green-border: oklch(from var(--color-green-500) l c h / 0.2);
+  --badge-green-hover: oklch(from var(--color-green-500) l c h / 0.24);
+  --badge-emerald: oklch(from var(--color-emerald-500) l c h / 0.16);
+  --badge-emerald-foreground: var(--color-emerald-800);
+  --badge-emerald-border: oklch(from var(--color-emerald-500) l c h / 0.2);
+  --badge-emerald-hover: oklch(from var(--color-emerald-500) l c h / 0.24);
+  --badge-teal: oklch(from var(--color-teal-500) l c h / 0.16);
+  --badge-teal-foreground: var(--color-teal-800);
+  --badge-teal-border: oklch(from var(--color-teal-500) l c h / 0.2);
+  --badge-teal-hover: oklch(from var(--color-teal-500) l c h / 0.24);
+  --badge-cyan: oklch(from var(--color-cyan-500) l c h / 0.16);
+  --badge-cyan-foreground: var(--color-cyan-800);
+  --badge-cyan-border: oklch(from var(--color-cyan-500) l c h / 0.2);
+  --badge-cyan-hover: oklch(from var(--color-cyan-500) l c h / 0.24);
+  --badge-sky: oklch(from var(--color-sky-500) l c h / 0.16);
+  --badge-sky-foreground: var(--color-sky-800);
+  --badge-sky-border: oklch(from var(--color-sky-500) l c h / 0.2);
+  --badge-sky-hover: oklch(from var(--color-sky-500) l c h / 0.24);
+  --badge-blue: oklch(from var(--color-blue-500) l c h / 0.16);
+  --badge-blue-foreground: var(--color-blue-800);
+  --badge-blue-border: oklch(from var(--color-blue-500) l c h / 0.2);
+  --badge-blue-hover: oklch(from var(--color-blue-500) l c h / 0.24);
+  --badge-indigo: oklch(from var(--color-indigo-500) l c h / 0.16);
+  --badge-indigo-foreground: var(--color-indigo-800);
+  --badge-indigo-border: oklch(from var(--color-indigo-500) l c h / 0.2);
+  --badge-indigo-hover: oklch(from var(--color-indigo-500) l c h / 0.24);
+  --badge-violet: oklch(from var(--color-violet-500) l c h / 0.16);
+  --badge-violet-foreground: var(--color-violet-800);
+  --badge-violet-border: oklch(from var(--color-violet-500) l c h / 0.2);
+  --badge-violet-hover: oklch(from var(--color-violet-500) l c h / 0.24);
+  --badge-purple: oklch(from var(--color-purple-500) l c h / 0.16);
+  --badge-purple-foreground: var(--color-purple-800);
+  --badge-purple-border: oklch(from var(--color-purple-500) l c h / 0.2);
+  --badge-purple-hover: oklch(from var(--color-purple-500) l c h / 0.24);
+  --badge-fuchsia: oklch(from var(--color-fuchsia-500) l c h / 0.16);
+  --badge-fuchsia-foreground: var(--color-fuchsia-800);
+  --badge-fuchsia-border: oklch(from var(--color-fuchsia-500) l c h / 0.2);
+  --badge-fuchsia-hover: oklch(from var(--color-fuchsia-500) l c h / 0.24);
+  --badge-pink: oklch(from var(--color-pink-500) l c h / 0.16);
+  --badge-pink-foreground: var(--color-pink-800);
+  --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
+  --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
+  --badge-rose: oklch(from var(--color-rose-500) l c h / 0.16);
+  --badge-rose-foreground: var(--color-rose-800);
+  --badge-rose-border: oklch(from var(--color-rose-500) l c h / 0.2);
+  --badge-rose-hover: oklch(from var(--color-rose-500) l c h / 0.24);
+  --font-body: var(--font-sans);
+  --font-display: var(--font-sans);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --corner-radius-fit: 0.5;
+}
+
+/* Dark tokens: the real Linear night — near-black canvas, panel one step up, popups two. */
+:where(.dark) [data-skin="linear"],
+.dark[data-skin="linear"] {
+  --background: oklch(0.1739 0.0041 285.967); /* #101012 */
+  --foreground: oklch(0.9784 0.0011 197.139); /* #f7f8f8 */
+  --card: oklch(0.1739 0.0041 285.967);
+  --card-foreground: oklch(0.9784 0.0011 197.139);
+  --popover: oklch(0.2277 0.0057 285.935); /* #1c1c1f — menus sit above the sheet */
+  --popover-foreground: oklch(0.9784 0.0011 197.139);
+  --primary: oklch(0.5674 0.1585 275.206);
+  --primary-foreground: oklch(1 0 0);
+  --primary-text: oklch(from var(--primary) 0.78 c h);
+  --muted: oklch(0.2277 0.0057 285.935);
+  --muted-foreground: oklch(0.6488 0.0146 262.359); /* #8a8f98 */
+  --secondary: oklch(0.2277 0.0057 285.935);
+  --secondary-foreground: oklch(0.9784 0.0011 197.139);
+  --accent: oklch(0.2494 0.0075 285.844); /* #212125 */
+  --accent-foreground: oklch(0.9784 0.0011 197.139);
+  --destructive: oklch(0.576 0.1835 23.679);
+  --destructive-foreground: oklch(1 0 0);
+  --destructive-text: oklch(from var(--destructive) 0.78 c h);
+  --ring-opacity: 1;
+  --border: oklch(0.2618 0.0113 278.089 / var(--ring-opacity)); /* #23242a */
+  --input: oklch(0.2986 0.0109 278.197);
+  --ring: oklch(0.6102 0.1404 276.317); /* the indigo lifts a rung to stay legible on ink */
+  --canvas: oklch(0.139 0.0029 246.256); /* #08090a */
+  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.07);
+  --shadow-color: oklch(0 0 0);
+  --shadow-highlight: oklch(1 0 0 / 0.05);
+  --shadow-opacity: 1;
+
+  --badge-neutral: oklch(from var(--foreground) l c h / 0.1);
+  --badge-neutral-foreground: var(--foreground);
+  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.12);
+  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.14);
+  --badge-slate: oklch(from var(--color-slate-400) l c h / 0.18);
+  --badge-slate-foreground: var(--color-slate-300);
+  --badge-slate-border: oklch(from var(--color-slate-400) l c h / 0.22);
+  --badge-slate-hover: oklch(from var(--color-slate-400) l c h / 0.26);
+  --badge-gray: oklch(from var(--color-gray-400) l c h / 0.18);
+  --badge-gray-foreground: var(--color-gray-300);
+  --badge-gray-border: oklch(from var(--color-gray-400) l c h / 0.22);
+  --badge-gray-hover: oklch(from var(--color-gray-400) l c h / 0.26);
+  --badge-zinc: oklch(from var(--color-zinc-400) l c h / 0.18);
+  --badge-zinc-foreground: var(--color-zinc-300);
+  --badge-zinc-border: oklch(from var(--color-zinc-400) l c h / 0.22);
+  --badge-zinc-hover: oklch(from var(--color-zinc-400) l c h / 0.26);
+  --badge-stone: oklch(from var(--color-stone-400) l c h / 0.18);
+  --badge-stone-foreground: var(--color-stone-300);
+  --badge-stone-border: oklch(from var(--color-stone-400) l c h / 0.22);
+  --badge-stone-hover: oklch(from var(--color-stone-400) l c h / 0.26);
+  --badge-red: oklch(from var(--color-red-400) l c h / 0.18);
+  --badge-red-foreground: var(--color-red-300);
+  --badge-red-border: oklch(from var(--color-red-400) l c h / 0.22);
+  --badge-red-hover: oklch(from var(--color-red-400) l c h / 0.26);
+  --badge-orange: oklch(from var(--color-orange-400) l c h / 0.2);
+  --badge-orange-foreground: var(--color-orange-300);
+  --badge-orange-border: oklch(from var(--color-orange-400) l c h / 0.24);
+  --badge-orange-hover: oklch(from var(--color-orange-400) l c h / 0.28);
+  --badge-amber: oklch(from var(--color-amber-400) l c h / 0.22);
+  --badge-amber-foreground: var(--color-amber-300);
+  --badge-amber-border: oklch(from var(--color-amber-400) l c h / 0.26);
+  --badge-amber-hover: oklch(from var(--color-amber-400) l c h / 0.3);
+  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.22);
+  --badge-yellow-foreground: var(--color-yellow-300);
+  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.26);
+  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.3);
+  --badge-lime: oklch(from var(--color-lime-400) l c h / 0.2);
+  --badge-lime-foreground: var(--color-lime-300);
+  --badge-lime-border: oklch(from var(--color-lime-400) l c h / 0.24);
+  --badge-lime-hover: oklch(from var(--color-lime-400) l c h / 0.28);
+  --badge-green: oklch(from var(--color-green-400) l c h / 0.2);
+  --badge-green-foreground: var(--color-green-300);
+  --badge-green-border: oklch(from var(--color-green-400) l c h / 0.24);
+  --badge-green-hover: oklch(from var(--color-green-400) l c h / 0.28);
+  --badge-emerald: oklch(from var(--color-emerald-400) l c h / 0.2);
+  --badge-emerald-foreground: var(--color-emerald-300);
+  --badge-emerald-border: oklch(from var(--color-emerald-400) l c h / 0.24);
+  --badge-emerald-hover: oklch(from var(--color-emerald-400) l c h / 0.28);
+  --badge-teal: oklch(from var(--color-teal-400) l c h / 0.2);
+  --badge-teal-foreground: var(--color-teal-300);
+  --badge-teal-border: oklch(from var(--color-teal-400) l c h / 0.24);
+  --badge-teal-hover: oklch(from var(--color-teal-400) l c h / 0.28);
+  --badge-cyan: oklch(from var(--color-cyan-400) l c h / 0.2);
+  --badge-cyan-foreground: var(--color-cyan-300);
+  --badge-cyan-border: oklch(from var(--color-cyan-400) l c h / 0.24);
+  --badge-cyan-hover: oklch(from var(--color-cyan-400) l c h / 0.28);
+  --badge-sky: oklch(from var(--color-sky-400) l c h / 0.2);
+  --badge-sky-foreground: var(--color-sky-300);
+  --badge-sky-border: oklch(from var(--color-sky-400) l c h / 0.24);
+  --badge-sky-hover: oklch(from var(--color-sky-400) l c h / 0.28);
+  --badge-blue: oklch(from var(--color-blue-400) l c h / 0.2);
+  --badge-blue-foreground: var(--color-blue-300);
+  --badge-blue-border: oklch(from var(--color-blue-400) l c h / 0.24);
+  --badge-blue-hover: oklch(from var(--color-blue-400) l c h / 0.28);
+  --badge-indigo: oklch(from var(--color-indigo-400) l c h / 0.2);
+  --badge-indigo-foreground: var(--color-indigo-300);
+  --badge-indigo-border: oklch(from var(--color-indigo-400) l c h / 0.24);
+  --badge-indigo-hover: oklch(from var(--color-indigo-400) l c h / 0.28);
+  --badge-violet: oklch(from var(--color-violet-400) l c h / 0.2);
+  --badge-violet-foreground: var(--color-violet-300);
+  --badge-violet-border: oklch(from var(--color-violet-400) l c h / 0.24);
+  --badge-violet-hover: oklch(from var(--color-violet-400) l c h / 0.28);
+  --badge-purple: oklch(from var(--color-purple-400) l c h / 0.2);
+  --badge-purple-foreground: var(--color-purple-300);
+  --badge-purple-border: oklch(from var(--color-purple-400) l c h / 0.24);
+  --badge-purple-hover: oklch(from var(--color-purple-400) l c h / 0.28);
+  --badge-fuchsia: oklch(from var(--color-fuchsia-400) l c h / 0.2);
+  --badge-fuchsia-foreground: var(--color-fuchsia-300);
+  --badge-fuchsia-border: oklch(from var(--color-fuchsia-400) l c h / 0.24);
+  --badge-fuchsia-hover: oklch(from var(--color-fuchsia-400) l c h / 0.28);
+  --badge-pink: oklch(from var(--color-pink-400) l c h / 0.2);
+  --badge-pink-foreground: var(--color-pink-300);
+  --badge-pink-border: oklch(from var(--color-pink-400) l c h / 0.24);
+  --badge-pink-hover: oklch(from var(--color-pink-400) l c h / 0.28);
+  --badge-rose: oklch(from var(--color-rose-400) l c h / 0.2);
+  --badge-rose-foreground: var(--color-rose-300);
+  --badge-rose-border: oklch(from var(--color-rose-400) l c h / 0.24);
+  --badge-rose-hover: oklch(from var(--color-rose-400) l c h / 0.28);
+}
+
+/* prefers-reduced-motion: token-driven, so every derived tempo flattens together. */
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="linear"] {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

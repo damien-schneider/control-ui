@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Stacked disclosure rows with measured panel animation.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0",
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/accordion.tsx",
+      "target": "@components/control-ui/ui/accordion.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Accordion as AccordionPrimitive } from \"@base-ui/react/accordion\";\nimport { ChevronDown } from \"lucide-react\";\nimport type { AccordionItemProps, AccordionPanelProps, AccordionProps, AccordionTriggerProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// 100% Base UI: Panel height animates via Base UI's --accordion-panel-height var (pure CSS, no JS measuring).\n// Header h3 stays a structural wrapper (no data-slot), mirroring Collapsible's content wrapper.\nexport function Accordion({ className, ...props }: AccordionProps) {\n  return (\n    <AccordionPrimitive.Root\n      data-control-ui=\"accordion\"\n      data-slot=\"root\"\n      className={cn(skinSlot(\"accordion\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function AccordionItem({ className, ...props }: AccordionItemProps) {\n  return (\n    <AccordionPrimitive.Item\n      data-control-ui=\"accordion\"\n      data-slot=\"item\"\n      className={cn(\"border-b border-border last:border-b-0\", skinSlot(\"accordion\", \"item\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function AccordionTrigger({ className, children, ...props }: AccordionTriggerProps) {\n  return (\n    <AccordionPrimitive.Header className=\"flex\">\n      <AccordionPrimitive.Trigger\n        data-control-ui=\"accordion\"\n        data-slot=\"trigger\"\n        className={cn(\n          \"group flex flex-1 items-center justify-between gap-4 py-3 text-left text-sm font-medium text-foreground outline-none\",\n          \"cursor-pointer select-none transition-colors hover:text-foreground/80 focus-visible:ring-2 focus-visible:ring-foreground/20\",\n          \"data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50\",\n          skinSlot(\"accordion\", \"trigger\", {}),\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <ChevronDown\n          aria-hidden=\"true\"\n          className=\"size-4 shrink-0 text-muted-foreground transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] group-data-[panel-open]:rotate-180\"\n        />\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  );\n}\n\nexport function AccordionPanel({ className, children, ...props }: AccordionPanelProps) {\n  return (\n    <AccordionPrimitive.Panel\n      data-control-ui=\"accordion\"\n      data-slot=\"panel\"\n      className={cn(\n        \"h-[var(--accordion-panel-height)] overflow-hidden text-sm text-muted-foreground\",\n        \"transition-[height] duration-[var(--duration-base)] ease-[var(--ease-emphasized)]\",\n        \"data-[starting-style]:h-0 data-[ending-style]:h-0\",\n        skinSlot(\"accordion\", \"panel\", {}),\n      )}\n      {...props}\n    >\n      <div className={cn(\"pb-3\", className)}>{children}</div>\n    </AccordionPrimitive.Panel>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

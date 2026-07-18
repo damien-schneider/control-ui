@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-input",
+  "type": "registry:ui",
+  "title": "Phone input",
+  "description": "International phone field with country search, E.164 values, and Zod validation helpers.",
+  "dependencies": [
+    "libphonenumber-js@^1.13.8",
+    "react-phone-number-input@^3.4.17",
+    "zod@^4.4.3"
+  ],
+  "registryDependencies": [
+    "command",
+    "core",
+    "input-group",
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/phone-input-format.ts",
+      "target": "@components/control-ui/lib/phone-input-format.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/lib/phone-number.ts",
+      "target": "@components/control-ui/lib/phone-number.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/phone-input.tsx",
+      "target": "@components/control-ui/ui/phone-input.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/phone-input.json"
+  }
+}

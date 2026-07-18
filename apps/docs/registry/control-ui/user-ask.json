@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "user-ask",
+  "type": "registry:component",
+  "title": "UserAsk",
+  "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "kbd"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-user-ask.ts",
+      "target": "@components/control-ui/hooks/use-user-ask.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/sources/control-ui/user-ask.tsx",
+      "target": "@components/control-ui/user-ask.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/user-ask.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "Accessible loading indicator for pending buttons, panels, and inline waits.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/spinner.tsx",
+      "target": "@components/control-ui/ui/spinner.tsx",
+      "type": "registry:ui",
+      "content": "import { Loader2 } from \"lucide-react\";\nimport type { SpinnerProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Loader, not expressive motion: NOT gated by motion kill-switch (--duration-*) — spins even under reduced motion.\n// role=\"status\" + visually-hidden \"Loading\" give it accessible name; size walks control ramp (xs..lg).\nconst spinnerSize = {\n  xs: \"size-3\",\n  sm: \"size-4\",\n  md: \"size-5\",\n  lg: \"size-6\",\n} as const;\n\nexport function Spinner({ size = \"sm\", className, ...props }: SpinnerProps) {\n  return (\n    <span\n      role=\"status\"\n      data-control-ui=\"spinner\"\n      data-slot=\"root\"\n      className={cn(\"inline-flex text-muted-foreground\", skinSlot(\"spinner\", \"root\", {}), className)}\n      {...props}\n    >\n      <Loader2 aria-hidden=\"true\" className={cn(\"animate-spin\", spinnerSize[size])} />\n      <span className=\"sr-only\">Loading</span>\n    </span>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

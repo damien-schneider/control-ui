@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat",
+  "type": "registry:block",
+  "title": "Chat agents",
+  "description": "Runtime-agnostic chat components installed as a complete agent surface.",
+  "dependencies": [],
+  "registryDependencies": [
+    "action-bar",
+    "activity",
+    "chat-input",
+    "chat-input-attachment",
+    "chat-message",
+    "chat-scene",
+    "code-block-editor",
+    "core",
+    "inline-attachment",
+    "markdown-block",
+    "model-switcher",
+    "source-badge",
+    "thread-rail"
+  ],
+  "files": [],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/chat.json"
+  }
+}

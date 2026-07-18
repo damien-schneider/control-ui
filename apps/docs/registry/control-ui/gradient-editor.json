@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gradient-editor",
+  "type": "registry:ui",
+  "title": "Gradient Editor",
+  "description": "CSS gradient editor with draggable stops and live preview.",
+  "dependencies": [],
+  "registryDependencies": [
+    "color-picker",
+    "core",
+    "select"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/gradient-editor.tsx",
+      "target": "@components/control-ui/ui/gradient-editor.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/gradient-editor.json"
+  }
+}

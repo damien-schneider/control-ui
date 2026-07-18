@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "Accessible action button with size, variant, and semantic tone support.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/button.tsx",
+      "target": "@components/control-ui/ui/button.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/button.json"
+  }
+}

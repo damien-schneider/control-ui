@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-explorer-block",
+  "type": "registry:block",
+  "title": "File explorer",
+  "description": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "empty",
+    "input-group",
+    "resizable",
+    "scroll-area",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/file-explorer-data.ts",
+      "target": "@components/control-ui/blocks/file-explorer-data.ts",
+      "type": "registry:block"
+    },
+    {
+      "path": "src/registry/blocks/control-ui/file-explorer.tsx",
+      "target": "@components/control-ui/blocks/file-explorer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/file-explorer-block.json"
+  }
+}

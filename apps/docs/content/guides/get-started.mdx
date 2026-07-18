@@ -1,0 +1,70 @@
+<GuideSection id="choose" title="Choose what to install">
+  Choose one skin for the visual contract, then install one component when you want to compose the interface yourself or a
+  block when you want a complete recipe. A skin is required: core owns the bindings and mechanics, while the selected skin
+  owns every token value. The integration selector changes the provider-specific usage composition only; the installed UI
+  accepts plain props and children from any runtime.
+
+  <GettingStartedMap />
+</GuideSection>
+
+<GuideSection id="install-skin" title="Install a skin">
+  Start with Refined or choose another pack from the Skins catalog. Exactly one active pack owns `skin.config.tsx`,
+  `skin-theme.css`, and `skin.css`; installing another pack replaces those three files.
+
+  The current skin anatomy contract is version 4. Contract version 4 replaces ToolCall with Activity's typed tool variant.
+  Reinstalling does not remove old source, so delete both possible version 3 install layouts first:
+
+```bash
+rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
+rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
+```
+
+  Then reinstall core, Activity, your components or block, and the selected skin together. Replace `ToolCall` with
+  `<Activity kind="tool" name="…">`, use the matching `Activity*` parts, replace input and output wrappers with
+  `ActivityDetail`, `ActivityDetailLabel`, and `ActivityDetailContent`, and remove `useToolCall` in favor of mapping provider
+  status directly to `ActivityState`. This pre-release contract intentionally does not ship legacy selector attributes.
+
+  <GuideCode kind="skin-install" />
+</GuideSection>
+
+<GuideSection id="install-component" title="Install a component">
+  Start with one surface when you already know how it should fit into your application.
+
+  <GuideCode kind="component-install" />
+</GuideSection>
+
+<GuideSection id="install-block" title="Install a block">
+  Start with the chat block when you want a complete composition of messages, input, attachments, markdown, composer
+  controls, and actions.
+
+  <GuideCode kind="block-install" />
+</GuideSection>
+
+<GuideSection id="wire-css" title="Wire the CSS">
+  The registry writes required CSS files beside the installed components, but it cannot add imports to your application.
+  Add these imports once. Core `theme.css` exposes Tailwind bindings and invariant mechanics; the selected pack's
+  `skin-theme.css` supplies the complete token contract and `skin.css` supplies its structural details.
+
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@import "../components/control-ui/styles/theme.css";
+@import "../components/control-ui/styles/effects.css";
+
+@import "../components/control-ui/styles/skin-theme.css";
+@import "../components/control-ui/styles/skin.css";
+```
+
+  Stamp the installed pack id on the root. There is no implicit token fallback when `data-skin` is missing or invalid.
+
+```tsx
+<html data-skin="refined">…</html>
+```
+</GuideSection>
+
+<GuideSection id="use" title="Compose your runtime">
+  Render provider-owned messages directly with Control UI components at the application boundary. Keep native provider
+  types instead of introducing an intermediary message schema.
+
+  <GuideCode kind="component-usage" />
+</GuideSection>

@@ -1,0 +1,117 @@
+/* CSS-first interaction layer for ThreadRail minimap: fisheye sizing (relational selectors), card
+ * visibility (:has), position (anchor-name + top:anchor(center)), auto height, enter/exit all
+ * declarative — server-renders, honors motion tokens. React keeps only hovered-turn index (CSS can't read a sibling's text); @supports upgrades uniform-pitch fallback to real anchor positioning. */
+
+.aui-thread-rail {
+  position: relative;
+  /* tick column geometry, used only by the non-anchor fallback position (one row + no gap) */
+  --aui-rail-pitch: 9px;
+  --aui-rail-inset: 12.5px;
+}
+
+/* Fisheye: hovered tick widest, neighbours a step smaller, rest at rest. */
+.aui-thread-rail-tick {
+  width: 0.5rem; /* w-2 */
+  background-color: color-mix(in oklab, var(--foreground) 20%, transparent);
+  transition:
+    width var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard);
+}
+
+.aui-thread-rail-item[data-in-view] .aui-thread-rail-tick {
+  background-color: color-mix(in oklab, var(--foreground) 60%, transparent);
+}
+
+.aui-thread-rail-item:has(+ .aui-thread-rail-item:hover) .aui-thread-rail-tick,
+.aui-thread-rail-item:hover + .aui-thread-rail-item .aui-thread-rail-tick,
+.aui-thread-rail-item:has(+ .aui-thread-rail-item:focus-within) .aui-thread-rail-tick,
+.aui-thread-rail-item:focus-within + .aui-thread-rail-item .aui-thread-rail-tick {
+  width: 0.75rem; /* w-3 */
+  background-color: color-mix(in oklab, var(--foreground) 45%, transparent);
+}
+
+.aui-thread-rail-item:hover .aui-thread-rail-tick,
+.aui-thread-rail-item:focus-within .aui-thread-rail-tick {
+  width: 1rem; /* w-4 */
+  background-color: var(--foreground);
+}
+
+/* Current tick (state, not :hover) is the anchor, so it stays alive after pointer leaves — card fades out in place, not snapping to top. */
+.aui-thread-rail-item[data-rail-current] .aui-thread-rail-tick {
+  anchor-name: --aui-rail-active;
+}
+
+/* Travelling card: one element slides+resizes between ticks, hidden until hover/focus. */
+.aui-thread-rail-card {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  /* fallback: uniform pitch keeps the card centred on the active tick without any measurement */
+  translate: 0 calc(var(--aui-rail-inset) + var(--aui-rail-active-index, 0) * var(--aui-rail-pitch) - 50%);
+  opacity: 0;
+  scale: 0.98;
+  transition:
+    top var(--duration-slow) var(--ease-standard),
+    translate var(--duration-slow) var(--ease-standard),
+    height var(--duration-slow) var(--ease-standard),
+    opacity var(--duration-base) var(--ease-standard),
+    scale var(--duration-base) var(--ease-standard);
+  will-change: top, translate, height, opacity, scale;
+}
+
+.aui-thread-rail:has(.aui-thread-rail-item:hover) .aui-thread-rail-card,
+.aui-thread-rail:focus-within .aui-thread-rail-card {
+  opacity: 1;
+  scale: 1;
+}
+
+@starting-style {
+  .aui-thread-rail:has(.aui-thread-rail-item:hover) .aui-thread-rail-card,
+  .aui-thread-rail:focus-within .aui-thread-rail-card {
+    opacity: 0;
+    scale: 0.98;
+  }
+}
+
+/* upgrade: anchor to the real tick, robust to any spacing or reduced motion changing the layout */
+@supports (top: anchor(--aui-rail-active center)) {
+  .aui-thread-rail-card {
+    top: anchor(--aui-rail-active center);
+    translate: 0 -50%;
+  }
+}
+
+/* Turn layers: every turn is a stacked absolute layer (card's explicit height picks active one's size).
+ * At rest a layer is dimmed/shrunk/blurred; only current layer comes to front while rail engaged —
+ * switching cross-fades old->new, leaving blurs current out, purely via CSS transitions. */
+.aui-thread-rail-card-layer {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  transform-origin: left center;
+  opacity: 0;
+  scale: 0.96;
+  filter: blur(4px);
+  transition:
+    opacity var(--duration-base) var(--ease-standard),
+    scale var(--duration-base) var(--ease-standard),
+    filter var(--duration-base) var(--ease-standard);
+}
+
+.aui-thread-rail:is(:has(.aui-thread-rail-item:hover), :focus-within) .aui-thread-rail-card-layer[data-active] {
+  opacity: 1;
+  scale: 1;
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aui-thread-rail-tick,
+  .aui-thread-rail-card,
+  .aui-thread-rail-card-layer {
+    transition: none;
+  }
+  .aui-thread-rail-card-layer {
+    scale: 1;
+    filter: none;
+  }
+}

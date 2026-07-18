@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "title": "Collapsible",
+  "description": "Accessible disclosure primitive with measured open and close motion.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/collapsible.tsx",
+      "target": "@components/control-ui/ui/collapsible.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { cloneElement, isValidElement } from \"react\";\nimport type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Emits skin-stable anatomy and state hooks so consumers never style on Base UI's private attributes.\nexport function Collapsible({ className, ...props }: CollapsibleProps) {\n  return (\n    <CollapsiblePrimitive.Root\n      className={className}\n      render={(renderProps, state) => (\n        <div\n          data-control-ui=\"collapsible\"\n          data-slot=\"root\"\n          {...renderProps}\n          data-state={state.open ? \"open\" : \"closed\"}\n          className={cn(renderProps.className, skinSlot(\"collapsible\", \"root\", { state: state.open ? \"open\" : \"closed\" }))}\n        />\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function CollapsibleTrigger({ asChild = false, className, children, ...props }: CollapsibleTriggerProps) {\n  return (\n    <CollapsiblePrimitive.Trigger\n      className={cn(\n        \"cursor-pointer outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:ring-2 focus-visible:ring-foreground/20\",\n        \"[&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-standard)] [&[data-state=open]>svg]:rotate-90\",\n        className,\n      )}\n      {...props}\n      render={(renderProps, state) => {\n        const stateAttrs = {\n          \"data-control-ui\": \"collapsible\",\n          \"data-slot\": \"trigger\",\n          \"data-state\": state.open ? \"open\" : \"closed\",\n        };\n        const skinClasses = skinSlot(\"collapsible\", \"trigger\", { state: state.open ? \"open\" : \"closed\" });\n\n        // asChild: mergeProps chains handlers + concatenates className instead of overwriting consumer's own props.\n        if (asChild && isValidElement<{ className?: string }>(children)) {\n          const merged = mergeProps(renderProps, children.props);\n          return cloneElement(children, {\n            ...stateAttrs,\n            ...merged,\n            className: cn(merged.className, skinClasses),\n          });\n        }\n\n        return (\n          <button type=\"button\" {...stateAttrs} {...renderProps} className={cn(renderProps.className, skinClasses)}>\n            {children}\n          </button>\n        );\n      }}\n    />\n  );\n}\n\nexport function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {\n  return (\n    <CollapsiblePrimitive.Panel\n      className={cn(\n        \"h-[var(--collapsible-panel-height)] overflow-hidden transition-[height,opacity] duration-[var(--duration-slow)] ease-[var(--ease-standard)]\",\n        \"data-[starting-style]:h-0 data-[starting-style]:opacity-0 data-[ending-style]:h-0 data-[ending-style]:opacity-0\",\n      )}\n      {...props}\n      render={(renderProps, state) => (\n        <div\n          data-control-ui=\"collapsible\"\n          data-slot=\"content\"\n          {...renderProps}\n          data-state={state.open ? \"open\" : \"closed\"}\n          className={cn(renderProps.className, skinSlot(\"collapsible\", \"content\", { state: state.open ? \"open\" : \"closed\" }))}\n        />\n      )}\n    >\n      <div className={className}>{children}</div>\n    </CollapsiblePrimitive.Panel>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

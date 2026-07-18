@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-layout-block",
+  "type": "registry:block",
+  "title": "Sidebar layout",
+  "description": "Application shell composed from the Control UI Sidebar.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "core",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/sidebar-layout.tsx",
+      "target": "@components/control-ui/blocks/sidebar-layout.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/sidebar-layout-block.json"
+  }
+}

@@ -1,0 +1,311 @@
+/*
+ * DynamicNotification morph + text choreography, token-driven (motion kill-switch collapses to 0).
+ * Geometry rides a real damped-spring linear() curve (slight overshoot, no mechanical ease); the
+ * pill face and bubble content cross-fade with blur on offset schedules so nothing pops or jumps.
+ * Island interpolates pill→bubble size (interpolate-size: allow-keywords upgrades height:auto
+ * interpolation where supported; elsewhere height snaps and the cross-fade still reads).
+ * Reads the shared --duration-* and --ease-* tokens.
+ */
+
+@keyframes dn-word-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    translate: 0 0.4em;
+  }
+}
+
+@keyframes dn-indicator-breathe {
+  0%,
+  100% {
+    scale: 1;
+    opacity: 0.85;
+  }
+  50% {
+    scale: 1.35;
+    opacity: 1;
+  }
+}
+
+/* Registered ink stops (glass/liquid fallback material): background-image itself can't
+   interpolate, but registered custom properties can — transitioning these colors AND their stop
+   positions morphs the gradient from a SOLID black pill face into the bubble fade.
+   Initial values = the collapsed pill (full black); thinking and expanded override them below. */
+@property --dn-ink-mid {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: oklch(0 0 0 / 0.97);
+}
+@property --dn-ink-low {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: oklch(0 0 0 / 0.97);
+}
+@property --dn-ink-tail {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: oklch(0 0 0 / 0.97);
+}
+/* where each stop sits, so thinking (fade opening high, 10% black tail) and expanded (opaque
+   plateau down to 70%, then a shallow fade to a 0.4 floor) are the SAME gradient at two settings */
+@property --dn-ink-plateau {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --dn-ink-mid-stop {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --dn-ink-low-stop {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --dn-ink-tail-stop {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
+@layer components {
+  /* ---- island geometry morph ------------------------------------------------------------- */
+  :where([data-control-ui="dynamic-notification"][data-slot="island"]) {
+    /* geometry knobs — retune via inline style or className */
+    --dn-collapsed-width: 8.5rem;
+    --dn-collapsed-height: 2.5rem;
+    --dn-expanded-width: 22.5rem;
+    --dn-expanded-radius: 1.65rem;
+    --dn-ribbon-horizon: 50%;
+    /* motion knobs — damped springs sampled into linear() (ζ=0.72 geometry, ζ=0.85 content) */
+    --dn-morph-duration: calc(var(--duration-slow) * 2);
+    --dn-word-stagger: 42ms;
+    --dn-ease-spring: linear(
+      0, 0.0568 3.85%, 0.1888 7.69%, 0.351 11.54%, 0.5142 15.38%, 0.6608 19.23%,
+      0.7824 23.08%, 0.8767 26.92%, 0.9449 30.77%, 0.9908 34.62%, 1.0187 38.46%,
+      1.0332 42.31%, 1.0382 46.15%, 1.0372 50%, 1.0327 53.85%, 1.0266 57.69%,
+      1.0203 61.54%, 1.0145 65.38%, 1.0095 69.23%, 1.0056 73.08%, 1.0027 76.92%,
+      1.0008 80.77%, 0.9995 84.62%, 0.9988 88.46%, 0.9986 92.31%, 0.9985 96.15%, 1
+    );
+    --dn-ease-glide: linear(
+      0, 0.0553 4.55%, 0.1795 9.09%, 0.328 13.64%, 0.4745 18.18%, 0.6054 22.73%,
+      0.7148 27.27%, 0.8017 31.82%, 0.868 36.36%, 0.9166 40.91%, 0.9509 45.45%,
+      0.9741 50%, 0.9891 54.55%, 0.9982 59.09%, 1.0032 63.64%, 1.0056 68.18%,
+      1.0063 72.73%, 1.006 77.27%, 1.0053 81.82%, 1.0044 86.36%, 1.0034 90.91%,
+      1.0026 95.45%, 1
+    );
+    interpolate-size: allow-keywords;
+    width: var(--dn-collapsed-width);
+    height: var(--dn-collapsed-height);
+    border-radius: calc(var(--dn-collapsed-height) / 2);
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+    filter: blur(0);
+    transition:
+      width var(--dn-morph-duration) var(--dn-ease-spring),
+      height var(--dn-morph-duration) var(--dn-ease-spring),
+      border-radius var(--dn-morph-duration) var(--dn-ease-spring),
+      box-shadow var(--dn-morph-duration) var(--ease-standard),
+      opacity var(--duration-slow) var(--ease-emphasized),
+      scale var(--dn-morph-duration) var(--dn-ease-spring),
+      translate var(--dn-morph-duration) var(--dn-ease-spring),
+      filter var(--duration-slow) var(--ease-emphasized),
+      --dn-ink-mid var(--dn-morph-duration) var(--dn-ease-glide),
+      --dn-ink-low var(--dn-morph-duration) var(--dn-ease-glide),
+      --dn-ink-tail var(--dn-morph-duration) var(--dn-ease-glide),
+      --dn-ink-plateau var(--dn-morph-duration) var(--dn-ease-glide),
+      --dn-ink-mid-stop var(--dn-morph-duration) var(--dn-ease-glide),
+      --dn-ink-low-stop var(--dn-morph-duration) var(--dn-ease-glide),
+      --dn-ink-tail-stop var(--dn-morph-duration) var(--dn-ease-glide);
+  }
+
+  /* arrival pop: the island springs in from the notch when it mounts */
+  @starting-style {
+    :where([data-control-ui="dynamic-notification"][data-slot="island"]) {
+      opacity: 0;
+      scale: 0.85;
+      translate: 0 -0.4rem;
+      filter: blur(10px);
+    }
+  }
+
+  /* thinking = the model is answering: an intermediate rounded blob, faces hidden, aurora animating */
+  :where([data-control-ui="dynamic-notification"][data-slot="island"])[data-state="thinking"] {
+    width: min(var(--dn-thinking-width, 10rem), 100%);
+    height: var(--dn-thinking-height, 5.75rem);
+    border-radius: var(--dn-thinking-radius, 2.75rem);
+    /* The fade is centred on the same horizon as the spectral ribbon. */
+    --dn-ink-plateau: calc(var(--dn-ribbon-horizon) - 10%);
+    --dn-ink-mid-stop: calc(var(--dn-ribbon-horizon) - 3%);
+    --dn-ink-low-stop: calc(var(--dn-ribbon-horizon) + 3%);
+    --dn-ink-tail-stop: calc(var(--dn-ribbon-horizon) + 10%);
+    --dn-ink-mid: oklch(0 0 0 / 0.72);
+    --dn-ink-low: oklch(0 0 0 / 0.3);
+    --dn-ink-tail: oklch(0 0 0 / 0.1);
+  }
+
+  :where([data-control-ui="dynamic-notification"][data-slot="island"])[data-state="expanded"] {
+    width: min(var(--dn-expanded-width), 100%);
+    height: auto;
+    border-radius: var(--dn-expanded-radius);
+    /* the bubble carries the reply field and submit button in its bottom third, so its ink never
+       runs out: opaque plateau down to 70%, then a shallow fade to a 0.4 floor. Enough backdrop to
+       keep the controls legible, translucent enough that the wallpaper still shows through. */
+    --dn-ink-plateau: 70%;
+    --dn-ink-mid-stop: 82%;
+    --dn-ink-low-stop: 92%;
+    --dn-ink-tail-stop: 100%;
+    --dn-ink-mid: oklch(0 0 0 / 0.78);
+    --dn-ink-low: oklch(0 0 0 / 0.55);
+    --dn-ink-tail: oklch(0 0 0 / 0.4);
+  }
+
+  /* ---- pill face <-> bubble content cross-fade -------------------------------------------- */
+  /* focus/a11y gating lives on the inert attribute (stamped by React); CSS only paints the cross-fade */
+
+  /* base = collapsed face; it returns AFTER the geometry has mostly settled back (delayed) */
+  :where([data-control-ui="dynamic-notification"][data-slot="pill"]) {
+    opacity: 1;
+    filter: blur(0);
+    scale: 1;
+    transition:
+      opacity var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55),
+      filter var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55),
+      scale var(--duration-base) var(--ease-emphasized) calc(var(--duration-slow) * 0.55);
+  }
+
+  /* opening (thinking or expanded): pill dissolves immediately and fast, clearing the stage */
+  :where([data-control-ui="dynamic-notification"][data-slot="island"]:not([data-state="collapsed"]))
+    :where([data-control-ui="dynamic-notification"][data-slot="pill"]) {
+    opacity: 0;
+    filter: blur(6px);
+    scale: 0.8;
+    pointer-events: none;
+    transition-duration: var(--duration-fast);
+    transition-delay: 0s;
+  }
+
+  /* base = expanded content; it unfurls from the pill (origin top) on the glide spring */
+  :where([data-control-ui="dynamic-notification"][data-slot="content"]) {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+    scale: 1;
+    transform-origin: 50% 0%;
+    transition:
+      opacity calc(var(--duration-slow) * 1.4) var(--ease-emphasized) calc(var(--duration-fast) * 0.6),
+      filter calc(var(--duration-slow) * 1.4) var(--ease-emphasized) calc(var(--duration-fast) * 0.6),
+      translate var(--dn-morph-duration) var(--dn-ease-glide) calc(var(--duration-fast) * 0.6),
+      scale var(--dn-morph-duration) var(--dn-ease-glide) calc(var(--duration-fast) * 0.6);
+  }
+
+  /* collapsed or thinking: content stays folded into the island, quick and undelayed */
+  :where([data-control-ui="dynamic-notification"][data-slot="island"]:not([data-state="expanded"]))
+    :where([data-control-ui="dynamic-notification"][data-slot="content"]) {
+    opacity: 0;
+    filter: blur(10px);
+    translate: 0 -0.5rem;
+    scale: 0.94;
+    transition:
+      opacity var(--duration-base) var(--ease-standard),
+      filter var(--duration-base) var(--ease-standard),
+      translate var(--duration-base) var(--ease-standard),
+      scale var(--duration-base) var(--ease-standard);
+  }
+
+  /* ---- word cascade (Apple keynote text reveal) -------------------------------------------- */
+  :where([data-control-ui="dynamic-notification"][data-slot="message"]) [data-control-ui="dynamic-notification"][data-slot="word"] {
+    display: inline-block;
+  }
+
+  /* scoped to the expanded state so the cascade fires at REVEAL time — including after a
+     thinking phase (the animation starts when the selector begins matching, not at mount) */
+  :where([data-control-ui="dynamic-notification"][data-slot="island"][data-state="expanded"])
+    :where([data-control-ui="dynamic-notification"][data-slot="message"])
+    [data-control-ui="dynamic-notification"][data-slot="word"] {
+    animation: dn-word-in calc(var(--duration-slow) * 1.8) var(--dn-ease-glide, var(--ease-emphasized)) both;
+    /* constant offset lets the bubble land first; per-word step gated by --dn-word-stagger */
+    animation-delay: calc(var(--duration-base) * 0.8 + var(--dn-word-index, 0) * var(--dn-word-stagger, 40ms));
+  }
+
+  /* ---- Siri indicator orb ------------------------------------------------------------------ */
+  :where([data-control-ui="dynamic-notification"][data-slot="indicator"]) {
+    background:
+      radial-gradient(circle at 30% 30%, oklch(0.85 0.1 210 / 0.9), transparent 60%),
+      conic-gradient(from 210deg, oklch(0.62 0.19 25), oklch(0.75 0.15 70), oklch(0.7 0.17 250), oklch(0.62 0.19 25));
+    box-shadow: 0 0 8px oklch(0.7 0.17 250 / 0.55);
+    animation: dn-indicator-breathe calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
+  }
+
+  /* infinite animation ignores the 0ms token collapse — explicit opt-out, mirroring shimmer-text.
+     Word stagger is a raw ms knob, so it collapses here too (durations already collapse via tokens). */
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-ui="dynamic-notification"][data-slot="island"]) {
+      --dn-word-stagger: 0ms;
+    }
+    :where([data-control-ui="dynamic-notification"][data-slot="indicator"]) {
+      animation: none;
+    }
+  }
+  :where([data-motion="reduced"]) :where([data-control-ui="dynamic-notification"][data-slot="island"]) {
+    --dn-word-stagger: 0ms;
+  }
+  :where([data-motion="reduced"]) :where([data-control-ui="dynamic-notification"][data-slot="indicator"]) {
+    animation: none;
+  }
+
+  /* ---- glass variant material (CSS fallback; the WebGL canvas paints over it) -------------- */
+  /* collapsed = solid black pill (ink stops at their registered initial values); expanded =
+     true black -> transparent, reached by TRANSITIONING the registered stops (see @property).
+     Plateau curve, not an even fade: solid across the top 40%, transparent by 90% — keeps a
+     dark backing behind the mid-height aurora sheet */
+  :where([data-control-ui="dynamic-notification"][data-slot="island"])[data-variant="glass"] {
+    background: linear-gradient(
+      to bottom,
+      oklch(0 0 0 / 0.97) 0%,
+      oklch(0 0 0 / 0.97) var(--dn-ink-plateau),
+      var(--dn-ink-mid) var(--dn-ink-mid-stop),
+      var(--dn-ink-low) var(--dn-ink-low-stop),
+      var(--dn-ink-tail) var(--dn-ink-tail-stop),
+      var(--dn-ink-tail) 100%
+    );
+    backdrop-filter: blur(4px) saturate(1.4);
+  }
+
+  /* ---- liquid variant fallback (WebGL replaces it after the first complete frame) ------------- */
+  :where([data-control-ui="dynamic-notification"][data-slot="island"])[data-variant="liquid"] {
+    background: linear-gradient(
+      to bottom,
+      oklch(0 0 0 / 0.97) 0%,
+      oklch(0 0 0 / 0.97) var(--dn-ink-plateau),
+      var(--dn-ink-mid) var(--dn-ink-mid-stop),
+      var(--dn-ink-low) var(--dn-ink-low-stop),
+      var(--dn-ink-tail) var(--dn-ink-tail-stop),
+      var(--dn-ink-tail) 100%
+    );
+  }
+
+  :where(
+      [data-control-ui="dynamic-notification"][data-slot="island"][data-variant="glass"],
+      [data-control-ui="dynamic-notification"][data-slot="island"][data-variant="liquid"]
+    ):has([data-glass-ready="true"]) {
+    background: transparent;
+  }
+
+  /* WebGL layers fade in only after their first painted frame (liquid-metal pattern, no flash) */
+  :where(
+      [data-control-ui="dynamic-notification"][data-slot="glass"],
+      [data-control-ui="dynamic-notification"][data-slot="liquid"]
+    ) {
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-standard);
+  }
+  :where(
+      [data-control-ui="dynamic-notification"][data-slot="glass"],
+      [data-control-ui="dynamic-notification"][data-slot="liquid"]
+    )[data-glass-ready="true"] {
+    opacity: 1;
+  }
+}

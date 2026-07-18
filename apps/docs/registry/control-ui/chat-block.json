@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-block",
+  "type": "registry:block",
+  "title": "Chat",
+  "description": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
+  "dependencies": [],
+  "registryDependencies": [
+    "chat-scene",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/chat.tsx",
+      "target": "@components/control-ui/blocks/chat.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/chat-block.json"
+  }
+}

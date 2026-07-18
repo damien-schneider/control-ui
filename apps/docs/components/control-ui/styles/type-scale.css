@@ -1,0 +1,45 @@
+/*
+ * Type scale, canonical excerpt. Tokens live in the installed theme; this is the docs-facing font-size-only slice.
+ * ONE rung per size by ROLE — only source of font-size; never text-[Npx] or Tailwind's text-xs/sm defaults. Paired --line-height/--font-weight ride along per rung.
+ */
+@theme {
+  /* Body/UI family: 10-16px band, ~95% of interface text; line-height stays a utility (leading-*) for per-surface density. */
+  --text-micro: 0.625rem; /* 10px — kbd, badge counters, dense numeric meta */
+  --text-caption: 0.6875rem; /* 11px — overlines, timestamps, section / group labels */
+  --text-label: 0.75rem; /* 12px — form labels + small chrome (nav item, tooltip, shortcut) */
+  --text-body: 0.875rem; /* 14px — DEFAULT body & control text (the workhorse) */
+  --text-body-lg: 1rem; /* 16px — emphasized / larger body */
+
+  /* Heading family: HIERARCHY, numbered (heading-1=largest); each pairs line-height+weight so `text-heading-N`
+     carries all three, letting a skin retune headings by re-valuing these alone. */
+  --text-heading-4: 0.9375rem; /* 15px */
+  --text-heading-4--line-height: 1.4;
+  --text-heading-4--font-weight: 600;
+  --text-heading-3: 1.125rem; /* 18px */
+  --text-heading-3--line-height: 1.35;
+  --text-heading-3--font-weight: 600;
+  --text-heading-2: 1.375rem; /* 22px */
+  --text-heading-2--line-height: 1.25;
+  --text-heading-2--font-weight: 600;
+  --text-heading-1: 1.875rem; /* 30px — content h1 */
+  --text-heading-1--line-height: 1.15;
+  --text-heading-1--font-weight: 700;
+  --text-heading-1--letter-spacing: -0.01em;
+
+  /* display — the biggest rung, above the content h1: page titles (PageHeader) and heroes. */
+  --text-display: 2.25rem; /* 36px */
+  --text-display--line-height: 1.1;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.02em;
+
+  /* Font ROLES: body+display default to --font-sans; brand re-values ONE token for headings(font-display)/body(font-body)
+     own face. Headings apply `font-display` utility on element (font-family isn't a paired --text-* prop). */
+  --font-body: var(--font-sans);
+  --font-display: var(--font-sans);
+}
+
+/*
+ * History: fixed 3 competing type systems (Tailwind defaults + named rungs + raw text-[Npx]) into one rung/role; 14px = body.
+ * Usage: apply utility directly to element (no <Text> component), e.g. text-heading-1 on <h1>, text-body on <p>.
+ * Do NOT resize control chrome text (button/tab/sidebar item) — that reads controlSize, not these tokens.
+ */

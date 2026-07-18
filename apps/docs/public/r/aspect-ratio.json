@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "title": "Aspect ratio",
+  "description": "CSS aspect-ratio wrapper for media and previews.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/aspect-ratio.tsx",
+      "target": "@components/control-ui/ui/aspect-ratio.tsx",
+      "type": "registry:ui",
+      "content": "import type { AspectRatioProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\nconst DEFAULT_ASPECT_RATIO = 16 / 9;\n\n// Pure-CSS ratio box (no Radix): sets native `aspect-ratio` from `ratio` prop; rounding/clipping is caller's/skin's to add.\nexport function AspectRatio({ ratio = DEFAULT_ASPECT_RATIO, className, style, ...props }: AspectRatioProps) {\n  return (\n    <div\n      data-control-ui=\"aspect-ratio\"\n      data-slot=\"root\"\n      style={{ aspectRatio: ratio, ...style }}\n      className={cn(skinSlot(\"aspect-ratio\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

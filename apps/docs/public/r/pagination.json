@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "title": "Pagination",
+  "description": "Page navigation for long lists and result sets.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/pagination.tsx",
+      "target": "@components/control-ui/ui/pagination.tsx",
+      "type": "registry:ui",
+      "content": "import { ChevronLeft, ChevronRight, MoreHorizontal } from \"lucide-react\";\nimport type { ComponentProps } from \"react\";\nimport type { PaginationLinkProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, plain markup (no Base UI): semantic <nav>/<ul>/<li>; links control-shaped WITHOUT importing Button.\n// Carry --radius-control + focus ring by hand: ghost by default, raised surface when isActive.\nexport function Pagination({ className, ...props }: ComponentProps<\"nav\">) {\n  return (\n    // A <nav> already carries the navigation role; aria-label names this landmark \"pagination\".\n    <nav\n      aria-label=\"pagination\"\n      data-control-ui=\"pagination\"\n      data-slot=\"root\"\n      className={cn(\"mx-auto flex w-full justify-center\", skinSlot(\"pagination\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function PaginationContent({ className, ...props }: ComponentProps<\"ul\">) {\n  return <ul data-control-ui=\"pagination\" data-slot=\"content\" className={cn(\"flex flex-row items-center gap-1\", className)} {...props} />;\n}\n\nexport function PaginationItem({ className, ...props }: ComponentProps<\"li\">) {\n  return <li data-control-ui=\"pagination\" data-slot=\"item\" className={className} {...props} />;\n}\n\n// Control-shaped page link: ghost when idle, raised surface (bg-card ring) when isActive.\nconst paginationLinkChrome =\n  \"inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-control)] px-2.5 text-sm font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/20 aria-disabled:pointer-events-none aria-disabled:opacity-45 [&>svg]:size-4 [&>svg]:shrink-0\";\n\nexport function PaginationLink({ isActive = false, className, ...props }: PaginationLinkProps) {\n  return (\n    <a\n      aria-current={isActive ? \"page\" : undefined}\n      data-control-ui=\"pagination\"\n      data-slot=\"link\"\n      data-control=\"true\"\n      data-active={isActive ? \"true\" : undefined}\n      className={cn(\n        paginationLinkChrome,\n        isActive ? \"bg-card/72 text-foreground shadow-sm ring-1 ring-inset ring-border\" : \"text-foreground hover:bg-foreground/6\",\n        skinSlot(\"pagination\", \"link\", { active: isActive }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function PaginationPrevious({ className, ...props }: ComponentProps<typeof PaginationLink>) {\n  return (\n    <PaginationLink aria-label=\"Go to previous page\" className={cn(\"gap-1 pr-2.5 pl-2\", className)} {...props}>\n      <ChevronLeft />\n      <span>Previous</span>\n    </PaginationLink>\n  );\n}\n\nexport function PaginationNext({ className, ...props }: ComponentProps<typeof PaginationLink>) {\n  return (\n    <PaginationLink aria-label=\"Go to next page\" className={cn(\"gap-1 pr-2 pl-2.5\", className)} {...props}>\n      <span>Next</span>\n      <ChevronRight />\n    </PaginationLink>\n  );\n}\n\nexport function PaginationEllipsis({ className, ...props }: ComponentProps<\"span\">) {\n  return (\n    <span\n      aria-hidden=\"true\"\n      data-control-ui=\"pagination\"\n      data-slot=\"ellipsis\"\n      className={cn(\n        \"flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] items-center justify-center text-muted-foreground [&>svg]:size-4\",\n        className,\n      )}\n      {...props}\n    >\n      <MoreHorizontal />\n      <span className=\"sr-only\">More pages</span>\n    </span>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

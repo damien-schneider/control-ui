@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "Single checkbox control with checked and indeterminate states.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/checkbox.tsx",
+      "target": "@components/control-ui/ui/checkbox.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Checkbox as CheckboxPrimitive } from \"@base-ui/react/checkbox\";\nimport type { CheckboxProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Base UI owns state; tick/dash swap on Root's data-indeterminate via pure CSS, zero JS.\n// Inside a Field.Root, data-invalid ring surfaces validation.\nexport function Checkbox({\n  className,\n  checked,\n  defaultChecked,\n  onCheckedChange,\n  indeterminate,\n  disabled,\n  readOnly,\n  required,\n  name,\n  value,\n  id,\n  ...props\n}: CheckboxProps) {\n  return (\n    <CheckboxPrimitive.Root\n      data-control-ui=\"checkbox\"\n      data-slot=\"root\"\n      checked={checked}\n      defaultChecked={defaultChecked}\n      onCheckedChange={onCheckedChange}\n      indeterminate={indeterminate}\n      disabled={disabled}\n      readOnly={readOnly}\n      required={required}\n      name={name}\n      value={value}\n      id={id}\n      className={cn(\n        \"group/checkbox relative inline-flex size-4 shrink-0 cursor-pointer items-center justify-center rounded-[var(--radius-sm)] outline-none\",\n        \"bg-card/72 shadow-sm ring-1 ring-inset ring-border transition duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:ring-foreground/25\",\n        \"data-[checked]:bg-primary data-[checked]:text-primary-foreground data-[checked]:ring-primary\",\n        \"data-[indeterminate]:bg-primary data-[indeterminate]:text-primary-foreground data-[indeterminate]:ring-primary\",\n        \"focus-visible:ring-2 focus-visible:ring-foreground/20\",\n        \"data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50\",\n        \"data-[invalid]:ring-2 data-[invalid]:ring-destructive\",\n        skinSlot(\"checkbox\", \"root\", { checked: checked ?? false, disabled: disabled ?? false }),\n        className,\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-control-ui=\"checkbox\"\n        data-slot=\"indicator\"\n        className=\"flex items-center justify-center text-current data-[unchecked]:hidden\"\n      >\n        {/* tick (default) and dash (indeterminate) both mount; the Root's data-indeterminate toggles which shows */}\n        <svg viewBox=\"0 0 12 12\" className=\"size-3 group-data-[indeterminate]/checkbox:hidden\" aria-hidden=\"true\" fill=\"none\">\n          <path d=\"M2.5 6.5 5 9l4.5-5\" stroke=\"currentColor\" strokeWidth=\"1.6\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n        </svg>\n        <svg viewBox=\"0 0 12 12\" className=\"hidden size-3 group-data-[indeterminate]/checkbox:block\" aria-hidden=\"true\" fill=\"none\">\n          <path d=\"M2.75 6h6.5\" stroke=\"currentColor\" strokeWidth=\"1.6\" strokeLinecap=\"round\" />\n        </svg>\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

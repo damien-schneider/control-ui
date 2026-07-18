@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dynamic-notification",
+  "type": "registry:component",
+  "title": "DynamicNotification",
+  "description": "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/dynamic-notification.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "core",
+    "liquid-glass-optics"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-dynamic-notification.ts",
+      "target": "@components/control-ui/hooks/use-dynamic-notification.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/sources/control-ui/dynamic-notification-glass.ts",
+      "target": "@components/control-ui/dynamic-notification-glass.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/dynamic-notification-liquid.ts",
+      "target": "@components/control-ui/dynamic-notification-liquid.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/dynamic-notification-siri-wave.ts",
+      "target": "@components/control-ui/dynamic-notification-siri-wave.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/dynamic-notification.css",
+      "target": "@components/control-ui/styles/dynamic-notification.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/dynamic-notification.tsx",
+      "target": "@components/control-ui/dynamic-notification.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/dynamic-notification.json"
+  }
+}

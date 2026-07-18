@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "coding-agent-block",
+  "type": "registry:block",
+  "title": "Coding agent",
+  "description": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "chat-scene",
+    "collapsible",
+    "core",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/control-ui/coding-agent.tsx",
+      "target": "@components/control-ui/blocks/coding-agent.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/coding-agent-block.json"
+  }
+}

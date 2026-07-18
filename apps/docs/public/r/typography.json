@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typography",
+  "type": "registry:style",
+  "title": "Typography",
+  "description": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/type-scale.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/examples/control-ui/primitives/type-scale.css",
+      "target": "@components/control-ui/styles/type-scale.css",
+      "type": "registry:file",
+      "content": "/*\n * Type scale, canonical excerpt. Tokens live in the installed theme; this is the docs-facing font-size-only slice.\n * ONE rung per size by ROLE — only source of font-size; never text-[Npx] or Tailwind's text-xs/sm defaults. Paired --line-height/--font-weight ride along per rung.\n */\n@theme {\n  /* Body/UI family: 10-16px band, ~95% of interface text; line-height stays a utility (leading-*) for per-surface density. */\n  --text-micro: 0.625rem; /* 10px — kbd, badge counters, dense numeric meta */\n  --text-caption: 0.6875rem; /* 11px — overlines, timestamps, section / group labels */\n  --text-label: 0.75rem; /* 12px — form labels + small chrome (nav item, tooltip, shortcut) */\n  --text-body: 0.875rem; /* 14px — DEFAULT body & control text (the workhorse) */\n  --text-body-lg: 1rem; /* 16px — emphasized / larger body */\n\n  /* Heading family: HIERARCHY, numbered (heading-1=largest); each pairs line-height+weight so `text-heading-N`\n     carries all three, letting a skin retune headings by re-valuing these alone. */\n  --text-heading-4: 0.9375rem; /* 15px */\n  --text-heading-4--line-height: 1.4;\n  --text-heading-4--font-weight: 600;\n  --text-heading-3: 1.125rem; /* 18px */\n  --text-heading-3--line-height: 1.35;\n  --text-heading-3--font-weight: 600;\n  --text-heading-2: 1.375rem; /* 22px */\n  --text-heading-2--line-height: 1.25;\n  --text-heading-2--font-weight: 600;\n  --text-heading-1: 1.875rem; /* 30px — content h1 */\n  --text-heading-1--line-height: 1.15;\n  --text-heading-1--font-weight: 700;\n  --text-heading-1--letter-spacing: -0.01em;\n\n  /* display — the biggest rung, above the content h1: page titles (PageHeader) and heroes. */\n  --text-display: 2.25rem; /* 36px */\n  --text-display--line-height: 1.1;\n  --text-display--font-weight: 600;\n  --text-display--letter-spacing: -0.02em;\n\n  /* Font ROLES: body+display default to --font-sans; brand re-values ONE token for headings(font-display)/body(font-body)\n     own face. Headings apply `font-display` utility on element (font-family isn't a paired --text-* prop). */\n  --font-body: var(--font-sans);\n  --font-display: var(--font-sans);\n}\n\n/*\n * History: fixed 3 competing type systems (Tailwind defaults + named rungs + raw text-[Npx]) into one rung/role; 14px = body.\n * Usage: apply utility directly to element (no <Text> component), e.g. text-heading-1 on <h1>, text-body on <p>.\n * Do NOT resize control chrome text (button/tab/sidebar item) — that reads controlSize, not these tokens.\n */\n"
+    }
+  ],
+  "meta": {}
+}

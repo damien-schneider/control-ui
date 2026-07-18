@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "next-app",
+  "type": "registry:item",
+  "title": "Control UI Next.js app",
+  "description": "Minimal Next.js starter wiring for the complete Control UI registry.",
+  "dependencies": [],
+  "registryDependencies": [
+    "all",
+    "button",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/starters/next/layout.tsx",
+      "target": "~/app/layout.tsx",
+      "type": "registry:page"
+    },
+    {
+      "path": "src/registry/starters/next/page.tsx",
+      "target": "~/app/page.tsx",
+      "type": "registry:page"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/next-app.json"
+  }
+}

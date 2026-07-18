@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "markdown-block",
+  "type": "registry:component",
+  "title": "MarkdownBlock",
+  "description": "Assistant markdown output rendered to prose, with a header and copy-source action.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/button.json",
+    "http://127.0.0.1:3000/r/core.json",
+    "http://127.0.0.1:3000/r/markdown.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/markdown-block.tsx",
+      "target": "@components/control-ui/markdown-block.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport type { ComponentProps, MouseEvent } from \"react\";\nimport { createContext, useContext } from \"react\";\nimport { useCopyToClipboard } from \"@/components/control-ui/hooks/use-copy-to-clipboard\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\nimport { Button } from \"@/components/control-ui/ui/button\";\nimport { Markdown } from \"@/components/control-ui/ui/markdown\";\n\ntype MarkdownBlockContextValue = {\n  code: string;\n};\n\nconst MarkdownBlockContext = createContext<MarkdownBlockContextValue | null>(null);\n\nfunction useMarkdownBlockContext() {\n  const context = useContext(MarkdownBlockContext);\n  if (!context) throw new Error(\"MarkdownBlock compound components must be rendered inside <MarkdownBlock>.\");\n  return context;\n}\n\nexport type MarkdownBlockProps = ComponentProps<\"figure\"> & {\n  code: string;\n};\n\nexport function MarkdownBlock({ code, className, children, ...props }: MarkdownBlockProps) {\n  return (\n    <MarkdownBlockContext.Provider value={{ code }}>\n      <figure\n        data-control-ui=\"markdown-block\"\n        data-slot=\"root\"\n        data-surface=\"panel\"\n        className={cn(\n          \"my-4 overflow-hidden rounded-panel border bg-muted shadow-sm ring-1 ring-foreground/4\",\n          skinSlot(\"markdown-block\", \"root\", {}),\n          className,\n        )}\n        {...props}\n      >\n        {children}\n      </figure>\n    </MarkdownBlockContext.Provider>\n  );\n}\n\nexport type MarkdownBlockHeaderProps = ComponentProps<\"figcaption\">;\n\nexport function MarkdownBlockHeader({ className, ...props }: MarkdownBlockHeaderProps) {\n  return (\n    <figcaption\n      data-control-ui=\"markdown-block\"\n      data-slot=\"header\"\n      className={cn(\n        \"sticky top-0 z-10 flex items-center justify-between gap-3 border-b px-4 py-2\",\n        skinSlot(\"markdown-block\", \"header\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport type MarkdownBlockTitleProps = ComponentProps<\"div\">;\n\nexport function MarkdownBlockTitle({ children = \"Markdown\", className, ...props }: MarkdownBlockTitleProps) {\n  return (\n    <div\n      data-control-ui=\"markdown-block\"\n      data-slot=\"title\"\n      className={cn(\"flex min-w-0 items-center gap-2 text-sm font-medium\", skinSlot(\"markdown-block\", \"title\", {}), className)}\n      {...props}\n    >\n      <span aria-hidden=\"true\" className=\"flex size-5 items-center justify-center rounded-md bg-foreground/8 text-micro\">\n        MD\n      </span>\n      <span className=\"truncate\">{children}</span>\n    </div>\n  );\n}\n\nexport type MarkdownBlockCopyProps = ComponentProps<typeof Button>;\n\nexport function MarkdownBlockCopy({ children = \"Copy\", onClick, ...props }: MarkdownBlockCopyProps) {\n  const { code } = useMarkdownBlockContext();\n  const { copyToClipboard } = useCopyToClipboard();\n\n  function copyCode(event: MouseEvent<HTMLButtonElement>) {\n    onClick?.(event);\n    if (!event.defaultPrevented) void copyToClipboard(code);\n  }\n\n  return (\n    <Button variant=\"quiet\" size=\"xs\" onClick={copyCode} {...props}>\n      {children}\n    </Button>\n  );\n}\n\nexport type MarkdownBlockContentProps = ComponentProps<\"div\">;\n\nexport function MarkdownBlockContent({ children, className, ...props }: MarkdownBlockContentProps) {\n  const { code } = useMarkdownBlockContext();\n\n  return (\n    <div\n      data-control-ui=\"markdown-block\"\n      data-slot=\"content\"\n      className={cn(\n        \"max-h-[420px] overflow-auto mask-y-from-[calc(100%_-_var(--scroll-fade-size))] p-4\",\n        skinSlot(\"markdown-block\", \"content\", {}),\n        className,\n      )}\n      {...props}\n    >\n      {children ?? <Markdown content={code} />}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

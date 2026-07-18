@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "Text field primitive sized and styled to match other controls.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/input.tsx",
+      "target": "@components/control-ui/ui/input.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Input as InputPrimitive } from \"@base-ui/react/input\";\nimport type { InputProps } from \"@/components/control-ui/contracts\";\nimport { controlSize } from \"@/components/control-ui/control-variants\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, 100% Base UI Input: auto-wires to Field via `FieldControl render={<Input/>}`.\n// Publishes data-[invalid]/-valid/-filled/-focused — data-[invalid] ring below driven by that, zero JS.\n// Shares --radius-control + controlSize w/ Button/Select/Menu; addon+field wrapper is separate slot (ui/input-group).\nconst fieldClasses =\n  \"rounded-[var(--radius-control)] border bg-card/72 text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive\";\n\nexport function Input({ size = \"md\", className, ...props }: InputProps) {\n  return (\n    <InputPrimitive\n      data-control-ui=\"input\"\n      data-slot=\"root\"\n      data-size={size}\n      className={cn(\"w-full min-w-0\", fieldClasses, controlSize({ size }), skinSlot(\"input\", \"root\", { size }), className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

@@ -1,0 +1,17 @@
+<GuideSection id="why" title="Why it exists">
+  shadcn made owned UI primitives feel normal, and Control UI would not exist without that work.
+</GuideSection>
+
+<GuideSection id="model" title="How it works">
+  Control UI is an owned-source registry of primitives, agent surfaces, and complete blocks. Install only the items you need;
+  their files land under `components/control-ui/*` and become application code. Components accept plain props and children,
+  while skins change the visual system over the same component source.
+</GuideSection>
+
+<GuideSection id="css-first" title="CSS-first by default">
+  Components use modern CSS and native platform elements when the browser can own the interaction, sizing, or motion.
+  JavaScript stays focused on genuinely stateful or asynchronous behavior. Shared duration and easing tokens let the
+  accessibility layer flatten transitions and expressive animations when reduced motion is requested.
+
+  <CssFirstDecisionMap />
+</GuideSection>

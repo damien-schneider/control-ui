@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "thread-rail",
+  "type": "registry:component",
+  "title": "ThreadRail",
+  "description": "Conversation minimap for scanning and jumping between chat turns.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/thread-rail.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/thread-rail.css",
+      "target": "@components/control-ui/styles/thread-rail.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/thread-rail.tsx",
+      "target": "@components/control-ui/thread-rail.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/thread-rail.json"
+  }
+}

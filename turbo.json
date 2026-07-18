@@ -1,0 +1,32 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "globalDependencies": ["biome.json", "tsconfig.base.json"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+    "validate": {
+      "dependsOn": ["^validate"],
+      "outputs": []
+    },
+    "lint": {
+      "outputs": []
+    },
+    "sync": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:sync": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dockable-panel",
+  "type": "registry:ui",
+  "title": "Dockable Panel",
+  "description": "Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback.",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "core",
+    "drawer",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/dockable-panel-geometry.ts",
+      "target": "@components/control-ui/ui/dockable-panel-geometry.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/dockable-panel.tsx",
+      "target": "@components/control-ui/ui/dockable-panel.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/dockable-panel.json"
+  }
+}

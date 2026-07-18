@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "send-aurora",
+  "type": "registry:style",
+  "title": "SendAurora",
+  "description": "Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/send-aurora.css\";",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/extensions/send-aurora.css",
+      "target": "@components/control-ui/styles/send-aurora.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/extensions/send-aurora.tsx",
+      "target": "@components/control-ui/extensions/send-aurora.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/send-aurora.json"
+  }
+}

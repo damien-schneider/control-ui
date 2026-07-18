@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "type": "registry:ui",
+  "title": "Input group",
+  "description": "Joined input wrapper for addons, icons, and focus-within rings.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/input-group.tsx",
+      "target": "@components/control-ui/ui/input-group.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/input-group.json"
+  }
+}

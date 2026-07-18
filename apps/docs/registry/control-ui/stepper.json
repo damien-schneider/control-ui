@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper",
+  "type": "registry:ui",
+  "title": "Stepper",
+  "description": "Static and interactive workflow steps with horizontal and vertical layouts.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/stepper.tsx",
+      "target": "@components/control-ui/ui/stepper.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/stepper.json"
+  }
+}

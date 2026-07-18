@@ -1,0 +1,194 @@
+# Control UI
+
+> Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as editable source.
+
+Control UI installs editable React source through the shadcn CLI. The catalog below is generated from the same page manifest used by the website, sitemap, search, and registry API.
+
+## Documentation
+
+- [Overview](http://127.0.0.1:3000/overview): An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
+- [Get started](http://127.0.0.1:3000/get-started): Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.
+- [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
+- [Architecture](http://127.0.0.1:3000/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
+- [Agent surface](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
+- [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Turn a visual brief into a validated, previewable Control UI theme without sending images or credentials to this site.
+
+## AI components
+
+- [ChatMessage](http://127.0.0.1:3000/ai/chat-message): Composable chat message with typed role, density, and tone state.
+- [ChatInput](http://127.0.0.1:3000/ai/chat-input): Prompt composer with controlled text, submit state, and trigger-menu support.
+- [ChatInputAttachment](http://127.0.0.1:3000/ai/chat-input-attachment): Composer attachment rail with file previews, upload progress, and removal.
+- [UserAsk](http://127.0.0.1:3000/ai/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
+- [TaskList](http://127.0.0.1:3000/ai/task-list): Floating agent task progress pill above the composer that expands into the full task list.
+- [AudioRecorder](http://127.0.0.1:3000/ai/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
+- [AudioVisualizer](http://127.0.0.1:3000/ai/audio-visualizer): Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract. Status: beta.
+- [DynamicNotification](http://127.0.0.1:3000/ai/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
+- [EnvironmentVariables](http://127.0.0.1:3000/ai/environment-variables): Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. Status: experimental.
+- [Activity](http://127.0.0.1:3000/ai/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
+- [SourceBadge](http://127.0.0.1:3000/ai/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. Status: beta.
+- [ActionBar](http://127.0.0.1:3000/ai/action-bar): Reusable hover actions for message and response controls.
+- [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns.
+- [MarkdownBlock](http://127.0.0.1:3000/ai/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
+- [CodeBlockEditor](http://127.0.0.1:3000/ai/code-block-editor): Editable code surface with Shiki highlighting and token-based light/dark themes.
+- [ChatScene](http://127.0.0.1:3000/ai/chat-scene): Layout primitives for full chat threads, turns, and thoughts.
+- [ThreadRail](http://127.0.0.1:3000/ai/thread-rail): Conversation minimap for scanning and jumping between chat turns.
+
+## Blocks
+
+- [Chat](http://127.0.0.1:3000/blocks/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
+- [Theme toggle](http://127.0.0.1:3000/blocks/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
+- [Coding agent](http://127.0.0.1:3000/blocks/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
+- [Settings](http://127.0.0.1:3000/blocks/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
+- [File explorer](http://127.0.0.1:3000/blocks/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
+
+## Primitives
+
+- [Button](http://127.0.0.1:3000/primitives/button): Accessible action button with size, variant, and semantic tone support.
+- [Collapsible](http://127.0.0.1:3000/primitives/collapsible): Accessible disclosure primitive with measured open and close motion.
+- [Tabs](http://127.0.0.1:3000/primitives/tabs): Segmented navigation with a stable active indicator.
+- [Sidebar](http://127.0.0.1:3000/primitives/sidebar): Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support. Status: beta.
+- [Scroll area](http://127.0.0.1:3000/primitives/scroll-area): Scroll container with overlay scrollbars and edge fades.
+- [Table of contents](http://127.0.0.1:3000/primitives/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
+- [Stepper](http://127.0.0.1:3000/primitives/stepper): Static and interactive workflow steps with horizontal and vertical layouts.
+- [Skeleton](http://127.0.0.1:3000/primitives/skeleton): Loading placeholder with a token-driven shimmer. Status: beta.
+- [Slider](http://127.0.0.1:3000/primitives/slider): Single-value range control with branded and plain treatments.
+- [Select](http://127.0.0.1:3000/primitives/select): Single-choice picker with a token-matched trigger and floating list.
+- [Menu](http://127.0.0.1:3000/primitives/menu): Dropdown menu for actions, resources, labels, separators, and submenus.
+- [Context Menu](http://127.0.0.1:3000/primitives/context-menu): Pointer-positioned right-click and long-press menu with nested actions and selection controls.
+- [Toggle](http://127.0.0.1:3000/primitives/toggle): Pressed-state button and toggle group built on the Button surface.
+- [Switch](http://127.0.0.1:3000/primitives/switch): On/off control with token-driven track, thumb, and press motion.
+- [Dialog](http://127.0.0.1:3000/primitives/dialog): Modal dialog for focused tasks, confirmations, and custom panels.
+- [Popover](http://127.0.0.1:3000/primitives/popover): Anchored floating panel for inline settings and contextual content.
+- [Tooltip](http://127.0.0.1:3000/primitives/tooltip): Hover or focus hint popup with Base UI positioning and Control UI tokens.
+- [Drawer](http://127.0.0.1:3000/primitives/drawer): Swipeable edge panel for mobile sheets and off-canvas surfaces.
+- [Responsive dialog](http://127.0.0.1:3000/primitives/responsive-dialog): Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.
+- [Toast](http://127.0.0.1:3000/primitives/toast): Transient notifications with a callable toast API and single Toaster mount.
+- [Input](http://127.0.0.1:3000/primitives/input): Text field primitive sized and styled to match other controls.
+- [Input group](http://127.0.0.1:3000/primitives/input-group): Joined input wrapper for addons, icons, and focus-within rings.
+- [Phone input](http://127.0.0.1:3000/primitives/phone-input): International phone field with country search, E.164 values, and Zod validation helpers. Status: beta.
+- [Command](http://127.0.0.1:3000/primitives/command): Command palette with token-matched dialog, input, and result rows.
+- [Kbd](http://127.0.0.1:3000/primitives/kbd): Keyboard shortcut chip and chord group.
+- [Checkbox](http://127.0.0.1:3000/primitives/checkbox): Single checkbox control with checked and indeterminate states.
+- [Radio group](http://127.0.0.1:3000/primitives/radio-group): Single-choice radio set for plans, filters, and option lists.
+- [Accordion](http://127.0.0.1:3000/primitives/accordion): Stacked disclosure rows with measured panel animation.
+- [Avatar](http://127.0.0.1:3000/primitives/avatar): Profile image with initials fallback.
+- [Progress](http://127.0.0.1:3000/primitives/progress): Determinate task progress with optional label and value rows.
+- [Hover card](http://127.0.0.1:3000/primitives/hover-card): Hover or focus preview panel for profiles, links, and contextual details.
+- [Alert dialog](http://127.0.0.1:3000/primitives/alert-dialog): Modal confirmation dialog for destructive or blocking decisions.
+- [Menubar](http://127.0.0.1:3000/primitives/menubar): Desktop command bar with nested menus, shortcuts, and separators.
+- [Navigation menu](http://127.0.0.1:3000/primitives/navigation-menu): Site navigation menu with a shared animated viewport.
+- [Field](http://127.0.0.1:3000/primitives/field): Form field wrapper for labels, descriptions, errors, and validity state.
+- [Form](http://127.0.0.1:3000/primitives/form): Form wrapper that coordinates field validation and returned errors.
+- [Native select](http://127.0.0.1:3000/primitives/native-select): Native select control styled to match the Control UI control family.
+- [Textarea](http://127.0.0.1:3000/primitives/textarea): Multiline text field with CSS-first auto-growth.
+- [Input OTP](http://127.0.0.1:3000/primitives/input-otp): One-time-code field with grouped, focus-aware slots.
+- [Combobox](http://127.0.0.1:3000/primitives/combobox): Searchable single-select with input and floating option list.
+- [Alert](http://127.0.0.1:3000/primitives/alert): Inline status panel for callouts, errors, and notices. Status: beta.
+- [Badge](http://127.0.0.1:3000/primitives/badge): Compact status, label, or count chip. Status: beta.
+- [Card](http://127.0.0.1:3000/primitives/card): Content surface for panels, tiles, and settings groups. Status: beta.
+- [Table](http://127.0.0.1:3000/primitives/table): Responsive data table for lists, comparisons, and structured records.
+- [Aspect ratio](http://127.0.0.1:3000/primitives/aspect-ratio): CSS aspect-ratio wrapper for media and previews. Status: beta.
+- [Button group](http://127.0.0.1:3000/primitives/button-group): Joined button group for toolbars, split actions, and segmented controls.
+- [Empty](http://127.0.0.1:3000/primitives/empty): Empty-state layout for blank lists, zero results, and new workspaces. Status: beta.
+- [Item](http://127.0.0.1:3000/primitives/item): List row with media, content, and trailing actions. Status: beta.
+- [Pagination](http://127.0.0.1:3000/primitives/pagination): Page navigation for long lists and result sets.
+- [Spinner](http://127.0.0.1:3000/primitives/spinner): Accessible loading indicator for pending buttons, panels, and inline waits.
+- [Meter](http://127.0.0.1:3000/primitives/meter): Static range meter for quota, storage, score, or usage values.
+- [Tree](http://127.0.0.1:3000/primitives/tree): Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.
+- [Checkbox Group](http://127.0.0.1:3000/primitives/checkbox-group): Multi-select checkbox set with shared state and select-all support. Status: beta.
+- [Autocomplete](http://127.0.0.1:3000/primitives/autocomplete): Free-text input with search-as-you-type suggestions.
+- [Number Field](http://127.0.0.1:3000/primitives/number-field): Numeric input with stepper buttons and optional drag-to-change behavior.
+- [Trigger Menu](http://127.0.0.1:3000/primitives/trigger-menu): Caret-anchored command or mention menu for text editors. Status: beta.
+- [Toolbar](http://127.0.0.1:3000/primitives/toolbar): Roving-focus toolbar for editor controls and compact actions. Status: beta.
+- [Dockable Panel](http://127.0.0.1:3000/primitives/dockable-panel): Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. Status: experimental.
+- [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. Status: experimental.
+- [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
+- [Gradient Editor](http://127.0.0.1:3000/primitives/gradient-editor): CSS gradient editor with draggable stops and live preview. Status: beta.
+- [Resizable](http://127.0.0.1:3000/primitives/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
+- [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens. Status: beta.
+- [Typography](http://127.0.0.1:3000/primitives/typography): The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.
+- [Code](http://127.0.0.1:3000/primitives/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.
+- [Code Diff](http://127.0.0.1:3000/primitives/code-diff): Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.
+- [Markdown](http://127.0.0.1:3000/primitives/markdown): Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.
+
+## Extensions
+
+- [ControlEffects](http://127.0.0.1:3000/extensions/control-effects): CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.
+- [viewTransition](http://127.0.0.1:3000/extensions/view-transition): Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.
+- [SendAurora](http://127.0.0.1:3000/extensions/send-aurora): Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.
+
+## Skins
+
+- [Skinning Control UI](http://127.0.0.1:3000/skins): Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
+- [Refined](http://127.0.0.1:3000/skins/refined): Compact, calm starting skin with a complete Control UI token contract.
+- [Windows XP](http://127.0.0.1:3000/skins/xp): Windows XP-inspired Luna tokens, bevels, and titlebar details.
+- [Liquid metal](http://127.0.0.1:3000/skins/liquid-metal): Polished metal skin with a WebGL shader control surface.
+- [Rig](http://127.0.0.1:3000/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
+- [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and instant motion.
+- [Modern Apple](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.
+- [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor).
+- [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.
+
+## Hooks
+
+- [useChatMessage](http://127.0.0.1:3000/hooks/use-chat-message): Typed role, density, and tone state for ChatMessage.
+- [useChatInput](http://127.0.0.1:3000/hooks/use-chat-input): Controlled composer text and submit state.
+- [useUserAsk](http://127.0.0.1:3000/hooks/use-user-ask): Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
+- [useAudioRecorder](http://127.0.0.1:3000/hooks/use-audio-recorder): Browser microphone recording state, waveform levels, and Blob completion.
+- [useEnvironmentVariables](http://127.0.0.1:3000/hooks/use-environment-variables): Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.
+- [useCopyToClipboard](http://127.0.0.1:3000/hooks/use-copy-to-clipboard): Copy-to-clipboard behavior with success state and fallback support.
+
+## Utilities
+
+- [cn](http://127.0.0.1:3000/utils/cn): Tailwind class-name merge helper.
+- [skin](http://127.0.0.1:3000/utils/skin): Skin slot and adornment resolvers for the Control UI library.
+- [contracts](http://127.0.0.1:3000/utils/contracts): Shared prop and slot contracts for swappable skins.
+- [serialize](http://127.0.0.1:3000/utils/serialize): Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
+
+## Practice guides
+
+- [CSS-first interactivity](http://127.0.0.1:3000/skills/css-first-interactivity): Model UI reactions with relational selectors, container/style queries, and native platform elements before adding React state, effects, or event handlers.
+- [CSS-first motion & sizing](http://127.0.0.1:3000/skills/css-first-motion-and-sizing): Drive sizing, enter/exit motion, and scroll effects from CSS and native attributes — token-driven and progressively enhanced — instead of measuring and animating values in JavaScript.
+- [Derive, do not duplicate](http://127.0.0.1:3000/skills/react-derive-dont-duplicate): Avoid second sources of truth in component props, hook parameters, and local state.
+- [Remount state boundaries](http://127.0.0.1:3000/skills/react-remount-state-boundaries): Reset state by changing component identity or loading boundaries, not by syncing with effects.
+- [Explicit names instead of comments](http://127.0.0.1:3000/skills/react-explicit-naming): Encode intent in identifiers and extracted units so the code needs no explanatory comments.
+- [One responsibility per file](http://127.0.0.1:3000/skills/react-single-responsibility): Split domain components and hooks before fetching, filtering, selection, and form state become entangled.
+- [Keep input and output APIs narrow](http://127.0.0.1:3000/skills/react-narrow-apis): Split oversized prop, argument, and return-value APIs into cohesive responsibilities.
+- [Do not query the DOM in React](http://127.0.0.1:3000/skills/react-no-dom-queries): Keep element identity and collections in React instead of searching rendered markup.
+- [Real stack tests](http://127.0.0.1:3000/skills/react-real-stack-tests): Prefer tests that drive production hooks, clients, routing, and cache behavior with only the network mocked.
+- [Test rendered output, not class names](http://127.0.0.1:3000/skills/react-test-rendered-output): Prove visual behavior through computed styles, geometry, or browser output instead of Tailwind class strings.
+- [Cohesive folders](http://127.0.0.1:3000/skills/architecture-cohesive-folders): Keep every folder a short, readable table of contents by grouping loose files into named responsibilities.
+- [Single source of truth](http://127.0.0.1:3000/skills/architecture-single-source-of-truth): Prevent shared facts from drifting by assigning each one a canonical owner.
+- [Use existing components first](http://127.0.0.1:3000/skills/tailwind-use-existing-components): Start from the local design system or registry primitive before creating a new styled element.
+- [Token discipline](http://127.0.0.1:3000/skills/tailwind-token-discipline): Use established design tokens and local CSS variables before reaching for one-off values.
+- [ClassName boundaries](http://127.0.0.1:3000/skills/tailwind-classname-boundaries): Use component APIs for intended variation instead of overriding design-system internals with className.
+- [Tailwind v4 CSS configuration](http://127.0.0.1:3000/skills/tailwind-v4-css-configuration): Configure Tailwind through CSS directives and tokens instead of adding new JavaScript config.
+- [Tailwind v4 migration syntax](http://127.0.0.1:3000/skills/tailwind-v4-migration-syntax): Use v4 names and modifiers when replacing or reviewing v3-era Tailwind classes.
+- [First-class utilities before custom CSS](http://127.0.0.1:3000/skills/tailwind-generated-utilities): Prefer Tailwind v4's first-class utility families before arbitrary properties or handwritten CSS.
+- [Variant-first styling](http://127.0.0.1:3000/skills/tailwind-variant-first-styling): Check Tailwind variants before adding handwritten selectors, style props, or React state for styling.
+- [Tailwind v4 capabilities](http://127.0.0.1:3000/skills/tailwind-v4-capabilities): Reach for new v4 utilities before layout hacks, user-agent checks, or JavaScript measurement.
+- [Tailwind v4 behavior & motion](http://127.0.0.1:3000/skills/tailwind-v4-behavior-and-motion): Account for v4 behavior changes around transforms, hover, default colors, variant order, spacing, and motion.
+- [State continuity](http://127.0.0.1:3000/skills/ux-state-continuity): Show loading, empty, partial, success, and failure states in the same product language.
+- [Provenance without noise](http://127.0.0.1:3000/skills/ux-provenance-without-noise): Surface source, runtime, and ownership cues only where they help the user trust or act.
+- [Dense but scannable](http://127.0.0.1:3000/skills/ux-dense-but-scannable): Favor compact surfaces that support repeated work without flattening hierarchy.
+- [Say it once](http://127.0.0.1:3000/skills/ux-say-it-once): Cut redundant AI-slop copy so labels, controls, and state carry the obvious meaning.
+- [Skin authoring](http://127.0.0.1:3000/skills/skin-authoring): Author a skin as three files with strict roles — theme.css owns the complete token contract, skin.config restyles slots and declares DS choices, skin.css says only what classes cannot.
+- [Extension authoring](http://127.0.0.1:3000/skills/extension-authoring): Author an extension as an optional installable layered on the library — root-mounted for cross-cutting anatomy-attached behavior, anchored for component-scoped fx activated from skin.config.
+- [Registry-first DX](http://127.0.0.1:3000/skills/registry-first-dx): Keep the registry manifest and installed source as the contract users can inspect.
+- [Skin completeness](http://127.0.0.1:3000/skills/skin-completeness): Treat a skin as a complete source recipe, not a partial class override layer.
+- [Control UI composition](http://127.0.0.1:3000/skills/control-ui-composition): Keep blocks readable by composing public agent components, hooks, and slots explicitly.
+- [Runtime-agnostic UI](http://127.0.0.1:3000/skills/runtime-agnostic-ui): Keep core visual surfaces independent from model runners, stores, and transport lifecycles.
+- [Compound components DX](http://127.0.0.1:3000/skills/compound-components-dx): Expose named anatomy parts when users need to customize layout or actions.
+- [Context vs props](http://127.0.0.1:3000/skills/context-vs-props): Reach for a compound-component context only when props cannot reach the part, and store intent in it, not styling.
+
+## Machine-readable indexes
+
+- [Registry API](http://127.0.0.1:3000/api/registry): JSON index of every public catalog item.
+- [Agent index](http://127.0.0.1:3000/r/agent-index.json): Static agent-friendly registry metadata.
+- [shadcn registry](http://127.0.0.1:3000/r/registry.json): Registry schema consumed by shadcn tooling.
+- [Skin anatomy contract](http://127.0.0.1:3000/r/skin-contract.json): Generated scopes, parts, states, paints, adornments, and semantic families.
+- [Theme token contract](http://127.0.0.1:3000/r/theme-contract.json): Generated skin token reference.
+
+## Optional
+
+- [Extended agent reference](http://127.0.0.1:3000/llms-full.txt): Detailed catalog, install commands, and Control UI practice rules.

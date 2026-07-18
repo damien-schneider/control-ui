@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "liquid-glass-optics",
+  "type": "registry:item",
+  "title": "Liquid Glass optics",
+  "description": "Shared continuous optical field for refractive glass surfaces.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/liquid-glass-optics.ts",
+      "target": "@components/control-ui/lib/liquid-glass-optics.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/liquid-glass-optics.json"
+  }
+}

@@ -1,0 +1,1186 @@
+{
+  "type": "index",
+  "data": {
+    "count": 150,
+    "contracts": {
+      "skin": "http://127.0.0.1:3000/r/skin-contract.json",
+      "theme": "http://127.0.0.1:3000/r/theme-contract.json"
+    },
+    "items": [
+      {
+        "id": "overview",
+        "name": "Overview",
+        "kind": "Guide",
+        "summary": "An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.",
+        "href": "/overview"
+      },
+      {
+        "id": "get-started",
+        "name": "Get started",
+        "kind": "Guide",
+        "summary": "Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.",
+        "href": "/get-started"
+      },
+      {
+        "id": "shadcn-compatibility",
+        "name": "shadcn compatibility",
+        "kind": "Guide",
+        "summary": "shadcn registry, token, and ownership conventions without writing to components/ui.",
+        "href": "/shadcn-compatibility"
+      },
+      {
+        "id": "architecture",
+        "name": "Architecture",
+        "kind": "Guide",
+        "summary": "Runtime ownership, skin layering, customization paths, and registry derivation.",
+        "href": "/architecture"
+      },
+      {
+        "id": "agent-surface",
+        "name": "Agent surface",
+        "kind": "Guide",
+        "summary": "Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.",
+        "href": "/agent-surface"
+      },
+      {
+        "id": "theme-ai-builder",
+        "name": "Theme AI builder",
+        "kind": "Guide",
+        "summary": "Turn a visual brief into a validated, previewable Control UI theme without sending images or credentials to this site.",
+        "href": "/theme-ai-builder"
+      },
+      {
+        "id": "skins",
+        "name": "Skinning Control UI",
+        "kind": "Skin",
+        "summary": "Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.",
+        "href": "/skins"
+      },
+      {
+        "id": "refined",
+        "name": "Refined",
+        "kind": "Skin",
+        "summary": "Compact, calm starting skin with a complete Control UI token contract.",
+        "href": "/skins/refined",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json"
+      },
+      {
+        "id": "xp",
+        "name": "Windows XP",
+        "kind": "Skin",
+        "summary": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
+        "href": "/skins/xp",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json"
+      },
+      {
+        "id": "liquid-metal",
+        "name": "Liquid metal",
+        "kind": "Skin",
+        "summary": "Polished metal skin with a WebGL shader control surface.",
+        "href": "/skins/liquid-metal",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json"
+      },
+      {
+        "id": "rig",
+        "name": "Rig",
+        "kind": "Skin",
+        "summary": "Brutalist skin with coral accents, squared corners, and dense typography.",
+        "href": "/skins/rig",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json"
+      },
+      {
+        "id": "flat",
+        "name": "Flat",
+        "kind": "Skin",
+        "summary": "Neutral reset skin with square corners, no shadows, and instant motion.",
+        "href": "/skins/flat",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json"
+      },
+      {
+        "id": "modern-apple",
+        "name": "Modern Apple",
+        "kind": "Skin",
+        "summary": "Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.",
+        "href": "/skins/modern-apple",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json"
+      },
+      {
+        "id": "cuicui",
+        "name": "Cuicui",
+        "kind": "Skin",
+        "summary": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor).",
+        "href": "/skins/cuicui",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json"
+      },
+      {
+        "id": "linear",
+        "name": "Linear",
+        "kind": "Skin",
+        "summary": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.",
+        "href": "/skins/linear",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json"
+      },
+      {
+        "id": "css-first-interactivity",
+        "name": "CSS-first interactivity",
+        "kind": "Skill",
+        "summary": "Model UI reactions with relational selectors, container/style queries, and native platform elements before adding React state, effects, or event handlers.",
+        "href": "/skills/css-first-interactivity"
+      },
+      {
+        "id": "css-first-motion-and-sizing",
+        "name": "CSS-first motion & sizing",
+        "kind": "Skill",
+        "summary": "Drive sizing, enter/exit motion, and scroll effects from CSS and native attributes — token-driven and progressively enhanced — instead of measuring and animating values in JavaScript.",
+        "href": "/skills/css-first-motion-and-sizing"
+      },
+      {
+        "id": "react-derive-dont-duplicate",
+        "name": "Derive, do not duplicate",
+        "kind": "Skill",
+        "summary": "Avoid second sources of truth in component props, hook parameters, and local state.",
+        "href": "/skills/react-derive-dont-duplicate"
+      },
+      {
+        "id": "react-remount-state-boundaries",
+        "name": "Remount state boundaries",
+        "kind": "Skill",
+        "summary": "Reset state by changing component identity or loading boundaries, not by syncing with effects.",
+        "href": "/skills/react-remount-state-boundaries"
+      },
+      {
+        "id": "react-explicit-naming",
+        "name": "Explicit names instead of comments",
+        "kind": "Skill",
+        "summary": "Encode intent in identifiers and extracted units so the code needs no explanatory comments.",
+        "href": "/skills/react-explicit-naming"
+      },
+      {
+        "id": "react-single-responsibility",
+        "name": "One responsibility per file",
+        "kind": "Skill",
+        "summary": "Split domain components and hooks before fetching, filtering, selection, and form state become entangled.",
+        "href": "/skills/react-single-responsibility"
+      },
+      {
+        "id": "react-narrow-apis",
+        "name": "Keep input and output APIs narrow",
+        "kind": "Skill",
+        "summary": "Split oversized prop, argument, and return-value APIs into cohesive responsibilities.",
+        "href": "/skills/react-narrow-apis"
+      },
+      {
+        "id": "react-no-dom-queries",
+        "name": "Do not query the DOM in React",
+        "kind": "Skill",
+        "summary": "Keep element identity and collections in React instead of searching rendered markup.",
+        "href": "/skills/react-no-dom-queries"
+      },
+      {
+        "id": "react-real-stack-tests",
+        "name": "Real stack tests",
+        "kind": "Skill",
+        "summary": "Prefer tests that drive production hooks, clients, routing, and cache behavior with only the network mocked.",
+        "href": "/skills/react-real-stack-tests"
+      },
+      {
+        "id": "react-test-rendered-output",
+        "name": "Test rendered output, not class names",
+        "kind": "Skill",
+        "summary": "Prove visual behavior through computed styles, geometry, or browser output instead of Tailwind class strings.",
+        "href": "/skills/react-test-rendered-output"
+      },
+      {
+        "id": "architecture-cohesive-folders",
+        "name": "Cohesive folders",
+        "kind": "Skill",
+        "summary": "Keep every folder a short, readable table of contents by grouping loose files into named responsibilities.",
+        "href": "/skills/architecture-cohesive-folders"
+      },
+      {
+        "id": "architecture-single-source-of-truth",
+        "name": "Single source of truth",
+        "kind": "Skill",
+        "summary": "Prevent shared facts from drifting by assigning each one a canonical owner.",
+        "href": "/skills/architecture-single-source-of-truth"
+      },
+      {
+        "id": "tailwind-use-existing-components",
+        "name": "Use existing components first",
+        "kind": "Skill",
+        "summary": "Start from the local design system or registry primitive before creating a new styled element.",
+        "href": "/skills/tailwind-use-existing-components"
+      },
+      {
+        "id": "tailwind-token-discipline",
+        "name": "Token discipline",
+        "kind": "Skill",
+        "summary": "Use established design tokens and local CSS variables before reaching for one-off values.",
+        "href": "/skills/tailwind-token-discipline"
+      },
+      {
+        "id": "tailwind-classname-boundaries",
+        "name": "ClassName boundaries",
+        "kind": "Skill",
+        "summary": "Use component APIs for intended variation instead of overriding design-system internals with className.",
+        "href": "/skills/tailwind-classname-boundaries"
+      },
+      {
+        "id": "tailwind-v4-css-configuration",
+        "name": "Tailwind v4 CSS configuration",
+        "kind": "Skill",
+        "summary": "Configure Tailwind through CSS directives and tokens instead of adding new JavaScript config.",
+        "href": "/skills/tailwind-v4-css-configuration"
+      },
+      {
+        "id": "tailwind-v4-migration-syntax",
+        "name": "Tailwind v4 migration syntax",
+        "kind": "Skill",
+        "summary": "Use v4 names and modifiers when replacing or reviewing v3-era Tailwind classes.",
+        "href": "/skills/tailwind-v4-migration-syntax"
+      },
+      {
+        "id": "tailwind-generated-utilities",
+        "name": "First-class utilities before custom CSS",
+        "kind": "Skill",
+        "summary": "Prefer Tailwind v4's first-class utility families before arbitrary properties or handwritten CSS.",
+        "href": "/skills/tailwind-generated-utilities"
+      },
+      {
+        "id": "tailwind-variant-first-styling",
+        "name": "Variant-first styling",
+        "kind": "Skill",
+        "summary": "Check Tailwind variants before adding handwritten selectors, style props, or React state for styling.",
+        "href": "/skills/tailwind-variant-first-styling"
+      },
+      {
+        "id": "tailwind-v4-capabilities",
+        "name": "Tailwind v4 capabilities",
+        "kind": "Skill",
+        "summary": "Reach for new v4 utilities before layout hacks, user-agent checks, or JavaScript measurement.",
+        "href": "/skills/tailwind-v4-capabilities"
+      },
+      {
+        "id": "tailwind-v4-behavior-and-motion",
+        "name": "Tailwind v4 behavior & motion",
+        "kind": "Skill",
+        "summary": "Account for v4 behavior changes around transforms, hover, default colors, variant order, spacing, and motion.",
+        "href": "/skills/tailwind-v4-behavior-and-motion"
+      },
+      {
+        "id": "ux-state-continuity",
+        "name": "State continuity",
+        "kind": "Skill",
+        "summary": "Show loading, empty, partial, success, and failure states in the same product language.",
+        "href": "/skills/ux-state-continuity"
+      },
+      {
+        "id": "ux-provenance-without-noise",
+        "name": "Provenance without noise",
+        "kind": "Skill",
+        "summary": "Surface source, runtime, and ownership cues only where they help the user trust or act.",
+        "href": "/skills/ux-provenance-without-noise"
+      },
+      {
+        "id": "ux-dense-but-scannable",
+        "name": "Dense but scannable",
+        "kind": "Skill",
+        "summary": "Favor compact surfaces that support repeated work without flattening hierarchy.",
+        "href": "/skills/ux-dense-but-scannable"
+      },
+      {
+        "id": "ux-say-it-once",
+        "name": "Say it once",
+        "kind": "Skill",
+        "summary": "Cut redundant AI-slop copy so labels, controls, and state carry the obvious meaning.",
+        "href": "/skills/ux-say-it-once"
+      },
+      {
+        "id": "skin-authoring",
+        "name": "Skin authoring",
+        "kind": "Skill",
+        "summary": "Author a skin as three files with strict roles — theme.css owns the complete token contract, skin.config restyles slots and declares DS choices, skin.css says only what classes cannot.",
+        "href": "/skills/skin-authoring"
+      },
+      {
+        "id": "extension-authoring",
+        "name": "Extension authoring",
+        "kind": "Skill",
+        "summary": "Author an extension as an optional installable layered on the library — root-mounted for cross-cutting anatomy-attached behavior, anchored for component-scoped fx activated from skin.config.",
+        "href": "/skills/extension-authoring"
+      },
+      {
+        "id": "registry-first-dx",
+        "name": "Registry-first DX",
+        "kind": "Skill",
+        "summary": "Keep the registry manifest and installed source as the contract users can inspect.",
+        "href": "/skills/registry-first-dx"
+      },
+      {
+        "id": "skin-completeness",
+        "name": "Skin completeness",
+        "kind": "Skill",
+        "summary": "Treat a skin as a complete source recipe, not a partial class override layer.",
+        "href": "/skills/skin-completeness"
+      },
+      {
+        "id": "control-ui-composition",
+        "name": "Control UI composition",
+        "kind": "Skill",
+        "summary": "Keep blocks readable by composing public agent components, hooks, and slots explicitly.",
+        "href": "/skills/control-ui-composition"
+      },
+      {
+        "id": "runtime-agnostic-ui",
+        "name": "Runtime-agnostic UI",
+        "kind": "Skill",
+        "summary": "Keep core visual surfaces independent from model runners, stores, and transport lifecycles.",
+        "href": "/skills/runtime-agnostic-ui"
+      },
+      {
+        "id": "compound-components-dx",
+        "name": "Compound components DX",
+        "kind": "Skill",
+        "summary": "Expose named anatomy parts when users need to customize layout or actions.",
+        "href": "/skills/compound-components-dx"
+      },
+      {
+        "id": "context-vs-props",
+        "name": "Context vs props",
+        "kind": "Skill",
+        "summary": "Reach for a compound-component context only when props cannot reach the part, and store intent in it, not styling.",
+        "href": "/skills/context-vs-props"
+      },
+      {
+        "id": "chat-message",
+        "name": "ChatMessage",
+        "kind": "Agent",
+        "summary": "Composable chat message with typed role, density, and tone state.",
+        "href": "/ai/chat-message",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
+      },
+      {
+        "id": "chat-input",
+        "name": "ChatInput",
+        "kind": "Agent",
+        "summary": "Prompt composer with controlled text, submit state, and trigger-menu support.",
+        "href": "/ai/chat-input",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-input.json"
+      },
+      {
+        "id": "chat-input-attachment",
+        "name": "ChatInputAttachment",
+        "kind": "Agent",
+        "summary": "Composer attachment rail with file previews, upload progress, and removal.",
+        "href": "/ai/chat-input-attachment",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-input-attachment.json"
+      },
+      {
+        "id": "user-ask",
+        "name": "UserAsk",
+        "kind": "Agent",
+        "summary": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
+        "href": "/ai/user-ask",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json"
+      },
+      {
+        "id": "task-list",
+        "name": "TaskList",
+        "kind": "Agent",
+        "summary": "Floating agent task progress pill above the composer that expands into the full task list.",
+        "href": "/ai/task-list",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json"
+      },
+      {
+        "id": "audio-recorder",
+        "name": "AudioRecorder",
+        "kind": "Agent",
+        "summary": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
+        "href": "/ai/audio-recorder",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-recorder.json"
+      },
+      {
+        "id": "audio-visualizer",
+        "name": "AudioVisualizer",
+        "kind": "Agent",
+        "summary": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
+        "href": "/ai/audio-visualizer",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json"
+      },
+      {
+        "id": "dynamic-notification",
+        "name": "DynamicNotification",
+        "kind": "Agent",
+        "summary": "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
+        "href": "/ai/dynamic-notification",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json"
+      },
+      {
+        "id": "environment-variables",
+        "name": "EnvironmentVariables",
+        "kind": "Agent",
+        "summary": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
+        "href": "/ai/environment-variables",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/environment-variables.json"
+      },
+      {
+        "id": "activity",
+        "name": "Activity",
+        "kind": "Agent",
+        "summary": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
+        "href": "/ai/activity",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/activity.json"
+      },
+      {
+        "id": "source-badge",
+        "name": "SourceBadge",
+        "kind": "Agent",
+        "summary": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
+        "href": "/ai/source-badge",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json"
+      },
+      {
+        "id": "action-bar",
+        "name": "ActionBar",
+        "kind": "Agent",
+        "summary": "Reusable hover actions for message and response controls.",
+        "href": "/ai/action-bar",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json"
+      },
+      {
+        "id": "inline-attachment",
+        "name": "InlineAttachment",
+        "kind": "Agent",
+        "summary": "Inline file and media previews for chat turns.",
+        "href": "/ai/inline-attachment",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json"
+      },
+      {
+        "id": "markdown-block",
+        "name": "MarkdownBlock",
+        "kind": "Agent",
+        "summary": "Assistant markdown output rendered to prose, with a header and copy-source action.",
+        "href": "/ai/markdown-block",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json"
+      },
+      {
+        "id": "code-block-editor",
+        "name": "CodeBlockEditor",
+        "kind": "Agent",
+        "summary": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
+        "href": "/ai/code-block-editor",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code-block-editor.json"
+      },
+      {
+        "id": "chat-scene",
+        "name": "ChatScene",
+        "kind": "Agent",
+        "summary": "Layout primitives for full chat threads, turns, and thoughts.",
+        "href": "/ai/chat-scene",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-scene.json"
+      },
+      {
+        "id": "thread-rail",
+        "name": "ThreadRail",
+        "kind": "Agent",
+        "summary": "Conversation minimap for scanning and jumping between chat turns.",
+        "href": "/ai/thread-rail",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json"
+      },
+      {
+        "id": "button",
+        "name": "Button",
+        "kind": "Primitive",
+        "summary": "Accessible action button with size, variant, and semantic tone support.",
+        "href": "/primitives/button",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/button.json"
+      },
+      {
+        "id": "collapsible",
+        "name": "Collapsible",
+        "kind": "Primitive",
+        "summary": "Accessible disclosure primitive with measured open and close motion.",
+        "href": "/primitives/collapsible",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/collapsible.json"
+      },
+      {
+        "id": "tabs",
+        "name": "Tabs",
+        "kind": "Primitive",
+        "summary": "Segmented navigation with a stable active indicator.",
+        "href": "/primitives/tabs",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json"
+      },
+      {
+        "id": "sidebar",
+        "name": "Sidebar",
+        "kind": "Primitive",
+        "summary": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+        "href": "/primitives/sidebar",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json"
+      },
+      {
+        "id": "scroll-area",
+        "name": "Scroll area",
+        "kind": "Primitive",
+        "summary": "Scroll container with overlay scrollbars and edge fades.",
+        "href": "/primitives/scroll-area",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json"
+      },
+      {
+        "id": "table-of-contents",
+        "name": "Table of contents",
+        "kind": "Primitive",
+        "summary": "Sticky in-page navigation with scroll-spy range highlighting.",
+        "href": "/primitives/table-of-contents",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json"
+      },
+      {
+        "id": "stepper",
+        "name": "Stepper",
+        "kind": "Primitive",
+        "summary": "Static and interactive workflow steps with horizontal and vertical layouts.",
+        "href": "/primitives/stepper",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/stepper.json"
+      },
+      {
+        "id": "skeleton",
+        "name": "Skeleton",
+        "kind": "Primitive",
+        "summary": "Loading placeholder with a token-driven shimmer.",
+        "href": "/primitives/skeleton",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json"
+      },
+      {
+        "id": "slider",
+        "name": "Slider",
+        "kind": "Primitive",
+        "summary": "Single-value range control with branded and plain treatments.",
+        "href": "/primitives/slider",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/slider.json"
+      },
+      {
+        "id": "select",
+        "name": "Select",
+        "kind": "Primitive",
+        "summary": "Single-choice picker with a token-matched trigger and floating list.",
+        "href": "/primitives/select",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/select.json"
+      },
+      {
+        "id": "menu",
+        "name": "Menu",
+        "kind": "Primitive",
+        "summary": "Dropdown menu for actions, resources, labels, separators, and submenus.",
+        "href": "/primitives/menu",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/menu.json"
+      },
+      {
+        "id": "context-menu",
+        "name": "Context Menu",
+        "kind": "Primitive",
+        "summary": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
+        "href": "/primitives/context-menu",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/context-menu.json"
+      },
+      {
+        "id": "toggle",
+        "name": "Toggle",
+        "kind": "Primitive",
+        "summary": "Pressed-state button and toggle group built on the Button surface.",
+        "href": "/primitives/toggle",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toggle.json"
+      },
+      {
+        "id": "switch",
+        "name": "Switch",
+        "kind": "Primitive",
+        "summary": "On/off control with token-driven track, thumb, and press motion.",
+        "href": "/primitives/switch",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/switch.json"
+      },
+      {
+        "id": "dialog",
+        "name": "Dialog",
+        "kind": "Primitive",
+        "summary": "Modal dialog for focused tasks, confirmations, and custom panels.",
+        "href": "/primitives/dialog",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dialog.json"
+      },
+      {
+        "id": "popover",
+        "name": "Popover",
+        "kind": "Primitive",
+        "summary": "Anchored floating panel for inline settings and contextual content.",
+        "href": "/primitives/popover",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/popover.json"
+      },
+      {
+        "id": "tooltip",
+        "name": "Tooltip",
+        "kind": "Primitive",
+        "summary": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
+        "href": "/primitives/tooltip",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tooltip.json"
+      },
+      {
+        "id": "drawer",
+        "name": "Drawer",
+        "kind": "Primitive",
+        "summary": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
+        "href": "/primitives/drawer",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/drawer.json"
+      },
+      {
+        "id": "responsive-dialog",
+        "name": "Responsive dialog",
+        "kind": "Primitive",
+        "summary": "Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.",
+        "href": "/primitives/responsive-dialog",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/responsive-dialog.json"
+      },
+      {
+        "id": "toast",
+        "name": "Toast",
+        "kind": "Primitive",
+        "summary": "Transient notifications with a callable toast API and single Toaster mount.",
+        "href": "/primitives/toast",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toast.json"
+      },
+      {
+        "id": "input",
+        "name": "Input",
+        "kind": "Primitive",
+        "summary": "Text field primitive sized and styled to match other controls.",
+        "href": "/primitives/input",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input.json"
+      },
+      {
+        "id": "input-group",
+        "name": "Input group",
+        "kind": "Primitive",
+        "summary": "Joined input wrapper for addons, icons, and focus-within rings.",
+        "href": "/primitives/input-group",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json"
+      },
+      {
+        "id": "phone-input",
+        "name": "Phone input",
+        "kind": "Primitive",
+        "summary": "International phone field with country search, E.164 values, and Zod validation helpers.",
+        "href": "/primitives/phone-input",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json"
+      },
+      {
+        "id": "command",
+        "name": "Command",
+        "kind": "Primitive",
+        "summary": "Command palette with token-matched dialog, input, and result rows.",
+        "href": "/primitives/command",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/command.json"
+      },
+      {
+        "id": "kbd",
+        "name": "Kbd",
+        "kind": "Primitive",
+        "summary": "Keyboard shortcut chip and chord group.",
+        "href": "/primitives/kbd",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/kbd.json"
+      },
+      {
+        "id": "checkbox",
+        "name": "Checkbox",
+        "kind": "Primitive",
+        "summary": "Single checkbox control with checked and indeterminate states.",
+        "href": "/primitives/checkbox",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/checkbox.json"
+      },
+      {
+        "id": "radio-group",
+        "name": "Radio group",
+        "kind": "Primitive",
+        "summary": "Single-choice radio set for plans, filters, and option lists.",
+        "href": "/primitives/radio-group",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/radio-group.json"
+      },
+      {
+        "id": "accordion",
+        "name": "Accordion",
+        "kind": "Primitive",
+        "summary": "Stacked disclosure rows with measured panel animation.",
+        "href": "/primitives/accordion",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/accordion.json"
+      },
+      {
+        "id": "avatar",
+        "name": "Avatar",
+        "kind": "Primitive",
+        "summary": "Profile image with initials fallback.",
+        "href": "/primitives/avatar",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json"
+      },
+      {
+        "id": "progress",
+        "name": "Progress",
+        "kind": "Primitive",
+        "summary": "Determinate task progress with optional label and value rows.",
+        "href": "/primitives/progress",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/progress.json"
+      },
+      {
+        "id": "hover-card",
+        "name": "Hover card",
+        "kind": "Primitive",
+        "summary": "Hover or focus preview panel for profiles, links, and contextual details.",
+        "href": "/primitives/hover-card",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/hover-card.json"
+      },
+      {
+        "id": "alert-dialog",
+        "name": "Alert dialog",
+        "kind": "Primitive",
+        "summary": "Modal confirmation dialog for destructive or blocking decisions.",
+        "href": "/primitives/alert-dialog",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/alert-dialog.json"
+      },
+      {
+        "id": "menubar",
+        "name": "Menubar",
+        "kind": "Primitive",
+        "summary": "Desktop command bar with nested menus, shortcuts, and separators.",
+        "href": "/primitives/menubar",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/menubar.json"
+      },
+      {
+        "id": "navigation-menu",
+        "name": "Navigation menu",
+        "kind": "Primitive",
+        "summary": "Site navigation menu with a shared animated viewport.",
+        "href": "/primitives/navigation-menu",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/navigation-menu.json"
+      },
+      {
+        "id": "field",
+        "name": "Field",
+        "kind": "Primitive",
+        "summary": "Form field wrapper for labels, descriptions, errors, and validity state.",
+        "href": "/primitives/field",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/field.json"
+      },
+      {
+        "id": "form",
+        "name": "Form",
+        "kind": "Primitive",
+        "summary": "Form wrapper that coordinates field validation and returned errors.",
+        "href": "/primitives/form",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/form.json"
+      },
+      {
+        "id": "native-select",
+        "name": "Native select",
+        "kind": "Primitive",
+        "summary": "Native select control styled to match the Control UI control family.",
+        "href": "/primitives/native-select",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/native-select.json"
+      },
+      {
+        "id": "textarea",
+        "name": "Textarea",
+        "kind": "Primitive",
+        "summary": "Multiline text field with CSS-first auto-growth.",
+        "href": "/primitives/textarea",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/textarea.json"
+      },
+      {
+        "id": "input-otp",
+        "name": "Input OTP",
+        "kind": "Primitive",
+        "summary": "One-time-code field with grouped, focus-aware slots.",
+        "href": "/primitives/input-otp",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-otp.json"
+      },
+      {
+        "id": "combobox",
+        "name": "Combobox",
+        "kind": "Primitive",
+        "summary": "Searchable single-select with input and floating option list.",
+        "href": "/primitives/combobox",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/combobox.json"
+      },
+      {
+        "id": "alert",
+        "name": "Alert",
+        "kind": "Primitive",
+        "summary": "Inline status panel for callouts, errors, and notices.",
+        "href": "/primitives/alert",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/alert.json"
+      },
+      {
+        "id": "badge",
+        "name": "Badge",
+        "kind": "Primitive",
+        "summary": "Compact status, label, or count chip.",
+        "href": "/primitives/badge",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/badge.json"
+      },
+      {
+        "id": "card",
+        "name": "Card",
+        "kind": "Primitive",
+        "summary": "Content surface for panels, tiles, and settings groups.",
+        "href": "/primitives/card",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/card.json"
+      },
+      {
+        "id": "table",
+        "name": "Table",
+        "kind": "Primitive",
+        "summary": "Responsive data table for lists, comparisons, and structured records.",
+        "href": "/primitives/table",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/table.json"
+      },
+      {
+        "id": "aspect-ratio",
+        "name": "Aspect ratio",
+        "kind": "Primitive",
+        "summary": "CSS aspect-ratio wrapper for media and previews.",
+        "href": "/primitives/aspect-ratio",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json"
+      },
+      {
+        "id": "button-group",
+        "name": "Button group",
+        "kind": "Primitive",
+        "summary": "Joined button group for toolbars, split actions, and segmented controls.",
+        "href": "/primitives/button-group",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/button-group.json"
+      },
+      {
+        "id": "empty",
+        "name": "Empty",
+        "kind": "Primitive",
+        "summary": "Empty-state layout for blank lists, zero results, and new workspaces.",
+        "href": "/primitives/empty",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/empty.json"
+      },
+      {
+        "id": "item",
+        "name": "Item",
+        "kind": "Primitive",
+        "summary": "List row with media, content, and trailing actions.",
+        "href": "/primitives/item",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/item.json"
+      },
+      {
+        "id": "pagination",
+        "name": "Pagination",
+        "kind": "Primitive",
+        "summary": "Page navigation for long lists and result sets.",
+        "href": "/primitives/pagination",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/pagination.json"
+      },
+      {
+        "id": "spinner",
+        "name": "Spinner",
+        "kind": "Primitive",
+        "summary": "Accessible loading indicator for pending buttons, panels, and inline waits.",
+        "href": "/primitives/spinner",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/spinner.json"
+      },
+      {
+        "id": "meter",
+        "name": "Meter",
+        "kind": "Primitive",
+        "summary": "Static range meter for quota, storage, score, or usage values.",
+        "href": "/primitives/meter",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/meter.json"
+      },
+      {
+        "id": "tree",
+        "name": "Tree",
+        "kind": "Primitive",
+        "summary": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
+        "href": "/primitives/tree",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tree.json"
+      },
+      {
+        "id": "checkbox-group",
+        "name": "Checkbox Group",
+        "kind": "Primitive",
+        "summary": "Multi-select checkbox set with shared state and select-all support.",
+        "href": "/primitives/checkbox-group",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/checkbox-group.json"
+      },
+      {
+        "id": "autocomplete",
+        "name": "Autocomplete",
+        "kind": "Primitive",
+        "summary": "Free-text input with search-as-you-type suggestions.",
+        "href": "/primitives/autocomplete",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/autocomplete.json"
+      },
+      {
+        "id": "number-field",
+        "name": "Number Field",
+        "kind": "Primitive",
+        "summary": "Numeric input with stepper buttons and optional drag-to-change behavior.",
+        "href": "/primitives/number-field",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json"
+      },
+      {
+        "id": "trigger-menu",
+        "name": "Trigger Menu",
+        "kind": "Primitive",
+        "summary": "Caret-anchored command or mention menu for text editors.",
+        "href": "/primitives/trigger-menu",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/trigger-menu.json"
+      },
+      {
+        "id": "toolbar",
+        "name": "Toolbar",
+        "kind": "Primitive",
+        "summary": "Roving-focus toolbar for editor controls and compact actions.",
+        "href": "/primitives/toolbar",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json"
+      },
+      {
+        "id": "dockable-panel",
+        "name": "Dockable Panel",
+        "kind": "Primitive",
+        "summary": "Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback.",
+        "href": "/primitives/dockable-panel",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json"
+      },
+      {
+        "id": "morphing-panel",
+        "name": "Morphing Panel",
+        "kind": "Primitive",
+        "summary": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
+        "href": "/primitives/morphing-panel",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json"
+      },
+      {
+        "id": "color-picker",
+        "name": "Color Picker",
+        "kind": "Primitive",
+        "summary": "Color input with picker UI, formats, presets, and contrast helpers.",
+        "href": "/primitives/color-picker",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json"
+      },
+      {
+        "id": "gradient-editor",
+        "name": "Gradient Editor",
+        "kind": "Primitive",
+        "summary": "CSS gradient editor with draggable stops and live preview.",
+        "href": "/primitives/gradient-editor",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/gradient-editor.json"
+      },
+      {
+        "id": "resizable",
+        "name": "Resizable",
+        "kind": "Primitive",
+        "summary": "Accessible resizable panel groups and split layouts with keyboard support.",
+        "href": "/primitives/resizable",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/resizable.json"
+      },
+      {
+        "id": "calendar",
+        "name": "Calendar",
+        "kind": "Primitive",
+        "summary": "Date selection grid built on react-day-picker and themed through tokens.",
+        "href": "/primitives/calendar",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json"
+      },
+      {
+        "id": "typography",
+        "name": "Typography",
+        "kind": "Primitive",
+        "summary": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
+        "href": "/primitives/typography",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/typography.json"
+      },
+      {
+        "id": "code",
+        "name": "Code",
+        "kind": "Primitive",
+        "summary": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+        "href": "/primitives/code",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code.json"
+      },
+      {
+        "id": "code-diff",
+        "name": "Code Diff",
+        "kind": "Primitive",
+        "summary": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
+        "href": "/primitives/code-diff",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code-diff.json"
+      },
+      {
+        "id": "markdown",
+        "name": "Markdown",
+        "kind": "Primitive",
+        "summary": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
+        "href": "/primitives/markdown",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown.json"
+      },
+      {
+        "id": "use-chat-message",
+        "name": "useChatMessage",
+        "kind": "Hook",
+        "summary": "Typed role, density, and tone state for ChatMessage.",
+        "href": "/hooks/use-chat-message"
+      },
+      {
+        "id": "use-chat-input",
+        "name": "useChatInput",
+        "kind": "Hook",
+        "summary": "Controlled composer text and submit state.",
+        "href": "/hooks/use-chat-input"
+      },
+      {
+        "id": "use-user-ask",
+        "name": "useUserAsk",
+        "kind": "Hook",
+        "summary": "Question/option registration, selection, freeform text, and keyboard flow for UserAsk.",
+        "href": "/hooks/use-user-ask"
+      },
+      {
+        "id": "use-audio-recorder",
+        "name": "useAudioRecorder",
+        "kind": "Hook",
+        "summary": "Browser microphone recording state, waveform levels, and Blob completion.",
+        "href": "/hooks/use-audio-recorder"
+      },
+      {
+        "id": "use-environment-variables",
+        "name": "useEnvironmentVariables",
+        "kind": "Hook",
+        "summary": "Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.",
+        "href": "/hooks/use-environment-variables"
+      },
+      {
+        "id": "use-copy-to-clipboard",
+        "name": "useCopyToClipboard",
+        "kind": "Hook",
+        "summary": "Copy-to-clipboard behavior with success state and fallback support.",
+        "href": "/hooks/use-copy-to-clipboard"
+      },
+      {
+        "id": "cn",
+        "name": "cn",
+        "kind": "Util",
+        "summary": "Tailwind class-name merge helper.",
+        "href": "/utils/cn"
+      },
+      {
+        "id": "skin",
+        "name": "skin",
+        "kind": "Util",
+        "summary": "Skin slot and adornment resolvers for the Control UI library.",
+        "href": "/utils/skin"
+      },
+      {
+        "id": "contracts",
+        "name": "contracts",
+        "kind": "Util",
+        "summary": "Shared prop and slot contracts for swappable skins.",
+        "href": "/utils/contracts"
+      },
+      {
+        "id": "serialize",
+        "name": "serialize",
+        "kind": "Util",
+        "summary": "Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.",
+        "href": "/utils/serialize"
+      },
+      {
+        "id": "control-effects",
+        "name": "ControlEffects",
+        "kind": "Extension",
+        "summary": "CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.",
+        "href": "/extensions/control-effects",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/control-effects.json"
+      },
+      {
+        "id": "view-transition",
+        "name": "viewTransition",
+        "kind": "Extension",
+        "summary": "Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.",
+        "href": "/extensions/view-transition",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/view-transition.json"
+      },
+      {
+        "id": "send-aurora",
+        "name": "SendAurora",
+        "kind": "Extension",
+        "summary": "Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.",
+        "href": "/extensions/send-aurora",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/send-aurora.json"
+      },
+      {
+        "id": "chat",
+        "name": "Chat",
+        "kind": "Block",
+        "summary": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
+        "href": "/blocks/chat",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json"
+      },
+      {
+        "id": "theme-toggle",
+        "name": "Theme toggle",
+        "kind": "Block",
+        "summary": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
+        "href": "/blocks/theme-toggle",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json"
+      },
+      {
+        "id": "coding-agent",
+        "name": "Coding agent",
+        "kind": "Block",
+        "summary": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
+        "href": "/blocks/coding-agent",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json"
+      },
+      {
+        "id": "settings",
+        "name": "Settings",
+        "kind": "Block",
+        "summary": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
+        "href": "/blocks/settings",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json"
+      },
+      {
+        "id": "file-explorer",
+        "name": "File explorer",
+        "kind": "Block",
+        "summary": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
+        "href": "/blocks/file-explorer",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json"
+      }
+    ]
+  }
+}

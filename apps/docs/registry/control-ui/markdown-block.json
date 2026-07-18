@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "markdown-block",
+  "type": "registry:component",
+  "title": "MarkdownBlock",
+  "description": "Assistant markdown output rendered to prose, with a header and copy-source action.",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "core",
+    "markdown"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/markdown-block.tsx",
+      "target": "@components/control-ui/markdown-block.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/markdown-block.json"
+  }
+}

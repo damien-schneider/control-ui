@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "type": "registry:ui",
+  "title": "Calendar",
+  "description": "Date selection grid built on react-day-picker and themed through tokens.",
+  "dependencies": [
+    "react-day-picker@^10.0.1"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/calendar.tsx",
+      "target": "@components/control-ui/ui/calendar.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/calendar.json"
+  }
+}

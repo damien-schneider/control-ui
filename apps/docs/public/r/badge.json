@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "Compact status, label, or count chip.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/badge.tsx",
+      "target": "@components/control-ui/ui/badge.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { cva } from \"class-variance-authority\";\nimport type { BadgeProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { useAsChildRender } from \"@/components/control-ui/lib/use-as-child-render\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\ntype BadgeVariant = NonNullable<BadgeProps[\"variant\"]>;\ntype BadgeColor = NonNullable<BadgeProps[\"color\"]>;\n\nconst defaultColorByVariant: Record<BadgeVariant, BadgeColor> = {\n  default: \"neutral\",\n  secondary: \"neutral\",\n  destructive: \"red\",\n  outline: \"neutral\",\n};\n\nconst badgeVariant = cva(\n  \"inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border font-medium transition-colors focus-visible:ring-2 focus-visible:ring-foreground/20 [&>svg]:pointer-events-none [&>svg]:size-3\",\n  {\n    variants: {\n      variant: {\n        default: \"\",\n        secondary: \"\",\n        destructive: \"\",\n        outline: \"\",\n      },\n      size: {\n        sm: \"h-4 px-1.5 py-0 text-micro\",\n        md: \"px-2 py-0.5 text-meta\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"md\",\n    },\n  },\n);\n\nexport function Badge({ variant = \"default\", size = \"md\", color, asChild = false, render, className, children, ...props }: BadgeProps) {\n  const resolvedColor = color ?? defaultColorByVariant[variant];\n\n  return useAsChildRender({\n    defaultTagName: \"span\",\n    asChild,\n    render,\n    children,\n    props: {\n      ...props,\n      \"data-control-ui\": \"badge\",\n      \"data-slot\": \"root\",\n      \"data-variant\": variant,\n      \"data-size\": size,\n      \"data-color\": resolvedColor,\n      className: cn(badgeVariant({ variant, size }), skinSlot(\"badge\", \"root\", { variant, size, color: resolvedColor }), className),\n    },\n  });\n}\n"
+    }
+  ],
+  "meta": {}
+}

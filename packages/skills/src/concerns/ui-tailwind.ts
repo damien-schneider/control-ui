@@ -1,0 +1,178 @@
+import type { PracticeSkillDefinition } from "../types";
+
+const tailwindV4Source = {
+  label: "Mastra tailwind-v4",
+  path: "../mastra/.claude/skills/tailwind-v4",
+};
+
+export const uiTailwindSkills = [
+  {
+    id: "tailwind-use-existing-components",
+    title: "Use existing components first",
+    concern: "ui-tailwind",
+    summary: "Start from the local design system or registry primitive before creating a new styled element.",
+    goal: "Preserve visual consistency and accessibility by reusing the closest existing component contract.",
+    source: tailwindV4Source,
+    checks: [
+      "Search existing Control UI primitives, hooks, and examples before adding a new surface.",
+      "Use variants or composition slots when the existing component already owns the behavior.",
+      "Create a new primitive only when the required behavior or anatomy is genuinely missing.",
+    ],
+    avoid: [
+      "Duplicating a button, menu, select, dialog, sidebar, or scroll behavior with raw divs.",
+      "Adding a component to a shared design-system folder without an explicit shared ownership reason.",
+    ],
+  },
+  {
+    id: "tailwind-token-discipline",
+    title: "Token discipline",
+    concern: "ui-tailwind",
+    summary: "Use established design tokens and local CSS variables before reaching for one-off values.",
+    goal: "Keep the visual language themeable and predictable by styling through approved tokens.",
+    source: tailwindV4Source,
+    checks: [
+      "Prefer existing color, spacing, radius, shadow, and typography tokens.",
+      "Introduce local CSS variables only when a component needs a named internal scale.",
+      "Keep arbitrary values exceptional and constrained to precise dimensions when no token fits.",
+    ],
+    avoid: [
+      "Changing shared Tailwind tokens as part of a narrow component task.",
+      "Sprinkling arbitrary color, shadow, spacing, or radius values across product code.",
+    ],
+  },
+  {
+    id: "tailwind-classname-boundaries",
+    title: "ClassName boundaries",
+    concern: "ui-tailwind",
+    summary: "Use component APIs for intended variation instead of overriding design-system internals with className.",
+    goal: "Keep component contracts meaningful and avoid style drift from consumer overrides.",
+    source: tailwindV4Source,
+    checks: [
+      "Compose className values with `cn()`, never template literals.",
+      "On the docs website, keep shared-component className values to caller-owned layout and placement such as width constraints, flex or grid alignment, positioning, overflow, and responsive visibility.",
+      "Choose props, variants, sizes, tones, colors, slots, and composition for component-owned presentation.",
+      "If the required treatment is missing, add a meaningful component variant instead of styling one consumer into a new variant.",
+      "Use Tailwind v4 trailing important syntax when needed: `fixed!`, `bottom-0!`, `translate-x-0!`.",
+    ],
+    avoid: [
+      "Passing long className strings into shared components to bypass their variants.",
+      "Overriding control height, padding, radius, color, border, background, typography, shadow, focus treatment, or motion from a docs-site consumer.",
+      "Using older leading important utilities such as `!fixed` in Tailwind v4 code.",
+    ],
+  },
+  {
+    id: "tailwind-v4-css-configuration",
+    title: "Tailwind v4 CSS configuration",
+    concern: "ui-tailwind",
+    summary: "Configure Tailwind through CSS directives and tokens instead of adding new JavaScript config.",
+    goal: "Keep Tailwind configuration CSS-first so tokens, utilities, variants, sources, and `@apply` references stay in the stylesheet the build actually reads.",
+    source: tailwindV4Source,
+    checks: [
+      "Check the pinned `tailwindcss` version before relying on a recent utility or directive; at the time this rule was added, the docs app resolved Tailwind 4.3.2.",
+      'Use `@import "tailwindcss"`, `@theme`, `@utility`, `@custom-variant`, `@source`, `@variant`, and `@reference` for new configuration.',
+      "Put utility-generating tokens in `@theme`; use plain CSS variables for runtime-only values that should not generate classes.",
+      "Use `@theme inline` when a token value references another variable so generated utilities resolve at the declaration site.",
+    ],
+    avoid: [
+      "`@tailwind base/components/utilities`, new `tailwind.config.ts` work, JS plugins, `addVariant`, content arrays, or safelist config for new v4 code.",
+      "The v3 `theme()` function or `resolveConfig` for runtime styling decisions; use CSS variables, `--alpha(...)`, and `--spacing(...)`.",
+    ],
+  },
+  {
+    id: "tailwind-v4-migration-syntax",
+    title: "Tailwind v4 migration syntax",
+    concern: "ui-tailwind",
+    summary: "Use v4 names and modifiers when replacing or reviewing v3-era Tailwind classes.",
+    goal: "Avoid silent visual regressions from v3 names that still compile but mean something different in Tailwind v4.",
+    source: tailwindV4Source,
+    checks: [
+      "Use v4 scale names such as `shadow-xs`, `drop-shadow-xs`, `blur-xs`, `rounded-xs`, `outline-hidden`, and explicit `ring-3` where the old default mattered.",
+      "Use slash opacity and v4 gradient names: `bg-black/50`, `text-white/50`, and `bg-linear-to-r`.",
+      "Use trailing important syntax such as `bg-red-500!`, plus `shrink-*` and `grow-*` instead of `flex-shrink-*` and `flex-grow-*`.",
+      "Use v4 CSS-variable shorthand and type hints: `bg-(--row-bg)`, `text-(color:--fg)`, and `text-(length:--size)`.",
+      "Use underscores inside arbitrary list values, such as `grid-cols-[max-content_auto]`.",
+    ],
+    avoid: [
+      "Keeping old classes such as `bg-opacity-*`, `text-opacity-*`, `bg-gradient-to-*`, prefix important utilities, `bg-[--var]`, or comma-separated arbitrary grid values.",
+      "Assuming a bare v3 size still has the same rendered weight, radius, shadow, blur, ring, or outline behavior in v4.",
+    ],
+  },
+  {
+    id: "tailwind-generated-utilities",
+    title: "First-class utilities before custom CSS",
+    concern: "ui-tailwind",
+    summary: "Prefer Tailwind v4's first-class utility families before arbitrary properties or handwritten CSS.",
+    goal: "Keep styling composable, token-aware, and isolated by letting Tailwind own utility state and generated CSS whenever it supports the effect.",
+    source: tailwindV4Source,
+    checks: [
+      "Before writing an arbitrary property or custom CSS, check the pinned Tailwind v4 utility family and use it when it expresses the same behavior.",
+      "Use generated spacing and sizing utilities such as `min-w-100`, `w-150`, `size-6`, `mt-17`, `grid-cols-15`, `h-dvh`, `w-dvw`, `h-lh`, and container max-width utilities when they fit.",
+      "Use boolean data variants such as `data-current:opacity-100`; keep bracketed values for real values like `data-[state=open]:opacity-100`.",
+      'Keep class strings complete and statically detectable by mapping props to full class names, for example `{ success: "bg-positive1" }[tone]`.',
+      "Use a first-class utility with an arbitrary value when only the value is custom, such as `max-h-[calc(100dvh-3rem)]`, `bg-size-[18px_18px]`, or `transform-[translateX(var(--x))]`.",
+      "For scroll-edge fades, compose overflow-state variants with `mask-l-from-*`, `mask-r-from-*`, `mask-t-from-*`, and `mask-b-from-*`; Tailwind supplies mask intersection and non-inheriting internal state.",
+      "Reserve arbitrary properties for unsupported CSS such as `[writing-mode:vertical-rl]`; use `mask-type-luminance` instead of `[mask-type:luminance]`.",
+    ],
+    avoid: [
+      "Reimplementing supported behavior with arbitrary properties or custom utility state; `[mask-image:linear-gradient(...)]` plus manual gradient stops and composite variables is the ScrollArea smell.",
+      "Building Tailwind class fragments dynamically, such as concatenating `bg-`, a tone, and `-500`, because the compiler cannot reliably detect them.",
+    ],
+  },
+  {
+    id: "tailwind-variant-first-styling",
+    title: "Variant-first styling",
+    concern: "ui-tailwind",
+    summary: "Check Tailwind variants before adding handwritten selectors, style props, or React state for styling.",
+    goal: "Express styling reactions with variants the compiler understands instead of duplicating browser state in CSS or JavaScript.",
+    source: tailwindV4Source,
+    checks: [
+      "Use pseudo, ARIA, and data variants such as `active:`, `focus-visible:`, `aria-expanded:`, `data-[state=open]:`, and boolean `data-current:`.",
+      "Use relationship variants such as `group-*`, `peer-*`, `has-*`, `in-*`, `*:`, and `**:` before adding parent-state selectors or event handlers.",
+      "Use capability and structural variants such as `pointer-coarse:`, `pointer-fine:`, `first:`, `last:`, `odd:`, `nth-*`, and `not-*`.",
+      "Use built-in mask and container-query utilities such as `mask-b-from-80%`, `mask-t-from-*`, `@container`, `@sm:`, and `@max-md:`.",
+    ],
+    avoid: [
+      "Handwritten pseudo-state CSS or `style` props when a Tailwind variant directly models the state.",
+      "React hover, focus, or child-presence state whose only purpose is toggling a style a selector variant can express.",
+    ],
+  },
+  {
+    id: "tailwind-v4-capabilities",
+    title: "Tailwind v4 capabilities",
+    concern: "ui-tailwind",
+    summary: "Reach for new v4 utilities before layout hacks, user-agent checks, or JavaScript measurement.",
+    goal: "Use Tailwind's native v4 coverage for sizing, wrapping, validation, enter motion, masks, shadows, color scheme, and 3D transforms before adding custom code.",
+    source: tailwindV4Source,
+    checks: [
+      "Use `field-sizing-content` for auto-growing fields, bounded by `min-h-*` and `max-h-*`.",
+      "Use `wrap-anywhere` or `wrap-break-word` for long content and `items-center-safe` or `justify-center-safe` when centered overflow should fall back safely.",
+      "Use `user-valid:` and `user-invalid:` for validation states after user interaction.",
+      "Use `starting:` with `transition-discrete` for enter transitions and popover/display transitions.",
+      "Use `text-shadow-*`, `mask-t-from-*`, `mask-b-to-*`, `scheme-dark`, `rotate-x-*`, and `perspective-*` when those utilities fit the effect.",
+    ],
+    avoid: [
+      "Measuring fields in JavaScript, adding `min-w-0`-style hacks before trying wrapping utilities, or sniffing user agents for coarse pointer behavior.",
+      "Custom one-off CSS for effects that Tailwind v4 already exposes as token-aware utilities.",
+    ],
+  },
+  {
+    id: "tailwind-v4-behavior-and-motion",
+    title: "Tailwind v4 behavior & motion",
+    concern: "ui-tailwind",
+    summary: "Account for v4 behavior changes around transforms, hover, default colors, variant order, spacing, and motion.",
+    goal: "Prevent subtle interaction and visual bugs that come from assuming Tailwind v3 runtime behavior still applies.",
+    source: tailwindV4Source,
+    checks: [
+      "Transition individual transform properties with utilities such as `transition-[opacity,scale]`; reset transforms with `scale-none`, `rotate-none`, and `translate-none`.",
+      "Treat `hover:` as hover-capable only and keep required functionality available on touch devices.",
+      "Set explicit border, divide, ring, and outline colors when the color matters because v4 defaults these to `currentColor`.",
+      "Stack variants left to right, for example `*:first:pt-0`, and prefer flex or grid `gap-*` over `space-x-*` or `space-y-*`.",
+      "Gate decorative animation with `motion-safe:` and `motion-reduce:`, and put reusable animations in `--animate-*` tokens with matching `@keyframes`.",
+    ],
+    avoid: [
+      "`transition-[opacity,transform]` when the animated property is now `scale`, `rotate`, or `translate`.",
+      "Required actions that are only discoverable or usable through hover.",
+      "Hardcoded local animation durations that bypass motion tokens and reduced-motion behavior.",
+    ],
+  },
+] as const satisfies readonly PracticeSkillDefinition[];

@@ -1,0 +1,38 @@
+{
+  "name": "control-ui",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damien-schneider/control-ui.git"
+  },
+  "type": "module",
+  "packageManager": "bun@1.3.5",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev dev:sync --filter=@control-ui/docs",
+    "build": "turbo run build",
+    "sync": "turbo run sync",
+    "validate": "turbo run validate",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "doctor": "react-doctor . --verbose --scope full --yes",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc,css}": "biome check --write --no-errors-on-unmatched"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.1",
+    "husky": "9.1.7",
+    "lint-staged": "17.0.8",
+    "react-doctor": "^0.7.8",
+    "turbo": "^2.10.1",
+    "typescript": "^7.0.2"
+  }
+}

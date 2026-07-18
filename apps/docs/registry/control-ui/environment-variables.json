@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "environment-variables",
+  "type": "registry:component",
+  "title": "EnvironmentVariables",
+  "description": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "input",
+    "input-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-environment-variables.ts",
+      "target": "@components/control-ui/hooks/use-environment-variables.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/lib/env-file.ts",
+      "target": "@components/control-ui/lib/env-file.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/environment-variables.tsx",
+      "target": "@components/control-ui/environment-variables.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/environment-variables.json"
+  }
+}

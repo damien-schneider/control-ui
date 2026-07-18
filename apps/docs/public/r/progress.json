@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "type": "registry:ui",
+  "title": "Progress",
+  "description": "Determinate task progress with optional label and value rows.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/progress.tsx",
+      "target": "@components/control-ui/ui/progress.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Progress as ProgressPrimitive } from \"@base-ui/react/progress\";\nimport type {\n  ProgressIndicatorProps,\n  ProgressLabelProps,\n  ProgressProps,\n  ProgressTrackProps,\n  ProgressValueProps,\n} from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, 100% Base UI: Track is --muted rail, Indicator fills w/ --primary from value/min/max, no JS.\n// Optional Label+Value row above rail; both plain text slots.\nexport function Progress({ className, ...props }: ProgressProps) {\n  return (\n    <ProgressPrimitive.Root\n      data-control-ui=\"progress\"\n      data-slot=\"root\"\n      className={cn(\"flex w-full flex-col gap-2\", skinSlot(\"progress\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function ProgressLabel({ className, ...props }: ProgressLabelProps) {\n  return (\n    <ProgressPrimitive.Label\n      data-control-ui=\"progress\"\n      data-slot=\"label\"\n      className={cn(\"text-label font-medium text-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function ProgressValue({ className, ...props }: ProgressValueProps) {\n  return (\n    <ProgressPrimitive.Value\n      data-control-ui=\"progress\"\n      data-slot=\"value\"\n      className={cn(\"text-label tabular-nums text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function ProgressTrack({ className, ...props }: ProgressTrackProps) {\n  return (\n    <ProgressPrimitive.Track\n      data-control-ui=\"progress\"\n      data-slot=\"track\"\n      className={cn(\"relative h-2 w-full overflow-hidden rounded-full bg-muted\", skinSlot(\"progress\", \"track\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function ProgressIndicator({ className, ...props }: ProgressIndicatorProps) {\n  return (\n    <ProgressPrimitive.Indicator\n      data-control-ui=\"progress\"\n      data-slot=\"indicator\"\n      className={cn(\n        \"h-full rounded-full bg-primary transition-[width] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)]\",\n        skinSlot(\"progress\", \"indicator\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

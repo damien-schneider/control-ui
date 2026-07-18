@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "markdown",
+  "type": "registry:ui",
+  "title": "Markdown",
+  "description": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
+  "dependencies": [
+    "streamdown@^2.5.0"
+  ],
+  "registryDependencies": [
+    "code",
+    "code-diff",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/markdown-elements.tsx",
+      "target": "@components/control-ui/ui/markdown-elements.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/markdown.tsx",
+      "target": "@components/control-ui/ui/markdown.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/markdown.json"
+  }
+}

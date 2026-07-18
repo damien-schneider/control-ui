@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trigger-menu",
+  "type": "registry:ui",
+  "title": "Trigger Menu",
+  "description": "Caret-anchored command or mention menu for text editors.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-textarea-trigger-menu.ts",
+      "target": "@components/control-ui/hooks/use-textarea-trigger-menu.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/hooks/use-trigger-menu.ts",
+      "target": "@components/control-ui/hooks/use-trigger-menu.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/lib/trigger-detect.ts",
+      "target": "@components/control-ui/lib/trigger-detect.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/trigger-menu.tsx",
+      "target": "@components/control-ui/ui/trigger-menu.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/trigger-menu.json"
+  }
+}

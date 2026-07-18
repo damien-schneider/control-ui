@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "action-bar",
+  "type": "registry:component",
+  "title": "ActionBar",
+  "description": "Reusable hover actions for message and response controls.",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/action-bar.tsx",
+      "target": "@components/control-ui/action-bar.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/action-bar.json"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-diff",
+  "type": "registry:ui",
+  "title": "Code Diff",
+  "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
+  "dependencies": [
+    "@tanstack/react-virtual@^3.14.6",
+    "diff@^9.0.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "code",
+    "core",
+    "scroll-area",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/diff.ts",
+      "target": "@components/control-ui/lib/diff.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/code-diff.tsx",
+      "target": "@components/control-ui/ui/code-diff.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/code-diff.json"
+  }
+}

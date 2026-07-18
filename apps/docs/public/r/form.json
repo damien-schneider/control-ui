@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "type": "registry:ui",
+  "title": "Form",
+  "description": "Form wrapper that coordinates field validation and returned errors.",
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/form.tsx",
+      "target": "@components/control-ui/ui/form.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\n\nimport { Form as FormPrimitive } from \"@base-ui/react/form\";\nimport type { FormProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot, 100% Base UI Form: thin <form> wrapper, consolidates validation across Fields.\n// Merges external `errors` (server/action, keyed by Field.Root `name`) onto matching FieldError.\n// Paints no control; composes any control-ui Field standalone.\nexport function Form({ className, ...props }: FormProps) {\n  return (\n    <FormPrimitive\n      data-control-ui=\"form\"\n      data-slot=\"root\"\n      className={cn(\"flex w-full flex-col gap-5\", skinSlot(\"form\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

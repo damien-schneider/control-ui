@@ -1,0 +1,129 @@
+[data-skin="cuicui"] {
+  --cuicui-sky: oklch(0.7676 0.1305 225.406);
+  --cuicui-violet: oklch(0.6131 0.2067 283.833);
+  --cuicui-rose: oklch(0.6851 0.1761 14.132);
+  --cuicui-orange: oklch(0.7259 0.1609 48.691);
+  --cuicui-yellow: oklch(0.8659 0.1539 86.484);
+  --cuicui-pink: oklch(0.651 0.2092 346.41);
+  --cuicui-blue: oklch(0.6871 0.1707 250.704);
+  --cuicui-mint: oklch(0.8983 0.0973 174.414);
+  --cuicui-gradient: linear-gradient(135deg, var(--cuicui-sky), var(--cuicui-violet), var(--cuicui-rose), var(--cuicui-orange));
+  --cuicui-gradient-text: linear-gradient(to right, var(--cuicui-sky), var(--cuicui-violet), var(--cuicui-rose), var(--cuicui-orange));
+  --cuicui-gradient-top: linear-gradient(-45deg, var(--cuicui-yellow), var(--cuicui-pink), var(--cuicui-blue), var(--cuicui-mint));
+  --cuicui-gradient-soft: linear-gradient(
+    135deg,
+    oklch(from var(--cuicui-sky) l c h / 0.16),
+    oklch(from var(--cuicui-violet) l c h / 0.18),
+    oklch(from var(--cuicui-orange) l c h / 0.16)
+  );
+  --cuicui-noise: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlnsXlink='http://www.w3.org/1999/xlink' viewBox='0 0 700 700' width='700' height='700' opacity='1'%3e%3ctitle%3enoise%3c/title%3e%3cdefs%3e%3cfilter id='nnnoise-filter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.2' numOctaves='4' seed='15' stitchTiles='stitch' x='0%25' y='0%25' width='100%25' height='100%25' result='turbulence'/%3e%3cfeSpecularLighting surfaceScale='5' specularConstant='0.8' specularExponent='20' lighting-color='white' x='0%25' y='0%25' width='100%25' height='100%25' in='turbulence' result='specularLighting'%3e%3cfeDistantLight azimuth='3' elevation='96'/%3e%3c/feSpecularLighting%3e%3cfeColorMatrix type='saturate' values='0' x='0%25' y='0%25' width='100%25' height='100%25' in='specularLighting' result='colormatrix'/%3e%3c/filter%3e%3c/defs%3e%3crect width='700' height='700' fill='black'/%3e%3crect width='700' height='700' fill='white' filter='url(%23nnnoise-filter)'/%3e%3c/svg%3e");
+  --cuicui-page-from: oklch(1 0 0);
+  --cuicui-page-to: oklch(0.985 0 0);
+  --cuicui-page-bg: linear-gradient(to top, var(--cuicui-page-from), var(--cuicui-page-to));
+  --cuicui-main-container: oklch(0.985 0 0);
+  --cuicui-container-border: oklch(0.708 0 0 / 0.2);
+  --cuicui-surface-bg: oklch(1 0 0 / 0.84);
+  --cuicui-surface-hover: oklch(1 0 0 / 0.66);
+  --cuicui-control-bg: oklch(0.922 0 0 / 0.42);
+  --cuicui-control-hover: oklch(0.922 0 0 / 0.28);
+  --cuicui-field-bg: oklch(1 0 0 / 0.9);
+  --cuicui-border: oklch(from var(--foreground) l c h / 0.16);
+  --cuicui-control-shadow: 0 1px 2px oklch(from var(--shadow-color) l c h / 0.06);
+  --cuicui-solid-shadow: inset 0 1px 0 oklch(1 0 0 / 0.28), 0 8px 24px oklch(from var(--primary) l c h / 0.24);
+}
+
+:where(.dark) [data-skin="cuicui"],
+.dark[data-skin="cuicui"] {
+  --cuicui-page-from: oklch(0.145 0 0);
+  --cuicui-page-to: oklch(0.269 0 0);
+  --cuicui-main-container: oklch(0.173 0 0);
+  --cuicui-surface-bg: oklch(0.205 0 0 / 0.82);
+  --cuicui-surface-hover: oklch(0.269 0 0 / 0.68);
+  --cuicui-control-bg: oklch(0.708 0 0 / 0.14);
+  --cuicui-control-hover: oklch(0.708 0 0 / 0.2);
+  --cuicui-field-bg: oklch(0.173 0 0 / 0.76);
+  --cuicui-border: oklch(1 0 0 / 0.13);
+  --cuicui-control-shadow: 0 1px 2px oklch(0 0 0 / 0.18);
+}
+
+@layer base {
+  :root[data-skin="cuicui"] body {
+    min-height: 100dvh;
+    background-color: var(--cuicui-page-from);
+    background-image: var(--cuicui-page-bg);
+  }
+
+  :root[data-skin="cuicui"] body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    user-select: none;
+    background-image: var(--cuicui-noise);
+    background-size: 400px;
+    opacity: 0.05;
+    filter: invert(1);
+  }
+
+  :root.dark[data-skin="cuicui"] body::after {
+    filter: none;
+  }
+}
+
+/* slot restyles (single slots + families like control chrome, popup surfaces) live in skin.config, NOT here —
+ * library recipes paint those as utilities, so a skin.css rule w/o `!important` silently loses
+ * this file used to carry a [data-control] press-feel family + popup-surface :is() family, both provably dead for that reason, now ride config's consts; keeps only what classes cannot say */
+@layer components {
+  [data-skin="cuicui"] .cuicui-gradient-fill {
+    background-color: var(--primary);
+    background-image: var(--cuicui-gradient);
+  }
+
+  [data-skin="cuicui"] .cuicui-gradient-text {
+    background-image: var(--cuicui-gradient-text);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  [data-skin="cuicui"] .cuicui-animated-gradient {
+    background-image: var(--cuicui-gradient-top);
+    background-size: 400% 400%;
+    animation: cuicui-gradient-animation 5s ease infinite;
+  }
+
+  [data-skin="cuicui"] [data-control-ui="tabs"][data-slot="indicator"] {
+    background: var(--cuicui-gradient-text);
+    box-shadow: 0 0 20px oklch(from var(--primary) l c h / 0.22);
+  }
+
+  [data-skin="cuicui"] [data-control-ui="tabs"][data-slot="tab"] {
+    letter-spacing: -0.01em;
+  }
+
+}
+
+@keyframes cuicui-gradient-animation {
+  0% {
+    -webkit-background-position: 0% 50%;
+    background-position: 0% 50%;
+  }
+
+  50% {
+    -webkit-background-position: 100% 50%;
+    background-position: 100% 50%;
+  }
+
+  100% {
+    -webkit-background-position: 0% 50%;
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="cuicui"] .cuicui-animated-gradient {
+    animation: none;
+  }
+}

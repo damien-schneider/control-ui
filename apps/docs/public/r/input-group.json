@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "type": "registry:ui",
+  "title": "Input group",
+  "description": "Joined input wrapper for addons, icons, and focus-within rings.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/input-group.tsx",
+      "target": "@components/control-ui/ui/input-group.tsx",
+      "type": "registry:ui",
+      "content": "import type { ComponentProps } from \"react\";\nimport { cloneElement, isValidElement } from \"react\";\n\nimport type { InputGroupAddonProps, InputGroupProps } from \"@/components/control-ui/contracts\";\nimport { controlSize } from \"@/components/control-ui/control-variants\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Refined skin slot: InputGroup = addon+field as one control, shares --radius-control/controlSize w/ Input/Button/Select.\n// Focus ring lifts on focus-within so group reads as single field.\n// asChild renders consumer element (e.g. button) AS the group, no Radix Slot — keeps skin free of host primitives.\nconst inputGroupSlotAttrs = { \"data-control-ui\": \"input-group\", \"data-slot\": \"root\" } as const;\n\nexport function InputGroup({ size = \"md\", className, asChild = false, children, ...props }: InputGroupProps) {\n  const classes = cn(\n    \"flex min-w-0 w-full items-center overflow-hidden rounded-[var(--radius-control)] border bg-card/72 text-foreground shadow-sm outline-none transition focus-within:ring-2 focus-within:ring-foreground/20 aria-invalid:ring-2 aria-invalid:ring-destructive data-[invalid]:ring-2 data-[invalid]:ring-destructive\",\n    controlSize({ size }),\n    skinSlot(\"input-group\", \"root\", { size }),\n    className,\n  );\n\n  if (asChild && isValidElement<{ className?: string }>(children)) {\n    const child = children;\n    const groupAttrs = { ...inputGroupSlotAttrs, \"data-size\": size };\n    return cloneElement(child, {\n      ...groupAttrs,\n      ...props,\n      className: cn(classes, child.props.className),\n    });\n  }\n\n  return (\n    <div data-control-ui=\"input-group\" data-slot=\"root\" data-size={size} className={classes} {...props}>\n      {children}\n    </div>\n  );\n}\n\nexport function InputGroupAddon({ className, ...props }: InputGroupAddonProps) {\n  return (\n    <span\n      data-control-ui=\"input-group\"\n      data-slot=\"addon\"\n      className={cn(\"inline-flex shrink-0 items-center text-muted-foreground\", skinSlot(\"input-group\", \"addon\", {}), className)}\n      {...props}\n    />\n  );\n}\n\nexport function InputGroupInput({ className, ...props }: ComponentProps<\"input\">) {\n  return (\n    <input\n      data-control-ui=\"input-group\"\n      data-slot=\"input\"\n      className={cn(\n        \"h-full min-w-0 flex-1 bg-transparent text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50\",\n        skinSlot(\"input-group\", \"input\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

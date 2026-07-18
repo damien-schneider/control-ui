@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "title": "Alert",
+  "description": "Inline status panel for callouts, errors, and notices.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/alert.tsx",
+      "target": "@components/control-ui/ui/alert.tsx",
+      "type": "registry:ui",
+      "content": "import { cva } from \"class-variance-authority\";\nimport type { AlertDescriptionProps, AlertProps, AlertTitleProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\n// Plain semantic alert (no Base UI): grid layout, has-[>svg] switches on a leading icon column.\n// `destructive` only re-tints via --destructive, no structural change.\nconst alertVariant = cva(\n  \"relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-[var(--radius-lg)] border bg-card px-4 py-3 text-sm text-card-foreground has-[>svg]:grid-cols-[1rem_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current\",\n  {\n    variants: {\n      variant: {\n        default: \"\",\n        destructive: \"border-destructive/50 text-destructive-text *:data-[slot=alert-description]:text-destructive-text/90\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n);\n\nexport function Alert({ variant = \"default\", className, ...props }: AlertProps) {\n  return (\n    <div\n      role=\"alert\"\n      data-control-ui=\"alert\"\n      data-slot=\"root\"\n      data-surface=\"panel\"\n      data-variant={variant}\n      className={cn(alertVariant({ variant }), skinSlot(\"alert\", \"root\", { variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport function AlertTitle({ className, ...props }: AlertTitleProps) {\n  return (\n    <div\n      data-control-ui=\"alert\"\n      data-slot=\"title\"\n      className={cn(\"col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function AlertDescription({ className, ...props }: AlertDescriptionProps) {\n  return (\n    <div\n      data-control-ui=\"alert\"\n      data-slot=\"description\"\n      className={cn(\"col-start-2 grid justify-items-start gap-1 text-sm text-muted-foreground [&_p]:leading-relaxed\", className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}
