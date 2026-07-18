@@ -1,12 +1,25 @@
 "use client";
 
+import { GithubIcon, StarIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
 import Link from "next/link";
 import { useState } from "react";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarTrigger, useSidebar } from "@/components/control-ui/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/control-ui/ui/sidebar";
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { ThemeDrawerTrigger } from "@/components/theme-drawer/theme-drawer";
 import { ControlUiLogo } from "./control-ui-logo";
@@ -33,11 +46,13 @@ function setupControlsScopeForKind(kind: string | undefined): SidebarSetupContro
 }
 
 const skinOverviewNavItems = [{ id: skinsOverview.id, name: skinsOverview.label }];
+const githubStarsFormatter = new Intl.NumberFormat("en-US");
 
 // Docs shell IS the raw shadcn Sidebar: icon-collapsible (resize-handle drag or Cmd/Ctrl+B), plain "sidebar" variant so its border-r is the only seam — floating panel look lives on content side (docs-client.tsx), not here.
 // Mobile renders through the Sidebar's own Sheet instead of a hand-rolled dialog.
 export function DocsSidebarContent({
   active,
+  githubStars,
   guides,
   skills,
   skillConcerns,
@@ -59,6 +74,11 @@ export function DocsSidebarContent({
   const routeMode = sidebarModeForActivePage(active, searchItems);
   const [lastSectionMode, setLastSectionMode] = useState<SidebarMode>(routeMode);
   const mode = onSectionPage ? routeMode : lastSectionMode;
+  const formattedGitHubStars = githubStars == null ? null : githubStarsFormatter.format(githubStars);
+  const githubLinkLabel =
+    formattedGitHubStars == null
+      ? "Control UI on GitHub"
+      : `Control UI on GitHub, ${formattedGitHubStars} ${githubStars === 1 ? "star" : "stars"}`;
   const modeHrefs: Record<SidebarMode, string> = {
     agents: components[0] ? `/ai/${components[0].id}` : "/ai",
     primitives: primitives[0] ? `/primitives/${primitives[0].id}` : "/primitives",
@@ -183,6 +203,30 @@ export function DocsSidebarContent({
               Create app
             </Link>
           </Button>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild size="sm" className="justify-between">
+                <a
+                  href="https://github.com/damien-schneider/control-ui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={githubLinkLabel}
+                  onClick={closeMobile}
+                >
+                  <span className="inline-flex min-w-0 items-center gap-2">
+                    <HugeiconsIcon aria-hidden icon={GithubIcon} size={16} strokeWidth={1.7} />
+                    <span>GitHub</span>
+                  </span>
+                  {formattedGitHubStars == null ? null : (
+                    <span className="inline-flex shrink-0 items-center gap-1 font-mono text-caption tabular-nums">
+                      <HugeiconsIcon aria-hidden icon={StarIcon} size={14} strokeWidth={1.7} />
+                      {formattedGitHubStars}
+                    </span>
+                  )}
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
           <div className="rounded-[var(--radius-panel)] bg-sidebar-accent px-3 py-2.5">
             <p className="text-pretty text-caption leading-relaxed text-sidebar-foreground/90">
               An opinionated, customizable superset of shadcn/ui

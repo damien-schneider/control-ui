@@ -28,6 +28,7 @@ import { SkinSourcePanel } from "./skin-source-panel";
 
 type DocsShellProps = DocsShellData & {
   children: ReactNode;
+  githubStars: number | null;
 };
 
 type DocsShellContentProps = DocsShellProps & {
@@ -74,6 +75,7 @@ export function DocsShell(props: DocsShellProps) {
 
 function DocsShellContent({
   children,
+  githubStars,
   guides,
   skills,
   skillConcerns,
@@ -129,6 +131,7 @@ function DocsShellContent({
     <SidebarProvider className="h-svh bg-canvas text-foreground">
       <DocsSidebarContent
         active={activePage}
+        githubStars={githubStars}
         guides={guides}
         skills={skills}
         skillConcerns={skillConcerns}

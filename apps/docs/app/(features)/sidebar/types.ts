@@ -18,6 +18,7 @@ import type {
 
 export type DocsSidebarContentProps = {
   active: ActivePageId;
+  githubStars: number | null;
   guides: GuidePage[];
   skills: readonly DocsSkill[];
   skillConcerns: readonly DocsSkillConcern[];
