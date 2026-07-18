@@ -203,34 +203,34 @@ export function DocsSidebarContent({
               Create app
             </Link>
           </Button>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild size="sm" className="justify-between">
-                <a
-                  href="https://github.com/damien-schneider/control-ui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={githubLinkLabel}
-                  onClick={closeMobile}
-                >
-                  <span className="inline-flex min-w-0 items-center gap-2">
-                    <HugeiconsIcon aria-hidden icon={GithubIcon} size={16} strokeWidth={1.7} />
-                    <span>GitHub</span>
-                  </span>
-                  {formattedGitHubStars == null ? null : (
-                    <span className="inline-flex shrink-0 items-center gap-1 font-mono text-caption tabular-nums">
-                      <HugeiconsIcon aria-hidden icon={StarIcon} size={14} strokeWidth={1.7} />
-                      {formattedGitHubStars}
-                    </span>
-                  )}
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
           <div className="rounded-[var(--radius-panel)] bg-sidebar-accent px-3 py-2.5">
             <p className="text-pretty text-caption leading-relaxed text-sidebar-foreground/90">
               An opinionated, customizable superset of shadcn/ui
             </p>
+            <SidebarMenu className="mt-2 border-t border-sidebar-border/70 pt-1.5">
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild size="sm" className="-mx-2 w-auto justify-between">
+                  <a
+                    href="https://github.com/damien-schneider/control-ui"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={githubLinkLabel}
+                    onClick={closeMobile}
+                  >
+                    <span className="inline-flex min-w-0 items-center gap-2">
+                      <HugeiconsIcon aria-hidden icon={GithubIcon} size={16} strokeWidth={1.7} />
+                      <span>GitHub</span>
+                    </span>
+                    {formattedGitHubStars == null ? null : (
+                      <span className="inline-flex shrink-0 items-center gap-1 font-mono text-caption tabular-nums">
+                        <HugeiconsIcon aria-hidden icon={StarIcon} size={14} strokeWidth={1.7} />
+                        {formattedGitHubStars}
+                      </span>
+                    )}
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
           </div>
         </SidebarFooter>
 
