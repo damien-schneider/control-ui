@@ -1,121 +1,167 @@
-# Control UI Registry
+# Control UI
 
-A registry-first, shadcn-compatible UI system for production agent interfaces.
+Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as editable source.
 
-Control UI is distributed as editable source through the shadcn CLI. There is no runtime UI package and no provider lock-in: components accept plain props and children, while Mastra and AI SDK examples show how host applications map their own data into those contracts.
+[![CI](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-control--ui.dev-black.svg)](https://control-ui.dev)
 
-## Why this architecture
+[Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Browse components](https://control-ui.dev/overview) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
 
-- shadcn ownership: installed files live in the consumer's repository and remain fully editable.
-- One component implementation: skins change tokens, typed slots, CSS, and optional adornments; they never fork component behavior or markup.
-- Granular installs: every documented agent and primitive has its own registry item, while `chat` and `chat-block` provide convenient dependency bundles.
-- Safe coexistence: Control UI installs under `components/control-ui/*` and never overwrites `components/ui/*`.
-- Portable targets: registry files use shadcn's `@components` placeholder, so both root and `src/` application layouts resolve correctly.
-- Runtime neutrality: streaming, persistence, model calls, tools, and transport stay in the host application.
+Control UI is an owned-source registry for building AI chat, coding-agent, and operational interfaces. Install only the surfaces you need with the shadcn CLI, then adapt the source in your application. There is no runtime UI package and no provider lock-in.
 
-## Workspace
+> [!NOTE]
+> Control UI is currently in alpha. Stable, beta, and experimental items are labeled in the catalog; beta and experimental APIs may change.
 
-- `apps/docs/src/registry/sources/control-ui`: canonical component and primitive source.
-- `apps/docs/src/registry/hooks` and `lib`: shared local behavior and utilities.
-- `apps/docs/src/registry/blocks`: composed, installable recipes.
-- `apps/docs/src/registry/skin-packs`: additive skin tokens, CSS, and typed slot configuration.
-- `apps/docs/app/docs-catalog`: product and documentation metadata.
-- `apps/docs/scripts/registry-model.ts`: install graph, file ownership, targets, and dependency derivation.
-- `apps/docs/registry`: generated source manifests for review and local tooling.
-- `apps/docs/public/r`: generated, content-inlined shadcn payloads served to consumers.
-- `apps/docs/components/control-ui`: generated installed fixture used by the docs app.
+## Why Control UI
 
-The docs catalog describes the product surface. The registry model derives delivery metadata from that catalog and the real import graph. Generated manifests, public payloads, fixture files, API metadata, agent docs, and `llms.txt` are outputs, not competing sources of truth.
+- **Own the source.** Components are copied into your repository and remain fully editable.
+- **Bring any runtime.** Plain props and children keep model calls, streaming, persistence, and transport in your application.
+- **Skin the whole system.** One component implementation supports complete token-driven skins without forking behavior or markup.
+- **Install at the right level.** Choose a primitive, an agent surface, a complete block, or a dependency bundle.
+- **Coexist with shadcn/ui.** Control UI installs under `components/control-ui/*` and does not overwrite `components/ui/*`.
+- **Use root or `src/` layouts.** Registry targets resolve through the consumer's configured shadcn aliases.
 
-## Development
+## Quick start
 
-```bash
-bun install
-bun run dev
-bun run sync
-bun run validate
-bun run typecheck
-bun run lint
-bun run doctor
-bun run build
-```
+Start with a React application configured for shadcn and Tailwind CSS v4.
 
-`bun run dev` serves the docs at `http://127.0.0.1:3000` and keeps the installed fixture synchronized. Run `bun run sync` after changing catalog or registry source; drift checks live in `bun run validate` and run in CI together with typecheck, lint, tests, and build.
-
-Tests run from the docs workspace: `cd apps/docs && bun test` (plus `bun run test:browser` for Playwright suites). No environment variables are required locally; optional ones are documented in `apps/docs/.env.example`, and production deployments resolve the canonical URL from `NEXT_PUBLIC_SITE_URL` or Vercel's `VERCEL_PROJECT_PRODUCTION_URL`.
-
-## Install
-
-Install one surface:
+### 1. Install a skin and component
 
 ```bash
-npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json
-npx shadcn@latest add http://127.0.0.1:3000/r/activity.json
+npx shadcn@latest add https://control-ui.dev/r/skin-refined.json
+npx shadcn@latest add https://control-ui.dev/r/chat-message.json
 ```
 
-Install a dependency bundle or complete block:
+A skin is required because it owns the complete visual token contract. Installing another skin replaces the active skin files without replacing component source.
 
-```bash
-npx shadcn@latest add http://127.0.0.1:3000/r/chat.json
-npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json
-```
+### 2. Import the generated styles
 
-Install a skin without replacing component source:
-
-```bash
-npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json
-```
-
-### Upgrade from contract version 3
-
-Contract version 4 replaces the removed ToolCall source with the typed Activity tool variant. Reinstalling registry items
-does not delete files already copied into your application, so remove both possible install layouts first:
-
-```bash
-rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
-rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
-```
-
-Then reinstall core, Activity, your selected components or block, and your skin. For example:
-
-```bash
-npx shadcn@latest add http://127.0.0.1:3000/r/core.json
-npx shadcn@latest add http://127.0.0.1:3000/r/activity.json
-npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json
-```
-
-Replace `<ToolCall name="read_file" state={state}>` with `<Activity kind="tool" name="read_file" state={state}>`.
-Use the matching `ActivityTrigger`, `ActivityRow`, `ActivityIcon`, `ActivityTitle`, `ActivityStatus`, and `ActivityContent`
-parts. Replace `ToolCallInput` and `ToolCallOutput` with `ActivityDetail`, `ActivityDetailLabel`, and
-`ActivityDetailContent`. Delete `useToolCall`; map provider status directly to `ActivityState`.
-
-Each item includes the exact stylesheet imports it needs. The common baseline is:
+Add the imports once in `app/globals.css` or `src/app/globals.css`:
 
 ```css
-/* app/globals.css or src/app/globals.css */
 @import "tailwindcss";
 @import "../components/control-ui/styles/theme.css";
 @import "../components/control-ui/styles/effects.css";
+@import "../components/control-ui/styles/skin-theme.css";
+@import "../components/control-ui/styles/skin.css";
 ```
 
-`public/r/registry.json` is the official shadcn registry catalog. `public/r/agent-index.json` is the richer agent-facing index, and `/api/registry` exposes the same product catalog with readable source and dependency metadata.
+### 3. Activate the skin
 
-## Validation guarantees
+```tsx
+import type { ReactNode } from "react";
 
-`bun run validate` verifies:
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  return (
+    <html lang="en" data-skin="refined">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
 
-- source manifests, built payloads, fixtures, docs, and agent surfaces have no generated drift;
-- every public payload passes the official shadcn schema and includes current file content;
-- every registry import is satisfied by its transitive dependency closure;
-- install targets have one owner, except the intentional files replaced by a skin pack;
-- catalog entries resolve to real granular registry items;
-- registry source remains runner-agnostic and never writes into the host's shadcn tree;
-- skin packs contain their required files and blocks compose documented surfaces.
+### 4. Render the component
+
+```tsx
+import type { ReactNode } from "react";
+
+import {
+  ChatMessage,
+  ChatMessageBody,
+  ChatMessageContent,
+  ChatMessageRow,
+} from "@/components/control-ui/chat-message";
+
+export function AssistantMessage({ children }: { children: ReactNode }) {
+  return (
+    <ChatMessage from="assistant">
+      <ChatMessageRow>
+        <ChatMessageBody>
+          <ChatMessageContent>{children}</ChatMessageContent>
+        </ChatMessageBody>
+      </ChatMessageRow>
+    </ChatMessage>
+  );
+}
+```
+
+For a complete chat composition, install the block instead:
+
+```bash
+npx shadcn@latest add https://control-ui.dev/r/chat-block.json
+```
+
+See the [getting-started guide](https://control-ui.dev/get-started) for skin choices, provider integrations, CSS setup, and contract migrations.
+
+## Explore the catalog
+
+- [Agent surfaces](https://control-ui.dev/overview#agents) — messages, inputs, activities, attachments, code, and task UI.
+- [Blocks](https://control-ui.dev/overview#blocks) — complete chat, coding-agent, settings, and file-explorer compositions.
+- [Primitives](https://control-ui.dev/overview#primitives) — accessible controls and application building blocks.
+- [Skins](https://control-ui.dev/skins) — complete visual systems sharing one component contract.
+- [Agent-facing registry](https://control-ui.dev/r/agent-index.json) — machine-readable discovery, dependencies, and install commands.
+
+## Architecture
+
+The docs catalog describes the public product surface. The registry model derives delivery metadata from that catalog and the real import graph. Generated manifests, public payloads, installed fixtures, API metadata, agent docs, and `llms.txt` are outputs rather than competing sources of truth.
+
+Control UI stays runtime-neutral: examples show how to map provider-owned data at the application boundary, but installed core files do not depend on Mastra, AI SDK, LangChain, or another model runner.
+
+## Local development
+
+### Requirements
+
+- [Bun 1.3.5](https://bun.sh/) — use the version pinned in `package.json`.
+- Node.js 24.x for parity with the hosted docs project.
+
+### Setup
+
+```bash
+git clone https://github.com/damien-schneider/control-ui.git
+cd control-ui
+bun install
+bun run dev
+```
+
+The docs app runs at `http://127.0.0.1:3000`. No environment variables are required for local development; optional values are documented in `apps/docs/.env.example`.
+
+### Commands
+
+| Command | Purpose |
+| --- | --- |
+| `bun run dev` | Run the docs app and fixture sync watcher |
+| `bun run sync` | Regenerate manifests, fixtures, public payloads, and agent docs |
+| `bun run validate` | Check contracts, catalog data, registry payloads, and generated drift |
+| `bun run typecheck` | Type-check the workspace |
+| `bun run lint` | Run Biome lint |
+| `bun run format:check` | Check formatting |
+| `cd apps/docs && bun test` | Run the docs workspace test suite |
+| `cd apps/docs && bun run test:browser` | Run Playwright browser tests |
+| `bun run build` | Build the production docs app |
+
+Run `bun run sync` after changing registry source, catalog metadata, or skin packs. Commit generated outputs with the source change.
+
+## Repository layout
+
+| Path | Responsibility |
+| --- | --- |
+| `apps/docs/src/registry/sources/control-ui` | Canonical component and primitive source |
+| `apps/docs/src/registry/hooks` and `lib` | Shared component behavior and local utilities |
+| `apps/docs/src/registry/blocks/control-ui` | Composed installable blocks |
+| `apps/docs/src/registry/skin-packs` | Skin tokens, CSS, typed slots, and optional adornments |
+| `apps/docs/app/(features)/catalog` | Public product and documentation metadata |
+| `apps/docs/scripts/registry-model.ts` | Install graph, targets, ownership, and dependency derivation |
+| `apps/docs/registry` | Generated source manifests |
+| `apps/docs/public/r` | Generated shadcn payloads served to consumers |
+| `apps/docs/components/control-ui` | Generated installed fixture used by the docs app |
+
+Do not edit generated manifests, payloads, or the installed fixture directly. Change the canonical source and run `bun run sync`.
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, the generated-files workflow, and the checks a PR must pass.
+Bug reports, feature proposals, documentation fixes, and component contributions are welcome. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request, and use [GitHub Issues](https://github.com/damien-schneider/control-ui/issues) for reproducible bugs or scoped proposals.
 
 ## License
 
-Licensed under the [MIT license](./LICENSE).
+Control UI is available under the [MIT License](./LICENSE).
