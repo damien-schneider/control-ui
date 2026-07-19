@@ -1,5 +1,7 @@
+"use client";
+
+import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps } from "react";
-import { cloneElement, isValidElement } from "react";
 
 import type { InputGroupAddonProps, InputGroupProps } from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
@@ -8,10 +10,8 @@ import { skinSlot } from "@/components/control-ui/skin";
 
 // Refined skin slot: InputGroup = addon+field as one control, shares --radius-control/controlSize w/ Input/Button/Select.
 // Focus ring lifts on focus-within so group reads as single field.
-// asChild renders consumer element (e.g. button) AS the group, no Radix Slot — keeps skin free of host primitives.
-const inputGroupSlotAttrs = { "data-control-ui": "input-group", "data-slot": "root" } as const;
 
-export function InputGroup({ size = "md", className, asChild = false, children, ...props }: InputGroupProps) {
+export function InputGroup({ size = "md", className, render, children, ...props }: InputGroupProps) {
   const classes = cn(
     "flex min-w-0 w-full items-center overflow-hidden rounded-[var(--radius-control)] border bg-card/72 text-foreground shadow-sm outline-none transition focus-within:ring-2 focus-within:ring-foreground/20 aria-invalid:ring-2 aria-invalid:ring-destructive data-[invalid]:ring-2 data-[invalid]:ring-destructive",
     controlSize({ size }),
@@ -19,21 +19,18 @@ export function InputGroup({ size = "md", className, asChild = false, children, 
     className,
   );
 
-  if (asChild && isValidElement<{ className?: string }>(children)) {
-    const child = children;
-    const groupAttrs = { ...inputGroupSlotAttrs, "data-size": size };
-    return cloneElement(child, {
-      ...groupAttrs,
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: {
       ...props,
-      className: cn(classes, child.props.className),
-    });
-  }
-
-  return (
-    <div data-control-ui="input-group" data-slot="root" data-size={size} className={classes} {...props}>
-      {children}
-    </div>
-  );
+      "data-control-ui": "input-group",
+      "data-slot": "root",
+      "data-size": size,
+      className: classes,
+      children,
+    },
+  });
 }
 
 export function InputGroupAddon({ className, ...props }: InputGroupAddonProps) {

@@ -1,9 +1,9 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import { cva } from "class-variance-authority";
 import type { BadgeProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useAsChildRender } from "@/components/control-ui/lib/use-as-child-render";
 import { skinSlot } from "@/components/control-ui/skin";
 
 type BadgeVariant = NonNullable<BadgeProps["variant"]>;
@@ -38,14 +38,12 @@ const badgeVariant = cva(
   },
 );
 
-export function Badge({ variant = "default", size = "md", color, asChild = false, render, className, children, ...props }: BadgeProps) {
+export function Badge({ variant = "default", size = "md", color, render, className, children, ...props }: BadgeProps) {
   const resolvedColor = color ?? defaultColorByVariant[variant];
 
-  return useAsChildRender({
+  return useRender({
     defaultTagName: "span",
-    asChild,
     render,
-    children,
     props: {
       ...props,
       "data-control-ui": "badge",
@@ -54,6 +52,7 @@ export function Badge({ variant = "default", size = "md", color, asChild = false
       "data-size": size,
       "data-color": resolvedColor,
       className: cn(badgeVariant({ variant, size }), skinSlot("badge", "root", { variant, size, color: resolvedColor }), className),
+      children,
     },
   });
 }

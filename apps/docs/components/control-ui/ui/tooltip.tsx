@@ -2,7 +2,7 @@
 
 import type { TooltipPopupProps, TooltipPositionerProps } from "@base-ui/react/tooltip";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
-import { type ComponentProps, isValidElement, type Ref } from "react";
+import type { ComponentProps, Ref } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 
@@ -31,16 +31,10 @@ export function Tooltip(props: ComponentProps<typeof TooltipPrimitive.Root>) {
 }
 
 type TooltipTriggerProps = ComponentProps<typeof TooltipPrimitive.Trigger> & {
-  /** @deprecated Use Base UI's `render` prop instead. */
-  asChild?: boolean;
   ref?: Ref<HTMLButtonElement>;
 };
 
-export function TooltipTrigger({ asChild, render, children, ref, ...props }: TooltipTriggerProps) {
-  if (asChild && isValidElement(children)) {
-    return <TooltipPrimitive.Trigger ref={ref} render={children} {...props} />;
-  }
-
+export function TooltipTrigger({ render, children, ref, ...props }: TooltipTriggerProps) {
   return (
     <TooltipPrimitive.Trigger ref={ref} render={render} {...props}>
       {children}

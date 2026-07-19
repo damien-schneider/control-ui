@@ -4,7 +4,9 @@
   "type": "registry:ui",
   "title": "Input group",
   "description": "Joined input wrapper for addons, icons, and focus-within rings.",
-  "dependencies": [],
+  "dependencies": [
+    "@base-ui/react@^1.6.0"
+  ],
   "registryDependencies": [
     "core"
   ],

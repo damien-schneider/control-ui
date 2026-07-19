@@ -1,5 +1,6 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
@@ -8,7 +9,6 @@ import type { RenderProp, SelectionIndicator } from "@/components/control-ui/con
 import { controlSize } from "@/components/control-ui/control-variants";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useAsChildRender } from "@/components/control-ui/lib/use-as-child-render";
 import { SELECTION_INDICATOR_BG_RESET, skinIndicator, skinSidebarLayout, skinSidebarWidth, skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -364,20 +364,15 @@ export function SidebarGroup({ className, ...props }: ComponentProps<"div">) {
 
 export function SidebarGroupLabel({
   className,
-  asChild = false,
   render,
   children,
   ...props
 }: ComponentProps<"div"> & {
   render?: RenderProp<ComponentProps<"div">>;
-  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */
-  asChild?: boolean;
 }) {
-  return useAsChildRender({
+  return useRender({
     defaultTagName: "div",
-    asChild,
     render,
-    children,
     props: {
       ...props,
       "data-control-ui": "sidebar",
@@ -388,6 +383,7 @@ export function SidebarGroupLabel({
         skinSlot("sidebar", "group-label", {}),
         className,
       ),
+      children,
     },
   });
 }
@@ -473,7 +469,6 @@ const sidebarMenuButtonVariants = cva(
 );
 
 export function SidebarMenuButton({
-  asChild = false,
   render,
   isActive = false,
   variant = "default",
@@ -484,19 +479,15 @@ export function SidebarMenuButton({
   ...props
 }: ComponentProps<"button"> & {
   render?: RenderProp<ComponentProps<"button">>;
-  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */
-  asChild?: boolean;
   isActive?: boolean;
   tooltip?: ReactNode;
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const { isMobile, state } = useSidebar();
   const indicator = useContext(SidebarMenuContext);
 
-  const button = useAsChildRender({
+  const button = useRender({
     defaultTagName: "button",
-    asChild,
     render,
-    children,
     props: {
       ...props,
       "data-control-ui": "sidebar",
@@ -511,6 +502,7 @@ export function SidebarMenuButton({
         indicator === "slide" ? SELECTION_INDICATOR_BG_RESET : undefined,
         className,
       ),
+      children,
     },
   });
 

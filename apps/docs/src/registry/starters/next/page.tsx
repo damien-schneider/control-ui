@@ -1,4 +1,4 @@
-import { Button } from "@/components/control-ui/ui/button";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 
 export default function Page() {
   return (
@@ -13,11 +13,16 @@ export default function Page() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <Button variant="solid" tone="primary" size="md" asChild>
-            <a href="https://github.com/damien-schneider/control-ui" target="_blank" rel="noreferrer">
-              Browse the registry
-            </a>
-          </Button>
+          <ButtonLink
+            href="https://github.com/damien-schneider/control-ui"
+            target="_blank"
+            rel="noreferrer"
+            variant="solid"
+            tone="primary"
+            size="md"
+          >
+            Browse the registry
+          </ButtonLink>
           <code className="text-caption text-muted-foreground">components/control-ui</code>
         </div>
       </section>

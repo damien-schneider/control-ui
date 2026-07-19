@@ -88,7 +88,6 @@ const coreFiles = [
   "src/registry/contracts.ts",
   "src/registry/skin.ts",
   "src/registry/lib/cn.ts",
-  "src/registry/lib/use-as-child-render.ts",
   "src/registry/hooks/use-copy-to-clipboard.ts",
   "src/registry/sources/control-ui/control-variants.ts",
   "src/registry/sources/control-ui/surface-variants.ts",

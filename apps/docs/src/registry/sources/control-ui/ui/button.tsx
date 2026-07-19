@@ -1,12 +1,20 @@
 "use client";
 
 import { Button as BaseButton } from "@base-ui/react/button";
+import { useRender } from "@base-ui/react/use-render";
 import { cva } from "class-variance-authority";
-import type { ComponentProps, ReactNode } from "react";
-import type { ButtonProps, ButtonShape, ButtonTone, ButtonVariant, ControlSize } from "@/components/control-ui/contracts";
+import type { ReactNode } from "react";
+import type {
+  ButtonLabelProps,
+  ButtonLinkProps,
+  ButtonProps,
+  ButtonShape,
+  ButtonTone,
+  ButtonVariant,
+  ControlSize,
+} from "@/components/control-ui/contracts";
 import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { resolveAsChildElement } from "@/components/control-ui/lib/use-as-child-render";
 import { skinSlot } from "@/components/control-ui/skin";
 
 // `variant` = visual structure (see ButtonProps contract); radius/size come from shared tokens so every control matches.
@@ -44,6 +52,14 @@ export function buttonRecipeClasses(variant: ButtonVariant, tone: ButtonTone, si
   return cn(buttonVariant({ variant }), controlSize({ size }), toneClasses(variant, tone), shape === "circle" && "rounded-full");
 }
 
+function ButtonContent({ children }: { children: ReactNode }) {
+  return (
+    <span data-control-ui="button" data-slot="content" className={cn(buttonContentClasses, skinSlot("button", "content", {}))}>
+      {children}
+    </span>
+  );
+}
+
 // Refined skin slot. 100% Base UI: composition flows through Base UI Button's `render` prop.
 export function Button({
   variant = "quiet",
@@ -52,7 +68,6 @@ export function Button({
   active = false,
   iconOnly = false,
   shape = "default",
-  asChild = false,
   type = "button",
   disabled,
   render,
@@ -65,22 +80,8 @@ export function Button({
   // Skin resolves after library recipe, before caller's className: tailwind-merge order (not CSS specificity) decides the winner.
   const skinClasses = skinSlot("button", "root", { variant, tone, size, shape, active });
   const classes = cn(buttonRecipeClasses(variant, tone, size, shape), iconOnly && "aspect-square px-0", skinClasses, className);
-  const child = resolveAsChildElement(asChild, children);
-  // asChild rendering a non-<button> (e.g. a link) needs nativeButton told to Base UI to preserve button semantics.
-  const isNativeButton = child ? child.type === "button" : nativeButton !== false;
-  const renderProp: Pick<ComponentProps<typeof BaseButton>, "render" | "nativeButton"> = child
-    ? { render: child, nativeButton: isNativeButton }
-    : { render, nativeButton };
-  let content: ReactNode;
-  if (child) content = undefined;
-  else if (render) content = children;
-  else {
-    content = (
-      <span data-control-ui="button" data-slot="content" className={cn(buttonContentClasses, skinSlot("button", "content", {}))}>
-        {children}
-      </span>
-    );
-  }
+  const isNativeButton = nativeButton !== false;
+  const content = render ? children : <ButtonContent>{children}</ButtonContent>;
 
   return (
     <BaseButton
@@ -96,10 +97,86 @@ export function Button({
       data-tone={tone}
       data-size={size}
       className={classes}
-      {...renderProp}
+      render={render}
+      nativeButton={nativeButton}
       {...props}
     >
       {content}
     </BaseButton>
+  );
+}
+
+export function ButtonLink({
+  variant = "quiet",
+  size = "sm",
+  tone = "neutral",
+  active = false,
+  iconOnly = false,
+  shape = "default",
+  render,
+  className,
+  children,
+  color: _color,
+  ...props
+}: ButtonLinkProps) {
+  const skinClasses = skinSlot("button", "root", { variant, tone, size, shape, active });
+
+  return useRender({
+    defaultTagName: "a",
+    render,
+    props: {
+      ...props,
+      "data-control-ui": "button",
+      "data-slot": "root",
+      "data-control": "true",
+      "data-active": active ? "true" : undefined,
+      "data-icon-only": iconOnly ? "true" : undefined,
+      "data-shape": shape,
+      "data-variant": variant,
+      "data-tone": tone,
+      "data-size": size,
+      className: cn(buttonRecipeClasses(variant, tone, size, shape), iconOnly && "aspect-square px-0", skinClasses, className),
+      children: <ButtonContent>{children}</ButtonContent>,
+    },
+  });
+}
+
+export function ButtonLabel({
+  variant = "quiet",
+  size = "sm",
+  tone = "neutral",
+  active = false,
+  iconOnly = false,
+  shape = "default",
+  className,
+  children,
+  color: _color,
+  ...props
+}: ButtonLabelProps) {
+  const skinClasses = skinSlot("button", "root", { variant, tone, size, shape, active });
+
+  return (
+    // biome-ignore lint/a11y/noLabelWithoutControl: The wrapped file input is supplied through children.
+    <label
+      {...props}
+      data-control-ui="button"
+      data-slot="root"
+      data-control="true"
+      data-active={active ? "true" : undefined}
+      data-icon-only={iconOnly ? "true" : undefined}
+      data-shape={shape}
+      data-variant={variant}
+      data-tone={tone}
+      data-size={size}
+      className={cn(
+        buttonRecipeClasses(variant, tone, size, shape),
+        iconOnly && "aspect-square px-0",
+        "has-focus-visible:ring-2 has-focus-visible:ring-foreground/20",
+        skinClasses,
+        className,
+      )}
+    >
+      <ButtonContent>{children}</ButtonContent>
+    </label>
   );
 }

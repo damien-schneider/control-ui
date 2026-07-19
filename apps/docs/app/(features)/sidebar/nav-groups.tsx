@@ -11,7 +11,7 @@ import { skillConcernSidebarIcons } from "./icons";
 import { humanizeNavName } from "./nav-items";
 import type { DocsNavItem } from "./types";
 
-// Dogfoods raw shadcn Sidebar menu anatomy: SidebarMenuButton carries active state, Link via asChild, and its built-in tooltip.
+// Dogfoods raw Sidebar anatomy: SidebarMenuButton owns active state and tooltip while Link supplies navigation.
 export function DocsNavGroup({
   title,
   icon,
@@ -43,13 +43,14 @@ export function DocsNavGroup({
           const tooltip = item.status ? `${name} · ${statusMeta[item.status].label}` : name;
           return (
             <SidebarMenuItem key={item.id}>
-              <SidebarMenuButton asChild isActive={active === item.id} size="sm" tooltip={tooltip}>
-                <Link href={href} onClick={onNavigate}>
-                  <span className="min-w-0 truncate">{name}</span>
-                  {item.status ? (
-                    <StatusBadge status={item.status} compact className="ml-auto group-data-[collapsible=icon]:hidden" />
-                  ) : null}
-                </Link>
+              <SidebarMenuButton
+                render={<Link href={href} onClick={onNavigate} />}
+                isActive={active === item.id}
+                size="sm"
+                tooltip={tooltip}
+              >
+                <span className="min-w-0 truncate">{name}</span>
+                {item.status ? <StatusBadge status={item.status} compact className="ml-auto group-data-[collapsible=icon]:hidden" /> : null}
               </SidebarMenuButton>
             </SidebarMenuItem>
           );

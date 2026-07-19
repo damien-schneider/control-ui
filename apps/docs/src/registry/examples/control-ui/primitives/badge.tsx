@@ -46,9 +46,7 @@ export function PrimitiveBadgeExample() {
           {color}
         </Badge>
       ))}
-      <Badge asChild>
-        <a href="#docs">Link badge</a>
-      </Badge>
+      <Badge render={<a href="#docs" />}>Link badge</Badge>
     </div>
   );
 }

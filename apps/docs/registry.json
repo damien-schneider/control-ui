@@ -386,6 +386,7 @@
       "title": "Badge",
       "description": "Compact status, label, or count chip.",
       "dependencies": [
+        "@base-ui/react@^1.6.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -1393,7 +1394,9 @@
       "type": "registry:ui",
       "title": "Input group",
       "description": "Joined input wrapper for addons, icons, and focus-within rings.",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
       ],
@@ -1438,6 +1441,7 @@
       "title": "Item",
       "description": "List row with media, content, and trailing actions.",
       "dependencies": [
+        "@base-ui/react@^1.6.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -2007,6 +2011,7 @@
       "title": "Sidebar",
       "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
       "dependencies": [
+        "@base-ui/react@^1.6.0",
         "class-variance-authority@^0.7.1",
         "lucide-react@^1.24.0"
       ],

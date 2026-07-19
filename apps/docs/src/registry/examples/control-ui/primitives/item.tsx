@@ -33,16 +33,14 @@ export function PrimitiveItemExample() {
 
       <ItemSeparator />
 
-      <Item variant="muted" asChild className="rounded-none">
-        <a href="#workspace-settings">
-          <ItemContent>
-            <ItemTitle>Workspace settings</ItemTitle>
-            <ItemDescription>Members, billing and API keys.</ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <ChevronRight className="size-4 text-muted-foreground" />
-          </ItemActions>
-        </a>
+      <Item variant="muted" render={<a href="#workspace-settings" />} className="rounded-none">
+        <ItemContent>
+          <ItemTitle>Workspace settings</ItemTitle>
+          <ItemDescription>Members, billing and API keys.</ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <ChevronRight className="size-4 text-muted-foreground" />
+        </ItemActions>
       </Item>
     </ItemGroup>
   );

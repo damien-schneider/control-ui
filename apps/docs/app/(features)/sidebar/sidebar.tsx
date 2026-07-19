@@ -8,7 +8,7 @@ import { useState } from "react";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { Badge } from "@/components/control-ui/ui/badge";
-import { Button } from "@/components/control-ui/ui/button";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -198,36 +198,38 @@ export function DocsSidebarContent({
         </SidebarContent>
 
         <SidebarFooter className="px-3 py-2 group-data-[collapsible=icon]:hidden">
-          <Button asChild variant="solid" tone="primary" className="w-full">
-            <Link href="/create" onClick={closeMobile}>
-              Create app
-            </Link>
-          </Button>
+          <ButtonLink render={<Link href="/create" onClick={closeMobile} />} variant="solid" tone="primary" className="w-full">
+            Create app
+          </ButtonLink>
           <div className="rounded-[var(--radius-panel)] bg-sidebar-accent px-3 py-2.5">
             <p className="text-pretty text-caption leading-relaxed text-sidebar-foreground/90">
               An opinionated, customizable superset of shadcn/ui
             </p>
             <SidebarMenu className="mt-2 border-t border-sidebar-border/70 pt-1.5">
               <SidebarMenuItem>
-                <SidebarMenuButton asChild size="sm" className="-mx-2 w-auto justify-between">
-                  <a
-                    href="https://github.com/damien-schneider/control-ui"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={githubLinkLabel}
-                    onClick={closeMobile}
-                  >
-                    <span className="inline-flex min-w-0 items-center gap-2">
-                      <HugeiconsIcon aria-hidden icon={GithubIcon} size={16} strokeWidth={1.7} />
-                      <span>GitHub</span>
+                <SidebarMenuButton
+                  render={
+                    <a
+                      href="https://github.com/damien-schneider/control-ui"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={githubLinkLabel}
+                      onClick={closeMobile}
+                    />
+                  }
+                  size="sm"
+                  className="-mx-2 w-auto justify-between"
+                >
+                  <span className="inline-flex min-w-0 items-center gap-2">
+                    <HugeiconsIcon aria-hidden icon={GithubIcon} size={16} strokeWidth={1.7} />
+                    <span>GitHub</span>
+                  </span>
+                  {formattedGitHubStars == null ? null : (
+                    <span className="inline-flex shrink-0 items-center gap-1 font-mono text-caption tabular-nums">
+                      <HugeiconsIcon aria-hidden icon={StarIcon} size={14} strokeWidth={1.7} />
+                      {formattedGitHubStars}
                     </span>
-                    {formattedGitHubStars == null ? null : (
-                      <span className="inline-flex shrink-0 items-center gap-1 font-mono text-caption tabular-nums">
-                        <HugeiconsIcon aria-hidden icon={StarIcon} size={14} strokeWidth={1.7} />
-                        {formattedGitHubStars}
-                      </span>
-                    )}
-                  </a>
+                  )}
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>

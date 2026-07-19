@@ -1,10 +1,10 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import { cva } from "class-variance-authority";
 import type { ComponentProps } from "react";
 import type { ItemGroupProps, ItemProps, ItemSeparatorProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useAsChildRender } from "@/components/control-ui/lib/use-as-child-render";
 import { skinSlot } from "@/components/control-ui/skin";
 import { Separator } from "@/components/control-ui/ui/separator";
 
@@ -37,18 +37,17 @@ export function ItemSeparator({ className, ...props }: ItemSeparatorProps) {
   return <Separator data-control-ui="item" data-slot="separator" orientation="horizontal" className={cn("my-0", className)} {...props} />;
 }
 
-export function Item({ variant = "default", asChild = false, render, className, children, ...props }: ItemProps) {
-  return useAsChildRender({
+export function Item({ variant = "default", render, className, children, ...props }: ItemProps) {
+  return useRender({
     defaultTagName: "div",
-    asChild,
     render,
-    children,
     props: {
       ...props,
       "data-control-ui": "item",
       "data-slot": "root",
       "data-variant": variant,
       className: cn(itemVariant({ variant }), skinSlot("item", "root", { variant }), className),
+      children,
     },
   });
 }

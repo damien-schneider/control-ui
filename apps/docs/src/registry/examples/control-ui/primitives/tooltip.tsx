@@ -18,10 +18,8 @@ export function PrimitiveTooltipExample() {
           <TooltipContent side="top">Agent run metadata</TooltipContent>
         </Tooltip>
         <Tooltip>
-          <TooltipTrigger asChild>
-            <button type="button" className={triggerClass} aria-label="Save changes">
-              <SaveIcon className="size-4" />
-            </button>
+          <TooltipTrigger render={<button type="button" className={triggerClass} aria-label="Save changes" />}>
+            <SaveIcon className="size-4" />
           </TooltipTrigger>
           <TooltipContent side="right">Save changes</TooltipContent>
         </Tooltip>

@@ -150,19 +150,21 @@ export function CodeFloatingCopy({ className, "aria-label": ariaLabel = "Copy co
   return (
     <TooltipProvider delay={0}>
       <Tooltip>
-        <TooltipTrigger asChild>
-          <CodeCopy
-            aria-label={ariaLabel}
-            className={cn(
-              "absolute top-2 right-2 z-10 size-7 bg-background/85 p-0 shadow-sm ring-1 ring-inset ring-border backdrop-blur",
-              className,
-            )}
-            copiedLabel={<CheckIcon aria-hidden="true" className="size-3.5" />}
-            {...props}
-          >
-            <CopyIcon aria-hidden="true" className="size-3.5" />
-          </CodeCopy>
-        </TooltipTrigger>
+        <TooltipTrigger
+          render={
+            <CodeCopy
+              aria-label={ariaLabel}
+              className={cn(
+                "absolute top-2 right-2 z-10 size-7 bg-background/85 p-0 shadow-sm ring-1 ring-inset ring-border backdrop-blur",
+                className,
+              )}
+              copiedLabel={<CheckIcon aria-hidden="true" className="size-3.5" />}
+              {...props}
+            >
+              <CopyIcon aria-hidden="true" className="size-3.5" />
+            </CodeCopy>
+          }
+        />
         <TooltipContent side="left">{ariaLabel}</TooltipContent>
       </Tooltip>
     </TooltipProvider>

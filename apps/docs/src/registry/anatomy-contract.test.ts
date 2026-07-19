@@ -87,10 +87,7 @@ function validateJsxSkinSlot(sourcePath: string, node: any, violations: string[]
   const emittedScope = literalAttribute(node.attributes, "data-control-ui").value;
   const emittedPart = literalAttribute(node.attributes, "data-slot").value;
   const matches = calls.some((call) => call.scope === emittedScope && call.part === emittedPart);
-  const composesChildAnatomy = node.attributes.some(
-    (attribute: any) => attribute.type === "JSXAttribute" && attribute.name.name === "asChild",
-  );
-  if (!matches && !composesChildAnatomy) {
+  if (!matches) {
     violations.push(skinSlotMismatch(sourcePath, node, emittedScope, emittedPart, calls));
   }
 }

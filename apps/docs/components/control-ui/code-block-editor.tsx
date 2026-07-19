@@ -329,19 +329,21 @@ export function CodeBlockEditorFloatingCopy({
   return (
     <TooltipProvider delay={0}>
       <Tooltip>
-        <TooltipTrigger asChild>
-          <CodeBlockEditorCopy
-            aria-label={ariaLabel}
-            className={cn(
-              "absolute top-2 right-2 z-10 size-7 bg-background/85 p-0 shadow-sm ring-1 ring-inset ring-border backdrop-blur",
-              className,
-            )}
-            copiedLabel={<CheckIcon aria-hidden="true" className="size-3.5" />}
-            {...props}
-          >
-            <CopyIcon aria-hidden="true" className="size-3.5" />
-          </CodeBlockEditorCopy>
-        </TooltipTrigger>
+        <TooltipTrigger
+          render={
+            <CodeBlockEditorCopy
+              aria-label={ariaLabel}
+              className={cn(
+                "absolute top-2 right-2 z-10 size-7 bg-background/85 p-0 shadow-sm ring-1 ring-inset ring-border backdrop-blur",
+                className,
+              )}
+              copiedLabel={<CheckIcon aria-hidden="true" className="size-3.5" />}
+              {...props}
+            >
+              <CopyIcon aria-hidden="true" className="size-3.5" />
+            </CodeBlockEditorCopy>
+          }
+        />
         <TooltipContent side="left">{ariaLabel}</TooltipContent>
       </Tooltip>
     </TooltipProvider>

@@ -18,7 +18,7 @@ import { ChatInputAttachment, ChatInputAttachments } from "@/components/control-
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
-import { Button } from "@/components/control-ui/ui/button";
+import { Button, ButtonLabel } from "@/components/control-ui/ui/button";
 import { Textarea } from "@/components/control-ui/ui/textarea";
 import { downloadThemeArtifact } from "@/components/theme-drawer/custom-themes";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
@@ -263,12 +263,10 @@ function ThemeImportStage({
           />
         </label>
         <div className="flex flex-wrap gap-2">
-          <Button asChild variant="surface">
-            <label>
-              <UploadIcon aria-hidden className="size-3.5" /> Import .control-ui-theme.json
-              <input type="file" accept=".json,application/json" onChange={onImportFile} className="sr-only" />
-            </label>
-          </Button>
+          <ButtonLabel variant="surface">
+            <UploadIcon aria-hidden className="size-3.5" /> Import .control-ui-theme.json
+            <input type="file" accept=".json,application/json" onChange={onImportFile} className="sr-only" />
+          </ButtonLabel>
           {artifact ? (
             <Button variant="quiet" onClick={() => downloadThemeArtifact(artifact)}>
               <DownloadIcon aria-hidden className="size-3.5" /> Download draft

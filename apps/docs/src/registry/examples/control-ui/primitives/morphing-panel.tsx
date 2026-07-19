@@ -61,13 +61,11 @@ export function PrimitiveMorphingPanelExample() {
         expandedSize={sections[section]}
         data-last-open-reason={lastOpenReason}
       >
-        <MorphingPanelTrigger asChild aria-label={open ? "Close style settings" : "Open style settings"}>
-          <Button variant="quiet">
-            <span className="max-w-20 overflow-hidden whitespace-nowrap text-left transition-[max-width,opacity,filter] duration-[var(--duration-base)] group-data-[state=open]/morphing-panel-trigger:max-w-0 group-data-[state=open]/morphing-panel-trigger:opacity-0 group-data-[state=open]/morphing-panel-trigger:blur-sm">
-              Add style
-            </span>
-            <PlusIcon aria-hidden="true" className="size-4 text-muted-foreground" />
-          </Button>
+        <MorphingPanelTrigger render={<Button variant="quiet" />} aria-label={open ? "Close style settings" : "Open style settings"}>
+          <span className="max-w-20 overflow-hidden whitespace-nowrap text-left transition-[max-width,opacity,filter] duration-[var(--duration-base)] group-data-[state=open]/morphing-panel-trigger:max-w-0 group-data-[state=open]/morphing-panel-trigger:opacity-0 group-data-[state=open]/morphing-panel-trigger:blur-sm">
+            Add style
+          </span>
+          <PlusIcon aria-hidden="true" className="size-4 text-muted-foreground" />
         </MorphingPanelTrigger>
 
         <MorphingPanelContent keepMounted className="p-2 pr-12">

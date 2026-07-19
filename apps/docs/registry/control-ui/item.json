@@ -5,6 +5,7 @@
   "title": "Item",
   "description": "List row with media, content, and trailing actions.",
   "dependencies": [
+    "@base-ui/react@^1.6.0",
     "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [

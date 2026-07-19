@@ -104,20 +104,29 @@ export type ButtonSize = ControlSize;
 export type ButtonTone = "neutral" | "primary" | "danger";
 export type ButtonShape = "default" | "circle";
 
-export type ButtonProps = ComponentProps<"button"> & {
+export type ButtonAppearanceProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   tone?: ButtonTone;
   active?: boolean;
   iconOnly?: boolean;
   shape?: ButtonShape;
-  render?: RenderProp<ComponentProps<"button">, { disabled: boolean }>;
-  nativeButton?: boolean;
-  /** @deprecated Prefer `render` + `nativeButton` for typed composition. Kept as a compatibility bridge for shadcn/Radix-style examples. */
-  asChild?: boolean;
 };
 
-// Kebab-case superset of onOpenChange reasons across all popup-style primitives (Menu adds item-press/list-navigation,
+export type ButtonProps = ComponentProps<"button"> &
+  ButtonAppearanceProps & {
+    render?: RenderProp<ComponentProps<"button">, { disabled: boolean }>;
+    nativeButton?: boolean;
+  };
+
+export type ButtonLinkProps = ComponentProps<"a"> &
+  ButtonAppearanceProps & {
+    render?: RenderProp<ComponentProps<"a">>;
+  };
+
+export type ButtonLabelProps = ComponentProps<"label"> & ButtonAppearanceProps;
+
+// Kebab-case superset of onOpenChange reasons across all popup-style primitives (DropdownMenu adds item-press/list-navigation,
 // Combobox adds input-change, etc.) — callers get one shape regardless of which primitive backs the contract.
 export type OpenChangeReason =
   | "trigger-hover"
@@ -163,7 +172,8 @@ export type CollapsibleProps = Omit<ComponentProps<"div">, "onChange"> & {
 
 export type CollapsibleTriggerProps = ComponentProps<"button"> & {
   "data-slot"?: string;
-  asChild?: boolean;
+  render?: RenderProp<ComponentProps<"button">, { open: boolean }>;
+  nativeButton?: boolean;
 };
 
 export type CollapsibleContentProps = ComponentProps<"div"> & {
@@ -294,16 +304,12 @@ export type TreeItemProps = Omit<ComponentProps<"li">, "value"> & {
 
 export type TreeItemTriggerProps = ComponentProps<"div"> & {
   render?: RenderProp<ComponentProps<"div">>;
-  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */
-  asChild?: boolean;
 };
 
 export type TreeItemIndicatorProps = ComponentProps<"span">;
 
 export type TreeItemLabelProps = ComponentProps<"span"> & {
   render?: RenderProp<ComponentProps<"span">>;
-  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */
-  asChild?: boolean;
 };
 
 export type TreeItemContentProps = ComponentProps<"div">;
@@ -586,7 +592,7 @@ export type InputProps = Omit<ComponentProps<"input">, "size"> & {
 
 // components/control-ui/ui/input-group: addon + field composed as one control. data-slot="input-group".
 export type InputGroupProps = ComponentProps<"div"> & {
-  asChild?: boolean;
+  render?: RenderProp<ComponentProps<"div">>;
   size?: ControlSize;
 };
 
@@ -619,7 +625,7 @@ export type SliderProps = {
 // components/control-ui/ui/toggle: Toggle+ToggleGroup compose Button slot (shares --radius-control/controlSize/tones/chrome). pressed surfaces via Button's active/data-active — never special-case toggle anatomy; `active` prop force-overrides independent of pressed state.
 // showCheck renders Checkbox/SelectItem's tick glyph gated on pressed, for tile-style toggles wanting an explicit check mark (don't hand-roll this).
 // data-slot="button" component identity="toggle" data-active=pressed (toggle); data-slot="toggle-group" (group), scoped anatomy.
-export type ToggleProps = Omit<ButtonProps, "asChild" | "render" | "nativeButton" | "value"> & {
+export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value"> & {
   pressed?: boolean;
   defaultPressed?: boolean;
   onPressedChange?: (pressed: boolean) => void;
@@ -952,8 +958,6 @@ export type BadgeProps = ComponentProps<"span"> & {
   size?: BadgeSize;
   color?: BadgeColor;
   render?: RenderProp<ComponentProps<"span">>;
-  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */
-  asChild?: boolean;
 };
 
 // components/control-ui/ui/card: --radius-lg surface on --card+shadow-sm; header is grid so CardAction pins top-right column.
@@ -993,8 +997,6 @@ export type EmptyProps = ComponentProps<"div">;
 export type ItemProps = ComponentProps<"div"> & {
   variant?: "default" | "outline" | "muted";
   render?: RenderProp<ComponentProps<"div">>;
-  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */
-  asChild?: boolean;
 };
 
 export type ItemGroupProps = ComponentProps<"div">;

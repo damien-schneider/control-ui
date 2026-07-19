@@ -1,9 +1,8 @@
 "use client";
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
-import { mergeProps } from "@base-ui/react/merge-props";
-import type { CSSProperties } from "react";
-import { cloneElement, isValidElement } from "react";
+import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { MorphingPanelContentProps, MorphingPanelProps, MorphingPanelTriggerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
@@ -21,6 +20,36 @@ type MorphingPanelStyle = CSSProperties & {
   "--morphing-panel-expanded-height": string;
   "--morphing-panel-expanded-width": string;
 };
+
+function MorphingPanelTriggerElement({
+  triggerProps,
+  open,
+  render,
+  className,
+  children,
+}: {
+  triggerProps: ComponentProps<"button">;
+  open: boolean;
+  render: MorphingPanelTriggerProps["render"];
+  className?: string;
+  children: ReactNode;
+}) {
+  const panelState = open ? "open" : "closed";
+
+  return useRender({
+    defaultTagName: "button",
+    render,
+    state: { open },
+    props: {
+      ...triggerProps,
+      "data-control-ui": "morphing-panel",
+      "data-slot": "trigger",
+      "data-state": panelState,
+      className: cn(triggerProps.className, skinSlot("morphing-panel", "trigger", { state: panelState }), className),
+      children,
+    },
+  });
+}
 
 export function MorphingPanel({ collapsedSize, expandedSize, className, style, ...props }: MorphingPanelProps) {
   const dimensions = {
@@ -60,37 +89,18 @@ export function MorphingPanel({ collapsedSize, expandedSize, className, style, .
   );
 }
 
-export function MorphingPanelTrigger({ asChild = false, className, children, ...props }: MorphingPanelTriggerProps) {
-  const triggerClasses =
-    "group/morphing-panel-trigger absolute top-2 right-2 z-10 flex h-[calc(100%-1rem)] w-[calc(100%-1rem)] cursor-pointer items-center justify-between gap-2 rounded-[var(--radius-control)] px-2 text-body font-medium outline-none transition-[width,height,padding,color,background-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)] hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/20 data-[state=open]:size-9 data-[state=open]:justify-center data-[state=open]:p-0 [&>svg]:shrink-0 [&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-emphasized)] [&[data-state=open]>svg]:rotate-45";
-
+export function MorphingPanelTrigger({ render, className, children, ...props }: MorphingPanelTriggerProps) {
   return (
     <CollapsiblePrimitive.Trigger
+      className={cn(
+        "group/morphing-panel-trigger absolute top-2 right-2 z-10 flex h-[calc(100%-1rem)] w-[calc(100%-1rem)] cursor-pointer items-center justify-between gap-2 rounded-[var(--radius-control)] px-2 text-body font-medium outline-none transition-[width,height,padding,color,background-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)] hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/20 data-[state=open]:size-9 data-[state=open]:justify-center data-[state=open]:p-0 [&>svg]:shrink-0 [&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-emphasized)] [&[data-state=open]>svg]:rotate-45",
+      )}
       {...props}
-      render={(renderProps, state) => {
-        const panelState = state.open ? "open" : "closed";
-        const anatomy = {
-          "data-control-ui": "morphing-panel",
-          "data-slot": "trigger",
-          "data-state": panelState,
-        } as const;
-        const skinClasses = skinSlot("morphing-panel", "trigger", { state: panelState });
-
-        if (asChild && isValidElement<{ className?: string }>(children)) {
-          const merged = mergeProps(renderProps, children.props);
-          return cloneElement(children, {
-            ...merged,
-            ...anatomy,
-            className: cn(triggerClasses, skinClasses, merged.className, className),
-          });
-        }
-
-        return (
-          <button type="button" {...renderProps} {...anatomy} className={cn(triggerClasses, skinClasses, renderProps.className, className)}>
-            {children}
-          </button>
-        );
-      }}
+      render={(triggerProps, state) => (
+        <MorphingPanelTriggerElement triggerProps={triggerProps} open={state.open} render={render} className={className}>
+          {children}
+        </MorphingPanelTriggerElement>
+      )}
     />
   );
 }

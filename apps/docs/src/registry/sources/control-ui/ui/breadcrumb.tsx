@@ -1,10 +1,10 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 import type { ComponentProps } from "react";
 import type { RenderProp } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useAsChildRender } from "@/components/control-ui/lib/use-as-child-render";
 import { skinSlot } from "@/components/control-ui/skin";
 
 // Plain semantic breadcrumb (no positioner), themed via --muted-foreground/--foreground.
@@ -36,26 +36,22 @@ export function BreadcrumbItem({ className, ...props }: ComponentProps<"li">) {
 }
 
 export function BreadcrumbLink({
-  asChild,
   render,
   className,
   children,
   ...props
 }: ComponentProps<"a"> & {
   render?: RenderProp<ComponentProps<"a">>;
-  /** @deprecated Prefer `render` for typed composition. Kept as a compatibility bridge. */
-  asChild?: boolean;
 }) {
-  return useAsChildRender({
+  return useRender({
     defaultTagName: "a",
-    asChild,
     render,
-    children,
     props: {
       ...props,
       "data-control-ui": "breadcrumb",
       "data-slot": "link",
       className: cn("transition-colors hover:text-foreground", className),
+      children,
     },
   });
 }

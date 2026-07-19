@@ -153,12 +153,12 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/avatar.json",
   },
   badge: {
-    dependencies: ["class-variance-authority@^0.7.1"],
+    dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/badge.json",
   },
   breadcrumb: {
-    dependencies: ["lucide-react@^1.24.0"],
+    dependencies: ["@base-ui/react@^1.6.0", "lucide-react@^1.24.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/breadcrumb.json",
   },
@@ -294,7 +294,7 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/control-effects.json",
   },
   core: {
-    dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1", "clsx@^2.1.1", "tailwind-merge@^3.6.0"],
+    dependencies: ["class-variance-authority@^0.7.1", "clsx@^2.1.1", "tailwind-merge@^3.6.0"],
     registryDependencies: [],
     sourceManifestPath: "registry/control-ui/core.json",
   },
@@ -364,7 +364,7 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/input.json",
   },
   "input-group": {
-    dependencies: [],
+    dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/input-group.json",
   },
@@ -374,7 +374,7 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/input-otp.json",
   },
   item: {
-    dependencies: ["class-variance-authority@^0.7.1"],
+    dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1"],
     registryDependencies: ["core", "separator"],
     sourceManifestPath: "registry/control-ui/item.json",
   },
@@ -514,7 +514,7 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/sheet.json",
   },
   sidebar: {
-    dependencies: ["class-variance-authority@^0.7.1", "lucide-react@^1.24.0"],
+    dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1", "lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "scroll-area", "sheet", "tooltip", "track-highlight"],
     sourceManifestPath: "registry/control-ui/sidebar.json",
   },

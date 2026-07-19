@@ -1,11 +1,41 @@
 "use client";
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
-import { mergeProps } from "@base-ui/react/merge-props";
-import { cloneElement, isValidElement } from "react";
+import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps, ReactNode } from "react";
 import type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
+
+function CollapsibleTriggerElement({
+  triggerProps,
+  open,
+  render,
+  className,
+  children,
+}: {
+  triggerProps: ComponentProps<"button">;
+  open: boolean;
+  render: CollapsibleTriggerProps["render"];
+  className?: string;
+  children: ReactNode;
+}) {
+  const state = { open };
+
+  return useRender({
+    defaultTagName: "button",
+    render,
+    state,
+    props: {
+      ...triggerProps,
+      "data-control-ui": "collapsible",
+      "data-slot": "trigger",
+      "data-state": open ? "open" : "closed",
+      className: cn(triggerProps.className, skinSlot("collapsible", "trigger", { state: open ? "open" : "closed" }), className),
+      children,
+    },
+  });
+}
 
 // Emits skin-stable anatomy and state hooks so consumers never style on Base UI's private attributes.
 export function Collapsible({ className, ...props }: CollapsibleProps) {
@@ -26,39 +56,19 @@ export function Collapsible({ className, ...props }: CollapsibleProps) {
   );
 }
 
-export function CollapsibleTrigger({ asChild = false, className, children, ...props }: CollapsibleTriggerProps) {
+export function CollapsibleTrigger({ render, className, children, ...props }: CollapsibleTriggerProps) {
   return (
     <CollapsiblePrimitive.Trigger
       className={cn(
         "cursor-pointer outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:ring-2 focus-visible:ring-foreground/20",
         "[&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-standard)] [&[data-state=open]>svg]:rotate-90",
-        className,
       )}
       {...props}
-      render={(renderProps, state) => {
-        const stateAttrs = {
-          "data-control-ui": "collapsible",
-          "data-slot": "trigger",
-          "data-state": state.open ? "open" : "closed",
-        };
-        const skinClasses = skinSlot("collapsible", "trigger", { state: state.open ? "open" : "closed" });
-
-        // asChild: mergeProps chains handlers + concatenates className instead of overwriting consumer's own props.
-        if (asChild && isValidElement<{ className?: string }>(children)) {
-          const merged = mergeProps(renderProps, children.props);
-          return cloneElement(children, {
-            ...stateAttrs,
-            ...merged,
-            className: cn(merged.className, skinClasses),
-          });
-        }
-
-        return (
-          <button type="button" {...stateAttrs} {...renderProps} className={cn(renderProps.className, skinClasses)}>
-            {children}
-          </button>
-        );
-      }}
+      render={(triggerProps, state) => (
+        <CollapsibleTriggerElement triggerProps={triggerProps} open={state.open} render={render} className={className}>
+          {children}
+        </CollapsibleTriggerElement>
+      )}
     />
   );
 }

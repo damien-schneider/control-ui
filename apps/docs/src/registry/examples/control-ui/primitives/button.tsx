@@ -2,7 +2,7 @@
 
 import { ArrowUpRightIcon, CheckIcon, PlusIcon } from "lucide-react";
 import type { ReactNode } from "react";
-import { Button } from "@/components/control-ui/ui/button";
+import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -76,17 +76,11 @@ export function PrimitiveButtonExample() {
           With icon
         </Button>
       </Row>
-      <Row label="Render prop">
-        <Button
-          render={
-            <a href="#preview">
-              Render as link
-              <ArrowUpRightIcon className="size-3.5" />
-            </a>
-          }
-          nativeButton={false}
-          variant="ghost"
-        />
+      <Row label="Link">
+        <ButtonLink href="#preview" variant="ghost">
+          Render as link
+          <ArrowUpRightIcon className="size-3.5" />
+        </ButtonLink>
       </Row>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
+import { useRender } from "@base-ui/react/use-render";
 import { ChevronRightIcon } from "lucide-react";
 import type { CSSProperties, KeyboardEvent, MouseEvent, Ref } from "react";
 import { Children, createContext, isValidElement, lazy, Suspense, useContext, useRef, useState } from "react";
@@ -15,7 +16,6 @@ import type {
   TreeSelectionMode,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useAsChildRender } from "@/components/control-ui/lib/use-as-child-render";
 import { SELECTION_INDICATOR_BG_RESET, skinIndicator, skinSlot } from "@/components/control-ui/skin";
 
 // Lazy: highlight needs a JS geometry engine, skip download unless skin/props opt in. Decorative (aria-hidden), null fallback is fine.
@@ -464,17 +464,15 @@ export function TreeItem({ value, disabled = false, label, className, style, chi
 
 // ---- trigger (presentational row; the <li> above owns focus) -----------------------------------
 
-export function TreeItemTrigger({ className, children, onClick, render, asChild = false, ...props }: TreeItemTriggerProps) {
+export function TreeItemTrigger({ className, children, onClick, render, ...props }: TreeItemTriggerProps) {
   const tree = useTree();
   const item = useTreeItem();
   const expanded = item.expandable && tree.expanded.has(item.value);
   const selected = tree.selected.has(item.value);
 
-  return useAsChildRender({
+  return useRender({
     defaultTagName: "div",
-    asChild,
     render,
-    children,
     props: {
       ...props,
       "data-control-ui": "tree",
@@ -502,6 +500,7 @@ export function TreeItemTrigger({ className, children, onClick, render, asChild 
         tree.indicator === "slide" ? SELECTION_INDICATOR_BG_RESET : undefined,
         className,
       ),
+      children,
     },
   });
 }
@@ -549,7 +548,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
 
 // ---- label (accessible name + type-ahead target) -----------------------------------------------
 
-export function TreeItemLabel({ className, children, render, asChild = false, ref, ...props }: TreeItemLabelProps) {
+export function TreeItemLabel({ className, children, render, ref, ...props }: TreeItemLabelProps) {
   const tree = useTree();
   const item = useTreeItem();
   const labelRef = (node: HTMLSpanElement | null) => {
@@ -563,17 +562,16 @@ export function TreeItemLabel({ className, children, render, asChild = false, re
     };
   };
 
-  return useAsChildRender({
+  return useRender({
     defaultTagName: "span",
-    asChild,
     render,
-    children,
     props: {
       ...props,
       ref: labelRef,
       "data-control-ui": "tree",
       "data-slot": "item-label",
       className: cn("min-w-0 flex-1 truncate", skinSlot("tree", "item-label", {}), className),
+      children,
     },
   });
 }
