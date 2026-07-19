@@ -155,6 +155,7 @@
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
         "http://127.0.0.1:3000/r/dropdown-menu.json",
+        "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -1050,6 +1051,39 @@
         {
           "path": "src/registry/sources/control-ui/ui/dropdown-menu.tsx",
           "target": "@components/control-ui/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {}
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dropzone",
+      "type": "registry:ui",
+      "title": "Dropzone",
+      "description": "Composable file intake with validation, managed selection, and drag-activated overlays.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/item.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/hooks/use-dropzone.ts",
+          "target": "@components/control-ui/hooks/use-dropzone.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/lib/dropzone-validation.ts",
+          "target": "@components/control-ui/lib/dropzone-validation.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/dropzone.tsx",
+          "target": "@components/control-ui/ui/dropzone.tsx",
           "type": "registry:ui"
         }
       ],

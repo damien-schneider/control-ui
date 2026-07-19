@@ -25,6 +25,8 @@ import type {
   DrawerContentPadding,
   DrawerContentSurface,
   DropdownMenuTriggerVariant,
+  DropzoneOverlayScope,
+  DropzoneVisualState,
   DynamicNotificationState,
   DynamicNotificationVariant,
   NavigationMenuLinkVariant,
@@ -155,6 +157,18 @@ export type SkinSlotContexts = {
     root: { size: ControlSize };
     addon: Record<never, never>;
     input: Record<never, never>;
+  };
+  dropzone: {
+    root: { disabled: boolean; empty: boolean };
+    area: { state: DropzoneVisualState; disabled: boolean };
+    input: Record<never, never>;
+    trigger: { state: DropzoneVisualState; disabled: boolean };
+    overlay: { state: DropzoneVisualState; active: boolean; scope: DropzoneOverlayScope };
+    "file-list": { empty: boolean };
+    file: Record<never, never>;
+    "rejection-list": { empty: boolean };
+    rejection: Record<never, never>;
+    status: { state: DropzoneVisualState };
   };
   command: {
     root: Record<never, never>;

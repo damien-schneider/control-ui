@@ -64,6 +64,7 @@ export const registryMetadata = {
       "dockable-panel",
       "drawer",
       "dropdown-menu",
+      "dropzone",
       "dynamic-notification",
       "empty",
       "environment-variables",
@@ -317,6 +318,11 @@ export const registryMetadata = {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/dropdown-menu.json",
+  },
+  dropzone: {
+    dependencies: ["lucide-react@^1.24.0"],
+    registryDependencies: ["button", "core", "item"],
+    sourceManifestPath: "registry/control-ui/dropzone.json",
   },
   "dynamic-notification": {
     dependencies: [],

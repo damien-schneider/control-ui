@@ -44,6 +44,7 @@ export const generatedSkinContract = {
     "dockable-panel": ["dockable-panel"],
     drawer: ["drawer"],
     "dropdown-menu": ["dropdown-menu"],
+    dropzone: ["dropzone"],
     "dynamic-notification": ["dynamic-notification"],
     empty: ["empty"],
     "environment-variables": ["environment-variables"],
@@ -3443,6 +3444,156 @@ export const generatedSkinContract = {
         },
       },
       registryItems: ["dropdown-menu"],
+    },
+    dropzone: {
+      parts: {
+        root: {
+          context: {
+            disabled: "boolean",
+            empty: "boolean",
+          },
+          registryItems: ["dropzone"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-empty",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        area: {
+          context: {
+            disabled: "boolean",
+            state: "DropzoneVisualState",
+          },
+          registryItems: ["dropzone"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["accept", "idle", "processing", "reject", "unknown"],
+            },
+          ],
+        },
+        file: {
+          registryItems: ["dropzone"],
+          states: [],
+        },
+        "file-list": {
+          context: {
+            empty: "boolean",
+          },
+          registryItems: ["dropzone"],
+          states: [
+            {
+              attribute: "data-empty",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        input: {
+          registryItems: ["dropzone"],
+          states: [],
+        },
+        overlay: {
+          context: {
+            active: "boolean",
+            scope: "DropzoneOverlayScope",
+            state: "DropzoneVisualState",
+          },
+          registryItems: ["dropzone"],
+          states: [
+            {
+              attribute: "data-active",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-scope",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["global", "local"],
+            },
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["accept", "idle", "processing", "reject", "unknown"],
+            },
+          ],
+        },
+        rejection: {
+          registryItems: ["dropzone"],
+          states: [],
+        },
+        "rejection-list": {
+          context: {
+            empty: "boolean",
+          },
+          registryItems: ["dropzone"],
+          states: [
+            {
+              attribute: "data-empty",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        status: {
+          context: {
+            state: "DropzoneVisualState",
+          },
+          registryItems: ["dropzone"],
+          states: [
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["accept", "idle", "processing", "reject", "unknown"],
+            },
+          ],
+        },
+        trigger: {
+          context: {
+            disabled: "boolean",
+            state: "DropzoneVisualState",
+          },
+          registryItems: ["dropzone"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["accept", "idle", "processing", "reject", "unknown"],
+            },
+          ],
+        },
+      },
+      registryItems: ["dropzone"],
     },
     "dynamic-notification": {
       parts: {

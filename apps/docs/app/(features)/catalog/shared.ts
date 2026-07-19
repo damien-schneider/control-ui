@@ -50,6 +50,7 @@ export const registryKindIds = [
   "toast",
   "input",
   "input-group",
+  "dropzone",
   "phone-input",
   "command",
   "trigger-menu",

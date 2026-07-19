@@ -5,6 +5,11 @@ export type ChatDensity = "compact" | "comfortable";
 export type ChatState = "idle" | "streaming" | "pending" | "error";
 export type ChatTone = "neutral" | "success" | "warning" | "danger";
 
+export type DropzoneSelectionMode = "append" | "replace";
+export type DropzoneVisualState = "idle" | "accept" | "reject" | "unknown" | "processing";
+export type DropzoneOverlayScope = "local" | "global";
+export type DropzoneValueChangeReason = "drop" | "input" | "remove" | "clear";
+
 export type ChatMessageProps = ComponentProps<"article"> & {
   from: ChatRole;
   state?: ChatState;

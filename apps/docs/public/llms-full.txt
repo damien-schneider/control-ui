@@ -65,6 +65,7 @@
 - `toast` (Toast) — Transient notifications with a callable toast API and single Toaster mount. — `npx shadcn@latest add http://127.0.0.1:3000/r/toast.json`
 - `input` (Input) — Text field primitive sized and styled to match other controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/input.json`
 - `input-group` (Input group) — Joined input wrapper for addons, icons, and focus-within rings. — `npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json`
+- `dropzone` (Dropzone) **[beta]** — Composable file intake with validation, managed selection, and drag-activated overlays. — `npx shadcn@latest add http://127.0.0.1:3000/r/dropzone.json`
 - `phone-input` (Phone input) **[beta]** — International phone field with country search, E.164 values, and Zod validation helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json`
 - `command` (Command) — Command palette with token-matched dialog, input, and result rows. — `npx shadcn@latest add http://127.0.0.1:3000/r/command.json`
 - `kbd` (Kbd) — Keyboard shortcut chip and chord group. — `npx shadcn@latest add http://127.0.0.1:3000/r/kbd.json`

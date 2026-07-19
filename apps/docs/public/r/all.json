@@ -42,6 +42,7 @@
     "http://127.0.0.1:3000/r/dockable-panel.json",
     "http://127.0.0.1:3000/r/drawer.json",
     "http://127.0.0.1:3000/r/dropdown-menu.json",
+    "http://127.0.0.1:3000/r/dropzone.json",
     "http://127.0.0.1:3000/r/dynamic-notification.json",
     "http://127.0.0.1:3000/r/empty.json",
     "http://127.0.0.1:3000/r/environment-variables.json",

@@ -23,6 +23,8 @@ import type {
   DrawerContentPadding,
   DrawerContentSurface,
   DropdownMenuTriggerVariant,
+  DropzoneOverlayScope,
+  DropzoneVisualState,
   DynamicNotificationState,
   DynamicNotificationVariant,
   NavigationMenuLinkVariant,
@@ -92,6 +94,18 @@ export type EmittedStateContract = {
   "combobox:input:data-size": ControlSize;
   "dockable-panel:root:data-placement": DockablePanelPlacement;
   "dockable-panel:drop-zone:data-side": DockablePanelPlacement;
+  "dropzone:root:data-disabled": true;
+  "dropzone:root:data-empty": true;
+  "dropzone:area:data-disabled": true;
+  "dropzone:trigger:data-disabled": true;
+  "dropzone:overlay:data-active": true;
+  "dropzone:file-list:data-empty": true;
+  "dropzone:rejection-list:data-empty": true;
+  "dropzone:area:data-state": DropzoneVisualState;
+  "dropzone:overlay:data-scope": DropzoneOverlayScope;
+  "dropzone:overlay:data-state": DropzoneVisualState;
+  "dropzone:status:data-state": DropzoneVisualState;
+  "dropzone:trigger:data-state": DropzoneVisualState;
   "dynamic-notification:root:data-state": DynamicNotificationState;
   "dynamic-notification:root:data-variant": DynamicNotificationVariant;
   "dynamic-notification:island:data-state": DynamicNotificationState;

@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 153,
+    "count": 154,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -691,6 +691,15 @@
         "summary": "Joined input wrapper for addons, icons, and focus-within rings.",
         "href": "/primitives/input-group",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json"
+      },
+      {
+        "id": "dropzone",
+        "name": "Dropzone",
+        "kind": "Primitive",
+        "summary": "Composable file intake with validation, managed selection, and drag-activated overlays.",
+        "href": "/primitives/dropzone",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dropzone.json"
       },
       {
         "id": "phone-input",

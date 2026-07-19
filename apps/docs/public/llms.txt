@@ -68,6 +68,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Toast](http://127.0.0.1:3000/primitives/toast): Transient notifications with a callable toast API and single Toaster mount.
 - [Input](http://127.0.0.1:3000/primitives/input): Text field primitive sized and styled to match other controls.
 - [Input group](http://127.0.0.1:3000/primitives/input-group): Joined input wrapper for addons, icons, and focus-within rings.
+- [Dropzone](http://127.0.0.1:3000/primitives/dropzone): Composable file intake with validation, managed selection, and drag-activated overlays. Status: beta.
 - [Phone input](http://127.0.0.1:3000/primitives/phone-input): International phone field with country search, E.164 values, and Zod validation helpers. Status: beta.
 - [Command](http://127.0.0.1:3000/primitives/command): Command palette with token-matched dialog, input, and result rows.
 - [Kbd](http://127.0.0.1:3000/primitives/kbd): Keyboard shortcut chip and chord group.

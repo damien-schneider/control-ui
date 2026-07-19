@@ -534,6 +534,70 @@ export const primitiveEntries = [
     ),
   },
   {
+    id: "dropzone",
+    category: "forms",
+    kind: "Primitive",
+    status: "beta",
+    name: "Dropzone",
+    summary: "Composable file intake with validation, managed selection, and drag-activated overlays.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/dropzone.tsx",
+        example: sourceFile(
+          "Dropzone preview",
+          "src/registry/examples/control-ui/primitives/dropzone.tsx",
+          "example",
+        ),
+        source: sourceFile(
+          "Dropzone slot",
+          "src/registry/sources/control-ui/ui/dropzone.tsx",
+          "component",
+        ),
+        supportFiles: [
+          sourceFile("Dropzone hook", "src/registry/hooks/use-dropzone.ts", "hook"),
+          sourceFile(
+            "Dropzone file policy",
+            "src/registry/lib/dropzone-validation.ts",
+            "policy",
+          ),
+        ],
+        composition: [
+          {
+            title: "Visible and overlay intake",
+            description:
+              "The root owns selection and policy while Area alone defines the bounded native drop target.",
+            code: "Dropzone → Input + Area(Trigger/Overlay/content) + Lists + Status",
+          },
+        ],
+        registryKind: "dropzone",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/dropzone").then((mod) => ({
+        default: mod.PrimitiveDropzoneExample,
+      })),
+    ),
+    additionalPreviews: [
+      {
+        id: "invisible-overlay",
+        title: "Invisible overlay",
+        description:
+          "Document drag tracking reveals a bounded workspace overlay; only the Area accepts the drop.",
+        previewClassName: "flex min-h-[420px] items-center justify-center p-6",
+        source: sourceFile(
+          "Invisible overlay preview",
+          "src/registry/examples/control-ui/primitives/dropzone-overlay.tsx",
+          "example",
+        ),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/dropzone-overlay").then((mod) => ({
+            default: mod.PrimitiveDropzoneOverlayExample,
+          })),
+        ),
+      },
+    ],
+  },
+  {
     id: "phone-input",
     category: "forms",
     kind: "Primitive",
