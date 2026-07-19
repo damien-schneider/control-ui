@@ -687,6 +687,47 @@
     }
   }
 
+  :where([data-control-ui="tabs"][data-slot="list"][data-variant="browser"]) {
+    --tabs-browser-corner-double: calc(var(--tabs-trigger-radius-fit) + var(--tabs-trigger-radius-fit));
+    min-height: calc(var(--tabs-trigger-h) + var(--tabs-list-padding));
+    align-items: flex-end;
+    isolation: isolate;
+    border-radius: var(--tabs-list-radius) var(--tabs-list-radius) 0 0;
+    box-shadow: inset 0 -1px 0 var(--tabs-line-border-color);
+  }
+
+  :where([data-control-ui="tabs"][data-slot="list"][data-variant="browser"])
+    :where([data-control-ui="tabs"][data-slot="indicator"]) {
+    --tabs-browser-indicator-width: calc(var(--active-tab-width) + var(--tabs-browser-corner-double));
+    --tabs-browser-indicator-x: calc(var(--active-tab-left) - var(--tabs-trigger-radius-fit));
+    -webkit-mask:
+      radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) left var(--tabs-trigger-radius-fit) top /
+        var(--tabs-browser-corner-double) var(--tabs-browser-corner-double) no-repeat,
+      radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) right var(--tabs-trigger-radius-fit) top /
+        var(--tabs-browser-corner-double) var(--tabs-browser-corner-double) no-repeat,
+      linear-gradient(oklch(0 0 0) 0 0) center top /
+        calc(100% - var(--tabs-browser-corner-double) - var(--tabs-browser-corner-double)) var(--tabs-trigger-radius-fit) no-repeat,
+      linear-gradient(oklch(0 0 0) 0 0) center bottom / calc(100% - var(--tabs-browser-corner-double))
+        calc(100% - var(--tabs-trigger-radius-fit)) no-repeat,
+      radial-gradient(circle var(--tabs-trigger-radius-fit) at top left, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) left bottom /
+        var(--tabs-trigger-radius-fit) var(--tabs-trigger-radius-fit) no-repeat,
+      radial-gradient(circle var(--tabs-trigger-radius-fit) at top right, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) right bottom /
+        var(--tabs-trigger-radius-fit) var(--tabs-trigger-radius-fit) no-repeat;
+    mask:
+      radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) left var(--tabs-trigger-radius-fit) top /
+        var(--tabs-browser-corner-double) var(--tabs-browser-corner-double) no-repeat,
+      radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) right var(--tabs-trigger-radius-fit) top /
+        var(--tabs-browser-corner-double) var(--tabs-browser-corner-double) no-repeat,
+      linear-gradient(oklch(0 0 0) 0 0) center top /
+        calc(100% - var(--tabs-browser-corner-double) - var(--tabs-browser-corner-double)) var(--tabs-trigger-radius-fit) no-repeat,
+      linear-gradient(oklch(0 0 0) 0 0) center bottom / calc(100% - var(--tabs-browser-corner-double))
+        calc(100% - var(--tabs-trigger-radius-fit)) no-repeat,
+      radial-gradient(circle var(--tabs-trigger-radius-fit) at top left, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) left bottom /
+        var(--tabs-trigger-radius-fit) var(--tabs-trigger-radius-fit) no-repeat,
+      radial-gradient(circle var(--tabs-trigger-radius-fit) at top right, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) right bottom /
+        var(--tabs-trigger-radius-fit) var(--tabs-trigger-radius-fit) no-repeat;
+  }
+
   :where([data-tabs="line"]) :where([data-control-ui="tabs"][data-slot="list"]) {
     --tabs-list-padding: 0px;
     min-height: var(--tabs-trigger-h);

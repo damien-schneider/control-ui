@@ -66,7 +66,7 @@
 - `primitives` (Primitives) — Browse every Control UI primitive through the same live examples used in its documentation.
 - `button` (Button) — Accessible action button with size, variant, and semantic tone support. — `npx shadcn@latest add http://127.0.0.1:3000/r/button.json`
 - `collapsible` (Collapsible) — Accessible disclosure primitive with measured open and close motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/collapsible.json`
-- `tabs` (Tabs) — Segmented navigation with a stable active indicator. — `npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json`
+- `tabs` (Tabs) — Segmented and browser-style navigation with a stable active indicator. — `npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json`
 - `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support. — `npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json`
 - `scroll-area` (Scroll area) — Scroll container with overlay scrollbars and edge fades. — `npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json`
 - `table-of-contents` (Table of contents) — Sticky in-page navigation with scroll-spy range highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json`

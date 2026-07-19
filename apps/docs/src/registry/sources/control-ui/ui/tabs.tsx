@@ -91,7 +91,7 @@ function countTabs(children: ReactNode): number {
   }, 0);
 }
 
-export function TabsList({ size = "sm", className, children, style, ...props }: TabsListProps) {
+export function TabsList({ size = "sm", variant = "default", className, children, style, ...props }: TabsListProps) {
   const isSingle = countTabs(children) === 1;
   const controlStyle = {
     "--tabs-trigger-h": controlHeights[size],
@@ -103,21 +103,46 @@ export function TabsList({ size = "sm", className, children, style, ...props }: 
       data-control-ui="tabs"
       data-slot="list"
       data-size={size}
+      data-variant={variant}
       data-single={isSingle ? "true" : undefined}
-      className={cn("group/tabs-list", skinSlot("tabs", "list", { size }), className)}
+      className={cn(
+        "group/tabs-list",
+        skinSlot("tabs", "list", { size, variant }),
+        variant === "browser" && "gap-0 rounded-b-none p-0 px-(--tabs-trigger-radius-fit) pt-(--tabs-list-padding)",
+        className,
+      )}
       style={controlStyle}
       {...props}
     >
       {children}
       {isSingle ? null : (
-        <TabsPrimitive.Indicator data-control-ui="tabs" data-slot="indicator" className={cn(skinSlot("tabs", "indicator", {}))} />
+        <TabsPrimitive.Indicator
+          data-control-ui="tabs"
+          data-slot="indicator"
+          className={cn(
+            skinSlot("tabs", "indicator", {}),
+            variant === "browser" &&
+              "top-auto bottom-0 z-0 h-(--tabs-trigger-h) w-(--tabs-browser-indicator-width) transform-[translateX(var(--tabs-browser-indicator-x))] rounded-none",
+          )}
+        />
       )}
     </TabsPrimitive.List>
   );
 }
 
 export function TabsTab({ className, ...props }: TabsTabProps) {
-  return <TabsPrimitive.Tab data-control-ui="tabs" data-slot="tab" className={cn(skinSlot("tabs", "tab", {}), className)} {...props} />;
+  return (
+    <TabsPrimitive.Tab
+      data-control-ui="tabs"
+      data-slot="tab"
+      className={cn(
+        skinSlot("tabs", "tab", {}),
+        "group-data-[variant=browser]/tabs-list:rounded-t-[var(--tabs-trigger-radius-fit)] group-data-[variant=browser]/tabs-list:rounded-b-none",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
 export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {

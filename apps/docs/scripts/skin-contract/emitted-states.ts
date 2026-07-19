@@ -36,6 +36,7 @@ import type {
   StepperOrientation,
   StepperState,
   TableOfContentsVariant,
+  TabsListVariant,
   TaskStatus,
   ToolbarLinkVariant,
   ToolbarVariant,
@@ -155,6 +156,7 @@ export type EmittedStateContract = {
   "table-of-contents:item:data-level": number;
   "table-of-contents:item:data-variant": TableOfContentsVariant;
   "tabs:list:data-size": ControlSize;
+  "tabs:list:data-variant": TabsListVariant;
   "task-list:item:data-status": TaskStatus;
   "task-list:item-indicator:data-status": TaskStatus;
   "thread-rail:item:data-from": ChatRole;

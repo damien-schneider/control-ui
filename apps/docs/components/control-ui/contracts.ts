@@ -214,8 +214,11 @@ export type TabsProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange">
   onValueChange?: (value: string) => void;
 };
 
+export type TabsListVariant = "default" | "browser";
+
 export type TabsListProps = ComponentProps<"div"> & {
   size?: ControlSize;
+  variant?: TabsListVariant;
 };
 
 export type TabsTabProps = Omit<ComponentProps<"button">, "value"> & {

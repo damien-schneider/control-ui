@@ -3,7 +3,7 @@
   "name": "tabs",
   "type": "registry:ui",
   "title": "Tabs",
-  "description": "Segmented navigation with a stable active indicator.",
+  "description": "Segmented and browser-style navigation with a stable active indicator.",
   "dependencies": [
     "@base-ui/react@^1.6.0"
   ],

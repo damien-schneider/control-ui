@@ -62,7 +62,7 @@ export const primitiveEntries = [
     category: "navigation",
     kind: "Primitive",
     name: "Tabs",
-    summary: "Segmented navigation with a stable active indicator.",
+    summary: "Segmented and browser-style navigation with a stable active indicator.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/tabs",
     paths: {
       registry: {

@@ -22,12 +22,30 @@ export function PrimitiveTabsExample() {
         </TabsPanel>
       </Tabs>
 
-      <Tabs defaultValue="all">
-        <TabsList>
-          <TabsTab value="all">All</TabsTab>
-          <TabsTab value="mine">Mine</TabsTab>
-          <TabsTab value="archived">Archived</TabsTab>
+      <Tabs defaultValue="tabs.tsx">
+        <TabsList variant="browser" className="w-full">
+          <TabsTab value="index.tsx">index.tsx</TabsTab>
+          <TabsTab value="tabs.tsx">tabs.tsx</TabsTab>
+          <TabsTab value="theme.css">theme.css</TabsTab>
         </TabsList>
+        <TabsPanel
+          value="index.tsx"
+          className="min-h-20 rounded-b-[var(--radius-lg)] border border-t-0 bg-background p-4 text-sm text-muted-foreground"
+        >
+          Application entry point.
+        </TabsPanel>
+        <TabsPanel
+          value="tabs.tsx"
+          className="min-h-20 rounded-b-[var(--radius-lg)] border border-t-0 bg-background p-4 text-sm text-muted-foreground"
+        >
+          Browser-style tabs with connected corners.
+        </TabsPanel>
+        <TabsPanel
+          value="theme.css"
+          className="min-h-20 rounded-b-[var(--radius-lg)] border border-t-0 bg-background p-4 text-sm text-muted-foreground"
+        >
+          Token-driven tab surfaces.
+        </TabsPanel>
       </Tabs>
     </div>
   );

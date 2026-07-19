@@ -534,7 +534,7 @@
         "id": "tabs",
         "name": "Tabs",
         "kind": "Primitive",
-        "summary": "Segmented navigation with a stable active indicator.",
+        "summary": "Segmented and browser-style navigation with a stable active indicator.",
         "href": "/primitives/tabs",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json"
       },

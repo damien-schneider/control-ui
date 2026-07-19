@@ -39,6 +39,7 @@ import type {
   StepperOrientation,
   StepperState,
   TableOfContentsVariant,
+  TabsListVariant,
   TaskStatus,
   ToolbarLinkVariant,
   ToolbarVariant,
@@ -266,7 +267,7 @@ export type SkinSlotContexts = {
   };
   tabs: {
     root: Record<never, never>;
-    list: { size: ControlSize };
+    list: { size: ControlSize; variant: TabsListVariant };
     indicator: Record<never, never>;
     tab: Record<never, never>;
     panel: Record<never, never>;

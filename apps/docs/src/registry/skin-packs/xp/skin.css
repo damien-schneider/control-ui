@@ -100,6 +100,10 @@
     padding: 0;
   }
 
+  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="list"][data-variant="browser"]) {
+    --tabs-indicator-bg: var(--background);
+  }
+
   [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"]) {
     /* height/cursor restated (baseline values) so the single-tab reset keeps the full Luna box */
     height: var(--tabs-trigger-h);

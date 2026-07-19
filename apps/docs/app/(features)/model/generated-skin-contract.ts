@@ -7259,6 +7259,7 @@ export const generatedSkinContract = {
         list: {
           context: {
             size: "ControlSize",
+            variant: "TabsListVariant",
           },
           registryItems: ["tabs"],
           states: [
@@ -7285,6 +7286,12 @@ export const generatedSkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["lg", "md", "sm", "xs"],
+            },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["browser", "default"],
             },
           ],
         },

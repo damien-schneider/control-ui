@@ -9184,7 +9184,8 @@
         },
         "list": {
           "context": {
-            "size": "ControlSize"
+            "size": "ControlSize",
+            "variant": "TabsListVariant"
           },
           "registryItems": [
             "tabs"
@@ -9226,6 +9227,15 @@
                 "md",
                 "sm",
                 "xs"
+              ]
+            },
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "browser",
+                "default"
               ]
             }
           ]
