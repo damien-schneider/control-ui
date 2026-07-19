@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-import { ChatInput, ChatInputShell, ChatInputSubmit, ChatInputToolbar } from "@/components/control-ui/chat-input";
-import { ChatInputEditor } from "@/components/control-ui/chat-input-editor";
-import { mentionExtension } from "@/components/control-ui/chat-input-editor/extensions/mention";
-import type { ChatInputSubmitPayload, MentionItem, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
+import { ChatComposer, ChatComposerShell, ChatComposerSubmit, ChatComposerToolbar } from "@/components/control-ui/chat-composer";
+import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor";
+import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
+import type { ChatComposerSubmitPayload, MentionItem, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
 
-// Preview for `serializeDoc`: editor pushes serialized plain-text to ChatInput value live; pressing
+// Preview for `serializeDoc`: editor pushes serialized plain-text to ChatComposer value live; pressing
 // Send surfaces the full payload (text + structured `mentions[]` from the mention extension).
 
 const mentionSources: TriggerMenuItemData[] = [
@@ -23,22 +23,22 @@ export function SerializeExample() {
   const [submitted, setSubmitted] = useState<{ text: string; mentions: MentionItem[] } | null>(null);
   const extensions = [mentionExtension({ triggers, side: "top" })];
 
-  function handleSubmit({ value: text, mentions, clear }: ChatInputSubmitPayload) {
+  function handleSubmit({ value: text, mentions, clear }: ChatComposerSubmitPayload) {
     setSubmitted({ text, mentions: mentions ?? [] });
     clear();
   }
 
   return (
     <div className="grid gap-4 p-5">
-      <ChatInput value={value} onValueChange={setValue} onSubmit={handleSubmit}>
-        <ChatInputShell>
-          <ChatInputEditor placeholder="Type a message, then @mention someone…" extensions={extensions} />
-          <ChatInputToolbar>
+      <ChatComposer value={value} onValueChange={setValue} onSubmit={handleSubmit}>
+        <ChatComposerShell>
+          <ChatComposerEditor placeholder="Type a message, then @mention someone…" extensions={extensions} />
+          <ChatComposerToolbar>
             <span className="text-micro text-muted-foreground">Rich editor doc → plain text</span>
-            <ChatInputSubmit>Serialize</ChatInputSubmit>
-          </ChatInputToolbar>
-        </ChatInputShell>
-      </ChatInput>
+            <ChatComposerSubmit>Serialize</ChatComposerSubmit>
+          </ChatComposerToolbar>
+        </ChatComposerShell>
+      </ChatComposer>
 
       <div className="grid gap-3 sm:grid-cols-2">
         <figure className="grid gap-1">

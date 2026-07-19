@@ -4,6 +4,7 @@ import type { componentEntries } from "@/app/(features)/catalog/components";
 import type { extensionEntries } from "@/app/(features)/catalog/extensions";
 import type { guideEntries } from "@/app/(features)/catalog/guides";
 import type { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
+import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import type { PrimitiveCategoryId, primitiveEntries } from "@/app/(features)/catalog/primitives";
 import type { CatalogStatus, integrationIds, registryKindIds } from "@/app/(features)/catalog/shared";
 import type { CatalogSkinKind, skinMetas } from "@/app/(features)/catalog/skins";
@@ -20,7 +21,7 @@ export type PageId = GuideId | ComponentId | BlockId | PrimitiveId | HookId | Ut
 // SkinMetaId = the skin axis exposed by the theme editor and skin docs.
 export type SkinMetaId = (typeof skinMetas)[number]["id"];
 // Full set of pages docs shell can render: catalog pages + a page per skin (/skins/<id>) + skins overview (/skins); skin pages ride the same shell as everything else.
-export type ActivePageId = PageId | SkinMetaId | "skins";
+export type ActivePageId = PageId | SkinMetaId | CatalogOverviewId | "skins";
 export type IntegrationId = (typeof integrationIds)[number];
 export type RegistryKindId = (typeof registryKindIds)[number];
 // Maturity of an installable item; `undefined` = stable (see catalogStatusIds).

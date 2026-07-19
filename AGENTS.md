@@ -36,9 +36,10 @@
 ## Catalog
 
 ### Agents (installable components)
+- `ai` (AI components) — Explore composable surfaces for messages, input, activity, media, and agent workflows.
 - `chat-message` (ChatMessage) — Composable chat message with typed role, density, and tone state. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
-- `chat-input` (ChatInput) — Prompt composer with controlled text, submit state, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-input.json`
-- `chat-input-attachment` (ChatInputAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-input-attachment.json`
+- `chat-composer` (ChatComposer) — Prompt composer with controlled text, submit state, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
+- `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json`
 - `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json`
 - `task-list` (TaskList) — Floating agent task progress pill above the composer that expands into the full task list. — `npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json`
 - `audio-recorder` (AudioRecorder) — Voice recorder with realtime waveform, duration, cancel, and submit controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/audio-recorder.json`
@@ -51,7 +52,7 @@
 - `inline-attachment` (InlineAttachment) — Inline file and media previews for chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json`
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`
 - `code-block-editor` (CodeBlockEditor) — Editable code surface with Shiki highlighting and token-based light/dark themes. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-block-editor.json`
-- `chat-scene` (ChatScene) — Layout primitives for full chat threads, turns, and thoughts. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-scene.json`
+- `chat-layout` (ChatLayout) — Layout primitives for full chat threads, turns, and thoughts. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
 
 ### Blocks (pre-composed recipes)
@@ -62,6 +63,7 @@
 - `file-explorer` (File explorer) **[beta]** — Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json`
 
 ### Primitives
+- `primitives` (Primitives) — Browse every Control UI primitive through the same live examples used in its documentation.
 - `button` (Button) — Accessible action button with size, variant, and semantic tone support. — `npx shadcn@latest add http://127.0.0.1:3000/r/button.json`
 - `collapsible` (Collapsible) — Accessible disclosure primitive with measured open and close motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/collapsible.json`
 - `tabs` (Tabs) — Segmented navigation with a stable active indicator. — `npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json`
@@ -72,7 +74,7 @@
 - `skeleton` (Skeleton) **[beta]** — Loading placeholder with a token-driven shimmer. — `npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json`
 - `slider` (Slider) — Single-value range control with branded and plain treatments. — `npx shadcn@latest add http://127.0.0.1:3000/r/slider.json`
 - `select` (Select) — Single-choice picker with a token-matched trigger and floating list. — `npx shadcn@latest add http://127.0.0.1:3000/r/select.json`
-- `menu` (Menu) — Dropdown menu for actions, resources, labels, separators, and submenus. — `npx shadcn@latest add http://127.0.0.1:3000/r/menu.json`
+- `dropdown-menu` (DropdownMenu) — Dropdown menu for actions, resources, labels, separators, and submenus. — `npx shadcn@latest add http://127.0.0.1:3000/r/dropdown-menu.json`
 - `context-menu` (Context Menu) — Pointer-positioned right-click and long-press menu with nested actions and selection controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/context-menu.json`
 - `toggle` (Toggle) — Pressed-state button and toggle group built on the Button surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/toggle.json`
 - `switch` (Switch) — On/off control with token-driven track, thumb, and press motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/switch.json`
@@ -90,7 +92,7 @@
 - `checkbox` (Checkbox) — Single checkbox control with checked and indeterminate states. — `npx shadcn@latest add http://127.0.0.1:3000/r/checkbox.json`
 - `radio-group` (Radio group) — Single-choice radio set for plans, filters, and option lists. — `npx shadcn@latest add http://127.0.0.1:3000/r/radio-group.json`
 - `accordion` (Accordion) — Stacked disclosure rows with measured panel animation. — `npx shadcn@latest add http://127.0.0.1:3000/r/accordion.json`
-- `avatar` (Avatar) — Profile image with initials fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json`
+- `avatar` (Avatar) — Profile image with initials fallback and composable overlapping groups. — `npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json`
 - `progress` (Progress) — Determinate task progress with optional label and value rows. — `npx shadcn@latest add http://127.0.0.1:3000/r/progress.json`
 - `hover-card` (Hover card) — Hover or focus preview panel for profiles, links, and contextual details. — `npx shadcn@latest add http://127.0.0.1:3000/r/hover-card.json`
 - `alert-dialog` (Alert dialog) — Modal confirmation dialog for destructive or blocking decisions. — `npx shadcn@latest add http://127.0.0.1:3000/r/alert-dialog.json`
@@ -118,7 +120,7 @@
 - `autocomplete` (Autocomplete) — Free-text input with search-as-you-type suggestions. — `npx shadcn@latest add http://127.0.0.1:3000/r/autocomplete.json`
 - `number-field` (Number Field) — Numeric input with stepper buttons and optional drag-to-change behavior. — `npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json`
 - `trigger-menu` (Trigger Menu) **[beta]** — Caret-anchored command or mention menu for text editors. — `npx shadcn@latest add http://127.0.0.1:3000/r/trigger-menu.json`
-- `toolbar` (Toolbar) **[beta]** — Roving-focus toolbar for editor controls and compact actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json`
+- `toolbar` (Toolbar) — Roving-focus toolbar for editor controls and compact actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json`
 - `dockable-panel` (Dockable Panel) **[experimental]** — Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json`
 - `morphing-panel` (Morphing Panel) **[experimental]** — Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. — `npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json`
 - `color-picker` (Color Picker) **[beta]** — Color input with picker UI, formats, presets, and contrast helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json`
@@ -133,7 +135,7 @@
 ### Extensions
 - `control-effects` (ControlEffects) — CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included. — `npx shadcn@latest add http://127.0.0.1:3000/r/control-effects.json`
 - `view-transition` (viewTransition) — Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/view-transition.json`
-- `send-aurora` (SendAurora) — Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor. — `npx shadcn@latest add http://127.0.0.1:3000/r/send-aurora.json`
+- `send-aurora` (SendAurora) — Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor. — `npx shadcn@latest add http://127.0.0.1:3000/r/send-aurora.json`
 
 ### Skins
 - `skins` (Skinning Control UI) — Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
@@ -143,12 +145,12 @@
 - `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json`
 - `flat` (Flat) — Neutral reset skin with square corners, no shadows, and instant motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json`
 - `modern-apple` (Modern Apple) — Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json`
-- `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json`
+- `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json`
 - `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json`
 
 ### Hooks
 - `use-chat-message` (useChatMessage) — Typed role, density, and tone state for ChatMessage.
-- `use-chat-input` (useChatInput) — Controlled composer text and submit state.
+- `use-chat-composer` (useChatComposer) — Controlled composer text and submit state.
 - `use-user-ask` (useUserAsk) — Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
 - `use-audio-recorder` (useAudioRecorder) — Browser microphone recording state, waveform levels, and Blob completion.
 - `use-environment-variables` (useEnvironmentVariables) — Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.
@@ -166,7 +168,8 @@
 - `shadcn-compatibility` (shadcn compatibility) — shadcn registry, token, and ownership conventions without writing to components/ui.
 - `architecture` (Architecture) — Runtime ownership, skin layering, customization paths, and registry derivation.
 - `agent-surface` (Agent surface) — Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
-- `theme-ai-builder` (Theme AI builder) — Turn a visual brief into a validated, previewable Control UI theme without sending images or credentials to this site.
+- `theme-accessibility` (Theme accessibility) — Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
+- `theme-ai-builder` (Theme AI builder) — Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 
 ## Practice rules (how to build well)
 

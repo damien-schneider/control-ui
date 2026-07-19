@@ -20,7 +20,7 @@ const recorderContentMotion =
 const recorderControlMotion =
   "invisible translate-x-1 scale-95 opacity-0 blur-xs transition-[opacity,filter,translate,scale,visibility] transition-discrete duration-[var(--duration-base)] ease-[var(--ease-emphasized)] disabled:opacity-0 data-[visible=true]:visible data-[visible=true]:translate-x-0 data-[visible=true]:scale-100 data-[visible=true]:opacity-100 data-[visible=true]:blur-none";
 
-// Public compound context (same seam as useChatInputContext): lets a call site stand its own part inside
+// Public compound context (same seam as useChatComposerContext): lets a call site stand its own part inside
 // <AudioRecorder> — e.g. bind another AudioVisualizer version per instance where <AudioRecorderVisualizer />
 // would sit. App-wide preference stays the one-line import swap in this owned file.
 export function useAudioRecorderContext() {

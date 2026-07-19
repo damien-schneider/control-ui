@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-layout",
+  "type": "registry:component",
+  "title": "ChatLayout",
+  "description": "Layout primitives for full chat threads, turns, and thoughts.",
+  "dependencies": [],
+  "registryDependencies": [
+    "activity",
+    "core",
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/chat-layout.tsx",
+      "target": "@components/control-ui/chat-layout.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/chat-layout.json"
+  }
+}

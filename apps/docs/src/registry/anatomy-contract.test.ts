@@ -34,7 +34,10 @@ function literalObjectProperty(node: any, name: string): string | undefined {
     if (candidate.type !== "ObjectProperty") return false;
     return (candidate.key.type === "StringLiteral" ? candidate.key.value : candidate.key.name) === name;
   });
-  return property?.value?.type === "StringLiteral" ? property.value.value : undefined;
+  const value = property?.value;
+  if (value?.type === "StringLiteral") return value.value;
+  if (value?.type === "LogicalExpression" && value.operator === "??" && value.right.type === "StringLiteral") return value.right.value;
+  return undefined;
 }
 
 function visit(node: any, callback: (node: any) => void): void {

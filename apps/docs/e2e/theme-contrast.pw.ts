@@ -2,33 +2,10 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "@playwright/test";
+import { BADGE_COLORS } from "../components/control-ui/contracts";
 
 const SKINS = ["refined", "xp", "flat", "rig", "liquid-metal", "modern-apple", "cuicui", "linear"];
 const MODES = ["light", "dark"] as const;
-const BADGE_COLORS = [
-  "neutral",
-  "slate",
-  "gray",
-  "zinc",
-  "stone",
-  "red",
-  "orange",
-  "amber",
-  "yellow",
-  "lime",
-  "green",
-  "emerald",
-  "teal",
-  "cyan",
-  "sky",
-  "blue",
-  "indigo",
-  "violet",
-  "purple",
-  "fuchsia",
-  "pink",
-  "rose",
-];
 const DOCS_ROOT = fileURLToPath(new URL("../", import.meta.url));
 const TAILWIND_PALETTE = readFileSync(path.join(DOCS_ROOT, "node_modules/tailwindcss/theme.css"), "utf8").replace(
   "@theme default",

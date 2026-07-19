@@ -1,12 +1,28 @@
 {
   "type": "index",
   "data": {
-    "count": 150,
+    "count": 153,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
     },
     "items": [
+      {
+        "id": "primitives",
+        "label": "Library",
+        "name": "Primitives",
+        "summary": "Browse every Control UI primitive through the same live examples used in its documentation.",
+        "kind": "Primitive",
+        "href": "/primitives"
+      },
+      {
+        "id": "ai",
+        "label": "Library",
+        "name": "AI components",
+        "summary": "Explore composable surfaces for messages, input, activity, media, and agent workflows.",
+        "kind": "Agent",
+        "href": "/ai"
+      },
       {
         "id": "overview",
         "name": "Overview",
@@ -43,10 +59,17 @@
         "href": "/agent-surface"
       },
       {
+        "id": "theme-accessibility",
+        "name": "Theme accessibility",
+        "kind": "Guide",
+        "summary": "Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.",
+        "href": "/theme-accessibility"
+      },
+      {
         "id": "theme-ai-builder",
         "name": "Theme AI builder",
         "kind": "Guide",
-        "summary": "Turn a visual brief into a validated, previewable Control UI theme without sending images or credentials to this site.",
+        "summary": "Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.",
         "href": "/theme-ai-builder"
       },
       {
@@ -108,7 +131,7 @@
         "id": "cuicui",
         "name": "Cuicui",
         "kind": "Skin",
-        "summary": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor).",
+        "summary": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
         "href": "/skins/cuicui",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json"
       },
@@ -360,20 +383,20 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
       },
       {
-        "id": "chat-input",
-        "name": "ChatInput",
+        "id": "chat-composer",
+        "name": "ChatComposer",
         "kind": "Agent",
         "summary": "Prompt composer with controlled text, submit state, and trigger-menu support.",
-        "href": "/ai/chat-input",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-input.json"
+        "href": "/ai/chat-composer",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json"
       },
       {
-        "id": "chat-input-attachment",
-        "name": "ChatInputAttachment",
+        "id": "chat-composer-attachment",
+        "name": "ChatComposerAttachment",
         "kind": "Agent",
         "summary": "Composer attachment rail with file previews, upload progress, and removal.",
-        "href": "/ai/chat-input-attachment",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-input-attachment.json"
+        "href": "/ai/chat-composer-attachment",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json"
       },
       {
         "id": "user-ask",
@@ -476,12 +499,12 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code-block-editor.json"
       },
       {
-        "id": "chat-scene",
-        "name": "ChatScene",
+        "id": "chat-layout",
+        "name": "ChatLayout",
         "kind": "Agent",
         "summary": "Layout primitives for full chat threads, turns, and thoughts.",
-        "href": "/ai/chat-scene",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-scene.json"
+        "href": "/ai/chat-layout",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json"
       },
       {
         "id": "thread-rail",
@@ -574,12 +597,12 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/select.json"
       },
       {
-        "id": "menu",
-        "name": "Menu",
+        "id": "dropdown-menu",
+        "name": "DropdownMenu",
         "kind": "Primitive",
         "summary": "Dropdown menu for actions, resources, labels, separators, and submenus.",
-        "href": "/primitives/menu",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/menu.json"
+        "href": "/primitives/dropdown-menu",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dropdown-menu.json"
       },
       {
         "id": "context-menu",
@@ -722,7 +745,7 @@
         "id": "avatar",
         "name": "Avatar",
         "kind": "Primitive",
-        "summary": "Profile image with initials fallback.",
+        "summary": "Profile image with initials fallback and composable overlapping groups.",
         "href": "/primitives/avatar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/avatar.json"
       },
@@ -956,7 +979,6 @@
         "kind": "Primitive",
         "summary": "Roving-focus toolbar for editor controls and compact actions.",
         "href": "/primitives/toolbar",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json"
       },
       {
@@ -1053,11 +1075,11 @@
         "href": "/hooks/use-chat-message"
       },
       {
-        "id": "use-chat-input",
-        "name": "useChatInput",
+        "id": "use-chat-composer",
+        "name": "useChatComposer",
         "kind": "Hook",
         "summary": "Controlled composer text and submit state.",
-        "href": "/hooks/use-chat-input"
+        "href": "/hooks/use-chat-composer"
       },
       {
         "id": "use-user-ask",
@@ -1135,7 +1157,7 @@
         "id": "send-aurora",
         "name": "SendAurora",
         "kind": "Extension",
-        "summary": "Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.",
+        "summary": "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
         "href": "/extensions/send-aurora",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/send-aurora.json"
       },

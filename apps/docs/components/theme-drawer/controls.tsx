@@ -215,8 +215,7 @@ export function TokenControl(props: TokenFieldProps) {
   return <TextTokenField {...props} />;
 }
 
-// Compact swatch-only picker for the badge palette rows (22 hues × 4 tokens would drown the list
-// as full rows). The title carries the token name + description; the dot marks an override.
+// Keep each color family's four badge tokens compact; full token rows would drown the palette.
 export function MiniColorSwatch({ token, value, overridden, onChange }: Omit<TokenFieldProps, "labelMode" | "onReset">) {
   const hex = value ? cssColorToHexDom(value) : null;
   return (

@@ -255,27 +255,27 @@ export const primitiveEntries = [
     ),
   },
   {
-    id: "menu",
+    id: "dropdown-menu",
     category: "actions",
     kind: "Primitive",
-    name: "Menu",
+    name: "DropdownMenu",
     summary: "Dropdown menu for actions, resources, labels, separators, and submenus.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/dropdown-menu",
     paths: {
       registry: {
-        target: "components/control-ui/ui/menu.tsx",
-        example: sourceFile("Menu preview", "src/registry/examples/control-ui/primitives/menu.tsx", "example"),
-        source: sourceFile("Base UI Menu slot", "src/registry/sources/control-ui/ui/menu.tsx", "component"),
+        target: "components/control-ui/ui/dropdown-menu.tsx",
+        example: sourceFile("Dropdown menu preview", "src/registry/examples/control-ui/primitives/dropdown-menu.tsx", "example"),
+        source: sourceFile("Base UI Dropdown Menu slot", "src/registry/sources/control-ui/ui/dropdown-menu.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
           surfaceVariantsFile,
           sourceFile("Effect utilities", "src/registry/sources/control-ui/effects.css", "effect-css"),
         ],
-        registryKind: "menu",
+        registryKind: "dropdown-menu",
       },
     },
     preview: preview(() =>
-      import("@/src/registry/examples/control-ui/primitives/menu").then((mod) => ({ default: mod.PrimitiveMenuExample })),
+      import("@/src/registry/examples/control-ui/primitives/dropdown-menu").then((mod) => ({ default: mod.PrimitiveDropdownMenuExample })),
     ),
   },
   {
@@ -676,7 +676,7 @@ export const primitiveEntries = [
     category: "display",
     kind: "Primitive",
     name: "Avatar",
-    summary: "Profile image with initials fallback.",
+    summary: "Profile image with initials fallback and composable overlapping groups.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/avatar",
     paths: {
       registry: {
@@ -1310,7 +1310,6 @@ export const primitiveEntries = [
     id: "toolbar",
     category: "actions",
     kind: "Primitive",
-    status: "beta",
     name: "Toolbar",
     summary: "Roving-focus toolbar for editor controls and compact actions.",
     paths: {
@@ -1328,7 +1327,7 @@ export const primitiveEntries = [
       {
         id: "floating-editor",
         title: "Floating editor toolbar",
-        description: "The toolbar remains placement-agnostic while composing active tools, tooltips, and a nested Menu trigger.",
+        description: "The toolbar remains placement-agnostic while composing active tools, tooltips, and a nested DropdownMenu trigger.",
         source: sourceFile("Floating toolbar preview", "src/registry/examples/control-ui/primitives/toolbar-floating.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/toolbar-floating").then((mod) => ({

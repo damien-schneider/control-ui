@@ -23,7 +23,7 @@ describe("skin contract generation", () => {
     expect(contract.scopes["code-diff"].registryItems).toContain("code-diff");
     expect(contract.scopes.button.parts.root.context?.variant).toContain("ButtonVariant");
     expect(contract.scopes.button.parts.root.registryItems).toEqual(["button"]);
-    expect(contract.scopes.button.parts.content.registryItems).toEqual(["button", "menu", "select"]);
+    expect(contract.scopes.button.parts.content.registryItems).toEqual(["button", "dropdown-menu", "select"]);
     expect(contract.scopes.button.parts.root.states).toContainEqual({
       attribute: "data-variant",
       source: "control-ui",
@@ -31,16 +31,16 @@ describe("skin contract generation", () => {
       values: ["ghost", "quiet", "solid", "surface"],
     });
     expect(contract.scopes.tree.parts.root.states.some((state) => state.attribute === "data-selection-mode")).toBe(false);
-    expect(contract.scopes.menu.parts.item.states).toContainEqual({
+    expect(contract.scopes["dropdown-menu"].parts.item.states).toContainEqual({
       attribute: "data-highlighted",
       source: "external",
       valueKind: "presence",
       values: [],
     });
     expect(contract.paints.skeleton.shimmer).toEqual({ context: {} });
-    expect(contract.adornments["chat-input"]["send-layer"].context.sendCount).toBe("number");
+    expect(contract.adornments["chat-composer"]["send-layer"].context.sendCount).toBe("number");
     expect(contract.scopes.skeleton?.parts.paint).toBeUndefined();
-    expect(contract.semanticFamilies.surfaces.floating).toContainEqual({ scope: "menu", part: "content" });
+    expect(contract.semanticFamilies.surfaces.floating).toContainEqual({ scope: "dropdown-menu", part: "content" });
     expect(contract.semanticFamilies.surfaces.modal).toContainEqual({ scope: "dialog", part: "content" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "code-diff", part: "root" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "activity", part: "root" });
@@ -102,7 +102,7 @@ describe("skin contract generation", () => {
       valueKind: "open",
       values: [],
     });
-    expect(stateAt(contract, "chat-input", "root", "data-state")).toEqual({
+    expect(stateAt(contract, "chat-composer", "root", "data-state")).toEqual({
       attribute: "data-state",
       source: "control-ui",
       valueKind: "enum",

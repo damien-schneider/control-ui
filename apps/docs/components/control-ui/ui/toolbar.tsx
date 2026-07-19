@@ -15,7 +15,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
 // Base UI Toolbar = roving-tabindex focus group (arrow keys between controls, one Tab stop for strip). The root radius derives from the inset control radius + toolbar padding in theme.css.
-// Button/Link forward Base UI's `render` prop so a consumer composes Menu.Trigger/Tooltip.Trigger/control-ui Button and Base UI merges roving-focus wiring onto it.
+// Button/Link forward Base UI's `render` prop so a consumer composes DropdownMenu.Trigger/Tooltip.Trigger/control-ui Button and Base UI merges roving-focus wiring onto it.
 // Separator mirrors ButtonGroupSeparator.
 
 export function Toolbar({ orientation = "horizontal", variant = "default", className, ...props }: ToolbarProps) {

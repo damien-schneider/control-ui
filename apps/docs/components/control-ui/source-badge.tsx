@@ -47,7 +47,7 @@ export function SourceBadge({ faviconSrc, href, children, className, rel, target
           target={target}
           rel={resolvedRel}
           className={cn(
-            "h-6 gap-1.5 rounded-full bg-background px-1.5 py-0 pr-2 font-normal text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+            "h-6 gap-1.5 bg-background px-1.5 py-0 pr-2 font-normal text-muted-foreground hover:bg-muted/60 hover:text-foreground",
             skinSlot("source-badge", "root", {}),
             className,
           )}
@@ -58,10 +58,10 @@ export function SourceBadge({ faviconSrc, href, children, className, rel, target
       <Avatar
         data-control-ui="source-badge"
         data-slot="favicon"
-        className={cn("size-3.5 rounded-[3px] bg-muted", skinSlot("source-badge", "favicon", {}))}
+        className={cn("size-3.5 rounded-sm bg-muted", skinSlot("source-badge", "favicon", {}))}
       >
         {resolvedFaviconSrc ? <AvatarImage src={resolvedFaviconSrc} alt="" /> : null}
-        <AvatarFallback className="rounded-[3px] bg-muted">
+        <AvatarFallback className="rounded-[inherit] bg-muted">
           <Globe aria-hidden="true" className="size-2.5" />
         </AvatarFallback>
       </Avatar>

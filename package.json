@@ -17,6 +17,7 @@
     "build": "turbo run build",
     "sync": "turbo run sync",
     "validate": "turbo run validate",
+    "theme:a11y": "bun apps/docs/scripts/check-theme-accessibility.ts",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
     "format": "biome format --write .",

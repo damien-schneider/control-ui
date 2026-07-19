@@ -44,10 +44,10 @@ export const registryMetadata = {
       "calendar",
       "card",
       "chat-block",
-      "chat-input",
-      "chat-input-attachment",
+      "chat-composer",
+      "chat-composer-attachment",
+      "chat-layout",
       "chat-message",
-      "chat-scene",
       "checkbox",
       "checkbox-group",
       "code",
@@ -63,6 +63,7 @@ export const registryMetadata = {
       "dialog",
       "dockable-panel",
       "drawer",
+      "dropdown-menu",
       "dynamic-notification",
       "empty",
       "environment-variables",
@@ -79,7 +80,6 @@ export const registryMetadata = {
       "kbd",
       "markdown",
       "markdown-block",
-      "menu",
       "menubar",
       "meter",
       "morphing-panel",
@@ -187,10 +187,10 @@ export const registryMetadata = {
     registryDependencies: [
       "action-bar",
       "activity",
-      "chat-input",
-      "chat-input-attachment",
+      "chat-composer",
+      "chat-composer-attachment",
+      "chat-layout",
       "chat-message",
-      "chat-scene",
       "code-block-editor",
       "core",
       "inline-attachment",
@@ -203,10 +203,10 @@ export const registryMetadata = {
   },
   "chat-block": {
     dependencies: [],
-    registryDependencies: ["chat-scene", "core"],
+    registryDependencies: ["chat-layout", "core"],
     sourceManifestPath: "registry/control-ui/chat-block.json",
   },
-  "chat-input": {
+  "chat-composer": {
     dependencies: [
       "prosemirror-commands@^1.7.1",
       "prosemirror-history@^1.5.0",
@@ -216,22 +216,22 @@ export const registryMetadata = {
       "prosemirror-view@^1.42.1",
     ],
     registryDependencies: ["button", "core", "scroll-area", "trigger-menu"],
-    sourceManifestPath: "registry/control-ui/chat-input.json",
+    sourceManifestPath: "registry/control-ui/chat-composer.json",
   },
-  "chat-input-attachment": {
+  "chat-composer-attachment": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "scroll-area"],
-    sourceManifestPath: "registry/control-ui/chat-input-attachment.json",
+    sourceManifestPath: "registry/control-ui/chat-composer-attachment.json",
+  },
+  "chat-layout": {
+    dependencies: [],
+    registryDependencies: ["activity", "core", "scroll-area"],
+    sourceManifestPath: "registry/control-ui/chat-layout.json",
   },
   "chat-message": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/chat-message.json",
-  },
-  "chat-scene": {
-    dependencies: [],
-    registryDependencies: ["activity", "core", "scroll-area"],
-    sourceManifestPath: "registry/control-ui/chat-scene.json",
   },
   checkbox: {
     dependencies: ["@base-ui/react@^1.6.0"],
@@ -260,7 +260,7 @@ export const registryMetadata = {
   },
   "coding-agent-block": {
     dependencies: ["lucide-react@^1.24.0"],
-    registryDependencies: ["button", "chat-scene", "collapsible", "core", "sidebar"],
+    registryDependencies: ["button", "chat-layout", "collapsible", "core", "sidebar"],
     sourceManifestPath: "registry/control-ui/coding-agent-block.json",
   },
   collapsible: {
@@ -312,6 +312,11 @@ export const registryMetadata = {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/drawer.json",
+  },
+  "dropdown-menu": {
+    dependencies: ["@base-ui/react@^1.6.0"],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/dropdown-menu.json",
   },
   "dynamic-notification": {
     dependencies: [],
@@ -402,11 +407,6 @@ export const registryMetadata = {
     dependencies: [],
     registryDependencies: ["button", "core", "markdown"],
     sourceManifestPath: "registry/control-ui/markdown-block.json",
-  },
-  menu: {
-    dependencies: ["@base-ui/react@^1.6.0"],
-    registryDependencies: ["core"],
-    sourceManifestPath: "registry/control-ui/menu.json",
   },
   menubar: {
     dependencies: ["@base-ui/react@^1.6.0"],
@@ -620,7 +620,7 @@ export const registryMetadata = {
   },
   "theme-toggle-block": {
     dependencies: ["lucide-react@^1.24.0"],
-    registryDependencies: ["button", "core", "menu", "switch"],
+    registryDependencies: ["button", "core", "dropdown-menu", "switch"],
     sourceManifestPath: "registry/control-ui/theme-toggle-block.json",
   },
   "thread-rail": {

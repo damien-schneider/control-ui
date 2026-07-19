@@ -11,13 +11,15 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
 - [Architecture](http://127.0.0.1:3000/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
 - [Agent surface](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
-- [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Turn a visual brief into a validated, previewable Control UI theme without sending images or credentials to this site.
+- [Theme accessibility](http://127.0.0.1:3000/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
+- [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 
 ## AI components
 
+- [AI components](http://127.0.0.1:3000/ai): Explore composable surfaces for messages, input, activity, media, and agent workflows.
 - [ChatMessage](http://127.0.0.1:3000/ai/chat-message): Composable chat message with typed role, density, and tone state.
-- [ChatInput](http://127.0.0.1:3000/ai/chat-input): Prompt composer with controlled text, submit state, and trigger-menu support.
-- [ChatInputAttachment](http://127.0.0.1:3000/ai/chat-input-attachment): Composer attachment rail with file previews, upload progress, and removal.
+- [ChatComposer](http://127.0.0.1:3000/ai/chat-composer): Prompt composer with controlled text, submit state, and trigger-menu support.
+- [ChatComposerAttachment](http://127.0.0.1:3000/ai/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
 - [UserAsk](http://127.0.0.1:3000/ai/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
 - [TaskList](http://127.0.0.1:3000/ai/task-list): Floating agent task progress pill above the composer that expands into the full task list.
 - [AudioRecorder](http://127.0.0.1:3000/ai/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
@@ -30,7 +32,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns.
 - [MarkdownBlock](http://127.0.0.1:3000/ai/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
 - [CodeBlockEditor](http://127.0.0.1:3000/ai/code-block-editor): Editable code surface with Shiki highlighting and token-based light/dark themes.
-- [ChatScene](http://127.0.0.1:3000/ai/chat-scene): Layout primitives for full chat threads, turns, and thoughts.
+- [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): Layout primitives for full chat threads, turns, and thoughts.
 - [ThreadRail](http://127.0.0.1:3000/ai/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
 ## Blocks
@@ -43,6 +45,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 ## Primitives
 
+- [Primitives](http://127.0.0.1:3000/primitives): Browse every Control UI primitive through the same live examples used in its documentation.
 - [Button](http://127.0.0.1:3000/primitives/button): Accessible action button with size, variant, and semantic tone support.
 - [Collapsible](http://127.0.0.1:3000/primitives/collapsible): Accessible disclosure primitive with measured open and close motion.
 - [Tabs](http://127.0.0.1:3000/primitives/tabs): Segmented navigation with a stable active indicator.
@@ -53,7 +56,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Skeleton](http://127.0.0.1:3000/primitives/skeleton): Loading placeholder with a token-driven shimmer. Status: beta.
 - [Slider](http://127.0.0.1:3000/primitives/slider): Single-value range control with branded and plain treatments.
 - [Select](http://127.0.0.1:3000/primitives/select): Single-choice picker with a token-matched trigger and floating list.
-- [Menu](http://127.0.0.1:3000/primitives/menu): Dropdown menu for actions, resources, labels, separators, and submenus.
+- [DropdownMenu](http://127.0.0.1:3000/primitives/dropdown-menu): Dropdown menu for actions, resources, labels, separators, and submenus.
 - [Context Menu](http://127.0.0.1:3000/primitives/context-menu): Pointer-positioned right-click and long-press menu with nested actions and selection controls.
 - [Toggle](http://127.0.0.1:3000/primitives/toggle): Pressed-state button and toggle group built on the Button surface.
 - [Switch](http://127.0.0.1:3000/primitives/switch): On/off control with token-driven track, thumb, and press motion.
@@ -71,7 +74,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Checkbox](http://127.0.0.1:3000/primitives/checkbox): Single checkbox control with checked and indeterminate states.
 - [Radio group](http://127.0.0.1:3000/primitives/radio-group): Single-choice radio set for plans, filters, and option lists.
 - [Accordion](http://127.0.0.1:3000/primitives/accordion): Stacked disclosure rows with measured panel animation.
-- [Avatar](http://127.0.0.1:3000/primitives/avatar): Profile image with initials fallback.
+- [Avatar](http://127.0.0.1:3000/primitives/avatar): Profile image with initials fallback and composable overlapping groups.
 - [Progress](http://127.0.0.1:3000/primitives/progress): Determinate task progress with optional label and value rows.
 - [Hover card](http://127.0.0.1:3000/primitives/hover-card): Hover or focus preview panel for profiles, links, and contextual details.
 - [Alert dialog](http://127.0.0.1:3000/primitives/alert-dialog): Modal confirmation dialog for destructive or blocking decisions.
@@ -99,7 +102,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Autocomplete](http://127.0.0.1:3000/primitives/autocomplete): Free-text input with search-as-you-type suggestions.
 - [Number Field](http://127.0.0.1:3000/primitives/number-field): Numeric input with stepper buttons and optional drag-to-change behavior.
 - [Trigger Menu](http://127.0.0.1:3000/primitives/trigger-menu): Caret-anchored command or mention menu for text editors. Status: beta.
-- [Toolbar](http://127.0.0.1:3000/primitives/toolbar): Roving-focus toolbar for editor controls and compact actions. Status: beta.
+- [Toolbar](http://127.0.0.1:3000/primitives/toolbar): Roving-focus toolbar for editor controls and compact actions.
 - [Dockable Panel](http://127.0.0.1:3000/primitives/dockable-panel): Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. Status: experimental.
 - [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. Status: experimental.
 - [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
@@ -115,7 +118,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 - [ControlEffects](http://127.0.0.1:3000/extensions/control-effects): CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.
 - [viewTransition](http://127.0.0.1:3000/extensions/view-transition): Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.
-- [SendAurora](http://127.0.0.1:3000/extensions/send-aurora): Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.
+- [SendAurora](http://127.0.0.1:3000/extensions/send-aurora): Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.
 
 ## Skins
 
@@ -126,13 +129,13 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Rig](http://127.0.0.1:3000/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
 - [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and instant motion.
 - [Modern Apple](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.
-- [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor).
+- [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
 - [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.
 
 ## Hooks
 
 - [useChatMessage](http://127.0.0.1:3000/hooks/use-chat-message): Typed role, density, and tone state for ChatMessage.
-- [useChatInput](http://127.0.0.1:3000/hooks/use-chat-input): Controlled composer text and submit state.
+- [useChatComposer](http://127.0.0.1:3000/hooks/use-chat-composer): Controlled composer text and submit state.
 - [useUserAsk](http://127.0.0.1:3000/hooks/use-user-ask): Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
 - [useAudioRecorder](http://127.0.0.1:3000/hooks/use-audio-recorder): Browser microphone recording state, waveform levels, and Blob completion.
 - [useEnvironmentVariables](http://127.0.0.1:3000/hooks/use-environment-variables): Editable environment variable rows with .env parsing, upload, duplicate detection, and submit helpers.

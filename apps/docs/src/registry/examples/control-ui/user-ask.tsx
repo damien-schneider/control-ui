@@ -3,14 +3,14 @@
 import { useState } from "react";
 
 import {
-  ChatInput,
-  ChatInputAccent,
-  ChatInputShell,
-  ChatInputSubmit,
-  ChatInputTextarea,
-  ChatInputToolbar,
-  ChatInputTools,
-} from "@/components/control-ui/chat-input";
+  ChatComposer,
+  ChatComposerAccent,
+  ChatComposerShell,
+  ChatComposerSubmit,
+  ChatComposerTextarea,
+  ChatComposerToolbar,
+  ChatComposerTools,
+} from "@/components/control-ui/chat-composer";
 import type { UserAskAnswers } from "@/components/control-ui/contracts";
 import { Button } from "@/components/control-ui/ui/button";
 import {
@@ -81,27 +81,27 @@ export function UserAskExample() {
             </UserAskFooter>
           </UserAsk>
         ) : (
-          <ChatInput density="compact">
-            <ChatInputShell>
-              <ChatInputAccent />
-              <ChatInputTextarea placeholder="Message the agent..." />
-              <ChatInputToolbar>
-                <ChatInputTools>
+          <ChatComposer density="compact">
+            <ChatComposerShell>
+              <ChatComposerAccent />
+              <ChatComposerTextarea placeholder="Message the agent..." />
+              <ChatComposerToolbar>
+                <ChatComposerTools>
                   {answers ? (
                     <span className="truncate">Answered: {Object.values(answers).join(" · ")}</span>
                   ) : (
                     <span>Question dismissed</span>
                   )}
-                </ChatInputTools>
+                </ChatComposerTools>
                 <div className="flex items-center gap-1.5">
                   <Button type="button" variant="quiet" size="xs" onClick={() => setAsking(true)}>
                     Ask again
                   </Button>
-                  <ChatInputSubmit>Send</ChatInputSubmit>
+                  <ChatComposerSubmit>Send</ChatComposerSubmit>
                 </div>
-              </ChatInputToolbar>
-            </ChatInputShell>
-          </ChatInput>
+              </ChatComposerToolbar>
+            </ChatComposerShell>
+          </ChatComposer>
         )}
       </div>
     </div>

@@ -20,7 +20,7 @@ const thinkingTrace = [
   { icon: <SquareTerminal />, label: "Ran the registry validation command" },
   { icon: <Search />, label: "Searched for the current skin slot contract" },
   { icon: <BookOpen />, label: "Read activity.tsx" },
-  { icon: <BookOpen />, label: "Read chat-scene.tsx" },
+  { icon: <BookOpen />, label: "Read chat-layout.tsx" },
   { icon: <Search />, label: "Compared disclosure behavior across agent surfaces" },
   { icon: <Globe />, label: "Searched the web for Base UI accessibility guidance" },
   { icon: <BookOpen />, label: "Read the ScrollArea overflow contract" },

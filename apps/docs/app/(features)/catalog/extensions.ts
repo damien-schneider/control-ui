@@ -5,7 +5,7 @@ import { sourceFile } from "./shared";
  * Two attachment modes share the concept:
  * - "root": mounted once above its targets, discovers them through the emitted anatomy (control-effects, view-transition).
  * - "anchored": a component ships a named adornment anchor (positioned wrapper, behavioral ctx) and skin.config
- *   fills it with the extension — pack or app brand, same gesture (send-aurora on chat-input:send-layer).
+ *   fills it with the extension — pack or app brand, same gesture (send-aurora on chat-composer:send-layer).
  * `appliesTo` lists the component or primitive pages whose "Available extensions" panel offers the item.
  */
 export const extensionEntries = [
@@ -67,22 +67,22 @@ finishPageViewTransition();`,
     kind: "Extension",
     name: "SendAurora",
     summary:
-      "Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.",
+      "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
     attach: "anchored",
-    anchor: "chat-input:send-layer",
+    anchor: "chat-composer:send-layer",
     target: "components/control-ui/extensions/send-aurora.tsx",
     registryKind: "send-aurora",
-    appliesTo: ["chat-input"],
+    appliesTo: ["chat-composer"],
     activation: {
       description:
-        "Fill the anchor from skin.config — your app brand or an installed pack, same gesture. The ctx is a render prop: sendCount replays the sweep once per send; ChatInput owns the positioned wrapper (aria-hidden, pointer-events-none, paint-contained), the extension only supplies visuals.",
+        "Fill the anchor from skin.config — your app brand or an installed pack, same gesture. The ctx is a render prop: sendCount replays the sweep once per send; ChatComposer owns the positioned wrapper (aria-hidden, pointer-events-none, paint-contained), the extension only supplies visuals.",
       code: `// skin.config.tsx (import the "use client" extension; the config itself stays RSC-pure)
 import { SendAurora } from "@/components/control-ui/extensions/send-aurora";
 
 export const skin: ControlUiSkin = {
   id: "my-brand",
   adornments: {
-    "chat-input": {
+    "chat-composer": {
       "send-layer": (ctx) => <SendAurora sendCount={ctx.sendCount} />,
     },
   },

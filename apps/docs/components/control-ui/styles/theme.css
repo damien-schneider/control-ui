@@ -117,15 +117,6 @@
   --text-display--font-weight: var(--text-display--font-weight);
   --text-display--letter-spacing: var(--text-display--letter-spacing);
   --text-meta: var(--text-meta);
-  --text-title-sm: var(--text-title-sm);
-  --text-title-sm--line-height: var(--text-title-sm--line-height);
-  --text-title-sm--font-weight: var(--text-title-sm--font-weight);
-  --text-title-md: var(--text-title-md);
-  --text-title-md--line-height: var(--text-title-md--line-height);
-  --text-title-md--font-weight: var(--text-title-md--font-weight);
-  --text-title-lg: var(--text-title-lg);
-  --text-title-lg--line-height: var(--text-title-lg--line-height);
-  --text-title-lg--font-weight: var(--text-title-lg--font-weight);
 
   /* Generates font-body/font-display utilities off role tokens above; skin re-values one alone to re-face all headings/body. */
   --font-body: var(--font-body);
@@ -257,12 +248,12 @@
         [data-control-ui="checkbox"][data-slot="root"],
         [data-control-ui="input"][data-slot="root"],
         [data-control-ui="input-group"][data-slot="root"],
-        [data-control-ui="menu"][data-slot="trigger"],
+        [data-control-ui="dropdown-menu"][data-slot="trigger"],
         [data-control-ui="select"][data-slot="trigger"],
         [data-control-ui="tabs"][data-slot="tab"],
         [data-control-ui="tabs"][data-slot="indicator"],
         [data-control-ui="tabs"][data-slot="list"],
-        [data-control-ui="menu"][data-slot="item"],
+        [data-control-ui="dropdown-menu"][data-slot="item"],
         [data-control-ui="select"][data-slot="item"],
         [data-control-ui="command"][data-slot="item"],
         [data-control-ui="trigger-menu"][data-slot="item"],
@@ -344,7 +335,7 @@
 @layer components {
   :where(
       [data-control-ui="chat-message"][data-slot="root"],
-      [data-control-ui="chat-input"][data-slot="root"]
+      [data-control-ui="chat-composer"][data-slot="root"]
     ) {
     opacity: 1;
     filter: none;
@@ -365,7 +356,7 @@
       scale: 0.985;
     }
 
-    :where([data-control-ui="chat-input"][data-slot="root"]) {
+    :where([data-control-ui="chat-composer"][data-slot="root"]) {
       opacity: 0;
       filter: blur(10px);
       translate: 0 0.75rem;
@@ -396,33 +387,6 @@
     background: var(--badge-background-hover);
   }
 
-  :where([data-control-ui="badge"][data-slot="root"][data-color="slate"]) {
-    --badge-color-background: var(--badge-slate);
-    --badge-color-foreground: var(--badge-slate-foreground);
-    --badge-color-border: var(--badge-slate-border);
-    --badge-color-background-hover: var(--badge-slate-hover);
-  }
-
-  :where([data-control-ui="badge"][data-slot="root"][data-color="gray"]) {
-    --badge-color-background: var(--badge-gray);
-    --badge-color-foreground: var(--badge-gray-foreground);
-    --badge-color-border: var(--badge-gray-border);
-    --badge-color-background-hover: var(--badge-gray-hover);
-  }
-
-  :where([data-control-ui="badge"][data-slot="root"][data-color="zinc"]) {
-    --badge-color-background: var(--badge-zinc);
-    --badge-color-foreground: var(--badge-zinc-foreground);
-    --badge-color-border: var(--badge-zinc-border);
-    --badge-color-background-hover: var(--badge-zinc-hover);
-  }
-
-  :where([data-control-ui="badge"][data-slot="root"][data-color="stone"]) {
-    --badge-color-background: var(--badge-stone);
-    --badge-color-foreground: var(--badge-stone-foreground);
-    --badge-color-border: var(--badge-stone-border);
-    --badge-color-background-hover: var(--badge-stone-hover);
-  }
 
   :where([data-control-ui="badge"][data-slot="root"][data-color="red"]) {
     --badge-color-background: var(--badge-red);
@@ -438,12 +402,6 @@
     --badge-color-background-hover: var(--badge-orange-hover);
   }
 
-  :where([data-control-ui="badge"][data-slot="root"][data-color="amber"]) {
-    --badge-color-background: var(--badge-amber);
-    --badge-color-foreground: var(--badge-amber-foreground);
-    --badge-color-border: var(--badge-amber-border);
-    --badge-color-background-hover: var(--badge-amber-hover);
-  }
 
   :where([data-control-ui="badge"][data-slot="root"][data-color="yellow"]) {
     --badge-color-background: var(--badge-yellow);
@@ -452,12 +410,6 @@
     --badge-color-background-hover: var(--badge-yellow-hover);
   }
 
-  :where([data-control-ui="badge"][data-slot="root"][data-color="lime"]) {
-    --badge-color-background: var(--badge-lime);
-    --badge-color-foreground: var(--badge-lime-foreground);
-    --badge-color-border: var(--badge-lime-border);
-    --badge-color-background-hover: var(--badge-lime-hover);
-  }
 
   :where([data-control-ui="badge"][data-slot="root"][data-color="green"]) {
     --badge-color-background: var(--badge-green);
@@ -466,33 +418,6 @@
     --badge-color-background-hover: var(--badge-green-hover);
   }
 
-  :where([data-control-ui="badge"][data-slot="root"][data-color="emerald"]) {
-    --badge-color-background: var(--badge-emerald);
-    --badge-color-foreground: var(--badge-emerald-foreground);
-    --badge-color-border: var(--badge-emerald-border);
-    --badge-color-background-hover: var(--badge-emerald-hover);
-  }
-
-  :where([data-control-ui="badge"][data-slot="root"][data-color="teal"]) {
-    --badge-color-background: var(--badge-teal);
-    --badge-color-foreground: var(--badge-teal-foreground);
-    --badge-color-border: var(--badge-teal-border);
-    --badge-color-background-hover: var(--badge-teal-hover);
-  }
-
-  :where([data-control-ui="badge"][data-slot="root"][data-color="cyan"]) {
-    --badge-color-background: var(--badge-cyan);
-    --badge-color-foreground: var(--badge-cyan-foreground);
-    --badge-color-border: var(--badge-cyan-border);
-    --badge-color-background-hover: var(--badge-cyan-hover);
-  }
-
-  :where([data-control-ui="badge"][data-slot="root"][data-color="sky"]) {
-    --badge-color-background: var(--badge-sky);
-    --badge-color-foreground: var(--badge-sky-foreground);
-    --badge-color-border: var(--badge-sky-border);
-    --badge-color-background-hover: var(--badge-sky-hover);
-  }
 
   :where([data-control-ui="badge"][data-slot="root"][data-color="blue"]) {
     --badge-color-background: var(--badge-blue);
@@ -501,19 +426,6 @@
     --badge-color-background-hover: var(--badge-blue-hover);
   }
 
-  :where([data-control-ui="badge"][data-slot="root"][data-color="indigo"]) {
-    --badge-color-background: var(--badge-indigo);
-    --badge-color-foreground: var(--badge-indigo-foreground);
-    --badge-color-border: var(--badge-indigo-border);
-    --badge-color-background-hover: var(--badge-indigo-hover);
-  }
-
-  :where([data-control-ui="badge"][data-slot="root"][data-color="violet"]) {
-    --badge-color-background: var(--badge-violet);
-    --badge-color-foreground: var(--badge-violet-foreground);
-    --badge-color-border: var(--badge-violet-border);
-    --badge-color-background-hover: var(--badge-violet-hover);
-  }
 
   :where([data-control-ui="badge"][data-slot="root"][data-color="purple"]) {
     --badge-color-background: var(--badge-purple);
@@ -522,12 +434,6 @@
     --badge-color-background-hover: var(--badge-purple-hover);
   }
 
-  :where([data-control-ui="badge"][data-slot="root"][data-color="fuchsia"]) {
-    --badge-color-background: var(--badge-fuchsia);
-    --badge-color-foreground: var(--badge-fuchsia-foreground);
-    --badge-color-border: var(--badge-fuchsia-border);
-    --badge-color-background-hover: var(--badge-fuchsia-hover);
-  }
 
   :where([data-control-ui="badge"][data-slot="root"][data-color="pink"]) {
     --badge-color-background: var(--badge-pink);
@@ -536,12 +442,6 @@
     --badge-color-background-hover: var(--badge-pink-hover);
   }
 
-  :where([data-control-ui="badge"][data-slot="root"][data-color="rose"]) {
-    --badge-color-background: var(--badge-rose);
-    --badge-color-foreground: var(--badge-rose-foreground);
-    --badge-color-border: var(--badge-rose-border);
-    --badge-color-background-hover: var(--badge-rose-hover);
-  }
 
   /* Sliding selection pill (sidebar nav, tree) knobs; default = raised paper card, not flat alpha wash.
      Component paints via bg/ring/shadow-(--track-highlight-*); a pack re-values these 4 vars instead
@@ -575,6 +475,7 @@
     --tabs-list-bg: oklch(from var(--foreground) l c h / 0.07);
     --tabs-list-backdrop-filter: none;
     --tabs-indicator-bg: var(--background);
+    --tabs-active-foreground: var(--foreground);
     --tabs-indicator-shadow: var(--shadow-sm);
     --tabs-indicator-ease: var(--ease-standard);
     --tabs-trigger-font-size: var(--text-label);
@@ -633,10 +534,13 @@
     transition: color var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-ui="tabs"][data-slot="tab"]:hover),
+  :where([data-control-ui="tabs"][data-slot="tab"]:hover) {
+    color: var(--foreground);
+  }
+
   :where([data-control-ui="tabs"][data-slot="tab"][aria-selected="true"]),
   :where([data-control-ui="tabs"][data-slot="tab"][data-active]) {
-    color: var(--foreground);
+    color: var(--tabs-active-foreground);
   }
 
   :where([data-control-ui="tabs"][data-slot="tab"]:focus-visible) {

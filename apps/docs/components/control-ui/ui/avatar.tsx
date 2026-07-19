@@ -1,11 +1,10 @@
 "use client";
 
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
-import type { AvatarFallbackProps, AvatarImageProps, AvatarProps } from "@/components/control-ui/contracts";
+import type { AvatarFallbackProps, AvatarGroupProps, AvatarImageProps, AvatarProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Base UI swaps in Fallback initials when Image is missing/fails to load. size-9 default, override via className.
 export function Avatar({ className, ...props }: AvatarProps) {
   return (
     <AvatarPrimitive.Root
@@ -14,6 +13,23 @@ export function Avatar({ className, ...props }: AvatarProps) {
       className={cn(
         "relative inline-flex size-9 shrink-0 select-none items-center justify-center overflow-hidden rounded-full align-middle",
         skinSlot("avatar", "root", {}),
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+export function AvatarGroup({ className, ...props }: AvatarGroupProps) {
+  return (
+    // biome-ignore lint/a11y/useSemanticElements: Profile imagery is not a form fieldset.
+    <div
+      role="group"
+      data-control-ui="avatar"
+      data-slot="group"
+      className={cn(
+        "isolate inline-flex items-center -space-x-2 [&>[data-control-ui=avatar]]:ring-2 [&>[data-control-ui=avatar]]:ring-background",
+        skinSlot("avatar", "group", {}),
         className,
       )}
       {...props}

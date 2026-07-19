@@ -58,7 +58,7 @@ const TURNS: UserTurn[] = [
   {
     id: "m7",
     prompt: "compose the chat block",
-    reply: "Made ChatBlock a controlled shell around ChatScene and ChatThread with caller-owned turns and composer.",
+    reply: "Made ChatBlock a controlled shell around ChatLayout and ChatThread with caller-owned turns and composer.",
     files: ["chat.tsx"],
   },
   {

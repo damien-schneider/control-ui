@@ -6,7 +6,7 @@ import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui
 import { useTextareaTriggerMenu } from "@/components/control-ui/hooks/use-textarea-trigger-menu";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 
-// Standalone: trigger-menu driving a plain <textarea>, no editor/chat-input; one `triggers` config
+// Standalone: trigger-menu driving a plain <textarea>, no editor/chat-composer; one `triggers` config
 // powers both "/" and "@".
 const commands: TriggerMenuItemData[] = [
   { id: "summarize", label: "Summarize", description: "Condense the thread", icon: "✦" },

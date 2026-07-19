@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRightIcon, PaintbrushIcon, SparklesIcon } from "lucide-react";
+import { ChevronRightIcon, PaintbrushIcon, ShieldCheckIcon, SparklesIcon } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { useId, useState } from "react";
@@ -172,7 +172,7 @@ function TokenList({ tokens, values, labelMode, overridden, onChange, onReset }:
   return <div className="flex flex-col gap-3">{nodes}</div>;
 }
 
-// Soft badge palette: 22 hues × 4 tokens as compact swatch rows; row-level reset clears the whole quartet (per-swatch resets would drown row in chrome, dot still marks each edit).
+// Keep each badge color family on one row so reset controls do not drown the palette.
 function BadgePaletteRows({ values, overridden, onChange, onReset }: Omit<TokenEditorProps, "labelMode">) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -186,9 +186,9 @@ function BadgePaletteRows({ values, overridden, onChange, onReset }: Omit<TokenE
       {BADGE_TOKEN_ROWS.map((row) => {
         const touched = row.tokens.some((token) => overridden.has(token.name));
         return (
-          <div key={row.hue} className="flex items-center gap-2 px-0.5">
+          <div key={row.color} className="flex items-center gap-2 px-0.5">
             <span className="min-w-0 flex-1 truncate text-[11px] font-medium text-muted-foreground">
-              {row.hue}
+              {row.color}
               {touched ? (
                 <button
                   type="button"
@@ -437,7 +437,23 @@ export function ThemeDrawer() {
                   defaultOpen={category.group === "color"}
                   preview={category.group === "shadow" ? <ElevationPreview /> : null}
                   beforeTokens={beforeTokens}
-                  afterCore={category.group === "color" ? <ContrastPanel t={t} onFix={(textFixes) => patch({ textFixes })} /> : null}
+                  afterCore={
+                    category.group === "color" ? (
+                      <div className="grid gap-3">
+                        <ContrastPanel t={t} onFix={(textFixes) => patch({ textFixes })} />
+                        <Link
+                          href="/theme-accessibility"
+                          onClick={() => setOpen(false)}
+                          className={buttonRecipeClasses("surface", "neutral", "sm")}
+                        >
+                          <span className={buttonContentClasses}>
+                            <ShieldCheckIcon aria-hidden className="size-3.5" />
+                            Open full accessibility audit
+                          </span>
+                        </Link>
+                      </div>
+                    ) : null
+                  }
                 />
               );
             })}
@@ -449,7 +465,7 @@ export function ThemeDrawer() {
         {storageError ? <p className="text-[10px] leading-relaxed text-destructive-text">{storageError}</p> : null}
         <Link
           href="/theme-ai-builder"
-          onClick={() => !isDesktop && setOpen(false)}
+          onClick={() => setOpen(false)}
           className={cn(buttonRecipeClasses("surface", "neutral", "sm"), "w-full")}
         >
           <span className={buttonContentClasses}>

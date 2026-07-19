@@ -118,7 +118,7 @@ try {
 
   const sourceFixture = fixture("source-layout", true);
   install(sourceFixture, "skin-refined");
-  install(sourceFixture, "chat-input");
+  install(sourceFixture, "chat-composer");
   install(sourceFixture, "chat-block");
   install(sourceFixture, "coding-agent-block");
   install(sourceFixture, "file-explorer-block");

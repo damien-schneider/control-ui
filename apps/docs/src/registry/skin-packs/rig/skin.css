@@ -78,12 +78,12 @@
   /* Solid = coral CTA; background-image sheen paints behind label (no z-index fight), chamfer still clips it. */
   [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"] {
     background-color: var(--primary);
-    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.14), transparent 46%);
+    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.08), transparent 46%);
     color: var(--primary-foreground);
   }
 
   [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"]:hover {
-    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.22), transparent 52%);
+    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.1), transparent 52%);
   }
 
   /* Outlined: hairline ink ring via inset shadow (clip-safe); faint fill, coral glow blooms on hover. */
@@ -106,9 +106,8 @@
 
   /* ---- Chat: user bubble ---------------------------------------------------------------------- */
 
-  /* User bubble = bg-primary coral both modes. Light: coral+near-black ink ~5.9:1 (fine). Dark:
-   * cream ink on bright coral only ~3.5:1 (fails AA), so dark deepens coral fill enough for cream
-   * to clear AA. */
+  /* User bubble = bg-primary coral both modes. Dark uses a deeper coral so the shared cream ink
+   * keeps AA contrast against the bubble. */
   :is(.dark[data-skin="rig"], :where(.dark) [data-skin="rig"], [data-skin="rig"] :where(.dark))
     [data-control-ui="chat-message"][data-slot="content"][data-role="user"] {
     background-color: oklch(0.444 0.1277 32.246);
@@ -120,6 +119,10 @@
   [data-skin="rig"] [data-control-ui="tabs"][data-slot="list"],
   [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"] {
     border-radius: 0;
+  }
+
+  [data-skin="rig"] [data-control-ui="tabs"][data-slot="list"] {
+    --tabs-active-foreground: var(--primary-foreground);
   }
 
   [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"] {
@@ -139,11 +142,11 @@
   /* ---- HUD corner ticks on the big framed surfaces ------------------------------------------- */
 
   /* Crosshair L-ticks in 4 corners: ::before=TL+BR, ::after=TR+BL, each a horiz+vert hairline; inset so they read despite overflow clipping. */
-  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"],
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"],
   [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"],
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"],
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"],
-  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"] {
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"] {
     position: relative;
     --rig-tick: 11px;
     --rig-tick-w: 1.5px;
@@ -151,16 +154,16 @@
     --rig-tick-c: oklch(from var(--primary) l c h / 0.6);
   }
 
-  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::before,
-  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::after,
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::before,
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::after,
   [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::before,
   [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::after,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::after,
-  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::before,
-  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::after {
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::before,
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::after {
     content: "";
     position: absolute;
     inset: var(--rig-tick-inset);
@@ -169,11 +172,11 @@
   }
 
   /* ::before → top-left + bottom-right corners. */
-  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::before,
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::before,
   [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::before,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
-  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::before {
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::before {
     background:
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 0 / var(--rig-tick) var(--rig-tick-w) no-repeat,
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 0 / var(--rig-tick-w) var(--rig-tick) no-repeat,
@@ -182,11 +185,11 @@
   }
 
   /* ::after → top-right + bottom-left corners. */
-  [data-skin="rig"] [data-control-ui="chat-scene"][data-slot="root"]::after,
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::after,
   [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::after,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::after,
-  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]::after {
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::after {
     background:
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 0 / var(--rig-tick) var(--rig-tick-w) no-repeat,
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 0 / var(--rig-tick-w) var(--rig-tick) no-repeat,
@@ -195,7 +198,7 @@
   }
 
   /* Composer ticks light coral + frame on focus: "armed" state. */
-  [data-skin="rig"] [data-control-ui="chat-input"][data-slot="shell"]:focus-within {
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]:focus-within {
     --rig-tick-c: var(--primary);
     box-shadow: inset 0 0 0 1.5px oklch(from var(--primary) l c h / 0.55);
   }
@@ -210,7 +213,7 @@
 
   /* ---- Menu / Select popups: top hairline + row accents ------------------------------------- */
 
-  [data-skin="rig"] [data-control-ui="menu"][data-slot="content"],
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="content"],
   [data-skin="rig"] [data-control-ui="select"][data-slot="content"] {
     border-radius: 0;
     box-shadow:
@@ -218,7 +221,7 @@
       inset 0 2px 0 var(--primary);
   }
 
-  [data-skin="rig"] [data-control-ui="menu"][data-slot="item"],
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"],
   [data-skin="rig"] [data-control-ui="select"][data-slot="item"] {
     border-radius: 0;
     transition:
@@ -227,8 +230,8 @@
       transform var(--duration-fast) var(--ease-standard);
   }
 
-  [data-skin="rig"] [data-control-ui="menu"][data-slot="item"]:hover,
-  [data-skin="rig"] [data-control-ui="menu"][data-slot="item"][data-highlighted],
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"]:hover,
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"][data-highlighted],
   [data-skin="rig"] [data-control-ui="select"][data-slot="item"]:hover,
   [data-skin="rig"] [data-control-ui="select"][data-slot="item"][data-highlighted] {
     box-shadow: inset 2px 0 0 var(--primary);
@@ -253,7 +256,7 @@
 
   /* Group labels = mono uppercase eyebrows (matches reference's "DATA EXTRACTION"/"001" style). */
   [data-skin="rig"] [data-control-ui="sidebar"][data-slot="group-label"],
-  [data-skin="rig"] [data-control-ui="menu"][data-slot="label"] {
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="label"] {
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.14em;

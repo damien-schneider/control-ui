@@ -15,15 +15,15 @@ import {
 } from "@/components/control-ui/activity";
 import { ChatBlock } from "@/components/control-ui/blocks/chat";
 import {
-  ChatInput,
-  ChatInputShell,
-  ChatInputSubmit,
-  ChatInputTextarea,
-  ChatInputToolbar,
-  ChatInputTools,
-} from "@/components/control-ui/chat-input";
+  ChatComposer,
+  ChatComposerShell,
+  ChatComposerSubmit,
+  ChatComposerTextarea,
+  ChatComposerToolbar,
+  ChatComposerTools,
+} from "@/components/control-ui/chat-composer";
+import { ChatThought, ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import { ChatThought, ChatTurn } from "@/components/control-ui/chat-scene";
 import type { ActivityState } from "@/components/control-ui/contracts";
 import { SourceBadge } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
@@ -119,27 +119,27 @@ export function ChatSurface() {
   const isRunning = status === "submitted" || status === "streaming";
 
   const composer = (
-    <ChatInput
+    <ChatComposer
       state={isRunning ? "submitting" : "idle"}
       onSubmit={async ({ value, clear }) => {
         await sendMessage({ text: value });
         clear();
       }}
     >
-      <ChatInputShell>
-        <ChatInputTextarea placeholder="Ask the model..." />
-        <ChatInputToolbar>
-          <ChatInputTools>AI SDK</ChatInputTools>
+      <ChatComposerShell>
+        <ChatComposerTextarea placeholder="Ask the model..." />
+        <ChatComposerToolbar>
+          <ChatComposerTools>AI SDK</ChatComposerTools>
           {isRunning ? (
             <Button type="button" size="xs" variant="quiet" onClick={stop}>
               Stop
             </Button>
           ) : (
-            <ChatInputSubmit>Send</ChatInputSubmit>
+            <ChatComposerSubmit>Send</ChatComposerSubmit>
           )}
-        </ChatInputToolbar>
-      </ChatInputShell>
-    </ChatInput>
+        </ChatComposerToolbar>
+      </ChatComposerShell>
+    </ChatComposer>
   );
 
   return (

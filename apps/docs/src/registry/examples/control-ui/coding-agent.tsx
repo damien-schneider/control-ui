@@ -31,16 +31,16 @@ import {
   type CodingAgentTask,
 } from "@/components/control-ui/blocks/coding-agent";
 import {
-  ChatInput,
-  ChatInputAccent,
-  ChatInputShell,
-  ChatInputSubmit,
-  ChatInputTextarea,
-  ChatInputToolbar,
-  ChatInputTools,
-} from "@/components/control-ui/chat-input";
+  ChatComposer,
+  ChatComposerAccent,
+  ChatComposerShell,
+  ChatComposerSubmit,
+  ChatComposerTextarea,
+  ChatComposerToolbar,
+  ChatComposerTools,
+} from "@/components/control-ui/chat-composer";
+import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import { ChatTurn } from "@/components/control-ui/chat-scene";
 import { ModelSwitcher } from "@/components/control-ui/model-switcher";
 import { Button } from "@/components/control-ui/ui/button";
 
@@ -171,9 +171,15 @@ export function CodingAgentExample() {
   }
 
   const composer = (
-    <ChatInput density="compact" state={isRunning ? "submitting" : "idle"} value={draft} onValueChange={setDraft} onSubmit={submitPrompt}>
-      <ChatInputShell className="bg-card">
-        <ChatInputAccent />
+    <ChatComposer
+      density="compact"
+      state={isRunning ? "submitting" : "idle"}
+      value={draft}
+      onValueChange={setDraft}
+      onSubmit={submitPrompt}
+    >
+      <ChatComposerShell className="bg-card">
+        <ChatComposerAccent />
         <div className="flex min-w-0 items-center gap-3 border-b border-border/60 px-3 py-2 text-caption text-muted-foreground">
           <span className="flex min-w-0 items-center gap-1.5">
             <FolderIcon className="size-3.5 shrink-0" aria-hidden="true" />
@@ -188,9 +194,9 @@ export function CodingAgentExample() {
             <span className="truncate">feat/coding-agent-block</span>
           </span>
         </div>
-        <ChatInputTextarea className="min-h-18" placeholder="Do anything" />
-        <ChatInputToolbar>
-          <ChatInputTools>
+        <ChatComposerTextarea className="min-h-18" placeholder="Do anything" />
+        <ChatComposerToolbar>
+          <ChatComposerTools>
             <Button variant="ghost" size="sm" iconOnly aria-label="Attach context">
               <PlusIcon className="size-4" />
             </Button>
@@ -198,7 +204,7 @@ export function CodingAgentExample() {
               <ShieldCheckIcon className="size-3.5" />
               <span className="hidden sm:inline">Approve for me</span>
             </Button>
-          </ChatInputTools>
+          </ChatComposerTools>
           <div className="flex min-w-0 items-center gap-1">
             <ModelSwitcher models={models} value={model} onValueChange={setModel} size="xs" variant="ghost" />
             <Button variant="ghost" size="sm" iconOnly aria-label="Use microphone">
@@ -209,14 +215,14 @@ export function CodingAgentExample() {
                 <span className="size-2 rounded-[2px] bg-current" />
               </Button>
             ) : (
-              <ChatInputSubmit size="sm" iconOnly shape="circle" aria-label="Send message">
+              <ChatComposerSubmit size="sm" iconOnly shape="circle" aria-label="Send message">
                 <ArrowUpIcon className="size-4" />
-              </ChatInputSubmit>
+              </ChatComposerSubmit>
             )}
           </div>
-        </ChatInputToolbar>
-      </ChatInputShell>
-    </ChatInput>
+        </ChatComposerToolbar>
+      </ChatComposerShell>
+    </ChatComposer>
   );
 
   return (

@@ -17,7 +17,7 @@ const defaultColorByVariant: Record<BadgeVariant, BadgeColor> = {
 };
 
 const badgeVariant = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border font-medium transition-colors focus-visible:ring-2 focus-visible:ring-foreground/20 [&>svg]:pointer-events-none [&>svg]:size-3",
+  "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-[var(--radius-control)] border font-medium transition-colors focus-visible:ring-2 focus-visible:ring-foreground/20 [&>svg]:pointer-events-none [&>svg]:size-3",
   {
     variants: {
       variant: {

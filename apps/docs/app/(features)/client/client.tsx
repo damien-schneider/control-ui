@@ -104,14 +104,21 @@ function DocsShellContent({
   const activeUtil = utils.find((item) => item.id === activePage);
   const activeExtension = extensions.find((item) => item.id === activePage);
   const activeReference = activeHook ?? activeUtil;
+  const activeCatalogOverview = activePage === "ai" || activePage === "primitives" ? activePage : undefined;
   const activeSkinsOverview = activePage === skinsOverviewId;
   const activeSkinPage = skinPages.find((item) => item.id === activePage);
   const activeSkins = activeSkinsOverview || Boolean(activeSkinPage);
   const activeComponent =
-    activeGuide || activeSkill || activeBlock || activePrimitive || activeReference || activeExtension || activeSkins
+    activeGuide ||
+    activeSkill ||
+    activeBlock ||
+    activePrimitive ||
+    activeReference ||
+    activeExtension ||
+    activeCatalogOverview ||
+    activeSkins
       ? undefined
       : components.find((item) => item.id === activePage);
-  const component = activeComponent ?? components[0];
   const links = pageLinks({
     activeGuide,
     activeSkill,
@@ -121,7 +128,8 @@ function DocsShellContent({
     activeExtension,
     activeSkinPage,
     activeSkinsOverview,
-    component,
+    activeCatalogOverview,
+    component: activeComponent,
     primitives,
     extensions,
   });

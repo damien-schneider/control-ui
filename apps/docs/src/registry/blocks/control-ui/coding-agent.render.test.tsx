@@ -30,7 +30,7 @@ describe("CodingAgentBlock", () => {
     expect(html).toContain("Workbench");
     expect(html).toContain("Build a coding workspace");
     expect(html).toContain('aria-current="page"');
-    expect(html).toContain('data-control-ui="chat-scene"');
+    expect(html).toContain('data-control-ui="chat-layout"');
     expect(html).toContain("Conversation");
     expect(html).toContain("Composer");
   });

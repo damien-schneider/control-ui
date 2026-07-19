@@ -4,7 +4,13 @@ import { CheckIcon, ChevronDownIcon, MonitorIcon, MoonIcon, SunIcon } from "luci
 import type { ComponentProps, ComponentType, CSSProperties } from "react";
 import { useId } from "react";
 import { Button } from "@/components/control-ui/ui/button";
-import { Menu, MenuContent, MenuItem, MenuLabel, MenuTrigger } from "@/components/control-ui/ui/menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/control-ui/ui/dropdown-menu";
 import { Switch } from "@/components/control-ui/ui/switch";
 
 export type ThemeMode = "light" | "dark" | "system";
@@ -41,7 +47,7 @@ export type ThemeSegmentedSwitchProps = Omit<ComponentProps<"div">, "onChange"> 
     showLabels?: boolean;
   };
 
-export type ThemeDropdownProps = Omit<ComponentProps<typeof MenuTrigger>, "children" | "value" | "onChange"> &
+export type ThemeDropdownProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "children" | "value" | "onChange"> &
   ThemeControlProps & {
     label?: string;
   };
@@ -230,27 +236,27 @@ export function ThemeDropdown({
   const CurrentIcon = current.icon;
 
   return (
-    <Menu>
-      <MenuTrigger aria-label={ariaLabel ?? label} className={classes("min-w-36 gap-2", className)} {...props}>
+    <DropdownMenu>
+      <DropdownMenuTrigger aria-label={ariaLabel ?? label} className={classes("min-w-36 gap-2", className)} {...props}>
         <CurrentIcon className="size-3.5" aria-hidden />
         <span className="min-w-0 truncate">{current.label}</span>
         <ChevronDownIcon className="size-3 text-muted-foreground" aria-hidden />
-      </MenuTrigger>
-      <MenuContent className="min-w-40">
-        <MenuLabel>{label}</MenuLabel>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="min-w-40">
+        <DropdownMenuLabel>{label}</DropdownMenuLabel>
         {options.map((option) => {
           const selected = option.value === value;
           const Icon = option.icon;
 
           return (
-            <MenuItem key={option.value} disabled={option.disabled} onClick={() => onValueChange(option.value)}>
+            <DropdownMenuItem key={option.value} disabled={option.disabled} onClick={() => onValueChange(option.value)}>
               <Icon className="size-3.5" aria-hidden />
               <span className="min-w-0 flex-1 truncate">{option.label}</span>
               {selected ? <CheckIcon className="size-3.5" aria-hidden /> : <span className="size-3.5" aria-hidden />}
-            </MenuItem>
+            </DropdownMenuItem>
           );
         })}
-      </MenuContent>
-    </Menu>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

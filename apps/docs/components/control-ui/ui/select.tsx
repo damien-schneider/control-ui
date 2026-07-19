@@ -15,7 +15,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
-// Trigger shares --radius-control and controlSize scale with Button/Menu trigger — same shape and height.
+// Trigger shares --radius-control and controlSize scale with Button/DropdownMenu trigger — same shape and height.
 
 type RefinedSelectTriggerProps = SelectTriggerProps & Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render">;
 

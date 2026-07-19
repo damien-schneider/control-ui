@@ -22,9 +22,9 @@ import type {
   DockablePanelPlacement,
   DrawerContentPadding,
   DrawerContentSurface,
+  DropdownMenuTriggerVariant,
   DynamicNotificationState,
   DynamicNotificationVariant,
-  MenuTriggerVariant,
   NavigationMenuLinkVariant,
   PopoverContentPadding,
   ResizablePanelGroupVariant,
@@ -64,16 +64,16 @@ export type EmittedStateContract = {
   "button-group:root:data-orientation": "horizontal" | "vertical";
   "button-group:separator:data-orientation": "horizontal" | "vertical";
   "button-group:text:data-size": ControlSize;
-  "chat-input:root:data-density": ChatDensity;
-  "chat-input:root:data-state": "idle" | "submitting" | "disabled";
-  "chat-input:shell:data-state": "idle" | "submitting" | "disabled";
-  "chat-input:mention:data-icon": string;
-  "chat-input:mention:data-id": string;
-  "chat-input:mention:data-mention": string;
-  "chat-input-attachment:root:data-kind": "image" | "pdf" | "spreadsheet" | "document" | "archive" | "audio" | "video" | "file";
-  "chat-input-attachment:root:data-state": "idle" | "uploading" | "uploaded" | "error";
-  "chat-input-attachment:root:data-variant": "preview" | "file";
-  "chat-input-attachment:description:data-state": "idle" | "uploading" | "uploaded" | "error";
+  "chat-composer:root:data-density": ChatDensity;
+  "chat-composer:root:data-state": "idle" | "submitting" | "disabled";
+  "chat-composer:shell:data-state": "idle" | "submitting" | "disabled";
+  "chat-composer:mention:data-icon": string;
+  "chat-composer:mention:data-id": string;
+  "chat-composer:mention:data-mention": string;
+  "chat-composer-attachment:root:data-kind": "image" | "pdf" | "spreadsheet" | "document" | "archive" | "audio" | "video" | "file";
+  "chat-composer-attachment:root:data-state": "idle" | "uploading" | "uploaded" | "error";
+  "chat-composer-attachment:root:data-variant": "preview" | "file";
+  "chat-composer-attachment:description:data-state": "idle" | "uploading" | "uploaded" | "error";
   "chat-message:root:data-density": ChatDensity;
   "chat-message:root:data-role": ChatRole;
   "chat-message:root:data-state": ChatState;
@@ -100,9 +100,9 @@ export type EmittedStateContract = {
   "input:root:data-size": ControlSize;
   "input-group:root:data-size": ControlSize;
   "item:root:data-variant": "default" | "outline" | "muted";
-  "menu:trigger:data-size": ControlSize;
-  "menu:trigger:data-icon-only": true;
-  "menu:trigger:data-variant": MenuTriggerVariant;
+  "dropdown-menu:trigger:data-size": ControlSize;
+  "dropdown-menu:trigger:data-icon-only": true;
+  "dropdown-menu:trigger:data-variant": DropdownMenuTriggerVariant;
   "navigation-menu:link:data-variant": NavigationMenuLinkVariant;
   "dockable-panel:content:data-padding": DockablePanelContentPadding;
   "drawer:content:data-padding": DrawerContentPadding;

@@ -22,8 +22,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
-// Composes like Menu with a right-click/long-press trigger; API is shadcn/ui context-menu compatible.
-// Popup + rows share Control UI popover/row tokens with Menu and Select popups.
+// Composes like DropdownMenu with a right-click/long-press trigger; API is shadcn/ui context-menu compatible.
+// Popup + rows share Control UI popover/row tokens with DropdownMenu and Select popups.
 
 const popupClasses = cn("min-w-[10rem]", floatingListContentClasses);
 

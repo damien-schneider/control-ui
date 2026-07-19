@@ -6,7 +6,7 @@
   "description": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
   "dependencies": [],
   "registryDependencies": [
-    "chat-scene",
+    "chat-layout",
     "core"
   ],
   "files": [

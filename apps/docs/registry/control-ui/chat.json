@@ -8,10 +8,10 @@
   "registryDependencies": [
     "action-bar",
     "activity",
-    "chat-input",
-    "chat-input-attachment",
+    "chat-composer",
+    "chat-composer-attachment",
+    "chat-layout",
     "chat-message",
-    "chat-scene",
     "code-block-editor",
     "core",
     "inline-attachment",

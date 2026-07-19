@@ -19,7 +19,7 @@ export function DocsPageIntegrationProvider({ integration, children }: { integra
   return <DocsIntegrationContext value={integration}>{children}</DocsIntegrationContext>;
 }
 
-function useDocsIntegration() {
+export function useDocsIntegration() {
   const integration = use(DocsIntegrationContext);
   if (!integration) throw new Error("Docs route content must render inside DocsPageIntegrationProvider.");
   return integration;

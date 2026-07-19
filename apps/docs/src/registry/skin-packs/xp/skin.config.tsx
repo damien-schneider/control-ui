@@ -59,7 +59,7 @@ export const skin: ControlUiSkin = {
       item: xpItem,
       icon: "rotate-0 text-[var(--xp-control-border)]",
     },
-    menu: {
+    "dropdown-menu": {
       trigger: lunaRaised,
       content: xpPopup,
       item: xpItem,
@@ -120,7 +120,7 @@ export const skin: ControlUiSkin = {
           : undefined,
       trigger: ({ kind }) => (kind === "tool" ? "rounded-none bg-[var(--secondary)] text-foreground" : undefined),
     },
-    "chat-input": {
+    "chat-composer": {
       shell: `rounded-[3px] ${xpField}`,
       submit: lunaSolid,
     },
@@ -132,7 +132,7 @@ export const skin: ControlUiSkin = {
       item: "rounded-none",
       line: "rounded-none",
     },
-    "chat-scene": {
+    "chat-layout": {
       root: "rounded-none rounded-t-[8px] border-[3px] border-[var(--xp-frame)] shadow-[3px_3px_8px_rgba(0,0,0,0.35)]",
     },
     "chat-thread": {
@@ -148,7 +148,7 @@ export const skin: ControlUiSkin = {
     },
   },
   adornments: {
-    "chat-scene": {
+    "chat-layout": {
       titlebar: (
         <div
           aria-hidden="true"

@@ -24,9 +24,9 @@ import type {
   DockablePanelContentPadding,
   DrawerContentPadding,
   DrawerContentSurface,
+  DropdownMenuTriggerVariant,
   DynamicNotificationState,
   DynamicNotificationVariant,
-  MenuTriggerVariant,
   NavigationMenuLinkVariant,
   PopoverContentPadding,
   ResizablePanelGroupVariant,
@@ -72,8 +72,8 @@ export type SkinSlotContexts = {
     icon: Record<never, never>;
     item: { disabled: boolean };
   };
-  menu: {
-    trigger: { size: ControlSize; variant: MenuTriggerVariant };
+  "dropdown-menu": {
+    trigger: { size: ControlSize; variant: DropdownMenuTriggerVariant };
     content: Record<never, never>;
     item: { disabled: boolean };
     separator: Record<never, never>;
@@ -279,7 +279,7 @@ export type SkinSlotContexts = {
     list: Record<never, never>;
     item: { active: boolean; variant: TableOfContentsVariant };
   };
-  "chat-scene": {
+  "chat-layout": {
     root: Record<never, never>;
   };
   "chat-thread": {
@@ -295,7 +295,7 @@ export type SkinSlotContexts = {
     avatar: Record<never, never>;
     content: { role: ChatRole };
   };
-  "chat-input": {
+  "chat-composer": {
     root: Record<never, never>;
     shell: Record<never, never>;
     accent: Record<never, never>;
@@ -421,12 +421,12 @@ export type SkinSlotContexts = {
     content: Record<never, never>;
     action: Record<never, never>;
   };
-  "chat-input-attachments": {
+  "chat-composer-attachments": {
     root: Record<never, never>;
     scroll: Record<never, never>;
     list: Record<never, never>;
   };
-  "chat-input-attachment": {
+  "chat-composer-attachment": {
     root: {
       kind: "image" | "pdf" | "spreadsheet" | "document" | "archive" | "audio" | "video" | "file";
       status: "idle" | "uploading" | "uploaded" | "error";
@@ -474,6 +474,7 @@ export type SkinSlotContexts = {
   };
   avatar: {
     root: Record<never, never>;
+    group: Record<never, never>;
     fallback: Record<never, never>;
   };
   progress: {
@@ -661,10 +662,10 @@ export type SkinPaintPart<Scope extends SkinPaintScope> = keyof SkinPaintContext
  * Interactive bits live in a separate "use client" component the pack references — skin.config itself never carries "use client", keeping RSC intact.
  */
 export type SkinAdornmentContexts = {
-  "chat-scene": { titlebar: Record<never, never> };
+  "chat-layout": { titlebar: Record<never, never> };
   "chat-thought": { details: Record<never, never> };
   dialog: { titlebar: Record<never, never> };
-  "chat-input": { "send-layer": { sendCount: number } };
+  "chat-composer": { "send-layer": { sendCount: number } };
 };
 
 export type SkinAdornmentScope = keyof SkinAdornmentContexts;

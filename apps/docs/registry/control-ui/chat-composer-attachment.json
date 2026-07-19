@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-composer-attachment",
+  "type": "registry:component",
+  "title": "ChatComposerAttachment",
+  "description": "Composer attachment rail with file previews, upload progress, and removal.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-attachment.tsx",
+      "target": "@components/control-ui/chat-composer-attachment.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/chat-composer-attachment.json"
+  }
+}

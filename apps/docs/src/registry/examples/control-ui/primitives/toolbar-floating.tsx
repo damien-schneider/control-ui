@@ -2,7 +2,7 @@
 
 import { ChevronDownIcon, HandIcon, MousePointer2Icon, SquareIcon, TypeIcon } from "lucide-react";
 import { useState } from "react";
-import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/control-ui/ui/menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
@@ -87,16 +87,16 @@ export function PrimitiveFloatingToolbarExample() {
             </Tooltip>
           </ToolbarGroup>
           <ToolbarSeparator />
-          <Menu>
-            <ToolbarButton iconOnly render={<MenuTrigger aria-label="More shape tools" variant="ghost" iconOnly />}>
+          <DropdownMenu>
+            <ToolbarButton iconOnly render={<DropdownMenuTrigger aria-label="More shape tools" variant="ghost" iconOnly />}>
               <ChevronDownIcon />
             </ToolbarButton>
-            <MenuContent>
-              <MenuItem onClick={() => setActiveTool("shape")}>Rectangle</MenuItem>
-              <MenuItem>Ellipse</MenuItem>
-              <MenuItem>Line</MenuItem>
-            </MenuContent>
-          </Menu>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => setActiveTool("shape")}>Rectangle</DropdownMenuItem>
+              <DropdownMenuItem>Ellipse</DropdownMenuItem>
+              <DropdownMenuItem>Line</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </Toolbar>
       </TooltipProvider>
     </div>

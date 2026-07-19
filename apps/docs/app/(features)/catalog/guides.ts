@@ -73,17 +73,20 @@ export const guideEntries = [
     ],
   },
   {
+    id: "theme-accessibility",
+    kind: "Guide",
+    name: "Theme accessibility",
+    summary: "Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.",
+    layout: "wide",
+    sections: [],
+  },
+  {
     id: "theme-ai-builder",
     kind: "Guide",
     name: "Theme AI builder",
-    summary: "Turn a visual brief into a validated, previewable Control UI theme without sending images or credentials to this site.",
+    summary: "Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.",
     layout: "wide",
-    sections: [
-      { id: "brief", title: "Describe and reference" },
-      { id: "prompt", title: "Copy the AI prompt" },
-      { id: "import", title: "Import and validate" },
-      { id: "preview", title: "Preview and save" },
-    ],
+    sections: [],
   },
 ] as const satisfies readonly {
   id: string;

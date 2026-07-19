@@ -6,7 +6,7 @@ import { cva } from "class-variance-authority";
 export const controlSurfaceClasses =
   "bg-card/72 text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-foreground/5 data-[popup-open]:bg-foreground/7 data-[popup-open]:hover:bg-foreground/7 data-[active=true]:bg-primary/8 data-[active=true]:text-primary-text data-[active=true]:ring-primary/60 data-[active=true]:hover:bg-primary/10";
 
-// Shared control size scale (xs/sm/md/lg) for Button/Select trigger/Menu trigger/Input: height from --control-h-*, padding from --padding-x, text from type scale — controls line up and reflow together on token change. Skins own look; this owns dimensional rhythm.
+// Shared control size scale (xs/sm/md/lg) for Button/Select trigger/DropdownMenu trigger/Input: height from --control-h-*, padding from --padding-x, text from type scale — controls line up and reflow together on token change. Skins own look; this owns dimensional rhythm.
 export const controlSize = cva("", {
   variants: {
     size: {

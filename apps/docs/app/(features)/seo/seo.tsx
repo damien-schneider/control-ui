@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { catalogOverviews } from "@/app/(features)/catalog/overviews";
 import { docsPageForPath } from "@/app/(features)/catalog/pages";
 import { socialImagePath, socialImageSize } from "@/app/(features)/seo/social-image-config";
 import { absoluteSiteUrl, isProductionDeployment, siteConfig } from "@/lib/site-config";
@@ -91,10 +92,16 @@ export function docsSeoForPath(pathname: string) {
   const page = docsPageForPath(pathname);
   if (!page) return undefined;
 
-  const isOverview = pathname === "/overview";
-  const title = isOverview ? siteConfig.title : `${page.name} — ${kindTitle[page.kind]}`;
-  const description = isOverview ? siteConfig.description : page.summary;
-  const socialTitle = isOverview ? siteConfig.title : `${title} | ${siteConfig.name}`;
+  const isSiteOverview = pathname === "/overview";
+  const isCatalogOverview = catalogOverviews.some((overview) => overview.href === pathname);
+  let title = `${page.name} — ${kindTitle[page.kind]}`;
+  if (isCatalogOverview) title = page.name;
+  if (isSiteOverview) title = siteConfig.title;
+  const description = isSiteOverview ? siteConfig.description : page.summary;
+  const socialTitle = isSiteOverview ? siteConfig.title : `${title} | ${siteConfig.name}`;
+  let socialImageLabel: string = kindTitle[page.kind];
+  if (isCatalogOverview) socialImageLabel = "Component catalog";
+  if (isSiteOverview) socialImageLabel = "Open-source UI registry";
 
   return {
     page,
@@ -106,8 +113,8 @@ export function docsSeoForPath(pathname: string) {
     socialImage: {
       url: socialImagePath(pathname),
       alt: socialTitle,
-      title: isOverview ? "React components for AI interfaces" : page.name,
-      label: isOverview ? "Open-source UI registry" : kindTitle[page.kind],
+      title: isSiteOverview ? "React components for AI interfaces" : page.name,
+      label: socialImageLabel,
       status: page.status,
     },
   };

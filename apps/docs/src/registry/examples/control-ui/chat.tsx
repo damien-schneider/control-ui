@@ -6,18 +6,18 @@ import { type ReactNode, useState } from "react";
 import { ActionBar, ActionBarCopy, ActionBarEdit, ActionBarItem } from "@/components/control-ui/action-bar";
 import { ChatBlock } from "@/components/control-ui/blocks/chat";
 import {
-  ChatInput,
-  ChatInputAccent,
-  ChatInputShell,
-  ChatInputSubmit,
-  ChatInputToolbar,
-  ChatInputTools,
-} from "@/components/control-ui/chat-input";
-import { ChatInputEditor } from "@/components/control-ui/chat-input-editor";
-import { mentionExtension } from "@/components/control-ui/chat-input-editor/extensions/mention";
+  ChatComposer,
+  ChatComposerAccent,
+  ChatComposerShell,
+  ChatComposerSubmit,
+  ChatComposerToolbar,
+  ChatComposerTools,
+} from "@/components/control-ui/chat-composer";
+import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor";
+import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
+import { ChatThought, ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import { ChatThought, ChatTurn } from "@/components/control-ui/chat-scene";
-import type { ChatInputSubmitPayload, ChatState, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
+import type { ChatComposerSubmitPayload, ChatState, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
 import {
   InlineAttachment,
   InlineAttachmentContent,
@@ -151,7 +151,7 @@ function MastraChatPreview() {
   const streamingMessageId = isRunning && latestMessage?.role === "assistant" ? latestMessage.id : undefined;
   const messageRoles = mastraMessageRoles(streamingMessageId);
 
-  async function submitMessage({ value, clear }: ChatInputSubmitPayload) {
+  async function submitMessage({ value, clear }: ChatComposerSubmitPayload) {
     clear();
     await sendMessage({ message: value });
   }
@@ -161,31 +161,31 @@ function MastraChatPreview() {
       <ChatBlock
         className="border shadow-soft"
         composer={
-          <ChatInput
+          <ChatComposer
             density="compact"
             state={isRunning ? "submitting" : "idle"}
             value={inputValue}
             onValueChange={setInputValue}
             onSubmit={submitMessage}
           >
-            <ChatInputShell>
-              <ChatInputAccent />
-              <ChatInputEditor placeholder="Ask the assistant… type / or @" extensions={editorExtensions} />
-              <ChatInputToolbar>
-                <ChatInputTools>
+            <ChatComposerShell>
+              <ChatComposerAccent />
+              <ChatComposerEditor placeholder="Ask the assistant… type / or @" extensions={editorExtensions} />
+              <ChatComposerToolbar>
+                <ChatComposerTools>
                   <span>Attach</span>
                   <span>Mastra mock</span>
-                </ChatInputTools>
+                </ChatComposerTools>
                 {isRunning ? (
                   <Button type="button" size="xs" variant="quiet" onClick={cancelRun}>
                     Stop
                   </Button>
                 ) : (
-                  <ChatInputSubmit>Send</ChatInputSubmit>
+                  <ChatComposerSubmit>Send</ChatComposerSubmit>
                 )}
-              </ChatInputToolbar>
-            </ChatInputShell>
-          </ChatInput>
+              </ChatComposerToolbar>
+            </ChatComposerShell>
+          </ChatComposer>
         }
       >
         <PreviewConversation onEdit={setInputValue} />

@@ -2,7 +2,7 @@
 
 import { BotIcon, ChevronRightIcon, CircleIcon, FolderIcon, PlusIcon, SearchIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { ChatScene, ChatThread } from "@/components/control-ui/chat-scene";
+import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
@@ -253,19 +253,19 @@ function CodingAgentSidebar({
   );
 }
 
-export type CodingAgentConversationProps = Omit<ComponentProps<typeof ChatScene>, "children"> & {
+export type CodingAgentConversationProps = Omit<ComponentProps<typeof ChatLayout>, "children"> & {
   children: ReactNode;
   composer: ReactNode;
 };
 
 export function CodingAgentConversation({ children, composer, className, ...props }: CodingAgentConversationProps) {
   return (
-    <ChatScene className={cn("h-full min-h-0 max-w-none rounded-none border-0 bg-transparent shadow-none", className)} {...props}>
+    <ChatLayout className={cn("h-full min-h-0 max-w-none rounded-none border-0 bg-transparent shadow-none", className)} {...props}>
       <ChatThread className="px-0 py-8 sm:px-0">
         <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col gap-8 px-4 sm:px-8">{children}</div>
       </ChatThread>
       <div className="mx-auto w-full max-w-3xl px-2 sm:px-6">{composer}</div>
-    </ChatScene>
+    </ChatLayout>
   );
 }
 

@@ -18,10 +18,10 @@ export const blockEntries = [
         sourceFile("Action bar", "src/registry/sources/control-ui/action-bar.tsx", "action-bar"),
         sourceFile("Inline attachment", "src/registry/sources/control-ui/inline-attachment.tsx", "inline-attachment"),
         sourceFile("Markdown block", "src/registry/sources/control-ui/markdown-block.tsx", "markdown-block"),
-        sourceFile("Chat scene", "src/registry/sources/control-ui/chat-scene.tsx", "chat-scene"),
+        sourceFile("Chat layout", "src/registry/sources/control-ui/chat-layout.tsx", "chat-layout"),
         sourceFile("Base UI Collapsible slot", "src/registry/sources/control-ui/ui/collapsible.tsx", "ui-collapsible"),
         sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "ui-button"),
-        sourceFile("Chat input", "src/registry/sources/control-ui/chat-input.tsx", "chat-input"),
+        sourceFile("Chat composer", "src/registry/sources/control-ui/chat-composer.tsx", "chat-composer"),
         sourceFile("Chat message", "src/registry/sources/control-ui/chat-message.tsx", "chat-message"),
       ],
     },
@@ -30,7 +30,7 @@ export const blockEntries = [
         title: "Controlled shell",
         description: "The block owns layout only. Usage examples render native provider messages at the application boundary.",
         code: `ChatBlock
-├── ChatScene
+├── ChatLayout
 │   └── ChatThread
 │       └── children (rendered turns)
 └── composer`,
@@ -55,7 +55,7 @@ export const blockEntries = [
       files: [
         sourceFile("Block recipe", "src/registry/blocks/control-ui/theme-toggle.tsx", "block"),
         sourceFile("Switch slot", "src/registry/sources/control-ui/ui/switch.tsx", "ui-switch"),
-        sourceFile("Menu slot", "src/registry/sources/control-ui/ui/menu.tsx", "ui-menu"),
+        sourceFile("Dropdown menu slot", "src/registry/sources/control-ui/ui/dropdown-menu.tsx", "ui-dropdown-menu"),
         sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "ui-button"),
       ],
     },
@@ -96,7 +96,7 @@ export const blockEntries = [
       },
       files: [
         sourceFile("Block recipe", "src/registry/blocks/control-ui/coding-agent.tsx", "block"),
-        sourceFile("Chat scene", "src/registry/sources/control-ui/chat-scene.tsx", "chat-scene"),
+        sourceFile("Chat layout", "src/registry/sources/control-ui/chat-layout.tsx", "chat-layout"),
         sourceFile("Sidebar slot", "src/registry/sources/control-ui/ui/sidebar.tsx", "ui-sidebar"),
         sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "ui-button"),
       ],
@@ -116,7 +116,7 @@ export const blockEntries = [
 │       ├── task header
 │       └── children
 └── CodingAgentConversation
-    └── ChatScene
+    └── ChatLayout
         ├── ChatThread
         │   └── rendered turns or CodingAgentEmptyState
         └── composer`,

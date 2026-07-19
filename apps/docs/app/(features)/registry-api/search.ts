@@ -1,6 +1,7 @@
 // Single search corpus shared by human docs (⌘K palette) and agent surface (searchRegistry).
 // Pure: no fs, no React — reads id/name/summary off already-metadata-shaped arrays.
 // Both client (serialized Docs* props) and server (raw catalog arrays) feed it without divergence.
+import { catalogOverviews } from "@/app/(features)/catalog/overviews";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import type { DocsStatus, SearchItem } from "@/app/(features)/model/types";
 
@@ -33,6 +34,7 @@ export function buildSearchItems({
   skinPages,
 }: SearchCorpus): SearchItem[] {
   return [
+    ...catalogOverviews,
     ...guides.map<SearchItem>((item) => ({
       id: item.id,
       name: item.name,

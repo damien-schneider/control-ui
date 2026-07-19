@@ -146,544 +146,202 @@
       "description": "Text color of popup (menu/select) rows."
     },
     {
-      "name": "--popup-item-icon-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Icon color inside popup rows."
-    },
-    {
       "name": "--popup-item-highlight-background",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover/highlight fill of popup rows."
+      "description": "Highlighted or selected popup row fill."
     },
     {
       "name": "--badge-neutral",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft neutral badge background."
+      "description": "Soft neutral-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-neutral-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the neutral badge."
+      "description": "Text color on the neutral-family badge."
     },
     {
       "name": "--badge-neutral-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline neutral badge variant."
+      "description": "Border of the outline neutral-family badge variant."
     },
     {
       "name": "--badge-neutral-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of neutral badge links/buttons."
-    },
-    {
-      "name": "--badge-slate",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft slate badge background."
-    },
-    {
-      "name": "--badge-slate-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the slate badge."
-    },
-    {
-      "name": "--badge-slate-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline slate badge variant."
-    },
-    {
-      "name": "--badge-slate-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of slate badge links/buttons."
-    },
-    {
-      "name": "--badge-gray",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft gray badge background."
-    },
-    {
-      "name": "--badge-gray-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the gray badge."
-    },
-    {
-      "name": "--badge-gray-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline gray badge variant."
-    },
-    {
-      "name": "--badge-gray-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of gray badge links/buttons."
-    },
-    {
-      "name": "--badge-zinc",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft zinc badge background."
-    },
-    {
-      "name": "--badge-zinc-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the zinc badge."
-    },
-    {
-      "name": "--badge-zinc-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline zinc badge variant."
-    },
-    {
-      "name": "--badge-zinc-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of zinc badge links/buttons."
-    },
-    {
-      "name": "--badge-stone",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft stone badge background."
-    },
-    {
-      "name": "--badge-stone-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the stone badge."
-    },
-    {
-      "name": "--badge-stone-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline stone badge variant."
-    },
-    {
-      "name": "--badge-stone-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of stone badge links/buttons."
+      "description": "Hover background of filled neutral-family badge links and buttons."
     },
     {
       "name": "--badge-red",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft red badge background."
+      "description": "Soft red-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-red-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the red badge."
+      "description": "Text color on the red-family badge."
     },
     {
       "name": "--badge-red-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline red badge variant."
+      "description": "Border of the outline red-family badge variant."
     },
     {
       "name": "--badge-red-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of red badge links/buttons."
+      "description": "Hover background of filled red-family badge links and buttons."
     },
     {
       "name": "--badge-orange",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft orange badge background."
+      "description": "Soft orange-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-orange-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the orange badge."
+      "description": "Text color on the orange-family badge."
     },
     {
       "name": "--badge-orange-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline orange badge variant."
+      "description": "Border of the outline orange-family badge variant."
     },
     {
       "name": "--badge-orange-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of orange badge links/buttons."
-    },
-    {
-      "name": "--badge-amber",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft amber badge background."
-    },
-    {
-      "name": "--badge-amber-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the amber badge."
-    },
-    {
-      "name": "--badge-amber-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline amber badge variant."
-    },
-    {
-      "name": "--badge-amber-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of amber badge links/buttons."
+      "description": "Hover background of filled orange-family badge links and buttons."
     },
     {
       "name": "--badge-yellow",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft yellow badge background."
+      "description": "Soft yellow-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-yellow-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the yellow badge."
+      "description": "Text color on the yellow-family badge."
     },
     {
       "name": "--badge-yellow-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline yellow badge variant."
+      "description": "Border of the outline yellow-family badge variant."
     },
     {
       "name": "--badge-yellow-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of yellow badge links/buttons."
-    },
-    {
-      "name": "--badge-lime",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft lime badge background."
-    },
-    {
-      "name": "--badge-lime-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the lime badge."
-    },
-    {
-      "name": "--badge-lime-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline lime badge variant."
-    },
-    {
-      "name": "--badge-lime-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of lime badge links/buttons."
+      "description": "Hover background of filled yellow-family badge links and buttons."
     },
     {
       "name": "--badge-green",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft green badge background."
+      "description": "Soft green-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-green-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the green badge."
+      "description": "Text color on the green-family badge."
     },
     {
       "name": "--badge-green-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline green badge variant."
+      "description": "Border of the outline green-family badge variant."
     },
     {
       "name": "--badge-green-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of green badge links/buttons."
-    },
-    {
-      "name": "--badge-emerald",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft emerald badge background."
-    },
-    {
-      "name": "--badge-emerald-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the emerald badge."
-    },
-    {
-      "name": "--badge-emerald-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline emerald badge variant."
-    },
-    {
-      "name": "--badge-emerald-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of emerald badge links/buttons."
-    },
-    {
-      "name": "--badge-teal",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft teal badge background."
-    },
-    {
-      "name": "--badge-teal-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the teal badge."
-    },
-    {
-      "name": "--badge-teal-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline teal badge variant."
-    },
-    {
-      "name": "--badge-teal-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of teal badge links/buttons."
-    },
-    {
-      "name": "--badge-cyan",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft cyan badge background."
-    },
-    {
-      "name": "--badge-cyan-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the cyan badge."
-    },
-    {
-      "name": "--badge-cyan-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline cyan badge variant."
-    },
-    {
-      "name": "--badge-cyan-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of cyan badge links/buttons."
-    },
-    {
-      "name": "--badge-sky",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft sky badge background."
-    },
-    {
-      "name": "--badge-sky-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the sky badge."
-    },
-    {
-      "name": "--badge-sky-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline sky badge variant."
-    },
-    {
-      "name": "--badge-sky-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of sky badge links/buttons."
+      "description": "Hover background of filled green-family badge links and buttons."
     },
     {
       "name": "--badge-blue",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft blue badge background."
+      "description": "Soft blue-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-blue-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the blue badge."
+      "description": "Text color on the blue-family badge."
     },
     {
       "name": "--badge-blue-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline blue badge variant."
+      "description": "Border of the outline blue-family badge variant."
     },
     {
       "name": "--badge-blue-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of blue badge links/buttons."
-    },
-    {
-      "name": "--badge-indigo",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft indigo badge background."
-    },
-    {
-      "name": "--badge-indigo-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the indigo badge."
-    },
-    {
-      "name": "--badge-indigo-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline indigo badge variant."
-    },
-    {
-      "name": "--badge-indigo-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of indigo badge links/buttons."
-    },
-    {
-      "name": "--badge-violet",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft violet badge background."
-    },
-    {
-      "name": "--badge-violet-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the violet badge."
-    },
-    {
-      "name": "--badge-violet-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline violet badge variant."
-    },
-    {
-      "name": "--badge-violet-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of violet badge links/buttons."
+      "description": "Hover background of filled blue-family badge links and buttons."
     },
     {
       "name": "--badge-purple",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft purple badge background."
+      "description": "Soft purple-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-purple-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the purple badge."
+      "description": "Text color on the purple-family badge."
     },
     {
       "name": "--badge-purple-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline purple badge variant."
+      "description": "Border of the outline purple-family badge variant."
     },
     {
       "name": "--badge-purple-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of purple badge links/buttons."
-    },
-    {
-      "name": "--badge-fuchsia",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft fuchsia badge background."
-    },
-    {
-      "name": "--badge-fuchsia-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the fuchsia badge."
-    },
-    {
-      "name": "--badge-fuchsia-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline fuchsia badge variant."
-    },
-    {
-      "name": "--badge-fuchsia-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of fuchsia badge links/buttons."
+      "description": "Hover background of filled purple-family badge links and buttons."
     },
     {
       "name": "--badge-pink",
       "group": "color",
       "tier": "advanced",
-      "description": "Soft pink badge background."
+      "description": "Soft pink-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-pink-foreground",
       "group": "color",
       "tier": "advanced",
-      "description": "Text color on the pink badge."
+      "description": "Text color on the pink-family badge."
     },
     {
       "name": "--badge-pink-border",
       "group": "color",
       "tier": "advanced",
-      "description": "Border of the outline pink badge variant."
+      "description": "Border of the outline pink-family badge variant."
     },
     {
       "name": "--badge-pink-hover",
       "group": "color",
       "tier": "advanced",
-      "description": "Hover background of pink badge links/buttons."
-    },
-    {
-      "name": "--badge-rose",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Soft rose badge background."
-    },
-    {
-      "name": "--badge-rose-foreground",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Text color on the rose badge."
-    },
-    {
-      "name": "--badge-rose-border",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Border of the outline rose badge variant."
-    },
-    {
-      "name": "--badge-rose-hover",
-      "group": "color",
-      "tier": "advanced",
-      "description": "Hover background of rose badge links/buttons."
+      "description": "Hover background of filled pink-family badge links and buttons."
     },
     {
       "name": "--font-sans",
@@ -846,60 +504,6 @@
       "group": "typography",
       "tier": "advanced",
       "description": "Legacy alias of --text-caption (11px)."
-    },
-    {
-      "name": "--text-title-sm",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Legacy alias of --text-heading-4."
-    },
-    {
-      "name": "--text-title-sm--line-height",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Line-height paired onto text-title-sm."
-    },
-    {
-      "name": "--text-title-sm--font-weight",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Weight paired onto text-title-sm."
-    },
-    {
-      "name": "--text-title-md",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Legacy alias of --text-heading-3."
-    },
-    {
-      "name": "--text-title-md--line-height",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Line-height paired onto text-title-md."
-    },
-    {
-      "name": "--text-title-md--font-weight",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Weight paired onto text-title-md."
-    },
-    {
-      "name": "--text-title-lg",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Legacy alias of --text-heading-2."
-    },
-    {
-      "name": "--text-title-lg--line-height",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Line-height paired onto text-title-lg."
-    },
-    {
-      "name": "--text-title-lg--font-weight",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Weight paired onto text-title-lg."
     },
     {
       "name": "--radius",

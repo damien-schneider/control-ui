@@ -80,8 +80,8 @@ export function DocsSidebarContent({
       ? "Control UI on GitHub"
       : `Control UI on GitHub, ${formattedGitHubStars} ${githubStars === 1 ? "star" : "stars"}`;
   const modeHrefs: Record<SidebarMode, string> = {
-    agents: components[0] ? `/ai/${components[0].id}` : "/ai",
-    primitives: primitives[0] ? `/primitives/${primitives[0].id}` : "/primitives",
+    agents: "/ai",
+    primitives: "/primitives",
     skills: skills[0] ? `/skills/${skills[0].id}` : "/skills",
   };
   const { isMobile, setOpenMobile } = useSidebar();

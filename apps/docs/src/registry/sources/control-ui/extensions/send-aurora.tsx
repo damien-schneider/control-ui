@@ -4,9 +4,9 @@ import type { CSSProperties } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
 
-// Anchored extension for ChatInput's `chat-input:send-layer` anchor: a blurred aurora backdrop that sweeps up
+// Anchored extension for ChatComposer's `chat-composer:send-layer` anchor: a blurred aurora backdrop that sweeps up
 // once per sent message. Activate it from skin.config — the component owns the anchor's positioned wrapper:
-//   adornments: { "chat-input": { "send-layer": (ctx) => <SendAurora sendCount={ctx.sendCount} /> } }
+//   adornments: { "chat-composer": { "send-layer": (ctx) => <SendAurora sendCount={ctx.sendCount} /> } }
 // One-shot replay is CSS-only: `key={sendCount}` remounts the layer per send, send-aurora.css plays the sweep
 // keyframe on mount and parks it at opacity 0. Palette comes from the --aurora-1..5 tokens (skin re-valuable);
 // the `colors` prop is the caller-wins inline override.

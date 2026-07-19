@@ -149,7 +149,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           />
           <p className="mb-4 max-w-2xl text-body leading-6 text-muted-foreground">
             Copy a selector as{" "}
-            <code>[data-skin=&quot;brand&quot;] [data-control-ui=&quot;chat-input&quot;][data-slot=&quot;shell&quot;]</code>. Paints and
+            <code>[data-skin=&quot;brand&quot;] [data-control-ui=&quot;chat-composer&quot;][data-slot=&quot;shell&quot;]</code>. Paints and
             adornments are listed separately in the{" "}
             <Link href="/r/skin-contract.json" className="font-medium text-foreground underline underline-offset-4">
               full machine-readable contract
@@ -198,7 +198,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           <SectionTitle title="Adornments" description="JSX at named anchors — decorative chrome, or behavioral fx layers." />
           <p className="max-w-2xl text-body leading-6 text-muted-foreground">
             Additive, render zero DOM when absent, never gate library behavior. Decorative anchors (window titlebars, window controls) take
-            plain <code>aria-hidden</code> JSX. Behavioral anchors (like <code>chat-input:send-layer</code>) take a{" "}
+            plain <code>aria-hidden</code> JSX. Behavioral anchors (like <code>chat-composer:send-layer</code>) take a{" "}
             <code>(ctx) =&gt; JSX</code> render prop whose ctx carries plain render-time values — this is how a pack activates an anchored
             extension (send-aurora). Adornments are nested by scope and part in skin.config. Interactive values live in a separate{" "}
             <code>&quot;use client&quot;</code> file the pack ships, so skin.config itself stays RSC-pure.

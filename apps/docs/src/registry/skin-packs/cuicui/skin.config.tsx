@@ -34,7 +34,7 @@ export const skin: ControlUiSkin = {
   sidebarLayout: "sidebar",
   sidebarWidth: "20rem",
   adornments: {
-    "chat-input": {
+    "chat-composer": {
       "send-layer": (ctx) => (
         <SendAurora
           sendCount={ctx.sendCount}
@@ -53,7 +53,7 @@ export const skin: ControlUiSkin = {
       trigger: control,
       item: item,
     },
-    menu: {
+    "dropdown-menu": {
       trigger: control,
       content: popup,
       item: item,
@@ -157,7 +157,7 @@ export const skin: ControlUiSkin = {
     },
     tabs: {
       list: "rounded-[var(--radius-control)] bg-[var(--cuicui-control-bg)] p-1",
-      tab: "rounded-[calc(var(--radius-control)*0.78)] font-medium data-[active]:text-white",
+      tab: "rounded-[calc(var(--radius-control)*0.78)] font-medium",
       indicator: "rounded-[calc(var(--radius-control)*0.78)]",
     },
     card: {
@@ -190,7 +190,7 @@ export const skin: ControlUiSkin = {
     "radio-group": {
       item: "border-[var(--cuicui-border)] data-[checked]:border-[var(--primary)]",
     },
-    "chat-scene": {
+    "chat-layout": {
       root: surface,
     },
     activity: {
@@ -205,7 +205,7 @@ export const skin: ControlUiSkin = {
           ? "cuicui-gradient-fill rounded-[var(--radius-field)] text-white shadow-(--shadow-sm)"
           : "rounded-[var(--radius-field)] bg-transparent",
     },
-    "chat-input": {
+    "chat-composer": {
       shell: `${field} rounded-[var(--radius-field)]`,
       submit: solid,
       mention: "rounded-full border border-[var(--cuicui-border)] bg-[var(--cuicui-control-bg)]",

@@ -77,7 +77,6 @@ export function Button({
   color: _color,
   ...props
 }: ButtonProps) {
-  // Skin resolves after library recipe, before caller's className: tailwind-merge order (not CSS specificity) decides the winner.
   const skinClasses = skinSlot("button", "root", { variant, tone, size, shape, active });
   const classes = cn(buttonRecipeClasses(variant, tone, size, shape), iconOnly && "aspect-square px-0", skinClasses, className);
   const isNativeButton = nativeButton !== false;

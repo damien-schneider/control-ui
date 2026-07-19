@@ -1,3 +1,5 @@
+import { BADGE_COLORS } from "../contracts";
+
 // THE skin token contract — canonical typed list of every custom property every skin pack must define; values live in each pack's theme.css, this is the machine-readable index of NAMES
 // feeds docs token-reference page + theme-contract-coverage test, which requires complete light/dark resolution per skin while core owns only bindings and invariant mechanics
 // name absent from this list is NOT contract: packs must not declare it in theme.css; skin.css must never redeclare a name that IS here
@@ -20,37 +22,11 @@ function token(name: string, group: ThemeContractGroup, tier: ThemeContractTier,
   return { name, group, tier, description };
 }
 
-/** The soft badge palette: each hue carries a background / foreground / border / hover quartet. */
-export const BADGE_HUES = [
-  "neutral",
-  "slate",
-  "gray",
-  "zinc",
-  "stone",
-  "red",
-  "orange",
-  "amber",
-  "yellow",
-  "lime",
-  "green",
-  "emerald",
-  "teal",
-  "cyan",
-  "sky",
-  "blue",
-  "indigo",
-  "violet",
-  "purple",
-  "fuchsia",
-  "pink",
-  "rose",
-] as const;
-
-const badgeTokens: ThemeContractToken[] = BADGE_HUES.flatMap((hue) => [
-  token(`--badge-${hue}`, "color", "advanced", `Soft ${hue} badge background.`),
-  token(`--badge-${hue}-foreground`, "color", "advanced", `Text color on the ${hue} badge.`),
-  token(`--badge-${hue}-border`, "color", "advanced", `Border of the outline ${hue} badge variant.`),
-  token(`--badge-${hue}-hover`, "color", "advanced", `Hover background of ${hue} badge links/buttons.`),
+const badgeColorTokens: ThemeContractToken[] = BADGE_COLORS.flatMap((color) => [
+  token(`--badge-${color}`, "color", "advanced", `Soft ${color}-family badge background; the skin owns the exact hue.`),
+  token(`--badge-${color}-foreground`, "color", "advanced", `Text color on the ${color}-family badge.`),
+  token(`--badge-${color}-border`, "color", "advanced", `Border of the outline ${color}-family badge variant.`),
+  token(`--badge-${color}-hover`, "color", "advanced", `Hover background of filled ${color}-family badge links and buttons.`),
 ]);
 
 export const THEME_CONTRACT: readonly ThemeContractToken[] = [
@@ -80,9 +56,8 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   // color knobs
   token("--ring-opacity", "color", "advanced", "Alpha of the border/ring hairlines; 0 = borderless."),
   token("--popup-item-foreground", "color", "advanced", "Text color of popup (menu/select) rows."),
-  token("--popup-item-icon-foreground", "color", "advanced", "Icon color inside popup rows."),
-  token("--popup-item-highlight-background", "color", "advanced", "Hover/highlight fill of popup rows."),
-  ...badgeTokens,
+  token("--popup-item-highlight-background", "color", "advanced", "Highlighted or selected popup row fill."),
+  ...badgeColorTokens,
 
   // ---- typography — faces, roles, and the role-named type scale ---------------------------------
   token("--font-sans", "typography", "core", "Typeface for the whole UI."),
@@ -112,15 +87,6 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--text-display--font-weight", "typography", "advanced", "Weight paired onto text-display."),
   token("--text-display--letter-spacing", "typography", "advanced", "Tracking paired onto text-display."),
   token("--text-meta", "typography", "advanced", "Legacy alias of --text-caption (11px)."),
-  token("--text-title-sm", "typography", "advanced", "Legacy alias of --text-heading-4."),
-  token("--text-title-sm--line-height", "typography", "advanced", "Line-height paired onto text-title-sm."),
-  token("--text-title-sm--font-weight", "typography", "advanced", "Weight paired onto text-title-sm."),
-  token("--text-title-md", "typography", "advanced", "Legacy alias of --text-heading-3."),
-  token("--text-title-md--line-height", "typography", "advanced", "Line-height paired onto text-title-md."),
-  token("--text-title-md--font-weight", "typography", "advanced", "Weight paired onto text-title-md."),
-  token("--text-title-lg", "typography", "advanced", "Legacy alias of --text-heading-2."),
-  token("--text-title-lg--line-height", "typography", "advanced", "Line-height paired onto text-title-lg."),
-  token("--text-title-lg--font-weight", "typography", "advanced", "Weight paired onto text-title-lg."),
 
   // ---- radius — THE knob, its derived scale, and corner geometry --------------------------------
   token("--radius", "radius", "core", "THE single radius knob; the whole scale multiplies from it."),

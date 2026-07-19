@@ -14,13 +14,7 @@ export function PrimitiveCheckboxGroupExample() {
   const someChecked = value.length > 0 && !allChecked;
 
   return (
-    <CheckboxGroup
-      value={value}
-      onValueChange={setValue}
-      allValues={ALL_VALUES}
-      aria-label="Notification channels"
-      className="w-full max-w-xs"
-    >
+    <CheckboxGroup value={value} onValueChange={setValue} aria-label="Notification channels" className="w-full max-w-xs">
       <label
         htmlFor="channels-all"
         className="flex cursor-pointer items-center gap-2.5 rounded-[var(--radius-md)] p-2 text-[13px] font-medium text-foreground transition-colors hover:bg-foreground/4"

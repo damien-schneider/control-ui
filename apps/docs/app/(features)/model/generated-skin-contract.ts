@@ -6,7 +6,7 @@ export const generatedSkinContract = {
   registryItemMapping: {
     accordion: ["accordion"],
     "action-bar": ["action-bar"],
-    activity: ["activity", "chat-scene"],
+    activity: ["activity", "chat-layout"],
     alert: ["alert"],
     "alert-dialog": ["alert-dialog"],
     "aspect-ratio": ["aspect-ratio"],
@@ -17,19 +17,19 @@ export const generatedSkinContract = {
     avatar: ["avatar"],
     badge: ["badge"],
     breadcrumb: ["breadcrumb"],
-    button: ["button", "menu", "select"],
+    button: ["button", "dropdown-menu", "select"],
     "button-group": ["button-group"],
     calendar: ["calendar"],
     card: ["card"],
-    "chat-input": ["chat-input"],
-    "chat-input-attachment": ["chat-input-attachment"],
-    "chat-input-attachments": ["chat-input-attachment"],
-    "chat-input-editor": ["chat-input"],
+    "chat-composer": ["chat-composer"],
+    "chat-composer-attachment": ["chat-composer-attachment"],
+    "chat-composer-attachments": ["chat-composer-attachment"],
+    "chat-composer-editor": ["chat-composer"],
+    "chat-layout": ["chat-layout"],
     "chat-message": ["chat-message"],
-    "chat-scene": ["chat-scene"],
-    "chat-thought": ["chat-scene"],
-    "chat-thread": ["chat-scene"],
-    "chat-turn": ["chat-scene"],
+    "chat-thought": ["chat-layout"],
+    "chat-thread": ["chat-layout"],
+    "chat-turn": ["chat-layout"],
     checkbox: ["checkbox"],
     "checkbox-group": ["checkbox-group"],
     code: ["code"],
@@ -43,6 +43,7 @@ export const generatedSkinContract = {
     dialog: ["dialog"],
     "dockable-panel": ["dockable-panel"],
     drawer: ["drawer"],
+    "dropdown-menu": ["dropdown-menu"],
     "dynamic-notification": ["dynamic-notification"],
     empty: ["empty"],
     "environment-variables": ["environment-variables"],
@@ -59,7 +60,6 @@ export const generatedSkinContract = {
     label: ["label"],
     markdown: ["markdown"],
     "markdown-block": ["markdown-block"],
-    menu: ["menu"],
     menubar: ["menubar"],
     meter: ["meter"],
     "model-switcher": ["model-switcher"],
@@ -267,7 +267,7 @@ export const generatedSkinContract = {
           states: [],
         },
         "content-viewport": {
-          registryItems: ["chat-scene"],
+          registryItems: ["chat-layout"],
           states: [],
         },
         detail: {
@@ -337,7 +337,7 @@ export const generatedSkinContract = {
           states: [],
         },
       },
-      registryItems: ["activity", "chat-scene"],
+      registryItems: ["activity", "chat-layout"],
     },
     alert: {
       parts: {
@@ -933,6 +933,10 @@ export const generatedSkinContract = {
           registryItems: ["avatar"],
           states: [],
         },
+        group: {
+          registryItems: ["avatar"],
+          states: [],
+        },
         image: {
           registryItems: ["avatar"],
           states: [
@@ -966,31 +970,8 @@ export const generatedSkinContract = {
             {
               attribute: "data-color",
               source: "control-ui",
-              valueKind: "enum",
-              values: [
-                "amber",
-                "blue",
-                "cyan",
-                "emerald",
-                "fuchsia",
-                "gray",
-                "green",
-                "indigo",
-                "lime",
-                "neutral",
-                "orange",
-                "pink",
-                "purple",
-                "red",
-                "rose",
-                "sky",
-                "slate",
-                "stone",
-                "teal",
-                "violet",
-                "yellow",
-                "zinc",
-              ],
+              valueKind: "open",
+              values: [],
             },
             {
               attribute: "data-size",
@@ -1099,11 +1080,11 @@ export const generatedSkinContract = {
           ],
         },
         content: {
-          registryItems: ["button", "menu", "select"],
+          registryItems: ["button", "dropdown-menu", "select"],
           states: [],
         },
       },
-      registryItems: ["button", "menu", "select"],
+      registryItems: ["button", "dropdown-menu", "select"],
     },
     "button-group": {
       parts: {
@@ -1233,10 +1214,10 @@ export const generatedSkinContract = {
       },
       registryItems: ["card"],
     },
-    "chat-input": {
+    "chat-composer": {
       parts: {
         root: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [
             {
               attribute: "data-density",
@@ -1253,15 +1234,15 @@ export const generatedSkinContract = {
           ],
         },
         accent: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [],
         },
         footer: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [],
         },
         mention: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [
             {
               attribute: "data-icon",
@@ -1284,7 +1265,7 @@ export const generatedSkinContract = {
           ],
         },
         shell: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [
             {
               attribute: "data-state",
@@ -1295,25 +1276,25 @@ export const generatedSkinContract = {
           ],
         },
         submit: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [],
         },
         textarea: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [],
         },
         toolbar: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [],
         },
         tools: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [],
         },
       },
-      registryItems: ["chat-input"],
+      registryItems: ["chat-composer"],
     },
-    "chat-input-attachment": {
+    "chat-composer-attachment": {
       parts: {
         root: {
           context: {
@@ -1321,7 +1302,7 @@ export const generatedSkinContract = {
             status: '"idle" | "uploading" | "uploaded" | "error"',
             variant: '"preview" | "file"',
           },
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [
             {
               attribute: "data-kind",
@@ -1344,14 +1325,14 @@ export const generatedSkinContract = {
           ],
         },
         content: {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         description: {
           context: {
             status: '"idle" | "uploading" | "uploaded" | "error"',
           },
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [
             {
               attribute: "data-state",
@@ -1367,60 +1348,69 @@ export const generatedSkinContract = {
             status: '"idle" | "uploading" | "uploaded" | "error"',
             variant: '"preview" | "file"',
           },
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         progress: {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         "progress-indicator": {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         remove: {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         status: {
           context: {
             status: '"idle" | "uploading" | "uploaded" | "error"',
           },
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         title: {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
       },
-      registryItems: ["chat-input-attachment"],
+      registryItems: ["chat-composer-attachment"],
     },
-    "chat-input-attachments": {
+    "chat-composer-attachments": {
       parts: {
         root: {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         list: {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
         scroll: {
-          registryItems: ["chat-input-attachment"],
+          registryItems: ["chat-composer-attachment"],
           states: [],
         },
       },
-      registryItems: ["chat-input-attachment"],
+      registryItems: ["chat-composer-attachment"],
     },
-    "chat-input-editor": {
+    "chat-composer-editor": {
       parts: {
         root: {
-          registryItems: ["chat-input"],
+          registryItems: ["chat-composer"],
           states: [],
         },
       },
-      registryItems: ["chat-input"],
+      registryItems: ["chat-composer"],
+    },
+    "chat-layout": {
+      parts: {
+        root: {
+          registryItems: ["chat-layout"],
+          states: [],
+        },
+      },
+      registryItems: ["chat-layout"],
     },
     "chat-message": {
       parts: {
@@ -1484,45 +1474,36 @@ export const generatedSkinContract = {
       },
       registryItems: ["chat-message"],
     },
-    "chat-scene": {
-      parts: {
-        root: {
-          registryItems: ["chat-scene"],
-          states: [],
-        },
-      },
-      registryItems: ["chat-scene"],
-    },
     "chat-thought": {
       parts: {
         root: {
-          registryItems: ["chat-scene"],
+          registryItems: ["chat-layout"],
           states: [],
         },
         details: {
-          registryItems: ["chat-scene"],
+          registryItems: ["chat-layout"],
           states: [],
         },
         trigger: {
-          registryItems: ["chat-scene"],
+          registryItems: ["chat-layout"],
           states: [],
         },
       },
-      registryItems: ["chat-scene"],
+      registryItems: ["chat-layout"],
     },
     "chat-thread": {
       parts: {
         root: {
-          registryItems: ["chat-scene"],
+          registryItems: ["chat-layout"],
           states: [],
         },
       },
-      registryItems: ["chat-scene"],
+      registryItems: ["chat-layout"],
     },
     "chat-turn": {
       parts: {
         root: {
-          registryItems: ["chat-scene"],
+          registryItems: ["chat-layout"],
           states: [
             {
               attribute: "data-from",
@@ -1533,7 +1514,7 @@ export const generatedSkinContract = {
           ],
         },
       },
-      registryItems: ["chat-scene"],
+      registryItems: ["chat-layout"],
     },
     checkbox: {
       parts: {
@@ -1967,15 +1948,8 @@ export const generatedSkinContract = {
           context: {
             state: '"open" | "closed"',
           },
-          registryItems: ["collapsible"],
-          states: [
-            {
-              attribute: "data-state",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["closed", "open"],
-            },
-          ],
+          registryItems: [],
+          states: [],
         },
       },
       registryItems: ["collapsible"],
@@ -3344,6 +3318,132 @@ export const generatedSkinContract = {
       },
       registryItems: ["drawer"],
     },
+    "dropdown-menu": {
+      parts: {
+        content: {
+          registryItems: ["dropdown-menu"],
+          states: [
+            {
+              attribute: "data-align",
+              source: "external",
+              valueKind: "enum",
+              values: ["center", "end", "start"],
+            },
+            {
+              attribute: "data-closed",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-ending-style",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-instant",
+              source: "external",
+              valueKind: "enum",
+              values: ["click", "dismiss", "group", "trigger-change"],
+            },
+            {
+              attribute: "data-open",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-side",
+              source: "external",
+              valueKind: "enum",
+              values: ["bottom", "inline-end", "inline-start", "left", "right", "top"],
+            },
+            {
+              attribute: "data-starting-style",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        item: {
+          context: {
+            disabled: "boolean",
+          },
+          registryItems: ["dropdown-menu"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-highlighted",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        label: {
+          registryItems: ["dropdown-menu"],
+          states: [],
+        },
+        separator: {
+          registryItems: ["dropdown-menu"],
+          states: [
+            {
+              attribute: "data-orientation",
+              source: "external",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
+            },
+          ],
+        },
+        trigger: {
+          context: {
+            size: "ControlSize",
+            variant: "DropdownMenuTriggerVariant",
+          },
+          registryItems: ["dropdown-menu"],
+          states: [
+            {
+              attribute: "data-icon-only",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-popup-open",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-pressed",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-size",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["lg", "md", "sm", "xs"],
+            },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["ghost", "surface"],
+            },
+          ],
+        },
+      },
+      registryItems: ["dropdown-menu"],
+    },
     "dynamic-notification": {
       parts: {
         root: {
@@ -4324,132 +4424,6 @@ export const generatedSkinContract = {
         },
       },
       registryItems: ["markdown-block"],
-    },
-    menu: {
-      parts: {
-        content: {
-          registryItems: ["menu"],
-          states: [
-            {
-              attribute: "data-align",
-              source: "external",
-              valueKind: "enum",
-              values: ["center", "end", "start"],
-            },
-            {
-              attribute: "data-closed",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-ending-style",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-instant",
-              source: "external",
-              valueKind: "enum",
-              values: ["click", "dismiss", "group", "trigger-change"],
-            },
-            {
-              attribute: "data-open",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-side",
-              source: "external",
-              valueKind: "enum",
-              values: ["bottom", "inline-end", "inline-start", "left", "right", "top"],
-            },
-            {
-              attribute: "data-starting-style",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-          ],
-        },
-        item: {
-          context: {
-            disabled: "boolean",
-          },
-          registryItems: ["menu"],
-          states: [
-            {
-              attribute: "data-disabled",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-highlighted",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-          ],
-        },
-        label: {
-          registryItems: ["menu"],
-          states: [],
-        },
-        separator: {
-          registryItems: ["menu"],
-          states: [
-            {
-              attribute: "data-orientation",
-              source: "external",
-              valueKind: "enum",
-              values: ["horizontal", "vertical"],
-            },
-          ],
-        },
-        trigger: {
-          context: {
-            size: "ControlSize",
-            variant: "MenuTriggerVariant",
-          },
-          registryItems: ["menu"],
-          states: [
-            {
-              attribute: "data-icon-only",
-              source: "control-ui",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-popup-open",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-pressed",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-size",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["lg", "md", "sm", "xs"],
-            },
-            {
-              attribute: "data-variant",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["ghost", "surface"],
-            },
-          ],
-        },
-      },
-      registryItems: ["menu"],
     },
     menubar: {
       parts: {
@@ -8046,14 +8020,14 @@ export const generatedSkinContract = {
     },
   },
   adornments: {
-    "chat-input": {
+    "chat-composer": {
       "send-layer": {
         context: {
           sendCount: "number",
         },
       },
     },
-    "chat-scene": {
+    "chat-layout": {
       titlebar: {
         context: {},
       },
@@ -8088,12 +8062,12 @@ export const generatedSkinContract = {
         part: "input",
       },
       {
-        scope: "input-otp",
-        part: "slot",
+        scope: "dropdown-menu",
+        part: "trigger",
       },
       {
-        scope: "menu",
-        part: "trigger",
+        scope: "input-otp",
+        part: "slot",
       },
       {
         scope: "menubar",
@@ -8159,11 +8133,11 @@ export const generatedSkinContract = {
           part: "sub-content",
         },
         {
-          scope: "hover-card",
+          scope: "dropdown-menu",
           part: "content",
         },
         {
-          scope: "menu",
+          scope: "hover-card",
           part: "content",
         },
         {
@@ -8235,11 +8209,11 @@ export const generatedSkinContract = {
           part: "root",
         },
         {
-          scope: "chat-input-attachment",
+          scope: "chat-composer-attachment",
           part: "root",
         },
         {
-          scope: "chat-scene",
+          scope: "chat-layout",
           part: "root",
         },
         {

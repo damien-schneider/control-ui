@@ -1,0 +1,72 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-composer",
+  "type": "registry:component",
+  "title": "ChatComposer",
+  "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
+  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/chat-composer-editor.css\";",
+  "dependencies": [
+    "prosemirror-commands@^1.7.1",
+    "prosemirror-history@^1.5.0",
+    "prosemirror-keymap@^1.2.3",
+    "prosemirror-model@^1.25.11",
+    "prosemirror-state@^1.4.4",
+    "prosemirror-view@^1.42.1"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "scroll-area",
+    "trigger-menu"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-chat-composer.ts",
+      "target": "@components/control-ui/hooks/use-chat-composer.ts",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-editor.css",
+      "target": "@components/control-ui/styles/chat-composer-editor.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-editor.tsx",
+      "target": "@components/control-ui/chat-composer-editor.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-editor/extensions/mention.tsx",
+      "target": "@components/control-ui/chat-composer-editor/extensions/mention.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-editor/ghost.ts",
+      "target": "@components/control-ui/chat-composer-editor/ghost.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-editor/schema.ts",
+      "target": "@components/control-ui/chat-composer-editor/schema.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-editor/serialize.ts",
+      "target": "@components/control-ui/chat-composer-editor/serialize.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer-editor/types.ts",
+      "target": "@components/control-ui/chat-composer-editor/types.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/chat-composer.tsx",
+      "target": "@components/control-ui/chat-composer.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/chat-composer.json"
+  }
+}

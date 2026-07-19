@@ -39,7 +39,7 @@ export const skin: ControlUiSkin = {
     button: {
       root: ({ variant }) => (variant === "solid" ? appleSolid : appleControl),
     },
-    menu: {
+    "dropdown-menu": {
       trigger: appleControl,
       content: applePopup,
       item: appleItem,
@@ -100,14 +100,14 @@ export const skin: ControlUiSkin = {
       content:
         "data-[role=user]:rounded-[var(--radius-field)] data-[role=user]:bg-[var(--primary)] data-[role=user]:text-[var(--primary-foreground)] data-[role=user]:shadow-none",
     },
-    "chat-input": {
+    "chat-composer": {
       shell: `rounded-[var(--radius-field)] ${appleField}`,
       submit: appleSolid,
     },
     "markdown-block": {
       root: "rounded-[var(--radius-panel)] border border-[var(--glass-rim)]",
     },
-    "chat-scene": {
+    "chat-layout": {
       root: "rounded-[var(--radius-scene)] border border-[var(--glass-rim)] bg-[oklch(from_var(--card)_l_c_h/0.7)] backdrop-blur-[var(--backdrop-blur-popover)] backdrop-saturate-[1.8] shadow-(--shadow-soft)",
     },
   },

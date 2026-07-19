@@ -6,7 +6,7 @@
   "description": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/chat-scene.json",
+    "http://127.0.0.1:3000/r/chat-layout.json",
     "http://127.0.0.1:3000/r/core.json"
   ],
   "files": [
@@ -14,7 +14,7 @@
       "path": "src/registry/blocks/chat.tsx",
       "target": "@components/control-ui/blocks/chat.tsx",
       "type": "registry:block",
-      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { ChatScene, ChatThread } from \"@/components/control-ui/chat-scene\";\n\nexport type ChatBlockProps = Omit<ComponentProps<typeof ChatScene>, \"children\"> & {\n  children: ReactNode;\n  composer: ReactNode;\n};\n\nexport function ChatBlock({ children, composer, className, ...props }: ChatBlockProps) {\n  return (\n    <ChatScene className={className} {...props}>\n      <ChatThread>{children}</ChatThread>\n      {composer}\n    </ChatScene>\n  );\n}\n"
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { ChatLayout, ChatThread } from \"@/components/control-ui/chat-layout\";\n\nexport type ChatBlockProps = Omit<ComponentProps<typeof ChatLayout>, \"children\"> & {\n  children: ReactNode;\n  composer: ReactNode;\n};\n\nexport function ChatBlock({ children, composer, className, ...props }: ChatBlockProps) {\n  return (\n    <ChatLayout className={className} {...props}>\n      <ChatThread>{children}</ChatThread>\n      {composer}\n    </ChatLayout>\n  );\n}\n"
     }
   ],
   "meta": {}

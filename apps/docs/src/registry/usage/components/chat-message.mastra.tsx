@@ -20,8 +20,8 @@ import {
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
+import { ChatThought } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import { ChatThought } from "@/components/control-ui/chat-scene";
 import type { ActivityState, ChatRole } from "@/components/control-ui/contracts";
 import { InlineAttachment, InlineAttachmentContent, InlineAttachmentTitle } from "@/components/control-ui/inline-attachment";
 import { SourceBadge } from "@/components/control-ui/source-badge";

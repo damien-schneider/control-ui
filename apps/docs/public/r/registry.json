@@ -135,10 +135,10 @@
         "http://127.0.0.1:3000/r/calendar.json",
         "http://127.0.0.1:3000/r/card.json",
         "http://127.0.0.1:3000/r/chat-block.json",
-        "http://127.0.0.1:3000/r/chat-input.json",
-        "http://127.0.0.1:3000/r/chat-input-attachment.json",
+        "http://127.0.0.1:3000/r/chat-composer.json",
+        "http://127.0.0.1:3000/r/chat-composer-attachment.json",
+        "http://127.0.0.1:3000/r/chat-layout.json",
         "http://127.0.0.1:3000/r/chat-message.json",
-        "http://127.0.0.1:3000/r/chat-scene.json",
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
@@ -154,6 +154,7 @@
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/dockable-panel.json",
         "http://127.0.0.1:3000/r/drawer.json",
+        "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
@@ -170,7 +171,6 @@
         "http://127.0.0.1:3000/r/kbd.json",
         "http://127.0.0.1:3000/r/markdown.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
-        "http://127.0.0.1:3000/r/menu.json",
         "http://127.0.0.1:3000/r/menubar.json",
         "http://127.0.0.1:3000/r/meter.json",
         "http://127.0.0.1:3000/r/morphing-panel.json",
@@ -339,7 +339,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "Profile image with initials fallback.",
+      "description": "Profile image with initials fallback and composable overlapping groups.",
       "dependencies": [
         "@base-ui/react@^1.6.0"
       ],
@@ -470,10 +470,10 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/chat-input.json",
-        "http://127.0.0.1:3000/r/chat-input-attachment.json",
+        "http://127.0.0.1:3000/r/chat-composer.json",
+        "http://127.0.0.1:3000/r/chat-composer-attachment.json",
+        "http://127.0.0.1:3000/r/chat-layout.json",
         "http://127.0.0.1:3000/r/chat-message.json",
-        "http://127.0.0.1:3000/r/chat-scene.json",
         "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
@@ -493,7 +493,7 @@
       "description": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/chat-scene.json",
+        "http://127.0.0.1:3000/r/chat-layout.json",
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
@@ -507,11 +507,11 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "chat-input",
+      "name": "chat-composer",
       "type": "registry:component",
-      "title": "ChatInput",
+      "title": "ChatComposer",
       "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/chat-input-editor.css\";",
+      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/chat-composer-editor.css\";",
       "dependencies": [
         "prosemirror-commands@^1.7.1",
         "prosemirror-history@^1.5.0",
@@ -528,48 +528,48 @@
       ],
       "files": [
         {
-          "path": "src/registry/hooks/use-chat-input.ts",
-          "target": "@components/control-ui/hooks/use-chat-input.ts",
+          "path": "src/registry/hooks/use-chat-composer.ts",
+          "target": "@components/control-ui/hooks/use-chat-composer.ts",
           "type": "registry:hook"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input-editor.css",
-          "target": "@components/control-ui/styles/chat-input-editor.css",
+          "path": "src/registry/sources/control-ui/chat-composer-editor.css",
+          "target": "@components/control-ui/styles/chat-composer-editor.css",
           "type": "registry:file"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input-editor.tsx",
-          "target": "@components/control-ui/chat-input-editor.tsx",
+          "path": "src/registry/sources/control-ui/chat-composer-editor.tsx",
+          "target": "@components/control-ui/chat-composer-editor.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input-editor/extensions/mention.tsx",
-          "target": "@components/control-ui/chat-input-editor/extensions/mention.tsx",
+          "path": "src/registry/sources/control-ui/chat-composer-editor/extensions/mention.tsx",
+          "target": "@components/control-ui/chat-composer-editor/extensions/mention.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input-editor/ghost.ts",
-          "target": "@components/control-ui/chat-input-editor/ghost.ts",
+          "path": "src/registry/sources/control-ui/chat-composer-editor/ghost.ts",
+          "target": "@components/control-ui/chat-composer-editor/ghost.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input-editor/schema.ts",
-          "target": "@components/control-ui/chat-input-editor/schema.ts",
+          "path": "src/registry/sources/control-ui/chat-composer-editor/schema.ts",
+          "target": "@components/control-ui/chat-composer-editor/schema.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input-editor/serialize.ts",
-          "target": "@components/control-ui/chat-input-editor/serialize.ts",
+          "path": "src/registry/sources/control-ui/chat-composer-editor/serialize.ts",
+          "target": "@components/control-ui/chat-composer-editor/serialize.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input-editor/types.ts",
-          "target": "@components/control-ui/chat-input-editor/types.ts",
+          "path": "src/registry/sources/control-ui/chat-composer-editor/types.ts",
+          "target": "@components/control-ui/chat-composer-editor/types.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/registry/sources/control-ui/chat-input.tsx",
-          "target": "@components/control-ui/chat-input.tsx",
+          "path": "src/registry/sources/control-ui/chat-composer.tsx",
+          "target": "@components/control-ui/chat-composer.tsx",
           "type": "registry:component"
         }
       ],
@@ -577,9 +577,9 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "chat-input-attachment",
+      "name": "chat-composer-attachment",
       "type": "registry:component",
-      "title": "ChatInputAttachment",
+      "title": "ChatComposerAttachment",
       "description": "Composer attachment rail with file previews, upload progress, and removal.",
       "dependencies": [
         "lucide-react@^1.24.0"
@@ -591,8 +591,29 @@
       ],
       "files": [
         {
-          "path": "src/registry/sources/control-ui/chat-input-attachment.tsx",
-          "target": "@components/control-ui/chat-input-attachment.tsx",
+          "path": "src/registry/sources/control-ui/chat-composer-attachment.tsx",
+          "target": "@components/control-ui/chat-composer-attachment.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {}
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat-layout",
+      "type": "registry:component",
+      "title": "ChatLayout",
+      "description": "Layout primitives for full chat threads, turns, and thoughts.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/activity.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/chat-layout.tsx",
+          "target": "@components/control-ui/chat-layout.tsx",
           "type": "registry:component"
         }
       ],
@@ -617,27 +638,6 @@
         {
           "path": "src/registry/sources/control-ui/chat-message.tsx",
           "target": "@components/control-ui/chat-message.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "meta": {}
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "chat-scene",
-      "type": "registry:component",
-      "title": "ChatScene",
-      "description": "Layout primitives for full chat threads, turns, and thoughts.",
-      "dependencies": [],
-      "registryDependencies": [
-        "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/scroll-area.json"
-      ],
-      "files": [
-        {
-          "path": "src/registry/sources/control-ui/chat-scene.tsx",
-          "target": "@components/control-ui/chat-scene.tsx",
           "type": "registry:component"
         }
       ],
@@ -794,7 +794,7 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/chat-scene.json",
+        "http://127.0.0.1:3000/r/chat-layout.json",
         "http://127.0.0.1:3000/r/collapsible.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/sidebar.json"
@@ -1029,6 +1029,27 @@
         {
           "path": "src/registry/sources/control-ui/ui/drawer.tsx",
           "target": "@components/control-ui/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {}
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "DropdownMenu",
+      "description": "Dropdown menu for actions, resources, labels, separators, and submenus.",
+      "dependencies": [
+        "@base-ui/react@^1.6.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/dropdown-menu.tsx",
+          "target": "@components/control-ui/ui/dropdown-menu.tsx",
           "type": "registry:ui"
         }
       ],
@@ -1427,27 +1448,6 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "menu",
-      "type": "registry:ui",
-      "title": "Menu",
-      "description": "Dropdown menu for actions, resources, labels, separators, and submenus.",
-      "dependencies": [
-        "@base-ui/react@^1.6.0"
-      ],
-      "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
-      ],
-      "files": [
-        {
-          "path": "src/registry/sources/control-ui/ui/menu.tsx",
-          "target": "@components/control-ui/ui/menu.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "meta": {}
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "menubar",
       "type": "registry:ui",
       "title": "Menubar",
@@ -1806,7 +1806,7 @@
       "name": "send-aurora",
       "type": "registry:style",
       "title": "SendAurora",
-      "description": "Anchored ChatInput extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-input:send-layer anchor.",
+      "description": "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
       "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/send-aurora.css\";",
       "dependencies": [],
       "registryDependencies": [
@@ -1915,7 +1915,7 @@
       "name": "skin-cuicui",
       "type": "registry:style",
       "title": "Cuicui skin",
-      "description": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor).",
+      "description": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
       "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [],
       "registryDependencies": [
@@ -2392,7 +2392,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/menu.json",
+        "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/switch.json"
       ],
       "files": [

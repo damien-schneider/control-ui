@@ -14,7 +14,7 @@ function CollapsibleTriggerElement({
   className,
   children,
 }: {
-  triggerProps: ComponentProps<"button">;
+  triggerProps: ComponentProps<"button"> & { "data-control-ui"?: string; "data-slot"?: string };
   open: boolean;
   render: CollapsibleTriggerProps["render"];
   className?: string;
@@ -28,8 +28,8 @@ function CollapsibleTriggerElement({
     state,
     props: {
       ...triggerProps,
-      "data-control-ui": "collapsible",
-      "data-slot": "trigger",
+      "data-control-ui": triggerProps["data-control-ui"] ?? "collapsible",
+      "data-slot": triggerProps["data-slot"] ?? "trigger",
       "data-state": open ? "open" : "closed",
       className: cn(triggerProps.className, skinSlot("collapsible", "trigger", { state: open ? "open" : "closed" }), className),
       children,

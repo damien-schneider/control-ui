@@ -3,14 +3,9 @@ import { isSkinId } from "./presets";
 import { isColorValuedToken } from "./token-metadata";
 import type { ControlUiThemeArtifactV1, ThemeState, TokenValues } from "./types";
 
-export type ThemePromptMode = "chat" | "coding-agent";
-
 export type ThemeArtifactResult = { ok: true; artifact: ControlUiThemeArtifactV1 } | { ok: false; errors: string[] };
 
 type BuildThemePromptInput = {
-  mode: ThemePromptMode;
-  description: string;
-  referenceNames: string[];
   origin: string;
   theme: ThemeState;
 };
@@ -204,18 +199,65 @@ function currentThemeContext(theme: ThemeState) {
   );
 }
 
-export function buildThemePrompt({ mode, description, referenceNames, origin, theme }: BuildThemePromptInput) {
-  const contractUrl = `${origin.replace(/\/+$/, "")}/r/theme-contract.json`;
-  const references =
-    referenceNames.length > 0
-      ? referenceNames.map((name, index) => `${index + 1}. ${name}`).join("\n")
-      : "No image references. Work from the written brief only.";
-  const delivery =
-    mode === "coding-agent"
-      ? `Read ${contractUrl} if it is reachable, then write one file named <short-name>.control-ui-theme.json in the current working directory. Do not modify application source files. Reply with the file path.`
-      : "Return exactly one fenced JSON block and no commentary so it can be pasted into the Theme AI builder.";
+export function buildThemePrompt({ origin, theme }: BuildThemePromptInput) {
+  const normalizedOrigin = origin.replace(/\/+$/, "");
+  const contractUrl = `${normalizedOrigin}/r/theme-contract.json`;
+  const builderUrl = `${normalizedOrigin}/theme-ai-builder`;
+  const accessibilityUrl = `${normalizedOrigin}/theme-accessibility`;
 
-  return `Create a Control UI token theme from this brief:\n\n${description.trim()}\n\nReference images\n${references}\n\nThe reference files are attached separately in the same order. Use their visual language, not their literal content.\n\nBase theme currently active in the editor\n\n${currentThemeContext(theme)}\n\nCanonical contract endpoint\n${contractUrl}\n\nOutput rules\n- Keep baseSkin exactly "${theme.skin}".\n- Use format "control-ui-theme/v1".\n- Choose a concise human name, 60 characters or fewer.\n- Put color-valued tokens in both light and dark. Put every other token in shared.\n- Prefer oklch() for authored colors. Preserve accessible foreground/background contrast.\n- Output only theme-contract variables. Never output CSS selectors, skin.css, TypeScript, URLs, imports, comments, or executable code.\n- Omit tokens that should inherit from the base skin.\n- ${delivery}\n\nArtifact shape\n\n{\n  "format": "control-ui-theme/v1",\n  "name": "Theme name",\n  "baseSkin": "${theme.skin}",\n  "reduceMotion": false,\n  "tokens": {\n    "shared": {},\n    "light": {},\n    "dark": {}\n  }\n}\n\nCanonical contract\n${compactContract()}\n`;
+  return `You are my Control UI theme builder. Work conversationally, then create one importable theme file.
+
+Discovery
+- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.
+- Ask one focused question at a time, with at most four questions total.
+- Ask me to attach one or more reference images in this coding-agent conversation. If I have none, continue from the description.
+- Use reference images for their visual language, not their literal content.
+- Do not ask me to choose individual CSS variables. Infer a coherent system from my answers.
+- Once the direction is clear, create the theme without asking me to restate the brief.
+
+Base theme currently active in the editor
+${currentThemeContext(theme)}
+
+Implementation
+- Read the canonical contract from ${contractUrl}. If it is unreachable, use the embedded contract below.
+- Write exactly one file named <short-name>.control-ui-theme.json in the current working directory.
+- Do not modify application source files.
+- Keep baseSkin exactly "${theme.skin}".
+- Use format "control-ui-theme/v1".
+- Choose a concise human name, 60 characters or fewer.
+- Put color-valued tokens in both light and dark. Put every other token in shared.
+- Prefer oklch() for authored colors and preserve accessible foreground/background contrast.
+- Output only variables from the canonical theme contract.
+- Omit tokens that should inherit from the base skin.
+
+Accessibility gate
+- Treat contrast as a required part of the theme, not a follow-up.
+- Calculate resolved foreground/background contrast after alpha compositing in both light and dark. Sample gradients across every stop and interpolation, not one convenient point.
+- Keep normal and small text at 4.5:1 or higher for body, muted fills, cards, popovers, popup highlights, semantic text, filled controls, selected tabs, and filled or outline badge states.
+- Check focus indicators and control boundaries at 3:1 or higher against adjacent surfaces. A boundary is advisory when it is not required to identify the control.
+- If a saturated fill needs light text, darken the fill until the pair clears 4.5:1; do not swap text color by visual guesswork alone.
+- Do not claim the theme passes without checking the ratios.
+
+Artifact shape
+
+{
+  "format": "control-ui-theme/v1",
+  "name": "Theme name",
+  "baseSkin": "${theme.skin}",
+  "reduceMotion": false,
+  "tokens": {
+    "shared": {},
+    "light": {},
+    "dark": {}
+  }
+}
+
+Embedded canonical contract fallback
+
+${compactContract()}
+
+When finished, reply with the file path and tell me to import it at ${builderUrl}, then review the active theme at ${accessibilityUrl}.
+`;
 }
 
 export function serializeThemeArtifact(artifact: ControlUiThemeArtifactV1) {

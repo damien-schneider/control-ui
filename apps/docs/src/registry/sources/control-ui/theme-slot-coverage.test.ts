@@ -24,7 +24,7 @@ describe("theme anatomy coverage", () => {
     expect(CSS).toContain(':where([data-control-ui][data-slot][data-surface="floating"])');
     expect(CSS).toContain(':where([data-control-ui][data-slot][data-surface="modal"], [data-control-ui][data-slot][data-surface="panel"])');
     expect(CSS).toContain('[data-control-ui="chat-message"][data-slot="root"]');
-    expect(CSS).toContain('[data-control-ui="chat-input"][data-slot="root"]');
+    expect(CSS).toContain('[data-control-ui="chat-composer"][data-slot="root"]');
     expect(skinContract.semanticFamilies.surfaces.floating.length).toBeGreaterThan(10);
     expect(skinContract.semanticFamilies.surfaces.modal.length).toBeGreaterThanOrEqual(4);
     expect(skinContract.semanticFamilies.surfaces.panel.length).toBeGreaterThan(10);

@@ -11,11 +11,7 @@ test("activity disclosure bounds and scrolls a long trace", async ({ page }) => 
   const viewport = activity.locator('[data-control-ui="activity"][data-slot="content-viewport"]');
   await expect(viewport).toBeVisible();
 
-  const geometry = await viewport.evaluate((element) => ({
-    clientHeight: element.clientHeight,
-    scrollHeight: element.scrollHeight,
-  }));
-  expect(geometry.clientHeight).toBeLessThan(geometry.scrollHeight);
+  await expect.poll(() => viewport.evaluate((element) => element.scrollHeight - element.clientHeight)).toBeGreaterThan(0);
 
   const scrollTop = await viewport.evaluate((element) => {
     element.scrollTop = element.scrollHeight;

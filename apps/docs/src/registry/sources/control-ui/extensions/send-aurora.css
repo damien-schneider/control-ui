@@ -1,5 +1,5 @@
 /*
- * Send aurora — anchored ChatInput extension (fills the chat-input:send-layer anchor). Token-driven,
+ * Send aurora — anchored ChatComposer extension (fills the chat-composer:send-layer anchor). Token-driven,
  * the data-motion="reduced" kill-switch collapses the sweep to 0ms (it finishes instantly at opacity 0).
  * One-shot replay is structural: the component remounts per send (key={sendCount}); the sweep keyframe
  * plays on mount and `forwards` parks the layer invisible until the next send remounts it.

@@ -1,4 +1,5 @@
-import { BADGE_HUES, THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
+import { BADGE_COLORS } from "@/src/registry/contracts";
+import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { CORNER_LABEL, EASE, EASE_LABEL, FONT, FONT_LABEL, FONT_MONO, FONT_MONO_LABEL } from "./types";
 
 // Editor-side metadata over token contract SSOT (lib/theme-contract.ts): which CONTROL each token gets, slider range, preset options, human label.
@@ -142,7 +143,6 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--canvas": "Page canvas",
   "--ring-opacity": "Border opacity",
   "--popup-item-foreground": "Menu row text",
-  "--popup-item-icon-foreground": "Menu row icon",
   "--popup-item-highlight-background": "Menu row highlight",
   "--font-sans": "UI typeface",
   "--font-mono": "Code typeface",
@@ -225,7 +225,7 @@ const GROUP_ORDER: readonly ThemeContractGroup[] = ["color", "typography", "radi
 
 const isBadgeToken = (token: ThemeContractToken) => token.name.startsWith("--badge-");
 
-// Contract → editor sections in stable curated order; 88 badge tokens get own per-hue subgroup (BADGE_TOKEN_ROWS) instead of drowning color category's advanced list.
+// Contract → editor sections in stable curated order; 32 badge tokens get their own color-family subgroup instead of drowning the advanced color list.
 export const TOKEN_CATEGORIES: readonly TokenCategory[] = GROUP_ORDER.map((group) => {
   const tokens = THEME_CONTRACT.filter((token) => token.group === group && !isBadgeToken(token));
   return {
@@ -236,13 +236,13 @@ export const TOKEN_CATEGORIES: readonly TokenCategory[] = GROUP_ORDER.map((group
   };
 });
 
-export type BadgeTokenRow = { hue: string; tokens: ThemeContractToken[] };
+export type BadgeTokenRow = { color: (typeof BADGE_COLORS)[number]; tokens: ThemeContractToken[] };
 
 const CONTRACT_BY_NAME = new Map(THEME_CONTRACT.map((token) => [token.name, token]));
 
-export const BADGE_TOKEN_ROWS: readonly BadgeTokenRow[] = BADGE_HUES.map((hue) => ({
-  hue,
-  tokens: [`--badge-${hue}`, `--badge-${hue}-foreground`, `--badge-${hue}-border`, `--badge-${hue}-hover`].flatMap((name) => {
+export const BADGE_TOKEN_ROWS: readonly BadgeTokenRow[] = BADGE_COLORS.map((color) => ({
+  color,
+  tokens: [`--badge-${color}`, `--badge-${color}-foreground`, `--badge-${color}-border`, `--badge-${color}-hover`].flatMap((name) => {
     const token = CONTRACT_BY_NAME.get(name);
     return token ? [token] : [];
   }),

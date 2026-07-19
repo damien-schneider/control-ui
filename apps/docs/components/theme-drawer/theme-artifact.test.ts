@@ -16,38 +16,37 @@ const ARTIFACT: ControlUiThemeArtifactV1 = {
 };
 
 describe("theme AI prompt", () => {
-  test("includes ordered references, active context, artifact rules, and canonical contract URL", () => {
+  test("asks a coding agent to discover the direction and references before writing a portable file", () => {
     const prompt = buildThemePrompt({
-      mode: "chat",
-      description: "Warm editorial tools",
-      referenceNames: ["paper.png", "type.webp", "toolbar.avif"],
       origin: "https://control-ui.example/",
       theme: { ...DEFAULT_THEME, overrides: { "--radius": "12px" } },
     });
 
-    expect(prompt.indexOf("1. paper.png")).toBeLessThan(prompt.indexOf("2. type.webp"));
-    expect(prompt.indexOf("2. type.webp")).toBeLessThan(prompt.indexOf("3. toolbar.avif"));
+    expect(prompt).toContain("ask me to describe the visual direction");
+    expect(prompt).toContain("Ask one focused question at a time");
+    expect(prompt).toContain("attach one or more reference images");
     expect(prompt).toContain('"baseSkin": "refined"');
     expect(prompt).toContain('"--radius": "12px"');
     expect(prompt).toContain("https://control-ui.example/r/theme-contract.json");
-    expect(prompt).toContain("Return exactly one fenced JSON block");
-    expect(prompt).toContain('format "control-ui-theme/v1"');
-    expect(prompt).toContain("attached separately in the same order");
+    expect(prompt).toContain("Write exactly one file named <short-name>.control-ui-theme.json");
+    expect(prompt).toContain("Do not modify application source files");
+    expect(prompt).toContain("import it at https://control-ui.example/theme-ai-builder");
+    expect(prompt).toContain("Calculate resolved foreground/background contrast after alpha compositing in both light and dark");
+    expect(prompt).toContain("normal and small text at 4.5:1 or higher");
+    expect(prompt).toContain("focus indicators and control boundaries at 3:1 or higher");
+    expect(prompt).toContain("review the active theme at https://control-ui.example/theme-accessibility");
   });
 
-  test("asks a coding agent to read the contract and write a portable file", () => {
+  test("embeds the canonical contract when a coding agent cannot reach the endpoint", () => {
     const prompt = buildThemePrompt({
-      mode: "coding-agent",
-      description: "Dense monochrome workstation",
-      referenceNames: [],
       origin: "http://127.0.0.1:3000",
       theme: DEFAULT_THEME,
     });
 
-    expect(prompt).toContain("http://127.0.0.1:3000/r/theme-contract.json");
-    expect(prompt).toContain("write one file named <short-name>.control-ui-theme.json");
-    expect(prompt).toContain("Do not modify application source files");
-    expect(prompt).toContain("No image references");
+    expect(prompt).toContain("If it is unreachable, use the embedded contract below");
+    expect(prompt).toContain("Embedded canonical contract fallback");
+    expect(prompt).toContain("--background [light+dark]");
+    expect(prompt).toContain("--radius [shared]");
   });
 });
 

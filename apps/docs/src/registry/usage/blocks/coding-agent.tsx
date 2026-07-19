@@ -7,7 +7,13 @@ import {
   CodingAgentEmptyState,
   type CodingAgentProject,
 } from "@/components/control-ui/blocks/coding-agent";
-import { ChatInput, ChatInputShell, ChatInputSubmit, ChatInputTextarea, ChatInputToolbar } from "@/components/control-ui/chat-input";
+import {
+  ChatComposer,
+  ChatComposerShell,
+  ChatComposerSubmit,
+  ChatComposerTextarea,
+  ChatComposerToolbar,
+} from "@/components/control-ui/chat-composer";
 
 const projects: readonly CodingAgentProject[] = [
   {
@@ -33,15 +39,15 @@ export default function CodingAgentPage() {
     >
       <CodingAgentConversation
         composer={
-          <ChatInput onSubmit={({ clear }) => clear()}>
-            <ChatInputShell>
-              <ChatInputTextarea placeholder="Ask the coding agent..." />
-              <ChatInputToolbar>
+          <ChatComposer onSubmit={({ clear }) => clear()}>
+            <ChatComposerShell>
+              <ChatComposerTextarea placeholder="Ask the coding agent..." />
+              <ChatComposerToolbar>
                 <span />
-                <ChatInputSubmit>Send</ChatInputSubmit>
-              </ChatInputToolbar>
-            </ChatInputShell>
-          </ChatInput>
+                <ChatComposerSubmit>Send</ChatComposerSubmit>
+              </ChatComposerToolbar>
+            </ChatComposerShell>
+          </ChatComposer>
         }
       >
         <CodingAgentEmptyState title="What should we build?" />

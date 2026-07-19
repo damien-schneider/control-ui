@@ -3,14 +3,14 @@
 import { useState } from "react";
 
 import {
-  ChatInput,
-  ChatInputAccent,
-  ChatInputShell,
-  ChatInputSubmit,
-  ChatInputTextarea,
-  ChatInputToolbar,
-  ChatInputTools,
-} from "@/components/control-ui/chat-input";
+  ChatComposer,
+  ChatComposerAccent,
+  ChatComposerShell,
+  ChatComposerSubmit,
+  ChatComposerTextarea,
+  ChatComposerToolbar,
+  ChatComposerTools,
+} from "@/components/control-ui/chat-composer";
 import type { TaskStatus } from "@/components/control-ui/contracts";
 import { TaskList, TaskListContent, TaskListItem, TaskListTrigger } from "@/components/control-ui/task-list";
 
@@ -38,7 +38,7 @@ export function TaskListExample() {
 
   return (
     <div className="flex h-[440px] flex-col justify-end p-5">
-      <ChatInput density="compact" onSubmit={submitPrompt}>
+      <ChatComposer density="compact" onSubmit={submitPrompt}>
         <div className="absolute inset-x-2 bottom-full pb-2">
           <TaskList>
             <TaskListTrigger />
@@ -49,19 +49,19 @@ export function TaskListExample() {
             </TaskListContent>
           </TaskList>
         </div>
-        <ChatInputShell>
-          <ChatInputAccent />
-          <ChatInputTextarea placeholder="Message the agent (sending advances the plan)..." />
-          <ChatInputToolbar>
-            <ChatInputTools>
+        <ChatComposerShell>
+          <ChatComposerAccent />
+          <ChatComposerTextarea placeholder="Message the agent (sending advances the plan)..." />
+          <ChatComposerToolbar>
+            <ChatComposerTools>
               <span>
                 {Math.min(step, planSteps.length)} of {planSteps.length} steps done
               </span>
-            </ChatInputTools>
-            <ChatInputSubmit>Send</ChatInputSubmit>
-          </ChatInputToolbar>
-        </ChatInputShell>
-      </ChatInput>
+            </ChatComposerTools>
+            <ChatComposerSubmit>Send</ChatComposerSubmit>
+          </ChatComposerToolbar>
+        </ChatComposerShell>
+      </ChatComposer>
     </div>
   );
 }

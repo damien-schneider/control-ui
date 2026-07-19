@@ -31,7 +31,7 @@ export function TriggerMenu({
   return (
     <PopoverPrimitive.Root open={open} onOpenChange={(next, eventDetails) => onOpenChange?.(next, eventDetails)} modal={false}>
       <PopoverPrimitive.Portal>
-        {/* Portals land outside token-scoped subtree (and ChatScene's overflow clip); positioner re-asserts skin scope itself. Anchor = virtual element at caret rect engine reported. */}
+        {/* Portals land outside token-scoped subtree (and ChatLayout's overflow clip); positioner re-asserts skin scope itself. Anchor = virtual element at caret rect engine reported. */}
         <PopoverPrimitive.Positioner
           data-skin={skinId()}
           data-effects={skinEffects()}

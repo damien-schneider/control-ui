@@ -24,11 +24,11 @@
 @import "../src/registry/sources/control-ui/code.css";
 /* ThreadRail interaction layer (fisheye + travelling card motion), the component's CSS-first half. */
 @import "../src/registry/sources/control-ui/thread-rail.css";
-/* ChatInputEditor motion (mention pill blur-in via @starting-style; pill + message blur-out ghosts). */
-@import "../src/registry/sources/control-ui/chat-input-editor.css";
+/* ChatComposerEditor motion (mention pill blur-in via @starting-style; pill + message blur-out ghosts). */
+@import "../src/registry/sources/control-ui/chat-composer-editor.css";
 /* DynamicNotification morph (island pill→bubble, word cascade, glass fallback material). */
 @import "../src/registry/sources/control-ui/dynamic-notification.css";
-/* SendAurora anchored extension (chat-input:send-layer sweep; palette = --aurora-* tokens). */
+/* SendAurora anchored extension (chat-composer:send-layer sweep; palette = --aurora-* tokens). */
 @import "../src/registry/sources/control-ui/extensions/send-aurora.css";
 
 /* Tailwind scans these source roots for class names (globals.css lives in app/). */

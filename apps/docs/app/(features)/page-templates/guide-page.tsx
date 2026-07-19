@@ -5,6 +5,7 @@ import { type ComponentType, createContext, use } from "react";
 import { CodeBlock } from "@/app/(features)/components/source";
 import { guideCode } from "@/app/(features)/model/registry";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
+import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { ThemeAiBuilder } from "@/app/(features)/theme-ai-builder/theme-ai-builder";
 import { cn } from "@/components/control-ui/lib/cn";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
@@ -51,6 +52,7 @@ const guideComponents = {
 } satisfies MDXComponents;
 
 function GuidePageContent({ page, integration, Content }: { page: GuidePageData; integration: IntegrationId; Content?: GuideContent }) {
+  if (page.id === "theme-accessibility") return <ThemeAccessibility />;
   if (page.id === "theme-ai-builder") return <ThemeAiBuilder />;
   if (Content) {
     return (

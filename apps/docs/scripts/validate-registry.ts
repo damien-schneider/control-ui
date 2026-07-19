@@ -94,7 +94,7 @@ for (const sourceName of readdirSync(sourcesRoot)) {
 
     const source = readFileSync(componentPath, "utf8");
     if (importsRuntime(source)) failures.push(`source "${sourceName}" mixes runner imports in ${component}`);
-    if (/create(ChatMessage|ChatInput)Component/.test(source)) {
+    if (/create(ChatMessage|ChatComposer)Component/.test(source)) {
       failures.push(`source "${sourceName}" uses a component factory in ${component}; sources must install explicit TSX`);
     }
   }
@@ -136,8 +136,8 @@ for (const sourcePath of walk(registrySourceRoot).filter((file) => /\.(ts|tsx)$/
     failures.push(`${relativePath} renders Copy as a generic ActionBarItem; use ActionBarCopy`);
   }
   if (/\bclassNames\b/.test(source)) failures.push(`${relativePath} uses a classNames slot bag; expose compound parts instead`);
-  if (/<ChatInput[\s\S]*?\b(tools|modelSelector|submitLabel)=/.test(source)) {
-    failures.push(`${relativePath} passes visual ChatInput props; compose its toolbar, tools, and submit parts`);
+  if (/<ChatComposer[\s\S]*?\b(tools|modelSelector|submitLabel)=/.test(source)) {
+    failures.push(`${relativePath} passes visual ChatComposer props; compose its toolbar, tools, and submit parts`);
   }
 }
 

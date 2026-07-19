@@ -26,8 +26,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/control-ui/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/control-ui/ui/dropdown-menu";
 import { Input } from "@/components/control-ui/ui/input";
-import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from "@/components/control-ui/ui/menu";
 import { Toggle, ToggleGroup } from "@/components/control-ui/ui/toggle";
 import { SKIN_CONFIGS } from "@/components/skin-registry";
 import { ALL_SKIN_IDS, isSkinId, SKIN_META_BY_ID } from "./presets";
@@ -140,10 +146,7 @@ function SkinLogo({ id }: { id: SkinId }) {
 function SkinOption({ id }: { id: SkinId }) {
   const meta = SKIN_META_BY_ID[id];
   const forcedScheme = SKIN_CONFIGS[id]?.colorScheme;
-  const isRefined = id === "refined";
-  let badge: string | undefined;
-  if (isRefined) badge = "Default";
-  else if (forcedScheme) badge = `${forcedScheme}-only`;
+  const badge = forcedScheme ? `${forcedScheme}-only` : undefined;
 
   return (
     <span className="relative flex w-full min-w-0 items-center gap-2.5 text-left">
@@ -193,8 +196,7 @@ function SkinGroup({
               variant="surface"
               size="lg"
               active={active}
-              showCheck
-              className="w-full justify-start text-left [&_[data-slot=control-content]]:w-full [&_[data-slot=toggle-check]]:absolute [&_[data-slot=toggle-check]]:top-2 [&_[data-slot=toggle-check]]:right-2 [&_[data-slot=toggle-check]]:z-10"
+              className="w-full justify-start text-left [&_[data-slot=control-content]]:w-full"
             >
               <SkinOption id={id} />
             </Toggle>
@@ -246,31 +248,31 @@ function CustomThemeLibrary({
               <span className="truncate">{theme.name}</span>
               <span className="ml-auto shrink-0 text-[9px] text-muted-foreground">{SKIN_META_BY_ID[theme.baseSkin].label}</span>
             </Button>
-            <Menu>
-              <MenuTrigger size="sm" iconOnly aria-label={`Actions for ${theme.name}`}>
+            <DropdownMenu>
+              <DropdownMenuTrigger size="sm" iconOnly aria-label={`Actions for ${theme.name}`}>
                 <MoreHorizontalIcon aria-hidden className="size-4" />
-              </MenuTrigger>
-              <MenuContent>
-                <MenuItem
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem
                   onClick={() => {
                     setRenameValue(theme.name);
                     setRenameTarget(theme);
                   }}
                 >
                   <PencilIcon aria-hidden className="size-3.5" /> Rename
-                </MenuItem>
-                <MenuItem onClick={() => onDuplicate(theme.id)}>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => onDuplicate(theme.id)}>
                   <CopyIcon aria-hidden className="size-3.5" /> Duplicate
-                </MenuItem>
-                <MenuItem onClick={() => onExport(theme.id)}>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => onExport(theme.id)}>
                   <DownloadIcon aria-hidden className="size-3.5" /> Export JSON
-                </MenuItem>
-                <MenuSeparator />
-                <MenuItem className="text-destructive" onClick={() => setDeleteTarget(theme)}>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-destructive" onClick={() => setDeleteTarget(theme)}>
                   <Trash2Icon aria-hidden className="size-3.5" /> Delete
-                </MenuItem>
-              </MenuContent>
-            </Menu>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         ))}
       </div>

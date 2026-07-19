@@ -76,7 +76,7 @@ export const skin: ControlUiSkin = {
       trigger: ringField,
       item: row,
     },
-    menu: {
+    "dropdown-menu": {
       trigger: ghost,
       content: popup,
       item: row,
@@ -226,7 +226,7 @@ export const skin: ControlUiSkin = {
     "scroll-area": {
       thumb: "rounded-full bg-foreground/20",
     },
-    "chat-scene": {
+    "chat-layout": {
       root: "rounded-[var(--radius-scene)] border-border bg-card shadow-(--linear-panel-shadow)",
     },
     activity: {
@@ -240,7 +240,7 @@ export const skin: ControlUiSkin = {
           : "rounded-[var(--radius-field)] bg-transparent",
       avatar: "rounded-full border-border bg-[var(--linear-control-bg)]",
     },
-    "chat-input": {
+    "chat-composer": {
       shell: "rounded-[var(--radius-field)] border-border bg-card shadow-(--linear-panel-shadow) ring-0",
       submit: solid,
       mention: "rounded-[var(--radius-control)] border-border bg-[var(--linear-row-hover)]",

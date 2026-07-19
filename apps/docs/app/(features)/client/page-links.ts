@@ -1,3 +1,5 @@
+import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
+import { primitiveCategories } from "@/app/(features)/catalog/primitives";
 import { componentComposition, primitiveComposition, resolvePrimitives } from "@/app/(features)/model/registry";
 import type {
   DocsBlock,
@@ -59,6 +61,11 @@ function skinsOverviewPageLinks(): PageLink[] {
   ];
 }
 
+function catalogOverviewPageLinks(overview: CatalogOverviewId): PageLink[] {
+  if (overview === "ai") return [{ href: "#agents", label: "Agents" }];
+  return primitiveCategories.map((category) => ({ href: `#${category.id}`, label: category.label }));
+}
+
 function skinPageLinks(skin: DocsSkinPage): PageLink[] {
   if (skin.docsOnly || skin.files.length === 0) return [{ href: "#install", label: "Availability" }];
   return [{ href: "#install", label: "Installation" }];
@@ -109,6 +116,7 @@ export function pageLinks({
   activeExtension,
   activeSkinPage,
   activeSkinsOverview,
+  activeCatalogOverview,
   component,
   primitives,
   extensions,
@@ -121,12 +129,14 @@ export function pageLinks({
   activeExtension?: DocsExtension;
   activeSkinPage?: DocsSkinPage;
   activeSkinsOverview?: boolean;
-  component: DocsComponent;
+  activeCatalogOverview?: CatalogOverviewId;
+  component?: DocsComponent;
   primitives: DocsPrimitive[];
   extensions: DocsExtension[];
 }) {
   if (activeGuide) return activeGuide.sections.map((section) => ({ href: `#${section.id}`, label: section.title }));
 
+  if (activeCatalogOverview) return catalogOverviewPageLinks(activeCatalogOverview);
   if (activeSkinsOverview) return skinsOverviewPageLinks();
   if (activeSkinPage) return skinPageLinks(activeSkinPage);
   if (activeSkill) return skillPageLinks(activeSkill);
@@ -136,5 +146,5 @@ export function pageLinks({
 
   if (activePrimitive) return primitivePageLinks(activePrimitive, extensions);
 
-  return componentPageLinks(component, primitives, extensions);
+  return component ? componentPageLinks(component, primitives, extensions) : [];
 }

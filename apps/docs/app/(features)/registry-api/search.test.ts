@@ -49,7 +49,7 @@ const items = [
     id: "cuicui",
     name: "Cuicui",
     kind: "Skin",
-    summary: "Cuicui-inspired shell skin with a ChatInput extension.",
+    summary: "Cuicui-inspired shell skin with a ChatComposer extension.",
     href: "/skins/cuicui",
   },
   {

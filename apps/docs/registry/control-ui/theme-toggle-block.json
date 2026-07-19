@@ -10,7 +10,7 @@
   "registryDependencies": [
     "button",
     "core",
-    "menu",
+    "dropdown-menu",
     "switch"
   ],
   "files": [

@@ -9,7 +9,7 @@
   ],
   "registryDependencies": [
     "button",
-    "chat-scene",
+    "chat-layout",
     "collapsible",
     "core",
     "sidebar"

@@ -17,7 +17,7 @@ import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
 
 // Refined skin slot, 100% Base UI: SHARED floating surface — every item has Trigger+Content, but one Portal→Positioner→Popup→Viewport MORPHS between active item's content (width/height + activation-direction).
-// Triggers share quiet Button look + --radius-control; Viewport is popover surface (--radius-popover, ring-border, bg-popover, shadow-pop) matching Menu/Select.
+// Triggers share quiet Button look + --radius-control; Viewport is popover surface (--radius-popover, ring-border, bg-popover, shadow-pop) matching DropdownMenu/Select.
 // Motion token-driven (--duration-base/--ease-emphasized) — Reduce-motion kill-switch flattens morph too.
 
 type RefinedLinkProps = NavigationMenuLinkProps & Pick<ComponentProps<typeof NavigationMenuPrimitive.Link>, "render">;

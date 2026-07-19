@@ -68,6 +68,7 @@ describe("Activity", () => {
     );
 
     expect(html).toContain('aria-expanded="true"');
+    expect(html).toMatch(/<button[^>]*data-control-ui="activity"[^>]*data-slot="trigger"/);
     expect(html).toContain('aria-busy="true"');
     expect(html).toContain('data-slot="announcement"');
     expect(html).toContain('role="status"');

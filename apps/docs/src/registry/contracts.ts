@@ -12,19 +12,19 @@ export type ChatMessageProps = ComponentProps<"article"> & {
   tone?: ChatTone;
 };
 
-export type ChatInputSubmitPayload = {
+export type ChatComposerSubmitPayload = {
   value: string;
   clear: () => void;
   // Rich editor surface only; absent for plain-textarea path (stays optional/backward-compatible).
   mentions?: MentionItem[];
 };
 
-export type ChatInputProps = Omit<ComponentProps<"form">, "onSubmit"> & {
+export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit"> & {
   children?: ReactNode;
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  onSubmit?: (payload: ChatInputSubmitPayload) => void | Promise<void>;
+  onSubmit?: (payload: ChatComposerSubmitPayload) => void | Promise<void>;
   state?: "idle" | "submitting" | "disabled";
   density?: ChatDensity;
   disabled?: boolean;
@@ -92,7 +92,7 @@ export type RenderProp<Props, State extends Record<string, unknown> = Record<str
 // ghost=standard hover (shadcn-like), quiet=discreet inline (Copy/Edit). `tone` = color INTENT, orthogonal
 // (avoids solidDanger/ghostDanger explosion). No `lg` — chat needs compactness. Brand fx (shine/ripple) live in CSS/extensions, not this prop surface.
 // Slot module components/control-ui/ui/button exports Button. scoped anatomy data-slot="button", data-active reflects `active`.
-// Shared by Button/Select trigger/Menu trigger/Input via controlSize cva (height --control-h-*/padding/text per step). Default md.
+// Shared by Button/Select trigger/DropdownMenu trigger/Input via controlSize cva (height --control-h-*/padding/text per step). Default md.
 export type ControlSize = "xs" | "sm" | "md" | "lg";
 
 // effects.css keys off data-effects (space-separated). Declared here not in the optional extension because ControlUiSkin.effects
@@ -352,7 +352,7 @@ export type TableOfContentsProps = Omit<ComponentProps<"nav">, "children"> & {
   variant?: TableOfContentsVariant;
 };
 
-// components/control-ui/ui/select: trigger shares --radius-control with Button/Menu trigger (one token squares every control).
+// components/control-ui/ui/select: trigger shares --radius-control with Button/DropdownMenu trigger (one token squares every control).
 // data-slot="select-trigger"|"select-content"|"select-item" (scoped anatomy).
 export type SelectProps = {
   value?: string;
@@ -383,37 +383,37 @@ export type SelectItemProps = ComponentProps<"div"> & {
   disabled?: boolean;
 };
 
-// components/control-ui/ui/menu: trigger shares --radius-control with Button/Select. data-slot="menu-trigger"|"menu-content"|"menu-item" (scoped anatomy).
-export type MenuProps = {
+// components/control-ui/ui/dropdown-menu: trigger shares --radius-control with Button/Select. data-slot="menu-trigger"|"menu-content"|"menu-item" (scoped anatomy).
+export type DropdownMenuProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
 
-export type MenuTriggerVariant = "surface" | "ghost";
+export type DropdownMenuTriggerVariant = "surface" | "ghost";
 
-export type MenuTriggerProps = ComponentProps<"button"> & {
+export type DropdownMenuTriggerProps = ComponentProps<"button"> & {
   size?: ControlSize;
   iconOnly?: boolean;
-  variant?: MenuTriggerVariant;
+  variant?: DropdownMenuTriggerVariant;
 };
 
-export type MenuContentProps = ComponentProps<"div">;
+export type DropdownMenuContentProps = ComponentProps<"div">;
 
-export type MenuItemProps = Omit<ComponentProps<"div">, "onClick"> & {
+export type DropdownMenuItemProps = Omit<ComponentProps<"div">, "onClick"> & {
   disabled?: boolean;
   onClick?: (event: MouseEvent) => void;
 };
 
-export type MenuSeparatorProps = ComponentProps<"div">;
+export type DropdownMenuSeparatorProps = ComponentProps<"div">;
 
-export type MenuLabelProps = ComponentProps<"div">;
+export type DropdownMenuLabelProps = ComponentProps<"div">;
 
 export type PopoverContentPadding = "default" | "none";
 
 // components/control-ui/ui/context-menu (shadcn-compatible surface, full submenu/checkbox/radio family): right-click/long-press menu.
-// Rows share --radius-popup-item; popup shares --radius-popover with Menu/Select. data-slot="context-menu-content"|"context-menu-item" (scoped anatomy).
+// Rows share --radius-popup-item; popup shares --radius-popover with DropdownMenu/Select. data-slot="context-menu-content"|"context-menu-item" (scoped anatomy).
 export type ContextMenuProps = {
   children?: ReactNode;
   open?: boolean;
@@ -471,7 +471,7 @@ export type ContextMenuSubTriggerProps = Omit<ComponentProps<"div">, "onClick"> 
 
 export type ContextMenuSubContentProps = ComponentProps<"div">;
 
-// components/control-ui/ui/menubar: horizontal bar of Base UI Menu triggers; popups/rows share popover token set with Menu/Select.
+// components/control-ui/ui/menubar: horizontal bar of Base UI Menu triggers; popups/rows share popover token set with DropdownMenu/Select.
 export type MenubarProps = ComponentProps<"div"> & {
   modal?: boolean;
   loopFocus?: boolean;
@@ -549,7 +549,7 @@ export type NavigationMenuLinkProps = ComponentProps<"a"> & {
 
 export type NavigationMenuViewportProps = ComponentProps<"div">;
 
-// components/control-ui/model-switcher: model picker on Select slot; drop inside ChatInputTools or standalone.
+// components/control-ui/model-switcher: model picker on Select slot; drop inside ChatComposerTools or standalone.
 export type ModelOption = {
   value: string;
   label: string;
@@ -585,7 +585,7 @@ export type ResponsiveDialogContentProps = DialogContentProps & {
   drawerClassName?: string;
 };
 
-// components/control-ui/ui/input: shares --radius-control with Button/Select/Menu triggers. data-slot="input".
+// components/control-ui/ui/input: shares --radius-control with Button/Select/DropdownMenu triggers. data-slot="input".
 export type InputProps = Omit<ComponentProps<"input">, "size"> & {
   size?: ControlSize;
 };
@@ -794,6 +794,8 @@ export type AccordionPanelProps = ComponentProps<"div">;
 // components/control-ui/ui/avatar: Base UI owns image-load state; Fallback shows when Image missing/errors.
 export type AvatarProps = ComponentProps<"span">;
 
+export type AvatarGroupProps = ComponentProps<"div">;
+
 export type AvatarImageProps = ComponentProps<"img"> & {
   onLoadingStatusChange?: (status: "idle" | "loading" | "loaded" | "error") => void;
 };
@@ -930,29 +932,9 @@ export type AlertDescriptionProps = ComponentProps<"div">;
 // components/control-ui/ui/badge: control-shaped chip sharing border+focus ring w/ buttons/fields. render renders as link/button; color intent routes through badge tokens.
 export type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
 export type BadgeSize = "sm" | "md";
-export type BadgeColor =
-  | "neutral"
-  | "slate"
-  | "gray"
-  | "zinc"
-  | "stone"
-  | "red"
-  | "orange"
-  | "amber"
-  | "yellow"
-  | "lime"
-  | "green"
-  | "emerald"
-  | "teal"
-  | "cyan"
-  | "sky"
-  | "blue"
-  | "indigo"
-  | "violet"
-  | "purple"
-  | "fuchsia"
-  | "pink"
-  | "rose";
+/** Stable application-facing families; each skin may tune the exact hue. */
+export const BADGE_COLORS = ["neutral", "red", "orange", "yellow", "green", "blue", "purple", "pink"] as const;
+export type BadgeColor = (typeof BADGE_COLORS)[number];
 export type BadgeProps = ComponentProps<"span"> & {
   variant?: BadgeVariant;
   size?: BadgeSize;
@@ -1093,7 +1075,7 @@ export type AutocompleteGroupProps = ComponentProps<"div">;
 export type AutocompleteGroupLabelProps = ComponentProps<"div">;
 
 // components/control-ui/ui/toolbar: Base UI Toolbar, roving-tabindex focus group (arrow keys between controls, one Tab stop). Uses concentric shell/control radii from theme.css.
-// Button/Link forward Base UI's render prop so a consumer can compose Menu.Trigger/Tooltip.Trigger/control-ui Button.
+// Button/Link forward Base UI's render prop so a consumer can compose DropdownMenu.Trigger/Tooltip.Trigger/control-ui Button.
 export type ToolbarVariant = "default" | "inverse";
 export type ToolbarLinkVariant = "default" | "track";
 
@@ -1312,10 +1294,10 @@ export type TriggerMenuItemData = {
   image?: string;
 };
 
-// Structured mention a rich (ProseMirror) chat-input carries out: id the agent consumes + display label. Surfaced on submit payload alongside plain-text value.
+// Structured mention a rich (ProseMirror) chat-composer carries out: id the agent consumes + display label. Surfaced on submit payload alongside plain-text value.
 export type MentionItem = { id: string; label: string; kind: string };
 
-// Rich editor (ProseMirror) props live in chat-input-editor/types.ts (ProseMirror-shaped); here = shared vocabulary trigger-menu + mention extension both speak.
+// Rich editor (ProseMirror) props live in chat-composer-editor/types.ts (ProseMirror-shaped); here = shared vocabulary trigger-menu + mention extension both speak.
 
 export type TriggerSelectContext = { char: string; query: string };
 
@@ -1452,7 +1434,7 @@ export type DynamicNotificationProps = Omit<ComponentProps<"div">, "onChange"> &
   // While true (and open), the island holds the intermediate "thinking" size with the aurora
   // animating — flip it off when the model's answer lands to morph into the full bubble.
   loading?: boolean;
-  // Reply field is controllable like ChatInput's value (uncontrolled by default).
+  // Reply field is controllable like ChatComposer's value (uncontrolled by default).
   replyValue?: string;
   defaultReplyValue?: string;
   onReplyValueChange?: (value: string) => void;

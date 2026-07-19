@@ -105,7 +105,7 @@ export const skinMetas = [
     label: "Cuicui",
     kind: "advanced",
     description:
-      "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatInput (skin.config fills the chat-input:send-layer anchor).",
+      "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
     packManifestPath: "registry/cuicui/skin.json",
     paths: skinPackFiles("cuicui"),
   },

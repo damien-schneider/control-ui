@@ -27,7 +27,7 @@ describe("reduced motion contract", () => {
     expect(CSS).toContain('[data-control-ui="chat-message"]');
     expect(CSS).toContain("filter: blur(8px);");
     expect(CSS).toContain("translate: 0 0.5rem;");
-    expect(CSS).toContain('[data-control-ui="chat-input"]');
+    expect(CSS).toContain('[data-control-ui="chat-composer"]');
     expect(CSS).toContain("filter: blur(10px);");
     expect(CSS).toContain("translate: 0 0.75rem;");
   });

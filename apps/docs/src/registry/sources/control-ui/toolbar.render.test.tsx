@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { renderToString } from "react-dom/server";
 
 import { Button } from "@/components/control-ui/ui/button";
-import { Menu, MenuTrigger } from "@/components/control-ui/ui/menu";
+import { DropdownMenu, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { Toolbar, ToolbarButton, ToolbarInput } from "@/components/control-ui/ui/toolbar";
 
 const THEME = readFileSync(new URL("./theme.css", import.meta.url), "utf8");
@@ -16,14 +16,14 @@ describe("Toolbar contracts", () => {
     expect(THEME).toContain("--toolbar-radius: calc(var(--toolbar-item-radius-fit) + var(--toolbar-radius-offset));");
   });
 
-  test("keeps menu semantics when a button renders a Menu trigger", () => {
+  test("keeps menu semantics when a button renders a DropdownMenu trigger", () => {
     const html = renderToString(
       <Toolbar>
-        <Menu>
-          <ToolbarButton iconOnly render={<MenuTrigger aria-label="More tools" variant="ghost" iconOnly />}>
+        <DropdownMenu>
+          <ToolbarButton iconOnly render={<DropdownMenuTrigger aria-label="More tools" variant="ghost" iconOnly />}>
             More
           </ToolbarButton>
-        </Menu>
+        </DropdownMenu>
       </Toolbar>,
     );
 

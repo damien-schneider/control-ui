@@ -4,29 +4,7 @@ import { Check } from "lucide-react";
 import type { BadgeColor } from "@/components/control-ui/contracts";
 import { Badge } from "@/components/control-ui/ui/badge";
 
-const badgeColors: BadgeColor[] = [
-  "slate",
-  "gray",
-  "zinc",
-  "stone",
-  "red",
-  "orange",
-  "amber",
-  "yellow",
-  "lime",
-  "green",
-  "emerald",
-  "teal",
-  "cyan",
-  "sky",
-  "blue",
-  "indigo",
-  "violet",
-  "purple",
-  "fuchsia",
-  "pink",
-  "rose",
-];
+const badgeColors: BadgeColor[] = ["neutral", "red", "orange", "yellow", "green", "blue", "purple", "pink"];
 
 export function PrimitiveBadgeExample() {
   return (
@@ -34,10 +12,10 @@ export function PrimitiveBadgeExample() {
       <Badge>Default</Badge>
       <Badge size="sm">Small</Badge>
       <Badge color="blue">Beta</Badge>
-      <Badge color="amber">15</Badge>
+      <Badge color="yellow">15</Badge>
       <Badge variant="destructive">Denied</Badge>
       <Badge variant="outline">Outline</Badge>
-      <Badge color="emerald">
+      <Badge color="green">
         <Check />
         Allowed
       </Badge>

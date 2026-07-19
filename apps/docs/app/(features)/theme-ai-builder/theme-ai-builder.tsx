@@ -2,233 +2,87 @@
 
 import {
   AlertTriangleIcon,
-  BotIcon,
-  BracesIcon,
+  ArrowRightIcon,
   CheckCircle2Icon,
   CopyIcon,
   DownloadIcon,
-  FileImageIcon,
   PaintbrushIcon,
   Undo2Icon,
   UploadIcon,
 } from "lucide-react";
-import { type ChangeEvent, type DragEvent, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { type ChangeEvent, useEffect, useState } from "react";
 import { BlockPreview } from "@/app/(features)/components/previews";
-import { ChatInputAttachment, ChatInputAttachments } from "@/components/control-ui/chat-input-attachment";
+import { ThemeAuditStatus } from "@/app/(features)/theme-accessibility/theme-audit-status";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, ButtonLabel } from "@/components/control-ui/ui/button";
+import {
+  Stepper,
+  StepperContent,
+  StepperIndicator,
+  StepperItem,
+  StepperList,
+  StepperSeparator,
+  StepperTitle,
+  StepperTrigger,
+} from "@/components/control-ui/ui/stepper";
 import { Textarea } from "@/components/control-ui/ui/textarea";
 import { downloadThemeArtifact } from "@/components/theme-drawer/custom-themes";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
-import {
-  buildThemePrompt,
-  parseThemeArtifact,
-  type ThemeArtifactResult,
-  type ThemePromptMode,
-} from "@/components/theme-drawer/theme-artifact";
+import { buildThemePrompt, parseThemeArtifact, type ThemeArtifactResult } from "@/components/theme-drawer/theme-artifact";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
 import type { ControlUiThemeArtifactV1, SkinId } from "@/components/theme-drawer/types";
 import { useThemeDrawer } from "@/components/theme-drawer-context";
 import { useThemeModePreference } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site-config";
 
-const MAX_REFERENCE_COUNT = 5;
-const MAX_REFERENCE_BYTES = 10 * 1024 * 1024;
-const REFERENCE_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/avif"]);
-
-type LocalReference = {
-  id: string;
-  file: File;
-  previewUrl: string;
-};
-
-function referenceId(file: File) {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") return crypto.randomUUID();
-  return `${file.name}-${file.lastModified}-${Math.random().toString(36).slice(2, 8)}`;
-}
-
-function fileSize(bytes: number) {
-  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
-}
-
-function WorkbenchStage({ number, id, title, children }: { number: string; id: string; title: string; children: ReactNode }) {
-  return (
-    <section id={id} className="scroll-mt-24 rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-sm">
-      <header className="flex items-center gap-3 border-b border-border/70 px-5 py-4">
-        <span className="grid size-7 place-items-center rounded-full bg-foreground text-[11px] font-semibold text-background">
-          {number}
-        </span>
-        <h2 className="text-heading-4 font-display">{title}</h2>
-      </header>
-      <div className="p-5">{children}</div>
-    </section>
-  );
-}
-
-function ReferencePicker({
-  references,
-  onAdd,
-  onRemove,
+function AgentPromptStep({
+  baseSkin,
+  copied,
+  copyError,
+  onCopy,
+  onOpenThemeEditor,
 }: {
-  references: LocalReference[];
-  onAdd: (files: FileList | File[]) => void;
-  onRemove: (id: string) => void;
+  baseSkin: SkinId;
+  copied: boolean;
+  copyError: string | null;
+  onCopy: () => void;
+  onOpenThemeEditor: () => void;
 }) {
-  const remaining = MAX_REFERENCE_COUNT - references.length;
-
-  function addFromInput(event: ChangeEvent<HTMLInputElement>) {
-    if (event.target.files) onAdd(event.target.files);
-    event.target.value = "";
-  }
-
-  function addFromDrop(event: DragEvent<HTMLLabelElement>) {
-    event.preventDefault();
-    onAdd(event.dataTransfer.files);
-  }
-
   return (
-    <div className="flex flex-col gap-3">
-      <label
-        onDragOver={(event) => event.preventDefault()}
-        onDrop={addFromDrop}
-        className={cn(
-          "group grid min-h-32 cursor-pointer place-items-center rounded-[var(--radius-control)] border border-dashed border-border bg-foreground/[0.025] px-5 py-6 text-center transition hover:border-foreground/35 hover:bg-foreground/[0.045] focus-within:ring-2 focus-within:ring-foreground/20",
-          remaining === 0 && "pointer-events-none opacity-50",
-        )}
-      >
-        <input
-          type="file"
-          accept="image/png,image/jpeg,image/webp,image/avif"
-          multiple
-          disabled={remaining === 0}
-          onChange={addFromInput}
-          className="sr-only"
-        />
-        <span className="flex flex-col items-center gap-2">
-          <span className="grid size-9 place-items-center rounded-full bg-muted text-muted-foreground group-hover:text-foreground">
-            <FileImageIcon aria-hidden className="size-4" />
-          </span>
-          <span className="text-label font-medium text-foreground">Drop references or choose files</span>
-          <span className="text-caption text-muted-foreground">PNG, JPEG, WebP or AVIF · 10 MB each · {remaining} remaining</span>
-        </span>
-      </label>
+    <div id="prompt" className="grid gap-6 scroll-mt-24">
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div className="max-w-lg">
+          <p className="text-label font-medium text-foreground">Claude Code · Codex · Mastra Code</p>
+          <h2 className="mt-2 text-heading-3 font-display">Create with your coding agent</h2>
+          <p className="mt-2 text-body leading-6 text-muted-foreground">
+            Open one in your project and paste the prompt. It will ask for your direction and reference images, then write an importable
+            theme file.
+          </p>
+        </div>
+        <Button variant="quiet" size="sm" onClick={onOpenThemeEditor}>
+          <PaintbrushIcon aria-hidden className="size-3.5" /> Base: {SKIN_META_BY_ID[baseSkin].label}
+        </Button>
+      </header>
 
-      {references.length > 0 ? (
-        <ChatInputAttachments
-          label="Local theme references"
-          className="rounded-[var(--radius-control)] border border-border/70 bg-background/55"
-        >
-          {references.map((reference) => (
-            <ChatInputAttachment
-              key={reference.id}
-              name={reference.file.name}
-              type={reference.file.type}
-              description={fileSize(reference.file.size)}
-              previewUrl={reference.previewUrl}
-              onRemove={() => onRemove(reference.id)}
-              removeLabel={`Remove ${reference.file.name}`}
-            />
-          ))}
-        </ChatInputAttachments>
-      ) : null}
+      <div className="grid gap-2">
+        <Button variant="solid" tone="primary" onClick={onCopy}>
+          {copied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
+          {copied ? "Agent prompt copied" : "Copy agent prompt"}
+          {!copied ? <ArrowRightIcon aria-hidden className="size-3.5" /> : null}
+        </Button>
+        {copyError ? (
+          <p role="alert" className="text-caption text-destructive-text">
+            {copyError}
+          </p>
+        ) : null}
+      </div>
     </div>
   );
 }
 
-function ThemeBriefStage({
-  description,
-  baseSkin,
-  references,
-  referenceError,
-  onDescriptionChange,
-  onAddReferences,
-  onRemoveReference,
-}: {
-  description: string;
-  baseSkin: SkinId;
-  references: LocalReference[];
-  referenceError: string | null;
-  onDescriptionChange: (value: string) => void;
-  onAddReferences: (files: FileList | File[]) => void;
-  onRemoveReference: (id: string) => void;
-}) {
-  return (
-    <WorkbenchStage number="1" id="brief" title="Describe and reference">
-      <div className="grid gap-5">
-        <label htmlFor="theme-ai-description" className="grid gap-2">
-          <span className="text-label font-medium text-foreground">
-            Theme description <span className="text-destructive-text">*</span>
-          </span>
-          <Textarea
-            id="theme-ai-description"
-            required
-            value={description}
-            onChange={(event) => onDescriptionChange(event.target.value)}
-            placeholder="A calm editorial workspace with warm paper surfaces, precise ink typography, compact controls, and a restrained moss accent…"
-            className="min-h-28"
-          />
-          <span className="text-caption text-muted-foreground">
-            Describe color, density, typography, corners, elevation, and motion. The active {SKIN_META_BY_ID[baseSkin].label} skin remains
-            the structural base.
-          </span>
-        </label>
-        <ReferencePicker references={references} onAdd={onAddReferences} onRemove={onRemoveReference} />
-        {referenceError ? (
-          <p role="alert" className="text-caption text-destructive-text">
-            {referenceError}
-          </p>
-        ) : null}
-      </div>
-    </WorkbenchStage>
-  );
-}
-
-function ThemePromptStage({
-  mode,
-  prompt,
-  descriptionReady,
-  copied,
-  onModeChange,
-  onCopy,
-}: {
-  mode: ThemePromptMode;
-  prompt: string;
-  descriptionReady: boolean;
-  copied: boolean;
-  onModeChange: (mode: ThemePromptMode) => void;
-  onCopy: () => void;
-}) {
-  return (
-    <WorkbenchStage number="2" id="prompt" title="Copy the AI prompt">
-      <div className="grid gap-4">
-        <fieldset className="grid grid-cols-2 gap-2 border-0 p-0">
-          <legend className="sr-only">AI workflow</legend>
-          <Button variant="surface" active={mode === "chat"} onClick={() => onModeChange("chat")}>
-            <BotIcon aria-hidden className="size-3.5" /> Chat AI
-          </Button>
-          <Button variant="surface" active={mode === "coding-agent"} onClick={() => onModeChange("coding-agent")}>
-            <BracesIcon aria-hidden className="size-3.5" /> Coding agent
-          </Button>
-        </fieldset>
-        <p className="text-body leading-6 text-muted-foreground">
-          {mode === "chat"
-            ? "The response will be one JSON block you can paste below. Attach your reference files to the same chat in the listed order."
-            : "The agent is asked to read the live contract endpoint and write a portable .control-ui-theme.json file without changing application code."}
-        </p>
-        <pre className="max-h-64 min-w-0 overflow-auto whitespace-pre-wrap rounded-[var(--radius-control)] bg-foreground/[0.045] p-4 font-mono text-[11px] leading-5 text-foreground">
-          {prompt}
-        </pre>
-        <Button variant="solid" tone="primary" disabled={!descriptionReady} onClick={onCopy}>
-          <CopyIcon aria-hidden className="size-3.5" /> {copied ? "Prompt copied" : "Copy prompt"}
-        </Button>
-      </div>
-    </WorkbenchStage>
-  );
-}
-
-function ThemeImportStage({
+function ThemeTestStep({
   artifactText,
   artifactResult,
   artifact,
@@ -250,64 +104,80 @@ function ThemeImportStage({
   onOpenThemeEditor: () => void;
 }) {
   return (
-    <WorkbenchStage number="3" id="import" title="Import and validate">
-      <div className="grid gap-4">
-        <label htmlFor="theme-ai-artifact" className="grid gap-2">
-          <span className="text-label font-medium text-foreground">AI response or theme JSON</span>
+    <div id="test" className="grid gap-5 scroll-mt-24">
+      <header>
+        <h2 className="text-heading-3 font-display">Import and test</h2>
+        <p className="mt-2 text-body leading-6 text-muted-foreground">
+          When the agent finishes, import the generated <code>.control-ui-theme.json</code> file.
+        </p>
+      </header>
+
+      <div className="flex flex-wrap gap-2">
+        <ButtonLabel htmlFor="theme-ai-file" variant="solid" tone="primary">
+          <UploadIcon aria-hidden className="size-3.5" /> Import theme file
+          <input
+            id="theme-ai-file"
+            type="file"
+            accept=".json,application/json"
+            aria-label="Import theme file"
+            onChange={onImportFile}
+            className="sr-only"
+          />
+        </ButtonLabel>
+        {artifact ? (
+          <Button variant="quiet" onClick={() => downloadThemeArtifact(artifact)}>
+            <DownloadIcon aria-hidden className="size-3.5" /> Download draft
+          </Button>
+        ) : null}
+      </div>
+
+      <details open={Boolean(artifactText && !artifactResult.ok) || undefined}>
+        <summary className="cursor-pointer text-label font-medium text-foreground">Paste JSON instead</summary>
+        <label htmlFor="theme-ai-artifact" className="mt-3 grid gap-2">
+          <span className="sr-only">Theme JSON</span>
           <Textarea
             id="theme-ai-artifact"
             value={artifactText}
             onChange={(event) => onArtifactTextChange(event.target.value)}
-            placeholder='Paste the complete reply, a fenced JSON block, or raw { "format": "control-ui-theme/v1", … }'
-            className="min-h-44 font-mono text-[11px]"
+            placeholder='Paste the fenced JSON block or raw { "format": "control-ui-theme/v1", … }'
+            className="min-h-56 font-mono text-[11px]"
           />
         </label>
-        <div className="flex flex-wrap gap-2">
-          <ButtonLabel variant="surface">
-            <UploadIcon aria-hidden className="size-3.5" /> Import .control-ui-theme.json
-            <input type="file" accept=".json,application/json" onChange={onImportFile} className="sr-only" />
-          </ButtonLabel>
-          {artifact ? (
-            <Button variant="quiet" onClick={() => downloadThemeArtifact(artifact)}>
-              <DownloadIcon aria-hidden className="size-3.5" /> Download draft
-            </Button>
-          ) : null}
-        </div>
-        {importError ? (
-          <p role="alert" className="text-caption text-destructive-text">
-            {importError}
+      </details>
+
+      {importError ? (
+        <p role="alert" className="text-caption text-destructive-text">
+          {importError}
+        </p>
+      ) : null}
+      {artifactText && !artifactResult.ok ? (
+        <div role="alert" className="grid gap-1.5 text-caption text-destructive-text">
+          <p className="flex items-center gap-2 font-medium">
+            <AlertTriangleIcon aria-hidden className="size-3.5" /> Theme JSON needs changes
           </p>
-        ) : null}
-        {artifactText && !artifactResult.ok ? (
-          <div role="alert" className="rounded-[var(--radius-control)] border border-destructive/30 bg-destructive/5 p-3">
-            <div className="flex items-center gap-2 text-label font-medium text-destructive-text">
-              <AlertTriangleIcon aria-hidden className="size-3.5" /> Fix the theme output
-            </div>
-            <ul className="mt-2 grid list-disc gap-1 pl-5 text-caption leading-5 text-destructive-text">
-              {artifactResult.errors.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-        {artifact && !baseMismatch ? (
-          <div className="flex items-center gap-2 rounded-[var(--radius-control)] border border-primary/25 bg-primary/5 px-3 py-2.5 text-label text-primary-text">
-            <CheckCircle2Icon aria-hidden className="size-4" /> {artifact.name} is valid for {SKIN_META_BY_ID[artifact.baseSkin].label}.
-          </div>
-        ) : null}
-        {baseMismatch ? (
-          <div className="grid gap-3 rounded-[var(--radius-control)] border border-border bg-muted/45 p-3">
-            <p className="text-caption leading-5 text-foreground">
-              This artifact requires {SKIN_META_BY_ID[baseMismatch].label}, but {SKIN_META_BY_ID[activeBaseSkin].label} is active. The draft
-              stays unapplied until its base is selected.
-            </p>
-            <Button variant="surface" size="sm" onClick={onOpenThemeEditor}>
-              <PaintbrushIcon aria-hidden className="size-3.5" /> Select {SKIN_META_BY_ID[baseMismatch].label} in Theme editor
-            </Button>
-          </div>
-        ) : null}
-      </div>
-    </WorkbenchStage>
+          <ul className="grid list-disc gap-1 pl-5 leading-5">
+            {artifactResult.errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {artifact && !baseMismatch ? (
+        <p className="flex items-center gap-2 text-label text-primary-text">
+          <CheckCircle2Icon aria-hidden className="size-4" /> {artifact.name} is ready to test.
+        </p>
+      ) : null}
+      {baseMismatch ? (
+        <div className="grid justify-items-start gap-2">
+          <p className="text-caption leading-5 text-foreground">
+            This theme uses {SKIN_META_BY_ID[baseMismatch].label}, but {SKIN_META_BY_ID[activeBaseSkin].label} is active.
+          </p>
+          <Button variant="surface" size="sm" onClick={onOpenThemeEditor}>
+            <PaintbrushIcon aria-hidden className="size-3.5" /> Switch to {SKIN_META_BY_ID[baseMismatch].label}
+          </Button>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -321,10 +191,10 @@ function ThemePreviewPanel({
   appliedName,
   storageError,
   canUndo,
-  customThemeCount,
   onModeChange,
   onApply,
   onUndo,
+  onOpenThemeEditor,
 }: {
   artifact: ControlUiThemeArtifactV1 | null;
   activeBaseSkin: SkinId;
@@ -335,25 +205,24 @@ function ThemePreviewPanel({
   appliedName: string | null;
   storageError: string | null;
   canUndo: boolean;
-  customThemeCount: number;
   onModeChange: (mode: "light" | "dark") => void;
   onApply: () => void;
   onUndo: () => void;
+  onOpenThemeEditor: () => void;
 }) {
+  const [previewRoot, setPreviewRoot] = useState<HTMLElement | null>(null);
   const draftReady = Boolean(artifact && !baseMismatch);
   return (
     <aside id="preview" className="min-w-0 scroll-mt-24 @min-[56rem]/theme-builder:sticky @min-[56rem]/theme-builder:top-6">
-      <div className="overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-sm">
+      <div className="overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-background">
         <header className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 px-4 py-3">
           <div className="flex min-w-0 items-center gap-2">
-            <span className="text-label font-semibold text-foreground">Chat block preview</span>
-            {draftReady ? (
-              <Badge variant="secondary" size="sm">
-                Draft
-              </Badge>
-            ) : null}
+            <span className="text-label font-semibold text-foreground">Live preview</span>
+            <Badge variant="secondary" size="sm">
+              {draftReady ? "Draft" : SKIN_META_BY_ID[activeBaseSkin].label}
+            </Badge>
           </div>
-          <div className="flex items-center gap-1 rounded-[var(--radius-control)] bg-muted p-1">
+          <div className="flex items-center gap-1">
             <Button
               size="xs"
               variant="quiet"
@@ -375,6 +244,7 @@ function ThemePreviewPanel({
           </div>
         </header>
         <section
+          ref={setPreviewRoot}
           aria-label="Inert Chat block theme preview"
           data-testid="theme-ai-preview"
           data-skin={draftReady && artifact ? artifact.baseSkin : activeBaseSkin}
@@ -386,20 +256,18 @@ function ThemePreviewPanel({
             <BlockPreview blockId="chat" integration="mastra" />
           </div>
         </section>
+        <ThemeAuditStatus root={previewRoot} className="border-t border-border/70 px-4 py-3" />
         <footer className="grid gap-3 border-t border-border/70 p-4">
           {appliedName ? (
-            <div className="flex items-center gap-2 text-caption text-primary-text" aria-live="polite">
-              <CheckCircle2Icon aria-hidden className="size-3.5" /> Saved as {appliedName}. It is now available under Custom in the Theme
-              editor.
-            </div>
-          ) : (
-            <p className="text-caption leading-5 text-muted-foreground">
-              Validation changes only this preview. Applying always creates a new local custom theme and keeps the previous active state
-              available for one-step undo.
+            <p className="flex items-center gap-2 text-caption text-primary-text" aria-live="polite">
+              <CheckCircle2Icon aria-hidden className="size-3.5" /> {appliedName} is active across the docs.
             </p>
-          )}
+          ) : null}
+          {!appliedName && !draftReady ? (
+            <p className="text-caption text-muted-foreground">Import a valid theme file to replace this base preview.</p>
+          ) : null}
           {storageError ? (
-            <div className="grid gap-2 rounded-[var(--radius-control)] bg-destructive/5 p-3 text-caption text-destructive-text">
+            <div className="grid gap-2 text-caption text-destructive-text">
               <span>{storageError}</span>
               {artifact ? (
                 <Button variant="surface" size="sm" onClick={() => downloadThemeArtifact(artifact)}>
@@ -410,17 +278,19 @@ function ThemePreviewPanel({
           ) : null}
           <div className="flex flex-wrap gap-2">
             <Button className="flex-1" variant="solid" tone="primary" disabled={!draftReady} onClick={onApply}>
-              Save as custom theme
+              Apply to docs
             </Button>
+            {appliedName ? (
+              <Button variant="surface" onClick={onOpenThemeEditor}>
+                <PaintbrushIcon aria-hidden className="size-3.5" /> Edit tokens
+              </Button>
+            ) : null}
             {canUndo ? (
               <Button variant="surface" onClick={onUndo}>
                 <Undo2Icon aria-hidden className="size-3.5" /> Undo
               </Button>
             ) : null}
           </div>
-          <span className="text-[10px] text-muted-foreground">
-            {customThemeCount} custom {customThemeCount === 1 ? "theme" : "themes"} saved on this device
-          </span>
         </footer>
       </div>
     </aside>
@@ -428,28 +298,17 @@ function ThemePreviewPanel({
 }
 
 export function ThemeAiBuilder() {
-  const { t, customThemes, storageError, canUndo, applyArtifact, undoLastApply } = useThemeRuntime();
+  const { t, storageError, canUndo, applyArtifact, undoLastApply } = useThemeRuntime();
   const { setOpen } = useThemeDrawer();
   const themeMode = useThemeModePreference();
-  const [description, setDescription] = useState("");
-  const [references, setReferences] = useState<LocalReference[]>([]);
-  const referenceSnapshot = useRef<LocalReference[]>([]);
-  const [referenceError, setReferenceError] = useState<string | null>(null);
-  const [promptMode, setPromptMode] = useState<ThemePromptMode>("chat");
+  const [activeStep, setActiveStep] = useState(0);
   const [previewMode, setPreviewMode] = useState<"light" | "dark">("light");
   const [artifactText, setArtifactText] = useState("");
   const [importError, setImportError] = useState<string | null>(null);
+  const [copyError, setCopyError] = useState<string | null>(null);
   const [appliedName, setAppliedName] = useState<string | null>(null);
 
-  useEffect(() => {
-    referenceSnapshot.current = references;
-  }, [references]);
-  useEffect(
-    () => () => {
-      for (const reference of referenceSnapshot.current) URL.revokeObjectURL(reference.previewUrl);
-    },
-    [],
-  );
+  useEffect(() => setOpen(false), [setOpen]);
   useEffect(() => {
     const root = document.documentElement;
     const updatePreviewMode = () => setPreviewMode(root.classList.contains("dark") ? "dark" : "light");
@@ -460,48 +319,21 @@ export function ThemeAiBuilder() {
   }, []);
 
   const origin = siteConfig.url.origin;
-  const prompt = useMemo(
-    () =>
-      buildThemePrompt({
-        mode: promptMode,
-        description,
-        referenceNames: references.map((reference) => reference.file.name),
-        origin,
-        theme: t,
-      }),
-    [description, origin, promptMode, references, t],
-  );
-  const promptCopy = useCopyToClipboard({ text: prompt });
-  const artifactResult = useMemo(() => parseThemeArtifact(artifactText), [artifactText]);
+  const prompt = buildThemePrompt({ origin, theme: t });
+  const promptCopy = useCopyToClipboard({
+    text: prompt,
+    onCopyError: () => setCopyError("The prompt could not be copied. Check clipboard permissions and try again."),
+  });
+  const artifactResult = parseThemeArtifact(artifactText);
   const artifact = artifactResult.ok ? artifactResult.artifact : null;
   const baseMismatch = artifact && artifact.baseSkin !== t.skin ? artifact.baseSkin : null;
   const previewTokens = artifact
     ? { ...artifact.tokens.shared, ...(previewMode === "dark" ? artifact.tokens.dark : artifact.tokens.light) }
     : {};
 
-  function addReferences(files: FileList | File[]) {
-    const candidates = Array.from(files);
-    const errors: string[] = [];
-    setReferences((current) => {
-      const accepted: LocalReference[] = [];
-      for (const file of candidates.slice(0, MAX_REFERENCE_COUNT - current.length)) {
-        if (!REFERENCE_TYPES.has(file.type)) errors.push(`${file.name}: use PNG, JPEG, WebP, or AVIF.`);
-        else if (file.size > MAX_REFERENCE_BYTES) errors.push(`${file.name}: images must be 10 MB or smaller.`);
-        else accepted.push({ id: referenceId(file), file, previewUrl: URL.createObjectURL(file) });
-      }
-      if (candidates.length > MAX_REFERENCE_COUNT - current.length) errors.push(`Only ${MAX_REFERENCE_COUNT} references can be added.`);
-      return [...current, ...accepted];
-    });
-    setReferenceError(errors.length > 0 ? errors.join(" ") : null);
-  }
-
-  function removeReference(id: string) {
-    setReferences((current) => {
-      const removed = current.find((reference) => reference.id === id);
-      if (removed) URL.revokeObjectURL(removed.previewUrl);
-      return current.filter((reference) => reference.id !== id);
-    });
-    setReferenceError(null);
+  async function copyPromptAndContinue() {
+    setCopyError(null);
+    if (await promptCopy.handleCopy()) setActiveStep(1);
   }
 
   async function importArtifactFile(event: ChangeEvent<HTMLInputElement>) {
@@ -512,6 +344,7 @@ export function ThemeAiBuilder() {
       setArtifactText(await file.text());
       setImportError(null);
       setAppliedName(null);
+      setActiveStep(1);
     } catch {
       setImportError("The selected file could not be read.");
     }
@@ -525,65 +358,78 @@ export function ThemeAiBuilder() {
 
   return (
     <div className="@container/theme-builder">
-      <div className="grid min-w-0 gap-6 @min-[56rem]/theme-builder:grid-cols-[minmax(0,0.92fr)_minmax(32rem,1.08fr)] @min-[56rem]/theme-builder:items-start">
-        <div className="grid min-w-0 gap-5">
-          <div className="flex items-start gap-3 rounded-[var(--radius-panel)] border border-border/70 bg-foreground/[0.025] p-4">
-            <BotIcon aria-hidden className="mt-0.5 size-4 shrink-0 text-primary-text" />
-            <p className="text-body leading-6 text-muted-foreground">
-              Control UI does not run an AI model here. Your images stay in this browser; attach them yourself when you paste the prompt
-              into Claude, ChatGPT, Codex, or another coding agent.
-            </p>
-          </div>
-          <ThemeBriefStage
-            description={description}
-            baseSkin={t.skin}
-            references={references}
-            referenceError={referenceError}
-            onDescriptionChange={setDescription}
-            onAddReferences={addReferences}
-            onRemoveReference={removeReference}
-          />
-          <ThemePromptStage
-            mode={promptMode}
-            prompt={prompt}
-            descriptionReady={Boolean(description.trim())}
-            copied={promptCopy.isCopied}
-            onModeChange={setPromptMode}
-            onCopy={promptCopy.handleCopy}
-          />
-          <ThemeImportStage
-            artifactText={artifactText}
-            artifactResult={artifactResult}
+      <div
+        className={cn(
+          "grid min-w-0 gap-8",
+          activeStep === 0
+            ? "max-w-2xl"
+            : "@min-[56rem]/theme-builder:grid-cols-[minmax(0,0.92fr)_minmax(32rem,1.08fr)] @min-[56rem]/theme-builder:items-start",
+        )}
+      >
+        <Stepper value={activeStep} onValueChange={setActiveStep} contentMode="current" responsive={false} className="min-w-0">
+          <StepperList aria-label="Create and test a theme" className="max-w-sm">
+            <StepperItem step={0}>
+              <StepperTrigger>
+                <StepperIndicator />
+                <StepperTitle>Copy agent prompt</StepperTitle>
+              </StepperTrigger>
+              <StepperSeparator />
+            </StepperItem>
+            <StepperItem step={1}>
+              <StepperTrigger>
+                <StepperIndicator />
+                <StepperTitle>Import and test</StepperTitle>
+              </StepperTrigger>
+            </StepperItem>
+          </StepperList>
+
+          <StepperContent step={0} keepMounted={false}>
+            <AgentPromptStep
+              baseSkin={t.skin}
+              copied={promptCopy.isCopied}
+              copyError={copyError}
+              onCopy={copyPromptAndContinue}
+              onOpenThemeEditor={() => setOpen(true)}
+            />
+          </StepperContent>
+          <StepperContent step={1} keepMounted={false}>
+            <ThemeTestStep
+              artifactText={artifactText}
+              artifactResult={artifactResult}
+              artifact={artifact}
+              activeBaseSkin={t.skin}
+              baseMismatch={baseMismatch}
+              importError={importError}
+              onArtifactTextChange={(value) => {
+                setArtifactText(value);
+                setAppliedName(null);
+              }}
+              onImportFile={importArtifactFile}
+              onOpenThemeEditor={() => setOpen(true)}
+            />
+          </StepperContent>
+        </Stepper>
+
+        {activeStep === 1 ? (
+          <ThemePreviewPanel
             artifact={artifact}
             activeBaseSkin={t.skin}
             baseMismatch={baseMismatch}
-            importError={importError}
-            onArtifactTextChange={(value) => {
-              setArtifactText(value);
+            previewMode={previewMode}
+            previewTokens={previewTokens}
+            lockedMode={themeMode.locked}
+            appliedName={appliedName}
+            storageError={storageError}
+            canUndo={canUndo}
+            onModeChange={themeMode.setValue}
+            onApply={applyValidArtifact}
+            onUndo={() => {
+              undoLastApply();
               setAppliedName(null);
             }}
-            onImportFile={importArtifactFile}
             onOpenThemeEditor={() => setOpen(true)}
           />
-        </div>
-        <ThemePreviewPanel
-          artifact={artifact}
-          activeBaseSkin={t.skin}
-          baseMismatch={baseMismatch}
-          previewMode={previewMode}
-          previewTokens={previewTokens}
-          lockedMode={themeMode.locked}
-          appliedName={appliedName}
-          storageError={storageError}
-          canUndo={canUndo}
-          customThemeCount={customThemes.length}
-          onModeChange={themeMode.setValue}
-          onApply={applyValidArtifact}
-          onUndo={() => {
-            undoLastApply();
-            setAppliedName(null);
-          }}
-        />
+        ) : null}
       </div>
     </div>
   );
