@@ -95,6 +95,16 @@ export type EmittedStateContract = {
   "combobox:input:data-size": ControlSize;
   "dockable-panel:root:data-placement": DockablePanelPlacement;
   "dockable-panel:drop-zone:data-side": DockablePanelPlacement;
+  "agent-team-view:zone:data-disabled": true;
+  "agent-team-view:zone:data-dragging": true;
+  "agent-team-view:zone:data-selected": true;
+  "agent-team-view:zone-base:data-dragging": true;
+  "agent-team-view:zone-base:data-selected": true;
+  "agent-team-view:zone-drag-handle:data-disabled": true;
+  "agent-team-view:zone-drag-handle:data-dragging": true;
+  "agent-team-view:zone-drag-handle:data-selected": true;
+  "agent-team-view:zone-platform:data-dragging": true;
+  "agent-team-view:zone-platform:data-selected": true;
   "dropzone:root:data-disabled": true;
   "dropzone:root:data-empty": true;
   "dropzone:area:data-disabled": true;

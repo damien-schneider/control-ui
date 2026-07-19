@@ -599,6 +599,18 @@ export type SkinSlotContexts = {
     content: { padding: DockablePanelContentPadding };
     "drop-zone": { side: "left" | "right"; active: boolean };
   };
+  "agent-team-view": {
+    root: Record<never, never>;
+    canvas: Record<never, never>;
+    zone: { selected: boolean; dragging: boolean; disabled: boolean };
+    "zone-base": { selected: boolean; dragging: boolean };
+    "zone-platform": { selected: boolean; dragging: boolean };
+    "zone-header": Record<never, never>;
+    "zone-drag-handle": { selected: boolean; dragging: boolean; disabled: boolean };
+    "zone-title": Record<never, never>;
+    "zone-content": Record<never, never>;
+    agent: Record<never, never>;
+  };
   "number-field": {
     group: { size: ControlSize };
     input: Record<never, never>;

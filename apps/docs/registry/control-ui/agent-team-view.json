@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-team-view",
+  "type": "registry:ui",
+  "title": "Agent Team View",
+  "description": "Spatial isometric canvas for composing agent teams, placing zones, and moving them directly.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/agent-team-view-geometry.ts",
+      "target": "@components/control-ui/ui/agent-team-view-geometry.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/agent-team-view.tsx",
+      "target": "@components/control-ui/ui/agent-team-view.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/agent-team-view.json"
+  }
+}
