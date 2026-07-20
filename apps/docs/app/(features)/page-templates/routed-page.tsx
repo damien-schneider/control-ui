@@ -9,9 +9,9 @@ import type {
   GuidePage as GuidePageData,
   IntegrationId,
 } from "@/app/(features)/model/types";
-import { BlockPage } from "./block-page";
 import { ComponentPage } from "./component-page";
 import { GuidePage } from "./guide-page";
+import { UseCasePage } from "./use-case-page";
 
 const DocsIntegrationContext = createContext<IntegrationId | undefined>(undefined);
 
@@ -29,8 +29,8 @@ export function RoutedGuidePage({ page }: { page: GuidePageData }) {
   return <GuidePage page={page} integration={useDocsIntegration()} />;
 }
 
-export function RoutedBlockPage({ block }: { block: DocsBlock }) {
-  return <BlockPage block={block} integration={useDocsIntegration()} />;
+export function RoutedUseCasePage({ block }: { block: DocsBlock }) {
+  return <UseCasePage block={block} integration={useDocsIntegration()} />;
 }
 
 export function RoutedComponentPage({

@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
 import { catalogEntries } from "../app/(features)/catalog";
-import { blockEntries } from "../app/(features)/catalog/blocks";
+import { blockEntries, useCaseKinds } from "../app/(features)/catalog/blocks";
 import { componentEntries } from "../app/(features)/catalog/components";
 import { extensionEntries } from "../app/(features)/catalog/extensions";
 import { hookEntries, utilEntries } from "../app/(features)/catalog/hooks-utils";
@@ -125,13 +125,25 @@ for (const entry of componentEntries) {
   }
 }
 
+const usedUseCaseKindIds = new Set<string>();
+
 for (const entry of blockEntries) {
+  if (!useCaseKinds.some((kind) => kind.id === entry.useCaseKind)) {
+    failures.push(`${entry.id} references unknown use-case kind "${entry.useCaseKind}"`);
+  }
+  usedUseCaseKindIds.add(entry.useCaseKind);
   checkRegistryItem(entry.id, entry.registryKind);
   checkSourceFile(`${entry.id}.example`, entry.paths.example);
   checkRecord(`${entry.id}.usage`, entry.paths.usage);
   for (const file of entry.paths.files) checkSourceFile(`${entry.id}.files`, file);
 
   checkPreview(entry.id, entry.paths.example, entry.preview);
+}
+
+for (const kind of useCaseKinds) {
+  if (!usedUseCaseKindIds.has(kind.id)) {
+    failures.push(`Use-case kind "${kind.id}" has no entries`);
+  }
 }
 
 for (const entry of primitiveEntries) {

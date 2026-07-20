@@ -34,7 +34,7 @@ export type DocsSidebarContentProps = {
   updateSetupPreference: (nextPreference: SetupPreferenceUpdate) => void;
 };
 
-export type SidebarMode = "agents" | "primitives" | "skills";
+export type SidebarMode = "agents" | "primitives" | "use-cases" | "skills";
 export type DocsNavItem = {
   id: string;
   name: string;

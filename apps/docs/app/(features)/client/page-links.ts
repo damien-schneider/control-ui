@@ -63,6 +63,11 @@ function skinsOverviewPageLinks(): PageLink[] {
 
 function catalogOverviewPageLinks(overview: CatalogOverviewId): PageLink[] {
   if (overview === "ai") return [{ href: "#agents", label: "Agents" }];
+  if (overview === "use-cases")
+    return [
+      { href: "#templates", label: "Templates" },
+      { href: "#patterns", label: "Patterns" },
+    ];
   return primitiveCategories.map((category) => ({ href: `#${category.id}`, label: category.label }));
 }
 
@@ -96,21 +101,21 @@ function referencePageLinks(): PageLink[] {
   ];
 }
 
-function blockPageLinks(block: DocsBlock): PageLink[] {
-  const hasComposition = (block.composition?.length ?? 0) > 0;
+function useCasePageLinks(useCase: DocsBlock): PageLink[] {
+  const hasComposition = (useCase.composition?.length ?? 0) > 0;
   return [
     { href: "#preview", label: "Preview" },
     ...(hasComposition ? [{ href: "#composition", label: "Composition" }] : []),
     { href: "#install", label: "Installation" },
     { href: "#usage", label: "Usage" },
-    { href: "#agents", label: "Agents" },
+    { href: "#included-source", label: "Included source" },
   ];
 }
 
 export function pageLinks({
   activeGuide,
   activeSkill,
-  activeBlock,
+  activeUseCase,
   activePrimitive,
   activeReference,
   activeExtension,
@@ -123,7 +128,7 @@ export function pageLinks({
 }: {
   activeGuide?: GuidePageData;
   activeSkill?: DocsSkill;
-  activeBlock?: DocsBlock;
+  activeUseCase?: DocsBlock;
   activePrimitive?: DocsPrimitive;
   activeReference?: DocsHook | DocsUtil;
   activeExtension?: DocsExtension;
@@ -142,7 +147,8 @@ export function pageLinks({
   if (activeSkill) return skillPageLinks(activeSkill);
   if (activeExtension) return extensionPageLinks(activeExtension);
   if (activeReference) return referencePageLinks();
-  if (activeBlock) return blockPageLinks(activeBlock);
+  // biome-ignore lint/correctness/useHookAtTopLevel: This pure projection is named for the use-case domain.
+  if (activeUseCase) return useCasePageLinks(activeUseCase);
 
   if (activePrimitive) return primitivePageLinks(activePrimitive, extensions);
 

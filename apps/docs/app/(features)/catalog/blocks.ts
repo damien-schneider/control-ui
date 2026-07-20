@@ -1,9 +1,35 @@
 import { type IntegrationPreviewProps, preview, sourceFile } from "./shared";
 
+export const useCaseKinds = [
+  {
+    id: "template",
+    slug: "templates",
+    label: "Templates",
+    singularLabel: "Template",
+    summary: "Complete screens and workspace shells that establish the primary application layout.",
+  },
+  {
+    id: "pattern",
+    slug: "patterns",
+    label: "Patterns",
+    singularLabel: "Pattern",
+    summary: "Focused, installable compositions for one interaction or feature.",
+  },
+] as const;
+
+export type UseCaseKindId = (typeof useCaseKinds)[number]["id"];
+
+export function getUseCaseKind(id: UseCaseKindId): (typeof useCaseKinds)[number] {
+  const kind = useCaseKinds.find((candidate) => candidate.id === id);
+  if (!kind) throw new Error(`Unknown use-case kind: ${id}`);
+  return kind;
+}
+
 export const blockEntries = [
   {
     id: "chat",
     kind: "Block",
+    useCaseKind: "template",
     name: "Chat",
     summary: "Controlled chat shell that composes rendered turns and a provider-owned composer.",
     registryKind: "chat-block",
@@ -43,6 +69,7 @@ export const blockEntries = [
   {
     id: "theme-toggle",
     kind: "Block",
+    useCaseKind: "pattern",
     name: "Theme toggle",
     summary: "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
     registryKind: "theme-toggle-block",
@@ -84,6 +111,7 @@ export const blockEntries = [
   {
     id: "coding-agent",
     kind: "Block",
+    useCaseKind: "template",
     name: "Coding agent",
     summary: "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
     status: "beta",
@@ -129,6 +157,7 @@ export const blockEntries = [
   {
     id: "settings",
     kind: "Block",
+    useCaseKind: "template",
     name: "Settings",
     summary: "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
     registryKind: "settings-block",
@@ -174,6 +203,7 @@ export const blockEntries = [
   {
     id: "file-explorer",
     kind: "Block",
+    useCaseKind: "template",
     name: "File explorer",
     summary: "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
     status: "beta",

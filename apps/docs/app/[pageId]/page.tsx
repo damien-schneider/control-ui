@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function DocsPage({ params }: PageProps) {
   const { pageId } = await params;
 
-  if (pageId === "refined-chat") permanentRedirect("/blocks/chat");
+  if (pageId === "refined-chat") permanentRedirect("/use-cases/chat");
   const nestedPath = docsPathForPageId(pageId);
   if (nestedPath) permanentRedirect(nestedPath);
   if (!isGuidePageId(pageId)) notFound();

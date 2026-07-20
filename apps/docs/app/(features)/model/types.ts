@@ -1,5 +1,5 @@
 import type { PracticeSkillId, SkillConcern, SkillConcernId } from "@control-ui/skills";
-import type { blockEntries } from "@/app/(features)/catalog/blocks";
+import type { blockEntries, UseCaseKindId } from "@/app/(features)/catalog/blocks";
 import type { componentEntries } from "@/app/(features)/catalog/components";
 import type { extensionEntries } from "@/app/(features)/catalog/extensions";
 import type { guideEntries } from "@/app/(features)/catalog/guides";
@@ -209,6 +209,7 @@ export type DocsComponent = {
 
 export type DocsBlock = {
   id: BlockId;
+  useCaseKind: UseCaseKindId;
   name: string;
   summary: string;
   status?: DocsStatus;

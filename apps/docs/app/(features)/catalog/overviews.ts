@@ -15,6 +15,14 @@ export const catalogOverviews = [
     kind: "Agent",
     href: "/ai",
   },
+  {
+    id: "use-cases",
+    label: "Library",
+    name: "Use cases",
+    summary: "Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.",
+    kind: "Block",
+    href: "/use-cases",
+  },
 ] as const;
 
 export type CatalogOverviewId = (typeof catalogOverviews)[number]["id"];

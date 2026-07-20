@@ -106,7 +106,7 @@ export function buildSearchItems({
       name: item.name,
       kind: "Block",
       summary: item.summary,
-      href: `/blocks/${item.id}`,
+      href: `/use-cases/${item.id}`,
       status: item.status,
     })),
   ];

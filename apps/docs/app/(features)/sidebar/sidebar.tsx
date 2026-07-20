@@ -23,13 +23,13 @@ import {
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { ThemeDrawerTrigger } from "@/components/theme-drawer/theme-drawer";
 import { ControlUiLogo } from "./control-ui-logo";
-import { primitiveCategorySidebarIcons, sidebarGroupIcons } from "./icons";
+import { primitiveCategorySidebarIcons, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
 import { DocsNavGroup, SkillConcernNavGroups } from "./nav-groups";
 import {
   agentNavItems,
-  blockNavItems,
   extensionNavItems,
+  useCaseNavGroups as getUseCaseNavGroups,
   guideNavItems,
   hookNavItems,
   primitiveNavGroups,
@@ -67,7 +67,7 @@ export function DocsSidebarContent({
   updateSetupPreference,
 }: DocsSidebarContentProps) {
   // Route-derived, not local state: URL root decides section (mode tab is a router Link) — single source of truth for what sidebar shows.
-  // Guides and skins live outside the three browsing modes, so keep the last selected mode on those routes.
+  // Guides and skins live outside the four browsing modes, so keep the last selected mode on those routes.
   const activeItem = searchItems.find((item) => item.id === active);
   const onSectionPage = activeItem != null && activeItem.kind !== "Guide" && activeItem.kind !== "Skin";
   const setupControlsScope = setupControlsScopeForKind(activeItem?.kind);
@@ -82,8 +82,10 @@ export function DocsSidebarContent({
   const modeHrefs: Record<SidebarMode, string> = {
     agents: "/ai",
     primitives: "/primitives",
+    "use-cases": "/use-cases",
     skills: skills[0] ? `/skills/${skills[0].id}` : "/skills",
   };
+  const caseNavigationGroups = getUseCaseNavGroups(blocks);
   const { isMobile, setOpenMobile } = useSidebar();
   function closeMobile() {
     if (isMobile) setOpenMobile(false);
@@ -137,25 +139,28 @@ export function DocsSidebarContent({
             <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />
           ) : null}
           {mode === "agents" ? (
-            <>
-              <DocsNavGroup
-                title="Agents"
-                icon={sidebarGroupIcons.agents}
-                items={agentNavItems(components)}
-                active={active}
-                prefix="/ai/"
-                onNavigate={onNavigate}
-              />
-              <DocsNavGroup
-                title="Blocks"
-                icon={sidebarGroupIcons.blocks}
-                items={blockNavItems(blocks)}
-                active={active}
-                prefix="/blocks/"
-                onNavigate={onNavigate}
-              />
-            </>
+            <DocsNavGroup
+              title="Agents"
+              icon={sidebarGroupIcons.agents}
+              items={agentNavItems(components)}
+              active={active}
+              prefix="/ai/"
+              onNavigate={onNavigate}
+            />
           ) : null}
+          {mode === "use-cases"
+            ? caseNavigationGroups.map((group) => (
+                <DocsNavGroup
+                  key={group.id}
+                  title={group.title}
+                  icon={useCaseKindSidebarIcons[group.kind]}
+                  items={group.items}
+                  active={active}
+                  prefix="/use-cases/"
+                  onNavigate={onNavigate}
+                />
+              ))
+            : null}
           {mode === "primitives" ? (
             <>
               {primitiveNavGroups(primitives).map((group) => (
@@ -243,7 +248,7 @@ export function DocsSidebarContent({
         aria-label="Documentation controls"
         data-docs-floating-toolbar=""
         variant="inverse"
-        className="fixed! bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-40 w-(--floating-toolbar-rest-width) max-w-[calc(100vw-1rem)] -translate-x-1/2 transition-[width,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:w-(--floating-toolbar-search-width) has-[input:focus]:gap-0 [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] sm:[--floating-toolbar-rest-width:20.5rem] sm:[--toolbar-padding:0.375rem] md:[--floating-toolbar-rest-width:18.25rem]"
+        className="fixed! bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-40 w-(--floating-toolbar-rest-width) max-w-[calc(100vw-1rem)] -translate-x-1/2 transition-[width,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:w-(--floating-toolbar-search-width) has-[input:focus]:gap-0 [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] sm:[--floating-toolbar-rest-width:24rem] sm:[--toolbar-padding:0.375rem] md:[--floating-toolbar-rest-width:24rem]"
       >
         <SidebarSearch items={searchItems} onNavigate={onNavigate} />
         <ToolbarGroup className="min-w-0 flex-[1_1_100%] justify-center overflow-hidden opacity-100 transition-[flex-basis,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] peer-focus-within:pointer-events-none peer-focus-within:flex-[0_1_0%] peer-focus-within:opacity-0">

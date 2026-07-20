@@ -64,7 +64,7 @@ const items = [
     name: "Chat",
     kind: "Block",
     summary: "Complete chat recipe with messages, attachments, and a composer.",
-    href: "/blocks/chat",
+    href: "/use-cases/chat",
   },
 ] satisfies SearchItem[];
 

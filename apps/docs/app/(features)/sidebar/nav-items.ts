@@ -1,3 +1,4 @@
+import { useCaseKinds } from "@/app/(features)/catalog/blocks";
 import { primitiveCategories } from "@/app/(features)/catalog/primitives";
 import type {
   ActivePageId,
@@ -22,6 +23,7 @@ export function sidebarModeForActivePage(active: ActivePageId, searchItems: Sear
   const activeItem = searchItems.find((item) => item.id === active);
 
   if (activeItem?.kind === "Skill") return "skills";
+  if (activeItem?.kind === "Block") return "use-cases";
   if (activeItem?.kind === "Primitive" || activeItem?.kind === "Hook" || activeItem?.kind === "Util" || activeItem?.kind === "Extension")
     return "primitives";
   return "agents";
@@ -55,11 +57,24 @@ export function agentNavItems(components: DocsComponent[]): DocsNavItem[] {
   );
 }
 
-export function blockNavItems(blocks: DocsBlock[]): DocsNavItem[] {
-  return blocks.map((block) => ({
-    id: block.id,
-    name: block.name,
-    status: block.status,
+export function useCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "useCaseKind" | "name" | "status">[]) {
+  return useCaseKinds.map((kind) => ({
+    id: kind.slug,
+    kind: kind.id,
+    title: kind.label,
+    items: sortNavItemsByName(
+      blocks.flatMap((block) =>
+        block.useCaseKind === kind.id
+          ? [
+              {
+                id: block.id,
+                name: block.name,
+                status: block.status,
+              },
+            ]
+          : [],
+      ),
+    ),
   }));
 }
 

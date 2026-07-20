@@ -21,6 +21,7 @@ import {
   WebDesign01Icon,
 } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
+import type { UseCaseKindId } from "@/app/(features)/catalog/blocks";
 import type { PrimitiveCategoryId } from "@/app/(features)/catalog/primitives";
 import type { DocsSkillConcern } from "@/app/(features)/model/types";
 import type { SidebarMode } from "./types";
@@ -47,7 +48,6 @@ export const primitiveCategorySidebarIcons = {
 export const sidebarGroupIcons = {
   guides: Home05Icon,
   agents: AiGenerativeIcon,
-  blocks: BlocksIcon,
   primitives: ComponentIcon,
   hooks: FunctionSquareIcon,
   utils: ContractsIcon,
@@ -55,9 +55,15 @@ export const sidebarGroupIcons = {
   skins: PaintBrush01Icon,
 } as const satisfies Record<string, IconSvgElement>;
 
+export const useCaseKindSidebarIcons = {
+  template: Layout01Icon,
+  pattern: BlocksIcon,
+} as const satisfies Record<UseCaseKindId, IconSvgElement>;
+
 export const sidebarModes = [
   { id: "primitives", label: "Primitives", icon: ComponentIcon },
   { id: "agents", label: "AI", icon: AiGenerativeIcon },
+  { id: "use-cases", label: "Use cases", icon: BlocksIcon },
   { id: "skills", label: "Skills", icon: Book04Icon },
 ] as const satisfies readonly {
   id: SidebarMode;

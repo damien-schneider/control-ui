@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 154,
+    "count": 155,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -22,6 +22,14 @@
         "summary": "Explore composable surfaces for messages, input, activity, media, and agent workflows.",
         "kind": "Agent",
         "href": "/ai"
+      },
+      {
+        "id": "use-cases",
+        "label": "Library",
+        "name": "Use cases",
+        "summary": "Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.",
+        "kind": "Block",
+        "href": "/use-cases"
       },
       {
         "id": "overview",
@@ -1175,7 +1183,7 @@
         "name": "Chat",
         "kind": "Block",
         "summary": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
-        "href": "/blocks/chat",
+        "href": "/use-cases/chat",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json"
       },
       {
@@ -1183,7 +1191,7 @@
         "name": "Theme toggle",
         "kind": "Block",
         "summary": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
-        "href": "/blocks/theme-toggle",
+        "href": "/use-cases/theme-toggle",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json"
       },
       {
@@ -1191,7 +1199,7 @@
         "name": "Coding agent",
         "kind": "Block",
         "summary": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
-        "href": "/blocks/coding-agent",
+        "href": "/use-cases/coding-agent",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json"
       },
@@ -1200,7 +1208,7 @@
         "name": "Settings",
         "kind": "Block",
         "summary": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
-        "href": "/blocks/settings",
+        "href": "/use-cases/settings",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/settings-block.json"
       },
       {
@@ -1208,7 +1216,7 @@
         "name": "File explorer",
         "kind": "Block",
         "summary": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
-        "href": "/blocks/file-explorer",
+        "href": "/use-cases/file-explorer",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/file-explorer-block.json"
       }

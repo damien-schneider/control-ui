@@ -65,7 +65,7 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
         </div>
         {item.status ? <StatusBadge status={item.status} compact /> : null}
         <Badge variant="outline" size="sm">
-          {item.kind}
+          {item.kind === "Block" ? "Use case" : item.kind}
         </Badge>
       </CommandItem>
     );
@@ -126,7 +126,7 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
                 <CommandGroup heading="AI">{componentItems.map(renderItem)}</CommandGroup>
                 <CommandGroup heading="Primitives">{primitiveItems.map(renderItem)}</CommandGroup>
                 <CommandGroup heading="Support files">{supportItems.map(renderItem)}</CommandGroup>
-                <CommandGroup heading="Blocks">{blockItems.map(renderItem)}</CommandGroup>
+                <CommandGroup heading="Use cases">{blockItems.map(renderItem)}</CommandGroup>
               </>
             )}
           </CommandList>

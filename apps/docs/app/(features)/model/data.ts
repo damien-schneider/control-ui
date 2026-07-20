@@ -117,6 +117,7 @@ function getComponents(): DocsComponent[] {
 function getBlocks(): DocsBlock[] {
   return blockEntries.map((entry) => ({
     id: entry.id,
+    useCaseKind: entry.useCaseKind,
     name: entry.name,
     summary: entry.summary,
     status: catalogStatus(entry),

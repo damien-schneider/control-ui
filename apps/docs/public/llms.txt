@@ -37,11 +37,12 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 ## Blocks
 
-- [Chat](http://127.0.0.1:3000/blocks/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
-- [Theme toggle](http://127.0.0.1:3000/blocks/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
-- [Coding agent](http://127.0.0.1:3000/blocks/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
-- [Settings](http://127.0.0.1:3000/blocks/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
-- [File explorer](http://127.0.0.1:3000/blocks/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
+- [Use cases](http://127.0.0.1:3000/use-cases): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
+- [Chat](http://127.0.0.1:3000/use-cases/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
+- [Theme toggle](http://127.0.0.1:3000/use-cases/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
+- [Coding agent](http://127.0.0.1:3000/use-cases/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
+- [Settings](http://127.0.0.1:3000/use-cases/settings): Searchable multi-page settings shell with responsive navigation and accessible control groups.
+- [File explorer](http://127.0.0.1:3000/use-cases/file-explorer): Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview. Status: beta.
 
 ## Primitives
 

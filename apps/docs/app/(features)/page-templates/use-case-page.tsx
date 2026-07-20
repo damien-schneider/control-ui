@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { getUseCaseKind } from "@/app/(features)/catalog/blocks";
 import { BlockPreview } from "@/app/(features)/components/previews";
 import { PreviewTabs } from "@/app/(features)/components/source";
 import { componentHrefForFile, publicRegistryHref, registryInstallCommands } from "@/app/(features)/model/registry";
@@ -9,7 +10,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { blockPreviewCode } from "./block-preview-code";
 import { CompositionSection, InstallPanel, PageHeader, SectionCode, SectionTitle } from "./shared";
 
-export function BlockPage({ block, integration }: { block: DocsBlock; integration: IntegrationId }) {
+export function UseCasePage({ block, integration }: { block: DocsBlock; integration: IntegrationId }) {
+  const kind = getUseCaseKind(block.useCaseKind);
   const commands = registryInstallCommands(block.registryKind);
   const manifestHref = publicRegistryHref(block.registryKind);
   const files = block.files;
@@ -19,20 +21,23 @@ export function BlockPage({ block, integration }: { block: DocsBlock; integratio
 
   return (
     <section className="mx-auto min-w-0 w-full max-w-4xl px-5 py-12">
-      <PageHeader label="Blocks" title={block.name} summary={block.summary} status={block.status} wide />
-      <PreviewTabs code={previewCode} codeTitle="Block source" previewClassName="">
+      <PageHeader label={kind.singularLabel} title={block.name} summary={block.summary} status={block.status} wide />
+      <PreviewTabs code={previewCode} codeTitle={`${kind.singularLabel} source`} previewClassName="">
         <BlockPreview blockId={block.id} integration={integration} />
       </PreviewTabs>
 
       <div className="grid min-w-0 gap-10">
         <CompositionSection
           items={composition}
-          description="How the block recipe nests its exported parts and installed agent primitives."
+          description={`How this ${kind.singularLabel.toLowerCase()} nests its exported parts and installed Control UI sources.`}
         />
         <InstallPanel commands={commands} manifestHref={manifestHref} subtitle="registry" />
         <SectionCode id="usage" title="Usage" code={usageCode} />
-        <section id="agents" className="min-w-0 scroll-mt-20">
-          <SectionTitle title="Agents used" description="The block command installs the recipe and these agent source files in one pass." />
+        <section id="included-source" className="min-w-0 scroll-mt-20">
+          <SectionTitle
+            title="Included source"
+            description="The registry command installs this recipe and every listed dependency in one pass."
+          />
           <div className="grid gap-2">
             {files.map((file) => (
               <BlockFile key={file.path} file={file} />

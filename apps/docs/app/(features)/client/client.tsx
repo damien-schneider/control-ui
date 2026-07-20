@@ -98,20 +98,20 @@ function DocsShellContent({
 
   const activeGuide = guides.find((item) => item.id === activePage);
   const activeSkill = skills.find((item) => item.id === activePage);
-  const activeBlock = blocks.find((item) => item.id === activePage);
+  const activeUseCase = blocks.find((item) => item.id === activePage);
   const activePrimitive = primitives.find((item) => item.id === activePage);
   const activeHook = hooks.find((item) => item.id === activePage);
   const activeUtil = utils.find((item) => item.id === activePage);
   const activeExtension = extensions.find((item) => item.id === activePage);
   const activeReference = activeHook ?? activeUtil;
-  const activeCatalogOverview = activePage === "ai" || activePage === "primitives" ? activePage : undefined;
+  const activeCatalogOverview = activePage === "ai" || activePage === "primitives" || activePage === "use-cases" ? activePage : undefined;
   const activeSkinsOverview = activePage === skinsOverviewId;
   const activeSkinPage = skinPages.find((item) => item.id === activePage);
   const activeSkins = activeSkinsOverview || Boolean(activeSkinPage);
   const activeComponent =
     activeGuide ||
     activeSkill ||
-    activeBlock ||
+    activeUseCase ||
     activePrimitive ||
     activeReference ||
     activeExtension ||
@@ -122,7 +122,7 @@ function DocsShellContent({
   const links = pageLinks({
     activeGuide,
     activeSkill,
-    activeBlock,
+    activeUseCase,
     activePrimitive,
     activeReference,
     activeExtension,

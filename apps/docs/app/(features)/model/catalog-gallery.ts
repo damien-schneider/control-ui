@@ -1,7 +1,8 @@
+import { blockEntries, type UseCaseKindId, useCaseKinds } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { primitiveCategories, primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { catalogStatus } from "@/app/(features)/catalog/shared";
-import type { ComponentId, DocsStatus, PrimitiveId } from "@/app/(features)/model/types";
+import type { BlockId, ComponentId, DocsStatus, PrimitiveId } from "@/app/(features)/model/types";
 
 type CatalogGalleryItemBase = {
   name: string;
@@ -21,9 +22,22 @@ export type CatalogGalleryGroup = {
   items: CatalogGalleryItem[];
 };
 
+export type UseCaseGalleryItem = CatalogGalleryItemBase & {
+  id: BlockId;
+  kind: UseCaseKindId;
+};
+
+export type UseCaseGalleryGroup = {
+  id: (typeof useCaseKinds)[number]["slug"];
+  kind: UseCaseKindId;
+  title: string;
+  summary: string;
+  items: UseCaseGalleryItem[];
+};
+
 const galleryCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
-function sortGalleryItems(items: CatalogGalleryItem[]) {
+function sortGalleryItems<T extends { id: string; name: string }>(items: T[]) {
   return items.toSorted((a, b) => galleryCollator.compare(a.name, b.name) || a.id.localeCompare(b.id));
 }
 
@@ -63,6 +77,31 @@ export function primitiveGalleryGroups(): CatalogGalleryGroup[] {
                 status: catalogStatus(entry),
                 href: `/primitives/${entry.id}`,
                 previewClassName: "previewClassName" in entry ? entry.previewClassName : undefined,
+              },
+            ]
+          : [],
+      ),
+    ),
+  }));
+}
+
+export function useCaseGalleryGroups(): UseCaseGalleryGroup[] {
+  return useCaseKinds.map((kind) => ({
+    id: kind.slug,
+    kind: kind.id,
+    title: kind.label,
+    summary: kind.summary,
+    items: sortGalleryItems(
+      blockEntries.flatMap((entry) =>
+        entry.useCaseKind === kind.id
+          ? [
+              {
+                id: entry.id,
+                kind: entry.useCaseKind,
+                name: entry.name,
+                summary: entry.summary,
+                status: catalogStatus(entry),
+                href: `/use-cases/${entry.id}`,
               },
             ]
           : [],

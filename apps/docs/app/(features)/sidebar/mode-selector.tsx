@@ -45,7 +45,7 @@ export function SidebarModeSelector({
             render={<Link href={hrefs[item.id]} onClick={() => onNavigate(item.id)} />}
           >
             <HugeiconsIcon icon={item.icon} size={16} strokeWidth={1.7} className="shrink-0" />
-            <span>{item.label}</span>
+            <span className="max-sm:sr-only">{item.label}</span>
           </ToolbarLink>
         );
       })}
