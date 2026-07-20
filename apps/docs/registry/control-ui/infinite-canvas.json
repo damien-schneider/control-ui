@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "infinite-canvas",
+  "type": "registry:ui",
+  "title": "Infinite Canvas",
+  "description": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/infinite-canvas.tsx",
+      "target": "@components/control-ui/ui/infinite-canvas.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/infinite-canvas.json"
+  }
+}

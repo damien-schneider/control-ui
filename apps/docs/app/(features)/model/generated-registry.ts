@@ -15,6 +15,11 @@ export const registryMetadata = {
     registryDependencies: ["collapsible", "core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/activity.json",
   },
+  "agent-team-view": {
+    dependencies: [],
+    registryDependencies: ["core", "infinite-canvas"],
+    sourceManifestPath: "registry/control-ui/agent-team-view.json",
+  },
   alert: {
     dependencies: ["class-variance-authority@^0.7.1"],
     registryDependencies: ["core"],
@@ -31,6 +36,7 @@ export const registryMetadata = {
       "accordion",
       "action-bar",
       "activity",
+      "agent-team-view",
       "alert",
       "alert-dialog",
       "aspect-ratio",
@@ -73,6 +79,7 @@ export const registryMetadata = {
       "form",
       "gradient-editor",
       "hover-card",
+      "infinite-canvas",
       "inline-attachment",
       "input",
       "input-group",
@@ -363,6 +370,11 @@ export const registryMetadata = {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/hover-card.json",
+  },
+  "infinite-canvas": {
+    dependencies: ["lucide-react@^1.24.0"],
+    registryDependencies: ["button", "core"],
+    sourceManifestPath: "registry/control-ui/infinite-canvas.json",
   },
   "inline-attachment": {
     dependencies: [],

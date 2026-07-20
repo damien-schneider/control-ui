@@ -34,6 +34,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [CodeBlockEditor](http://127.0.0.1:3000/ai/code-block-editor): Editable code surface with Shiki highlighting and token-based light/dark themes.
 - [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): Layout primitives for full chat threads, turns, and thoughts.
 - [ThreadRail](http://127.0.0.1:3000/ai/thread-rail): Conversation minimap for scanning and jumping between chat turns.
+- [AgentTeamView](http://127.0.0.1:3000/ai/agent-team-view): Spatial team management composed on Infinite Canvas with draggable 3D team blocks and selected-team details. Status: experimental.
 
 ## Blocks
 
@@ -106,6 +107,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Trigger Menu](http://127.0.0.1:3000/primitives/trigger-menu): Caret-anchored command or mention menu for text editors. Status: beta.
 - [Toolbar](http://127.0.0.1:3000/primitives/toolbar): Roving-focus toolbar for editor controls and compact actions.
 - [Dockable Panel](http://127.0.0.1:3000/primitives/dockable-panel): Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. Status: experimental.
+- [Infinite Canvas](http://127.0.0.1:3000/primitives/infinite-canvas): Pan-and-zoom spatial workspace for arranging content without fixed bounds. Status: experimental.
 - [Morphing Panel](http://127.0.0.1:3000/primitives/morphing-panel): Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. Status: experimental.
 - [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
 - [Gradient Editor](http://127.0.0.1:3000/primitives/gradient-editor): CSS gradient editor with draggable stops and live preview. Status: beta.

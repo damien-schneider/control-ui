@@ -1130,6 +1130,37 @@ export type DockablePanelCloseProps = Omit<ComponentProps<"button">, "children">
 export type DockablePanelContentPadding = "default" | "none";
 export type DockablePanelContentProps = ComponentProps<"div"> & { padding?: DockablePanelContentPadding };
 
+export type InfiniteCanvasTransform = { x: number; y: number; scale: number };
+export type InfiniteCanvasMoveReason = "pointer" | "wheel" | "keyboard" | "control";
+export type InfiniteCanvasMoveDetails = { reason: InfiniteCanvasMoveReason };
+export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "onWheel" | "ref"> & {
+  transform?: InfiniteCanvasTransform;
+  defaultTransform?: InfiniteCanvasTransform;
+  onTransformChange?: (transform: InfiniteCanvasTransform, details: InfiniteCanvasMoveDetails) => void;
+  minScale?: number;
+  maxScale?: number;
+  onWheel?: (event: WheelEvent) => void;
+};
+export type InfiniteCanvasContentProps = ComponentProps<"div">;
+export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children">;
+
+export type AgentTeamViewPosition = { x: number; y: number };
+export type AgentTeamViewMoveDetails = { reason: "pointer" | "keyboard" };
+export type AgentTeamViewProps = ComponentProps<"section">;
+export type AgentTeamViewZoneProps = Omit<ComponentProps<"section">, "onSelect" | "ref"> & {
+  label: string;
+  position: AgentTeamViewPosition;
+  selected?: boolean;
+  disabled?: boolean;
+  onSelect?: () => void;
+  onPositionChange?: (position: AgentTeamViewPosition, details: AgentTeamViewMoveDetails) => void;
+};
+export type AgentTeamViewZoneDragHandleProps = ComponentProps<"button">;
+export type AgentTeamViewZoneTitleProps = ComponentProps<"span">;
+export type AgentTeamViewZoneDetailsProps = ComponentProps<"aside">;
+export type AgentTeamViewZoneContentProps = ComponentProps<"div">;
+export type AgentTeamViewAgentProps = ComponentProps<"article">;
+
 export type DrawerContentPadding = "default" | "none";
 export type DrawerContentSurface = "background" | "card";
 

@@ -33,6 +33,7 @@
 - `code-block-editor` (CodeBlockEditor) — Editable code surface with Shiki highlighting and token-based light/dark themes. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-block-editor.json`
 - `chat-layout` (ChatLayout) — Layout primitives for full chat threads, turns, and thoughts. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
+- `agent-team-view` (AgentTeamView) **[experimental]** — Spatial team management composed on Infinite Canvas with draggable 3D team blocks and selected-team details. — `npx shadcn@latest add http://127.0.0.1:3000/r/agent-team-view.json`
 
 ### Blocks (pre-composed recipes)
 - `use-cases` (Use cases) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
@@ -103,6 +104,7 @@
 - `trigger-menu` (Trigger Menu) **[beta]** — Caret-anchored command or mention menu for text editors. — `npx shadcn@latest add http://127.0.0.1:3000/r/trigger-menu.json`
 - `toolbar` (Toolbar) — Roving-focus toolbar for editor controls and compact actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/toolbar.json`
 - `dockable-panel` (Dockable Panel) **[experimental]** — Non-modal workspace panel that moves between two explicit edge slots with a mobile Drawer fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json`
+- `infinite-canvas` (Infinite Canvas) **[experimental]** — Pan-and-zoom spatial workspace for arranging content without fixed bounds. — `npx shadcn@latest add http://127.0.0.1:3000/r/infinite-canvas.json`
 - `morphing-panel` (Morphing Panel) **[experimental]** — Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions. — `npx shadcn@latest add http://127.0.0.1:3000/r/morphing-panel.json`
 - `color-picker` (Color Picker) **[beta]** — Color input with picker UI, formats, presets, and contrast helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json`
 - `gradient-editor` (Gradient Editor) **[beta]** — CSS gradient editor with draggable stops and live preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/gradient-editor.json`

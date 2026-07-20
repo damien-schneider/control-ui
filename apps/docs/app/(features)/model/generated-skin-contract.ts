@@ -7,6 +7,7 @@ export const generatedSkinContract = {
     accordion: ["accordion"],
     "action-bar": ["action-bar"],
     activity: ["activity", "chat-layout"],
+    "agent-team-view": ["agent-team-view"],
     alert: ["alert"],
     "alert-dialog": ["alert-dialog"],
     "aspect-ratio": ["aspect-ratio"],
@@ -52,6 +53,7 @@ export const generatedSkinContract = {
     form: ["form"],
     "gradient-editor": ["gradient-editor"],
     "hover-card": ["hover-card"],
+    "infinite-canvas": ["infinite-canvas"],
     "inline-attachment": ["inline-attachment"],
     input: ["input"],
     "input-group": ["input-group"],
@@ -339,6 +341,119 @@ export const generatedSkinContract = {
         },
       },
       registryItems: ["activity", "chat-layout"],
+    },
+    "agent-team-view": {
+      parts: {
+        root: {
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        agent: {
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        zone: {
+          context: {
+            disabled: "boolean",
+            dragging: "boolean",
+            selected: "boolean",
+          },
+          registryItems: ["agent-team-view"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-dragging",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-selected",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        "zone-content": {
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        "zone-details": {
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        "zone-drag-handle": {
+          context: {
+            disabled: "boolean",
+            dragging: "boolean",
+            selected: "boolean",
+          },
+          registryItems: ["agent-team-view"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-dragging",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-selected",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        "zone-front": {
+          context: {
+            dragging: "boolean",
+            selected: "boolean",
+          },
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        "zone-shadow": {
+          context: {
+            dragging: "boolean",
+            selected: "boolean",
+          },
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        "zone-side": {
+          context: {
+            dragging: "boolean",
+            selected: "boolean",
+          },
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        "zone-title": {
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+        "zone-top": {
+          context: {
+            dragging: "boolean",
+            selected: "boolean",
+          },
+          registryItems: ["agent-team-view"],
+          states: [],
+        },
+      },
+      registryItems: ["agent-team-view"],
     },
     alert: {
       parts: {
@@ -4213,6 +4328,43 @@ export const generatedSkinContract = {
         },
       },
       registryItems: ["hover-card"],
+    },
+    "infinite-canvas": {
+      parts: {
+        root: {
+          context: {
+            panning: "boolean",
+          },
+          registryItems: ["infinite-canvas"],
+          states: [
+            {
+              attribute: "data-panning",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        content: {
+          context: {
+            scale: "number",
+          },
+          registryItems: ["infinite-canvas"],
+          states: [
+            {
+              attribute: "data-scale",
+              source: "control-ui",
+              valueKind: "open",
+              values: [],
+            },
+          ],
+        },
+        controls: {
+          registryItems: ["infinite-canvas"],
+          states: [],
+        },
+      },
+      registryItems: ["infinite-canvas"],
     },
     "inline-attachment": {
       parts: {

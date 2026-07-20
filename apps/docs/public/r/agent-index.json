@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 155,
+    "count": 157,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -523,6 +523,15 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json"
       },
       {
+        "id": "agent-team-view",
+        "name": "AgentTeamView",
+        "kind": "Agent",
+        "summary": "Spatial team management composed on Infinite Canvas with draggable 3D team blocks and selected-team details.",
+        "href": "/ai/agent-team-view",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/agent-team-view.json"
+      },
+      {
         "id": "button",
         "name": "Button",
         "kind": "Primitive",
@@ -1006,6 +1015,15 @@
         "href": "/primitives/dockable-panel",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dockable-panel.json"
+      },
+      {
+        "id": "infinite-canvas",
+        "name": "Infinite Canvas",
+        "kind": "Primitive",
+        "summary": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
+        "href": "/primitives/infinite-canvas",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/infinite-canvas.json"
       },
       {
         "id": "morphing-panel",

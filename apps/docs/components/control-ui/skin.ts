@@ -599,15 +599,21 @@ export type SkinSlotContexts = {
     content: { padding: DockablePanelContentPadding };
     "drop-zone": { side: "left" | "right"; active: boolean };
   };
+  "infinite-canvas": {
+    root: { panning: boolean };
+    content: { scale: number };
+    controls: Record<never, never>;
+  };
   "agent-team-view": {
     root: Record<never, never>;
-    canvas: Record<never, never>;
     zone: { selected: boolean; dragging: boolean; disabled: boolean };
-    "zone-base": { selected: boolean; dragging: boolean };
-    "zone-platform": { selected: boolean; dragging: boolean };
-    "zone-header": Record<never, never>;
     "zone-drag-handle": { selected: boolean; dragging: boolean; disabled: boolean };
+    "zone-shadow": { selected: boolean; dragging: boolean };
+    "zone-front": { selected: boolean; dragging: boolean };
+    "zone-side": { selected: boolean; dragging: boolean };
+    "zone-top": { selected: boolean; dragging: boolean };
     "zone-title": Record<never, never>;
+    "zone-details": Record<never, never>;
     "zone-content": Record<never, never>;
     agent: Record<never, never>;
   };
@@ -674,6 +680,14 @@ export type SkinPaintContexts = {
   };
 };
 
+export type SkinPopupPart = "content" | "list" | "item" | "label" | "separator" | "shortcut";
+
+export type SkinFamilyContexts = {
+  popup: {
+    [Part in SkinPopupPart]: string;
+  };
+};
+
 export type SkinSlotScope = keyof SkinSlotContexts;
 export type SkinSlotPart<Scope extends SkinSlotScope> = keyof SkinSlotContexts[Scope];
 
@@ -732,6 +746,9 @@ export type ControlUiSkin = {
    * Undefined = nothing stamped, all effect selectors inert; a subtree <ControlEffectsRoot effects={...}> is still a caller-wins local override.
    */
   effects?: ControlEffect[];
+  families?: {
+    [Family in keyof SkinFamilyContexts]?: Partial<SkinFamilyContexts[Family]>;
+  };
   slots?: {
     [Scope in SkinSlotScope]?: {
       [Part in SkinSlotPart<Scope>]?: SlotOverride<SkinSlotContexts[Scope][Part]>;
@@ -755,6 +772,14 @@ export type SidebarLayout = "sidebar" | "floating" | "inset";
 /** Active skin id, read at render time (getter-based configs stay live); portals stamp it on their positioner since they land outside any token-scoped ancestor. */
 export function skinId(): string {
   return skin.id;
+}
+
+/** Resolve one shared semantic-family treatment before any exact component slot override. */
+export function skinFamily<Family extends keyof SkinFamilyContexts, Part extends keyof SkinFamilyContexts[Family]>(
+  family: Family,
+  part: Part,
+): string | undefined {
+  return skin.families?.[family]?.[part];
 }
 
 /** Resolve a slot's skin override — string passes through, function gets ctx; undefined = skin leaves slot untouched (default config's answer for everything). */

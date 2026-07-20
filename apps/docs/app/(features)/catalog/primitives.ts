@@ -543,29 +543,16 @@ export const primitiveEntries = [
     paths: {
       registry: {
         target: "components/control-ui/ui/dropzone.tsx",
-        example: sourceFile(
-          "Dropzone preview",
-          "src/registry/examples/control-ui/primitives/dropzone.tsx",
-          "example",
-        ),
-        source: sourceFile(
-          "Dropzone slot",
-          "src/registry/sources/control-ui/ui/dropzone.tsx",
-          "component",
-        ),
+        example: sourceFile("Dropzone preview", "src/registry/examples/control-ui/primitives/dropzone.tsx", "example"),
+        source: sourceFile("Dropzone slot", "src/registry/sources/control-ui/ui/dropzone.tsx", "component"),
         supportFiles: [
           sourceFile("Dropzone hook", "src/registry/hooks/use-dropzone.ts", "hook"),
-          sourceFile(
-            "Dropzone file policy",
-            "src/registry/lib/dropzone-validation.ts",
-            "policy",
-          ),
+          sourceFile("Dropzone file policy", "src/registry/lib/dropzone-validation.ts", "policy"),
         ],
         composition: [
           {
             title: "Visible and overlay intake",
-            description:
-              "The root owns selection and policy while Area alone defines the bounded native drop target.",
+            description: "The root owns selection and policy while Area alone defines the bounded native drop target.",
             code: "Dropzone → Input + Area(Trigger/Overlay/content) + Lists + Status",
           },
         ],
@@ -581,14 +568,9 @@ export const primitiveEntries = [
       {
         id: "invisible-overlay",
         title: "Invisible overlay",
-        description:
-          "Document drag tracking reveals a bounded workspace overlay; only the Area accepts the drop.",
+        description: "Document drag tracking reveals a bounded workspace overlay; only the Area accepts the drop.",
         previewClassName: "flex min-h-[420px] items-center justify-center p-6",
-        source: sourceFile(
-          "Invisible overlay preview",
-          "src/registry/examples/control-ui/primitives/dropzone-overlay.tsx",
-          "example",
-        ),
+        source: sourceFile("Invisible overlay preview", "src/registry/examples/control-ui/primitives/dropzone-overlay.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/dropzone-overlay").then((mod) => ({
             default: mod.PrimitiveDropzoneOverlayExample,
@@ -1443,6 +1425,39 @@ export const primitiveEntries = [
         default: mod.PrimitiveDockablePanelExample,
       })),
     ),
+  },
+  {
+    id: "infinite-canvas",
+    category: "layout",
+    kind: "Primitive",
+    name: "Infinite Canvas",
+    summary: "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
+    status: "experimental",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/infinite-canvas.tsx",
+        example: sourceFile("Infinite canvas preview", "src/registry/examples/control-ui/primitives/infinite-canvas.tsx", "example"),
+        source: sourceFile("Infinite canvas", "src/registry/sources/control-ui/ui/infinite-canvas.tsx", "component"),
+        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control")],
+        composition: [
+          {
+            title: "Unbounded spatial workspace",
+            description: "The root owns pan and zoom state while content remains an open composition surface for product-specific nodes.",
+            code: `InfiniteCanvas
+├── InfiniteCanvasContent
+│   └── Your spatial nodes
+└── InfiniteCanvasControls`,
+          },
+        ],
+        registryKind: "infinite-canvas",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/infinite-canvas").then((mod) => ({
+        default: mod.PrimitiveInfiniteCanvasExample,
+      })),
+    ),
+    previewClassName: "min-h-[640px]",
   },
   {
     id: "morphing-panel",
