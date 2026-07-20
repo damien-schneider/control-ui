@@ -77,7 +77,7 @@ export function MorphingPanel({ collapsedSize, expandedSize, className, style, .
               "relative isolate h-[var(--morphing-panel-collapsed-height)] w-[min(var(--morphing-panel-collapsed-width),100%)] max-w-full overflow-hidden",
               "rounded-[calc(var(--morphing-panel-collapsed-height)/2)] bg-card text-card-foreground shadow-md ring-1 ring-border/80",
               "transition-[width,height,border-radius,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)]",
-              "data-[state=open]:h-[var(--morphing-panel-expanded-height)] data-[state=open]:w-[min(var(--morphing-panel-expanded-width),100%)] data-[state=open]:rounded-[var(--radius-panel)] data-[state=open]:shadow-pop",
+              "data-[state=open]:h-[var(--morphing-panel-expanded-height)] data-[state=open]:w-[min(var(--morphing-panel-expanded-width),100%)] data-[state=open]:rounded-(--radius-panel) data-[state=open]:shadow-pop",
               skinSlot("morphing-panel", "root", { state: panelState }),
               renderProps.className,
             )}
@@ -93,7 +93,7 @@ export function MorphingPanelTrigger({ render, className, children, ...props }: 
   return (
     <CollapsiblePrimitive.Trigger
       className={cn(
-        "group/morphing-panel-trigger absolute top-2 right-2 z-10 flex h-[calc(100%-1rem)] w-[calc(100%-1rem)] cursor-pointer items-center justify-between gap-2 rounded-[var(--radius-control)] px-2 text-body font-medium outline-none transition-[width,height,padding,color,background-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)] hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/20 data-[state=open]:size-9 data-[state=open]:justify-center data-[state=open]:p-0 [&>svg]:shrink-0 [&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-emphasized)] [&[data-state=open]>svg]:rotate-45",
+        "group/morphing-panel-trigger absolute top-0 right-0 z-10 flex size-full cursor-pointer items-center justify-between gap-2 rounded-[inherit] px-4 text-body font-medium outline-none transition-[top,right,width,height,border-radius,padding,color,background-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)] hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/20 data-[state=open]:top-2 data-[state=open]:right-2 data-[state=open]:size-9 data-[state=open]:justify-center data-[state=open]:rounded-(--radius-control) data-[state=open]:p-0 pointer-coarse:data-[state=open]:size-11 [&>svg]:shrink-0 [&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-emphasized)] [&[data-state=open]>svg]:rotate-45",
       )}
       {...props}
       render={(triggerProps, state) => (
@@ -118,7 +118,7 @@ export function MorphingPanelContent({ className, ...props }: MorphingPanelConte
             data-slot="content"
             data-state={panelState}
             className={cn(
-              "absolute inset-0 overflow-hidden opacity-100 outline-none",
+              "absolute inset-0 overflow-hidden rounded-[inherit] opacity-100 outline-none",
               "transition-[opacity,filter,translate] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
               "data-[starting-style]:-translate-y-1 data-[starting-style]:opacity-0 data-[starting-style]:blur-sm",
               "data-[ending-style]:-translate-y-1 data-[ending-style]:opacity-0 data-[ending-style]:blur-sm",

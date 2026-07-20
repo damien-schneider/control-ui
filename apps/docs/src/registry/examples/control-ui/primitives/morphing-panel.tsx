@@ -68,15 +68,17 @@ export function PrimitiveMorphingPanelExample() {
           <PlusIcon aria-hidden="true" className="size-4 text-muted-foreground" />
         </MorphingPanelTrigger>
 
-        <MorphingPanelContent keepMounted className="p-2 pr-12">
+        <MorphingPanelContent keepMounted>
           <Tabs value={section} onValueChange={selectSection} className="flex h-full flex-col">
-            <TabsList size="xs" className="w-fit">
-              <TabsTab value="dimensions">Dimensions</TabsTab>
-              <TabsTab value="aspect-ratio">Aspect ratio</TabsTab>
-              <TabsTab value="prompt">Prompt</TabsTab>
-            </TabsList>
+            <div className="min-w-0 p-2 pb-0">
+              <TabsList size="xs" className="max-w-[calc(100%-2.75rem)] overflow-x-auto overscroll-x-contain">
+                <TabsTab value="dimensions">Dimensions</TabsTab>
+                <TabsTab value="aspect-ratio">Aspect ratio</TabsTab>
+                <TabsTab value="prompt">Prompt</TabsTab>
+              </TabsList>
+            </div>
 
-            <TabsPanel value="dimensions" className="flex min-h-0 flex-1 flex-col justify-between pt-4">
+            <TabsPanel value="dimensions" className="flex min-h-0 flex-1 flex-col justify-between px-2 pt-4 pb-2">
               <div className="grid gap-3">
                 <Slider
                   variant="plain"
@@ -108,7 +110,7 @@ export function PrimitiveMorphingPanelExample() {
               <SettingsFooter saved={saved} onApply={applyChanges} />
             </TabsPanel>
 
-            <TabsPanel value="aspect-ratio" className="flex min-h-0 flex-1 flex-col justify-between pt-3">
+            <TabsPanel value="aspect-ratio" className="flex min-h-0 flex-1 flex-col justify-between px-2 pt-3 pb-2">
               <div className="grid grid-cols-3 gap-1">
                 {ratios.map((item) => {
                   const selected = ratio === item.label;
@@ -134,7 +136,7 @@ export function PrimitiveMorphingPanelExample() {
               <SettingsFooter saved={saved} onApply={applyChanges} compact />
             </TabsPanel>
 
-            <TabsPanel value="prompt" className="flex min-h-0 flex-1 flex-col justify-between pt-3">
+            <TabsPanel value="prompt" className="flex min-h-0 flex-1 flex-col justify-between px-2 pt-3 pb-2">
               <Textarea
                 value={prompt}
                 onChange={(event) => {
