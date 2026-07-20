@@ -19,7 +19,7 @@ import type {
   ContextMenuTriggerProps,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
 // Composes like DropdownMenu with a right-click/long-press trigger; API is shadcn/ui context-menu compatible.
@@ -69,7 +69,8 @@ export function ContextMenuContent({ className, children, ...props }: ContextMen
           data-control-ui="context-menu"
           data-slot="content"
           data-surface="floating"
-          className={cn(popupClasses, skinSlot("context-menu", "content", {}), className)}
+          data-popup-part="list-surface"
+          className={cn(popupClasses, skinFamily("popup", "list-surface"), skinSlot("context-menu", "content", {}), className)}
           {...props}
         >
           {children}
@@ -84,7 +85,14 @@ export function ContextMenuItem({ className, inset = false, ...props }: ContextM
     <ContextMenuPrimitive.Item
       data-control-ui="context-menu"
       data-slot="item"
-      className={cn(itemClasses, inset && "pl-8", skinSlot("context-menu", "item", { disabled: Boolean(props.disabled) }), className)}
+      data-popup-part="item"
+      className={cn(
+        itemClasses,
+        inset && "pl-8",
+        skinFamily("popup", "item"),
+        skinSlot("context-menu", "item", { disabled: Boolean(props.disabled) }),
+        className,
+      )}
       {...props}
     />
   );
@@ -95,7 +103,14 @@ export function ContextMenuCheckboxItem({ className, children, ...props }: Conte
     <ContextMenuPrimitive.CheckboxItem
       data-control-ui="context-menu"
       data-slot="checkbox-item"
-      className={cn(itemClasses, "pl-8", skinSlot("context-menu", "checkbox-item", { disabled: Boolean(props.disabled) }), className)}
+      data-popup-part="item"
+      className={cn(
+        itemClasses,
+        "pl-8",
+        skinFamily("popup", "item"),
+        skinSlot("context-menu", "checkbox-item", { disabled: Boolean(props.disabled) }),
+        className,
+      )}
       {...props}
     >
       {/* ✓ gutter — inherits currentColor */}
@@ -127,7 +142,14 @@ export function ContextMenuRadioItem({ className, children, ...props }: ContextM
     <ContextMenuPrimitive.RadioItem
       data-control-ui="context-menu"
       data-slot="radio-item"
-      className={cn(itemClasses, "pl-8", skinSlot("context-menu", "radio-item", { disabled: Boolean(props.disabled) }), className)}
+      data-popup-part="item"
+      className={cn(
+        itemClasses,
+        "pl-8",
+        skinFamily("popup", "item"),
+        skinSlot("context-menu", "radio-item", { disabled: Boolean(props.disabled) }),
+        className,
+      )}
       {...props}
     >
       {/* • gutter — a filled dot in currentColor */}
@@ -146,9 +168,11 @@ export function ContextMenuLabel({ className, inset = false, ...props }: Context
     <ContextMenuPrimitive.GroupLabel
       data-control-ui="context-menu"
       data-slot="label"
+      data-popup-part="label"
       className={cn(
         "px-[calc(var(--padding-x)*0.5)] py-1 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground",
         inset && "pl-8",
+        skinFamily("popup", "label"),
         skinSlot("context-menu", "label", {}),
         className,
       )}
@@ -162,7 +186,13 @@ export function ContextMenuSeparator({ className, ...props }: ContextMenuSeparat
     <ContextMenuPrimitive.Separator
       data-control-ui="context-menu"
       data-slot="separator"
-      className={cn("-mx-[var(--popover-padding)] my-1 h-px bg-border", skinSlot("context-menu", "separator", {}), className)}
+      data-popup-part="separator"
+      className={cn(
+        "-mx-[var(--popover-padding)] my-1 h-px bg-border",
+        skinFamily("popup", "separator"),
+        skinSlot("context-menu", "separator", {}),
+        className,
+      )}
       {...props}
     />
   );
@@ -174,7 +204,13 @@ export function ContextMenuShortcut({ className, ...props }: ContextMenuShortcut
     <span
       data-control-ui="context-menu"
       data-slot="shortcut"
-      className={cn("ml-auto pl-6 text-body tracking-[0.02em] text-muted-foreground", skinSlot("context-menu", "shortcut", {}), className)}
+      data-popup-part="shortcut"
+      className={cn(
+        "ml-auto pl-6 text-body tracking-[0.02em] text-muted-foreground",
+        skinFamily("popup", "shortcut"),
+        skinSlot("context-menu", "shortcut", {}),
+        className,
+      )}
       {...props}
     />
   );
@@ -189,10 +225,12 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
     <ContextMenuPrimitive.SubmenuTrigger
       data-control-ui="context-menu"
       data-slot="sub-trigger"
+      data-popup-part="item"
       className={cn(
         itemClasses,
         "data-[popup-open]:bg-foreground/6",
         inset && "pl-8",
+        skinFamily("popup", "item"),
         skinSlot("context-menu", "sub-trigger", { disabled: Boolean(props.disabled) }),
         className,
       )}
@@ -221,7 +259,8 @@ export function ContextMenuSubContent({ className, children, ...props }: Context
           data-control-ui="context-menu"
           data-slot="sub-content"
           data-surface="floating"
-          className={cn(popupClasses, skinSlot("context-menu", "sub-content", {}), className)}
+          data-popup-part="list-surface"
+          className={cn(popupClasses, skinFamily("popup", "list-surface"), skinSlot("context-menu", "sub-content", {}), className)}
           {...props}
         >
           {children}

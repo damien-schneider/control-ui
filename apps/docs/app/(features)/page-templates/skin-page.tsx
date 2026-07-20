@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import { generatedSkinContract } from "@/app/(features)/model/generated-skin-contract";
-import { packInstallCommand, packManifestHref } from "@/app/(features)/model/registry";
+import { fullInstallCommand, fullInstallManifestHref, packInstallCommand } from "@/app/(features)/model/registry";
 import type { DocsSkinPage } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { InstallPanel, PageHeader, SectionTitle } from "./shared";
@@ -9,7 +9,8 @@ import { TokenContractTable } from "./token-contract";
 
 export function SkinPage({ skin }: { skin: DocsSkinPage }) {
   const install = packInstallCommand(skin.id);
-  const manifestHref = packManifestHref(skin.id);
+  const fullInstall = fullInstallCommand(skin.id);
+  const manifestHref = fullInstallManifestHref(skin.id);
   const kindLabel = skin.kind === "advanced" ? "Advanced pack" : "Theme pack";
   const unavailable = skin.docsOnly || skin.files.length === 0;
 
@@ -31,17 +32,19 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
             </p>
           </div>
         ) : null}
-        {!unavailable && install && manifestHref ? (
+        {!unavailable && install && fullInstall && manifestHref ? (
           <InstallPanel
-            commands={[{ label: "Skin pack", value: install }]}
+            commands={[
+              { label: "Complete project", value: fullInstall },
+              { label: "Skin only", value: install },
+            ]}
             manifestHref={manifestHref}
-            subtitle={`Install ${skin.label} as a pack`}
+            subtitle={`Start complete or add only ${skin.label}`}
             requiresSkin={false}
           >
-            One command installs the pack's theme.css, skin.css and skin.config.tsx over Control UI — tokens, skin.css and slot classes
-            together{skin.kind === "advanced" ? ", plus any runtime the pack mounts" : ""}. Installing <code>refined</code> replaces the
-            active targets with Refined's complete token contract and config. Open the theme editor to inspect the active skin's source
-            without leaving the page.
+            Complete project installs the canonical Control UI component set and this skin in one step. Skin only replaces the active{" "}
+            <code>skin.config.tsx</code>, <code>skin-theme.css</code>, and <code>skin.css</code> targets without changing component source
+            {skin.kind === "advanced" ? ", and includes the pack's declared runtimes or extensions" : ""}.
           </InstallPanel>
         ) : null}
       </div>

@@ -11,8 +11,9 @@ const control = `rounded-[var(--radius-control)] border border-[var(--cuicui-bor
 const solid = `cuicui-gradient-fill rounded-[var(--radius-control)] border border-transparent text-white shadow-(--cuicui-solid-shadow) ${controlMotion} ${focus}`;
 const danger = `rounded-[var(--radius-control)] border border-transparent bg-[var(--destructive)] text-[var(--destructive-foreground)] shadow-(--cuicui-control-shadow) ${controlMotion} hover:brightness-105 ${focus}`;
 const field = `rounded-[var(--radius-control)] border border-[var(--input)] bg-[var(--cuicui-field-bg)] text-foreground shadow-(--cuicui-control-shadow) ${focus}`;
-const popup =
-  "rounded-[var(--radius-popover)] border border-[var(--cuicui-border)] bg-popover/90 p-1 shadow-(--shadow-pop) backdrop-blur-[var(--backdrop-blur-popover)]";
+const popupSurface =
+  "rounded-[var(--radius-popover)] border border-[var(--cuicui-border)] bg-popover/90 shadow-(--shadow-pop) backdrop-blur-[var(--backdrop-blur-popover)]";
+const popupList = `${popupSurface} p-1`;
 const item =
   "rounded-[var(--radius-popup-item)] px-2.5 py-1 text-[13px] data-[highlighted]:bg-[var(--cuicui-control-bg)] data-[disabled]:opacity-45";
 const label = "px-2 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground";
@@ -43,41 +44,32 @@ export const skin: ControlUiSkin = {
       ),
     },
   },
+  families: {
+    popup: {
+      surface: popupSurface,
+      "list-surface": popupList,
+      item,
+      label,
+      separator,
+      shortcut: "ml-auto text-[11px] tracking-wide text-muted-foreground",
+    },
+  },
   slots: {
     button: {
       root: ({ variant, tone }) => button(variant, tone),
       content: "gap-1.5",
     },
     select: {
-      content: popup,
       trigger: control,
-      item: item,
     },
     "dropdown-menu": {
       trigger: control,
-      content: popup,
-      item: item,
-      separator: separator,
-      label: label,
     },
     "context-menu": {
-      content: popup,
-      "sub-content": popup,
-      item: item,
-      "checkbox-item": item,
-      "radio-item": item,
-      "sub-trigger": `${item} data-[popup-open]:bg-[var(--cuicui-control-bg)]`,
-      separator: separator,
-      label: label,
-      shortcut: "ml-auto text-[11px] tracking-wide text-muted-foreground",
+      "sub-trigger": "data-[popup-open]:bg-[var(--cuicui-control-bg)]",
     },
     menubar: {
       trigger: control,
-      content: popup,
-      "sub-content": popup,
-      item: item,
-      separator: separator,
-      label: label,
     },
     input: {
       root: field,
@@ -93,31 +85,24 @@ export const skin: ControlUiSkin = {
     },
     combobox: {
       input: field,
-      content: popup,
     },
     autocomplete: {
       input: field,
-      content: popup,
     },
     "number-field": {
       group: field,
     },
     "color-picker": {
-      content: `${popup} p-3`,
-      panel: `${popup} p-3`,
+      content: `${popupSurface} p-3`,
+      panel: `${popupSurface} p-3`,
     },
     "navigation-menu": {
-      viewport: popup,
+      viewport: popupList,
     },
     command: {
-      root: `${popup} overflow-hidden`,
+      root: `${popupList} overflow-hidden`,
       "input-wrapper": "border-b border-[var(--cuicui-border)]",
       item: `${item} data-[selected=true]:bg-[var(--cuicui-control-bg)]`,
-    },
-    "trigger-menu": {
-      root: popup,
-      item: item,
-      "group-label": label,
     },
     dialog: {
       content: `${surface} p-6`,
@@ -132,12 +117,6 @@ export const skin: ControlUiSkin = {
     },
     toast: {
       root: flatSurface,
-    },
-    popover: {
-      content: popup,
-    },
-    "hover-card": {
-      content: popup,
     },
     tooltip: {
       content:
@@ -233,7 +212,7 @@ export const skin: ControlUiSkin = {
     },
     "thread-rail": {
       item: "rounded-full bg-[var(--cuicui-control-bg)]",
-      popover: popup,
+      popover: popupList,
     },
     progress: {
       track: "bg-[var(--cuicui-control-bg)]",

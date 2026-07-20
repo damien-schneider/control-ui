@@ -680,7 +680,7 @@ export type SkinPaintContexts = {
   };
 };
 
-export type SkinPopupPart = "content" | "list" | "item" | "label" | "separator" | "shortcut";
+export type SkinPopupPart = "surface" | "list-surface" | "list-content" | "item" | "label" | "separator" | "shortcut";
 
 export type SkinFamilyContexts = {
   popup: {
@@ -779,7 +779,8 @@ export function skinFamily<Family extends keyof SkinFamilyContexts, Part extends
   family: Family,
   part: Part,
 ): string | undefined {
-  return skin.families?.[family]?.[part];
+  const classes = skin.families?.[family]?.[part];
+  return typeof classes === "string" ? classes : undefined;
 }
 
 /** Resolve a slot's skin override — string passes through, function gets ctx; undefined = skin leaves slot untouched (default config's answer for everything). */

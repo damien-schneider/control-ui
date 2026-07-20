@@ -11,7 +11,7 @@ import type {
   TriggerMenuProps,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
 // VIEW half of trigger-menu primitive: Base UI Popover controlled by headless engine (open + virtual anchor at caret rect), not a trigger button.
@@ -45,11 +45,13 @@ export function TriggerMenu({
             data-control-ui="trigger-menu"
             data-slot="root"
             data-surface="floating"
+            data-popup-part="list-surface"
             initialFocus={false}
             finalFocus={false}
             className={cn(
               "max-h-[min(18rem,var(--available-height))] w-64 max-w-[var(--available-width)] overflow-y-auto",
               floatingListContentClasses,
+              skinFamily("popup", "list-surface"),
               skinSlot("trigger-menu", "root", {}),
               className,
             )}
@@ -67,8 +69,9 @@ export function TriggerMenuList({ className, ...props }: TriggerMenuListProps) {
     <div
       data-control-ui="trigger-menu"
       data-slot="list"
+      data-popup-part="list-content"
       role="listbox"
-      className={cn("flex flex-col gap-0.5", skinSlot("trigger-menu", "list", {}), className)}
+      className={cn("flex flex-col gap-0.5", skinFamily("popup", "list-content"), skinSlot("trigger-menu", "list", {}), className)}
       {...props}
     />
   );
@@ -79,6 +82,7 @@ export function TriggerMenuItem({ className, active = false, disabled = false, o
     <div
       data-control-ui="trigger-menu"
       data-slot="item"
+      data-popup-part="item"
       role="option"
       // Listbox options driven by editor's keyboard, not tab focus; -1 keeps them out of tab order while satisfying focusable-interactive contract.
       tabIndex={-1}
@@ -91,7 +95,12 @@ export function TriggerMenuItem({ className, active = false, disabled = false, o
         event.preventDefault();
         onMouseDown?.(event);
       }}
-      className={cn(floatingListItemClasses, skinSlot("trigger-menu", "item", { highlighted: active, disabled }), className)}
+      className={cn(
+        floatingListItemClasses,
+        skinFamily("popup", "item"),
+        skinSlot("trigger-menu", "item", { highlighted: active, disabled }),
+        className,
+      )}
       {...props}
     />
   );
@@ -143,8 +152,10 @@ export function TriggerMenuGroupLabel({ className, ...props }: TriggerMenuGroupL
     <div
       data-control-ui="trigger-menu"
       data-slot="group-label"
+      data-popup-part="label"
       className={cn(
         "px-[calc(var(--padding-x)*0.5)] pb-0.5 pt-1 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground",
+        skinFamily("popup", "label"),
         skinSlot("trigger-menu", "group-label", {}),
         className,
       )}

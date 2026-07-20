@@ -4,6 +4,9 @@
   owns every token value. The integration selector changes the provider-specific usage composition only; the installed UI
   accepts plain props and children from any runtime.
 
+  For a new project, each skin page exposes an `all-<skin>` manifest that installs the same canonical component set plus the
+  chosen skin in one command. Changing the selected skin changes only skin-owned files; component source stays invariant.
+
   <GettingStartedMap />
 </GuideSection>
 
@@ -11,18 +14,21 @@
   Start with Refined or choose another pack from the Skins catalog. Exactly one active pack owns `skin.config.tsx`,
   `skin-theme.css`, and `skin.css`; installing another pack replaces those three files.
 
-  The current skin anatomy contract is version 4. Contract version 4 replaces ToolCall with Activity's typed tool variant.
-  Reinstalling does not remove old source, so delete both possible version 3 install layouts first:
+  The current skin anatomy contract is version 5. Version 5 adds generated `data-popup-part` membership and resolves shared
+  popup family classes before exact component slots. Reinstall core, popup components or their containing blocks, and the
+  selected skin together so source, generated anatomy, and skin configuration remain in sync.
+
+  Version 4 replaced ToolCall with Activity's typed tool variant. If upgrading from version 3 or earlier, remove both old
+  install layouts before reinstalling:
 
 ```bash
 rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
 rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
 ```
 
-  Then reinstall core, Activity, your components or block, and the selected skin together. Replace `ToolCall` with
-  `<Activity kind="tool" name="…">`, use the matching `Activity*` parts, replace input and output wrappers with
-  `ActivityDetail`, `ActivityDetailLabel`, and `ActivityDetailContent`, and remove `useToolCall` in favor of mapping provider
-  status directly to `ActivityState`. This pre-release contract intentionally does not ship legacy selector attributes.
+  Replace `ToolCall` with `<Activity kind="tool" name="…">`, use the matching `Activity*` parts, replace input and output
+  wrappers with `ActivityDetail`, `ActivityDetailLabel`, and `ActivityDetailContent`, and remove `useToolCall` in favor of
+  mapping provider status directly to `ActivityState`. This pre-release contract intentionally ships no legacy selectors.
 
   <GuideCode kind="skin-install" />
 </GuideSection>

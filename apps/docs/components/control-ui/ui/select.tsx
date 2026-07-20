@@ -12,7 +12,7 @@ import type {
 } from "@/components/control-ui/contracts";
 import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
 // Trigger shares --radius-control and controlSize scale with Button/DropdownMenu trigger — same shape and height.
@@ -97,9 +97,11 @@ export function SelectContent({ className, children, ...props }: SelectContentPr
           data-control-ui="select"
           data-slot="content"
           data-surface="floating"
+          data-popup-part="list-surface"
           className={cn(
             "max-h-[min(20rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto",
             floatingListContentClasses,
+            skinFamily("popup", "list-surface"),
             skinSlot("select", "content", {}),
             className,
           )}
@@ -117,8 +119,14 @@ export function SelectItem({ className, children, disabled, ...props }: SelectIt
     <SelectPrimitive.Item
       data-control-ui="select"
       data-slot="item"
+      data-popup-part="item"
       disabled={disabled}
-      className={cn(floatingListItemClasses, skinSlot("select", "item", { disabled: Boolean(disabled) }), className)}
+      className={cn(
+        floatingListItemClasses,
+        skinFamily("popup", "item"),
+        skinSlot("select", "item", { disabled: Boolean(disabled) }),
+        className,
+      )}
       {...props}
     >
       <SelectPrimitive.ItemText className="flex min-w-0 flex-1 items-center gap-2">{children}</SelectPrimitive.ItemText>

@@ -40,7 +40,7 @@ const field =
 const ringField = `rounded-[var(--radius-control)] bg-transparent shadow-none ring-1 ring-inset ring-[var(--input)] hover:bg-[var(--linear-row-hover)] ${controlMotion} ${focus}`;
 
 // Floating surfaces: the one place elevation is spent. Concentric geometry stays the recipe's.
-const popup = "border-border bg-popover shadow-(--linear-menu-shadow)";
+const popupSurface = "border-border bg-popover shadow-(--linear-menu-shadow)";
 const row =
   "rounded-[var(--radius-popup-item)] px-2 py-1 text-label data-[highlighted]:bg-[var(--linear-row-hover)] data-[disabled]:opacity-40";
 const menuLabel = "px-2 py-1 text-caption font-medium normal-case tracking-normal text-muted-foreground";
@@ -66,36 +66,33 @@ export const skin: ControlUiSkin = {
   id: "linear",
   // Linear's rail is narrower than shadcn's 16rem default and never draws a surface of its own.
   sidebarWidth: "15rem",
+  families: {
+    popup: {
+      surface: popupSurface,
+      "list-surface": popupSurface,
+      item: row,
+      label: menuLabel,
+      separator,
+      shortcut: "ml-auto text-caption tracking-normal text-muted-foreground",
+    },
+  },
   slots: {
     button: {
       root: ({ variant, tone }) => button(variant, tone),
       content: "gap-1.5",
     },
     select: {
-      content: popup,
       trigger: ringField,
-      item: row,
     },
     "dropdown-menu": {
       trigger: ghost,
-      content: popup,
-      item: row,
-      separator: separator,
-      label: menuLabel,
     },
     menubar: {
       trigger: ghost,
-      content: popup,
-      "sub-content": popup,
-      item: row,
-      separator: separator,
-      label: menuLabel,
     },
     combobox: {
       trigger: ghost,
       input: field,
-      content: popup,
-      item: row,
     },
     input: {
       root: field,
@@ -111,8 +108,6 @@ export const skin: ControlUiSkin = {
     },
     autocomplete: {
       input: field,
-      content: popup,
-      item: row,
     },
     "number-field": {
       group: field,
@@ -137,39 +132,20 @@ export const skin: ControlUiSkin = {
       indicator: "bg-[var(--primary)]",
     },
     "context-menu": {
-      content: popup,
-      "sub-content": popup,
-      item: row,
-      "checkbox-item": row,
-      "radio-item": row,
-      "sub-trigger": `${row} data-[popup-open]:bg-[var(--linear-row-hover)]`,
-      separator: separator,
-      label: menuLabel,
-      shortcut: "ml-auto text-caption tracking-normal text-muted-foreground",
+      "sub-trigger": "data-[popup-open]:bg-[var(--linear-row-hover)]",
     },
     "navigation-menu": {
-      viewport: popup,
-    },
-    popover: {
-      content: popup,
-    },
-    "hover-card": {
-      content: popup,
+      viewport: popupSurface,
     },
     "thread-rail": {
-      popover: popup,
+      popover: popupSurface,
       item: "rounded-full bg-[var(--linear-row-active)]",
     },
-    "trigger-menu": {
-      root: popup,
-      item: row,
-      "group-label": menuLabel,
-    },
     toast: {
-      root: popup,
+      root: popupSurface,
     },
     command: {
-      root: `${popup} overflow-hidden`,
+      root: `${popupSurface} overflow-hidden`,
       "input-wrapper": "border-b border-border",
       item: `${row} data-[selected=true]:bg-[var(--linear-row-hover)]`,
       shortcut: "ml-auto text-caption text-muted-foreground",

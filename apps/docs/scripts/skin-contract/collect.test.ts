@@ -18,7 +18,7 @@ describe("skin contract generation", () => {
 
   test("resolves contexts, ownership, paints, adornments, and semantic families", () => {
     const contract = collectSkinContract();
-    expect(contract.version).toBe(4);
+    expect(contract.version).toBe(5);
     expect(contract.selectorPattern).toBe('[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])');
     expect(contract.scopes["code-diff"].registryItems).toContain("code-diff");
     expect(contract.scopes.button.parts.root.context?.variant).toContain("ButtonVariant");
@@ -41,6 +41,11 @@ describe("skin contract generation", () => {
     expect(contract.adornments["chat-composer"]["send-layer"].context.sendCount).toBe("number");
     expect(contract.scopes.skeleton?.parts.paint).toBeUndefined();
     expect(contract.semanticFamilies.surfaces.floating).toContainEqual({ scope: "dropdown-menu", part: "content" });
+    expect(contract.semanticFamilies.popup["list-surface"]).toContainEqual({ scope: "dropdown-menu", part: "content" });
+    expect(contract.semanticFamilies.popup["list-surface"]).toContainEqual({ scope: "context-menu", part: "sub-content" });
+    expect(contract.semanticFamilies.popup.surface).toContainEqual({ scope: "popover", part: "content" });
+    expect(contract.semanticFamilies.popup.item).toContainEqual({ scope: "select", part: "item" });
+    expect(contract.semanticFamilies.popup.label).toContainEqual({ scope: "autocomplete", part: "group-label" });
     expect(contract.semanticFamilies.surfaces.modal).toContainEqual({ scope: "dialog", part: "content" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "code-diff", part: "root" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "activity", part: "root" });

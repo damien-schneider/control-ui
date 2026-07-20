@@ -14,6 +14,14 @@ import { env } from "@/env";
 export type Envelope<TType extends string, TData> = { type: TType; data: TData };
 export type RegistryIndexItem = SearchItem & { install?: string };
 export type RegistryContractLinks = { skin: string; theme: string };
+export type RegistryFullInstall = {
+  id: RegistryItemId;
+  skin: string;
+  name: string;
+  summary: string;
+  manifestUrl: string;
+  install: string;
+};
 export type RegistryItemId = keyof typeof registryMetadata;
 
 export function allSearchItems(): SearchItem[] {
@@ -115,6 +123,25 @@ export function installCommandsFor(item: SearchItem): InstallCommand[] {
   }
 }
 
+export function fullInstallBundles(): RegistryFullInstall[] {
+  return skinMetas.flatMap((skin) => {
+    const id = `all-${skin.id}`;
+    if (!("packManifestPath" in skin) || !isRegistryItemId(id)) return [];
+    const url = manifestUrl(id);
+    if (!url) return [];
+    return [
+      {
+        id,
+        skin: skin.id,
+        name: `All components — ${skin.label}`,
+        summary: `Complete canonical Control UI component set with the ${skin.label} skin.`,
+        manifestUrl: url,
+        install: `npx shadcn@latest add ${url}`,
+      },
+    ];
+  });
+}
+
 export function searchRegistry(query: string): SearchItem[] {
   return matchSearchItems(allSearchItems(), query);
 }
@@ -126,10 +153,16 @@ export function contractLinks(): RegistryContractLinks {
   };
 }
 
-export function listRegistry(): Envelope<"index", { count: number; contracts: RegistryContractLinks; items: RegistryIndexItem[] }> {
+export function listRegistry(): Envelope<
+  "index",
+  { count: number; contracts: RegistryContractLinks; fullInstalls: RegistryFullInstall[]; items: RegistryIndexItem[] }
+> {
   const items = allSearchItems().map<RegistryIndexItem>((item) => ({
     ...item,
     install: installCommandsFor(item)[0]?.value,
   }));
-  return { type: "index", data: { count: items.length, contracts: contractLinks(), items } };
+  return {
+    type: "index",
+    data: { count: items.length, contracts: contractLinks(), fullInstalls: fullInstallBundles(), items },
+  };
 }

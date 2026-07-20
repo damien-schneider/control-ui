@@ -9,12 +9,21 @@ import type { AnatomyReference, ContractPart, ContractState, SkinContract, Theme
 
 const appRoot = process.cwd();
 const registryRoot = path.join(appRoot, "src/registry");
-const anatomyMetadataAttributes = new Set(["data-control-ui", "data-slot", "data-control", "data-surface", "data-skin", "data-effects"]);
+const anatomyMetadataAttributes: Record<string, true> = {
+  "data-control-ui": true,
+  "data-slot": true,
+  "data-control": true,
+  "data-surface": true,
+  "data-popup-part": true,
+  "data-skin": true,
+  "data-effects": true,
+};
 
 type MutablePart = Omit<ContractPart, "registryItems"> & {
   controls: boolean;
   registryItems: Set<string>;
   surfaces: Set<"floating" | "modal" | "panel">;
+  popupParts: Set<string>;
 };
 
 type BaseUiImport = { importedName: string; modulePath: string };
@@ -118,7 +127,7 @@ function jsxElementName(name: any): string {
 function stateFromAttribute(attribute: any): ContractState | undefined {
   const name = attribute.name.name;
   if (typeof name !== "string" || !name.startsWith("data-")) return undefined;
-  if (anatomyMetadataAttributes.has(name)) return undefined;
+  if (anatomyMetadataAttributes[name]) return undefined;
   const expression = attribute.value?.type === "JSXExpressionContainer" ? attribute.value.expression : attribute.value;
   const staticValues = staticStateValues(expression);
   return staticValues.known
@@ -129,7 +138,7 @@ function stateFromAttribute(attribute: any): ContractState | undefined {
 function stateFromObjectProperty(property: any): ContractState | undefined {
   if (property.type !== "ObjectProperty") return undefined;
   const name = propertyName(property);
-  if (!name.startsWith("data-") || anatomyMetadataAttributes.has(name)) return undefined;
+  if (!name.startsWith("data-") || anatomyMetadataAttributes[name]) return undefined;
   const staticValues = staticStateValues(property.value);
   return staticValues.known
     ? contractState(name, "control-ui", staticValues.values)
@@ -318,9 +327,10 @@ function mergeContractState(states: ContractState[], state: ContractState): void
   else if (state.valueKind !== "open") existing.valueKind = state.valueKind;
 }
 
-function mergePart(current: MutablePart, states: ContractState[], control: boolean, surface?: string): MutablePart {
+function mergePart(current: MutablePart, states: ContractState[], control: boolean, surface?: string, popupPart?: string): MutablePart {
   current.controls ||= control;
   if (surface === "floating" || surface === "modal" || surface === "panel") current.surfaces.add(surface);
+  if (popupPart) current.popupParts.add(popupPart);
   for (const state of states) mergeContractState(current.states, state);
   return current;
 }
@@ -331,19 +341,29 @@ export function collectSkinContract(): SkinContract {
   const ownership = sourceOwners();
   const aliases = typeAliases();
   const emittedStates = emittedStateTypes(aliases);
+  const popupParts = new Set(stateShapeFromType("SkinPopupPart", aliases).values);
   const registryItemMapping = new Map<string, Set<string>>();
   const files = [
     ...filesUnder(path.join(registryRoot, "sources", "control-ui")),
     ...filesUnder(path.join(registryRoot, "blocks", "control-ui")),
   ];
 
-  const recordPart = (scope: string, part: string, sourceFile: string, states: ContractState[], control: boolean, surface?: string) => {
+  const recordPart = (
+    scope: string,
+    part: string,
+    sourceFile: string,
+    states: ContractState[],
+    control: boolean,
+    surface?: string,
+    popupPart?: string,
+  ) => {
     const key = `${scope}:${part}`;
     const current = mergePart(
-      parts.get(key) ?? { states: [], controls: false, registryItems: new Set(), surfaces: new Set() },
+      parts.get(key) ?? { states: [], controls: false, registryItems: new Set(), surfaces: new Set(), popupParts: new Set() },
       states,
       control,
       surface,
+      popupPart,
     );
     const relativeSource = path.relative(appRoot, sourceFile);
     const owners = registryItemMapping.get(scope) ?? new Set<string>();
@@ -364,7 +384,11 @@ export function collectSkinContract(): SkinContract {
       if (node.type === "JSXOpeningElement") {
         const scope = literalAttribute(node.attributes, "data-control-ui");
         const part = literalAttribute(node.attributes, "data-slot");
+        const popupPart = literalAttribute(node.attributes, "data-popup-part");
         if (scope && part) {
+          if (popupPart && !popupParts.has(popupPart)) {
+            throw new Error(`${scope}:${part} emits unknown popup family part "${popupPart}"`);
+          }
           recordPart(
             scope,
             part,
@@ -378,13 +402,18 @@ export function collectSkinContract(): SkinContract {
             ],
             Boolean(jsxAttribute(node.attributes, "data-control")),
             semanticSurfaceAttribute(node.attributes),
+            popupPart,
           );
         }
       }
       if (node.type === "ObjectExpression") {
         const scope = literalObjectProperty(node, "data-control-ui");
         const part = literalObjectProperty(node, "data-slot");
+        const popupPart = literalObjectProperty(node, "data-popup-part");
         if (scope && part) {
+          if (popupPart && !popupParts.has(popupPart)) {
+            throw new Error(`${scope}:${part} emits unknown popup family part "${popupPart}"`);
+          }
           recordPart(
             scope,
             part,
@@ -392,6 +421,7 @@ export function collectSkinContract(): SkinContract {
             node.properties.flatMap((property: any) => [stateFromObjectProperty(property)].filter(Boolean)),
             Boolean(objectProperty(node, "data-control")),
             literalObjectProperty(node, "data-surface"),
+            popupPart,
           );
         }
       }
@@ -402,7 +432,13 @@ export function collectSkinContract(): SkinContract {
   for (const [scope, scopeParts] of Object.entries(slotContexts)) {
     for (const [part, context] of Object.entries(scopeParts)) {
       const key = `${scope}:${part}`;
-      const current = parts.get(key) ?? { states: [], controls: false, registryItems: new Set(), surfaces: new Set() };
+      const current = parts.get(key) ?? {
+        states: [],
+        controls: false,
+        registryItems: new Set(),
+        surfaces: new Set(),
+        popupParts: new Set(),
+      };
       current.context = context;
       parts.set(key, current);
     }
@@ -449,10 +485,12 @@ export function collectSkinContract(): SkinContract {
 
   const controls: AnatomyReference[] = [];
   const surfaces = { floating: [] as AnatomyReference[], modal: [] as AnatomyReference[], panel: [] as AnatomyReference[] };
+  const popup = Object.fromEntries([...popupParts].map((part) => [part, [] as AnatomyReference[]]));
   for (const [key, value] of parts) {
     const [scope, part] = key.split(":");
     if (value.controls) controls.push({ scope, part });
     for (const surface of value.surfaces) surfaces[surface].push({ scope, part });
+    for (const popupPart of value.popupParts) popup[popupPart].push({ scope, part });
   }
   const sortReferences = (references: AnatomyReference[]) =>
     references.sort((left, right) => `${left.scope}:${left.part}`.localeCompare(`${right.scope}:${right.part}`));
@@ -468,13 +506,14 @@ export function collectSkinContract(): SkinContract {
     );
 
   return {
-    version: 4,
+    version: 5,
     selectorPattern: '[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])',
     registryItemMapping: sortRecord(Object.fromEntries([...registryItemMapping].map(([scope, items]) => [scope, [...items].sort()]))),
     scopes: sortRecord(scopes),
     paints: contextHooks("SkinPaintContexts"),
     adornments: contextHooks("SkinAdornmentContexts"),
     semanticFamilies: {
+      popup: sortRecord(Object.fromEntries(Object.entries(popup).map(([part, references]) => [part, sortReferences(references)]))),
       controls: sortReferences(controls),
       surfaces: {
         floating: sortReferences(surfaces.floating),

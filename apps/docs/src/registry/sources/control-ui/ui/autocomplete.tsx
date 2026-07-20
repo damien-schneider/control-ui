@@ -14,7 +14,7 @@ import type {
 } from "@/components/control-ui/contracts";
 import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
@@ -89,9 +89,11 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
           data-control-ui="autocomplete"
           data-slot="content"
           data-surface="floating"
+          data-popup-part="list-surface"
           className={cn(
             "w-[var(--anchor-width)] max-w-[var(--available-width)] origin-[var(--transform-origin)]",
             floatingListContentClasses,
+            skinFamily("popup", "list-surface"),
             skinSlot("autocomplete", "content", {}),
             className,
           )}
@@ -110,7 +112,8 @@ export function AutocompleteList<Value = unknown>({ className, children, ...prop
       <AutocompletePrimitive.List
         data-control-ui="autocomplete"
         data-slot="list"
-        className={cn("outline-none", skinSlot("autocomplete", "list", {}), className)}
+        data-popup-part="list-content"
+        className={cn("outline-none", skinFamily("popup", "list-content"), skinSlot("autocomplete", "list", {}), className)}
         {...props}
       >
         {children}
@@ -141,8 +144,14 @@ export function AutocompleteItem<Value = unknown>({ className, children, disable
     <AutocompletePrimitive.Item
       data-control-ui="autocomplete"
       data-slot="item"
+      data-popup-part="item"
       disabled={disabled}
-      className={cn(floatingListItemClasses, skinSlot("autocomplete", "item", { disabled: Boolean(disabled) }), className)}
+      className={cn(
+        floatingListItemClasses,
+        skinFamily("popup", "item"),
+        skinSlot("autocomplete", "item", { disabled: Boolean(disabled) }),
+        className,
+      )}
       {...props}
     >
       <span className="flex min-w-0 flex-1 items-center gap-2 truncate">{children}</span>
@@ -168,8 +177,10 @@ export function AutocompleteGroupLabel({ className, children, ...props }: Autoco
     <AutocompletePrimitive.GroupLabel
       data-control-ui="autocomplete"
       data-slot="group-label"
+      data-popup-part="label"
       className={cn(
         "px-[calc(var(--padding-x)*0.5)] py-1 text-meta font-medium text-muted-foreground",
+        skinFamily("popup", "label"),
         skinSlot("autocomplete", "group-label", {}),
         className,
       )}

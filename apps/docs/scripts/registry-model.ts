@@ -269,13 +269,37 @@ function skinDefinitions(): Definition[] {
   });
 }
 
-function definitions(): Definition[] {
-  const components = componentDefinitions();
-  const allCatalogItems = [
+const completeComponentSet = [
+  ...new Set([
     ...componentEntries.map((entry) => entry.registryKind),
     ...blockEntries.map((entry) => entry.registryKind),
     ...primitiveEntries.map((entry) => entry.paths.registry.registryKind),
-  ];
+  ]),
+].sort();
+
+function definitions(): Definition[] {
+  const components = componentDefinitions();
+  const fullInstallDefinitions = skinMetas.flatMap<Definition>((skin) => {
+    if (!("packManifestPath" in skin)) return [];
+    return [
+      {
+        id: `all-${skin.id}`,
+        type: "registry:item",
+        title: `All Control UI components — ${skin.label}`,
+        description: `Every Control UI agent component, block, and primitive with the ${skin.label} skin.`,
+        seeds: [],
+        primary: [],
+        dependencies: [...completeComponentSet, `skin-${skin.id}`],
+        css: {
+          '@import "../components/control-ui/styles/theme.css"': {},
+          '@import "../components/control-ui/styles/effects.css"': {},
+          '@import "../components/control-ui/styles/skin-theme.css"': {},
+          '@import "../components/control-ui/styles/skin.css"': {},
+        },
+      },
+    ];
+  });
+
   return [
     {
       id: "core",
@@ -291,20 +315,15 @@ function definitions(): Definition[] {
     ...blockDefinitions(),
     ...extensionDefinitions(),
     ...internalDefinitions,
+    ...fullInstallDefinitions,
     {
       id: "all",
       type: "registry:item",
       title: "All Control UI components",
-      description: "Every Control UI agent component, block, and primitive with the Refined skin.",
+      description: "Alias for the complete Control UI component set with the Refined skin.",
       seeds: [],
       primary: [],
-      dependencies: [...new Set([...allCatalogItems, "skin-refined"])],
-      css: {
-        '@import "../components/control-ui/styles/theme.css"': {},
-        '@import "../components/control-ui/styles/effects.css"': {},
-        '@import "../components/control-ui/styles/skin-theme.css"': {},
-        '@import "../components/control-ui/styles/skin.css"': {},
-      },
+      dependencies: ["all-refined"],
     },
     {
       id: "next-app",
@@ -648,6 +667,34 @@ function assertActiveSkinOwnership(output: RegistrySourceItem[]) {
   }
 }
 
+function assertFullInstallInvariance(output: RegistrySourceItem[]) {
+  const expectedBundleIds = skinMetas
+    .filter((skin) => "packManifestPath" in skin)
+    .map((skin) => `all-${skin.id}`)
+    .sort();
+  const bundles = output.filter((item) => item.name.startsWith("all-")).sort((left, right) => left.name.localeCompare(right.name));
+  if (bundles.map((item) => item.name).join("\n") !== expectedBundleIds.join("\n")) {
+    throw new Error("Full-install manifests do not cover every installable skin exactly once");
+  }
+
+  const expectedComponents = completeComponentSet.join("\n");
+  for (const bundle of bundles) {
+    const skinId = bundle.name.slice("all-".length);
+    const skinDependencies = bundle.registryDependencies.filter((dependency) => dependency.startsWith("skin-"));
+    if (skinDependencies.length !== 1 || skinDependencies[0] !== `skin-${skinId}`) {
+      throw new Error(`${bundle.name} must select exactly skin-${skinId}`);
+    }
+    const componentDependencies = bundle.registryDependencies
+      .filter((dependency) => dependency !== "core" && !dependency.startsWith("skin-"))
+      .sort()
+      .join("\n");
+    if (componentDependencies !== expectedComponents) {
+      throw new Error(`${bundle.name} does not install the canonical component set`);
+    }
+    if (bundle.files.length > 0) throw new Error(`${bundle.name} must compose canonical registry items instead of owning source files`);
+  }
+}
+
 export function createRegistryItems(): RegistrySourceItem[] {
   const items = definitions();
   assertUniqueDefinitionIds(items);
@@ -661,6 +708,7 @@ export function createRegistryItems(): RegistrySourceItem[] {
   const output = items.map((definition) => createRegistryItem(definition, context));
   assertKnownRegistryDependencies(output);
   assertActiveSkinOwnership(output);
+  assertFullInstallInvariance(output);
 
   return output.sort((a, b) => a.name.localeCompare(b.name));
 }

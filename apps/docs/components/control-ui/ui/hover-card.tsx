@@ -4,7 +4,7 @@ import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card
 import type { ComponentProps } from "react";
 import type { HoverCardContentProps, HoverCardProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingContentClasses } from "@/components/control-ui/surface-variants";
 
 // Refined skin slot, 100% Base UI PreviewCard: hover/focus-triggered floating card.
@@ -48,7 +48,14 @@ export function HoverCardContent({
           data-control-ui="hover-card"
           data-slot="content"
           data-surface="floating"
-          className={cn("w-64 p-[var(--popover-padding)]", floatingContentClasses, skinSlot("hover-card", "content", {}), className)}
+          data-popup-part="surface"
+          className={cn(
+            "w-64 p-[var(--popover-padding)]",
+            floatingContentClasses,
+            skinFamily("popup", "surface"),
+            skinSlot("hover-card", "content", {}),
+            className,
+          )}
           {...props}
         >
           {children}

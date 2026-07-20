@@ -1,3 +1,5 @@
+import type { SkinPopupPart } from "../../src/registry/skin";
+
 export type ContractState = {
   attribute: string;
   source: "control-ui" | "external";
@@ -19,13 +21,14 @@ export type ContractScope = {
 export type AnatomyReference = { scope: string; part: string };
 
 export type SkinContract = {
-  version: 4;
+  version: 5;
   selectorPattern: string;
   registryItemMapping: Record<string, string[]>;
   scopes: Record<string, ContractScope>;
   paints: Record<string, Record<string, { context: Record<string, string> }>>;
   adornments: Record<string, Record<string, { context: Record<string, string> }>>;
   semanticFamilies: {
+    popup: Record<SkinPopupPart, AnatomyReference[]>;
     controls: AnatomyReference[];
     surfaces: Record<"floating" | "modal" | "panel", AnatomyReference[]>;
   };

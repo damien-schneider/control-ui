@@ -9,6 +9,7 @@ import {
   allSearchItems,
   contractLinks,
   type Envelope,
+  fullInstallBundles,
   installCommandsFor,
   isRegistryItemId,
   manifestUrl,
@@ -35,7 +36,7 @@ export type RegistryAnatomySlice = {
 export type RegistryItemData = {
   id: string;
   name: string;
-  kind: SearchItem["kind"];
+  kind: SearchItem["kind"] | "Bundle";
   summary: string;
   href: string;
   /** Maturity of the item; absent means stable. */
@@ -170,7 +171,29 @@ function suggestionsFor(id: string): RegistryError["suggestions"] {
     .map((candidate) => ({ id: candidate.id, reason: "similar name" }));
 }
 
+function fullInstallItem(id: string): Envelope<"item", RegistryItemData> | undefined {
+  const bundle = fullInstallBundles().find((entry) => entry.id === id);
+  if (!bundle) return undefined;
+  return {
+    type: "item",
+    data: {
+      id: bundle.id,
+      name: bundle.name,
+      kind: "Bundle",
+      summary: bundle.summary,
+      href: "/get-started",
+      install: [{ label: "Registry command", value: bundle.install }],
+      manifestUrl: bundle.manifestUrl,
+      deps: registryDeps(bundle.id),
+      files: [],
+      anatomy: anatomyFor(bundle.id),
+    },
+  };
+}
+
 export function getRegistryItem(id: string): Envelope<"item", RegistryItemData> | RegistryError {
+  const bundle = fullInstallItem(id);
+  if (bundle) return bundle;
   const item = allSearchItems().find((entry) => String(entry.id) === id);
   if (!item) {
     return { error: `No registry item named "${id}"`, code: "ERR_UNKNOWN_ITEM", suggestions: suggestionsFor(id) };

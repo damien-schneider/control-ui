@@ -13,7 +13,7 @@ import type {
 } from "@/components/control-ui/contracts";
 import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
 // Dropdown menu skin slot, 100% Base UI: trigger shares --radius-control/controlSize w/ Button & Select — one token set, every trigger matches.
@@ -82,7 +82,14 @@ export function DropdownMenuContent({ className, children, ...props }: DropdownM
           data-control-ui="dropdown-menu"
           data-slot="content"
           data-surface="floating"
-          className={cn("min-w-[max(11rem,var(--anchor-width))]", floatingListContentClasses, skinClasses, className)}
+          data-popup-part="list-surface"
+          className={cn(
+            "min-w-[max(11rem,var(--anchor-width))]",
+            floatingListContentClasses,
+            skinFamily("popup", "list-surface"),
+            skinClasses,
+            className,
+          )}
           {...props}
         >
           {children}
@@ -98,7 +105,8 @@ export function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps)
     <MenuPrimitive.Item
       data-control-ui="dropdown-menu"
       data-slot="item"
-      className={cn(floatingListItemClasses, skinClasses, className)}
+      data-popup-part="item"
+      className={cn(floatingListItemClasses, skinFamily("popup", "item"), skinClasses, className)}
       {...props}
     />
   );
@@ -111,7 +119,8 @@ export function DropdownMenuSeparator({ className, ...props }: DropdownMenuSepar
     <MenuPrimitive.Separator
       data-control-ui="dropdown-menu"
       data-slot="separator"
-      className={cn("-mx-[var(--popover-padding)] my-1 h-px bg-border", skinClasses, className)}
+      data-popup-part="separator"
+      className={cn("-mx-[var(--popover-padding)] my-1 h-px bg-border", skinFamily("popup", "separator"), skinClasses, className)}
       {...props}
     />
   );
@@ -123,7 +132,13 @@ export function DropdownMenuLabel({ className, ...props }: DropdownMenuLabelProp
     <div
       data-control-ui="dropdown-menu"
       data-slot="label"
-      className={cn("px-2 py-1 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground", skinClasses, className)}
+      data-popup-part="label"
+      className={cn(
+        "px-2 py-1 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground",
+        skinFamily("popup", "label"),
+        skinClasses,
+        className,
+      )}
       {...props}
     />
   );

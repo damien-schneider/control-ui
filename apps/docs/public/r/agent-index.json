@@ -6,6 +6,72 @@
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
     },
+    "fullInstalls": [
+      {
+        "id": "all-refined",
+        "skin": "refined",
+        "name": "All components — Refined",
+        "summary": "Complete canonical Control UI component set with the Refined skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-refined.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-refined.json"
+      },
+      {
+        "id": "all-xp",
+        "skin": "xp",
+        "name": "All components — Windows XP",
+        "summary": "Complete canonical Control UI component set with the Windows XP skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-xp.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-xp.json"
+      },
+      {
+        "id": "all-liquid-metal",
+        "skin": "liquid-metal",
+        "name": "All components — Liquid metal",
+        "summary": "Complete canonical Control UI component set with the Liquid metal skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-liquid-metal.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-liquid-metal.json"
+      },
+      {
+        "id": "all-rig",
+        "skin": "rig",
+        "name": "All components — Rig",
+        "summary": "Complete canonical Control UI component set with the Rig skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-rig.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-rig.json"
+      },
+      {
+        "id": "all-flat",
+        "skin": "flat",
+        "name": "All components — Flat",
+        "summary": "Complete canonical Control UI component set with the Flat skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-flat.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-flat.json"
+      },
+      {
+        "id": "all-modern-apple",
+        "skin": "modern-apple",
+        "name": "All components — Modern Apple",
+        "summary": "Complete canonical Control UI component set with the Modern Apple skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-modern-apple.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-modern-apple.json"
+      },
+      {
+        "id": "all-cuicui",
+        "skin": "cuicui",
+        "name": "All components — Cuicui",
+        "summary": "Complete canonical Control UI component set with the Cuicui skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-cuicui.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-cuicui.json"
+      },
+      {
+        "id": "all-linear",
+        "skin": "linear",
+        "name": "All components — Linear",
+        "summary": "Complete canonical Control UI component set with the Linear skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-linear.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-linear.json"
+      }
+    ],
     "items": [
       {
         "id": "primitives",

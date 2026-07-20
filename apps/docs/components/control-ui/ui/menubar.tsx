@@ -18,7 +18,7 @@ import type {
 } from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
 // Refined skin slot, 100% Base UI: Menubar root = horizontal row of Menu.Root menus, each trigger drops its own full Menu.
@@ -83,7 +83,8 @@ export function MenubarContent({ className, children, ...props }: MenubarContent
           data-control-ui="menubar"
           data-slot="content"
           data-surface="floating"
-          className={cn(popupClasses, skinSlot("menubar", "content", {}), className)}
+          data-popup-part="list-surface"
+          className={cn(popupClasses, skinFamily("popup", "list-surface"), skinSlot("menubar", "content", {}), className)}
           {...props}
         >
           {children}
@@ -109,7 +110,13 @@ export function MenubarItem({ className, ...props }: MenubarItemProps) {
     <MenuPrimitive.Item
       data-control-ui="menubar"
       data-slot="item"
-      className={cn(itemClasses, skinSlot("menubar", "item", { disabled: Boolean(props.disabled) }), className)}
+      data-popup-part="item"
+      className={cn(
+        itemClasses,
+        skinFamily("popup", "item"),
+        skinSlot("menubar", "item", { disabled: Boolean(props.disabled) }),
+        className,
+      )}
       {...props}
     />
   );
@@ -120,9 +127,11 @@ export function MenubarLabel({ className, inset = false, ...props }: MenubarLabe
     <MenuPrimitive.GroupLabel
       data-control-ui="menubar"
       data-slot="label"
+      data-popup-part="label"
       className={cn(
         "px-[calc(var(--padding-x)*0.5)] py-1 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground",
         inset && "pl-8",
+        skinFamily("popup", "label"),
         skinSlot("menubar", "label", {}),
         className,
       )}
@@ -137,7 +146,13 @@ export function MenubarSeparator({ className, ...props }: MenubarSeparatorProps)
     <MenuPrimitive.Separator
       data-control-ui="menubar"
       data-slot="separator"
-      className={cn("-mx-[var(--popover-padding)] my-1 h-px bg-border", skinSlot("menubar", "separator", {}), className)}
+      data-popup-part="separator"
+      className={cn(
+        "-mx-[var(--popover-padding)] my-1 h-px bg-border",
+        skinFamily("popup", "separator"),
+        skinSlot("menubar", "separator", {}),
+        className,
+      )}
       {...props}
     />
   );
@@ -148,7 +163,13 @@ export function MenubarShortcut({ className, ...props }: MenubarShortcutProps) {
     <span
       data-control-ui="menubar"
       data-slot="shortcut"
-      className={cn("ml-auto pl-6 text-body tracking-[0.02em] text-muted-foreground", skinSlot("menubar", "shortcut", {}), className)}
+      data-popup-part="shortcut"
+      className={cn(
+        "ml-auto pl-6 text-body tracking-[0.02em] text-muted-foreground",
+        skinFamily("popup", "shortcut"),
+        skinSlot("menubar", "shortcut", {}),
+        className,
+      )}
       {...props}
     />
   );
@@ -163,10 +184,12 @@ export function MenubarSubTrigger({ className, inset = false, children, ...props
     <MenuPrimitive.SubmenuTrigger
       data-control-ui="menubar"
       data-slot="sub-trigger"
+      data-popup-part="item"
       className={cn(
         itemClasses,
         "data-[popup-open]:bg-foreground/6",
         inset && "pl-8",
+        skinFamily("popup", "item"),
         skinSlot("menubar", "sub-trigger", { disabled: Boolean(props.disabled) }),
         className,
       )}
@@ -197,7 +220,8 @@ export function MenubarSubContent({ className, children, ...props }: MenubarSubC
           data-control-ui="menubar"
           data-slot="sub-content"
           data-surface="floating"
-          className={cn(popupClasses, skinSlot("menubar", "sub-content", {}), className)}
+          data-popup-part="list-surface"
+          className={cn(popupClasses, skinFamily("popup", "list-surface"), skinSlot("menubar", "sub-content", {}), className)}
           {...props}
         >
           {children}

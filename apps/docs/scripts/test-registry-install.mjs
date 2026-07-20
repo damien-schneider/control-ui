@@ -99,6 +99,19 @@ async function waitForRegistry() {
 
 try {
   await waitForRegistry();
+  const publicRegistry = await fetch(`${registryBase}/r/registry.json`).then((response) => response.json());
+  const fullInstallIds = publicRegistry.items
+    .map((item) => item.name)
+    .filter((name) => name.startsWith("all-"))
+    .sort();
+  const skinIds = publicRegistry.items
+    .map((item) => item.name)
+    .filter((name) => name.startsWith("skin-"))
+    .map((name) => `all-${name.slice("skin-".length)}`)
+    .sort();
+  if (fullInstallIds.join("\n") !== skinIds.join("\n")) {
+    throw new Error("The public registry does not expose one full-install manifest per skin");
+  }
   const rootFixture = fixture("root-layout", false);
   install(rootFixture, "skin-cuicui");
   install(rootFixture, "chat-message");
@@ -129,12 +142,39 @@ try {
   const aggregateFixture = fixture("all-components", false);
   install(aggregateFixture, "all");
 
+  const fullInstallFixtures = [];
+  for (const fullInstallId of fullInstallIds) {
+    const directory = fixture(fullInstallId, false);
+    install(directory, fullInstallId);
+    const installedSkin = readFileSync(path.join(directory, "components/control-ui/skin.config.tsx"), "utf8");
+    if (!installedSkin.includes(`id: "${fullInstallId.slice("all-".length)}"`)) {
+      throw new Error(`${fullInstallId} installed the wrong active skin`);
+    }
+    fullInstallFixtures.push(directory);
+  }
+
+  const refinedFullInstall = fullInstallFixtures[fullInstallIds.indexOf("all-refined")];
+  if (!refinedFullInstall) throw new Error("The public registry is missing all-refined");
+  const refinedComponents = path.join(refinedFullInstall, "components/control-ui");
+  const canonicalFiles = walk(refinedComponents)
+    .map((filePath) => path.relative(refinedComponents, filePath))
+    .filter((relativePath) => !activeSkinFiles.includes(relativePath));
+  for (const directory of fullInstallFixtures) {
+    const components = path.join(directory, "components/control-ui");
+    for (const relativePath of canonicalFiles) {
+      const expected = readFileSync(path.join(refinedComponents, relativePath), "utf8");
+      const actual = readFileSync(path.join(components, relativePath), "utf8");
+      if (actual !== expected) throw new Error(`${path.basename(directory)} changed canonical component source ${relativePath}`);
+    }
+  }
+
   const tsc = path.resolve(root, "../../node_modules/.bin/tsc");
   run(tsc, ["-p", path.join(rootFixture, "tsconfig.json")], rootFixture);
   run(tsc, ["-p", path.join(sourceFixture, "tsconfig.json")], sourceFixture);
   run(tsc, ["-p", path.join(aggregateFixture, "tsconfig.json")], aggregateFixture);
+  for (const directory of fullInstallFixtures) run(tsc, ["-p", path.join(directory, "tsconfig.json")], directory);
 
-  for (const directory of [rootFixture, sourceFixture, aggregateFixture]) {
+  for (const directory of [rootFixture, sourceFixture, aggregateFixture, ...fullInstallFixtures]) {
     const installedFiles = walk(directory);
     if (installedFiles.some((filePath) => filePath.includes(`${path.sep}components${path.sep}ui${path.sep}`))) {
       throw new Error(`${directory} unexpectedly writes into the host components/ui tree`);
@@ -167,6 +207,15 @@ try {
       throw new Error(`The all item did not wire ${stylesheet} into app/globals.css`);
     }
   }
+
+  for (const directory of fullInstallFixtures) {
+    const globals = readFileSync(path.join(directory, "app/globals.css"), "utf8");
+    for (const stylesheet of ["theme.css", "effects.css", "skin-theme.css", "skin.css"]) {
+      if (!globals.includes(`components/control-ui/styles/${stylesheet}`)) {
+        throw new Error(`${path.basename(directory)} did not wire ${stylesheet} into app/globals.css`);
+      }
+    }
+  }
   if (!readFileSync(path.join(aggregateComponents, "skin.config.tsx"), "utf8").includes('id: "refined"')) {
     throw new Error("The all item did not install the Refined skin");
   }
@@ -174,7 +223,9 @@ try {
   const shikiVersion = JSON.parse(readFileSync(path.join(sourceFixture, "package.json"), "utf8")).dependencies?.shiki;
   if (shikiVersion !== "^4.3.1") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);
 
-  console.log("Registry install smoke test passed (root layout, src layout, all components, blocks, skin, and TypeScript).");
+  console.log(
+    `Registry install smoke test passed (root layout, src layout, all alias, ${fullInstallFixtures.length} per-skin full installs, source invariance, and TypeScript).`,
+  );
 } finally {
   if (server.exitCode === null) server.kill();
   rmSync(temporaryRoot, { recursive: true, force: true });

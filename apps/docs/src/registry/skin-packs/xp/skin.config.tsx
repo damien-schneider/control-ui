@@ -27,8 +27,9 @@ const lunaBubble =
 // square white popup, hard drop shadow — classic XP menu/list container.
 // no transition-none / data-[starting/ending-style] needed: at 0ms tempo Base UI enter/exit already snaps instantly.
 // backdrop-blur-none + ring-0 stay (style overrides, not durations).
-const xpPopup =
-  "rounded-none border border-[var(--xp-field-border)] bg-popover p-0.5 text-foreground shadow-[3px_3px_4px_rgba(0,0,0,0.35)] ring-0 backdrop-blur-none";
+const xpPopupSurface =
+  "rounded-none border border-[var(--xp-field-border)] bg-popover text-foreground shadow-[3px_3px_4px_rgba(0,0,0,0.35)] ring-0 backdrop-blur-none";
+const xpPopupList = `${xpPopupSurface} p-0.5`;
 
 // full-bleed row with the solid selection-blue highlight.
 const xpItem =
@@ -44,6 +45,16 @@ export const skin: ControlUiSkin = {
   id: "xp",
   // Luna motion IS "reduced": theme editor stamps data-motion from this flag; xp/theme.css also collapses --duration-* to 0ms standalone.
   motion: "reduced",
+  families: {
+    popup: {
+      surface: xpPopupSurface,
+      "list-surface": xpPopupList,
+      item: xpItem,
+      label: xpMenuLabel,
+      separator: xpSeparator,
+      shortcut: "text-[11px] text-muted-foreground",
+    },
+  },
   slots: {
     button: {
       root: ({ variant }) => {
@@ -54,28 +65,14 @@ export const skin: ControlUiSkin = {
       content: "gap-1 leading-none",
     },
     select: {
-      content: xpPopup,
       trigger: lunaRaised,
-      item: xpItem,
       icon: "rotate-0 text-[var(--xp-control-border)]",
     },
     "dropdown-menu": {
       trigger: lunaRaised,
-      content: xpPopup,
-      item: xpItem,
-      separator: xpSeparator,
-      label: xpMenuLabel,
     },
     "context-menu": {
-      content: xpPopup,
-      "sub-content": xpPopup,
-      item: xpItem,
-      "checkbox-item": xpItem,
-      "radio-item": xpItem,
-      "sub-trigger": `${xpItem} data-[popup-open]:bg-[var(--primary)] data-[popup-open]:text-[var(--primary-foreground)]`,
-      separator: xpSeparator,
-      label: xpMenuLabel,
-      shortcut: "text-[11px] text-muted-foreground",
+      "sub-trigger": "data-[popup-open]:bg-[var(--primary)] data-[popup-open]:text-[var(--primary-foreground)]",
     },
     input: {
       root: xpField,

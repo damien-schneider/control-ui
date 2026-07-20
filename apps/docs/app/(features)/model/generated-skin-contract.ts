@@ -1,7 +1,7 @@
 import "server-only";
 
 export const generatedSkinContract = {
-  version: 4,
+  version: 5,
   selectorPattern: '[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])',
   registryItemMapping: {
     accordion: ["accordion"],
@@ -8354,6 +8354,166 @@ export const generatedSkinContract = {
     },
   },
   semanticFamilies: {
+    popup: {
+      item: [
+        {
+          scope: "autocomplete",
+          part: "item",
+        },
+        {
+          scope: "combobox",
+          part: "item",
+        },
+        {
+          scope: "context-menu",
+          part: "checkbox-item",
+        },
+        {
+          scope: "context-menu",
+          part: "item",
+        },
+        {
+          scope: "context-menu",
+          part: "radio-item",
+        },
+        {
+          scope: "context-menu",
+          part: "sub-trigger",
+        },
+        {
+          scope: "dropdown-menu",
+          part: "item",
+        },
+        {
+          scope: "menubar",
+          part: "item",
+        },
+        {
+          scope: "menubar",
+          part: "sub-trigger",
+        },
+        {
+          scope: "select",
+          part: "item",
+        },
+        {
+          scope: "trigger-menu",
+          part: "item",
+        },
+      ],
+      label: [
+        {
+          scope: "autocomplete",
+          part: "group-label",
+        },
+        {
+          scope: "combobox",
+          part: "group-label",
+        },
+        {
+          scope: "context-menu",
+          part: "label",
+        },
+        {
+          scope: "dropdown-menu",
+          part: "label",
+        },
+        {
+          scope: "menubar",
+          part: "label",
+        },
+        {
+          scope: "trigger-menu",
+          part: "group-label",
+        },
+      ],
+      "list-content": [
+        {
+          scope: "autocomplete",
+          part: "list",
+        },
+        {
+          scope: "combobox",
+          part: "list",
+        },
+        {
+          scope: "trigger-menu",
+          part: "list",
+        },
+      ],
+      "list-surface": [
+        {
+          scope: "autocomplete",
+          part: "content",
+        },
+        {
+          scope: "combobox",
+          part: "content",
+        },
+        {
+          scope: "context-menu",
+          part: "content",
+        },
+        {
+          scope: "context-menu",
+          part: "sub-content",
+        },
+        {
+          scope: "dropdown-menu",
+          part: "content",
+        },
+        {
+          scope: "menubar",
+          part: "content",
+        },
+        {
+          scope: "menubar",
+          part: "sub-content",
+        },
+        {
+          scope: "select",
+          part: "content",
+        },
+        {
+          scope: "trigger-menu",
+          part: "root",
+        },
+      ],
+      separator: [
+        {
+          scope: "context-menu",
+          part: "separator",
+        },
+        {
+          scope: "dropdown-menu",
+          part: "separator",
+        },
+        {
+          scope: "menubar",
+          part: "separator",
+        },
+      ],
+      shortcut: [
+        {
+          scope: "context-menu",
+          part: "shortcut",
+        },
+        {
+          scope: "menubar",
+          part: "shortcut",
+        },
+      ],
+      surface: [
+        {
+          scope: "hover-card",
+          part: "content",
+        },
+        {
+          scope: "popover",
+          part: "content",
+        },
+      ],
+    },
     controls: [
       {
         scope: "autocomplete",

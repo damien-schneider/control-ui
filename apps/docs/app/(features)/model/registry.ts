@@ -100,6 +100,15 @@ export function packManifestHref(id: SkinMetaId): string | undefined {
   return packManifestPathFor(id) ? publicRegistryHref(`skin-${id}`) : undefined;
 }
 
+export function fullInstallCommand(id: SkinMetaId): string | undefined {
+  if (!packManifestPathFor(id)) return undefined;
+  return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/all-${id}.json`;
+}
+
+export function fullInstallManifestHref(id: SkinMetaId): string | undefined {
+  return packManifestPathFor(id) ? publicRegistryHref(`all-${id}`) : undefined;
+}
+
 function registryManifestUrl(path: string) {
   return `${env.NEXT_PUBLIC_REGISTRY_URL}${path}`;
 }

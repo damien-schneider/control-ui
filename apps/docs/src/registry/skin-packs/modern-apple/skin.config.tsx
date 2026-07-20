@@ -22,7 +22,8 @@ const appleSolid = `rounded-[var(--radius-control)] border-0 bg-[var(--primary)]
 const appleField = `rounded-[var(--radius-control)] border border-[var(--input)] bg-transparent text-foreground backdrop-blur-[var(--backdrop-blur-glass)] backdrop-saturate-[1.8] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] ${appleFocus}`;
 
 // Floating popup: geometry only (radius+row padding) — full DS material painted in skin.css globally.
-const applePopup = "rounded-[0.75rem] p-1";
+const applePopupSurface = "rounded-[0.75rem]";
+const applePopupList = `${applePopupSurface} p-1`;
 // Menu row: 24px (DS Menu/Height=1.5rem), 13px text. Active row = solid #0069f9 pill w/ WHITE
 // text (DS node 2004:25249), not translucent tint. `group/mi` whitens row's icons+shortcut too.
 const appleItem =
@@ -35,32 +36,30 @@ export const skin: ControlUiSkin = {
   // Apple floats sidebar (native shadcn `floating` variant, detached rounded panel) while content
   // stays flat; component reads via skinSidebarLayout(), skin.css re-materialises panel as glass.
   sidebarLayout: "floating",
+  families: {
+    popup: {
+      surface: applePopupSurface,
+      "list-surface": applePopupList,
+      item: appleItem,
+      label: appleMenuLabel,
+      separator: appleSeparator,
+      shortcut: "ml-auto text-meta tracking-widest text-muted-foreground",
+    },
+  },
   slots: {
     button: {
       root: ({ variant }) => (variant === "solid" ? appleSolid : appleControl),
     },
     "dropdown-menu": {
       trigger: appleControl,
-      content: applePopup,
-      item: appleItem,
-      separator: appleSeparator,
-      label: appleMenuLabel,
     },
     "context-menu": {
-      content: applePopup,
-      "sub-content": applePopup,
-      item: appleItem,
-      "checkbox-item": appleItem,
-      "radio-item": appleItem,
-      "sub-trigger": `${appleItem} data-[popup-open]:bg-[var(--menu-selection)] data-[popup-open]:text-white`,
-      separator: appleSeparator,
-      label: appleMenuLabel,
-      shortcut: "ml-auto text-meta tracking-widest text-muted-foreground group-data-[highlighted]/cmi:text-white",
+      "sub-trigger": "data-[popup-open]:bg-[var(--menu-selection)] data-[popup-open]:text-white",
+      shortcut: "group-data-[highlighted]/cmi:text-white",
     },
     select: {
       trigger: appleControl,
-      content: applePopup,
-      item: `${appleItem} data-[highlighted]:[&>span:last-child]:text-white`,
+      item: "data-[highlighted]:[&>span:last-child]:text-white",
     },
     "thread-rail": {
       popover: "rounded-[var(--radius-lg)]",

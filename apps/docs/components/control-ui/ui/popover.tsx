@@ -4,7 +4,7 @@ import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import type { ComponentProps } from "react";
 import type { PopoverContentPadding } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingContentClasses } from "@/components/control-ui/surface-variants";
 
 // Refined skin slot, 100% Base UI: anchored floating panel on popover token set (--radius-popover, --popover-padding, shadow-pop), shared w/ menu/select/context-menu; re-asserts skin scope on portal.
@@ -58,11 +58,13 @@ export function PopoverContent({
           data-control-ui="popover"
           data-slot="content"
           data-surface="floating"
+          data-popup-part="surface"
           data-padding={padding}
           className={cn(
             "w-72",
             padding === "default" && "p-4",
             floatingContentClasses,
+            skinFamily("popup", "surface"),
             skinSlot("popover", "content", { padding }),
             className,
           )}

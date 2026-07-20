@@ -15,8 +15,10 @@
 <GuideSection id="skins" title="Skins over one component tree">
   Every skin owns the same three files over one component source. Its `theme.css` explicitly resolves the complete token
   contract for light and dark modes; it never inherits another skin's values. `skin.css` handles CSS that tokens and classes
-  cannot express, and `skin.config.tsx` supplies typed design-system choices, slot overrides, and optional adornments.
-  Resolution is static and caller `className` remains last.
+  cannot express, and `skin.config.tsx` supplies typed design-system choices, semantic families, exact slot overrides, and
+  optional adornments. Shared popup material, rows, labels, separators, and shortcuts resolve once through
+  `families.popup`; exact component slots remain only for genuine exceptions. Resolution order is component recipe, family,
+  exact slot, then caller `className`.
 
   <SkinFileStack />
   <SkinResolutionMap />
@@ -42,11 +44,12 @@
 </GuideSection>
 
 <GuideSection id="skin-cost" title="Keep the active skin sparse">
-  `skin.config.tsx` is one shared ES module. Components do not reload or clone it: `skinSlot(scope, part, context)` performs
-  one optional property lookup against the active object. A large config does remain in the active JavaScript bundle because
-  dynamic slot lookup cannot tree-shake individual keys, so broad visual decisions belong in tokens and scoped CSS. Keep
-  slots for exceptions that need context, paints for exclusive render treatments, and adornments for optional structure.
-  Edit the installed component directly when the markup or behavior itself must change.
+  `skin.config.tsx` is one shared ES module. Components do not reload or clone it: `skinFamily(family, part)` and
+  `skinSlot(scope, part, context)` each perform one optional property lookup against the active object. A large config does
+  remain in the active JavaScript bundle because dynamic lookup cannot tree-shake individual keys, so broad visual decisions
+  belong in tokens, semantic families, and scoped CSS. Keep exact slots for exceptions that need component context, paints
+  for exclusive render treatments, and adornments for optional structure. Edit the installed component directly when the
+  markup or behavior itself must change.
 
   Bundle tests cap every shipped config at 4 kB gzip. Refined and Flat remain nearly empty; richer packs pay only for their
   one active config, not once per rendered component.
@@ -73,7 +76,8 @@
 
   <RegistryPipeline />
 
-  The current anatomy contract is version 4. This pre-release registry treats contract changes as a clean break rather than
-  emitting compatibility attributes. Contract version 4 replaces ToolCall with Activity's typed `kind="tool"` variant; follow
-  the deletion and reinstall steps in Get started before upgrading core, the selected components or block, and the skin.
+  The current anatomy contract is version 5. It adds generated popup-family membership through `data-popup-part`, so a skin
+  can style one semantic popup concept without enumerating DropdownMenu, Select, ContextMenu, Menubar, Combobox,
+  Autocomplete, Popover, HoverCard, and TriggerMenu slots. This pre-release registry uses clean contract cutovers: reinstall
+  core, affected components or blocks, and the selected skin together.
 </GuideSection>
