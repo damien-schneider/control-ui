@@ -21,6 +21,10 @@ test("morphing panel keeps one trigger while moving through declared sizes", asy
 
   await expectSize(panel, 132, 52);
   await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  await panel.evaluate((element) => {
+    if (!(element instanceof HTMLElement)) throw new Error("Morphing panel root is not an HTML element.");
+    element.style.setProperty("--radius-control", "0px");
+  });
   await expect
     .poll(async () => {
       return panel.evaluate((element) => {
@@ -30,8 +34,10 @@ test("morphing panel keeps one trigger while moving through declared sizes", asy
         const panelRect = element.getBoundingClientRect();
         const triggerRect = panelTrigger.getBoundingClientRect();
         const panelRadius = getComputedStyle(element).borderRadius;
+        const triggerRadius = getComputedStyle(panelTrigger).borderRadius;
         return {
-          radiiMatch: panelRadius.length > 0 && panelRadius === getComputedStyle(panelTrigger).borderRadius,
+          panelRadius,
+          triggerRadius,
           triggerHeight: Math.round(triggerRect.height),
           triggerOffsetX: Math.round(triggerRect.x - panelRect.x),
           triggerOffsetY: Math.round(triggerRect.y - panelRect.y),
@@ -40,7 +46,8 @@ test("morphing panel keeps one trigger while moving through declared sizes", asy
       });
     })
     .toEqual({
-      radiiMatch: true,
+      panelRadius: "0px",
+      triggerRadius: "0px",
       triggerHeight: 52,
       triggerOffsetX: 0,
       triggerOffsetY: 0,

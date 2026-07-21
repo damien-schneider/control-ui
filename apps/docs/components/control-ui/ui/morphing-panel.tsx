@@ -75,7 +75,7 @@ export function MorphingPanel({ collapsedSize, expandedSize, className, style, .
             data-surface="panel"
             className={cn(
               "relative isolate h-[var(--morphing-panel-collapsed-height)] w-[min(var(--morphing-panel-collapsed-width),100%)] max-w-full overflow-hidden",
-              "rounded-[calc(var(--morphing-panel-collapsed-height)/2)] bg-card text-card-foreground shadow-md ring-1 ring-border/80",
+              "rounded-(--radius-control) bg-card text-card-foreground shadow-md ring-1 ring-border/80",
               "transition-[width,height,border-radius,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)]",
               "data-[state=open]:h-[var(--morphing-panel-expanded-height)] data-[state=open]:w-[min(var(--morphing-panel-expanded-width),100%)] data-[state=open]:rounded-(--radius-panel) data-[state=open]:shadow-pop",
               skinSlot("morphing-panel", "root", { state: panelState }),
