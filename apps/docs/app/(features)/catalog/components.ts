@@ -448,28 +448,4 @@ export const componentEntries = [
       import("@/src/registry/examples/control-ui/thread-rail").then((mod) => ({ default: mod.ThreadRailExample })),
     ),
   },
-  {
-    id: "agent-team-view",
-    kind: "Agent",
-    name: "AgentTeamView",
-    summary: "Spatial team management composed on Infinite Canvas with draggable 3D team blocks and selected-team details.",
-    status: "experimental",
-    registryKind: "agent-team-view",
-    paths: {
-      example: sourceFile("Example", "src/registry/examples/control-ui/primitives/agent-team-view.tsx", "example"),
-      usage: {
-        mastra: sourceFile("Usage", "src/registry/usage/components/agent-team-view.tsx", "usage"),
-        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/agent-team-view.tsx", "usage"),
-      },
-      source: sourceFile("Component", "src/registry/sources/control-ui/agent-team-view.tsx", "component"),
-      supportFiles: [sourceFile("Movement geometry", "src/registry/sources/control-ui/ui/agent-team-view-geometry.ts", "geometry")],
-    },
-    preview: preview(() =>
-      import("@/src/registry/examples/control-ui/primitives/agent-team-view").then((mod) => ({
-        default: mod.PrimitiveAgentTeamViewExample,
-      })),
-    ),
-    previewClassName: "min-h-[720px]",
-    usesPrimitives: ["infinite-canvas"],
-  },
 ] as const;

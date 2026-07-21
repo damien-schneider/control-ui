@@ -9,7 +9,6 @@
     "http://127.0.0.1:3000/r/accordion.json",
     "http://127.0.0.1:3000/r/action-bar.json",
     "http://127.0.0.1:3000/r/activity.json",
-    "http://127.0.0.1:3000/r/agent-team-view.json",
     "http://127.0.0.1:3000/r/alert.json",
     "http://127.0.0.1:3000/r/alert-dialog.json",
     "http://127.0.0.1:3000/r/aspect-ratio.json",

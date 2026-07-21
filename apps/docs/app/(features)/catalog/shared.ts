@@ -87,7 +87,6 @@ export const registryKindIds = [
   "toolbar",
   "dockable-panel",
   "infinite-canvas",
-  "agent-team-view",
   "morphing-panel",
   "color-picker",
   "gradient-editor",

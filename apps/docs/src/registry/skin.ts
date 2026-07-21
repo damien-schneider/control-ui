@@ -604,19 +604,6 @@ export type SkinSlotContexts = {
     content: { scale: number };
     controls: Record<never, never>;
   };
-  "agent-team-view": {
-    root: Record<never, never>;
-    zone: { selected: boolean; dragging: boolean; disabled: boolean };
-    "zone-drag-handle": { selected: boolean; dragging: boolean; disabled: boolean };
-    "zone-shadow": { selected: boolean; dragging: boolean };
-    "zone-front": { selected: boolean; dragging: boolean };
-    "zone-side": { selected: boolean; dragging: boolean };
-    "zone-top": { selected: boolean; dragging: boolean };
-    "zone-title": Record<never, never>;
-    "zone-details": Record<never, never>;
-    "zone-content": Record<never, never>;
-    agent: Record<never, never>;
-  };
   "number-field": {
     group: { size: ControlSize };
     input: Record<never, never>;

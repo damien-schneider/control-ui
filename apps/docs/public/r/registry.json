@@ -70,31 +70,6 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "agent-team-view",
-      "type": "registry:component",
-      "title": "AgentTeamView",
-      "description": "Spatial team management composed on Infinite Canvas with draggable 3D team blocks and selected-team details.",
-      "dependencies": [],
-      "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/infinite-canvas.json"
-      ],
-      "files": [
-        {
-          "path": "src/registry/sources/control-ui/agent-team-view.tsx",
-          "target": "@components/control-ui/agent-team-view.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/ui/agent-team-view-geometry.ts",
-          "target": "@components/control-ui/ui/agent-team-view-geometry.ts",
-          "type": "registry:ui"
-        }
-      ],
-      "meta": {}
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
@@ -161,7 +136,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
@@ -273,7 +247,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
@@ -385,7 +358,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
@@ -497,7 +469,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
@@ -609,7 +580,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
@@ -721,7 +691,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
@@ -833,7 +802,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",
@@ -945,7 +913,6 @@
         "http://127.0.0.1:3000/r/accordion.json",
         "http://127.0.0.1:3000/r/action-bar.json",
         "http://127.0.0.1:3000/r/activity.json",
-        "http://127.0.0.1:3000/r/agent-team-view.json",
         "http://127.0.0.1:3000/r/alert.json",
         "http://127.0.0.1:3000/r/alert-dialog.json",
         "http://127.0.0.1:3000/r/aspect-ratio.json",

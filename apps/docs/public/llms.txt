@@ -34,7 +34,6 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [CodeBlockEditor](http://127.0.0.1:3000/ai/code-block-editor): Editable code surface with Shiki highlighting and token-based light/dark themes.
 - [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): Layout primitives for full chat threads, turns, and thoughts.
 - [ThreadRail](http://127.0.0.1:3000/ai/thread-rail): Conversation minimap for scanning and jumping between chat turns.
-- [AgentTeamView](http://127.0.0.1:3000/ai/agent-team-view): Spatial team management composed on Infinite Canvas with draggable 3D team blocks and selected-team details. Status: experimental.
 
 ## Blocks
 

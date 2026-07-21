@@ -1144,23 +1144,6 @@ export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "
 export type InfiniteCanvasContentProps = ComponentProps<"div">;
 export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children">;
 
-export type AgentTeamViewPosition = { x: number; y: number };
-export type AgentTeamViewMoveDetails = { reason: "pointer" | "keyboard" };
-export type AgentTeamViewProps = ComponentProps<"section">;
-export type AgentTeamViewZoneProps = Omit<ComponentProps<"section">, "onSelect" | "ref"> & {
-  label: string;
-  position: AgentTeamViewPosition;
-  selected?: boolean;
-  disabled?: boolean;
-  onSelect?: () => void;
-  onPositionChange?: (position: AgentTeamViewPosition, details: AgentTeamViewMoveDetails) => void;
-};
-export type AgentTeamViewZoneDragHandleProps = ComponentProps<"button">;
-export type AgentTeamViewZoneTitleProps = ComponentProps<"span">;
-export type AgentTeamViewZoneDetailsProps = ComponentProps<"aside">;
-export type AgentTeamViewZoneContentProps = ComponentProps<"div">;
-export type AgentTeamViewAgentProps = ComponentProps<"article">;
-
 export type DrawerContentPadding = "default" | "none";
 export type DrawerContentSurface = "background" | "card";
 

@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 157,
+    "count": 156,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -587,15 +587,6 @@
         "summary": "Conversation minimap for scanning and jumping between chat turns.",
         "href": "/ai/thread-rail",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json"
-      },
-      {
-        "id": "agent-team-view",
-        "name": "AgentTeamView",
-        "kind": "Agent",
-        "summary": "Spatial team management composed on Infinite Canvas with draggable 3D team blocks and selected-team details.",
-        "href": "/ai/agent-team-view",
-        "status": "experimental",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/agent-team-view.json"
       },
       {
         "id": "button",
