@@ -9,9 +9,13 @@ function anatomySelectors(css: string) {
   return [...css.matchAll(/\[data-control-ui="([^"]+)"\]\[data-slot="([^"]+)"\]/g)].map((match) => ({ scope: match[1], part: match[2] }));
 }
 
+// The JSON import types each scope as its own literal key; reading the map through a record shape keeps a runtime
+// scope string indexable without asserting that the key exists.
+const contractScopes: Record<string, { parts: Record<string, unknown> }> = skinContract.scopes;
+
 function hasContractPart(scope: string, part: string) {
-  if (!(scope in skinContract.scopes)) return false;
-  return part in skinContract.scopes[scope as keyof typeof skinContract.scopes].parts;
+  const contractScope = contractScopes[scope];
+  return contractScope ? part in contractScope.parts : false;
 }
 
 describe("theme anatomy coverage", () => {

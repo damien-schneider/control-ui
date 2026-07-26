@@ -28,6 +28,12 @@ const TrackHighlight = lazy(() =>
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+/** Custom properties Sidebar reads off its wrapper; exported so blocks can set the width through `style` and stay checked. */
+export type SidebarStyle = CSSProperties & {
+  "--sidebar-width"?: string;
+  "--sidebar-width-icon"?: string;
+};
+
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
@@ -116,20 +122,20 @@ export function SidebarProvider({
 
   const contextValue: SidebarContextProps = { state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar };
 
+  // Width = skin choice (ControlUiSkin.sidebarWidth): caller's --sidebar-width (style spread / resize handle) wins, else skin's request, else shadcn default.
+  const wrapperStyle: SidebarStyle = {
+    "--sidebar-width": skinSidebarWidth() ?? SIDEBAR_WIDTH,
+    "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
+    ...style,
+  };
+
   return (
     <SidebarContext.Provider value={contextValue}>
       <TooltipProvider delay={0}>
         <div
           data-control-ui="sidebar"
           data-slot="wrapper"
-          style={
-            {
-              // Width = skin choice (ControlUiSkin.sidebarWidth): caller's --sidebar-width (style spread / resize handle) wins, else skin's request, else shadcn default.
-              "--sidebar-width": skinSidebarWidth() ?? SIDEBAR_WIDTH,
-              "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
-              ...style,
-            } as CSSProperties
-          }
+          style={wrapperStyle}
           className={cn(
             "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
             skinSlot("sidebar", "wrapper", {}),
@@ -179,6 +185,8 @@ export function Sidebar({
   }
 
   if (isMobile) {
+    const mobileSheetStyle: SidebarStyle = { "--sidebar-width": SIDEBAR_WIDTH_MOBILE };
+
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
         <SheetContent
@@ -190,7 +198,7 @@ export function Sidebar({
             "w-(--sidebar-width) gap-0 bg-sidebar p-0 text-sidebar-foreground",
             skinSlot("sidebar", "root", { dragging: false }) ?? skinSlot("sidebar", "inner", { dragging: false }),
           )}
-          style={{ "--sidebar-width": SIDEBAR_WIDTH_MOBILE } as CSSProperties}
+          style={mobileSheetStyle}
         >
           <SheetHeader className="sr-only">
             <SheetTitle>Sidebar</SheetTitle>

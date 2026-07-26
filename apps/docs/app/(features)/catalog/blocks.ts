@@ -1,4 +1,4 @@
-import { type IntegrationPreviewProps, preview, sourceFile } from "./shared";
+import { preview, sourceFile } from "./shared";
 
 export const useCaseKinds = [
   {
@@ -52,9 +52,7 @@ export const blockEntries = [
 └── composer`,
       },
     ],
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/chat").then((mod) => ({ default: mod.ChatExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/chat").then((mod) => ({ default: mod.ChatExample }))),
   },
   {
     id: "theme-toggle",
@@ -89,9 +87,7 @@ export const blockEntries = [
         └── MenuItem`,
       },
     ],
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/theme-toggle").then((mod) => ({ default: mod.ThemeToggleExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/theme-toggle").then((mod) => ({ default: mod.ThemeToggleExample }))),
   },
   {
     id: "coding-agent",
@@ -130,9 +126,7 @@ export const blockEntries = [
         └── composer`,
       },
     ],
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/coding-agent").then((mod) => ({ default: mod.CodingAgentExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/coding-agent").then((mod) => ({ default: mod.CodingAgentExample }))),
   },
   {
     id: "settings",
@@ -170,9 +164,7 @@ export const blockEntries = [
 │                       └── consumer control`,
       },
     ],
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/settings").then((mod) => ({ default: mod.SettingsExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/settings").then((mod) => ({ default: mod.SettingsExample }))),
   },
   {
     id: "file-explorer",
@@ -208,7 +200,7 @@ export const blockEntries = [
 └── search results (when querying)`,
       },
     ],
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/file-explorer").then((mod) => ({ default: mod.FileExplorerExample })),
     ),
   },

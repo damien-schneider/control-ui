@@ -19,9 +19,16 @@ import { floatingListContentClasses, floatingListItemClasses } from "@/component
 
 type RefinedSelectTriggerProps = SelectTriggerProps & Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render">;
 
-export function Select({ children, onValueChange, ...props }: SelectProps) {
+// Base UI's own root is generic (`SelectRoot<Value>`) and reports null once the selection is cleared;
+// naming TValue here is what keeps a caller's literal union alive, and null never reaches a declared value.
+export function Select<TValue extends string = string>({ children, onValueChange, ...props }: SelectProps<TValue>) {
   return (
-    <SelectPrimitive.Root {...props} onValueChange={onValueChange ? (value: string | null) => onValueChange(value ?? "") : undefined}>
+    <SelectPrimitive.Root<TValue>
+      {...props}
+      onValueChange={(value) => {
+        if (value !== null) onValueChange?.(value);
+      }}
+    >
       {children}
     </SelectPrimitive.Root>
   );

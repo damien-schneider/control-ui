@@ -2,7 +2,7 @@
 
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 import type { ComponentProps } from "react";
-import type { DrawerContentPadding, DrawerContentSurface } from "@/components/control-ui/contracts";
+import type { DrawerContentPadding, DrawerContentSurface, DrawerContentVariant } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 
@@ -22,23 +22,68 @@ const swipeFor: Record<DrawerSide, ComponentProps<typeof DrawerPrimitive.Root>["
 
 // Per-edge viewport placement, popup shape, closed-state slide transform.
 // Literal class strings — Tailwind's scanner can't see interpolated classes.
-const placement: Record<DrawerSide, { viewport: string; popup: string }> = {
-  bottom: {
-    viewport: "items-end justify-center",
-    popup: "w-full max-h-[85vh] rounded-t-panel border-t data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full",
+// floating pads the viewport (--drawer-float-gap, safe-area aware on the pinned edge) so every corner
+// rounds; its closed transform adds that gap back or the panel keeps a sliver on screen.
+const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: string; popup: string }>> = {
+  edge: {
+    bottom: {
+      viewport: "items-end justify-center",
+      popup: "w-full max-h-[85vh] rounded-t-panel border-t data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full",
+    },
+    top: {
+      viewport: "items-start justify-center",
+      popup: "w-full max-h-[85vh] rounded-b-panel border-b data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full",
+    },
+    right: {
+      viewport: "items-stretch justify-end",
+      popup: "h-full w-3/4 max-w-sm border-l data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full",
+    },
+    left: {
+      viewport: "items-stretch justify-start",
+      popup: "h-full w-3/4 max-w-sm border-r data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full",
+    },
   },
-  top: {
-    viewport: "items-start justify-center",
-    popup: "w-full max-h-[85vh] rounded-b-panel border-b data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full",
+  floating: {
+    bottom: {
+      viewport:
+        "items-end justify-center p-2 pb-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-bottom))]",
+      popup:
+        "w-full max-h-[85vh] rounded-panel border data-[starting-style]:translate-y-[calc(100%+var(--drawer-float-gap))] data-[ending-style]:translate-y-[calc(100%+var(--drawer-float-gap))]",
+    },
+    top: {
+      viewport:
+        "items-start justify-center p-2 pt-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-top))]",
+      popup:
+        "w-full max-h-[85vh] rounded-panel border data-[starting-style]:translate-y-[calc((100%+var(--drawer-float-gap))*-1)] data-[ending-style]:translate-y-[calc((100%+var(--drawer-float-gap))*-1)]",
+    },
+    right: {
+      viewport:
+        "items-stretch justify-end p-2 pr-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-right))]",
+      popup:
+        "w-3/4 max-w-sm rounded-panel border data-[starting-style]:translate-x-[calc(100%+var(--drawer-float-gap))] data-[ending-style]:translate-x-[calc(100%+var(--drawer-float-gap))]",
+    },
+    left: {
+      viewport:
+        "items-stretch justify-start p-2 pl-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-left))]",
+      popup:
+        "w-3/4 max-w-sm rounded-panel border data-[starting-style]:translate-x-[calc((100%+var(--drawer-float-gap))*-1)] data-[ending-style]:translate-x-[calc((100%+var(--drawer-float-gap))*-1)]",
+    },
   },
-  right: {
-    viewport: "items-stretch justify-end",
-    popup: "h-full w-3/4 max-w-sm border-l data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full",
-  },
-  left: {
-    viewport: "items-stretch justify-start",
-    popup: "h-full w-3/4 max-w-sm border-r data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full",
-  },
+};
+
+// The grabbed edge's inset belongs to the handle, not to the popup padding: consumers pass
+// padding="none" or gap-0 and the pill would otherwise sit flush against the rounded edge.
+const handleGap: Record<"bottom" | "top", string> = {
+  bottom: "mt-2.5 mb-1",
+  top: "order-last mt-1 mb-2.5",
+};
+
+// Skips the grabbed edge, whose inset handleGap already owns.
+const contentPadding: Record<DrawerSide, string> = {
+  bottom: "pb-4",
+  top: "pt-4",
+  right: "py-4",
+  left: "py-4",
 };
 
 export function Drawer(props: ComponentProps<typeof DrawerPrimitive.Root> & { side?: DrawerSide }) {
@@ -74,13 +119,15 @@ export function DrawerContent({
   side = "bottom",
   padding = "default",
   surface = "background",
+  variant = "edge",
   ...props
 }: ComponentProps<typeof DrawerPrimitive.Popup> & {
   side?: DrawerSide;
   padding?: DrawerContentPadding;
   surface?: DrawerContentSurface;
+  variant?: DrawerContentVariant;
 }) {
-  const place = placement[side];
+  const place = placement[variant][side];
   const grabbable = side === "bottom" || side === "top";
   return (
     <DrawerPrimitive.Portal>
@@ -101,12 +148,13 @@ export function DrawerContent({
           data-surface="modal"
           data-padding={padding}
           data-surface-variant={surface}
+          data-variant={variant}
           className={cn(
             "flex flex-col gap-4 text-foreground shadow-modal outline-none transform-[translate(var(--drawer-swipe-movement-x,0),var(--drawer-swipe-movement-y,0))] transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[swiping]:duration-0",
             surface === "background" ? "bg-background" : "bg-card",
-            padding === "default" && "py-4",
+            padding === "default" && contentPadding[side],
             place.popup,
-            skinSlot("drawer", "content", { padding, surface }),
+            skinSlot("drawer", "content", { padding, surface, variant }),
             className,
           )}
           {...props}
@@ -117,7 +165,7 @@ export function DrawerContent({
               data-slot="handle"
               className={cn(
                 "mx-auto h-1.5 w-12 shrink-0 rounded-full bg-muted-foreground/30",
-                side === "top" && "order-last",
+                handleGap[side],
                 skinSlot("drawer", "handle", {}),
               )}
             />

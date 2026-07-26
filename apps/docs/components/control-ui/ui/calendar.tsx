@@ -60,13 +60,14 @@ export function Calendar({ className, showOutsideDays = true, ...props }: Calend
   );
 }
 
+// `relative` lives here, not on Month: the library renders Nav as a sibling of the months, so this is
+// the closest common ancestor its absolute buttons can pin to (without it they escape to the page).
 function CalendarMonths({ className, ...props }: ComponentProps<typeof MonthsBase>) {
-  return <MonthsBase className={cn("flex flex-col gap-4 sm:flex-row", className)} {...props} />;
+  return <MonthsBase className={cn("relative flex flex-col gap-4 sm:flex-row", className)} {...props} />;
 }
 
-// `relative` so the absolutely-positioned Nav pins its buttons to the month's top corners.
 function CalendarMonth({ className, ...props }: ComponentProps<typeof MonthBase>) {
-  return <MonthBase className={cn("relative flex flex-col gap-3", className)} {...props} />;
+  return <MonthBase className={cn("flex flex-col gap-3", className)} {...props} />;
 }
 
 function CalendarMonthCaption({ className, ...props }: ComponentProps<typeof MonthCaptionBase>) {
@@ -77,8 +78,9 @@ function CalendarCaptionLabel({ className, ...props }: ComponentProps<typeof Cap
   return <CaptionLabelBase className={cn("select-none text-sm font-medium", className)} {...props} />;
 }
 
+// `h-9` matches the MonthCaption row so the buttons center on the month label instead of sitting 2px high.
 function CalendarNav({ className, ...props }: ComponentProps<typeof NavBase>) {
-  return <NavBase className={cn("absolute inset-x-0 top-0 flex items-center justify-between", className)} {...props} />;
+  return <NavBase className={cn("absolute inset-x-0 top-0 flex h-9 items-center justify-between", className)} {...props} />;
 }
 
 function CalendarNavButton({ className, ...props }: ComponentProps<"button">) {
@@ -103,7 +105,10 @@ function CalendarDayButton({ day, modifiers, className, ...props }: DayButtonPro
   useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
-  const isRange = modifiers.range_start || modifiers.range_middle || modifiers.range_end;
+  // A one-click range marks the same day range_start *and* range_end, which would flatten both sides and
+  // drop --radius-control entirely — render it as a single selection so it keeps the control radius.
+  const isSingleDayRange = Boolean(modifiers.range_start && modifiers.range_end);
+  const isRange = !isSingleDayRange && (modifiers.range_start || modifiers.range_middle || modifiers.range_end);
   return (
     <button
       ref={ref}
@@ -112,9 +117,9 @@ function CalendarDayButton({ day, modifiers, className, ...props }: DayButtonPro
       data-slot="day"
       data-today={modifiers.today ? true : undefined}
       data-selected-single={modifiers.selected && !isRange ? true : undefined}
-      data-range-start={modifiers.range_start ? true : undefined}
+      data-range-start={modifiers.range_start && !isSingleDayRange ? true : undefined}
       data-range-middle={modifiers.range_middle ? true : undefined}
-      data-range-end={modifiers.range_end ? true : undefined}
+      data-range-end={modifiers.range_end && !isSingleDayRange ? true : undefined}
       className={cn(dayButtonClasses, skinSlot("calendar", "day", {}), className)}
       {...props}
     />

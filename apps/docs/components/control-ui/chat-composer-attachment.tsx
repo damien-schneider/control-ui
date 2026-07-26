@@ -13,6 +13,9 @@ export type ChatComposerAttachmentKind = "image" | "pdf" | "spreadsheet" | "docu
 export type ChatComposerAttachmentStatus = "idle" | "uploading" | "uploaded" | "error";
 export type ChatComposerAttachmentVariant = "auto" | "preview" | "file";
 
+/** Progress ring/bar fill the attachment publishes to CSS; typed so the custom property is declared, not asserted. */
+type ChatComposerAttachmentStyle = CSSProperties & { "--chat-composer-attachment-progress"?: string };
+
 type ChatComposerAttachmentContextValue = {
   name: string;
   type?: string;
@@ -167,10 +170,10 @@ export function ChatComposerAttachment({
   else resolvedVariant = variant;
   const extension = extensionFromName(name);
   const progress = progressValue(progressInput);
-  const attachmentStyle = {
+  const attachmentStyle: ChatComposerAttachmentStyle = {
     "--chat-composer-attachment-progress": `${progress ?? 0}%`,
     ...style,
-  } as CSSProperties;
+  };
 
   return (
     <ChatComposerAttachmentContext.Provider

@@ -1,4 +1,4 @@
-import { type ComponentType, type LazyExoticComponent, lazy, type ReactNode } from "react";
+import { type ComponentType, type LazyExoticComponent, lazy } from "react";
 
 // ONE source ships code: Control UI. shadcn compat = CONTRACT (shared tokens+APIs), not a parallel source tree — see shadcn-compatibility guide.
 // Skins (skinMetas) are a separate axis: restyle library globally via tokens+skin.config, never their own component source.
@@ -118,20 +118,23 @@ export type CatalogSourceFile = {
   slot?: string;
 };
 
-type PreviewLoader<TProps extends object> = () => Promise<{ default: ComponentType<TProps> }>;
-type LoosePreviewComponent<TProps extends object> = ComponentType<TProps> | ComponentType<never> | (() => ReactNode);
-type LoosePreviewLoader<TProps extends object> = () => Promise<{ default: LoosePreviewComponent<TProps> }>;
-export type CatalogPreview<TProps extends object = object> = {
-  Component: LazyExoticComponent<ComponentType<TProps>>;
-  load: PreviewLoader<TProps>;
+// Optional `integration` prop swaps provider usage code; most previews ignore it, kept for a uniform loader signature.
+export type IntegrationPreviewProps = { integration?: CatalogIntegrationId };
+
+// ONE preview contract: the renderer only ever passes `integration`, and it is optional, so a preview that
+// ignores props stays assignable. No props generic to infer means no loader-vs-component mismatch to assert away.
+type PreviewLoader = () => Promise<{ default: ComponentType<IntegrationPreviewProps> }>;
+export type CatalogPreview = {
+  Component: LazyExoticComponent<ComponentType<IntegrationPreviewProps>>;
+  load: PreviewLoader;
 };
 
-export type CatalogNamedPreview<TProps extends object = object> = {
+export type CatalogNamedPreview = {
   id: string;
   title: string;
   description?: string;
   source: CatalogSourceFile;
-  preview: CatalogPreview<TProps>;
+  preview: CatalogPreview;
   previewClassName?: string;
 };
 
@@ -140,9 +143,6 @@ export type CatalogCompositionExample = {
   description?: string;
   code: string;
 };
-
-// Optional `integration` prop swaps provider usage code; most previews ignore it, kept for a uniform loader signature.
-export type IntegrationPreviewProps = { integration?: CatalogIntegrationId };
 
 export function includesString<T extends string>(values: readonly T[], value: string): value is T {
   return values.some((item) => item === value);
@@ -159,10 +159,8 @@ export function sourceFile(label: string, path: string, slot?: string): CatalogS
   return { label, path, slot };
 }
 
-export function preview<TProps extends object = object>(load: LoosePreviewLoader<TProps>): CatalogPreview<TProps> {
-  // Loose caller loader signature vs strict internal one differ by design (loose omits ignored props); no annotation/satisfies fits.
-  const typedLoad = load as PreviewLoader<TProps>;
-  return { Component: lazy(typedLoad), load: typedLoad };
+export function preview(load: PreviewLoader): CatalogPreview {
+  return { Component: lazy(load), load };
 }
 
 export function isCatalogIntegrationId(value: string): value is CatalogIntegrationId {

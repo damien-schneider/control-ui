@@ -9,13 +9,12 @@ import { skinSlot } from "@/components/control-ui/skin";
 // Refined skin slot, 100% Base UI: RadioGroup owns value; Radio = circle sharing control ring w/ Checkbox/Button, fills --primary w/ --primary-foreground dot via Indicator when selected.
 // Inside Field.Root, data-invalid ring surfaces validation; Base UI stamps data-checked/-unchecked/-disabled.
 // `orientation` visual only — Base UI owns roving focus both axes; we branch flex direction, primitive exposes no such prop.
-export function RadioGroup({ className, onValueChange, orientation = "vertical", ...props }: RadioGroupProps) {
+export function RadioGroup<TValue extends string = string>({ className, orientation = "vertical", ...props }: RadioGroupProps<TValue>) {
   return (
-    <RadioGroupPrimitive
+    <RadioGroupPrimitive<TValue>
       data-control-ui="radio-group"
       data-slot="root"
       data-orientation={orientation}
-      onValueChange={onValueChange ? (value) => onValueChange(typeof value === "string" ? value : String(value ?? "")) : undefined}
       className={cn(
         "flex gap-2 data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:flex-col",
         skinSlot("radio-group", "root", {}),

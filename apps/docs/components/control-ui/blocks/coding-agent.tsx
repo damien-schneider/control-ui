@@ -1,7 +1,7 @@
 "use client";
 
 import { BotIcon, ChevronRightIcon, CircleIcon, FolderIcon, PlusIcon, SearchIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
@@ -19,6 +19,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarRail,
+  type SidebarStyle,
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
@@ -84,10 +85,12 @@ export function CodingAgentBlock({
 }: CodingAgentBlockProps) {
   const contained = layout === "contained";
 
+  const providerStyle: SidebarStyle = { "--sidebar-width": "17.5rem", ...style };
+
   return (
     <SidebarProvider
       className={cn("overflow-hidden bg-background text-foreground", contained ? "relative h-full min-h-0" : "h-svh min-h-svh", className)}
-      style={{ "--sidebar-width": "17.5rem", ...style } as CSSProperties}
+      style={providerStyle}
       {...props}
     >
       <CodingAgentSidebar

@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { ActivityKind, ActivityState } from "../contracts";
-import type { ControlUiSkin } from "../skin";
+import type { ControlUiSkin, SlotOverride } from "../skin";
 import { skin as cuicui } from "./cuicui/skin.config";
 import { skin as linear } from "./linear/skin.config";
 import { skin as modernApple } from "./modern-apple/skin.config";
@@ -10,11 +10,12 @@ import { skin as xp } from "./xp/skin.config";
 
 type ActivitySlotPart = "root" | "status" | "trigger";
 
+// Every part listed in ActivitySlotPart reads `kind`, and root/status also read `state`, so one ctx serves all
+// three: an override declared over the narrower ctx still accepts the wider one.
 function resolveActivitySlot(skin: ControlUiSkin, part: ActivitySlotPart, kind: ActivityKind) {
-  const slot = skin.slots?.activity?.[part];
+  const slot: SlotOverride<{ kind: ActivityKind; state: ActivityState }> | undefined = skin.slots?.activity?.[part];
   if (typeof slot !== "function") return slot;
-  const resolve = slot as (context: { kind: ActivityKind; state: ActivityState }) => string | undefined;
-  return resolve({ kind, state: "success" });
+  return slot({ kind, state: "success" });
 }
 
 describe("tool Activity skin treatments", () => {

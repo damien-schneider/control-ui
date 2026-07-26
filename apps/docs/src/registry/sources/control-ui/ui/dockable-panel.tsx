@@ -169,6 +169,8 @@ export function DockablePanel({
             data-surface="panel"
             data-placement={placement}
             padding="none"
+            variant="floating"
+            surface="card"
             aria-label={ariaLabel}
             className={cn("max-h-[min(82vh,42rem)] gap-0 overflow-hidden", className)}
             style={style}

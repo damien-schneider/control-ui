@@ -1,5 +1,27 @@
 import type { ComponentProps, CSSProperties, MouseEvent, ReactElement, ReactNode, Ref } from "react";
 
+/**
+ * The controlled value triple every choice control shares, declared once. TValue is inferred from `value`
+ * or `onValueChange`, so a caller holding a literal union receives that union back in the handler — no
+ * assertion. Plain `string` callers get the previous behaviour from the default.
+ *
+ * `defaultValue` is deliberately NOT an inference site: an uncontrolled caller passing one option would
+ * otherwise pin TValue to that single literal and get false "no overlap" errors comparing the handler
+ * value against its other options. Requires TypeScript 5.4 (built-in NoInfer).
+ */
+export type ControlledChoice<TValue extends string = string> = {
+  value?: TValue;
+  defaultValue?: NoInfer<TValue>;
+  onValueChange?: (value: TValue) => void;
+};
+
+/** ControlledChoice for the multi-select controls: same inference rules, value is the selected subset. */
+export type ControlledMultiChoice<TValue extends string = string> = {
+  value?: TValue[];
+  defaultValue?: NoInfer<TValue>[];
+  onValueChange?: (value: TValue[]) => void;
+};
+
 export type ChatRole = "user" | "assistant" | "system" | "tool";
 export type ChatDensity = "compact" | "comfortable";
 export type ChatState = "idle" | "streaming" | "pending" | "error";
@@ -239,11 +261,7 @@ export type TaskListProps = CollapsibleProps;
 
 // Tabs exposes the local parts root, list, trigger, indicator, and panel.
 // Indicator is stable anatomy; skin decides pill/line/texture look.
-export type TabsProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
-};
+export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & ControlledChoice<TValue>;
 
 export type TabsListVariant = "default" | "browser";
 
@@ -408,10 +426,7 @@ export type TableOfContentsProps = Omit<ComponentProps<"nav">, "children"> & {
 
 // components/control-ui/ui/select: trigger shares --radius-control with Button/DropdownMenu trigger (one token squares every control).
 // data-slot="select-trigger"|"select-content"|"select-item" (scoped anatomy).
-export type SelectProps = {
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
+export type SelectProps<TValue extends string = string> = ControlledChoice<TValue> & {
   disabled?: boolean;
   name?: string;
   children?: ReactNode;
@@ -493,10 +508,8 @@ export type ContextMenuCheckboxItemProps = Omit<ComponentProps<"div">, "onClick"
   disabled?: boolean;
 };
 
-export type ContextMenuRadioGroupProps = ComponentProps<"div"> & {
-  value?: string;
-  onValueChange?: (value: string) => void;
-};
+export type ContextMenuRadioGroupProps<TValue extends string = string> = ComponentProps<"div"> &
+  Omit<ControlledChoice<TValue>, "defaultValue">;
 
 export type ContextMenuRadioItemProps = Omit<ComponentProps<"div">, "onClick"> & {
   value: string;
@@ -689,15 +702,13 @@ export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value">
   showCheck?: boolean;
 };
 
-export type ToggleGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
-  value?: string[];
-  defaultValue?: string[];
-  onValueChange?: (value: string[]) => void;
-  /** Allow several toggles pressed at once. Default false — single-select. */
-  multiple?: boolean;
-  disabled?: boolean;
-  orientation?: "horizontal" | "vertical";
-};
+export type ToggleGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledMultiChoice<TValue> & {
+    /** Allow several toggles pressed at once. Default false — single-select. */
+    multiple?: boolean;
+    disabled?: boolean;
+    orientation?: "horizontal" | "vertical";
+  };
 
 // components/control-ui/ui/checkbox: Base UI Checkbox, shares --radius-sm + control focus ring, fills --primary checked, dash tick when indeterminate. Inside Field.Root, data-invalid ring surfaces validation.
 // data-slot="checkbox"(data-checked=on)|"checkbox-indicator", scoped anatomy.
@@ -719,16 +730,14 @@ export type CheckboxProps = {
 
 // components/control-ui/ui/radio-group: Base UI RadioGroup+Radio, circle shares control ring w/ Checkbox, fills --primary+--primary-foreground dot when selected. Group owns value; compose label beside Radio.
 // data-slot="radio-group"|"radio"(data-checked=selected), scoped anatomy.
-export type RadioGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  name?: string;
-  orientation?: "horizontal" | "vertical";
-};
+export type RadioGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledChoice<TValue> & {
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    name?: string;
+    orientation?: "horizontal" | "vertical";
+  };
 
 export type RadioProps = {
   value: string;
@@ -1071,15 +1080,15 @@ export type MeterValueProps = Omit<ComponentProps<"span">, "children"> & {
 
 // components/control-ui/ui/checkbox-group: Base UI CheckboxGroup wrapper, holds shared string[] of ticked values, hands to matching child Checkbox by value. allValues + select-all Checkbox surfaces indeterminate.
 // orientation is visual-only (flips flex direction, not forwarded to primitive); Base UI CheckboxGroup has no name prop (each Checkbox carries its own).
-export type CheckboxGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
-  value?: string[];
-  defaultValue?: string[];
-  onValueChange?: (value: string[]) => void;
-  /** Names of all child checkbox values. Set this alongside a select-all checkbox to drive indeterminate. */
-  allValues?: string[];
-  disabled?: boolean;
-  orientation?: "horizontal" | "vertical";
-};
+// Stays on plain `string[]`: Base UI's CheckboxGroup reports its own `string[]` selection, so a narrower
+// caller union could not be honoured on the way back without asserting it.
+export type CheckboxGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledMultiChoice & {
+    /** Names of all child checkbox values. Set this alongside a select-all checkbox to drive indeterminate. */
+    allValues?: string[];
+    disabled?: boolean;
+    orientation?: "horizontal" | "vertical";
+  };
 
 // components/control-ui/ui/autocomplete: Base UI Autocomplete, search-as-you-type. Unlike Combobox, FREE TEXT — value/onValueChange is the filtering input string (mode "list" default); selecting fills input, never locks to a discrete value. No per-row ItemIndicator (Base UI Autocomplete has none).
 // Input shares --radius-control/controlSurfaceClasses/controlSize w/ Button/Select; list rides shared popover tokens. Generic over item Value (inferred from items).
@@ -1192,6 +1201,8 @@ export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children"
 
 export type DrawerContentPadding = "default" | "none";
 export type DrawerContentSurface = "background" | "card";
+// edge pins the popup flush to its viewport edge; floating insets it so every corner rounds.
+export type DrawerContentVariant = "edge" | "floating";
 
 // components/control-ui/ui/number-field: Base UI NumberField. Group shares --radius-control/controlSurfaceClasses/controlSize with Button/Input/Select — transparent Input + ± stepper buttons as one joined segment (hairline dividers).
 // size lives on Root, shared with Group via context; value/defaultValue passed explicitly to keep Base UI's controlled detection (value !== undefined) intact.
@@ -1407,6 +1418,9 @@ export type TriggerMenuIconProps = ComponentProps<"span">;
 // data-slot="resizable-panel-group"|"resizable-panel"|"resizable-handle", scoped anatomy.
 export type ResizableLayout = { [panelId: string]: number };
 export type ResizablePanelGroupVariant = "framed" | "nested";
+// Handle paint: "solid" = hairline always on screen; "hover" = transparent track that fades in a gradient line
+// (--resizable-handle-color → alpha 0) while hovered, focused, or dragged. Both keep the same 1px track, so switching never shifts the layout.
+export type ResizableHandleVariant = "solid" | "hover";
 
 export type ResizablePanelGroupProps = ComponentProps<"div"> & {
   // "horizontal" = side by side, dividers vertical.
@@ -1451,7 +1465,8 @@ export type ResizablePanelProps = Omit<ComponentProps<"div">, "onResize"> & {
 };
 
 export type ResizableHandleProps = Omit<ComponentProps<"div">, "role" | "tabIndex"> & {
-  // Renders a visible grip nub at the separator's centre.
+  variant?: ResizableHandleVariant;
+  // Renders a visible grip nub at the separator's centre; on "hover" it fades in with the line.
   withHandle?: boolean;
   // Disables dragging on this separator (neighbours can still move indirectly).
   disabled?: boolean;

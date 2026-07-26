@@ -5,6 +5,8 @@ import { registryMetadata } from "@/app/(features)/model/generated-registry";
 import { generatedSkinContract } from "@/app/(features)/model/generated-skin-contract";
 import { filesFor, type InstallCommand } from "@/app/(features)/model/registry";
 import type { SearchItem, SourceFile } from "@/app/(features)/model/types";
+// Type-only: the skin contract's shape is declared where it is generated, so the agent API cannot describe it differently.
+import type { ContractPart, ContractScope, SkinContract } from "@/scripts/skin-contract/model";
 import {
   allSearchItems,
   contractLinks,
@@ -26,12 +28,14 @@ export type RegistryError = {
   suggestions: { id: string; reason: string }[];
 };
 
+// Scopes here are a filtered projection — only the parts an item owns — so they are typed by the contract model the
+// generator emits against, not by the generated value.
 export type RegistryAnatomySlice = {
-  version: typeof generatedSkinContract.version;
+  version: SkinContract["version"];
   contractUrl: string;
   selectorPattern: string;
-  ownScopes: Record<string, (typeof generatedSkinContract.scopes)[keyof typeof generatedSkinContract.scopes]>;
-  installedScopes: Record<string, (typeof generatedSkinContract.scopes)[keyof typeof generatedSkinContract.scopes]>;
+  ownScopes: Record<string, ContractScope>;
+  installedScopes: Record<string, ContractScope>;
 };
 export type RegistryItemData = {
   id: string;
@@ -97,15 +101,17 @@ function installedRegistryItems(itemId: string): Set<string> {
   return installed;
 }
 
-function scopesOwnedBy(itemIds: Set<string>): RegistryAnatomySlice["ownScopes"] {
+function partsOwnedBy(parts: Record<string, ContractPart>, itemIds: Set<string>): Record<string, ContractPart> {
+  return Object.fromEntries(Object.entries(parts).filter(([, part]) => part.registryItems.some((itemId) => itemIds.has(itemId))));
+}
+
+function scopesOwnedBy(itemIds: Set<string>): Record<string, ContractScope> {
   return Object.fromEntries(
     Object.entries(generatedSkinContract.scopes).flatMap(([scopeName, scope]) => {
-      const parts = Object.fromEntries(
-        Object.entries(scope.parts).filter(([, part]) => (part.registryItems as readonly string[]).some((itemId) => itemIds.has(itemId))),
-      );
+      const parts = partsOwnedBy(scope.parts, itemIds);
       return Object.keys(parts).length > 0 ? [[scopeName, { ...scope, parts }]] : [];
     }),
-  ) as RegistryAnatomySlice["ownScopes"];
+  );
 }
 
 function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {

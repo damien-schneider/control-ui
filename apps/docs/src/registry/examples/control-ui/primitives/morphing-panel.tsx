@@ -43,10 +43,6 @@ export function PrimitiveMorphingPanelExample() {
     setLastOpenReason(details.reason);
   }
 
-  function selectSection(value: string) {
-    setSection(value as Section);
-  }
-
   function applyChanges() {
     setSaved(true);
     setOpen(false);
@@ -69,7 +65,7 @@ export function PrimitiveMorphingPanelExample() {
         </MorphingPanelTrigger>
 
         <MorphingPanelContent keepMounted>
-          <Tabs value={section} onValueChange={selectSection} className="flex h-full flex-col">
+          <Tabs value={section} onValueChange={setSection} className="flex h-full flex-col">
             <div className="min-w-0 p-2 pb-0">
               <TabsList size="xs" className="max-w-[calc(100%-2.75rem)] overflow-x-auto overscroll-x-contain">
                 <TabsTab value="dimensions">Dimensions</TabsTab>

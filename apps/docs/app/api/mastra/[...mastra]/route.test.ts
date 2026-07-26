@@ -8,7 +8,11 @@ function sseEvents(body: string) {
     .split("\n\n")
     .map((record) => record.trim())
     .filter((record) => record.startsWith("data: ") && record !== "data: [DONE]")
-    .map((record) => JSON.parse(record.slice("data: ".length)) as { type: string; payload?: { text?: string } });
+    .map((record) => {
+      // JSON.parse types as any; annotate the binding to narrow without an assertion — the assertions below are the real check.
+      const event: { type: string; payload?: { text?: string } } = JSON.parse(record.slice("data: ".length));
+      return event;
+    });
 }
 
 test("streams the built-in Mastra mock through the preview route", async () => {

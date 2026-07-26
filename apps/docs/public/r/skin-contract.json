@@ -4448,7 +4448,8 @@
         "content": {
           "context": {
             "padding": "DrawerContentPadding",
-            "surface": "DrawerContentSurface"
+            "surface": "DrawerContentSurface",
+            "variant": "DrawerContentVariant"
           },
           "registryItems": [
             "drawer"
@@ -4536,6 +4537,15 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
+            },
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "edge",
+                "floating"
+              ]
             }
           ]
         },
@@ -7778,7 +7788,8 @@
       "parts": {
         "handle": {
           "context": {
-            "orientation": "\"horizontal\" | \"vertical\""
+            "orientation": "\"horizontal\" | \"vertical\"",
+            "variant": "ResizableHandleVariant"
           },
           "registryItems": [
             "resizable"
@@ -7794,10 +7805,23 @@
                 "focus",
                 "hover"
               ]
+            },
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "hover",
+                "solid"
+              ]
             }
           ]
         },
         "handle-grip": {
+          "context": {
+            "orientation": "\"horizontal\" | \"vertical\"",
+            "variant": "ResizableHandleVariant"
+          },
           "registryItems": [
             "resizable"
           ],

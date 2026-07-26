@@ -1,6 +1,8 @@
 import "server-only";
 
-export const generatedSkinContract = {
+import type { SkinContract } from "@/scripts/skin-contract/model";
+
+export const generatedSkinContract: SkinContract = {
   version: 5,
   selectorPattern: '[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])',
   registryItemMapping: {
@@ -3348,6 +3350,7 @@ export const generatedSkinContract = {
           context: {
             padding: "DrawerContentPadding",
             surface: "DrawerContentSurface",
+            variant: "DrawerContentVariant",
           },
           registryItems: ["drawer"],
           states: [
@@ -3422,6 +3425,12 @@ export const generatedSkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["edge", "floating"],
             },
           ],
         },
@@ -6066,6 +6075,7 @@ export const generatedSkinContract = {
         handle: {
           context: {
             orientation: '"horizontal" | "vertical"',
+            variant: "ResizableHandleVariant",
           },
           registryItems: ["resizable"],
           states: [
@@ -6075,9 +6085,19 @@ export const generatedSkinContract = {
               valueKind: "enum",
               values: ["active", "disabled", "focus", "hover"],
             },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["hover", "solid"],
+            },
           ],
         },
         "handle-grip": {
+          context: {
+            orientation: '"horizontal" | "vertical"',
+            variant: "ResizableHandleVariant",
+          },
           registryItems: ["resizable"],
           states: [],
         },
@@ -8947,4 +8967,4 @@ export const generatedSkinContract = {
     "data-valid",
     "data-visible",
   ],
-} as const;
+};

@@ -1,4 +1,4 @@
-import { type IntegrationPreviewProps, preview, sourceFile } from "./shared";
+import { preview, sourceFile } from "./shared";
 
 export const componentEntries = [
   {
@@ -16,9 +16,7 @@ export const componentEntries = [
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-chat-message.ts", "hook"),
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-message.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/chat-message").then((mod) => ({ default: mod.ChatMessageExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/chat-message").then((mod) => ({ default: mod.ChatMessageExample }))),
     previewClassName: "flex min-h-[280px] items-start justify-center",
   },
   {
@@ -44,7 +42,7 @@ export const componentEntries = [
         sourceFile("Editor motion (blur choreography)", "src/registry/sources/control-ui/chat-composer-editor.css", "editor-css"),
       ],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/chat-composer").then((mod) => ({ default: mod.ChatComposerExample })),
     ),
   },
@@ -62,7 +60,7 @@ export const componentEntries = [
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-composer-attachment.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/chat-composer-attachment").then((mod) => ({ default: mod.ChatComposerAttachmentExample })),
     ),
   },
@@ -81,9 +79,7 @@ export const componentEntries = [
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-user-ask.ts", "hook"),
       source: sourceFile("Component", "src/registry/sources/control-ui/user-ask.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/user-ask").then((mod) => ({ default: mod.UserAskExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/user-ask").then((mod) => ({ default: mod.UserAskExample }))),
   },
   {
     id: "task-list",
@@ -99,9 +95,7 @@ export const componentEntries = [
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/task-list.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/task-list").then((mod) => ({ default: mod.TaskListExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/task-list").then((mod) => ({ default: mod.TaskListExample }))),
   },
   {
     id: "audio-recorder",
@@ -124,7 +118,7 @@ export const componentEntries = [
       ],
       source: sourceFile("Component", "src/registry/sources/control-ui/audio-recorder.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/audio-recorder").then((mod) => ({ default: mod.AudioRecorderExample })),
     ),
     additionalPreviews: [
@@ -157,7 +151,7 @@ export const componentEntries = [
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/audio-visualizer").then((mod) => ({ default: mod.AudioVisualizerExample })),
     ),
     // Usage versions: sibling registry items sharing the AudioVisualizer export + AudioVisualizerProps contract.
@@ -171,7 +165,7 @@ export const componentEntries = [
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer.tsx", "example"),
           source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer.tsx", "component"),
         },
-        preview: preview<IntegrationPreviewProps>(() =>
+        preview: preview(() =>
           import("@/src/registry/examples/control-ui/audio-visualizer").then((mod) => ({ default: mod.AudioVisualizerExample })),
         ),
       },
@@ -183,7 +177,7 @@ export const componentEntries = [
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer-line.tsx", "example"),
           source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer-line.tsx", "component"),
         },
-        preview: preview<IntegrationPreviewProps>(() =>
+        preview: preview(() =>
           import("@/src/registry/examples/control-ui/audio-visualizer-line").then((mod) => ({ default: mod.AudioVisualizerLineExample })),
         ),
       },
@@ -211,7 +205,7 @@ export const componentEntries = [
         sourceFile("Island motion (morph choreography)", "src/registry/sources/control-ui/dynamic-notification.css", "notification-css"),
       ],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/dynamic-notification").then((mod) => ({ default: mod.DynamicNotificationExample })),
     ),
     // Usage versions of ONE registry item (all three keep the parent registryKind): the picker swaps
@@ -225,7 +219,7 @@ export const componentEntries = [
           example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification.tsx", "example"),
           source: sourceFile("Component", "src/registry/sources/control-ui/dynamic-notification.tsx", "component"),
         },
-        preview: preview<IntegrationPreviewProps>(() =>
+        preview: preview(() =>
           import("@/src/registry/examples/control-ui/dynamic-notification").then((mod) => ({ default: mod.DynamicNotificationExample })),
         ),
       },
@@ -237,7 +231,7 @@ export const componentEntries = [
           example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification-glass.tsx", "example"),
           source: sourceFile("Component", "src/registry/sources/control-ui/dynamic-notification.tsx", "component"),
         },
-        preview: preview<IntegrationPreviewProps>(() =>
+        preview: preview(() =>
           import("@/src/registry/examples/control-ui/dynamic-notification-glass").then((mod) => ({
             default: mod.DynamicNotificationGlassExample,
           })),
@@ -251,7 +245,7 @@ export const componentEntries = [
           example: sourceFile("Example", "src/registry/examples/control-ui/dynamic-notification-surface.tsx", "example"),
           source: sourceFile("Component", "src/registry/sources/control-ui/dynamic-notification.tsx", "component"),
         },
-        preview: preview<IntegrationPreviewProps>(() =>
+        preview: preview(() =>
           import("@/src/registry/examples/control-ui/dynamic-notification-surface").then((mod) => ({
             default: mod.DynamicNotificationSurfaceExample,
           })),
@@ -276,7 +270,7 @@ export const componentEntries = [
       source: sourceFile("Component", "src/registry/sources/control-ui/environment-variables.tsx", "component"),
       supportFiles: [sourceFile(".env parser", "src/registry/lib/env-file.ts", "env-file")],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/environment-variables").then((mod) => ({ default: mod.EnvironmentVariablesExample })),
     ),
   },
@@ -294,9 +288,7 @@ export const componentEntries = [
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/activity.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/activity").then((mod) => ({ default: mod.ActivityExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/activity").then((mod) => ({ default: mod.ActivityExample }))),
   },
   {
     id: "context",
@@ -314,9 +306,7 @@ export const componentEntries = [
       source: sourceFile("Component", "src/registry/sources/control-ui/context.tsx", "component"),
       supportFiles: [sourceFile("Derivation model", "src/registry/sources/control-ui/context-model.ts", "support")],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/context").then((mod) => ({ default: mod.ContextExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/context").then((mod) => ({ default: mod.ContextExample }))),
   },
   {
     id: "inline-citation",
@@ -333,7 +323,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/inline-citation.tsx", "usage"),
       },
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/inline-citation").then((mod) => ({ default: mod.InlineCitationExample })),
     ),
   },
@@ -352,9 +342,7 @@ export const componentEntries = [
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/source-badge.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/source-badge").then((mod) => ({ default: mod.SourceBadgeExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/source-badge").then((mod) => ({ default: mod.SourceBadgeExample }))),
   },
   {
     id: "action-bar",
@@ -371,9 +359,7 @@ export const componentEntries = [
       source: sourceFile("Component", "src/registry/sources/control-ui/action-bar.tsx", "component"),
       supportFiles: [sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook")],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/action-bar").then((mod) => ({ default: mod.ActionBarExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/action-bar").then((mod) => ({ default: mod.ActionBarExample }))),
   },
   {
     id: "inline-attachment",
@@ -389,9 +375,7 @@ export const componentEntries = [
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/inline-attachment.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/inline-attachment").then((mod) => ({ default: mod.InlineAttachmentExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/inline-attachment").then((mod) => ({ default: mod.InlineAttachmentExample }))),
   },
   {
     id: "markdown-block",
@@ -408,9 +392,7 @@ export const componentEntries = [
       source: sourceFile("Component", "src/registry/sources/control-ui/markdown-block.tsx", "component"),
       supportFiles: [sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook")],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/markdown-block").then((mod) => ({ default: mod.MarkdownBlockExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/markdown-block").then((mod) => ({ default: mod.MarkdownBlockExample }))),
   },
   {
     id: "code-block-editor",
@@ -431,7 +413,7 @@ export const componentEntries = [
         sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
       ],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
+    preview: preview(() =>
       import("@/src/registry/examples/control-ui/code-block-editor").then((mod) => ({ default: mod.CodeBlockEditorExample })),
     ),
   },
@@ -449,9 +431,7 @@ export const componentEntries = [
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-layout.tsx", "component"),
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/chat-layout").then((mod) => ({ default: mod.ChatLayoutExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/chat-layout").then((mod) => ({ default: mod.ChatLayoutExample }))),
   },
   {
     id: "thread-rail",
@@ -471,8 +451,6 @@ export const componentEntries = [
         sourceFile("Surface variants", "src/registry/sources/control-ui/surface-variants.ts", "surface-variants"),
       ],
     },
-    preview: preview<IntegrationPreviewProps>(() =>
-      import("@/src/registry/examples/control-ui/thread-rail").then((mod) => ({ default: mod.ThreadRailExample })),
-    ),
+    preview: preview(() => import("@/src/registry/examples/control-ui/thread-rail").then((mod) => ({ default: mod.ThreadRailExample }))),
   },
 ] as const;

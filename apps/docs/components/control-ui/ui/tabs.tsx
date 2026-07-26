@@ -23,7 +23,7 @@ function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
 }
 
 // Active indicator driven by Base UI's --active-tab-width/--active-tab-left — slides between tabs with one transition.
-export function Tabs({ className, onValueChange, children, ...props }: TabsProps) {
+export function Tabs<TValue extends string = string>({ className, onValueChange, children, ...props }: TabsProps<TValue>) {
   const rootRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef(new Map<string, HTMLDivElement>());
   const clearPrevHeight = useRef(0);
@@ -39,7 +39,7 @@ export function Tabs({ className, onValueChange, children, ...props }: TabsProps
   // height — auto→auto never transitions, and CSS cannot measure a sibling. Captured here pre-commit
   // (the active panel is still the old one), cleared right after the starting frame so a later switch
   // that skips onValueChange (externally controlled value) never morphs from a stale height.
-  const handleValueChange = (value: string) => {
+  const handleValueChange = (value: TValue) => {
     const root = rootRef.current;
     if (root) {
       for (const panel of panelsRef.current.values()) {

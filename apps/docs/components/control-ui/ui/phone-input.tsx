@@ -2,7 +2,7 @@
 
 import type { ChangeEventHandler, ComponentProps, ComponentType, Ref, SVGProps } from "react";
 import { useState } from "react";
-import type { Labels } from "react-phone-number-input";
+import type { EmbeddedFlagProps, Labels } from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 import PhoneNumberInput, { type Country, getCountryCallingCode, parsePhoneNumber, type Value } from "react-phone-number-input/max";
 
@@ -59,9 +59,11 @@ type PhoneInputControlProps = ComponentProps<"input"> & {
   onNativeChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
-type FlagComponent = ComponentType<SVGProps<SVGSVGElement>>;
-// The bundled country-flag-icons components accept full SVG props, but react-phone-number-input declares them as ({ title }) => Element.
-const FLAG_COMPONENTS = flags as Partial<Record<PhoneInputCountry, FlagComponent>>;
+// The bundled country-flag-icons components spread full SVG props, but react-phone-number-input declares them as
+// ({ title }) => Element. Intersecting both declarations keeps `title` required as declared, so the annotation
+// type-checks where a widening assertion used to stand in.
+type FlagComponent = ComponentType<SVGProps<SVGSVGElement> & EmbeddedFlagProps>;
+const FLAG_COMPONENTS: Partial<Record<PhoneInputCountry, FlagComponent>> = flags;
 const PhoneNumberInputWithRef: ComponentType<ComponentProps<typeof PhoneNumberInput> & { inputRef?: Ref<HTMLInputElement> }> =
   PhoneNumberInput;
 
@@ -159,7 +161,12 @@ function PhoneCountrySelect({
 function CountryFlag({ country }: { country?: PhoneInputCountry }) {
   if (!country) return <GlobeIcon />;
   const Flag = FLAG_COMPONENTS[country];
-  return Flag ? <Flag aria-hidden="true" className="h-3.5 w-5 shrink-0 rounded-[2px]" /> : <span className="text-meta">{country}</span>;
+  // Empty title keeps the flag decorative (it renders no <title>): the country name sits next to it and the trigger carries its own label.
+  return Flag ? (
+    <Flag title="" aria-hidden="true" className="h-3.5 w-5 shrink-0 rounded-[2px]" />
+  ) : (
+    <span className="text-meta">{country}</span>
+  );
 }
 
 function PhoneFlag({ country }: { country: PhoneInputCountry; countryName: string }) {

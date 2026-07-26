@@ -21,8 +21,9 @@ describe("mode-locked skins stay in sync with the skin.config contract", () => {
 });
 
 test("pre-paint skin ids stay in sync with the skin registry", () => {
-  const configSkinIds = Object.keys(SKIN_CONFIGS) as Array<keyof typeof SKIN_CONFIGS>;
-  expect([...THEME_INIT_SKIN_IDS].sort()).toEqual(configSkinIds.sort());
+  // Both sides read as plain ids: the registry keys are strings, and the comparison is about the sets, not the union.
+  const initSkinIds: string[] = [...THEME_INIT_SKIN_IDS];
+  expect(initSkinIds.sort()).toEqual(Object.keys(SKIN_CONFIGS).sort());
 });
 
 describe("motion-reduced skins stay in sync with the skin.config contract", () => {

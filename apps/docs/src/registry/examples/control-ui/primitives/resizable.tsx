@@ -3,6 +3,7 @@
 // Three-region layout (sidebar/editor/console) on react-resizable-panels v4; right panel nests a
 // vertical group uses the nested variant to stay inside one surface. Sidebar collapsible: drag past
 // minSize to snap shut. v4 gotcha: number=px, string=%, so percentages are quoted ("26%") unlike v2.
+// Handles keep the default variant="solid" (always-visible hairline); see the hover-handle example for the fade-in one.
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
 
 function Pane({ label, hint }: { label: string; hint?: string }) {

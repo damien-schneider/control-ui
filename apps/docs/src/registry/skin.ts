@@ -26,6 +26,7 @@ import type {
   DockablePanelContentPadding,
   DrawerContentPadding,
   DrawerContentSurface,
+  DrawerContentVariant,
   DropdownMenuTriggerVariant,
   DropzoneOverlayScope,
   DropzoneVisualState,
@@ -33,6 +34,7 @@ import type {
   DynamicNotificationVariant,
   NavigationMenuLinkVariant,
   PopoverContentPadding,
+  ResizableHandleVariant,
   ResizablePanelGroupVariant,
   SelectionIndicator,
   SelectTriggerVariant,
@@ -56,7 +58,11 @@ import { skin } from "./skin.config";
  * No React/"use client" here, pure lookup = RSC-safe. Paint order: token(theme.css) > skinSlot > skin.css(scoped [data-skin], never bare host) > never. Ladder: /architecture#customization-ladder.
  */
 
-type SlotOverride<Ctx> = string | ((ctx: Ctx) => string | undefined);
+/** A skin's answer for one slot: a fixed class string, or a function of the part's ctx. */
+export type SlotOverride<Ctx> = string | ((ctx: Ctx) => string | undefined);
+
+/** Ctx of a part that emits no state of its own: nothing to branch on, so only the string form of an override is useful. */
+type StatelessPart = Record<never, never>;
 
 /**
  * One entry per public scope and local part; ctx is the state the part emits as data-*.
@@ -64,139 +70,139 @@ type SlotOverride<Ctx> = string | ((ctx: Ctx) => string | undefined);
 export type SkinSlotContexts = {
   button: {
     root: { variant: ButtonVariant; tone: ButtonTone; size: ControlSize; shape: ButtonShape; active: boolean };
-    content: Record<never, never>;
+    content: StatelessPart;
   };
   toggle: {
     root: { variant: ButtonVariant; tone: ButtonTone; size: ControlSize; active: boolean };
-    content: Record<never, never>;
-    check: Record<never, never>;
+    content: StatelessPart;
+    check: StatelessPart;
     group: { orientation: "horizontal" | "vertical" };
   };
   select: {
-    content: Record<never, never>;
+    content: StatelessPart;
     trigger: { size: ControlSize; variant: SelectTriggerVariant };
-    icon: Record<never, never>;
+    icon: StatelessPart;
     item: { disabled: boolean };
   };
   "dropdown-menu": {
     trigger: { size: ControlSize; variant: DropdownMenuTriggerVariant };
-    content: Record<never, never>;
+    content: StatelessPart;
     item: { disabled: boolean };
-    separator: Record<never, never>;
-    label: Record<never, never>;
+    separator: StatelessPart;
+    label: StatelessPart;
   };
   "context-menu": {
-    trigger: Record<never, never>;
-    group: Record<never, never>;
-    content: Record<never, never>;
+    trigger: StatelessPart;
+    group: StatelessPart;
+    content: StatelessPart;
     item: { disabled: boolean };
     "checkbox-item": { disabled: boolean };
-    "radio-group": Record<never, never>;
+    "radio-group": StatelessPart;
     "radio-item": { disabled: boolean };
-    label: Record<never, never>;
-    separator: Record<never, never>;
-    shortcut: Record<never, never>;
+    label: StatelessPart;
+    separator: StatelessPart;
+    shortcut: StatelessPart;
     "sub-trigger": { disabled: boolean };
-    "sub-content": Record<never, never>;
+    "sub-content": StatelessPart;
   };
   menubar: {
-    root: Record<never, never>;
-    trigger: Record<never, never>;
-    content: Record<never, never>;
+    root: StatelessPart;
+    trigger: StatelessPart;
+    content: StatelessPart;
     item: { disabled: boolean };
-    separator: Record<never, never>;
-    label: Record<never, never>;
-    group: Record<never, never>;
-    shortcut: Record<never, never>;
+    separator: StatelessPart;
+    label: StatelessPart;
+    group: StatelessPart;
+    shortcut: StatelessPart;
     "sub-trigger": { disabled: boolean };
-    "sub-content": Record<never, never>;
+    "sub-content": StatelessPart;
   };
   "navigation-menu": {
-    root: Record<never, never>;
-    list: Record<never, never>;
-    item: Record<never, never>;
-    trigger: Record<never, never>;
-    content: Record<never, never>;
+    root: StatelessPart;
+    list: StatelessPart;
+    item: StatelessPart;
+    trigger: StatelessPart;
+    content: StatelessPart;
     link: { active: boolean; variant: NavigationMenuLinkVariant };
-    viewport: Record<never, never>;
+    viewport: StatelessPart;
   };
   dialog: {
-    trigger: Record<never, never>;
-    close: Record<never, never>;
-    content: Record<never, never>;
-    header: Record<never, never>;
-    footer: Record<never, never>;
-    title: Record<never, never>;
-    description: Record<never, never>;
+    trigger: StatelessPart;
+    close: StatelessPart;
+    content: StatelessPart;
+    header: StatelessPart;
+    footer: StatelessPart;
+    title: StatelessPart;
+    description: StatelessPart;
   };
   popover: {
-    trigger: Record<never, never>;
+    trigger: StatelessPart;
     content: { padding: PopoverContentPadding };
-    close: Record<never, never>;
-    header: Record<never, never>;
-    title: Record<never, never>;
-    description: Record<never, never>;
+    close: StatelessPart;
+    header: StatelessPart;
+    title: StatelessPart;
+    description: StatelessPart;
   };
   drawer: {
-    trigger: Record<never, never>;
-    content: { padding: DrawerContentPadding; surface: DrawerContentSurface };
-    close: Record<never, never>;
-    header: Record<never, never>;
-    footer: Record<never, never>;
-    handle: Record<never, never>;
-    title: Record<never, never>;
-    description: Record<never, never>;
+    trigger: StatelessPart;
+    content: { padding: DrawerContentPadding; surface: DrawerContentSurface; variant: DrawerContentVariant };
+    close: StatelessPart;
+    header: StatelessPart;
+    footer: StatelessPart;
+    handle: StatelessPart;
+    title: StatelessPart;
+    description: StatelessPart;
   };
   toast: {
-    root: Record<never, never>;
-    title: Record<never, never>;
-    description: Record<never, never>;
-    action: Record<never, never>;
-    close: Record<never, never>;
+    root: StatelessPart;
+    title: StatelessPart;
+    description: StatelessPart;
+    action: StatelessPart;
+    close: StatelessPart;
   };
   input: {
     root: { size: ControlSize };
   };
   "input-group": {
     root: { size: ControlSize };
-    addon: Record<never, never>;
-    input: Record<never, never>;
+    addon: StatelessPart;
+    input: StatelessPart;
   };
   dropzone: {
     root: { disabled: boolean; empty: boolean };
     area: { state: DropzoneVisualState; disabled: boolean };
-    input: Record<never, never>;
+    input: StatelessPart;
     trigger: { state: DropzoneVisualState; disabled: boolean };
     overlay: { state: DropzoneVisualState; active: boolean; scope: DropzoneOverlayScope };
     "file-list": { empty: boolean };
-    file: Record<never, never>;
+    file: StatelessPart;
     "rejection-list": { empty: boolean };
-    rejection: Record<never, never>;
+    rejection: StatelessPart;
     status: { state: DropzoneVisualState };
   };
   command: {
-    root: Record<never, never>;
-    "input-wrapper": Record<never, never>;
-    input: Record<never, never>;
-    list: Record<never, never>;
-    empty: Record<never, never>;
-    group: Record<never, never>;
-    separator: Record<never, never>;
-    item: Record<never, never>;
-    shortcut: Record<never, never>;
+    root: StatelessPart;
+    "input-wrapper": StatelessPart;
+    input: StatelessPart;
+    list: StatelessPart;
+    empty: StatelessPart;
+    group: StatelessPart;
+    separator: StatelessPart;
+    item: StatelessPart;
+    shortcut: StatelessPart;
   };
   "trigger-menu": {
-    root: Record<never, never>;
-    list: Record<never, never>;
+    root: StatelessPart;
+    list: StatelessPart;
     item: { highlighted: boolean; disabled: boolean };
-    empty: Record<never, never>;
-    group: Record<never, never>;
-    "group-label": Record<never, never>;
-    icon: Record<never, never>;
+    empty: StatelessPart;
+    group: StatelessPart;
+    "group-label": StatelessPart;
+    icon: StatelessPart;
   };
   kbd: {
-    root: Record<never, never>;
-    group: Record<never, never>;
+    root: StatelessPart;
+    group: StatelessPart;
   };
   collapsible: {
     root: { state: "open" | "closed" };
@@ -209,19 +215,19 @@ export type SkinSlotContexts = {
     content: { state: "open" | "closed" };
   };
   label: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   skeleton: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   slider: {
     root: { variant: SliderVariant; labeled: boolean };
-    control: Record<never, never>;
-    track: Record<never, never>;
-    indicator: Record<never, never>;
-    thumb: Record<never, never>;
-    label: Record<never, never>;
-    value: Record<never, never>;
+    control: StatelessPart;
+    track: StatelessPart;
+    indicator: StatelessPart;
+    thumb: StatelessPart;
+    label: StatelessPart;
+    value: StatelessPart;
   };
   switch: {
     root: { checked: boolean; disabled: boolean };
@@ -231,49 +237,49 @@ export type SkinSlotContexts = {
     root: { checked: boolean; disabled: boolean };
   };
   "radio-group": {
-    root: Record<never, never>;
+    root: StatelessPart;
     item: { disabled: boolean };
   };
   sidebar: {
     root: { dragging: boolean };
     inner: { dragging: boolean };
-    wrapper: Record<never, never>;
-    inset: Record<never, never>;
-    rail: Record<never, never>;
-    trigger: Record<never, never>;
-    header: Record<never, never>;
-    content: Record<never, never>;
-    footer: Record<never, never>;
-    group: Record<never, never>;
-    "group-label": Record<never, never>;
-    menu: Record<never, never>;
-    "menu-item": Record<never, never>;
+    wrapper: StatelessPart;
+    inset: StatelessPart;
+    rail: StatelessPart;
+    trigger: StatelessPart;
+    header: StatelessPart;
+    content: StatelessPart;
+    footer: StatelessPart;
+    group: StatelessPart;
+    "group-label": StatelessPart;
+    menu: StatelessPart;
+    "menu-item": StatelessPart;
     "menu-button": { active: boolean; indicator: SelectionIndicator };
   };
   "sidebar-layout": {
-    content: Record<never, never>;
+    content: StatelessPart;
   };
   sheet: {
-    content: Record<never, never>;
-    title: Record<never, never>;
-    close: Record<never, never>;
+    content: StatelessPart;
+    title: StatelessPart;
+    close: StatelessPart;
   };
   tooltip: {
-    content: Record<never, never>;
+    content: StatelessPart;
   };
   separator: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   breadcrumb: {
-    root: Record<never, never>;
-    page: Record<never, never>;
+    root: StatelessPart;
+    page: StatelessPart;
   };
   tabs: {
-    root: Record<never, never>;
+    root: StatelessPart;
     list: { size: ControlSize; variant: TabsListVariant };
-    indicator: Record<never, never>;
-    tab: Record<never, never>;
-    panel: Record<never, never>;
+    indicator: StatelessPart;
+    tab: StatelessPart;
+    panel: StatelessPart;
   };
   stepper: {
     root: { orientation: StepperOrientation; contentMode: StepperContentMode; responsive: boolean };
@@ -282,208 +288,208 @@ export type SkinSlotContexts = {
     trigger: { state: StepperState; disabled: boolean; invalid: boolean };
     indicator: { state: StepperState; invalid: boolean };
     separator: { state: StepperState; invalid: boolean };
-    title: Record<never, never>;
-    description: Record<never, never>;
+    title: StatelessPart;
+    description: StatelessPart;
     content: { active: boolean };
   };
   timeline: {
-    root: Record<never, never>;
+    root: StatelessPart;
     item: { state: TimelineState };
-    indicator: Record<never, never>;
-    separator: Record<never, never>;
-    content: Record<never, never>;
-    title: Record<never, never>;
-    description: Record<never, never>;
-    meta: Record<never, never>;
+    indicator: StatelessPart;
+    separator: StatelessPart;
+    content: StatelessPart;
+    title: StatelessPart;
+    description: StatelessPart;
+    meta: StatelessPart;
   };
   "scroll-area": {
-    root: Record<never, never>;
+    root: StatelessPart;
     scrollbar: { orientation: "horizontal" | "vertical" };
-    thumb: Record<never, never>;
-    corner: Record<never, never>;
+    thumb: StatelessPart;
+    corner: StatelessPart;
   };
   "table-of-contents": {
-    root: Record<never, never>;
-    list: Record<never, never>;
+    root: StatelessPart;
+    list: StatelessPart;
     item: { active: boolean; variant: TableOfContentsVariant };
   };
   "chat-layout": {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   "chat-thread": {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   "chat-thought": {
-    root: Record<never, never>;
-    details: Record<never, never>;
+    root: StatelessPart;
+    details: StatelessPart;
   };
   "chat-message": {
     root: { role: ChatRole; state: ChatState; density: ChatDensity; tone: ChatTone };
-    row: Record<never, never>;
-    avatar: Record<never, never>;
+    row: StatelessPart;
+    avatar: StatelessPart;
     content: { role: ChatRole };
   };
   "chat-composer": {
-    root: Record<never, never>;
-    shell: Record<never, never>;
-    accent: Record<never, never>;
-    textarea: Record<never, never>;
-    toolbar: Record<never, never>;
-    tools: Record<never, never>;
-    footer: Record<never, never>;
-    submit: Record<never, never>;
-    mention: Record<never, never>;
+    root: StatelessPart;
+    shell: StatelessPart;
+    accent: StatelessPart;
+    textarea: StatelessPart;
+    toolbar: StatelessPart;
+    tools: StatelessPart;
+    footer: StatelessPart;
+    submit: StatelessPart;
+    mention: StatelessPart;
   };
   "dynamic-notification": {
     root: { state: DynamicNotificationState; variant: DynamicNotificationVariant };
     island: { state: DynamicNotificationState; variant: DynamicNotificationVariant };
-    glass: Record<never, never>;
-    liquid: Record<never, never>;
-    pill: Record<never, never>;
-    indicator: Record<never, never>;
-    content: Record<never, never>;
-    title: Record<never, never>;
-    message: Record<never, never>;
-    reply: Record<never, never>;
-    "reply-input": Record<never, never>;
-    "reply-submit": Record<never, never>;
-    close: Record<never, never>;
+    glass: StatelessPart;
+    liquid: StatelessPart;
+    pill: StatelessPart;
+    indicator: StatelessPart;
+    content: StatelessPart;
+    title: StatelessPart;
+    message: StatelessPart;
+    reply: StatelessPart;
+    "reply-input": StatelessPart;
+    "reply-submit": StatelessPart;
+    close: StatelessPart;
   };
   "audio-recorder": {
-    root: Record<never, never>;
-    trigger: Record<never, never>;
-    status: Record<never, never>;
-    visualizer: Record<never, never>;
-    duration: Record<never, never>;
-    cancel: Record<never, never>;
-    submit: Record<never, never>;
+    root: StatelessPart;
+    trigger: StatelessPart;
+    status: StatelessPart;
+    visualizer: StatelessPart;
+    duration: StatelessPart;
+    cancel: StatelessPart;
+    submit: StatelessPart;
   };
   "audio-visualizer": {
     root: { variant: AudioVisualizerVariant };
   };
   activity: {
     root: { kind: ActivityKind; state: ActivityState };
-    row: Record<never, never>;
+    row: StatelessPart;
     trigger: { kind: ActivityKind };
     icon: { kind: ActivityKind; state: ActivityState };
-    title: Record<never, never>;
+    title: StatelessPart;
     status: { kind: ActivityKind; state: ActivityState };
-    announcement: Record<never, never>;
-    content: Record<never, never>;
-    detail: Record<never, never>;
-    "detail-label": Record<never, never>;
-    "detail-content": Record<never, never>;
+    announcement: StatelessPart;
+    content: StatelessPart;
+    detail: StatelessPart;
+    "detail-label": StatelessPart;
+    "detail-content": StatelessPart;
   };
   context: {
     root: { status: ContextStatus };
     trigger: { status: ContextStatus };
     "trigger-indicator": { status: ContextStatus };
-    "trigger-label": Record<never, never>;
-    content: Record<never, never>;
-    header: Record<never, never>;
+    "trigger-label": StatelessPart;
+    content: StatelessPart;
+    header: StatelessPart;
     summary: { status: ContextStatus };
     graph: { status: ContextStatus };
-    track: Record<never, never>;
+    track: StatelessPart;
     segment: { kind: ContextSegmentKind };
-    "limit-marker": Record<never, never>;
-    legend: Record<never, never>;
+    "limit-marker": StatelessPart;
+    legend: StatelessPart;
     "legend-item": { kind: ContextSegmentKind };
     "legend-indicator": { kind: ContextSegmentKind };
-    "legend-value": Record<never, never>;
+    "legend-value": StatelessPart;
   };
   "inline-citation": {
-    root: Record<never, never>;
-    trigger: Record<never, never>;
-    favicons: Record<never, never>;
-    favicon: Record<never, never>;
-    label: Record<never, never>;
-    content: Record<never, never>;
-    navigation: Record<never, never>;
-    previous: Record<never, never>;
-    next: Record<never, never>;
-    position: Record<never, never>;
-    source: Record<never, never>;
-    "source-header": Record<never, never>;
-    "source-favicon": Record<never, never>;
-    "source-title": Record<never, never>;
-    "source-description": Record<never, never>;
-    "source-quote": Record<never, never>;
+    root: StatelessPart;
+    trigger: StatelessPart;
+    favicons: StatelessPart;
+    favicon: StatelessPart;
+    label: StatelessPart;
+    content: StatelessPart;
+    navigation: StatelessPart;
+    previous: StatelessPart;
+    next: StatelessPart;
+    position: StatelessPart;
+    source: StatelessPart;
+    "source-header": StatelessPart;
+    "source-favicon": StatelessPart;
+    "source-title": StatelessPart;
+    "source-description": StatelessPart;
+    "source-quote": StatelessPart;
   };
   "source-badge": {
-    root: Record<never, never>;
-    favicon: Record<never, never>;
-    label: Record<never, never>;
+    root: StatelessPart;
+    favicon: StatelessPart;
+    label: StatelessPart;
   };
   "user-ask": {
-    root: Record<never, never>;
-    header: Record<never, never>;
-    title: Record<never, never>;
-    pagination: Record<never, never>;
+    root: StatelessPart;
+    header: StatelessPart;
+    title: StatelessPart;
+    pagination: StatelessPart;
     question: { active: boolean };
     option: { selected: boolean; disabled: boolean };
     "option-indicator": { selected: boolean };
-    "option-label": Record<never, never>;
-    "option-description": Record<never, never>;
-    footer: Record<never, never>;
+    "option-label": StatelessPart;
+    "option-description": StatelessPart;
+    footer: StatelessPart;
   };
   "task-list": {
-    root: Record<never, never>;
-    progress: Record<never, never>;
-    label: Record<never, never>;
-    items: Record<never, never>;
+    root: StatelessPart;
+    progress: StatelessPart;
+    label: StatelessPart;
+    items: StatelessPart;
     item: { status: TaskStatus };
     "item-indicator": { status: TaskStatus };
   };
   "thread-rail": {
-    root: Record<never, never>;
-    item: Record<never, never>;
-    line: Record<never, never>;
-    popover: Record<never, never>;
-    title: Record<never, never>;
-    footer: Record<never, never>;
-    file: Record<never, never>;
+    root: StatelessPart;
+    item: StatelessPart;
+    line: StatelessPart;
+    popover: StatelessPart;
+    title: StatelessPart;
+    footer: StatelessPart;
+    file: StatelessPart;
   };
   "markdown-block": {
-    root: Record<never, never>;
-    header: Record<never, never>;
-    title: Record<never, never>;
-    content: Record<never, never>;
+    root: StatelessPart;
+    header: StatelessPart;
+    title: StatelessPart;
+    content: StatelessPart;
   };
   code: {
     root: { chrome: CodeChrome; density: CodeDensity };
-    header: Record<never, never>;
-    title: Record<never, never>;
-    actions: Record<never, never>;
-    content: Record<never, never>;
-    line: Record<never, never>;
-    gutter: Record<never, never>;
+    header: StatelessPart;
+    title: StatelessPart;
+    actions: StatelessPart;
+    content: StatelessPart;
+    line: StatelessPart;
+    gutter: StatelessPart;
   };
   "code-diff": {
     root: { diffStyle: DiffStyle };
-    header: Record<never, never>;
-    title: Record<never, never>;
-    stat: Record<never, never>;
-    actions: Record<never, never>;
-    body: Record<never, never>;
-    row: Record<never, never>;
-    gutter: Record<never, never>;
+    header: StatelessPart;
+    title: StatelessPart;
+    stat: StatelessPart;
+    actions: StatelessPart;
+    body: StatelessPart;
+    row: StatelessPart;
+    gutter: StatelessPart;
     line: { lineType: CodeDiffLineType };
-    expander: Record<never, never>;
-    "expand-button": Record<never, never>;
+    expander: StatelessPart;
+    "expand-button": StatelessPart;
   };
   markdown: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   "inline-attachment": {
-    root: Record<never, never>;
-    image: Record<never, never>;
-    content: Record<never, never>;
-    action: Record<never, never>;
+    root: StatelessPart;
+    image: StatelessPart;
+    content: StatelessPart;
+    action: StatelessPart;
   };
   "chat-composer-attachments": {
-    root: Record<never, never>;
-    scroll: Record<never, never>;
-    list: Record<never, never>;
+    root: StatelessPart;
+    scroll: StatelessPart;
+    list: StatelessPart;
   };
   "chat-composer-attachment": {
     root: {
@@ -497,79 +503,79 @@ export type SkinSlotContexts = {
       variant: "preview" | "file";
     };
     status: { status: "idle" | "uploading" | "uploaded" | "error" };
-    content: Record<never, never>;
-    title: Record<never, never>;
+    content: StatelessPart;
+    title: StatelessPart;
     description: { status: "idle" | "uploading" | "uploaded" | "error" };
-    remove: Record<never, never>;
-    progress: Record<never, never>;
-    "progress-indicator": Record<never, never>;
+    remove: StatelessPart;
+    progress: StatelessPart;
+    "progress-indicator": StatelessPart;
   };
   "action-bar": {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   field: {
-    root: Record<never, never>;
-    label: Record<never, never>;
-    description: Record<never, never>;
-    error: Record<never, never>;
-    set: Record<never, never>;
-    legend: Record<never, never>;
-    item: Record<never, never>;
+    root: StatelessPart;
+    label: StatelessPart;
+    description: StatelessPart;
+    error: StatelessPart;
+    set: StatelessPart;
+    legend: StatelessPart;
+    item: StatelessPart;
   };
   form: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   "native-select": {
     root: { size: ControlSize };
   };
   textarea: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   accordion: {
-    root: Record<never, never>;
-    item: Record<never, never>;
-    trigger: Record<never, never>;
-    panel: Record<never, never>;
+    root: StatelessPart;
+    item: StatelessPart;
+    trigger: StatelessPart;
+    panel: StatelessPart;
   };
   avatar: {
-    root: Record<never, never>;
-    group: Record<never, never>;
-    fallback: Record<never, never>;
+    root: StatelessPart;
+    group: StatelessPart;
+    fallback: StatelessPart;
   };
   progress: {
-    root: Record<never, never>;
-    track: Record<never, never>;
-    indicator: Record<never, never>;
+    root: StatelessPart;
+    track: StatelessPart;
+    indicator: StatelessPart;
   };
   "hover-card": {
-    trigger: Record<never, never>;
-    content: Record<never, never>;
+    trigger: StatelessPart;
+    content: StatelessPart;
   };
   "alert-dialog": {
-    trigger: Record<never, never>;
-    close: Record<never, never>;
-    content: Record<never, never>;
-    header: Record<never, never>;
-    footer: Record<never, never>;
-    title: Record<never, never>;
-    description: Record<never, never>;
+    trigger: StatelessPart;
+    close: StatelessPart;
+    content: StatelessPart;
+    header: StatelessPart;
+    footer: StatelessPart;
+    title: StatelessPart;
+    description: StatelessPart;
   };
   "input-otp": {
-    root: Record<never, never>;
-    slot: Record<never, never>;
-    separator: Record<never, never>;
+    root: StatelessPart;
+    slot: StatelessPart;
+    separator: StatelessPart;
   };
   combobox: {
-    root: Record<never, never>;
+    root: StatelessPart;
     input: { size: ControlSize };
-    trigger: Record<never, never>;
-    icon: Record<never, never>;
-    content: Record<never, never>;
-    list: Record<never, never>;
+    trigger: StatelessPart;
+    icon: StatelessPart;
+    content: StatelessPart;
+    list: StatelessPart;
     item: { disabled: boolean };
-    empty: Record<never, never>;
-    group: Record<never, never>;
-    "group-label": Record<never, never>;
+    empty: StatelessPart;
+    group: StatelessPart;
+    "group-label": StatelessPart;
   };
   alert: {
     root: { variant: AlertVariant };
@@ -581,133 +587,133 @@ export type SkinSlotContexts = {
     root: { variant: CardVariant };
   };
   table: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   "aspect-ratio": {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   "button-group": {
     root: { orientation: "horizontal" | "vertical" };
-    text: Record<never, never>;
+    text: StatelessPart;
   };
   empty: {
-    root: Record<never, never>;
-    media: Record<never, never>;
+    root: StatelessPart;
+    media: StatelessPart;
   };
   item: {
     root: { variant: "default" | "outline" | "muted" };
   };
   pagination: {
-    root: Record<never, never>;
+    root: StatelessPart;
     link: { active: boolean };
   };
   spinner: {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   meter: {
-    root: Record<never, never>;
-    track: Record<never, never>;
-    indicator: Record<never, never>;
+    root: StatelessPart;
+    track: StatelessPart;
+    indicator: StatelessPart;
   };
   "checkbox-group": {
-    root: Record<never, never>;
+    root: StatelessPart;
   };
   autocomplete: {
-    root: Record<never, never>;
+    root: StatelessPart;
     input: { size: ControlSize };
-    clear: Record<never, never>;
-    content: Record<never, never>;
-    list: Record<never, never>;
+    clear: StatelessPart;
+    content: StatelessPart;
+    list: StatelessPart;
     item: { disabled: boolean };
-    empty: Record<never, never>;
-    group: Record<never, never>;
-    "group-label": Record<never, never>;
+    empty: StatelessPart;
+    group: StatelessPart;
+    "group-label": StatelessPart;
   };
   toolbar: {
     root: { orientation: "horizontal" | "vertical"; variant: ToolbarVariant };
-    button: Record<never, never>;
+    button: StatelessPart;
     link: { variant: ToolbarLinkVariant };
-    group: Record<never, never>;
-    separator: Record<never, never>;
-    input: Record<never, never>;
+    group: StatelessPart;
+    separator: StatelessPart;
+    input: StatelessPart;
   };
   "dockable-panel": {
     root: { placement: "left" | "right"; dragging: boolean };
-    header: Record<never, never>;
+    header: StatelessPart;
     "drag-handle": { dragging: boolean };
-    title: Record<never, never>;
-    actions: Record<never, never>;
+    title: StatelessPart;
+    actions: StatelessPart;
     toggle: { placement: "left" | "right" };
     dock: { active: boolean; placement: "left" | "right" };
-    close: Record<never, never>;
+    close: StatelessPart;
     content: { padding: DockablePanelContentPadding };
     "drop-zone": { side: "left" | "right"; active: boolean };
   };
   "infinite-canvas": {
     root: { panning: boolean };
     content: { scale: number };
-    controls: Record<never, never>;
+    controls: StatelessPart;
   };
   "number-field": {
     group: { size: ControlSize };
-    input: Record<never, never>;
-    decrement: Record<never, never>;
-    increment: Record<never, never>;
-    "scrub-area": Record<never, never>;
-    "scrub-cursor": Record<never, never>;
+    input: StatelessPart;
+    decrement: StatelessPart;
+    increment: StatelessPart;
+    "scrub-area": StatelessPart;
+    "scrub-cursor": StatelessPart;
   };
   "color-picker": {
     trigger: { disabled: boolean };
-    content: Record<never, never>;
-    panel: Record<never, never>;
-    area: Record<never, never>;
-    "area-thumb": Record<never, never>;
-    hue: Record<never, never>;
-    "hue-thumb": Record<never, never>;
-    alpha: Record<never, never>;
-    "alpha-thumb": Record<never, never>;
-    wheel: Record<never, never>;
-    "wheel-thumb": Record<never, never>;
-    channels: Record<never, never>;
-    swatches: Record<never, never>;
+    content: StatelessPart;
+    panel: StatelessPart;
+    area: StatelessPart;
+    "area-thumb": StatelessPart;
+    hue: StatelessPart;
+    "hue-thumb": StatelessPart;
+    alpha: StatelessPart;
+    "alpha-thumb": StatelessPart;
+    wheel: StatelessPart;
+    "wheel-thumb": StatelessPart;
+    channels: StatelessPart;
+    swatches: StatelessPart;
     swatch: { selected: boolean };
-    "swatch-add": Record<never, never>;
-    contrast: Record<never, never>;
-    output: Record<never, never>;
+    "swatch-add": StatelessPart;
+    contrast: StatelessPart;
+    output: StatelessPart;
   };
   "gradient-editor": {
-    root: Record<never, never>;
-    preview: Record<never, never>;
-    track: Record<never, never>;
+    root: StatelessPart;
+    preview: StatelessPart;
+    track: StatelessPart;
     stop: { selected: boolean };
-    "stop-add": Record<never, never>;
+    "stop-add": StatelessPart;
   };
   resizable: {
     "panel-group": { orientation: "horizontal" | "vertical"; variant: ResizablePanelGroupVariant };
-    panel: Record<never, never>;
-    handle: { orientation: "horizontal" | "vertical" };
-    "handle-grip": Record<never, never>;
+    panel: StatelessPart;
+    handle: { orientation: "horizontal" | "vertical"; variant: ResizableHandleVariant };
+    "handle-grip": { orientation: "horizontal" | "vertical"; variant: ResizableHandleVariant };
   };
   calendar: {
-    root: Record<never, never>;
-    day: Record<never, never>;
+    root: StatelessPart;
+    day: StatelessPart;
   };
   tree: {
     root: { selectionMode: TreeSelectionMode };
     item: { level: number; selected: boolean; expanded: boolean; disabled: boolean };
     "item-trigger": { selected: boolean; expanded: boolean; disabled: boolean; indicator: SelectionIndicator };
-    "item-indicator": Record<never, never>;
-    "item-label": Record<never, never>;
+    "item-indicator": StatelessPart;
+    "item-label": StatelessPart;
     "item-content": { state: "open" | "closed" };
   };
 };
 
 export type SkinPaintContexts = {
   skeleton: {
-    shimmer: Record<never, never>;
+    shimmer: StatelessPart;
   };
   "chat-message": {
-    streaming: Record<never, never>;
+    streaming: StatelessPart;
   };
 };
 
@@ -734,9 +740,9 @@ export type SkinPaintPart<Scope extends SkinPaintScope> = keyof SkinPaintContext
  * Interactive bits live in a separate "use client" component the pack references — skin.config itself never carries "use client", keeping RSC intact.
  */
 export type SkinAdornmentContexts = {
-  "chat-layout": { titlebar: Record<never, never> };
-  "chat-thought": { details: Record<never, never> };
-  dialog: { titlebar: Record<never, never> };
+  "chat-layout": { titlebar: StatelessPart };
+  "chat-thought": { details: StatelessPart };
+  dialog: { titlebar: StatelessPart };
   "chat-composer": { "send-layer": { sendCount: number } };
 };
 
@@ -814,17 +820,20 @@ export function skinFamily<Family extends keyof SkinFamilyContexts, Part extends
   return typeof classes === "string" ? classes : undefined;
 }
 
+// One resolver for slots and paints: binding the entry to a plain `SlotOverride<Ctx>` parameter is what lets
+// `typeof entry === "string"` narrow — a scope/part indexed lookup stays deferred and narrows to nothing.
+function resolveOverride<Ctx>(entry: SlotOverride<Ctx> | undefined, ctx: Ctx): string | undefined {
+  if (entry === undefined) return undefined;
+  return typeof entry === "string" ? entry : entry(ctx);
+}
+
 /** Resolve a slot's skin override — string passes through, function gets ctx; undefined = skin leaves slot untouched (default config's answer for everything). */
 export function skinSlot<Scope extends SkinSlotScope, Part extends SkinSlotPart<Scope>>(
   scope: Scope,
   part: Part,
   ctx: SkinSlotContexts[Scope][Part],
 ): string | undefined {
-  const entry = skin.slots?.[scope]?.[part];
-  if (entry === undefined) return undefined;
-  return typeof entry === "string"
-    ? entry
-    : (entry as SlotOverride<SkinSlotContexts[Scope][Part]> & ((value: SkinSlotContexts[Scope][Part]) => string))(ctx);
+  return resolveOverride(skin.slots?.[scope]?.[part], ctx);
 }
 
 /** Resolve an exclusive paint hook separately from DOM anatomy. */
@@ -833,11 +842,7 @@ export function skinPaint<Scope extends SkinPaintScope, Part extends SkinPaintPa
   part: Part,
   ctx: SkinPaintContexts[Scope][Part],
 ): string | undefined {
-  const entry = skin.paints?.[scope]?.[part];
-  if (entry === undefined) return undefined;
-  return typeof entry === "string"
-    ? entry
-    : (entry as SlotOverride<SkinPaintContexts[Scope][Part]> & ((value: SkinPaintContexts[Scope][Part]) => string))(ctx);
+  return resolveOverride(skin.paints?.[scope]?.[part], ctx);
 }
 
 /** Active skin's requested Sidebar layout, or undefined; Sidebar falls back variant prop → this → "sidebar". */
@@ -873,17 +878,20 @@ export function skinEffects(): string | undefined {
   return effects && effects.length > 0 ? effects.join(" ") : undefined;
 }
 
+// Same deferred-lookup reason as resolveOverride: a plain AdornmentEntry<Ctx> parameter is what makes the
+// function/ReactNode branch narrow. A ReactNode may itself be callable, so the entry decides, not the ctx.
+function resolveAdornment<Ctx>(entry: AdornmentEntry<Ctx> | undefined, ctx: Ctx): ReactNode | undefined {
+  if (entry === undefined) return undefined;
+  return typeof entry === "function" ? entry(ctx) : entry;
+}
+
 /** Resolve a decorative adornment — config's ReactNode or ctx-fn result, or undefined when skin fills nothing there (component renders no adornment DOM). */
 export function skinAdornment<Scope extends SkinAdornmentScope, Part extends SkinAdornmentPart<Scope>>(
   scope: Scope,
   part: Part,
   ctx: SkinAdornmentContexts[Scope][Part],
 ): ReactNode | undefined {
-  const entry = skin.adornments?.[scope]?.[part];
-  if (entry === undefined) return undefined;
-  return typeof entry === "function"
-    ? (entry as AdornmentEntry<SkinAdornmentContexts[Scope][Part]> & ((value: SkinAdornmentContexts[Scope][Part]) => ReactNode))(ctx)
-    : entry;
+  return resolveAdornment(skin.adornments?.[scope]?.[part], ctx);
 }
 
 /** Whether the active skin fills an anchor — lets a component skip the state that only feeds that anchor's ctx (e.g. the send counter). */

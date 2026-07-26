@@ -29,7 +29,15 @@ export type EnvironmentVariablesSubmitPayload<TRow extends EnvironmentVariableRo
   reset: () => void;
 };
 
-type EnvironmentVariablesRenderController = EnvironmentVariablesController<EnvironmentVariableRow>;
+/**
+ * What the render parts may touch. React context cannot carry Root's TRow, so the controller is projected onto
+ * its row-agnostic surface: the row-typed setters drop out and the rest only ever hands rows back. Every
+ * useEnvironmentVariables controller then satisfies it structurally, while TRow stays exact on Root and onSubmit.
+ */
+type EnvironmentVariablesRenderController = Omit<EnvironmentVariablesController, "setRows" | "resetRows" | "appendRow"> & {
+  resetRows: () => void;
+  appendRow: () => void;
+};
 
 type EnvironmentVariablesContextValue = {
   editor: EnvironmentVariablesRenderController;
@@ -102,7 +110,7 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
   return (
     <EnvironmentVariablesContext.Provider
       value={{
-        editor: editor as unknown as EnvironmentVariablesRenderController,
+        editor,
         disabled,
         readOnly,
         rowErrors,

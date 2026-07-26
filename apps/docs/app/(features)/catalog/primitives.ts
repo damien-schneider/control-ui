@@ -458,6 +458,18 @@ export const primitiveEntries = [
         ),
       },
       {
+        id: "floating",
+        title: "Floating drawers",
+        description: "Inset the popup from its edge on any side so the panel reads as a detached, fully rounded surface.",
+        previewClassName: "flex min-h-[240px] items-center justify-center p-6",
+        source: sourceFile("Floating drawer preview", "src/registry/examples/control-ui/primitives/drawer-floating.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/drawer-floating").then((mod) => ({
+            default: mod.PrimitiveFloatingDrawerExample,
+          })),
+        ),
+      },
+      {
         id: "scrollable",
         title: "Scrollable content",
         description: "Keep the header and close action visible while a longer drawer body scrolls.",
@@ -1569,6 +1581,21 @@ export const primitiveEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/resizable").then((mod) => ({ default: mod.PrimitiveResizableExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "hover-handle",
+        title: "Hover handle",
+        description:
+          'variant="hover" leaves the track transparent until the separator is hovered, focused, or dragged, then fades in a gradient line from --resizable-handle-color to alpha 0.',
+        previewClassName: "flex min-h-[320px] items-center justify-center p-6",
+        source: sourceFile("Hover handle example", "src/registry/examples/control-ui/primitives/resizable-hover-handle.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/resizable-hover-handle").then((mod) => ({
+            default: mod.PrimitiveResizableHoverHandleExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "calendar",

@@ -24,6 +24,7 @@ import type {
   DockablePanelPlacement,
   DrawerContentPadding,
   DrawerContentSurface,
+  DrawerContentVariant,
   DropdownMenuTriggerVariant,
   DropzoneOverlayScope,
   DropzoneVisualState,
@@ -31,6 +32,7 @@ import type {
   DynamicNotificationVariant,
   NavigationMenuLinkVariant,
   PopoverContentPadding,
+  ResizableHandleVariant,
   ResizablePanelGroupVariant,
   SelectTriggerVariant,
   SliderVariant,
@@ -135,7 +137,9 @@ export type EmittedStateContract = {
   "dockable-panel:content:data-padding": DockablePanelContentPadding;
   "drawer:content:data-padding": DrawerContentPadding;
   "drawer:content:data-surface-variant": DrawerContentSurface;
+  "drawer:content:data-variant": DrawerContentVariant;
   "popover:content:data-padding": PopoverContentPadding;
+  "resizable:handle:data-variant": ResizableHandleVariant;
   "resizable:panel-group:data-variant": ResizablePanelGroupVariant;
   "select:trigger:data-variant": SelectTriggerVariant;
   "toolbar:button:data-icon-only": true;

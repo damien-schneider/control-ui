@@ -23,6 +23,9 @@ import { Button } from "@/components/control-ui/ui/button";
  * dynamic-notification.css (token-driven, kill-switch flattens).
  */
 
+/** Per-word stagger index the reply animation reads from CSS. */
+type DynamicNotificationWordStyle = CSSProperties & { "--dn-word-index"?: string };
+
 type DynamicNotificationShellContextValue = Pick<DynamicNotificationController, "open" | "disabled" | "setOpen"> & {
   state: DynamicNotificationState;
   variant: DynamicNotificationVariant;
@@ -339,7 +342,7 @@ function DynamicNotificationWords({ text }: { text: string }) {
   let wordIndex = 0;
   return text.split(/(\s+)/).map((part, position) => {
     if (part.length === 0 || /^\s+$/.test(part)) return part;
-    const style = { "--dn-word-index": `${wordIndex}` } as CSSProperties;
+    const style: DynamicNotificationWordStyle = { "--dn-word-index": `${wordIndex}` };
     wordIndex += 1;
     return (
       // biome-ignore lint/suspicious/noArrayIndexKey: split positions are stable for a given text; the list remounts wholesale (key={text}) when the message changes.

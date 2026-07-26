@@ -126,7 +126,7 @@ export function ContextMenuCheckboxItem({ className, children, ...props }: Conte
   );
 }
 
-export function ContextMenuRadioGroup({ className, ...props }: ContextMenuRadioGroupProps) {
+export function ContextMenuRadioGroup<TValue extends string = string>({ className, ...props }: ContextMenuRadioGroupProps<TValue>) {
   return (
     <ContextMenuPrimitive.RadioGroup
       data-control-ui="context-menu"

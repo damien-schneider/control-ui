@@ -10,7 +10,9 @@ test("rendered Control UI anatomy is covered by the generated contract", async (
   const contract = await page.evaluate(async () => {
     const response = await fetch("/r/skin-contract.json");
     if (!response.ok) throw new Error(`Unable to load skin contract: ${response.status}`);
-    return (await response.json()) as SkinContract;
+    // Response.json() types as Promise<any>; annotate the binding to narrow without an assertion.
+    const payload: SkinContract = await response.json();
+    return payload;
   });
   const renderedParts = await page.locator("[data-control-ui][data-slot]").evaluateAll((elements) =>
     elements.map((element) => ({

@@ -81,7 +81,7 @@ export function Toggle({
   );
 }
 
-export function ToggleGroup({ className, orientation = "horizontal", ...props }: ToggleGroupProps) {
+export function ToggleGroup<TValue extends string = string>({ className, orientation = "horizontal", ...props }: ToggleGroupProps<TValue>) {
   return (
     <ToggleGroupPrimitive
       data-control-ui="toggle"

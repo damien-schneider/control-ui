@@ -13,9 +13,13 @@ const POPUP_FAMILY_SKINS = [cuicui, linear, modernApple, xp];
 const MODERN_APPLE_CSS = readFileSync(fileURLToPath(new URL("./modern-apple/skin.css", import.meta.url)), "utf8");
 const CORE_CSS = readFileSync(fileURLToPath(new URL("../sources/control-ui/theme.css", import.meta.url)), "utf8");
 
+// The JSON import types each scope as its own literal key; reading the map through a record shape keeps a runtime
+// scope string indexable without asserting that the key exists.
+const contractScopes: Record<string, { parts: Record<string, unknown> }> = skinContract.scopes;
+
 function hasContractPart(scope: string, part: string) {
-  if (!(scope in skinContract.scopes)) return false;
-  return part in skinContract.scopes[scope as keyof typeof skinContract.scopes].parts;
+  const contractScope = contractScopes[scope];
+  return contractScope ? part in contractScope.parts : false;
 }
 
 describe("semantic surface roles", () => {

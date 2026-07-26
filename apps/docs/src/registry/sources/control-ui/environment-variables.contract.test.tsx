@@ -7,13 +7,11 @@ import { EnvironmentVariables } from "./environment-variables";
 const COMPONENT = readFileSync(new URL("./environment-variables.tsx", import.meta.url), "utf8");
 const HOOK = readFileSync(new URL("../../hooks/use-environment-variables.ts", import.meta.url), "utf8");
 const ENV_FILE = readFileSync(new URL("../../lib/env-file.ts", import.meta.url), "utf8");
-// boundary cast: generated registry manifest; the "standalone manifest" test below asserts both fields' contents
-const MANIFEST = JSON.parse(
+// Generated registry manifest: JSON.parse types as any, so the binding is annotated rather than asserted; the
+// "standalone manifest" test below asserts both fields' contents.
+const MANIFEST: { files: { path: string }[]; registryDependencies: string[] } = JSON.parse(
   readFileSync(new URL("../../../../registry/control-ui/environment-variables.json", import.meta.url), "utf8"),
-) as {
-  files: { path: string }[];
-  registryDependencies: string[];
-};
+);
 
 describe("environment variables registry contract", () => {
   test("core source stays runtime agnostic", () => {

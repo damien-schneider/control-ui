@@ -9,11 +9,13 @@ const targets = [
   { path: "public/r/theme-contract.json", content: `${JSON.stringify(collectThemeContract(), null, 2)}\n` },
 ];
 const contract = targets[0].content.trim();
+// Annotated with SkinContract instead of frozen with `as const`: the emitted data is checked against the model
+// the collector builds it from, and consumers read the contract's declared shape rather than 100 literal scopes.
 targets.push({
   path: "app/(features)/model/generated-skin-contract.ts",
   content: formatGeneratedTypeScript(
     "app/(features)/model/generated-skin-contract.ts",
-    `import "server-only";\n\nexport const generatedSkinContract = ${contract} as const;\n`,
+    `import "server-only";\n\nimport type { SkinContract } from "@/scripts/skin-contract/model";\n\nexport const generatedSkinContract: SkinContract = ${contract};\n`,
   ),
 });
 

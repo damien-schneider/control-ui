@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeftIcon, SearchIcon, XIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useId, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
@@ -29,6 +29,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  type SidebarStyle,
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
@@ -83,6 +84,8 @@ export function SettingsBlock({
     onActivePageChange?.(pageId);
   }
 
+  const providerStyle: SidebarStyle = { "--sidebar-width": "15.5rem", ...style };
+
   return (
     <SidebarProvider
       data-settings-layout={layout}
@@ -91,7 +94,7 @@ export function SettingsBlock({
         layout === "viewport" ? "h-svh min-h-svh" : "relative h-full min-h-0",
         className,
       )}
-      style={{ "--sidebar-width": "15.5rem", ...style } as CSSProperties}
+      style={providerStyle}
       {...props}
     >
       <SettingsShell

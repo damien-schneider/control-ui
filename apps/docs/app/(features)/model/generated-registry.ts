@@ -1962,7 +1962,7 @@ export const registryMetadata = {
     ],
   },
   resizable: {
-    dependencies: ["react-resizable-panels@^4.12.2"],
+    dependencies: ["class-variance-authority@^0.7.1", "react-resizable-panels@^4.12.2"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/resizable.json",
     files: [

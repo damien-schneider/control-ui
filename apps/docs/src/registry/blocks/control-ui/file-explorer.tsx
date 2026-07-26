@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronRightIcon, FileIcon, FolderIcon, SearchIcon, XIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
@@ -22,6 +22,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarRail,
+  type SidebarStyle,
   SidebarTrigger,
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
@@ -132,10 +133,12 @@ export function FileExplorerBlock({
     onOpenEntry?.(entry, path);
   }
 
+  const providerStyle: SidebarStyle = { "--sidebar-width": "14.5rem", ...style };
+
   return (
     <SidebarProvider
       className={cn("overflow-hidden bg-background text-foreground", contained ? "relative h-full min-h-0" : "h-svh min-h-svh", className)}
-      style={{ "--sidebar-width": "14.5rem", ...style } as CSSProperties}
+      style={providerStyle}
       {...props}
     >
       <FileExplorerSidebar
