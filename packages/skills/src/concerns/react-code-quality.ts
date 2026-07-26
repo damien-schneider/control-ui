@@ -44,19 +44,25 @@ export const reactCodeQualitySkills = [
     id: "react-explicit-naming",
     title: "Explicit names instead of comments",
     concern: "react-code-quality",
-    summary: "Encode intent in identifiers and extracted units so the code needs no explanatory comments.",
-    goal: "When code needs explanation, rename or extract until the names carry it; reserve comments for constraints the code cannot express.",
+    summary:
+      "Encode intent in identifiers and extracted units so the code needs no explanatory comments, and keep the rare justified one telegraphic.",
+    goal: "When code needs explanation, rename or extract until the names carry it; reserve comments for constraints the code cannot express, written as short as they can be and still land.",
     checks: [
       "Rename variables, functions, and components until the call site reads as the sentence the comment would have said.",
       "Extract a named function, variable, or component when a block needs a heading comment; the name replaces the heading.",
       "Name booleans and predicates for what they assert, such as isEmpty or hasSkinAdornment, not for how they compute.",
       "Keep the rare justified comment to one line stating a why the code cannot show: a constraint, a workaround, or an external contract.",
+      "Write that line telegraphically — a fragment naming the constraint beats a grammatical sentence explaining it; drop articles, narration, and hedging before dropping the fact.",
+      "Treat a comment that wants a paragraph as a missing name, a missing extraction, or a docs page; move the rationale to the docs surface that already documents the item, and leave the code line self-explaining.",
+      "Prefer a `@link`-style pointer to the canonical file or contract over restating that file's reasoning at every call site.",
     ],
     avoid: [
       "Comments that restate the code, narrate the next line, or describe what a well-named extraction would say.",
+      "Multi-line prose blocks — JSX `{/* … */}` essays especially — arguing a class list, layout choice, or design intent the markup already states.",
       "Generic or abbreviated names such as data, tmp, or handleThing patched over with an explanatory comment.",
-      "Section-divider comments inside a function instead of extracting named units.",
+      "Section-divider comments inside a function instead of extracting named units, and decorative banner rules such as box-drawing separators.",
       "Keeping a stale comment in sync with code instead of deleting it once the name carries the intent.",
+      "Repeating the same rationale in several files instead of stating it once where the fact is owned.",
     ],
   },
   {

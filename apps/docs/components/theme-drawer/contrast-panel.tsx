@@ -104,7 +104,6 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
 
   const rowFixLevel = (r: ContrastRow): WcagLevel | null => (r.ratio !== null ? offeredFixLevel(r.levels, reach[r.label] ?? 0) : null);
 
-  // Footer hint — the single most relevant next step.
   const anyOfferAA = rows.some((r) => rowFixLevel(r) === "AA");
   const anyOfferAAA = rows.some((r) => rowFixLevel(r) === "AAA");
   const allReadableAAA = rows.length > 0 && rows.every((r) => r.ratio !== null && r.levels.AAA);

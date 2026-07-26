@@ -249,7 +249,7 @@
         "id": "react-explicit-naming",
         "name": "Explicit names instead of comments",
         "kind": "Skill",
-        "summary": "Encode intent in identifiers and extracted units so the code needs no explanatory comments.",
+        "summary": "Encode intent in identifiers and extracted units so the code needs no explanatory comments, and keep the rare justified one telegraphic.",
         "href": "/skills/react-explicit-naming"
       },
       {

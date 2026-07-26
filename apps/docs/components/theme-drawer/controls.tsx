@@ -21,8 +21,6 @@ export function VarTag({ children }: { children: ReactNode }) {
   );
 }
 
-// ─── Shared per-token frame ───────────────────────────────────────────────────
-
 type TokenFieldProps = {
   token: ThemeContractToken;
   /** Live resolved value of the token (from readContractTokens), absent if the skin omits it. */
@@ -65,8 +63,6 @@ function TokenHead({ token, labelMode, overridden, onReset }: Omit<TokenFieldPro
     </span>
   );
 }
-
-// ─── Kind-specific controls ───────────────────────────────────────────────────
 
 // Free-form value editor — the honest fallback for tokens whose live value isn't a color, a plain
 // number, or a known preset (font stacks, calc() chains, cubic-bezier curves). Commits on blur /
@@ -205,8 +201,6 @@ function SelectTokenField(props: TokenFieldProps & { spec: SelectSpec }) {
   );
 }
 
-// One control per contract token, typed from token-metadata. This is what makes the editor a
-// faithful mirror of theme.css: every token gets ITS OWN picker, chosen by what the token holds.
 export function TokenControl(props: TokenFieldProps) {
   const spec = tokenControlSpec(props.token);
   if (spec.kind === "color") return <ColorTokenField {...props} />;
@@ -215,7 +209,6 @@ export function TokenControl(props: TokenFieldProps) {
   return <TextTokenField {...props} />;
 }
 
-// Keep each color family's four badge tokens compact; full token rows would drown the palette.
 export function MiniColorSwatch({ token, value, overridden, onChange }: Omit<TokenFieldProps, "labelMode" | "onReset">) {
   const hex = value ? cssColorToHexDom(value) : null;
   return (

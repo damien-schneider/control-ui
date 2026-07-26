@@ -196,7 +196,6 @@ export function MenubarSubTrigger({ className, inset = false, children, ...props
       {...props}
     >
       {children}
-      {/* › submenu chevron — follows the row's currentColor */}
       <span aria-hidden="true" className="ml-auto pl-4 text-body leading-none">
         ›
       </span>

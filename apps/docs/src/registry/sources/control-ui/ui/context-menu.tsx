@@ -113,7 +113,6 @@ export function ContextMenuCheckboxItem({ className, children, ...props }: Conte
       )}
       {...props}
     >
-      {/* ✓ gutter — inherits currentColor */}
       <span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.CheckboxItemIndicator>
           <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
@@ -152,7 +151,6 @@ export function ContextMenuRadioItem({ className, children, ...props }: ContextM
       )}
       {...props}
     >
-      {/* • gutter — a filled dot in currentColor */}
       <span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.RadioItemIndicator>
           <span className="block size-1.5 rounded-full bg-current" />
@@ -237,7 +235,6 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
       {...props}
     >
       {children}
-      {/* › submenu chevron — follows the row's currentColor */}
       <span aria-hidden="true" className="ml-auto pl-4 text-body leading-none">
         ›
       </span>

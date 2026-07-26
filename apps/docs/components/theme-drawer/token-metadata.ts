@@ -116,8 +116,6 @@ export function isColorValuedToken(name: string): boolean {
   return COLOR_VALUED.has(name);
 }
 
-// ─── Labels ──────────────────────────────────────────────────────────────────
-
 const FRIENDLY_LABELS: Record<string, string> = {
   "--background": "Surface",
   "--foreground": "Text",
@@ -201,8 +199,6 @@ function humanize(name: string): string {
 export function tokenLabel(token: ThemeContractToken): string {
   return FRIENDLY_LABELS[token.name] ?? humanize(token.name);
 }
-
-// ─── Category layout ─────────────────────────────────────────────────────────
 
 export type TokenCategory = {
   group: ThemeContractGroup;

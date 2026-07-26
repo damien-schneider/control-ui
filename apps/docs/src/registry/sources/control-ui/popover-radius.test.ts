@@ -9,7 +9,7 @@ import { readFileSync } from "node:fs";
 
 const CSS = readFileSync(new URL("../../skin-packs/refined/theme.css", import.meta.url), "utf8");
 
-// --- tiny CSS value evaluator: var() / calc() / min() / max() / clamp() / px / rem -------------
+// Tiny CSS value evaluator: var() / calc() / min() / max() / clamp() / px / rem.
 
 function parseDecls(css: string): Record<string, string> {
   const decls: Record<string, string> = {};
@@ -58,7 +58,7 @@ function makeResolver(declarations: Record<string, string>, overrides: Record<st
 
 const decls = parseDecls(CSS);
 
-// --- geometry: does the child's rendered corner nest inside the container's clipped corner? -------
+// Geometry: does the child's rendered corner nest inside the container's clipped corner?
 
 // Clipped containers use a ring (box-shadow), so overflow clip sits at FULL border-radius — no border-width to subtract (was 1px when these used a CSS border).
 const BORDER = 0;

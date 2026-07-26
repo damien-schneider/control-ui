@@ -73,8 +73,6 @@ const mentionNode: NodeSpec = {
   leafText: (node) => `@${attrString(node.attrs.label, "")}`,
 };
 
-// --- caret trigger reading -----------------------------------------------------------------------
-
 type EditorTriggerState = {
   active: boolean;
   from: number;
@@ -107,8 +105,6 @@ function readEditorTrigger(view: EditorView, triggerChars: readonly string[]): E
     rect: new DOMRect(coords.left, coords.top, 1, coords.bottom - coords.top),
   };
 }
-
-// --- mutations -----------------------------------------------------------------------------------
 
 type MentionNodeAttrs = { id: string; label: string; kind?: string; icon?: string | null };
 
@@ -200,8 +196,6 @@ function collectMentions(doc: ProseMirrorNode): MentionItem[] {
   return mentions;
 }
 
-// --- overlay -------------------------------------------------------------------------------------
-
 type MentionOverlayProps<Item extends TriggerMenuItemData> = {
   editor: ChatComposerEditorApi;
   triggers: readonly TriggerConfig<Item>[];
@@ -274,8 +268,6 @@ function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, si
     </TriggerMenu>
   );
 }
-
-// --- factory -------------------------------------------------------------------------------------
 
 export type MentionExtensionConfig<Item extends TriggerMenuItemData = TriggerMenuItemData> = {
   triggers: readonly TriggerConfig<Item>[];

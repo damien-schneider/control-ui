@@ -1413,7 +1413,6 @@ export type TriggerMenuGroupProps = ComponentProps<"div">;
 export type TriggerMenuGroupLabelProps = ComponentProps<"div">;
 export type TriggerMenuIconProps = ComponentProps<"span">;
 
-// ── Resizable ──────────────────────────────────────────────────────────────────────────────
 // react-resizable-panels v4 (Group/Panel/Separator). PanelGroup=framed surface, Panels=resizable regions, Handle=draggable separator. Sizes: percentage (0..100) or CSS length ("240px"/"20rem"/"30vh"). Layout = map of panel id→percentage (persistence).
 // data-slot="resizable-panel-group"|"resizable-panel"|"resizable-handle", scoped anatomy.
 export type ResizableLayout = { [panelId: string]: number };

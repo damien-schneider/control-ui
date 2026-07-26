@@ -37,7 +37,6 @@ export function hslToHex(h: number, s: number, l: number): string {
   return `#${to(r)}${to(g)}${to(b)}`;
 }
 
-// ─── OKLab / OKLCH (Björn Ottosson) ──────────────────────────────────────────
 // Theme tokens authored in oklch (Tailwind/shadcn v4: wider gamut, perceptual lightness); editor speaks hex to <input type=color>, these bridge hex↔oklch.
 const srgbToLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
 const linearToSrgb = (c: number) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);

@@ -123,7 +123,6 @@ type TokenEditorProps = {
   onReset: (name: string) => void;
 };
 
-// Renders tokens in contract order, packs consecutive color pickers into a two-column grid so long color runs stay scannable while sliders/selects keep full width.
 function TokenList({ tokens, values, labelMode, overridden, onChange, onReset }: TokenEditorProps & { tokens: ThemeContractToken[] }) {
   const control = (token: ThemeContractToken) => (
     <TokenControl
@@ -159,7 +158,6 @@ function TokenList({ tokens, values, labelMode, overridden, onChange, onReset }:
   return <div className="flex flex-col gap-3">{nodes}</div>;
 }
 
-// Keep each badge color family on one row so reset controls do not drown the palette.
 function BadgePaletteRows({ values, overridden, onChange, onReset }: Omit<TokenEditorProps, "labelMode">) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -224,8 +222,6 @@ function SectionTrigger({ title, touched, total, className }: { title: string; t
   );
 }
 
-// One collapsible section per contract group: core tokens up front, fine-tuning knobs behind nested "Advanced" fold, category-specific extras (contrast panel, previews, badge palette, reduce-motion) slotted in.
-// Generated from THEME_CONTRACT — editor mirrors real theme.css contract instead of a hand-kept knob list.
 function CategorySection({
   category,
   editor,
@@ -410,7 +406,6 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
             </div>
           </div>
 
-          {/* Fullscreen surface: categories flow into columns instead of one tall column, each section self-start so an open fold never stretches its row neighbours. */}
           <div className="grid gap-2.5 md:grid-cols-2 xl:grid-cols-3">
             {TOKEN_CATEGORIES.map((category) => {
               let beforeTokens: ReactNode = null;

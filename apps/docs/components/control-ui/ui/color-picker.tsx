@@ -47,7 +47,7 @@ import { Input } from "@/components/control-ui/ui/input";
 import { NumberField, NumberFieldGroup, NumberFieldInput } from "@/components/control-ui/ui/number-field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 
-// ─── shared paint constants (gradient DATA, not tokens — see the design contract) ────────────────
+// Gradient DATA, not tokens — see the design contract.
 const HUE_GRADIENT =
   "linear-gradient(to right, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
 // Neutral checkerboard that adapts to light/dark via the border token.
@@ -88,8 +88,6 @@ function getEyeDropperSnapshot() {
 function getEyeDropperServerSnapshot() {
   return false;
 }
-
-// ─── State + context ─────────────────────────────────────────────────────────
 
 type ColorPickerContextValue = {
   hsva: Hsva;
@@ -192,8 +190,6 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
   };
 }
 
-// ─── Root + popover shell ──────────────────────────────────────────────────────
-
 export function ColorPicker({ open, defaultOpen, onOpenChange, children, ...state }: ColorPickerProps) {
   const ctx = useColorState({ ...state, children });
   return (
@@ -279,8 +275,6 @@ export function ColorPickerPanel({ className, children, ...props }: ColorPickerP
     </div>
   );
 }
-
-// ─── Saturation / value area ───────────────────────────────────────────────────
 
 export function ColorPickerArea({ className, ...props }: ColorPickerAreaProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
@@ -368,7 +362,7 @@ export function ColorPickerAreaThumb({ className, ...props }: ColorPickerAreaThu
   );
 }
 
-// ─── Hue / alpha sliders (Base UI Slider directly, custom track paint) ─────────
+// Hue / alpha sliders: Base UI Slider directly, custom track paint.
 
 export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy }: ColorPickerHueProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
@@ -439,7 +433,7 @@ export function ColorPickerAlpha({ className, "aria-label": ariaLabel, "aria-lab
   );
 }
 
-// ─── Hue/sat wheel (alternate to Area + Hue) ───────────────────────────────────
+// Hue/sat wheel, an alternate to Area + Hue.
 
 const WHEEL_HUE =
   "conic-gradient(from 90deg, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
@@ -509,8 +503,6 @@ export function ColorPickerWheel({ className, ...props }: ColorPickerWheelProps)
     </div>
   );
 }
-
-// ─── Text input + format select ───────────────────────────────────────────────
 
 export function ColorPickerInput({
   size = "sm",
@@ -591,8 +583,6 @@ export function ColorPickerFormatSelect({
   );
 }
 
-// ─── Numeric channels ──────────────────────────────────────────────────────────
-
 export function ColorPickerChannels({ className, children, ...props }: ColorPickerChannelsProps) {
   const { hsva, format, alpha } = useColorPicker();
   const specs = getChannels(hsva, format).filter((spec) => alpha || spec.id !== "a");
@@ -634,8 +624,6 @@ export function ColorPickerChannel({ channel, label, className, "aria-label": ar
   );
 }
 
-// ─── Eyedropper ────────────────────────────────────────────────────────────────
-
 declare global {
   interface Window {
     EyeDropper?: { new (): { open: () => Promise<{ sRGBHex: string }> } };
@@ -672,8 +660,6 @@ export function ColorPickerEyeDropper({ className, children, ...props }: ColorPi
     </Button>
   );
 }
-
-// ─── Swatches ──────────────────────────────────────────────────────────────────
 
 export function ColorPickerSwatches({ colors, label, className, children, ...props }: ColorPickerSwatchesProps) {
   return (
@@ -741,8 +727,6 @@ export function ColorPickerSwatchAdd({ onAdd, className, children, ...props }: C
   );
 }
 
-// ─── Accessibility advice ──────────────────────────────────────────────────────
-
 export function ColorPickerContrast({ background = "#ffffff", className, ...props }: ColorPickerContrastProps) {
   const { hsva, setFromString } = useColorPicker();
   const bg = parseColor(background);
@@ -794,8 +778,6 @@ function WcagPill({ ok, children }: { ok: boolean; children: ReactNode }) {
   );
 }
 
-// ─── Output preview ─────────────────────────────────────────────────────────────
-
 export function ColorPickerOutput({ className, children, renderValue, ...props }: ColorPickerOutputProps) {
   const { valueString } = useColorPicker();
   return (
@@ -819,8 +801,6 @@ export function ColorPickerOutput({ className, children, renderValue, ...props }
     </div>
   );
 }
-
-// ─── Equality + local glyphs ─────────────────────────────────────────────────────
 
 function sameColor(a: string, b: string): boolean {
   const pa = parseColor(a);

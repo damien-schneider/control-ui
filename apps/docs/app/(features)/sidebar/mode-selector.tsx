@@ -28,7 +28,6 @@ export function SidebarModeSelector({
 }) {
   return (
     <nav aria-label="Documentation sections" className="relative isolate flex w-fit shrink-0 items-center gap-0.5">
-      {/* Single pill: rests on the active mode, chases the hovered one (data-hover demotes it to the wash). */}
       <TrackHighlight className="rounded-[var(--toolbar-item-radius-fit)] bg-background shadow-sm ring-0 data-[hover]:bg-background/10 duration-[var(--duration-slow)] ease-[var(--ease-emphasized)]" />
       {sidebarModes.map((item) => {
         const active = item.id === mode;

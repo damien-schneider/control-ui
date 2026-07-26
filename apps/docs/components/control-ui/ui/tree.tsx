@@ -31,8 +31,6 @@ const TrackHighlight = lazy(() =>
 
 const TYPEAHEAD_TIMEOUT = 500;
 
-// ---- context (inline, sidebar.tsx convention) --------------------------------------------------
-
 type TreeContextValue = {
   selectionMode: TreeSelectionMode;
   indicator: TreeSelectionIndicator;
@@ -95,7 +93,7 @@ function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (ref) ref.current = value;
 }
 
-// ---- keyboard (module scope; closes over the ctx passed in as an argument) ---------------------
+// Keyboard handling at module scope, closing over the ctx passed in as an argument.
 
 function labelOf(item: RegisteredTreeItem, ctx: TreeContextValue): string {
   return item.label ?? ctx.getLabel(item.value);
@@ -236,8 +234,6 @@ function handleTreeKeyDown(event: KeyboardEvent<HTMLUListElement>, ctx: TreeCont
       handleTypeahead(event, items, index, ctx, typeahead);
   }
 }
-
-// ---- root --------------------------------------------------------------------------------------
 
 export function Tree({
   selectionMode = "single",
@@ -386,7 +382,7 @@ export function Tree({
   );
 }
 
-// ---- item (leaf = <li>; branch = Collapsible.Root rendered as <li>) ----------------------------
+// Leaf renders as <li>; a branch is Collapsible.Root rendered as <li>.
 
 export function TreeItem({ value, disabled = false, label, className, style, children, ref, ...props }: TreeItemProps) {
   const tree = useTree();
@@ -462,7 +458,7 @@ export function TreeItem({ value, disabled = false, label, className, style, chi
   );
 }
 
-// ---- trigger (presentational row; the <li> above owns focus) -----------------------------------
+// Presentational row — the <li> above owns focus.
 
 export function TreeItemTrigger({ className, children, onClick, render, ...props }: TreeItemTriggerProps) {
   const tree = useTree();
@@ -505,7 +501,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
   });
 }
 
-// ---- indicator (aria-hidden chevron for branches; aligned spacer for leaves) -------------------
+// aria-hidden chevron for branches, aligned spacer for leaves.
 
 export function TreeItemIndicator({ className, children, ...props }: TreeItemIndicatorProps) {
   const tree = useTree();
@@ -546,7 +542,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
   );
 }
 
-// ---- label (accessible name + type-ahead target) -----------------------------------------------
+// Accessible name and type-ahead target.
 
 export function TreeItemLabel({ className, children, render, ref, ...props }: TreeItemLabelProps) {
   const tree = useTree();
@@ -576,7 +572,6 @@ export function TreeItemLabel({ className, children, render, ref, ...props }: Tr
   });
 }
 
-// ---- content (Collapsible.Panel wrapping the child group) --------------------------------------
 // Reuses Base UI Collapsible's measured --collapsible-panel-height for height grow, layers opacity fade + small settle-slide on child group so dense subtree reads cleaner than bare height clip.
 // Enter/exit driven by data-starting-style/data-ending-style (set only during transition) so slide plays on BOTH open and close, never sticks.
 // All motion on --duration-* tokens; data-motion="reduced" collapses to 0ms free.

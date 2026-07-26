@@ -11,7 +11,6 @@ import { skillConcernSidebarIcons } from "./icons";
 import { humanizeNavName } from "./nav-items";
 import type { DocsNavItem } from "./types";
 
-// Dogfoods raw Sidebar anatomy: SidebarMenuButton owns active state and tooltip while Link supplies navigation.
 export function DocsNavGroup({
   title,
   icon,

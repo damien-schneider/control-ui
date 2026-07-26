@@ -30,7 +30,6 @@ const badgeColorTokens: ThemeContractToken[] = BADGE_COLORS.flatMap((color) => [
 ]);
 
 export const THEME_CONTRACT: readonly ThemeContractToken[] = [
-  // ---- color — the shadcn base names + the page canvas ------------------------------------------
   token("--background", "color", "core", "Base surface color (panels, bubbles read it via bg-background)."),
   token("--foreground", "color", "core", "Default text color on --background."),
   token("--card", "color", "core", "Elevated card surface."),
@@ -59,7 +58,6 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--popup-item-highlight-background", "color", "advanced", "Highlighted or selected popup row fill."),
   ...badgeColorTokens,
 
-  // ---- typography — faces, roles, and the role-named type scale ---------------------------------
   token("--font-sans", "typography", "core", "Typeface for the whole UI."),
   token("--font-mono", "typography", "core", "Monospace face (code, kbd)."),
   token("--font-body", "typography", "advanced", "Font ROLE for body/UI text; defaults to --font-sans."),
@@ -88,7 +86,6 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--text-display--letter-spacing", "typography", "advanced", "Tracking paired onto text-display."),
   token("--text-meta", "typography", "advanced", "Legacy alias of --text-caption (11px)."),
 
-  // ---- radius — THE knob, its derived scale, and corner geometry --------------------------------
   token("--radius", "radius", "core", "THE single radius knob; the whole scale multiplies from it."),
   token("--radius-control", "radius", "advanced", "Shared control corner (button, trigger, field, chip); ×2 from --radius."),
   token("--radius-sm", "radius", "advanced", "Scale rung: --radius × 0.6."),
@@ -110,7 +107,6 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--nest-safe", "radius", "advanced", "Sub-pixel guard for rounded children inside clipped rounded containers."),
   token("--nest-corner-ratio", "radius", "advanced", "Corner-fit ratio (2 + √2) capping panel corners near inset controls."),
 
-  // ---- shadow — one geometry, themed by global knobs + tier multipliers -------------------------
   token("--shadow-color", "shadow", "advanced", "Hue every shadow is tinted with."),
   token("--shadow-highlight", "shadow", "advanced", "Inner top light painted along raised surfaces' top edge (carries its resting alpha)."),
   token("--shadow-size", "shadow", "advanced", "Global geometry multiplier: 1 = default depth, 0 = flat."),
@@ -122,14 +118,12 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--shadow-modal-multiplier", "shadow", "advanced", "Elevation tier: dialogs and sheets."),
   token("--shadow-ambient-multiplier", "shadow", "advanced", "Elevation tier: ambient scene lift."),
 
-  // ---- motion — curves and tempo ----------------------------------------------------------------
   token("--ease-standard", "motion", "advanced", "Default easing curve for color/text transitions."),
   token("--ease-emphasized", "motion", "advanced", "Emphasized curve for entrances and larger moves."),
   token("--duration-fast", "motion", "core", "Fast tempo (hover, color)."),
   token("--duration-base", "motion", "core", "Base tempo (menus, indicators)."),
   token("--duration-slow", "motion", "core", "Slow tempo (panel/message entrances)."),
 
-  // ---- surface — translucency, overlays, scroll fades --------------------------------------------
   token("--popover-opacity", "surface", "advanced", "Floating-surface translucency; <1 + blur = frosted glass."),
   token("--backdrop-blur-popover", "surface", "advanced", "Backdrop blur behind floating surfaces."),
   token("--overlay-opacity", "surface", "advanced", "Modal overlay (dialog backdrop) dim strength."),
@@ -137,7 +131,6 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--scroll-fade-size", "surface", "advanced", "Edge-fade depth of scrollable surfaces; 0 = hard edges."),
   token("--popup-item-disabled-opacity", "surface", "advanced", "Opacity of disabled popup rows."),
 
-  // ---- layout — density and the control ramp ------------------------------------------------------
   token("--popover-padding", "layout", "advanced", "Gap between popup container edge and rows (drives concentric corners)."),
   token("--padding-x", "layout", "advanced", "Horizontal content density of rounded surfaces (bubble, composer)."),
   token("--padding-y", "layout", "advanced", "Vertical content density of rounded surfaces."),

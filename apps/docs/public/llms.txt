@@ -160,7 +160,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [CSS-first motion & sizing](http://127.0.0.1:3000/skills/css-first-motion-and-sizing): Drive sizing, enter/exit motion, and scroll effects from CSS and native attributes — token-driven and progressively enhanced — instead of measuring and animating values in JavaScript.
 - [Derive, do not duplicate](http://127.0.0.1:3000/skills/react-derive-dont-duplicate): Avoid second sources of truth in component props, hook parameters, and local state.
 - [Remount state boundaries](http://127.0.0.1:3000/skills/react-remount-state-boundaries): Reset state by changing component identity or loading boundaries, not by syncing with effects.
-- [Explicit names instead of comments](http://127.0.0.1:3000/skills/react-explicit-naming): Encode intent in identifiers and extracted units so the code needs no explanatory comments.
+- [Explicit names instead of comments](http://127.0.0.1:3000/skills/react-explicit-naming): Encode intent in identifiers and extracted units so the code needs no explanatory comments, and keep the rare justified one telegraphic.
 - [One responsibility per file](http://127.0.0.1:3000/skills/react-single-responsibility): Split domain components and hooks before fetching, filtering, selection, and form state become entangled.
 - [Keep input and output APIs narrow](http://127.0.0.1:3000/skills/react-narrow-apis): Split oversized prop, argument, and return-value APIs into cohesive responsibilities.
 - [Keep context necessary, narrow, and stable](http://127.0.0.1:3000/skills/react-context-ownership): Use context only across real composition boundaries, with the smallest stable semantic value consumers need.

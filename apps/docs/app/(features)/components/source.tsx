@@ -52,7 +52,6 @@ export function DocsCollapsible({
   children: ReactNode;
   defaultOpen?: boolean;
 }) {
-  // Docs site dogfoods the Control UI Collapsible primitive for its own disclosures — chrome uses the exact slot the registry ships (measured-height motion, data-state).
   return (
     <UICollapsible id={id} defaultOpen={defaultOpen} className="min-w-0 scroll-mt-20 overflow-hidden rounded-xl border bg-background">
       <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left text-body font-medium transition-colors hover:bg-muted/30">
@@ -115,7 +114,7 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
             <CodeCopy value={activeFile.code} />
           </CodeActions>
         </CodeHeader>
-        <TabsPanel key={activeFile.path} value={activeFile.path} className="bg-muted/35">
+        <TabsPanel key={activeFile.path} value={activeFile.path}>
           <CodeContent code={activeFile.code} lang={languageForPath(activeFile.path)} />
         </TabsPanel>
       </Code>
@@ -126,43 +125,34 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
 export function PreviewTabs({
   anchorId = "preview",
   code,
-  codeTitle = "Example source",
   children,
   controls,
   previewClassName = "flex min-h-[280px] items-center justify-center",
 }: {
   anchorId?: string | null;
   code: string;
-  codeTitle?: string;
   children: ReactNode;
   controls?: ReactNode;
   previewClassName?: string;
 }) {
-  // Dogfoods Control UI Tabs primitive: active indicator slides between Preview/Code.
-  // Controls stay visible on BOTH tabs: a version picker drives the code pane too, not just the rendered demo.
   const [tab, setTab] = useState("preview");
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20 overflow-hidden rounded-xl border bg-background">
       <Tabs value={tab} onValueChange={setTab}>
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b px-3 py-2">
-          <TabsList>
+        {/* Controls overlay the list instead of nesting in it: role="tablist" takes tabs only, and Base UI's composite keydown would eat their arrow keys. */}
+        <div className="relative">
+          <TabsList variant="browser" className="w-full rounded-none">
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
-          {controls ? <div className="flex min-h-10 flex-wrap items-center justify-end gap-1.5 py-1.5">{controls}</div> : null}
+          {controls ? <div className="absolute inset-y-0 right-3 flex items-center justify-end gap-1.5">{controls}</div> : null}
         </div>
         <TabsPanel value="preview" className={previewClassName}>
           {children}
         </TabsPanel>
-        <TabsPanel value="code" className="bg-muted/35">
+        <TabsPanel value="code">
           <Code chrome="embedded">
-            <CodeHeader>
-              <CodeTitle>{codeTitle}</CodeTitle>
-              <CodeActions>
-                <CodeCopy value={code} />
-              </CodeActions>
-            </CodeHeader>
             <CodeContent code={code} lang="tsx" />
           </Code>
         </TabsPanel>

@@ -36,14 +36,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <ThemeDrawerProvider>
           <ThemeRuntimeProvider>
             <div data-skin-scope="docs">
-              {/* DocsShell must live inside epoch boundary: it hosts the theme editor, whose chrome (tiles/selects/sliders) resolves skinSlot too.
-                  React Compiler memoizes by props — epoch remount is the only thing that re-resolves mutated skin config.
-                  Outside boundary: tiles freeze stale skin classes from last render, patchwork of half-applied skins. */}
+              {/* Inside the boundary: epoch remount is the only thing that re-resolves mutated skin config past React Compiler's memoization. */}
               <SkinEpochBoundary>
                 <DocsShell {...getDocsShellData()} githubStars={githubStars}>
                   {children}
                 </DocsShell>
-                {/* Skin-declared control effects (ControlUiSkin.effects): mirrors active skin list onto <html>, powers ripple listener; inside boundary since epoch remount re-resolves mutable skin config. */}
+                {/* Mirrors ControlUiSkin.effects onto <html> for the ripple listener; inside the boundary for the same remount reason. */}
                 <ControlEffectsRuntime />
               </SkinEpochBoundary>
             </div>

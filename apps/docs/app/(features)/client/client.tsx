@@ -54,7 +54,6 @@ function PersistedDocsShell(props: DocsShellProps) {
   useEffect(() => {
     if (!storedSetupPreference || storedSetupPreference.version === docsSetupPreferenceVersion) return;
 
-    // Older payload may carry fields (adapter/skin/source) absent from current type; the legacy annotation surfaces them for migration (guarded by version check above).
     const legacy: LegacyDocsSetupPreference = storedSetupPreference;
     docsSetupCollection.update(defaultSetupPreference.id, (draft) => {
       draft.integration = legacy.integration ?? legacy.adapter ?? defaultSetupPreference.integration;
@@ -90,7 +89,6 @@ function DocsShellContent({
   updateSetupPreference,
 }: DocsShellContentProps) {
   const pathname = usePathname();
-  // React Compiler keeps this derivation stable while its serialized catalog inputs are unchanged.
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
 
@@ -160,13 +158,11 @@ function DocsShellContent({
           data-slot="content"
           data-surface="panel"
           className={cn(
-            // Below lg the sidebar is a sheet, so nothing sits to the left to supply that gutter: the panel pays for it itself and only drops it once the docked sidebar is back.
             "relative m-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:m-2 lg:ml-0",
             skinSlot("sidebar-layout", "content", {}),
           )}
         >
           <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
-            {/* Floating toolbar hangs over this panel, so the scrolled content — not the panel — pays its clearance: pb-24 covers the bottom-docked pill below lg, the top pad takes over once it moves up. */}
             <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-1 pb-24 md:px-2 md:pt-2 lg:pt-[calc(var(--control-h-sm)+1.5rem)] 2xl:grid-cols-[minmax(0,1fr)_180px]">
               {pageContent}
 

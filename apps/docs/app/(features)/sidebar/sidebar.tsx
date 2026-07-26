@@ -273,15 +273,12 @@ export function DocsSidebarContent({
         <DocsSidebarResizeHandle />
       </Sidebar>
 
-      {/* The toolbar pill IS the collapsed morphing panel: opening the theme editor morphs that same surface into a near-fullscreen editor, so mobile gets the full screen instead of a cramped drawer.
-          Docked to the bottom edge below lg — where the sidebar is a sheet and the thumb rules — and to the top edge from lg, where it hangs over the docs panel. The morph grows away from whichever edge holds it.
-          Root stays overflow-visible — the search popover escapes the pill, while MorphingPanelContent clips the editor to the morphing box itself. */}
+      {/* Root stays overflow-visible so the search popover escapes the pill; MorphingPanelContent still clips the editor to the morphing box. */}
       <MorphingPanel
         open={themeEditorOpen}
         onOpenChange={(nextOpen) => setThemeEditorOpen(nextOpen)}
         collapsedSize={{ width: "var(--floating-toolbar-width)", height: "var(--floating-toolbar-height)" }}
         expandedSize={{
-          // Both gutters, always: the panel keeps the anchored edge's inset and grows to the opposite one, whichever edge that is.
           width: "calc(100vw - 1rem)",
           height: "calc(100dvh - var(--floating-toolbar-top) - var(--floating-toolbar-bottom))",
         }}
@@ -298,7 +295,6 @@ export function DocsSidebarContent({
         >
           <SidebarSearch items={searchItems} onNavigate={onNavigate} />
           <ToolbarGroup className="min-w-0 flex-[1_1_100%] justify-center overflow-hidden opacity-100 transition-[flex-basis,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] peer-focus-within:pointer-events-none peer-focus-within:flex-[0_1_0%] peer-focus-within:opacity-0">
-            {/* Same lg switch as the sidebar itself: below it the sidebar is a sheet with no rail of its own, so this is the only way in. */}
             <SidebarTrigger render={<ToolbarButton iconOnly />} className="lg:hidden" />
             <ToolbarSeparator className="h-5 self-auto" />
             <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />

@@ -25,8 +25,6 @@ const clamp01 = (n: number) => clamp(n, 0, 1);
 const wrapHue = (h: number) => ((h % 360) + 360) % 360;
 const round = (n: number) => Math.round(n);
 
-// ─── HSVA ⇄ RGBA ─────────────────────────────────────────────────────────────
-
 export function hsvaToRgba({ h, s, v, a }: Hsva): Rgba {
   const S = clamp01(s / 100);
   const V = clamp01(v / 100);
@@ -63,7 +61,7 @@ export function rgbaToHsva({ r, g, b, a }: Rgba): Hsva {
   return { h: wrapHue(h), s: s * 100, v: max * 100, a: clamp01(a) };
 }
 
-// ─── HSVA ⇄ HSLA (direct, hue carried verbatim so grays keep their hue) ───────
+// HSVA ⇄ HSLA direct: hue carried verbatim so grays keep their hue.
 
 export function hsvaToHsla({ h, s, v, a }: Hsva): Hsla {
   const S = clamp01(s / 100);
@@ -88,8 +86,6 @@ export function rgbaToHsla(rgba: Rgba): Hsla {
 export function hslaToRgba(hsla: Hsla): Rgba {
   return hsvaToRgba(hslaToHsva(hsla));
 }
-
-// ─── OKLab / OKLCH (Björn Ottosson) ──────────────────────────────────────────
 
 const srgbToLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
 const linearToSrgb = (c: number) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);
@@ -143,8 +139,6 @@ export function oklchaToHsva({ L, C, H, a }: Oklcha): Hsva {
   return rgbaToHsva({ r, g, b, a });
 }
 
-// ─── HEX ⇄ RGBA ──────────────────────────────────────────────────────────────
-
 const hex2 = (n: number) => clamp(round(n), 0, 255).toString(16).padStart(2, "0");
 
 // Accepts 3/4/6/8-digit hex (with or without leading #). Returns null on malformed input.
@@ -174,8 +168,6 @@ export function rgbaToHex(rgba: Rgba, withAlpha = rgba.a < 1): string {
   const base = `#${hex2(rgba.r)}${hex2(rgba.g)}${hex2(rgba.b)}`;
   return withAlpha ? `${base}${hex2(clamp01(rgba.a) * 255)}` : base;
 }
-
-// ─── Formatting ──────────────────────────────────────────────────────────────
 
 const trimNum = (n: number, d: number) => n.toFixed(d).replace(/\.?0+$/, "");
 
@@ -207,8 +199,6 @@ export function formatColor(hsva: Hsva, format: ColorFormat, opts?: { alpha?: bo
     }
   }
 }
-
-// ─── Parsing ─────────────────────────────────────────────────────────────────
 
 // A minimal named-color table for the common cases; anything else falls through to the DOM canvas.
 const NAMED: Record<string, string> = {
@@ -291,8 +281,6 @@ export function parseColor(input: string): Hsva | null {
   return viaCanvas ? rgbaToHsva(viaCanvas) : null;
 }
 
-// ─── Numeric channel fields ──────────────────────────────────────────────────
-
 // preserves hue (+sat at true black) on achromatic mutation so area/hue thumbs don't jump to red; `prev` = color before edit
 function preserveAchromatic(next: Hsva, prev: Hsva): Hsva {
   const out = { ...next };
@@ -374,7 +362,7 @@ export function setChannel(hsva: Hsva, id: ChannelId, value: number): Hsva {
   }
 }
 
-// ─── Pointer → color mapping (pure, unit-testable) ───────────────────────────
+// Pointer → color mapping, kept pure so it is unit-testable.
 
 // origin top-left: x → saturation (0 left…100 right), y → value (100 top…0 bottom), clamped
 export function pointToSaturationValue(
@@ -386,8 +374,6 @@ export function pointToSaturationValue(
   const v = rect.height <= 0 ? 0 : (1 - clamp01(offsetY / rect.height)) * 100;
   return { s, v };
 }
-
-// ─── Gradient formatting (shared by the GradientEditor primitive) ────────────
 
 export type GradientKind = "linear" | "radial" | "conic";
 
