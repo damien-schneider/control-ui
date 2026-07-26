@@ -1274,7 +1274,7 @@
         "id": "view-transition",
         "name": "viewTransition",
         "kind": "Extension",
-        "summary": "Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.",
+        "summary": "Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.",
         "href": "/extensions/view-transition",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/view-transition.json"
       },

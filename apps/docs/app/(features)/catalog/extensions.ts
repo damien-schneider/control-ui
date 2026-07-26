@@ -47,20 +47,34 @@ export const skin: ControlUiSkin = {
     kind: "Extension",
     name: "viewTransition",
     summary:
-      "Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.",
+      "Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.",
     attach: "root",
     target: "components/control-ui/extensions/view-transition.ts",
     registryKind: "view-transition",
     activation: {
       description:
-        "Wrap your router navigation in startPageViewTransition and resolve it once the new route has rendered; the paired view-page-rise CSS preset ships with the item.",
-      code: `// on navigation (framework-agnostic — router glue stays in your app)
+        "Wrap your router navigation in startPageViewTransition and resolve it once the new route has rendered. For element morphs, useMorphTransition hands out one shared name and two prop bags — the trigger wears it while closed, the surface while open, so a portalled popup can grow out of the button that opened it. Both CSS presets ship with the item.",
+      code: `// page — on navigation (framework-agnostic, router glue stays in your app)
 startPageViewTransition(() => router.push(href));
+finishPageViewTransition(); // once the new view is on screen (e.g. a pathname effect)
 
-// once the new view is on screen (e.g. in a pathname effect)
-finishPageViewTransition();`,
+// element morph — the CSS-native layoutId; works across a portal and the top layer
+const { morph, triggerProps, surfaceProps } = useMorphTransition({ open });
+
+<Dialog open={open} onOpenChange={(next) => morph(() => setOpen(next))}>
+  {/* drop data-[popup-open]:opacity-0 to keep the trigger on the page while the dialog is open */}
+  <DialogTrigger
+    {...triggerProps}
+    className={cn(triggerProps.className, "data-[popup-open]:opacity-0")}
+    render={<Button />}
+  >
+    Open
+  </DialogTrigger>
+  <DialogContent {...surfaceProps}>…</DialogContent>
+</Dialog>`,
     },
     source: sourceFile("View transition driver", "src/registry/sources/control-ui/extensions/view-transition.ts", "extension"),
+    supportFiles: [sourceFile("Morph binding", "src/registry/hooks/use-morph-transition.ts", "hook")],
   },
   {
     id: "send-aurora",

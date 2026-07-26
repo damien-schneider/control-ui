@@ -119,7 +119,7 @@
 
 ### Extensions
 - `control-effects` (ControlEffects) — CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included. — `npx shadcn@latest add http://127.0.0.1:3000/r/control-effects.json`
-- `view-transition` (viewTransition) — Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/view-transition.json`
+- `view-transition` (viewTransition) — Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both. — `npx shadcn@latest add http://127.0.0.1:3000/r/view-transition.json`
 - `send-aurora` (SendAurora) — Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor. — `npx shadcn@latest add http://127.0.0.1:3000/r/send-aurora.json`
 
 ### Skins

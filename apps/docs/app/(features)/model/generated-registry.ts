@@ -2599,6 +2599,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/view-transition.json",
     files: [
       {
+        path: "src/registry/hooks/use-morph-transition.ts",
+        target: "@components/control-ui/hooks/use-morph-transition.ts",
+        type: "registry:hook",
+      },
+      {
         path: "src/registry/sources/control-ui/extensions/view-transition.ts",
         target: "@components/control-ui/extensions/view-transition.ts",
         type: "registry:component",

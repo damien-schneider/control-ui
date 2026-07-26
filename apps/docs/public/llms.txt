@@ -123,7 +123,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 ## Extensions
 
 - [ControlEffects](http://127.0.0.1:3000/extensions/control-effects): CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.
-- [viewTransition](http://127.0.0.1:3000/extensions/view-transition): Interrupt-safe driver for the browser View Transitions API: deferred finish, fast-click interruption, reduced-motion fallback.
+- [viewTransition](http://127.0.0.1:3000/extensions/view-transition): Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.
 - [SendAurora](http://127.0.0.1:3000/extensions/send-aurora): Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.
 
 ## Skins

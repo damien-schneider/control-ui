@@ -191,6 +191,80 @@
   animation: none;
 }
 
+/* morph-surface — shared-element morph preset for startMorphViewTransition() (extensions/view-transition.ts).
+ * Trigger and surface carry the same --morph-name at opposite ends of one state change; the browser interpolates
+ * the box between the two rects. CSS-native layoutId: no FLIP measurement, no animation runtime, no portal juggling.
+ * The name must be held by exactly ONE live element per capture — useMorphTransition gates it on open state. */
+.morph-surface {
+  view-transition-name: var(--morph-name);
+  view-transition-class: aui-morph;
+}
+
+/* A morph is element-scoped: the page body must not be captured alongside it or view-page-rise replays behind
+ * the morphing box. Driver sets the attribute before the old snapshot and clears it once the transition settles. */
+:root[data-view-transition="morph"] .view-page {
+  view-transition-name: none;
+}
+
+/* view-transition-class groups every morph pair under one rule instead of a per-name rule the CSS cannot know.
+ * Engines without it fall back to the UA default group animation — still a morph, just untuned; nothing to guard. */
+::view-transition-group(.aui-morph) {
+  animation-duration: var(--duration-slow);
+  animation-timing-function: var(--ease-emphasized);
+}
+
+/* Snapshots render at natural size, centred in the interpolating box, instead of stretching between two very
+ * different aspect ratios — content stays crisp and the box does the travelling (container-transform read). */
+::view-transition-old(.aui-morph),
+::view-transition-new(.aui-morph) {
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  object-position: center;
+}
+
+/* Old leaves early, new fades across the full travel: content settles as the box lands rather than before it. */
+::view-transition-old(.aui-morph) {
+  animation: aui-morph-fade-out var(--duration-fast) var(--ease-standard) both;
+}
+
+::view-transition-new(.aui-morph) {
+  animation: aui-morph-fade-in var(--duration-slow) var(--ease-emphasized) both;
+}
+
+@keyframes aui-morph-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes aui-morph-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Driver already skips the transition under either signal; these keep a hand-rolled startViewTransition() honest. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(.aui-morph),
+  ::view-transition-old(.aui-morph),
+  ::view-transition-new(.aui-morph) {
+    animation: none;
+  }
+}
+
+:root[data-motion="reduced"]::view-transition-group(.aui-morph),
+:root[data-motion="reduced"]::view-transition-old(.aui-morph),
+:root[data-motion="reduced"]::view-transition-new(.aui-morph) {
+  animation: none;
+}
+
 /* Control effects: data-driven + CSS-first. Primitives emit stable anatomy plus data-control; a skin or extension root opts in via data-effects="top-shine ripple".
  * No effect injects DOM: top-shine on ::before, ripple on control's own background-image (clipped by border-radius, composes with both).
  * ControlEffectsRoot only feeds click geometry via --aui-ripple-* + retriggers keyframes — streaming DOM updates cost nothing (no observer, nothing to re-sync). */

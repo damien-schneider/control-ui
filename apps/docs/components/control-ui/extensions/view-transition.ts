@@ -1,12 +1,18 @@
 // Framework-agnostic driver for browser View Transitions API, paired with view-page-rise CSS preset (effects.css .view-page/docs-page + ::view-transition pointer-events passthrough).
 // Fixes 2 things naive startViewTransition() gets wrong in a router-driven app: (1) deferred completion — pending until finishPageViewTransition() so browser snapshots NEW page not old (safety timeout unfreezes if navigation never lands); (2) interruption — new transition mid-flight skips the running one + resolves its pending finish, so rapid navigations feel instant.
+// Second entry point startMorphViewTransition() drives element-scoped shared-element morphs (see below).
 // Router glue (click guards, prefetch) stays in host-app code; this module only touches the DOM.
 
 const FINISH_TIMEOUT_MS = 500;
 
+// Marks the document while an element morph runs so the CSS preset can un-name page-level participants
+// (effects.css :root[data-view-transition="morph"] .view-page) — see startMorphViewTransition().
+const MORPH_ATTRIBUTE = "data-view-transition";
+
 // Held while a transition is mid-flight; see finishPageViewTransition().
 let finishTransition: (() => void) | null = null;
 let activeTransition: ViewTransition | null = null;
+let activeMorph: ViewTransition | null = null;
 
 export function supportsViewTransition() {
   return typeof document !== "undefined" && typeof document.startViewTransition === "function";
@@ -76,5 +82,40 @@ export function startPageViewTransition(update: () => void, { finishTimeout = FI
     .finally(() => {
       window.removeEventListener("pointerdown", interrupt, { capture: true });
       if (activeTransition === transition) activeTransition = null;
+    });
+}
+
+// Element-scoped shared-element morph: trigger and surface carry the SAME view-transition-name at opposite
+// ends of one state change and the browser interpolates the box between them — the CSS-native equivalent of a
+// motion layoutId, minus the animation runtime. Paired CSS preset: effects.css .morph-surface / .aui-morph.
+//
+// `update` must apply the DOM change synchronously (React callers wrap it in flushSync — see useMorphTransition).
+//
+// Two invariants this enforces that a naive startViewTransition() call does not:
+// - Page-level names must not ride along. A name still parked on the DOM (docs-page) is captured on both sides and
+//   replays the page preset behind the morph; the attribute lets the preset un-name it for the transition's lifetime.
+// - Overlapping morphs must not stack. A second morph mid-flight skips the first, otherwise both fight over the overlay.
+//
+// Uniqueness of the shared name is the CALLER's job: two live elements holding one name abort the transition outright.
+export function startMorphViewTransition(update: () => void) {
+  if (!supportsViewTransition() || motionReduced()) {
+    update();
+    return;
+  }
+
+  activeMorph?.skipTransition();
+  document.documentElement.setAttribute(MORPH_ATTRIBUTE, "morph");
+
+  const transition = document.startViewTransition(update);
+  activeMorph = transition;
+
+  // ready/finished reject when skipped mid-flight — expected interruption, not error.
+  transition.ready.catch(() => {});
+  transition.finished
+    .catch(() => {})
+    .finally(() => {
+      if (activeMorph !== transition) return;
+      activeMorph = null;
+      document.documentElement.removeAttribute(MORPH_ATTRIBUTE);
     });
 }
