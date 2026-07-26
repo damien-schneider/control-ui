@@ -5,7 +5,7 @@
   "title": "Context",
   "description": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "button",

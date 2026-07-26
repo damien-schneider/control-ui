@@ -5,7 +5,7 @@
   "title": "Pagination",
   "description": "Page navigation for long lists and result sets.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "core"

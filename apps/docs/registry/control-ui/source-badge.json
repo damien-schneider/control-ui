@@ -5,7 +5,7 @@
   "title": "SourceBadge",
   "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "avatar",

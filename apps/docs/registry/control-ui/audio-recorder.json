@@ -5,7 +5,7 @@
   "title": "AudioRecorder",
   "description": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "audio-visualizer",

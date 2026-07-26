@@ -11,7 +11,7 @@
     "prosemirror-keymap@^1.2.3",
     "prosemirror-model@^1.25.11",
     "prosemirror-state@^1.4.4",
-    "prosemirror-view@^1.42.1"
+    "prosemirror-view@^1.42.2"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/button.json",

@@ -5,7 +5,7 @@
   "title": "Infinite Canvas",
   "description": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/button.json",

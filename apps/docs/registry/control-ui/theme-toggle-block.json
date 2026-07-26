@@ -5,7 +5,7 @@
   "title": "Theme toggle",
   "description": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "button",

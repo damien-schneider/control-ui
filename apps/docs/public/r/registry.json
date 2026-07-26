@@ -11,7 +11,7 @@
       "description": "Stacked disclosure rows with measured panel animation.",
       "dependencies": [
         "@base-ui/react@^1.6.0",
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -52,7 +52,7 @@
       "title": "Activity",
       "description": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -1063,7 +1063,7 @@
       "title": "AudioRecorder",
       "description": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -1334,7 +1334,7 @@
         "prosemirror-keymap@^1.2.3",
         "prosemirror-model@^1.25.11",
         "prosemirror-state@^1.4.4",
-        "prosemirror-view@^1.42.1"
+        "prosemirror-view@^1.42.2"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1397,7 +1397,7 @@
       "title": "ChatComposerAttachment",
       "description": "Composer attachment rail with file previews, upload progress, and removal.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1508,8 +1508,8 @@
       "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
       "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/code.css\";",
       "dependencies": [
-        "@tanstack/react-virtual@^3.14.6",
-        "lucide-react@^1.24.0",
+        "@tanstack/react-virtual@^3.14.8",
+        "lucide-react@^1.27.0",
         "shiki@^4.3.1"
       ],
       "registryDependencies": [
@@ -1544,7 +1544,7 @@
       "title": "CodeBlockEditor",
       "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1574,7 +1574,7 @@
       "title": "Code Diff",
       "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
       "dependencies": [
-        "@tanstack/react-virtual@^3.14.6",
+        "@tanstack/react-virtual@^3.14.8",
         "diff@^9.0.0"
       ],
       "registryDependencies": [
@@ -1605,7 +1605,7 @@
       "title": "Coding agent",
       "description": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1741,7 +1741,7 @@
       "title": "Context",
       "description": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1906,7 +1906,7 @@
       "title": "Dropzone",
       "description": "Composable file intake with validation, managed selection, and drag-activated overlays.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2005,7 +2005,7 @@
       "title": "EnvironmentVariables",
       "description": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2062,7 +2062,7 @@
       "title": "File explorer",
       "description": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2157,7 +2157,7 @@
       "title": "Infinite Canvas",
       "description": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2198,7 +2198,7 @@
       "title": "InlineCitation",
       "description": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2526,7 +2526,7 @@
       "title": "Pagination",
       "description": "Page navigation for long lists and result sets.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2547,7 +2547,7 @@
       "title": "Phone input",
       "description": "International phone field with country search, E.164 values, and Zod validation helpers.",
       "dependencies": [
-        "libphonenumber-js@^1.13.8",
+        "libphonenumber-js@^1.13.9",
         "react-phone-number-input@^3.4.17",
         "zod@^4.4.3"
       ],
@@ -2756,7 +2756,7 @@
       "title": "Settings",
       "description": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2790,7 +2790,7 @@
       "dependencies": [
         "@base-ui/react@^1.6.0",
         "class-variance-authority@^0.7.1",
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3121,7 +3121,7 @@
       "title": "SourceBadge",
       "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/avatar.json",
@@ -3144,7 +3144,7 @@
       "title": "Spinner",
       "description": "Accessible loading indicator for pending buttons, panels, and inline waits.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3165,7 +3165,7 @@
       "title": "Stepper",
       "description": "Static and interactive workflow steps with horizontal and vertical layouts.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3269,7 +3269,7 @@
       "title": "TaskList",
       "description": "Floating agent task progress pill above the composer that expands into the full task list.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -3310,7 +3310,7 @@
       "title": "Theme toggle",
       "description": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3464,7 +3464,7 @@
       "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
       "dependencies": [
         "@base-ui/react@^1.6.0",
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -3542,7 +3542,7 @@
       "title": "UserAsk",
       "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
       "dependencies": [
-        "lucide-react@^1.24.0"
+        "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",

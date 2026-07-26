@@ -5,7 +5,7 @@
   "title": "Code Diff",
   "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
   "dependencies": [
-    "@tanstack/react-virtual@^3.14.6",
+    "@tanstack/react-virtual@^3.14.8",
     "diff@^9.0.0"
   ],
   "registryDependencies": [

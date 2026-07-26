@@ -5,7 +5,7 @@
   "title": "CodeBlockEditor",
   "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "button",

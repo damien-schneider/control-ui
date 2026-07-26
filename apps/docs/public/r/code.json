@@ -6,8 +6,8 @@
   "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
   "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/code.css\";",
   "dependencies": [
-    "@tanstack/react-virtual@^3.14.6",
-    "lucide-react@^1.24.0",
+    "@tanstack/react-virtual@^3.14.8",
+    "lucide-react@^1.27.0",
     "shiki@^4.3.1"
   ],
   "registryDependencies": [

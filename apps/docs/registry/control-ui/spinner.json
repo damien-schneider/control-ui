@@ -5,7 +5,7 @@
   "title": "Spinner",
   "description": "Accessible loading indicator for pending buttons, panels, and inline waits.",
   "dependencies": [
-    "lucide-react@^1.24.0"
+    "lucide-react@^1.27.0"
   ],
   "registryDependencies": [
     "core"
