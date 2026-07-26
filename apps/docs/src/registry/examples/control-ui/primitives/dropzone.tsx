@@ -15,13 +15,7 @@ import {
   DropzoneStatus,
   DropzoneTrigger,
 } from "@/components/control-ui/ui/dropzone";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from "@/components/control-ui/ui/item";
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 
 const documentPolicy: DropzonePolicy = {
   accept: {
@@ -45,12 +39,7 @@ export function PrimitiveDropzoneExample() {
   const [files, setFiles] = useState<readonly File[]>([]);
 
   return (
-    <Dropzone
-      value={files}
-      onValueChange={(nextFiles) => setFiles(nextFiles)}
-      policy={documentPolicy}
-      className="w-full max-w-xl"
-    >
+    <Dropzone value={files} onValueChange={(nextFiles) => setFiles(nextFiles)} policy={documentPolicy} className="w-full max-w-xl">
       <DropzoneInput />
       <DropzoneArea>
         <DropzoneTrigger />

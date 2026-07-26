@@ -12,7 +12,7 @@ export default defineConfig({
   },
   webServer: {
     command: "bun run dev",
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI,
     url: "http://127.0.0.1:3000",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],

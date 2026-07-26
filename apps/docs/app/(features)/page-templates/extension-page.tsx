@@ -6,7 +6,7 @@ import type { DocsExtension } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
-import { InstallPanel, PageHeader, SectionCode, SectionTitle } from "./shared";
+import { InstallPanel, PageHeader, RegistryDependencyReferences, SectionCode, SectionTitle } from "./shared";
 
 // Extension page: an optional installable layered on the library. The attach mode is the load-bearing fact —
 // root extensions mount once and discover targets by anatomy; anchored extensions are activated from skin.config
@@ -54,8 +54,9 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
           them.
         </InstallPanel>
         <SectionCode id="activation" title="Activation" description={extension.activation.description} code={extension.activation.code} />
+        <RegistryDependencyReferences dependencies={extension.registryDependencies} />
         <section id="source" className="min-w-0 scroll-mt-20">
-          <SectionTitle title="Source" description="Installed extension source" />
+          <SectionTitle title="Source" description="Owned source and private support files" />
           <SourceTabs files={files} />
         </section>
       </div>

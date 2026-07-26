@@ -46,6 +46,37 @@ export type ActivityProps = Omit<CollapsibleProps, "children"> & {
   statusLabel?: ReactNode;
 };
 
+export type ContextSegmentKind = "system" | "tool" | "message" | "source" | "reasoning" | "cache" | "other";
+
+export type ContextStatus = "normal" | "over-limit" | "unavailable";
+
+export type ContextSegment = {
+  id: string;
+  label: string;
+  tokens: number;
+  kind?: ContextSegmentKind;
+  description?: ReactNode;
+};
+
+export type ContextProps = Omit<ComponentProps<"div">, "children"> & {
+  segments: readonly ContextSegment[];
+  maxTokens?: number | null;
+  model?: string;
+  locale?: Intl.LocalesArgument;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  children?: ReactNode;
+};
+
+export type SourceReference = {
+  href: string;
+  title?: string;
+  description?: string;
+  quote?: string;
+  faviconSrc?: string | false;
+};
+
 /** Resolved answers keyed by question id; a freeform option resolves to its typed text. */
 export type UserAskAnswers = Record<string, string>;
 
@@ -231,6 +262,21 @@ export type TabsTabProps = Omit<ComponentProps<"button">, "value"> & {
 export type TabsPanelProps = ComponentProps<"div"> & {
   value: string;
 };
+
+export type TimelineState = "neutral" | "pending" | "running" | "success" | "error";
+
+export type TimelineProps = ComponentProps<"ol">;
+
+export type TimelineItemProps = ComponentProps<"li"> & {
+  state?: TimelineState;
+};
+
+export type TimelineIndicatorProps = ComponentProps<"span">;
+export type TimelineSeparatorProps = ComponentProps<"span">;
+export type TimelineContentProps = ComponentProps<"div">;
+export type TimelineTitleProps = ComponentProps<"div">;
+export type TimelineDescriptionProps = ComponentProps<"div">;
+export type TimelineMetaProps = ComponentProps<"div">;
 
 // components/control-ui/ui/stepper: semantic ordered steps with optional native triggers and preserved panels, without tab semantics.
 export type StepperOrientation = "horizontal" | "vertical";

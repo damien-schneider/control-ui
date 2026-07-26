@@ -18,6 +18,8 @@ import type {
   CodeChrome,
   CodeDensity,
   CodeDiffLineType,
+  ContextSegmentKind,
+  ContextStatus,
   ControlEffect,
   ControlSize,
   DiffStyle,
@@ -41,6 +43,7 @@ import type {
   TableOfContentsVariant,
   TabsListVariant,
   TaskStatus,
+  TimelineState,
   ToolbarLinkVariant,
   ToolbarVariant,
   TreeSelectionMode,
@@ -283,6 +286,16 @@ export type SkinSlotContexts = {
     description: Record<never, never>;
     content: { active: boolean };
   };
+  timeline: {
+    root: Record<never, never>;
+    item: { state: TimelineState };
+    indicator: Record<never, never>;
+    separator: Record<never, never>;
+    content: Record<never, never>;
+    title: Record<never, never>;
+    description: Record<never, never>;
+    meta: Record<never, never>;
+  };
   "scroll-area": {
     root: Record<never, never>;
     scrollbar: { orientation: "horizontal" | "vertical" };
@@ -360,10 +373,41 @@ export type SkinSlotContexts = {
     detail: Record<never, never>;
     "detail-label": Record<never, never>;
     "detail-content": Record<never, never>;
-    list: Record<never, never>;
-    item: Record<never, never>;
-    "item-icon": Record<never, never>;
-    "item-content": Record<never, never>;
+  };
+  context: {
+    root: { status: ContextStatus };
+    trigger: { status: ContextStatus };
+    "trigger-indicator": { status: ContextStatus };
+    "trigger-label": Record<never, never>;
+    content: Record<never, never>;
+    header: Record<never, never>;
+    summary: { status: ContextStatus };
+    graph: { status: ContextStatus };
+    track: Record<never, never>;
+    segment: { kind: ContextSegmentKind };
+    "limit-marker": Record<never, never>;
+    legend: Record<never, never>;
+    "legend-item": { kind: ContextSegmentKind };
+    "legend-indicator": { kind: ContextSegmentKind };
+    "legend-value": Record<never, never>;
+  };
+  "inline-citation": {
+    root: Record<never, never>;
+    trigger: Record<never, never>;
+    favicons: Record<never, never>;
+    favicon: Record<never, never>;
+    label: Record<never, never>;
+    content: Record<never, never>;
+    navigation: Record<never, never>;
+    previous: Record<never, never>;
+    next: Record<never, never>;
+    position: Record<never, never>;
+    source: Record<never, never>;
+    "source-header": Record<never, never>;
+    "source-favicon": Record<never, never>;
+    "source-title": Record<never, never>;
+    "source-description": Record<never, never>;
+    "source-quote": Record<never, never>;
   };
   "source-badge": {
     root: Record<never, never>;

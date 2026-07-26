@@ -13,10 +13,7 @@ export type DropzoneAccept = Readonly<Record<string, readonly string[]>>;
 export type DropzoneFileError = { code: DropzoneErrorCodeValue | string; message: string };
 export type DropzoneFileRejection = { file: File; errors: readonly DropzoneFileError[] };
 export type DropzoneValidatorResult = DropzoneFileError | readonly DropzoneFileError[] | null;
-export type DropzoneValidator = (
-  file: File,
-  signal: AbortSignal,
-) => DropzoneValidatorResult | Promise<DropzoneValidatorResult>;
+export type DropzoneValidator = (file: File, signal: AbortSignal) => DropzoneValidatorResult | Promise<DropzoneValidatorResult>;
 export type DropzonePolicy = {
   accept?: DropzoneAccept;
   minSize?: number;
@@ -162,9 +159,7 @@ export async function processDropzoneFiles(
   signal: AbortSignal,
 ): Promise<DropzoneProcessResult> {
   signal.throwIfAborted();
-  const validatedFiles = await Promise.all(
-    files.map(async (file) => ({ file, errors: await validateDropzoneFile(file, policy, signal) })),
-  );
+  const validatedFiles = await Promise.all(files.map(async (file) => ({ file, errors: await validateDropzoneFile(file, policy, signal) })));
   signal.throwIfAborted();
 
   const acceptedFiles: File[] = [];
@@ -173,9 +168,7 @@ export async function processDropzoneFiles(
   const capacity = getDropzoneCapacity(policy);
   const selectedFiles = selectionMode === "append" ? [...currentValue] : [];
   const selectedIdentities = new Set(
-    policy?.allowDuplicates
-      ? []
-      : (selectionMode === "append" ? currentValue : []).map(getDropzoneFileIdentity),
+    policy?.allowDuplicates ? [] : (selectionMode === "append" ? currentValue : []).map(getDropzoneFileIdentity),
   );
 
   for (const { file, errors } of validatedFiles) {
@@ -248,12 +241,7 @@ export function getDropzoneDragVerdict(
 
   const duplicateVerdict = getDropzoneDuplicateVerdict(files, currentValue, policy, selectionMode);
   if (duplicateVerdict === "reject") return "reject";
-  if (
-    policy?.validator ||
-    options.customExtraction ||
-    metadataVerdicts.includes("unknown") ||
-    duplicateVerdict === "unknown"
-  ) {
+  if (policy?.validator || options.customExtraction || metadataVerdicts.includes("unknown") || duplicateVerdict === "unknown") {
     return "unknown";
   }
   return "accept";
@@ -269,10 +257,7 @@ export function formatDropzoneFileSize(size: number) {
   return `${value} ${units[unitIndex]}`;
 }
 
-function getFileAcceptance(
-  file: Pick<DropzoneFileMetadata, "name" | "type">,
-  entries: readonly NormalizedAcceptEntry[],
-): FileAcceptance {
+function getFileAcceptance(file: Pick<DropzoneFileMetadata, "name" | "type">, entries: readonly NormalizedAcceptEntry[]): FileAcceptance {
   if (entries.length === 0) return "accept";
   const verdicts = entries.map((entry) => getAcceptEntryVerdict(file, entry));
   if (verdicts.includes("accept")) return "accept";
@@ -316,9 +301,7 @@ function getDropzoneDuplicateVerdict(
 ): FileAcceptance {
   if (policy?.allowDuplicates) return "accept";
 
-  const selectedIdentities = new Set(
-    selectionMode === "append" ? currentValue.map(getDropzoneFileIdentity) : [],
-  );
+  const selectedIdentities = new Set(selectionMode === "append" ? currentValue.map(getDropzoneFileIdentity) : []);
   let hasUnknownIdentity = false;
   for (const file of files) {
     if (!hasCompleteIdentity(file)) {
@@ -332,24 +315,17 @@ function getDropzoneDuplicateVerdict(
   return hasUnknownIdentity ? "unknown" : "accept";
 }
 
-function isDropzoneErrorList(
-  result: DropzoneFileError | readonly DropzoneFileError[],
-): result is readonly DropzoneFileError[] {
+function isDropzoneErrorList(result: DropzoneFileError | readonly DropzoneFileError[]): result is readonly DropzoneFileError[] {
   return Array.isArray(result);
 }
 
-function normalizeValidatorErrors(
-  result: DropzoneFileError | readonly DropzoneFileError[],
-): readonly DropzoneFileError[] {
+function normalizeValidatorErrors(result: DropzoneFileError | readonly DropzoneFileError[]): readonly DropzoneFileError[] {
   return isDropzoneErrorList(result) ? result : [result];
 }
 
 function hasCompleteIdentity(file: DropzoneFileMetadata) {
   return (
-    Boolean(file.webkitRelativePath || file.name) &&
-    file.size !== undefined &&
-    file.type !== undefined &&
-    file.lastModified !== undefined
+    Boolean(file.webkitRelativePath || file.name) && file.size !== undefined && file.type !== undefined && file.lastModified !== undefined
   );
 }
 

@@ -98,6 +98,25 @@ export const reactCodeQualitySkills = [
     ],
   },
   {
+    id: "react-context-ownership",
+    title: "Keep context necessary, narrow, and stable",
+    concern: "react-code-quality",
+    summary: "Use context only across real composition boundaries, with the smallest stable semantic value consumers need.",
+    goal: "Keep context ownership explicit and prevent broad or unstable provider values from invalidating unrelated consumers.",
+    checks: [
+      "Use context when a root owns state or a semantic mode needed by user-composed descendants that props cannot directly reach.",
+      "Keep each context value cohesive; prefer a scalar for one fact, and consider splitting when disjoint consumers need values that change at materially different rates.",
+      "Stabilize provider object or function identities when unrelated renders would recreate a semantically unchanged value; treat memoization as an optional optimization, not a blanket rule.",
+      "Destructure the fields used at the narrowest consumer so its dependencies are visible; keep the whole value for nullable-context validation, cohesive object passing, or when most fields are used.",
+    ],
+    avoid: [
+      "Context for values needed only by a directly controlled child, or context added only to avoid passing a small cohesive prop.",
+      "Blanket useMemo or useCallback around every provider value, or splitting every field into a separate context when consumers need them together.",
+      "Claims that destructuring a context value reduces re-renders; useContext subscribes to the complete provider value.",
+      "Destructuring a nullable context before the custom hook verifies that its provider exists.",
+    ],
+  },
+  {
     id: "react-no-dom-queries",
     title: "Do not query the DOM in React",
     concern: "react-code-quality",

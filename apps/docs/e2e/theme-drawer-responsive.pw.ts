@@ -1,15 +1,37 @@
 import { expect, test } from "@playwright/test";
 
-test("theme editor starts closed on mobile and open on desktop", async ({ page }) => {
+test("theme editor toggles on mobile and desktop", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/primitives/code-diff");
+  await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
 
-  await expect(page.getByRole("button", { name: "Edit theme" })).toBeVisible();
-  await expect(page.locator('[data-control-ui="drawer"][data-slot="content"]')).toHaveCount(0);
+  const editTheme = page.getByRole("button", { name: "Edit theme" });
+  const mobileDrawer = page.locator('[data-control-ui="drawer"][data-slot="content"]');
+
+  await expect(editTheme).toBeVisible();
+  await expect(mobileDrawer).toHaveCount(0);
   await expect(page.locator("#examples")).not.toHaveAttribute("aria-hidden", "true");
 
-  await page.setViewportSize({ width: 1024, height: 900 });
+  await editTheme.click();
+  await expect(mobileDrawer).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Theme editor" })).toBeVisible();
 
-  await expect(page.getByRole("button", { name: "Close theme editor" })).toBeVisible();
-  await expect(page.locator("aside.theme-editor-desktop-panel")).toBeVisible();
+  await page.getByRole("button", { name: "Close editor" }).click();
+  await expect(mobileDrawer).toHaveCount(0);
+
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await page.reload();
+
+  const closeTheme = page.getByRole("button", { name: "Close theme editor" });
+  const desktopPanel = page.locator("aside.theme-editor-desktop-panel");
+
+  await expect(closeTheme).toBeVisible();
+  await expect(desktopPanel).toBeVisible();
+
+  await closeTheme.click();
+  await expect(editTheme).toBeVisible();
+  await expect(desktopPanel).toHaveCount(0);
+
+  await editTheme.click();
+  await expect(closeTheme).toBeVisible();
+  await expect(desktopPanel).toBeVisible();
 });

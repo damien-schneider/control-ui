@@ -10,9 +10,7 @@
   "registryDependencies": [
     "audio-visualizer",
     "button",
-    "command",
-    "core",
-    "popover"
+    "core"
   ],
   "files": [
     {

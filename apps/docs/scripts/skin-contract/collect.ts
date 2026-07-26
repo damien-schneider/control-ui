@@ -5,7 +5,15 @@ import path from "node:path";
 import { parse } from "@babel/parser";
 import { THEME_CONTRACT } from "../../src/registry/lib/theme-contract";
 import { createRegistryItems } from "../registry-model";
-import type { AnatomyReference, ContractPart, ContractState, SkinContract, ThemeContractArtifact } from "./model";
+import {
+  type AnatomyReference,
+  type ContractPart,
+  type ContractState,
+  type SkinContract,
+  type SkinSurfaceFamily,
+  skinSurfaceFamilies,
+  type ThemeContractArtifact,
+} from "./model";
 
 const appRoot = process.cwd();
 const registryRoot = path.join(appRoot, "src/registry");
@@ -22,7 +30,7 @@ const anatomyMetadataAttributes: Record<string, true> = {
 type MutablePart = Omit<ContractPart, "registryItems"> & {
   controls: boolean;
   registryItems: Set<string>;
-  surfaces: Set<"floating" | "modal" | "panel">;
+  surfaces: Set<SkinSurfaceFamily>;
   popupParts: Set<string>;
 };
 
@@ -56,11 +64,15 @@ function literalAttribute(attributes: any[], name: string): string | undefined {
   return attribute?.value?.type === "StringLiteral" ? attribute.value.value : undefined;
 }
 
-function semanticSurfaceAttribute(attributes: any[]): string | undefined {
+function isSurfaceFamily(value: string | undefined): value is SkinSurfaceFamily {
+  return skinSurfaceFamilies.some((family) => family === value);
+}
+
+function semanticSurfaceAttribute(attributes: any[]): SkinSurfaceFamily | undefined {
   const attribute = jsxAttribute(attributes, "data-surface");
   const expression = attribute?.value?.type === "JSXExpressionContainer" ? attribute.value.expression : attribute?.value;
   const staticValues = staticStateValues(expression);
-  return staticValues.known ? staticValues.values.find((value) => ["floating", "modal", "panel"].includes(value)) : undefined;
+  return staticValues.known ? staticValues.values.find(isSurfaceFamily) : undefined;
 }
 
 function objectProperty(object: any, name: string): any | undefined {
@@ -329,7 +341,7 @@ function mergeContractState(states: ContractState[], state: ContractState): void
 
 function mergePart(current: MutablePart, states: ContractState[], control: boolean, surface?: string, popupPart?: string): MutablePart {
   current.controls ||= control;
-  if (surface === "floating" || surface === "modal" || surface === "panel") current.surfaces.add(surface);
+  if (isSurfaceFamily(surface)) current.surfaces.add(surface);
   if (popupPart) current.popupParts.add(popupPart);
   for (const state of states) mergeContractState(current.states, state);
   return current;
@@ -484,8 +496,8 @@ export function collectSkinContract(): SkinContract {
   for (const scope of Object.values(scopes)) scope.parts = sortRecord(scope.parts, true);
 
   const controls: AnatomyReference[] = [];
-  const surfaces = { floating: [] as AnatomyReference[], modal: [] as AnatomyReference[], panel: [] as AnatomyReference[] };
-  const popup = Object.fromEntries([...popupParts].map((part) => [part, [] as AnatomyReference[]]));
+  const surfaces: Record<SkinSurfaceFamily, AnatomyReference[]> = { floating: [], modal: [], panel: [] };
+  const popup: Record<string, AnatomyReference[]> = Object.fromEntries([...popupParts].map((part) => [part, []]));
   for (const [key, value] of parts) {
     const [scope, part] = key.split(":");
     if (value.controls) controls.push({ scope, part });

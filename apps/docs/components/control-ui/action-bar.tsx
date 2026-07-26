@@ -110,12 +110,12 @@ export function ActionBarCopy({
   onClick,
   ...props
 }: ActionBarCopyProps) {
-  const context = useContext(ActionBarContext);
-  const copyValue = value ?? context.copyValue;
+  const { copyValue: contextCopyValue, onCopy, onCopyError } = useContext(ActionBarContext);
+  const copyValue = value ?? contextCopyValue;
   const { isCopied, copyToClipboard } = useCopyToClipboard({
     copiedDuration: resetDelay,
-    onCopy: context.onCopy,
-    onCopyError: context.onCopyError,
+    onCopy,
+    onCopyError,
   });
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -141,24 +141,24 @@ export type ActionBarEditProps = Omit<ActionBarItemProps, "children"> & {
 };
 
 export function ActionBarEdit({ value, children = "Edit", disabled, onClick, ...props }: ActionBarEditProps) {
-  const context = useContext(ActionBarContext);
-  const editValue = value ?? context.editValue ?? context.copyValue;
+  const { copyValue, editValue: contextEditValue, onEdit, onEditError } = useContext(ActionBarContext);
+  const editValue = value ?? contextEditValue ?? copyValue;
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
-    if (event.defaultPrevented || !context.onEdit) return;
+    if (event.defaultPrevented || !onEdit) return;
 
     try {
       const nextValue = await resolveCopyValue(editValue);
       if (!nextValue) return;
-      context.onEdit(nextValue);
+      onEdit(nextValue);
     } catch (error) {
-      context.onEditError?.(error);
+      onEditError?.(error);
     }
   }
 
   return (
-    <ActionBarItem disabled={disabled ?? (!editValue || !context.onEdit)} onClick={handleClick} {...props}>
+    <ActionBarItem disabled={disabled ?? (!editValue || !onEdit)} onClick={handleClick} {...props}>
       {children}
     </ActionBarItem>
   );

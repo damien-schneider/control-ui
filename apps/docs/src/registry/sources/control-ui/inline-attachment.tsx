@@ -6,16 +6,12 @@ import { createContext, useContext } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-type InlineAttachmentContextValue = {
-  name: string;
-};
-
-const InlineAttachmentContext = createContext<InlineAttachmentContextValue | null>(null);
+const InlineAttachmentContext = createContext<string | null>(null);
 
 function useInlineAttachmentContext() {
-  const context = useContext(InlineAttachmentContext);
-  if (!context) throw new Error("InlineAttachment compound components must be rendered inside <InlineAttachment>.");
-  return context;
+  const name = useContext(InlineAttachmentContext);
+  if (name === null) throw new Error("InlineAttachment compound components must be rendered inside <InlineAttachment>.");
+  return name;
 }
 
 export type InlineAttachmentProps = ComponentProps<"button"> & {
@@ -24,7 +20,7 @@ export type InlineAttachmentProps = ComponentProps<"button"> & {
 
 export function InlineAttachment({ name, className, children, ...props }: InlineAttachmentProps) {
   return (
-    <InlineAttachmentContext.Provider value={{ name }}>
+    <InlineAttachmentContext.Provider value={name}>
       <button
         type="button"
         aria-label={`Open attachment: ${name}`}
@@ -50,7 +46,7 @@ export type InlineAttachmentMediaProps = ComponentProps<"div"> & {
 };
 
 export function InlineAttachmentMedia({ src, alt, className, children, ...props }: InlineAttachmentMediaProps) {
-  const { name } = useInlineAttachmentContext();
+  const name = useInlineAttachmentContext();
 
   return (
     <div
@@ -107,7 +103,7 @@ export function InlineAttachmentContent({ className, ...props }: InlineAttachmen
 export type InlineAttachmentTitleProps = ComponentProps<"div">;
 
 export function InlineAttachmentTitle({ children, className, ...props }: InlineAttachmentTitleProps) {
-  const { name } = useInlineAttachmentContext();
+  const name = useInlineAttachmentContext();
 
   return (
     <div className={cn("truncate", className)} {...props}>

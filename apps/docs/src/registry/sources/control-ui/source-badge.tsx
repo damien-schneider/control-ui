@@ -13,7 +13,7 @@ export type SourceBadgeProps = Omit<ComponentProps<"a">, "href"> & {
   href: string;
 };
 
-function hostnameFromHref(href: string) {
+export function sourceHostname(href: string) {
   try {
     return new URL(href).hostname.replace(/^www\./, "") || href;
   } catch {
@@ -21,7 +21,7 @@ function hostnameFromHref(href: string) {
   }
 }
 
-function faviconFromHref(href: string) {
+export function sourceFaviconHref(href: string) {
   try {
     const source = new URL(href);
     if (source.protocol !== "https:" && source.protocol !== "http:") return undefined;
@@ -31,9 +31,27 @@ function faviconFromHref(href: string) {
   }
 }
 
+export type SourceFaviconProps = Omit<ComponentProps<typeof Avatar>, "children"> & {
+  faviconSrc?: string | false;
+  href: string;
+  imageProps?: Omit<ComponentProps<typeof AvatarImage>, "src">;
+  fallbackProps?: ComponentProps<typeof AvatarFallback>;
+};
+
+export function SourceFavicon({ faviconSrc, href, imageProps, fallbackProps, className, ...props }: SourceFaviconProps) {
+  const resolvedFaviconSrc = faviconSrc === false ? undefined : (faviconSrc ?? sourceFaviconHref(href));
+  return (
+    <Avatar {...props} className={className}>
+      {resolvedFaviconSrc ? <AvatarImage src={resolvedFaviconSrc} alt="" {...imageProps} /> : null}
+      <AvatarFallback {...fallbackProps} className={cn("rounded-[inherit] bg-muted", fallbackProps?.className)}>
+        <Globe aria-hidden="true" className="size-2.5" />
+      </AvatarFallback>
+    </Avatar>
+  );
+}
+
 export function SourceBadge({ faviconSrc, href, children, className, rel, target, ...props }: SourceBadgeProps) {
-  const hostname = hostnameFromHref(href);
-  const resolvedFaviconSrc = faviconSrc === false ? undefined : (faviconSrc ?? faviconFromHref(href));
+  const hostname = sourceHostname(href);
   const resolvedRel = rel ?? (target === "_blank" ? "noreferrer noopener" : undefined);
 
   return (
@@ -55,16 +73,13 @@ export function SourceBadge({ faviconSrc, href, children, className, rel, target
         />
       }
     >
-      <Avatar
+      <SourceFavicon
         data-control-ui="source-badge"
         data-slot="favicon"
+        href={href}
+        faviconSrc={faviconSrc}
         className={cn("size-3.5 rounded-sm bg-muted", skinSlot("source-badge", "favicon", {}))}
-      >
-        {resolvedFaviconSrc ? <AvatarImage src={resolvedFaviconSrc} alt="" /> : null}
-        <AvatarFallback className="rounded-[inherit] bg-muted">
-          <Globe aria-hidden="true" className="size-2.5" />
-        </AvatarFallback>
-      </Avatar>
+      />
       <span data-control-ui="source-badge" data-slot="label" className={cn("max-w-44 truncate", skinSlot("source-badge", "label", {}))}>
         {children ?? hostname}
       </span>

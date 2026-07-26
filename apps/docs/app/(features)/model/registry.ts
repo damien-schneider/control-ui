@@ -3,6 +3,7 @@ import { skinMetas } from "@/app/(features)/catalog/skins";
 import type {
   CompositionExample,
   DocsComponent,
+  DocsComponentVersion,
   DocsPrimitive,
   GuideSection,
   RegistryKindId,
@@ -18,14 +19,9 @@ export type InstallCommand = {
   value: string;
 };
 
-export function filesFor(component: DocsComponent) {
-  return [...(component.hook ? [component.hook] : []), component.source, ...(component.supportFiles ?? [])];
-}
-
-export function resolvePrimitives(component: DocsComponent, primitives: DocsPrimitive[]) {
-  return (component.usesPrimitives ?? [])
-    .map((id) => primitives.find((primitive) => primitive.id === id))
-    .filter((primitive): primitive is DocsPrimitive => Boolean(primitive));
+export function filesFor(component: DocsComponent, version?: DocsComponentVersion) {
+  if (version) return [version.source, ...version.supportFiles];
+  return [component.source, ...(component.hook ? [component.hook] : []), ...(component.supportFiles ?? [])];
 }
 
 function exportedComponentNames(source: string) {

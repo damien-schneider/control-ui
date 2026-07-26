@@ -2,7 +2,7 @@
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import type { CSSProperties, ReactNode, Ref } from "react";
-import { Children, createContext, Fragment, isValidElement, useContext, useRef } from "react";
+import { Children, createContext, Fragment, isValidElement, useContext, useRef, useState } from "react";
 import type { ControlSize, TabsListProps, TabsPanelProps, TabsProps, TabsTabProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
@@ -27,13 +27,13 @@ export function Tabs({ className, onValueChange, children, ...props }: TabsProps
   const rootRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef(new Map<string, HTMLDivElement>());
   const clearPrevHeight = useRef(0);
-  const registerPanel: RegisterTabsPanel = (value, node) => {
+  const [registerPanel] = useState<RegisterTabsPanel>(() => (value: string, node: HTMLDivElement | null) => {
     if (!node) return;
     panelsRef.current.set(value, node);
     return () => {
       if (panelsRef.current.get(value) === node) panelsRef.current.delete(value);
     };
-  };
+  });
 
   // The cross-slide's height morph needs the outgoing panel's height as the entering panel's starting
   // height — auto→auto never transitions, and CSS cannot measure a sibling. Captured here pre-commit

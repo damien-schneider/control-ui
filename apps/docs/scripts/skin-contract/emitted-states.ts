@@ -16,6 +16,8 @@ import type {
   CodeChrome,
   CodeDensity,
   CodeDiffLineType,
+  ContextSegmentKind,
+  ContextStatus,
   ControlSize,
   DiffStyle,
   DockablePanelContentPadding,
@@ -38,6 +40,7 @@ import type {
   TableOfContentsVariant,
   TabsListVariant,
   TaskStatus,
+  TimelineState,
   ToolbarLinkVariant,
   ToolbarVariant,
 } from "../../src/registry/contracts";
@@ -49,6 +52,14 @@ export type EmittedStateContract = {
   "activity:root:data-status": ActivityState;
   "activity:announcement:data-status": ActivityState;
   "activity:status:data-status": ActivityState;
+  "context:root:data-status": ContextStatus;
+  "context:trigger:data-status": ContextStatus;
+  "context:trigger-indicator:data-status": ContextStatus;
+  "context:summary:data-status": ContextStatus;
+  "context:graph:data-status": ContextStatus;
+  "context:segment:data-kind": ContextSegmentKind;
+  "context:legend-item:data-kind": ContextSegmentKind;
+  "context:legend-indicator:data-kind": ContextSegmentKind;
   "audio-recorder:root:data-disabled": true;
   "audio-recorder:root:data-error": true;
   "audio-recorder:root:data-state": "idle" | "requesting" | "recording" | "recorded" | "submitting" | "error";
@@ -152,6 +163,7 @@ export type EmittedStateContract = {
   "stepper:list:data-orientation": StepperOrientation;
   "stepper:separator:data-state": StepperState;
   "stepper:trigger:data-state": StepperState;
+  "timeline:item:data-state": TimelineState;
   "table-of-contents:root:data-variant": TableOfContentsVariant;
   "table-of-contents:item:data-active": true;
   "table-of-contents:item:data-depth": number;

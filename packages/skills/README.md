@@ -6,7 +6,7 @@ This package gives the repo a stable place for React quality, architecture, UI/T
 
 Skill records live under `src/concerns/*`:
 
-- `react-code-quality` includes Mastra-inspired React rules such as deriving instead of duplicating values, remounting state boundaries, using refs instead of DOM queries, splitting responsibilities through focused files and narrow APIs, testing the real stack, and proving visual behavior from rendered output instead of class strings.
+- `react-code-quality` includes Mastra-inspired React rules such as deriving instead of duplicating values, remounting state boundaries, keeping context necessary and cohesive, using refs instead of DOM queries, splitting responsibilities through focused files and narrow APIs, testing the real stack, and proving visual behavior from rendered output instead of class strings.
 - `architecture` covers canonical ownership, derived or generated projections, and drift checks that keep schemas, manifests, routes, docs, config, fixtures, and state aligned.
 - `ui-tailwind` includes Mastra-inspired styling rules around existing component reuse, token discipline, className boundaries, and Tailwind v4 configuration, migration syntax, generated utilities, variants, capabilities, and behavior changes.
 - `ux` covers product-surface checks such as state continuity, provenance cues, dense-but-scannable workflow design, and copy discipline against redundant AI-slop explanations.

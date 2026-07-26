@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timeline",
+  "type": "registry:ui",
+  "title": "Timeline",
+  "description": "Static chronological events with independent status, connectors, descriptions, and metadata.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/ui/timeline.tsx",
+      "target": "@components/control-ui/ui/timeline.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/timeline.json"
+  }
+}

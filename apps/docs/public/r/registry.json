@@ -163,6 +163,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -180,6 +181,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -218,6 +220,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -274,6 +277,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -291,6 +295,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -329,6 +334,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -385,6 +391,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -402,6 +409,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -440,6 +448,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -496,6 +505,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -513,6 +523,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -551,6 +562,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -607,6 +619,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -624,6 +637,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -662,6 +676,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -718,6 +733,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -735,6 +751,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -773,6 +790,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -829,6 +847,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -846,6 +865,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -884,6 +904,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -940,6 +961,7 @@
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/combobox.json",
         "http://127.0.0.1:3000/r/command.json",
+        "http://127.0.0.1:3000/r/context.json",
         "http://127.0.0.1:3000/r/context-menu.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
@@ -957,6 +979,7 @@
         "http://127.0.0.1:3000/r/hover-card.json",
         "http://127.0.0.1:3000/r/infinite-canvas.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/input-group.json",
         "http://127.0.0.1:3000/r/input-otp.json",
@@ -995,6 +1018,7 @@
         "http://127.0.0.1:3000/r/textarea.json",
         "http://127.0.0.1:3000/r/theme-toggle-block.json",
         "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/timeline.json",
         "http://127.0.0.1:3000/r/toast.json",
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
@@ -1044,9 +1068,7 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/command.json",
-        "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/popover.json"
+        "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
         {
@@ -1270,6 +1292,7 @@
         "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
+        "http://127.0.0.1:3000/r/inline-citation.json",
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/model-switcher.json",
         "http://127.0.0.1:3000/r/source-badge.json",
@@ -1316,7 +1339,6 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/trigger-menu.json"
       ],
       "files": [
@@ -1708,6 +1730,35 @@
           "path": "src/registry/sources/control-ui/ui/command.tsx",
           "target": "@components/control-ui/ui/command.tsx",
           "type": "registry:ui"
+        }
+      ],
+      "meta": {}
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "context",
+      "type": "registry:component",
+      "title": "Context",
+      "description": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/popover.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/context-model.ts",
+          "target": "@components/control-ui/context-model.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/context.tsx",
+          "target": "@components/control-ui/context.tsx",
+          "type": "registry:component"
         }
       ],
       "meta": {}
@@ -2135,6 +2186,30 @@
         {
           "path": "src/registry/sources/control-ui/inline-attachment.tsx",
           "target": "@components/control-ui/inline-attachment.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {}
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "inline-citation",
+      "type": "registry:component",
+      "title": "InlineCitation",
+      "description": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
+      "dependencies": [
+        "lucide-react@^1.24.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/popover.json",
+        "http://127.0.0.1:3000/r/source-badge.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/inline-citation.tsx",
+          "target": "@components/control-ui/inline-citation.tsx",
           "type": "registry:component"
         }
       ],
@@ -3273,6 +3348,25 @@
           "path": "src/registry/sources/control-ui/thread-rail.tsx",
           "target": "@components/control-ui/thread-rail.tsx",
           "type": "registry:component"
+        }
+      ],
+      "meta": {}
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "Static chronological events with independent status, connectors, descriptions, and metadata.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/timeline.tsx",
+          "target": "@components/control-ui/ui/timeline.tsx",
+          "type": "registry:ui"
         }
       ],
       "meta": {}

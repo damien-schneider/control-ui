@@ -20,6 +20,11 @@ export type ContractScope = {
 
 export type AnatomyReference = { scope: string; part: string };
 
+// The `data-surface` families a part can declare; single list so the collector's guard, its mutable
+// accumulator, and the emitted contract can never drift apart.
+export const skinSurfaceFamilies = ["floating", "modal", "panel"] as const;
+export type SkinSurfaceFamily = (typeof skinSurfaceFamilies)[number];
+
 export type SkinContract = {
   version: 5;
   selectorPattern: string;
@@ -30,7 +35,7 @@ export type SkinContract = {
   semanticFamilies: {
     popup: Record<SkinPopupPart, AnatomyReference[]>;
     controls: AnatomyReference[];
-    surfaces: Record<"floating" | "modal" | "panel", AnatomyReference[]>;
+    surfaces: Record<SkinSurfaceFamily, AnatomyReference[]>;
   };
   externalStateAttributes: string[];
 };

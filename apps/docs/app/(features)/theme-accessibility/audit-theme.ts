@@ -95,10 +95,14 @@ function extractCssColors(paint: string): string[] {
   return colors;
 }
 
+function mixChannel(from: number, to: number, progress: number) {
+  return Math.round(from + (to - from) * progress);
+}
+
 function interpolatePixels(from: Rgb, to: Rgb): Rgb[] {
   return Array.from({ length: GRADIENT_SAMPLE_STEPS + 1 }, (_, index) => {
     const progress = index / GRADIENT_SAMPLE_STEPS;
-    return from.map((channel, channelIndex) => Math.round(channel + (to[channelIndex] - channel) * progress)) as Rgb;
+    return [mixChannel(from[0], to[0], progress), mixChannel(from[1], to[1], progress), mixChannel(from[2], to[2], progress)];
   });
 }
 

@@ -46,15 +46,15 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
         supportFiles.length > 0
           ? {
               files: supportFiles,
-              description:
-                "Installed with this primitive because the slot depends on them; they are support files, not standalone sidebar items.",
+              description: "Private support files installed with this primitive. Public dependencies stay linked to their own pages.",
             }
           : undefined
       }
+      libraryDependencies={primitive.registry.registryDependencies}
       source={{
-        files: [primitive.registry.source],
+        files: [primitive.registry.source, ...supportFiles],
         title: "Raw code",
-        description: "Primary installed primitive source",
+        description: "This primitive's owned source and private support files",
       }}
     >
       <AvailableExtensions hostId={primitive.id} extensions={extensions} />

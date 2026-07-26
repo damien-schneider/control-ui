@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 156,
+    "count": 160,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -265,6 +265,13 @@
         "kind": "Skill",
         "summary": "Split oversized prop, argument, and return-value APIs into cohesive responsibilities.",
         "href": "/skills/react-narrow-apis"
+      },
+      {
+        "id": "react-context-ownership",
+        "name": "Keep context necessary, narrow, and stable",
+        "kind": "Skill",
+        "summary": "Use context only across real composition boundaries, with the smallest stable semantic value consumers need.",
+        "href": "/skills/react-context-ownership"
       },
       {
         "id": "react-no-dom-queries",
@@ -532,6 +539,24 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/activity.json"
       },
       {
+        "id": "context",
+        "name": "Context",
+        "kind": "Agent",
+        "summary": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
+        "href": "/ai/context",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/context.json"
+      },
+      {
+        "id": "inline-citation",
+        "name": "InlineCitation",
+        "kind": "Agent",
+        "summary": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
+        "href": "/ai/inline-citation",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json"
+      },
+      {
         "id": "source-badge",
         "name": "SourceBadge",
         "kind": "Agent",
@@ -636,6 +661,14 @@
         "summary": "Sticky in-page navigation with scroll-spy range highlighting.",
         "href": "/primitives/table-of-contents",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json"
+      },
+      {
+        "id": "timeline",
+        "name": "Timeline",
+        "kind": "Primitive",
+        "summary": "Static chronological events with independent status, connectors, descriptions, and metadata.",
+        "href": "/primitives/timeline",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/timeline.json"
       },
       {
         "id": "stepper",

@@ -115,11 +115,9 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
             <CodeCopy value={activeFile.code} />
           </CodeActions>
         </CodeHeader>
-        {files.map((file) => (
-          <TabsPanel key={file.path} value={file.path} className="bg-muted/35">
-            <CodeContent code={file.code} lang={languageForPath(file.path)} />
-          </TabsPanel>
-        ))}
+        <TabsPanel key={activeFile.path} value={activeFile.path} className="bg-muted/35">
+          <CodeContent code={activeFile.code} lang={languageForPath(activeFile.path)} />
+        </TabsPanel>
       </Code>
     </Tabs>
   );

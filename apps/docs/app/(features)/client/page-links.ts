@@ -1,6 +1,6 @@
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { primitiveCategories } from "@/app/(features)/catalog/primitives";
-import { componentComposition, primitiveComposition, resolvePrimitives } from "@/app/(features)/model/registry";
+import { componentComposition, primitiveComposition } from "@/app/(features)/model/registry";
 import type {
   DocsBlock,
   DocsComponent,
@@ -23,6 +23,7 @@ function primitivePageLinks(activePrimitive: DocsPrimitive, extensions: DocsExte
     ...(primitiveComposition(activePrimitive).length > 0 ? [{ href: "#composition", label: "Composition" }] : []),
     { href: "#install", label: "Installation" },
     ...((activePrimitive.registry.supportFiles?.length ?? 0) > 0 ? [{ href: "#dependencies", label: "Dependencies" }] : []),
+    ...(activePrimitive.registry.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#source", label: "Source" },
     ...(extensions.some((extension) => extension.appliesTo?.some((id) => id === activePrimitive.id))
       ? [{ href: "#extensions", label: "Extensions" }]
@@ -30,7 +31,7 @@ function primitivePageLinks(activePrimitive: DocsPrimitive, extensions: DocsExte
   ];
 }
 
-function componentPageLinks(component: DocsComponent, primitives: DocsPrimitive[], extensions: DocsExtension[]) {
+function componentPageLinks(component: DocsComponent, extensions: DocsExtension[]) {
   const hasComposition = componentComposition(component).length > 0;
   const hasDependencies = Boolean(component.hook) || (component.supportFiles?.length ?? 0) > 0;
   const hasExtensions = extensions.some((extension) => extension.appliesTo?.some((id) => id === component.id));
@@ -42,9 +43,9 @@ function componentPageLinks(component: DocsComponent, primitives: DocsPrimitive[
     { href: "#install", label: "Installation" },
     { href: "#usage", label: "Usage" },
     ...(hasDependencies ? [{ href: "#dependencies", label: "Dependencies" }] : []),
+    ...(component.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#source", label: "Source" },
     ...(hasExtensions ? [{ href: "#extensions", label: "Extensions" }] : []),
-    ...(resolvePrimitives(component, primitives).length > 0 ? [{ href: "#primitives", label: "Primitives" }] : []),
   ];
 }
 
@@ -90,6 +91,7 @@ function extensionPageLinks(extension: DocsExtension): PageLink[] {
     { href: "#attach", label: "Attachment" },
     { href: "#install", label: "Installation" },
     { href: "#activation", label: "Activation" },
+    ...(extension.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#source", label: "Source" },
   ];
 }
@@ -108,6 +110,7 @@ function useCasePageLinks(useCase: DocsBlock): PageLink[] {
     ...(hasComposition ? [{ href: "#composition", label: "Composition" }] : []),
     { href: "#install", label: "Installation" },
     { href: "#usage", label: "Usage" },
+    ...(useCase.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#included-source", label: "Included source" },
   ];
 }
@@ -123,7 +126,6 @@ export function pageLinks({
   activeSkinsOverview,
   activeCatalogOverview,
   component,
-  primitives,
   extensions,
 }: {
   activeGuide?: GuidePageData;
@@ -152,5 +154,5 @@ export function pageLinks({
 
   if (activePrimitive) return primitivePageLinks(activePrimitive, extensions);
 
-  return component ? componentPageLinks(component, primitives, extensions) : [];
+  return component ? componentPageLinks(component, extensions) : [];
 }

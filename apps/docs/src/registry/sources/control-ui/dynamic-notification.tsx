@@ -1,12 +1,12 @@
 "use client";
 
 import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, SubmitEvent } from "react";
-import { createContext, useContext, useEffect, useId, useRef } from "react";
+import { createContext, useContext, useEffect, useId, useMemo, useRef } from "react";
 
 import type { DynamicNotificationProps, DynamicNotificationState, DynamicNotificationVariant } from "@/components/control-ui/contracts";
 import { createDynamicNotificationGlass } from "@/components/control-ui/dynamic-notification-glass";
 import { createDynamicNotificationLiquid } from "@/components/control-ui/dynamic-notification-liquid";
-import { useDynamicNotification } from "@/components/control-ui/hooks/use-dynamic-notification";
+import { type DynamicNotificationController, useDynamicNotification } from "@/components/control-ui/hooks/use-dynamic-notification";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
@@ -23,13 +23,19 @@ import { Button } from "@/components/control-ui/ui/button";
  * dynamic-notification.css (token-driven, kill-switch flattens).
  */
 
-type DynamicNotificationContextValue = ReturnType<typeof useDynamicNotification> & {
+type DynamicNotificationShellContextValue = Pick<DynamicNotificationController, "open" | "disabled" | "setOpen"> & {
   state: DynamicNotificationState;
   variant: DynamicNotificationVariant;
   contentId: string;
 };
 
-const DynamicNotificationContext = createContext<DynamicNotificationContextValue | null>(null);
+type DynamicNotificationReplyContextValue = Pick<
+  DynamicNotificationController,
+  "reply" | "setReply" | "normalizedReply" | "canSubmit" | "clear" | "submitReply" | "handleReplySubmit"
+>;
+
+const DynamicNotificationShellContext = createContext<DynamicNotificationShellContextValue | null>(null);
+const DynamicNotificationReplyContext = createContext<DynamicNotificationReplyContextValue | null>(null);
 
 const materialClassesByVariant = {
   surface: "bg-popover text-popover-foreground shadow-pop ring-1 ring-inset ring-border backdrop-blur-[var(--backdrop-blur-popover)]",
@@ -43,10 +49,22 @@ function resolveNotificationState(open: boolean, loading: boolean): DynamicNotif
   return "expanded";
 }
 
-export function useDynamicNotificationContext() {
-  const context = useContext(DynamicNotificationContext);
+function useDynamicNotificationShellContext() {
+  const context = useContext(DynamicNotificationShellContext);
   if (!context) throw new Error("DynamicNotification compound components must be rendered inside <DynamicNotification>.");
   return context;
+}
+
+function useDynamicNotificationReplyContext() {
+  const context = useContext(DynamicNotificationReplyContext);
+  if (!context) throw new Error("DynamicNotification reply components must be rendered inside <DynamicNotification>.");
+  return context;
+}
+
+export function useDynamicNotificationContext() {
+  const shell = useDynamicNotificationShellContext();
+  const reply = useDynamicNotificationReplyContext();
+  return { ...shell, ...reply };
 }
 
 export function DynamicNotification({
@@ -76,51 +94,86 @@ export function DynamicNotification({
   });
   const contentId = useId();
   const state = resolveNotificationState(notification.open, loading);
+  const shellContext = useMemo(
+    () =>
+      ({
+        open: notification.open,
+        disabled: notification.disabled,
+        setOpen: notification.setOpen,
+        state,
+        variant,
+        contentId,
+      }) satisfies DynamicNotificationShellContextValue,
+    [notification.open, notification.disabled, notification.setOpen, state, variant, contentId],
+  );
+  const replyContext = useMemo(
+    () =>
+      ({
+        reply: notification.reply,
+        setReply: notification.setReply,
+        normalizedReply: notification.normalizedReply,
+        canSubmit: notification.canSubmit,
+        clear: notification.clear,
+        submitReply: notification.submitReply,
+        handleReplySubmit: notification.handleReplySubmit,
+      }) satisfies DynamicNotificationReplyContextValue,
+    [
+      notification.reply,
+      notification.setReply,
+      notification.normalizedReply,
+      notification.canSubmit,
+      notification.clear,
+      notification.submitReply,
+      notification.handleReplySubmit,
+    ],
+  );
 
   return (
-    <DynamicNotificationContext.Provider value={{ ...notification, state, variant, contentId }}>
-      <div
-        data-control-ui="dynamic-notification"
-        data-slot="root"
-        data-state={state}
-        data-variant={variant}
-        className={cn("relative flex w-full justify-center", skinSlot("dynamic-notification", "root", { state, variant }), className)}
-        {...props}
-      >
-        {children}
-      </div>
-    </DynamicNotificationContext.Provider>
+    <DynamicNotificationShellContext.Provider value={shellContext}>
+      <DynamicNotificationReplyContext.Provider value={replyContext}>
+        <div
+          data-control-ui="dynamic-notification"
+          data-slot="root"
+          data-state={state}
+          data-variant={variant}
+          className={cn("relative flex w-full justify-center", skinSlot("dynamic-notification", "root", { state, variant }), className)}
+          {...props}
+        >
+          {children}
+        </div>
+      </DynamicNotificationReplyContext.Provider>
+    </DynamicNotificationShellContext.Provider>
   );
 }
 
 export type DynamicNotificationIslandProps = ComponentProps<"section">;
 
 export function DynamicNotificationIsland({ className, onKeyDown, ...props }: DynamicNotificationIslandProps) {
-  const context = useDynamicNotificationContext();
-  const materialClasses = materialClassesByVariant[context.variant];
+  const { open, setOpen, state, variant } = useDynamicNotificationShellContext();
+  const materialClasses = materialClassesByVariant[variant];
 
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
     onKeyDown?.(event);
     if (event.defaultPrevented) return;
-    if (event.key === "Escape" && context.open) {
-      context.setOpen(false, "escape-key", event.nativeEvent, event.currentTarget);
+    if (event.key === "Escape" && open) {
+      setOpen(false, "escape-key", event.nativeEvent, event.currentTarget);
     }
   }
 
   return (
     <section
       aria-label="Assistant notification"
-      aria-busy={context.state === "thinking" || undefined}
+      aria-busy={state === "thinking" || undefined}
       data-control-ui="dynamic-notification"
       data-slot="island"
-      data-state={context.state}
-      data-variant={context.variant}
+      data-state={state}
+      data-variant={variant}
       onKeyDown={handleKeyDown}
       className={cn(
         "relative isolate overflow-hidden outline-none",
         // glass/liquid MATERIALS are painted by dynamic-notification.css (fallbacks) + the optional WebGL canvases.
         materialClasses,
-        skinSlot("dynamic-notification", "island", { state: context.state, variant: context.variant }),
+        skinSlot("dynamic-notification", "island", { state, variant }),
         className,
       )}
       {...props}
@@ -182,26 +235,26 @@ export type DynamicNotificationPillProps = ComponentProps<"button">;
 
 /** Collapsed face; pressing it expands the bubble ("tap to answer"). */
 export function DynamicNotificationPill({ className, children, onClick, ...props }: DynamicNotificationPillProps) {
-  const context = useDynamicNotificationContext();
+  const { contentId, disabled, open, setOpen } = useDynamicNotificationShellContext();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
     if (event.defaultPrevented) return;
-    context.setOpen(true, "trigger-press", event.nativeEvent, event.currentTarget);
+    setOpen(true, "trigger-press", event.nativeEvent, event.currentTarget);
   }
 
   return (
     <button
       type="button"
-      aria-expanded={context.open}
-      aria-controls={context.contentId}
+      aria-expanded={open}
+      aria-controls={contentId}
       // inert (not CSS visibility) gates focus/a11y: it lands with the React commit, so tab order is
       // correct mid-morph (visibility's discrete transition only flips halfway through).
-      inert={context.open}
+      inert={open}
       data-control-ui="dynamic-notification"
       data-slot="pill"
       onClick={handleClick}
-      disabled={context.disabled}
+      disabled={disabled}
       className={cn(
         "absolute inset-0 flex cursor-pointer items-center justify-center gap-2 px-4 text-caption font-medium outline-none",
         "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-current/25",
@@ -233,12 +286,12 @@ export function DynamicNotificationIndicator({ className, ...props }: DynamicNot
 export type DynamicNotificationContentProps = ComponentProps<"div">;
 
 export function DynamicNotificationContent({ className, id, ...props }: DynamicNotificationContentProps) {
-  const context = useDynamicNotificationContext();
+  const { contentId, state } = useDynamicNotificationShellContext();
 
   return (
     <div
-      id={id ?? context.contentId}
-      inert={context.state !== "expanded"}
+      id={id ?? contentId}
+      inert={state !== "expanded"}
       data-control-ui="dynamic-notification"
       data-slot="content"
       className={cn(
@@ -300,12 +353,12 @@ function DynamicNotificationWords({ text }: { text: string }) {
 export type DynamicNotificationReplyProps = ComponentProps<"form">;
 
 export function DynamicNotificationReply({ className, onSubmit, ...props }: DynamicNotificationReplyProps) {
-  const context = useDynamicNotificationContext();
+  const { handleReplySubmit } = useDynamicNotificationReplyContext();
 
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     onSubmit?.(event);
     if (event.defaultPrevented) return;
-    context.handleReplySubmit(event);
+    handleReplySubmit(event);
   }
 
   return (
@@ -322,20 +375,21 @@ export function DynamicNotificationReply({ className, onSubmit, ...props }: Dyna
 export type DynamicNotificationReplyInputProps = ComponentProps<"input">;
 
 export function DynamicNotificationReplyInput({ className, onChange, disabled, ...props }: DynamicNotificationReplyInputProps) {
-  const context = useDynamicNotificationContext();
+  const { disabled: contextDisabled, state } = useDynamicNotificationShellContext();
+  const { reply, setReply } = useDynamicNotificationReplyContext();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // Expanding is an explicit "answer the AI" gesture, so focus rides the morph (preventScroll: the
   // island already sits in view). Waits out the "thinking" phase — content is inert until expanded.
   useEffect(() => {
-    if (context.state !== "expanded") return;
+    if (state !== "expanded") return;
     const frame = requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }));
     return () => cancelAnimationFrame(frame);
-  }, [context.state]);
+  }, [state]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     onChange?.(event);
-    if (!event.defaultPrevented) context.setReply(event.currentTarget.value);
+    if (!event.defaultPrevented) setReply(event.currentTarget.value);
   }
 
   return (
@@ -345,9 +399,9 @@ export function DynamicNotificationReplyInput({ className, onChange, disabled, .
       aria-label="Reply"
       data-control-ui="dynamic-notification"
       data-slot="reply-input"
-      value={context.reply}
+      value={reply}
       onChange={handleChange}
-      disabled={disabled ?? context.disabled}
+      disabled={disabled ?? contextDisabled}
       className={cn(
         "h-9 min-w-0 flex-1 rounded-full bg-current/8 px-3.5 text-body outline-none ring-1 ring-inset ring-current/10 transition-shadow duration-[var(--duration-fast)] placeholder:text-current/45 focus-visible:ring-2 focus-visible:ring-current/30 disabled:cursor-not-allowed disabled:opacity-50",
         skinSlot("dynamic-notification", "reply-input", {}),
@@ -361,7 +415,7 @@ export function DynamicNotificationReplyInput({ className, onChange, disabled, .
 export type DynamicNotificationReplySubmitProps = ComponentProps<typeof Button>;
 
 export function DynamicNotificationReplySubmit({ className, disabled, children, ...props }: DynamicNotificationReplySubmitProps) {
-  const context = useDynamicNotificationContext();
+  const { canSubmit } = useDynamicNotificationReplyContext();
 
   return (
     <Button
@@ -373,7 +427,7 @@ export function DynamicNotificationReplySubmit({ className, disabled, children, 
       iconOnly
       shape="circle"
       aria-label="Send reply"
-      disabled={disabled ?? !context.canSubmit}
+      disabled={disabled ?? !canSubmit}
       className={cn("shrink-0", skinSlot("dynamic-notification", "reply-submit", {}), className)}
       {...props}
     >
@@ -389,12 +443,12 @@ export function DynamicNotificationReplySubmit({ className, disabled, children, 
 export type DynamicNotificationCloseProps = ComponentProps<typeof Button>;
 
 export function DynamicNotificationClose({ className, children, onClick, ...props }: DynamicNotificationCloseProps) {
-  const context = useDynamicNotificationContext();
+  const { setOpen } = useDynamicNotificationShellContext();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
     if (event.defaultPrevented) return;
-    context.setOpen(false, "close-press", event.nativeEvent, event.currentTarget);
+    setOpen(false, "close-press", event.nativeEvent, event.currentTarget);
   }
 
   return (

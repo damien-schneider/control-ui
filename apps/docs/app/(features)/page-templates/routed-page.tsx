@@ -1,14 +1,7 @@
 "use client";
 
 import { createContext, type ReactNode, use } from "react";
-import type {
-  DocsBlock,
-  DocsComponent,
-  DocsExtension,
-  DocsPrimitive,
-  GuidePage as GuidePageData,
-  IntegrationId,
-} from "@/app/(features)/model/types";
+import type { DocsBlock, DocsComponent, DocsExtension, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ComponentPage } from "./component-page";
 import { GuidePage } from "./guide-page";
 import { UseCasePage } from "./use-case-page";
@@ -33,14 +26,6 @@ export function RoutedUseCasePage({ block }: { block: DocsBlock }) {
   return <UseCasePage block={block} integration={useDocsIntegration()} />;
 }
 
-export function RoutedComponentPage({
-  component,
-  primitives,
-  extensions,
-}: {
-  component: DocsComponent;
-  primitives: DocsPrimitive[];
-  extensions: DocsExtension[];
-}) {
-  return <ComponentPage component={component} integration={useDocsIntegration()} primitives={primitives} extensions={extensions} />;
+export function RoutedComponentPage({ component, extensions }: { component: DocsComponent; extensions: DocsExtension[] }) {
+  return <ComponentPage component={component} integration={useDocsIntegration()} extensions={extensions} />;
 }

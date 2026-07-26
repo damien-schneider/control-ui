@@ -15,10 +15,12 @@ type TaskEntry = {
   label: string;
 };
 
-type TaskListContextValue = {
+type TaskListRegistrationContextValue = {
   registerTask: (entry: TaskEntry) => void;
   unregisterTask: (key: string) => void;
-  tasks: TaskEntry[];
+};
+
+type TaskListContextValue = {
   total: number;
   current?: TaskEntry;
   /** 1-based position rendered as "Task 3 of 5"; 0 while no task is registered. */
@@ -28,9 +30,17 @@ type TaskListContextValue = {
 
 const TaskListContext = createContext<TaskListContextValue | null>(null);
 
+const TaskListRegistrationContext = createContext<TaskListRegistrationContextValue | null>(null);
+
 function useTaskListContext() {
   const context = useContext(TaskListContext);
   if (!context) throw new Error("TaskList compound components must be rendered inside <TaskList>.");
+  return context;
+}
+
+function useTaskListRegistrationContext() {
+  const context = useContext(TaskListRegistrationContext);
+  if (!context) throw new Error("TaskList items must be rendered inside <TaskList>.");
   return context;
 }
 
@@ -54,12 +64,14 @@ export function TaskList({ className, children, ...props }: TaskListProps) {
   const [tasks, setTasks] = useState<TaskEntry[]>([]);
   // useState-once keeps identities stable; register upserts IN PLACE (a status change must not reorder)
   // and unregister runs only at item unmount — a combined effect cleanup would move updated items to the end.
-  const [registerTask] = useState(() => (entry: TaskEntry) => {
-    setTasks((previous) => upsert(previous, entry));
-  });
-  const [unregisterTask] = useState(() => (key: string) => {
-    setTasks((previous) => previous.filter((task) => task.key !== key));
-  });
+  const [registration] = useState<TaskListRegistrationContextValue>(() => ({
+    registerTask(entry) {
+      setTasks((previous) => upsert(previous, entry));
+    },
+    unregisterTask(key) {
+      setTasks((previous) => previous.filter((task) => task.key !== key));
+    },
+  }));
 
   const total = tasks.length;
   const currentIndex = currentTaskIndex(tasks);
@@ -67,30 +79,30 @@ export function TaskList({ className, children, ...props }: TaskListProps) {
   const allCompleted = total > 0 && tasks.every((task) => task.status === "completed");
 
   return (
-    <TaskListContext.Provider
-      value={{ registerTask, unregisterTask, tasks, total, current, currentNumber: total === 0 ? 0 : currentIndex + 1, allCompleted }}
-    >
-      <Collapsible
-        data-control-ui="task-list"
-        data-slot="root"
-        data-surface="panel"
-        className={cn(
-          "w-full overflow-hidden rounded-field border bg-card/90 text-body shadow-md ring-1 ring-foreground/4 backdrop-blur",
-          skinSlot("task-list", "root", {}),
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </Collapsible>
-    </TaskListContext.Provider>
+    <TaskListRegistrationContext.Provider value={registration}>
+      <TaskListContext.Provider value={{ total, current, currentNumber: total === 0 ? 0 : currentIndex + 1, allCompleted }}>
+        <Collapsible
+          data-control-ui="task-list"
+          data-slot="root"
+          data-surface="panel"
+          className={cn(
+            "w-full overflow-hidden rounded-field border bg-card/90 text-body shadow-md ring-1 ring-foreground/4 backdrop-blur",
+            skinSlot("task-list", "root", {}),
+            className,
+          )}
+          {...props}
+        >
+          {children}
+        </Collapsible>
+      </TaskListContext.Provider>
+    </TaskListRegistrationContext.Provider>
   );
 }
 
 export type TaskListTriggerProps = ComponentProps<"button">;
 
 export function TaskListTrigger({ className, children, ...props }: TaskListTriggerProps) {
-  const list = useTaskListContext();
+  const { allCompleted } = useTaskListContext();
 
   return (
     <CollapsibleTrigger
@@ -103,7 +115,7 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
     >
       {children ?? (
         <>
-          <TaskListIndicator status={list.allCompleted ? "completed" : "active"} />
+          <TaskListIndicator status={allCompleted ? "completed" : "active"} />
           <TaskListProgress />
           <ChevronRight aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground" />
           {/* The collapsed pill previews the current task; the expanded list already shows it, so hide it while open. */}
@@ -117,7 +129,7 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
 export type TaskListProgressProps = ComponentProps<"span">;
 
 export function TaskListProgress({ className, children, ...props }: TaskListProgressProps) {
-  const list = useTaskListContext();
+  const { currentNumber, total } = useTaskListContext();
 
   return (
     <span
@@ -126,7 +138,7 @@ export function TaskListProgress({ className, children, ...props }: TaskListProg
       className={cn("shrink-0 font-medium tabular-nums text-muted-foreground", skinSlot("task-list", "progress", {}), className)}
       {...props}
     >
-      {children ?? `Task ${list.currentNumber} of ${list.total}`}
+      {children ?? `Task ${currentNumber} of ${total}`}
     </span>
   );
 }
@@ -134,7 +146,7 @@ export function TaskListProgress({ className, children, ...props }: TaskListProg
 export type TaskListLabelProps = ComponentProps<"span">;
 
 export function TaskListLabel({ className, children, ...props }: TaskListLabelProps) {
-  const list = useTaskListContext();
+  const { current } = useTaskListContext();
 
   return (
     <span
@@ -143,7 +155,7 @@ export function TaskListLabel({ className, children, ...props }: TaskListLabelPr
       className={cn("min-w-0 flex-1 truncate text-foreground", skinSlot("task-list", "label", {}), className)}
       {...props}
     >
-      {children ?? list.current?.label}
+      {children ?? current?.label}
     </span>
   );
 }
@@ -173,11 +185,11 @@ export type TaskListItemProps = Omit<ComponentProps<"li">, "children"> & {
 };
 
 export function TaskListItem({ label, status = "pending", className, children, ...props }: TaskListItemProps) {
-  const list = useTaskListContext();
+  const { registerTask, unregisterTask } = useTaskListRegistrationContext();
   const key = useId();
 
-  useEffect(() => list.registerTask({ key, status, label }), [list.registerTask, key, status, label]);
-  useEffect(() => () => list.unregisterTask(key), [list.unregisterTask, key]);
+  useEffect(() => registerTask({ key, status, label }), [registerTask, key, status, label]);
+  useEffect(() => () => unregisterTask(key), [unregisterTask, key]);
 
   return (
     <li

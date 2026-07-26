@@ -8,16 +8,12 @@ import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { Markdown } from "@/components/control-ui/ui/markdown";
 
-type MarkdownBlockContextValue = {
-  code: string;
-};
-
-const MarkdownBlockContext = createContext<MarkdownBlockContextValue | null>(null);
+const MarkdownBlockContext = createContext<string | null>(null);
 
 function useMarkdownBlockContext() {
-  const context = useContext(MarkdownBlockContext);
-  if (!context) throw new Error("MarkdownBlock compound components must be rendered inside <MarkdownBlock>.");
-  return context;
+  const code = useContext(MarkdownBlockContext);
+  if (code === null) throw new Error("MarkdownBlock compound components must be rendered inside <MarkdownBlock>.");
+  return code;
 }
 
 export type MarkdownBlockProps = ComponentProps<"figure"> & {
@@ -26,7 +22,7 @@ export type MarkdownBlockProps = ComponentProps<"figure"> & {
 
 export function MarkdownBlock({ code, className, children, ...props }: MarkdownBlockProps) {
   return (
-    <MarkdownBlockContext.Provider value={{ code }}>
+    <MarkdownBlockContext.Provider value={code}>
       <figure
         data-control-ui="markdown-block"
         data-slot="root"
@@ -82,7 +78,7 @@ export function MarkdownBlockTitle({ children = "Markdown", className, ...props 
 export type MarkdownBlockCopyProps = ComponentProps<typeof Button>;
 
 export function MarkdownBlockCopy({ children = "Copy", onClick, ...props }: MarkdownBlockCopyProps) {
-  const { code } = useMarkdownBlockContext();
+  const code = useMarkdownBlockContext();
   const { copyToClipboard } = useCopyToClipboard();
 
   function copyCode(event: MouseEvent<HTMLButtonElement>) {
@@ -100,7 +96,7 @@ export function MarkdownBlockCopy({ children = "Copy", onClick, ...props }: Mark
 export type MarkdownBlockContentProps = ComponentProps<"div">;
 
 export function MarkdownBlockContent({ children, className, ...props }: MarkdownBlockContentProps) {
-  const { code } = useMarkdownBlockContext();
+  const code = useMarkdownBlockContext();
 
   return (
     <div

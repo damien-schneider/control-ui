@@ -1,28 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { ComponentExamplePreview, ComponentVersionPreview, Preview } from "@/app/(features)/components/previews";
-import {
-  componentComposition,
-  filesFor,
-  publicRegistryHref,
-  registryInstallCommands,
-  resolvePrimitives,
-} from "@/app/(features)/model/registry";
-import type {
-  DocsComponent,
-  DocsComponentVersion,
-  DocsExtension,
-  DocsPrimitive,
-  IntegrationId,
-  RegistryKindId,
-} from "@/app/(features)/model/types";
-import { Badge } from "@/components/control-ui/ui/badge";
+import { componentComposition, filesFor, publicRegistryHref, registryInstallCommands } from "@/app/(features)/model/registry";
+import type { DocsComponent, DocsComponentVersion, DocsExtension, IntegrationId, RegistryKindId } from "@/app/(features)/model/types";
 import { Button } from "@/components/control-ui/ui/button";
 import { AvailableExtensions } from "./available-extensions";
 import { RegistryItemPage } from "./registry-item-page";
-import { SectionTitle } from "./shared";
 
 function selectedVersion(versions: DocsComponentVersion[] | undefined, pickedVersionId: string | undefined) {
   if (!versions) return undefined;
@@ -35,7 +19,7 @@ function versionCopy(version: DocsComponentVersion | undefined, versionsShareIte
       installDescription: (
         <>This agent installs from the {registryKind} registry. Install the bundle with the command above, or inspect the source below.</>
       ),
-      sourceDescription: "Primary installed agent source",
+      sourceDescription: "This agent's owned source and private support files",
     };
   }
 
@@ -47,7 +31,7 @@ function versionCopy(version: DocsComponentVersion | undefined, versionsShareIte
           composition; switching versions later is a call-site change, not a reinstall.
         </>
       ),
-      sourceDescription: "Primary installed agent source (shared by every version)",
+      sourceDescription: "Owned source and private support files shared by every version",
     };
   }
 
@@ -58,7 +42,7 @@ function versionCopy(version: DocsComponentVersion | undefined, versionsShareIte
         command above; swapping versions later is an import-path change, no call site moves.
       </>
     ),
-    sourceDescription: `Primary installed agent source (${version.label} version)`,
+    sourceDescription: `Owned source and private support files (${version.label} version)`,
   };
 }
 
@@ -67,20 +51,17 @@ function dependencyDetails(files: ReturnType<typeof filesFor>) {
   if (dependencyFiles.length === 0) return undefined;
   return {
     files: dependencyFiles,
-    description:
-      "Installed with this agent because the visible component depends on them; they are support files, not separate product surfaces.",
+    description: "Private support files installed with this agent. Public library dependencies stay linked to their own pages.",
   };
 }
 
 export function ComponentPage({
   component,
   integration,
-  primitives,
   extensions,
 }: {
   component: DocsComponent;
   integration: IntegrationId;
-  primitives: DocsPrimitive[];
   extensions: DocsExtension[];
 }) {
   const [pickedVersionId, setPickedVersionId] = useState<string | undefined>(undefined);
@@ -89,8 +70,7 @@ export function ComponentPage({
 
   const registryKind = version?.registryKind ?? component.registryKind;
   const commands = registryInstallCommands(registryKind);
-  const files = filesFor(component);
-  const usedPrimitives = resolvePrimitives(component, primitives);
+  const files = filesFor(component, version);
   const composition = componentComposition(component);
   const manifestHref = publicRegistryHref(registryKind);
   const exampleCode = version ? version.example.code : component.example.code;
@@ -144,14 +124,14 @@ export function ComponentPage({
       }}
       usageCode={usageCode}
       dependencies={dependencyDetails(files)}
+      libraryDependencies={component.registryDependencies}
       source={{
-        files: [version ? version.source : component.source],
+        files,
         title: "Raw code",
         description: sourceDescription,
       }}
     >
       <AvailableExtensions hostId={component.id} extensions={extensions} />
-      <PrimitiveReferences primitives={usedPrimitives} />
     </RegistryItemPage>
   );
 }
@@ -186,40 +166,5 @@ function VersionPicker({
         );
       })}
     </>
-  );
-}
-
-function PrimitiveReferences({ primitives }: { primitives: DocsPrimitive[] }) {
-  if (primitives.length === 0) return null;
-
-  return (
-    <section id="primitives" className="min-w-0 scroll-mt-20">
-      <SectionTitle
-        title="Primitives"
-        description="This agent composes these library primitives, installed under components/control-ui/ui/*."
-      />
-      <div className="grid gap-2">
-        {primitives.map((primitive) => (
-          <PrimitiveLink key={primitive.id} primitive={primitive} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function PrimitiveLink({ primitive }: { primitive: DocsPrimitive }) {
-  return (
-    <Link
-      href={`/primitives/${primitive.id}`}
-      className="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-border/70 bg-card px-4 py-3 text-body shadow-sm transition hover:border-foreground/20 hover:bg-muted/30"
-    >
-      <span className="flex min-w-0 items-center gap-2">
-        <span className="font-medium">{primitive.name}</span>
-        <code className="min-w-0 truncate text-label text-muted-foreground">{primitive.registry.target}</code>
-      </span>
-      <Badge variant="outline" size="sm">
-        Library slot
-      </Badge>
-    </Link>
   );
 }

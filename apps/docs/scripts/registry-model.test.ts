@@ -12,8 +12,8 @@ function registryItem(name: string) {
 }
 
 describe("Control UI starter registry items", () => {
-  test("all follows the live component catalog and selects only the Refined skin", () => {
-    const all = registryItem("all");
+  test("all-refined follows the live component catalog and selects only the Refined skin", () => {
+    const allRefined = registryItem("all-refined");
     const expectedDependencies = new Set([
       "core",
       "skin-refined",
@@ -22,14 +22,23 @@ describe("Control UI starter registry items", () => {
       ...primitiveEntries.map((entry) => entry.paths.registry.registryKind),
     ]);
 
-    expect(new Set(all.registryDependencies)).toEqual(expectedDependencies);
-    expect(all.registryDependencies.filter((dependency) => dependency.startsWith("skin-"))).toEqual(["skin-refined"]);
-    expect(all.registryDependencies).not.toEqual(expect.arrayContaining(extensionEntries.map((entry) => entry.registryKind)));
-    expect(all.files).toEqual([]);
+    expect(new Set(allRefined.registryDependencies)).toEqual(expectedDependencies);
+    expect(allRefined.registryDependencies.filter((dependency) => dependency.startsWith("skin-"))).toEqual(["skin-refined"]);
+    expect(allRefined.registryDependencies).not.toEqual(expect.arrayContaining(extensionEntries.map((entry) => entry.registryKind)));
+    expect(allRefined.files).toEqual([]);
   });
 
-  test("all wires the four Control UI styles into the host stylesheet", () => {
-    expect(Object.keys(registryItem("all").css ?? {})).toEqual([
+  // `all` is a thin alias: every per-skin starter owns the catalog, so the default one must add nothing of its own.
+  test("all aliases the Refined starter and owns no source", () => {
+    const all = registryItem("all");
+
+    expect(all.registryDependencies).toEqual(["all-refined", "core"]);
+    expect(all.files).toEqual([]);
+    expect(all.css ?? {}).toEqual({});
+  });
+
+  test("all-refined wires the four Control UI styles into the host stylesheet", () => {
+    expect(Object.keys(registryItem("all-refined").css ?? {})).toEqual([
       '@import "../components/control-ui/styles/theme.css"',
       '@import "../components/control-ui/styles/effects.css"',
       '@import "../components/control-ui/styles/skin-theme.css"',

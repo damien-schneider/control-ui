@@ -10,13 +10,12 @@ import {
   ActivityDetailContent,
   ActivityDetailLabel,
   ActivityIcon,
-  ActivityItem,
-  ActivityList,
   ActivityRow,
   ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "./activity";
+import { Timeline, TimelineContent, TimelineIndicator, TimelineItem, TimelineTitle } from "./ui/timeline";
 
 describe("Activity", () => {
   test("formats machine activity names as readable titles", () => {
@@ -60,9 +59,16 @@ describe("Activity", () => {
           <ActivityStatus className="sr-only" />
         </ActivityTrigger>
         <ActivityContent>
-          <ActivityList>
-            <ActivityItem icon={<SquareTerminal />}>Ran the validation command</ActivityItem>
-          </ActivityList>
+          <Timeline>
+            <TimelineItem state="success">
+              <TimelineIndicator>
+                <SquareTerminal />
+              </TimelineIndicator>
+              <TimelineContent>
+                <TimelineTitle>Ran the validation command</TimelineTitle>
+              </TimelineContent>
+            </TimelineItem>
+          </Timeline>
         </ActivityContent>
       </Activity>,
     );
@@ -77,7 +83,7 @@ describe("Activity", () => {
     expect(html).toContain('data-control-ui="scroll-area"');
     expect(html).toContain('data-slot="content-viewport"');
     expect(html).toContain("--activity-content-max-height");
-    expect(html).toContain('data-slot="item"');
+    expect(html).toContain('data-control-ui="timeline"');
     expect(html).toContain("Ran the validation command");
   });
 

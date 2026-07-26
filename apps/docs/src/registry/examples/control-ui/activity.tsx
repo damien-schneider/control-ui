@@ -1,4 +1,6 @@
-import { BookOpen, Globe, Search, SquareTerminal } from "lucide-react";
+import { BookOpen, Globe, LoaderCircle, Search, SquareTerminal } from "lucide-react";
+
+import type { ReactNode } from "react";
 
 import {
   Activity,
@@ -7,25 +9,32 @@ import {
   ActivityDetailContent,
   ActivityDetailLabel,
   ActivityIcon,
-  ActivityItem,
-  ActivityList,
   ActivityRow,
   ActivityStatus,
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
+import type { TimelineState } from "@/components/control-ui/contracts";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import {
+  Timeline,
+  TimelineContent,
+  TimelineIndicator,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineTitle,
+} from "@/components/control-ui/ui/timeline";
 
 const thinkingTrace = [
-  { icon: <SquareTerminal />, label: "Ran the registry validation command" },
-  { icon: <Search />, label: "Searched for the current skin slot contract" },
-  { icon: <BookOpen />, label: "Read activity.tsx" },
-  { icon: <BookOpen />, label: "Read chat-layout.tsx" },
-  { icon: <Search />, label: "Compared disclosure behavior across agent surfaces" },
-  { icon: <Globe />, label: "Searched the web for Base UI accessibility guidance" },
-  { icon: <BookOpen />, label: "Read the ScrollArea overflow contract" },
-  { icon: <SquareTerminal />, label: "Ran the focused render tests" },
-];
+  { icon: <SquareTerminal />, label: "Ran the registry validation command", state: "success" },
+  { icon: <Search />, label: "Searched for the current skin slot contract", state: "success" },
+  { icon: <BookOpen />, label: "Read activity.tsx", state: "success" },
+  { icon: <BookOpen />, label: "Read chat-layout.tsx", state: "success" },
+  { icon: <Search />, label: "Compared disclosure behavior across agent surfaces", state: "success" },
+  { icon: <Globe />, label: "Searched the web for Base UI accessibility guidance", state: "success" },
+  { icon: <LoaderCircle className="motion-safe:animate-spin" />, label: "Reading the ScrollArea overflow contract", state: "running" },
+  { icon: <SquareTerminal />, label: "Run the focused render tests", state: "pending" },
+] satisfies Array<{ icon: ReactNode; label: string; state: TimelineState }>;
 
 export function ActivityExample() {
   return (
@@ -49,13 +58,17 @@ export function ActivityExample() {
           <ActivityStatus className="sr-only" />
         </ActivityTrigger>
         <ActivityContent>
-          <ActivityList>
+          <Timeline>
             {thinkingTrace.map((item) => (
-              <ActivityItem key={item.label} icon={item.icon}>
-                {item.label}
-              </ActivityItem>
+              <TimelineItem key={item.label} state={item.state}>
+                <TimelineIndicator>{item.icon}</TimelineIndicator>
+                <TimelineSeparator />
+                <TimelineContent>
+                  <TimelineTitle>{item.label}</TimelineTitle>
+                </TimelineContent>
+              </TimelineItem>
             ))}
-          </ActivityList>
+          </Timeline>
         </ActivityContent>
       </Activity>
 

@@ -64,6 +64,13 @@ export type SourceFile = {
   slot?: string;
 };
 
+export type DocsRegistryDependency = {
+  registryKind: RegistryKindId;
+  name: string;
+  kind: "Agent" | "Block" | "Extension" | "Primitive";
+  href: string;
+};
+
 export type DocsPrimitiveExample = {
   id: string;
   title: string;
@@ -94,6 +101,7 @@ export type DocsPrimitive = {
     supportFiles?: SourceFile[];
     composition?: CompositionExample[];
     registryKind: RegistryKindId;
+    registryDependencies: DocsRegistryDependency[];
   };
 };
 
@@ -138,6 +146,7 @@ export type DocsExtension = {
   appliesTo?: (ComponentId | PrimitiveId)[];
   source: SourceFile;
   supportFiles?: SourceFile[];
+  registryDependencies: DocsRegistryDependency[];
 };
 
 export type GuideSection = {
@@ -188,6 +197,7 @@ export type DocsComponentVersion = {
   registryKind: RegistryKindId;
   example: SourceFile;
   source: SourceFile;
+  supportFiles: SourceFile[];
 };
 
 export type DocsComponent = {
@@ -202,7 +212,7 @@ export type DocsComponent = {
   hook?: SourceFile;
   supportFiles?: SourceFile[];
   source: SourceFile;
-  usesPrimitives?: PrimitiveId[];
+  registryDependencies: DocsRegistryDependency[];
   registryKind: RegistryKindId;
   versions?: DocsComponentVersion[];
 };
@@ -216,6 +226,7 @@ export type DocsBlock = {
   registryKind: RegistryKindId;
   example: SourceFile;
   usage: Record<IntegrationId, SourceFile>;
+  registryDependencies: DocsRegistryDependency[];
   files: SourceFile[];
   composition?: CompositionExample[];
 };

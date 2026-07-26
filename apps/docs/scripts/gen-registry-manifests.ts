@@ -40,6 +40,7 @@ const metadata = Object.fromEntries(
       dependencies: item.dependencies,
       registryDependencies: item.registryDependencies,
       sourceManifestPath: item.meta?.sourceManifestPath,
+      files: item.files,
     },
   ]),
 );

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context",
+  "type": "registry:component",
+  "title": "Context",
+  "description": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
+  "dependencies": [
+    "lucide-react@^1.24.0"
+  ],
+  "registryDependencies": [
+    "button",
+    "core",
+    "popover",
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/context-model.ts",
+      "target": "@components/control-ui/context-model.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/context.tsx",
+      "target": "@components/control-ui/context.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/context.json"
+  }
+}

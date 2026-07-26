@@ -1,5 +1,5 @@
 import type { SubmitEvent } from "react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import type { DynamicNotificationProps, OpenChangeEventDetails, OpenChangeReason } from "../contracts";
 
@@ -40,13 +40,29 @@ function useControllableText({
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
 
-  function setValue(nextValue: string) {
-    if (!isControlled) setInternalValue(nextValue);
-    onValueChange?.(nextValue);
-  }
+  const setValue = useMemo(
+    () => (nextValue: string) => {
+      if (!isControlled) setInternalValue(nextValue);
+      onValueChange?.(nextValue);
+    },
+    [isControlled, onValueChange],
+  );
 
   return [currentValue, setValue] as const;
 }
+
+export type DynamicNotificationController = {
+  open: boolean;
+  disabled: boolean;
+  setOpen: (nextOpen: boolean, reason: OpenChangeReason, event: Event, trigger?: Element) => void;
+  reply: string;
+  setReply: (nextValue: string) => void;
+  normalizedReply: string;
+  canSubmit: boolean;
+  clear: () => void;
+  submitReply: () => void;
+  handleReplySubmit: (event: SubmitEvent<HTMLFormElement>) => void;
+};
 
 export function useDynamicNotification({
   open,
@@ -60,7 +76,7 @@ export function useDynamicNotification({
 }: Pick<
   DynamicNotificationProps,
   "open" | "defaultOpen" | "onOpenChange" | "replyValue" | "defaultReplyValue" | "onReplyValueChange" | "onReply" | "disabled"
->) {
+>): DynamicNotificationController {
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
   const isControlled = open !== undefined;
   const isOpen = isControlled ? open : internalOpen;
@@ -73,27 +89,40 @@ export function useDynamicNotification({
   const normalizedReply = reply.trim();
   const canSubmit = normalizedReply.length > 0 && !disabled;
 
-  function setOpen(nextOpen: boolean, reason: OpenChangeReason, event: Event, trigger?: Element) {
-    if (disabled || nextOpen === isOpen) return;
-    const details = createOpenChangeEventDetails(reason, event, trigger);
-    onOpenChange?.(nextOpen, details);
-    if (details.isCanceled) return;
-    if (!isControlled) setInternalOpen(nextOpen);
-  }
+  // Stable actions keep split contexts isolated when installed without React Compiler.
+  const setOpen = useMemo(
+    () => (nextOpen: boolean, reason: OpenChangeReason, event: Event, trigger?: Element) => {
+      if (disabled || nextOpen === isOpen) return;
+      const details = createOpenChangeEventDetails(reason, event, trigger);
+      onOpenChange?.(nextOpen, details);
+      if (details.isCanceled) return;
+      if (!isControlled) setInternalOpen(nextOpen);
+    },
+    [disabled, isControlled, isOpen, onOpenChange],
+  );
 
-  function clear() {
-    setReply("");
-  }
+  const clear = useMemo(
+    () => () => {
+      setReply("");
+    },
+    [setReply],
+  );
 
-  function submitReply() {
-    if (!canSubmit) return;
-    void onReply?.({ value: normalizedReply, clear });
-  }
+  const submitReply = useMemo(
+    () => () => {
+      if (!canSubmit) return;
+      void onReply?.({ value: normalizedReply, clear });
+    },
+    [canSubmit, clear, normalizedReply, onReply],
+  );
 
-  function handleReplySubmit(event: SubmitEvent<HTMLFormElement>) {
-    event.preventDefault();
-    submitReply();
-  }
+  const handleReplySubmit = useMemo(
+    () => (event: SubmitEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      submitReply();
+    },
+    [submitReply],
+  );
 
   return {
     open: isOpen,

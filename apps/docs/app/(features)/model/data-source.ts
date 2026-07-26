@@ -31,8 +31,15 @@ function resolveSourcePath(filePath: string) {
   }
 }
 
+const sourceCodeByPath = new Map<string, string>();
+
 function readSource(filePath: string) {
-  return readFileSync(/*turbopackIgnore: true*/ resolveSourcePath(filePath), "utf8");
+  const cached = sourceCodeByPath.get(filePath);
+  if (cached !== undefined) return cached;
+
+  const code = readFileSync(/*turbopackIgnore: true*/ resolveSourcePath(filePath), "utf8");
+  sourceCodeByPath.set(filePath, code);
+  return code;
 }
 
 export function source(label: string, filePath: string, slot?: string) {

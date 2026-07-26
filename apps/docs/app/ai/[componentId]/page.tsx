@@ -22,13 +22,12 @@ export default async function ComponentDocsPage({ params }: PageProps) {
   const data = getDocsData();
   const component = data.components.find((entry) => entry.id === componentId);
   if (!component) notFound();
-  const primitives = data.primitives.filter((primitive) => component.usesPrimitives?.some((id) => id === primitive.id));
   const extensions = data.extensions.filter((extension) => extension.appliesTo?.some((id) => id === component.id));
 
   return (
     <>
       <DocsPageStructuredData pathname={`/ai/${componentId}`} />
-      <RoutedComponentPage component={component} primitives={primitives} extensions={extensions} />
+      <RoutedComponentPage component={component} extensions={extensions} />
     </>
   );
 }

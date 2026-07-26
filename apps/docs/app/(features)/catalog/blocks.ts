@@ -39,17 +39,7 @@ export const blockEntries = [
         mastra: sourceFile("Mastra usage", "src/registry/usage/blocks/chat.mastra.tsx", "usage"),
         "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/blocks/chat.ai-sdk.tsx", "usage"),
       },
-      files: [
-        sourceFile("Block recipe", "src/registry/blocks/chat.tsx", "block"),
-        sourceFile("Action bar", "src/registry/sources/control-ui/action-bar.tsx", "action-bar"),
-        sourceFile("Inline attachment", "src/registry/sources/control-ui/inline-attachment.tsx", "inline-attachment"),
-        sourceFile("Markdown block", "src/registry/sources/control-ui/markdown-block.tsx", "markdown-block"),
-        sourceFile("Chat layout", "src/registry/sources/control-ui/chat-layout.tsx", "chat-layout"),
-        sourceFile("Base UI Collapsible slot", "src/registry/sources/control-ui/ui/collapsible.tsx", "ui-collapsible"),
-        sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "ui-button"),
-        sourceFile("Chat composer", "src/registry/sources/control-ui/chat-composer.tsx", "chat-composer"),
-        sourceFile("Chat message", "src/registry/sources/control-ui/chat-message.tsx", "chat-message"),
-      ],
+      files: [sourceFile("Block recipe", "src/registry/blocks/chat.tsx", "block")],
     },
     composition: [
       {
@@ -79,12 +69,7 @@ export const blockEntries = [
         mastra: sourceFile("Adapter usage", "src/registry/usage/blocks/theme-toggle.tsx", "usage"),
         "ai-sdk": sourceFile("Adapter usage", "src/registry/usage/blocks/theme-toggle.tsx", "usage"),
       },
-      files: [
-        sourceFile("Block recipe", "src/registry/blocks/control-ui/theme-toggle.tsx", "block"),
-        sourceFile("Switch slot", "src/registry/sources/control-ui/ui/switch.tsx", "ui-switch"),
-        sourceFile("Dropdown menu slot", "src/registry/sources/control-ui/ui/dropdown-menu.tsx", "ui-dropdown-menu"),
-        sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "ui-button"),
-      ],
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/theme-toggle.tsx", "block")],
     },
     composition: [
       {
@@ -122,12 +107,7 @@ export const blockEntries = [
         mastra: sourceFile("Usage", "src/registry/usage/blocks/coding-agent.tsx", "usage"),
         "ai-sdk": sourceFile("Usage", "src/registry/usage/blocks/coding-agent.tsx", "usage"),
       },
-      files: [
-        sourceFile("Block recipe", "src/registry/blocks/control-ui/coding-agent.tsx", "block"),
-        sourceFile("Chat layout", "src/registry/sources/control-ui/chat-layout.tsx", "chat-layout"),
-        sourceFile("Sidebar slot", "src/registry/sources/control-ui/ui/sidebar.tsx", "ui-sidebar"),
-        sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "ui-button"),
-      ],
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/coding-agent.tsx", "block")],
     },
     composition: [
       {
@@ -167,13 +147,7 @@ export const blockEntries = [
         mastra: sourceFile("Usage", "src/registry/usage/blocks/settings.tsx", "usage"),
         "ai-sdk": sourceFile("Usage", "src/registry/usage/blocks/settings.tsx", "usage"),
       },
-      files: [
-        sourceFile("Block recipe", "src/registry/blocks/control-ui/settings.tsx", "block"),
-        sourceFile("Definitions and search", "src/registry/blocks/control-ui/settings-data.ts", "settings-data"),
-        sourceFile("Field slot", "src/registry/sources/control-ui/ui/field.tsx", "ui-field"),
-        sourceFile("Sidebar slot", "src/registry/sources/control-ui/ui/sidebar.tsx", "ui-sidebar"),
-        sourceFile("Input group slot", "src/registry/sources/control-ui/ui/input-group.tsx", "ui-input-group"),
-      ],
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/settings.tsx", "block")],
     },
     composition: [
       {
@@ -214,15 +188,7 @@ export const blockEntries = [
         mastra: sourceFile("Usage", "src/registry/usage/blocks/file-explorer.tsx", "usage"),
         "ai-sdk": sourceFile("Usage", "src/registry/usage/blocks/file-explorer.tsx", "usage"),
       },
-      files: [
-        sourceFile("Block recipe", "src/registry/blocks/control-ui/file-explorer.tsx", "block"),
-        sourceFile("Definitions and traversal", "src/registry/blocks/control-ui/file-explorer-data.ts", "file-explorer-data"),
-        sourceFile("Resizable slot", "src/registry/sources/control-ui/ui/resizable.tsx", "ui-resizable"),
-        sourceFile("Sidebar slot", "src/registry/sources/control-ui/ui/sidebar.tsx", "ui-sidebar"),
-        sourceFile("Scroll area slot", "src/registry/sources/control-ui/ui/scroll-area.tsx", "ui-scroll-area"),
-        sourceFile("Input group slot", "src/registry/sources/control-ui/ui/input-group.tsx", "ui-input-group"),
-        sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "ui-button"),
-      ],
+      files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/file-explorer.tsx", "block")],
     },
     composition: [
       {

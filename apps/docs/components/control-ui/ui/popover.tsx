@@ -35,12 +35,14 @@ export function PopoverContent({
   side = "bottom",
   align = "center",
   sideOffset = 6,
+  collisionPadding,
   padding = "default",
   ...props
 }: ComponentProps<typeof PopoverPrimitive.Popup> & {
   side?: ComponentProps<typeof PopoverPrimitive.Positioner>["side"];
   align?: ComponentProps<typeof PopoverPrimitive.Positioner>["align"];
   sideOffset?: number;
+  collisionPadding?: ComponentProps<typeof PopoverPrimitive.Positioner>["collisionPadding"];
   padding?: PopoverContentPadding;
 }) {
   return (
@@ -52,6 +54,7 @@ export function PopoverContent({
         side={side}
         align={align}
         sideOffset={sideOffset}
+        collisionPadding={collisionPadding}
         className="z-[80] outline-none"
       >
         <PopoverPrimitive.Popup

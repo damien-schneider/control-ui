@@ -168,7 +168,11 @@
       }
     },
     {
-      "includes": ["apps/docs/src/registry/sources/control-ui/**/*.tsx", "apps/docs/components/control-ui/**/*.tsx"],
+      "includes": [
+        "apps/docs/src/registry/sources/control-ui/**/*.tsx",
+        "apps/docs/components/control-ui/**/*.tsx",
+        "!apps/docs/components/control-ui/*-runtime.tsx"
+      ],
       "plugins": [
         {
           "path": "./lint/no-react-dom-query.grit"

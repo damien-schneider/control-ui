@@ -160,6 +160,24 @@ export const primitiveEntries = [
     ),
   },
   {
+    id: "timeline",
+    category: "display",
+    kind: "Primitive",
+    name: "Timeline",
+    summary: "Static chronological events with independent status, connectors, descriptions, and metadata.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/timeline.tsx",
+        example: sourceFile("Timeline preview", "src/registry/examples/control-ui/primitives/timeline.tsx", "example"),
+        source: sourceFile("Timeline slot", "src/registry/sources/control-ui/ui/timeline.tsx", "component"),
+        registryKind: "timeline",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/timeline").then((mod) => ({ default: mod.PrimitiveTimelineExample })),
+    ),
+  },
+  {
     id: "stepper",
     category: "navigation",
     kind: "Primitive",

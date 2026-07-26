@@ -27,6 +27,8 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [DynamicNotification](http://127.0.0.1:3000/ai/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
 - [EnvironmentVariables](http://127.0.0.1:3000/ai/environment-variables): Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. Status: experimental.
 - [Activity](http://127.0.0.1:3000/ai/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
+- [Context](http://127.0.0.1:3000/ai/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
+- [InlineCitation](http://127.0.0.1:3000/ai/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation. Status: beta.
 - [SourceBadge](http://127.0.0.1:3000/ai/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. Status: beta.
 - [ActionBar](http://127.0.0.1:3000/ai/action-bar): Reusable hover actions for message and response controls.
 - [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns.
@@ -53,6 +55,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Sidebar](http://127.0.0.1:3000/primitives/sidebar): Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support. Status: beta.
 - [Scroll area](http://127.0.0.1:3000/primitives/scroll-area): Scroll container with overlay scrollbars and edge fades.
 - [Table of contents](http://127.0.0.1:3000/primitives/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
+- [Timeline](http://127.0.0.1:3000/primitives/timeline): Static chronological events with independent status, connectors, descriptions, and metadata.
 - [Stepper](http://127.0.0.1:3000/primitives/stepper): Static and interactive workflow steps with horizontal and vertical layouts.
 - [Skeleton](http://127.0.0.1:3000/primitives/skeleton): Loading placeholder with a token-driven shimmer. Status: beta.
 - [Slider](http://127.0.0.1:3000/primitives/slider): Single-value range control with branded and plain treatments.
@@ -160,6 +163,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Explicit names instead of comments](http://127.0.0.1:3000/skills/react-explicit-naming): Encode intent in identifiers and extracted units so the code needs no explanatory comments.
 - [One responsibility per file](http://127.0.0.1:3000/skills/react-single-responsibility): Split domain components and hooks before fetching, filtering, selection, and form state become entangled.
 - [Keep input and output APIs narrow](http://127.0.0.1:3000/skills/react-narrow-apis): Split oversized prop, argument, and return-value APIs into cohesive responsibilities.
+- [Keep context necessary, narrow, and stable](http://127.0.0.1:3000/skills/react-context-ownership): Use context only across real composition boundaries, with the smallest stable semantic value consumers need.
 - [Do not query the DOM in React](http://127.0.0.1:3000/skills/react-no-dom-queries): Keep element identity and collections in React instead of searching rendered markup.
 - [Real stack tests](http://127.0.0.1:3000/skills/react-real-stack-tests): Prefer tests that drive production hooks, clients, routing, and cache behavior with only the network mocked.
 - [Test rendered output, not class names](http://127.0.0.1:3000/skills/react-test-rendered-output): Prove visual behavior through computed styles, geometry, or browser output instead of Tailwind class strings.

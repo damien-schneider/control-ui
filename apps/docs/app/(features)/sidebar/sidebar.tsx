@@ -248,7 +248,7 @@ export function DocsSidebarContent({
         aria-label="Documentation controls"
         data-docs-floating-toolbar=""
         variant="inverse"
-        className="fixed! bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-40 w-(--floating-toolbar-rest-width) max-w-[calc(100vw-1rem)] -translate-x-1/2 transition-[width,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:w-(--floating-toolbar-search-width) has-[input:focus]:gap-0 [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] sm:[--floating-toolbar-rest-width:24rem] sm:[--toolbar-padding:0.375rem] md:[--floating-toolbar-rest-width:24rem]"
+        className="fixed! bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-40 w-(--floating-toolbar-rest-width) max-w-[calc(100vw-1rem)] -translate-x-1/2 transition-[width,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:w-(--floating-toolbar-search-width) has-[input:focus]:gap-0 [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] sm:[--floating-toolbar-rest-width:24rem] sm:[--toolbar-padding:0.375rem] md:left-[min(50%,calc(100%-var(--theme-drawer-width,0px)-var(--floating-toolbar-rest-width)/2-0.5rem))] md:[--floating-toolbar-rest-width:24rem]"
       >
         <SidebarSearch items={searchItems} onNavigate={onNavigate} />
         <ToolbarGroup className="min-w-0 flex-[1_1_100%] justify-center overflow-hidden opacity-100 transition-[flex-basis,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] peer-focus-within:pointer-events-none peer-focus-within:flex-[0_1_0%] peer-focus-within:opacity-0">

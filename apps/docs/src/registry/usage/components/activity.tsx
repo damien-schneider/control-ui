@@ -1,15 +1,14 @@
 import { BookOpen, Search, SquareTerminal } from "lucide-react";
 
+import { Activity, ActivityContent, ActivityIcon, ActivityStatus, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
 import {
-  Activity,
-  ActivityContent,
-  ActivityIcon,
-  ActivityItem,
-  ActivityList,
-  ActivityStatus,
-  ActivityTitle,
-  ActivityTrigger,
-} from "@/components/control-ui/activity";
+  Timeline,
+  TimelineContent,
+  TimelineIndicator,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineTitle,
+} from "@/components/control-ui/ui/timeline";
 
 export function Example() {
   return (
@@ -22,11 +21,35 @@ export function Example() {
         <ActivityStatus className="sr-only" />
       </ActivityTrigger>
       <ActivityContent>
-        <ActivityList>
-          <ActivityItem icon={<SquareTerminal />}>Ran the validation command</ActivityItem>
-          <ActivityItem icon={<Search />}>Searched for affected components</ActivityItem>
-          <ActivityItem icon={<BookOpen />}>Read the component contract</ActivityItem>
-        </ActivityList>
+        <Timeline>
+          <TimelineItem state="success">
+            <TimelineIndicator>
+              <SquareTerminal />
+            </TimelineIndicator>
+            <TimelineSeparator />
+            <TimelineContent>
+              <TimelineTitle>Ran the validation command</TimelineTitle>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem state="success">
+            <TimelineIndicator>
+              <Search />
+            </TimelineIndicator>
+            <TimelineSeparator />
+            <TimelineContent>
+              <TimelineTitle>Searched for affected components</TimelineTitle>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem state="running">
+            <TimelineIndicator>
+              <BookOpen />
+            </TimelineIndicator>
+            <TimelineSeparator />
+            <TimelineContent>
+              <TimelineTitle>Reading the component contract</TimelineTitle>
+            </TimelineContent>
+          </TimelineItem>
+        </Timeline>
       </ActivityContent>
     </Activity>
   );

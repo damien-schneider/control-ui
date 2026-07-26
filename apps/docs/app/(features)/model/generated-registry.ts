@@ -4,31 +4,67 @@ export const registryMetadata = {
     dependencies: ["@base-ui/react@^1.6.0", "lucide-react@^1.24.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/accordion.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/accordion.tsx",
+        target: "@components/control-ui/ui/accordion.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "action-bar": {
     dependencies: [],
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/action-bar.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/action-bar.tsx",
+        target: "@components/control-ui/action-bar.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   activity: {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["collapsible", "core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/activity.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/activity.tsx",
+        target: "@components/control-ui/activity.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   alert: {
     dependencies: ["class-variance-authority@^0.7.1"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/alert.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/alert.tsx",
+        target: "@components/control-ui/ui/alert.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "alert-dialog": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/alert-dialog.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/alert-dialog.tsx",
+        target: "@components/control-ui/ui/alert-dialog.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   all: {
     dependencies: [],
     registryDependencies: ["all-refined", "core"],
     sourceManifestPath: "registry/control-ui/all.json",
+    files: [],
   },
   "all-cuicui": {
     dependencies: [],
@@ -63,6 +99,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -80,6 +117,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -118,6 +156,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -128,6 +167,7 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-cuicui.json",
+    files: [],
   },
   "all-flat": {
     dependencies: [],
@@ -162,6 +202,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -179,6 +220,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -217,6 +259,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -227,6 +270,7 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-flat.json",
+    files: [],
   },
   "all-linear": {
     dependencies: [],
@@ -261,6 +305,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -278,6 +323,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -316,6 +362,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -326,6 +373,7 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-linear.json",
+    files: [],
   },
   "all-liquid-metal": {
     dependencies: [],
@@ -360,6 +408,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -377,6 +426,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -415,6 +465,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -425,6 +476,7 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-liquid-metal.json",
+    files: [],
   },
   "all-modern-apple": {
     dependencies: [],
@@ -459,6 +511,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -476,6 +529,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -514,6 +568,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -524,6 +579,7 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-modern-apple.json",
+    files: [],
   },
   "all-refined": {
     dependencies: [],
@@ -558,6 +614,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -575,6 +632,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -613,6 +671,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -623,6 +682,7 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-refined.json",
+    files: [],
   },
   "all-rig": {
     dependencies: [],
@@ -657,6 +717,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -674,6 +735,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -712,6 +774,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -722,6 +785,7 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-rig.json",
+    files: [],
   },
   "all-xp": {
     dependencies: [],
@@ -756,6 +820,7 @@ export const registryMetadata = {
       "color-picker",
       "combobox",
       "command",
+      "context",
       "context-menu",
       "core",
       "dialog",
@@ -773,6 +838,7 @@ export const registryMetadata = {
       "hover-card",
       "infinite-canvas",
       "inline-attachment",
+      "inline-citation",
       "input",
       "input-group",
       "input-otp",
@@ -811,6 +877,7 @@ export const registryMetadata = {
       "textarea",
       "theme-toggle-block",
       "thread-rail",
+      "timeline",
       "toast",
       "toggle",
       "toolbar",
@@ -821,66 +888,161 @@ export const registryMetadata = {
       "user-ask",
     ],
     sourceManifestPath: "registry/control-ui/all-xp.json",
+    files: [],
   },
   "aspect-ratio": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/aspect-ratio.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/aspect-ratio.tsx",
+        target: "@components/control-ui/ui/aspect-ratio.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "audio-recorder": {
     dependencies: ["lucide-react@^1.24.0"],
-    registryDependencies: ["audio-visualizer", "button", "command", "core", "popover"],
+    registryDependencies: ["audio-visualizer", "button", "core"],
     sourceManifestPath: "registry/control-ui/audio-recorder.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-audio-recorder.ts",
+        target: "@components/control-ui/hooks/use-audio-recorder.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/lib/format-audio-recorder-duration.ts",
+        target: "@components/control-ui/lib/format-audio-recorder-duration.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/audio-recorder.tsx",
+        target: "@components/control-ui/audio-recorder.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "audio-visualizer": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/audio-visualizer.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/audio-visualizer.tsx",
+        target: "@components/control-ui/audio-visualizer.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "audio-visualizer-line": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/audio-visualizer-line.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/audio-visualizer-line.tsx",
+        target: "@components/control-ui/audio-visualizer-line.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   autocomplete: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/autocomplete.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/autocomplete.tsx",
+        target: "@components/control-ui/ui/autocomplete.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   avatar: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/avatar.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/avatar.tsx",
+        target: "@components/control-ui/ui/avatar.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   badge: {
     dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/badge.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/badge.tsx",
+        target: "@components/control-ui/ui/badge.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   breadcrumb: {
     dependencies: ["@base-ui/react@^1.6.0", "lucide-react@^1.24.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/breadcrumb.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/breadcrumb.tsx",
+        target: "@components/control-ui/ui/breadcrumb.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   button: {
     dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/button.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/button.tsx",
+        target: "@components/control-ui/ui/button.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "button-group": {
     dependencies: ["class-variance-authority@^0.7.1"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/button-group.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/button-group.tsx",
+        target: "@components/control-ui/ui/button-group.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   calendar: {
     dependencies: ["react-day-picker@^10.0.1"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/calendar.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/calendar.tsx",
+        target: "@components/control-ui/ui/calendar.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   card: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/card.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/card.tsx",
+        target: "@components/control-ui/ui/card.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   chat: {
     dependencies: [],
@@ -894,17 +1056,26 @@ export const registryMetadata = {
       "code-block-editor",
       "core",
       "inline-attachment",
+      "inline-citation",
       "markdown-block",
       "model-switcher",
       "source-badge",
       "thread-rail",
     ],
     sourceManifestPath: "registry/control-ui/chat.json",
+    files: [],
   },
   "chat-block": {
     dependencies: [],
     registryDependencies: ["chat-layout", "core"],
     sourceManifestPath: "registry/control-ui/chat-block.json",
+    files: [
+      {
+        path: "src/registry/blocks/chat.tsx",
+        target: "@components/control-ui/blocks/chat.tsx",
+        type: "registry:block",
+      },
+    ],
   },
   "chat-composer": {
     dependencies: [
@@ -915,477 +1086,1523 @@ export const registryMetadata = {
       "prosemirror-state@^1.4.4",
       "prosemirror-view@^1.42.1",
     ],
-    registryDependencies: ["button", "core", "scroll-area", "trigger-menu"],
+    registryDependencies: ["button", "core", "trigger-menu"],
     sourceManifestPath: "registry/control-ui/chat-composer.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-chat-composer.ts",
+        target: "@components/control-ui/hooks/use-chat-composer.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer-editor.css",
+        target: "@components/control-ui/styles/chat-composer-editor.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer-editor.tsx",
+        target: "@components/control-ui/chat-composer-editor.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer-editor/extensions/mention.tsx",
+        target: "@components/control-ui/chat-composer-editor/extensions/mention.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer-editor/ghost.ts",
+        target: "@components/control-ui/chat-composer-editor/ghost.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer-editor/schema.ts",
+        target: "@components/control-ui/chat-composer-editor/schema.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer-editor/serialize.ts",
+        target: "@components/control-ui/chat-composer-editor/serialize.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer-editor/types.ts",
+        target: "@components/control-ui/chat-composer-editor/types.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-composer.tsx",
+        target: "@components/control-ui/chat-composer.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "chat-composer-attachment": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/chat-composer-attachment.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/chat-composer-attachment.tsx",
+        target: "@components/control-ui/chat-composer-attachment.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "chat-layout": {
     dependencies: [],
     registryDependencies: ["activity", "core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/chat-layout.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/chat-layout.tsx",
+        target: "@components/control-ui/chat-layout.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "chat-message": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/chat-message.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-chat-message.ts",
+        target: "@components/control-ui/hooks/use-chat-message.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/sources/control-ui/chat-message.tsx",
+        target: "@components/control-ui/chat-message.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   checkbox: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/checkbox.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/checkbox.tsx",
+        target: "@components/control-ui/ui/checkbox.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "checkbox-group": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/checkbox-group.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/checkbox-group.tsx",
+        target: "@components/control-ui/ui/checkbox-group.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   code: {
     dependencies: ["@tanstack/react-virtual@^3.14.6", "lucide-react@^1.24.0", "shiki@^4.3.1"],
     registryDependencies: ["button", "core", "scroll-area", "tooltip"],
     sourceManifestPath: "registry/control-ui/code.json",
+    files: [
+      {
+        path: "src/registry/lib/code-tokens.ts",
+        target: "@components/control-ui/lib/code-tokens.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/code.css",
+        target: "@components/control-ui/styles/code.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/code.tsx",
+        target: "@components/control-ui/ui/code.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "code-block-editor": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "code", "core", "scroll-area", "tooltip"],
     sourceManifestPath: "registry/control-ui/code-block-editor.json",
+    files: [
+      {
+        path: "src/registry/lib/code-block-shiki.ts",
+        target: "@components/control-ui/lib/code-block-shiki.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/code-block-editor.tsx",
+        target: "@components/control-ui/code-block-editor.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "code-diff": {
     dependencies: ["@tanstack/react-virtual@^3.14.6", "diff@^9.0.0"],
     registryDependencies: ["button", "code", "core", "scroll-area", "tooltip"],
     sourceManifestPath: "registry/control-ui/code-diff.json",
+    files: [
+      {
+        path: "src/registry/lib/diff.ts",
+        target: "@components/control-ui/lib/diff.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/code-diff.tsx",
+        target: "@components/control-ui/ui/code-diff.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "coding-agent-block": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "chat-layout", "collapsible", "core", "sidebar"],
     sourceManifestPath: "registry/control-ui/coding-agent-block.json",
+    files: [
+      {
+        path: "src/registry/blocks/control-ui/coding-agent.tsx",
+        target: "@components/control-ui/blocks/coding-agent.tsx",
+        type: "registry:block",
+      },
+    ],
   },
   collapsible: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/collapsible.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/collapsible.tsx",
+        target: "@components/control-ui/ui/collapsible.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "color-picker": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["button", "core", "input", "number-field", "select"],
     sourceManifestPath: "registry/control-ui/color-picker.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-color-area.ts",
+        target: "@components/control-ui/hooks/use-color-area.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/lib/color.ts",
+        target: "@components/control-ui/lib/color.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/lib/contrast.ts",
+        target: "@components/control-ui/lib/contrast.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/color-picker.tsx",
+        target: "@components/control-ui/ui/color-picker.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   combobox: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/combobox.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/combobox-disabled-selection.ts",
+        target: "@components/control-ui/ui/combobox-disabled-selection.ts",
+        type: "registry:ui",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/combobox.tsx",
+        target: "@components/control-ui/ui/combobox.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   command: {
     dependencies: ["cmdk@^1.1.1"],
     registryDependencies: ["button", "core", "dialog", "scroll-area"],
     sourceManifestPath: "registry/control-ui/command.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/command.tsx",
+        target: "@components/control-ui/ui/command.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  context: {
+    dependencies: ["lucide-react@^1.24.0"],
+    registryDependencies: ["button", "core", "popover", "scroll-area"],
+    sourceManifestPath: "registry/control-ui/context.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/context-model.ts",
+        target: "@components/control-ui/context-model.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/context.tsx",
+        target: "@components/control-ui/context.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "context-menu": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/context-menu.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/context-menu.tsx",
+        target: "@components/control-ui/ui/context-menu.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "control-effects": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/control-effects.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/extensions/control-effects-root.tsx",
+        target: "@components/control-ui/extensions/control-effects-root.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/extensions/control-effects.ts",
+        target: "@components/control-ui/extensions/control-effects.ts",
+        type: "registry:component",
+      },
+    ],
   },
   core: {
     dependencies: ["class-variance-authority@^0.7.1", "clsx@^2.1.1", "tailwind-merge@^3.6.0"],
     registryDependencies: [],
     sourceManifestPath: "registry/control-ui/core.json",
+    files: [
+      {
+        path: "src/registry/contracts.ts",
+        target: "@components/control-ui/contracts.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/hooks/use-copy-to-clipboard.ts",
+        target: "@components/control-ui/hooks/use-copy-to-clipboard.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/lib/cn.ts",
+        target: "@components/control-ui/lib/cn.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin.ts",
+        target: "@components/control-ui/skin.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/control-variants.ts",
+        target: "@components/control-ui/control-variants.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/effects.css",
+        target: "@components/control-ui/styles/effects.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/surface-variants.ts",
+        target: "@components/control-ui/surface-variants.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/theme.css",
+        target: "@components/control-ui/styles/theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   dialog: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/dialog.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/dialog.tsx",
+        target: "@components/control-ui/ui/dialog.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "dockable-panel": {
     dependencies: [],
     registryDependencies: ["button", "core", "drawer", "sidebar"],
     sourceManifestPath: "registry/control-ui/dockable-panel.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/dockable-panel-geometry.ts",
+        target: "@components/control-ui/ui/dockable-panel-geometry.ts",
+        type: "registry:ui",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/dockable-panel.tsx",
+        target: "@components/control-ui/ui/dockable-panel.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   drawer: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/drawer.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/drawer.tsx",
+        target: "@components/control-ui/ui/drawer.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "dropdown-menu": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/dropdown-menu.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/dropdown-menu.tsx",
+        target: "@components/control-ui/ui/dropdown-menu.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   dropzone: {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "item"],
     sourceManifestPath: "registry/control-ui/dropzone.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-dropzone.ts",
+        target: "@components/control-ui/hooks/use-dropzone.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/lib/dropzone-validation.ts",
+        target: "@components/control-ui/lib/dropzone-validation.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/dropzone.tsx",
+        target: "@components/control-ui/ui/dropzone.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "dynamic-notification": {
     dependencies: [],
     registryDependencies: ["button", "core", "liquid-glass-optics"],
     sourceManifestPath: "registry/control-ui/dynamic-notification.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-dynamic-notification.ts",
+        target: "@components/control-ui/hooks/use-dynamic-notification.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/sources/control-ui/dynamic-notification-glass.ts",
+        target: "@components/control-ui/dynamic-notification-glass.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/dynamic-notification-liquid.ts",
+        target: "@components/control-ui/dynamic-notification-liquid.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/dynamic-notification-siri-wave.ts",
+        target: "@components/control-ui/dynamic-notification-siri-wave.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/dynamic-notification.css",
+        target: "@components/control-ui/styles/dynamic-notification.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/dynamic-notification.tsx",
+        target: "@components/control-ui/dynamic-notification.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   empty: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/empty.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/empty.tsx",
+        target: "@components/control-ui/ui/empty.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "environment-variables": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "input", "input-group"],
     sourceManifestPath: "registry/control-ui/environment-variables.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-environment-variables.ts",
+        target: "@components/control-ui/hooks/use-environment-variables.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/lib/env-file.ts",
+        target: "@components/control-ui/lib/env-file.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/environment-variables.tsx",
+        target: "@components/control-ui/environment-variables.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   field: {
     dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1"],
     registryDependencies: ["core", "separator"],
     sourceManifestPath: "registry/control-ui/field.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/field.tsx",
+        target: "@components/control-ui/ui/field.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "file-explorer-block": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "empty", "input-group", "resizable", "scroll-area", "sidebar"],
     sourceManifestPath: "registry/control-ui/file-explorer-block.json",
+    files: [
+      {
+        path: "src/registry/blocks/control-ui/file-explorer-data.ts",
+        target: "@components/control-ui/blocks/file-explorer-data.ts",
+        type: "registry:block",
+      },
+      {
+        path: "src/registry/blocks/control-ui/file-explorer.tsx",
+        target: "@components/control-ui/blocks/file-explorer.tsx",
+        type: "registry:block",
+      },
+    ],
   },
   form: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/form.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/form.tsx",
+        target: "@components/control-ui/ui/form.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "gradient-editor": {
     dependencies: [],
     registryDependencies: ["color-picker", "core", "select"],
     sourceManifestPath: "registry/control-ui/gradient-editor.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/gradient-editor.tsx",
+        target: "@components/control-ui/ui/gradient-editor.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "hover-card": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/hover-card.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/hover-card.tsx",
+        target: "@components/control-ui/ui/hover-card.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "infinite-canvas": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/infinite-canvas.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/infinite-canvas.tsx",
+        target: "@components/control-ui/ui/infinite-canvas.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "inline-attachment": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/inline-attachment.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/inline-attachment.tsx",
+        target: "@components/control-ui/inline-attachment.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  "inline-citation": {
+    dependencies: ["lucide-react@^1.24.0"],
+    registryDependencies: ["button", "core", "popover", "source-badge"],
+    sourceManifestPath: "registry/control-ui/inline-citation.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/inline-citation.tsx",
+        target: "@components/control-ui/inline-citation.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   input: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/input.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/input.tsx",
+        target: "@components/control-ui/ui/input.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "input-group": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/input-group.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/input-group.tsx",
+        target: "@components/control-ui/ui/input-group.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "input-otp": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/input-otp.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/input-otp.tsx",
+        target: "@components/control-ui/ui/input-otp.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   item: {
     dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1"],
     registryDependencies: ["core", "separator"],
     sourceManifestPath: "registry/control-ui/item.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/item.tsx",
+        target: "@components/control-ui/ui/item.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   kbd: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/kbd.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/kbd.tsx",
+        target: "@components/control-ui/ui/kbd.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   label: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/label.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/label.tsx",
+        target: "@components/control-ui/ui/label.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "liquid-glass-optics": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/liquid-glass-optics.json",
+    files: [
+      {
+        path: "src/registry/lib/liquid-glass-optics.ts",
+        target: "@components/control-ui/lib/liquid-glass-optics.ts",
+        type: "registry:lib",
+      },
+    ],
   },
   markdown: {
     dependencies: ["streamdown@^2.5.0"],
     registryDependencies: ["code", "code-diff", "core"],
     sourceManifestPath: "registry/control-ui/markdown.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/markdown-elements.tsx",
+        target: "@components/control-ui/ui/markdown-elements.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/markdown.tsx",
+        target: "@components/control-ui/ui/markdown.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "markdown-block": {
     dependencies: [],
     registryDependencies: ["button", "core", "markdown"],
     sourceManifestPath: "registry/control-ui/markdown-block.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/markdown-block.tsx",
+        target: "@components/control-ui/markdown-block.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   menubar: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/menubar.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/menubar.tsx",
+        target: "@components/control-ui/ui/menubar.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   meter: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/meter.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/meter.tsx",
+        target: "@components/control-ui/ui/meter.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "model-switcher": {
     dependencies: [],
     registryDependencies: ["core", "select"],
     sourceManifestPath: "registry/control-ui/model-switcher.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/model-switcher.tsx",
+        target: "@components/control-ui/model-switcher.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "morphing-panel": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/morphing-panel.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/morphing-panel.tsx",
+        target: "@components/control-ui/ui/morphing-panel.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "native-select": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/native-select.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/native-select.tsx",
+        target: "@components/control-ui/ui/native-select.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "navigation-menu": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/navigation-menu.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/navigation-menu.tsx",
+        target: "@components/control-ui/ui/navigation-menu.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "next-app": {
     dependencies: [],
     registryDependencies: ["all", "button", "core"],
     sourceManifestPath: "registry/control-ui/next-app.json",
+    files: [
+      {
+        path: "src/registry/starters/next/layout.tsx",
+        target: "~/app/layout.tsx",
+        type: "registry:page",
+      },
+      {
+        path: "src/registry/starters/next/page.tsx",
+        target: "~/app/page.tsx",
+        type: "registry:page",
+      },
+    ],
   },
   "number-field": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/number-field.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/number-field.tsx",
+        target: "@components/control-ui/ui/number-field.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   pagination: {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/pagination.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/pagination.tsx",
+        target: "@components/control-ui/ui/pagination.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "phone-input": {
     dependencies: ["libphonenumber-js@^1.13.8", "react-phone-number-input@^3.4.17", "zod@^4.4.3"],
     registryDependencies: ["command", "core", "input-group", "popover"],
     sourceManifestPath: "registry/control-ui/phone-input.json",
+    files: [
+      {
+        path: "src/registry/lib/phone-input-format.ts",
+        target: "@components/control-ui/lib/phone-input-format.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/lib/phone-number.ts",
+        target: "@components/control-ui/lib/phone-number.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/phone-input.tsx",
+        target: "@components/control-ui/ui/phone-input.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   popover: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/popover.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/popover.tsx",
+        target: "@components/control-ui/ui/popover.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   progress: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/progress.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/progress.tsx",
+        target: "@components/control-ui/ui/progress.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "radio-group": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/radio-group.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/radio-group.tsx",
+        target: "@components/control-ui/ui/radio-group.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   resizable: {
     dependencies: ["react-resizable-panels@^4.12.2"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/resizable.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/resizable.tsx",
+        target: "@components/control-ui/ui/resizable.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "responsive-dialog": {
     dependencies: [],
     registryDependencies: ["button", "core", "dialog", "drawer"],
     sourceManifestPath: "registry/control-ui/responsive-dialog.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/responsive-dialog.tsx",
+        target: "@components/control-ui/ui/responsive-dialog.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "scroll-area": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/scroll-area.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/scroll-area.tsx",
+        target: "@components/control-ui/ui/scroll-area.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   select: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/select.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/select.tsx",
+        target: "@components/control-ui/ui/select.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "send-aurora": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/send-aurora.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/extensions/send-aurora.css",
+        target: "@components/control-ui/styles/send-aurora.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/extensions/send-aurora.tsx",
+        target: "@components/control-ui/extensions/send-aurora.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   separator: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/separator.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/separator.tsx",
+        target: "@components/control-ui/ui/separator.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "settings-block": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "empty", "field", "input-group", "scroll-area", "sidebar"],
     sourceManifestPath: "registry/control-ui/settings-block.json",
+    files: [
+      {
+        path: "src/registry/blocks/control-ui/settings-data.ts",
+        target: "@components/control-ui/blocks/settings-data.ts",
+        type: "registry:block",
+      },
+      {
+        path: "src/registry/blocks/control-ui/settings.tsx",
+        target: "@components/control-ui/blocks/settings.tsx",
+        type: "registry:block",
+      },
+    ],
   },
   sheet: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/sheet.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/sheet.tsx",
+        target: "@components/control-ui/ui/sheet.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   sidebar: {
     dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1", "lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "scroll-area", "sheet", "tooltip", "track-highlight"],
     sourceManifestPath: "registry/control-ui/sidebar.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-mobile.ts",
+        target: "@components/control-ui/hooks/use-mobile.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/sidebar.tsx",
+        target: "@components/control-ui/ui/sidebar.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "sidebar-layout-block": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["core", "sidebar"],
     sourceManifestPath: "registry/control-ui/sidebar-layout-block.json",
+    files: [
+      {
+        path: "src/registry/blocks/control-ui/sidebar-layout.tsx",
+        target: "@components/control-ui/blocks/sidebar-layout.tsx",
+        type: "registry:block",
+      },
+    ],
   },
   skeleton: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/skeleton.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/skeleton.tsx",
+        target: "@components/control-ui/ui/skeleton.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "skin-cuicui": {
     dependencies: [],
     registryDependencies: ["core", "send-aurora"],
     sourceManifestPath: "registry/cuicui/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/cuicui/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/cuicui/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/cuicui/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   "skin-flat": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/flat/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/flat/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/flat/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/flat/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   "skin-linear": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/linear/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/linear/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/linear/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/linear/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   "skin-liquid-metal": {
     dependencies: ["metal-fx@^1.0.4"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/liquid-metal/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/liquid-metal/liquid-metal-runtime.tsx",
+        target: "@components/control-ui/liquid-metal-runtime.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/skin-packs/liquid-metal/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/liquid-metal/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/liquid-metal/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   "skin-modern-apple": {
     dependencies: [],
     registryDependencies: ["core", "liquid-glass-optics"],
     sourceManifestPath: "registry/modern-apple/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime.tsx",
+        target: "@components/control-ui/modern-apple-liquid-glass-runtime.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass.ts",
+        target: "@components/control-ui/modern-apple-liquid-glass.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/modern-apple/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/modern-apple/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/modern-apple/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   "skin-refined": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/refined/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/refined/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/refined/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/refined/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   "skin-rig": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/rig/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/rig/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/rig/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/rig/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   "skin-xp": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/xp/skin.json",
+    files: [
+      {
+        path: "src/registry/skin-packs/xp/skin.config.tsx",
+        target: "@components/control-ui/skin.config.tsx",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/skin-packs/xp/skin.css",
+        target: "@components/control-ui/styles/skin.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/skin-packs/xp/theme.css",
+        target: "@components/control-ui/styles/skin-theme.css",
+        type: "registry:file",
+      },
+    ],
   },
   slider: {
     dependencies: ["@base-ui/react@^1.6.0", "class-variance-authority@^0.7.1"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/slider.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/slider.tsx",
+        target: "@components/control-ui/ui/slider.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "source-badge": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["avatar", "badge", "core"],
     sourceManifestPath: "registry/control-ui/source-badge.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/source-badge.tsx",
+        target: "@components/control-ui/source-badge.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   spinner: {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/spinner.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/spinner.tsx",
+        target: "@components/control-ui/ui/spinner.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   stepper: {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/stepper.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/stepper.tsx",
+        target: "@components/control-ui/ui/stepper.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   switch: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/switch.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/switch.tsx",
+        target: "@components/control-ui/ui/switch.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   table: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/table.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/table.tsx",
+        target: "@components/control-ui/ui/table.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "table-of-contents": {
     dependencies: ["class-variance-authority@^0.7.1"],
     registryDependencies: ["core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/table-of-contents.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/table-of-contents.tsx",
+        target: "@components/control-ui/ui/table-of-contents.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   tabs: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/tabs.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/tabs.tsx",
+        target: "@components/control-ui/ui/tabs.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "task-list": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["collapsible", "core"],
     sourceManifestPath: "registry/control-ui/task-list.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/task-list.tsx",
+        target: "@components/control-ui/task-list.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   textarea: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/textarea.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/textarea.tsx",
+        target: "@components/control-ui/ui/textarea.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "theme-toggle-block": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "dropdown-menu", "switch"],
     sourceManifestPath: "registry/control-ui/theme-toggle-block.json",
+    files: [
+      {
+        path: "src/registry/blocks/control-ui/theme-toggle.tsx",
+        target: "@components/control-ui/blocks/theme-toggle.tsx",
+        type: "registry:block",
+      },
+    ],
   },
   "thread-rail": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/thread-rail.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/thread-rail.css",
+        target: "@components/control-ui/styles/thread-rail.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/thread-rail.tsx",
+        target: "@components/control-ui/thread-rail.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  timeline: {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/timeline.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/timeline.tsx",
+        target: "@components/control-ui/ui/timeline.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   toast: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/toast.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/toast.tsx",
+        target: "@components/control-ui/ui/toast.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   toggle: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/toggle.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/toggle.tsx",
+        target: "@components/control-ui/ui/toggle.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   toolbar: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/toolbar.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/toolbar.tsx",
+        target: "@components/control-ui/ui/toolbar.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   tooltip: {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/tooltip.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/tooltip.tsx",
+        target: "@components/control-ui/ui/tooltip.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "track-highlight": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/track-highlight.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/extensions/create-track-highlight.ts",
+        target: "@components/control-ui/extensions/create-track-highlight.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/extensions/track-highlight.tsx",
+        target: "@components/control-ui/extensions/track-highlight.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   tree: {
     dependencies: ["@base-ui/react@^1.6.0", "lucide-react@^1.24.0"],
     registryDependencies: ["core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/tree.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/ui/tree.tsx",
+        target: "@components/control-ui/ui/tree.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   "trigger-menu": {
     dependencies: ["@base-ui/react@^1.6.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/trigger-menu.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-textarea-trigger-menu.ts",
+        target: "@components/control-ui/hooks/use-textarea-trigger-menu.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/hooks/use-trigger-menu.ts",
+        target: "@components/control-ui/hooks/use-trigger-menu.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/lib/trigger-detect.ts",
+        target: "@components/control-ui/lib/trigger-detect.ts",
+        type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/trigger-menu.tsx",
+        target: "@components/control-ui/ui/trigger-menu.tsx",
+        type: "registry:ui",
+      },
+    ],
   },
   typography: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/typography.json",
+    files: [
+      {
+        path: "src/registry/examples/control-ui/primitives/type-scale.css",
+        target: "@components/control-ui/styles/type-scale.css",
+        type: "registry:file",
+      },
+    ],
   },
   "user-ask": {
     dependencies: ["lucide-react@^1.24.0"],
     registryDependencies: ["button", "core", "kbd"],
     sourceManifestPath: "registry/control-ui/user-ask.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-user-ask.ts",
+        target: "@components/control-ui/hooks/use-user-ask.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "src/registry/sources/control-ui/user-ask.tsx",
+        target: "@components/control-ui/user-ask.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   "view-transition": {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/view-transition.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/extensions/view-transition.ts",
+        target: "@components/control-ui/extensions/view-transition.ts",
+        type: "registry:component",
+      },
+    ],
   },
 } as const;

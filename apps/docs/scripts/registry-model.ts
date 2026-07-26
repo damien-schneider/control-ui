@@ -177,18 +177,17 @@ function sourcePath(file: { path: string }) {
   return file.path;
 }
 
-function optionalPaths(entry: object, key: string): string[] {
-  if (!isRecord(entry)) return [];
-  const value = entry[key];
-  if (!Array.isArray(value)) return [];
-  return value.flatMap((file) => (isRecord(file) && typeof file.path === "string" ? [file.path] : []));
+// `source` anchors the parameter: a supportFiles-only shape would be a weak type and reject every
+// catalog entry that declares no support files.
+function supportFilePaths(entry: { source: { path: string }; supportFiles?: readonly { path: string }[] }): string[] {
+  return entry.supportFiles?.map(sourcePath) ?? [];
 }
 
 function componentDefinitions(): Definition[] {
   const components = componentEntries.map<Definition>((entry) => {
     const files = [entry.paths.source.path];
     if ("hook" in entry.paths) files.push(entry.paths.hook.path);
-    files.push(...optionalPaths(entry.paths, "supportFiles"));
+    files.push(...supportFilePaths(entry.paths));
     return {
       id: entry.id,
       type: "registry:component",
@@ -196,7 +195,6 @@ function componentDefinitions(): Definition[] {
       description: entry.summary,
       seeds: files,
       primary: [entry.paths.source.path],
-      dependencies: "usesPrimitives" in entry ? [...entry.usesPrimitives] : undefined,
     };
   });
 
@@ -224,7 +222,7 @@ function primitiveDefinitions(): Definition[] {
     type: entry.id === "typography" ? "registry:style" : "registry:ui",
     title: entry.name,
     description: entry.summary,
-    seeds: [entry.paths.registry.source.path, ...optionalPaths(entry.paths.registry, "supportFiles")],
+    seeds: [entry.paths.registry.source.path, ...supportFilePaths(entry.paths.registry)],
     primary: [entry.paths.registry.source.path],
   }));
 }
@@ -246,7 +244,7 @@ function extensionDefinitions(): Definition[] {
     type: "registry:style",
     title: entry.name,
     description: entry.summary,
-    seeds: [entry.source.path, ...optionalPaths(entry, "supportFiles")],
+    seeds: [entry.source.path, ...supportFilePaths(entry)],
     primary: [entry.source.path],
   }));
 }
@@ -346,6 +344,7 @@ function definitions(): Definition[] {
         "chat-composer",
         "chat-composer-attachment",
         "activity",
+        "inline-citation",
         "source-badge",
         "action-bar",
         "inline-attachment",

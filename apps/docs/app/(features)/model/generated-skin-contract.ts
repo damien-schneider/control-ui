@@ -39,6 +39,7 @@ export const generatedSkinContract = {
     "color-picker": ["color-picker"],
     combobox: ["combobox"],
     command: ["command"],
+    context: ["context"],
     "context-menu": ["context-menu"],
     dialog: ["dialog"],
     "dockable-panel": ["dockable-panel"],
@@ -54,6 +55,7 @@ export const generatedSkinContract = {
     "hover-card": ["hover-card"],
     "infinite-canvas": ["infinite-canvas"],
     "inline-attachment": ["inline-attachment"],
+    "inline-citation": ["inline-citation"],
     input: ["input"],
     "input-group": ["input-group"],
     "input-otp": ["input-otp"],
@@ -92,6 +94,7 @@ export const generatedSkinContract = {
     "task-list": ["task-list"],
     textarea: ["textarea"],
     "thread-rail": ["thread-rail"],
+    timeline: ["timeline"],
     toast: ["toast"],
     toggle: ["toggle"],
     toolbar: ["toolbar"],
@@ -289,22 +292,6 @@ export const generatedSkinContract = {
             kind: "ActivityKind",
             state: "ActivityState",
           },
-          registryItems: ["activity"],
-          states: [],
-        },
-        item: {
-          registryItems: ["activity"],
-          states: [],
-        },
-        "item-content": {
-          registryItems: ["activity"],
-          states: [],
-        },
-        "item-icon": {
-          registryItems: ["activity"],
-          states: [],
-        },
-        list: {
           registryItems: ["activity"],
           states: [],
         },
@@ -2771,6 +2758,151 @@ export const generatedSkinContract = {
       },
       registryItems: ["command"],
     },
+    context: {
+      parts: {
+        root: {
+          context: {
+            status: "ContextStatus",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-status",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["normal", "over-limit", "unavailable"],
+            },
+          ],
+        },
+        content: {
+          registryItems: ["context"],
+          states: [],
+        },
+        graph: {
+          context: {
+            status: "ContextStatus",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-status",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["normal", "over-limit", "unavailable"],
+            },
+          ],
+        },
+        header: {
+          registryItems: ["context"],
+          states: [],
+        },
+        legend: {
+          registryItems: ["context"],
+          states: [],
+        },
+        "legend-indicator": {
+          context: {
+            kind: "ContextSegmentKind",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["cache", "message", "other", "reasoning", "source", "system", "tool"],
+            },
+          ],
+        },
+        "legend-item": {
+          context: {
+            kind: "ContextSegmentKind",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["cache", "message", "other", "reasoning", "source", "system", "tool"],
+            },
+          ],
+        },
+        "legend-value": {
+          registryItems: ["context"],
+          states: [],
+        },
+        "limit-marker": {
+          registryItems: ["context"],
+          states: [],
+        },
+        segment: {
+          context: {
+            kind: "ContextSegmentKind",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["cache", "message", "other", "reasoning", "source", "system", "tool"],
+            },
+          ],
+        },
+        summary: {
+          context: {
+            status: "ContextStatus",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-status",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["normal", "over-limit", "unavailable"],
+            },
+          ],
+        },
+        track: {
+          registryItems: ["context"],
+          states: [],
+        },
+        trigger: {
+          context: {
+            status: "ContextStatus",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-status",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["normal", "over-limit", "unavailable"],
+            },
+          ],
+        },
+        "trigger-indicator": {
+          context: {
+            status: "ContextStatus",
+          },
+          registryItems: ["context"],
+          states: [
+            {
+              attribute: "data-status",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["normal", "over-limit", "unavailable"],
+            },
+          ],
+        },
+        "trigger-label": {
+          registryItems: ["context"],
+          states: [],
+        },
+      },
+      registryItems: ["context"],
+    },
     "context-menu": {
       parts: {
         "checkbox-item": {
@@ -4272,6 +4404,75 @@ export const generatedSkinContract = {
         },
       },
       registryItems: ["inline-attachment"],
+    },
+    "inline-citation": {
+      parts: {
+        root: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        content: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        favicon: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        favicons: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        label: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        navigation: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        next: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        position: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        previous: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        source: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        "source-description": {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        "source-favicon": {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        "source-header": {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        "source-quote": {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        "source-title": {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+        trigger: {
+          registryItems: ["inline-citation"],
+          states: [],
+        },
+      },
+      registryItems: ["inline-citation"],
     },
     input: {
       parts: {
@@ -7527,6 +7728,53 @@ export const generatedSkinContract = {
         },
       },
       registryItems: ["thread-rail"],
+    },
+    timeline: {
+      parts: {
+        root: {
+          registryItems: ["timeline"],
+          states: [],
+        },
+        content: {
+          registryItems: ["timeline"],
+          states: [],
+        },
+        description: {
+          registryItems: ["timeline"],
+          states: [],
+        },
+        indicator: {
+          registryItems: ["timeline"],
+          states: [],
+        },
+        item: {
+          context: {
+            state: "TimelineState",
+          },
+          registryItems: ["timeline"],
+          states: [
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["error", "neutral", "pending", "running", "success"],
+            },
+          ],
+        },
+        meta: {
+          registryItems: ["timeline"],
+          states: [],
+        },
+        separator: {
+          registryItems: ["timeline"],
+          states: [],
+        },
+        title: {
+          registryItems: ["timeline"],
+          states: [],
+        },
+      },
+      registryItems: ["timeline"],
     },
     toast: {
       parts: {

@@ -1,7 +1,7 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
-import { createContext, use, useEffect, useRef } from "react";
+import { createContext, use, useEffect, useState } from "react";
 import type {
   ComboboxContentProps,
   ComboboxEmptyProps,
@@ -28,20 +28,14 @@ const ComboboxDisabledValueContext = createContext<DisabledComboboxValueRegistry
 // Searchable single-select. Input shares --radius-control/controlSize with Button/Select; floating list rides shared popover tokens, rows match menu/select down to ItemIndicator.
 
 export function Combobox<Value = string>({ children, onValueChange, ...props }: ComboboxProps<Value>) {
-  const disabledValuesRef = useRef<Set<unknown> | null>(null);
-
-  if (disabledValuesRef.current === null) {
-    disabledValuesRef.current = new Set<unknown>();
-  }
-
-  const disabledValues = disabledValuesRef.current;
-  const disabledValueRegistry: DisabledComboboxValueRegistry = {
+  const [disabledValues] = useState(() => new Set<unknown>());
+  const [disabledValueRegistry] = useState<DisabledComboboxValueRegistry>(() => ({
     register(value, disabled) {
       if (!disabled || value === undefined) return () => {};
       disabledValues.add(value);
       return () => disabledValues.delete(value);
     },
-  };
+  }));
 
   return (
     <ComboboxDisabledValueContext.Provider value={disabledValueRegistry}>

@@ -75,7 +75,6 @@ for (const skill of practiceSkills) {
   }
 }
 
-const primitiveIds = new Set(primitiveEntries.map((entry) => entry.id));
 const primitiveCategoryIds = new Set<string>(primitiveCategories.map((category) => category.id));
 const usedPrimitiveCategoryIds = new Set<string>();
 const registryIds = new Set<string>(Object.keys(registryMetadata));
@@ -113,14 +112,6 @@ for (const entry of componentEntries) {
       checkSourceFile(`${entry.id}.${version.id}.example`, version.paths.example);
       checkSourceFile(`${entry.id}.${version.id}.source`, version.paths.source);
       checkPreview(`${entry.id}.${version.id}`, version.paths.example, version.preview);
-    }
-  }
-
-  if ("usesPrimitives" in entry) {
-    for (const primitiveId of entry.usesPrimitives) {
-      if (!primitiveIds.has(primitiveId)) {
-        failures.push(`${entry.id} uses unknown primitive "${primitiveId}"`);
-      }
     }
   }
 }

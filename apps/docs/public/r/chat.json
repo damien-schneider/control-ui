@@ -15,6 +15,7 @@
     "http://127.0.0.1:3000/r/code-block-editor.json",
     "http://127.0.0.1:3000/r/core.json",
     "http://127.0.0.1:3000/r/inline-attachment.json",
+    "http://127.0.0.1:3000/r/inline-citation.json",
     "http://127.0.0.1:3000/r/markdown-block.json",
     "http://127.0.0.1:3000/r/model-switcher.json",
     "http://127.0.0.1:3000/r/source-badge.json",

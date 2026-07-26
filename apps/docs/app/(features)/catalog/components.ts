@@ -47,7 +47,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/chat-composer").then((mod) => ({ default: mod.ChatComposerExample })),
     ),
-    usesPrimitives: ["button", "scroll-area", "trigger-menu"],
   },
   {
     id: "chat-composer-attachment",
@@ -66,7 +65,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/chat-composer-attachment").then((mod) => ({ default: mod.ChatComposerAttachmentExample })),
     ),
-    usesPrimitives: ["button", "scroll-area"],
   },
   {
     id: "user-ask",
@@ -86,7 +84,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/user-ask").then((mod) => ({ default: mod.UserAskExample })),
     ),
-    usesPrimitives: ["button", "kbd"],
   },
   {
     id: "task-list",
@@ -105,7 +102,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/task-list").then((mod) => ({ default: mod.TaskListExample })),
     ),
-    usesPrimitives: ["collapsible"],
   },
   {
     id: "audio-recorder",
@@ -144,7 +140,6 @@ export const componentEntries = [
         previewClassName: "flex min-h-[180px] items-center justify-center",
       },
     ],
-    usesPrimitives: ["button", "popover", "command"],
   },
   {
     id: "audio-visualizer",
@@ -263,7 +258,6 @@ export const componentEntries = [
         ),
       },
     ],
-    usesPrimitives: ["button"],
   },
   {
     id: "environment-variables",
@@ -285,7 +279,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/environment-variables").then((mod) => ({ default: mod.EnvironmentVariablesExample })),
     ),
-    usesPrimitives: ["button", "input", "input-group"],
   },
   {
     id: "activity",
@@ -304,7 +297,45 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/activity").then((mod) => ({ default: mod.ActivityExample })),
     ),
-    usesPrimitives: ["collapsible", "scroll-area"],
+  },
+  {
+    id: "context",
+    kind: "Agent",
+    name: "Context",
+    summary: "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
+    status: "beta",
+    registryKind: "context",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/context.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Mastra usage", "src/registry/usage/components/context.tsx", "usage"),
+        "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/context.tsx", "usage"),
+      },
+      source: sourceFile("Component", "src/registry/sources/control-ui/context.tsx", "component"),
+      supportFiles: [sourceFile("Derivation model", "src/registry/sources/control-ui/context-model.ts", "support")],
+    },
+    preview: preview<IntegrationPreviewProps>(() =>
+      import("@/src/registry/examples/control-ui/context").then((mod) => ({ default: mod.ContextExample })),
+    ),
+  },
+  {
+    id: "inline-citation",
+    kind: "Agent",
+    name: "InlineCitation",
+    summary: "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
+    status: "beta",
+    registryKind: "inline-citation",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/inline-citation.tsx", "example"),
+      source: sourceFile("Component", "src/registry/sources/control-ui/inline-citation.tsx", "component"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/components/inline-citation.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/inline-citation.tsx", "usage"),
+      },
+    },
+    preview: preview<IntegrationPreviewProps>(() =>
+      import("@/src/registry/examples/control-ui/inline-citation").then((mod) => ({ default: mod.InlineCitationExample })),
+    ),
   },
   {
     id: "source-badge",
@@ -324,7 +355,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/source-badge").then((mod) => ({ default: mod.SourceBadgeExample })),
     ),
-    usesPrimitives: ["avatar", "badge"],
   },
   {
     id: "action-bar",
@@ -344,7 +374,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/action-bar").then((mod) => ({ default: mod.ActionBarExample })),
     ),
-    usesPrimitives: ["button"],
   },
   {
     id: "inline-attachment",
@@ -382,7 +411,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/markdown-block").then((mod) => ({ default: mod.MarkdownBlockExample })),
     ),
-    usesPrimitives: ["button", "markdown"],
   },
   {
     id: "code-block-editor",
@@ -406,7 +434,6 @@ export const componentEntries = [
     preview: preview<IntegrationPreviewProps>(() =>
       import("@/src/registry/examples/control-ui/code-block-editor").then((mod) => ({ default: mod.CodeBlockEditorExample })),
     ),
-    usesPrimitives: ["button", "scroll-area", "tooltip"],
   },
   {
     id: "chat-layout",

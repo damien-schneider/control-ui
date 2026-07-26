@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 import { CodeBlock, CommandBlock, DocsCollapsible } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
-import type { CompositionExample, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import type { CompositionExample, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 
 // Cross-page building blocks: every page module composes these instead of re-deriving header/section/install-panel frame.
@@ -127,6 +127,36 @@ export function SupportFiles({
           <CodeBlock code={usage.code} />
         </div>
       ) : null}
+    </section>
+  );
+}
+
+export function RegistryDependencyReferences({ dependencies }: { dependencies: DocsRegistryDependency[] }) {
+  if (dependencies.length === 0) return null;
+
+  return (
+    <section id="library-dependencies" className="min-w-0 scroll-mt-20">
+      <SectionTitle
+        title="Library dependencies"
+        description="Public registry items keep their source on their own documentation page instead of duplicating it here."
+      />
+      <div className="grid gap-2">
+        {dependencies.map((dependency) => (
+          <Link
+            key={dependency.registryKind}
+            href={dependency.href}
+            className="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-border/70 bg-card px-4 py-3 text-body shadow-sm transition hover:border-foreground/20 hover:bg-muted/30"
+          >
+            <span className="flex min-w-0 items-center gap-2">
+              <span className="font-medium">{dependency.name}</span>
+              <code className="min-w-0 truncate text-label text-muted-foreground">{dependency.registryKind}</code>
+            </span>
+            <Badge variant="outline" size="sm">
+              {dependency.kind}
+            </Badge>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 }

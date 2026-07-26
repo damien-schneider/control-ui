@@ -13,9 +13,7 @@ import {
 } from "./dropzone";
 
 function openingTag(html: string, tag: string, slot: string) {
-  const match = html.match(
-    new RegExp(`<${tag}[^>]*data-control-ui="dropzone"[^>]*data-slot="${slot}"[^>]*>`),
-  );
+  const match = html.match(new RegExp(`<${tag}[^>]*data-control-ui="dropzone"[^>]*data-slot="${slot}"[^>]*>`));
   if (!match) throw new Error(`Missing ${tag}[data-slot="${slot}"]`);
   return match[0];
 }
@@ -23,13 +21,7 @@ function openingTag(html: string, tag: string, slot: string) {
 function renderStandardDropzone(props: { disabled?: boolean; value?: readonly File[] } = {}) {
   return renderToString(
     <Dropzone disabled={props.disabled} value={props.value} policy={{ accept: { "image/png": [".png"] } }}>
-      <DropzoneInput
-        name="attachments"
-        required
-        capture="environment"
-        form="upload-form"
-        aria-describedby="attachment-help"
-      />
+      <DropzoneInput name="attachments" required capture="environment" form="upload-form" aria-describedby="attachment-help" />
       <DropzoneArea>
         <DropzoneTrigger />
       </DropzoneArea>
@@ -137,8 +129,6 @@ describe("Dropzone server rendering", () => {
   });
 
   test("throws the exact context error outside Dropzone", () => {
-    expect(() => renderToString(<DropzoneStatus />)).toThrow(
-      "Dropzone parts must be used inside Dropzone.",
-    );
+    expect(() => renderToString(<DropzoneStatus />)).toThrow("Dropzone parts must be used inside Dropzone.");
   });
 });

@@ -48,7 +48,8 @@ export function useChatComposer({
   function submit(extra?: Partial<ChatComposerSubmitPayload>) {
     if (!canSubmit) return;
     if (trackSends) setSendCount((count) => count + 1);
-    void onSubmit?.({ value: normalizedValue, clear, ...extra });
+    // onSubmit may return a Promise; surface a rejected send without an unhandled rejection
+    Promise.resolve(onSubmit?.({ value: normalizedValue, clear, ...extra })).catch(reportError);
   }
 
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {

@@ -3,8 +3,16 @@
 import type { ReactNode } from "react";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
-import type { CompositionExample, DocsStatus, SourceFile } from "@/app/(features)/model/types";
-import { CompositionSection, InstallPanel, PageHeader, SectionCode, SectionTitle, SupportFiles } from "./shared";
+import type { CompositionExample, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import {
+  CompositionSection,
+  InstallPanel,
+  PageHeader,
+  RegistryDependencyReferences,
+  SectionCode,
+  SectionTitle,
+  SupportFiles,
+} from "./shared";
 
 type RegistryItemPreview = {
   code: string;
@@ -58,6 +66,7 @@ export function RegistryItemPage({
   install,
   usageCode,
   dependencies,
+  libraryDependencies,
   source,
   children,
 }: {
@@ -72,6 +81,7 @@ export function RegistryItemPage({
   install: RegistryItemInstall;
   usageCode?: string;
   dependencies?: RegistryItemFileSection;
+  libraryDependencies?: DocsRegistryDependency[];
   source?: RegistryItemSourceSection;
   children?: ReactNode;
 }) {
@@ -91,6 +101,7 @@ export function RegistryItemPage({
         </InstallPanel>
         {usageCode ? <SectionCode id="usage" title="Usage" code={usageCode} /> : null}
         {dependencies ? <SupportFiles {...dependencies} /> : null}
+        {libraryDependencies ? <RegistryDependencyReferences dependencies={libraryDependencies} /> : null}
         {source ? <RegistryItemSource {...source} /> : null}
         {children}
       </div>
