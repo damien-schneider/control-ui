@@ -146,7 +146,8 @@
   --foreground: oklch(0.2168 0.0113 55.716);
   --secondary-foreground: oklch(0.2168 0.0113 55.716);
   --accent-foreground: oklch(0.2168 0.0113 55.716);
-  --canvas: oklch(0.9407 0.0084 63.977);
+  /* Clear of --muted (0.9425) — matching lightness makes muted surfaces vanish into the page. */
+  --canvas: oklch(0.96 0.0084 63.977);
   --background: oklch(0.9789 0.0041 74.929);
   --card: oklch(0.9933 0.0016 81.514);
   --card-foreground: oklch(0.2168 0.0113 55.716);

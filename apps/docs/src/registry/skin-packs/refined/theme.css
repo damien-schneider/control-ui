@@ -99,8 +99,10 @@
   --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
   --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
 
-  /* Page canvas, a level below --background/--card/--popover (all elevated surfaces); GitHub Primer calls this `canvas`. */
-  --canvas: oklch(0.9425 0.0108 80);
+  /* Page canvas, a level below --background/--card/--popover (all elevated surfaces); GitHub Primer calls this `canvas`.
+     Keep it clear of --muted (0.9425): when the two match, every muted surface dropped straight onto the page — a
+     standalone Code block, say — reads as nothing but its ring. Light ladder: muted < canvas < background < card. */
+  --canvas: oklch(0.96 0.008 80);
 
   /* popover/dropdown/select/dialog all read bg-popover, so this pair frosts them together. 1 = solid; <1 + blur = glass. */
   --popover-opacity: 1;
