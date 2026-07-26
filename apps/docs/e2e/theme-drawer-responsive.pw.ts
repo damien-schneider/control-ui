@@ -1,37 +1,59 @@
 import { expect, test } from "@playwright/test";
 
-test("theme editor toggles on mobile and desktop", async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 900 });
+// The theme editor is the floating toolbar, morphed: same surface, expanded to (near) the whole viewport on every breakpoint.
+// The pill hangs from the bottom edge below lg and from the top edge from lg, and the morph grows away from whichever edge holds it.
+for (const { name, width, height, dock } of [
+  { name: "mobile", width: 360, height: 900, dock: "bottom" },
+  { name: "desktop", width: 1280, height: 900, dock: "top" },
+]) {
+  test(`theme editor morphs out of the floating toolbar on ${name}`, async ({ page }) => {
+    await page.setViewportSize({ width, height });
+    await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
+
+    const panel = page.locator("[data-docs-floating-panel]");
+    const toolbar = page.locator("[data-docs-floating-toolbar]");
+    const editTheme = page.getByRole("button", { name: "Edit theme" });
+    const heading = page.getByRole("heading", { name: "Theme editor" });
+
+    // Closed: a pill hugging its docked edge, editor unmounted.
+    await expect(panel).toHaveAttribute("data-state", "closed");
+    await expect(heading).toHaveCount(0);
+    const collapsedBox = await panel.boundingBox();
+    expect(collapsedBox?.height ?? Number.POSITIVE_INFINITY).toBeLessThan(80);
+    if (dock === "top") {
+      expect(collapsedBox?.y ?? Number.POSITIVE_INFINITY).toBeLessThan(height / 4);
+    } else {
+      expect((collapsedBox?.y ?? 0) + (collapsedBox?.height ?? 0)).toBeGreaterThan(height * 0.75);
+    }
+
+    await editTheme.click();
+    await expect(panel).toHaveAttribute("data-state", "open");
+    await expect(heading).toBeVisible();
+    await expect(toolbar).toHaveAttribute("inert", "");
+
+    // Poll both axes: the morph eases width and height together, so a plain read lands mid-transition.
+    await expect
+      .poll(async () => {
+        const box = await panel.boundingBox();
+        return box ? Math.round(Math.min(box.width / width, box.height / height) * 100) : 0;
+      })
+      .toBeGreaterThan(94);
+
+    await page.getByRole("button", { name: "Close editor" }).click();
+    await expect(panel).toHaveAttribute("data-state", "closed");
+    await expect(heading).toHaveCount(0);
+    await expect(editTheme).toBeVisible();
+    await expect(toolbar).not.toHaveAttribute("inert", "");
+  });
+}
+
+test("Escape closes the theme editor", async ({ page }) => {
   await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
 
-  const editTheme = page.getByRole("button", { name: "Edit theme" });
-  const mobileDrawer = page.locator('[data-control-ui="drawer"][data-slot="content"]');
+  const panel = page.locator("[data-docs-floating-panel]");
+  await page.getByRole("button", { name: "Edit theme" }).click();
+  await expect(panel).toHaveAttribute("data-state", "open");
 
-  await expect(editTheme).toBeVisible();
-  await expect(mobileDrawer).toHaveCount(0);
-  await expect(page.locator("#examples")).not.toHaveAttribute("aria-hidden", "true");
-
-  await editTheme.click();
-  await expect(mobileDrawer).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Theme editor" })).toBeVisible();
-
-  await page.getByRole("button", { name: "Close editor" }).click();
-  await expect(mobileDrawer).toHaveCount(0);
-
-  await page.setViewportSize({ width: 1024, height: 900 });
-  await page.reload();
-
-  const closeTheme = page.getByRole("button", { name: "Close theme editor" });
-  const desktopPanel = page.locator("aside.theme-editor-desktop-panel");
-
-  await expect(closeTheme).toBeVisible();
-  await expect(desktopPanel).toBeVisible();
-
-  await closeTheme.click();
-  await expect(editTheme).toBeVisible();
-  await expect(desktopPanel).toHaveCount(0);
-
-  await editTheme.click();
-  await expect(closeTheme).toBeVisible();
-  await expect(desktopPanel).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(panel).toHaveAttribute("data-state", "closed");
 });

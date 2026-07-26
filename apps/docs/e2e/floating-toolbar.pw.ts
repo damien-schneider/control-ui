@@ -162,13 +162,15 @@ for (const { name, width, height } of [
     await page.setViewportSize({ width, height });
     await page.goto("/primitives/button");
 
+    // The morphing panel owns the geometry now; the toolbar is its collapsed face and just fills it.
+    const panel = page.locator("[data-docs-floating-panel]");
     const toolbar = page.locator("[data-docs-floating-toolbar]");
     const selectionHighlight = toolbar.locator('[data-control-ui="track-highlight"][data-slot="root"]');
     const mode = toolbar.getByTitle("Skills");
     const search = toolbar.locator('input[aria-label="Search documentation"]');
     await expect(selectionHighlight).toHaveAttribute("data-visible", "");
 
-    const endpoints = await toolbar.evaluate((element) => {
+    const endpoints = await panel.evaluate((element) => {
       const resolveLength = (property: string) => {
         const probe = document.createElement("div");
         probe.style.position = "absolute";
@@ -184,18 +186,21 @@ for (const { name, width, height } of [
         maximum: window.innerWidth - 16,
       };
     });
-    const restingWidth = await toolbar.evaluate((element) => element.getBoundingClientRect().width);
+    const restingWidth = await panel.evaluate((element) => element.getBoundingClientRect().width);
     expect(restingWidth).toBeCloseTo(Math.min(endpoints.rest, endpoints.maximum), 1);
 
     await mode.focus();
-    await expect.poll(() => toolbar.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(restingWidth, 1);
+    await expect.poll(() => panel.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(restingWidth, 1);
 
-    await toolbar.evaluate((element) => {
-      element.setAttribute("style", "--duration-base: 10s; --ease-standard: linear");
+    // setProperty, not setAttribute: the panel's inline style carries its own collapsed/expanded size vars.
+    await panel.evaluate((element) => {
+      if (!(element instanceof HTMLElement)) return;
+      element.style.setProperty("--duration-slow", "10s");
+      element.style.setProperty("--ease-emphasized", "linear");
     });
     await search.focus();
 
-    const widthMotion = await toolbar.evaluate((element) => {
+    const widthMotion = await panel.evaluate((element) => {
       const transition = element
         .getAnimations()
         .find((animation): animation is CSSTransition => animation instanceof CSSTransition && animation.transitionProperty === "width");
@@ -209,16 +214,18 @@ for (const { name, width, height } of [
     });
     expect(widthMotion).toEqual({ duration: 10_000, easing: "linear" });
 
-    const midpointWidth = await toolbar.evaluate((element) => element.getBoundingClientRect().width);
+    const midpointWidth = await panel.evaluate((element) => element.getBoundingClientRect().width);
     const expandedWidth = Math.min(endpoints.search, endpoints.maximum);
     expect(midpointWidth).toBeGreaterThan(restingWidth);
     expect(midpointWidth).toBeLessThan(expandedWidth);
 
-    await toolbar.evaluate((element) =>
+    await panel.evaluate((element) =>
       element.getAnimations().forEach((animation) => {
         animation.finish();
       }),
     );
+    await expect.poll(() => panel.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(expandedWidth, 1);
+    // The pill face tracks the panel exactly — no second width animation of its own.
     await expect.poll(() => toolbar.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(expandedWidth, 1);
   });
 }

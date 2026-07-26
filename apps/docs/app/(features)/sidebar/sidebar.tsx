@@ -4,11 +4,12 @@ import { GithubIcon, StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
+import { MorphingPanel, MorphingPanelContent } from "@/components/control-ui/ui/morphing-panel";
 import {
   Sidebar,
   SidebarContent,
@@ -21,7 +22,8 @@ import {
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
-import { ThemeDrawerTrigger } from "@/components/theme-drawer/theme-drawer";
+import { ThemeDrawerTrigger, ThemeEditorContent } from "@/components/theme-drawer/theme-drawer";
+import { useThemeDrawer } from "@/components/theme-drawer-context";
 import { ControlUiLogo } from "./control-ui-logo";
 import { primitiveCategorySidebarIcons, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
@@ -87,6 +89,33 @@ export function DocsSidebarContent({
   };
   const caseNavigationGroups = getUseCaseNavGroups(blocks);
   const { isMobile, setOpenMobile } = useSidebar();
+  const { open: themeEditorOpen, setOpen: setThemeEditorOpen } = useThemeDrawer();
+  const themeEditorTitleId = useId();
+  const themeEditorDescriptionId = useId();
+  const themeEditorRef = useRef<HTMLDivElement>(null);
+  const floatingPanelRef = useRef<HTMLDivElement>(null);
+  const themeEditorWasOpen = useRef(false);
+
+  // Expanding makes the toolbar inert and closing unmounts the editor, so focus would drop to <body> either way: hand it to the editor, then back to the trigger. The ref keeps the initial closed render from grabbing focus on load.
+  useEffect(() => {
+    if (themeEditorOpen) {
+      themeEditorWasOpen.current = true;
+      themeEditorRef.current?.focus();
+      return;
+    }
+    if (!themeEditorWasOpen.current) return;
+    themeEditorWasOpen.current = false;
+    floatingPanelRef.current?.querySelector<HTMLElement>("[data-docs-theme-trigger]")?.focus();
+  }, [themeEditorOpen]);
+
+  useEffect(() => {
+    if (!themeEditorOpen) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setThemeEditorOpen(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [themeEditorOpen, setThemeEditorOpen]);
   function closeMobile() {
     if (isMobile) setOpenMobile(false);
   }
@@ -244,21 +273,50 @@ export function DocsSidebarContent({
         <DocsSidebarResizeHandle />
       </Sidebar>
 
-      <Toolbar
-        aria-label="Documentation controls"
-        data-docs-floating-toolbar=""
-        variant="inverse"
-        className="fixed! bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-40 w-(--floating-toolbar-rest-width) max-w-[calc(100vw-1rem)] -translate-x-1/2 transition-[width,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:w-(--floating-toolbar-search-width) has-[input:focus]:gap-0 [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] sm:[--floating-toolbar-rest-width:24rem] sm:[--toolbar-padding:0.375rem] md:left-[min(50%,calc(100%-var(--theme-drawer-width,0px)-var(--floating-toolbar-rest-width)/2-0.5rem))] md:[--floating-toolbar-rest-width:24rem]"
+      {/* The toolbar pill IS the collapsed morphing panel: opening the theme editor morphs that same surface into a near-fullscreen editor, so mobile gets the full screen instead of a cramped drawer.
+          Docked to the bottom edge below lg — where the sidebar is a sheet and the thumb rules — and to the top edge from lg, where it hangs over the docs panel. The morph grows away from whichever edge holds it.
+          Root stays overflow-visible — the search popover escapes the pill, while MorphingPanelContent clips the editor to the morphing box itself. */}
+      <MorphingPanel
+        open={themeEditorOpen}
+        onOpenChange={(nextOpen) => setThemeEditorOpen(nextOpen)}
+        collapsedSize={{ width: "var(--floating-toolbar-width)", height: "var(--floating-toolbar-height)" }}
+        expandedSize={{
+          // Both gutters, always: the panel keeps the anchored edge's inset and grows to the opposite one, whichever edge that is.
+          width: "calc(100vw - 1rem)",
+          height: "calc(100dvh - var(--floating-toolbar-top) - var(--floating-toolbar-bottom))",
+        }}
+        ref={floatingPanelRef}
+        data-docs-floating-panel=""
+        className="group/floating-panel fixed bottom-(--floating-toolbar-bottom) left-1/2 z-40 max-w-[calc(100vw-1rem)] -translate-x-1/2 overflow-visible data-[state=open]:z-50 [--floating-toolbar-bottom:max(0.75rem,env(safe-area-inset-bottom))] [--floating-toolbar-height:calc(var(--control-h-sm)_+_2_*_var(--toolbar-padding,0.25rem)_+_2px)] [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] [--floating-toolbar-top:max(0.5rem,env(safe-area-inset-top))] [--floating-toolbar-width:var(--floating-toolbar-rest-width)] has-[input:focus]:[--floating-toolbar-width:var(--floating-toolbar-search-width)] data-[state=closed]:bg-transparent data-[state=closed]:shadow-none data-[state=closed]:ring-0 sm:[--floating-toolbar-rest-width:24rem] sm:[--floating-toolbar-search-width:26rem] sm:[--toolbar-padding:0.375rem] lg:top-(--floating-toolbar-top) lg:bottom-auto"
       >
-        <SidebarSearch items={searchItems} onNavigate={onNavigate} />
-        <ToolbarGroup className="min-w-0 flex-[1_1_100%] justify-center overflow-hidden opacity-100 transition-[flex-basis,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] peer-focus-within:pointer-events-none peer-focus-within:flex-[0_1_0%] peer-focus-within:opacity-0">
-          <SidebarTrigger render={<ToolbarButton iconOnly />} className="md:hidden" />
-          <ToolbarSeparator className="h-5 self-auto" />
-          <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
-          <ToolbarSeparator className="h-5 self-auto" />
-          <ThemeDrawerTrigger render={<ToolbarButton iconOnly />} iconOnly onToggle={closeMobile} />
-        </ToolbarGroup>
-      </Toolbar>
+        <Toolbar
+          aria-label="Documentation controls"
+          data-docs-floating-toolbar=""
+          variant="inverse"
+          inert={themeEditorOpen || undefined}
+          className="absolute inset-0 size-full transition-[opacity,filter,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:gap-0 group-data-[state=open]/floating-panel:pointer-events-none group-data-[state=open]/floating-panel:opacity-0 group-data-[state=open]/floating-panel:blur-sm"
+        >
+          <SidebarSearch items={searchItems} onNavigate={onNavigate} />
+          <ToolbarGroup className="min-w-0 flex-[1_1_100%] justify-center overflow-hidden opacity-100 transition-[flex-basis,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] peer-focus-within:pointer-events-none peer-focus-within:flex-[0_1_0%] peer-focus-within:opacity-0">
+            {/* Same lg switch as the sidebar itself: below it the sidebar is a sheet with no rail of its own, so this is the only way in. */}
+            <SidebarTrigger render={<ToolbarButton iconOnly />} className="lg:hidden" />
+            <ToolbarSeparator className="h-5 self-auto" />
+            <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
+            <ToolbarSeparator className="h-5 self-auto" />
+            <ThemeDrawerTrigger render={<ToolbarButton iconOnly data-docs-theme-trigger="" />} iconOnly onToggle={closeMobile} />
+          </ToolbarGroup>
+        </Toolbar>
+
+        <MorphingPanelContent
+          ref={themeEditorRef}
+          tabIndex={-1}
+          role="region"
+          aria-labelledby={themeEditorTitleId}
+          aria-describedby={themeEditorDescriptionId}
+        >
+          <ThemeEditorContent labelledById={themeEditorTitleId} describedById={themeEditorDescriptionId} />
+        </MorphingPanelContent>
+      </MorphingPanel>
     </>
   );
 }

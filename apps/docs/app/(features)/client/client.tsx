@@ -154,18 +154,20 @@ function DocsShellContent({
         integration={integration}
         updateSetupPreference={updateSetupPreference}
       />
-      <SidebarInset className="min-h-0 bg-canvas pb-24 transition-[padding-right] duration-200 ease-linear md:pb-0 md:pr-[var(--theme-drawer-width,0px)]">
+      <SidebarInset className="min-h-0 bg-canvas">
         <div
           data-control-ui="sidebar-layout"
           data-slot="content"
           data-surface="panel"
           className={cn(
-            "relative mt-1.5 ml-0 mr-1.5 mb-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:mt-2 lg:mr-2 lg:mb-2 lg:ml-0",
+            // Below lg the sidebar is a sheet, so nothing sits to the left to supply that gutter: the panel pays for it itself and only drops it once the docked sidebar is back.
+            "relative m-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:m-2 lg:ml-0",
             skinSlot("sidebar-layout", "content", {}),
           )}
         >
           <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
-            <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-1 pb-24 md:px-2 md:pt-2 2xl:grid-cols-[minmax(0,1fr)_180px]">
+            {/* Floating toolbar hangs over this panel, so the scrolled content — not the panel — pays its clearance: pb-24 covers the bottom-docked pill below lg, the top pad takes over once it moves up. */}
+            <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-1 pb-24 md:px-2 md:pt-2 lg:pt-[calc(var(--control-h-sm)+1.5rem)] 2xl:grid-cols-[minmax(0,1fr)_180px]">
               {pageContent}
 
               <aside className="hidden py-12 2xl:block">

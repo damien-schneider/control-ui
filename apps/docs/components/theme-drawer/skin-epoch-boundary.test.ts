@@ -3,22 +3,27 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 /*
- * ThemeDrawer must render INSIDE SkinEpochBoundary.
+ * The theme editor must render INSIDE SkinEpochBoundary — it morphs out of the docs floating toolbar, so DocsShell is what has to sit inside.
  * skinSlot() resolves against mutable user-owned skin.config getters, invisible to React Compiler as a dependency — memoized components freeze classes from their last re-render; epoch remount re-resolves every slot after setSkin().
- * Outside boundary: each skin tile in drawer kept look of whichever skin was active when its `active` prop last flipped — patchwork of half-applied skins.
+ * Outside boundary: each skin tile in the editor kept look of whichever skin was active when its `active` prop last flipped — patchwork of half-applied skins.
  */
 
 const read = (rel: string) => readFileSync(fileURLToPath(new URL(rel, import.meta.url)), "utf8");
 
-describe("ThemeDrawer sits inside the SkinEpochBoundary", () => {
-  test("layout.tsx mounts <ThemeDrawer /> between the boundary tags", () => {
+describe("the theme editor sits inside the SkinEpochBoundary", () => {
+  test("layout.tsx mounts <DocsShell> between the boundary tags", () => {
     const layout = read("../../app/layout.tsx");
     const open = layout.indexOf("<SkinEpochBoundary>");
     const close = layout.indexOf("</SkinEpochBoundary>");
-    const drawer = layout.indexOf("<ThemeDrawer />");
+    const shell = layout.indexOf("<DocsShell ");
     expect(open).toBeGreaterThan(-1);
     expect(close).toBeGreaterThan(open);
-    expect(drawer).toBeGreaterThan(open);
-    expect(drawer).toBeLessThan(close);
+    expect(shell).toBeGreaterThan(open);
+    expect(shell).toBeLessThan(close);
+  });
+
+  test("the docs floating toolbar hosts the theme editor content", () => {
+    const sidebar = read("../../app/(features)/sidebar/sidebar.tsx");
+    expect(sidebar).toContain("<ThemeEditorContent");
   });
 });

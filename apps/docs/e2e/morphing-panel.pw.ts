@@ -1,5 +1,8 @@
 import { expect, type Locator, test } from "@playwright/test";
 
+// The docs shell's floating toolbar is a morphing panel too, so every lookup here scopes to the example on the page.
+const EXAMPLE_PANEL = '[data-control-ui="morphing-panel"][data-slot="root"]:not([data-docs-floating-panel])';
+
 async function expectSize(locator: Locator, width: number, height: number) {
   await expect
     .poll(async () => {
@@ -15,7 +18,7 @@ test("morphing panel keeps one trigger while moving through declared sizes", asy
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/primitives/morphing-panel");
 
-  const panel = page.locator('[data-control-ui="morphing-panel"][data-slot="root"]');
+  const panel = page.locator(EXAMPLE_PANEL);
   const trigger = panel.locator('[data-control-ui="morphing-panel"][data-slot="trigger"]');
   const content = panel.locator('[data-control-ui="morphing-panel"][data-slot="content"]');
 
@@ -136,7 +139,7 @@ test("morphing panel clamps width and respects reduced motion", async ({ page })
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/primitives/morphing-panel");
 
-  const panel = page.locator('[data-control-ui="morphing-panel"][data-slot="root"]');
+  const panel = page.locator(EXAMPLE_PANEL);
   const trigger = panel.locator('[data-control-ui="morphing-panel"][data-slot="trigger"]');
   await trigger.click();
 

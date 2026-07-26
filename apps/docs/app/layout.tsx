@@ -4,13 +4,12 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import { DocsShell } from "@/app/(features)/client/client";
 import { getDocsShellData } from "@/app/(features)/model/data";
-import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
+import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
 import { DEFAULT_SKIN_ID, THEME_INIT_SCRIPT } from "@/components/theme";
-import { ThemeDrawer } from "@/components/theme-drawer/theme-drawer";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";
 import { SkinEpochBoundary, ThemeDrawerProvider } from "@/components/theme-drawer-context";
 import { LiquidMetalSkinRuntime } from "@/src/registry/skin-packs/liquid-metal/liquid-metal-runtime";
@@ -37,14 +36,13 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <ThemeDrawerProvider>
           <ThemeRuntimeProvider>
             <div data-skin-scope="docs">
-              {/* ThemeDrawer must live inside epoch boundary: its chrome (tiles/selects/sliders) resolves skinSlot too.
+              {/* DocsShell must live inside epoch boundary: it hosts the theme editor, whose chrome (tiles/selects/sliders) resolves skinSlot too.
                   React Compiler memoizes by props — epoch remount is the only thing that re-resolves mutated skin config.
                   Outside boundary: tiles freeze stale skin classes from last render, patchwork of half-applied skins. */}
               <SkinEpochBoundary>
                 <DocsShell {...getDocsShellData()} githubStars={githubStars}>
                   {children}
                 </DocsShell>
-                <ThemeDrawer />
                 {/* Skin-declared control effects (ControlUiSkin.effects): mirrors active skin list onto <html>, powers ripple listener; inside boundary since epoch remount re-resolves mutable skin config. */}
                 <ControlEffectsRuntime />
               </SkinEpochBoundary>

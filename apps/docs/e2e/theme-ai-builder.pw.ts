@@ -25,6 +25,15 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
   await page.evaluate(() => localStorage.clear());
   await page.reload();
 
+  // "Build with AI" lives in the theme editor, which morphs out of the floating toolbar on demand.
+  const themeEditor = page.locator("[data-docs-floating-panel]");
+  const openThemeEditor = async () => {
+    if ((await themeEditor.getAttribute("data-state")) === "open") return;
+    await page.getByRole("button", { name: "Edit theme" }).click();
+    await expect(themeEditor).toHaveAttribute("data-state", "open");
+  };
+
+  await openThemeEditor();
   await expect(page.getByRole("link", { name: "Build with AI" })).toBeVisible();
   await page.getByRole("link", { name: "Build with AI" }).click();
   await expect(page).toHaveURL(/\/theme-ai-builder$/);
@@ -74,6 +83,7 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
     .poll(() => page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--background").trim()))
     .toBe("oklch(0.94 0.05 105)");
 
+  await openThemeEditor();
   await page
     .getByRole("button", { name: /Refined/ })
     .first()
@@ -91,7 +101,8 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
   await page.getByRole("menuitem", { name: "Export JSON" }).click();
   await expect((await download).suggestedFilename()).toBe("browser-paper.control-ui-theme.json");
 
-  await page.getByRole("button", { name: "Close theme editor" }).click();
+  await page.getByRole("button", { name: "Close editor" }).click();
+  await expect(themeEditor).toHaveAttribute("data-state", "closed");
   await page.getByRole("button", { name: "Import and test" }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   const layout = await page.evaluate(() => {

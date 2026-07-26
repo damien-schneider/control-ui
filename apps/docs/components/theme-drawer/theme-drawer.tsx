@@ -1,6 +1,8 @@
 "use client";
 
-import { ChevronRightIcon, PaintbrushIcon, ShieldCheckIcon, SparklesIcon } from "lucide-react";
+import { CustomizeIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ChevronRightIcon, ShieldCheckIcon, SparklesIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { useId, useState } from "react";
@@ -8,11 +10,10 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, buttonContentClasses, buttonRecipeClasses } from "@/components/control-ui/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
-import { Drawer, DrawerContent } from "@/components/control-ui/ui/drawer";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
-import { useDesktopThemeDrawer, useThemeDrawer } from "@/components/theme-drawer-context";
+import { useThemeDrawer } from "@/components/theme-drawer-context";
 import { ThemeModeSwitch, useThemeModePreference } from "@/components/theme-toggle";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { ContrastPanel } from "./contrast-panel";
@@ -55,23 +56,9 @@ export function ThemeDrawerTrigger({
       render={render}
       className={className}
     >
-      <PaintbrushIcon aria-hidden className="size-3.5" />
+      <HugeiconsIcon aria-hidden icon={CustomizeIcon} size={16} strokeWidth={1.7} className="shrink-0" />
       <span className={iconOnly ? "sr-only" : undefined}>{label}</span>
     </Button>
-  );
-}
-
-function ThemeEditorPanel({ className, children, ...props }: ComponentProps<"aside">) {
-  return (
-    <aside
-      className={cn(
-        "theme-editor-desktop-panel fixed inset-y-0 right-0 z-50 hidden h-svh w-[var(--theme-drawer-width,360px)] flex-col overflow-hidden border-0 bg-transparent text-foreground shadow-none outline-none md:flex",
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </aside>
   );
 }
 
@@ -261,7 +248,7 @@ function CategorySection({
   const advancedTouched = [...category.advanced, ...badgeTokens].filter((token) => editor.overridden.has(token.name)).length;
 
   return (
-    <Collapsible defaultOpen={defaultOpen} className="rounded-[var(--radius-panel)] border border-border/70 bg-card/40 p-2">
+    <Collapsible defaultOpen={defaultOpen} className="self-start rounded-[var(--radius-panel)] border border-border/70 bg-card/40 p-2">
       <SectionTrigger title={category.title} touched={touched} total={allNames.length} />
       <CollapsibleContent>
         <div className="flex flex-col gap-4 px-1 pt-3 pb-1.5">
@@ -296,8 +283,9 @@ function CategorySection({
   );
 }
 
-export function ThemeDrawer() {
-  const { open, setOpen, skinSource, openSkinSource } = useThemeDrawer();
+// Editor body only: the floating toolbar owns the chrome (MorphingPanel morphs the toolbar pill into this near-fullscreen surface).
+export function ThemeEditorContent({ labelledById, describedById }: { labelledById?: string; describedById?: string }) {
+  const { setOpen, skinSource, openSkinSource } = useThemeDrawer();
   const [copied, setCopied] = useState(false);
   const {
     t,
@@ -315,18 +303,20 @@ export function ThemeDrawer() {
     exportCustomTheme,
   } = useThemeRuntime();
   useThemeModePreference();
-  const isDesktop = useDesktopThemeDrawer();
-  const titleId = useId();
-  const descriptionId = useId();
+  const fallbackTitleId = useId();
+  const fallbackDescriptionId = useId();
+  const titleId = labelledById ?? fallbackTitleId;
+  const descriptionId = describedById ?? fallbackDescriptionId;
 
   function selectSkinAndSource(skin: ThemeState["skin"]) {
     selectSkin(skin);
     if (skinSource) openSkinSource(skin);
   }
 
+  // Source docks against the viewport edge; the editor covers it, so hand the screen over.
   function viewSkinSource() {
     openSkinSource(t.skin);
-    if (!isDesktop) setOpen(false);
+    setOpen(false);
   }
 
   async function copyCss() {
@@ -338,9 +328,6 @@ export function ThemeDrawer() {
       /* clipboard denied — ignore */
     }
   }
-
-  if (isDesktop === null) return null;
-  if (isDesktop && !open) return null;
 
   const overridden = overriddenTokenNames(t);
   const editor: TokenEditorProps = {
@@ -370,9 +357,9 @@ export function ThemeDrawer() {
     </div>
   );
 
-  const editorContent = (
-    <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-      <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3 md:border-b-0">
+  return (
+    <div className="flex h-full min-h-0 flex-col overflow-hidden">
+      <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
         <div className="min-w-0">
           <h2 id={titleId} className="text-[13px] font-semibold">
             Theme editor
@@ -383,16 +370,14 @@ export function ThemeDrawer() {
         </div>
         <div className="flex items-center gap-1.5">
           <ThemeModeSwitch />
-          {isDesktop ? null : (
-            <Button variant="quiet" size="xs" aria-label="Close editor" onClick={() => setOpen(false)}>
-              ×
-            </Button>
-          )}
+          <Button variant="quiet" size="xs" iconOnly aria-label="Close editor" title="Close editor" onClick={() => setOpen(false)}>
+            <XIcon aria-hidden className="size-3.5" />
+          </Button>
         </div>
       </div>
 
       <ScrollArea className="min-h-0 flex-1">
-        <div className="flex flex-col gap-5 px-4 py-5">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 py-5">
           <SkinSelector
             skin={t.skin}
             customThemeId={t.customThemeId}
@@ -409,21 +394,24 @@ export function ThemeDrawer() {
             }}
             onViewSource={viewSkinSource}
           />
-          <ThemeVariableSummary t={t} overridden={overridden} />
+          <div className="grid gap-2.5 md:grid-cols-2 md:items-start">
+            <ThemeVariableSummary t={t} overridden={overridden} />
 
-          <div className="flex items-center justify-between gap-3 rounded-[var(--radius-control)] bg-foreground/5 px-3 py-2.5">
-            <span className="flex min-w-0 flex-col">
-              <span className="text-[11px] font-medium text-foreground">CSS variable names</span>
-              <span className="text-[9px] text-muted-foreground">Caption every control with its theme.css token</span>
-            </span>
-            <Switch
-              aria-label="Caption every control with its CSS variable name"
-              checked={t.labelMode === "css"}
-              onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
-            />
+            <div className="flex items-center justify-between gap-3 rounded-[var(--radius-control)] bg-foreground/5 px-3 py-2.5">
+              <span className="flex min-w-0 flex-col">
+                <span className="text-[11px] font-medium text-foreground">CSS variable names</span>
+                <span className="text-[9px] text-muted-foreground">Caption every control with its theme.css token</span>
+              </span>
+              <Switch
+                aria-label="Caption every control with its CSS variable name"
+                checked={t.labelMode === "css"}
+                onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
+              />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-2.5">
+          {/* Fullscreen surface: categories flow into columns instead of one tall column, each section self-start so an open fold never stretches its row neighbours. */}
+          <div className="grid gap-2.5 md:grid-cols-2 xl:grid-cols-3">
             {TOKEN_CATEGORIES.map((category) => {
               let beforeTokens: ReactNode = null;
               if (category.group === "motion") beforeTokens = reduceMotionRow;
@@ -461,44 +449,22 @@ export function ThemeDrawer() {
         </div>
       </ScrollArea>
 
-      <div className="mt-auto flex flex-col gap-2.5 border-t border-border p-3.5 md:border-t-0">
-        {storageError ? <p className="text-[10px] leading-relaxed text-destructive-text">{storageError}</p> : null}
+      <div className="mt-auto flex flex-col gap-2.5 border-t border-border p-3.5 sm:flex-row sm:items-center sm:justify-end">
+        {storageError ? <p className="flex-1 text-[10px] leading-relaxed text-destructive-text">{storageError}</p> : null}
         <Link
           href="/theme-ai-builder"
           onClick={() => setOpen(false)}
-          className={cn(buttonRecipeClasses("surface", "neutral", "sm"), "w-full")}
+          className={cn(buttonRecipeClasses("surface", "neutral", "sm"), "w-full sm:w-auto")}
         >
           <span className={buttonContentClasses}>
             <SparklesIcon aria-hidden className="size-3.5" />
             Build with AI
           </span>
         </Link>
-        <Button variant="solid" tone="primary" size="sm" onClick={copyCss} className="w-full">
+        <Button variant="solid" tone="primary" size="sm" onClick={copyCss} className="w-full sm:w-auto">
           {copied ? "Copied ✓" : "Copy CSS variables"}
         </Button>
       </div>
     </div>
-  );
-
-  if (isDesktop) {
-    return (
-      <ThemeEditorPanel aria-describedby={descriptionId} aria-labelledby={titleId}>
-        {editorContent}
-      </ThemeEditorPanel>
-    );
-  }
-
-  return (
-    <Drawer open={open} onOpenChange={(nextOpen) => setOpen(nextOpen)} side="bottom">
-      <DrawerContent
-        aria-describedby={descriptionId}
-        aria-labelledby={titleId}
-        padding="none"
-        surface="card"
-        className="h-[min(86vh,calc(100dvh-0.75rem))] max-h-[calc(100dvh-0.75rem)] gap-2 overflow-hidden"
-      >
-        {editorContent}
-      </DrawerContent>
-    </Drawer>
   );
 }

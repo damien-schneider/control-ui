@@ -109,26 +109,6 @@
   transition-property: none;
 }
 
-@layer components {
-  .theme-editor-desktop-panel {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateX(0);
-    transition:
-      opacity calc(var(--duration-slow) * 2) var(--ease-emphasized),
-      filter calc(var(--duration-slow) * 2) var(--ease-emphasized),
-      transform calc(var(--duration-slow) * 2) var(--ease-emphasized);
-  }
-
-  @starting-style {
-    .theme-editor-desktop-panel {
-      opacity: 0;
-      filter: blur(12px);
-      transform: translateX(100%);
-    }
-  }
-}
-
 /* Docs-app base resets — not shippable (consumer owns body styling/resets); theme.css already restores themed border-color on universal selector. */
 @layer base {
   :root {

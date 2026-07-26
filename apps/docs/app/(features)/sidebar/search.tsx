@@ -110,7 +110,9 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
         <div
           data-surface="floating"
           className={cn(
-            "pointer-events-none invisible absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-[min(22rem,calc(100vw-1rem))] -translate-x-1/2 translate-y-1 overflow-hidden border-0 p-0 opacity-0 transition-[opacity,transform,visibility] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-focus-within/search:pointer-events-auto group-focus-within/search:visible group-focus-within/search:translate-y-0 group-focus-within/search:opacity-100",
+            // Results open away from the edge the toolbar is docked to: upward below lg, downward from lg.
+            // The entry offset rides a var rather than a `lg:` translate utility — the open state then wins by variant count alone, at every breakpoint.
+            "pointer-events-none invisible absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-[min(22rem,calc(100vw-1rem))] -translate-x-1/2 translate-y-(--search-results-offset) overflow-hidden border-0 p-0 opacity-0 transition-[opacity,transform,visibility] duration-[var(--duration-fast)] ease-[var(--ease-standard)] [--search-results-offset:0.25rem] group-focus-within/search:pointer-events-auto group-focus-within/search:visible group-focus-within/search:translate-y-0 group-focus-within/search:opacity-100 lg:top-[calc(100%+0.75rem)] lg:bottom-auto lg:[--search-results-offset:-0.25rem]",
             floatingSurfaceClasses,
           )}
         >

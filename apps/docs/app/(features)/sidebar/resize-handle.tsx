@@ -213,7 +213,8 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
       onClick={onClick}
       onKeyDown={onKeyDown}
       className={cn(
-        "group/resize absolute inset-y-0 z-20 hidden w-2 cursor-col-resize touch-none items-center justify-center outline-hidden sm:flex",
+        // lg, like the docked sidebar it resizes: below that the sheet has no in-flow width and this component doesn't render at all.
+        "group/resize absolute inset-y-0 z-20 hidden w-2 cursor-col-resize touch-none items-center justify-center outline-hidden lg:flex",
         "group-data-[side=left]:-right-1 group-data-[side=right]:-left-1",
         className,
       )}

@@ -2,32 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { createContext, Fragment, use, useEffect, useState, useSyncExternalStore } from "react";
+import { createContext, Fragment, use, useState } from "react";
 import type { DockablePanelPlacement } from "./control-ui/contracts";
 import type { SkinId } from "./theme-drawer/types";
-
-const THEME_DRAWER_WIDTH = "360px";
-const DESKTOP_THEME_DRAWER_QUERY = "(min-width: 768px)";
-
-function subscribeToDesktopThemeDrawer(onStoreChange: () => void) {
-  if (typeof window === "undefined") return () => {};
-  const query = window.matchMedia(DESKTOP_THEME_DRAWER_QUERY);
-  query.addEventListener("change", onStoreChange);
-  return () => query.removeEventListener("change", onStoreChange);
-}
-
-function getDesktopThemeDrawerSnapshot() {
-  if (typeof window === "undefined") return null;
-  return window.matchMedia(DESKTOP_THEME_DRAWER_QUERY).matches;
-}
-
-function getDesktopThemeDrawerServerSnapshot() {
-  return null;
-}
-
-export function useDesktopThemeDrawer() {
-  return useSyncExternalStore(subscribeToDesktopThemeDrawer, getDesktopThemeDrawerSnapshot, getDesktopThemeDrawerServerSnapshot);
-}
 
 type ThemeDrawerContextValue = {
   open: boolean;
@@ -46,21 +23,21 @@ const ThemeDrawerContext = createContext<ThemeDrawerContextValue | null>(null);
 
 export function ThemeDrawerProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isDesktop = useDesktopThemeDrawer();
-  const [openOverride, setOpenOverride] = useState<boolean | null>(null);
+  // The editor now morphs out of the floating toolbar over the whole viewport, so it stays closed until asked for — no desktop auto-open.
+  const [openRequested, setOpenRequested] = useState(false);
   const [skinEpoch, setSkinEpoch] = useState(0);
   const [skinSource, setSkinSource] = useState<SkinId | null>(null);
   const [skinSourcePlacement, setSkinSourcePlacement] = useState<DockablePanelPlacement>("right");
 
   const hasThemeDrawer = pathname !== "/create";
-  const open = hasThemeDrawer && (openOverride ?? isDesktop === true);
+  const open = hasThemeDrawer && openRequested;
 
   function setOpen(nextOpen: boolean) {
-    setOpenOverride(nextOpen);
+    setOpenRequested(nextOpen);
   }
 
   function toggleOpen() {
-    setOpenOverride(!open);
+    setOpenRequested(!open);
   }
 
   function bumpSkinEpoch() {
@@ -74,12 +51,6 @@ export function ThemeDrawerProvider({ children }: { children: ReactNode }) {
   function closeSkinSource() {
     setSkinSource(null);
   }
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (open) root.style.setProperty("--theme-drawer-width", THEME_DRAWER_WIDTH);
-    else root.style.removeProperty("--theme-drawer-width");
-  }, [open]);
 
   const value: ThemeDrawerContextValue = {
     open,

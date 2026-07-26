@@ -32,6 +32,9 @@ const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+// Sheet-vs-docked switch, in one place: the JS breakpoint below and every `lg:` in this file must name the same width,
+// or a viewport lands between them with neither the sheet nor the docked rail rendered.
+const SIDEBAR_MOBILE_BREAKPOINT = 1024;
 const sidebarTriggerWidth = {
   xs: "w-[var(--control-h-xs)]",
   sm: "w-[var(--control-h-sm)]",
@@ -73,7 +76,7 @@ export function SidebarProvider({
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }) {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile(SIDEBAR_MOBILE_BREAKPOINT);
   const [openMobile, setOpenMobile] = useState(false);
 
   const [_open, _setOpen] = useState(defaultOpen);
@@ -201,7 +204,7 @@ export function Sidebar({
 
   return (
     <div
-      className="group peer hidden text-sidebar-foreground md:block"
+      className="group peer hidden text-sidebar-foreground lg:block"
       data-control-ui="sidebar"
       data-slot="root"
       data-surface="panel"
@@ -226,7 +229,7 @@ export function Sidebar({
         data-control-ui="sidebar"
         data-slot="container"
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-[var(--duration-base)] ease-[var(--ease-standard)] md:flex",
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-[var(--duration-base)] ease-[var(--ease-standard)] lg:flex",
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -287,7 +290,7 @@ export function SidebarRail({ className, ...props }: ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-[background-color,translate] duration-[var(--duration-base)] ease-[var(--ease-standard)] after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] after:transition-colors after:duration-[var(--duration-base)] after:ease-[var(--ease-standard)] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex",
+        "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-[background-color,translate] duration-[var(--duration-base)] ease-[var(--ease-standard)] after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] after:transition-colors after:duration-[var(--duration-base)] after:ease-[var(--ease-standard)] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 lg:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
@@ -306,7 +309,7 @@ export function SidebarInset({ className, ...props }: ComponentProps<"main">) {
       data-slot="inset"
       className={cn(
         "relative flex w-full flex-1 flex-col bg-background transition-[margin,border-radius,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
-        "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
+        "lg:peer-data-[variant=inset]:m-2 lg:peer-data-[variant=inset]:ml-0 lg:peer-data-[variant=inset]:rounded-xl lg:peer-data-[variant=inset]:shadow-sm lg:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         skinSlot("sidebar", "inset", {}),
         className,
       )}
