@@ -91,7 +91,7 @@ export function InlineAttachmentContent({ className, ...props }: InlineAttachmen
       data-control-ui="inline-attachment"
       data-slot="content"
       className={cn(
-        "absolute inset-x-3 bottom-3 rounded-[var(--radius-control)] bg-background/85 px-3 py-1 text-meta font-medium text-foreground shadow-sm backdrop-blur",
+        "absolute inset-x-3 bottom-3 rounded-[var(--radius-control)] bg-background/85 px-3 py-1 text-caption font-medium text-foreground shadow-sm backdrop-blur",
         skinSlot("inline-attachment", "content", {}),
         className,
       )}

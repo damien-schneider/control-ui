@@ -1,8 +1,8 @@
 "use client";
 
-// variant="hover" keeps the divider off screen until the pointer or keyboard focus reaches it, then fades in a
-// gradient line running from --resizable-handle-color to alpha 0 — the calm option when a permanent hairline
-// would compete with the content it separates. Track thickness matches variant="solid", so nothing shifts.
+// variant="hover" keeps divider off screen until pointer or keyboard focus reaches it, then fades in a
+// gradient line running from --resizable-handle-color to alpha 0 — calm option when permanent hairline
+// would compete with content it separates. Track thickness matches variant="solid", so nothing shifts.
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/control-ui/ui/resizable";
 
 function Pane({ label, hint }: { label: string; hint?: string }) {

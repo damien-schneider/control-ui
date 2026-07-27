@@ -14,7 +14,7 @@ export type UserAskOptionEntry = {
   key: string;
   value: string;
   disabled?: boolean;
-  /** Freeform options resolve to the user's typed text instead of `value`. */
+  /** Freeform options resolve to user's typed text instead of `value`. */
   freeform?: boolean;
 };
 
@@ -29,13 +29,13 @@ function upsert<Entry extends { key: string }>(entries: Entry[], entry: Entry) {
 export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComplete" | "onDismiss">) {
   const [questions, setQuestions] = useState<UserAskQuestionEntry[]>([]);
   const [optionsByQuestion, setOptionsByQuestion] = useState<Record<string, UserAskOptionEntry[]>>({});
-  // Explicit picks by option registration key; a question's defaultValue is DERIVED in selectionFor, never copied here.
+  // Explicit picks by option registration key; question's defaultValue is DERIVED in selectionFor, never copied here.
   const [selections, setSelections] = useState<Record<string, string>>({});
   const [freeformTexts, setFreeformTexts] = useState<Record<string, string>>({});
   const [requestedIndex, setRequestedIndex] = useState(0);
 
-  // useState-once keeps identities stable; register upserts IN PLACE (a prop change must not reorder numbering)
-  // and unregister runs only at part unmount — a combined effect cleanup would move updated entries to the end.
+  // useState-once keeps identities stable; register upserts IN PLACE (prop change must not reorder numbering)
+  // and unregister runs only at part unmount — combined effect cleanup would move updated entries to end.
   const [registerQuestion] = useState(() => (entry: UserAskQuestionEntry) => {
     setQuestions((previous) => upsert(previous, entry));
   });
@@ -152,12 +152,12 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
       return;
     }
     if (event.key === "Enter") {
-      // Enter always means "continue" (even from an option or the freeform input), matching CLI ask flows.
+      // Enter always means "continue" (even from option or freeform input), matching CLI ask flows.
       event.preventDefault();
       advance();
       return;
     }
-    // Inside the freeform input, digits and arrows must keep typing/caret behavior.
+    // Inside freeform input, digits and arrows must keep typing/caret behavior.
     if (event.target instanceof HTMLElement && event.target.closest("input, textarea, [contenteditable]")) return;
     if (event.key === "ArrowDown") {
       event.preventDefault();
@@ -170,7 +170,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
       return;
     }
     if (/^[1-9]$/.test(event.key)) {
-      // preventDefault: selecting a freeform option moves focus into its input before keypress — without this the digit would be typed there.
+      // preventDefault: selecting freeform option moves focus into its input before keypress — without this digit would be typed there.
       event.preventDefault();
       selectDigit(Number(event.key));
     }

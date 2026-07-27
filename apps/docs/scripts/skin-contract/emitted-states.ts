@@ -127,6 +127,7 @@ export type EmittedStateContract = {
   "dynamic-notification:island:data-state": DynamicNotificationState;
   "dynamic-notification:island:data-variant": DynamicNotificationVariant;
   "field:root:data-orientation": "horizontal" | "vertical" | "responsive";
+  "inline-citation:source:data-activation-direction": "left" | "right";
   "input:root:data-size": ControlSize;
   "input-group:root:data-size": ControlSize;
   "item:root:data-variant": "default" | "outline" | "muted";

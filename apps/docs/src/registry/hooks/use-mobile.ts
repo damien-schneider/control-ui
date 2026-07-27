@@ -2,8 +2,7 @@ import { useSyncExternalStore } from "react";
 
 const MOBILE_BREAKPOINT = 768;
 
-// One store per breakpoint, module-scoped: useSyncExternalStore re-subscribes whenever subscribe/getSnapshot change identity,
-// so the pair has to survive re-renders — a per-call closure would tear down and rebuild the listener on every render.
+// module-scoped because useSyncExternalStore re-subscribes on identity change — per-call closure would rebuild listener every render
 const viewportStores = new Map<number, { subscribe: (onChange: () => void) => () => void; getSnapshot: () => boolean }>();
 
 function viewportStore(breakpoint: number) {
@@ -27,7 +26,7 @@ function getServerViewportSnapshot() {
   return false;
 }
 
-/** True below `breakpoint` px (Tailwind `md` by default); pass another breakpoint to match a layout that switches elsewhere. */
+/** True below `breakpoint` px (Tailwind `md` by default); pass another breakpoint to match layout that switches elsewhere. */
 export function useIsMobile(breakpoint: number = MOBILE_BREAKPOINT) {
   const store = viewportStore(breakpoint);
   return useSyncExternalStore(store.subscribe, store.getSnapshot, getServerViewportSnapshot);

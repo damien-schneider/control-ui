@@ -6,7 +6,7 @@ import { CodeDiff } from "@/components/control-ui/ui/code-diff";
 const OLD = "const a = 1;\nconst b = 2;\nconst c = 3;\n";
 const NEW = "const a = 1;\nconst b = 20;\nconst c = 3;\nconst d = 4;\n";
 
-// SSR render (no effects/client highlight, non-virtualized branch): proves tree mounts and emits expected diff anatomy + stats.
+// SSR render, so neither effects nor client highlighting run and non-virtualized branch is one under test
 describe("CodeDiff renders", () => {
   test("unified: emits line-type anatomy, word-diff emphasis, and the stat row", () => {
     const html = renderToString(
@@ -21,10 +21,9 @@ describe("CodeDiff renders", () => {
     expect(html).toContain('data-slot="body"');
     expect(html).toContain("var(--diff-add-gutter)");
     expect(html).toContain("var(--diff-del-gutter)");
-    // Intra-line word diff: the changed token ("2" → "20") is isolated in an emphasis span.
     expect(html).toContain("var(--diff-add-emphasis)");
     expect(html).toContain(">20</span>");
-    // Stat row is present (React splits "+"/number with a comment node, so assert the anatomy, not "+2").
+    // React splits "+" and number with comment node, so anatomy is asserted rather than "+2"
     expect(html).toContain('data-slot="stat"');
     expect(html).toContain("var(--diff-add-fg)");
   });

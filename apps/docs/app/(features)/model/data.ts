@@ -272,7 +272,7 @@ function getExtensions(): DocsExtension[] {
 
 function getSkinPages(): DocsSkinPage[] {
   return skinMetas.map((meta) => {
-    // Widened alias reads `docsOnly`, declared on CatalogSkinMeta but absent from the inferred literal union (no pack sets it today).
+    // Widened alias reads `docsOnly`, declared on CatalogSkinMeta but absent from inferred literal union (no pack sets it today).
     const contract: CatalogSkinMeta = meta;
     return {
       id: meta.id,
@@ -306,8 +306,8 @@ export function getDocsData(): DocsShellData {
   return docsData;
 }
 
-// The persistent client shell needs navigation metadata and source anatomy, not every file body.
-// Route pages receive the one full item they render, keeping the initial payload proportional to the current page.
+// persistent client shell needs navigation metadata and source anatomy, not every file body.
+// Route pages receive one full item they render, keeping initial payload proportional to current page.
 export function getDocsShellData(): DocsShellData {
   if (docsShellData) return docsShellData;
 

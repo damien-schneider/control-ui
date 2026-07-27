@@ -6,8 +6,7 @@ import type { AccordionItemProps, AccordionPanelProps, AccordionProps, Accordion
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// 100% Base UI: Panel height animates via Base UI's --accordion-panel-height var (pure CSS, no JS measuring).
-// Header h3 stays a structural wrapper (no data-slot), mirroring Collapsible's content wrapper.
+// Panel height animates from Base UI's --accordion-panel-height, with no JS measuring.
 export function Accordion({ className, ...props }: AccordionProps) {
   return (
     <AccordionPrimitive.Root

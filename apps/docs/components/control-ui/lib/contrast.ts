@@ -31,14 +31,14 @@ export function wcagLevels(ratio: number): WcagLevels {
   return { AA: ratio >= AA_RATIO, AAA: ratio >= AAA_RATIO };
 }
 
-// The next unmet level a fix should aim for: AA first, then AAA, then nothing.
+// next unmet level fix should aim for: AA first, then AAA, then nothing.
 export function nextFixLevel(levels: WcagLevels): WcagLevel | null {
   if (!levels.AA) return "AA";
   if (!levels.AAA) return "AAA";
   return null;
 }
 
-// background alpha ignored — WCAG assumes an opaque backdrop
+// background alpha ignored — WCAG assumes opaque backdrop
 export function contrastOf(color: Hsva, background: Rgba): number {
   return contrastRatio(hsvaToRgba(color), background);
 }
@@ -58,6 +58,6 @@ export function fixColorForContrast(color: Hsva, background: Rgba, target: numbe
   }
   const pick = (L: number) => oklchaToHsva({ L, C: ok.C, H: ok.H, a: color.a });
   if (best) return pick(best.L);
-  // Nothing passed: fall back to whichever extreme maximizes the ratio.
+  // Nothing passed: fall back to whichever extreme maximizes ratio.
   return ratioAtL(0) >= ratioAtL(1) ? pick(0) : pick(1);
 }

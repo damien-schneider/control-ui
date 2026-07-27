@@ -46,16 +46,16 @@ function resolveCodeBlockEditorClasses({ overflow, chrome, density, variant }: C
     codeClassName: cn(
       "font-mono leading-5 text-[color:var(--code-foreground)]",
       isCompact ? "min-h-0 px-3 py-2 text-label" : "min-h-[160px] p-4 text-label",
-      isEmbedded ? "bg-transparent" : "bg-muted",
+      isEmbedded ? "bg-transparent" : "bg-background",
       overflow === "scroll" ? scrollOverflowClassName : "w-full whitespace-pre-wrap break-words",
     ),
     editorClassName: cn(
       "w-full max-w-full overflow-auto font-mono leading-5 text-[color:var(--code-foreground)]",
       isCompact ? "max-h-[320px] min-h-0 px-3 py-2 text-label" : "max-h-[520px] min-h-[160px] p-4 text-label",
-      isEmbedded ? "bg-transparent" : "bg-muted",
+      isEmbedded ? "bg-transparent" : "bg-background",
       overflow === "scroll" ? "whitespace-pre" : "whitespace-pre-wrap break-words",
     ),
-    scrollAreaClassName: cn(isEmbedded ? "bg-transparent" : "bg-muted"),
+    scrollAreaClassName: cn(isEmbedded ? "bg-transparent" : "bg-background"),
     scrollable: !isCommand,
     maxHeight: isCompact ? "320px" : "520px",
   };
@@ -202,7 +202,7 @@ function CodeBlockEditorCode({
           <Fragment key={line.key}>
             <span>
               {line.tokens.map((token) => (
-                // Color arrives as var(--code-token-*) from shared CSS-variables theme; follows active skin, no dual light/dark className needed.
+                // colour arrives as var(--code-token-*), so it follows active skin with no dual light/dark className
                 <span key={token.key} style={token.style}>
                   {token.content}
                 </span>
@@ -255,7 +255,7 @@ export function CodeBlockEditor({
           !hasHeader && "relative",
           isEmbedded
             ? "my-0 overflow-hidden rounded-none border-0 bg-transparent shadow-none ring-0 [--nest-radius:0px]"
-            : "my-4 overflow-hidden rounded-[var(--nest-radius)] bg-muted shadow-sm ring-1 ring-inset ring-border [--nest-radius:min(var(--radius-panel),calc(var(--nest-gap)*var(--nest-corner-ratio)))]",
+            : "my-4 overflow-hidden rounded-[var(--nest-radius)] border bg-background shadow-sm [--nest-radius:min(var(--radius-panel),calc(var(--nest-gap)*var(--nest-corner-ratio)))]",
           className,
         )}
         {...props}
@@ -294,59 +294,57 @@ export function CodeBlockEditorActions({ className, ...props }: CodeBlockEditorA
   );
 }
 
+// icon-only unless caller passes children — header copy and overlay copy stay one button
 export function CodeBlockEditorCopy({
   value,
-  copiedLabel = "Copied",
+  copiedLabel,
   copiedAriaLabel = "Copied",
-  children = "Copy",
+  children,
+  className,
   "aria-label": ariaLabel,
   ...props
 }: CodeBlockEditorCopyProps) {
   const { isCopied, handleCopy } = useCopyToClipboard({ text: value });
+  const isIconOnly = children === undefined;
+  // text mode already carries its name in label
+  const label = ariaLabel ?? (isIconOnly ? "Copy code" : undefined);
+  const copied = copiedLabel ?? (isIconOnly ? <CheckIcon aria-hidden="true" className="size-3.5" /> : "Copied");
 
-  return (
+  const button = (
     <Button
       type="button"
       variant="quiet"
       size="xs"
       aria-live="polite"
-      aria-label={isCopied && ariaLabel ? copiedAriaLabel : ariaLabel}
+      aria-label={label && isCopied ? copiedAriaLabel : label}
+      className={cn(isIconOnly && "size-7 p-0", className)}
       {...props}
       onClick={handleCopy}
     >
-      {isCopied ? copiedLabel : children}
+      {isCopied ? copied : (children ?? <CopyIcon aria-hidden="true" className="size-3.5" />)}
     </Button>
+  );
+
+  if (!isIconOnly) return button;
+
+  return (
+    <TooltipProvider delay={0}>
+      <Tooltip>
+        <TooltipTrigger render={button} />
+        <TooltipContent side="left">{label}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
 
 export type CodeBlockEditorFloatingCopyProps = Omit<CodeBlockEditorCopyProps, "children" | "copiedLabel">;
 
-export function CodeBlockEditorFloatingCopy({
-  className,
-  "aria-label": ariaLabel = "Copy code",
-  ...props
-}: CodeBlockEditorFloatingCopyProps) {
+export function CodeBlockEditorFloatingCopy({ className, ...props }: CodeBlockEditorFloatingCopyProps) {
   return (
-    <TooltipProvider delay={0}>
-      <Tooltip>
-        <TooltipTrigger
-          render={
-            <CodeBlockEditorCopy
-              aria-label={ariaLabel}
-              className={cn(
-                "absolute top-2 right-2 z-10 size-7 bg-background/85 p-0 shadow-sm ring-1 ring-inset ring-border backdrop-blur",
-                className,
-              )}
-              copiedLabel={<CheckIcon aria-hidden="true" className="size-3.5" />}
-              {...props}
-            >
-              <CopyIcon aria-hidden="true" className="size-3.5" />
-            </CodeBlockEditorCopy>
-          }
-        />
-        <TooltipContent side="left">{ariaLabel}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <CodeBlockEditorCopy
+      className={cn("absolute top-2 right-2 z-10 bg-background/85 shadow-sm ring-1 ring-inset ring-border backdrop-blur", className)}
+      {...props}
+    />
   );
 }
 
@@ -379,8 +377,9 @@ export function CodeBlockEditorContent({
 
   if (context.hasHeader) return content;
 
+  // reserves exactly overlay's footprint (top-2 + size-7) so no dead band is left
   return (
-    <div className="relative pt-10">
+    <div className={cn("relative", context.density === "compact" || context.variant === "command" ? "pt-7" : "pt-5")}>
       <CodeBlockEditorFloatingCopy value={code} />
       {content}
     </div>

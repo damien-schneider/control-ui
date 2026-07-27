@@ -1,8 +1,8 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
-import type { ComponentProps, ReactNode } from "react";
-import { createContext, useContext, useState } from "react";
+import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 import type { SourceReference } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -11,13 +11,23 @@ import { SourceFavicon, sourceHostname } from "@/components/control-ui/source-ba
 import { Button } from "@/components/control-ui/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
 
+type SlideDirection = "left" | "right";
+
+type EnteringSlide = { direction: SlideDirection; previousHeight?: number };
+
+type ExitingSlide = { id: number; direction: SlideDirection; source: SourceReference };
+
 type InlineCitationContextValue = {
   currentIndex: number;
   currentSource?: SourceReference;
+  entering: EnteringSlide | null;
+  exiting: ExitingSlide | null;
+  endExit: (id: number) => void;
   hasNext: boolean;
   hasPrevious: boolean;
   next: () => void;
   previous: () => void;
+  sourceRef: RefObject<HTMLElement | null>;
   sources: readonly SourceReference[];
 };
 
@@ -38,20 +48,66 @@ export type InlineCitationProps = ComponentProps<"span"> & {
   onOpenChange?: PopoverRootProps["onOpenChange"];
 };
 
+// No anchor positioning = no hold animation = nothing ever unmounts clone.
+function supportsCrossSlide() {
+  return typeof CSS !== "undefined" && CSS.supports("(anchor-name: --aui-slide-panel) and (anchor-scope: --aui-slide-panel)");
+}
+
 export function InlineCitation({ sources, open, defaultOpen, onOpenChange, className, children, ...props }: InlineCitationProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [entering, setEntering] = useState<EnteringSlide | null>(null);
+  const [exiting, setExiting] = useState<ExitingSlide | null>(null);
+  const sourceRef = useRef<HTMLElement | null>(null);
+  const exitCount = useRef(0);
+  const clearEntering = useRef(0);
   const lastIndex = Math.max(0, sources.length - 1);
   const currentIndex = Math.min(selectedIndex, lastIndex);
   const currentSource = sources[currentIndex];
   const hasPrevious = currentIndex > 0;
   const hasNext = currentIndex < lastIndex;
+
+  // no primitive owns this swap, so lifecycle attributes theme.css keys on are stamped by hand
+  // height is measured pre-commit — last frame on which old box still exists
+  const move = (step: 1 | -1) => {
+    const nextIndex = Math.min(Math.max(currentIndex + step, 0), lastIndex);
+    if (nextIndex === currentIndex) return;
+    const direction: SlideDirection = step > 0 ? "right" : "left";
+    const leaving = sources[currentIndex];
+
+    setSelectedIndex(nextIndex);
+    setEntering({ direction, previousHeight: sourceRef.current?.getBoundingClientRect().height });
+    if (leaving && supportsCrossSlide()) {
+      exitCount.current += 1;
+      setExiting({ id: exitCount.current, direction, source: leaving });
+    }
+
+    cancelAnimationFrame(clearEntering.current);
+    clearEntering.current = requestAnimationFrame(() => {
+      clearEntering.current = requestAnimationFrame(() => setEntering(null));
+    });
+  };
+
+  const handleOpenChange: NonNullable<PopoverRootProps["onOpenChange"]> = (...args) => {
+    const [nextOpen] = args;
+    // content unmounts on close, so slide caught mid-flight would resume on next open
+    if (!nextOpen) {
+      setEntering(null);
+      setExiting(null);
+    }
+    onOpenChange?.(...args);
+  };
+
   const context = {
     currentIndex,
     currentSource,
+    entering,
+    exiting,
+    endExit: (id: number) => setExiting((current) => (current?.id === id ? null : current)),
     hasNext,
     hasPrevious,
-    next: () => setSelectedIndex((index) => Math.min(index + 1, lastIndex)),
-    previous: () => setSelectedIndex((index) => Math.max(index - 1, 0)),
+    next: () => move(1),
+    previous: () => move(-1),
+    sourceRef,
     sources,
   } satisfies InlineCitationContextValue;
 
@@ -63,7 +119,7 @@ export function InlineCitation({ sources, open, defaultOpen, onOpenChange, class
         {...props}
         className={cn("not-prose inline-flex align-baseline", skinSlot("inline-citation", "root", {}), className)}
       >
-        <Popover open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
+        <Popover open={open} defaultOpen={defaultOpen} onOpenChange={handleOpenChange}>
           {children ?? (
             <>
               <InlineCitationTrigger />
@@ -174,6 +230,7 @@ export function InlineCitationContent({ className, children, align = "start", pa
       {...props}
       data-control-ui="inline-citation"
       data-slot="content"
+      data-slide="scope"
       className={cn("w-[min(24rem,calc(100vw-2rem))] overflow-hidden", skinSlot("inline-citation", "content", {}), className)}
     >
       {children ?? (
@@ -288,75 +345,116 @@ export type InlineCitationSourceProps = ComponentProps<"article"> & {
   source?: SourceReference;
 };
 
-export function InlineCitationSource({ source: sourceProp, className, children, ...props }: InlineCitationSourceProps) {
-  const { currentSource } = useInlineCitation();
-  const source = sourceProp ?? currentSource;
-  if (!source) return null;
+type SourcePanelStyle = CSSProperties & {
+  "--aui-slide-prev-height"?: string;
+};
+
+function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
   const hostname = sourceHostname(source.href);
 
   return (
-    <article
-      data-control-ui="inline-citation"
-      data-slot="source"
-      {...props}
-      className={cn("grid gap-3 p-4", skinSlot("inline-citation", "source", {}), className)}
-    >
-      {children ?? (
-        <>
-          <div
-            data-control-ui="inline-citation"
-            data-slot="source-header"
-            className={cn("flex items-center gap-2", skinSlot("inline-citation", "source-header", {}))}
-          >
-            <SourceFavicon
-              data-control-ui="inline-citation"
-              data-slot="source-favicon"
-              href={source.href}
-              faviconSrc={source.faviconSrc}
-              className={cn("size-5 rounded-full bg-muted", skinSlot("inline-citation", "source-favicon", {}))}
-            />
-            <span className="min-w-0 truncate text-caption text-muted-foreground">{hostname}</span>
-          </div>
-          <a
-            data-control-ui="inline-citation"
-            data-slot="source-title"
-            href={source.href}
-            target="_blank"
-            rel="noreferrer noopener"
-            className={cn(
-              "group/source-title flex min-w-0 items-start gap-2 text-label font-medium leading-5 text-foreground outline-none hover:underline focus-visible:underline",
-              skinSlot("inline-citation", "source-title", {}),
-            )}
-          >
-            <span className="min-w-0 flex-1 wrap-anywhere">{source.title ?? hostname}</span>
-            <ExternalLink aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-muted-foreground" />
-          </a>
-          {source.description ? (
-            <p
-              data-control-ui="inline-citation"
-              data-slot="source-description"
-              className={cn(
-                "line-clamp-3 text-caption leading-5 text-muted-foreground",
-                skinSlot("inline-citation", "source-description", {}),
-              )}
-            >
-              {source.description}
-            </p>
-          ) : null}
-          {source.quote ? (
-            <blockquote
-              data-control-ui="inline-citation"
-              data-slot="source-quote"
-              className={cn(
-                "rounded-[var(--radius-control)] bg-muted/55 px-3 py-2 text-caption leading-5 text-muted-foreground",
-                skinSlot("inline-citation", "source-quote", {}),
-              )}
-            >
-              “{source.quote}”
-            </blockquote>
-          ) : null}
-        </>
-      )}
-    </article>
+    <>
+      <div
+        data-control-ui="inline-citation"
+        data-slot="source-header"
+        className={cn("flex items-center gap-2", skinSlot("inline-citation", "source-header", {}))}
+      >
+        <SourceFavicon
+          data-control-ui="inline-citation"
+          data-slot="source-favicon"
+          href={source.href}
+          faviconSrc={source.faviconSrc}
+          className={cn("size-5 rounded-full bg-muted", skinSlot("inline-citation", "source-favicon", {}))}
+        />
+        <span className="min-w-0 truncate text-caption text-muted-foreground">{hostname}</span>
+      </div>
+      <a
+        data-control-ui="inline-citation"
+        data-slot="source-title"
+        href={source.href}
+        target="_blank"
+        rel="noreferrer noopener"
+        className={cn(
+          "group/source-title flex min-w-0 items-start gap-2 text-label font-medium leading-5 text-foreground outline-none hover:underline focus-visible:underline",
+          skinSlot("inline-citation", "source-title", {}),
+        )}
+      >
+        <span className="min-w-0 flex-1 wrap-anywhere">{source.title ?? hostname}</span>
+        <ExternalLink aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-muted-foreground" />
+      </a>
+      {source.description ? (
+        <p
+          data-control-ui="inline-citation"
+          data-slot="source-description"
+          className={cn("line-clamp-3 text-caption leading-5 text-muted-foreground", skinSlot("inline-citation", "source-description", {}))}
+        >
+          {source.description}
+        </p>
+      ) : null}
+      {source.quote ? (
+        <blockquote
+          data-control-ui="inline-citation"
+          data-slot="source-quote"
+          className={cn(
+            "rounded-[var(--radius-control)] bg-muted/55 px-3 py-2 text-caption leading-5 text-muted-foreground",
+            skinSlot("inline-citation", "source-quote", {}),
+          )}
+        >
+          “{source.quote}”
+        </blockquote>
+      ) : null}
+    </>
+  );
+}
+
+export function InlineCitationSource({ source: sourceProp, className, children, style, ref, ...props }: InlineCitationSourceProps) {
+  const { currentIndex, currentSource, entering, exiting, endExit, sourceRef } = useInlineCitation();
+  const source = sourceProp ?? currentSource;
+  // custom children read CURRENT source, so cloning them would send incoming content out instead of outgoing one
+  const slides = !sourceProp && !children;
+  const panelClassName = cn("grid gap-3 p-4", skinSlot("inline-citation", "source", {}), className);
+  const enteringStyle: SourcePanelStyle | undefined =
+    slides && entering?.previousHeight ? { "--aui-slide-prev-height": `${entering.previousHeight}px`, ...style } : style;
+
+  if (!source) return null;
+
+  return (
+    <>
+      <article
+        // remounted per source: starting translate must be element's FIRST value, or transition eases into it instead of jumping there
+        key={`source-${currentIndex}`}
+        data-control-ui="inline-citation"
+        data-slot="source"
+        data-slide="panel"
+        data-activation-direction={slides ? entering?.direction : undefined}
+        data-starting-style={slides && entering ? "" : undefined}
+        {...props}
+        ref={(node) => {
+          sourceRef.current = node;
+          if (typeof ref === "function") ref(node);
+          else if (ref) ref.current = node;
+        }}
+        style={enteringStyle}
+        className={panelClassName}
+      >
+        {children ?? <InlineCitationSourceDetails source={source} />}
+      </article>
+      {slides && exiting ? (
+        <article
+          key={`exit-${exiting.id}`}
+          aria-hidden="true"
+          inert
+          data-control-ui="inline-citation"
+          data-slot="source"
+          data-slide="panel"
+          data-ending-style=""
+          data-activation-direction={exiting.direction}
+          onAnimationEnd={() => endExit(exiting.id)}
+          className={panelClassName}
+        >
+          <InlineCitationSourceDetails source={exiting.source} />
+        </article>
+      ) : null}
+    </>
   );
 }

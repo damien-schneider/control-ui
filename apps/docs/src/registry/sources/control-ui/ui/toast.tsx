@@ -6,11 +6,9 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
 
-// Toast on Base UI's Toast manager (no sonner); module-level manager gives sonner-shaped DX (toast("Saved"), toast.error(), toast.promise()) callable anywhere, <Toaster/> mounts Provider+Viewport once at root.
-// Card rides popover token set (--radius-popover, shadow-pop), re-asserts skin scope on its portal.
-// Base UI stamps data-type on card so a pack can colour per variant via skin.css.
+// Base UI's Toast manager, not sonner, behind module-level manager so `toast()` stays callable anywhere.
 
-// One global manager shared by the imperative `toast()` API and the <Toaster /> Provider.
+// shared by imperative `toast()` API and the <Toaster /> Provider
 export const toastManager = ToastPrimitive.createToastManager();
 
 type ToastOptions = Omit<Parameters<typeof toastManager.add>[0], "title">;
@@ -19,7 +17,7 @@ function withType(type: string) {
   return (title: ReactNode, options?: ToastOptions) => toastManager.add({ title, type, ...options });
 }
 
-// Callable object: `toast("…")` plus semantic variants, promise, and dismiss — the sonner surface.
+// callable object, so sonner-shaped surface holds
 export const toast = Object.assign((title: ReactNode, options?: ToastOptions) => toastManager.add({ title, ...options }), {
   success: withType("success"),
   error: withType("error"),
@@ -30,10 +28,10 @@ export const toast = Object.assign((title: ReactNode, options?: ToastOptions) =>
   dismiss: (id?: string) => toastManager.close(id),
 });
 
-// Re-export the hook so a custom viewport can read the live toast list inside the Provider.
+// lets custom viewport read live toast list inside Provider
 export const useToast = ToastPrimitive.useToastManager;
 
-// error/destructive = only status colour token contract exposes; other variants stay neutral (pack colours via data-type). Dot only renders for typed toasts.
+// destructive is the only status colour token contract exposes; packs colour rest off data-type
 function dotClass(type: string | undefined) {
   if (!type || type === "message") return undefined;
   return type === "error" ? "bg-destructive" : "bg-foreground";
@@ -50,7 +48,7 @@ function ToastList() {
         data-control-ui="toast"
         data-slot="root"
         data-surface="floating"
-        // Base UI's canonical stack physics (index-driven offset/scale, swipe+expand transforms), tokenised (popover surface, shadow-pop, theme durations) so motion kill-switch flattens it too.
+        // Base UI's own stack physics, retokenised so motion kill-switch flattens them too
         className={cn(
           "[--gap:0.75rem] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))]",
           "absolute right-0 bottom-0 left-auto z-[calc(1000-var(--toast-index))] w-full origin-bottom select-none",
@@ -112,7 +110,7 @@ function ToastList() {
   });
 }
 
-// Mount once at app root; reads global manager so toast() from anywhere lands here. Viewport re-asserts skin scope (portals outside token-scoped ancestor).
+// Mount once at app root — every toast() lands here, and portalled viewport re-asserts skin scope.
 export function Toaster({ className, timeout, limit }: { className?: string; timeout?: number; limit?: number }) {
   return (
     <ToastPrimitive.Provider toastManager={toastManager} timeout={timeout} limit={limit}>

@@ -1,21 +1,12 @@
 import type { ComponentProps, CSSProperties, MouseEvent, ReactElement, ReactNode, Ref } from "react";
 
-/**
- * The controlled value triple every choice control shares, declared once. TValue is inferred from `value`
- * or `onValueChange`, so a caller holding a literal union receives that union back in the handler — no
- * assertion. Plain `string` callers get the previous behaviour from the default.
- *
- * `defaultValue` is deliberately NOT an inference site: an uncontrolled caller passing one option would
- * otherwise pin TValue to that single literal and get false "no overlap" errors comparing the handler
- * value against its other options. Requires TypeScript 5.4 (built-in NoInfer).
- */
+/** Controlled value triple shared by every choice control. `defaultValue` is NoInfer — one uncontrolled option would otherwise pin TValue to that literal. */
 export type ControlledChoice<TValue extends string = string> = {
   value?: TValue;
   defaultValue?: NoInfer<TValue>;
   onValueChange?: (value: TValue) => void;
 };
 
-/** ControlledChoice for the multi-select controls: same inference rules, value is the selected subset. */
 export type ControlledMultiChoice<TValue extends string = string> = {
   value?: TValue[];
   defaultValue?: NoInfer<TValue>[];
@@ -42,7 +33,7 @@ export type ChatMessageProps = ComponentProps<"article"> & {
 export type ChatComposerSubmitPayload = {
   value: string;
   clear: () => void;
-  // Rich editor surface only; absent for plain-textarea path (stays optional/backward-compatible).
+  // rich editor only — plain-textarea path never sets it
   mentions?: MentionItem[];
 };
 
@@ -99,32 +90,25 @@ export type SourceReference = {
   faviconSrc?: string | false;
 };
 
-/** Resolved answers keyed by question id; a freeform option resolves to its typed text. */
+/** Resolved answers keyed by question id; freeform option resolves to its typed text. */
 export type UserAskAnswers = Record<string, string>;
 
-// UserAsk temporarily replaces the chat composer inside its container: same width, keyboard-first
-// (digits select, arrows move, Enter continues, Escape dismisses). Questions/options register
-// themselves — the panel derives count, numbering, and pagination instead of taking data arrays.
+// Replaces composer in place. Questions/options self-register — count, numbering, pagination derived, never passed.
 export type UserAskProps = ComponentProps<"section"> & {
   children?: ReactNode;
   onComplete?: (answers: UserAskAnswers) => void;
   onDismiss?: () => void;
 };
 
-/** Which audio-visualizer usage version is rendering — bars (default) or line; both share AudioVisualizerProps. */
 export type AudioVisualizerVariant = "bars" | "line";
 
-/**
- * Shared contract of the audio-visualizer usage family. Both versions (audio-visualizer.tsx = bars,
- * audio-visualizer-line.tsx = line) export the same `AudioVisualizer` against these exact props, so
- * swapping versions is an import-path change — no call site moves.
- */
+// audio-visualizer.tsx (bars) and audio-visualizer-line.tsx both export `AudioVisualizer` on these props — swap = import-path change.
 export type AudioVisualizerProps = Omit<ComponentProps<"div">, "children"> & {
-  /** Rolling window of 0..1 audio levels, oldest first (e.g. RMS per frame from an AnalyserNode). */
+  /** Rolling window of 0..1 levels, oldest first (e.g. RMS per frame from AnalyserNode). */
   levels: readonly number[];
-  /** Whether the source is live. Inactive visualizers retain their last shape with quieter emphasis. */
+  /** Inactive keeps last shape with quieter emphasis. */
   active?: boolean;
-  /** Stable number of rendered points (latest N levels, left-padded with silence); defaults to 28 and is capped at 128. */
+  /** Latest N levels, left-padded with silence. Default 28, capped at 128. */
   points?: number;
 };
 
@@ -140,23 +124,13 @@ export type RenderProp<Props, State extends Record<string, unknown> = Record<str
   | ReactElement
   | ((props: Props, state: State) => ReactElement<unknown>);
 
-/**
- * Skins install as SOURCE (reinstall, not runtime toggle). Default = shadcn-compat (host primitives via
- * registryDependencies); opinionated skins (refined) scope under components/control-ui/ui/*, never touch components/ui/*.
- * Every skin emits scoped anatomy+data-slot(+component identity), normalizes state via data-state/data-active, composes via render/nativeButton.
- */
-
-// `variant` = visual STRUCTURE not color: solid=primary action, surface=visible-secondary (bg/border),
-// ghost=standard hover (shadcn-like), quiet=discreet inline (Copy/Edit). `tone` = color INTENT, orthogonal
-// (avoids solidDanger/ghostDanger explosion). No `lg` — chat needs compactness. Brand fx (shine/ripple) live in CSS/extensions, not this prop surface.
-// Slot module components/control-ui/ui/button exports Button. scoped anatomy data-slot="button", data-active reflects `active`.
-// Shared by Button/Select trigger/DropdownMenu trigger/Input via controlSize cva (height --control-h-*/padding/text per step). Default md.
+// One step drives height (--control-h-*), padding, text across Button, Select/DropdownMenu triggers, Input.
 export type ControlSize = "xs" | "sm" | "md" | "lg";
 
-// effects.css keys off data-effects (space-separated). Declared here not in the optional extension because ControlUiSkin.effects
-// references it even without the ripple runtime installed (top-shine is CSS-only). control-effects.ts re-exports it publicly.
+// effects.css keys off data-effects. Here, not in optional extension: ControlUiSkin.effects references it without ripple runtime installed.
 export type ControlEffect = "top-shine" | "ripple" | "hover-circle";
 
+// variant = structure, tone = color intent — orthogonal, no solidDanger/ghostDanger explosion.
 export type ButtonVariant = "solid" | "surface" | "ghost" | "quiet";
 export type ButtonSize = ControlSize;
 export type ButtonTone = "neutral" | "primary" | "danger";
@@ -184,8 +158,7 @@ export type ButtonLinkProps = ComponentProps<"a"> &
 
 export type ButtonLabelProps = ComponentProps<"label"> & ButtonAppearanceProps;
 
-// Kebab-case superset of onOpenChange reasons across all popup-style primitives (DropdownMenu adds item-press/list-navigation,
-// Combobox adds input-change, etc.) — callers get one shape regardless of which primitive backs the contract.
+// Superset across every popup primitive — one shape whichever backs contract.
 export type OpenChangeReason =
   | "trigger-hover"
   | "trigger-focus"
@@ -207,8 +180,7 @@ export type OpenChangeReason =
   | "swipe"
   | "none";
 
-// event widened to base Event (Base UI-agnostic). cancel() blocks pending state change (e.g. keep dialog open while form dirty).
-// allowPropagation() opts Escape back into bubbling to an ancestor popup (Base UI stops it by default).
+// cancel() blocks pending state change; allowPropagation() opts Escape back into bubbling (Base UI stops it by default).
 export type OpenChangeEventDetails = {
   reason: OpenChangeReason;
   event: Event;
@@ -219,8 +191,6 @@ export type OpenChangeEventDetails = {
   trigger: Element | undefined;
 };
 
-// components/control-ui/ui/collapsible: root data-slot="collapsible" data-state="open"|"closed", trigger data-slot="trigger",
-// content data-slot="content" (all scoped anatomy).
 export type CollapsibleProps = Omit<ComponentProps<"div">, "onChange"> & {
   open?: boolean;
   defaultOpen?: boolean;
@@ -236,7 +206,7 @@ export type CollapsibleTriggerProps = ComponentProps<"button"> & {
 
 export type CollapsibleContentProps = ComponentProps<"div"> & {
   "data-slot"?: string;
-  /** Keep the panel in the DOM while closed (Base UI passthrough) — needed when hidden children carry state, e.g. TaskList item registration. */
+  /** Keep panel mounted while closed — hidden children that register themselves (TaskList items) need it. */
   keepMounted?: boolean;
 };
 
@@ -255,12 +225,9 @@ export type MorphingPanelContentProps = CollapsibleContentProps;
 
 export type TaskStatus = "pending" | "active" | "completed";
 
-// TaskList floats just above the chat composer as a one-row progress pill ("Task 3 of 5 › label")
-// and expands into the full task list. Items register their status — the pill derives progress.
+// Collapsed pill reads "Task 3 of 5 › label" — items register status, pill derives progress.
 export type TaskListProps = CollapsibleProps;
 
-// Tabs exposes the local parts root, list, trigger, indicator, and panel.
-// Indicator is stable anatomy; skin decides pill/line/texture look.
 export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & ControlledChoice<TValue>;
 
 export type TabsListVariant = "default" | "browser";
@@ -272,7 +239,7 @@ export type TabsListProps = ComponentProps<"div"> & {
 
 export type TabsTabProps = Omit<ComponentProps<"button">, "value"> & {
   value: string;
-  /** Render as another element (e.g. router Link) to turn the tab strip into nav; set nativeButton={false} for non-<button>. */
+  /** Render as another element (e.g. router Link) to turn tab strip into nav; set nativeButton={false} for non-<button>. */
   render?: RenderProp<ComponentProps<"button">, { active: boolean; disabled: boolean }>;
   nativeButton?: boolean;
 };
@@ -296,7 +263,6 @@ export type TimelineTitleProps = ComponentProps<"div">;
 export type TimelineDescriptionProps = ComponentProps<"div">;
 export type TimelineMetaProps = ComponentProps<"div">;
 
-// components/control-ui/ui/stepper: semantic ordered steps with optional native triggers and preserved panels, without tab semantics.
 export type StepperOrientation = "horizontal" | "vertical";
 export type StepperContentMode = "current" | "all";
 export type StepperState = "neutral" | "complete" | "current" | "upcoming";
@@ -329,9 +295,8 @@ export type StepperContentProps = ComponentProps<"section"> & {
   keepMounted?: boolean;
 };
 
-// components/control-ui/ui/tree — library-original (Base UI has none); each branch reuses Base UI Collapsible; WAI-ARIA APG "file directory treeview" (<li> = focusable treeitem, roving tabindex, trigger row presentational).
-// Tree exposes local parts for items, triggers, indicators, labels, and grouped content.
-// Selection/expansion value-first, always string[] so single/multiple share one shape (no conditional generics); selectionMode="none" = nav-only.
+// Library-original (Base UI has none). WAI-ARIA APG treeview — <li> is focusable treeitem, trigger row presentational.
+// Selection stays string[] even single-select — both modes share one shape.
 export type TreeSelectionMode = "none" | "single" | "multiple";
 
 export type TreeInteractionReason = "pointer" | "keyboard" | "imperative";
@@ -347,7 +312,7 @@ export type TreeExpandedChangeDetails = {
   reason: TreeInteractionReason;
 };
 
-/** Sliding selection pill, shared by row-in-track lists (Tree, SidebarMenu). none=per-row bg, slide=single moving highlight. Default is a SKIN decision (ControlUiSkin.indicators); explicit prop wins. */
+/** Shared by row-in-track lists (Tree, SidebarMenu). Default comes from ControlUiSkin.indicators; explicit prop wins. */
 export type SelectionIndicator = "none" | "slide";
 
 export type TreeSelectionIndicator = SelectionIndicator;
@@ -361,12 +326,12 @@ export type TreeProps = Omit<ComponentProps<"ul">, "onChange" | "defaultValue"> 
   expandedValue?: string[];
   defaultExpandedValue?: string[];
   onExpandedChange?: (expanded: string[], details: TreeExpandedChangeDetails) => void;
-  /** none=per-row bg; slide=Vercel-style pill glides to hover/rests on selection (suppresses per-row bg), best for single-select, motion via --duration-* (snaps reduced-motion). Default ControlUiSkin.indicators.tree, else none. */
+  /** `slide` suppresses per-row backgrounds — one pill glides to hover and rests on selection. Default ControlUiSkin.indicators.tree, else none. */
   indicator?: TreeSelectionIndicator;
 };
 
 export type TreeItemProps = Omit<ComponentProps<"li">, "value"> & {
-  /** Stable id/path — the selection + expansion key, and the roving/`data-value` handle. */
+  /** Stable id/path — selection + expansion key, and roving/`data-value` handle. */
   value: string;
   disabled?: boolean;
   /** Type-ahead text. Falls back to the `TreeItemLabel` text content when omitted. */
@@ -386,7 +351,6 @@ export type TreeItemLabelProps = ComponentProps<"span"> & {
 
 export type TreeItemContentProps = ComponentProps<"div">;
 
-// components/control-ui/ui/scroll-area: two-axis surface, overlay scrollbars, edge fades only on sides with clipped content. data-slot="scroll-area".
 export type ScrollAreaLockAxis = "x" | "y" | "both";
 export type ScrollAreaViewportProps = Omit<ComponentProps<"div">, "children" | "className" | "ref"> & {
   "data-control-ui"?: string;
@@ -404,7 +368,7 @@ export type ScrollAreaProps = ComponentProps<"div"> & {
 };
 
 export type TocItem = {
-  /** Fragment link to the section, e.g. `#install`. */
+  /** Fragment link to section, e.g. `#install`. */
   href: string;
   label: string;
   /** Heading depth (1 = h1, 2 = h2, 3 = h3, ...). Drives indentation. Defaults to nesting depth, then 2. */
@@ -414,18 +378,15 @@ export type TocItem = {
 
 export type TableOfContentsVariant = "background" | "trail" | "both";
 
-// components/control-ui/ui/table-of-contents: sticky "on this page" nav, scroll-spies items' section ids, highlights in-view range as one contiguous block. Indicator/scroll/offset are CSS; only in-view detection is JS.
-// Anatomy: table-of-contents root, list, and item; nested lists emit data-nested.
+// Indicator, scroll, offset are CSS — only in-view detection runs in JS.
 export type TableOfContentsProps = Omit<ComponentProps<"nav">, "children"> & {
   items: TocItem[];
-  /** Heading shown above the list and used as the nav's accessible name. Defaults to "On this page". */
+  /** Heading shown above list and used as nav's accessible name. Defaults to "On this page". */
   label?: string;
-  /** Active item treatment. Defaults to both the trail and background. */
+  /** Active item treatment. Defaults to both trail and background. */
   variant?: TableOfContentsVariant;
 };
 
-// components/control-ui/ui/select: trigger shares --radius-control with Button/DropdownMenu trigger (one token squares every control).
-// data-slot="select-trigger"|"select-content"|"select-item" (scoped anatomy).
 export type SelectProps<TValue extends string = string> = ControlledChoice<TValue> & {
   disabled?: boolean;
   name?: string;
@@ -452,7 +413,6 @@ export type SelectItemProps = ComponentProps<"div"> & {
   disabled?: boolean;
 };
 
-// components/control-ui/ui/dropdown-menu: trigger shares --radius-control with Button/Select. data-slot="menu-trigger"|"menu-content"|"menu-item" (scoped anatomy).
 export type DropdownMenuProps = {
   children?: ReactNode;
   open?: boolean;
@@ -481,8 +441,6 @@ export type DropdownMenuLabelProps = ComponentProps<"div">;
 
 export type PopoverContentPadding = "default" | "none";
 
-// components/control-ui/ui/context-menu (shadcn-compatible surface, full submenu/checkbox/radio family): right-click/long-press menu.
-// Rows share --radius-popup-item; popup shares --radius-popover with DropdownMenu/Select. data-slot="context-menu-content"|"context-menu-item" (scoped anatomy).
 export type ContextMenuProps = {
   children?: ReactNode;
   open?: boolean;
@@ -538,7 +496,6 @@ export type ContextMenuSubTriggerProps = Omit<ComponentProps<"div">, "onClick"> 
 
 export type ContextMenuSubContentProps = ComponentProps<"div">;
 
-// components/control-ui/ui/menubar: horizontal bar of Base UI Menu triggers; popups/rows share popover token set with DropdownMenu/Select.
 export type MenubarProps = ComponentProps<"div"> & {
   modal?: boolean;
   loopFocus?: boolean;
@@ -586,7 +543,7 @@ export type MenubarSubTriggerProps = Omit<ComponentProps<"div">, "onClick"> & {
 
 export type MenubarSubContentProps = ComponentProps<"div">;
 
-// components/control-ui/ui/navigation-menu: triggers over one shared floating viewport that morphs between panels. Triggers share --radius-control; viewport is --radius-popover.
+// Triggers share one floating viewport that morphs between panels.
 export type NavigationMenuProps = ComponentProps<"nav"> & {
   value?: string | null;
   defaultValue?: string | null;
@@ -616,7 +573,6 @@ export type NavigationMenuLinkProps = ComponentProps<"a"> & {
 
 export type NavigationMenuViewportProps = ComponentProps<"div">;
 
-// components/control-ui/model-switcher: model picker on Select slot; drop inside ChatComposerTools or standalone.
 export type ModelOption = {
   value: string;
   label: string;
@@ -633,7 +589,6 @@ export type ModelSwitcherProps = {
   className?: string;
 };
 
-// components/control-ui/ui/dialog: modal, --radius-panel + shadow-modal (tracks theme). data-slot="dialog-content".
 export type DialogProps = {
   children?: ReactNode;
   open?: boolean;
@@ -652,12 +607,10 @@ export type ResponsiveDialogContentProps = DialogContentProps & {
   drawerClassName?: string;
 };
 
-// components/control-ui/ui/input: shares --radius-control with Button/Select/DropdownMenu triggers. data-slot="input".
 export type InputProps = Omit<ComponentProps<"input">, "size"> & {
   size?: ControlSize;
 };
 
-// components/control-ui/ui/input-group: addon + field composed as one control. data-slot="input-group".
 export type InputGroupProps = ComponentProps<"div"> & {
   render?: RenderProp<ComponentProps<"div">>;
   size?: ControlSize;
@@ -665,12 +618,10 @@ export type InputGroupProps = ComponentProps<"div"> & {
 
 export type InputGroupAddonProps = ComponentProps<"span">;
 
-// components/control-ui/ui/label: renders <label> when htmlFor is set (ties to control), else <span> for group captions.
+// <label> when htmlFor set, else <span> for group captions.
 export type LabelProps = ComponentProps<"label">;
 
-// components/control-ui/ui/slider: variant "default"=branded (muted track, --primary indicator, pill thumb); "plain"=neutral monochrome (recessed track, thin thumb).
-// plain + label/showValue grows into a taller labeled bar w/ value + step ticks (opt-in; default ignores these props).
-// data-slot="slider"|"slider-control"|"slider-track"|"slider-indicator"|"slider-thumb" (scoped anatomy).
+// label/showValue only grow taller labeled bar under "plain" — default variant ignores them.
 export type SliderVariant = "default" | "plain";
 
 export type SliderProps = {
@@ -689,16 +640,14 @@ export type SliderProps = {
   "aria-label"?: string;
 };
 
-// components/control-ui/ui/toggle: Toggle+ToggleGroup compose Button slot (shares --radius-control/controlSize/tones/chrome). pressed surfaces via Button's active/data-active — never special-case toggle anatomy; `active` prop force-overrides independent of pressed state.
-// showCheck renders Checkbox/SelectItem's tick glyph gated on pressed, for tile-style toggles wanting an explicit check mark (don't hand-roll this).
-// data-slot="button" component identity="toggle" data-active=pressed (toggle); data-slot="toggle-group" (group), scoped anatomy.
+// Composes Button slot: pressed surfaces through Button's data-active — never special-case toggle anatomy. `active` force-overrides.
 export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value"> & {
   pressed?: boolean;
   defaultPressed?: boolean;
   onPressedChange?: (pressed: boolean) => void;
-  /** Identifies the toggle inside a ToggleGroup (the group's value is the set of pressed values). */
+  /** Identifies toggle inside ToggleGroup (group's value is set of pressed values). */
   value?: string;
-  /** Show the shared checkmark glyph (Checkbox/SelectItem's tick) when the toggle is active. */
+  /** Show shared Checkbox/SelectItem tick when pressed — for tile-style toggles. Never hand-roll it. */
   showCheck?: boolean;
 };
 
@@ -710,8 +659,6 @@ export type ToggleGroupProps<TValue extends string = string> = Omit<ComponentPro
     orientation?: "horizontal" | "vertical";
   };
 
-// components/control-ui/ui/checkbox: Base UI Checkbox, shares --radius-sm + control focus ring, fills --primary checked, dash tick when indeterminate. Inside Field.Root, data-invalid ring surfaces validation.
-// data-slot="checkbox"(data-checked=on)|"checkbox-indicator", scoped anatomy.
 export type CheckboxProps = {
   checked?: boolean;
   defaultChecked?: boolean;
@@ -728,8 +675,7 @@ export type CheckboxProps = {
   "aria-labelledby"?: string;
 };
 
-// components/control-ui/ui/radio-group: Base UI RadioGroup+Radio, circle shares control ring w/ Checkbox, fills --primary+--primary-foreground dot when selected. Group owns value; compose label beside Radio.
-// data-slot="radio-group"|"radio"(data-checked=selected), scoped anatomy.
+// Group owns value; compose label beside Radio.
 export type RadioGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledChoice<TValue> & {
     disabled?: boolean;
@@ -750,9 +696,7 @@ export type RadioProps = {
   "aria-labelledby"?: string;
 };
 
-// components/control-ui/ui/switch: OWN anatomy (pill track+sliding thumb), not a restyled Button (contrast Toggle). Track recolors --primary checked; thumb STRETCHES while pressed via --duration-*/--ease-* (motion kill-switch flattens it).
-// icon = one glyph both states (color flips checked); checkedIcon/uncheckedIcon = per-state glyphs, cross-fade, take precedence over icon.
-// data-slot="switch"(data-checked=on)|"switch-thumb"|"switch-thumb-icon"(data-switch-icon=checked|unchecked), scoped anatomy.
+// Own anatomy — pill track plus sliding thumb, not restyled Button like Toggle.
 export type SwitchProps = {
   checked?: boolean;
   defaultChecked?: boolean;
@@ -764,7 +708,7 @@ export type SwitchProps = {
   value?: string;
   id?: string;
   className?: string;
-  /** A single thumb glyph shown in both states; its colour flips when checked. */
+  /** single thumb glyph shown in both states; its colour flips when checked. */
   icon?: ReactNode;
   /** Thumb glyph shown while checked. Overrides `icon`. Cross-fades with `uncheckedIcon`. */
   checkedIcon?: ReactNode;
@@ -775,12 +719,11 @@ export type SwitchProps = {
   "aria-describedby"?: string;
 };
 
-// components/control-ui/ui/field: shadcn Field family on Base UI Field+Fieldset. Pure layout+text — owns labeling/description/validation wiring, never paints a control; drop control-ui Input/Select/Textarea into FieldControl's render.
-// Base UI stamps data-valid/-invalid/-dirty/-touched/-filled/-focused on every part (zero-JS validity styling).
-// scoped anatomy + data-slot on each part: field/field-label/field-control/field-description/field-error/field-group/field-set/field-legend.
+// Pure layout and text — never paints control; drop Input/Select/Textarea into FieldControl's render.
+// Base UI stamps data-valid/-invalid/-dirty/-touched/-filled/-focused on every part — validity styling needs no JS.
 export type FieldProps = ComponentProps<"div"> & {
   orientation?: "vertical" | "horizontal" | "responsive";
-  /** Field name; keys Form `errors` and takes precedence over the control's own name. */
+  /** Field name; keys Form `errors` and takes precedence over control's own name. */
   name?: string;
   disabled?: boolean;
   invalid?: boolean;
@@ -793,12 +736,12 @@ export type FieldContentProps = ComponentProps<"div">;
 
 export type FieldTitleProps = ComponentProps<"div">;
 
-// render intersected straight off Base UI's Field.Control in the slot source, so typing/merging matches Base UI exactly.
+// render intersected straight off Base UI's Field.Control in slot source — typing and merging match exactly.
 export type FieldControlProps = ComponentProps<"input">;
 
 export type FieldDescriptionProps = ComponentProps<"p">;
 
-// `match` narrows when the error shows to a specific ValidityState key; omit to show on any invalid.
+// `match` narrows error to specific ValidityState key; omit to show on any invalid.
 export type FieldErrorMatch = boolean | keyof ValidityState;
 
 export type FieldErrorProps = ComponentProps<"div"> & {
@@ -811,14 +754,14 @@ export type FieldSeparatorProps = ComponentProps<"div"> & {
   children?: ReactNode;
 };
 
-// FieldItem wraps one labelled row in a Fieldset group (e.g. radio/checkbox option) so Base UI scopes label+description+validity to that control. data-slot="field-item".
+// One labelled row inside Fieldset — Base UI scopes label, description, validity to that control.
 export type FieldItemProps = ComponentProps<"div">;
 
 export type FieldSetProps = ComponentProps<"fieldset">;
 
 export type FieldLegendProps = ComponentProps<"div">;
 
-// components/control-ui/ui/form: Base UI <form> wrapper, merges externally-returned errors (keyed by Field name) onto matching FieldError. data-slot="form".
+// Merges externally-returned errors, keyed by Field name, onto matching FieldError.
 export type FormErrors = Record<string, string | string[]>;
 
 export type FormProps = ComponentProps<"form"> & {
@@ -826,15 +769,15 @@ export type FormProps = ComponentProps<"form"> & {
   validationMode?: "onSubmit" | "onBlur" | "onChange";
 };
 
-// components/control-ui/ui/native-select: real native <select> (not floating Base UI Select), shares --radius-control+controlSize with Button/Input/Select, chevron overlay. data-slot="native-select".
+// Real native <select>, not floating Base UI Select.
 export type NativeSelectProps = Omit<ComponentProps<"select">, "size"> & {
   size?: ControlSize;
 };
 
-// components/control-ui/ui/textarea: mirrors Input surface, multiline rhythm, auto-grows CSS-first via field-sizing-content. data-slot="textarea".
+// Auto-grows through field-sizing-content, no JS measurement.
 export type TextareaProps = ComponentProps<"textarea">;
 
-// components/control-ui/ui/accordion: Base UI Accordion, chevron rotates on data-panel-open, Panel height-animates via --accordion-panel-height (pure CSS).
+// Panel height-animates from --accordion-panel-height, pure CSS.
 export type AccordionValue = (string | number)[];
 
 export type AccordionProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
@@ -854,7 +797,6 @@ export type AccordionTriggerProps = ComponentProps<"button">;
 
 export type AccordionPanelProps = ComponentProps<"div">;
 
-// components/control-ui/ui/avatar: Base UI owns image-load state; Fallback shows when Image missing/errors.
 export type AvatarProps = ComponentProps<"span">;
 
 export type AvatarGroupProps = ComponentProps<"div">;
@@ -867,7 +809,7 @@ export type AvatarFallbackProps = ComponentProps<"span"> & {
   delay?: number;
 };
 
-// components/control-ui/ui/progress: Base UI drives Indicator width from value/min/max; value null = indeterminate.
+// value null = indeterminate.
 export type ProgressProps = ComponentProps<"div"> & {
   value: number | null;
   min?: number;
@@ -887,7 +829,7 @@ export type ProgressValueProps = Omit<ComponentProps<"span">, "children"> & {
   children?: ((formattedValue: string | null, value: number | null) => ReactNode) | null;
 };
 
-// components/control-ui/ui/hover-card: Base UI PreviewCard, popover token set (--radius-popover/--popover-padding/shadow-pop), re-asserts skin scope on portal.
+// Base UI PreviewCard; re-asserts skin scope on portal.
 export type HoverCardProps = {
   children?: ReactNode;
   open?: boolean;
@@ -901,8 +843,7 @@ export type HoverCardContentProps = ComponentProps<"div"> & {
   sideOffset?: number;
 };
 
-// components/control-ui/ui/alert-dialog: modal requiring explicit action (no light dismiss). --radius-panel + shadow-modal over themed backdrop, re-asserts skin scope on portal.
-// Close actions compose Button, so footer actions share size/tone/variant contract.
+// No light dismiss — explicit action required. Re-asserts skin scope on portal.
 export type AlertDialogProps = {
   children?: ReactNode;
   open?: boolean;
@@ -912,7 +853,6 @@ export type AlertDialogProps = {
 
 export type AlertDialogContentProps = ComponentProps<"div">;
 
-// components/control-ui/ui/input-otp: Base UI OtpField; each slot shares --radius-control + card/ring surface with Input/Select trigger.
 export type InputOTPProps = {
   length?: number;
   separator?: boolean;
@@ -941,7 +881,7 @@ export type InputOTPSlotProps = {
 
 export type InputOTPSeparatorProps = ComponentProps<"div">;
 
-// components/control-ui/ui/combobox: Base UI Combobox, searchable single-select. Input shares --radius-control/controlSurfaceClasses/controlSize with Button/Select; list rides shared popover tokens. Generic over item Value (inferred from items/value).
+// Searchable single-select — selecting locks to discrete value, unlike Autocomplete.
 export type ComboboxProps<Value = string> = {
   children?: ReactNode;
   items?: readonly Value[];
@@ -986,16 +926,14 @@ export type ComboboxEmptyProps = ComponentProps<"div">;
 export type ComboboxGroupProps = ComponentProps<"div">;
 export type ComboboxGroupLabelProps = ComponentProps<"div">;
 
-// components/control-ui/ui/alert: role="alert" panel, --radius-lg + --card/--border, grid layout (icon own column); destructive variant re-tints via --destructive.
 export type AlertVariant = "default" | "destructive";
 export type AlertProps = ComponentProps<"div"> & { variant?: AlertVariant };
 export type AlertTitleProps = ComponentProps<"div">;
 export type AlertDescriptionProps = ComponentProps<"div">;
 
-// components/control-ui/ui/badge: control-shaped chip sharing border+focus ring w/ buttons/fields. render renders as link/button; color intent routes through badge tokens.
 export type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
 export type BadgeSize = "sm" | "md";
-/** Stable application-facing families; each skin may tune the exact hue. */
+/** Stable application-facing families; each skin may tune exact hue. */
 export const BADGE_COLORS = ["neutral", "red", "orange", "yellow", "green", "blue", "purple", "pink"] as const;
 export type BadgeColor = (typeof BADGE_COLORS)[number];
 export type BadgeProps = ComponentProps<"span"> & {
@@ -1005,7 +943,7 @@ export type BadgeProps = ComponentProps<"span"> & {
   render?: RenderProp<ComponentProps<"span">>;
 };
 
-// components/control-ui/ui/card: --radius-lg surface on --card+shadow-sm; header is grid so CardAction pins top-right column.
+// Header is grid — CardAction pins to its own top-right column.
 export type CardVariant = "default" | "sectioned";
 export type CardProps = ComponentProps<"div"> & { variant?: CardVariant };
 export type CardHeaderProps = ComponentProps<"div">;
@@ -1015,7 +953,7 @@ export type CardActionProps = ComponentProps<"div">;
 export type CardContentProps = ComponentProps<"div">;
 export type CardFooterProps = ComponentProps<"div">;
 
-// components/control-ui/ui/table: <table> wrapped in overflow-x-auto (wide tables scroll); hairlines --border, heads --muted-foreground, rows lift on hover via fg alpha.
+// <table> ships wrapped in overflow-x-auto — wide tables scroll instead of blowing out layout.
 export type TableProps = ComponentProps<"table">;
 export type TableSectionProps = ComponentProps<"tbody">;
 export type TableRowProps = ComponentProps<"tr">;
@@ -1023,10 +961,10 @@ export type TableHeadProps = ComponentProps<"th">;
 export type TableCellProps = ComponentProps<"td">;
 export type TableCaptionProps = ComponentProps<"caption">;
 
-// components/control-ui/ui/aspect-ratio: pure-CSS (no Radix), sets native aspect-ratio from `ratio` (default 16/9) via inline style.
+// Native CSS aspect-ratio set inline, no Radix. Defaults to 16/9.
 export type AspectRatioProps = ComponentProps<"div"> & { ratio?: number };
 
-// components/control-ui/ui/button-group: flex wrapper joining buttons/inputs into one segmented control (collapses inner corners, overlaps borders).
+// Collapses inner corners, overlaps borders — children read as one segmented control.
 export type ButtonGroupProps = ComponentProps<"div"> & {
   orientation?: "horizontal" | "vertical";
 };
@@ -1035,10 +973,8 @@ export type ButtonGroupSeparatorProps = ComponentProps<"div"> & {
   orientation?: "horizontal" | "vertical";
 };
 
-// components/control-ui/ui/empty: centered empty-state block, reads --muted-foreground/--foreground (tracks DA).
 export type EmptyProps = ComponentProps<"div">;
 
-// components/control-ui/ui/item: horizontal list row on --radius-lg surface. variant=surface treatment; render=row as link/button.
 export type ItemProps = ComponentProps<"div"> & {
   variant?: "default" | "outline" | "muted";
   render?: RenderProp<ComponentProps<"div">>;
@@ -1048,17 +984,17 @@ export type ItemGroupProps = ComponentProps<"div">;
 
 export type ItemSeparatorProps = ComponentProps<"div">;
 
-// components/control-ui/ui/pagination: semantic <nav>/<ul>/<li> page switcher; PaginationLink is control-shaped without importing Button.
+// Control-shaped without importing Button — pagination installs alone.
 export type PaginationLinkProps = ComponentProps<"a"> & {
   isActive?: boolean;
 };
 
-// components/control-ui/ui/spinner: animate-spin, deliberately NOT gated by motion kill-switch (loader must keep turning under reduced motion). role="status" + hidden label.
+// Deliberately outside motion kill-switch — loader must keep turning under reduced motion.
 export type SpinnerProps = ComponentProps<"span"> & {
   size?: ControlSize;
 };
 
-// components/control-ui/ui/meter: Base UI drives Indicator width from value/min/max. Unlike Progress, value is required (role="meter", never indeterminate) — static gauge (e.g. storage used), not a task in flight.
+// value required — role="meter" is static gauge, never indeterminate like Progress.
 export type MeterProps = ComponentProps<"div"> & {
   value: number;
   min?: number;
@@ -1078,20 +1014,16 @@ export type MeterValueProps = Omit<ComponentProps<"span">, "children"> & {
   children?: ((formattedValue: string, value: number) => ReactNode) | null;
 };
 
-// components/control-ui/ui/checkbox-group: Base UI CheckboxGroup wrapper, holds shared string[] of ticked values, hands to matching child Checkbox by value. allValues + select-all Checkbox surfaces indeterminate.
-// orientation is visual-only (flips flex direction, not forwarded to primitive); Base UI CheckboxGroup has no name prop (each Checkbox carries its own).
-// Stays on plain `string[]`: Base UI's CheckboxGroup reports its own `string[]` selection, so a narrower
-// caller union could not be honoured on the way back without asserting it.
+// orientation visual-only, never forwarded to primitive. Stays plain string[]: Base UI reports its own string[], so narrower union could not be honoured back without asserting.
 export type CheckboxGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledMultiChoice & {
-    /** Names of all child checkbox values. Set this alongside a select-all checkbox to drive indeterminate. */
+    /** Names of all child checkbox values. Set this alongside select-all checkbox to drive indeterminate. */
     allValues?: string[];
     disabled?: boolean;
     orientation?: "horizontal" | "vertical";
   };
 
-// components/control-ui/ui/autocomplete: Base UI Autocomplete, search-as-you-type. Unlike Combobox, FREE TEXT — value/onValueChange is the filtering input string (mode "list" default); selecting fills input, never locks to a discrete value. No per-row ItemIndicator (Base UI Autocomplete has none).
-// Input shares --radius-control/controlSurfaceClasses/controlSize w/ Button/Select; list rides shared popover tokens. Generic over item Value (inferred from items).
+// Free text, unlike Combobox — value is filtering input string, selecting only fills it.
 export type AutocompleteProps<Value = string> = {
   children?: ReactNode;
   items?: readonly Value[];
@@ -1105,7 +1037,7 @@ export type AutocompleteProps<Value = string> = {
   readOnly?: boolean;
   required?: boolean;
   name?: string;
-  /** list (default): filter items by the query. both/inline: inline-complete from the active item. none: static list. */
+  /** list (default): filter items by query. both/inline: inline-complete from active item. none: static list. */
   mode?: "list" | "both" | "inline" | "none";
   autoHighlight?: boolean | "always";
   limit?: number;
@@ -1137,8 +1069,7 @@ export type AutocompleteEmptyProps = ComponentProps<"div">;
 export type AutocompleteGroupProps = ComponentProps<"div">;
 export type AutocompleteGroupLabelProps = ComponentProps<"div">;
 
-// components/control-ui/ui/toolbar: Base UI Toolbar, roving-tabindex focus group (arrow keys between controls, one Tab stop). Uses concentric shell/control radii from theme.css.
-// Button/Link forward Base UI's render prop so a consumer can compose DropdownMenu.Trigger/Tooltip.Trigger/control-ui Button.
+// Roving-tabindex group: arrow keys move between controls, whole toolbar is one Tab stop.
 export type ToolbarVariant = "default" | "inverse";
 export type ToolbarLinkVariant = "default" | "track";
 
@@ -1159,7 +1090,6 @@ export type ToolbarSeparatorProps = ComponentProps<"div"> & {
 };
 export type ToolbarInputProps = ComponentProps<"input">;
 
-// components/control-ui/ui/dockable-panel: non-modal workspace panel with two explicit edge slots.
 // Dragging previews both destinations; mobile presentation composes Drawer.
 export type DockablePanelPlacement = "left" | "right";
 
@@ -1201,11 +1131,10 @@ export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children"
 
 export type DrawerContentPadding = "default" | "none";
 export type DrawerContentSurface = "background" | "card";
-// edge pins the popup flush to its viewport edge; floating insets it so every corner rounds.
+// edge pins popup flush to its viewport edge; floating insets it so every corner rounds.
 export type DrawerContentVariant = "edge" | "floating";
 
-// components/control-ui/ui/number-field: Base UI NumberField. Group shares --radius-control/controlSurfaceClasses/controlSize with Button/Input/Select — transparent Input + ± stepper buttons as one joined segment (hairline dividers).
-// size lives on Root, shared with Group via context; value/defaultValue passed explicitly to keep Base UI's controlled detection (value !== undefined) intact.
+// size lives on Root, reaches Group through context; value/defaultValue passed explicitly to keep Base UI's `value !== undefined` controlled detection intact.
 export type NumberFieldChangeReason =
   | "input-change"
   | "input-clear"
@@ -1218,8 +1147,7 @@ export type NumberFieldChangeReason =
   | "scrub"
   | "none";
 
-// event widened to base Event (Base UI-agnostic). cancel/allowPropagation/isCanceled/isPropagationAllowed/trigger are optional because
-// onValueCommitted only exposes reason+event (no cancel controls) while onValueChange carries the full set — optional keeps one type assignable to both.
+// Cancel controls stay optional: onValueCommitted exposes only reason+event, so one type serves both callbacks.
 export type NumberFieldChangeEventDetails = {
   reason: NumberFieldChangeReason;
   event: Event;
@@ -1269,14 +1197,11 @@ export type NumberFieldScrubAreaProps = ComponentProps<"span"> & {
   teleportDistance?: number;
 };
 
-// components/control-ui/ui/color-picker: composable color input/picker. Root is DOM-less — internal HSVA model (hue/sat survive at black/white/gray), wraps children in Base UI Popover.Root (Trigger+Content optional, panel parts render inline). Public value = CSS color STRING in `format`; value/defaultValue seeded explicitly for Base UI controlled detection.
-// Hue/Alpha/Wheel are custom pointer surfaces; Input/FormatSelect/Channel/EyeDropper reuse input/select-trigger/number-field-group/button slots (+component identity).
-// data-slot (all scoped anatomy): color-picker-trigger/content(portal positioner data-skin)/panel/area(+area-thumb)/hue(+hue-thumb)/alpha(+alpha-thumb)/wheel(+wheel-thumb)/channels/swatches/swatch(data-selected)/swatch-add/contrast/output.
 export type ColorFormat = "hex" | "rgb" | "hsl" | "oklch";
 
-// The Root is DOM-less (like Popover) so it takes no div props.
+// DOM-less Root, no div props. Internal model is HSVA — hue and saturation survive at black, white, gray.
 export type ColorPickerProps = {
-  /** Controlled color string; parsed by the engine, re-emitted in `format`. */
+  /** Controlled color string; parsed by engine, re-emitted in `format`. */
   value?: string;
   /** Uncontrolled seed. Defaults to "#000000". */
   defaultValue?: string;
@@ -1284,7 +1209,7 @@ export type ColorPickerProps = {
   format?: ColorFormat;
   defaultFormat?: ColorFormat;
   onFormatChange?: (format: ColorFormat) => void;
-  /** Enable the alpha channel (slider + alpha field + 8-digit hex). Default true. */
+  /** Enable alpha channel (slider + alpha field + 8-digit hex). Default true. */
   alpha?: boolean;
   disabled?: boolean;
   // Popover pass-through — omit for inline usage.
@@ -1327,7 +1252,7 @@ export type ColorPickerSwatchesProps = ComponentProps<"div"> & { colors?: string
 export type ColorPickerSwatchProps = Omit<ComponentProps<"button">, "color"> & { color: string };
 export type ColorPickerSwatchAddProps = Omit<ComponentProps<"button">, "onClick"> & { onAdd?: (value: string) => void };
 export type ColorPickerContrastProps = Omit<ComponentProps<"div">, "children"> & {
-  /** The surface the current color sits on, as a CSS color string. Default "#ffffff". */
+  /** surface current color sits on, as CSS color string. Default "#ffffff". */
   background?: string;
 };
 export type ColorPickerOutputProps = Omit<ComponentProps<"div">, "children"> & {
@@ -1335,8 +1260,7 @@ export type ColorPickerOutputProps = Omit<ComponentProps<"div">, "children"> & {
   renderValue?: (state: { value: string }) => ReactNode;
 };
 
-// components/control-ui/ui/gradient-editor: multi-stop gradient built on ColorPicker (each stop opens a ColorPicker popover). Public value = CSS gradient STRING.
-// data-slot="gradient-editor"|"gradient-editor-preview"|"gradient-editor-track"|"gradient-editor-stop"(data-selected)|"gradient-editor-stop-add", scoped anatomy.
+// Public value is CSS gradient string; each stop opens ColorPicker popover.
 export type GradientType = "linear" | "radial" | "conic";
 export type GradientStop = { id: string; position: number; color: string };
 
@@ -1358,9 +1282,7 @@ export type GradientEditorTypeSelectProps = {
   "aria-labelledby"?: string;
 };
 
-// trigger-menu (components/control-ui/ui/trigger-menu): generic caret-anchored typeahead menu ("/" command + "@" mention popup). Backend-agnostic —
-// headless engine (use-trigger-menu) drives UI/keyboard; a binding (textarea DOM or ProseMirror plugin) feeds trigger state + performs insertion.
-// These are the shared data+view contracts; engine option/return types live with the hook (reference the DOM caret helper).
+// Backend-agnostic: use-trigger-menu drives UI and keyboard, binding (textarea DOM or ProseMirror plugin) feeds trigger state and performs insertion.
 export type TriggerMenuItemData = {
   id: string;
   label: string;
@@ -1368,20 +1290,18 @@ export type TriggerMenuItemData = {
   icon?: ReactNode;
   keywords?: readonly string[];
   disabled?: boolean;
-  // Mention trigger ("@") only: kind tags the pill (data-mention), image = optional avatar URL. Ignored by "/" command triggers.
+  // "@" mention triggers only — "/" command triggers ignore both.
   kind?: string;
   image?: string;
 };
 
-// Structured mention a rich (ProseMirror) chat-composer carries out: id the agent consumes + display label. Surfaced on submit payload alongside plain-text value.
+// Surfaced on submit payload beside plain-text value; ProseMirror-shaped editor props live in chat-composer-editor/types.ts.
 export type MentionItem = { id: string; label: string; kind: string };
-
-// Rich editor (ProseMirror) props live in chat-composer-editor/types.ts (ProseMirror-shaped); here = shared vocabulary trigger-menu + mention extension both speak.
 
 export type TriggerSelectContext = { char: string; query: string };
 
-// One trigger char + item source. items: static list (engine-filtered) or fn returning already-filtered list (async sources resolve upstream). insert:"replace" swaps typed <char><query> token for item (mentions); "none" removes token, leaves rest to onSelect (slash-command opening dialog/mode).
-// Generic over item so callers keep their own fields.
+// function `items` is taken as already filtered — async sources resolve upstream.
+// insert "replace" swaps typed <char><query> token for item; "none" removes token and leaves rest to onSelect.
 export type TriggerConfig<Item extends TriggerMenuItemData = TriggerMenuItemData> = {
   char: string;
   items: readonly Item[] | ((query: string) => readonly Item[]);
@@ -1391,7 +1311,7 @@ export type TriggerConfig<Item extends TriggerMenuItemData = TriggerMenuItemData
   onSelect?: (item: Item, ctx: TriggerSelectContext) => void;
 };
 
-// View: popup is a Base UI Popover controlled by the engine (open + virtual anchor at caret rect), popover token set; never steals focus from editor (initialFocus={false}).
+// Anchored to virtual caret rect, never steals focus from editor (initialFocus={false}).
 export type TriggerMenuProps = {
   open: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
@@ -1413,32 +1333,27 @@ export type TriggerMenuGroupProps = ComponentProps<"div">;
 export type TriggerMenuGroupLabelProps = ComponentProps<"div">;
 export type TriggerMenuIconProps = ComponentProps<"span">;
 
-// react-resizable-panels v4 (Group/Panel/Separator). PanelGroup=framed surface, Panels=resizable regions, Handle=draggable separator. Sizes: percentage (0..100) or CSS length ("240px"/"20rem"/"30vh"). Layout = map of panel id→percentage (persistence).
-// data-slot="resizable-panel-group"|"resizable-panel"|"resizable-handle", scoped anatomy.
+// Backed by react-resizable-panels v4. Sizes take percentage (0..100) or CSS length; layout maps panel id → percentage.
 export type ResizableLayout = { [panelId: string]: number };
 export type ResizablePanelGroupVariant = "framed" | "nested";
-// Handle paint: "solid" = hairline always on screen; "hover" = transparent track that fades in a gradient line
-// (--resizable-handle-color → alpha 0) while hovered, focused, or dragged. Both keep the same 1px track, so switching never shifts the layout.
+// Both keep same 1px track — switching paint never shifts layout.
 export type ResizableHandleVariant = "solid" | "hover";
 
 export type ResizablePanelGroupProps = ComponentProps<"div"> & {
-  // "horizontal" = side by side, dividers vertical.
   orientation?: "horizontal" | "vertical";
   variant?: ResizablePanelGroupVariant;
-  // Initial layout (id→percentage), e.g. restored from storage.
   defaultLayout?: ResizableLayout;
-  // Opts out of library's drag-cursor styling.
   disableCursor?: boolean;
   disabled?: boolean;
-  // Fires continuously while dragging (every pointer move).
+  // fires on every pointer move
   onLayoutChange?: (layout: ResizableLayout) => void;
-  // Fires once a drag settles — use this to persist layout.
+  // fires once drag settles — persist here
   onLayoutChanged?: (layout: ResizableLayout, meta: { isUserInteraction: boolean }) => void;
 };
 
 export type ResizablePanelSize = { asPercentage: number; inPixels: number };
 
-// Imperative handle, attach via panelRef (e.g. the library's usePanelRef hook).
+// attach via panelRef
 export interface ResizablePanelHandle {
   collapse: () => void;
   expand: () => void;
@@ -1448,16 +1363,15 @@ export interface ResizablePanelHandle {
 }
 
 export type ResizablePanelProps = Omit<ComponentProps<"div">, "onResize"> & {
-  // Percentage (0..100) or CSS length string ("240px", "20rem", "30vh").
+  // percentage (0..100) or CSS length — "240px", "20rem", "30vh"
   defaultSize?: number | string;
   minSize?: number | string;
   maxSize?: number | string;
-  // Collapsible panel snaps to collapsedSize once dragged below minSize.
+  // snaps to collapsedSize once dragged below minSize
   collapsible?: boolean;
   collapsedSize?: number | string;
-  // How panel reacts when parent group itself resizes.
   groupResizeBehavior?: "preserve-relative-size" | "preserve-pixel-size";
-  // Freezes this panel's size (can still shift when a neighbour resizes).
+  // freezes this panel; neighbour resize can still shift it
   disabled?: boolean;
   panelRef?: Ref<ResizablePanelHandle>;
   onResize?: (size: ResizablePanelSize, id: string | number | undefined, prevSize: ResizablePanelSize | undefined) => void;
@@ -1465,43 +1379,34 @@ export type ResizablePanelProps = Omit<ComponentProps<"div">, "onResize"> & {
 
 export type ResizableHandleProps = Omit<ComponentProps<"div">, "role" | "tabIndex"> & {
   variant?: ResizableHandleVariant;
-  // Renders a visible grip nub at the separator's centre; on "hover" it fades in with the line.
+  // grip nub at separator's centre; under "hover" it fades in with line
   withHandle?: boolean;
-  // Disables dragging on this separator (neighbours can still move indirectly).
+  // pins this separator; neighbours can still move it indirectly
   disabled?: boolean;
-  // Disables double-click-to-reset-size.
+  // double-click otherwise resets size
   disableDoubleClick?: boolean;
 };
 
-// Code+CodeDiff shared enums a skin styles on. Model types (CodeTokenLines, DiffFile, DiffLine...) live in lib/code-tokens.ts + lib/diff.ts,
-// NOT here — contracts.ts ships with EVERY primitive install, must not pull the diff engine into a plain Button install.
-// Long lines soft-wrap ("wrap") or scroll horizontally ("scroll").
+// Model types (CodeTokenLines, DiffFile, DiffLine) stay in lib/code-tokens.ts and lib/diff.ts — contracts.ts ships with every primitive install, must not pull diff engine into plain Button install.
 export type CodeOverflow = "wrap" | "scroll";
-// "auto" = highlights (build-time tokens or client effect); "none" = plain text.
+// "auto" = build-time tokens, or client effect when absent
 export type CodeHighlight = "auto" | "none";
 export type CodeDensity = "default" | "compact";
-// "standalone" = bordered surface; "embedded" drops chrome for nesting (inside a message/diff).
+// "embedded" drops chrome — block can nest inside message or diff
 export type CodeChrome = "standalone" | "embedded";
-// Side-by-side ("split") vs stacked ("unified").
 export type DiffStyle = "unified" | "split";
 export type CodeDiffLineType = "add" | "del" | "context";
-// Non-color a11y marker for added/removed lines: "classic" +/- glyphs, "bars" side rule, "none".
+// non-color marker for added/removed lines: "classic" +/- glyphs, "bars" side rule
 export type DiffIndicators = "classic" | "bars" | "none";
-// Intra-line diff granularity.
 export type DiffLineKind = "word" | "char" | "none";
 
-// Markdown: rendered agent markdown (GFM). content = raw markdown string; fenced code blocks route to Code, ```diff fences route to CodeDiff.
+// Fenced code blocks route to Code, ```diff fences to CodeDiff.
 export type MarkdownProps = Omit<ComponentProps<"div">, "children"> & { content: string };
 
-// dynamic-notification — Dynamic Island-style AI notification: a resident pill that morphs into a reply bubble.
-// `variant` picks the island MATERIAL only (anatomy identical): "surface" = token-driven popover material,
-// "glass" = backdrop-blurred dark glass (CSS gradient fallback; <DynamicNotificationGlass> upgrades it to WebGL),
-// "liquid" = real refractive glass (<DynamicNotificationLiquid> rasterizes the scene behind the island
-// and refracts it through a WebGL lens; CSS backdrop-filter fallback).
+// Material only — anatomy identical across all three. glass and liquid degrade to CSS when their WebGL companion is not installed.
 export type DynamicNotificationVariant = "surface" | "glass" | "liquid";
 
-// Island lifecycle: collapsed pill → (optional) "thinking" blob while the model is answering
-// (`loading` prop) → expanded reply bubble. Derived from `open` + `loading`, never set directly.
+// Derived from `open` + `loading`, never set directly.
 export type DynamicNotificationState = "collapsed" | "thinking" | "expanded";
 
 export type DynamicNotificationReplyPayload = {
@@ -1513,10 +1418,8 @@ export type DynamicNotificationProps = Omit<ComponentProps<"div">, "onChange"> &
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
-  // While true (and open), the island holds the intermediate "thinking" size with the aurora
-  // animating — flip it off when the model's answer lands to morph into the full bubble.
+  // holds intermediate "thinking" size — flip off when answer lands
   loading?: boolean;
-  // Reply field is controllable like ChatComposer's value (uncontrolled by default).
   replyValue?: string;
   defaultReplyValue?: string;
   onReplyValueChange?: (value: string) => void;

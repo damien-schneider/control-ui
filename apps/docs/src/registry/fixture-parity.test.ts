@@ -4,12 +4,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-/*
- * components/control-ui/** = synced fixture of src/registry (WYSIWYG: docs preview = what an installer gets).
- * scripts/sync-installed-fixture.mjs --watch keeps it synced; this test fails `bun test` on drift too, via:
- * 1) spawning the sync script's own --check (walks every manifest mapping, one source of truth)
- * 2) byte-parity on skin.ts/contracts.ts + a fixture-driven sweep of ui/ (catches orphan fixture files).
- */
+// Fails `bun test` on fixture drift, so stale components/control-ui never reaches docs preview.
 
 const APP_ROOT = fileURLToPath(new URL("../../", import.meta.url));
 
@@ -42,7 +37,7 @@ describe("installed fixtures mirror their src/registry sources", () => {
     const fixtureDir = path.join(APP_ROOT, "components/control-ui/ui");
     const sourceDir = path.join(APP_ROOT, "src/registry/sources/control-ui/ui");
     const failures: string[] = [];
-    // Fixture-driven on purpose: source dir also has *.test.* files never installed; a fixture file w/o a source counterpart is an orphan sync can't refresh.
+    // walks fixture, not source: source also holds *.test.* files that are never installed
     for (const entry of readdirSync(fixtureDir).sort()) {
       const sourcePath = path.join(sourceDir, entry);
       if (!existsSync(sourcePath)) {

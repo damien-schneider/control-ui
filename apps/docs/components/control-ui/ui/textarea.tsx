@@ -2,9 +2,7 @@ import type { TextareaProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// NOT Base UI — plain <textarea>, mirrors Input surface but drops single-line height for its own px-3/py-2 rhythm.
-// Auto-grow is CSS-first via `field-sizing-content` (bounded min-h/max-h) — no ResizeObserver, no JS measuring, resize off.
-// data-[invalid] surfaces validation inside a Field.
+// `field-sizing-content` auto-grows it, so there is no ResizeObserver and no JS measuring.
 export function Textarea({ className, ...props }: TextareaProps) {
   return (
     <textarea

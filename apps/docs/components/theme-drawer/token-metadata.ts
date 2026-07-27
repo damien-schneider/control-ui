@@ -2,9 +2,8 @@ import { BADGE_COLORS } from "@/src/registry/contracts";
 import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { CORNER_LABEL, EASE, EASE_LABEL, FONT, FONT_LABEL, FONT_MONO, FONT_MONO_LABEL } from "./types";
 
-// Editor-side metadata over token contract SSOT (lib/theme-contract.ts): which CONTROL each token gets, slider range, preset options, human label.
-// Contract stays single source of names/groups/tiers — this module only decides how each is EDITED.
-// A token added to the contract auto-appears in editor (text-input fallback until it gets a richer spec).
+// Decides only how token is EDITED; lib/theme-contract.ts stays source of names, groups, and tiers.
+// token added there appears here automatically, on text-input fallback until it earns richer spec.
 
 export type SliderSpec = { kind: "slider"; min: number; max: number; step: number; unit: "px" | "ms" | "" };
 export type SelectOption = { label: string; value: string };
@@ -19,7 +18,7 @@ const slider = (min: number, max: number, step: number, unit: SliderSpec["unit"]
   unit,
 });
 
-// Preset options reuse value maps old enum knobs shipped (types.ts) — select now authors raw CSS value, off-preset skin value displays as "Custom".
+// select authors raw CSS value; off-preset skin value shows as "Custom"
 const FONT_OPTIONS: readonly SelectOption[] = [
   { label: FONT_LABEL.mono, value: FONT.mono },
   { label: FONT_LABEL.system, value: FONT.system },
@@ -41,7 +40,7 @@ const CORNER_OPTIONS: readonly SelectOption[] = [
   { label: CORNER_LABEL.scoop, value: "scoop" },
 ];
 
-// Ranges for tokens whose value space is known; absent tokens fall through to generic rules in tokenControlSpec, then raw text input — never hidden.
+// absent token falls through to generic rules, then raw text input — never hidden
 const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--radius": slider(0, 32, 1, "px"),
   "--radius-sm": slider(0, 48, 1, "px"),
@@ -76,7 +75,6 @@ const SLIDER_SPECS: Record<string, SliderSpec> = {
   "--control-h": slider(20, 64, 1, "px"),
   "--control-h-xs": slider(16, 64, 1, "px"),
   "--control-h-sm": slider(16, 64, 1, "px"),
-  "--control-h-md": slider(16, 64, 1, "px"),
   "--control-h-lg": slider(16, 64, 1, "px"),
   "--duration-fast": slider(0, 600, 10, "ms"),
   "--duration-base": slider(0, 600, 10, "ms"),
@@ -97,13 +95,13 @@ export function tokenControlSpec(token: ThemeContractToken): TokenControlSpec {
   if (name.endsWith("--line-height") || name.endsWith("--letter-spacing")) return { kind: "text" };
   if (token.group === "typography" && name.startsWith("--text-")) return slider(8, 48, 1, "px");
   if (name === "--shadow-color") return { kind: "color" };
-  // --shadow-highlight carries its resting alpha; a hex picker would silently drop it.
+  // --shadow-highlight carries its resting alpha; hex picker would silently drop it.
   if (name === "--shadow-highlight") return { kind: "text" };
   if (token.group === "color") return { kind: "color" };
   return { kind: "text" };
 }
 
-// Color-VALUED tokens are ones theme.css re-values under `.dark`, so editor scopes overrides per mode (ThemeState.light/.dark); everything else mode-agnostic. Opacity knobs live in color group but hold numbers, stay mode-agnostic.
+// colour-valued token is one theme.css re-values under `.dark`, so its overrides scope per mode. Opacity knobs sit in colour group but hold numbers, so they stay mode-agnostic.
 const COLOR_VALUED = new Set(
   THEME_CONTRACT.flatMap((token) =>
     (token.group === "color" && !token.name.endsWith("-opacity")) || token.name === "--shadow-color" || token.name === "--shadow-highlight"
@@ -153,7 +151,6 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--radius-scene": "Scene radius",
   "--radius-popover": "Popover radius",
   "--radius-popup-item": "Menu row radius",
-  "--radius-popup-item-fit": "Menu row radius fit",
   "--corner-shape": "Corner shape",
   "--corner-shape-control": "Control corner shape",
   "--corner-shape-popover": "Popover corner shape",
@@ -186,7 +183,6 @@ const FRIENDLY_LABELS: Record<string, string> = {
   "--control-h": "Control height",
   "--control-h-xs": "Control height xs",
   "--control-h-sm": "Control height sm",
-  "--control-h-md": "Control height md",
   "--control-h-lg": "Control height lg",
 };
 
@@ -221,14 +217,15 @@ const GROUP_ORDER: readonly ThemeContractGroup[] = ["color", "typography", "radi
 
 const isBadgeToken = (token: ThemeContractToken) => token.name.startsWith("--badge-");
 
-// Contract → editor sections in stable curated order; 32 badge tokens get their own color-family subgroup instead of drowning the advanced color list.
+// badge tokens get their own subgroup instead of drowning advanced colour list
 export const TOKEN_CATEGORIES: readonly TokenCategory[] = GROUP_ORDER.map((group) => {
   const tokens = THEME_CONTRACT.filter((token) => token.group === group && !isBadgeToken(token));
   return {
     group,
     title: GROUP_TITLES[group],
     core: tokens.filter((token) => token.tier === "core"),
-    advanced: tokens.filter((token) => token.tier === "advanced"),
+    // derived tokens stay editable — override sheet outranks their :where() core default
+    advanced: tokens.filter((token) => token.tier !== "core"),
   };
 });
 

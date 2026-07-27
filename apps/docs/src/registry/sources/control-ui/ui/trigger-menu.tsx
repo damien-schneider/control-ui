@@ -14,9 +14,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
-// VIEW half of trigger-menu primitive: Base UI Popover controlled by headless engine (open + virtual anchor at caret rect), not a trigger button.
-// Rides shared popover token set (--radius-popover, shadow-pop); rows match menu/select rows (--control-h-xs, --radius-popup-item).
-// initialFocus/finalFocus={false} keep focus in editor so arrow/Enter keep flowing to caret while menu is up.
+// Controlled by headless engine and anchored to virtual caret rect, with no trigger button of its own.
+// initialFocus/finalFocus={false} keep focus in editor, so arrows and Enter keep flowing to caret while menu is up.
 
 export function TriggerMenu({
   open,
@@ -31,7 +30,7 @@ export function TriggerMenu({
   return (
     <PopoverPrimitive.Root open={open} onOpenChange={(next, eventDetails) => onOpenChange?.(next, eventDetails)} modal={false}>
       <PopoverPrimitive.Portal>
-        {/* Portals land outside token-scoped subtree (and ChatLayout's overflow clip); positioner re-asserts skin scope itself. Anchor = virtual element at caret rect engine reported. */}
+        {/* portal escapes both token scope and ChatLayout's overflow clip, so scope is re-asserted here */}
         <PopoverPrimitive.Positioner
           data-skin={skinId()}
           data-effects={skinEffects()}
@@ -84,13 +83,13 @@ export function TriggerMenuItem({ className, active = false, disabled = false, o
       data-slot="item"
       data-popup-part="item"
       role="option"
-      // Listbox options driven by editor's keyboard, not tab focus; -1 keeps them out of tab order while satisfying focusable-interactive contract.
+      // driven by editor's keyboard, not tab focus, so -1 keeps rows out of tab order
       tabIndex={-1}
       aria-selected={active}
       aria-disabled={disabled || undefined}
       data-highlighted={active ? "" : undefined}
       data-disabled={disabled ? "" : undefined}
-      // Keep focus in the editor/textarea when a row is clicked so the insertion still targets the caret.
+      // keeps focus in editor on click, so insertion still targets caret
       onMouseDown={(event) => {
         event.preventDefault();
         onMouseDown?.(event);

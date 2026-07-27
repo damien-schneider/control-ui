@@ -17,8 +17,8 @@ function duplicates(values: string[]) {
   return [...repeated];
 }
 
-// URL strictness only applies when a production URL is configured: local runs use the dev
-// fallback, and `build` re-runs `sync` so deployed artifacts always carry the configured URL.
+// URL strictness only applies when production URL is configured: local runs use dev
+// fallback, and `build` re-runs `sync` so deployed artifacts always carry configured URL.
 const hasConfiguredProductionUrl = Boolean(process.env.NEXT_PUBLIC_SITE_URL?.trim() || process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim());
 
 if (hasConfiguredProductionUrl) {

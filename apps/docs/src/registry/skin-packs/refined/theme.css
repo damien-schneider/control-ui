@@ -1,12 +1,7 @@
-/* Refined owns the complete Control UI token contract; core only provides bindings, accessibility modifiers, and invariant recipes. */
-
 [data-skin="refined"] {
   /* Geist via next/font (--font-geist-sans); host without it falls to system stack. */
   --font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, "Liberation Mono", monospace;
-  /* body/display default to --font-sans; re-value one to give headings their own face. */
-  --font-body: var(--font-sans);
-  --font-display: var(--font-sans);
 
   /* Canonical font-size source (see /primitives/typography); components use these rungs, never raw text-[Npx].
      Declared raw (not @theme) so a skin can re-value a rung. Body/UI family = 10-16px band, ~95% of UI text. */
@@ -36,9 +31,6 @@
   --text-display--line-height: 1.1;
   --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
-
-  /* Legacy alias; delete after text-meta consumers migrate to text-caption. */
-  --text-meta: 0.6875rem; /* 11px → use --text-caption */
 
   /* shadcn base names, full colors, authored in oklch (wider gamut, matches Tailwind/shadcn v4); any format still works.
      Refined brand = warm sand neutral ramp (hue ~60-90, low chroma), umber shadows — soft daylight, not studio gray. */
@@ -136,9 +128,6 @@
 
   /* Progressive enhancement over border-radius; `round` = current look, squircle/superellipse(2)/scoop reshape Control UI surfaces. */
   --corner-shape: round;
-  --corner-shape-control: var(--corner-shape);
-  --corner-shape-popover: var(--corner-shape);
-  --corner-shape-panel: var(--corner-shape);
   /* Squircle reads ~half as round as a circular arc at same radius; browsers w/o corner-shape support fall back to
      plain round and look over-rounded. This ratio shrinks the fallback radius (squircle only, see @supports not
      below) to keep cross-browser look close. 1 = no change, 0.5 = halve. */
@@ -147,20 +136,6 @@
   /* Floating-list (select/dropdown) concentric corners: container radius = row radius + padding, so hovered row nests exactly. */
   --popover-padding: 0.25rem; /* gap between container edge and rows (also = p-* on the popup) */
   --radius-popup-item: calc(var(--radius-control) * 0.6); /* select/menu row corner */
-  --popup-item-foreground: var(--foreground);
-  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
-  --popup-item-disabled-opacity: 0.4;
-  /* Sub-pixel guard for concentric nesting in ring-clipped containers (popup rows, code-block tabs);
-     shared with `rounded-nested` (effects.css). Bump to border+~2px if a clipped container ever gets a real border. */
-  --nest-safe: 1px;
-  /* Corner-fit ratio = 2+sqrt(2): control at gap `g` from corner radius R is sliced once R > ratio*g.
-     Caps corners that can outgrow their content inset (code-block --radius-panel vs fixed tab inset)
-     at gap*ratio, so header controls never clip. */
-  --nest-corner-ratio: 3.41421356;
-  /* Browser clamps rendered radius to half the box's short side, so at large --radius a row's visible
-     corner saturates below the --radius-popup-item token. Container must match the visible corner, not
-     the token, or it out-rounds the row and the overflow clip cuts it flat. */
-  --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
   /* Container corner = fitted row radius + padding - 1px: ring-clip nests concentric rows with slack,
      1px tighter hugs snugly (~1.6px clearance); clamp collapses offset to 0 when --radius is 0. */
   --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
@@ -175,7 +150,6 @@
   /* round() snaps to whole px: unrounded step ceils scrollHeight past clientHeight, Base UI reads as phantom 1px overflow. */
   --control-h-xs: round(var(--control-h) * 0.78, 1px);
   --control-h-sm: round(var(--control-h) * 0.89, 1px);
-  --control-h-md: var(--control-h);
   --control-h-lg: round(var(--control-h) * 1.11, 1px);
 
   /* motion — curves are raw vars so they can be swapped live */
@@ -186,13 +160,9 @@
   --duration-slow: 300ms;
 }
 
-/* Re-declare the derived scale on each skin root so portal-scoped radius changes resolve locally. */
+/* Semantic rungs re-declared on the skin root so portal-scoped radius changes resolve locally;
+   the sm–2xl scale is a derived-tier default in core theme.css. */
 [data-skin="refined"] {
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.6);
   --radius-field: calc(var(--radius) * 2.2); /* user bubble, composer shell */
   --radius-panel: calc(var(--radius) * 2.6); /* code / markdown surfaces */
   --radius-scene: calc(var(--radius) * 2.8); /* scene frame, large media */

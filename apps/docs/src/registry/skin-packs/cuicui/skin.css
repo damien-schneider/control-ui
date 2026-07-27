@@ -69,9 +69,7 @@
   }
 }
 
-/* slot restyles (single slots + families like control chrome, popup surfaces) live in skin.config, NOT here —
- * library recipes paint those as utilities, so a skin.css rule w/o `!important` silently loses
- * this file used to carry a [data-control] press-feel family + popup-surface :is() family, both provably dead for that reason, now ride config's consts; keeps only what classes cannot say */
+/* Slot restyles belong in skin.config: the library paints those as utilities, so a rule here silently loses without `!important`. */
 @layer components {
   [data-skin="cuicui"] .cuicui-gradient-fill {
     background-color: var(--primary);

@@ -17,7 +17,7 @@ import { controlSize, controlSurfaceClasses } from "@/components/control-ui/cont
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// `variant` = visual structure (see ButtonProps contract); radius/size come from shared tokens so every control matches.
+// `variant` is structure only — radius and size come from shared control tokens
 const buttonVariant = cva(
   "relative isolate inline-flex shrink-0 cursor-pointer items-center justify-center overflow-visible whitespace-nowrap rounded-[var(--radius-control)] font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-45 active:scale-[0.98]",
   {
@@ -38,7 +38,7 @@ const buttonVariant = cva(
 
 export const buttonContentClasses = "relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]";
 
-// `tone` = color intent, layered after `variant` so it wins on the colored properties.
+// layered after `variant` so it wins on coloured properties
 function toneClasses(variant: ButtonVariant, tone: ButtonTone): string {
   if (tone === "neutral") return "";
   const solid = variant === "solid";
@@ -60,7 +60,7 @@ function ButtonContent({ children }: { children: ReactNode }) {
   );
 }
 
-// Refined skin slot. 100% Base UI: composition flows through Base UI Button's `render` prop.
+// composition flows through Base UI Button's `render` prop
 export function Button({
   variant = "quiet",
   size = "sm",

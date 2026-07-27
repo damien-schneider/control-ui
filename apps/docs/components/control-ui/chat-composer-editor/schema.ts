@@ -3,7 +3,7 @@ import { Schema } from "prosemirror-model";
 
 import type { ChatComposerEditorExtension } from "./types";
 
-// Base composer schema: plain-text paragraphs only; rich nodes (mention pill) come from extensions via createEditorSchema — keep this mention-free for composability.
+// stays mention-free — rich nodes arrive through createEditorSchema
 const baseNodes: Record<string, NodeSpec> = {
   doc: { content: "block+" },
   paragraph: {
@@ -15,7 +15,7 @@ const baseNodes: Record<string, NodeSpec> = {
   text: { group: "inline" },
 };
 
-// Merges base nodes with every extension's node specs; later extensions win key collisions (each owns a distinct node name in practice).
+// later extensions win node-name collision
 export function createEditorSchema(extensions: readonly ChatComposerEditorExtension[]): Schema {
   let nodes: Record<string, NodeSpec> = { ...baseNodes };
   for (const extension of extensions) {

@@ -21,7 +21,7 @@ type RegistryManifest = {
   files: RegistryFile[];
 };
 
-// The shadcn schema leaves dependency arrays, files, and some targets optional; our generator always emits them, so normalize the parsed item to the strict local shape (empty target still fails the incomplete-file check).
+// shadcn schema leaves dependency arrays, files, and some targets optional; our generator always emits them, so normalize parsed item to strict local shape (empty target still fails incomplete-file check).
 function manifestFromItem(item: RegistryItem): RegistryManifest {
   return {
     name: item.name,

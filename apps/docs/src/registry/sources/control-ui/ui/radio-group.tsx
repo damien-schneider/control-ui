@@ -6,9 +6,7 @@ import type { RadioGroupProps, RadioProps } from "@/components/control-ui/contra
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, 100% Base UI: RadioGroup owns value; Radio = circle sharing control ring w/ Checkbox/Button, fills --primary w/ --primary-foreground dot via Indicator when selected.
-// Inside Field.Root, data-invalid ring surfaces validation; Base UI stamps data-checked/-unchecked/-disabled.
-// `orientation` visual only — Base UI owns roving focus both axes; we branch flex direction, primitive exposes no such prop.
+// `orientation` is visual only — Base UI owns roving focus on both axes and exposes no such prop.
 export function RadioGroup<TValue extends string = string>({ className, orientation = "vertical", ...props }: RadioGroupProps<TValue>) {
   return (
     <RadioGroupPrimitive<TValue>

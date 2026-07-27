@@ -1,7 +1,7 @@
 import type { ComponentProps, JSX, ReactNode } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
-import { Code, CodeContent } from "@/components/control-ui/ui/code";
+import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { CodeDiff } from "@/components/control-ui/ui/code-diff";
 
 type MarkdownCodeProps = ComponentProps<"code"> & {
@@ -50,6 +50,12 @@ export function MarkdownCode({ className, children, node: _node, ...props }: Mar
 
   return (
     <Code className="my-4">
+      <CodeHeader>
+        {lang ? <CodeTitle>{lang}</CodeTitle> : null}
+        <CodeActions>
+          <CodeCopy value={value} />
+        </CodeActions>
+      </CodeHeader>
       <CodeContent code={value} lang={lang} highlight={lang ? "auto" : "none"} />
     </Code>
   );
@@ -121,8 +127,7 @@ export function MarkdownTd({ className, node: _node, ...props }: MarkdownElement
   return <td className={cn("border border-border px-3 py-1.5", className)} {...props} />;
 }
 
-// No `pre` override: Streamdown only routes fenced blocks to `code` w/ language-* className when `pre` stays default.
-// Override `pre` and the fence falls back to inline rendering — MarkdownCode never sees the language.
+// `pre` must stay unoverridden: Streamdown only routes fenced blocks to `code` with language-* className while it is default.
 export const markdownComponents = {
   code: MarkdownCode,
   inlineCode: MarkdownInlineCode,

@@ -22,12 +22,11 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
-// Composes like DropdownMenu with a right-click/long-press trigger; API is shadcn/ui context-menu compatible.
-// Popup + rows share Control UI popover/row tokens with DropdownMenu and Select popups.
+// Composes like DropdownMenu behind right-click trigger; API stays shadcn/ui context-menu compatible.
 
 const popupClasses = cn("min-w-[10rem]", floatingListContentClasses);
 
-// group/cmi lets gutter glyphs and shortcuts key off the highlighted row if a pack wants them to.
+// group/cmi lets gutter glyphs and shortcuts key off highlighted row if pack wants them to.
 const itemClasses = cn("group/cmi relative", floatingListItemClasses);
 
 export function ContextMenu(props: ContextMenuProps) {
@@ -63,7 +62,7 @@ export function ContextMenuGroup({ className, ...props }: ContextMenuGroupProps)
 export function ContextMenuContent({ className, children, ...props }: ContextMenuContentProps) {
   return (
     <ContextMenuPrimitive.Portal>
-      {/* Portals land outside token-scoped ancestor; positioner re-asserts skin scope, anchors to pointer (no side/align). */}
+      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <ContextMenuPrimitive.Positioner data-skin={skinId()} data-effects={skinEffects()} className="z-[80] outline-none">
         <ContextMenuPrimitive.Popup
           data-control-ui="context-menu"
@@ -196,7 +195,6 @@ export function ContextMenuSeparator({ className, ...props }: ContextMenuSeparat
   );
 }
 
-// Right-aligned ⌘-style keyboard hint.
 export function ContextMenuShortcut({ className, ...props }: ContextMenuShortcutProps) {
   return (
     <span

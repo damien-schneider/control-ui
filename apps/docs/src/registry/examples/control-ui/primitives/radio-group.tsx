@@ -16,7 +16,7 @@ export function PrimitiveRadioGroupExample() {
         <Radio id="plan-starter" value="starter" className="mt-0.5" aria-label="Starter" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Starter</span>
-          <span className="text-meta text-muted-foreground">1 project, community support</span>
+          <span className="text-caption text-muted-foreground">1 project, community support</span>
         </span>
       </label>
       <label
@@ -26,7 +26,7 @@ export function PrimitiveRadioGroupExample() {
         <Radio id="plan-pro" value="pro" className="mt-0.5" aria-label="Pro" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Pro</span>
-          <span className="text-meta text-muted-foreground">Unlimited projects, priority support</span>
+          <span className="text-caption text-muted-foreground">Unlimited projects, priority support</span>
         </span>
       </label>
       <label
@@ -36,7 +36,7 @@ export function PrimitiveRadioGroupExample() {
         <Radio id="plan-team" value="team" className="mt-0.5" aria-label="Team" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Team</span>
-          <span className="text-meta text-muted-foreground">SSO, audit log, seats</span>
+          <span className="text-caption text-muted-foreground">SSO, audit log, seats</span>
         </span>
       </label>
     </RadioGroup>

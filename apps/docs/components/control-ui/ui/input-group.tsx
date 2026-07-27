@@ -8,8 +8,7 @@ import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot: InputGroup = addon+field as one control, shares --radius-control/controlSize w/ Input/Button/Select.
-// Focus ring lifts on focus-within so group reads as single field.
+// ring lifts on focus-within, so addon and field read as one control
 
 export function InputGroup({ size = "md", className, render, children, ...props }: InputGroupProps) {
   const classes = cn(

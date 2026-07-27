@@ -6,7 +6,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSidebar } from "@/components/control-ui/ui/sidebar";
 
-// Continuous width on top of shadcn's fixed --sidebar-width. Icon-collapse (click/Cmd+B) stays owned by useSidebar(); this adds cursor-driven width between collapsed/expanded, matching Mastra Studio's resize handle.
+// Adds cursor-driven width on top of shadcn's fixed --sidebar-width; icon-collapse stays owned by useSidebar().
 const MIN_WIDTH = 224; // 14rem — below this, drag snaps to icon-collapse
 const MAX_WIDTH = 420;
 const DRAG_THRESHOLD = 5; // px before a press counts as drag, not click-to-toggle
@@ -16,7 +16,7 @@ const WIDTH_STORAGE_KEY = "control-ui-docs:sidebar-width";
 const WRAPPER_SELECTOR = '[data-control-ui="sidebar"][data-slot="wrapper"]';
 const CONTAINER_SELECTOR = '[data-control-ui="sidebar"][data-slot="container"]';
 
-// SidebarProvider seeds --sidebar-width (16rem) before mount; this is only fallback for computing/clamping — first paint matches its inline value.
+// fallback for computing and clamping only — SidebarProvider seeds real value before mount
 const FALLBACK_WIDTH = 256;
 
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -41,7 +41,7 @@ function writeStoredWidth(value: number) {
   try {
     window.localStorage.setItem(WIDTH_STORAGE_KEY, String(value));
   } catch {
-    // Private mode / quota — width won't persist across visits.
+    // private mode or quota — width will not persist
   }
 }
 
@@ -69,7 +69,7 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
   const [width, setWidth] = useState(FALLBACK_WIDTH);
   const isCollapsed = state === "collapsed";
 
-  // Hydrate persisted width onto live CSS var before paint, so a returning visitor's width never flashes shadcn's 16rem default.
+  // before paint, or returning visitor flashes shadcn's 16rem default
   useIsomorphicLayoutEffect(() => {
     const stored = readStoredWidth();
     if (stored === null) return;
@@ -96,15 +96,15 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
     try {
       handle.setPointerCapture(pointerId);
     } catch {
-      // Pointer already gone.
+      // pointer already gone
     }
 
-    // WYSIWYG resize: width = cursor X relative to sidebar's left edge, captured once (container doesn't move during gesture).
+    // captured once — container cannot move during gesture
     const container = handle.closest<HTMLElement>(CONTAINER_SELECTOR);
     const wrapper = handle.closest<HTMLElement>(WRAPPER_SELECTOR);
     const sidebarLeft = container ? container.getBoundingClientRect().left : 0;
     const startX = event.clientX;
-    // Local, not a ref: scoped to this single gesture's closures, reset every pointerdown.
+    // local, not ref: scoped to this one gesture's closures
     let collapsedDuringDrag = !open;
 
     const prevCursor = document.body.style.cursor;
@@ -123,7 +123,7 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
       collapsedDuringDrag = updateCollapsedState(cursorWidth, collapsedDuringDrag, setOpen);
       if (collapsedDuringDrag) return;
 
-      // Ref + direct DOM write only — no React state here, fires on every pointermove.
+      // fires on every pointermove, so it writes DOM directly and holds no React state
       const clamped = clampWidth(cursorWidth);
       widthRef.current = clamped;
       wrapper?.style.setProperty(WIDTH_VAR, `${clamped}px`);
@@ -138,7 +138,7 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
       document.body.style.userSelect = prevUserSelect;
       handle.removeAttribute("data-resizing");
       wrapper?.removeAttribute("data-resizing");
-      // Commit once, at gesture end — dragged-below-min case already handed off to shadcn's collapse mechanics, no width to persist.
+      // drag below min already handed off to shadcn's collapse mechanics, so there is no width to persist
       if (draggedRef.current && !collapsedDuringDrag) {
         setWidth(widthRef.current);
         writeStoredWidth(widthRef.current);
@@ -193,7 +193,7 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
     }
   }
 
-  // Mobile renders through the stock Sheet — no in-flow width to resize.
+  // mobile renders stock Sheet, which has no in-flow width to resize
   if (isMobile) return null;
 
   return (
@@ -213,7 +213,7 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
       onClick={onClick}
       onKeyDown={onKeyDown}
       className={cn(
-        // lg, like the docked sidebar it resizes: below that the sheet has no in-flow width and this component doesn't render at all.
+        // matches docked sidebar's own breakpoint — below it this never renders
         "group/resize absolute inset-y-0 z-20 hidden w-2 cursor-col-resize touch-none items-center justify-center outline-hidden lg:flex",
         "group-data-[side=left]:-right-1 group-data-[side=right]:-left-1",
         className,

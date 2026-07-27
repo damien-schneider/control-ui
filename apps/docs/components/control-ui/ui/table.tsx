@@ -9,7 +9,7 @@ import type {
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Plain semantic <table> (no Base UI), wrapped overflow-x-auto so wide tables scroll not burst. Hairlines/text/heads/hover all track theme tokens — no per-skin work.
+// wrapped in overflow-x-auto so wide tables scroll instead of blowing out layout
 export function Table({ className, ...props }: TableProps) {
   return (
     <div data-control-ui="table" data-slot="container" className="relative w-full overflow-x-auto">

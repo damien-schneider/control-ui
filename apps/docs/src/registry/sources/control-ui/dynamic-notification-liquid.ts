@@ -1,12 +1,12 @@
 import { DYNAMIC_NOTIFICATION_SIRI_WAVE_GLSL } from "@/components/control-ui/dynamic-notification-siri-wave";
 import { LIQUID_GLASS_OPTICS_GLSL } from "@/components/control-ui/lib/liquid-glass-optics";
 
-/* Keep full-surface transmission separate from the narrow edge-light field so refraction stays visible without a halo. */
+/* Keep full-surface transmission separate from narrow edge-light field so refraction stays visible without halo. */
 
 export type DynamicNotificationLiquidOptions = {
-  /** Virtual lens depth (default 0.85) applied to the size-derived inner edge profile. */
+  /** Virtual lens depth (default 0.85) applied to size-derived inner edge profile. */
   refraction?: number;
-  /** Chromatic aberration (default 0) — optional RGB separation; Apple does not expose it as a material property. */
+  /** Chromatic aberration (default 0) — optional RGB separation; Apple does not expose it as material property. */
   chromaticAberration?: number;
   /** Inner refraction band cap in css px (default 32). */
   zRadius?: number;
@@ -18,7 +18,7 @@ export type DynamicNotificationLiquidOptions = {
   fresnel?: number;
   /** Edge highlight intensity (default 0.16). */
   edgeHighlight?: number;
-  /** Frost factor for shader-native diffusion (default 4). The centre remains sharp-dominant. */
+  /** Frost factor for shader-native diffusion (default 4). centre remains sharp-dominant. */
   frost?: number;
   /** devicePixelRatio clamp (default 2). */
   maxDpr?: number;
@@ -34,7 +34,7 @@ void main() {
 }
 `;
 
-/* The optical field runs in css px with a y-down local frame centred on the panel. */
+/* optical field runs in css px with y-down local frame centred on panel. */
 const FRAGMENT_SHADER = /* glsl */ `
 precision highp float;
 
@@ -73,7 +73,7 @@ void main() {
   float r = min(u_radius, min(half_.x, half_.y));
   float sdf = liquidSurfaceSDF(local, half_, r, 2.0);
 
-  /* The mask clips only the shape; resting Clear material has no separate shadow stage. */
+  /* mask clips only shape; resting Clear material has no separate shadow stage. */
   float mask = 1.0 - smoothstep(-1.5, 0.5, sdf);
   if (mask <= 0.0) {
     gl_FragColor = vec4(0.0);
@@ -109,7 +109,7 @@ void main() {
   float diffusion = mix(0.08, 0.14, materialScale) * mix(0.25, 1.0, lens);
   vec3 col = mix(sharp, blur, diffusion);
 
-  /* Map transmitted luminance to the measured Clear-material endpoints while preserving hue. */
+  /* Map transmitted luminance to measured Clear-material endpoints while preserving hue. */
   float transmittedLuma = dot(col, vec3(0.2126, 0.7152, 0.0722));
   float environmentLuma = dot(blur, vec3(0.2126, 0.7152, 0.0722));
   float lightEnvironment = smoothstep(0.38, 0.72, environmentLuma);
@@ -118,7 +118,7 @@ void main() {
   float mappedLuma = mix(blackEndpoint, whiteEndpoint, transmittedLuma);
   col = clamp(col + vec3(mappedLuma - transmittedLuma), 0.0, 1.0);
 
-  /* Ink and ribbon share the refracted coordinate so their horizon stays joined at the edges. */
+  /* Ink and ribbon share refracted coordinate so their horizon stays joined at edges. */
   vec2 auroraUv = clamp(v_uv + N.xy * lens * 0.012, vec2(0.0), vec2(1.0));
   float yUp = 1.0 - auroraUv.y;
   float inkThinking = mix(0.10, 0.985, smoothstep(u_ribbonHorizon - 0.10, u_ribbonHorizon + 0.10, yUp));
@@ -240,7 +240,7 @@ function buildProgram(gl: WebGLRenderingContext): LiquidProgram | null {
   };
 }
 
-/* aurora shows ONLY while the model is thinking; the static pill and the opened chat stay clean */
+/* only while thinking — static pill and opened chat stay clean */
 function auroraTarget(state: string | undefined): number {
   return state === "thinking" ? 1 : 0;
 }
@@ -360,11 +360,11 @@ function appendClonedChildren(source: Element, target: Element, images: Embedded
   }
 }
 
-/* Recursive clone with computed styles inlined — the SVG-image sandbox can't reach stylesheets. */
+/* Recursive clone with computed styles inlined — SVG-image sandbox can't reach stylesheets. */
 function cloneTree(source: Element, images: EmbeddedImages): Element | null {
   if (source.matches(EXCLUDE_SELECTOR)) return null;
 
-  /* canvases can't paint inside an SVG image: snapshot them into an <img> */
+  /* canvases can't paint inside SVG image: snapshot them into an <img> */
   if (source instanceof HTMLCanvasElement) return cloneCanvas(source);
 
   const node = source.cloneNode(false);
@@ -541,8 +541,7 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
   const closestScene = canvas.closest("[data-dn-scene]");
   const scene = closestScene instanceof HTMLElement ? closestScene : document.body;
 
-  /* Cleanup only deletes GL objects and NEVER loseContext(): a lose()d context can't hand out
-     WEBGL_lose_context anymore, so a StrictMode remount on the same canvas could never recover. */
+  /* Cleanup must never loseContext(): lost context returns null from getExtension, so remount on same canvas could never recover. */
   let contextLost = gl.isContextLost();
   let liquid = contextLost ? null : buildProgram(gl);
   if (!contextLost && !liquid) {
@@ -562,10 +561,10 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
   let aurora = auroraTarget(initialState);
   let reveal = revealTarget(initialState);
   let settle = settleTarget(initialState);
-  /* lift sends the dying sheet toward the top on exit; parked high whenever the aurora is off */
+  /* sends dying sheet toward top on exit; parked high whenever aurora is off */
   let lift = 1 - aurora;
   let staticFrameDrawn = false;
-  /* last successful capture, kept for instant re-upload after a context restore */
+  /* kept for instant re-upload after context restore */
   let captured: SceneCapture | null = null;
   let textureFresh = false;
   let captureToken = 0;
@@ -588,10 +587,9 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     return Number.isFinite(parsed) ? Math.min(1, Math.max(0, parsed / 100)) : 0.5;
   }
 
-  /* Runs at the TOP of every draw, never from observers: setting canvas.width clears the buffer,
-     so resize and repaint must share one task or the compositor shows a blank frame (flicker). */
+  /* Called from draw(), never observer: setting canvas.width clears buffer, so separate resize task shows blank frame. */
   function resize(): void {
-    // clientWidth/Height: layout box, immune to the @starting-style scale running at mount.
+    // layout box, immune to the @starting-style scale at mount
     dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const width = Math.max(1, Math.round(canvas.clientWidth * dpr));
     const height = Math.max(1, Math.round(canvas.clientHeight * dpr));
@@ -661,7 +659,7 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     aurora = reduced ? targets.aurora : approachAt60Hz(aurora, targets.aurora, 0.06, deltaMs);
     reveal = reduced ? targets.reveal : approachAt60Hz(reveal, targets.reveal, 0.07, deltaMs);
     settle = reduced ? targets.settle : approachAt60Hz(settle, targets.settle, 0.07, deltaMs);
-    /* Keep exit linear so the aurora clears the surface before it collapses. */
+    /* linear exit so aurora clears surface before it collapses */
     if (reduced) lift = targets.lift;
     else if (targets.lift === 1) lift = Math.min(1, lift + deltaMs * 0.00216);
     else lift = approachAt60Hz(lift, 0, 0.28, deltaMs);
@@ -779,13 +777,12 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     invalidate();
   }
 
-  /* observers only INVALIDATE — the actual buffer resize happens inside draw() (see resize) */
   const resizeObserver = new ResizeObserver(() => {
     invalidate();
   });
   resizeObserver.observe(canvas);
 
-  /* the scene resizing changes the capture geometry, not just the viewport */
+  /* scene resizing changes capture geometry, not viewport */
   const sceneResizeObserver = new ResizeObserver(() => {
     scheduleRecapture();
   });

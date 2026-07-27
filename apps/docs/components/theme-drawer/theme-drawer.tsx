@@ -279,7 +279,7 @@ function CategorySection({
   );
 }
 
-// Editor body only: the floating toolbar owns the chrome (MorphingPanel morphs the toolbar pill into this near-fullscreen surface).
+// Editor body only: floating toolbar owns chrome (MorphingPanel morphs toolbar pill into this near-fullscreen surface).
 export function ThemeEditorContent({ labelledById, describedById }: { labelledById?: string; describedById?: string }) {
   const { setOpen, skinSource, openSkinSource } = useThemeDrawer();
   const [copied, setCopied] = useState(false);
@@ -309,7 +309,7 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
     if (skinSource) openSkinSource(skin);
   }
 
-  // Source docks against the viewport edge; the editor covers it, so hand the screen over.
+  // Source docks against viewport edge; editor covers it, so hand screen over.
   function viewSkinSource() {
     openSkinSource(t.skin);
     setOpen(false);

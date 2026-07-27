@@ -3,8 +3,6 @@ import type { EmptyProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, plain markup (no Base UI): icon tile + title + muted copy + action area.
-// Tracks DA via --muted-foreground/--foreground; drop in a card, list body, or full page.
 export function Empty({ className, ...props }: EmptyProps) {
   return (
     <div
@@ -31,7 +29,6 @@ export function EmptyHeader({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-// Icon tile: --radius-lg box, muted fill; glyph passed as children.
 export function EmptyMedia({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
@@ -57,7 +54,6 @@ export function EmptyDescription({ className, ...props }: ComponentProps<"p">) {
   );
 }
 
-// Action area: buttons/links/compact form to recover from empty state.
 export function EmptyContent({ className, ...props }: ComponentProps<"div">) {
   return (
     <div

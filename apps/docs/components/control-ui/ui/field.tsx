@@ -22,9 +22,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { Separator } from "@/components/control-ui/ui/separator";
 
-// Refined skin slot, 100% Base UI Field+Fieldset. Pure layout+text — never paints a control;
-// consumer passes control-ui Input/Select/Textarea via FieldControl's `render` prop.
-// Base UI stamps data-valid/-invalid/-dirty/-touched/-filled/-focused so skins react w/o JS.
+// Pure layout and text — never paints control; consumer passes Input/Select/Textarea through FieldControl's `render`.
+// Base UI stamps data-valid/-invalid/-dirty/-touched/-filled/-focused, so skins react without JS.
 
 const fieldVariants = cva("group/field flex w-full gap-3", {
   variants: {
@@ -73,11 +72,12 @@ export function FieldLabel({ className, ...props }: FieldLabelProps) {
   );
 }
 
-// `render` type pulled from Base UI primitive so composed controls (Input/Select/Textarea) merge correctly.
+// `render` is pulled off Base UI primitive so composed controls merge correctly
 type RefinedFieldControlProps = FieldControlProps & Pick<ComponentProps<typeof FieldPrimitive.Control>, "render">;
 
 export function FieldControl({ className, ...props }: RefinedFieldControlProps) {
-  // Pass render={<Input/>} (or Select/Textarea) to merge field wiring; no render = bare <input>.
+  // without render prop this falls back to bare <input>
+
   return <FieldPrimitive.Control data-control-ui="field" data-slot="control" className={cn("w-full", className)} {...props} />;
 }
 
@@ -86,7 +86,7 @@ export function FieldDescription({ className, ...props }: FieldDescriptionProps)
     <FieldPrimitive.Description
       data-control-ui="field"
       data-slot="description"
-      className={cn("text-meta text-muted-foreground", skinSlot("field", "description", {}), className)}
+      className={cn("text-caption text-muted-foreground", skinSlot("field", "description", {}), className)}
       {...props}
     />
   );
@@ -97,7 +97,7 @@ export function FieldError({ className, ...props }: FieldErrorProps) {
     <FieldPrimitive.Error
       data-control-ui="field"
       data-slot="error"
-      className={cn("text-meta text-destructive-text", skinSlot("field", "error", {}), className)}
+      className={cn("text-caption text-destructive-text", skinSlot("field", "error", {}), className)}
       {...props}
     />
   );
@@ -120,7 +120,7 @@ export function FieldSeparator({ children, className, ...props }: FieldSeparator
       data-control-ui="field"
       data-slot="separator"
       data-content={children ? "true" : undefined}
-      className={cn("relative h-px text-meta", children && "my-2 h-5", className)}
+      className={cn("relative h-px text-caption", children && "my-2 h-5", className)}
       {...props}
     >
       <Separator className={cn(children && "absolute top-1/2")} />
@@ -138,7 +138,7 @@ export function FieldSeparator({ children, className, ...props }: FieldSeparator
 }
 
 export function FieldItem({ className, ...props }: FieldItemProps) {
-  // Base UI Field.Item: one labelled row in a Fieldset group (e.g. radio option); scopes label/description/validity.
+  // scopes label, description, and validity to this one row of Fieldset
   return (
     <FieldPrimitive.Item
       data-control-ui="field"

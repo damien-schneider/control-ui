@@ -1,10 +1,6 @@
-/*
- * Control UI effect utilities — standalone companion to the shared theme tokens.
- * shadcn-style utilities: composable, token-driven, pure-CSS; read theme tokens so a theme rewrite restyles them too (effect ≠ component edit).
- * Tailwind only emits @utility when referenced in scanned source.
- */
+/* Every utility here reads theme tokens, so a theme rewrite restyles the effects too. Tailwind only emits an @utility that scanned source references. */
 
-/* shimmer — moving sweep for skeletons/loading blocks; colors from --muted (base) + --muted-foreground (highlight), tempo from --duration-slow. Apply to a sized block. */
+/* apply to a sized block */
 @utility shimmer {
   background-image: linear-gradient(
     100deg,

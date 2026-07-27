@@ -3,7 +3,7 @@
 import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 
 /*
- * Visible face of the token contract SSOT: lib/theme-contract.ts feeds the coverage test (theme-contract-coverage.test.ts) AND this reference — docs never hand-maintain a token list.
+ * Visible face of token contract SSOT: lib/theme-contract.ts feeds coverage test (theme-contract-coverage.test.ts) AND this reference — docs never hand-maintain token list.
  * Core tokens render open; advanced knobs collapse into one native <details> per group, CSS-first — 170-row tail costs no JS/state.
  */
 
@@ -34,6 +34,8 @@ const advancedGroups = GROUP_ORDER.flatMap((group) => {
   return tokens.length > 0 ? [{ group, tokens }] : [];
 });
 
+const derivedTokens = GROUP_ORDER.flatMap((group) => THEME_CONTRACT.filter((token) => token.tier === "derived" && token.group === group));
+
 function TokenRow({ token }: { token: ThemeContractToken }) {
   return (
     <div className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
@@ -57,6 +59,23 @@ export function TokenContractTable() {
           ))}
         </div>
       </div>
+
+      <details className="group min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
+        <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
+          <span className="font-medium">Derived — optional overrides</span>
+          <span className="text-caption text-muted-foreground">
+            {derivedTokens.length} tokens with a core default; re-value one in theme.css only to diverge
+          </span>
+          <span aria-hidden className="ml-auto text-caption text-muted-foreground transition-transform group-open:rotate-90">
+            ›
+          </span>
+        </summary>
+        <div className="divide-y divide-border/50 border-t border-border/70">
+          {derivedTokens.map((token) => (
+            <TokenRow key={token.name} token={token} />
+          ))}
+        </div>
+      </details>
 
       {advancedGroups.map(({ group, tokens }) => (
         <details key={group} className="group min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">

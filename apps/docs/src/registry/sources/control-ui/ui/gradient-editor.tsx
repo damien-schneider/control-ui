@@ -180,7 +180,7 @@ export function GradientEditorTrack({
       )}
       style={{ backgroundImage: stripe }}
       onPointerDown={(event) => {
-        // Only the bare track adds a stop; a click landing on a stop handle is handled there.
+        // only bare track adds stop — click on handle is that handle's to deal with
         if (event.target !== event.currentTarget) return;
         const rect = event.currentTarget.getBoundingClientRect();
         addStop((event.clientX - rect.left) / rect.width);

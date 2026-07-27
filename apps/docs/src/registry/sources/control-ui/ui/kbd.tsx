@@ -2,8 +2,6 @@ import type { ComponentProps } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot: keyboard key chip sharing --radius-control w/ buttons/fields (⌘K hint matches corner). Pure markup, no dep.
-// KbdGroup lays out a chord (⌘+K) with hairline separators.
 export function Kbd({ className, ...props }: ComponentProps<"kbd">) {
   return (
     <kbd

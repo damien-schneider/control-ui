@@ -18,8 +18,8 @@ const controlEffectPresets = [
   { id: "hover-circle", label: "Hover circle" },
 ] as const satisfies readonly { id: ControlEffect; label: string }[];
 
-// Scoped ControlEffectsRoot override wrapping sample controls — the toggles stay outside the root so the
-// demo chrome never wears the effects it switches.
+// Scoped ControlEffectsRoot override wrapping sample controls — toggles stay outside root so the
+// demo chrome never wears effects it switches.
 function ControlEffectsDemo() {
   const [effects, setEffects] = useState<ControlEffect[]>(["top-shine", "ripple", "hover-circle"]);
 

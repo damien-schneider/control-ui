@@ -16,19 +16,18 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 /*
- * Full shadcn Sidebar contract ported onto Control UI; docs shell itself runs on this lib.
- * Provider owns open/collapsed (cookie + Cmd/Ctrl-B); every public part emits scoped anatomy and composes recipe, skin slot, then caller classes.
- * wrapper/gap/container slots + --sidebar-width var kept verbatim from shadcn for docs-sidebar-resize-handle.
+ * shadcn's Sidebar contract ported onto Control UI: provider owns open/collapsed state behind cookie and Cmd/Ctrl-B.
+ * wrapper/gap/container slots and the --sidebar-width var are kept verbatim from shadcn so external resize handles keep working.
  */
 
-// Lazy: highlight needs a JS geometry engine, skip download unless skin/props opt in. Decorative (aria-hidden), null fallback is fine.
+// lazy because highlight drags in JS geometry engine; it is decorative, so null fallback is fine
 const TrackHighlight = lazy(() =>
   import("@/components/control-ui/extensions/track-highlight").then((module) => ({ default: module.TrackHighlight })),
 );
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
-/** Custom properties Sidebar reads off its wrapper; exported so blocks can set the width through `style` and stay checked. */
+/** Exported so blocks can set width through `style` and stay type-checked. */
 export type SidebarStyle = CSSProperties & {
   "--sidebar-width"?: string;
   "--sidebar-width-icon"?: string;
@@ -38,8 +37,7 @@ const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
-// Sheet-vs-docked switch, in one place: the JS breakpoint below and every `lg:` in this file must name the same width,
-// or a viewport lands between them with neither the sheet nor the docked rail rendered.
+// this breakpoint and every `lg:` in file must name same width, or viewport lands between them with neither sheet nor docked rail rendered
 const SIDEBAR_MOBILE_BREAKPOINT = 1024;
 const sidebarTriggerWidth = {
   xs: "w-[var(--control-h-xs)]",
@@ -87,7 +85,6 @@ export function SidebarProvider({
 
   const [_open, _setOpen] = useState(defaultOpen);
   const open = openProp ?? _open;
-  // Handlers unmemoized: provider only re-renders on own state, subtree re-renders anyway.
   const setOpen = (value: boolean | ((value: boolean) => boolean)) => {
     const openState = typeof value === "function" ? value(open) : value;
     if (setOpenProp) {
@@ -122,7 +119,7 @@ export function SidebarProvider({
 
   const contextValue: SidebarContextProps = { state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar };
 
-  // Width = skin choice (ControlUiSkin.sidebarWidth): caller's --sidebar-width (style spread / resize handle) wins, else skin's request, else shadcn default.
+  // caller's --sidebar-width → skin → shadcn default
   const wrapperStyle: SidebarStyle = {
     "--sidebar-width": skinSidebarWidth() ?? SIDEBAR_WIDTH,
     "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
@@ -163,7 +160,7 @@ export function Sidebar({
   collapsible?: "offcanvas" | "icon" | "none";
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
-  // Layout = skin choice (ControlUiSkin.sidebarLayout): variant prop wins, else skin's layout, else docked. Drives native gap/padding/rounding/shadow below — geometry a per-slot class can't express.
+  // variant prop → skin → docked; drives gap, padding, rounding, and shadow geometry no per-slot class can express
   const resolvedVariant = variant ?? skinSidebarLayout() ?? "sidebar";
 
   if (collapsible === "none") {
@@ -401,7 +398,7 @@ export function SidebarGroupLabel({
 
 export type SidebarSelectionIndicator = SelectionIndicator;
 
-// Menu-scoped: SidebarMenuButton drops per-row bg when moving highlight is on (pill = sole active/hover chrome); defaults "none" outside slide menu.
+// SidebarMenuButton drops its per-row background while pill is on; outside slide menu it defaults to "none".
 const SidebarMenuContext = createContext<SidebarSelectionIndicator>("none");
 
 export function SidebarMenu({
@@ -411,13 +408,12 @@ export function SidebarMenu({
   ...props
 }: ComponentProps<"ul"> & {
   /**
-   * `none` = per-row background. `slide` = Vercel-style moving pill to hovered/active item, replacing per-row bg.
-   * Motion follows `--duration-*` tokens (snaps under reduced motion).
-   * Defaults to skin's request (ControlUiSkin.indicators.sidebar), else `none`.
+   * `slide` replaces per-row backgrounds with one pill that glides to hovered or active item.
+   * Defaults to ControlUiSkin.indicators.sidebar, else `none`.
    */
   indicator?: SidebarSelectionIndicator;
 }) {
-  // Explicit prop wins (caller-wins, shadcn contract), else the skin's DS-level choice, else off.
+  // prop → skin → off
   const resolvedIndicator = indicator ?? skinIndicator("sidebar") ?? "none";
   const sliding = resolvedIndicator === "slide";
 
@@ -434,8 +430,8 @@ export function SidebarMenu({
 
   if (!sliding) return list;
 
-  // Wrap (never inject into <ul>): pill = sibling of menu items on positioned/isolated track, parked behind label via -z.
-  // Default paint routes through --track-highlight-* knobs (theme.css @layer components) so a skin re-values vars instead of fighting utilities.
+  // wrapped, never injected into the <ul>: pill must stay sibling of menu items
+  // paint routes through the --track-highlight-* knobs so skin re-values vars instead of fighting utilities
   return (
     <div data-control-ui="sidebar" data-slot="menu-track" className={cn("relative isolate", className)}>
       <Suspense fallback={null}>
@@ -508,8 +504,7 @@ export function SidebarMenuButton({
       className: cn(
         sidebarMenuButtonVariants({ variant, size }),
         skinSlot("sidebar", "menu-button", { active: isActive, indicator }),
-        // Moving highlight: pill = sole active/hover chrome, cancel recipe/skinSlot backgrounds — AFTER skinSlot so mode wins.
-        // Text emphasis stays; caller className keeps last word.
+        // after skinSlot so pill stays sole chrome; text emphasis survives and caller className lands last
         indicator === "slide" ? SELECTION_INDICATOR_BG_RESET : undefined,
         className,
       ),

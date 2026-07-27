@@ -9,9 +9,9 @@ import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
 import { SectionTitle } from "./shared";
 
-// Extensions are optional items layered on the library, never part of the host's bundle — this panel only
-// OFFERS the ones whose appliesTo names this page; installing the host alone ships none of them. Cards with
-// a demo render it here so the main preview above stays exactly what the bare install looks like.
+// Extensions are optional items layered on library, never part of host's bundle — this panel only
+// OFFERS ones whose appliesTo names this page; installing host alone ships none of them. Cards with
+// demo render it here so main preview above stays exactly what bare install looks like.
 export function AvailableExtensions({ hostId, extensions }: { hostId: ComponentId | PrimitiveId; extensions: DocsExtension[] }) {
   const available = extensions.filter((extension) => extension.appliesTo?.some((id) => id === hostId));
   if (available.length === 0) return null;

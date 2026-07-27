@@ -1,11 +1,10 @@
 "use client";
 
-import type { ComponentProps, MouseEvent } from "react";
+import type { ComponentProps } from "react";
 import { createContext, useContext } from "react";
-import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
-import { Button } from "@/components/control-ui/ui/button";
+import { CodeCopy, type CodeCopyProps } from "@/components/control-ui/ui/code";
 import { Markdown } from "@/components/control-ui/ui/markdown";
 
 const MarkdownBlockContext = createContext<string | null>(null);
@@ -28,7 +27,7 @@ export function MarkdownBlock({ code, className, children, ...props }: MarkdownB
         data-slot="root"
         data-surface="panel"
         className={cn(
-          "my-4 overflow-hidden rounded-panel border bg-muted shadow-sm ring-1 ring-foreground/4",
+          "my-4 overflow-hidden rounded-panel border bg-background shadow-sm",
           skinSlot("markdown-block", "root", {}),
           className,
         )}
@@ -75,22 +74,12 @@ export function MarkdownBlockTitle({ children = "Markdown", className, ...props 
   );
 }
 
-export type MarkdownBlockCopyProps = ComponentProps<typeof Button>;
+export type MarkdownBlockCopyProps = Omit<CodeCopyProps, "value">;
 
-export function MarkdownBlockCopy({ children = "Copy", onClick, ...props }: MarkdownBlockCopyProps) {
+// IS CodeCopy, so markdown block's copy and a code block's copy can never drift
+export function MarkdownBlockCopy({ "aria-label": ariaLabel = "Copy markdown", ...props }: MarkdownBlockCopyProps) {
   const code = useMarkdownBlockContext();
-  const { copyToClipboard } = useCopyToClipboard();
-
-  function copyCode(event: MouseEvent<HTMLButtonElement>) {
-    onClick?.(event);
-    if (!event.defaultPrevented) void copyToClipboard(code);
-  }
-
-  return (
-    <Button variant="quiet" size="xs" onClick={copyCode} {...props}>
-      {children}
-    </Button>
-  );
+  return <CodeCopy value={code} aria-label={ariaLabel} {...props} />;
 }
 
 export type MarkdownBlockContentProps = ComponentProps<"div">;

@@ -13,7 +13,7 @@ export type ChatComposerAttachmentKind = "image" | "pdf" | "spreadsheet" | "docu
 export type ChatComposerAttachmentStatus = "idle" | "uploading" | "uploaded" | "error";
 export type ChatComposerAttachmentVariant = "auto" | "preview" | "file";
 
-/** Progress ring/bar fill the attachment publishes to CSS; typed so the custom property is declared, not asserted. */
+/** Typed so custom property is declared rather than asserted. */
 type ChatComposerAttachmentStyle = CSSProperties & { "--chat-composer-attachment-progress"?: string };
 
 type ChatComposerAttachmentContextValue = {
@@ -317,7 +317,7 @@ export function ChatComposerAttachmentDescription({ className, children, ...prop
       data-control-ui="chat-composer-attachment"
       data-slot="description"
       className={cn(
-        "truncate text-meta text-muted-foreground data-[state=error]:text-destructive-text",
+        "truncate text-caption text-muted-foreground data-[state=error]:text-destructive-text",
         skinSlot("chat-composer-attachment", "description", { status: context.status }),
         className,
       )}

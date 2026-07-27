@@ -1,14 +1,12 @@
-// zero-dep color engine for ColorPicker/GradientEditor; HSVA (h0-360,s/v0-100,a0-1) is source of truth —
-// hue/sat indeterminate at black/white/gray, so HSVA survives interaction, collapses to CSS string only for I/O
-// pure+SSR-safe except parseColor's canvas fallback (null server-side); OKLab/OKLCH = Björn Ottosson ref (copied not imported, primitive installs by file-copy)
-
+// HSVA (h 0-360, s/v 0-100, a 0-1) is source of truth: hue and saturation are indeterminate at black, white, and gray,
+// so state stays HSVA across interaction and collapses to CSS string only for I/O.
 export type Hsva = { h: number; s: number; v: number; a: number };
 export type Rgba = { r: number; g: number; b: number; a: number };
 export type Hsla = { h: number; s: number; l: number; a: number };
 export type Oklcha = { L: number; C: number; H: number; a: number };
 export type ColorFormat = "hex" | "rgb" | "hsl" | "oklch";
 
-// A channel id, tagged by the space it belongs to so the numeric fields stay exhaustive without casts.
+// tagged by color space so numeric fields stay exhaustive without casts
 export type ChannelId = "r" | "g" | "b" | "h" | "s" | "l" | "okl" | "okc" | "okh" | "a";
 
 export type ChannelSpec = {
@@ -61,8 +59,7 @@ export function rgbaToHsva({ r, g, b, a }: Rgba): Hsva {
   return { h: wrapHue(h), s: s * 100, v: max * 100, a: clamp01(a) };
 }
 
-// HSVA ⇄ HSLA direct: hue carried verbatim so grays keep their hue.
-
+// hue carried verbatim so grays keep theirs
 export function hsvaToHsla({ h, s, v, a }: Hsva): Hsla {
   const S = clamp01(s / 100);
   const V = clamp01(v / 100);
@@ -141,7 +138,7 @@ export function oklchaToHsva({ L, C, H, a }: Oklcha): Hsva {
 
 const hex2 = (n: number) => clamp(round(n), 0, 255).toString(16).padStart(2, "0");
 
-// Accepts 3/4/6/8-digit hex (with or without leading #). Returns null on malformed input.
+// 3/4/6/8 digits, leading # optional; null on malformed input
 export function hexToRgba(input: string): Rgba | null {
   const m = input.trim().replace(/^#/, "");
   const read = (h: string) => Number.parseInt(h, 16);
@@ -200,7 +197,7 @@ export function formatColor(hsva: Hsva, format: ColorFormat, opts?: { alpha?: bo
   }
 }
 
-// A minimal named-color table for the common cases; anything else falls through to the DOM canvas.
+// common cases only — anything else falls through to DOM canvas
 const NAMED: Record<string, string> = {
   transparent: "#00000000",
   black: "#000000",
@@ -215,7 +212,7 @@ const NAMED: Record<string, string> = {
   grey: "#808080",
 };
 
-// Resolve an alpha token that may be a bare number (0–1) or a percentage.
+// CSS allows bare 0–1 number or percentage here
 function readAlpha(token: string | undefined): number {
   if (token === undefined) return 1;
   const t = token.trim();
@@ -223,7 +220,7 @@ function readAlpha(token: string | undefined): number {
   return clamp01(Number.parseFloat(t));
 }
 
-// fallback for formats the regex branch skips (lab()/lch()/color()/arbitrary names); DOM-only, null on server
+// fallback for formats regex branch skips (lab()/lch()/color()/arbitrary names); DOM-only, null on server
 let srgbCtx: CanvasRenderingContext2D | null = null;
 function parseViaCanvas(color: string): Rgba | null {
   if (typeof document === "undefined") return null;
@@ -272,7 +269,7 @@ export function parseColor(input: string): Hsva | null {
   const oklch = raw.match(/^oklch\(\s*([\d.]+%?)\s+([\d.]+%?)\s+([\d.]+)\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
   if (oklch) {
     const L = oklch[1].endsWith("%") ? Number.parseFloat(oklch[1]) / 100 : Number.parseFloat(oklch[1]);
-    // chroma as a percentage is 0%→0, 100%→0.4 per the CSS Color 4 reference range
+    // chroma as percentage is 0%→0, 100%→0.4 per CSS Color 4 reference range
     const C = oklch[2].endsWith("%") ? (Number.parseFloat(oklch[2]) / 100) * 0.4 : Number.parseFloat(oklch[2]);
     return oklchaToHsva({ L, C, H: Number.parseFloat(oklch[3]), a: readAlpha(oklch[4]) });
   }
@@ -293,7 +290,7 @@ function preserveAchromatic(next: Hsva, prev: Hsva): Hsva {
   return out;
 }
 
-// The channel set shown for a given format. HEX borrows the RGB channels (matching Figma).
+// channel set shown for given format. HEX borrows RGB channels (matching Figma).
 export function getChannels(hsva: Hsva, format: ColorFormat): ChannelSpec[] {
   const alpha: ChannelSpec = { id: "a", label: "A", value: round(clamp01(hsva.a) * 100), min: 0, max: 100, step: 1 };
   switch (format) {
@@ -362,8 +359,6 @@ export function setChannel(hsva: Hsva, id: ChannelId, value: number): Hsva {
   }
 }
 
-// Pointer → color mapping, kept pure so it is unit-testable.
-
 // origin top-left: x → saturation (0 left…100 right), y → value (100 top…0 bottom), clamped
 export function pointToSaturationValue(
   rect: { width: number; height: number },
@@ -393,7 +388,7 @@ export function formatGradient(stops: { position: number; color: string }[], typ
   }
 }
 
-// angle → hue, radius → saturation (clamped to ring); origin top-left, wheel inscribed in the box
+// angle → hue, radius → saturation (clamped to ring); origin top-left, wheel inscribed in box
 export function pointToHueSat(rect: { width: number; height: number }, offsetX: number, offsetY: number): { h: number; s: number } {
   const cx = rect.width / 2;
   const cy = rect.height / 2;

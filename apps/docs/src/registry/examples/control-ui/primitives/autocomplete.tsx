@@ -1,7 +1,7 @@
 "use client";
 
 // Search-as-you-type, free text: filters via Base UI's built-in filter (mode="list"); picking fills
-// the input but never locks to a discrete value, unlike Combobox. Live Empty state included.
+// input but never locks to discrete value, unlike Combobox. Live Empty state included.
 
 import { useState } from "react";
 

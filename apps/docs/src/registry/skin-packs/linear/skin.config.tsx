@@ -2,26 +2,24 @@ import type { ButtonTone, ButtonVariant } from "@/components/control-ui/contract
 import type { ControlUiSkin } from "@/components/control-ui/skin";
 
 /*
- * ADVANCED skin: tokens (theme.css) + body type rendering & Tabs knobs (skin.css) + these per-slot
- * classes. The Linear through-line: hairlines carry structure, indigo carries intent, and only
- * floating surfaces are allowed elevation. Filled + bordered actions are pills; every other control
- * keeps the 6px control corner. No "use client" — the config stays RSC-pure.
+ * Hairlines carry structure, indigo carries intent, and only floating surfaces are allowed elevation.
+ * Filled and bordered actions are pills; every other control keeps the 6px control corner.
  */
 
-// Brand focus: the ring token IS the indigo, offset from the surface behind it.
+// Brand focus: ring token IS indigo, offset from surface behind it.
 const focus = "focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-background";
-// Linear controls change color, never size — `active:scale-100` evicts the recipe's press-shrink.
-// shadow-(--x) not shadow-[var(--x)]: tailwind-merge reads the bracket form as a shadow COLOR and would keep the recipe's box-shadow beside it.
+// Linear controls change color, never size — `active:scale-100` evicts recipe's press-shrink.
+// shadow-(--x) not shadow-[var(--x)]: tailwind-merge reads bracket form as shadow COLOR and would keep recipe's box-shadow beside it.
 const controlMotion =
   "transition-[background-color,border-color,box-shadow,color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] active:scale-100";
 
-// The pill: filled and bordered ACTIONS only (dialog footers, submit, CTAs).
+// pill: filled and bordered ACTIONS only (dialog footers, submit, CTAs).
 const solid = `rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] shadow-(--linear-control-shadow) hover:bg-[var(--linear-primary-hover)] active:bg-[var(--linear-primary-active)] ${controlMotion} ${focus}`;
 const danger = `rounded-full bg-[var(--destructive)] text-[var(--destructive-foreground)] shadow-(--linear-control-shadow) hover:brightness-105 active:brightness-95 ${controlMotion} ${focus}`;
-// `surface` keeps the recipe's inset ring (and its data-[active] brand tint); only the fill is re-painted.
+// `surface` keeps recipe's inset ring (and its data-[active] brand tint); only fill is re-painted.
 const surfaceControl = `rounded-full bg-[var(--linear-control-bg)] shadow-(--linear-control-shadow) hover:bg-[var(--linear-control-hover)] active:bg-[var(--linear-control-active)] ${controlMotion} ${focus}`;
 // Icon buttons, toolbar chrome, menu triggers: 6px corner, row-fill hover, no ring and no elevation.
-// `ring-0`/`bg-transparent` matter on the shared control chrome (menu + select triggers), not on Button's own ghost variant.
+// `ring-0`/`bg-transparent` matter on shared control chrome (menu + select triggers), not on Button's own ghost variant.
 const ghost = `rounded-[var(--radius-control)] bg-transparent shadow-none ring-0 hover:bg-[var(--linear-row-hover)] ${controlMotion} ${focus}`;
 const quiet = `${ghost} text-muted-foreground hover:text-foreground data-[active=true]:bg-[var(--linear-row-active)] data-[active=true]:text-foreground`;
 
@@ -36,27 +34,27 @@ function button(variant: ButtonVariant, tone: ButtonTone) {
 // Fields are outlines, not fills: transparent body, --input hairline, brand border once focused.
 const field =
   "rounded-[var(--radius-control)] border-[var(--input)] bg-transparent shadow-none transition-[border-color,box-shadow] duration-[var(--duration-fast)] focus-visible:border-[var(--primary)] focus-visible:ring-2 focus-visible:ring-[var(--ring)]/25";
-// Select/menu triggers wear the same outline, but their recipe draws the edge with an inset ring, not a border.
+// Select/menu triggers wear same outline, but their recipe draws edge with inset ring, not border.
 const ringField = `rounded-[var(--radius-control)] bg-transparent shadow-none ring-1 ring-inset ring-[var(--input)] hover:bg-[var(--linear-row-hover)] ${controlMotion} ${focus}`;
 
-// Floating surfaces: the one place elevation is spent. Concentric geometry stays the recipe's.
+// Floating surfaces: one place elevation is spent. Concentric geometry stays recipe's.
 const popupSurface = "border-border bg-popover shadow-(--linear-menu-shadow)";
 const row =
   "rounded-[var(--radius-popup-item)] px-2 py-1 text-label data-[highlighted]:bg-[var(--linear-row-hover)] data-[disabled]:opacity-40";
 const menuLabel = "px-2 py-1 text-caption font-medium normal-case tracking-normal text-muted-foreground";
 const separator = "mx-0 my-1 bg-border";
-// Modals float hardest and drop their edge in light mode (the shadow IS the boundary); dark keeps a rim.
+// Modals float hardest and drop their edge in light mode (shadow IS boundary); dark keeps rim.
 const modal = "rounded-[var(--radius-panel)] border-transparent bg-popover shadow-(--linear-modal-shadow) dark:border-border";
 
-// Panels are held by a hairline, never by a lift. Recipes draw their edge with either `border` or an
-// inset ring, so these only re-color the ring and flatten the shadow — the widths stay the recipe's.
+// Panels are held by hairline, never by lift. Recipes draw their edge with either `border` or an
+// inset ring, so these only re-color ring and flatten shadow — widths stay recipe's.
 const panel = "rounded-[var(--radius-panel)] bg-card shadow-none ring-border";
 const panelHeader = "border-b border-border bg-transparent";
-// The one 1px lift in the shell: enough to detach the white sheet from the canvas.
+// one 1px lift in shell: enough to detach white sheet from canvas.
 const sheet = "rounded-[var(--radius-panel)] border-border bg-card shadow-(--linear-panel-shadow)";
 
-// Nav rows and tree rows share ONE chrome. Every background sits on a modifier chain that
-// SELECTION_INDICATOR_BG_RESET restates, so an app opting into indicator="slide" evicts them cleanly.
+// Nav rows and tree rows share ONE chrome. Every background sits on modifier chain that
+// SELECTION_INDICATOR_BG_RESET restates, so app opting into indicator="slide" evicts them cleanly.
 const navRow =
   "rounded-[var(--radius-control)] font-medium text-muted-foreground hover:bg-[var(--linear-row-hover)] hover:text-foreground active:bg-[var(--linear-row-active)] data-[active=true]:bg-[var(--linear-row-active)] data-[active=true]:text-foreground data-[state=open]:hover:bg-[var(--linear-row-active)]";
 const treeRow =
@@ -64,7 +62,7 @@ const treeRow =
 
 export const skin: ControlUiSkin = {
   id: "linear",
-  // Linear's rail is narrower than shadcn's 16rem default and never draws a surface of its own.
+  // Linear's rail is narrower than shadcn's 16rem default and never draws surface of its own.
   sidebarWidth: "15rem",
   families: {
     popup: {

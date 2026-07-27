@@ -41,7 +41,7 @@ function cssPropertyForToken(token: ThemeContractToken): string | null {
   if (token.group === "motion") return name.startsWith("--ease-") ? "transition-timing-function" : "transition-duration";
   if (token.group === "radius") {
     if (name.startsWith("--corner-shape")) return null;
-    return name === "--corner-radius-fit" || name === "--nest-corner-ratio" ? "opacity" : "border-radius";
+    return name === "--corner-radius-fit" ? "opacity" : "border-radius";
   }
   if (token.group === "layout") return "padding";
   if (token.group === "surface") return name.includes("opacity") ? "opacity" : "padding";
@@ -168,7 +168,7 @@ export function parseThemeArtifact(input: string, expectedBaseSkin?: string): Th
       const value: unknown = JSON.parse(candidate);
       parsed.push(value);
     } catch {
-      // A full AI reply is expected to fail before its fenced JSON candidate is tried.
+      // full AI reply is expected to fail before its fenced JSON candidate is tried.
     }
   }
   if (parsed.length === 0) return { ok: false, errors: ["No valid JSON object was found in the response."] };

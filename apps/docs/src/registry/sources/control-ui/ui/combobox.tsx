@@ -25,7 +25,7 @@ type DisabledComboboxValueRegistry = {
 
 const ComboboxDisabledValueContext = createContext<DisabledComboboxValueRegistry | null>(null);
 
-// Searchable single-select. Input shares --radius-control/controlSize with Button/Select; floating list rides shared popover tokens, rows match menu/select down to ItemIndicator.
+// Searchable single-select — selecting locks to discrete value, unlike Autocomplete.
 
 export function Combobox<Value = string>({ children, onValueChange, ...props }: ComboboxProps<Value>) {
   const [disabledValues] = useState(() => new Set<unknown>());
@@ -115,7 +115,7 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
 export function ComboboxContent({ className, children, sideOffset = 6, ...props }: ComboboxContentProps) {
   return (
     <ComboboxPrimitive.Portal>
-      {/* Portals land outside container-scoped skin root; positioner re-asserts token scope on itself. */}
+      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <ComboboxPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -235,7 +235,7 @@ export function ComboboxGroupLabel({ className, children, ...props }: ComboboxGr
       data-slot="group-label"
       data-popup-part="label"
       className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-1 text-meta font-medium text-muted-foreground",
+        "px-[calc(var(--padding-x)*0.5)] py-1 text-caption font-medium text-muted-foreground",
         skinFamily("popup", "label"),
         skinSlot("combobox", "group-label", {}),
         className,

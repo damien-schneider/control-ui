@@ -3,8 +3,7 @@ import type { SpinnerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Loader, not expressive motion: NOT gated by motion kill-switch (--duration-*) — spins even under reduced motion.
-// role="status" + visually-hidden "Loading" give it accessible name; size walks control ramp (xs..lg).
+// Deliberately outside motion kill-switch — loader must keep turning under reduced motion.
 const spinnerSize = {
   xs: "size-3",
   sm: "size-4",

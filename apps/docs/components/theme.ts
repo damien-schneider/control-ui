@@ -7,24 +7,22 @@ export const THEME_STORAGE_KEY = "control-ui:theme:v1";
 export const DEFAULT_SKIN_ID = "refined";
 export const THEME_INIT_SKIN_IDS = skinMetas.map((skin) => skin.id);
 
-// Theme editor persists the active built-in/custom profile here. The v1 key is read once for migration.
+// the v1 key is read once, for migration
 export const THEME_EDITOR_STORAGE_KEY = "control-ui:theme-editor:v2";
 export const LEGACY_THEME_EDITOR_STORAGE_KEY = "control-ui:theme-editor:v1";
 export const CUSTOM_THEME_STORAGE_KEY = "control-ui:custom-themes:v1";
 
-// Lock advertised on <html> when a mode-locked skin is active (write-vars sets it, theme toggle disables off it); value is the forced Theme.
+// advertised on <html> so the theme toggle can disable off it
 export const COLOR_SCHEME_LOCK_ATTR = "data-color-scheme-lock";
 
-// Skins with no adaptive light+dark: surfaces fixed, so page mode must follow skin (ControlUiSkin.colorScheme, enforced in write-vars).
-// MIRROR of skin.config colorScheme fields, kept here not derived from client skin-registry, so init script stays free of React/skin-config import graph.
-// Guard test (theme-color-scheme-lock.test.ts) fails if the two drift.
+// Mirrors each skin.config's colorScheme rather than deriving it, so the pre-paint init script stays clear of the React and skin-config import graph.
+// theme-color-scheme-lock.test.ts fails if the two drift.
 export const MODE_LOCKED_SKINS: Record<string, Theme> = {};
 
-// Skins whose config declares motion:"reduced" (XP snaps instantly, Luna style); MIRROR of that field, kept here like MODE_LOCKED_SKINS so pre-paint init script can stamp data-motion before React without importing React/skin-config graph.
-// Same guard test (theme-color-scheme-lock.test.ts) fails if this drifts from actual configs.
+// Mirrored for the same reason as MODE_LOCKED_SKINS, and guarded by the same test.
 export const MOTION_REDUCED_SKINS: string[] = ["xp"];
 
-// Visitor's own light/dark preference from storage or OS; used to RESTORE mode when leaving a mode-locked skin (lock forces .dark but never persists over this).
+// restores the mode when leaving a mode-locked skin — the lock forces .dark but never persists over this
 export function preferredTheme(): Theme {
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
@@ -35,9 +33,8 @@ export function preferredTheme(): Theme {
   return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
-// Pre-paint: applies a valid skin AND mode before React mounts, no flash. Paints data-skin so that skin's theme.css/skin.css owns the first frame, then resolves light/dark mode — a mode-locked skin wins over stored/OS preference.
-// Exactly what write-vars does post-mount, so React's first effect re-writes same attributes with no churn.
-// Interpolates mirror maps as literals so script needs no imports at runtime.
+// Runs before React mounts so the skin owns the first frame with no flash, doing exactly what write-vars does after, which leaves the first effect writing the same attributes.
+// The mirror maps interpolate as literals, so the script needs no runtime imports.
 export const THEME_INIT_SCRIPT = `
 (function () {
   try {
@@ -56,11 +53,10 @@ export const THEME_INIT_SCRIPT = `
       }
     } catch (_) {}
     el.setAttribute("data-skin", skinId);
-    // Motion: mirror write-vars' reduced = manual toggle OR the skin's own motion:"reduced" flag.
+    // mirrors write-vars: reduced = manual toggle OR the skin's own flag
     if (reduceMotion || (skinId && MOTION_OFF.indexOf(skinId) !== -1)) {
       el.setAttribute("data-motion", "reduced");
     }
-    // Color-scheme lock: a mode-locked skin forces its scheme.
     var lockedScheme = skinId && Object.prototype.hasOwnProperty.call(LOCK, skinId) ? LOCK[skinId] : null;
     var storedTheme = localStorage.getItem("${THEME_STORAGE_KEY}");
     var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;

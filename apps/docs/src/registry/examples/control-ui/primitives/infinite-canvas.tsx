@@ -20,11 +20,11 @@ export function PrimitiveInfiniteCanvasExample() {
               style={{ left: item.x, top: item.y }}
             >
               <h3 className="text-sm font-medium">{item.title}</h3>
-              <p className="mt-1 text-meta text-muted-foreground">{item.detail}</p>
+              <p className="mt-1 text-caption text-muted-foreground">{item.detail}</p>
             </article>
           ))}
         </InfiniteCanvasContent>
-        <div className="pointer-events-none absolute top-3 left-3 rounded-[var(--radius-control)] bg-card/90 px-2.5 py-1.5 text-meta text-muted-foreground shadow-xs ring-1 ring-border backdrop-blur-sm">
+        <div className="pointer-events-none absolute top-3 left-3 rounded-[var(--radius-control)] bg-card/90 px-2.5 py-1.5 text-caption text-muted-foreground shadow-xs ring-1 ring-border backdrop-blur-sm">
           Drag or scroll with two fingers to pan · Pinch or hold ⌘ while scrolling to zoom
         </div>
         <InfiniteCanvasControls />

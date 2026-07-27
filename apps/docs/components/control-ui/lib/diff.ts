@@ -2,36 +2,32 @@ import type { StructuredPatch, StructuredPatchHunk } from "diff";
 import { diffChars, diffWordsWithSpace, parsePatch, structuredPatch } from "diff";
 import type { CodeDiffLineType } from "@/components/control-ui/contracts";
 
-// pure diff model — parse half of "parse ⊥ render" split (à la @pierre/diffs); two entry points build the same `DiffFile`
-// consumed by ui/code-diff.tsx: buildDiffFromPatch (patch string → DiffFile[], isPartial), buildDiffFromFiles (pair → DiffFile, full context)
-// old/new lines stored ONCE, indexed — expand-hidden-context = pure index-range read, only when !isPartial; segments gated by maxLineDiffLength; no React/DOM
-
 export type CodeLineType = CodeDiffLineType;
 export type LineDiffType = "word" | "char" | "none";
 export type DiffFileType = "change" | "new" | "deleted" | "rename";
 
-// One run of same-emphasis text inside a changed line (intra-line word/char diff).
+// one run of same-emphasis text inside changed line
 export type DiffSegment = { text: string; emphasis: boolean };
 
 export type DiffLine = {
   type: CodeLineType;
-  // 1-based numbers on the side(s) a line exists on: del/context carry oldNo, add/context carry newNo.
+  // 1-based, only on side line exists on
   oldNo?: number;
   newNo?: number;
   text: string;
-  // Present only on change lines paired across the del/add boundary (intra-line diff).
+  // only on change lines paired across del/add boundary
   segments?: DiffSegment[];
 };
 
 export type DiffHunk = {
-  // Scope after the @@ marker (function/heading), when the patch carries one.
+  // scope trailing the @@ marker, when patch carries one
   header?: string;
   oldStart: number;
   oldCount: number;
   newStart: number;
   newCount: number;
   lines: DiffLine[];
-  // Count of unchanged lines hidden immediately before this hunk (drives the expand affordance).
+  // unchanged lines hidden immediately before this hunk — drives expand affordance
   collapsedBefore: number;
 };
 
@@ -41,7 +37,7 @@ export type DiffFile = {
   type: DiffFileType;
   lang?: string;
   hunks: DiffHunk[];
-  // full text of each side, indexed 1:1 with line numbers, backing expand-context; empty for isPartial (patch-sourced) files
+  // indexed 1:1 with line numbers so expand-context is range read; empty for isPartial files
   oldLines: string[];
   newLines: string[];
   isPartial: boolean;
@@ -52,10 +48,10 @@ export type DiffFile = {
 export type BuildDiffOptions = {
   name?: string;
   lang?: string;
-  // Context lines kept around each change when diffing a pair (structuredPatch context window).
+  // unchanged lines kept around each change
   context?: number;
   lineDiffType?: LineDiffType;
-  // Skip intra-line diffing when old.length + new.length exceeds this (perf guard). 0 disables it.
+  // skips intra-line diffing past old.length + new.length; 0 disables guard
   maxLineDiffLength?: number;
 };
 
@@ -63,22 +59,21 @@ const DEFAULT_CONTEXT = 3;
 const DEFAULT_MAX_LINE_DIFF_LENGTH = 2000;
 
 function splitLines(text: string): string[] {
-  // A trailing newline yields a final "" line in a naive split; drop it so counts match the file.
+  // trailing newline yields phantom final "" — drop it so counts match file
   if (text.length === 0) return [];
   const lines = text.split("\n");
   if (lines.length > 0 && lines[lines.length - 1] === "") lines.pop();
   return lines;
 }
 
-// Strip a git a/ or b/ path prefix; leave /dev/null and bare names untouched.
+// /dev/null and bare names pass through untouched
 function stripGitPrefix(name: string | undefined): string | undefined {
   if (name === undefined) return undefined;
   if (name === "/dev/null") return name;
   return name.replace(/^[ab]\//, "");
 }
 
-// single word/char diff pass: unchanged runs land both sides (no emphasis), removed only old side, added only new side (emphasis)
-// [undefined, undefined] when diff disabled or pair too long
+// [undefined, undefined] when diff is disabled or pair is too long
 export function computeWordDiff(
   oldText: string,
   newText: string,
@@ -106,7 +101,7 @@ export function computeWordDiff(
   return [oldSegments, newSegments];
 }
 
-// Walk maximal [del…][add…] blocks and attach paired intra-line segments to both sides.
+// pairs each maximal [del…][add…] block across boundary
 function attachWordDiff(lines: DiffLine[], kind: LineDiffType, maxLength: number): void {
   if (kind === "none") return;
   let index = 0;
@@ -132,7 +127,7 @@ function attachWordDiff(lines: DiffLine[], kind: LineDiffType, maxLength: number
   }
 }
 
-// Convert one jsdiff hunk (lines prefixed by ' ', '+', '-', '\') into typed, numbered DiffLines.
+// patch prefixes: ' ' context, '+' add, '-' del, '\' no-newline marker
 function hunkLines(hunk: StructuredPatchHunk): DiffLine[] {
   const lines: DiffLine[] = [];
   let oldNo = hunk.oldStart;
@@ -157,7 +152,7 @@ function hunkLines(hunk: StructuredPatchHunk): DiffLine[] {
   return lines;
 }
 
-// Everything after the second "@@" on a hunk header line is git's scope hint (function/heading).
+// git puts its scope hint after second "@@"
 function hunkHeaderScope(hunk: StructuredPatchHunk): string | undefined {
   const raw = hunkRawHeader.get(hunk);
   if (!raw) return undefined;
@@ -165,7 +160,7 @@ function hunkHeaderScope(hunk: StructuredPatchHunk): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
-// jsdiff drops the @@-line scope; we recover it from the raw patch when parsing a patch string.
+// jsdiff drops the @@-line scope, so it is recovered from raw patch
 const hunkRawHeader = new WeakMap<StructuredPatchHunk, string>();
 
 function toDiffFile(
@@ -257,7 +252,7 @@ function resolveDiffFileType(
   return "change";
 }
 
-// stores full old/new line arrays so file is NOT partial (renderer can expand hidden context); `context` sets unchanged window around each change
+// keeps both full line arrays, so result is never partial and renderer can expand hidden context
 export function buildDiffFromFiles(oldText: string, newText: string, options: BuildDiffOptions = {}): DiffFile {
   const name = options.name ?? "file";
   const context = options.context ?? DEFAULT_CONTEXT;
@@ -265,16 +260,14 @@ export function buildDiffFromFiles(oldText: string, newText: string, options: Bu
   return toDiffFile(patch, options, splitLines(oldText), splitLines(newText), false);
 }
 
-// multiple `diff --git`/`---`/`+++` sections yield one DiffFile each; patch-sourced files are isPartial (no full text, renderer disables expand-context)
+// one DiffFile per patch section; all are isPartial, so renderer disables expand-context
 export function buildDiffFromPatch(patchText: string, options: BuildDiffOptions = {}): DiffFile[] {
   let patches: StructuredPatch[];
   try {
     patches = parsePatch(patchText);
-    // Recover each hunk's @@-line scope hint (jsdiff parses it off but does not expose it on the hunk).
     indexRawHunkHeaders(patchText, patches);
   } catch {
-    // jsdiff throws when @@-header counts disagree w/ body; agent/hand-authored patches get this wrong often, crashing render
-    // fall back to lenient parse: ignore header counts, recompute from body lines (scope hint captured inline)
+    // jsdiff throws when @@-header counts disagree with body — agent and hand-authored patches get this wrong often
     patches = parsePatchLenient(patchText);
   }
   return patches.map((patch) => toDiffFile(patch, options, [], [], true));
@@ -284,12 +277,12 @@ function emptyStructuredPatch(): StructuredPatch {
   return { oldFileName: undefined, newFileName: undefined, oldHeader: undefined, newHeader: undefined, hunks: [] };
 }
 
-// Take the path token off a "--- "/"+++ " line, dropping git's trailing tab-separated timestamp.
+// git appends tab-separated timestamp after path
 function patchFileName(rest: string): string {
   return rest.split("\t")[0].trim();
 }
 
-// Sum a hunk body's real old/new line counts, ignoring the (possibly wrong) header numbers.
+// header numbers are not trusted — counted from body instead
 function reconcileHunkCounts(hunk: StructuredPatchHunk): void {
   let oldCount = 0;
   let newCount = 0;
@@ -377,8 +370,7 @@ function consumeLenientPatchLine(state: LenientPatchState, line: string): void {
   closeLenientHunk(state);
 }
 
-// used only when strict parsePatch throws; trusts body over header — counts recomputed from ' '/'+'/'-' lines so miscounted @@ headers still render
-// unknown/blank lines close the current hunk
+// trusts body over header, so miscounted @@ lines still render; unknown or blank line closes current hunk
 function parsePatchLenient(patchText: string): StructuredPatch[] {
   const state: LenientPatchState = { files: [] };
 
@@ -389,7 +381,7 @@ function parsePatchLenient(patchText: string): StructuredPatch[] {
   return state.files;
 }
 
-// Map each parsed hunk to the scope text trailing its "@@ … @@" header line, positionally.
+// matched positionally — jsdiff exposes no handle back to raw line
 function indexRawHunkHeaders(patchText: string, patches: StructuredPatch[]): void {
   const scopes: string[] = [];
   for (const line of patchText.split("\n")) {

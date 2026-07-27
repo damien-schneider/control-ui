@@ -1,22 +1,10 @@
 import { DYNAMIC_NOTIFICATION_SIRI_WAVE_GLSL } from "@/components/control-ui/dynamic-notification-siri-wave";
 
-/*
- * Liquid-glass WebGL material for DynamicNotification's "glass" variant (Siri-style island).
- * Vanilla engine (no React): the component hands it one <canvas>, it returns a single cleanup fn —
- * same split as extensions/create-track-highlight.ts. CSS keeps a gradient fallback under the canvas,
- * so no WebGL (or a lost context) degrades to the static material instead of a hole.
- * Paints: black→glass vertical gradient, top sheen with slight spectral dispersion, a chromatic
- * Siri waveform across the horizon, and an inner rim light — all inside a
- * rounded-rect SDF matching the island's current border-radius (re-read per frame so the
- * pill→bubble morph stays in sync).
- * Reduced motion (OS media query or data-motion="reduced"): renders exactly one static frame,
- * re-rendering only on geometry changes — never a running RAF loop.
- */
-
+// CSS paints gradient fallback under canvas, so absent or lost WebGL degrades to static material instead of hole.
 export type DynamicNotificationGlassOptions = {
   /** Aurora strength 0..1 (default 1). */
   intensity?: number;
-  /** devicePixelRatio clamp (default 2) — the island is small, 2x is visually lossless. */
+  /** devicePixelRatio clamp (default 2) — island is small, 2x is visually lossless. */
   maxDpr?: number;
 };
 
@@ -68,19 +56,14 @@ void main() {
     return;
   }
 
-  /* 1. ink profile: a SOLID black face while collapsed that dissolves into the REAL
-     black -> 10% black gradient as u_reveal eases toward 1 (thinking + expanded) — the
-     gradient itself morphs, so the pill never pops from opaque to translucent */
-  /* Two plateau curves, blended by u_settle so the bubble's ink thickens on the same spring that
-     opens it. The thinking fade is centred on the ribbon horizon; expanded keeps a 0.4 floor for
-     the reply controls in its bottom third. */
+  /* gradient itself morphs, so pill never pops from opaque to translucent; expanded keeps a 0.4 floor for reply controls */
   float gradThinking = mix(0.10, 0.97, smoothstep(u_ribbonHorizon - 0.10, u_ribbonHorizon + 0.10, uv.y));
   float gradExpanded = mix(0.40, 0.97, smoothstep(0.00, 0.30, uv.y));
   float grad = mix(gradThinking, gradExpanded, u_settle);
   float alpha = mix(0.97, grad, u_reveal);
   vec3 color = vec3(0.004, 0.004, 0.006) * mix(1.0, 0.4 + 0.6 * uv.y, u_reveal);
 
-  /* 2. sheen horizon with subtle spectral dispersion (the pale rainbow band on the real island) */
+  /* pale rainbow band across horizon */
   float sheenY = u_ribbonHorizon + 0.02 * sin(u_time * 0.35);
   float sheen = ridge(uv.y, sheenY, 9.0);
   float spread = smoothstep(0.06, 0.4, uv.x) * smoothstep(0.94, 0.6, uv.x);
@@ -95,14 +78,11 @@ void main() {
   float glow = max(aurora.r, max(aurora.g, aurora.b));
   alpha = min(1.0, alpha + glow * 0.5);
 
-  /* 3. inner rim light — glass thickness catching the environment */
+  /* inner rim light — glass thickness catching environment */
   float rim = exp(-pow((d + 1.75) * 0.30, 2.0));
   color += rim * vec3(0.82, 0.88, 1.0) * (0.05 + 0.10 * (1.0 - uv.y));
 
-  /* 4. edge refraction of the glass container itself: a THIN ring where the ink barely thins
-     so a hint of the CSS-blurred backdrop shows through, with a dark seam just inside and a
-     bright pull at the top. Kept narrow and mostly opaque on purpose: a wide translucent band
-     under the backdrop blur reads as the background melting into the edge, not as glass. */
+  /* edge refraction stays narrow and mostly opaque on purpose: wide translucent band under backdrop blur reads as background melting into edge, not as glass */
   float bevelW = max(4.0, u_radius * 0.32);
   float bt = clamp(1.0 + d / bevelW, 0.0, 1.0);
   float bevel = pow(bt, 2.4);
@@ -111,7 +91,7 @@ void main() {
   color *= 1.0 - 0.25 * seam;
   color += vec3(0.95, 0.97, 1.0) * bevel * bevel * (0.35 + 0.65 * uv.y) * 0.18;
 
-  /* dither so the long dark gradient never bands */
+  /* dither so long dark gradient never bands */
   color += (hash(gl_FragCoord.xy) - 0.5) / 255.0;
 
   alpha *= shape;
@@ -180,19 +160,17 @@ function buildProgram(gl: WebGLRenderingContext): GlassProgram | null {
   };
 }
 
-/* aurora shows ONLY while the model is thinking; the static pill and the opened chat stay clean */
+/* only while thinking — static pill and opened chat stay clean */
 function auroraTarget(state: string | undefined): number {
   return state === "thinking" ? 1 : 0;
 }
 
-/* gradient reveal: only the collapsed pill is solid black; the thinking blob and the expanded
-   bubble both show the black -> transparent fade */
+/* only collapsed pill is solid black */
 function revealTarget(state: string | undefined): number {
   return state === "collapsed" ? 0 : 1;
 }
 
-/* which of the two ink ramps the fade lands on: the thinking blob runs out to transparent, the
-   expanded bubble keeps a floor so its reply controls have something to sit on */
+/* picks ink ramp: thinking runs out to transparent, expanded keeps floor under its reply controls */
 function settleTarget(state: string | undefined): number {
   return state === "expanded" ? 1 : 0;
 }
@@ -202,10 +180,8 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
   const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: true, antialias: true });
   if (!gl) return () => {};
 
-  // Remount on the same canvas (StrictMode double-effect, fast skin swaps) hands back the SAME
-  // live context — which is why cleanup only deletes program+buffer and NEVER loseContext():
-  // a lose()d context can't hand out WEBGL_lose_context anymore (getExtension returns null when
-  // lost), so no later instance could ever restore it. The context's real lifetime is the canvas's.
+  // remount on same canvas hands back SAME live context, so cleanup must never loseContext():
+  // lost context returns null from getExtension, leaving no later instance able to restore it.
   let contextLost = gl.isContextLost();
   let glass = contextLost ? null : buildProgram(gl);
   if (!contextLost && !glass) return () => {};
@@ -215,11 +191,9 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
   let pageVisible = !document.hidden;
   let rafId = 0;
   let dpr = 1;
-  /* radius eases toward the island's live border-radius so the shader rim follows the pill→bubble morph */
   let radius = 0;
-  /* aurora energy eases toward the island's data-state target (thinking pulses, expanded settles) */
   let aurora = auroraTarget(canvas.parentElement?.dataset.state);
-  /* lift sends the dying sheet toward the top on exit; parked high whenever the aurora is off */
+  /* sends dying sheet toward top on exit; parked high whenever aurora is off */
   let lift = 1 - aurora;
   let reveal = revealTarget(canvas.parentElement?.dataset.state);
   let settle = settleTarget(canvas.parentElement?.dataset.state);
@@ -245,13 +219,10 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     return Number.isFinite(parsed) ? Math.min(1, Math.max(0, parsed / 100)) : 0.5;
   }
 
-  /* Runs at the TOP of every draw, never from observers: setting canvas.width clears the buffer,
-     so resize and repaint must share one task or the compositor shows a blank frame (flicker —
-     rAF ticks run BEFORE ResizeObserver callbacks within a frame, so an observer-side resize
-     wiped the freshly drawn pixels right before paint on every morph frame). */
+  /* Called from draw(), never an observer: setting canvas.width clears the buffer, and rAF ticks run
+     before ResizeObserver callbacks, so an observer-side resize would wipe the drawn pixels before paint. */
   function resize(): void {
-    // clientWidth/Height: layout box, immune to the @starting-style scale running at mount
-    // (getBoundingClientRect would bake the mid-animation transform into the backing size).
+    // layout box, immune to the @starting-style scale at mount — getBoundingClientRect would bake that transform into backing size
     dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const width = Math.max(1, Math.round(canvas.clientWidth * dpr));
     const height = Math.max(1, Math.round(canvas.clientHeight * dpr));
@@ -267,7 +238,7 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
 
     const auroraGoal = auroraTarget(canvas.parentElement?.dataset.state);
     aurora = reduced ? auroraGoal : aurora + (auroraGoal - aurora) * 0.06;
-    /* Keep exit linear so the sheet clears the surface before the opening morph collapses. */
+    /* linear exit so sheet clears surface before opening morph collapses */
     const liftGoal = auroraGoal >= 0.5 ? 0 : 1;
     if (reduced) lift = liftGoal;
     else if (liftGoal === 1) lift = Math.min(1, lift + 0.036);
@@ -322,7 +293,7 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     rafId = requestAnimationFrame(tick);
   }
 
-  /* single entry point: (re)starts the loop, or repaints the one static frame in reduced motion */
+  /* restarts loop, or repaints single static frame under reduced motion */
   function invalidate(): void {
     staticFrameDrawn = false;
     if (destroyed || !visible() || contextLost || rafId !== 0) return;
@@ -335,7 +306,7 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
   }
 
   function handleContextLost(event: Event): void {
-    // preventDefault signals we want the context back; the browser then fires webglcontextrestored.
+    // preventDefault asks for context back — browser then fires webglcontextrestored
     event.preventDefault();
     contextLost = true;
     if (rafId !== 0) cancelAnimationFrame(rafId);
@@ -343,20 +314,19 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
   }
 
   function handleContextRestored(): void {
-    // hoisted declaration: re-narrow gl locally (the outer guard's narrowing doesn't flow in)
+    // hoisted, so outer guard's narrowing does not flow in
     if (!gl) return;
     contextLost = false;
     glass = buildProgram(gl);
     invalidate();
   }
 
-  /* observers only INVALIDATE — the actual buffer resize happens inside draw() (see resize) */
   const resizeObserver = new ResizeObserver(() => {
     invalidate();
   });
   resizeObserver.observe(canvas);
 
-  /* pause offscreen (previews below the fold, background tabs keep GPU idle) */
+  /* pauses offscreen so previews below fold keep GPU idle */
   const intersectionObserver = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) intersecting = entry.isIntersecting;
@@ -366,7 +336,7 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
   );
   intersectionObserver.observe(canvas);
 
-  /* the docs theme editor toggles data-motion on <html> live; repaint (or restart) when it flips */
+  /* theme editor toggles data-motion on <html> live */
   const motionObserver = new MutationObserver(() => {
     if (!staticFrameDrawn || !reducedMotion()) invalidate();
   });

@@ -1,10 +1,9 @@
 "use client";
 
-// Exit animation for PM nodes removed synchronously from DOM: node's gone before any transition runs, so @starting-style (entry-only) can't cover the exit.
-// Fix: clone element into a fixed-position ghost over its last rect, let editor update immediately, animate ghost out via data-chat-composer-exit/data-exiting (chat-composer-editor.css blur keyframe); self-removes on animationend + timeout backstop.
-// Duration from --duration-* tokens (motion kill-switch → instant, no lingering clone); skipped under prefers-reduced-motion.
+// ProseMirror removes nodes synchronously, so they are gone before any transition runs and @starting-style cannot cover exit.
+// element is cloned into fixed-position ghost over its last rect, animated out by chat-composer-editor.css, and self-removes on animationend with timeout backstop.
 
-// Styles the whole-message ghost must carry: .ProseMirror is styled via scoped [&_.ProseMirror] utilities on its mount wrapper, not inherited by a body-appended clone, so copy the ones affecting text rendering. Pill ghost needs none (Tailwind classes + data-slot are global).
+// .ProseMirror is styled by scoped utilities on its mount wrapper, which body-appended clone never inherits
 const MESSAGE_INHERIT = [
   "font-family",
   "font-size",
@@ -34,7 +33,7 @@ export function spawnExitGhost(source: HTMLElement, inherit: readonly string[] =
   if (rect.width === 0 && rect.height === 0) return;
 
   const ghost = document.createElement(source.tagName.toLowerCase());
-  // Copy the source's attributes (class, data-slot, …) so utility + skin styling render identically.
+  // carries class and data-slot across so utility and skin styling render identically
   for (const name of source.getAttributeNames()) {
     const value = source.getAttribute(name);
     if (value !== null) ghost.setAttribute(name, value);
@@ -67,5 +66,4 @@ export function spawnExitGhost(source: HTMLElement, inherit: readonly string[] =
   window.setTimeout(remove, 600);
 }
 
-// The whole-message ghost (submit) copies these; the pill ghost passes nothing.
 export const MESSAGE_GHOST_INHERIT = MESSAGE_INHERIT;

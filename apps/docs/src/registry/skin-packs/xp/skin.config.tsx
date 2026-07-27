@@ -1,11 +1,10 @@
 import type { ControlUiSkin } from "@/components/control-ui/skin";
 
 /*
- * XP (Luna) advanced skin: config carries structure (classes/adornments); theme.css owns colors, skin.css owns effects.
- * No "use client" — titlebar adornments are static decorative (aria-hidden) JSX; keeps it server-renderable.
+ * titlebar adornments stay static decorative JSX, so this config never needs "use client".
  */
 
-// dotted focus rectangle inset into the control — the Luna keyboard-focus reading.
+// dotted focus rectangle inset into control — Luna keyboard-focus reading.
 const xpFocus =
   "focus-visible:ring-0 focus-visible:outline focus-visible:outline-1 focus-visible:outline-dotted focus-visible:outline-[var(--foreground)] focus-visible:outline-offset-[-3px]";
 
@@ -14,13 +13,13 @@ const xpFocus =
 // no transition-none needed (XP already collapses --duration-* to 0ms); active:scale-100 stays (style override, not duration).
 const lunaRaised = `rounded-[max(3px,var(--radius-control))] border border-[var(--xp-control-border)] bg-linear-to-b from-(--xp-control-top) to-(--xp-control-bottom) text-foreground shadow-[inset_0_1px_0_var(--xp-bevel-light)] hover:shadow-[inset_0_0_0_1px_var(--ring),inset_0_1px_0_var(--xp-bevel-light)] active:from-(--xp-control-bottom) active:to-(--xp-control-top) active:scale-100 ${xpFocus}`;
 
-// flat toolbar button — no fill until hover pops the bevel out, press sinks it in.
+// flat toolbar button — no fill until hover pops bevel out, press sinks it in.
 const lunaFlat = `rounded-[max(3px,var(--radius-control))] border border-transparent bg-transparent text-foreground shadow-none hover:border-[var(--xp-bevel-dark)] hover:xp-bevel-up active:xp-bevel-down ${xpFocus}`;
 
-// solid (default action): the pale-blue Luna default button with a thin blue inner ring.
+// solid (default action): pale-blue Luna default button with thin blue inner ring.
 const lunaSolid = `rounded-[max(3px,var(--radius-control))] border border-[var(--xp-control-border)] bg-linear-to-b from-(--xp-solid-top) to-(--xp-solid-bottom) font-bold text-foreground shadow-[inset_0_0_0_1px_var(--xp-solid-ring),inset_0_1px_0_var(--xp-bevel-light)] active:scale-100 ${xpFocus}`;
 
-// Luna user bubble — raised pale-blue gradient with a top light bevel; returned only for user rows.
+// Luna user bubble — raised pale-blue gradient with top light bevel; returned only for user rows.
 const lunaBubble =
   "rounded-[3px] border border-[var(--xp-field-border)] bg-linear-to-b/srgb from-(--xp-bubble-user-top) to-(--xp-bubble-user-bottom) text-foreground shadow-[inset_0_1px_0_var(--xp-bevel-light)]";
 
@@ -31,7 +30,7 @@ const xpPopupSurface =
   "rounded-none border border-[var(--xp-field-border)] bg-popover text-foreground shadow-[3px_3px_4px_rgba(0,0,0,0.35)] ring-0 backdrop-blur-none";
 const xpPopupList = `${xpPopupSurface} p-0.5`;
 
-// full-bleed row with the solid selection-blue highlight.
+// full-bleed row with solid selection-blue highlight.
 const xpItem =
   "rounded-none px-5 py-0.5 min-h-6 text-[12px] data-[highlighted]:bg-[var(--primary)] data-[highlighted]:text-[var(--primary-foreground)] data-[disabled]:opacity-40";
 

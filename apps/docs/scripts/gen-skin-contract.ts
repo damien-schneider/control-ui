@@ -9,8 +9,8 @@ const targets = [
   { path: "public/r/theme-contract.json", content: `${JSON.stringify(collectThemeContract(), null, 2)}\n` },
 ];
 const contract = targets[0].content.trim();
-// Annotated with SkinContract instead of frozen with `as const`: the emitted data is checked against the model
-// the collector builds it from, and consumers read the contract's declared shape rather than 100 literal scopes.
+// Annotated with SkinContract instead of frozen with `as const`: emitted data is checked against model
+// collector builds it from, and consumers read contract's declared shape rather than 100 literal scopes.
 targets.push({
   path: "app/(features)/model/generated-skin-contract.ts",
   content: formatGeneratedTypeScript(

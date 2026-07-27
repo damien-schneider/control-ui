@@ -32,9 +32,9 @@ describe("reduced motion contract", () => {
     expect(CSS).toContain("translate: 0 0.75rem;");
   });
 
-  test("tabs panels have token-driven switching motion", () => {
-    expect(CSS).toContain('[data-control-ui="tabs"][data-slot="panel"]');
-    // Slide-only: content stays opaque so a switch never flashes an empty frame; the full-width cross-slide rides --duration-slow.
+  test("switching panels have token-driven cross-slide motion", () => {
+    expect(CSS).toContain('[data-slide="panel"]');
+    // content stays opaque through slide, so switch never flashes empty frame
     expect(CSS).toContain("translate var(--duration-slow) var(--ease-emphasized)");
     expect(CSS).toContain('[data-activation-direction="right"]');
   });

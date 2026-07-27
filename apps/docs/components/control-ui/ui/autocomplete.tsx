@@ -18,8 +18,7 @@ import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
-// Unlike Combobox, input is FREE TEXT: value/onValueChange is the filter string, picking an item just
-// fills the field — never locks to a discrete value, no per-row ItemIndicator (Base UI has none).
+// Free text, unlike Combobox — value is filter string, and picking item only fills field.
 
 export function Autocomplete<Value = string>({ children, ...props }: AutocompleteProps<Value>) {
   return <AutocompletePrimitive.Root {...props}>{children}</AutocompletePrimitive.Root>;
@@ -76,7 +75,7 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
 export function AutocompleteContent({ className, children, sideOffset = 6, ...props }: AutocompleteContentProps) {
   return (
     <AutocompletePrimitive.Portal>
-      {/* Portals land outside container-scoped skin root; positioner re-asserts token scope on itself. */}
+      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <AutocompletePrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -179,7 +178,7 @@ export function AutocompleteGroupLabel({ className, children, ...props }: Autoco
       data-slot="group-label"
       data-popup-part="label"
       className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-1 text-meta font-medium text-muted-foreground",
+        "px-[calc(var(--padding-x)*0.5)] py-1 text-caption font-medium text-muted-foreground",
         skinFamily("popup", "label"),
         skinSlot("autocomplete", "group-label", {}),
         className,

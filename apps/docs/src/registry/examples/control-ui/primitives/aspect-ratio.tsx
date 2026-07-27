@@ -8,20 +8,20 @@ export function PrimitiveAspectRatioExample() {
       <div className="flex flex-col gap-1.5">
         <AspectRatio
           ratio={16 / 9}
-          className="flex items-center justify-center overflow-hidden rounded-[var(--radius-lg)] border bg-linear-to-br from-muted to-accent text-meta font-medium text-muted-foreground"
+          className="flex items-center justify-center overflow-hidden rounded-[var(--radius-lg)] border bg-linear-to-br from-muted to-accent text-caption font-medium text-muted-foreground"
         >
           16 / 9
         </AspectRatio>
-        <span className="text-meta text-muted-foreground">Widescreen</span>
+        <span className="text-caption text-muted-foreground">Widescreen</span>
       </div>
       <div className="flex flex-col gap-1.5">
         <AspectRatio
           ratio={1}
-          className="flex items-center justify-center overflow-hidden rounded-[var(--radius-lg)] border bg-linear-to-br from-muted to-accent text-meta font-medium text-muted-foreground"
+          className="flex items-center justify-center overflow-hidden rounded-[var(--radius-lg)] border bg-linear-to-br from-muted to-accent text-caption font-medium text-muted-foreground"
         >
           1 / 1
         </AspectRatio>
-        <span className="text-meta text-muted-foreground">Square</span>
+        <span className="text-caption text-muted-foreground">Square</span>
       </div>
     </div>
   );

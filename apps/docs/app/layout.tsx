@@ -20,7 +20,7 @@ export const metadata: Metadata = siteMetadata;
 
 // next/font self-hosts geist, fills --font-geist-sans; theme.css's --font-sans consumes it first, falls to system stack when app shell absent.
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
-// Same contract for the linear pack's face: it reads --font-inter, falling back to the system stack when the shell doesn't provide it.
+// Same contract for linear pack's face: it reads --font-inter, falling back to the system stack when the shell doesn't provide it.
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
@@ -36,12 +36,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <ThemeDrawerProvider>
           <ThemeRuntimeProvider>
             <div data-skin-scope="docs">
-              {/* Inside the boundary: epoch remount is the only thing that re-resolves mutated skin config past React Compiler's memoization. */}
+              {/* Inside boundary: epoch remount is the only thing that re-resolves mutated skin config past React Compiler's memoization. */}
               <SkinEpochBoundary>
                 <DocsShell {...getDocsShellData()} githubStars={githubStars}>
                   {children}
                 </DocsShell>
-                {/* Mirrors ControlUiSkin.effects onto <html> for the ripple listener; inside the boundary for the same remount reason. */}
+                {/* Mirrors ControlUiSkin.effects onto <html> for ripple listener; inside boundary for same remount reason. */}
                 <ControlEffectsRuntime />
               </SkinEpochBoundary>
             </div>

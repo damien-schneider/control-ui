@@ -79,19 +79,19 @@ export function publicRegistryHref(kind: string) {
   return `/r/${kind}.json`;
 }
 
-// docsOnly skins carry no packManifestPath (no installable pack); `in` guard narrows skinMetas union so only real packs resolve a manifest path.
+// docsOnly skins carry no packManifestPath (no installable pack); `in` guard narrows skinMetas union so only real packs resolve manifest path.
 function packManifestPathFor(id: SkinMetaId): string | undefined {
   const meta = skinMetas.find((entry) => entry.id === id);
   return meta && "packManifestPath" in meta ? meta.packManifestPath : undefined;
 }
 
-// Public `npx shadcn add` command for a skin pack (ships skin.json); lives here (not theme drawer) so both read one source.
+// Public `npx shadcn add` command for skin pack (ships skin.json); lives here (not theme drawer) so both read one source.
 export function packInstallCommand(id: SkinMetaId): string | undefined {
   if (!packManifestPathFor(id)) return undefined;
   return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/skin-${id}.json`;
 }
 
-// Flat `/r/skin-<id>.json` docs URL for a pack's published manifest (undefined for docsOnly).
+// Flat `/r/skin-<id>.json` docs URL for pack's published manifest (undefined for docsOnly).
 export function packManifestHref(id: SkinMetaId): string | undefined {
   return packManifestPathFor(id) ? publicRegistryHref(`skin-${id}`) : undefined;
 }

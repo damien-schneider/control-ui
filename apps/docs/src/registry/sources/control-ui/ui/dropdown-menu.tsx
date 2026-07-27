@@ -16,8 +16,6 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
-// Dropdown menu skin slot, 100% Base UI: trigger shares --radius-control/controlSize w/ Button & Select — one token set, every trigger matches.
-
 type RefinedDropdownMenuTriggerProps = DropdownMenuTriggerProps &
   Pick<ComponentProps<typeof MenuPrimitive.Trigger>, "nativeButton" | "render">;
 
@@ -69,7 +67,7 @@ export function DropdownMenuContent({ className, children, ...props }: DropdownM
   const skinClasses = skinSlot("dropdown-menu", "content", {});
   return (
     <MenuPrimitive.Portal>
-      {/* Portal escapes token-scoped ancestor — positioner re-asserts ACTIVE skin's scope (theme.css mirrors). */}
+      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <MenuPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -115,7 +113,7 @@ export function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps)
 export function DropdownMenuSeparator({ className, ...props }: DropdownMenuSeparatorProps) {
   const skinClasses = skinSlot("dropdown-menu", "separator", {});
   return (
-    // -mx-[--popover-padding] bleeds rule through popup padding for edge-to-edge; rows keep inset, tracks same knob as popup.
+    // bleeds rule through popup padding so it spans edge to edge while rows keep their inset
     <MenuPrimitive.Separator
       data-control-ui="dropdown-menu"
       data-slot="separator"

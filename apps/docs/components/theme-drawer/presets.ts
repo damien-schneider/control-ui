@@ -5,18 +5,17 @@ import { DEFAULT_SKIN_ID, LEGACY_THEME_EDITOR_STORAGE_KEY, THEME_EDITOR_STORAGE_
 import { objectFromEntries } from "@/lib/typed-object";
 import type { LabelMode, SkinId, ThemeState, TokenValues } from "./types";
 
-// Skin catalog from skinMetas (single source of truth); two classes drive selector groups: theme skins (tokens only) vs advanced (tokens + skin.config + skin.css).
 export const SKIN_META_BY_ID = objectFromEntries(skinMetas.map((meta): [SkinId, CatalogSkinMeta] => [meta.id, meta]));
 export const THEME_SKIN_IDS = skinMetas.flatMap((meta) => (meta.kind === "theme" ? [meta.id] : []));
 export const ADVANCED_SKIN_IDS = skinMetas.flatMap((meta) => (meta.kind === "advanced" ? [meta.id] : []));
-// Editor treats every skin the same now — one flat group (theme skins first, then advanced), no group labels since "Skin" section title already names them.
+// one flat list, theme skins first — section title already names them
 export const ALL_SKIN_IDS = [...THEME_SKIN_IDS, ...ADVANCED_SKIN_IDS];
 
 export function isSkinId(value: unknown): value is SkinId {
   return typeof value === "string" && value in SKIN_META_BY_ID;
 }
 
-// Blank slate: Refined is selected and no visitor edits are stored; controls read the skin's complete live tokens from the DOM.
+// no stored edits — controls read skin's live tokens straight from DOM
 export const DEFAULT_THEME: ThemeState = {
   skin: DEFAULT_SKIN_ID,
   customThemeId: null,
@@ -28,12 +27,10 @@ export const DEFAULT_THEME: ThemeState = {
   textFixes: {},
 };
 
-// Docs-only persistence: keeps visitor's tweaked theme across reloads, not shipped in registry — editor doesn't reset to Refined on every page load while exploring.
-// Keyed from theme.ts so pre-paint init script reads same slot.
-// Init script only touches `skin`/`reduceMotion`, which both stored shapes carry at top level.
+// Docs-only, keyed from theme.ts so pre-paint init script reads same slot; that script touches only `skin` and `reduceMotion`, which every stored shape carries at top level.
 const STORAGE_KEY = THEME_EDITOR_STORAGE_KEY;
 
-// Accept only a { "--token": "value" } shape; anything else (legacy scalar knobs, garbage) → {}.
+// anything else, legacy scalar knobs included, collapses to {}
 function readTokenMap(value: unknown): TokenValues {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return {};
   const out: TokenValues = {};
@@ -51,9 +48,9 @@ export function loadStored(storage: Pick<Storage, "getItem"> = localStorage): Th
   try {
     const raw = storage.getItem(STORAGE_KEY) ?? storage.getItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
     if (!raw) return null;
-    // JSON.parse is typed `any`; annotate the binding to narrow it without an assertion.
+    // JSON.parse is typed `any` — annotated rather than asserted
     const stored: Record<string, unknown> = JSON.parse(raw);
-    // Legacy payloads (scalar-knob editor) stored `overrides` as ARRAY of knob keys + per-knob fields (primary/radius/…); those don't map 1:1 onto per-token overrides, so keep only skin/motion/textFixes.
+    // legacy scalar-knob payload does not map 1:1 onto per-token overrides, so only skin, motion, and textFixes survive
     const isLegacy = Array.isArray(stored.overrides) || typeof stored.primary === "string";
     return {
       ...DEFAULT_THEME,

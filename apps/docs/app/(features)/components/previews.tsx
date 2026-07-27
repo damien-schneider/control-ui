@@ -19,7 +19,7 @@ export function Preview({ componentId, integration }: { componentId: ComponentId
   ) : null;
 }
 
-// Usage-version preview: resolves the picked version's own lazy example inside a component's versions family.
+// Usage-version preview: resolves picked version's own lazy example inside a component's versions family.
 export function ComponentVersionPreview({
   componentId,
   versionId,

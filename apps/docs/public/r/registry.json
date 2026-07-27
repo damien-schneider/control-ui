@@ -2356,7 +2356,7 @@
       "description": "Assistant markdown output rendered to prose, with a header and copy-source action.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/code.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/markdown.json"
       ],

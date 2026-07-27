@@ -21,7 +21,7 @@ export function EnvironmentVariablesExample() {
         onSubmit={({ variables }) => setSaved(variables)}
       />
       {saved ? (
-        <div className="mt-3 rounded-[var(--radius-lg)] border bg-card px-3 py-2 text-meta text-muted-foreground shadow-sm">
+        <div className="mt-3 rounded-[var(--radius-lg)] border bg-card px-3 py-2 text-caption text-muted-foreground shadow-sm">
           {Object.keys(saved).length} variables ready for submit
         </div>
       ) : null}

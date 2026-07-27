@@ -16,9 +16,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
 
-// Refined skin slot, 100% Base UI: SHARED floating surface — every item has Trigger+Content, but one Portal→Positioner→Popup→Viewport MORPHS between active item's content (width/height + activation-direction).
-// Triggers share quiet Button look + --radius-control; Viewport is popover surface (--radius-popover, ring-border, bg-popover, shadow-pop) matching DropdownMenu/Select.
-// Motion token-driven (--duration-base/--ease-emphasized) — Reduce-motion kill-switch flattens morph too.
+// Every item has its own Trigger and Content, but single viewport morphs between them rather than one popup per item.
 
 type RefinedLinkProps = NavigationMenuLinkProps & Pick<ComponentProps<typeof NavigationMenuPrimitive.Link>, "render">;
 
@@ -88,7 +86,7 @@ export function NavigationMenuContent({ className, children, ...props }: Navigat
       data-control-ui="navigation-menu"
       data-slot="content"
       className={cn(
-        // Panel moves into shared Viewport when active; fades/slides per travel direction (data-activation-direction).
+        // panel moves into shared viewport when active, sliding per data-activation-direction
         "h-full w-full p-[var(--popover-padding)] transition-[opacity,translate] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[starting-style]:data-[activation-direction=left]:-translate-x-3 data-[starting-style]:data-[activation-direction=right]:translate-x-3 data-[ending-style]:data-[activation-direction=left]:translate-x-3 data-[ending-style]:data-[activation-direction=right]:-translate-x-3",
         skinSlot("navigation-menu", "content", {}),
         className,

@@ -5,11 +5,8 @@ const root = process.cwd();
 const checkOnly = process.argv.includes("--check");
 const watchMode = process.argv.includes("--watch");
 
-// ONE installed fixture — this is the WYSIWYG guarantee: every preview renders the exact files an
-// installer would own.
-//
-// - Control UI → components/control-ui/* : verbatim union of the files installed by flat `/r/<item>.json` payloads. The docs
-//             alias @/components/control-ui/* points here, so previews render the real thing.
+// components/control-ui/* is the verbatim union of the files a `/r/<item>.json` payload installs, and the docs alias points at it,
+// so every preview renders exactly what an installer would own.
 const CONTROL_UI = {
   source: "control-ui",
   registryRoot: path.join(root, "registry", "control-ui"),
@@ -19,9 +16,7 @@ const fixtures = [CONTROL_UI];
 const watchRoots = ["src/registry", "registry/control-ui"];
 const watchPollIntervalMs = 500;
 
-// User-owned targets: the registry ships a default, but after install the file belongs to the
-// consumer (docs included — its copy carries the gallery's dynamic skin config). Sync seeds them
-// when missing and never claws them back, mirroring how a real app keeps its customized copy.
+// The registry ships a default, but after install the file belongs to the consumer — seeded when missing, never clawed back.
 const userOwnedTargets = new Set(["components/control-ui/skin.config.tsx"]);
 
 function manifestPaths(registryRoot) {
@@ -74,8 +69,6 @@ function collectFixtureManifest(name, visiting, manifests, filesByTarget) {
   collectManifestFiles(manifest, filesByTarget);
 }
 
-// Every source-path → target-path mapping the fixture must materialise: a plain manifest → fixture
-// copy.
 function fixtureFiles(fixture) {
   const filesByTarget = new Map();
   const manifests = new Map();
@@ -161,8 +154,7 @@ function syncFixture(fixture, written, outOfSync) {
   removeStaleFixtureFiles(fixture, expectedTargets, written, outOfSync);
 }
 
-// One pass over every mapping. In --check mode it only records drift; otherwise it writes the
-// changed targets and returns which ones were rewritten (so --watch can log them).
+// --check records drift instead of writing; otherwise it returns the targets it rewrote, so --watch can log them
 function syncOnce() {
   const written = [];
   const outOfSync = [];
@@ -197,7 +189,7 @@ function watchSignature() {
 }
 
 if (watchMode) {
-  // Polling avoids recursive fs.watch descriptor exhaustion while still catching new files.
+  // polling, because recursive fs.watch exhausts descriptors here
   const initial = syncOnce();
   console.log(`Installed fixture synced from the Control UI registry manifests (watching ${watchRoots.join(", ")}).`);
   if (initial.written.length > 0) console.log(`  synced: ${initial.written.join(", ")}`);
@@ -215,7 +207,6 @@ if (watchMode) {
       console.error(`Fixture sync skipped (transient): ${error.message}`);
     }
   }, watchPollIntervalMs);
-  // Keep the process alive until the dev task is killed.
 } else {
   const { outOfSync } = syncOnce();
 

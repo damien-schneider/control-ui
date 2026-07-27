@@ -4,8 +4,8 @@ import { useState } from "react";
 import type { DateRange } from "react-day-picker";
 import { Calendar } from "@/components/control-ui/ui/calendar";
 
-// Calendar has no frame of its own (sits in a Popover/Card); wrapped here in a --radius-panel bordered
-// surface. Day cells share --radius-control with the rest of the control family so it matches under any skin.
+// Calendar has no frame of its own (sits in Popover/Card); wrapped here in a --radius-panel bordered
+// surface. Day cells share --radius-control with rest of control family so it matches under any skin.
 export function PrimitiveCalendarExample() {
   const [date, setDate] = useState<Date | undefined>(new Date(2026, 6, 6));
   const [range, setRange] = useState<DateRange | undefined>({ from: new Date(2026, 6, 9), to: new Date(2026, 6, 15) });

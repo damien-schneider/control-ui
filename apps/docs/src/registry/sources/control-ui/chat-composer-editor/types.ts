@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/contracts";
 
-// Runtime handed to every extension: live-view getter, per-transaction subscription (overlays mirror caret/doc state), keydown pre-handler registry (popups swallow arrows/Enter/Esc); stable for editor lifetime.
+// stable for editor's lifetime, so extension never closes over stale view
 export type ChatComposerEditorApi = {
   getView: () => EditorView | null;
   subscribe: (listener: () => void) => () => void;
@@ -14,9 +14,9 @@ export type ChatComposerEditorApi = {
 
 export type ChatComposerEditorOverlayProps = { editor: ChatComposerEditorApi };
 
-// Composable unit of editor behavior; all fields optional — nodes, plugins, keymap, submitPayload extras, Overlay (caret-anchored popup). Mentions are just one such extension.
+// every field optional — mentions are one extension among possible others
 export type ChatComposerEditorExtension = {
-  // Stable unique id (used as overlay's React key); convention: feature name, e.g. "mention".
+  // doubles as overlay's React key, so it must be stable and unique
   name: string;
   nodes?: Record<string, NodeSpec>;
   plugins?: (schema: Schema, editor: ChatComposerEditorApi) => Plugin[];
@@ -25,7 +25,6 @@ export type ChatComposerEditorExtension = {
   Overlay?: (props: ChatComposerEditorOverlayProps) => ReactNode;
 };
 
-// Props for base rich editor (ProseMirror), composes inside <ChatComposer>; plain <ChatComposerTextarea> still works without it. extensions opts into rich behavior, omit for plain composer.
 export type ChatComposerEditorProps = {
   className?: string;
   placeholder?: string;

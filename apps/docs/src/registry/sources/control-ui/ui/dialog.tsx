@@ -8,7 +8,6 @@ import { skinAdornment, skinEffects, skinId, skinSlot } from "@/components/contr
 import { surfaceEnterExitMotionClasses } from "@/components/control-ui/surface-variants";
 import { Button } from "@/components/control-ui/ui/button";
 
-// Panel uses --radius-panel + shadow-modal, tracks theme (square+flat under square DA, soft+floating under default).
 export function Dialog(props: DialogProps) {
   return <DialogPrimitive.Root {...props} />;
 }
@@ -51,7 +50,7 @@ export function DialogClose({ className, children, variant = "surface", size = "
 export function DialogContent({ className, children, showCloseButton = true, ...props }: DialogContentProps) {
   return (
     <DialogPrimitive.Portal>
-      {/* Portals land outside container-scoped skin root; backdrop/popup re-assert token scope on themselves. */}
+      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <DialogPrimitive.Backdrop
         data-skin={skinId()}
         data-effects={skinEffects()}

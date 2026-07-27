@@ -4,7 +4,7 @@ import { createCollection, localStorageCollectionOptions } from "@tanstack/react
 import { useSyncExternalStore } from "react";
 import type { IntegrationId, SetupPreferenceUpdate } from "@/app/(features)/model/types";
 
-// Older payloads carried a component-source axis (`source`, before that `skin`/`adapter`); source switch is gone (one library ships), migration keeps only integration.
+// Older payloads carried component-source axis (`source`, before that `skin`/`adapter`); source switch is gone (one library ships), migration keeps only integration.
 export type LegacyDocsSetupPreference = DocsSetupPreference & { skin?: string; source?: string };
 
 export type DocsSetupPreference = {

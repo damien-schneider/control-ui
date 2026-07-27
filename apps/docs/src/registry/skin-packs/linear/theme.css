@@ -1,9 +1,4 @@
-/*
- * ADVANCED skin (tokens + skin.css material + skin.config slots) — a reading of Linear's product UI:
- * indigo brand on a near-neutral cool ramp, 13px chrome, 4px radius knob, hairline borders instead of
- * elevation, and floating surfaces that are the ONLY things allowed a real shadow.
- * Scoped under [data-skin="linear"] and complete in both modes; shared @theme bindings remain in core.
- */
+/* Hairline borders instead of elevation; floating surfaces are the only things allowed a real shadow. */
 
 [data-skin="linear"] {
   /* Inter, self-hosted by the app shell (next/font fills --font-inter); host without it falls to the system stack. */
@@ -17,7 +12,6 @@
   --text-label: 0.8125rem; /* 13px — sm controls, nav rows, tooltips */
   --text-body: 0.8125rem; /* 13px — THE workhorse */
   --text-body-lg: 0.9375rem; /* 15px */
-  --text-meta: 0.6875rem; /* 11px — label pills */
 
   /* Headings stay tight and semibold; no 700 anywhere (Linear tops out at semibold). */
   --text-heading-4: 0.875rem;
@@ -66,9 +60,7 @@
 
   /* Popup rows: a whisper of ink, no brand tint (Linear highlights rows, it doesn't color them).
      Derived from --foreground so the dark block inherits the same recipe with no restatement. */
-  --popup-item-foreground: var(--foreground);
   --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.05);
-  --popup-item-disabled-opacity: 0.4;
 
   /* Surfaces are opaque: no glass anywhere. The modal scrim is the only dim. */
   --popover-opacity: 1;
@@ -98,18 +90,12 @@
   --radius-panel: calc(var(--radius) * 3); /* 12px — dialogs, code, the content sheet */
   --radius-scene: calc(var(--radius) * 3.5); /* 14px */
   --corner-shape: round;
-  --corner-shape-control: var(--corner-shape);
-  --corner-shape-popover: var(--corner-shape);
-  --corner-shape-panel: var(--corner-shape);
 
   /* Concentric floating-list geometry is authored here so the pack owns the exact 4px-derived ratios. */
   --popover-padding: 0.25rem;
   /* Rows carry the SAME 6px corner as controls (Linear has one row corner everywhere: menus, nav,
      tree, and the sliding selection pill, which the library shapes from this token). */
   --radius-popup-item: var(--radius-control);
-  --nest-safe: 1px;
-  --nest-corner-ratio: 3.41421356;
-  --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
   --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
 
   --padding-x: 0.75rem;
@@ -119,7 +105,6 @@
   --control-h: 2rem;
   --control-h-xs: round(var(--control-h) * 0.78, 1px);
   --control-h-sm: round(var(--control-h) * 0.89, 1px);
-  --control-h-md: var(--control-h);
   --control-h-lg: round(var(--control-h) * 1.11, 1px);
 
   /* Motion is a snap, not a glide — Linear's whole feel rests on this. */
@@ -161,13 +146,6 @@
   --badge-pink-foreground: var(--color-pink-800);
   --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
   --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --font-body: var(--font-sans);
-  --font-display: var(--font-sans);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.6);
   --corner-radius-fit: 0.5;
 }
 

@@ -30,9 +30,8 @@ export type EnvironmentVariablesSubmitPayload<TRow extends EnvironmentVariableRo
 };
 
 /**
- * What the render parts may touch. React context cannot carry Root's TRow, so the controller is projected onto
- * its row-agnostic surface: the row-typed setters drop out and the rest only ever hands rows back. Every
- * useEnvironmentVariables controller then satisfies it structurally, while TRow stays exact on Root and onSubmit.
+ * React context cannot carry Root's TRow, so controller is projected onto row-agnostic surface here.
+ * TRow stays exact on Root and onSubmit.
  */
 type EnvironmentVariablesRenderController = Omit<EnvironmentVariablesController, "setRows" | "resetRows" | "appendRow"> & {
   resetRows: () => void;
@@ -229,7 +228,7 @@ export function EnvironmentVariablesHeader({ title, description, className, chil
   return (
     <div data-control-ui="environment-variables" data-slot="header" className={cn("flex flex-col gap-1", className)} {...props}>
       {title ? <div className="text-label font-semibold text-foreground">{title}</div> : null}
-      {description ? <div className="max-w-2xl text-meta text-muted-foreground">{description}</div> : null}
+      {description ? <div className="max-w-2xl text-caption text-muted-foreground">{description}</div> : null}
     </div>
   );
 }
@@ -249,7 +248,7 @@ export function EnvironmentVariablesToolbar({ className, children, ...props }: E
     >
       {children ?? (
         <>
-          <p className="min-w-0 flex-1 text-meta text-muted-foreground">
+          <p className="min-w-0 flex-1 text-caption text-muted-foreground">
             Paste one or more <code className="font-mono text-foreground">KEY=value</code> lines directly into any field.
           </p>
           <EnvironmentVariablesUploadButton />
@@ -323,7 +322,7 @@ export function EnvironmentVariablesRows({ rowErrors, className, children, ...pr
           <div
             aria-hidden="true"
             className={cn(
-              "hidden min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] gap-2 px-1 pb-1 text-meta font-medium text-muted-foreground sm:grid",
+              "hidden min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] gap-2 px-1 pb-1 text-caption font-medium text-muted-foreground sm:grid",
               readOnly && "grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]",
             )}
           >
@@ -385,7 +384,7 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
       {...props}
     >
       <div className="flex min-w-0 flex-col gap-1.5">
-        <label htmlFor={keyInputId} className="text-meta font-medium text-muted-foreground sm:sr-only">
+        <label htmlFor={keyInputId} className="text-caption font-medium text-muted-foreground sm:sr-only">
           {keyLabel}
         </label>
         <Input
@@ -395,15 +394,15 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
           placeholder={keyPlaceholder}
           disabled={isDisabled}
           aria-invalid={Boolean(keyError)}
-          className={cn("font-mono text-meta", keyError && "ring-2 ring-destructive/70")}
+          className={cn("font-mono text-caption", keyError && "ring-2 ring-destructive/70")}
           onChange={(event) => editor.updateRow(index, { key: event.target.value })}
           onPaste={handlePaste}
         />
-        {keyError ? <p className="text-meta text-destructive-text">{keyError}</p> : null}
+        {keyError ? <p className="text-caption text-destructive-text">{keyError}</p> : null}
       </div>
 
       <div className="flex min-w-0 flex-col gap-1.5">
-        <label htmlFor={valueInputId} className="text-meta font-medium text-muted-foreground sm:sr-only">
+        <label htmlFor={valueInputId} className="text-caption font-medium text-muted-foreground sm:sr-only">
           {valueLabel}
         </label>
         <InputGroup size="sm" className={cn(valueError && "ring-2 ring-destructive/70")}>
@@ -414,7 +413,7 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
             disabled={isDisabled}
             aria-invalid={Boolean(valueError)}
             type={editor.isValueRevealed(index) ? "text" : "password"}
-            className="font-mono text-meta"
+            className="font-mono text-caption"
             onChange={(event) => editor.updateRow(index, { value: event.target.value })}
             onPaste={handlePaste}
           />
@@ -437,7 +436,7 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
             </Button>
           </InputGroupAddon>
         </InputGroup>
-        {valueError ? <p className="text-meta text-destructive-text">{valueError}</p> : null}
+        {valueError ? <p className="text-caption text-destructive-text">{valueError}</p> : null}
       </div>
 
       {!readOnly ? (
@@ -577,7 +576,7 @@ export function EnvironmentVariablesMessage({ error, className, children, ...pro
       data-control-ui="environment-variables"
       data-slot="message"
       className={cn(
-        "flex items-start gap-2 border-y border-destructive/40 bg-destructive/5 px-3 py-2 text-meta text-destructive-text",
+        "flex items-start gap-2 border-y border-destructive/40 bg-destructive/5 px-3 py-2 text-caption text-destructive-text",
         className,
       )}
       {...props}
@@ -628,7 +627,7 @@ export function EnvironmentVariablesReadOnlyList({
         (filledRows.length > 0 ? (
           filledRows.map((row) => <EnvironmentVariablesReadOnlyItem key={row.key} name={row.key} value={row.value} />)
         ) : (
-          <div className="px-3 py-4 text-center text-meta text-muted-foreground">{emptyMessage}</div>
+          <div className="px-3 py-4 text-center text-caption text-muted-foreground">{emptyMessage}</div>
         ))}
     </div>
   );
@@ -651,7 +650,7 @@ export function EnvironmentVariablesReadOnlyItem({
     <div
       data-control-ui="environment-variables"
       data-slot="readonly-item"
-      className={cn("grid min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3 px-1 py-2 text-meta", className)}
+      className={cn("grid min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3 px-1 py-2 text-caption", className)}
       {...props}
     >
       <span className="min-w-0 truncate font-mono font-medium text-foreground">{name}</span>

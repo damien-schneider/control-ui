@@ -1780,7 +1780,7 @@ export const registryMetadata = {
   },
   "markdown-block": {
     dependencies: [],
-    registryDependencies: ["button", "core", "markdown"],
+    registryDependencies: ["code", "core", "markdown"],
     sourceManifestPath: "registry/control-ui/markdown-block.json",
     files: [
       {

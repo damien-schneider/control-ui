@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Orientation drives axis directly (no data-attribute reliance) so it works under any DA.
+// axis comes straight from prop, never data-attribute, so no skin can break it
 export function Separator({ className, orientation = "horizontal", ...props }: ComponentProps<typeof SeparatorPrimitive>) {
   return (
     <SeparatorPrimitive

@@ -19,7 +19,7 @@ export function ChatLayout({ children, className, ...props }: ChatLayoutProps) {
       data-slot="root"
       data-surface="panel"
       className={cn(
-        // Elevation "raised": shadow-md, one tier above sidebar's shadow-sm; border carries definition when --shadow-size flattens to 0 (flat DA).
+        // border carries definition when flat skin collapses --shadow-size to 0
         "relative mx-auto flex min-h-[640px] w-full max-w-3xl flex-col overflow-hidden rounded-scene border bg-background shadow-md",
         skinSlot("chat-layout", "root", {}),
         className,
@@ -96,7 +96,7 @@ export function ChatThought({
           type="button"
           data-control-ui="chat-thought"
           data-slot="trigger"
-          className="inline-flex items-center gap-1 rounded-[var(--radius-control)] px-1.5 py-1 text-meta font-medium text-muted-foreground transition hover:bg-foreground/4 hover:text-foreground [&[data-state=open]>span:last-child]:rotate-90"
+          className="inline-flex items-center gap-1 rounded-[var(--radius-control)] px-1.5 py-1 text-caption font-medium text-muted-foreground transition hover:bg-foreground/4 hover:text-foreground [&[data-state=open]>span:last-child]:rotate-90"
         >
           {children}
           <span
@@ -115,7 +115,7 @@ export function ChatThought({
             <div
               data-control-ui="chat-thought"
               data-slot="details"
-              className={cn("min-w-0 px-1 pb-2 pt-1 text-meta leading-5 text-muted-foreground", skinSlot("chat-thought", "details", {}))}
+              className={cn("min-w-0 px-1 pb-2 pt-1 text-caption leading-5 text-muted-foreground", skinSlot("chat-thought", "details", {}))}
             >
               {skinAdornment("chat-thought", "details", {})}
               {details}
@@ -135,13 +135,17 @@ export function ChatThought({
       className={cn("my-0 mb-2 self-start", skinSlot("chat-thought", "root", {}), className)}
       {...props}
     >
-      <ActivityTrigger data-control-ui="chat-thought" data-slot="trigger" className="min-h-0 w-fit gap-1 px-1.5 py-1 text-meta font-medium">
-        <ActivityTitle className="text-meta font-medium">{children}</ActivityTitle>
+      <ActivityTrigger
+        data-control-ui="chat-thought"
+        data-slot="trigger"
+        className="min-h-0 w-fit gap-1 px-1.5 py-1 text-caption font-medium"
+      >
+        <ActivityTitle className="text-caption font-medium">{children}</ActivityTitle>
       </ActivityTrigger>
       <ActivityContent
         data-control-ui="chat-thought"
         data-slot="details"
-        className={cn("text-meta leading-5 text-muted-foreground", skinSlot("chat-thought", "details", {}))}
+        className={cn("text-caption leading-5 text-muted-foreground", skinSlot("chat-thought", "details", {}))}
       >
         {skinAdornment("chat-thought", "details", {})}
         {details}

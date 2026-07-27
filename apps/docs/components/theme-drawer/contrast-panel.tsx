@@ -18,7 +18,7 @@ import {
 import { VarTag } from "./controls";
 import type { ThemeState } from "./types";
 
-// Status semantics not theme — fixed pass/fail hues (light/dark aware); AA/AAA pill: green=cleared, red=failed, muted=unreadable.
+// fixed hues on purpose: pass/fail is status, not theme
 function LevelBadge({ level, state }: { level: WcagLevel; state: "pass" | "fail" | "unknown" }) {
   return (
     <span
@@ -35,7 +35,6 @@ function LevelBadge({ level, state }: { level: WcagLevel; state: "pass" | "fail"
   );
 }
 
-// Per-row fix affordance: "→ AA" (prominent) below AA; "→ AAA" (quiet upgrade) when AA clears but not AAA.
 function FixChip({ level, onClick }: { level: WcagLevel; onClick: () => void }) {
   return (
     <button
@@ -60,9 +59,7 @@ function levelState(levels: WcagLevels, ratio: number | null, key: WcagLevel): "
   return levels[key] ? "pass" : "fail";
 }
 
-// Best ratio each row's fix can reach on its OWN surface, so a chip is only offered for a target it can actually hit (see offeredFixLevel).
-// One rule for every row: how far the text token can be driven (lighter/darker) against its live background.
-// Why AAA appears on near-black surface but not mid-tone — no dead buttons, no per-skin special-casing.
+// chip is only offered for target row can hit, which is why AAA shows on near-black surface but not mid-tone one.
 function computeReach(rows: ContrastRow[]): Record<string, number> {
   const reach: Record<string, number> = {};
   for (const r of rows) {
@@ -73,14 +70,13 @@ function computeReach(rows: ContrastRow[]): Record<string, number> {
   return reach;
 }
 
-// Live WCAG readout + single abstract fix; reads resolved tokens off <html> (readVarRgb) so it's truthful for every skin/mode.
-// Every row fixed the SAME way: nudge that pair's text token lighter/darker until it clears target.
-// Override written to textFixes, which writeVars applies last so fix lands on any skin/mode; no knob-specific logic.
+// Reads resolved tokens off <html>, so readout is truthful for every skin and mode.
+// Every row is fixed same way and override lands in textFixes, which writeVars applies last.
 export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: Record<string, string>) => void }) {
   const [rows, setRows] = useState<ContrastRow[]>([]);
   const reach = computeReach(rows);
 
-  // `t` drives writeVars synchronously before re-render, so vars read here are fresh; observer covers `.dark` toggle (writeVars also reacts to it).
+  // `t` drives writeVars synchronously before re-render, so vars read here are fresh
   // biome-ignore lint/correctness/useExhaustiveDependencies: `t` is a deliberate recompute trigger.
   useEffect(() => {
     const recompute = () => setRows(analyzeContrast(readVarRgb));
@@ -93,7 +89,6 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
     };
   }, [t]);
 
-  // The one fix for any row: reads live text+background, searches text token lightness to clear target, records as per-token override.
   function applyFix(row: ContrastRow, level: WcagLevel) {
     const fg = readVarRgb(row.fg);
     const bg = readVarRgb(row.bg);

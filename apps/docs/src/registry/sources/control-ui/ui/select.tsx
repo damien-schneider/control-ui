@@ -15,12 +15,10 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
-// Trigger shares --radius-control and controlSize scale with Button/DropdownMenu trigger — same shape and height.
-
 type RefinedSelectTriggerProps = SelectTriggerProps & Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render">;
 
-// Base UI's own root is generic (`SelectRoot<Value>`) and reports null once the selection is cleared;
-// naming TValue here is what keeps a caller's literal union alive, and null never reaches a declared value.
+// Base UI's own root is generic (`SelectRoot<Value>`) and reports null once selection is cleared;
+// naming TValue here is what keeps caller's literal union alive, and null never reaches declared value.
 export function Select<TValue extends string = string>({ children, onValueChange, ...props }: SelectProps<TValue>) {
   return (
     <SelectPrimitive.Root<TValue>
@@ -91,7 +89,7 @@ export function SelectValue({ children, ...props }: SelectValueProps) {
 export function SelectContent({ className, children, ...props }: SelectContentProps) {
   return (
     <SelectPrimitive.Portal>
-      {/* Portals land outside container-scoped skin root; positioner re-asserts token scope itself. */}
+      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <SelectPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}

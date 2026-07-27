@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 import { AudioVisualizer } from "@/components/control-ui/audio-visualizer";
 
-// Synthetic speech-like level stream: layered sines with a slow envelope, so the preview animates
-// deterministically without microphone permission. In an app the window comes from real audio —
-// see the usage tab for the AnalyserNode mapping.
+// Synthetic speech-like level stream: layered sines with slow envelope, so preview animates
+// deterministically without microphone permission. In app window comes from real audio —
+// see usage tab for AnalyserNode mapping.
 const WINDOW_SIZE = 48;
 const TICK_MS = 80;
 

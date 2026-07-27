@@ -1,9 +1,9 @@
 import { type CatalogSourceFile, sourceFile } from "./shared";
 
-// SKIN axis (theme editor), site-wide over Control UI source. Every pack has the same three-file shape;
+// SKIN axis (theme editor), site-wide over Control UI source. Every pack has same three-file shape;
 // kind=theme primarily changes tokens, while kind=advanced also uses slots/adornments/ControlUiSkin fields.
-// +skin.css, may DOCUMENT a root-mounted extension (e.g. liquid-metal WebGL, mounted by app, never imported by components/skin.config); indicator-pill behavior
-// is NOT an extension (lazy-imported by components). docsOnly: demoed only. packManifestPath: installable skin.json. paths: pack files for code-viewer.
+// +skin.css, may DOCUMENT root-mounted extension (e.g. liquid-metal WebGL, mounted by app, never imported by components/skin.config); indicator-pill behavior
+// is NOT extension (lazy-imported by components). docsOnly: demoed only. packManifestPath: installable skin.json. paths: pack files for code-viewer.
 export type CatalogSkinKind = "theme" | "advanced";
 export type CatalogSkinMeta = {
   id: string;
@@ -17,7 +17,7 @@ export type CatalogSkinMeta = {
 };
 
 // Three files every pack ships, wired for code-viewer; `label` = per-file note (theme.css=contract tokens, skin.css=pack vars+@utility, skin.config=slots+adornments+motion).
-// `slot` keys the tab so theme-stub and advanced pack read alike. `extra` appends pack-specific files (liquid-metal adds root-mounted WebGL runtime).
+// `slot` keys tab so theme-stub and advanced pack read alike. `extra` appends pack-specific files (liquid-metal adds root-mounted WebGL runtime).
 function skinPackFiles(id: string, extra: readonly CatalogSourceFile[] = []): readonly CatalogSourceFile[] {
   const base = `src/registry/skin-packs/${id}`;
   return [
@@ -120,7 +120,7 @@ export const skinMetas = [
   },
 ] as const satisfies readonly CatalogSkinMeta[];
 
-// /skins is a catalog page, not a pack. Its identity lives here so navigation, visible copy, SEO, and agent surfaces share it.
+// /skins is catalog page, not pack. Its identity lives here so navigation, visible copy, SEO, and agent surfaces share it.
 export const skinsOverview = {
   id: "skins",
   label: "Skinning Control UI",

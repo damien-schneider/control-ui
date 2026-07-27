@@ -29,7 +29,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Activity](http://127.0.0.1:3000/ai/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
 - [Context](http://127.0.0.1:3000/ai/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
 - [InlineCitation](http://127.0.0.1:3000/ai/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation. Status: beta.
-- [SourceBadge](http://127.0.0.1:3000/ai/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. Status: beta.
+- [SourceBadge](http://127.0.0.1:3000/ai/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
 - [ActionBar](http://127.0.0.1:3000/ai/action-bar): Reusable hover actions for message and response controls.
 - [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns.
 - [MarkdownBlock](http://127.0.0.1:3000/ai/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.

@@ -7,9 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingContentClasses } from "@/components/control-ui/surface-variants";
 
-// Refined skin slot, 100% Base UI PreviewCard: hover/focus-triggered floating card.
-// Shares popover token set (--radius-popover, --popover-padding, shadow-pop) w/ menu/select/popover; re-asserts skin scope on portal.
-// shadcn-shaped facade (Root/Trigger/Content) so shadcn HoverCard snippets compose verbatim.
+// Base UI PreviewCard behind shadcn-shaped facade, so shadcn HoverCard snippets compose verbatim.
 export function HoverCard(props: HoverCardProps) {
   return <PreviewCardPrimitive.Root {...props} />;
 }
@@ -35,7 +33,7 @@ export function HoverCardContent({
 }: HoverCardContentProps) {
   return (
     <PreviewCardPrimitive.Portal>
-      {/* Portal escapes token-scoped ancestor — positioner re-asserts ACTIVE skin's scope (theme.css mirrors). */}
+      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <PreviewCardPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}

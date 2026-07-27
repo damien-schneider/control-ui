@@ -321,7 +321,7 @@ function CustomThemeLibrary({
   );
 }
 
-// Small transient-copy button for the active skin's pack install command.
+// Small transient-copy button for active skin's pack install command.
 function CommandCopyButton({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
 

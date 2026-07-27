@@ -6,13 +6,11 @@ import type { DrawerContentPadding, DrawerContentSurface, DrawerContentVariant }
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot. 100% Base UI Drawer — native swipe gestures/snap points, no vaul.
-// Panel tracks pointer via --drawer-swipe-movement-* vars; tempo from theme.
-// Panel+backdrop re-assert skin scope on portal, like Sheet/Dialog.
+// Base UI Drawer throughout — native swipe gestures and snap points, no vaul.
 
 type DrawerSide = "bottom" | "top" | "right" | "left";
 
-// swipeDirection = drag axis that dismisses; same edge it's pinned to.
+// swipeDirection is dismiss axis — always edge drawer is pinned to
 const swipeFor: Record<DrawerSide, ComponentProps<typeof DrawerPrimitive.Root>["swipeDirection"]> = {
   bottom: "down",
   top: "up",
@@ -20,10 +18,8 @@ const swipeFor: Record<DrawerSide, ComponentProps<typeof DrawerPrimitive.Root>["
   left: "left",
 };
 
-// Per-edge viewport placement, popup shape, closed-state slide transform.
-// Literal class strings — Tailwind's scanner can't see interpolated classes.
-// floating pads the viewport (--drawer-float-gap, safe-area aware on the pinned edge) so every corner
-// rounds; its closed transform adds that gap back or the panel keeps a sliver on screen.
+// literal class strings — Tailwind's scanner cannot see interpolated ones
+// floating pads viewport so every corner rounds, and its closed transform must add that gap back or panel keeps sliver on screen
 const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: string; popup: string }>> = {
   edge: {
     bottom: {
@@ -71,14 +67,13 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
   },
 };
 
-// The grabbed edge's inset belongs to the handle, not to the popup padding: consumers pass
-// padding="none" or gap-0 and the pill would otherwise sit flush against the rounded edge.
+// inset belongs to handle, not popup padding — under padding="none" pill would otherwise sit flush against rounded edge
 const handleGap: Record<"bottom" | "top", string> = {
   bottom: "mt-2.5 mb-1",
   top: "order-last mt-1 mb-2.5",
 };
 
-// Skips the grabbed edge, whose inset handleGap already owns.
+// skips grabbed edge, whose inset handleGap already owns
 const contentPadding: Record<DrawerSide, string> = {
   bottom: "pb-4",
   top: "pt-4",
@@ -131,7 +126,7 @@ export function DrawerContent({
   const grabbable = side === "bottom" || side === "top";
   return (
     <DrawerPrimitive.Portal>
-      {/* Portal escapes token-scoped ancestor — backdrop+popup re-assert skin scope. */}
+      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <DrawerPrimitive.Backdrop
         data-skin={skinId()}
         data-effects={skinEffects()}

@@ -3,8 +3,7 @@ import { useMemo, useState } from "react";
 
 import type { DynamicNotificationProps, OpenChangeEventDetails, OpenChangeReason } from "../contracts";
 
-// Hand-built (no Base UI primitive backs the island) but shaped exactly like Base UI's details so
-// callers get the one onOpenChange contract used across every popup-style component (contracts.ts).
+// No Base UI primitive backs island, so details are hand-built to same shape every other popup emits.
 function createOpenChangeEventDetails(reason: OpenChangeReason, event: Event, trigger: Element | undefined): OpenChangeEventDetails {
   let canceled = false;
   let propagationAllowed = false;

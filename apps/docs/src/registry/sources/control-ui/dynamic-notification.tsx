@@ -12,18 +12,12 @@ import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
 /*
- * Dynamic Island-style AI notification: a resident pill that receives a message and morphs into a
- * reply bubble on press. Anatomy is variant-agnostic; `variant` only swaps the island MATERIAL:
- * "surface" rides the popover token set (clean, theme-driven), "glass" is the backdrop-blurred black→glass
- * gradient — CSS fallback always, <DynamicNotificationGlass> upgrades it to the WebGL material —
- * and "liquid" uses an unfiltered CSS fallback while <DynamicNotificationLiquid> rasterizes the
- * scene for WebGL transmission, edge refraction, and highlights.
- * Lifecycle: collapsed → "thinking" (open + loading: intermediate blob, aurora animating while the
- * model answers) → expanded (answer + reply). Morph + text choreography live in
- * dynamic-notification.css (token-driven, kill-switch flattens).
+ * Anatomy is variant-agnostic: `variant` swaps only island material. glass and liquid each paint CSS fallback
+ * that their optional WebGL companion upgrades, so neither leaves a hole when extension is not installed.
+ * Morph and text choreography live in dynamic-notification.css.
  */
 
-/** Per-word stagger index the reply animation reads from CSS. */
+/** Per-word stagger index reply animation reads from CSS. */
 type DynamicNotificationWordStyle = CSSProperties & { "--dn-word-index"?: string };
 
 type DynamicNotificationShellContextValue = Pick<DynamicNotificationController, "open" | "disabled" | "setOpen"> & {
@@ -174,7 +168,6 @@ export function DynamicNotificationIsland({ className, onKeyDown, ...props }: Dy
       onKeyDown={handleKeyDown}
       className={cn(
         "relative isolate overflow-hidden outline-none",
-        // glass/liquid MATERIALS are painted by dynamic-notification.css (fallbacks) + the optional WebGL canvases.
         materialClasses,
         skinSlot("dynamic-notification", "island", { state, variant }),
         className,
@@ -186,7 +179,7 @@ export function DynamicNotificationIsland({ className, onKeyDown, ...props }: Dy
 
 export type DynamicNotificationGlassProps = ComponentProps<"canvas">;
 
-/** WebGL liquid-glass layer for variant="glass"; render nothing else changes — CSS fallback stays underneath. */
+/** Optional upgrade for variant="glass" — CSS fallback stays underneath. */
 export function DynamicNotificationGlass({ className, ...props }: DynamicNotificationGlassProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -211,7 +204,7 @@ export function DynamicNotificationGlass({ className, ...props }: DynamicNotific
 
 export type DynamicNotificationLiquidProps = ComponentProps<"canvas">;
 
-/** WebGL transmits the nearest scene through the surface while keeping distortion concentrated at its edge. */
+/** WebGL transmits nearest scene through surface while keeping distortion concentrated at its edge. */
 export function DynamicNotificationLiquid({ className, ...props }: DynamicNotificationLiquidProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -236,7 +229,6 @@ export function DynamicNotificationLiquid({ className, ...props }: DynamicNotifi
 
 export type DynamicNotificationPillProps = ComponentProps<"button">;
 
-/** Collapsed face; pressing it expands the bubble ("tap to answer"). */
 export function DynamicNotificationPill({ className, children, onClick, ...props }: DynamicNotificationPillProps) {
   const { contentId, disabled, open, setOpen } = useDynamicNotificationShellContext();
 
@@ -251,8 +243,7 @@ export function DynamicNotificationPill({ className, children, onClick, ...props
       type="button"
       aria-expanded={open}
       aria-controls={contentId}
-      // inert (not CSS visibility) gates focus/a11y: it lands with the React commit, so tab order is
-      // correct mid-morph (visibility's discrete transition only flips halfway through).
+      // inert, not CSS visibility: it lands with React commit, so tab order is right mid-morph instead of flipping halfway through
       inert={open}
       data-control-ui="dynamic-notification"
       data-slot="pill"
@@ -273,7 +264,7 @@ export function DynamicNotificationPill({ className, children, onClick, ...props
 
 export type DynamicNotificationIndicatorProps = ComponentProps<"span">;
 
-/** Siri-colored breathing orb marking assistant activity (pure CSS; the css file animates it). */
+/** Breathing orb marking assistant activity; dynamic-notification.css animates it. */
 export function DynamicNotificationIndicator({ className, ...props }: DynamicNotificationIndicatorProps) {
   return (
     <span
@@ -314,7 +305,7 @@ export function DynamicNotificationTitle({ className, ...props }: DynamicNotific
     <div
       data-control-ui="dynamic-notification"
       data-slot="title"
-      className={cn("flex-1 text-meta font-medium tracking-wide opacity-55", skinSlot("dynamic-notification", "title", {}), className)}
+      className={cn("flex-1 text-caption font-medium tracking-wide opacity-55", skinSlot("dynamic-notification", "title", {}), className)}
       {...props}
     />
   );
@@ -382,8 +373,7 @@ export function DynamicNotificationReplyInput({ className, onChange, disabled, .
   const { reply, setReply } = useDynamicNotificationReplyContext();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // Expanding is an explicit "answer the AI" gesture, so focus rides the morph (preventScroll: the
-  // island already sits in view). Waits out the "thinking" phase — content is inert until expanded.
+  // waits out the "thinking" phase — content is inert until expanded, so focus would be dropped
   useEffect(() => {
     if (state !== "expanded") return;
     const frame = requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }));

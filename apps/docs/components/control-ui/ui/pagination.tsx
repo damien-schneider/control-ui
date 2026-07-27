@@ -4,11 +4,10 @@ import type { PaginationLinkProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, plain markup (no Base UI): semantic <nav>/<ul>/<li>; links control-shaped WITHOUT importing Button.
-// Carry --radius-control + focus ring by hand: ghost by default, raised surface when isActive.
+// Links are control-shaped by hand rather than importing Button, so pagination installs alone.
 export function Pagination({ className, ...props }: ComponentProps<"nav">) {
   return (
-    // A <nav> already carries the navigation role; aria-label names this landmark "pagination".
+    // the <nav> already carries role; label names landmark
     <nav
       aria-label="pagination"
       data-control-ui="pagination"
@@ -27,7 +26,6 @@ export function PaginationItem({ className, ...props }: ComponentProps<"li">) {
   return <li data-control-ui="pagination" data-slot="item" className={className} {...props} />;
 }
 
-// Control-shaped page link: ghost when idle, raised surface (bg-card ring) when isActive.
 const paginationLinkChrome =
   "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-control)] px-2.5 text-sm font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/20 aria-disabled:pointer-events-none aria-disabled:opacity-45 [&>svg]:size-4 [&>svg]:shrink-0";
 

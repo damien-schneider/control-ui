@@ -5,7 +5,7 @@ import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Selected controls stay above adjacent focus rings so their shared seams remain visible.
+// selected controls sit above adjacent focus rings, keeping their shared seams visible
 const buttonGroupVariant = cva(
   "inline-flex w-fit items-stretch [&>*]:relative [&>*:focus-within:not([data-active=true])]:z-[1] [&>*[data-active=true]]:z-[2] [&>*[data-active=true]:focus-within]:z-[3]",
   {
@@ -35,7 +35,7 @@ export function ButtonGroup({ orientation = "horizontal", className, ...props }:
   );
 }
 
-// Non-interactive addon label styled to fuse with the group, e.g. a `https://` prefix or unit suffix.
+// non-interactive addon, e.g. a `https://` prefix or unit suffix
 type ButtonGroupTextProps = ComponentProps<"div"> & {
   size?: ControlSize;
 };

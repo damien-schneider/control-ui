@@ -16,7 +16,7 @@ import {
   setChannel,
 } from "./color";
 
-// assert non-null without an `as` cast (the codebase forbids assertions except `as const`)
+// assert non-null without an `as` cast (codebase forbids assertions except `as const`)
 function present<T>(value: T | null): T {
   if (value === null) throw new Error("expected a non-null value");
   return value;
@@ -94,7 +94,7 @@ describe("achromatic hue preservation — the core guarantee", () => {
     const withGreen = setChannel(RED, "g", 128);
     expect(hsvaToRgba(withGreen).g).toBeCloseTo(128, 0);
     const toBlack = setChannel({ h: 42, s: 80, v: 60, a: 1 }, "r", 0);
-    // still chromatic here (g/b non-zero), just checking no throw + valid hsva
+    // still chromatic here (g/b non-zero), checking no throw + valid hsva
     expect(toBlack.a).toBe(1);
   });
 });

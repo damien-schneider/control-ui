@@ -1,8 +1,4 @@
-/*
- * Metal control skin cva can't express + mount points for metal-fx WebGL canvas
- * (liquid-metal-runtime.tsx). Dark rules are base; :not(.dark) overrides for light silver.
- * Unlayered on purpose so it beats layered Control UI recipes; import after Tailwind+theme.
- */
+/* Dark rules are the base and :not(.dark) overrides them. Unlayered on purpose so it beats the layered library recipes — import it after Tailwind and theme. */
 
 @layer base {
   :root[data-skin="liquid-metal"] body {
@@ -135,8 +131,7 @@
   pointer-events: none;
 }
 
-/* Light mode: :not(.dark) overrides outspecify dark base for polished-silver reading;
- * runtime pairs with metal-fx's `light` shader preset. */
+/* Pairs with metal-fx's `light` shader preset. */
 :root:not(.dark)[data-skin="liquid-metal"] [data-control-ui][data-control="true"][data-liquid-metal="active"] {
   --aui-liquid-control-bg: oklch(0.911 0.008 264.5);
   --aui-liquid-control-fill: oklch(0.935 0.006 264.5 / 0.8);

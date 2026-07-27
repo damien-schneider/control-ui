@@ -1,5 +1,5 @@
-// Emits the agent-facing index beside the official shadcn registry catalog.
-// Mirrors the generated registry scripts' --check discipline so `validate` catches drift.
+// Emits agent-facing index beside official shadcn registry catalog.
+// Mirrors generated registry scripts' --check discipline so `validate` catches drift.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { listRegistry } from "@/app/(features)/registry-api/registry-index";

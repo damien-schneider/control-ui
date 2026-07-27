@@ -49,7 +49,7 @@
 - `activity` (Activity) — Shared static and collapsible activity anatomy with bounded, scrollable detail content. — `npx shadcn@latest add http://127.0.0.1:3000/r/activity.json`
 - `context` (Context) **[beta]** — Compact context-window usage with an automatically derived token graph and anchored detail inspector. — `npx shadcn@latest add http://127.0.0.1:3000/r/context.json`
 - `inline-citation` (InlineCitation) **[beta]** — Inline multi-source citation with a keyboard-accessible preview and source navigation. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json`
-- `source-badge` (SourceBadge) **[beta]** — Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json`
+- `source-badge` (SourceBadge) — Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json`
 - `action-bar` (ActionBar) — Reusable hover actions for message and response controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json`
 - `inline-attachment` (InlineAttachment) — Inline file and media previews for chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json`
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`

@@ -11,18 +11,16 @@ import { skinSlot } from "@/components/control-ui/skin";
 const DETECTION_MARGIN = "-80px 0px -20% 0px";
 const indentByDepth = ["pl-3", "pl-5", "pl-7", "pl-9", "pl-11", "pl-14"] as const;
 
-// Row selectors highlight engine resolves in track; state = one moving band, not per-row border that snaps.
+// one moving band rather than per-row border that snaps
 const TOC_ITEM_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"]';
 const TOC_ACTIVE_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"][data-active]';
 
-// Rows only shift own text color; trail/background moved to shared highlight band below so indicator can grow/glide between ranges.
+// rows shift only their own text colour — trail and background live on shared band so it can glide between ranges
 const tableOfContentsItemClass =
   "block py-1.5 text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none motion-reduce:transition-none data-[active]:text-foreground";
 
-// Moving band rests on union of active rows, transitions 4 insets (inline, engine-written) via --duration-* tokens — kill-switch collapses to instant snap free.
-// Each edge = one inset, so growing range's top never drags its bottom (and vice-versa).
-// `trail` = inner bar, `background` = filled band, `both` layers them.
-// ring-0/shadow-none strip the extension's default pill chrome — the ToC band is a flat wash/trail, not a card.
+// one inset per edge, so growing range's top never drags its bottom
+// ring-0/shadow-none strip extension's default pill chrome — this band is flat wash, not card
 const tableOfContentsHighlightVariant = cva("ring-0 shadow-none duration-[var(--duration-base)] ease-[var(--ease-emphasized)]", {
   variants: {
     variant: {
@@ -157,7 +155,7 @@ export function TableOfContents({ items, label = "On this page", variant = "both
       {...props}
     >
       <p className="mb-3 text-xs font-medium text-muted-foreground">{label}</p>
-      {/* `relative isolate` scopes stacking: rail at -z-20, band at -z-10 (above rail, behind text) — nothing leaks onto nav's portals. */}
+      {/* isolates stacking context so rail and band never leak onto nav's portals */}
       <div data-control-ui="table-of-contents" data-slot="track" className="relative isolate">
         <span
           aria-hidden

@@ -31,12 +31,12 @@ describe("audio recorder registry contract", () => {
   });
 
   test("waveform delegates to the AudioVisualizer usage family", () => {
-    // the recorder slot only gates state and stamps its anatomy hook; rendering lives in the installed version
+    // recorder slot only gates state and stamps its anatomy hook; rendering lives in installed version
     expect(COMPONENT).toContain('from "@/components/control-ui/audio-visualizer"');
     expect(COMPONENT).toContain('data-slot="visualizer"');
     expect(COMPONENT).not.toContain("--audio-recorder-level");
     expect(MANIFEST).toContain('"audio-visualizer"');
-    // per-instance seam: the compound context is public so a call site can stand another version's part
+    // per-instance seam: compound context is public so call site can stand another version's part
     expect(COMPONENT).toContain("export function useAudioRecorderContext");
   });
 

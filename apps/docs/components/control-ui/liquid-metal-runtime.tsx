@@ -381,8 +381,8 @@ function syncControls(root: HTMLElement, attachments: Map<HTMLElement, LiquidMet
   setSharedPreset(defaultPreset, activeTheme());
 
   // Attach new controls before detaching stale ones: metal-fx's shared WebGL context tears
-  // down when instance count hits 0 and can't rebuild same-tick. Skin swaps remount the whole
-  // subtree, so attach-before-detach keeps count >0 across the swap.
+  // down when instance count hits 0 and can't rebuild same-tick. Skin swaps remount whole
+  // subtree, so attach-before-detach keeps count >0 across swap.
   for (const scope of root.querySelectorAll<HTMLElement>(skinScopeSelector)) {
     for (const control of scope.querySelectorAll<HTMLElement>(controlSelector)) {
       attachControl(control, attachments);
@@ -405,7 +405,7 @@ export function LiquidMetalSkinRuntime() {
     const root = document.body;
     const attachments = new Map<HTMLElement, LiquidMetalAttachment>();
     let syncRaf = 0;
-    // Body-wide observer only runs while this skin is active (else burns a callback on every
+    // Body-wide observer only runs while this skin is active (else burns callback on every
     // DOM mutation for nothing); documentElement attribute observer below stays always-on and
     // detects (de)activation.
     let domObserver: MutationObserver | null = null;

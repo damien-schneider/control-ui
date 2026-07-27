@@ -6,7 +6,7 @@
   "description": "Assistant markdown output rendered to prose, with a header and copy-source action.",
   "dependencies": [],
   "registryDependencies": [
-    "button",
+    "code",
     "core",
     "markdown"
   ],

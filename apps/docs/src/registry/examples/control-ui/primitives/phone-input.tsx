@@ -52,7 +52,7 @@ export function PrimitivePhoneInputExample() {
       <Button type="submit" variant="solid" size="sm" tone="primary" className="self-start">
         Validate number
       </Button>
-      <p className="min-h-4 text-meta text-muted-foreground" aria-live="polite">
+      <p className="min-h-4 text-caption text-muted-foreground" aria-live="polite">
         {submittedPhone ? `Submitted: ${submittedPhone}` : null}
       </p>
     </Form>

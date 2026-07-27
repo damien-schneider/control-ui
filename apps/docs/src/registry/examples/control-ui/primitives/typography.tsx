@@ -1,6 +1,6 @@
 "use client";
 
-// No <Text> component — the utility goes directly on the semantic tag.
+// No <Text> component — utility goes directly on semantic tag.
 
 export function TypographyTokensExample() {
   return (

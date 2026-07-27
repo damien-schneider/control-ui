@@ -5,9 +5,7 @@ import type { CheckboxGroupProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Layout-only wrapper: flex column flips to row on orientation="horizontal" (visual only, each
-// Checkbox owns its own focus). Pass `allValues` + a select-all Checkbox for the indeterminate state.
-// Import `Checkbox` from ui/checkbox for children; this module does not re-export it.
+// `orientation` is visual only — each Checkbox owns its own focus. Pair `allValues` with select-all Checkbox for indeterminate state.
 export function CheckboxGroup({ className, orientation = "vertical", ...props }: CheckboxGroupProps) {
   return (
     <CheckboxGroupPrimitive

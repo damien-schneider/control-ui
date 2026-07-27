@@ -160,7 +160,7 @@ export function ContextTrigger({
               data-control-ui="context"
               data-slot="trigger-label"
               className={cn(
-                "max-w-0 overflow-hidden opacity-0 transition-[max-width,opacity] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover/context:max-w-32 group-hover/context:opacity-100 group-focus-visible/context:max-w-32 group-focus-visible/context:opacity-100",
+                "max-w-0 overflow-hidden opacity-0 transition-[max-width,opacity] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover/context:max-w-32 group-hover/context:opacity-100 group-focus-visible/context:max-w-32 group-focus-visible/context:opacity-100 group-data-[popup-open]/context:max-w-32 group-data-[popup-open]/context:opacity-100",
                 skinSlot("context", "trigger-label", {}),
               )}
             >
@@ -176,6 +176,7 @@ export function ContextTrigger({
 export type ContextContentProps = ComponentProps<typeof PopoverContent>;
 
 export function ContextContent({
+  "aria-label": ariaLabel,
   side = "top",
   align = "end",
   sideOffset = 8,
@@ -185,9 +186,13 @@ export function ContextContent({
   children,
   ...props
 }: ContextContentProps) {
+  const { modelName } = useContextValue();
+
   return (
     <PopoverContent
       {...props}
+      // default panel carries no title, so popup needs name of its own
+      aria-label={ariaLabel ?? (modelName ? `Context window · ${modelName}` : "Context window")}
       side={side}
       align={align}
       sideOffset={sideOffset}
@@ -197,16 +202,13 @@ export function ContextContent({
     >
       <div data-control-ui="context" data-slot="content" className={cn("overflow-hidden", skinSlot("context", "content", {}))}>
         {children ?? (
-          <>
-            <ContextHeader />
-            <ScrollArea maxHeight="min(36rem, calc(100dvh - 8rem))" lockAxis="x">
-              <div className="grid gap-4 p-4">
-                <ContextSummary />
-                <ContextGraph />
-                <ContextLegend />
-              </div>
-            </ScrollArea>
-          </>
+          <ScrollArea maxHeight="min(36rem, calc(100dvh - 8rem))" lockAxis="x">
+            <div className="grid gap-4 p-4">
+              <ContextSummary />
+              <ContextGraph />
+              <ContextLegend />
+            </div>
+          </ScrollArea>
         )}
       </div>
     </PopoverContent>
@@ -221,7 +223,7 @@ export function ContextHeader({ className, children, ...props }: ContextHeaderPr
       {...props}
       data-control-ui="context"
       data-slot="header"
-      className={cn("flex items-start gap-3 border-b border-border p-4", skinSlot("context", "header", {}), className)}
+      className={cn("flex items-start gap-3 p-4 pb-0", skinSlot("context", "header", {}), className)}
     >
       {children ?? (
         <>
@@ -363,7 +365,7 @@ function ContextLegendRow({ kind, label, description, value, indicatorClassName 
       data-control-ui="context"
       data-slot="legend-item"
       data-kind={kind}
-      className={cn("grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 py-2", skinSlot("context", "legend-item", { kind }))}
+      className={cn("grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 py-1.5", skinSlot("context", "legend-item", { kind }))}
     >
       <div className="flex min-w-0 items-start gap-2">
         <span
@@ -397,12 +399,7 @@ export function ContextLegend({ className, children, ...props }: ContextLegendPr
   const { model, numberFormatter, percentageFormatter } = useContextValue();
 
   return (
-    <ul
-      {...props}
-      data-control-ui="context"
-      data-slot="legend"
-      className={cn("divide-y divide-border/60", skinSlot("context", "legend", {}), className)}
-    >
+    <ul {...props} data-control-ui="context" data-slot="legend" className={cn("grid", skinSlot("context", "legend", {}), className)}>
       {children ?? (
         <>
           {model.segments.map((segment) => (

@@ -7,15 +7,13 @@ import type { ResizableHandleProps, ResizablePanelGroupProps, ResizablePanelProp
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, 100% react-resizable-panels v4 (Group/Panel/Separator): drag-to-resize on Control UI tokens.
-// Group = framed --radius-panel surface (lib forces overflow:hidden, clips flush); Panel className lands on lib's inner scroll box; Handle styled off lib's own data-separator state machine, no JS state of ours.
-// Orientation flows via context so Handle draws right axis (horizontal group → vertical dividers, vice versa).
-// Both variants keep the same 1px track and the same grip footprint (--resizable-grip-*, swapped per axis), so variant and orientation never change the layout.
+// react-resizable-panels v4 throughout: handle styles off library's own data-separator state machine, holding no JS state here.
+// Both variants keep same 1px track and grip footprint, so neither variant nor orientation ever shifts layout.
 
 type Orientation = "horizontal" | "vertical";
 const OrientationContext = createContext<Orientation>("horizontal");
 
-// axis = the hairline's own direction, not the group's: a horizontal group stacks panels left↔right, so its separator is a vertical line.
+// hairline's own direction, not the group's: horizontal group stacks panels sideways, so its separator is vertical
 const handleVariants = cva(
   [
     "relative flex items-center justify-center outline-none",
@@ -32,7 +30,7 @@ const handleVariants = cva(
       variant: {
         solid:
           "bg-border data-[separator=hover]:bg-foreground/25 data-[separator=focus]:bg-foreground/25 data-[separator=active]:bg-foreground/40",
-        // Track stays transparent; the gradient rides a pseudo-element so revealing it costs one opacity transition and no layout.
+        // gradient rides pseudo-element, so revealing it costs one opacity transition and no layout
         hover: [
           "before:absolute before:inset-0 before:opacity-0 before:content-['']",
           "before:transition-opacity before:duration-[var(--duration-base)] before:ease-[var(--ease-standard)]",
@@ -41,7 +39,7 @@ const handleVariants = cva(
       },
     },
     compoundVariants: [
-      // Alpha-only fade through relative color syntax: `to-transparent` would interpolate towards transparent BLACK and grey out the line in dark mode.
+      // alpha-only fade: `to-transparent` interpolates toward transparent BLACK and greys line out in dark mode
       {
         variant: "hover",
         axis: "vertical",
@@ -57,7 +55,7 @@ const handleVariants = cva(
   },
 );
 
-// Absolutely centred, never a flex child: inside a 1px separator a flex child shrinks to 1px on the cross axis (that was the squashed vertical grip).
+// absolutely centred, never flex child: inside a 1px separator flex child shrinks to 1px on cross axis
 const gripVariants = cva(
   [
     "absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center",
@@ -72,7 +70,7 @@ const gripVariants = cva(
       },
       variant: {
         solid: "",
-        // Same reveal contract as the line, read off the separator's own state machine one level up.
+        // same reveal contract as line, read off separator one level up
         hover:
           "opacity-0 in-data-[separator=hover]:opacity-100 in-data-[separator=focus]:opacity-100 in-data-[separator=active]:opacity-100",
       },

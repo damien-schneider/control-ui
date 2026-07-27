@@ -62,8 +62,8 @@ function currentTaskIndex(tasks: TaskEntry[]) {
 
 export function TaskList({ className, children, ...props }: TaskListProps) {
   const [tasks, setTasks] = useState<TaskEntry[]>([]);
-  // useState-once keeps identities stable; register upserts IN PLACE (a status change must not reorder)
-  // and unregister runs only at item unmount — a combined effect cleanup would move updated items to the end.
+  // register upserts in place so status change never reorders, and unregister runs only at item unmount —
+  // combined effect cleanup would move every updated item to end
   const [registration] = useState<TaskListRegistrationContextValue>(() => ({
     registerTask(entry) {
       setTasks((previous) => upsert(previous, entry));
@@ -118,7 +118,7 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
           <TaskListIndicator status={allCompleted ? "completed" : "active"} />
           <TaskListProgress />
           <ChevronRight aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground" />
-          {/* The collapsed pill previews the current task; the expanded list already shows it, so hide it while open. */}
+          {/* expanded list already shows current task, so pill's preview hides while open */}
           <TaskListLabel className="in-data-[state=open]:hidden" />
         </>
       )}
@@ -164,7 +164,7 @@ export type TaskListContentProps = ComponentProps<"ol">;
 
 export function TaskListContent({ className, children, ...props }: TaskListContentProps) {
   return (
-    // keepMounted: closed items must stay registered — the collapsed pill derives "Task 3 of 5" from them.
+    // closed items must stay registered — collapsed pill derives "Task 3 of 5" from them
     <CollapsibleContent keepMounted>
       <ol
         data-control-ui="task-list"
@@ -236,7 +236,7 @@ export function TaskListIndicator({ status = "pending", className, ...props }: T
       )}
       {...props}
     >
-      {/* Loader, not expressive motion: like Spinner, it keeps spinning under reduced motion. */}
+      {/* loader, not expressive motion — like Spinner it keeps turning under reduced motion */}
       <Icon aria-hidden="true" className={cn("size-3.5", status === "active" && "animate-spin")} />
       <span className="sr-only">{status}</span>
     </span>

@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 import { AudioVisualizer } from "@/components/control-ui/audio-visualizer-line";
 
-// Same synthetic stream as the bars example — the point of the family: identical props, only the
-// rendering changes. Swap versions by swapping the import path.
+// Same synthetic stream as bars example — point of family: identical props, only the
+// rendering changes. Swap versions by swapping import path.
 const WINDOW_SIZE = 48;
 const TICK_MS = 80;
 

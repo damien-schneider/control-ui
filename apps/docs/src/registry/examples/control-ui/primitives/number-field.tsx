@@ -38,7 +38,7 @@ export function PrimitiveNumberFieldExample() {
         </NumberFieldGroup>
       </NumberField>
 
-      {/* Uncontrolled + Intl currency formatting. Larger size to show the shared control-height ramp. */}
+      {/* Uncontrolled + Intl currency formatting. Larger size to show shared control-height ramp. */}
       <NumberField
         id="budget"
         size="lg"

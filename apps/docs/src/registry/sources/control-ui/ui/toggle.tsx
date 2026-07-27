@@ -7,7 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { buttonContentClasses, buttonRecipeClasses } from "@/components/control-ui/ui/button";
 
-// Toggle keeps its own anatomy while sharing Button's visual recipe.
+// keeps its own anatomy while sharing Button's visual recipe
 export function Toggle({
   variant = "surface",
   size = "sm",

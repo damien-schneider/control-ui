@@ -15,15 +15,14 @@ import { controlSize, controlSurfaceClasses } from "@/components/control-ui/cont
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, 100% Base UI NumberField: Group wears controlSurfaceClasses+--radius-control+controlSize (matches Input/Select/Button).
-// Decrement+transparent Input (no own border, Group carries surface)+Increment fuse into one joined segment; focus-within lifts ring, data-[invalid] turns destructive.
-// `size` lives on Root, shared to Group via context — one prop resizes whole unit.
+// Group carries surface and Input stays transparent, so stepper and field fuse into one joined segment.
+// `size` lives on Root and reaches Group through context, so one prop resizes whole unit.
 const NumberFieldSizeContext = createContext<ControlSize>("md");
 
 export function NumberField({ size = "md", value, defaultValue, children, ...props }: NumberFieldProps) {
   return (
     <NumberFieldSizeContext.Provider value={size}>
-      {/* value/defaultValue explicit, not spread — Base UI decides controlled-ness from value!==undefined on first render. */}
+      {/* explicit, never spread — Base UI decides controlled-ness from value !== undefined on first render */}
       <NumberFieldPrimitive.Root value={value} defaultValue={defaultValue} {...props}>
         {children}
       </NumberFieldPrimitive.Root>
@@ -43,7 +42,7 @@ export function NumberFieldGroup({ className, children, ...props }: NumberFieldG
         "inline-flex items-stretch overflow-hidden rounded-[var(--radius-control)] font-medium outline-none transition duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-within:ring-2 focus-within:ring-foreground/20 data-[invalid]:ring-2 data-[invalid]:ring-destructive data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
         controlSurfaceClasses,
         controlSize({ size }),
-        // Ramp bundles padding+gap for single-element control; Group is flush joined segment — keep height/text, zero padding/gap.
+        // ramp bundles padding and gap for single-element control; joined segment keeps height and drops both
         "gap-0 px-0",
         skinSlot("number-field", "group", { size }),
         className,
@@ -106,7 +105,7 @@ export function NumberFieldIncrement({ className, children, ...props }: NumberFi
   );
 }
 
-// Optional scrub affordance: drag horizontally (e.g. over field's <label>) to change value; custom grow-cursor while dragging.
+// optional drag-to-change affordance, usually wrapped around field's label
 export function NumberFieldScrubArea({ className, children, ...props }: NumberFieldScrubAreaProps) {
   return (
     <NumberFieldPrimitive.ScrubArea

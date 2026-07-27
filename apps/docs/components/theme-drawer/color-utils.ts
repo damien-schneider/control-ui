@@ -37,7 +37,7 @@ export function hslToHex(h: number, s: number, l: number): string {
   return `#${to(r)}${to(g)}${to(b)}`;
 }
 
-// Theme tokens authored in oklch (Tailwind/shadcn v4: wider gamut, perceptual lightness); editor speaks hex to <input type=color>, these bridge hex↔oklch.
+// tokens are authored in oklch, but <input type=color> speaks only hex
 const srgbToLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
 const linearToSrgb = (c: number) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);
 
@@ -63,7 +63,7 @@ export function rgbToOklch([r255, g255, b255]: Rgb): Oklch {
   return { L, C, H };
 }
 
-// oklch → rgb channels 0–255, clamped into sRGB gamut (fine for the editor's hex round-trip)
+// oklch → rgb channels 0–255, clamped into sRGB gamut
 export function oklchToRgb(L: number, C: number, H: number): Rgb {
   const hr = (H * Math.PI) / 180;
   const a = C * Math.cos(hr);
@@ -94,22 +94,21 @@ export function oklchToHex(L: number, C: number, H: number): string {
 
 const trimNum = (n: number, d: number) => n.toFixed(d).replace(/\.?0+$/, "");
 
-// Formats oklch triplet as tokens are authored; near-neutral colors drop chroma+hue noise (shadcn v4 grey convention: oklch(0.985 0 0)).
+// near-neutral colours drop chroma and hue noise, matching shadcn grey convention
 export function oklchColor(L: number, C: number, H: number): string {
   const Ls = trimNum(L, 4);
   if (C < 1e-4) return `oklch(${Ls} 0 0)`;
   return `oklch(${Ls} ${trimNum(C, 4)} ${trimNum(H, 3)})`;
 }
 
-// Theme tokens are full colors (theme.css: oklch(...) values), so every author fn below returns complete oklch() color, not a channel triplet.
+// every author fn below returns complete oklch() colour, never channel triplet
 export function hexToOklchColor(hex: string): string {
   const { L, C, H } = hexToOklch(hex);
   return oklchColor(L, C, H);
 }
 
-// Brand mode-independent: keeps hue+saturation across light/dark, adapts only lightness.
-// Near-neutral brand flips to light (matches .dark's near-white --primary); saturated brand keeps hue, lifted into dark-readable band instead of dropped for neutral white.
-// Math stays in HSL (thresholds calibrated there), emitted as oklch to match authored token format.
+// Hue and saturation carry across modes; only lightness adapts. near-neutral brand flips light, saturated one lifts into dark-readable band.
+// Thresholds are calibrated in HSL, so math stays there and only output is oklch.
 export function darkBrand(hex: string): { primary: string; foreground: string } {
   const { h, s, l } = hexToHsl(hex);
   const L = s < 0.15 ? 1 - l : Math.max(l, 0.6);
@@ -124,9 +123,7 @@ export function darkText(hex: string): string {
   return hexToOklchColor(hslToHex(h, s, L));
 }
 
-// Normalizes any authored CSS color (getComputedStyle result: #hex, oklch(), hsl(), rgb()) to 7-char #rrggbb, the only form <input type=color> accepts.
-// Used to hydrate editor color pickers from active skin's theme.css.
-// Returns null on unparseable values (var()/calc()/named color) so caller keeps prior value instead of clobbering picker.
+// #rrggbb is only form <input type=color> accepts. Null on var()/calc()/named colours, so caller keeps prior value instead of clobbering picker.
 export function cssColorToHex(input: string): string | null {
   const s = input.trim();
   if (!s) return null;
@@ -140,7 +137,7 @@ export function cssColorToHex(input: string): string | null {
   const oklch = s.match(/^oklch\(\s*([\d.]+%?)\s+([\d.]+%?)\s+([\d.]+)/i);
   if (oklch) {
     const L = oklch[1].endsWith("%") ? Number.parseFloat(oklch[1]) / 100 : Number(oklch[1]);
-    // chroma as a percentage is 0%→0, 100%→0.4 per the CSS Color 4 reference range
+    // chroma as percentage is 0%→0, 100%→0.4 per CSS Color 4 reference range
     const C = oklch[2].endsWith("%") ? (Number.parseFloat(oklch[2]) / 100) * 0.4 : Number(oklch[2]);
     return oklchToHex(L, C, Number(oklch[3]));
   }
@@ -167,9 +164,8 @@ export function rgbToHex([r, g, b]: Rgb): string {
   return `#${to(r)}${to(g)}${to(b)}`;
 }
 
-// Resolves ANY browser CSS color (lab/lch/oklab/color()/named) to sRGB bytes — regex parser above misses these, browsers serialize computed custom-props losslessly (rig tokens come back as lab()), so hydration falls back to stale knobs without this.
-// 1) hidden <span> + getComputedStyle resolves var()/calc()/relative-color into concrete string.
-// 2) 1x1 canvas re-parses it, gamut-maps to sRGB — format-proof; DOM-only, null on server.
+// Browsers serialize computed custom properties losslessly, so token can come back as lab() and miss regex parser above.
+// hidden span resolves var()/calc() to concrete string, then a 1x1 canvas re-parses and gamut-maps it. DOM-only, null on server.
 let colorProbe: HTMLSpanElement | null = null;
 let srgbCtx: CanvasRenderingContext2D | null = null;
 
@@ -199,7 +195,7 @@ export function cssColorToRgb(color: string): Rgb | null {
   return [r, g, b];
 }
 
-// DOM-robust color→hex, hydrates <input type=color> from a skin's live tokens regardless of getComputedStyle's reported space.
+// works whatever colour space getComputedStyle reports
 export function cssColorToHexDom(color: string): string | null {
   const rgb = cssColorToRgb(color);
   return rgb ? rgbToHex(rgb) : null;

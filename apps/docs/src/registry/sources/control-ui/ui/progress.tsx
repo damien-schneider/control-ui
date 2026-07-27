@@ -11,8 +11,7 @@ import type {
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, 100% Base UI: Track is --muted rail, Indicator fills w/ --primary from value/min/max, no JS.
-// Optional Label+Value row above rail; both plain text slots.
+// value null = indeterminate.
 export function Progress({ className, ...props }: ProgressProps) {
   return (
     <ProgressPrimitive.Root

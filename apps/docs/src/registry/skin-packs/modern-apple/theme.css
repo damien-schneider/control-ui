@@ -1,16 +1,12 @@
-/*
- * Modern Apple owns the complete token contract plus skin.css glass materials and skin.config slots —
- * a Liquid Glass reading of iOS 26/macOS Tahoe. Shared @theme bindings remain in Control UI core.
- */
+/* A Liquid Glass reading of iOS 26 / macOS Tahoe. */
 
 [data-skin="modern-apple"] {
   /* typography — the SF stack; small chrome runs a rung larger via the type re-values below */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* type scale — small chrome bumped one rung (11/12/13px micro/meta/label); body stays 14px */
+  /* type scale — small chrome bumped one rung (11/13px micro/label); body stays 14px */
   --text-micro: 0.6875rem; /* 11px */
-  --text-meta: 0.75rem; /* 12px */
   --text-label: 0.8125rem; /* 13px */
 
   /* shadcn base names, authored in oklch; derived tokens use relative color syntax to track author format. */
@@ -74,18 +70,10 @@
 
   /* Apple's continuous (superellipse) corners since iOS 7; `squircle` is the CSS corner-shape for it. */
   --corner-shape: squircle;
-  --corner-shape-control: var(--corner-shape);
-  --corner-shape-popover: var(--corner-shape);
-  --corner-shape-panel: var(--corner-shape);
 
   /* floating-list geometry (menu / select / context-menu). Rows inset 5px, concentric container. */
   --popover-padding: 0.3125rem; /* 5px gap between container edge and rows */
   --radius-popup-item: 0.5rem; /* 8px menu-row corner */
-  /* sub-pixel guard for a rounded child inside an overflow-clipped rounded container */
-  --nest-safe: 1px;
-  /* corner-fit ratio = 2 + √2 (see the Refined skin for the derivation) */
-  --nest-corner-ratio: 3.41421356;
-  --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
   --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
 
   /* content density for the rounded surfaces (bubble / composer field) */
@@ -96,7 +84,6 @@
   --control-h: 2.125rem;
   --control-h-xs: round(var(--control-h) * 0.78, 1px);
   --control-h-sm: round(var(--control-h) * 0.89, 1px);
-  --control-h-md: var(--control-h);
   --control-h-lg: round(var(--control-h) * 1.11, 1px);
 
   /* Apple system springs overshoot+settle elastically; CSS has no native spring, so --ease-emphasized
@@ -112,8 +99,6 @@
   --duration-base: 340ms;
   --duration-slow: 520ms;
 
-  --popup-item-foreground: var(--foreground);
-  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
   --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
   --badge-neutral-foreground: var(--foreground);
   --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
@@ -146,8 +131,6 @@
   --badge-pink-foreground: var(--color-pink-800);
   --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
   --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --font-body: var(--font-sans);
-  --font-display: var(--font-sans);
   --text-caption: 0.6875rem;
   --text-body: 0.875rem;
   --text-body-lg: 1rem;
@@ -168,14 +151,8 @@
   --text-display--line-height: 1.1;
   --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.6);
   --corner-radius-fit: 0.5;
   --shadow-highlight: oklch(1 0 0 / 0.62);
-  --popup-item-disabled-opacity: 0.4;
 }
 
 /* Dark tokens: glass goes graphite, brighter #0A84FF accent, white rims. Scoped like light block. */

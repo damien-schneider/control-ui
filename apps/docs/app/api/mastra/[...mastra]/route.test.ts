@@ -9,7 +9,7 @@ function sseEvents(body: string) {
     .map((record) => record.trim())
     .filter((record) => record.startsWith("data: ") && record !== "data: [DONE]")
     .map((record) => {
-      // JSON.parse types as any; annotate the binding to narrow without an assertion — the assertions below are the real check.
+      // JSON.parse types as any; annotate binding to narrow without assertion — assertions below are real check.
       const event: { type: string; payload?: { text?: string } } = JSON.parse(record.slice("data: ".length));
       return event;
     });

@@ -13,7 +13,7 @@ type ChatComposerContextValue = ReturnType<typeof useChatComposer>;
 
 const ChatComposerContext = createContext<ChatComposerContextValue | null>(null);
 
-// Exported so opt-in editor extras (chat-composer-editor.tsx) share this context w/o pulling ProseMirror deps into base file.
+// exported so opt-in editor shares this context without dragging ProseMirror into base file
 export function useChatComposerContext() {
   const context = useContext(ChatComposerContext);
   if (!context) throw new Error("ChatComposer compound components must be rendered inside <ChatComposer>.");
@@ -53,15 +53,14 @@ export function ChatComposer({
         data-density={density}
         onSubmit={input.handleSubmit}
         className={cn(
-          // sticky already makes the form the containing block + stacking context the send-layer anchor relies on
+          // sticky already gives send-layer anchor containing block and stacking context it needs
           "sticky bottom-0 w-full bg-background/80 px-2 pb-2 pt-1 backdrop-blur supports-[backdrop-filter]:bg-background/70",
           skinSlot("chat-composer", "root", {}),
           className,
         )}
         {...props}
       >
-        {/* send-layer anchor: the component owns this position contract (backdrop behind the shell, hit-test/a11y/paint
-            contained); the skin only supplies visuals. Zero DOM when no skin fills the anchor. */}
+        {/* component owns this position contract and skin supplies only visuals — no skin, no DOM */}
         {sendLayer !== undefined && sendLayer !== null ? (
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-clip contain-paint">
             {sendLayer}
@@ -133,7 +132,7 @@ export function ChatComposerTextarea({ className, rows, disabled, onChange, ...p
       disabled={disabled ?? input.isDisabled}
       rows={rows ?? input.rows}
       className={cn(
-        // CSS-first auto-grow via field-sizing-content (bounded min/max-h, no ref/ResizeObserver/scrollHeight); rows = fallback where unsupported.
+        // field-sizing-content auto-grows it with no ref or ResizeObserver; `rows` covers browsers without it
         "field-sizing-content min-h-16 max-h-[40dvh] w-full resize-none bg-transparent px-[var(--padding-x)] py-[var(--padding-y)] text-sm leading-6 outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-60",
         skinSlot("chat-composer", "textarea", {}),
         className,
@@ -175,7 +174,7 @@ export function ChatComposerFooter({ className, ...props }: ChatComposerFooterPr
     <div
       data-control-ui="chat-composer"
       data-slot="footer"
-      className={cn("px-3 pb-2 text-meta text-muted-foreground", skinSlot("chat-composer", "footer", {}), className)}
+      className={cn("px-3 pb-2 text-caption text-muted-foreground", skinSlot("chat-composer", "footer", {}), className)}
       {...props}
     />
   );

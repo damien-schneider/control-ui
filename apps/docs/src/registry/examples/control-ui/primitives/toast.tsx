@@ -42,7 +42,7 @@ export function PrimitiveToastExample() {
           With action
         </button>
       </div>
-      {/* Mount once at the app root in real usage. */}
+      {/* Mount once at app root in real usage. */}
       <Toaster />
     </div>
   );

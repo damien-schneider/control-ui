@@ -52,21 +52,15 @@ import type {
 } from "./contracts";
 import { skin } from "./skin.config";
 
-/*
- * Skin = DATA (a complete theme.css contract + skin.config slot overrides), not code; components never change per skin.
- * Slot compose: cn(recipe, skinSlot(scope, part, ctx), className) — className always wins (shadcn contract), precedence via argument order not CSS specificity.
- * No React/"use client" here, pure lookup = RSC-safe. Paint order: token(theme.css) > skinSlot > skin.css(scoped [data-skin], never bare host) > never. Ladder: /architecture#customization-ladder.
- */
+// Pure lookup, no React and no "use client" — skin is data, so resolution stays RSC-safe.
 
-/** A skin's answer for one slot: a fixed class string, or a function of the part's ctx. */
+/** skin's answer for one slot: a fixed class string, or a function of the part's ctx. */
 export type SlotOverride<Ctx> = string | ((ctx: Ctx) => string | undefined);
 
-/** Ctx of a part that emits no state of its own: nothing to branch on, so only the string form of an override is useful. */
+/** part that emits no state of its own — nothing to branch on, so only string form is useful. */
 type StatelessPart = Record<never, never>;
 
-/**
- * One entry per public scope and local part; ctx is the state the part emits as data-*.
- */
+/** One entry per public scope and local part; ctx is state part emits as data-*. */
 export type SkinSlotContexts = {
   button: {
     root: { variant: ButtonVariant; tone: ButtonTone; size: ControlSize; shape: ButtonShape; active: boolean };
@@ -731,14 +725,7 @@ export type SkinSlotPart<Scope extends SkinSlotScope> = keyof SkinSlotContexts[S
 export type SkinPaintScope = keyof SkinPaintContexts;
 export type SkinPaintPart<Scope extends SkinPaintScope> = keyof SkinPaintContexts[Scope];
 
-/**
- * Anchors a skin may fill with JSX; render zero DOM when absent, never gate library behavior.
- * Two flavors share the contract: decorative anchors (titlebars — empty ctx) and behavioral anchors, whose ctx carries
- * plain render-time values (a render prop, not React Context) so an anchored extension can react to component events.
- * Each anchor is ONE position contract: the component owns the positioned wrapper (aria-hidden, pointer-events-none,
- * paint containment) and the skin only supplies visuals. Anchors are rare and justified like slots.
- * Interactive bits live in a separate "use client" component the pack references — skin.config itself never carries "use client", keeping RSC intact.
- */
+/** Anchors skin may fill with JSX. component owns positioned wrapper and skin supplies only visuals; unfilled anchor renders zero DOM and never gates behavior. */
 export type SkinAdornmentContexts = {
   "chat-layout": { titlebar: StatelessPart };
   "chat-thought": { details: StatelessPart };
@@ -754,34 +741,17 @@ type AdornmentEntry<Ctx> = ReactNode | ((ctx: Ctx) => ReactNode);
 export type ControlUiSkin = {
   /** Scopes theme.css/skin.css via data-skin; components stamp it on portal containers. */
   id: string;
-  /**
-   * motion:"reduced" stamps data-motion="reduced" (theme editor + installed skin), collapsing --duration-fast/base/slow to 0ms — flattens cva transitions, Base UI enter/exit, shimmer/ripple keyframes at once.
-   * Ripple cleanup relies on 0ms duration (never `animation:none`) so `animationend` still fires; on <html> portals inherit via document.body descent.
-   * Container-scoped skin: stamp data-motion on same container so its portal popups inherit too.
-   */
+  /** Stamps data-motion="reduced", collapsing --duration-* to 0ms. Never `animation:none` — ripple cleanup still needs `animationend` to fire. */
   motion?: "reduced";
-  /**
-   * Lock skin to one color scheme (undefined = adaptive, authors both light+dark blocks). When set, page mode (.dark class) must follow it — Shiki dual-theme, native color-scheme, dark: utilities all key off .dark independently of skin tokens.
-   * App forces .dark to match + locks the toggle while active; skin's theme.css still paints every surface. Docs editor enforces via write-vars + pre-paint init script (no flash); installed pack declares same intent.
-   */
+  /** Locks skin to one scheme; page's .dark class must then follow it, since Shiki, native color-scheme, and dark: utilities key off .dark, not skin tokens. Undefined = adaptive, both blocks authored. */
   colorScheme?: "light" | "dark";
-  /**
-   * Sidebar LAYOUT geometry (not a slot restyle): shadcn's sidebar|floating|inset drive padding/gap/rounding/shadow across sidebar-gap/container/inner — resolved at render via skinSidebarLayout().
-   * Explicit `variant` prop always wins (caller-wins); undefined keeps app default ("sidebar"). modern-apple sets "floating".
-   */
+  /** Geometry, not slot restyle — padding, gap, rounding, and shadow across sidebar gap/container/inner. explicit `variant` prop wins; undefined keeps "sidebar". */
   sidebarLayout?: SidebarLayout;
-  /**
-   * Sliding selection pill (Vercel-style) — an app-wide DS choice (sidebars/trees all glide or none do), not a per-instance prop, resolved via skinIndicator().
-   * Explicit `indicator` prop still wins (caller-wins); undefined = static default "none", which also skips downloading the highlight engine's lazy chunk.
-   */
+  /** App-wide choice: sidebars and trees all glide or none do. Explicit `indicator` still wins; undefined also skips highlight engine's lazy chunk. */
   indicators?: { sidebar?: SelectionIndicator; tree?: SelectionIndicator };
-  /** Sidebar WIDTH (any CSS length) — DS-level geometry like sidebarLayout, resolved via skinSidebarWidth(); caller's own --sidebar-width (inline style, runtime writes) still wins; undefined keeps shadcn default (16rem). */
+  /** Any CSS length. Seeds --sidebar-width; caller's own value still wins. Undefined keeps shadcn's 16rem. */
   sidebarWidth?: string;
-  /**
-   * Control effects (top-shine|ripple) — DS-level choice like `indicators`; effects.css keys off `data-effects` ancestor attribute.
-   * Portals stamp resolved list on positioner (next to data-skin); ControlEffectsRuntime extension mirrors it on <html> for in-tree content. top-shine is CSS-only, ripple needs the runtime's document pointer listener.
-   * Undefined = nothing stamped, all effect selectors inert; a subtree <ControlEffectsRoot effects={...}> is still a caller-wins local override.
-   */
+  /** effects.css keys off data-effects ancestor attribute. top-shine is CSS-only; ripple needs runtime's document pointer listener. */
   effects?: ControlEffect[];
   families?: {
     [Family in keyof SkinFamilyContexts]?: Partial<SkinFamilyContexts[Family]>;
@@ -803,10 +773,9 @@ export type ControlUiSkin = {
   };
 };
 
-/** The three shadcn Sidebar layouts a skin may request; see ControlUiSkin.sidebarLayout. */
 export type SidebarLayout = "sidebar" | "floating" | "inset";
 
-/** Active skin id, read at render time (getter-based configs stay live); portals stamp it on their positioner since they land outside any token-scoped ancestor. */
+/** Read at render time so getter-based configs stay live. Portals stamp it on their positioner, which lands outside any token-scoped ancestor. */
 export function skinId(): string {
   return skin.id;
 }
@@ -820,14 +789,13 @@ export function skinFamily<Family extends keyof SkinFamilyContexts, Part extends
   return typeof classes === "string" ? classes : undefined;
 }
 
-// One resolver for slots and paints: binding the entry to a plain `SlotOverride<Ctx>` parameter is what lets
-// `typeof entry === "string"` narrow — a scope/part indexed lookup stays deferred and narrows to nothing.
+// Binding entry to plain `SlotOverride<Ctx>` parameter is what lets `typeof entry === "string"` narrow — indexed scope/part lookup stays deferred and narrows to nothing.
 function resolveOverride<Ctx>(entry: SlotOverride<Ctx> | undefined, ctx: Ctx): string | undefined {
   if (entry === undefined) return undefined;
   return typeof entry === "string" ? entry : entry(ctx);
 }
 
-/** Resolve a slot's skin override — string passes through, function gets ctx; undefined = skin leaves slot untouched (default config's answer for everything). */
+/** Undefined leaves slot untouched — default config's answer for everything. */
 export function skinSlot<Scope extends SkinSlotScope, Part extends SkinSlotPart<Scope>>(
   scope: Scope,
   part: Part,
@@ -836,7 +804,7 @@ export function skinSlot<Scope extends SkinSlotScope, Part extends SkinSlotPart<
   return resolveOverride(skin.slots?.[scope]?.[part], ctx);
 }
 
-/** Resolve an exclusive paint hook separately from DOM anatomy. */
+/** Resolve exclusive paint hook separately from DOM anatomy. */
 export function skinPaint<Scope extends SkinPaintScope, Part extends SkinPaintPart<Scope>>(
   scope: Scope,
   part: Part,
@@ -845,21 +813,17 @@ export function skinPaint<Scope extends SkinPaintScope, Part extends SkinPaintPa
   return resolveOverride(skin.paints?.[scope]?.[part], ctx);
 }
 
-/** Active skin's requested Sidebar layout, or undefined; Sidebar falls back variant prop → this → "sidebar". */
+/** Sidebar falls back: variant prop → this → "sidebar". */
 export function skinSidebarLayout(): SidebarLayout | undefined {
   return skin.sidebarLayout;
 }
 
-/** Active skin's sliding indicator for sidebar|tree, or undefined; component falls back indicator prop → this → "none". */
+/** Component falls back: indicator prop → this → "none". */
 export function skinIndicator(component: "sidebar" | "tree"): SelectionIndicator | undefined {
   return skin.indicators?.[component];
 }
 
-/**
- * Applied AFTER skin slot classes when sliding indicator is on: pill is the sole hover/active chrome, so every bg the recipe/skin painted must go. Caller className still comes last and wins.
- * twMerge only evicts an exact modifier chain, so dark: forms are restated alongside bare ones — a pack painting bg under any OTHER modifier leaks past this and fails the slide-neutralization test (not a runtime double-highlight).
- * Function-form slots can branch on ctx.indicator to skip the background entirely.
- */
+/** Applied after skin slot classes so sliding pill is sole chrome. twMerge only evicts exact modifier chain, hence restated dark: forms — pack painting under any other modifier leaks past and fails slide-neutralization test. */
 export const SELECTION_INDICATOR_BG_RESET = [
   "bg-transparent hover:bg-transparent active:bg-transparent",
   "data-[active=true]:bg-transparent data-[selected]:bg-transparent data-[state=open]:hover:bg-transparent",
@@ -867,25 +831,24 @@ export const SELECTION_INDICATOR_BG_RESET = [
   "dark:data-[active=true]:bg-transparent dark:data-[selected]:bg-transparent dark:data-[state=open]:hover:bg-transparent",
 ].join(" ");
 
-/** Active skin's requested sidebar width, or undefined; SidebarProvider seeds --sidebar-width from this, caller-provided value still wins. */
+/** SidebarProvider seeds --sidebar-width from this; caller-provided value still wins. */
 export function skinSidebarWidth(): string | undefined {
   return skin.sidebarWidth;
 }
 
-/** data-effects attribute value the active skin requests, or undefined (React omits attribute); portals stamp it next to data-skin, ControlEffectsRuntime mirrors on <html>. */
+/** Portals stamp result next to data-skin; ControlEffectsRuntime mirrors it on <html>. */
 export function skinEffects(): string | undefined {
   const effects = skin.effects;
   return effects && effects.length > 0 ? effects.join(" ") : undefined;
 }
 
-// Same deferred-lookup reason as resolveOverride: a plain AdornmentEntry<Ctx> parameter is what makes the
-// function/ReactNode branch narrow. A ReactNode may itself be callable, so the entry decides, not the ctx.
+// Same deferred-lookup reason as resolveOverride. ReactNode may itself be callable, so entry decides branch, not ctx.
 function resolveAdornment<Ctx>(entry: AdornmentEntry<Ctx> | undefined, ctx: Ctx): ReactNode | undefined {
   if (entry === undefined) return undefined;
   return typeof entry === "function" ? entry(ctx) : entry;
 }
 
-/** Resolve a decorative adornment — config's ReactNode or ctx-fn result, or undefined when skin fills nothing there (component renders no adornment DOM). */
+/** Undefined when skin fills nothing there — component then renders no adornment DOM at all. */
 export function skinAdornment<Scope extends SkinAdornmentScope, Part extends SkinAdornmentPart<Scope>>(
   scope: Scope,
   part: Part,
@@ -894,7 +857,7 @@ export function skinAdornment<Scope extends SkinAdornmentScope, Part extends Ski
   return resolveAdornment(skin.adornments?.[scope]?.[part], ctx);
 }
 
-/** Whether the active skin fills an anchor — lets a component skip the state that only feeds that anchor's ctx (e.g. the send counter). */
+/** Lets component skip state that only feeds unfilled anchor's ctx, e.g. send counter. */
 export function hasSkinAdornment<Scope extends SkinAdornmentScope, Part extends SkinAdornmentPart<Scope>>(
   scope: Scope,
   part: Part,

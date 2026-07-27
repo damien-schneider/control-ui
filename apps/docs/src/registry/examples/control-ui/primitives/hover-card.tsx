@@ -21,11 +21,11 @@ export function PrimitiveHoverCardExample() {
             </span>
             <div className="min-w-0">
               <p className="text-sm font-semibold text-foreground">Ada Lovelace</p>
-              <p className="text-meta text-muted-foreground">@ada · Platform</p>
-              <p className="mt-2 text-meta leading-relaxed text-muted-foreground">
+              <p className="text-caption text-muted-foreground">@ada · Platform</p>
+              <p className="mt-2 text-caption leading-relaxed text-muted-foreground">
                 Building the agent UI registry. Occasionally writes the first program.
               </p>
-              <div className="mt-3 flex gap-4 text-meta text-muted-foreground">
+              <div className="mt-3 flex gap-4 text-caption text-muted-foreground">
                 <span>
                   <span className="font-semibold text-foreground">128</span> repos
                 </span>

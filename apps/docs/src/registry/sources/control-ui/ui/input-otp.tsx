@@ -6,8 +6,6 @@ import type { InputOTPProps, InputOTPSeparatorProps, InputOTPSlotProps } from "@
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, 100% Base UI OtpField: each slot a control-shaped box sharing --radius-control/card+ring surface w/ Input & Select trigger.
-// Code reads as a row of the same control family; focused slot lifts ring in pure CSS.
 const slotClasses =
   "relative flex size-[var(--control-h-md)] items-center justify-center rounded-[var(--radius-control)] bg-card/72 text-center text-body font-medium tabular-nums text-foreground shadow-sm ring-1 ring-inset ring-border outline-none transition placeholder:text-muted-foreground focus:z-[1] focus:ring-2 focus:ring-foreground/20 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50";
 

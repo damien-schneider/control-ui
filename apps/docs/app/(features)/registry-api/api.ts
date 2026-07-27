@@ -1,11 +1,11 @@
-// Reads the same catalog and generated registry metadata as human docs, so agent view cannot drift.
+// Reads same catalog and generated registry metadata as human docs, so agent view cannot drift.
 
 import { getDocsData } from "@/app/(features)/model/data";
 import { registryMetadata } from "@/app/(features)/model/generated-registry";
 import { generatedSkinContract } from "@/app/(features)/model/generated-skin-contract";
 import { filesFor, type InstallCommand } from "@/app/(features)/model/registry";
 import type { SearchItem, SourceFile } from "@/app/(features)/model/types";
-// Type-only: the skin contract's shape is declared where it is generated, so the agent API cannot describe it differently.
+// Type-only: skin contract's shape is declared where it is generated, so agent API cannot describe it differently.
 import type { ContractPart, ContractScope, SkinContract } from "@/scripts/skin-contract/model";
 import {
   allSearchItems,
@@ -19,7 +19,7 @@ import {
   registryItemIdFor,
 } from "./registry-index";
 
-// Agent surfaces install from the one Control UI source; shadcn compatibility is a contract, not another source tree.
+// Agent surfaces install from one Control UI source; shadcn compatibility is contract, not another source tree.
 
 export type RegistryErrorCode = "ERR_UNKNOWN_ITEM";
 export type RegistryError = {
@@ -28,8 +28,8 @@ export type RegistryError = {
   suggestions: { id: string; reason: string }[];
 };
 
-// Scopes here are a filtered projection — only the parts an item owns — so they are typed by the contract model the
-// generator emits against, not by the generated value.
+// Scopes here are a filtered projection — only parts item owns — so they are typed by contract model the
+// generator emits against, not by generated value.
 export type RegistryAnatomySlice = {
   version: SkinContract["version"];
   contractUrl: string;
@@ -43,7 +43,7 @@ export type RegistryItemData = {
   kind: SearchItem["kind"] | "Bundle";
   summary: string;
   href: string;
-  /** Maturity of the item; absent means stable. */
+  /** Maturity of item; absent means stable. */
   status?: SearchItem["status"];
   install: InstallCommand[];
   manifestUrl?: string;
@@ -127,7 +127,7 @@ function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
   };
 }
 
-// The readable source files an agent would open for an item (empty for prose-only guides).
+// readable source files agent would open for item (empty for prose-only guides).
 function filesForItem(item: SearchItem): SourceFile[] {
   const data = getDocsData();
   switch (item.kind) {
@@ -150,7 +150,7 @@ function filesForItem(item: SearchItem): SourceFile[] {
   }
 }
 
-// Levenshtein distance, capped — cheap enough for the small id set, only hit on a miss.
+// Levenshtein distance, capped — cheap enough for small id set, only hit on miss.
 function editDistance(a: string, b: string): number {
   const rows = Array.from({ length: a.length + 1 }, (_, i) => [i, ...new Array(b.length).fill(0)]);
   for (let j = 0; j <= b.length; j++) rows[0][j] = j;

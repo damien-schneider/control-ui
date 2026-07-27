@@ -4,21 +4,18 @@ import type { CSSProperties } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
 
-// Anchored extension for ChatComposer's `chat-composer:send-layer` anchor: a blurred aurora backdrop that sweeps up
-// once per sent message. Activate it from skin.config — the component owns the anchor's positioned wrapper:
-//   adornments: { "chat-composer": { "send-layer": (ctx) => <SendAurora sendCount={ctx.sendCount} /> } }
-// One-shot replay is CSS-only: `key={sendCount}` remounts the layer per send, send-aurora.css plays the sweep
-// keyframe on mount and parks it at opacity 0. Palette comes from the --aurora-1..5 tokens (skin re-valuable);
-// the `colors` prop is the caller-wins inline override.
+// Activate from skin.config on ChatComposer's send-layer anchor:
+//  adornments: { "chat-composer": { "send-layer": (ctx) => <SendAurora sendCount={ctx.sendCount} /> } }
+// Replay is CSS-only: `key={sendCount}` remounts layer per send, and send-aurora.css plays sweep on mount.
 
 export type SendAuroraProps = {
-  /** From the anchor ctx — increments on each successful submit; 0 renders nothing. */
+  /** From anchor ctx — increments on each successful submit; 0 renders nothing. */
   sendCount: number;
-  /** Optional inline palette override for the five --aurora-* tokens (top to bottom band). */
+  /** Optional inline palette override for five --aurora-* tokens (top to bottom band). */
   colors?: readonly [string, string, string, string, string];
 };
 
-// Literal classes so Tailwind's scanner sees every band; order = top → bottom of a column.
+// literal classes so Tailwind's scanner sees every band; ordered top to bottom of column
 const AURORA_BAND_CLASSES = [
   "w-full flex-1 bg-(--aurora-1) blur-xl",
   "w-full flex-1 bg-(--aurora-2) blur-xl",
@@ -27,7 +24,7 @@ const AURORA_BAND_CLASSES = [
   "w-full flex-1 bg-(--aurora-5) blur-xl",
 ] as const;
 
-// Middle column rides higher so the bands weave instead of aligning into stripes.
+// rides higher so bands weave instead of aligning into stripes
 const AURORA_COLUMNS = [
   { id: "left", className: "" },
   { id: "center", className: "-translate-y-20" },

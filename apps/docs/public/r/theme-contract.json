@@ -142,14 +142,14 @@
     {
       "name": "--popup-item-foreground",
       "group": "color",
-      "tier": "advanced",
-      "description": "Text color of popup (menu/select) rows."
+      "tier": "derived",
+      "description": "Text color of popup (menu/select) rows; defaults to --foreground."
     },
     {
       "name": "--popup-item-highlight-background",
       "group": "color",
-      "tier": "advanced",
-      "description": "Highlighted or selected popup row fill."
+      "tier": "derived",
+      "description": "Highlighted or selected popup row fill; defaults to a 6% foreground wash."
     },
     {
       "name": "--badge-neutral",
@@ -358,13 +358,13 @@
     {
       "name": "--font-body",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Font ROLE for body/UI text; defaults to --font-sans."
     },
     {
       "name": "--font-display",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Font ROLE for headings; defaults to --font-sans."
     },
     {
@@ -500,12 +500,6 @@
       "description": "Tracking paired onto text-display."
     },
     {
-      "name": "--text-meta",
-      "group": "typography",
-      "tier": "advanced",
-      "description": "Legacy alias of --text-caption (11px)."
-    },
-    {
       "name": "--radius",
       "group": "radius",
       "tier": "core",
@@ -520,31 +514,31 @@
     {
       "name": "--radius-sm",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Scale rung: --radius × 0.6."
     },
     {
       "name": "--radius-md",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Scale rung: --radius × 0.8."
     },
     {
       "name": "--radius-lg",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Scale rung: --radius × 1."
     },
     {
       "name": "--radius-xl",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Scale rung: --radius × 1.4."
     },
     {
       "name": "--radius-2xl",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Scale rung: --radius × 1.6."
     },
     {
@@ -574,19 +568,19 @@
     {
       "name": "--corner-shape-control",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Corner shape for controls; defaults to --corner-shape."
     },
     {
       "name": "--corner-shape-popover",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Corner shape for floating surfaces; defaults to --corner-shape."
     },
     {
       "name": "--corner-shape-panel",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Corner shape for panels; defaults to --corner-shape."
     },
     {
@@ -602,28 +596,10 @@
       "description": "Select/menu row corner; derived from --radius-control."
     },
     {
-      "name": "--radius-popup-item-fit",
-      "group": "radius",
-      "tier": "advanced",
-      "description": "Row corner clamped to half the row height (browser render cap)."
-    },
-    {
       "name": "--radius-popover",
       "group": "radius",
       "tier": "advanced",
       "description": "Popup container corner, concentric with the fitted row corner."
-    },
-    {
-      "name": "--nest-safe",
-      "group": "radius",
-      "tier": "advanced",
-      "description": "Sub-pixel guard for rounded children inside clipped rounded containers."
-    },
-    {
-      "name": "--nest-corner-ratio",
-      "group": "radius",
-      "tier": "advanced",
-      "description": "Corner-fit ratio (2 + √2) capping panel corners near inset controls."
     },
     {
       "name": "--shadow-color",
@@ -748,8 +724,8 @@
     {
       "name": "--popup-item-disabled-opacity",
       "group": "surface",
-      "tier": "advanced",
-      "description": "Opacity of disabled popup rows."
+      "tier": "derived",
+      "description": "Opacity of disabled popup rows; defaults to 0.4."
     },
     {
       "name": "--popover-padding",
@@ -786,12 +762,6 @@
       "group": "layout",
       "tier": "advanced",
       "description": "Derived control height: sm (×0.89, px-snapped)."
-    },
-    {
-      "name": "--control-h-md",
-      "group": "layout",
-      "tier": "advanced",
-      "description": "Control height alias for the md base."
     },
     {
       "name": "--control-h-lg",

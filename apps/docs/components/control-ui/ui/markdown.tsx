@@ -9,9 +9,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { markdownComponents } from "@/components/control-ui/ui/markdown-elements";
 
-// Markdown: GFM output, 3rd consumer of shared code surface — fenced code→<Code>, ```diff→<CodeDiff>; one skin-aware renderer.
-// Prose is token-styled; chrome-less by design (no corner surface) — drops straight into a chat message.
-// MarkdownBlock composes this for a copyable, headered block; this is the bare renderer.
+// Chrome-less on purpose so it drops straight into chat message; MarkdownBlock composes it for headered, copyable block.
 
 export type { MarkdownProps } from "@/components/control-ui/contracts";
 

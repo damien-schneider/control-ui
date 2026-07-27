@@ -10,7 +10,7 @@ const gapsDir = path.join(process.cwd(), ".gaps");
 const gapsFile = path.join(gapsDir, "gaps.jsonl");
 
 export async function POST(request: Request) {
-  // request.json() types as Promise<any>; annotate binding to narrow without an assertion.
+  // request.json() types as Promise<any>; annotate binding to narrow without assertion.
   const payload: { item?: unknown; reason?: unknown; ts?: unknown } | null = await request.json().catch(() => null);
   if (!payload || typeof payload.item !== "string" || typeof payload.reason !== "string") {
     return NextResponse.json({ error: "Expected { item, reason }", code: "ERR_INVALID_GAP" }, { status: 400 });

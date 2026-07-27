@@ -2,14 +2,16 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 
 /*
- * Concentric-corner safety for Control UI floating surfaces (select/menu popups, code-block panel): a rounded child clipped by a rounded overflow-hidden container gets its corner sliced flat unless it nests fully inside the container's corner.
- * 2 failure modes: (1) popup rows — browser caps rendered border-radius at HALF box height, so --radius-popover is built off the height-FITTED row radius (self-limiting); (2) panel header tabs — --radius-panel scales unbound but tab inset is fixed, clipped once R > (2+√2)·gap (positional, no child radius saves it) — panel corner capped at --nest-gap·--nest-corner-ratio.
- * Clipped containers use a RING (box-shadow) not a border, so clip sits at FULL radius; this evaluates the Refined skin's real tokens across a --radius/--control-h sweep, asserting containment at every sample (+ negative controls proving each guard works).
+ * rounded child clipped by rounded overflow-hidden container gets its corner sliced flat unless it nests fully inside
+ * container's corner. Two ways that happens here: browsers cap rendered border-radius at half box height, so
+ * --radius-popover is built off height-fitted row radius; and --radius-panel scales unbound against fixed tab inset,
+ * so panel corner is capped at --nest-gap · --nest-corner-ratio.
  */
 
 const CSS = readFileSync(new URL("../../skin-packs/refined/theme.css", import.meta.url), "utf8");
+const CORE_CSS = readFileSync(new URL("./theme.css", import.meta.url), "utf8");
 
-// Tiny CSS value evaluator: var() / calc() / min() / max() / clamp() / px / rem.
+// handles var(), calc(), min(), max(), clamp(), px, and rem — nothing else
 
 function parseDecls(css: string): Record<string, string> {
   const decls: Record<string, string> = {};
@@ -56,17 +58,16 @@ function makeResolver(declarations: Record<string, string>, overrides: Record<st
   return resolve;
 }
 
-const decls = parseDecls(CSS);
+// core :where([data-skin]) defaults under pack's own declarations, like cascade at runtime
+const decls = { ...parseDecls(CORE_CSS), ...parseDecls(CSS) };
 
-// Geometry: does the child's rendered corner nest inside the container's clipped corner?
-
-// Clipped containers use a ring (box-shadow), so overflow clip sits at FULL border-radius — no border-width to subtract (was 1px when these used a CSS border).
+// Clipped containers use ring (box-shadow), so overflow clip sits at FULL border-radius — no border-width to subtract (was 1px when these used CSS border).
 const BORDER = 0;
 
-/** Signed clearance (px) between the child corner circle and the clip corner circle. >= 0 ⇒ contained. */
+/** Signed clearance (px) between child corner circle and clip corner circle. >= 0 ⇒ contained. */
 function clearance(containerR: number, childRenderedR: number, gap: number): number {
   const clipR = Math.max(0, containerR - BORDER);
-  // Child inset past corner arc sits in straight-edge zone, can't be corner-clipped (arc spans only first clipR px from corner).
+  // past arc child sits in straight-edge zone and cannot be corner-clipped
   if (gap >= clipR) return Number.POSITIVE_INFINITY;
   // clip corner-arc center (clipR, clipR); child corner-arc center (gap + childR, gap + childR).
   const d = Math.SQRT2 * Math.abs(clipR - gap - childRenderedR);

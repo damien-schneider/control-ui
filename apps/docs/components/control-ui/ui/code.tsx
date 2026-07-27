@@ -14,13 +14,12 @@ import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
-/* Shared low-level code surface: gutter + code grid, token-colored via lib/code-tokens (Shiki CSS-vars,
- * follows skin), clean-copy structure (line numbers in select-none cells), optional TanStack virtualization.
- * CodeDiff and markdown fence renderer build on this same token renderer + row shape. */
+/* Line numbers sit in select-none cells so a text selection copies clean source. CodeDiff and the
+ * markdown fence renderer build on this same token renderer and row shape. */
 
-// Above this line count, Code virtualizes rows even without an explicit `virtualize` prop.
+// virtualizes past this line count even without explicit `virtualize` prop
 const VIRTUALIZE_THRESHOLD = 200;
-// Row height estimate for the virtualizer (measured precisely after paint via measureElement).
+// estimate only — measureElement corrects it after paint
 const ESTIMATED_LINE_HEIGHT = 20;
 
 type CodeContextValue = { chrome: CodeChrome; density: CodeDensity; overflow: CodeOverflow; hasHeader: boolean };
@@ -61,7 +60,7 @@ export function Code({ overflow = "scroll", chrome = "standalone", density = "de
           !hasHeader && "relative",
           isEmbedded
             ? "my-0 overflow-hidden rounded-none border-0 bg-transparent shadow-none ring-0"
-            : "my-4 overflow-hidden rounded-panel bg-muted shadow-sm ring-1 ring-inset ring-border",
+            : "my-4 overflow-hidden rounded-panel border bg-background shadow-sm",
           skinSlot("code", "root", { chrome, density }),
           className,
         )}
@@ -106,7 +105,7 @@ export function CodeActions({ className, ...props }: CodeActionsProps) {
     <div
       data-control-ui="code"
       data-slot="actions"
-      className={cn("flex shrink-0 items-center gap-1", skinSlot("code", "actions", {}), className)}
+      className={cn("flex shrink-0 items-center gap-1 ms-auto", skinSlot("code", "actions", {}), className)}
       {...props}
     />
   );
@@ -119,60 +118,61 @@ export type CodeCopyProps = Omit<ComponentProps<typeof Button>, "children" | "on
   copiedAriaLabel?: string;
 };
 
-// Copy control IS the library Button (quiet variant), so it stays in lockstep with every other control, no bespoke styling.
+/* Shared by header, floating overlay, and diff, and it IS library Button, so no code surface grows bespoke copy chrome. */
 export function CodeCopy({
   value,
-  copiedLabel = "Copied",
+  copiedLabel,
   copiedAriaLabel = "Copied",
-  children = "Copy",
+  children,
+  className,
   "aria-label": ariaLabel,
   ...props
 }: CodeCopyProps) {
   const { isCopied, handleCopy } = useCopyToClipboard({ text: value });
-  return (
+  const isIconOnly = children === undefined;
+  // text mode already carries its name in label
+  const label = ariaLabel ?? (isIconOnly ? "Copy code" : undefined);
+  const copied = copiedLabel ?? (isIconOnly ? <CheckIcon aria-hidden="true" className="size-3.5" /> : "Copied");
+
+  const button = (
     <Button
       type="button"
       variant="quiet"
       size="xs"
       aria-live="polite"
-      aria-label={isCopied && ariaLabel ? copiedAriaLabel : ariaLabel}
+      aria-label={label && isCopied ? copiedAriaLabel : label}
+      className={cn(isIconOnly && "size-7 p-0", className)}
       {...props}
       onClick={handleCopy}
     >
-      {isCopied ? copiedLabel : children}
+      {isCopied ? copied : (children ?? <CopyIcon aria-hidden="true" className="size-3.5" />)}
     </Button>
   );
-}
 
-export type CodeFloatingCopyProps = Omit<CodeCopyProps, "children" | "copiedLabel">;
+  if (!isIconOnly) return button;
 
-export function CodeFloatingCopy({ className, "aria-label": ariaLabel = "Copy code", ...props }: CodeFloatingCopyProps) {
   return (
     <TooltipProvider delay={0}>
       <Tooltip>
-        <TooltipTrigger
-          render={
-            <CodeCopy
-              aria-label={ariaLabel}
-              className={cn(
-                "absolute top-2 right-2 z-10 size-7 bg-background/85 p-0 shadow-sm ring-1 ring-inset ring-border backdrop-blur",
-                className,
-              )}
-              copiedLabel={<CheckIcon aria-hidden="true" className="size-3.5" />}
-              {...props}
-            >
-              <CopyIcon aria-hidden="true" className="size-3.5" />
-            </CodeCopy>
-          }
-        />
-        <TooltipContent side="left">{ariaLabel}</TooltipContent>
+        <TooltipTrigger render={button} />
+        <TooltipContent side="left">{label}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );
 }
 
-/** Client-side highlighting: when `tokens` unset, tokenize in a cancellable effect keyed by lang+code.
- *  Returns null until resolved, or when highlighting off / language unknown — callers fall back to plain text. */
+export type CodeFloatingCopyProps = Omit<CodeCopyProps, "children" | "copiedLabel">;
+
+export function CodeFloatingCopy({ className, ...props }: CodeFloatingCopyProps) {
+  return (
+    <CodeCopy
+      className={cn("absolute top-2 right-2 z-10 bg-background/85 shadow-sm ring-1 ring-inset ring-border backdrop-blur", className)}
+      {...props}
+    />
+  );
+}
+
+/** Null until resolved, and whenever highlighting is off or language is unknown — callers fall back to plain text. */
 export function useCodeTokens({
   code,
   lang,
@@ -207,7 +207,6 @@ export function useCodeTokens({
   return clientTokens?.key === requestKey ? clientTokens.tokens : null;
 }
 
-/** Renders one line's Shiki tokens as colored spans. Shared by Code and CodeDiff. */
 export function CodeTokenLine({ tokens, plain }: { tokens: CodeTokenLines[number] | null; plain: string }): ReactNode {
   if (!tokens || tokens.length === 0) return plain;
   return tokens.map((token, index) => {
@@ -221,7 +220,7 @@ export function CodeTokenLine({ tokens, plain }: { tokens: CodeTokenLines[number
   });
 }
 
-// Select-none gutter + code cell, kept flat so text selection over the code column copies clean source.
+// kept flat so selection over code column copies clean source
 function CodeRow({
   index,
   number,
@@ -299,7 +298,7 @@ export function CodeContent({
   style,
   ...props
 }: CodeContentProps) {
-  const { density, overflow, hasHeader } = useCodeContext();
+  const { chrome, density, overflow, hasHeader } = useCodeContext();
   const resolvedTokens = useCodeTokens({ code, lang, tokens, highlight });
   const plainLines = useMemo(() => code.split("\n"), [code]);
   const isCompact = density === "compact";
@@ -323,7 +322,7 @@ export function CodeContent({
   });
 
   const gridClassName = cn(
-    // The `color:` label keeps tailwind-merge from treating the arbitrary color utility as font size.
+    // the `color:` label stops tailwind-merge reading this arbitrary utility as font size
     "font-mono leading-5 text-[color:var(--code-foreground)]",
     isCompact ? "py-2 text-micro" : "py-3 text-label",
     overflow === "scroll" ? "w-max min-w-full" : "w-full",
@@ -388,10 +387,12 @@ export function CodeContent({
     </div>
   );
 
-  if (hasHeader) return content;
+  // embedded means host frames block and owns copy control
+  if (hasHeader || chrome === "embedded") return content;
 
+  // reserves exactly overlay's footprint (top-2 + size-7) so no dead band is left
   return (
-    <div className="relative pt-10">
+    <div className={cn("relative", isCompact ? "pt-7" : "pt-6")}>
       <CodeFloatingCopy value={code} />
       {content}
     </div>

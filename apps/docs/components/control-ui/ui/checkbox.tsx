@@ -5,8 +5,7 @@ import type { CheckboxProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Base UI owns state; tick/dash swap on Root's data-indeterminate via pure CSS, zero JS.
-// Inside a Field.Root, data-invalid ring surfaces validation.
+// tick and dash swap on Root's data-indeterminate in pure CSS.
 export function Checkbox({
   className,
   checked,
@@ -53,7 +52,7 @@ export function Checkbox({
         data-slot="indicator"
         className="flex items-center justify-center text-current data-[unchecked]:hidden"
       >
-        {/* tick (default) and dash (indeterminate) both mount; the Root's data-indeterminate toggles which shows */}
+        {/* tick (default) and dash (indeterminate) both mount; Root's data-indeterminate toggles which shows */}
         <svg viewBox="0 0 12 12" className="size-3 group-data-[indeterminate]/checkbox:hidden" aria-hidden="true" fill="none">
           <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>

@@ -4,10 +4,8 @@ import type { AudioVisualizerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// BARS version of the audio-visualizer usage family (the default). audio-visualizer-line.tsx is the sibling
-// version: same `AudioVisualizer` export, same AudioVisualizerProps contract (contracts.ts), different rendering —
-// installing either gives you <AudioVisualizer />, and swapping versions is an import-path change only.
-// Levels-driven and runtime-agnostic: feed it any rolling 0..1 window (AnalyserNode RMS, runner audio stream, …).
+// Bars reading. audio-visualizer-line.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.
+// Runtime-agnostic — feed it any rolling 0..1 window.
 
 type AudioVisualizerLevelStyle = CSSProperties & Record<"--audio-visualizer-inset", string>;
 
@@ -15,7 +13,7 @@ const DEFAULT_POINTS = 28;
 const MAX_POINTS = 128;
 const MIN_VISIBLE_LEVEL = 0.12;
 
-// Kept local so either visualizer version installs as a complete, independent usage choice.
+// local so either visualizer installs as complete, independent choice
 function resolveAudioVisualizerLevels(levels: readonly number[], points?: number) {
   const requestedPoints = Number.isFinite(points) ? Math.floor(points ?? DEFAULT_POINTS) : DEFAULT_POINTS;
   const pointCount = Math.min(MAX_POINTS, Math.max(1, requestedPoints));

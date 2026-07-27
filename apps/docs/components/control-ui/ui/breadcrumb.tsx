@@ -7,7 +7,6 @@ import type { RenderProp } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Plain semantic breadcrumb (no positioner), themed via --muted-foreground/--foreground.
 export function Breadcrumb({ className, ...props }: ComponentProps<"nav">) {
   return (
     <nav

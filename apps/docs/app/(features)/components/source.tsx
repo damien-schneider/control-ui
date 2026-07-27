@@ -10,16 +10,16 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 
 export function CodeBlock({ code, lang = "tsx", fileName }: { code: string; lang?: string; fileName?: string }) {
+  const title = fileName ?? (lang === "text" ? undefined : lang);
+
   return (
     <Code>
-      {fileName ? (
-        <CodeHeader>
-          <CodeTitle>{fileName}</CodeTitle>
-          <CodeActions>
-            <CodeCopy value={code} />
-          </CodeActions>
-        </CodeHeader>
-      ) : null}
+      <CodeHeader>
+        {title ? <CodeTitle>{title}</CodeTitle> : null}
+        <CodeActions>
+          <CodeCopy value={code} />
+        </CodeActions>
+      </CodeHeader>
       <CodeContent code={code} lang={lang} />
     </Code>
   );
@@ -53,7 +53,7 @@ export function DocsCollapsible({
   defaultOpen?: boolean;
 }) {
   return (
-    <UICollapsible id={id} defaultOpen={defaultOpen} className="min-w-0 scroll-mt-20 overflow-hidden rounded-xl border bg-background">
+    <UICollapsible id={id} defaultOpen={defaultOpen} className="min-w-0 scroll-mt-20 overflow-hidden rounded-panel border bg-background">
       <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left text-body font-medium transition-colors hover:bg-muted/30">
         <span>
           {title}
@@ -84,6 +84,19 @@ function languageForPath(path: string) {
   return undefined;
 }
 
+// Path IS file identity — tab strip repeats name, so header spells directory once and emphasizes leaf.
+function SourcePath({ path }: { path: string }) {
+  const name = sourceFileName(path);
+  const directory = path.slice(0, path.length - name.length);
+
+  return (
+    <CodeTitle>
+      <span className="text-muted-foreground">{directory}</span>
+      <span className="text-foreground">{name}</span>
+    </CodeTitle>
+  );
+}
+
 export function SourceTabs({ files }: { files: SourceFile[] }) {
   const [activePath, setActivePath] = useState(files[0]?.path ?? "");
   const activeFile = files.find((file) => file.path === activePath) ?? files[0];
@@ -94,22 +107,19 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
   return (
     <Tabs value={selectedPath} onValueChange={setActivePath}>
       <Code className="my-0">
-        <ScrollArea className="border-b" scrollbarVisibility="hover">
-          <div className="p-2">
-            <TabsList className="w-max">
+        {files.length > 1 ? (
+          <ScrollArea scrollbarVisibility="hover">
+            <TabsList variant="browser" className="w-full rounded-none">
               {files.map((file) => (
                 <TabsTab key={file.path} value={file.path}>
                   {sourceFileName(file.path)}
                 </TabsTab>
               ))}
             </TabsList>
-          </div>
-        </ScrollArea>
+          </ScrollArea>
+        ) : null}
         <CodeHeader>
-          <div className="min-w-0">
-            <div className="text-label font-medium">{activeFile.label}</div>
-            <div className="truncate text-caption text-muted-foreground">{activeFile.path}</div>
-          </div>
+          <SourcePath path={activeFile.path} />
           <CodeActions>
             <CodeCopy value={activeFile.code} />
           </CodeActions>
@@ -138,15 +148,18 @@ export function PreviewTabs({
   const [tab, setTab] = useState("preview");
 
   return (
-    <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20 overflow-hidden rounded-xl border bg-background">
+    <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20 overflow-hidden rounded-panel border bg-background">
       <Tabs value={tab} onValueChange={setTab}>
-        {/* Controls overlay the list instead of nesting in it: role="tablist" takes tabs only, and Base UI's composite keydown would eat their arrow keys. */}
+        {/* Controls overlay list instead of nesting in it: role="tablist" takes tabs only, and Base UI's composite keydown would eat their arrow keys. */}
         <div className="relative">
           <TabsList variant="browser" className="w-full rounded-none">
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
-          {controls ? <div className="absolute inset-y-0 right-3 flex items-center justify-end gap-1.5">{controls}</div> : null}
+          <div className="absolute inset-y-0 right-3 flex items-center justify-end gap-1.5">
+            {controls}
+            {tab === "code" ? <CodeCopy value={code} /> : null}
+          </div>
         </div>
         <TabsPanel value="preview" className={previewClassName}>
           {children}

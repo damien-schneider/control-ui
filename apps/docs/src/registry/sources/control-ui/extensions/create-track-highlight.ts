@@ -1,26 +1,26 @@
 /*
- * Track highlight ("Vercel menu" indicator): JS measures hovered/active row via getBoundingClientRect (not nth-child math, so nesting/variable heights/positioned ancestors all work — fits Tree), writes 4 independent inline insets; CSS owns transition/paint.
- * No DOM injected (React hands it one node, streaming lists cost nothing); rAF follow loop re-measures until stable (tracks disclosure expand/collapse transitions); Resize/MutationObserver re-sync with zero coupling to component state.
- * Transition tempo from --duration-* tokens — motion kill-switch/reduced-motion collapse to instant snap (tokens only, never animation:none).
+ * Rows are measured with getBoundingClientRect rather than nth-child math, so nesting, variable heights, and
+ * positioned ancestors all work. JS writes four inline insets and CSS owns transition and paint;
+ * rAF loop re-measures until box settles, which is what tracks disclosure expanding under it.
  */
 
 export type TrackHighlightOptions = {
-  /** Selector for the highlightable rows, resolved within the track. */
+  /** Selector for highlightable rows, resolved within track. */
   itemSelector: string;
-  /** Selector for the resting row (active/selected) used when nothing is hovered. */
+  /** Selector for resting row (active/selected) used when nothing is hovered. */
   activeSelector: string;
-  /* Spans resting box across union of every active row (first..last) so contiguous selection reads as one band; off by default (single-select lists rest on one row). */
+  /* spans resting box across every active row so contiguous selection reads as one band */
   range?: boolean;
-  /* Follows pointer to hovered row, rests on active row on leave; on by default, off for scroll-driven indicators (ToC) so box only tracks active range. */
+  /* turn off for scroll-driven indicators (ToC) so box only tracks active range */
   followHover?: boolean;
 };
 
 type Box = { x: number; y: number; w: number; h: number };
 type LayerState = { ready: boolean; last: Box };
 
-/* Sub-pixel guard: below this, box counts unchanged so follow loop terminates instead of chasing float jitter. */
+/* below this box counts as unchanged, so follow loop terminates instead of chasing float jitter */
 const STABLE_EPSILON = 0.5;
-/* Hard cap on follow frames per settle (reset on new input); disclosure transition settles well within this, cap only fires in a pathological never-stable layout. */
+/* backstop for never-stable layout; disclosure transition settles well inside it */
 const MAX_FOLLOW_FRAMES = 90;
 
 function isHighlightable(node: Element | null): node is HTMLElement {
@@ -46,7 +46,7 @@ export function createTrackHighlight(
   const activeLayer: LayerState = { ready: false, last: { x: 0, y: 0, w: 0, h: 0 } };
   const hoverLayer: LayerState = { ready: false, last: { x: 0, y: 0, w: 0, h: 0 } };
 
-  // One row's box, offset within track's content box (scroll-invariant + border-corrected) so pill lands right whether track/ancestor scrolls or neither.
+  // offset within track's content box, so pill lands right whether track or ancestor scrolls
   function measureBox(target: HTMLElement, trackRect: DOMRect): Box {
     const rect = target.getBoundingClientRect();
     return {
@@ -106,7 +106,7 @@ export function createTrackHighlight(
     return moved;
   }
 
-  // The track owns away state so rows can yield emphasis while the pill follows another item.
+  // track owns away state so rows can yield emphasis while pill follows another item.
   function placeHighlightLayers(): boolean {
     const trackRect = track.getBoundingClientRect();
     const activeBox = resolveActiveBox(trackRect);
@@ -126,7 +126,7 @@ export function createTrackHighlight(
     return activeMoved || hoverMoved;
   }
 
-  /* rAF-coalesced re-measure, runs while box settles (disclosure transition, resize) then stops — no timer/polling at rest; followFrames resets on new input so continuous interaction never trips cap. */
+  /* runs only while box settles, so nothing polls at rest; frame count resets on new input */
   function scheduleFollow(): void {
     followFrames = 0;
     if (rafId) return;
@@ -169,7 +169,7 @@ export function createTrackHighlight(
     subtree: true,
     childList: true,
     attributes: true,
-    // Selection reflects on these; data-state flips on disclosure. Highlight's own style/data-visible writes excluded — never observes itself into a loop.
+    // Selection reflects on these; data-state flips on disclosure. Highlight's own style/data-visible writes excluded — never observes itself into loop.
     attributeFilter: ["data-selected", "aria-selected", "data-active", "data-state"],
   });
 

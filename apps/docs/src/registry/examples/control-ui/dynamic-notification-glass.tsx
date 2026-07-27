@@ -36,7 +36,7 @@ export function DynamicNotificationGlassExample() {
   else if (lastReply) statusMessage = `You replied: ${lastReply}`;
   const thinkTimer = useRef(0);
 
-  // simulate the model answering: hold the "thinking" blob for ~2.4s, then reveal the message
+  // simulate model answering: hold the "thinking" blob for ~2.4s, then reveal message
   function think(nextIndex: number) {
     window.clearTimeout(thinkTimer.current);
     setMessageIndex(nextIndex);
@@ -96,7 +96,7 @@ export function DynamicNotificationGlassExample() {
           >
             Send a notification
           </Button>
-          <span className="truncate text-meta text-white/75">{statusMessage}</span>
+          <span className="truncate text-caption text-white/75">{statusMessage}</span>
         </div>
       </div>
     </div>

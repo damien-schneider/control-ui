@@ -3,8 +3,7 @@
 import { CheckIcon, MicIcon, XIcon } from "lucide-react";
 import type { ComponentProps, MouseEvent } from "react";
 import { createContext, use } from "react";
-// Waveform: the AudioVisualizer usage family (bars is the default version). Swap the reading to the line
-// version by pointing this import at ./audio-visualizer-line — same export, same contract, no call-site move.
+// point this at ./audio-visualizer-line for line reading — same export, same contract, no call site moves
 import { AudioVisualizer } from "@/components/control-ui/audio-visualizer";
 import type { UseAudioRecorderOptions, UseAudioRecorderResult } from "@/components/control-ui/hooks/use-audio-recorder";
 import { useAudioRecorder } from "@/components/control-ui/hooks/use-audio-recorder";
@@ -20,9 +19,7 @@ const recorderContentMotion =
 const recorderControlMotion =
   "invisible translate-x-1 scale-95 opacity-0 blur-xs transition-[opacity,filter,translate,scale,visibility] transition-discrete duration-[var(--duration-base)] ease-[var(--ease-emphasized)] disabled:opacity-0 data-[visible=true]:visible data-[visible=true]:translate-x-0 data-[visible=true]:scale-100 data-[visible=true]:opacity-100 data-[visible=true]:blur-none";
 
-// Public compound context (same seam as useChatComposerContext): lets a call site stand its own part inside
-// <AudioRecorder> — e.g. bind another AudioVisualizer version per instance where <AudioRecorderVisualizer />
-// would sit. App-wide preference stays the one-line import swap in this owned file.
+// lets call site stand its own part inside <AudioRecorder>, e.g. different visualizer per instance
 export function useAudioRecorderContext() {
   const context = use(AudioRecorderContext);
   if (!context) throw new Error("AudioRecorder compound components must be rendered inside <AudioRecorder>.");
@@ -31,7 +28,7 @@ export function useAudioRecorderContext() {
 
 export type { AudioRecording } from "@/components/control-ui/hooks/use-audio-recorder";
 
-// no bundled device picker: consumes `deviceId` only; pick mics via useAudioInputDevices + any list UI (see example's Combobox wiring)
+// no bundled device picker — pair `deviceId` with useAudioInputDevices and any list UI
 export type AudioRecorderProps = ComponentProps<"div"> &
   UseAudioRecorderOptions & {
     label?: string;
@@ -172,8 +169,7 @@ export type AudioRecorderVisualizerProps = Omit<ComponentProps<"div">, "children
   points?: number;
 };
 
-// Feeds the recorder's rolling level window into the installed AudioVisualizer version; the slot only owns
-// state gating (hidden until a take starts) and the recorder anatomy hook, never the waveform rendering.
+// owns only state gating and recorder anatomy hook, never waveform rendering
 export function AudioRecorderVisualizer({ points, className, ...props }: AudioRecorderVisualizerProps) {
   const recorder = useAudioRecorderContext();
   const isVisible = recorder.state === "recording" || recorder.state === "recorded";
@@ -209,7 +205,7 @@ export function AudioRecorderStatus({ className, children, ...props }: AudioReco
       aria-hidden={!isVisible}
       aria-live="polite"
       className={cn(
-        "min-w-0 flex-1 truncate text-meta text-muted-foreground data-[tone=error]:text-destructive-text",
+        "min-w-0 flex-1 truncate text-caption text-muted-foreground data-[tone=error]:text-destructive-text",
         recorderContentMotion,
         skinSlot("audio-recorder", "status", {}),
         className,
@@ -241,7 +237,7 @@ export function AudioRecorderDuration({ className, children, ...props }: AudioRe
       data-visible={isVisible ? "true" : undefined}
       aria-hidden={!isVisible}
       className={cn(
-        "w-10 shrink-0 text-right text-meta tabular-nums text-muted-foreground",
+        "w-10 shrink-0 text-right text-caption tabular-nums text-muted-foreground",
         recorderContentMotion,
         skinSlot("audio-recorder", "duration", {}),
         className,

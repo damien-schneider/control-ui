@@ -7,14 +7,12 @@ import type { TriggerConfig, TriggerMenuItemData } from "../contracts";
 import { caretRectInTextarea, detectTrigger } from "../lib/trigger-detect";
 import { useTriggerMenu } from "./use-trigger-menu";
 
-// DOM binding wiring headless trigger-menu engine to plain <textarea> — makes primitive usable with no editor
-// (same `triggers` config as the ProseMirror path); detection reads value+selectionStart, insertion via
-// execCommand("insertText") to replace token in-place, keep caret, join native undo
+// Same `triggers` config as ProseMirror path, so primitive works with no editor installed.
 
 function replaceRange(element: HTMLTextAreaElement, start: number, end: number, text: string) {
   element.focus();
   element.setSelectionRange(start, end);
-  // execCommand keeps caret + fires native `input` event so React onChange picks it up; else fall back to value setter
+  // execCommand keeps caret, joins native undo, and fires real `input` event React can hear
   const inserted = document.execCommand("insertText", false, text);
   if (inserted) return;
   const next = element.value.slice(0, start) + text + element.value.slice(end);

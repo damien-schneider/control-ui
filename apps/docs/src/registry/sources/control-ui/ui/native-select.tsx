@@ -3,9 +3,7 @@ import { controlSize, controlSurfaceClasses } from "@/components/control-ui/cont
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, NOT Base UI: real native <select> (platform widget, not floating Base UI Select).
-// Shares --radius-control/controlSize w/ Button/Input/Select; appearance-none hides OS arrow, chevron overlay matches Select icon.
-// Native options open OS menu — no portal/skin re-assert needed.
+// real native <select>, not floating Base UI Select — its options open OS menu, so nothing portals and no scope is re-asserted.
 export function NativeSelect({ size = "md", className, children, ...props }: NativeSelectProps) {
   return (
     <div className="relative inline-flex w-full items-center">

@@ -12,9 +12,7 @@ export type ColorAreaPointer = {
   onPointerDown: (event: ReactPointerEvent) => void;
 };
 
-// pointer-drag for 2D color surfaces (sat/value area + hue/sat wheel); uses window listeners rather
-// than pointer capture so pointerdown can emit immediately and the gated effect can own cleanup
-// tracks window pointermove/up + suppresses text selection; caller owns pixel→color mapping, hook only reports offset
+// window listeners rather than pointer capture, so pointerdown can emit immediately and gated effect owns cleanup
 export function useColorArea(onChange: (offset: ColorAreaOffset, rect: ColorAreaRect) => void): ColorAreaPointer {
   const areaRef = useRef<HTMLDivElement | null>(null);
   const [dragging, setDragging] = useState(false);

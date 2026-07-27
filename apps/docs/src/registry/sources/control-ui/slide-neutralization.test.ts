@@ -12,8 +12,8 @@ import { skin as rig } from "../../skin-packs/rig/skin.config";
 import { skin as xp } from "../../skin-packs/xp/skin.config";
 
 /*
- * Sliding indicator: pill is SOLE hover/active chrome — component applies SELECTION_INDICATOR_BG_RESET after skin's slot classes so any pack-painted background is evicted by tailwind-merge.
- * Eviction only works on exact modifier chains the reset restates (bare + dark:); a pack painting a row background under any other modifier silently re-adds it at runtime, doubling the pill — this test catches that at CI time.
+ * tailwind-merge only evicts exact modifier chains SELECTION_INDICATOR_BG_RESET restates, so pack painting row
+ * background under any other modifier silently re-adds it at runtime and doubles pill.
  */
 
 const PACKS: ReadonlyArray<readonly [string, ControlUiSkin]> = [
@@ -27,7 +27,7 @@ const PACKS: ReadonlyArray<readonly [string, ControlUiSkin]> = [
   ["xp", xp],
 ];
 
-// Token still painting a background after the reset merge: any `bg-*` utility (color OR image — gradients double the pill too) under any modifier, except the reset's own `bg-transparent`.
+// images count too — gradient doubles pill as colour does
 function residualBackgrounds(slotClasses: string | undefined): string[] {
   if (!slotClasses) return [];
   return cn(slotClasses, SELECTION_INDICATOR_BG_RESET)

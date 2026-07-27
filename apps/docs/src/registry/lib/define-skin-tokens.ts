@@ -1,7 +1,4 @@
-// defineSkinTokens derives a small starter ramp from a skin-owned seed. Every remaining contract token
-// must still be supplied explicitly in both modes; there is no baseline/default skin map to inherit from.
-
-import { THEME_CONTRACT_NAMES } from "./theme-contract";
+import { REQUIRED_THEME_CONTRACT_NAMES, THEME_CONTRACT_NAMES } from "./theme-contract";
 
 export type SkinDensity = "compact" | "regular" | "roomy";
 
@@ -10,7 +7,7 @@ export type SkinSeed = {
   hue: number;
   /** Brand saturation (0-100). Default 60. */
   saturation?: number;
-  /** The one radius knob (px) applied to --radius. Default 10. */
+  /** one radius knob (px) applied to --radius. Default 10. */
   radius?: number;
   /** Control height + padding ramp. Default "regular". */
   density?: SkinDensity;
@@ -20,9 +17,9 @@ export type SkinTokenOverrides = Record<string, string>;
 
 export type DefineSkinInput = {
   seed: SkinSeed;
-  /** Explicit light values. Together with the seed ramp, these must complete the contract. */
+  /** Explicit light values. Together with seed ramp, these must complete contract. */
   light: SkinTokenOverrides;
-  /** Explicit dark values. Together with the seed ramp, these must complete the contract. */
+  /** Explicit dark values. Together with seed ramp, these must complete contract. */
   dark: SkinTokenOverrides;
 };
 
@@ -76,14 +73,14 @@ export function assertCompleteSkinTokens(value: unknown, label = "skin tokens"):
 
   const missing = (["light", "dark"] as const).flatMap((mode) => {
     const tokens = mode === "light" ? light : dark;
-    return [...THEME_CONTRACT_NAMES].flatMap((name) => (name in tokens ? [] : [`${name} (${mode})`]));
+    return [...REQUIRED_THEME_CONTRACT_NAMES].flatMap((name) => (name in tokens ? [] : [`${name} (${mode})`]));
   });
   if (missing.length > 0) {
-    throw new Error(`${label} must explicitly define every theme contract token in both modes. Missing: ${missing.join(", ")}.`);
+    throw new Error(`${label} must explicitly define every required theme contract token in both modes. Missing: ${missing.join(", ")}.`);
   }
 }
 
-// authored in HSL lightness steps (easy to reason about), emits oklch to match token format (Tailwind/shadcn v4); inline sRGB→OKLab keeps module pure, no client-only import
+// ramps are authored in HSL lightness steps but tokens must be oklch; sRGB→OKLab math is inlined to keep this module import-free
 function oklchFromHsl(h: number, s: number, l: number): string {
   const hh = ((h % 360) + 360) % 360;
   const ss = s / 100;
@@ -122,7 +119,6 @@ export function defineSkinTokens(input: DefineSkinInput): SkinTokens {
   const s = saturation;
   const d = DENSITY[density];
 
-  // Generated ramp — one hue fans out into brand + surfaces + foregrounds at fixed lightness steps.
   const light: Record<string, string> = {
     "--font-sans": '"Inter", ui-sans-serif, system-ui, sans-serif',
     "--font-mono": '"JetBrains Mono", ui-monospace, monospace',

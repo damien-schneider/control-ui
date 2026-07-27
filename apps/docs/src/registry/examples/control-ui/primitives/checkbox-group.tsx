@@ -35,7 +35,7 @@ export function PrimitiveCheckboxGroupExample() {
         <Checkbox id="channel-email" value="email" className="mt-0.5" aria-label="Email" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Email</span>
-          <span className="text-meta text-muted-foreground">Digest and receipts</span>
+          <span className="text-caption text-muted-foreground">Digest and receipts</span>
         </span>
       </label>
       <label
@@ -45,7 +45,7 @@ export function PrimitiveCheckboxGroupExample() {
         <Checkbox id="channel-sms" value="sms" className="mt-0.5" aria-label="SMS" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">SMS</span>
-          <span className="text-meta text-muted-foreground">Critical alerts only</span>
+          <span className="text-caption text-muted-foreground">Critical alerts only</span>
         </span>
       </label>
       <label
@@ -55,7 +55,7 @@ export function PrimitiveCheckboxGroupExample() {
         <Checkbox id="channel-push" value="push" className="mt-0.5" aria-label="Push" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Push</span>
-          <span className="text-meta text-muted-foreground">Mobile and desktop</span>
+          <span className="text-caption text-muted-foreground">Mobile and desktop</span>
         </span>
       </label>
       <label
@@ -65,7 +65,7 @@ export function PrimitiveCheckboxGroupExample() {
         <Checkbox id="channel-slack" value="slack" className="mt-0.5" aria-label="Slack" />
         <span className="flex flex-col">
           <span className="font-medium text-foreground">Slack</span>
-          <span className="text-meta text-muted-foreground">Post to #alerts</span>
+          <span className="text-caption text-muted-foreground">Post to #alerts</span>
         </span>
       </label>
     </CheckboxGroup>

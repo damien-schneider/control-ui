@@ -14,9 +14,7 @@ import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Base UI Toolbar = roving-tabindex focus group (arrow keys between controls, one Tab stop for strip). The root radius derives from the inset control radius + toolbar padding in theme.css.
-// Button/Link forward Base UI's `render` prop so a consumer composes DropdownMenu.Trigger/Tooltip.Trigger/control-ui Button and Base UI merges roving-focus wiring onto it.
-// Separator mirrors ButtonGroupSeparator.
+// Button and Link forward Base UI's `render` prop, so composed trigger still receives roving-focus wiring.
 
 export function Toolbar({ orientation = "horizontal", variant = "default", className, ...props }: ToolbarProps) {
   return (
@@ -37,7 +35,7 @@ export function Toolbar({ orientation = "horizontal", variant = "default", class
   );
 }
 
-// `render` picked straight off Base UI primitive so composed trigger (Menu.Trigger/Tooltip.Trigger/control-ui Button) types/merges as Base UI expects.
+// `render` is picked straight off Base UI primitive so composed trigger types and merges as Base UI expects
 type RefinedToolbarButtonProps = ToolbarButtonProps & Pick<ComponentProps<typeof ToolbarPrimitive.Button>, "render">;
 
 export function ToolbarButton({ iconOnly = false, className, ...props }: RefinedToolbarButtonProps) {
@@ -76,8 +74,7 @@ export function ToolbarLink({ variant = "default", className, ...props }: Refine
         "inline-flex shrink-0 items-center justify-center rounded-[var(--toolbar-item-radius-fit)] font-medium text-muted-foreground no-underline outline-none transition-colors hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         controlSize({ size: "sm" }),
         "px-2",
-        // "track" = row inside a TrackHighlight track: the moving pill owns all backgrounds, and while it
-        // visits a hovered sibling (track stamps data-track-hover) the active row yields its emphasis too.
+        // inside TrackHighlight track pill owns every background, and active row yields its emphasis while pill visits hovered sibling
         variant === "track"
           ? "relative z-[2] gap-1 px-1 text-caption shadow-none hover:bg-transparent data-[active=true]:bg-transparent data-[active=true]:text-foreground [[data-track-hover]_&]:data-[active=true]:text-muted-foreground sm:px-1.5 sm:text-label group-data-[variant=inverse]/toolbar:text-background/70 group-data-[variant=inverse]/toolbar:hover:bg-transparent group-data-[variant=inverse]/toolbar:hover:text-background group-data-[variant=inverse]/toolbar:data-[active=true]:bg-transparent group-data-[variant=inverse]/toolbar:data-[active=true]:text-foreground group-data-[variant=inverse]/toolbar:[[data-track-hover]_&]:data-[active=true]:text-background/70 group-data-[variant=inverse]/toolbar:focus-visible:ring-background/30"
           : "group-data-[variant=inverse]/toolbar:text-background/70 group-data-[variant=inverse]/toolbar:hover:bg-background/10 group-data-[variant=inverse]/toolbar:hover:text-background group-data-[variant=inverse]/toolbar:data-[active=true]:bg-background group-data-[variant=inverse]/toolbar:data-[active=true]:text-foreground group-data-[variant=inverse]/toolbar:focus-visible:ring-background/30",
@@ -101,7 +98,7 @@ export function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {
 }
 
 export function ToolbarSeparator({ orientation = "vertical", className, ...props }: ToolbarSeparatorProps) {
-  // Mirrors ButtonGroupSeparator; horizontal toolbar renders vertical separators (1px column), so orientation defaults to "vertical".
+  // horizontal toolbar renders vertical separators, hence default
   return (
     <ToolbarPrimitive.Separator
       orientation={orientation}

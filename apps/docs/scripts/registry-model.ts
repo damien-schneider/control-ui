@@ -177,7 +177,7 @@ function sourcePath(file: { path: string }) {
   return file.path;
 }
 
-// `source` anchors the parameter: a supportFiles-only shape would be a weak type and reject every
+// `source` anchors parameter: supportFiles-only shape would be weak type and reject every
 // catalog entry that declares no support files.
 function supportFilePaths(entry: { source: { path: string }; supportFiles?: readonly { path: string }[] }): string[] {
   return entry.supportFiles?.map(sourcePath) ?? [];

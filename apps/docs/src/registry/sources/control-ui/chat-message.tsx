@@ -31,8 +31,6 @@ export function ChatMessage({
 
   return (
     <ChatMessageContext.Provider value={message}>
-      {/* fx anchor candidate: "chat-message:stream-layer" — anchors are added on demand (see /architecture#extension-contract);
-          persistent-state fx (streaming glow, tone washes) need no anchor: style the emitted data-state/data-tone in CSS. */}
       <article
         data-control-ui="chat-message"
         data-slot="root"
@@ -79,7 +77,7 @@ export function ChatMessageAvatar({ className, ...props }: ChatMessageAvatarProp
       data-control-ui="chat-message"
       data-slot="avatar"
       className={cn(
-        "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border bg-card text-meta text-muted-foreground",
+        "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border bg-card text-caption text-muted-foreground",
         skinSlot("chat-message", "avatar", {}),
         className,
       )}
@@ -99,7 +97,7 @@ export function ChatMessageBody({ className, ...props }: ChatMessageBodyProps) {
 export type ChatMessageHeaderProps = ComponentProps<"div">;
 
 export function ChatMessageHeader({ className, ...props }: ChatMessageHeaderProps) {
-  return <div className={cn("mb-1 flex items-center gap-2 px-1 text-meta text-muted-foreground", className)} {...props} />;
+  return <div className={cn("mb-1 flex items-center gap-2 px-1 text-caption text-muted-foreground", className)} {...props} />;
 }
 
 export type ChatMessageContentProps = ComponentProps<"div">;
@@ -116,8 +114,7 @@ export function ChatMessageContent({ className, ...props }: ChatMessageContentPr
         "text-body leading-5",
         message.isUser &&
           "rounded-field rounded-se-lg bg-primary px-[var(--padding-x)] py-[var(--padding-y)] text-primary-foreground shadow-sm",
-        // Streaming assistant reply: shimmer-text sweep IS the "generating" indicator (replaces caret dot, which it'd hide anyway); settles to --foreground when done.
-        // Pack can swap streaming paint via chat-message-streaming slot.
+        // shimmer sweep IS generating indicator — caret dot would sit hidden underneath it
         message.isAssistant && (message.isStreaming ? (skinPaint("chat-message", "streaming", {}) ?? "shimmer-text") : "text-foreground"),
         skinSlot("chat-message", "content", { role: message.from }),
         className,

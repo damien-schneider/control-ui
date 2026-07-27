@@ -297,7 +297,7 @@ function darkAppearance(host: HTMLElement): number {
 function uploadCapture(gl: WebGLRenderingContext, liquid: LiquidProgram, capture: AppleLiquidGlassCapture): boolean {
   try {
     for (let index = 0; index < 8 && gl.getError() !== gl.NO_ERROR; index += 1) {
-      // Drain stale errors so the checks below describe these uploads.
+      // Drain stale errors so checks below describe these uploads.
     }
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
     gl.activeTexture(gl.TEXTURE0);
@@ -429,7 +429,7 @@ export function createAppleLiquidGlassEngine(onContextStateChange?: (available: 
   scratch.addEventListener("webglcontextlost", handleContextLost);
   scratch.addEventListener("webglcontextrestored", handleContextRestored);
 
-  // getParameter is typed any and returns null on a lost context; fall back to the capture default.
+  // getParameter is typed any and returns null on lost context; fall back to capture default.
   const maxTextureSize: unknown = gl.getParameter(gl.MAX_TEXTURE_SIZE);
 
   return {
@@ -778,7 +778,7 @@ async function decodeSvg(svg: string): Promise<CanvasImageSource | null> {
     try {
       return await createImageBitmap(new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
     } catch {
-      // Older WebKit builds need the image decoder path.
+      // Older WebKit builds need image decoder path.
     }
   }
   const image = new Image();

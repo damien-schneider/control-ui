@@ -8,7 +8,7 @@ import { skinSlot } from "@/components/control-ui/skin";
 
 const MAX_VISIBLE_STEP_TICKS = 50;
 
-// Tick offsets (%) for stepped slider; skipped when steps too fine/coarse to read as marks (matches one-rec's threshold).
+// skipped when steps are too fine or too coarse to read as marks
 function tickPositions(min: number, max: number, step: number | undefined): number[] {
   if (typeof step !== "number" || step <= 0 || !Number.isFinite(step)) return [];
   const range = max - min;
@@ -18,8 +18,7 @@ function tickPositions(min: number, max: number, step: number | undefined): numb
   return Array.from({ length: stepCount - 1 }, (_, i) => ((i + 1) / stepCount) * 100);
 }
 
-// variant: "default" = branded (muted track/primary indicator/pill thumb). "plain" = neutral monochrome (one-rec precision slider), for unbranded contexts.
-// plain + label/showValue grows into labeled bar: taller track, label+live value inside, step ticks.
+// label/showValue only grow taller labeled bar under "plain" — default variant ignores them
 const trackVariant = cva("relative w-full grow overflow-hidden transition-colors duration-[var(--duration-fast)]", {
   variants: {
     variant: {
@@ -55,7 +54,7 @@ const thumbVariant = cva(
   },
 );
 
-// Bottom-anchored so grow-on-drag reads as tick rising from track, not expanding from middle.
+// bottom-anchored so grow-on-drag reads as tick rising from track, not expanding from its middle
 const tick =
   "pointer-events-none absolute bottom-0 h-1.5 w-px bg-foreground/15 transition-[height,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-data-[dragging]:h-3 group-data-[dragging]:bg-foreground/25";
 
@@ -78,7 +77,7 @@ export function Slider({
   const labeled = variant === "plain" && (label !== undefined || showValue === true);
   const ticks = labeled ? tickPositions(min, max, step) : [];
 
-  // value/defaultValue passed explicitly, not via spread: Base UI reads controlled-ness from `value !== undefined` on first render; React Compiler can spread `undefined` for a tick, tripping the uncontrolled→controlled warning.
+  // explicit, never spread: Base UI reads controlled-ness from `value !== undefined`, and spread can carry `undefined` for tick
   return (
     <SliderPrimitive.Root
       data-control-ui="slider"
@@ -131,7 +130,7 @@ export function Slider({
               data-control-ui="slider"
               data-slot="label"
               className={cn(
-                "select-none text-meta leading-3.5 tracking-tight text-muted-foreground transition-all duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
+                "select-none text-caption leading-3.5 tracking-tight text-muted-foreground transition-all duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
                 "group-data-[dragging]:-translate-x-1 group-data-[dragging]:-translate-y-1.5 group-data-[dragging]:scale-90",
                 skinSlot("slider", "label", {}),
               )}
@@ -146,7 +145,7 @@ export function Slider({
               data-control-ui="slider"
               data-slot="value"
               className={cn(
-                "select-none text-meta leading-3.5 tracking-tight text-muted-foreground tabular-nums transition-all duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
+                "select-none text-caption leading-3.5 tracking-tight text-muted-foreground tabular-nums transition-all duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
                 "group-data-[dragging]:translate-x-0.5 group-data-[dragging]:-translate-y-1.5 group-data-[dragging]:text-foreground",
                 skinSlot("slider", "value", {}),
               )}

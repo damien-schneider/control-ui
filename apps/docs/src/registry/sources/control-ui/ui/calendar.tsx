@@ -17,9 +17,8 @@ import {
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// react-day-picker v10 — Base UI ships no calendar, so this is the one primitive reaching outside it.
-// Compose-parts contract: each part wraps the library's default, applying token classes via className only.
-// CalendarProps lives here not contracts.ts (installed by every component) to avoid forcing this import on non-calendar installs.
+// react-day-picker v10 — Base UI ships no calendar, so this is one primitive reaching outside it.
+// CalendarProps stays here rather than contracts.ts, which every component installs, so plain Button install never pulls this import.
 export type CalendarProps = ComponentProps<typeof DayPicker>;
 
 const dayButtonClasses =
@@ -60,8 +59,7 @@ export function Calendar({ className, showOutsideDays = true, ...props }: Calend
   );
 }
 
-// `relative` lives here, not on Month: the library renders Nav as a sibling of the months, so this is
-// the closest common ancestor its absolute buttons can pin to (without it they escape to the page).
+// `relative` belongs here, not on Month: library renders Nav as sibling of months, so this is closest ancestor its absolute buttons can pin to
 function CalendarMonths({ className, ...props }: ComponentProps<typeof MonthsBase>) {
   return <MonthsBase className={cn("relative flex flex-col gap-4 sm:flex-row", className)} {...props} />;
 }
@@ -78,7 +76,7 @@ function CalendarCaptionLabel({ className, ...props }: ComponentProps<typeof Cap
   return <CaptionLabelBase className={cn("select-none text-sm font-medium", className)} {...props} />;
 }
 
-// `h-9` matches the MonthCaption row so the buttons center on the month label instead of sitting 2px high.
+// matches MonthCaption row so buttons centre on month label
 function CalendarNav({ className, ...props }: ComponentProps<typeof NavBase>) {
   return <NavBase className={cn("absolute inset-x-0 top-0 flex h-9 items-center justify-between", className)} {...props} />;
 }
@@ -99,14 +97,12 @@ function CalendarDay({ className, ...props }: ComponentProps<typeof DayBase>) {
   return <DayBase className={cn("p-0 text-center align-middle", className)} {...props} />;
 }
 
-// Library modifiers resolved into data-* the recipe styles; library's focus-on-mount behavior preserved.
 function CalendarDayButton({ day, modifiers, className, ...props }: DayButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
-  // A one-click range marks the same day range_start *and* range_end, which would flatten both sides and
-  // drop --radius-control entirely — render it as a single selection so it keeps the control radius.
+  // one-click range marks same day as both ends, which would flatten both sides and drop --radius-control entirely
   const isSingleDayRange = Boolean(modifiers.range_start && modifiers.range_end);
   const isRange = !isSingleDayRange && (modifiers.range_start || modifiers.range_middle || modifiers.range_end);
   return (

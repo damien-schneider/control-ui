@@ -1,11 +1,6 @@
-/*
- * The pack's own vars + the three things Tailwind classes cannot say: body-inherited type rendering,
- * and the Tabs component-local knobs. Everything else lives in skin.config (slots) or theme.css (tokens).
- * All scoped [data-skin="linear"] so several packs co-compile in one build.
- */
+/* Only what Tailwind classes cannot say — everything else lives in skin.config or theme.css. */
 
-/* Pack vars — NOT theme-contract names. Row fills derive from --foreground, so one declaration
- * serves both modes (the token flips, the alpha recipe doesn't). Surfaces/shadows are mode-dependent. */
+/* Row fills derive from --foreground, so one declaration serves both modes; surfaces and shadows do not. */
 [data-skin="linear"] {
   --linear-row-hover: oklch(from var(--foreground) l c h / 0.05);
   --linear-row-active: oklch(from var(--foreground) l c h / 0.08);
@@ -17,8 +12,7 @@
   --linear-primary-hover: oklch(0.5897 0.1527 276.397); /* #6771d6 */
   --linear-primary-active: oklch(0.5177 0.1507 275.398); /* #525cbd */
 
-  /* Elevation, spelled out: the sheet and its cards are held by hairlines; popups and modals lift.
-   * Own vars (not `shadow-(--shadow-pop)`) so the tiers stay legible and tunable per surface class. */
+  /* Own vars rather than the shared shadow tokens, so each surface tier stays tunable on its own. */
   --linear-control-shadow: 0 1px 1px 0 oklch(from var(--shadow-color) l c h / 0.05);
   --linear-panel-shadow: 0 1px 3px 0 oklch(from var(--shadow-color) l c h / 0.04);
   --linear-menu-shadow:
@@ -52,9 +46,7 @@
   --linear-tab-active-shadow: none;
 }
 
-/* Type rendering is inherited, not a utility: Linear ships Inter with its character variants on and
- * a hair of negative tracking across the whole app. Scoped to the skinned document, body-level so
- * portalled popups inherit it too. */
+/* Body-level, not a utility: type rendering is inherited, so portalled popups pick it up too. */
 :root[data-skin="linear"] body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -69,16 +61,14 @@
 }
 
 @layer components {
-  /* Sliding selection pill (apps opting into indicator="slide", the docs shell among them): Linear's
-   * selected row is a flat ink wash, never a raised card. Re-values of the library's own knobs. */
+  /* Re-values the library's pill knobs: a flat ink wash, never a raised card. */
   [data-skin="linear"] :where([data-control-ui="track-highlight"][data-slot="root"]) {
     --track-highlight-bg: var(--linear-row-active);
     --track-highlight-ring: transparent;
     --track-highlight-shadow: none;
   }
 
-  /* Tabs: no recessed well. The track is bare, the active chip is a raised card — re-values of the
-   * library's component-local knobs, so geometry, states and the `line` variant stay baseline's. */
+  /* Re-values the component-local knobs only, so geometry, states, and the `line` variant stay baseline. */
   [data-skin="linear"] :where([data-control-ui="tabs"][data-slot="list"]) {
     --tabs-trigger-radius: var(--radius-control);
     --tabs-list-padding: 0rem;

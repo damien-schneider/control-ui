@@ -14,13 +14,13 @@ import {
 import { buildOverrideDecls } from "./override-decls";
 import { DEFAULT_THEME } from "./presets";
 
-// Test helper: assert non-null without an `as` cast (the codebase forbids assertions except as const).
+// Test helper: assert non-null without an `as` cast (codebase forbids assertions except as const).
 function str(value: string | null): string {
   if (value === null) throw new Error("expected a non-null hex");
   return value;
 }
 
-// SPEC: pins accessibility readout to real WCAG numbers so the oklch-mis-parsed-as-rgb regression can't silently return.
+// SPEC: pins accessibility readout to real WCAG numbers so oklch-mis-parsed-as-rgb regression can't silently return.
 // rgb fixtures = sRGB bytes canvas round-trip yields for refined light tokens (what resolveToRgb MUST produce).
 // --foreground/--card-foreground [9,9,11], --card [255,255,255], --muted-foreground [113,113,122], --canvas [244,243,241], --primary [24,24,27], --primary-foreground [250,250,250], --destructive [179,54,43], --destructive-foreground [250,250,250].
 
@@ -184,20 +184,20 @@ describe("textFailsAA — true when ANY fixable row fails AA (every row now has 
 
 describe("offeredFixLevel — next unmet level, gated by what the fix can actually reach", () => {
   test("default reach (Infinity) offers the next unmet level", () => {
-    // Text on a near-black/near-white surface reaches ~21:1, so no reach arg → the next level shows.
+    // Text on near-black/near-white surface reaches ~21:1, so no reach arg → next level shows.
     expect(offeredFixLevel({ AA: false, AAA: false })).toBe("AA");
     expect(offeredFixLevel({ AA: true, AAA: false })).toBe("AAA");
   });
 
   test("a reachable ratio below the target withholds the chip (no dead button)", () => {
-    // A pairing that tops out ~6.2:1 → its AAA upgrade is NOT offered…
+    // pairing that tops out ~6.2:1 → its AAA upgrade is NOT offered…
     expect(offeredFixLevel({ AA: true, AAA: false }, 6.2)).toBeNull();
     // …but AA (4.5) is reachable, so the → AA fix still shows.
     expect(offeredFixLevel({ AA: false, AAA: false }, 6.2)).toBe("AA");
   });
 
   test("when the target IS reachable (e.g. Muted on a dark-surface skin), the AAA chip appears", () => {
-    // Darkening/lightening the text token can clear 7:1 on a dark surface → the → AAA upgrade shows.
+    // Darkening/lightening text token can clear 7:1 on dark surface → the → AAA upgrade shows.
     expect(offeredFixLevel({ AA: true, AAA: false }, 9)).toBe("AAA");
   });
 
@@ -284,7 +284,7 @@ describe("fixTextForeground — nudge lightness until it clears AA on the hardes
   });
 
   test("with an AAA target (7), text that already clears AA is pushed to clear 7 on both surfaces", () => {
-    // #555 clears AA on white but not AAA — the upgrade must reach ≥7.
+    // #555 clears AA on white but not AAA — upgrade must reach ≥7.
     expect(worst("#555555")).toBeGreaterThanOrEqual(4.5);
     expect(worst("#555555")).toBeLessThan(7);
     const upgraded = fixTextForeground("#555555", bgs, 7);
@@ -315,7 +315,7 @@ describe("textFixes → buildOverrideDecls: the abstract per-token fix lands in 
   });
 
   test("the fix is authored LAST, so it wins over the user's own edit of the same token", () => {
-    // With a light-mode edit of --card-foreground in play, textFix for same token must shadow it (fixes land last in inline slate + portal sheet).
+    // With light-mode edit of --card-foreground in play, textFix for same token must shadow it (fixes land last in inline slate + portal sheet).
     const decls = buildOverrideDecls(
       { ...DEFAULT_THEME, light: { "--card-foreground": "oklch(0.9 0 0)" }, textFixes: { "--card-foreground": "#777777" } },
       false,

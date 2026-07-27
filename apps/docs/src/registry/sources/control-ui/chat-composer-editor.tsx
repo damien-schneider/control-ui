@@ -17,8 +17,7 @@ import type { ChatComposerEditorApi, ChatComposerEditorProps } from "./chat-comp
 
 const SUBMIT_KEY = "Enter";
 
-// Bare ProseMirror editor (plain-text paragraphs only); extensions add nodes/plugins/keymap/overlay (e.g. mentionExtension), editor works with none.
-// Doc is source of truth: pushes serialized text to chat-composer hook; re-hydrates only on EXTERNAL value changes (clear/prefill), never own keystrokes (would fight caret).
+// doc is source of truth: it re-hydrates only on external value changes, never on its own keystrokes, which would fight caret.
 export function ChatComposerEditor({ className, placeholder, extensions = [] }: ChatComposerEditorProps) {
   const input = useChatComposerContext();
 
@@ -28,11 +27,11 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
   useEffect(() => {
     inputRef.current = input;
   }, [input]);
-  // Editor's own last output; lets reset effect distinguish external value change from own keystroke round-trip.
+  // lets reset effect tell external value change from its own keystroke round-trip
   const lastSerialized = useRef(input.value);
   const [mounted, setMounted] = useState(false);
 
-  // Per-mount runtime shared by all extensions (plugins + overlays); stable for editor lifetime so extensions never close over stale state.
+  // stable for editor's lifetime, so extensions never close over stale state
   const listenersRef = useRef(new Set<() => void>());
   const keyHandlersRef = useRef(new Set<(event: KeyboardEvent) => boolean>());
   const [api] = useState<ChatComposerEditorApi>(() => ({
@@ -50,10 +49,10 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
       };
     },
   }));
-  // Extensions are mount-time config; capture first set so schema/plugins never rebuild mid-life (would tear down live editor).
+  // mount-time config only — rebuilding schema mid-life would tear down live editor
   const [initialExtensions] = useState(extensions);
 
-  // Mount once; value/extensions/api read through refs so this never needs to re-run.
+  // value, extensions, and api are read through refs so this never re-runs
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
@@ -74,7 +73,7 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
       schema,
       doc: docFromText(schema, inputRef.current.value),
       plugins: [
-        // First so handleKeyDown wins: lets extension overlays (e.g. open mention menu) consume arrow/Enter/Esc before keymaps below.
+        // first, so open overlay consumes arrows, Enter, and Esc before keymaps below
         new Plugin({
           props: {
             handleKeyDown: (_view, event) => {
@@ -85,7 +84,7 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
         }),
         ...extensionPlugins,
         history(),
-        // Extension keymaps (e.g. mention Backspace/Delete) before baseKeymap so they win.
+        // before baseKeymap so extension bindings win
         keymap(extensionKeymap),
         keymap({
           "Mod-z": undo,
@@ -108,7 +107,7 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
           lastSerialized.current = text;
           inputRef.current.setValue(text);
         }
-        // Notify overlays on every transaction (selection moves included) so they can mirror caret state.
+        // every transaction, selection moves included, so overlays can mirror caret
         for (const listener of listenersRef.current) listener();
       },
     });
@@ -120,12 +119,11 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
     };
   }, [api, initialExtensions]);
 
-  // Re-hydrate the doc only when the value changes from OUTSIDE the editor (clear/prefill).
   useEffect(() => {
     const view = viewRef.current;
     if (!view) return;
     if (input.value === lastSerialized.current) return;
-    // Submit/clear (text→empty): ghost outgoing message so it blurs instead of snapping blank; prefill (edit→non-empty) untouched.
+    // only text→empty is ghosted, so message blurs out instead of snapping blank; prefill is left alone
     if (input.value === "" && lastSerialized.current !== "" && view.dom instanceof HTMLElement) {
       spawnExitGhost(view.dom, MESSAGE_GHOST_INHERIT);
     }
@@ -151,7 +149,7 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
           mounted ? "" : "hidden",
         )}
       />
-      {/* SSR / pre-hydration fallback so the field is visible before the editor mounts (like ChatGPT). */}
+      {/* keeps field visible before editor mounts */}
       {mounted ? null : (
         <textarea
           aria-label="Message"
@@ -162,7 +160,6 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
           className="min-h-16 w-full resize-none bg-transparent px-[var(--padding-x)] py-[var(--padding-y)] text-sm leading-6 outline-none placeholder:text-muted-foreground"
         />
       )}
-      {/* Extension overlays (caret-anchored popups) render once the view exists. */}
       {mounted
         ? initialExtensions.map((extension) => (extension.Overlay ? <extension.Overlay key={extension.name} editor={api} /> : null))
         : null}

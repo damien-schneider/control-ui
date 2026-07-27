@@ -1,11 +1,7 @@
-/*
- * "Rig" skin.css: pack's own vars + CSS cva recipes can't express (chamfer clip-path, corner
- * ticks, scanline, etc). Scoped to [data-skin="rig"] and layered so app utilities win.
- */
+/* Only what a cva recipe cannot express: chamfer clip-path, corner ticks, scanline. Layered so app utilities still win. */
 
-/* Pack's own vars, not part of theme.css contract; unlayered+scoped so @layer components below inherit them. */
+/* Pack-owned vars, off the theme contract; unlayered so the @layer components block below inherits them. */
 [data-skin="rig"] {
-  /* Diagonal corner cut: top-right + bottom-left. */
   --rig-chamfer: 9px;
 }
 
@@ -22,8 +18,6 @@
 }
 
 @layer components {
-  /* ---- Controls: chamfer + motion ------------------------------------------------------------ */
-
   /* Squared + diagonal cut on two corners; clip-path removes border there, so outlined controls use
    * an inset ring instead. Hard offset shadow rides filter:drop-shadow (honors clip-path shape;
    * box-shadow would get clipped away). Resting=flat, hover=shadow, press=sink. */
@@ -104,8 +98,6 @@
       inset 0 0 0 5px oklch(from var(--primary) l c h / 0.12);
   }
 
-  /* ---- Chat: user bubble ---------------------------------------------------------------------- */
-
   /* User bubble = bg-primary coral both modes. Dark uses a deeper coral so the shared cream ink
    * keeps AA contrast against the bubble. */
   :is(.dark[data-skin="rig"], :where(.dark) [data-skin="rig"], [data-skin="rig"] :where(.dark))
@@ -113,8 +105,6 @@
     background-color: oklch(0.444 0.1277 32.246);
     color: oklch(0.9313 0.0143 81.504);
   }
-
-  /* ---- Tabs ---------------------------------------------------------------------------------- */
 
   [data-skin="rig"] [data-control-ui="tabs"][data-slot="list"],
   [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"] {
@@ -138,8 +128,6 @@
     background: var(--primary);
     box-shadow: 0 0 0 1px oklch(from var(--primary) l c h / 0.35);
   }
-
-  /* ---- HUD corner ticks on the big framed surfaces ------------------------------------------- */
 
   /* Crosshair L-ticks in 4 corners: ::before=TL+BR, ::after=TR+BL, each a horiz+vert hairline; inset so they read despite overflow clipping. */
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"],
@@ -171,7 +159,6 @@
     z-index: 2;
   }
 
-  /* ::before → top-left + bottom-right corners. */
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::before,
   [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::before,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
@@ -184,7 +171,6 @@
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 100% / var(--rig-tick-w) var(--rig-tick) no-repeat;
   }
 
-  /* ::after → top-right + bottom-left corners. */
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::after,
   [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::after,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
@@ -211,8 +197,6 @@
     --rig-tick-c: oklch(0.5988 0.2021 25.776);
   }
 
-  /* ---- Menu / Select popups: top hairline + row accents ------------------------------------- */
-
   [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="content"],
   [data-skin="rig"] [data-control-ui="select"][data-slot="content"] {
     border-radius: 0;
@@ -238,8 +222,6 @@
     transform: translateX(2px);
   }
 
-  /* ---- Sidebar rows + mono eyebrows ---------------------------------------------------------- */
-
   [data-skin="rig"] [data-control-ui="sidebar"][data-slot="menu-button"] {
     border-radius: 0;
     transition:
@@ -263,8 +245,6 @@
     font-weight: 600;
     font-size: 0.68rem;
   }
-
-  /* ---- Tooltip ------------------------------------------------------------------------------- */
 
   [data-skin="rig"] [data-control-ui="tooltip"][data-slot="content"] {
     border-radius: 0;

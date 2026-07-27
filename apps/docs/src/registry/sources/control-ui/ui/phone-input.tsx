@@ -59,9 +59,8 @@ type PhoneInputControlProps = ComponentProps<"input"> & {
   onNativeChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
-// The bundled country-flag-icons components spread full SVG props, but react-phone-number-input declares them as
-// ({ title }) => Element. Intersecting both declarations keeps `title` required as declared, so the annotation
-// type-checks where a widening assertion used to stand in.
+// country-flag-icons spreads full SVG props while react-phone-number-input declares ({ title }) => Element;
+// intersecting both keeps `title` required, so no widening assertion is needed.
 type FlagComponent = ComponentType<SVGProps<SVGSVGElement> & EmbeddedFlagProps>;
 const FLAG_COMPONENTS: Partial<Record<PhoneInputCountry, FlagComponent>> = flags;
 const PhoneNumberInputWithRef: ComponentType<ComponentProps<typeof PhoneNumberInput> & { inputRef?: Ref<HTMLInputElement> }> =
@@ -143,7 +142,7 @@ function PhoneCountrySelect({
                     >
                       <CountryFlag country={option.value} />
                       <span className="min-w-0 flex-1 truncate">{option.label}</span>
-                      {callingCode ? <span className="text-meta tabular-nums text-muted-foreground">{callingCode}</span> : null}
+                      {callingCode ? <span className="text-caption tabular-nums text-muted-foreground">{callingCode}</span> : null}
                       {selected ? <span className="sr-only">Selected</span> : null}
                       <CheckIcon visible={selected} />
                     </CommandItem>
@@ -161,11 +160,11 @@ function PhoneCountrySelect({
 function CountryFlag({ country }: { country?: PhoneInputCountry }) {
   if (!country) return <GlobeIcon />;
   const Flag = FLAG_COMPONENTS[country];
-  // Empty title keeps the flag decorative (it renders no <title>): the country name sits next to it and the trigger carries its own label.
+  // empty title renders no <title>, keeping flag decorative beside country name
   return Flag ? (
     <Flag title="" aria-hidden="true" className="h-3.5 w-5 shrink-0 rounded-[2px]" />
   ) : (
-    <span className="text-meta">{country}</span>
+    <span className="text-caption">{country}</span>
   );
 }
 

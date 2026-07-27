@@ -4422,7 +4422,14 @@ export const generatedSkinContract: SkinContract = {
         },
         content: {
           registryItems: ["inline-citation"],
-          states: [],
+          states: [
+            {
+              attribute: "data-slide",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["scope"],
+            },
+          ],
         },
         favicon: {
           registryItems: ["inline-citation"],
@@ -4454,7 +4461,32 @@ export const generatedSkinContract: SkinContract = {
         },
         source: {
           registryItems: ["inline-citation"],
-          states: [],
+          states: [
+            {
+              attribute: "data-activation-direction",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["left", "right"],
+            },
+            {
+              attribute: "data-ending-style",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-slide",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["panel"],
+            },
+            {
+              attribute: "data-starting-style",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
         "source-description": {
           registryItems: ["inline-citation"],
@@ -7496,6 +7528,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["horizontal", "vertical"],
             },
+            {
+              attribute: "data-slide",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["scope"],
+            },
           ],
         },
         indicator: {
@@ -7586,6 +7624,12 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "enum",
               values: ["horizontal", "vertical"],
+            },
+            {
+              attribute: "data-slide",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["panel"],
             },
             {
               attribute: "data-starting-style",

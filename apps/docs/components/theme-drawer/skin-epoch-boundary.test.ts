@@ -3,9 +3,9 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 /*
- * The theme editor must render INSIDE SkinEpochBoundary — it morphs out of the docs floating toolbar, so DocsShell is what has to sit inside.
- * skinSlot() resolves against mutable user-owned skin.config getters, invisible to React Compiler as a dependency — memoized components freeze classes from their last re-render; epoch remount re-resolves every slot after setSkin().
- * Outside boundary: each skin tile in the editor kept look of whichever skin was active when its `active` prop last flipped — patchwork of half-applied skins.
+ * theme editor must render INSIDE SkinEpochBoundary — it morphs out of docs floating toolbar, so DocsShell is what has to sit inside.
+ * skinSlot() resolves against mutable user-owned skin.config getters, invisible to React Compiler as dependency — memoized components freeze classes from their last re-render; epoch remount re-resolves every slot after setSkin().
+ * Outside boundary: each skin tile in editor kept look of whichever skin was active when its `active` prop last flipped — patchwork of half-applied skins.
  */
 
 const read = (rel: string) => readFileSync(fileURLToPath(new URL(rel, import.meta.url)), "utf8");

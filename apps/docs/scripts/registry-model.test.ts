@@ -28,7 +28,7 @@ describe("Control UI starter registry items", () => {
     expect(allRefined.files).toEqual([]);
   });
 
-  // `all` is a thin alias: every per-skin starter owns the catalog, so the default one must add nothing of its own.
+  // `all` is thin alias: every per-skin starter owns catalog, so default one must add nothing of its own.
   test("all aliases the Refined starter and owns no source", () => {
     const all = registryItem("all");
 

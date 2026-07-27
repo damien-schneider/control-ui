@@ -88,7 +88,7 @@ export function ScrollArea({
       className={cn("relative overflow-hidden", skinSlot("scroll-area", "root", {}), className)}
       {...props}
     >
-      {/* Overscroll left at default (chaining) so wheel falls through to parent when viewport can't scroll further; `overscroll-contain` would trap it. */}
+      {/* overscroll stays at default so wheel falls through to parent — `overscroll-contain` would trap it */}
       <ScrollAreaPrimitive.Viewport
         ref={viewportRef}
         className={cn(

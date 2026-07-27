@@ -10,7 +10,7 @@ import type {
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Plain semantic card (no Base UI). Header is a grid; has-data-[slot=card-action] pins CardAction to top-right without title/description knowing it's there.
+// header grid pins CardAction top-right without title or description knowing it is there
 export function Card({ variant = "default", className, ...props }: CardProps) {
   return (
     <div

@@ -5,21 +5,16 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { CodeOverflow, DiffIndicators, DiffLineKind, DiffStyle } from "@/components/control-ui/contracts";
-import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
 import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine } from "@/components/control-ui/lib/diff";
 import { skinSlot } from "@/components/control-ui/skin";
-import { Button } from "@/components/control-ui/ui/button";
-import { CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
+import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 /*
- * CodeDiff — the diff view built on the Code surface. It parses a git/unified patch OR a before/after
- * pair into the pure DiffFile model (lib/diff), then renders unified or split rows through one TanStack
- * virtualizer over a single aligned-row list (no scroll-sync). Line numbers and +/- markers live in
- * select-none cells, so a text selection copies clean source. Intra-line word/char diff shows as an
- * emphasis background on changed lines; add/remove tint + gutter come from the --diff-* skin tokens.
+ * Split mode virtualizes one aligned-row list rather than two synced panes, so there is no scroll-sync to drift.
+ * Line numbers and +/- markers sit in select-none cells, so text selection copies clean source.
  */
 
 const ESTIMATED_ROW_HEIGHT = 20;
@@ -33,8 +28,7 @@ type VisualRow =
   | { kind: "split"; id: string; left: DiffLine | null; right: DiffLine | null };
 
 export type CodeDiffProps = Omit<ComponentProps<"figure">, "children"> & {
-  // One input path or the other. `patch` is a unified/git diff string (partial: no expand-context).
-  // `oldText`/`newText` compute a full diff (expandable).
+  // one path or other: `patch` is partial and cannot expand context, text pair can
   patch?: string;
   oldText?: string;
   newText?: string;
@@ -46,13 +40,11 @@ export type CodeDiffProps = Omit<ComponentProps<"figure">, "children"> & {
   overflow?: CodeOverflow;
   maxLineDiffLength?: number;
   maxHeight?: string;
-  // Render the header row (name + +/− stat + copy). On by default.
   header?: boolean;
   children?: ReactNode;
 };
 
-// Reconstruct each side's full text so tokens can be indexed by line number. Non-partial files carry
-// the whole text; partial (patch) files are rebuilt from the hunk lines (holes join as blank lines).
+// tokens are indexed by line number, so partial file's holes are rebuilt as blank lines to keep indices honest
 function sideTexts(file: DiffFile): { old: string; new: string } {
   if (!file.isPartial) return { old: file.oldLines.join("\n"), new: file.newLines.join("\n") };
   const oldArr: string[] = [];
@@ -95,7 +87,7 @@ function lineTokens(line: DiffLine, tokens: SideTokens): CodeTokenLines[number] 
   return tokens.new?.[(line.newNo ?? 1) - 1] ?? tokens.old?.[(line.oldNo ?? 1) - 1] ?? null;
 }
 
-// Split a hunk's unified lines into aligned [left(del)|right(add)] rows; context sits on both sides.
+// context lines sit on both sides of pair
 function splitPairs(lines: DiffLine[]): { left: DiffLine | null; right: DiffLine | null }[] {
   const rows: { left: DiffLine | null; right: DiffLine | null }[] = [];
   let index = 0;
@@ -122,7 +114,7 @@ function splitPairs(lines: DiffLine[]): { left: DiffLine | null; right: DiffLine
   return rows;
 }
 
-// Reveal a hidden gap as context lines, numbered from the file's full text (non-partial only).
+// non-partial only — numbering comes from file's full text
 function expandedContext(file: DiffFile, gapIndex: number): DiffLine[] {
   const hunk = file.hunks[gapIndex];
   if (!hunk) return [];
@@ -192,7 +184,7 @@ const lineTint: Record<DiffLine["type"], string> = {
 
 const markerFor: Record<DiffLine["type"], string> = { add: "+", del: "-", context: "" };
 
-// One code cell: word-diff emphasis when the line carries segments, else syntax tokens.
+// word-diff emphasis wins over syntax tokens when line carries segments
 function DiffCode({
   line,
   tokens,
@@ -574,8 +566,9 @@ export function CodeDiff({
       data-file-count={files.length}
       data-header={header ? "true" : undefined}
       className={cn(
-        "my-4 overflow-hidden rounded-panel bg-muted shadow-sm ring-1 ring-inset ring-border",
-        !header && "relative pt-10",
+        "my-4 overflow-hidden rounded-panel border bg-background shadow-sm",
+        // diff rows carry no padding of their own, so band must cover overlay's full footprint
+        !header && "relative pt-9",
         skinSlot("code-diff", "root", { diffStyle }),
         className,
       )}
@@ -622,21 +615,11 @@ export function CodeDiff({
   );
 }
 
-export type CodeDiffCopyProps = Omit<ComponentProps<typeof Button>, "children" | "onClick"> & {
-  value: string;
-  children?: ReactNode;
-  copiedLabel?: ReactNode;
-};
+export type CodeDiffCopyProps = CodeCopyProps;
 
-// Same as CodeCopy: the library Button (quiet variant) so the diff header's copy matches every
-// other control instead of re-implementing the ghost chrome by hand.
-export function CodeDiffCopy({ value, copiedLabel = "Copied", children = "Copy", ...props }: CodeDiffCopyProps) {
-  const { isCopied, handleCopy } = useCopyToClipboard({ text: value });
-  return (
-    <Button type="button" variant="quiet" size="xs" aria-live="polite" {...props} onClick={handleCopy}>
-      {isCopied ? copiedLabel : children}
-    </Button>
-  );
+// IS CodeCopy, so diff header's copy and a code header's copy can never drift apart.
+export function CodeDiffCopy(props: CodeDiffCopyProps) {
+  return <CodeCopy {...props} />;
 }
 
 function emptyFile(name: string | undefined): DiffFile {

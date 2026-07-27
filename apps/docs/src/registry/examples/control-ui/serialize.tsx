@@ -8,7 +8,7 @@ import { mentionExtension } from "@/components/control-ui/chat-composer-editor/e
 import type { ChatComposerSubmitPayload, MentionItem, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
 
 // Preview for `serializeDoc`: editor pushes serialized plain-text to ChatComposer value live; pressing
-// Send surfaces the full payload (text + structured `mentions[]` from the mention extension).
+// Send surfaces full payload (text + structured `mentions[]` from mention extension).
 
 const mentionSources: TriggerMenuItemData[] = [
   { id: "notion", label: "Notion", kind: "connector", description: "Connector", icon: "◈", keywords: ["docs", "wiki"] },

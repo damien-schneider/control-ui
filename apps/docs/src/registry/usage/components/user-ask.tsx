@@ -12,7 +12,7 @@ import {
   UserAskTitle,
 } from "@/components/control-ui/user-ask";
 
-// Render your agent's ask-user tool call in place of the composer; feed the answers back as the tool result.
+// Render your agent's ask-user tool call in place of composer; feed answers back as tool result.
 export function Example({ onAnswer }: { onAnswer: (answers: UserAskAnswers) => void }) {
   return (
     <UserAsk autoFocus onComplete={onAnswer} onDismiss={() => onAnswer({})}>

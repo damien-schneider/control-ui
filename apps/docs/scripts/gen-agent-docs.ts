@@ -1,5 +1,4 @@
-// Generates repository instructions and public LLM indexes from the same catalog as the human docs.
-// `--check` fails on drift so every derived surface stays honest.
+// Derived from same catalog as human docs; `--check` fails on drift.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
@@ -140,7 +139,6 @@ function buildLlmsFull(generatedCheatSheet: string) {
     .replaceAll(env.NEXT_PUBLIC_REGISTRY_URL, siteConfig.url.origin);
 }
 
-// Replace marked block; append fresh one if markers absent.
 function injectMarkers(existing: string, block: string) {
   const wrapped = `${START}\n${block}\n${END}`;
   const startIndex = existing.indexOf(START);
@@ -158,13 +156,12 @@ const llmsIndex = buildLlmsIndex();
 const llmsFull = buildLlmsFull(cheatSheet);
 const repoRoot = path.resolve(process.cwd(), "../..");
 
-// current-on-disk vs expected content, per target.
 const targets: { path: string; expected: string; missingOk?: boolean }[] = [];
 
 for (const file of ["AGENTS.md", "CLAUDE.md"]) {
   const absolute = path.join(repoRoot, file);
   if (!existsSync(absolute)) {
-    // AGENTS.md required; CLAUDE.md injected only if repo already has one.
+    // CLAUDE.md is only injected when repo already has one
     continue;
   }
   targets.push({ path: absolute, expected: injectMarkers(readFileSync(absolute, "utf8"), cheatSheet) });

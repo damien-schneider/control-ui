@@ -36,7 +36,7 @@ export function PrimitiveNavigationMenuExample() {
                   <li key={item.title}>
                     <NavigationMenuLink href="#">
                       <div className="text-label font-medium text-foreground">{item.title}</div>
-                      <p className="mt-0.5 text-meta text-muted-foreground">{item.description}</p>
+                      <p className="mt-0.5 text-caption text-muted-foreground">{item.description}</p>
                     </NavigationMenuLink>
                   </li>
                 ))}
@@ -52,7 +52,7 @@ export function PrimitiveNavigationMenuExample() {
                   <li key={item.title}>
                     <NavigationMenuLink href="#">
                       <div className="text-label font-medium text-foreground">{item.title}</div>
-                      <p className="mt-0.5 text-meta text-muted-foreground">{item.description}</p>
+                      <p className="mt-0.5 text-caption text-muted-foreground">{item.description}</p>
                     </NavigationMenuLink>
                   </li>
                 ))}

@@ -13,7 +13,7 @@
       "path": "src/registry/sources/control-ui/ui/skeleton.tsx",
       "target": "@components/control-ui/ui/skeleton.tsx",
       "type": "registry:ui",
-      "content": "import type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinPaint, skinSlot } from \"@/components/control-ui/skin\";\n\n// Token-driven `shimmer` sweep instead of flat pulse — reads as \"streaming in\", follows theme colours/radius/motion tempo.\nexport function Skeleton({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-control-ui=\"skeleton\"\n      data-slot=\"root\"\n      className={cn(\"rounded-md\", skinPaint(\"skeleton\", \"shimmer\", {}) ?? \"shimmer\", skinSlot(\"skeleton\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
+      "content": "import type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinPaint, skinSlot } from \"@/components/control-ui/skin\";\n\n// sweep rather than flat pulse, so it reads as \"streaming in\"\nexport function Skeleton({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-control-ui=\"skeleton\"\n      data-slot=\"root\"\n      className={cn(\"rounded-md\", skinPaint(\"skeleton\", \"shimmer\", {}) ?? \"shimmer\", skinSlot(\"skeleton\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
     }
   ],
   "meta": {}

@@ -4,7 +4,7 @@ import { skinSlot } from "@/components/control-ui/skin";
 
 const DEFAULT_ASPECT_RATIO = 16 / 9;
 
-// Pure-CSS ratio box (no Radix): sets native `aspect-ratio` from `ratio` prop; rounding/clipping is caller's/skin's to add.
+// native CSS aspect-ratio, no Radix; rounding and clipping stay caller's to add
 export function AspectRatio({ ratio = DEFAULT_ASPECT_RATIO, className, style, ...props }: AspectRatioProps) {
   return (
     <div

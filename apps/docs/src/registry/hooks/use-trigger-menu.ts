@@ -3,13 +3,12 @@ import { useRef, useState } from "react";
 import type { TriggerConfig, TriggerMenuItemData } from "../contracts";
 import type { TriggerMatch } from "../lib/trigger-detect";
 
-// headless engine for caret-anchored typeahead menu — owns only menu UI: active trigger, filtered items, highlight, anchor rect, keyboard contract
-// never touches DOM/editor; binding (textarea or ProseMirror plugin) feeds state via `report`, does insertion via `onCommit`
-// that split lets one popup serve plain <textarea> + rich ProseMirror editor unchanged
+// Never touches DOM or editor: binding feeds state through `report` and performs insertion through `onCommit`,
+// which is what lets one popup serve plain <textarea> and ProseMirror editor unchanged.
 
 export type UseTriggerMenuOptions<Item extends TriggerMenuItemData> = {
   triggers: readonly TriggerConfig<Item>[];
-  // backend-specific mutation for chosen item (mention replace, slash-command, …); engine passes back active trigger + match
+  // backend-specific mutation for chosen item — mention replace, slash-command, and so on
   onCommit: (item: Item, trigger: TriggerConfig<Item>, match: TriggerMatch) => void;
 };
 
@@ -20,9 +19,9 @@ export type TriggerMenuController<Item extends TriggerMenuItemData> = {
   anchorRect: DOMRect | null;
   activeChar: string | null;
   query: string;
-  /** Binding → engine: publish the current trigger match (or null) and the caret rect to anchor to. */
+  /** Binding → engine: publish current trigger match (or null) and caret rect to anchor to. */
   report: (match: TriggerMatch | null, anchorRect: DOMRect | null) => void;
-  /** Binding → engine: route a keydown while open. Returns true when the engine consumed the key. */
+  /** Binding → engine: route keydown while open. Returns true when engine consumed key. */
   handleKeyDown: (key: string) => boolean;
   /** View → engine. */
   setActiveIndex: (index: number) => void;
@@ -98,7 +97,7 @@ export function useTriggerMenu<Item extends TriggerMenuItemData>({
     if (key === "Enter" || key === "Tab") {
       const item = items[state.activeIndex];
       if (item && !item.disabled) select(item);
-      // Swallow Enter/Tab even on an empty list so the editor doesn't newline/blur while the menu is up.
+      // Swallow Enter/Tab even on empty list so editor doesn't newline/blur while menu is up.
       return true;
     }
     if (key === "Escape") {

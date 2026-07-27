@@ -99,8 +99,7 @@ function areRowsEqual(a: readonly EnvironmentVariableEntry[], b: readonly Enviro
   return true;
 }
 
-// Generic overload keeps the public contract; the implementation works on plain entries so the
-// default row factories type-check without casts. Custom TRow callers supply their own factories.
+// implementation works on plain entries so default row factories type-check without casts
 export function useEnvironmentVariables<TRow extends EnvironmentVariableRow = EnvironmentVariableRow>(
   options?: UseEnvironmentVariablesOptions<TRow>,
 ): EnvironmentVariablesController<TRow>;

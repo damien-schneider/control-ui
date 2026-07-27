@@ -50,8 +50,8 @@ function setupControlsScopeForKind(kind: string | undefined): SidebarSetupContro
 const skinOverviewNavItems = [{ id: skinsOverview.id, name: skinsOverview.label }];
 const githubStarsFormatter = new Intl.NumberFormat("en-US");
 
-// Docs shell IS the raw shadcn Sidebar: icon-collapsible (resize-handle drag or Cmd/Ctrl+B), plain "sidebar" variant so its border-r is the only seam — floating panel look lives on content side (docs-client.tsx), not here.
-// Mobile renders through the Sidebar's own Sheet instead of a hand-rolled dialog.
+// Docs shell IS raw shadcn Sidebar: icon-collapsible (resize-handle drag or Cmd/Ctrl+B), plain "sidebar" variant so its border-r is the only seam — floating panel look lives on content side (docs-client.tsx), not here.
+// Mobile renders through Sidebar's own Sheet instead of hand-rolled dialog.
 export function DocsSidebarContent({
   active,
   githubStars,
@@ -68,8 +68,8 @@ export function DocsSidebarContent({
   integration,
   updateSetupPreference,
 }: DocsSidebarContentProps) {
-  // Route-derived, not local state: URL root decides section (mode tab is a router Link) — single source of truth for what sidebar shows.
-  // Guides and skins live outside the four browsing modes, so keep the last selected mode on those routes.
+  // Route-derived, not local state: URL root decides section (mode tab is router Link) — single source of truth for what sidebar shows.
+  // Guides and skins live outside four browsing modes, so keep last selected mode on those routes.
   const activeItem = searchItems.find((item) => item.id === active);
   const onSectionPage = activeItem != null && activeItem.kind !== "Guide" && activeItem.kind !== "Skin";
   const setupControlsScope = setupControlsScopeForKind(activeItem?.kind);
@@ -96,7 +96,7 @@ export function DocsSidebarContent({
   const floatingPanelRef = useRef<HTMLDivElement>(null);
   const themeEditorWasOpen = useRef(false);
 
-  // Expanding makes the toolbar inert and closing unmounts the editor, so focus would drop to <body> either way: hand it to the editor, then back to the trigger. The ref keeps the initial closed render from grabbing focus on load.
+  // Expanding makes toolbar inert and closing unmounts editor, so focus would drop to <body> either way: hand it to editor, then back to trigger. ref keeps initial closed render from grabbing focus on load.
   useEffect(() => {
     if (themeEditorOpen) {
       themeEditorWasOpen.current = true;
@@ -273,7 +273,7 @@ export function DocsSidebarContent({
         <DocsSidebarResizeHandle />
       </Sidebar>
 
-      {/* Root stays overflow-visible so the search popover escapes the pill; MorphingPanelContent still clips the editor to the morphing box. */}
+      {/* Root stays overflow-visible so search popover escapes pill; MorphingPanelContent still clips editor to morphing box. */}
       <MorphingPanel
         open={themeEditorOpen}
         onOpenChange={(nextOpen) => setThemeEditorOpen(nextOpen)}

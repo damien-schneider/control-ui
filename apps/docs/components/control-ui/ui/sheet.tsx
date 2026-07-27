@@ -5,7 +5,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 
-// Side-anchored Dialog: panel pins to edge, slides via starting/ending-style transform. Backdrop + panel re-assert skin scope on portal.
+// Dialog pinned to edge, slid by @starting-style and @ending-style transforms
 export function Sheet(props: ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root {...props} />;
 }

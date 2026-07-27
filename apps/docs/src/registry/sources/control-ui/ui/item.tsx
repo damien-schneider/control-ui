@@ -8,8 +8,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { Separator } from "@/components/control-ui/ui/separator";
 
-// Refined skin slot, plain markup: horizontal list row (media+content+actions) on --radius-lg surface.
-// `variant`: default(bare)/outline(ring)/muted(filled). `render` renders row AS link/button for a single focus/hover target.
+// `render` turns whole row into link or button, so it becomes one focus and hover target.
 const itemVariant = cva(
   "flex items-center gap-3 rounded-[var(--radius-lg)] p-3 text-sm outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/20 [&[href]]:cursor-pointer",
   {
@@ -52,7 +51,6 @@ export function Item({ variant = "default", render, className, children, ...prop
   });
 }
 
-// Leading media: an icon, avatar or thumbnail. Icons inherit --muted-foreground.
 export function ItemMedia({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
@@ -93,7 +91,7 @@ export function ItemDescription({ className, ...props }: ComponentProps<"p">) {
   );
 }
 
-// Trailing actions: buttons, a switch or a chevron. Sits at the row's end and never shrinks.
+// never shrinks, so long content column cannot squeeze actions
 export function ItemActions({ className, ...props }: ComponentProps<"div">) {
   return <div data-control-ui="item" data-slot="actions" className={cn("flex shrink-0 items-center gap-1.5", className)} {...props} />;
 }
@@ -114,7 +112,7 @@ export function ItemFooter({ className, ...props }: ComponentProps<"div">) {
     <div
       data-control-ui="item"
       data-slot="footer"
-      className={cn("flex basis-full items-center justify-between gap-2 text-meta text-muted-foreground", className)}
+      className={cn("flex basis-full items-center justify-between gap-2 text-caption text-muted-foreground", className)}
       {...props}
     />
   );

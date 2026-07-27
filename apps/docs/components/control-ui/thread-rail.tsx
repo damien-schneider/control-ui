@@ -8,11 +8,10 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
 
-// Fisheye/visibility/slide/enter-exit are declarative CSS (thread-rail.css). React keeps only what
-// CSS can't: current turn index (renders hovered text, holds anchor/height on exit) + one measured
-// height (no stable CSS interpolates one intrinsic size to another for the morph).
+// thread-rail.css owns fisheye, visibility, slide, and enter/exit. React keeps only current turn index
+// and one measured height, because no stable CSS interpolates one intrinsic size to another.
 
-// Layout-effect on the client, plain effect on the server, so measuring never warns during SSR.
+// plain effect on server so measuring never warns during SSR
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 type RailContextValue = { current: number; activate: (index: number) => void };
@@ -42,14 +41,13 @@ export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
   const items = Children.toArray(children).filter((child): child is ReactElement<ThreadRailItemProps & { index?: number }> =>
     isValidElement(child),
   );
-  // Lift each item's popover content up so the single travelling card can render the hovered one.
+  // lifted so single travelling card can render whichever item is hovered
   const contents = items.map((item) => {
     const popover = Children.toArray(item.props.children).find((child) => isValidElement(child) && child.type === ThreadRailPopover);
     return isValidElement<ThreadRailPopoverProps>(popover) ? popover.props.children : null;
   });
 
-  // Explicit border-box height for current turn so `transition: height` morphs; active layer's
-  // offsetHeight ignores cross-fade scale, (card offset - client) re-adds borders — skin-agnostic.
+  // `transition: height` needs explicit border-box height; offsetHeight ignores cross-fade scale, and offset/client delta re-adds borders whatever skin
   useIsomorphicLayoutEffect(() => {
     const card = cardRef.current;
     const activeLayer = activeLayerRef.current;
@@ -57,7 +55,7 @@ export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
     setCardHeight(activeLayer.offsetHeight + card.offsetHeight - card.clientHeight);
   }, [hovered]);
 
-  // Feeds the non-anchor fallback position; the anchor path (modern browsers) ignores it.
+  // fallback for browsers without anchor positioning; anchor path ignores it
   const railStyle: CSSProperties & Record<"--aui-rail-active-index", number> = { "--aui-rail-active-index": hovered };
 
   return (
@@ -67,7 +65,7 @@ export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
         data-slot="root"
         aria-label="Conversation timeline"
         style={railStyle}
-        // w-4 = widest a fisheye tick gets; fixed column width stops the card (left:100%) drifting as ticks resize.
+        // widest fisheye tick gets — fixed column stops card drifting as ticks resize
         className={cn("aui-thread-rail flex w-4 flex-col", skinSlot("thread-rail", "root", {}), className)}
         {...props}
       >
@@ -85,7 +83,6 @@ export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
             skinSlot("thread-rail", "popover", {}),
           )}
         >
-          {/* Every turn is a stacked layer; CSS cross-fades the current one to front, blurs out on exit. */}
           {items.map((item, index) => (
             <div
               key={item.key ?? index}
@@ -122,9 +119,9 @@ export function ThreadRailItem({
         data-from={from}
         data-in-view={isInView ? "true" : undefined}
         data-active={isInView ? "true" : undefined}
-        // Current tick carries card's anchor; driven by state (not :hover) so it survives pointer leaving.
+        // driven by state, not :hover, so card's anchor survives pointer leaving
         data-rail-current={index === rail.current ? "true" : undefined}
-        // py-1 tiles the rows with no gap, so :hover travels tick-to-tick without ever losing the anchor.
+        // tiles rows with no gap, so :hover travels tick to tick without ever losing anchor
         className={cn("aui-thread-rail-item group relative flex items-center py-1", skinSlot("thread-rail", "item", {}), className)}
         {...props}
       >
@@ -145,10 +142,10 @@ export function ThreadRailLine({ className, ...props }: ThreadRailLineProps) {
       data-slot="line"
       type="button"
       aria-current={inView ? "location" : undefined}
-      // Publish hovered/focused turn for the shared card; ±4px hit area spans the full 9px row so pointer travel never gaps.
+      // the ±4px hit area spans full 9px row so pointer travel never gaps
       onMouseEnter={() => activate(index)}
       onFocus={() => activate(index)}
-      // Width and tone come entirely from thread-rail.css (the fisheye). Keep only structure here.
+      // width and tone belong to thread-rail.css — structure only here
       className={cn(
         "aui-thread-rail-tick relative block h-px cursor-pointer rounded-full",
         // taller invisible hit area so a 1px tick is easy to hover and focus.
@@ -164,7 +161,7 @@ export function ThreadRailLine({ className, ...props }: ThreadRailLineProps) {
 
 export type ThreadRailPopoverProps = ComponentProps<"div"> & { children?: ReactNode };
 
-// A pure marker: ThreadRail lifts its children into the shared travelling card, so it renders nothing itself.
+// pure marker — ThreadRail lifts its children into shared travelling card
 export function ThreadRailPopover(_props: ThreadRailPopoverProps) {
   return null;
 }

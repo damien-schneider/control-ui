@@ -8,7 +8,7 @@ import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
 import { surfaceEnterExitMotionClasses } from "@/components/control-ui/surface-variants";
 import { Button } from "@/components/control-ui/ui/button";
 
-// Mirrors Dialog panel styling, but on Base UI's AlertDialog: no light dismiss (no backdrop/Esc close), must be resolved by explicit action.
+// No light dismiss — neither backdrop nor Esc closes it, so it needs explicit action.
 export function AlertDialog(props: AlertDialogProps) {
   return <AlertDialogPrimitive.Root {...props} />;
 }
@@ -58,7 +58,7 @@ export function AlertDialogClose({
 export function AlertDialogContent({ className, children, ...props }: AlertDialogContentProps) {
   return (
     <AlertDialogPrimitive.Portal>
-      {/* Portals land outside container-scoped skin root; backdrop/popup re-assert token scope on themselves. */}
+      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <AlertDialogPrimitive.Backdrop
         data-skin={skinId()}
         data-effects={skinEffects()}

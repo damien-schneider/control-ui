@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinPaint, skinSlot } from "@/components/control-ui/skin";
 
-// Token-driven `shimmer` sweep instead of flat pulse — reads as "streaming in", follows theme colours/radius/motion tempo.
+// sweep rather than flat pulse, so it reads as "streaming in"
 export function Skeleton({ className, ...props }: ComponentProps<"div">) {
   return (
     <div

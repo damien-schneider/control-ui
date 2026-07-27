@@ -18,16 +18,13 @@ export type UtilId = (typeof utilEntries)[number]["id"];
 export type ExtensionId = (typeof extensionEntries)[number]["id"];
 export type SkillId = PracticeSkillId;
 export type PageId = GuideId | ComponentId | BlockId | PrimitiveId | HookId | UtilId | ExtensionId | SkillId;
-// SkinMetaId = the skin axis exposed by the theme editor and skin docs.
 export type SkinMetaId = (typeof skinMetas)[number]["id"];
-// Full set of pages docs shell can render: catalog pages + a page per skin (/skins/<id>) + skins overview (/skins); skin pages ride the same shell as everything else.
 export type ActivePageId = PageId | SkinMetaId | CatalogOverviewId | "skins";
 export type IntegrationId = (typeof integrationIds)[number];
 export type RegistryKindId = (typeof registryKindIds)[number];
-// Maturity of an installable item; `undefined` = stable (see catalogStatusIds).
+// `undefined` = stable
 export type DocsStatus = CatalogStatus;
 
-// Serializable skin descriptor consumed by the theme editor (mirrors CatalogSkinMeta).
 export type DocsSkinMeta = {
   id: SkinMetaId;
   label: string;
@@ -37,7 +34,7 @@ export type DocsSkinMeta = {
   packManifestPath?: string;
 };
 
-// A skin's docs page: metadata + pack's own source files read into the code-viewer; `files` is empty for docsOnly skins (no installable pack); each file's `label` is its per-file note.
+// `files` is empty for docsOnly skin, which ships no installable pack
 export type DocsSkinPage = {
   id: SkinMetaId;
   label: string;
@@ -91,7 +88,7 @@ export type DocsPrimitive = {
   name: string;
   summary: string;
   status?: DocsStatus;
-  // Optional: a library-original primitive (e.g. table-of-contents) has no shadcn equivalent.
+  // library-original primitive has no shadcn equivalent
   shadcnDocsUrl?: string;
   registry: {
     target: string;
@@ -105,7 +102,6 @@ export type DocsPrimitive = {
   };
 };
 
-// A hook is local UI behavior installed alongside the component or primitive that uses it.
 export type DocsHook = {
   id: HookId;
   name: string;
@@ -116,28 +112,25 @@ export type DocsHook = {
   references?: { label: string; href: string }[];
 };
 
-// A util is a shared library file every Control UI install carries.
 export type DocsUtil = {
   id: UtilId;
   name: string;
   summary: string;
   target: string;
   source: SourceFile;
-  // Optional install phrasing (defaults to "every Control UI component"); whether util ships an interactive preview (looked up client-side by id in <UtilPreview />).
+  // defaults to "every Control UI component"
   install?: string;
   hasPreview?: boolean;
 };
 
-// An extension: an optional installable layered on the library, never part of a component's own bundle.
-// attach "root" = mounted once above its targets, discovers them by anatomy; attach "anchored" = a component
-// ships a named adornment anchor and skin.config fills it (pack or app brand, same gesture).
+// attach "root" mounts once above its targets and finds them by anatomy; "anchored" waits for skin.config to fill component's named adornment anchor
 export type DocsExtension = {
   id: ExtensionId;
   name: string;
   summary: string;
   status?: DocsStatus;
   attach: "root" | "anchored";
-  /** For anchored extensions: the SkinAdornmentContexts anchor the item fills. */
+  /** For anchored extensions: SkinAdornmentContexts anchor item fills. */
   anchor?: string;
   target: string;
   registryKind: RegistryKindId;
@@ -187,10 +180,8 @@ export type DocsSkill = {
 };
 export type DocsSkillConcern = SkillConcern;
 
-// A usage version: either a sibling registry item sharing the component's export name + props contract
-// (different rendering; swapping = import-path change), or — when every version keeps the parent
-// registryKind — one composition of a single installed item (swapping = call-site change). NOT a component
-// version — one registry name never has two contents; the page shows a picker, the consumer installs one item.
+// Not component version — one registry name never has two contents. Either sibling item sharing export name and
+// props contract, so swapping is import-path change, or one composition of single installed item, so it is call-site change.
 export type DocsComponentVersion = {
   id: string;
   label: string;

@@ -30,7 +30,7 @@ export function useChatComposer({
   disabled = false,
   trackSends = false,
 }: Pick<ChatComposerProps, "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled"> & {
-  /** Count successful submits — only enabled when something reads the counter (the send-layer anchor), so idle apps pay no extra state update. */
+  /** Count successful submits — only enabled when something reads counter (send-layer anchor), so idle apps pay no extra state update. */
   trackSends?: boolean;
 }) {
   const [inputValue, setInputValue] = useControllableText({ value, defaultValue, onValueChange });
@@ -48,7 +48,7 @@ export function useChatComposer({
   function submit(extra?: Partial<ChatComposerSubmitPayload>) {
     if (!canSubmit) return;
     if (trackSends) setSendCount((count) => count + 1);
-    // onSubmit may return a Promise; surface a rejected send without an unhandled rejection
+    // onSubmit may return Promise; surface rejected send without unhandled rejection
     Promise.resolve(onSubmit?.({ value: normalizedValue, clear, ...extra })).catch(reportError);
   }
 

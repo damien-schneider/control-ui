@@ -13,15 +13,14 @@ import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, Trigge
 import { spawnExitGhost } from "../ghost";
 import type { ChatComposerEditorApi, ChatComposerEditorExtension } from "../types";
 
-// Mention extension: "@" pill as one composable unit via mentionExtension({ triggers }) — inline atom node, Backspace/Delete commands, doc→mentions submit extras, caret-anchored popup via trigger-menu engine.
-// Base editor stays mention-free.
+// Ships the "@" pill as one composable unit, so base editor stays mention-free.
 
-// PM types attrs as `any`; read each through a typeof guard so we never assert a cast (repo convention).
+// ProseMirror types attrs as `any`, so each is read through typeof guard rather than asserted
 function attrString(value: unknown, fallback: string): string {
   return typeof value === "string" ? value : fallback;
 }
 
-// Pill node: atom + contenteditable=false = non-editable unit (arrows skip it); leafText serializes to "@label"; styled via chat-composer-mention slot (skin-swappable).
+// atom + contenteditable=false makes it one non-editable unit arrows skip over; leafText serializes it back to "@label"
 const mentionNode: NodeSpec = {
   group: "inline",
   inline: true,
@@ -84,14 +83,14 @@ type EditorTriggerState = {
 
 const INACTIVE: EditorTriggerState = { active: false, from: 0, to: 0, char: "", query: "", rect: null };
 
-// Reads live trigger at caret off current view (positions never stale); called from overlay on every transaction and its keydown handler.
+// reads off live view so positions are never stale
 function readEditorTrigger(view: EditorView, triggerChars: readonly string[]): EditorTriggerState {
   const { selection } = view.state;
   if (!selection.empty) return INACTIVE;
   const { $from } = selection;
   if (!$from.parent.isTextblock) return INACTIVE;
   const start = $from.start();
-  // Atoms collapse to one sentinel char so detectTrigger's string offsets map 1:1 onto doc positions.
+  // atoms collapse to one sentinel char so string offsets map 1:1 onto doc positions
   const textBefore = view.state.doc.textBetween(start, $from.pos, undefined, () => "￼");
   const match = detectTrigger(textBefore, triggerChars);
   if (match === null) return INACTIVE;
@@ -108,7 +107,6 @@ function readEditorTrigger(view: EditorView, triggerChars: readonly string[]): E
 
 type MentionNodeAttrs = { id: string; label: string; kind?: string; icon?: string | null };
 
-// Replace the `<char><query>` range with an atomic mention node followed by a space, then refocus.
 function insertMention(view: EditorView, from: number, to: number, attrs: MentionNodeAttrs) {
   const node = view.state.schema.nodes.mention.create({
     id: attrs.id,
@@ -122,28 +120,26 @@ function insertMention(view: EditorView, from: number, to: number, attrs: Mentio
   view.focus();
 }
 
-// Remove the `<char><query>` token (slash-commands that run an action rather than inserting), refocus.
+// for slash-commands that run action instead of inserting
 function deleteTriggerToken(view: EditorView, from: number, to: number) {
   view.dispatch(view.state.tr.delete(from, to));
   view.focus();
 }
 
-// Ghosts pill before its transaction lands; pillPos = mention node start, so nodeDOM returns its DOM to clone. Skipped on dry runs / no view (delete lands bare).
+// must run before transaction lands, while nodeDOM can still return pill to clone
 function ghostPill(view: EditorView | undefined, pillPos: number): void {
   const dom = view?.nodeDOM(pillPos);
   if (dom instanceof HTMLElement) spawnExitGhost(dom);
 }
 
-// Lone atom at block END gets trailing <br> (phantom blank line); plain Backspace looks like it adds a newline instead of removing the pill.
-// These commands delete pill + auto-inserted space together in one keystroke, avoiding a lone trailing atom.
-// Dispatched run spawns a blur-out ghost first so the pill doesn't just snap out.
+// lone atom at block end gets trailing <br>, so plain Backspace reads as adding newline rather than removing pill.
+// Deleting pill and its auto-inserted space in one keystroke avoids ever leaving that lone trailing atom.
 export const deleteMentionBackward: Command = (state, dispatch, view) => {
   const { selection } = state;
   if (!selection.empty) return false;
   const { $from } = selection;
   const before = $from.nodeBefore;
   if (!before) return false;
-  // Caret directly after a pill → remove the pill.
   if (before.type.name === "mention") {
     const pillPos = $from.pos - before.nodeSize;
     if (dispatch) {
@@ -152,7 +148,7 @@ export const deleteMentionBackward: Command = (state, dispatch, view) => {
     }
     return true;
   }
-  // Caret past auto-inserted trailing space at block END → drop space+pill together (else pill becomes last node → phantom line); mid-block, dropping just the space is harmless.
+  // at block end space and pill go together, or pill becomes last node and draws phantom line
   if (before.isText && before.text === " " && $from.pos === $from.end()) {
     const beforeSpace = state.doc.resolve($from.pos - before.nodeSize).nodeBefore;
     if (beforeSpace && beforeSpace.type.name === "mention") {
@@ -167,7 +163,7 @@ export const deleteMentionBackward: Command = (state, dispatch, view) => {
   return false;
 };
 
-// Forward-delete (Del key) symmetry: caret directly before a pill → remove the pill.
+// forward-delete symmetry with Backspace commands above
 export const deleteMentionForward: Command = (state, dispatch, view) => {
   const { selection } = state;
   if (!selection.empty) return false;
@@ -181,7 +177,7 @@ export const deleteMentionForward: Command = (state, dispatch, view) => {
   return true;
 };
 
-// Walks doc for structured mentions (ids+labels) the agent consumes, attached to submit payload alongside plain-text value.
+// ids agent consumes, ridden along on submit payload beside plain text
 function collectMentions(doc: ProseMirrorNode): MentionItem[] {
   const mentions: MentionItem[] = [];
   doc.descendants((node) => {
@@ -203,7 +199,7 @@ type MentionOverlayProps<Item extends TriggerMenuItemData> = {
   align: "start" | "center" | "end";
 };
 
-// React half: owns trigger-menu controller+popup, talks to doc only via editor api (republish caret trigger, route keys while open, insert pill on commit); no PM plugin needed, keeps base editor mention-unaware.
+// talks to doc only through editor api, so no ProseMirror plugin is needed and base editor stays mention-unaware
 function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, side, align }: MentionOverlayProps<Item>) {
   const chars = triggers.map((trigger) => trigger.char);
 
@@ -223,7 +219,6 @@ function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, si
     },
   });
 
-  // Republish the caret trigger (and its rect) to the engine on every editor transaction.
   useEffect(() => {
     return editor.subscribe(() => {
       const view = editor.getView();
@@ -233,7 +228,7 @@ function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, si
     });
   }, [editor, controller, chars]);
 
-  // While the menu is open, let it eat arrows/Enter/Esc before the editor's keymaps see them.
+  // open menu eats arrows, Enter, and Esc before editor's keymaps see them
   useEffect(() => {
     return editor.registerKeyHandler((event) => {
       const view = editor.getView();

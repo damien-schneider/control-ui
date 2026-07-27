@@ -4,7 +4,7 @@ import type { ControlUiSkin } from "@/components/control-ui/skin";
 
 const focus = "focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 // press feel every cuicui control shares; rides skinSlot eviction since recipes paint transition/scale/shadow as utilities (skin.css [data-control] rule would silently lose)
-// shadow-(--x) not shadow-[var(--x)]: tailwind-merge classes the var() arbitrary form as a shadow COLOR, would keep recipe's box-shadow beside it
+// shadow-(--x) not shadow-[var(--x)]: tailwind-merge classes var() arbitrary form as shadow COLOR, would keep recipe's box-shadow beside it
 const controlMotion =
   "transition-[background-color,border-color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] active:scale-[0.96]";
 const control = `rounded-[var(--radius-control)] border border-[var(--cuicui-border)] bg-[var(--cuicui-control-bg)] text-foreground shadow-(--cuicui-control-shadow) ${controlMotion} hover:bg-[var(--cuicui-control-hover)] ${focus}`;

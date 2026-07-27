@@ -1,7 +1,7 @@
 import type { HighlighterCore, ThemedToken } from "shiki/core";
 
 // shared Shiki tokenizer for code primitives (Code, CodeDiff, CodeBlockEditor, Markdown) — CSS-var theme
-// (not baked github-light/dark), tokens resolve `var(--code-token-*)`, revalued by the active color scope in code.css
+// (not baked github-light/dark), tokens resolve `var(--code-token-*)`, revalued by active color scope in code.css
 // pure+isomorphic (RSC awaits, client highlights in effect); LRU cache (lang\ncode) keeps re-highlight cheap; null = unknown lang
 
 export type CodeTokenStyle = {
@@ -108,7 +108,7 @@ function tokenStyle(token: ThemedToken): CodeTokenStyle | undefined {
   return style.color || style.fontStyle || style.fontWeight || style.textDecoration ? style : undefined;
 }
 
-// Small LRU: streaming/virtualized views re-highlight the same code repeatedly.
+// Small LRU: streaming/virtualized views re-highlight same code repeatedly.
 const CACHE_LIMIT = 200;
 const cache = new Map<string, CodeTokenLines | null>();
 

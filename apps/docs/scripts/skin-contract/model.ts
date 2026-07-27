@@ -20,8 +20,8 @@ export type ContractScope = {
 
 export type AnatomyReference = { scope: string; part: string };
 
-// The `data-surface` families a part can declare; single list so the collector's guard, its mutable
-// accumulator, and the emitted contract can never drift apart.
+// The `data-surface` families part can declare; single list so collector's guard, its mutable
+// accumulator, and emitted contract can never drift apart.
 export const skinSurfaceFamilies = ["floating", "modal", "panel"] as const;
 export type SkinSurfaceFamily = (typeof skinSurfaceFamilies)[number];
 

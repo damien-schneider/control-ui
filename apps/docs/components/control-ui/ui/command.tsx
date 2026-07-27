@@ -9,8 +9,7 @@ import { floatingListItemClasses } from "@/components/control-ui/surface-variant
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/control-ui/ui/dialog";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
-// Command palette on cmdk; rows share --radius-popup-item/--control-h-xs with menu/select rows.
-// CommandDialog composes the Control UI Dialog, inheriting panel/backdrop/portal skin scope for free.
+// CommandDialog composes Control UI Dialog, so panel, backdrop, and portal scope come for free.
 export function Command({ className, ...props }: ComponentProps<typeof CommandPrimitive>) {
   return (
     <CommandPrimitive
@@ -87,11 +86,10 @@ export function CommandInput({ className, ...props }: ComponentProps<typeof Comm
   );
 }
 
-// ScrollArea (overlay scrollbar + edge fade) instead of cmdk's bare overflow div; cmdk still owns the
-// listbox (role/aria-activedescendant), scrollIntoView finds ScrollArea's viewport as nearest scrollable ancestor.
+// cmdk still owns listbox roles; its scrollIntoView finds ScrollArea viewport as nearest scrollable ancestor
 export function CommandList({ className, ...props }: ComponentProps<typeof CommandPrimitive.List>) {
   return (
-    // min-h-0 lets CommandDialog's collapsing 0fr row actually shrink this grid item (auto minimum otherwise wins).
+    // without min-h-0 auto minimum wins and CommandDialog's collapsing 0fr row cannot shrink this item
     <ScrollArea maxHeight="min(360px, var(--available-height, 360px))" className="min-h-0 w-full">
       <CommandPrimitive.List
         data-control-ui="command"

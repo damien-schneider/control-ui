@@ -18,15 +18,14 @@ import type {
 import { cn } from "@/components/control-ui/lib/cn";
 import { SELECTION_INDICATOR_BG_RESET, skinIndicator, skinSlot } from "@/components/control-ui/skin";
 
-// Lazy: highlight needs a JS geometry engine, skip download unless skin/props opt in. Decorative (aria-hidden), null fallback is fine.
+// lazy because highlight drags in JS geometry engine; it is decorative, so null fallback is fine
 const TrackHighlight = lazy(() =>
   import("@/components/control-ui/extensions/track-highlight").then((module) => ({ default: module.TrackHighlight })),
 );
 
 /*
- * Library-original: Base UI ships no Tree. Built on WAI-ARIA APG "file directory treeview" — <li> is focusable treeitem (roving tabindex), trigger row presentational, branch reuses Base UI Collapsible for disclosure (CSS-first, honors data-motion).
- * Selection + expansion value-first, controlled/uncontrolled, mirrors Tabs/Collapsible contracts.
- * Keyboard nav derives visible order from registered item refs at keydown time; collapsed panels unmount, so the registry contains exactly reachable items.
+ * Library-original: Base UI ships no Tree. Follows WAI-ARIA APG treeview — <li> is focusable treeitem, trigger row presentational.
+ * Keyboard nav derives visible order from registered item refs at keydown time; collapsed panels unmount, so registry holds exactly reachable items.
  */
 
 const TYPEAHEAD_TIMEOUT = 500;
@@ -75,7 +74,7 @@ function useTreeItem() {
   return context;
 }
 
-// Typed CSS custom properties — kept via `satisfies` so no `as` cast is needed on the style object.
+// `satisfies` so style object needs no `as` cast
 type TreeStyle = CSSProperties & { "--tree-indent"?: string };
 type TreeItemStyle = CSSProperties & { "--tree-level"?: number };
 type TypeaheadRef = { current: { query: string; at: number } };
@@ -92,8 +91,6 @@ function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (typeof ref === "function") return ref(value);
   if (ref) ref.current = value;
 }
-
-// Keyboard handling at module scope, closing over the ctx passed in as an argument.
 
 function labelOf(item: RegisteredTreeItem, ctx: TreeContextValue): string {
   return item.label ?? ctx.getLabel(item.value);
@@ -202,7 +199,7 @@ function handleTreeKeyDown(event: KeyboardEvent<HTMLUListElement>, ctx: TreeCont
       if (isBranch && !isExpanded) {
         ctx.toggleExpanded(value, true, "keyboard");
       } else if (isBranch && isExpanded) {
-        focusItem(items[index + 1], ctx); // first child
+        focusItem(items[index + 1], ctx);
       }
       break;
     case "ArrowLeft":
@@ -290,7 +287,6 @@ export function Tree({
   const getLabel = (itemValue: string) => labelsRef.current.get(itemValue)?.textContent ?? "";
   const getItem = (itemValue: string) => itemsRef.current.get(itemValue);
 
-  // Plain, un-memoized handlers (sidebar.tsx convention — the registry keeps these simple).
   const select = (itemValue: string, reason: "pointer" | "keyboard", toggle: boolean) => {
     if (selectionMode === "none") return;
     let next: Set<string>;
@@ -314,7 +310,7 @@ export function Tree({
     onExpandedChange?.([...next], { value: itemValue, expanded: willExpand, reason });
   };
 
-  // Explicit prop wins (caller-wins, shadcn contract), else the skin's DS-level choice, else off.
+  // prop → skin → off
   const resolvedIndicator = indicator ?? skinIndicator("tree") ?? "none";
 
   const contextValue: TreeContextValue = {
@@ -365,7 +361,7 @@ export function Tree({
   return (
     <TreeContext.Provider value={contextValue}>
       {sliding ? (
-        // Moving highlight needs positioned/isolated track. Wrap (never inject into list) so pill stays sibling of treeitems (<ul> content model valid), parked behind text via -z; list keeps role/keyboard/focus ownership.
+        // wrapped, never injected into list: pill must stay sibling of treeitems for the <ul> content model to hold
         <div data-control-ui="tree" data-slot="track" className={cn("relative isolate", className)} style={rootStyle}>
           <Suspense fallback={null}>
             <TrackHighlight
@@ -381,8 +377,6 @@ export function Tree({
     </TreeContext.Provider>
   );
 }
-
-// Leaf renders as <li>; a branch is Collapsible.Root rendered as <li>.
 
 export function TreeItem({ value, disabled = false, label, className, style, children, ref, ...props }: TreeItemProps) {
   const tree = useTree();
@@ -458,7 +452,7 @@ export function TreeItem({ value, disabled = false, label, className, style, chi
   );
 }
 
-// Presentational row — the <li> above owns focus.
+// presentational — the <li> above owns focus
 
 export function TreeItemTrigger({ className, children, onClick, render, ...props }: TreeItemTriggerProps) {
   const tree = useTree();
@@ -479,7 +473,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
       onClick: (event: MouseEvent<HTMLDivElement>) => {
         onClick?.(event);
         if (item.disabled) return;
-        // VS Code model: the whole row both selects and toggles the branch.
+        // VS Code model — whole row both selects and toggles
         const toggle = tree.selectionMode === "multiple" && (event.metaKey || event.ctrlKey);
         tree.select(item.value, "pointer", toggle);
         if (item.expandable) tree.toggleExpanded(item.value);
@@ -491,8 +485,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
         "aria-disabled:pointer-events-none aria-disabled:opacity-50",
         "hover:bg-foreground/[0.04] data-[selected]:bg-foreground/[0.06]",
         skinSlot("tree", "item-trigger", { selected, expanded, disabled: item.disabled, indicator: tree.indicator }),
-        // Moving highlight: pill = sole hover/selected chrome, cancel recipe/skinSlot backgrounds — AFTER skinSlot so mode wins.
-        // Caller className keeps last word.
+        // after skinSlot so pill stays sole chrome; caller className still lands last
         tree.indicator === "slide" ? SELECTION_INDICATOR_BG_RESET : undefined,
         className,
       ),
@@ -501,7 +494,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
   });
 }
 
-// aria-hidden chevron for branches, aligned spacer for leaves.
+// chevron for branches, aligned spacer for leaves
 
 export function TreeItemIndicator({ className, children, ...props }: TreeItemIndicatorProps) {
   const tree = useTree();
@@ -519,8 +512,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
     );
   }
 
-  // Rotate off item's OWN state, never ancestor's: nested branch chevron sits inside parent's <li>/panel (both data-state="open"), so `[data-state=open] &` would rotate every child chevron when an ancestor opens.
-  // Emit indicator's own data-state, key rotation on `data-[state=open]:` (self) instead.
+  // rotates off its OWN state: nested chevron sits inside parent's open <li>, so descendant selector would rotate every child when ancestor opens
   const expanded = tree.expanded.has(item.value);
 
   return (
@@ -542,7 +534,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
   );
 }
 
-// Accessible name and type-ahead target.
+// accessible name and type-ahead target
 
 export function TreeItemLabel({ className, children, render, ref, ...props }: TreeItemLabelProps) {
   const tree = useTree();
@@ -572,9 +564,7 @@ export function TreeItemLabel({ className, children, render, ref, ...props }: Tr
   });
 }
 
-// Reuses Base UI Collapsible's measured --collapsible-panel-height for height grow, layers opacity fade + small settle-slide on child group so dense subtree reads cleaner than bare height clip.
-// Enter/exit driven by data-starting-style/data-ending-style (set only during transition) so slide plays on BOTH open and close, never sticks.
-// All motion on --duration-* tokens; data-motion="reduced" collapses to 0ms free.
+// Enter and exit both ride data-starting-style/data-ending-style, which Base UI sets only during transition, so slide plays on close too and never sticks.
 export function TreeItemContent({ className, children, ...props }: TreeItemContentProps) {
   return (
     <CollapsiblePrimitive.Panel

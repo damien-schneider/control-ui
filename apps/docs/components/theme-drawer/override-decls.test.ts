@@ -5,7 +5,7 @@ import { buildOverrideDecls, buildOverrideSheetCss } from "./override-decls";
 import type { ThemeState } from "./types";
 
 // SPEC for editor→skin override path + portal fix: Overlay/Popover opacity tokens did nothing on portalled surfaces (XP dialogs) because inline <html> vars don't reach body-portalled elements that re-assert data-skin.
-// buildOverrideSheetCss carries the diff to them, scoped to the ACTIVE skin so it wins the cascade there.
+// buildOverrideSheetCss carries diff to them, scoped to ACTIVE skin so it wins cascade there.
 // DOM-free pure serializers, run under bun test.
 
 const BASE: ThemeState = {
@@ -38,7 +38,7 @@ describe("buildOverrideDecls — authors ONLY the overridden tokens", () => {
   test("editing one token never drags companions along (per-token contract)", () => {
     const m = declMap(theme({ overrides: { "--radius": "10px" } }));
     expect(m["--radius"]).toBe("10px");
-    // Derived rungs stay derived in theme.css — the editor must not pin them.
+    // Derived rungs stay derived in theme.css — editor must not pin them.
     expect(m["--radius-control"]).toBeUndefined();
     expect(Object.keys(m)).toHaveLength(1);
   });
@@ -111,7 +111,7 @@ describe("buildOverrideSheetCss — the portal fix: scope the diff to the ACTIVE
 
   test("the selector targets the active skin — so it matches that skin's portalled surfaces", () => {
     expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).toContain(`[data-skin="rig"]`);
-    // NOT an unscoped `[data-skin]` — that would leak edits onto every skin on a multi-skin page.
+    // NOT unscoped `[data-skin]` — that would leak edits onto every skin on multi-skin page.
     expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).not.toContain("[data-skin] {");
   });
 

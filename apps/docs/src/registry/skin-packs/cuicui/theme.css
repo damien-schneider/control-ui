@@ -1,13 +1,11 @@
-/* Cuicui owns the complete token contract: neutral surfaces, DM Sans rhythm, rounded copy-paste cards,
- * and a violet-led accent. Texture, gradient, and glass details live in skin.css; shared @theme bindings live in core. */
+/* Neutral surfaces, DM Sans rhythm, violet-led accent. Texture, gradient, and glass live in skin.css. */
 
 [data-skin="cuicui"] {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 
-  /* type scale — small chrome bumped one rung (11/12/13px micro/meta/label); body stays 14px */
+  /* type scale — small chrome bumped one rung (11/13px micro/label); body stays 14px */
   --text-micro: 0.6875rem;
-  --text-meta: 0.75rem;
   --text-label: 0.8125rem;
 
   --primary: oklch(0.574 0.2067 283.833);
@@ -41,15 +39,9 @@
   --radius-panel: var(--radius);
   --radius-scene: calc(var(--radius) * 2);
   --corner-shape: round;
-  --corner-shape-control: var(--corner-shape);
-  --corner-shape-popover: var(--corner-shape);
-  --corner-shape-panel: var(--corner-shape);
 
   --popover-padding: 0.375rem;
   --radius-popup-item: calc(var(--radius-control) * 0.72);
-  --nest-safe: 1px;
-  --nest-corner-ratio: 3.41421356;
-  --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
   --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
 
   --padding-x: 1rem;
@@ -58,7 +50,6 @@
   --control-h: 2rem;
   --control-h-xs: round(var(--control-h) * 0.7, 1px);
   --control-h-sm: round(var(--control-h) * 0.85, 1px);
-  --control-h-md: var(--control-h);
   --control-h-lg: round(var(--control-h) * 1.12, 1px);
 
   --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,8 +58,6 @@
   --duration-base: 240ms;
   --duration-slow: 420ms;
 
-  --popup-item-foreground: var(--foreground);
-  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
   --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
   --badge-neutral-foreground: var(--foreground);
   --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
@@ -101,8 +90,6 @@
   --badge-pink-foreground: var(--color-pink-800);
   --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
   --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --font-body: var(--font-sans);
-  --font-display: var(--font-sans);
   --text-caption: 0.6875rem;
   --text-body: 0.875rem;
   --text-body-lg: 1rem;
@@ -123,14 +110,8 @@
   --text-display--line-height: 1.1;
   --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.6);
   --corner-radius-fit: 0.5;
   --shadow-highlight: oklch(1 0 0 / 0.62);
-  --popup-item-disabled-opacity: 0.4;
 }
 
 :root:not(.dark)[data-skin="cuicui"],

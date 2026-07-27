@@ -21,13 +21,10 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
 
-// Refined skin slot, 100% Base UI: Menubar root = horizontal row of Menu.Root menus, each trigger drops its own full Menu.
-// Bar is thin bg-card/border rail; triggers are flat text buttons highlighting on data-[popup-open].
-// Popups/rows reuse popover token set (--radius-popover, --radius-popup-item, --popover-padding) shared w/ Menu/Select/Context Menu.
+// row of independent Menu.Root menus — each trigger drops its own full menu.
 
 const popupClasses = cn("min-w-[11rem]", floatingListContentClasses);
 
-// Popup rows: height --control-h xs, radius --radius-popup-item, padding --padding-x — one token set across Menu/Select/Context Menu/Menubar.
 const itemClasses = cn("group/mbi relative", floatingListItemClasses);
 
 export function Menubar({ className, ...props }: MenubarProps) {
@@ -70,7 +67,7 @@ export function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
 export function MenubarContent({ className, children, ...props }: MenubarContentProps) {
   return (
     <MenuPrimitive.Portal>
-      {/* Portal escapes token-scoped ancestor — positioner re-asserts ACTIVE skin's scope (theme.css mirrors). */}
+      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <MenuPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -142,7 +139,7 @@ export function MenubarLabel({ className, inset = false, ...props }: MenubarLabe
 
 export function MenubarSeparator({ className, ...props }: MenubarSeparatorProps) {
   return (
-    // -mx bleeds the rule through the popup padding so it spans edge-to-edge; rows keep their inset.
+    // bleeds rule through popup padding so it spans edge to edge while rows keep their inset
     <MenuPrimitive.Separator
       data-control-ui="menubar"
       data-slot="separator"

@@ -1,4 +1,10 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Locator, test } from "@playwright/test";
+
+function settled(locator: Locator) {
+  return locator.evaluate(async (element) => {
+    await Promise.all(element.getAnimations().map((animation) => animation.finished));
+  });
+}
 
 test("context trigger reveals progressively and the inspector dismisses accessibly", async ({ page }) => {
   await page.goto("/ai/context");
@@ -29,7 +35,11 @@ test("context trigger reveals progressively and the inspector dismisses accessib
   await trigger.click();
   await expect(popup).toHaveCount(1);
   await expect(popup).toBeVisible();
-  await expect(popup.getByText("Context window", { exact: true })).toBeVisible();
+  await page.mouse.move(0, 0);
+  await settled(label);
+  await expect(label).toHaveCSS("opacity", "1");
+  await expect(label).toBeVisible();
+  await expect(label).toHaveText("50% context");
   await expect(popup.getByText("100,000 / 200,000 tokens", { exact: true })).toBeVisible();
   await expect(popup.locator('[data-control-ui="context"][data-slot="segment"]')).toHaveCount(5);
   const legendRows = popup.locator('[data-control-ui="context"][data-slot="legend-item"]');

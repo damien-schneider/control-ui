@@ -17,7 +17,7 @@ export function PrimitiveFormExample() {
       onSubmit={(event) => {
         event.preventDefault();
         const username = String(new FormData(event.currentTarget).get("username") ?? "");
-        // Mimics server rejecting a reserved name; keys match each Field's `name`.
+        // Mimics server rejecting reserved name; keys match each Field's `name`.
         setErrors(username.trim().toLowerCase() === "admin" ? { username: "'admin' is reserved." } : {});
       }}
     >

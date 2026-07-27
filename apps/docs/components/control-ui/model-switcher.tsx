@@ -4,7 +4,6 @@ import type { ModelSwitcherProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 
-// Model picker on Select slot; trigger is a control, shares --radius-control with every button — proof a design direction is a theme rewrite, not a per-component edit.
 export function ModelSwitcher({
   models,
   value,

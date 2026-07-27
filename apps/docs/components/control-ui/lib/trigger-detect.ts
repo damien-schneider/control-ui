@@ -1,22 +1,17 @@
-// pure trigger detection shared by every binding (textarea DOM binding + ProseMirror plugin), no React/framework
-// assumptions — takes text before caret, answers "is a /-style trigger active, what's typed after it?"
-// caret-rect helper is the only DOM-touching export, kept here so both bindings anchor the popup the same way
-
 export type TriggerMatch = {
-  /** The trigger character that opened the menu (e.g. "/" or "@"). */
+  /** trigger character that opened menu (e.g. "/" or "@"). */
   char: string;
-  /** Text typed after the trigger char, up to the caret (never contains whitespace). */
+  /** Text typed after trigger char, up to caret (never contains whitespace). */
   query: string;
-  /** Offset of the trigger char in the scanned text; the token spans [start, end). */
+  /** Offset of trigger char in scanned text; token spans [start, end). */
   start: number;
-  /** Offset of the caret in the scanned text (exclusive end of the trigger token). */
+  /** Offset of caret in scanned text (exclusive end of trigger token). */
   end: number;
 };
 
 const WHITESPACE = new Set([" ", "\n", "\t", " "]);
 
-// active only when char sits at start or after whitespace (so `path/to` never triggers on `/`); closes as soon as whitespace follows
-// walks back from caret; first non-query char decides the outcome
+// only fires when char sits at start or after whitespace, so `path/to` never triggers on "/"
 export function detectTrigger(textBeforeCaret: string, triggerChars: readonly string[]): TriggerMatch | null {
   const triggerSet = new Set(triggerChars);
   for (let i = textBeforeCaret.length - 1; i >= 0; i -= 1) {
@@ -33,7 +28,7 @@ export function detectTrigger(textBeforeCaret: string, triggerChars: readonly st
   return null;
 }
 
-// layout-affecting properties mirrored onto the measuring div so its caret column matches the textarea's
+// layout-affecting properties mirrored onto measuring div so its caret column matches textarea's
 const MIRROR_PROPERTIES = [
   "box-sizing",
   "width",
@@ -57,9 +52,7 @@ const MIRROR_PROPERTIES = [
   "border-left-width",
 ];
 
-// viewport-space rect of caret (or any offset) in <textarea>, so popup anchors to exact glyph like ProseMirror's coordsAtPos
-// hidden-mirror technique: clone textarea's text geometry into off-screen div, drop marker at offset, read marker's box
-// 1px-wide rect keyed to line height — enough for the positioner to place a popup
+// textarea exposes no caret geometry, so text is mirrored into off-screen div and marker's box is read at offset
 export function caretRectInTextarea(element: HTMLTextAreaElement, offset: number): DOMRect {
   const doc = element.ownerDocument;
   const computed = doc.defaultView?.getComputedStyle(element);
@@ -77,7 +70,7 @@ export function caretRectInTextarea(element: HTMLTextAreaElement, offset: number
 
   mirror.textContent = element.value.slice(0, offset);
   const marker = doc.createElement("span");
-  // A non-empty marker so it has a box even at the very end of the text.
+  // must stay non-empty or it has no box at very end of text
   marker.textContent = element.value.slice(offset) || ".";
   mirror.appendChild(marker);
   doc.body.appendChild(mirror);

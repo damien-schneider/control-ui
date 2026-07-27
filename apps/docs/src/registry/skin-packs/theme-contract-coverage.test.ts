@@ -4,7 +4,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcss, { type AtRule, type Declaration, type Node, type Root, type Rule } from "postcss";
 import { assertCompleteSkinTokens } from "../lib/define-skin-tokens";
-import { THEME_CONTRACT, THEME_CONTRACT_NAMES } from "../lib/theme-contract";
+import { REQUIRED_THEME_CONTRACT, THEME_CONTRACT, THEME_CONTRACT_NAMES } from "../lib/theme-contract";
+
+const DERIVED_CONTRACT_NAMES = new Set(THEME_CONTRACT.filter((token) => token.tier === "derived").map((token) => token.name));
+const SKIN_ROOT_DEFAULTS_SELECTOR = /^:where\(\[data-skin\]\)$/;
 
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const CORE_THEME_PATH = fileURLToPath(new URL("../sources/control-ui/theme.css", import.meta.url));
@@ -22,7 +25,6 @@ const ANY_SKIN_SELECTOR_PATTERN = /\[data-skin\s*=\s*(?:"[^"]+"|'[^']+'|[a-z0-9-
 const SQUIRCLE_FALLBACK_TOKENS = new Set([
   "--radius-control",
   "--radius-popup-item",
-  "--radius-popup-item-fit",
   "--radius-popover",
   "--radius-sm",
   "--radius-md",
@@ -123,7 +125,7 @@ function coverageByMode(root: Root, id: string): Record<ThemeMode, Set<string>> 
 
 function missingContractTokens(root: Root, id: string): string[] {
   const coverage = coverageByMode(root, id);
-  return THEME_CONTRACT.flatMap((token) => {
+  return REQUIRED_THEME_CONTRACT.flatMap((token) => {
     const missing: string[] = [];
     if (!coverage.light.has(token.name)) missing.push(`${token.name} (light)`);
     if (!coverage.dark.has(token.name)) missing.push(`${token.name} (dark)`);
@@ -135,6 +137,12 @@ function coreContractDeclarationIsAllowed(declaration: Declaration): boolean {
   const atRules = atRuleAncestors(declaration);
   if (atRules.some((atRule) => atRule.name === "theme")) {
     return !declaration.important && declaration.value.trim() === `var(${declaration.prop})`;
+  }
+
+  // derived tier: core ships default on zero-specificity skin root; packs re-value it in theme.css
+  const selectorForDerived = declarationRule(declaration)?.selector ?? "";
+  if (DERIVED_CONTRACT_NAMES.has(declaration.prop) && SKIN_ROOT_DEFAULTS_SELECTOR.test(selectorForDerived.trim())) {
+    return atRules.length === 0 && !declaration.important;
   }
 
   const reducedMotionTokens = new Set(["--duration-fast", "--duration-base", "--duration-slow"]);
@@ -253,6 +261,16 @@ describe("generated skin token maps", () => {
     const light = { ...complete };
     delete light["--primary"];
     expect(() => assertCompleteSkinTokens({ light, dark: complete }, "test skin")).toThrow("--primary (light)");
+  });
+
+  test("derived-tier tokens are optional — the core default covers them", () => {
+    const light = { ...complete };
+    const dark = { ...complete };
+    for (const name of DERIVED_CONTRACT_NAMES) {
+      delete light[name];
+      delete dark[name];
+    }
+    expect(() => assertCompleteSkinTokens({ light, dark }, "test skin")).not.toThrow();
   });
 
   test("reject a token outside the contract", () => {

@@ -11,7 +11,7 @@ import { skin as xp } from "./xp/skin.config";
 type ActivitySlotPart = "root" | "status" | "trigger";
 
 // Every part listed in ActivitySlotPart reads `kind`, and root/status also read `state`, so one ctx serves all
-// three: an override declared over the narrower ctx still accepts the wider one.
+// three: override declared over narrower ctx still accepts wider one.
 function resolveActivitySlot(skin: ControlUiSkin, part: ActivitySlotPart, kind: ActivityKind) {
   const slot: SlotOverride<{ kind: ActivityKind; state: ActivityState }> | undefined = skin.slots?.activity?.[part];
   if (typeof slot !== "function") return slot;

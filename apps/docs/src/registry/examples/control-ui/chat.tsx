@@ -35,7 +35,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import { CHAT_PREVIEW_AGENT_ID } from "@/mastra/chat-preview-contract";
 import { assistantLead, noteMarkdown, userPrompt } from "../shared";
 
-// "/" runs a command (no pill); "@" inserts a mention pill the mention extension serializes on submit.
+// "/" runs command (no pill); "@" inserts a mention pill the mention extension serializes on submit.
 const slashCommands: TriggerMenuItemData[] = [
   { id: "summarize", label: "summarize", description: "Condense the thread", icon: "✦" },
   { id: "translate", label: "translate", description: "To another language", icon: "🌐" },

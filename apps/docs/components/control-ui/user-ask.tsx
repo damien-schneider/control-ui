@@ -41,14 +41,13 @@ export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, c
   const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
 
-  // Native autofocus only applies at document load; the panel mounts mid-conversation, so focus imperatively.
+  // native autofocus only fires at document load, and this panel mounts mid-conversation
   useEffect(() => {
     if (autoFocus) panelRef.current?.focus();
   }, [autoFocus]);
 
-  // Hiding a question blurs its focused descendants (e.g. the freeform input) to <body>, killing the
-  // Enter/Escape flow — pull focus back to the panel whenever the active question changes. The browser
-  // may not have processed that blur yet at effect time, so test visibility, not just containment.
+  // Hiding question blurs its focused descendants to <body> and kills Enter/Escape flow.
+  // browser may not have processed that blur yet at effect time, so test visibility, not containment.
   const lastActiveIndex = useRef(ask.activeIndex);
   useEffect(() => {
     if (lastActiveIndex.current === ask.activeIndex) return;
@@ -72,7 +71,7 @@ export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, c
         onKeyDown={ask.handleKeyDown}
         className={cn(
           "relative w-full rounded-field border bg-card/90 p-3 text-body shadow-md ring-1 ring-foreground/4 outline-none backdrop-blur",
-          // @starting-style entrance: the panel swaps in for the composer, so it rises into place with no JS choreography.
+          // @starting-style rises panel into place with no JS choreography
           "transition-[opacity,translate] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] starting:translate-y-2 starting:opacity-0",
           skinSlot("user-ask", "root", {}),
           className,
@@ -159,7 +158,7 @@ export function UserAskPagination({ className, ...props }: UserAskPaginationProp
 export type UserAskQuestionProps = Omit<ComponentProps<"div">, "title"> & {
   id: string;
   title: string;
-  /** Pre-selects the option carrying this value (e.g. the recommended one) until the user picks another. */
+  /** Pre-selects option carrying this value (e.g. recommended one) until user picks another. */
   defaultValue?: string;
 };
 
@@ -173,7 +172,7 @@ export function UserAskQuestion({ id, title, defaultValue, className, children, 
 
   return (
     <UserAskQuestionContext.Provider value={{ id, active }}>
-      {/* Inactive questions stay mounted (hidden) so their registrations keep pagination and answers alive. */}
+      {/* inactive questions stay mounted so their registrations keep pagination and answers alive */}
       <div
         role="radiogroup"
         aria-labelledby={active ? ask.titleId : undefined}
@@ -302,14 +301,18 @@ export function UserAskOptionDescription({ className, ...props }: UserAskOptionD
     <span
       data-control-ui="user-ask"
       data-slot="option-description"
-      className={cn("block pt-0.5 text-meta font-normal text-muted-foreground", skinSlot("user-ask", "option-description", {}), className)}
+      className={cn(
+        "block pt-0.5 text-caption font-normal text-muted-foreground",
+        skinSlot("user-ask", "option-description", {}),
+        className,
+      )}
       {...props}
     />
   );
 }
 
 export type UserAskOptionInputProps = Omit<ComponentProps<"input">, "value"> & {
-  /** Row label while unselected (the option's "Other" affordance). */
+  /** Row label while unselected (option's "Other" affordance). */
   label?: string;
 };
 
@@ -335,7 +338,7 @@ export function UserAskOptionInput({
   const index = ask.optionsFor(question.id).findIndex((entry) => entry.key === key);
   const selected = ask.isSelected(question.id, key);
 
-  // Digits/arrows/click all land here; move the caret in so typing starts immediately.
+  // digits, arrows, and clicks all land here — move caret in so typing starts immediately
   useEffect(() => {
     if (selected && question.active) inputRef.current?.focus();
   }, [selected, question.active]);

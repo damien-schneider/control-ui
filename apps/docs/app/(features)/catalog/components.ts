@@ -112,8 +112,8 @@ export const componentEntries = [
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-audio-recorder.ts", "hook"),
       supportFiles: [
         sourceFile("Duration formatter", "src/registry/lib/format-audio-recorder-duration.ts", "support"),
-        // Waveform rendering is delegated to the AudioVisualizer usage family (bars ships by default;
-        // swap to the line version by repointing one import in your owned audio-recorder.tsx).
+        // Waveform rendering is delegated to AudioVisualizer usage family (bars ships by default;
+        // swap to line version by repointing one import in your owned audio-recorder.tsx).
         sourceFile("Waveform (AudioVisualizer, bars version)", "src/registry/sources/control-ui/audio-visualizer.tsx", "audio-visualizer"),
       ],
       source: sourceFile("Component", "src/registry/sources/control-ui/audio-recorder.tsx", "component"),
@@ -154,8 +154,8 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/audio-visualizer").then((mod) => ({ default: mod.AudioVisualizerExample })),
     ),
-    // Usage versions: sibling registry items sharing the AudioVisualizer export + AudioVisualizerProps contract.
-    // NOT component versions (one registry name never has two contents) — the page shows a picker, the consumer installs one.
+    // Usage versions: sibling registry items sharing AudioVisualizer export + AudioVisualizerProps contract.
+    // NOT component versions (one registry name never has two contents) — page shows picker, consumer installs one.
     versions: [
       {
         id: "bars",
@@ -208,8 +208,8 @@ export const componentEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/dynamic-notification").then((mod) => ({ default: mod.DynamicNotificationExample })),
     ),
-    // Usage versions of ONE registry item (all three keep the parent registryKind): the picker swaps
-    // the documented island material; switching later is a `variant` prop change, not a reinstall.
+    // Usage versions of ONE registry item (all three keep parent registryKind): picker swaps
+    // documented island material; switching later is a `variant` prop change, not reinstall.
     versions: [
       {
         id: "liquid",
@@ -332,7 +332,6 @@ export const componentEntries = [
     kind: "Agent",
     name: "SourceBadge",
     summary: "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
-    status: "beta",
     registryKind: "source-badge",
     paths: {
       example: sourceFile("Example", "src/registry/examples/control-ui/source-badge.tsx", "example"),

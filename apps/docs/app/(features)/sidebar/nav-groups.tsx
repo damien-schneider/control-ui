@@ -38,7 +38,7 @@ export function DocsNavGroup({
         {items.map((item) => {
           const href = `${prefix}${item.id}`;
           const name = humanizeNavName(item.name);
-          // Collapsed rail shows the icon only, so the status rides along in the row's tooltip instead of the hidden chip.
+          // Collapsed rail shows icon only, so status rides along in row's tooltip instead of hidden chip.
           const tooltip = item.status ? `${name} · ${statusMeta[item.status].label}` : name;
           return (
             <SidebarMenuItem key={item.id}>

@@ -8,9 +8,9 @@ import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
 import { InstallPanel, PageHeader, RegistryDependencyReferences, SectionCode, SectionTitle } from "./shared";
 
-// Extension page: an optional installable layered on the library. The attach mode is the load-bearing fact —
+// Extension page: optional installable layered on library. attach mode is load-bearing fact —
 // root extensions mount once and discover targets by anatomy; anchored extensions are activated from skin.config
-// through a component-owned adornment anchor.
+// through component-owned adornment anchor.
 export function ExtensionPage({ extension }: { extension: DocsExtension }) {
   const commands = registryInstallCommands(extension.registryKind);
   const files = extension.supportFiles ? [extension.source, ...extension.supportFiles] : [extension.source];

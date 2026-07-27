@@ -7,7 +7,7 @@ import { EnvironmentVariables } from "./environment-variables";
 const COMPONENT = readFileSync(new URL("./environment-variables.tsx", import.meta.url), "utf8");
 const HOOK = readFileSync(new URL("../../hooks/use-environment-variables.ts", import.meta.url), "utf8");
 const ENV_FILE = readFileSync(new URL("../../lib/env-file.ts", import.meta.url), "utf8");
-// Generated registry manifest: JSON.parse types as any, so the binding is annotated rather than asserted; the
+// Generated registry manifest: JSON.parse types as any, so binding is annotated rather than asserted; the
 // "standalone manifest" test below asserts both fields' contents.
 const MANIFEST: { files: { path: string }[]; registryDependencies: string[] } = JSON.parse(
   readFileSync(new URL("../../../../registry/control-ui/environment-variables.json", import.meta.url), "utf8"),

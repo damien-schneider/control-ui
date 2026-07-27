@@ -48,7 +48,7 @@ describe("buildDiffFromFiles — before/after pair", () => {
     const allLines = file.hunks.flatMap((hunk) => hunk.lines);
     const modifiedAdd = allLines.find((line) => line.type === "add" && line.text === "line two changed");
     expect(modifiedAdd?.segments).toBeDefined();
-    // "changed" is the emphasized (added) run; the shared "line two " prefix is not emphasized.
+    // "changed" is emphasized (added) run; shared "line two " prefix is not emphasized.
     expect(modifiedAdd?.segments?.some((segment) => segment.emphasis && segment.text.includes("changed"))).toBe(true);
     expect(modifiedAdd?.segments?.some((segment) => !segment.emphasis)).toBe(true);
 

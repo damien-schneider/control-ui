@@ -1,5 +1,5 @@
 // compat shim — code primitives (Code, CodeDiff, CodeBlockEditor, markdown fences) share one Shiki
-// tokenizer (code-tokens.ts) on a CSS-var theme, so syntax colors follow the active skin; keeps
+// tokenizer (code-tokens.ts) on CSS-var theme, so syntax colors follow active skin; keeps
 // original CodeBlockEditor* names working so existing callers need no import changes
 
 import type { CodeToken, CodeTokenLines, CodeTokenStyle } from "./code-tokens";

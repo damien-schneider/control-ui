@@ -22,7 +22,7 @@ function setRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (ref) ref.current = value;
 }
 
-// Active indicator driven by Base UI's --active-tab-width/--active-tab-left — slides between tabs with one transition.
+// rides Base UI's --active-tab-width/--active-tab-left, so one transition slides it between tabs
 export function Tabs<TValue extends string = string>({ className, onValueChange, children, ...props }: TabsProps<TValue>) {
   const rootRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef(new Map<string, HTMLDivElement>());
@@ -35,19 +35,17 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
     };
   });
 
-  // The cross-slide's height morph needs the outgoing panel's height as the entering panel's starting
-  // height — auto→auto never transitions, and CSS cannot measure a sibling. Captured here pre-commit
-  // (the active panel is still the old one), cleared right after the starting frame so a later switch
-  // that skips onValueChange (externally controlled value) never morphs from a stale height.
+  // auto→auto never transitions and CSS cannot measure sibling, so outgoing height is captured pre-commit
+  // and cleared right after starting frame, or controlled switch that skips onValueChange would morph from stale one
   const handleValueChange = (value: TValue) => {
     const root = rootRef.current;
     if (root) {
       for (const panel of panelsRef.current.values()) {
         if (panel.inert || panel.hidden) continue;
-        root.style.setProperty("--aui-tabs-prev-height", `${panel.getBoundingClientRect().height}px`);
+        root.style.setProperty("--aui-slide-prev-height", `${panel.getBoundingClientRect().height}px`);
         cancelAnimationFrame(clearPrevHeight.current);
         clearPrevHeight.current = requestAnimationFrame(() => {
-          clearPrevHeight.current = requestAnimationFrame(() => root.style.removeProperty("--aui-tabs-prev-height"));
+          clearPrevHeight.current = requestAnimationFrame(() => root.style.removeProperty("--aui-slide-prev-height"));
         });
         break;
       }
@@ -60,6 +58,7 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
       <TabsPrimitive.Root
         data-control-ui="tabs"
         data-slot="root"
+        data-slide="scope"
         className={cn(skinSlot("tabs", "root", {}), className)}
         onValueChange={handleValueChange}
         {...props}
@@ -164,6 +163,7 @@ export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
       value={value}
       data-control-ui="tabs"
       data-slot="panel"
+      data-slide="panel"
       className={cn(
         "outline-none data-[hidden]:hidden focus-visible:ring-2 focus-visible:ring-foreground/20 [&[hidden]]:hidden",
         skinSlot("tabs", "panel", {}),

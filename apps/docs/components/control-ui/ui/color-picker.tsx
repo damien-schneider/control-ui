@@ -47,10 +47,10 @@ import { Input } from "@/components/control-ui/ui/input";
 import { NumberField, NumberFieldGroup, NumberFieldInput } from "@/components/control-ui/ui/number-field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 
-// Gradient DATA, not tokens — see the design contract.
+// gradient data, deliberately not tokens
 const HUE_GRADIENT =
   "linear-gradient(to right, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
-// Neutral checkerboard that adapts to light/dark via the border token.
+// adapts to light and dark through border token
 const CHECKER = "repeating-conic-gradient(oklch(from var(--border) l c h) 0 25%, transparent 0 50%)";
 const CHECKER_SIZE = "10px 10px";
 const RING_THUMB =
@@ -70,7 +70,7 @@ const CHANNEL_NAMES: Record<ChannelId, string> = {
   a: "Opacity",
 };
 
-// Keep hue (and sat at true black) when a color arrives achromatic, so the thumbs don't jump to red.
+// Keep hue (and sat at true black) when color arrives achromatic, so thumbs don't jump to red.
 function reconcileAchromatic(prev: Hsva, next: Hsva): Hsva {
   if (next.v === 0) return { ...next, h: prev.h, s: prev.s };
   if (next.s === 0) return { ...next, h: prev.h };
@@ -125,7 +125,7 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
   const [formatState, setFormatState] = useState<ColorFormat>(defaultFormat);
   const format = formatProp ?? formatState;
 
-  // Refs mirror latest values so setters read fresh state (fast pointer drags) without side effects in a state updater.
+  // refs so setters read fresh state during fast pointer drags, without side effects inside state updater
   const hsvaRef = useRef(hsva);
   const formatRef = useRef(format);
   const alphaRef = useRef(alpha);
@@ -140,7 +140,7 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
     onValueChangeRef.current = onValueChange;
   }, [hsva, format, alpha, onValueChange]);
 
-  // Plain closures over refs: context value rebuilds every render anyway, memoized handler identity buys nothing.
+  // context value rebuilds every render anyway, so memoized handler identity buys nothing
   const emit = (next: Hsva, fmt: ColorFormat) => {
     const str = formatColor(next, fmt, { alpha: alphaRef.current });
     lastEmitted.current = str;
@@ -152,7 +152,7 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
     emit(next, formatRef.current);
   };
 
-  // Reconcile an externally-controlled value. Skip our own echoed emit to avoid thumb jitter.
+  // skips echo of its own emit, which would jitter thumbs
   useEffect(() => {
     if (value === undefined || value === lastEmitted.current) return;
     const parsed = parseColor(value);
@@ -239,7 +239,7 @@ export function ColorPickerContent({
 }: ColorPickerContentProps) {
   return (
     <PopoverPrimitive.Portal>
-      {/* Portals land outside the token-scoped tree, so re-assert the active skin's scope here. */}
+      {/* portal lands outside token-scoped tree, so scope is re-asserted here */}
       <PopoverPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -362,8 +362,6 @@ export function ColorPickerAreaThumb({ className, ...props }: ColorPickerAreaThu
   );
 }
 
-// Hue / alpha sliders: Base UI Slider directly, custom track paint.
-
 export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy }: ColorPickerHueProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
   return (
@@ -433,7 +431,7 @@ export function ColorPickerAlpha({ className, "aria-label": ariaLabel, "aria-lab
   );
 }
 
-// Hue/sat wheel, an alternate to Area + Hue.
+// alternate to Area + Hue
 
 const WHEEL_HUE =
   "conic-gradient(from 90deg, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
@@ -530,7 +528,7 @@ export function ColorPickerInput({
       autoComplete="off"
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Color value") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("font-mono text-meta", className)}
+      className={cn("font-mono text-caption", className)}
       onFocus={() => {
         setDraft(valueString);
         setEditing(true);
@@ -746,7 +744,7 @@ export function ColorPickerContrast({ background = "#ffffff", className, ...prop
     <div
       data-control-ui="color-picker"
       data-slot="contrast"
-      className={cn("flex items-center gap-1.5 text-meta", skinSlot("color-picker", "contrast", {}), className)}
+      className={cn("flex items-center gap-1.5 text-caption", skinSlot("color-picker", "contrast", {}), className)}
       {...props}
     >
       <span className="tabular-nums text-muted-foreground">{ratio.toFixed(2)}:1</span>
@@ -795,7 +793,7 @@ export function ColorPickerOutput({ className, children, renderValue, ...props }
                 <span aria-hidden className="absolute inset-0" style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }} />
                 <span aria-hidden className="absolute inset-0" style={{ backgroundColor: valueString }} />
               </span>
-              <span className="font-mono text-meta text-muted-foreground">{valueString}</span>
+              <span className="font-mono text-caption text-muted-foreground">{valueString}</span>
             </>
           ))}
     </div>

@@ -104,7 +104,7 @@ export function SupportFiles({
         {files.map((file) => (
           <div
             key={file.path}
-            className="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-border/70 bg-card px-4 py-3 text-body shadow-sm"
+            className="flex min-w-0 items-center justify-between gap-4 rounded-xl border bg-background px-4 py-3 text-body shadow-sm"
           >
             <span className="flex min-w-0 items-center gap-2">
               <span className="font-medium">{file.label}</span>
@@ -145,7 +145,7 @@ export function RegistryDependencyReferences({ dependencies }: { dependencies: D
           <Link
             key={dependency.registryKind}
             href={dependency.href}
-            className="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-border/70 bg-card px-4 py-3 text-body shadow-sm transition hover:border-foreground/20 hover:bg-muted/30"
+            className="flex min-w-0 items-center justify-between gap-4 rounded-xl border bg-background px-4 py-3 text-body shadow-sm transition hover:border-foreground/20 hover:bg-muted/30"
           >
             <span className="flex min-w-0 items-center gap-2">
               <span className="font-medium">{dependency.name}</span>

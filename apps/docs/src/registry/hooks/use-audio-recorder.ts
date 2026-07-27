@@ -47,8 +47,7 @@ export type UseAudioInputDevicesResult = {
   requestPermission: () => Promise<void>;
 };
 
-// Minimal structural contracts for everything the controller touches, so tests can inject
-// plain mocks while the real DOM constructors stay assignable.
+// structural, so tests can inject plain mocks while real DOM constructors stay assignable
 export type AudioRecorderStreamLike = {
   getTracks: () => readonly { stop: () => void }[];
 };
@@ -74,7 +73,7 @@ type AnalyserLike = {
 };
 
 type AudioSourceLike = {
-  // `unknown` keeps the overloaded AudioNode.connect assignable; the controller only ever passes the analyser
+  // `unknown` keeps overloaded AudioNode.connect assignable; controller only ever passes analyser
   connect(destination: unknown): unknown;
   disconnect(): void;
 };
@@ -294,7 +293,7 @@ export function createAudioRecorderController<TStream extends AudioRecorderStrea
   initialOptions: UseAudioRecorderOptions = {},
   environment?: AudioRecorderControllerEnvironment<TStream>,
 ) {
-  // separate calls keep TStream bound to whichever environment actually runs (injected vs browser default)
+  // separate calls keep TStream bound to whichever environment runs (injected vs browser default)
   return environment
     ? createControllerForEnvironment(initialOptions, environment)
     : createControllerForEnvironment(initialOptions, browserEnvironment());

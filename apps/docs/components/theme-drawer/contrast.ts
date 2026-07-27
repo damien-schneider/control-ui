@@ -1,7 +1,6 @@
 "use client";
 
-// WCAG 2.x contrast: checker reads *resolved* token colors off <html>, not re-derived hex knobs — honest for every skin/mode (scoped tokens, .dark stack, derived tokens all show true rendered ratio).
-// Trade-off: truthful, not corrective, when editor doesn't own tokens — auto-fix gated to preset-backed skin in light mode (see ContrastPanel).
+// Reads resolved token colours off <html> rather than re-deriving from editor's knobs, so ratio is true for every skin, mode, and derived token.
 
 import { cssColorToRgb, hexToOklch, oklchToHex, oklchToRgb, type Rgb } from "./color-utils";
 
@@ -10,7 +9,7 @@ function channelLuminance(c: number): number {
   return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
 }
 
-// WCAG relative luminance — gamma-corrected sRGB, unlike readableOn's cheap perceptual approximation.
+// gamma-corrected sRGB, unlike readableOn's cheap perceptual approximation
 function luminanceFromRgb([r, g, b]: Rgb): number {
   return 0.2126 * channelLuminance(r) + 0.7152 * channelLuminance(g) + 0.0722 * channelLuminance(b);
 }
@@ -21,15 +20,13 @@ export function contrastFromRgb(a: Rgb, b: Rgb): number {
   return la > lb ? la / lb : lb / la;
 }
 
-// Reads token off <html>, resolves to sRGB via shared canvas round-trip (cssColorToRgb) — format-proof across oklch()/lab()/lch()/color()/calc-backed values like --muted-foreground.
-// Naive getComputedStyle().color scraping assumed rgb() and mis-read oklch L/C/H as r/g/b.
-// Round-trip is what makes readout truthful on every skin.
+// canvas round-trip is what makes this format-proof: scraping getComputedStyle().color assumes rgb() and mis-reads oklch L/C/H as r/g/b.
 export function readVarRgb(name: string): Rgb | null {
   const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   return raw ? cssColorToRgb(raw) : null;
 }
 
-// Grading: AA=4.5:1, AAA=7:1 thresholds; shown as separate pass/fail pills per row (not one collapsed grade) so headroom is visible at a glance.
+// AA = 4.5:1, AAA = 7:1
 export type WcagLevel = "AA" | "AAA";
 export type WcagLevels = { AA: boolean; AAA: boolean };
 
@@ -41,15 +38,14 @@ export function wcagLevels(ratio: number): WcagLevels {
   return { AA: ratio >= AA_RATIO, AAA: ratio >= AAA_RATIO };
 }
 
-// Level a per-row fix aims for: AA first, then AAA once AA holds, then nothing — lets panel show a fix chip on a failing row, or offer → AAA once every row clears AA.
+// AA first, then AAA once AA holds, then nothing
 export function nextFixLevel(levels: WcagLevels): WcagLevel | null {
   if (!levels.AA) return "AA";
   if (!levels.AAA) return "AAA";
   return null;
 }
 
-// Live readout: pairs checker inspects, keyed by tokens actually rendered.
-// Every row fixable the SAME way — nudge pair's text token (fg) until it clears target against live background (bg); no per-knob special-casing, works on any skin/mode.
+// Every row is fixable same way — nudge pair's text token until it clears target against live background.
 export type ContrastPair = { label: string; fg: string; bg: string };
 
 export const CONTRAST_PAIRS: readonly ContrastPair[] = [
@@ -60,17 +56,14 @@ export const CONTRAST_PAIRS: readonly ContrastPair[] = [
   { label: "Destructive button", fg: "--destructive-foreground", bg: "--destructive" },
 ];
 
-// Level a row's fix chip offers: next unmet level, only if REACHABLE on this pairing.
-// Reachability dynamic: near-white/near-black surface reaches ~21:1 (AAA easy), mid-tone surface can't clear 7:1 — AAA upgrade must not be offered.
-// Caller passes reachableRatio (from maxForegroundRatio); no chip for unreachable target, never dead buttons.
+// Reachability is per-pairing: near-white surface reaches ~21:1, mid-tone one cannot clear 7:1, so unreachable target must never be offered as dead button.
 export function offeredFixLevel(levels: WcagLevels, reachableRatio: number = Number.POSITIVE_INFINITY): WcagLevel | null {
   const next = nextFixLevel(levels);
   if (next === null) return null;
   return reachableRatio >= TARGET_RATIO[next] ? next : null;
 }
 
-// Best contrast a text fix can reach here: better of driving token darkest/lightest (chroma+hue held, matches fixTextForeground's search space).
-// Near-white/near-black surface ~21; mid-tone surface can be under 7 — exactly when AAA upgrade must NOT be offered.
+// Holds chroma and hue, matching fixTextForeground's search space.
 export function maxForegroundRatio(fgHex: string, backgrounds: Rgb[]): number {
   if (backgrounds.length === 0) return 0;
   const { C, H } = hexToOklch(fgHex);
@@ -80,7 +73,7 @@ export function maxForegroundRatio(fgHex: string, backgrounds: Rgb[]): number {
 
 export type ContrastRow = ContrastPair & { ratio: number | null; levels: WcagLevels };
 
-// Pure over injected `read` so analysis is unit-testable without DOM; app uses readVarRgb, tests use a lookup table of sRGB fixtures.
+// `read` is injected so analysis stays unit-testable without DOM
 export function analyzeContrast(read: (name: string) => Rgb | null): ContrastRow[] {
   return CONTRAST_PAIRS.map((pair) => {
     const fg = read(pair.fg);
@@ -90,14 +83,12 @@ export function analyzeContrast(read: (name: string) => Rgb | null): ContrastRow
   });
 }
 
-// Does any readable row fail AA? (null ratio = unreadable token, not actionable.) Summarizes readout for footer hint.
+// null ratio is unreadable token, not actionable failure
 export function textFailsAA(rows: ContrastRow[]): boolean {
   return rows.some((r) => r.ratio !== null && r.ratio < AA_RATIO);
 }
 
-// One abstract fix for EVERY row: nudge text lightness (hue+chroma held in OKLCH — palette identity survives, move perceptually uniform) until it clears target against HARDER surface.
-// Scans both directions, returns smallest move that passes; if nothing reaches target, returns extreme with best worst-case contrast.
-// Null when already passing.
+// Nudges lightness in OKLCH with hue and chroma held, so palette identity survives. Returns smallest passing move, or extreme with best worst case when nothing reaches target.
 export function fixTextForeground(fgHex: string, backgrounds: Rgb[], target: number = AA_RATIO): string | null {
   const { L, C, H } = hexToOklch(fgHex);
   const worst = (candidate: Rgb) => Math.min(...backgrounds.map((bg) => contrastFromRgb(candidate, bg)));
@@ -111,6 +102,6 @@ export function fixTextForeground(fgHex: string, backgrounds: Rgb[], target: num
     if (!best || dist < best.dist) best = { l: cand, dist };
   }
   if (best) return oklchToHex(best.l, C, H);
-  // Nothing passed: fall back to whichever extreme maximises the worst-case ratio.
+  // nothing passed — take whichever extreme maximises worst-case ratio
   return worst(oklchToRgb(0, C, H)) >= worst(oklchToRgb(1, C, H)) ? oklchToHex(0, C, H) : oklchToHex(1, C, H);
 }

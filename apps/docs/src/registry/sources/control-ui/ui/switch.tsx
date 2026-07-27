@@ -6,9 +6,8 @@ import type { SwitchProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Own anatomy, not a restyled Button (contrast Toggle) — Base UI owns state.
-// mastra-playground tactile detail: thumb STRETCHES on press (group-active widens it), checked offset shrinks equally to stay flush right — reads as physical nudge settling on release.
-// Motion runs off --duration-*/--ease-*, so motion kill-switch collapses it to 0ms with zero JS.
+// Own anatomy, not restyled Button way Toggle is.
+// thumb stretches on press and its checked offset shrinks by same amount, so it stays flush right while widening.
 export function Switch({
   className,
   checked,
@@ -75,7 +74,7 @@ export function Switch({
   );
 }
 
-// Single `icon` flips foreground→primary on check; paired state icons cross-fade opacity. Decorative (aria-hidden) — Switch's role/label carries meaning.
+// decorative — Switch's own role and label carry meaning
 function SwitchThumbIcon({ icon, checkedIcon, uncheckedIcon }: { icon?: ReactNode; checkedIcon?: ReactNode; uncheckedIcon?: ReactNode }) {
   const base = cn(
     "absolute inset-0 flex items-center justify-center",

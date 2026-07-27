@@ -5,8 +5,7 @@ import type { MeterIndicatorProps, MeterLabelProps, MeterProps, MeterTrackProps,
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Refined skin slot, 100% Base UI: static gauge, Track is --muted rail, Indicator fills w/ --primary from value/min/max, no JS.
-// Unlike Progress, value always a number (role=meter, never indeterminate); optional Label+Value row above rail.
+// value is required — role="meter" is static gauge, never indeterminate way Progress can be.
 export function Meter({ className, ...props }: MeterProps) {
   return (
     <MeterPrimitive.Root

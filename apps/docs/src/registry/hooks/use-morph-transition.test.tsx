@@ -18,8 +18,8 @@ function morphNames(html: string) {
 }
 
 describe("useMorphTransition", () => {
-  // The View Transitions API aborts the whole transition when two live elements claim one name, so the
-  // alternation below is the load-bearing invariant — not a styling detail.
+  // View Transitions API aborts whole transition when two live elements claim one name, so the
+  // alternation below is load-bearing invariant — not styling detail.
   test("hands the shared name to the trigger while closed", () => {
     const html = renderToString(<Probe open={false} name="aui-morph-probe" />);
 
@@ -40,7 +40,7 @@ describe("useMorphTransition", () => {
     expect(html.match(/class="morph-surface"/g)).toHaveLength(1);
   });
 
-  // useId ships delimiters (:r1:, «r1») that view-transition-name rejects as a custom-ident.
+  // useId ships delimiters (:r1:, «r1») that view-transition-name rejects as custom-ident.
   test("derives a valid custom-ident when no name is supplied", () => {
     const html = renderToString(<Probe open={false} />);
     const generated = html.match(/--morph-name:([^"';]+)/)?.[1];

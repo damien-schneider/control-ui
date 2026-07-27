@@ -562,7 +562,6 @@
         "kind": "Agent",
         "summary": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
         "href": "/ai/source-badge",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json"
       },
       {

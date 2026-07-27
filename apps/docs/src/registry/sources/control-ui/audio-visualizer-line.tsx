@@ -4,10 +4,8 @@ import type { AudioVisualizerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// LINE version of the audio-visualizer usage family. audio-visualizer.tsx (bars) is the default sibling
-// version: same `AudioVisualizer` export, same AudioVisualizerProps contract (contracts.ts), different rendering —
-// installing either gives you <AudioVisualizer />, and swapping versions is an import-path change only.
-// Draws the level window as a continuous mirrored SVG envelope, CSS-first: no canvas, no rAF.
+// Line reading. audio-visualizer.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.
+// Drawn as mirrored SVG envelope — no canvas, no rAF.
 
 const LINE_VIEWBOX_WIDTH = 100;
 const LINE_VIEWBOX_HEIGHT = 32;
@@ -21,7 +19,7 @@ const MAX_POINTS = 128;
 type Point = { x: number; y: number };
 type AudioVisualizerPathStyle = CSSProperties & { d: string };
 
-// Kept local so either visualizer version installs as a complete, independent usage choice.
+// local so either visualizer installs as complete, independent choice
 function resolveAudioVisualizerLevels(levels: readonly number[], points?: number) {
   const requestedPoints = Number.isFinite(points) ? Math.floor(points ?? DEFAULT_POINTS) : DEFAULT_POINTS;
   const pointCount = Math.min(MAX_POINTS, Math.max(1, requestedPoints));

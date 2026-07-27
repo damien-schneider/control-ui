@@ -7,8 +7,8 @@ import type { TokenValues } from "./types";
 // Controls display live theme WITHOUT duplicating skin values in JS — CSS stays single source of truth.
 // Absent tokens omitted; their control falls back to raw text input.
 
-// getComputedStyle returns a custom property's SPECIFIED value (unregistered props aren't fully resolved): lengths keep authored unit, derived tokens can come back as calc() with var() substituted.
-// resolveLengthPx below turns those into a concrete pixel number for sliders.
+// getComputedStyle returns custom property's SPECIFIED value (unregistered props aren't fully resolved): lengths keep authored unit, derived tokens can come back as calc() with var() substituted.
+// resolveLengthPx below turns those into concrete pixel number for sliders.
 export function readContractTokens(): TokenValues {
   if (typeof window === "undefined") return {};
   const cs = getComputedStyle(document.documentElement);
@@ -22,8 +22,8 @@ export function readContractTokens(): TokenValues {
 
 let lengthProbe: HTMLDivElement | null = null;
 
-// Resolves any CSS <length> (12px, 0.75rem, calc() chain a derived token hydrates as) to concrete pixels for slider display.
-// Plain numbers/px parse directly; everything else goes through a hidden probe element whose width the browser computes.
+// Resolves any CSS <length> (12px, 0.75rem, calc() chain derived token hydrates as) to concrete pixels for slider display.
+// Plain numbers/px parse directly; everything else goes through hidden probe element whose width browser computes.
 // Returns null for non-lengths (keyword, color, negative), caller falls back to text input.
 export function resolveLengthPx(value: string): number | null {
   const v = value.trim();

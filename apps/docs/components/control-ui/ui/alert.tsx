@@ -3,8 +3,7 @@ import type { AlertDescriptionProps, AlertProps, AlertTitleProps } from "@/compo
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 
-// Plain semantic alert (no Base UI): grid layout, has-[>svg] switches on a leading icon column.
-// `destructive` only re-tints via --destructive, no structural change.
+// grid grows leading icon column only when svg is present; `destructive` re-tints without changing structure
 const alertVariant = cva(
   "relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-[var(--radius-lg)] border bg-card px-4 py-3 text-sm text-card-foreground has-[>svg]:grid-cols-[1rem_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   {

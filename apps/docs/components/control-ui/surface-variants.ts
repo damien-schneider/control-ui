@@ -8,7 +8,7 @@ export const floatingContentClasses = `${floatingSurfaceClasses} ${surfaceEnterE
 
 export const floatingListContentClasses = `${floatingContentClasses} p-[var(--popover-padding)]`;
 
-// Disabled rows cover 2 attribute conventions w/o false positives: Base UI sets bare data-disabled only when disabled, cmdk always renders data-disabled="true"|"false".
-// :not([data-disabled=false]) guard keeps enabled command items from picking up the disabled look.
+// Base UI sets bare data-disabled only when disabled, cmdk always renders "true"|"false" —
+// hence the :not([data-disabled=false]) guard, or every enabled command item picks up disabled look.
 export const floatingListItemClasses =
   "flex min-h-[var(--control-h-xs)] cursor-pointer select-none items-center gap-2 rounded-[var(--radius-popup-item)] px-[calc(var(--padding-x)*0.5)] py-1 text-body text-[var(--popup-item-foreground,var(--foreground))] outline-none data-[highlighted]:bg-[var(--popup-item-highlight-background,oklch(from_var(--foreground)_l_c_h_/_0.06))] data-[selected=true]:bg-[var(--popup-item-highlight-background,oklch(from_var(--foreground)_l_c_h_/_0.06))] [&[data-disabled]:not([data-disabled=false])]:cursor-not-allowed [&[data-disabled]:not([data-disabled=false])]:opacity-[var(--popup-item-disabled-opacity,0.4)] data-[disabled=true]:pointer-events-none [&_svg]:text-[var(--popup-item-icon-foreground,currentColor)]";

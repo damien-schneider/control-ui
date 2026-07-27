@@ -23,10 +23,10 @@ export function VarTag({ children }: { children: ReactNode }) {
 
 type TokenFieldProps = {
   token: ThemeContractToken;
-  /** Live resolved value of the token (from readContractTokens), absent if the skin omits it. */
+  /** Live resolved value of token (from readContractTokens), absent if skin omits it. */
   value: string | undefined;
   labelMode: LabelMode;
-  /** True when the user authored this token (any bucket) — shows the dot + reset affordance. */
+  /** True when user authored this token (any bucket) — shows dot + reset affordance. */
   overridden: boolean;
   onChange: (value: string) => void;
   onReset: () => void;
@@ -64,9 +64,7 @@ function TokenHead({ token, labelMode, overridden, onReset }: Omit<TokenFieldPro
   );
 }
 
-// Free-form value editor — the honest fallback for tokens whose live value isn't a color, a plain
-// number, or a known preset (font stacks, calc() chains, cubic-bezier curves). Commits on blur /
-// Enter so half-typed CSS never lands as an override; Escape abandons the draft.
+// Commits on blur or Enter, so half-typed CSS never lands as override.
 function TextTokenField(props: TokenFieldProps) {
   const { token, value, labelMode, onChange } = props;
   const [draft, setDraft] = useState<string | null>(null);
@@ -104,8 +102,7 @@ function TextTokenField(props: TokenFieldProps) {
 function ColorTokenField(props: TokenFieldProps) {
   const { token, value, labelMode, onChange } = props;
   const inputRef = useRef<HTMLInputElement>(null);
-  // The picker speaks #rrggbb; the live token can be oklch()/lab()/anything — round-trip through
-  // the DOM (format-proof). Edits are authored back in the tokens' oklch format.
+  // picker speaks #rrggbb while live token can be anything, so round-trip goes through DOM
   const hex = value ? cssColorToHexDom(value) : null;
   if (value !== undefined && hex === null) return <TextTokenField {...props} />;
   return (
@@ -146,8 +143,7 @@ function formatSliderValue(spec: SliderSpec, v: number): string {
 
 function SliderTokenField(props: TokenFieldProps & { spec: SliderSpec }) {
   const { token, value, labelMode, spec, onChange } = props;
-  // A derived token can hydrate as a calc() chain — resolve lengths through the probe so the
-  // slider still shows the concrete pixel value. Unresolvable → honest text input.
+  // derived token can hydrate as calc() chain, so lengths resolve through probe before slider sees them
   const num = (() => {
     if (value === undefined) return null;
     if (spec.unit === "px") return resolveLengthPx(value);
@@ -164,8 +160,7 @@ function SliderTokenField(props: TokenFieldProps & { spec: SliderSpec }) {
         showValue
         formatValue={(v) => formatSliderValue(spec, v)}
         value={num}
-        // A skin may sit outside the curated range (a 72px control height) — widen to include it
-        // so the thumb never lies pinned at an edge.
+        // skin may sit outside curated range, and thumb pinned at edge would lie
         min={Math.min(spec.min, num)}
         max={Math.max(spec.max, num)}
         step={spec.step}
@@ -179,8 +174,7 @@ const normalizeCssValue = (v: string) => v.trim().replace(/\s+/g, " ");
 
 function SelectTokenField(props: TokenFieldProps & { spec: SelectSpec }) {
   const { token, value, labelMode, spec, onChange } = props;
-  // Match the live value back to a preset (getComputedStyle re-serialises whitespace); a skin
-  // value outside the presets displays as "Custom" until an option is picked.
+  // getComputedStyle re-serialises whitespace, so match is normalised; anything off-preset shows as "Custom"
   const matched = value === undefined ? undefined : spec.options.find((o) => normalizeCssValue(o.value) === normalizeCssValue(value));
   return (
     <div className="flex flex-col gap-1.5">

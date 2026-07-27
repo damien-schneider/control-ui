@@ -7,8 +7,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
 import { floatingContentClasses } from "@/components/control-ui/surface-variants";
 
-// Refined skin slot, 100% Base UI: anchored floating panel on popover token set (--radius-popover, --popover-padding, shadow-pop), shared w/ menu/select/context-menu; re-asserts skin scope on portal.
-// shadcn-shaped facade (Root/Trigger/Content) so shadcn Popover snippets compose verbatim, plus optional Header/Title/Description/Close.
+// shadcn-shaped facade, so shadcn Popover snippets compose verbatim
 export function Popover(props: ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root {...props} />;
 }
@@ -25,7 +24,7 @@ export function PopoverTrigger({ className, ...props }: ComponentProps<typeof Po
 }
 
 export function PopoverAnchor(props: ComponentProps<typeof PopoverPrimitive.Trigger>) {
-  // Base UI anchors popover to trigger; render trigger as child to anchor elsewhere.
+  // pass render child to anchor somewhere other than trigger
   return <PopoverPrimitive.Trigger {...props} />;
 }
 
@@ -47,7 +46,7 @@ export function PopoverContent({
 }) {
   return (
     <PopoverPrimitive.Portal>
-      {/* Portal escapes token-scoped ancestor — positioner re-asserts ACTIVE skin's scope (theme.css mirrors). */}
+      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <PopoverPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}

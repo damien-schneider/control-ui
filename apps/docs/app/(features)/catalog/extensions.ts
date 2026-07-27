@@ -1,12 +1,8 @@
 import { sourceFile } from "./shared";
 
 /*
- * Extensions: optional installable items layered on the library, never part of a component's own bundle.
- * Two attachment modes share the concept:
- * - "root": mounted once above its targets, discovers them through the emitted anatomy (control-effects, view-transition).
- * - "anchored": a component ships a named adornment anchor (positioned wrapper, behavioral ctx) and skin.config
- *   fills it with the extension — pack or app brand, same gesture (send-aurora on chat-composer:send-layer).
- * `appliesTo` lists the component or primitive pages whose "Available extensions" panel offers the item.
+ * "root" mounts once above its targets and finds them through emitted anatomy; "anchored" waits for skin.config
+ * to fill component's named adornment anchor. `appliesTo` names pages whose extensions panel offers item.
  */
 export const extensionEntries = [
   {
@@ -28,7 +24,7 @@ export const skin: ControlUiSkin = {
   effects: ["ripple"],
 };
 
-// app layout — mirrors the resolved list on <html> for in-tree controls
+// app layout — mirrors resolved list on <html> for in-tree controls
 <ControlEffectsRuntime />
 
 // or scope effects to one subtree instead (caller-wins local override)
@@ -58,11 +54,11 @@ export const skin: ControlUiSkin = {
 startPageViewTransition(() => router.push(href));
 finishPageViewTransition(); // once the new view is on screen (e.g. a pathname effect)
 
-// element morph — the CSS-native layoutId; works across a portal and the top layer
+// element morph — CSS-native layoutId; works across portal and top layer
 const { morph, triggerProps, surfaceProps } = useMorphTransition({ open });
 
 <Dialog open={open} onOpenChange={(next) => morph(() => setOpen(next))}>
-  {/* drop data-[popup-open]:opacity-0 to keep the trigger on the page while the dialog is open */}
+  {/* drop data-[popup-open]:opacity-0 to keep trigger on page while dialog is open */}
   <DialogTrigger
     {...triggerProps}
     className={cn(triggerProps.className, "data-[popup-open]:opacity-0")}

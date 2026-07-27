@@ -1,11 +1,11 @@
 import type { ControlUiSkin } from "@/components/control-ui/skin";
 
 /*
- * ADVANCED skin: mount ModernAppleLiquidGlassRuntime once for WebGL floating surfaces; skin.css
- * keeps the unsupported-browser fallback while these slots style controls and content.
+ * Mount ModernAppleLiquidGlassRuntime once for WebGL floating surfaces; skin.css keeps the
+ * unsupported-browser fallback.
  */
 
-// white focus halo — the ring token is white in this skin, so focus reads as a soft luminous glow.
+// white focus halo — ring token is white in this skin, so focus reads as soft luminous glow.
 const appleFocus = "focus-visible:ring-[3px] focus-visible:ring-[var(--ring)] focus-visible:ring-offset-0";
 
 // Glass wafer: translucent white control, backdrop-blur, 0.5px ring (not base's ring-1) —
@@ -15,7 +15,7 @@ const appleGlass =
   "bg-[var(--glass-fill)] text-foreground backdrop-blur-[var(--backdrop-blur-glass)] backdrop-saturate-[1.8] ring-[0.5px] ring-inset ring-[var(--glass-rim)] shadow-[inset_0_1px_0_0_var(--glass-gloss),0_1px_2px_0_rgba(0,0,0,0.06)] hover:bg-[var(--glass-fill-hover)] active:bg-[var(--glass-fill-active)] active:scale-[0.97]";
 const appleControl = `rounded-[var(--radius-control)] ${appleGlass} ${appleFocus}`;
 
-// the solid variant = the system-blue capsule CTA, with its own white top gloss so it reads as glass.
+// solid variant = system-blue capsule CTA, with its own white top gloss so it reads as glass.
 const appleSolid = `rounded-[var(--radius-control)] border-0 bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_1px_3px_0_rgba(10,102,240,0.4)] hover:brightness-105 active:brightness-95 active:scale-[0.97] ${appleFocus}`;
 
 // Transparent glass field: frosted backdrop + white rim, no solid fill ("input transparent" ask).
@@ -43,7 +43,7 @@ export const skin: ControlUiSkin = {
       item: appleItem,
       label: appleMenuLabel,
       separator: appleSeparator,
-      shortcut: "ml-auto text-meta tracking-widest text-muted-foreground",
+      shortcut: "ml-auto text-caption tracking-widest text-muted-foreground",
     },
   },
   slots: {

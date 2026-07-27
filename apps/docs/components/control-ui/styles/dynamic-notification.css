@@ -70,7 +70,6 @@
 }
 
 @layer components {
-  /* ---- island geometry morph ------------------------------------------------------------- */
   :where([data-control-ui="dynamic-notification"][data-slot="island"]) {
     /* geometry knobs — retune via inline style or className */
     --dn-collapsed-width: 8.5rem;
@@ -162,7 +161,6 @@
     --dn-ink-tail: oklch(0 0 0 / 0.4);
   }
 
-  /* ---- pill face <-> bubble content cross-fade -------------------------------------------- */
   /* focus/a11y gating lives on the inert attribute (stamped by React); CSS only paints the cross-fade */
 
   /* base = collapsed face; it returns AFTER the geometry has mostly settled back (delayed) */
@@ -215,7 +213,7 @@
       scale var(--duration-base) var(--ease-standard);
   }
 
-  /* ---- word cascade (Apple keynote text reveal) -------------------------------------------- */
+  /* word cascade (Apple keynote text reveal) */
   :where([data-control-ui="dynamic-notification"][data-slot="message"]) [data-control-ui="dynamic-notification"][data-slot="word"] {
     display: inline-block;
   }
@@ -230,7 +228,6 @@
     animation-delay: calc(var(--duration-base) * 0.8 + var(--dn-word-index, 0) * var(--dn-word-stagger, 40ms));
   }
 
-  /* ---- Siri indicator orb ------------------------------------------------------------------ */
   :where([data-control-ui="dynamic-notification"][data-slot="indicator"]) {
     background:
       radial-gradient(circle at 30% 30%, oklch(0.85 0.1 210 / 0.9), transparent 60%),
@@ -256,7 +253,7 @@
     animation: none;
   }
 
-  /* ---- glass variant material (CSS fallback; the WebGL canvas paints over it) -------------- */
+  /* glass variant material (CSS fallback; the WebGL canvas paints over it) */
   /* collapsed = solid black pill (ink stops at their registered initial values); expanded =
      true black -> transparent, reached by TRANSITIONING the registered stops (see @property).
      Plateau curve, not an even fade: solid across the top 40%, transparent by 90% — keeps a
@@ -274,7 +271,7 @@
     backdrop-filter: blur(4px) saturate(1.4);
   }
 
-  /* ---- liquid variant fallback (WebGL replaces it after the first complete frame) ------------- */
+  /* liquid variant fallback (WebGL replaces it after the first complete frame) */
   :where([data-control-ui="dynamic-notification"][data-slot="island"])[data-variant="liquid"] {
     background: linear-gradient(
       to bottom,

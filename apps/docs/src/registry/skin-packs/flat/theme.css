@@ -1,9 +1,3 @@
-/*
- * "Flat" skin pack — complete, self-contained theme tokens. Neutral reset: square
- * corners, zero shadow, instant motion, and flat gray. Scoped [data-skin="flat"];
- * global @theme bindings remain in Control UI core.
- */
-
 [data-skin="flat"] {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -51,8 +45,6 @@
   --border: oklch(0.8851 0 0 / var(--ring-opacity));
   --input: oklch(0.8851 0 0);
   --ring: oklch(0.6903 0 0);
-  --popup-item-foreground: var(--foreground);
-  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
   --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
   --badge-neutral-foreground: var(--foreground);
   --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
@@ -85,8 +77,6 @@
   --badge-pink-foreground: var(--color-pink-800);
   --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
   --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --font-body: var(--font-sans);
-  --font-display: var(--font-sans);
   --text-micro: 0.625rem;
   --text-caption: 0.6875rem;
   --text-label: 0.75rem;
@@ -109,25 +99,13 @@
   --text-display--line-height: 1.1;
   --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
-  --text-meta: 0.6875rem;
   --radius-control: calc(var(--radius) * 2);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.6);
   --radius-field: calc(var(--radius) * 2.2);
   --radius-panel: calc(var(--radius) * 2.6);
   --radius-scene: calc(var(--radius) * 2.8);
-  --corner-shape-control: var(--corner-shape);
-  --corner-shape-popover: var(--corner-shape);
-  --corner-shape-panel: var(--corner-shape);
   --corner-radius-fit: 0.5;
   --radius-popup-item: calc(var(--radius-control) * 0.6);
-  --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
   --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
-  --nest-safe: 1px;
-  --nest-corner-ratio: 3.41421356;
   --shadow-color: oklch(0.2986 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.62);
   --shadow-opacity: 1;
@@ -139,11 +117,9 @@
   --shadow-ambient-multiplier: 8;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
-  --popup-item-disabled-opacity: 0.4;
   --popover-padding: 0.25rem;
   --control-h-xs: round(var(--control-h) * 0.78, 1px);
   --control-h-sm: round(var(--control-h) * 0.89, 1px);
-  --control-h-md: var(--control-h);
   --control-h-lg: round(var(--control-h) * 1.11, 1px);
 }
 

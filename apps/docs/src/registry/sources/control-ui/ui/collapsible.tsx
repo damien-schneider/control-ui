@@ -37,7 +37,7 @@ function CollapsibleTriggerElement({
   });
 }
 
-// Emits skin-stable anatomy and state hooks so consumers never style on Base UI's private attributes.
+// emits its own anatomy and state hooks, so consumers never style on Base UI's private attributes
 export function Collapsible({ className, ...props }: CollapsibleProps) {
   return (
     <CollapsiblePrimitive.Root

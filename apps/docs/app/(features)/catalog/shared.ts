@@ -1,7 +1,6 @@
 import { type ComponentType, type LazyExoticComponent, lazy } from "react";
 
-// ONE source ships code: Control UI. shadcn compat = CONTRACT (shared tokens+APIs), not a parallel source tree — see shadcn-compatibility guide.
-// Skins (skinMetas) are a separate axis: restyle library globally via tokens+skin.config, never their own component source.
+// shadcn compatibility is contract over shared tokens and APIs, not parallel source tree; skin is separate axis and never ships component source.
 export const integrationIds = ["mastra", "ai-sdk"] as const;
 export const registryKindIds = [
   "chat",
@@ -105,8 +104,7 @@ export const registryKindIds = [
   "send-aurora",
 ] as const;
 
-// Release status of a catalog item. Absence IS "stable": the default never gets a badge, so a
-// stable item carries no field and no item can drift into claiming stability it never declared.
+// Absence IS "stable", so no item can drift into claiming stability it never declared.
 const catalogStatusIds = ["beta", "experimental"] as const;
 
 export type CatalogIntegrationId = (typeof integrationIds)[number];
@@ -118,11 +116,9 @@ export type CatalogSourceFile = {
   slot?: string;
 };
 
-// Optional `integration` prop swaps provider usage code; most previews ignore it, kept for a uniform loader signature.
 export type IntegrationPreviewProps = { integration?: CatalogIntegrationId };
 
-// ONE preview contract: the renderer only ever passes `integration`, and it is optional, so a preview that
-// ignores props stays assignable. No props generic to infer means no loader-vs-component mismatch to assert away.
+// `integration` is the only prop renderer passes and it is optional, so preview ignoring props stays assignable and no generic needs asserting away.
 type PreviewLoader = () => Promise<{ default: ComponentType<IntegrationPreviewProps> }>;
 export type CatalogPreview = {
   Component: LazyExoticComponent<ComponentType<IntegrationPreviewProps>>;
@@ -148,9 +144,8 @@ export function includesString<T extends string>(values: readonly T[], value: st
   return values.some((item) => item === value);
 }
 
-// Reads an entry's status. A tier where no entry declares one infers `status` as absent from the whole
-// union, so an `in` narrow would type it `unknown` — this typed accessor keeps the read honest instead.
-// `id` is required only to anchor the parameter: an all-optional type would reject every entry as a weak type.
+// tier where no entry declares status drops it from whole union, so an `in` narrow would type it `unknown`.
+// `id` is required only to anchor parameter — all-optional type would reject every entry as weak.
 export function catalogStatus(entry: { id: string; status?: CatalogStatus }): CatalogStatus | undefined {
   return entry.status;
 }
