@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 test("pans and zooms without moving the page viewport", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
@@ -6,6 +7,7 @@ test("pans and zooms without moving the page viewport", async ({ page }) => {
 
   const canvas = page.getByRole("application", { name: "Infinite canvas" });
   const content = canvas.locator('[data-control-ui="infinite-canvas"][data-slot="content"]');
+  await waitForReactHydration(canvas);
   await expect(canvas).toBeVisible();
   await expect(content).toHaveAttribute("data-scale", "1");
 
@@ -32,12 +34,26 @@ test("pans and zooms without moving the page viewport", async ({ page }) => {
   await expect(content).not.toHaveAttribute("data-scale", "1.2");
 
   const beforePan = await content.getAttribute("style");
-  const box = await canvas.boundingBox();
-  expect(box).not.toBeNull();
-  if (!box) throw new Error("Expected Infinite Canvas bounds.");
-  await page.mouse.move(box.x + 24, box.y + box.height - 24);
+  const panStart = await canvas.evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    const left = Math.max(bounds.left, 0);
+    const right = Math.min(bounds.right, innerWidth);
+    const top = Math.max(bounds.top, 0);
+    const bottom = Math.min(bounds.bottom, innerHeight);
+    for (const yFactor of [0.25, 0.5, 0.75]) {
+      for (const xFactor of [0.08, 0.25, 0.5, 0.75]) {
+        const point = {
+          x: left + (right - left) * xFactor,
+          y: top + (bottom - top) * yFactor,
+        };
+        if (document.elementFromPoint(point.x, point.y) === element) return point;
+      }
+    }
+    throw new Error("Expected an unobstructed Infinite Canvas point.");
+  });
+  await page.mouse.move(panStart.x, panStart.y);
   await page.mouse.down();
-  await page.mouse.move(box.x + 84, box.y + box.height - 4, { steps: 5 });
+  await page.mouse.move(panStart.x + 60, panStart.y + 20, { steps: 5 });
   await page.mouse.up();
   await expect.poll(() => content.getAttribute("style")).not.toBe(beforePan);
 });
@@ -48,6 +64,7 @@ test("uses two-finger wheel movement to pan without scrolling the page", async (
 
   const canvas = page.getByRole("application", { name: "Infinite canvas" });
   const content = canvas.locator('[data-control-ui="infinite-canvas"][data-slot="content"]');
+  await waitForReactHydration(canvas);
   await expect(canvas).toBeVisible();
   const box = await canvas.boundingBox();
   expect(box).not.toBeNull();

@@ -57,3 +57,54 @@ test("Escape closes the theme editor", async ({ page }) => {
   await page.keyboard.press("Escape");
   await expect(panel).toHaveAttribute("data-state", "closed");
 });
+
+test("skin source retry replaces the error with loading state", async ({ page }) => {
+  let shouldFail = true;
+  let releaseRetry: (() => void) | undefined;
+  let markRetryStarted: (() => void) | undefined;
+  const retryStarted = new Promise<void>((resolve) => {
+    markRetryStarted = resolve;
+  });
+  const retryGate = new Promise<void>((resolve) => {
+    releaseRetry = resolve;
+  });
+  await page.route("**/api/registry/refined", async (route) => {
+    if (shouldFail) {
+      await route.fulfill({ status: 500 });
+      return;
+    }
+
+    markRetryStarted?.();
+    await retryGate;
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        type: "item",
+        data: {
+          files: [
+            {
+              label: "Theme",
+              path: "src/registry/skin-packs/refined/theme.css",
+              code: '[data-skin="refined"] { --background: oklch(1 0 0); }',
+              slot: "theme",
+            },
+          ],
+        },
+      }),
+    });
+  });
+
+  await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
+  await page.getByRole("button", { name: "Edit theme" }).click();
+  await page.getByRole("button", { name: "View Refined source" }).click();
+
+  await expect(page.getByText("The skin source could not be loaded.")).toBeVisible();
+  shouldFail = false;
+  await page.getByRole("button", { name: "Try again" }).click();
+  await expect(page.getByText("Loading source")).toBeVisible();
+
+  await retryStarted;
+  releaseRetry?.();
+  await expect(page.getByText("theme.css", { exact: true })).toBeVisible();
+});

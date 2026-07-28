@@ -1,4 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 // The docs shell's floating toolbar is a morphing panel too, so every lookup here scopes to the example on the page.
 const EXAMPLE_PANEL = '[data-control-ui="morphing-panel"][data-slot="root"]:not([data-docs-floating-panel])';
@@ -21,6 +22,7 @@ test("morphing panel keeps one trigger while moving through declared sizes", asy
   const panel = page.locator(EXAMPLE_PANEL);
   const trigger = panel.locator('[data-control-ui="morphing-panel"][data-slot="trigger"]');
   const content = panel.locator('[data-control-ui="morphing-panel"][data-slot="content"]');
+  await waitForReactHydration(panel);
 
   await expectSize(panel, 132, 52);
   await expect(trigger).toHaveAttribute("aria-expanded", "false");
@@ -141,6 +143,7 @@ test("morphing panel clamps width and respects reduced motion", async ({ page })
 
   const panel = page.locator(EXAMPLE_PANEL);
   const trigger = panel.locator('[data-control-ui="morphing-panel"][data-slot="trigger"]');
+  await waitForReactHydration(panel);
   await trigger.click();
 
   const geometry = await panel.evaluate((element) => {

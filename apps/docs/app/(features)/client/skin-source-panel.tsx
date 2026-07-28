@@ -19,9 +19,8 @@ import { Spinner } from "@/components/control-ui/ui/spinner";
 import { useThemeDrawer } from "@/components/theme-drawer-context";
 
 type SourceLoad =
-  | { skin: SkinMetaId; status: "loading" }
-  | { skin: SkinMetaId; status: "ready"; files: SourceFile[] }
-  | { skin: SkinMetaId; status: "error" };
+  | { skin: SkinMetaId; requestVersion: number; status: "ready"; files: SourceFile[] }
+  | { skin: SkinMetaId; requestVersion: number; status: "error" };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
@@ -44,37 +43,56 @@ function readCoreSkinFiles(payload: unknown): SourceFile[] | null {
   );
 }
 
+async function fetchCoreSkinFiles(skin: SkinMetaId, bypassCache: boolean, signal: AbortSignal) {
+  const response = await fetch(`/api/registry/${skin}`, {
+    signal,
+    cache: bypassCache ? "no-store" : "default",
+  });
+  if (!response.ok) throw new Error("Source request failed");
+
+  const payload: unknown = await response.json();
+  signal.throwIfAborted();
+  const files = readCoreSkinFiles(payload);
+  if (!files || files.length === 0) throw new Error("Source response was invalid");
+  return files;
+}
+
 export function SkinSourcePanel({ skins }: { skins: DocsSkinPage[] }) {
   const { skinSource, closeSkinSource, skinSourcePlacement, setSkinSourcePlacement } = useThemeDrawer();
   const [load, setLoad] = useState<SourceLoad | null>(null);
-  const [requestVersion, setRequestVersion] = useState(0);
+  const [retry, setRetry] = useState<{ skin: SkinMetaId; count: number } | null>(null);
+  const requestVersion = retry?.skin === skinSource ? retry.count : 0;
   const skin = skins.find((item) => item.id === skinSource);
 
   useEffect(() => {
     if (!skinSource) return;
+    const requestedSkin = skinSource;
 
     const controller = new AbortController();
 
-    void fetch(`/api/registry/${skinSource}`, {
-      signal: controller.signal,
-      cache: requestVersion === 0 ? "default" : "no-store",
-    })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("Source request failed");
-        const payload: unknown = await response.json();
-        const files = readCoreSkinFiles(payload);
-        if (!files || files.length === 0) throw new Error("Source response was invalid");
-        setLoad({ skin: skinSource, status: "ready", files });
-      })
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === "AbortError") return;
-        setLoad({ skin: skinSource, status: "error" });
-      });
+    async function loadSource() {
+      try {
+        const files = await fetchCoreSkinFiles(requestedSkin, requestVersion > 0, controller.signal);
+        setLoad({ skin: requestedSkin, requestVersion, status: "ready", files });
+      } catch (error) {
+        if (controller.signal.aborted || (error instanceof DOMException && error.name === "AbortError")) return;
+        setLoad({ skin: requestedSkin, requestVersion, status: "error" });
+      }
+    }
 
+    void loadSource();
     return () => controller.abort();
   }, [skinSource, requestVersion]);
 
-  const currentLoad = load?.skin === skinSource ? load : null;
+  const currentLoad = load?.skin === skinSource && load.requestVersion === requestVersion ? load : null;
+
+  function retrySource() {
+    if (!skinSource) return;
+    setRetry((current) => ({
+      skin: skinSource,
+      count: current?.skin === skinSource ? current.count + 1 : 1,
+    }));
+  }
 
   return (
     <DockablePanel
@@ -100,7 +118,7 @@ export function SkinSourcePanel({ skins }: { skins: DocsSkinPage[] }) {
       </DockablePanelHeader>
       <DockablePanelContent padding="none">
         {currentLoad?.status === "ready" ? <SourceTabs files={currentLoad.files} /> : null}
-        {!currentLoad || currentLoad.status === "loading" ? (
+        {!currentLoad ? (
           <div className="flex min-h-40 items-center justify-center gap-2 text-label text-muted-foreground">
             <Spinner />
             Loading source
@@ -109,7 +127,7 @@ export function SkinSourcePanel({ skins }: { skins: DocsSkinPage[] }) {
         {currentLoad?.status === "error" ? (
           <div className="flex min-h-40 flex-col items-center justify-center gap-3 px-6 text-center">
             <p className="text-label text-muted-foreground">The skin source could not be loaded.</p>
-            <Button variant="surface" size="sm" onClick={() => setRequestVersion((version) => version + 1)}>
+            <Button variant="surface" size="sm" onClick={retrySource}>
               Try again
             </Button>
           </div>

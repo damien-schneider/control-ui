@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { blockEntries, useCaseKinds } from "@/app/(features)/catalog/blocks";
 import { primitiveCategories, primitiveEntries } from "@/app/(features)/catalog/primitives";
-import { humanizeNavName, primitiveNavGroups, useCaseNavGroups } from "./nav-items";
+import { getUseCaseNavGroups, humanizeNavName, primitiveNavGroups } from "./nav-items";
 
 const navPrimitives = primitiveEntries.map((entry) => ({
   id: entry.id,
@@ -33,9 +33,9 @@ describe("primitiveNavGroups", () => {
   });
 });
 
-describe("useCaseNavGroups", () => {
+describe("getUseCaseNavGroups", () => {
   test("renders every block once in taxonomy order", () => {
-    const groups = useCaseNavGroups(blockEntries);
+    const groups = getUseCaseNavGroups(blockEntries);
     const itemIds = groups.flatMap((group) => group.items.map((item) => item.id));
 
     expect(groups.map((group) => group.id)).toEqual(useCaseKinds.map((kind) => kind.slug));
@@ -46,7 +46,7 @@ describe("useCaseNavGroups", () => {
 
   test("keeps items alphabetical inside each group", () => {
     const collator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
-    const groups = useCaseNavGroups(blockEntries);
+    const groups = getUseCaseNavGroups(blockEntries);
 
     for (const group of groups) {
       const names = group.items.map((item) => humanizeNavName(item.name));

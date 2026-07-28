@@ -57,7 +57,7 @@ export function agentNavItems(components: DocsComponent[]): DocsNavItem[] {
   );
 }
 
-export function useCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "useCaseKind" | "name" | "status">[]) {
+export function getUseCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "useCaseKind" | "name" | "status">[]) {
   return useCaseKinds.map((kind) => ({
     id: kind.slug,
     kind: kind.id,

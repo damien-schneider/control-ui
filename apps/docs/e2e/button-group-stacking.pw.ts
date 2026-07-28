@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 test("selected button keeps shared seams above adjacent focus", async ({ page }) => {
   await page.goto("/primitives/button-group");
@@ -7,6 +8,7 @@ test("selected button keeps shared seams above adjacent focus", async ({ page })
   const left = group.getByRole("button", { name: "Left" });
   const center = group.getByRole("button", { name: "Center" });
   const right = group.getByRole("button", { name: "Right" });
+  await waitForReactHydration(group);
   const seamOwner = (edge: "left" | "right") =>
     center.evaluate((element, selectedEdge) => {
       const rect = element.getBoundingClientRect();

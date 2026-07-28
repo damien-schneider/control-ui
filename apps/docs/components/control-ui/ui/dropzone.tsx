@@ -1,7 +1,7 @@
 "use client";
 
 import { CircleAlert, CloudUpload, FileIcon, LoaderCircle, Search, XIcon } from "lucide-react";
-import { type ComponentProps, createContext, type ReactNode, useContext, useEffect, useRef, useState } from "react";
+import { type ComponentProps, createContext, type ReactNode, useContext, useEffect, useState } from "react";
 import type { DropzoneOverlayScope, DropzoneVisualState } from "@/components/control-ui/contracts";
 import {
   type DropzoneDropDetails,
@@ -78,8 +78,7 @@ export function Dropzone({
   ...props
 }: DropzoneProps) {
   const [globalOverlayCount, setGlobalOverlayCount] = useState(0);
-  const registerGlobalOverlayRef = useRef<(() => () => void) | null>(null);
-  registerGlobalOverlayRef.current ??= () => {
+  const [registerGlobalOverlay] = useState<() => () => void>(() => () => {
     let registered = true;
     setGlobalOverlayCount((count) => count + 1);
     return () => {
@@ -87,8 +86,7 @@ export function Dropzone({
       registered = false;
       setGlobalOverlayCount((count) => Math.max(0, count - 1));
     };
-  };
-  const registerGlobalOverlay = registerGlobalOverlayRef.current;
+  });
   const dropzone = useDropzone({
     value,
     defaultValue,

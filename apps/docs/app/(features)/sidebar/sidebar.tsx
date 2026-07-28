@@ -31,7 +31,7 @@ import { DocsNavGroup, SkillConcernNavGroups } from "./nav-groups";
 import {
   agentNavItems,
   extensionNavItems,
-  useCaseNavGroups as getUseCaseNavGroups,
+  getUseCaseNavGroups,
   guideNavItems,
   hookNavItems,
   primitiveNavGroups,

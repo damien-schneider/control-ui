@@ -7,6 +7,7 @@ import {
   type Ref,
   type RefObject,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -79,6 +80,8 @@ type ActiveDragState = Exclude<DropzoneVisualState, "idle" | "processing">;
 
 const registeredDropzoneRoots = new WeakSet<EventTarget>();
 
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 export function useDropzone({
   value: controlledValue,
   defaultValue = [],
@@ -115,19 +118,19 @@ export function useDropzone({
   const policyRef = useRef(policy);
   const customExtractionRef = useRef(Boolean(getFilesFromEvent));
 
-  currentValueRef.current = currentValue;
-  disabledRef.current = disabled;
-  dragEnabledRef.current = dragEnabled;
-  policyRef.current = policy;
-  customExtractionRef.current = Boolean(getFilesFromEvent);
+  useIsomorphicLayoutEffect(() => {
+    currentValueRef.current = currentValue;
+    disabledRef.current = disabled;
+    dragEnabledRef.current = dragEnabled;
+    policyRef.current = policy;
+    customExtractionRef.current = Boolean(getFilesFromEvent);
+  });
 
-  const handleNativeCancelRef = useRef<(() => void) | null>(null);
-  handleNativeCancelRef.current ??= () => {
+  const [handleNativeCancel] = useState(() => () => {
     fallbackDialogCleanup.current?.();
     fallbackDialogCleanup.current = null;
     setIsFileDialogActive(false);
-  };
-  const handleNativeCancel = handleNativeCancelRef.current;
+  });
 
   function resetLocalDrag() {
     localDragTargets.current.clear();
@@ -160,23 +163,25 @@ export function useDropzone({
     processingRef.current = true;
     setIsProcessing(true);
 
-    let result: DropzoneProcessResult;
+    let result: DropzoneProcessResult | undefined;
+    let shouldCommit = false;
     try {
       const extractedFiles = await (getFilesFromEvent ?? defaultGetFilesFromEvent)(event, controller.signal);
       controller.signal.throwIfAborted();
       result = await processDropzoneFiles(extractedFiles, currentValueRef.current, policy, controller.signal);
     } catch (error) {
-      if (controller.signal.aborted || intakeController.current !== controller) return;
-      processingRef.current = false;
-      setIsProcessing(false);
-      onError?.(toDropzoneError(error));
+      if (!controller.signal.aborted && intakeController.current === controller) onError?.(toDropzoneError(error));
       return;
+    } finally {
+      if (!controller.signal.aborted && intakeController.current === controller) {
+        shouldCommit = true;
+        intakeController.current = null;
+        processingRef.current = false;
+        setIsProcessing(false);
+      }
     }
 
-    if (controller.signal.aborted || intakeController.current !== controller) return;
-    intakeController.current = null;
-    processingRef.current = false;
-    setIsProcessing(false);
+    if (!shouldCommit || !result) return;
     setFileRejections(result.fileRejections);
     commitValue(result.value, {
       reason,

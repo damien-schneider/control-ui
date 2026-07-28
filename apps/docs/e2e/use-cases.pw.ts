@@ -38,6 +38,7 @@ test("Use cases stays single-column and toolbar-safe on mobile", async ({ page }
   }
 
   const toolbar = page.locator("[data-docs-floating-toolbar]");
+  await expect(toolbar).toBeVisible();
   const toolbarBox = await toolbar.boundingBox();
   expect(toolbarBox).not.toBeNull();
   expect(toolbarBox?.x ?? -1).toBeGreaterThanOrEqual(0);

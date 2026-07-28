@@ -157,8 +157,9 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
       if (nextDevices.some((device) => device.label)) setHasPermission(true);
     } catch (nextError) {
       setError(asError(nextError));
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   async function requestPermission() {
@@ -177,8 +178,9 @@ export function useAudioInputDevices(): UseAudioInputDevicesResult {
       setDevices(await enumerateAudioInputDevices());
     } catch (nextError) {
       setError(microphoneError(nextError));
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   const refreshFromEffect = useEffectEvent(refresh);

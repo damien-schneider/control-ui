@@ -1,4 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 type BrowserFile = {
   name: string;
@@ -36,10 +37,6 @@ async function chooseBrowserFiles(input: Locator, files: readonly BrowserFile[])
     element.files = dataTransfer.files;
     element.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
   }, files);
-}
-
-async function waitForReactHydration(locator: Locator) {
-  await expect.poll(() => locator.evaluate((element) => Object.keys(element).some((key) => key.startsWith("__reactProps$")))).toBe(true);
 }
 
 async function dispatchFileEvent(locator: Locator, eventType: string, files: readonly BrowserFile[]) {

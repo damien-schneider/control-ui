@@ -3,7 +3,9 @@ import { expect, test } from "@playwright/test";
 test("browser tabs render connected corners and remain keyboard operable", async ({ page }) => {
   await page.goto("/primitives/tabs");
 
-  const list = page.locator('[data-control-ui="tabs"][data-slot="list"][data-variant="browser"]');
+  const list = page
+    .locator('[data-control-ui="tabs"][data-slot="list"][data-variant="browser"]')
+    .filter({ has: page.getByRole("tab", { name: "tabs.tsx", exact: true }) });
   const root = list.locator("xpath=..");
   const indicator = list.locator('[data-slot="indicator"]');
   const indexTab = list.getByRole("tab", { name: "index.tsx", exact: true });
