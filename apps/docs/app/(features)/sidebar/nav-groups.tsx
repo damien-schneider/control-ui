@@ -4,7 +4,6 @@ import type { IconSvgElement } from "@hugeicons/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { StatusBadge } from "@/app/(features)/components/status";
-import { statusMeta } from "@/app/(features)/components/status-meta";
 import type { ActivePageId, DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { skillConcernSidebarIcons } from "./icons";
@@ -38,18 +37,11 @@ export function DocsNavGroup({
         {items.map((item) => {
           const href = `${prefix}${item.id}`;
           const name = humanizeNavName(item.name);
-          // Collapsed rail shows icon only, so status rides along in row's tooltip instead of hidden chip.
-          const tooltip = item.status ? `${name} · ${statusMeta[item.status].label}` : name;
           return (
             <SidebarMenuItem key={item.id}>
-              <SidebarMenuButton
-                render={<Link href={href} onClick={onNavigate} />}
-                isActive={active === item.id}
-                size="sm"
-                tooltip={tooltip}
-              >
+              <SidebarMenuButton render={<Link href={href} onClick={onNavigate} />} isActive={active === item.id} size="sm">
                 <span className="min-w-0 truncate">{name}</span>
-                {item.status ? <StatusBadge status={item.status} compact className="ml-auto group-data-[collapsible=icon]:hidden" /> : null}
+                {item.status ? <StatusBadge status={item.status} compact className="ml-auto" /> : null}
               </SidebarMenuButton>
             </SidebarMenuItem>
           );

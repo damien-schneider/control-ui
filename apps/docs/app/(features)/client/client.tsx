@@ -3,17 +3,21 @@
 import { useLiveQuery } from "@tanstack/react-db";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import type { ActivePageId, DocsShellData, IntegrationId, SearchItem, SetupPreferenceUpdate } from "@/app/(features)/model/types";
 import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/routed-page";
 import { buildSearchItems } from "@/app/(features)/registry-api/search";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
+import type { SidebarMode } from "@/app/(features)/sidebar/types";
+import { clampSidebarWidth, readStoredSidebarWidth, SIDEBAR_WIDTH_VAR } from "@/app/(features)/sidebar/width";
+import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { SidebarInset, SidebarProvider } from "@/components/control-ui/ui/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
+import { SkinEpochBoundary } from "@/components/theme-drawer-context";
 import { pageLinks } from "./page-links";
 import {
   defaultSetupPreference,
@@ -24,14 +28,30 @@ import {
   updateDocsSetupPreference,
   useIsHydrated,
 } from "./setup-preference";
+
 import { SkinSourcePanel } from "./skin-source-panel";
 
-type DocsShellProps = DocsShellData & {
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+type DocsShellViewProps = DocsShellData & {
   children: ReactNode;
   githubStars: number | null;
 };
 
-type DocsShellContentProps = DocsShellProps & {
+type DocsShellProps = DocsShellViewProps & {
+  defaultSidebarOpen: boolean;
+};
+
+type DocsShellStateProps = {
+  lastSidebarMode: SidebarMode | null;
+  onLastSidebarModeChange: (mode: SidebarMode) => void;
+  onSidebarOpenChange: (open: boolean) => void;
+  sidebarOpen: boolean;
+};
+
+type PersistedDocsShellProps = DocsShellViewProps & DocsShellStateProps;
+
+type DocsShellContentProps = PersistedDocsShellProps & {
   integration: IntegrationId;
   updateSetupPreference: (nextPreference: SetupPreferenceUpdate) => void;
 };
@@ -46,7 +66,7 @@ function activePageForPathname(pathname: string, searchItems: SearchItem[]): Act
   return searchItems.find((item) => normalizePathname(item.href) === currentPath)?.id;
 }
 
-function PersistedDocsShell(props: DocsShellProps) {
+function PersistedDocsShell(props: PersistedDocsShellProps) {
   const { data: setupPreferences } = useLiveQuery(docsSetupCollection);
   const storedSetupPreference = setupPreferences[0];
   const setupPreference = normalizeSetupPreference(storedSetupPreference);
@@ -64,12 +84,36 @@ function PersistedDocsShell(props: DocsShellProps) {
   return <DocsShellContent {...props} integration={setupPreference.integration} updateSetupPreference={updateDocsSetupPreference} />;
 }
 
-export function DocsShell(props: DocsShellProps) {
+export function DocsShell({ defaultSidebarOpen, ...props }: DocsShellProps) {
   const isHydrated = useIsHydrated();
+  const [sidebarOpen, setSidebarOpen] = useState(defaultSidebarOpen);
+  const [lastSidebarMode, setLastSidebarMode] = useState<SidebarMode | null>(null);
 
-  if (isHydrated) return <PersistedDocsShell {...props} />;
-
-  return <DocsShellContent {...props} integration={defaultSetupPreference.integration} updateSetupPreference={() => {}} />;
+  // skinSlot reads mutable config — epoch remount refreshes compiler-memoized descendants
+  return (
+    <SkinEpochBoundary>
+      {isHydrated ? (
+        <PersistedDocsShell
+          {...props}
+          lastSidebarMode={lastSidebarMode}
+          onLastSidebarModeChange={setLastSidebarMode}
+          onSidebarOpenChange={setSidebarOpen}
+          sidebarOpen={sidebarOpen}
+        />
+      ) : (
+        <DocsShellContent
+          {...props}
+          integration={defaultSetupPreference.integration}
+          lastSidebarMode={lastSidebarMode}
+          onLastSidebarModeChange={setLastSidebarMode}
+          onSidebarOpenChange={setSidebarOpen}
+          sidebarOpen={sidebarOpen}
+          updateSetupPreference={() => {}}
+        />
+      )}
+      <ControlEffectsRuntime />
+    </SkinEpochBoundary>
+  );
 }
 
 function DocsShellContent({
@@ -86,11 +130,36 @@ function DocsShellContent({
   extensions,
   skinPages,
   integration,
+  lastSidebarMode,
+  onLastSidebarModeChange,
+  onSidebarOpenChange,
+  sidebarOpen,
   updateSetupPreference,
 }: DocsShellContentProps) {
   const pathname = usePathname();
+  const sidebarContainerRef = useRef<HTMLDivElement>(null);
+  const [initialSidebarWidth, setInitialSidebarWidth] = useState<number | null>(null);
+  const resizeHandleRef = useRef<HTMLDivElement>(null);
+  const sidebarNavigationRef = useRef<HTMLDivElement>(null);
+  function updateSidebarOpen(nextOpen: boolean) {
+    if (!nextOpen && sidebarNavigationRef.current?.contains(document.activeElement)) resizeHandleRef.current?.focus();
+    onSidebarOpenChange(nextOpen);
+  }
+  const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
+  // parent effect runs after wrapper and container refs attach
+  useIsomorphicLayoutEffect(() => {
+    if (!activePage) return;
+    const wrapper = sidebarWrapperRef.current;
+    const renderedWidth = sidebarContainerRef.current?.getBoundingClientRect().width ?? 0;
+    const storedWidth = readStoredSidebarWidth();
+    const nextWidth = storedWidth ?? (renderedWidth > 0 ? clampSidebarWidth(renderedWidth) : null);
+    if (!wrapper || nextWidth === null) return;
+
+    if (storedWidth !== null) wrapper.style.setProperty(SIDEBAR_WIDTH_VAR, `${storedWidth}px`);
+    setInitialSidebarWidth(nextWidth);
+  }, [activePage]);
 
   if (!activePage) return <>{children}</>;
 
@@ -134,7 +203,12 @@ function DocsShellContent({
   const pageContent = <DocsPageIntegrationProvider integration={integration}>{children}</DocsPageIntegrationProvider>;
 
   return (
-    <SidebarProvider className="h-svh bg-canvas text-foreground">
+    <SidebarProvider
+      ref={sidebarWrapperRef}
+      className="h-svh bg-canvas text-foreground"
+      open={sidebarOpen}
+      onOpenChange={updateSidebarOpen}
+    >
       <DocsSidebarContent
         active={activePage}
         githubStars={githubStars}
@@ -150,20 +224,36 @@ function DocsShellContent({
         skinPages={skinPages}
         searchItems={searchItems}
         integration={integration}
+        initialSidebarWidth={initialSidebarWidth}
+        lastSectionMode={lastSidebarMode}
+        onLastSectionModeChange={onLastSidebarModeChange}
+        resizeHandleRef={resizeHandleRef}
+        sidebarContainerRef={sidebarContainerRef}
+        sidebarNavigationRef={sidebarNavigationRef}
+        sidebarWrapperRef={sidebarWrapperRef}
         updateSetupPreference={updateSetupPreference}
       />
-      <SidebarInset className="min-h-0 bg-canvas">
+      <SidebarInset className="min-h-0 bg-canvas lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
         <div
           data-control-ui="sidebar-layout"
           data-slot="content"
           data-surface="panel"
           className={cn(
-            "relative m-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:m-2 lg:ml-0",
+            "relative m-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:m-2",
             skinSlot("sidebar-layout", "content", {}),
           )}
         >
+          <div
+            data-docs-sidebar-trigger=""
+            className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto hidden w-full max-w-7xl justify-start px-2 pt-3"
+          >
+            <SidebarTrigger className="pointer-events-auto" onClick={() => resizeHandleRef.current?.focus()} />
+          </div>
           <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
-            <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-1 pb-24 md:px-2 md:pt-2 lg:pt-[calc(var(--control-h-sm)+1.5rem)] 2xl:grid-cols-[minmax(0,1fr)_180px]">
+            <div
+              data-docs-page-grid=""
+              className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-1 pb-24 md:px-2 md:pt-2 lg:pt-[calc(var(--control-h-sm)+1.5rem)] 2xl:grid-cols-[minmax(0,1fr)_180px]"
+            >
               {pageContent}
 
               <aside className="hidden py-12 2xl:block">

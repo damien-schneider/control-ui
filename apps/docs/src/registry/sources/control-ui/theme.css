@@ -255,10 +255,12 @@
 
 @layer base {
   /* v4 defaults border/divide color to currentColor; restore themed border (same rule shadcn v4 ships, host merge is harmless). */
+  /* border-box origin too: default padding-box origin + border-box clip + repeat tiles the gradient's far end into a translucent border ring (--border carries alpha in most packs). Escape hatch: bg-origin-padding. */
   *,
   ::after,
   ::before {
     border-color: var(--border);
+    background-origin: border-box;
   }
 
   /* Optional declarative preset hook. Prefer overriding --corner-shape directly for full control. */

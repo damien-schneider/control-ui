@@ -132,7 +132,7 @@ export const skin: ControlUiSkin = {
     },
     "sidebar-layout": {
       content:
-        "rounded-[var(--radius)] border border-[var(--cuicui-container-border)] bg-[var(--cuicui-main-container)] shadow-none backdrop-blur-none lg:mr-6 lg:mb-6",
+        "rounded-[var(--radius)] border border-[var(--cuicui-container-border)] bg-[var(--cuicui-main-container)] shadow-none backdrop-blur-none",
     },
     tabs: {
       list: "rounded-[var(--radius-control)] bg-[var(--cuicui-control-bg)] p-1",

@@ -4,7 +4,8 @@ import { GithubIcon, StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
+import type { RefObject } from "react";
+import { useEffect, useId, useRef } from "react";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { Badge } from "@/components/control-ui/ui/badge";
@@ -24,6 +25,7 @@ import {
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { ThemeDrawerTrigger, ThemeEditorContent } from "@/components/theme-drawer/theme-drawer";
 import { useThemeDrawer } from "@/components/theme-drawer-context";
+import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { ControlUiLogo } from "./control-ui-logo";
 import { primitiveCategorySidebarIcons, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
@@ -50,8 +52,20 @@ function setupControlsScopeForKind(kind: string | undefined): SidebarSetupContro
 const skinOverviewNavItems = [{ id: skinsOverview.id, name: skinsOverview.label }];
 const githubStarsFormatter = new Intl.NumberFormat("en-US");
 
-// Docs shell IS raw shadcn Sidebar: icon-collapsible (resize-handle drag or Cmd/Ctrl+B), plain "sidebar" variant so its border-r is the only seam — floating panel look lives on content side (docs-client.tsx), not here.
-// Mobile renders through Sidebar's own Sheet instead of hand-rolled dialog.
+type DocsSidebarProps = DocsSidebarContentProps & {
+  initialSidebarWidth: number | null;
+  lastSectionMode: SidebarMode | null;
+  onLastSectionModeChange: (mode: SidebarMode) => void;
+  resizeHandleRef: RefObject<HTMLDivElement | null>;
+  sidebarContainerRef: RefObject<HTMLDivElement | null>;
+  sidebarNavigationRef: RefObject<HTMLDivElement | null>;
+  sidebarWrapperRef: RefObject<HTMLDivElement | null>;
+};
+
+function sidebarNavigationInert(isMobile: boolean, state: "expanded" | "collapsed"): true | undefined {
+  return !isMobile && state === "collapsed" ? true : undefined;
+}
+
 export function DocsSidebarContent({
   active,
   githubStars,
@@ -66,16 +80,20 @@ export function DocsSidebarContent({
   extensions,
   searchItems,
   integration,
+  initialSidebarWidth,
+  lastSectionMode,
+  onLastSectionModeChange,
+  resizeHandleRef,
+  sidebarContainerRef,
+  sidebarNavigationRef,
+  sidebarWrapperRef,
   updateSetupPreference,
-}: DocsSidebarContentProps) {
-  // Route-derived, not local state: URL root decides section (mode tab is router Link) — single source of truth for what sidebar shows.
-  // Guides and skins live outside four browsing modes, so keep last selected mode on those routes.
+}: DocsSidebarProps) {
   const activeItem = searchItems.find((item) => item.id === active);
   const onSectionPage = activeItem != null && activeItem.kind !== "Guide" && activeItem.kind !== "Skin";
   const setupControlsScope = setupControlsScopeForKind(activeItem?.kind);
   const routeMode = sidebarModeForActivePage(active, searchItems);
-  const [lastSectionMode, setLastSectionMode] = useState<SidebarMode>(routeMode);
-  const mode = onSectionPage ? routeMode : lastSectionMode;
+  const mode = onSectionPage ? routeMode : (lastSectionMode ?? routeMode);
   const formattedGitHubStars = githubStars == null ? null : githubStarsFormatter.format(githubStars);
   const githubLinkLabel =
     formattedGitHubStars == null
@@ -88,15 +106,15 @@ export function DocsSidebarContent({
     skills: skills[0] ? `/skills/${skills[0].id}` : "/skills",
   };
   const caseNavigationGroups = getUseCaseNavGroups(blocks);
-  const { isMobile, setOpenMobile } = useSidebar();
+  const { isMobile, setOpenMobile, state } = useSidebar();
   const { open: themeEditorOpen, setOpen: setThemeEditorOpen } = useThemeDrawer();
   const themeEditorTitleId = useId();
   const themeEditorDescriptionId = useId();
   const themeEditorRef = useRef<HTMLDivElement>(null);
-  const floatingPanelRef = useRef<HTMLDivElement>(null);
+  const themeDrawerTriggerRef = useRef<HTMLButtonElement>(null);
   const themeEditorWasOpen = useRef(false);
 
-  // Expanding makes toolbar inert and closing unmounts editor, so focus would drop to <body> either way: hand it to editor, then back to trigger. ref keeps initial closed render from grabbing focus on load.
+  // editor replaces toolbar — no native focus return
   useEffect(() => {
     if (themeEditorOpen) {
       themeEditorWasOpen.current = true;
@@ -105,7 +123,7 @@ export function DocsSidebarContent({
     }
     if (!themeEditorWasOpen.current) return;
     themeEditorWasOpen.current = false;
-    floatingPanelRef.current?.querySelector<HTMLElement>("[data-docs-theme-trigger]")?.focus();
+    themeDrawerTriggerRef.current?.focus();
   }, [themeEditorOpen]);
 
   useEffect(() => {
@@ -120,160 +138,189 @@ export function DocsSidebarContent({
     if (isMobile) setOpenMobile(false);
   }
   function onNavigate() {
-    if (onSectionPage) setLastSectionMode(routeMode);
+    if (onSectionPage) onLastSectionModeChange(routeMode);
     closeMobile();
   }
   function onModeNavigate(nextMode: SidebarMode) {
-    setLastSectionMode(nextMode);
+    onLastSectionModeChange(nextMode);
     closeMobile();
   }
 
   return (
     <>
-      <Sidebar collapsible="icon" className="z-auto group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0">
-        <SidebarHeader className="gap-2 p-3 pb-1">
-          <SidebarTrigger className="hidden group-data-[collapsible=icon]:flex" />
-          <div className="flex items-center gap-1.5 group-data-[collapsible=icon]:hidden">
-            <ControlUiLogo />
-            <span className="block truncate font-display text-body-lg font-medium leading-none tracking-tight text-sidebar-foreground">
-              control/ui
-            </span>
-            <Badge variant="secondary" size="sm">
-              alpha
-            </Badge>
-          </div>
-          <div className="grid gap-3 group-data-[collapsible=icon]:hidden">
-            <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
-          </div>
-        </SidebarHeader>
+      <Sidebar
+        ref={sidebarContainerRef}
+        collapsible="offcanvas"
+        className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0"
+      >
+        <div
+          ref={sidebarNavigationRef}
+          data-docs-sidebar-navigation=""
+          className="flex min-h-0 flex-1 flex-col"
+          inert={sidebarNavigationInert(isMobile, state)}
+        >
+          <SidebarHeader>
+            <div className="grid gap-1">
+              <div className="flex items-center gap-1.5">
+                <ControlUiLogo />
+                <span className="block truncate font-display text-body-lg font-medium leading-none tracking-tight text-sidebar-foreground">
+                  control/ui
+                </span>
+                <Badge variant="secondary" size="sm">
+                  alpha
+                </Badge>
+              </div>
+              <p className="text-balance text-caption leading-relaxed text-muted-foreground">
+                An opinionated, customizable superset of shadcn/ui
+              </p>
+            </div>
+            <ButtonLink render={<Link href="/create" onClick={closeMobile} />} variant="solid" tone="primary" className="w-full">
+              Create app
+            </ButtonLink>
+            <div className="grid gap-3">
+              <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
+            </div>
+          </SidebarHeader>
 
-        <SidebarContent>
-          <DocsNavGroup
-            title="Guides"
-            icon={sidebarGroupIcons.guides}
-            items={guideNavItems(guides)}
-            active={active}
-            prefix="/"
-            onNavigate={onNavigate}
-          />
-          <DocsNavGroup
-            title="Skins"
-            icon={sidebarGroupIcons.skins}
-            items={skinOverviewNavItems}
-            active={active}
-            prefix="/"
-            onNavigate={onNavigate}
-          />
-          {mode === "skills" ? (
-            <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />
-          ) : null}
-          {mode === "agents" ? (
+          <SidebarContent>
             <DocsNavGroup
-              title="Agents"
-              icon={sidebarGroupIcons.agents}
-              items={agentNavItems(components)}
+              title="Guides"
+              icon={sidebarGroupIcons.guides}
+              items={guideNavItems(guides)}
               active={active}
-              prefix="/ai/"
+              prefix="/"
               onNavigate={onNavigate}
             />
-          ) : null}
-          {mode === "use-cases"
-            ? caseNavigationGroups.map((group) => (
+            <DocsNavGroup
+              title="Skins"
+              icon={sidebarGroupIcons.skins}
+              items={skinOverviewNavItems}
+              active={active}
+              prefix="/"
+              onNavigate={onNavigate}
+            />
+            {mode === "skills" ? (
+              <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />
+            ) : null}
+            {mode === "agents" ? (
+              <DocsNavGroup
+                title="Agents"
+                icon={sidebarGroupIcons.agents}
+                items={agentNavItems(components)}
+                active={active}
+                prefix="/ai/"
+                onNavigate={onNavigate}
+              />
+            ) : null}
+            {mode === "use-cases"
+              ? caseNavigationGroups.map((group) => (
+                  <DocsNavGroup
+                    key={group.id}
+                    title={group.title}
+                    icon={useCaseKindSidebarIcons[group.kind]}
+                    items={group.items}
+                    active={active}
+                    prefix="/use-cases/"
+                    onNavigate={onNavigate}
+                  />
+                ))
+              : null}
+            {mode === "primitives" ? (
+              <>
+                {primitiveNavGroups(primitives).map((group) => (
+                  <DocsNavGroup
+                    key={group.id}
+                    title={group.title}
+                    icon={primitiveCategorySidebarIcons[group.id]}
+                    items={group.items}
+                    active={active}
+                    prefix="/primitives/"
+                    onNavigate={onNavigate}
+                  />
+                ))}
                 <DocsNavGroup
-                  key={group.id}
-                  title={group.title}
-                  icon={useCaseKindSidebarIcons[group.kind]}
-                  items={group.items}
+                  title="Hooks"
+                  icon={sidebarGroupIcons.hooks}
+                  items={hookNavItems(hooks)}
                   active={active}
-                  prefix="/use-cases/"
+                  prefix="/hooks/"
                   onNavigate={onNavigate}
                 />
-              ))
-            : null}
-          {mode === "primitives" ? (
-            <>
-              {primitiveNavGroups(primitives).map((group) => (
                 <DocsNavGroup
-                  key={group.id}
-                  title={group.title}
-                  icon={primitiveCategorySidebarIcons[group.id]}
-                  items={group.items}
+                  title="Utils"
+                  icon={sidebarGroupIcons.utils}
+                  items={utilNavItems(utils)}
                   active={active}
-                  prefix="/primitives/"
+                  prefix="/utils/"
                   onNavigate={onNavigate}
                 />
-              ))}
-              <DocsNavGroup
-                title="Hooks"
-                icon={sidebarGroupIcons.hooks}
-                items={hookNavItems(hooks)}
-                active={active}
-                prefix="/hooks/"
-                onNavigate={onNavigate}
-              />
-              <DocsNavGroup
-                title="Utils"
-                icon={sidebarGroupIcons.utils}
-                items={utilNavItems(utils)}
-                active={active}
-                prefix="/utils/"
-                onNavigate={onNavigate}
-              />
-              <DocsNavGroup
-                title="Extensions"
-                icon={sidebarGroupIcons.extensions}
-                items={extensionNavItems(extensions)}
-                active={active}
-                prefix="/extensions/"
-                onNavigate={onNavigate}
-              />
-            </>
-          ) : null}
-        </SidebarContent>
+                <DocsNavGroup
+                  title="Extensions"
+                  icon={sidebarGroupIcons.extensions}
+                  items={extensionNavItems(extensions)}
+                  active={active}
+                  prefix="/extensions/"
+                  onNavigate={onNavigate}
+                />
+              </>
+            ) : null}
+          </SidebarContent>
 
-        <SidebarFooter className="px-3 py-2 group-data-[collapsible=icon]:hidden">
-          <ButtonLink render={<Link href="/create" onClick={closeMobile} />} variant="solid" tone="primary" className="w-full">
-            Create app
-          </ButtonLink>
-          <div className="rounded-[var(--radius-panel)] bg-sidebar-accent px-3 py-2.5">
-            <p className="text-pretty text-caption leading-relaxed text-sidebar-foreground/90">
-              An opinionated, customizable superset of shadcn/ui
-            </p>
-            <SidebarMenu className="mt-2 border-t border-sidebar-border/70 pt-1.5">
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  render={
-                    <a
-                      href="https://github.com/damien-schneider/control-ui"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={githubLinkLabel}
-                      onClick={closeMobile}
-                    />
-                  }
-                  size="sm"
-                  className="-mx-2 w-auto justify-between"
-                >
-                  <span className="inline-flex min-w-0 items-center gap-2">
-                    <HugeiconsIcon aria-hidden icon={GithubIcon} size={16} strokeWidth={1.7} />
-                    <span>GitHub</span>
-                  </span>
-                  {formattedGitHubStars == null ? null : (
-                    <span className="inline-flex shrink-0 items-center gap-1 font-mono text-caption tabular-nums">
-                      <HugeiconsIcon aria-hidden icon={StarIcon} size={14} strokeWidth={1.7} />
-                      {formattedGitHubStars}
+          <SidebarFooter>
+            <div className="grid gap-2">
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    render={
+                      <a
+                        href="https://github.com/damien-schneider/control-ui"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={githubLinkLabel}
+                        onClick={closeMobile}
+                      />
+                    }
+                    size="sm"
+                    className="justify-between"
+                  >
+                    <span className="inline-flex min-w-0 items-center gap-2">
+                      <HugeiconsIcon aria-hidden icon={GithubIcon} size={16} strokeWidth={1.7} />
+                      <span>GitHub</span>
                     </span>
-                  )}
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </div>
-        </SidebarFooter>
+                    {formattedGitHubStars == null ? null : (
+                      <span className="inline-flex shrink-0 items-center gap-1 font-mono text-caption tabular-nums">
+                        <HugeiconsIcon aria-hidden icon={StarIcon} size={14} strokeWidth={1.7} />
+                        {formattedGitHubStars}
+                      </span>
+                    )}
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+              <div className="flex items-center justify-between gap-2">
+                <ThemeModeSwitch />
+                <p className="text-right text-micro leading-none text-muted-foreground">
+                  by{" "}
+                  <a
+                    href="https://x.com/damien_schneid"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whitespace-nowrap underline decoration-sidebar-foreground/30 underline-offset-2 hover:text-sidebar-foreground"
+                  >
+                    Damien Schneider
+                  </a>
+                </p>
+              </div>
+            </div>
+          </SidebarFooter>
+        </div>
 
-        <DocsSidebarResizeHandle />
+        <DocsSidebarResizeHandle
+          resizeHandleRef={resizeHandleRef}
+          initialWidth={initialSidebarWidth}
+          sidebarWrapperRef={sidebarWrapperRef}
+        />
       </Sidebar>
 
-      {/* Root stays overflow-visible so search popover escapes pill; MorphingPanelContent still clips editor to morphing box. */}
       <MorphingPanel
         open={themeEditorOpen}
         onOpenChange={(nextOpen) => setThemeEditorOpen(nextOpen)}
@@ -282,7 +329,6 @@ export function DocsSidebarContent({
           width: "calc(100vw - 1rem)",
           height: "calc(100dvh - var(--floating-toolbar-top) - var(--floating-toolbar-bottom))",
         }}
-        ref={floatingPanelRef}
         data-docs-floating-panel=""
         className="group/floating-panel fixed bottom-(--floating-toolbar-bottom) left-1/2 z-40 max-w-[calc(100vw-1rem)] -translate-x-1/2 overflow-visible data-[state=open]:z-50 [--floating-toolbar-bottom:max(0.75rem,env(safe-area-inset-bottom))] [--floating-toolbar-height:calc(var(--control-h-sm)_+_2_*_var(--toolbar-padding,0.25rem)_+_2px)] [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] [--floating-toolbar-top:max(0.5rem,env(safe-area-inset-top))] [--floating-toolbar-width:var(--floating-toolbar-rest-width)] has-[input:focus]:[--floating-toolbar-width:var(--floating-toolbar-search-width)] data-[state=closed]:bg-transparent data-[state=closed]:shadow-none data-[state=closed]:ring-0 sm:[--floating-toolbar-rest-width:24rem] sm:[--floating-toolbar-search-width:26rem] sm:[--toolbar-padding:0.375rem] lg:top-(--floating-toolbar-top) lg:bottom-auto"
       >
@@ -299,7 +345,7 @@ export function DocsSidebarContent({
             <ToolbarSeparator className="h-5 self-auto" />
             <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
             <ToolbarSeparator className="h-5 self-auto" />
-            <ThemeDrawerTrigger render={<ToolbarButton iconOnly data-docs-theme-trigger="" />} iconOnly onToggle={closeMobile} />
+            <ThemeDrawerTrigger render={<ToolbarButton ref={themeDrawerTriggerRef} iconOnly />} iconOnly onToggle={closeMobile} />
           </ToolbarGroup>
         </Toolbar>
 

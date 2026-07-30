@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, lazy, Suspense, useContext, useEffect, useRef, useState } from "react";
-import type { RenderProp, SelectionIndicator } from "@/components/control-ui/contracts";
+import { type RenderProp, type SelectionIndicator, SIDEBAR_COOKIE_NAME } from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -25,7 +25,6 @@ const TrackHighlight = lazy(() =>
   import("@/components/control-ui/extensions/track-highlight").then((module) => ({ default: module.TrackHighlight })),
 );
 
-const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 /** Exported so blocks can set width through `style` and stay type-checked. */
 export type SidebarStyle = CSSProperties & {
@@ -71,6 +70,7 @@ export function SidebarProvider({
   defaultOpen = true,
   open: openProp,
   onOpenChange: setOpenProp,
+  ref,
   className,
   style,
   children,
@@ -130,6 +130,7 @@ export function SidebarProvider({
     <SidebarContext.Provider value={contextValue}>
       <TooltipProvider delay={0}>
         <div
+          ref={ref}
           data-control-ui="sidebar"
           data-slot="wrapper"
           style={wrapperStyle}
@@ -151,6 +152,7 @@ export function Sidebar({
   side = "left",
   variant,
   collapsible = "offcanvas",
+  ref,
   className,
   children,
   ...props
@@ -166,6 +168,7 @@ export function Sidebar({
   if (collapsible === "none") {
     return (
       <div
+        ref={ref}
         data-control-ui="sidebar"
         data-slot="root"
         data-surface="panel"
@@ -187,6 +190,7 @@ export function Sidebar({
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
         <SheetContent
+          ref={ref}
           data-control-ui="sidebar"
           data-slot="root"
           data-surface="panel"
@@ -231,6 +235,7 @@ export function Sidebar({
         )}
       />
       <div
+        ref={ref}
         data-control-ui="sidebar"
         data-slot="container"
         className={cn(

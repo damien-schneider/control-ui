@@ -14,7 +14,7 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
 import { useThemeDrawer } from "@/components/theme-drawer-context";
-import { ThemeModeSwitch, useThemeModePreference } from "@/components/theme-toggle";
+import { useThemeModePreference } from "@/components/theme-toggle";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { ContrastPanel } from "./contrast-panel";
 import { MiniColorSwatch, TokenControl, VarTag } from "./controls";
@@ -365,7 +365,6 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
           </p>
         </div>
         <div className="flex items-center gap-1.5">
-          <ThemeModeSwitch />
           <Button variant="quiet" size="xs" iconOnly aria-label="Close editor" title="Close editor" onClick={() => setOpen(false)}>
             <XIcon aria-hidden className="size-3.5" />
           </Button>

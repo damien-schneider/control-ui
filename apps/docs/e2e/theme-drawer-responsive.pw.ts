@@ -44,6 +44,7 @@ for (const { name, width, height, dock } of [
     await expect(heading).toHaveCount(0);
     await expect(editTheme).toBeVisible();
     await expect(toolbar).not.toHaveAttribute("inert", "");
+    await expect(editTheme).toBeFocused();
   });
 }
 
@@ -56,6 +57,7 @@ test("Escape closes the theme editor", async ({ page }) => {
 
   await page.keyboard.press("Escape");
   await expect(panel).toHaveAttribute("data-state", "closed");
+  await expect(page.getByRole("button", { name: "Edit theme" })).toBeFocused();
 });
 
 test("skin source retry replaces the error with loading state", async ({ page }) => {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Inter } from "next/font/google";
+import { cookies } from "next/headers";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import { DocsShell } from "@/app/(features)/client/client";
@@ -7,11 +8,11 @@ import { getDocsShellData } from "@/app/(features)/model/data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
 import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
-import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
+import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { DEFAULT_SKIN_ID, THEME_INIT_SCRIPT } from "@/components/theme";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";
-import { SkinEpochBoundary, ThemeDrawerProvider } from "@/components/theme-drawer-context";
+import { ThemeDrawerProvider } from "@/components/theme-drawer-context";
 import { LiquidMetalSkinRuntime } from "@/src/registry/skin-packs/liquid-metal/liquid-metal-runtime";
 import { ModernAppleLiquidGlassRuntime } from "@/src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime";
 import "./globals.css";
@@ -25,6 +26,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const githubStars = await getControlUiGitHubStars();
+  const sidebarCookie = (await cookies()).get(SIDEBAR_COOKIE_NAME)?.value;
+  const defaultSidebarOpen = sidebarCookie !== "false";
   return (
     <html lang="en" data-skin={DEFAULT_SKIN_ID} suppressHydrationWarning className={cn(geist.variable, inter.variable)}>
       <body>
@@ -36,14 +39,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <ThemeDrawerProvider>
           <ThemeRuntimeProvider>
             <div data-skin-scope="docs">
-              {/* Inside boundary: epoch remount is the only thing that re-resolves mutated skin config past React Compiler's memoization. */}
-              <SkinEpochBoundary>
-                <DocsShell {...getDocsShellData()} githubStars={githubStars}>
-                  {children}
-                </DocsShell>
-                {/* Mirrors ControlUiSkin.effects onto <html> for ripple listener; inside boundary for same remount reason. */}
-                <ControlEffectsRuntime />
-              </SkinEpochBoundary>
+              <DocsShell {...getDocsShellData()} githubStars={githubStars} defaultSidebarOpen={defaultSidebarOpen}>
+                {children}
+              </DocsShell>
             </div>
           </ThemeRuntimeProvider>
         </ThemeDrawerProvider>

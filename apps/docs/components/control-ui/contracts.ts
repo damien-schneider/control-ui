@@ -314,6 +314,7 @@ export type TreeExpandedChangeDetails = {
 
 /** Shared by row-in-track lists (Tree, SidebarMenu). Default comes from ControlUiSkin.indicators; explicit prop wins. */
 export type SelectionIndicator = "none" | "slide";
+export const SIDEBAR_COOKIE_NAME = "sidebar_state";
 
 export type TreeSelectionIndicator = SelectionIndicator;
 

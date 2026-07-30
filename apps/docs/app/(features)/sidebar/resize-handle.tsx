@@ -1,49 +1,18 @@
 "use client";
 
-import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-
-import { cn } from "@/components/control-ui/lib/cn";
+import type { KeyboardEvent, PointerEvent as ReactPointerEvent, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  clampSidebarWidth,
+  MAX_SIDEBAR_WIDTH,
+  MIN_SIDEBAR_WIDTH,
+  SIDEBAR_WIDTH_VAR,
+  writeStoredSidebarWidth,
+} from "@/app/(features)/sidebar/width";
 import { useSidebar } from "@/components/control-ui/ui/sidebar";
 
-// Adds cursor-driven width on top of shadcn's fixed --sidebar-width; icon-collapse stays owned by useSidebar().
-const MIN_WIDTH = 224; // 14rem — below this, drag snaps to icon-collapse
-const MAX_WIDTH = 420;
-const DRAG_THRESHOLD = 5; // px before a press counts as drag, not click-to-toggle
+const DRAG_THRESHOLD_PX = 5;
 const KEYBOARD_STEP = 10;
-const WIDTH_VAR = "--sidebar-width";
-const WIDTH_STORAGE_KEY = "control-ui-docs:sidebar-width";
-const WRAPPER_SELECTOR = '[data-control-ui="sidebar"][data-slot="wrapper"]';
-const CONTAINER_SELECTOR = '[data-control-ui="sidebar"][data-slot="container"]';
-
-// fallback for computing and clamping only — SidebarProvider seeds real value before mount
-const FALLBACK_WIDTH = 256;
-
-const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
-function clampWidth(value: number) {
-  return Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, value));
-}
-
-function readStoredWidth(): number | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = window.localStorage.getItem(WIDTH_STORAGE_KEY);
-    if (raw === null) return null;
-    const parsed = Number(raw);
-    return Number.isFinite(parsed) ? clampWidth(parsed) : null;
-  } catch {
-    return null;
-  }
-}
-
-function writeStoredWidth(value: number) {
-  try {
-    window.localStorage.setItem(WIDTH_STORAGE_KEY, String(value));
-  } catch {
-    // private mode or quota — width will not persist
-  }
-}
 
 function beginResize(handle: HTMLElement, wrapper: HTMLElement | null) {
   document.body.style.cursor = "col-resize";
@@ -53,7 +22,7 @@ function beginResize(handle: HTMLElement, wrapper: HTMLElement | null) {
 }
 
 function updateCollapsedState(cursorWidth: number, collapsed: boolean, setOpen: (open: boolean) => void): boolean {
-  if (cursorWidth < MIN_WIDTH) {
+  if (cursorWidth < MIN_SIDEBAR_WIDTH) {
     if (!collapsed) setOpen(false);
     return true;
   }
@@ -61,35 +30,39 @@ function updateCollapsedState(cursorWidth: number, collapsed: boolean, setOpen: 
   return false;
 }
 
-export function DocsSidebarResizeHandle({ className }: { className?: string }) {
+type DocsSidebarResizeHandleProps = {
+  initialWidth: number | null;
+  resizeHandleRef: RefObject<HTMLDivElement | null>;
+  sidebarWrapperRef: RefObject<HTMLDivElement | null>;
+};
+
+export function DocsSidebarResizeHandle({ initialWidth, resizeHandleRef, sidebarWrapperRef }: DocsSidebarResizeHandleProps) {
   const { state, open, setOpen, toggleSidebar, isMobile } = useSidebar();
-  const handleRef = useRef<HTMLDivElement>(null);
   const draggedRef = useRef(false);
-  const widthRef = useRef(FALLBACK_WIDTH);
-  const [width, setWidth] = useState(FALLBACK_WIDTH);
+  const endGestureRef = useRef<((restoreWidth: boolean) => void) | null>(null);
+  const widthRef = useRef<number | null>(null);
+  const [width, setWidth] = useState<number | null>(null);
   const isCollapsed = state === "collapsed";
 
-  // before paint, or returning visitor flashes shadcn's 16rem default
-  useIsomorphicLayoutEffect(() => {
-    const stored = readStoredWidth();
-    if (stored === null) return;
-    widthRef.current = stored;
-    setWidth(stored);
-    handleRef.current?.closest<HTMLElement>(WRAPPER_SELECTOR)?.style.setProperty(WIDTH_VAR, `${stored}px`);
-  }, []);
+  useEffect(() => {
+    if (isMobile) endGestureRef.current?.(true);
+  }, [isMobile]);
+
+  useEffect(() => () => endGestureRef.current?.(false), []);
 
   function commitWidth(next: number) {
-    const clamped = clampWidth(next);
+    const clamped = clampSidebarWidth(next);
     widthRef.current = clamped;
     setWidth(clamped);
-    handleRef.current?.closest<HTMLElement>(WRAPPER_SELECTOR)?.style.setProperty(WIDTH_VAR, `${clamped}px`);
-    writeStoredWidth(clamped);
+    sidebarWrapperRef.current?.style.setProperty(SIDEBAR_WIDTH_VAR, `${clamped}px`);
+    writeStoredSidebarWidth(clamped);
   }
 
   function onPointerDown(event: ReactPointerEvent<HTMLDivElement>) {
     if (isMobile || event.button !== 0) return;
     event.preventDefault();
 
+    endGestureRef.current?.(true);
     draggedRef.current = false;
     const handle = event.currentTarget;
     const pointerId = event.pointerId;
@@ -99,21 +72,38 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
       // pointer already gone
     }
 
-    // captured once — container cannot move during gesture
-    const container = handle.closest<HTMLElement>(CONTAINER_SELECTOR);
-    const wrapper = handle.closest<HTMLElement>(WRAPPER_SELECTOR);
-    const sidebarLeft = container ? container.getBoundingClientRect().left : 0;
+    const wrapper = sidebarWrapperRef.current;
+    const sidebarLeft = wrapper?.getBoundingClientRect().left ?? 0;
     const startX = event.clientX;
-    // local, not ref: scoped to this one gesture's closures
+    const committedWidth = widthRef.current ?? initialWidth;
     let collapsedDuringDrag = !open;
 
     const prevCursor = document.body.style.cursor;
     const prevUserSelect = document.body.style.userSelect;
+    const controller = new AbortController();
+
+    const restoreCommittedWidth = () => {
+      if (committedWidth === null) return;
+      widthRef.current = committedWidth;
+      setWidth(committedWidth);
+      wrapper?.style.setProperty(SIDEBAR_WIDTH_VAR, `${committedWidth}px`);
+    };
+
+    const endGesture = (restoreWidth: boolean) => {
+      controller.abort();
+      document.body.style.cursor = prevCursor;
+      document.body.style.userSelect = prevUserSelect;
+      handle.removeAttribute("data-resizing");
+      wrapper?.removeAttribute("data-resizing");
+      if (restoreWidth) restoreCommittedWidth();
+      if (endGestureRef.current === endGesture) endGestureRef.current = null;
+    };
+    endGestureRef.current = endGesture;
 
     const onMove = (ev: globalThis.PointerEvent) => {
       if (ev.pointerId !== pointerId) return;
       const dx = ev.clientX - startX;
-      if (!draggedRef.current && Math.abs(dx) <= DRAG_THRESHOLD) return;
+      if (!draggedRef.current && Math.abs(dx) <= DRAG_THRESHOLD_PX) return;
       if (!draggedRef.current) {
         draggedRef.current = true;
         beginResize(handle, wrapper);
@@ -122,32 +112,37 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
       const cursorWidth = ev.clientX - sidebarLeft;
       collapsedDuringDrag = updateCollapsedState(cursorWidth, collapsedDuringDrag, setOpen);
       if (collapsedDuringDrag) return;
-
-      // fires on every pointermove, so it writes DOM directly and holds no React state
-      const clamped = clampWidth(cursorWidth);
+      // pointermove hot path — direct DOM write, no React render
+      const clamped = clampSidebarWidth(cursorWidth);
       widthRef.current = clamped;
-      wrapper?.style.setProperty(WIDTH_VAR, `${clamped}px`);
+      wrapper?.style.setProperty(SIDEBAR_WIDTH_VAR, `${clamped}px`);
     };
 
-    const cleanup = (ev?: globalThis.PointerEvent) => {
-      if (ev && ev.pointerId !== pointerId) return;
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", cleanup);
-      window.removeEventListener("pointercancel", cleanup);
-      document.body.style.cursor = prevCursor;
-      document.body.style.userSelect = prevUserSelect;
-      handle.removeAttribute("data-resizing");
-      wrapper?.removeAttribute("data-resizing");
-      // drag below min already handed off to shadcn's collapse mechanics, so there is no width to persist
-      if (draggedRef.current && !collapsedDuringDrag) {
-        setWidth(widthRef.current);
-        writeStoredWidth(widthRef.current);
+    const persistResizedWidth = () => {
+      const resizedWidth = widthRef.current;
+      if (resizedWidth === null) return;
+      setWidth(resizedWidth);
+      writeStoredSidebarWidth(resizedWidth);
+    };
+
+    const finishGesture = (ev: globalThis.PointerEvent) => {
+      if (ev.pointerId !== pointerId) return;
+      const wasDragged = draggedRef.current;
+      const shouldRestoreWidth = ev.type === "pointercancel" || collapsedDuringDrag;
+      endGesture(false);
+      if (!wasDragged) return;
+      if (ev.type === "pointercancel") draggedRef.current = false;
+      if (shouldRestoreWidth) {
+        restoreCommittedWidth();
+        return;
       }
+
+      persistResizedWidth();
     };
 
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", cleanup);
-    window.addEventListener("pointercancel", cleanup);
+    window.addEventListener("pointermove", onMove, { signal: controller.signal });
+    window.addEventListener("pointerup", finishGesture, { signal: controller.signal });
+    window.addEventListener("pointercancel", finishGesture, { signal: controller.signal });
   }
 
   function onClick() {
@@ -159,6 +154,8 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    const currentWidth = widthRef.current ?? initialWidth;
+
     switch (event.key) {
       case "Enter":
       case " ":
@@ -167,8 +164,8 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
         return;
       case "ArrowLeft":
         event.preventDefault();
-        if (isCollapsed) return;
-        commitWidth(widthRef.current - KEYBOARD_STEP);
+        if (isCollapsed || currentWidth === null) return;
+        commitWidth(currentWidth - KEYBOARD_STEP);
         return;
       case "ArrowRight":
         event.preventDefault();
@@ -176,56 +173,49 @@ export function DocsSidebarResizeHandle({ className }: { className?: string }) {
           setOpen(true);
           return;
         }
-        commitWidth(widthRef.current + KEYBOARD_STEP);
+        if (currentWidth !== null) commitWidth(currentWidth + KEYBOARD_STEP);
         return;
       case "Home":
         event.preventDefault();
         setOpen(true);
-        commitWidth(MIN_WIDTH);
+        commitWidth(MIN_SIDEBAR_WIDTH);
         return;
       case "End":
         event.preventDefault();
         setOpen(true);
-        commitWidth(MAX_WIDTH);
+        commitWidth(MAX_SIDEBAR_WIDTH);
         return;
       default:
         return;
     }
   }
 
-  // mobile renders stock Sheet, which has no in-flow width to resize
   if (isMobile) return null;
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: WAI-ARIA "window splitter" pattern needs pointer/keyboard handlers and focus, which <hr> can't carry.
     <div
-      ref={handleRef}
+      ref={resizeHandleRef}
       role="separator"
       aria-orientation="vertical"
-      aria-valuenow={isCollapsed ? undefined : width}
-      aria-valuemin={isCollapsed ? undefined : MIN_WIDTH}
-      aria-valuemax={isCollapsed ? undefined : MAX_WIDTH}
-      aria-valuetext={isCollapsed ? "collapsed" : `${width} pixels`}
-      aria-label={`Resize sidebar. Arrow keys to resize, Enter to ${isCollapsed ? "expand" : "collapse"}.`}
+      aria-valuenow={isCollapsed ? MIN_SIDEBAR_WIDTH : (width ?? initialWidth ?? MIN_SIDEBAR_WIDTH)}
+      aria-valuemin={MIN_SIDEBAR_WIDTH}
+      aria-valuemax={MAX_SIDEBAR_WIDTH}
+      aria-valuetext={isCollapsed ? "collapsed" : `${width ?? initialWidth ?? MIN_SIDEBAR_WIDTH} pixels`}
+      aria-label={
+        isCollapsed ? "Resize sidebar. Right arrow or Enter to expand." : "Resize sidebar. Arrow keys to resize, Enter to collapse."
+      }
       tabIndex={0}
       data-slot="sidebar-rail"
+      data-resize-ready={initialWidth === null ? undefined : ""}
       onPointerDown={onPointerDown}
       onClick={onClick}
       onKeyDown={onKeyDown}
-      className={cn(
-        // matches docked sidebar's own breakpoint — below it this never renders
-        "group/resize absolute inset-y-0 z-20 hidden w-2 cursor-col-resize touch-none items-center justify-center outline-hidden lg:flex",
-        "group-data-[side=left]:-right-1 group-data-[side=right]:-left-1",
-        className,
-      )}
+      className="group/resize absolute inset-y-0 z-20 hidden w-2 cursor-col-resize touch-none items-center justify-center outline-hidden group-data-[side=left]:-right-1 group-data-[side=right]:-left-1 group-data-[side=left]:group-data-[collapsible=offcanvas]:-right-2 group-data-[side=right]:group-data-[collapsible=offcanvas]:-left-2 lg:flex"
     >
       <span
         aria-hidden
-        className={cn(
-          "pointer-events-none block h-3/4 w-px bg-linear-to-b from-transparent via-foreground/25 to-transparent opacity-0 transition-all duration-150 ease-out motion-reduce:transition-none",
-          "group-hover/resize:opacity-100 group-focus-visible/resize:opacity-100 group-focus-visible/resize:via-ring",
-          "group-data-[resizing=true]/resize:opacity-100 group-data-[resizing=true]/resize:via-foreground/45",
-        )}
+        className="pointer-events-none block h-3/4 w-px bg-linear-to-b from-transparent via-foreground/25 to-transparent opacity-0 transition-[opacity,--tw-gradient-via] duration-[var(--duration-fast)] ease-[var(--ease-standard)] motion-reduce:transition-none group-hover/resize:opacity-100 group-focus-visible/resize:opacity-100 group-focus-visible/resize:via-ring group-data-[resizing=true]/resize:opacity-100 group-data-[resizing=true]/resize:via-foreground/45"
       />
     </div>
   );
