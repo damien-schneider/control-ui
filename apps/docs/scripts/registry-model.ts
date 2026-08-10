@@ -324,6 +324,16 @@ function definitions(): Definition[] {
       dependencies: ["all-refined"],
     },
     {
+      id: "update",
+      type: "registry:item",
+      title: "Control UI update",
+      description:
+        "The complete component set without any skin; re-run with --overwrite to refresh installed sources while keeping the active skin untouched.",
+      seeds: [],
+      primary: [],
+      dependencies: [...completeComponentSet],
+    },
+    {
       id: "next-app",
       type: "registry:item",
       title: "Control UI Next.js app",

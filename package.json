@@ -29,11 +29,11 @@
     "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc,css}": "biome check --write --no-errors-on-unmatched"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.5",
+    "@biomejs/biome": "^2.5.7",
     "husky": "9.1.7",
-    "lint-staged": "17.2.0",
-    "react-doctor": "^0.9.1",
-    "turbo": "^2.10.7",
+    "lint-staged": "17.3.0",
+    "react-doctor": "^0.9.11",
+    "turbo": "^2.10.9",
     "typescript": "^7.0.2"
   },
   "overrides": {

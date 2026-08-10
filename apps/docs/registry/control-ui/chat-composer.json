@@ -5,7 +5,7 @@
   "title": "ChatComposer",
   "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
   "dependencies": [
-    "prosemirror-commands@^1.7.1",
+    "prosemirror-commands@^1.7.2",
     "prosemirror-history@^1.5.0",
     "prosemirror-keymap@^1.2.3",
     "prosemirror-model@^1.25.11",

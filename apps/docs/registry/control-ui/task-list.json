@@ -5,7 +5,7 @@
   "title": "TaskList",
   "description": "Floating agent task progress pill above the composer that expands into the full task list.",
   "dependencies": [
-    "lucide-react@^1.27.0"
+    "lucide-react@^1.31.0"
   ],
   "registryDependencies": [
     "collapsible",

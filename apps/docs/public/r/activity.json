@@ -5,7 +5,7 @@
   "title": "Activity",
   "description": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
   "dependencies": [
-    "lucide-react@^1.27.0"
+    "lucide-react@^1.31.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/collapsible.json",

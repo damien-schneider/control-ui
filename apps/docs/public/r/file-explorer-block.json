@@ -5,7 +5,7 @@
   "title": "File explorer",
   "description": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
   "dependencies": [
-    "lucide-react@^1.27.0"
+    "lucide-react@^1.31.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/button.json",

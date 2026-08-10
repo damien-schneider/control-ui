@@ -8862,6 +8862,10 @@ export const generatedSkinContract: SkinContract = {
           scope: "popover",
           part: "content",
         },
+        {
+          scope: "rich-tooltip",
+          part: "content",
+        },
       ],
     },
     controls: [

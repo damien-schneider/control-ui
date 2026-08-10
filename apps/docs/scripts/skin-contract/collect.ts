@@ -68,11 +68,20 @@ function isSurfaceFamily(value: string | undefined): value is SkinSurfaceFamily 
   return skinSurfaceFamilies.some((family) => family === value);
 }
 
-function semanticSurfaceAttribute(attributes: any[]): SkinSurfaceFamily | undefined {
-  const attribute = jsxAttribute(attributes, "data-surface");
-  const expression = attribute?.value?.type === "JSXExpressionContainer" ? attribute.value.expression : attribute?.value;
-  const staticValues = staticStateValues(expression);
-  return staticValues.known ? staticValues.values.find(isSurfaceFamily) : undefined;
+function surfaceFamilies(node: any): SkinSurfaceFamily[] {
+  if (!node) return [];
+  const staticValues = staticStateValues(node);
+  return staticValues.known ? staticValues.values.filter(isSurfaceFamily) : [];
+}
+
+function popupPartValues(node: any, popupParts: Set<string>, key: string): string[] {
+  if (!node) return [];
+  const staticValues = staticStateValues(node);
+  if (!staticValues.known) throw new Error(`${key} emits a data-popup-part the collector cannot resolve statically`);
+  for (const value of staticValues.values) {
+    if (!popupParts.has(value)) throw new Error(`${key} emits unknown popup family part "${value}"`);
+  }
+  return staticValues.values;
 }
 
 function objectProperty(object: any, name: string): any | undefined {
@@ -353,10 +362,16 @@ function mergeContractState(states: ContractState[], state: ContractState): void
   else if (state.valueKind !== "open") existing.valueKind = state.valueKind;
 }
 
-function mergePart(current: MutablePart, states: ContractState[], control: boolean, surface?: string, popupPart?: string): MutablePart {
+function mergePart(
+  current: MutablePart,
+  states: ContractState[],
+  control: boolean,
+  surfaces: SkinSurfaceFamily[],
+  parts: string[],
+): MutablePart {
   current.controls ||= control;
-  if (isSurfaceFamily(surface)) current.surfaces.add(surface);
-  if (popupPart) current.popupParts.add(popupPart);
+  for (const surface of surfaces) current.surfaces.add(surface);
+  for (const part of parts) current.popupParts.add(part);
   for (const state of states) mergeContractState(current.states, state);
   return current;
 }
@@ -380,16 +395,16 @@ export function collectSkinContract(): SkinContract {
     sourceFile: string,
     states: ContractState[],
     control: boolean,
-    surface?: string,
-    popupPart?: string,
+    emittedSurfaces: SkinSurfaceFamily[],
+    emittedPopupParts: string[],
   ) => {
     const key = `${scope}:${part}`;
     const current = mergePart(
       parts.get(key) ?? { states: [], controls: false, registryItems: new Set(), surfaces: new Set(), popupParts: new Set() },
       states,
       control,
-      surface,
-      popupPart,
+      emittedSurfaces,
+      emittedPopupParts,
     );
     const relativeSource = path.relative(appRoot, sourceFile);
     const owners = registryItemMapping.get(scope) ?? new Set<string>();
@@ -410,11 +425,7 @@ export function collectSkinContract(): SkinContract {
       if (node.type === "JSXOpeningElement") {
         const scope = literalAttribute(node.attributes, "data-control-ui");
         const part = literalAttribute(node.attributes, "data-slot");
-        const popupPart = literalAttribute(node.attributes, "data-popup-part");
         if (scope && part) {
-          if (popupPart && !popupParts.has(popupPart)) {
-            throw new Error(`${scope}:${part} emits unknown popup family part "${popupPart}"`);
-          }
           recordPart(
             scope,
             part,
@@ -427,27 +438,23 @@ export function collectSkinContract(): SkinContract {
               ...(externalStateAdditions[`${scope}:${part}`] ?? []),
             ],
             Boolean(jsxAttribute(node.attributes, "data-control")),
-            semanticSurfaceAttribute(node.attributes),
-            popupPart,
+            surfaceFamilies(jsxAttribute(node.attributes, "data-surface")?.value),
+            popupPartValues(jsxAttribute(node.attributes, "data-popup-part")?.value, popupParts, `${scope}:${part}`),
           );
         }
       }
       if (node.type === "ObjectExpression") {
         const scope = literalObjectProperty(node, "data-control-ui");
         const part = literalObjectProperty(node, "data-slot");
-        const popupPart = literalObjectProperty(node, "data-popup-part");
         if (scope && part) {
-          if (popupPart && !popupParts.has(popupPart)) {
-            throw new Error(`${scope}:${part} emits unknown popup family part "${popupPart}"`);
-          }
           recordPart(
             scope,
             part,
             file,
             node.properties.flatMap((property: any) => [stateFromObjectProperty(property)].filter(Boolean)),
             Boolean(objectProperty(node, "data-control")),
-            literalObjectProperty(node, "data-surface"),
-            popupPart,
+            surfaceFamilies(objectProperty(node, "data-surface")?.value),
+            popupPartValues(objectProperty(node, "data-popup-part")?.value, popupParts, `${scope}:${part}`),
           );
         }
       }

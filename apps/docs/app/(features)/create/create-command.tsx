@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { Input } from "@/components/control-ui/ui/input";
+import { env } from "@/env";
 import { createAppCommand, normalizeProjectName, type PackageManagerId, packageManagerIds } from "./command";
 
 const packageManagerLabels: Record<PackageManagerId, string> = {
@@ -13,14 +14,14 @@ const packageManagerLabels: Record<PackageManagerId, string> = {
   bun: "Bun",
 };
 
-export function CreateCommand({ registryBaseUrl }: { registryBaseUrl: string }) {
+export function CreateCommand() {
   const [projectName, setProjectName] = useState("my-control-ui-app");
   const [packageManager, setPackageManager] = useState<PackageManagerId>("npm");
   const normalizedProjectName = normalizeProjectName(projectName);
-  const command = createAppCommand({ packageManager, projectName, registryBaseUrl });
+  const command = createAppCommand({ packageManager, projectName, registryBaseUrl: env.NEXT_PUBLIC_REGISTRY_URL });
 
   return (
-    <div className="min-w-0 space-y-6">
+    <div className="mt-4 min-w-0 max-w-2xl space-y-6">
       <div className="space-y-2">
         <label htmlFor="project-name" className="block text-label font-medium text-foreground">
           Project name

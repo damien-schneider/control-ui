@@ -6,7 +6,7 @@
   "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
   "dependencies": [
     "@base-ui/react@^1.7.0",
-    "lucide-react@^1.27.0"
+    "lucide-react@^1.31.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/core.json",

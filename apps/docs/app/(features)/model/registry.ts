@@ -109,6 +109,15 @@ function registryManifestUrl(path: string) {
   return `${env.NEXT_PUBLIC_REGISTRY_URL}${path}`;
 }
 
+export function updateInstallCode() {
+  const manifest = registryManifestUrl(publicRegistryHref("update"));
+  return `# Preview upstream changes against your installed sources
+npx shadcn@latest add ${manifest} --diff
+
+# Refresh every installed source; skin files stay untouched
+npx shadcn@latest add ${manifest} --overwrite`;
+}
+
 export function registryInstallCommand(kind: RegistryKind) {
   return `npx shadcn@latest add ${registryManifestUrl(publicRegistryHref(kind))}`;
 }
@@ -121,6 +130,7 @@ export function guideCodeForKind(code: GuideSection["code"], integration: "mastr
   if (code === "skin-install") return packInstallCommand("refined");
   if (code === "component-install") return registryInstallCommand("chat-message");
   if (code === "block-install") return registryInstallCommand("chat-block");
+  if (code === "update-install") return updateInstallCode();
 
   if (code === "component-usage") {
     return integration === "mastra"

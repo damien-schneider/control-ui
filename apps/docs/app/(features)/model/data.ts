@@ -92,6 +92,7 @@ function getGuides(): GuidePage[] {
     name: entry.name,
     summary: entry.summary,
     layout: "layout" in entry ? entry.layout : undefined,
+    cta: "cta" in entry ? entry.cta : undefined,
     sections: entry.sections.map((section) => ({ ...section })),
   }));
 }

@@ -41,10 +41,11 @@ export function humanizeNavName(name: string) {
 }
 
 export function guideNavItems(guides: GuidePage[]): DocsNavItem[] {
-  return guides.map((guide) => ({
-    id: guide.id,
-    name: guide.name,
-  }));
+  return guides.flatMap((guide) => (guide.cta ? [] : [{ id: guide.id, name: guide.name }]));
+}
+
+export function ctaGuide(guides: GuidePage[]) {
+  return guides.find((guide) => guide.cta);
 }
 
 export function agentNavItems(components: DocsComponent[]): DocsNavItem[] {

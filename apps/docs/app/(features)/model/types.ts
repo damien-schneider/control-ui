@@ -154,7 +154,8 @@ export type GuideSection = {
     | "component-usage"
     | "runtime-agnostic-message"
     | "agent-endpoints"
-    | "agent-llms";
+    | "agent-llms"
+    | "update-install";
 };
 
 export type GuidePage = {
@@ -162,6 +163,7 @@ export type GuidePage = {
   name: string;
   summary: string;
   layout?: "default" | "wide";
+  cta?: boolean;
   sections: GuideSection[];
 };
 

@@ -10,7 +10,8 @@ type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
 export type GuideCodeMdxProps = { kind: GuideCodeKind; lang?: string };
 
 function languageForGuideCode(kind: GuideCodeKind) {
-  if (kind === "skin-install" || kind === "component-install" || kind === "block-install" || kind.startsWith("agent-")) return "bash";
+  if (kind === "skin-install" || kind === "component-install" || kind === "block-install" || kind === "update-install") return "bash";
+  if (kind.startsWith("agent-")) return "bash";
   return "tsx";
 }
 

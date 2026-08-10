@@ -3,6 +3,7 @@
 import type { MDXComponents } from "mdx/types";
 import { type ComponentType, createContext, use } from "react";
 import { CodeBlock } from "@/app/(features)/components/source";
+import { CreateCommand } from "@/app/(features)/create/create-command";
 import { guideCode } from "@/app/(features)/model/registry";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
@@ -10,6 +11,7 @@ import { ThemeAiBuilder } from "@/app/(features)/theme-ai-builder/theme-ai-build
 import { cn } from "@/components/control-ui/lib/cn";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
 import ArchitectureContent from "@/content/guides/architecture.mdx";
+import CreateContent from "@/content/guides/create.mdx";
 import GetStartedContent from "@/content/guides/get-started.mdx";
 import OverviewContent from "@/content/guides/overview.mdx";
 import ShadcnCompatibilityContent from "@/content/guides/shadcn-compatibility.mdx";
@@ -20,6 +22,7 @@ import { AgentSurfaceMap, CompatibilityBridge, CssFirstDecisionMap, GettingStart
 type GuideContent = ComponentType<{ components?: MDXComponents }>;
 
 const guideContent: Partial<Record<GuideId, GuideContent>> = {
+  create: CreateContent,
   overview: OverviewContent,
   "get-started": GetStartedContent,
   "shadcn-compatibility": ShadcnCompatibilityContent,
@@ -36,6 +39,7 @@ function GuideMdxCode(props: GuideCodeMdxProps) {
 }
 
 const guideComponents = {
+  CreateCommand,
   GuideCode: GuideMdxCode,
   GuidePoint,
   GuidePoints,

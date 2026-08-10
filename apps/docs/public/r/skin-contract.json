@@ -11295,6 +11295,10 @@
         {
           "scope": "popover",
           "part": "content"
+        },
+        {
+          "scope": "rich-tooltip",
+          "part": "content"
         }
       ]
     },

@@ -25,7 +25,6 @@
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.1823 25.932);
   --destructive-foreground: oklch(1 0 0);
-  --ring-opacity: 1;
   --border: oklch(0.6817 0.0116 204.079 / var(--ring-opacity));
   --input: oklch(0.6833 0.0533 246.812); /* classic field border */
   --ring: oklch(0.8118 0.1544 77.609); /* XP orange focus glow */
@@ -48,11 +47,6 @@
   --shadow-color: oklch(0 0 0);
   --shadow-size: 0.4;
   --shadow-opacity: 1;
-  --shadow-control-multiplier: 1;
-  --shadow-panel-multiplier: 2;
-  --shadow-popover-multiplier: 4;
-  --shadow-modal-multiplier: 5;
-  --shadow-ambient-multiplier: 8;
 
   /* THE one radius knob: 0 squares the whole DA. Controls consume --radius-control (0 here → square);
      buttons floor it at Luna's 3px via max(3px, --radius-control) in skin.config.tsx. So the corner is
@@ -61,12 +55,10 @@
   --radius-control: calc(var(--radius) * 2);
 
   /* corner shape stays round — square boxes have no corner arc to reshape */
-  --corner-shape: round;
 
   /* floating-list geometry: same derivations as Refined; --radius 0 collapses them to square rows/container = XP menu. */
   --popover-padding: 2px;
   --radius-popup-item: calc(var(--radius-control) * 0.6);
-  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
 
   /* content density — XP runs tighter than the Refined skin */
   --padding-x: 0.75rem;
@@ -75,9 +67,6 @@
   /* control size scale — ONE base height; the ramp derives from it */
   --control-h: 2rem;
   /* round() to whole px so no derived step lands on a subpixel height (mirrors Refined). */
-  --control-h-xs: round(var(--control-h) * 0.78, 1px);
-  --control-h-sm: round(var(--control-h) * 0.89, 1px);
-  --control-h-lg: round(var(--control-h) * 1.11, 1px);
 
   /* motion — XP does not ease: linear curves, near-instant tempos */
   --ease-standard: linear;
@@ -85,58 +74,10 @@
   --duration-fast: 40ms;
   --duration-base: 60ms;
   --duration-slow: 80ms;
-
-  --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
-  --badge-neutral-foreground: var(--foreground);
-  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
-  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.12);
-  --badge-red: oklch(from var(--color-red-500) l c h / 0.14);
-  --badge-red-foreground: var(--color-red-800);
-  --badge-red-border: oklch(from var(--color-red-500) l c h / 0.18);
-  --badge-red-hover: oklch(from var(--color-red-500) l c h / 0.2);
-  --badge-orange: oklch(from var(--color-orange-500) l c h / 0.16);
-  --badge-orange-foreground: var(--color-orange-800);
-  --badge-orange-border: oklch(from var(--color-orange-500) l c h / 0.2);
-  --badge-orange-hover: oklch(from var(--color-orange-500) l c h / 0.24);
-  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.2);
-  --badge-yellow-foreground: var(--color-yellow-800);
-  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.24);
-  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.28);
-  --badge-green: oklch(from var(--color-green-500) l c h / 0.16);
-  --badge-green-foreground: var(--color-green-800);
-  --badge-green-border: oklch(from var(--color-green-500) l c h / 0.2);
-  --badge-green-hover: oklch(from var(--color-green-500) l c h / 0.24);
-  --badge-blue: oklch(from var(--color-blue-500) l c h / 0.16);
-  --badge-blue-foreground: var(--color-blue-800);
-  --badge-blue-border: oklch(from var(--color-blue-500) l c h / 0.2);
-  --badge-blue-hover: oklch(from var(--color-blue-500) l c h / 0.24);
-  --badge-purple: oklch(from var(--color-purple-500) l c h / 0.16);
-  --badge-purple-foreground: var(--color-purple-800);
-  --badge-purple-border: oklch(from var(--color-purple-500) l c h / 0.2);
-  --badge-purple-hover: oklch(from var(--color-purple-500) l c h / 0.24);
-  --badge-pink: oklch(from var(--color-pink-500) l c h / 0.16);
-  --badge-pink-foreground: var(--color-pink-800);
-  --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
-  --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --text-micro: 0.625rem;
   --text-label: 0.75rem;
-  --text-body-lg: 1rem;
-  --text-heading-4: 0.9375rem;
-  --text-heading-3: 1.125rem;
-  --text-heading-3--line-height: 1.35;
-  --text-heading-2: 1.375rem;
-  --text-heading-2--line-height: 1.25;
-  --text-heading-1: 1.875rem;
-  --text-heading-1--line-height: 1.15;
-  --text-heading-1--font-weight: 700;
-  --text-heading-1--letter-spacing: -0.018em;
-  --text-display: 2.25rem;
-  --text-display--line-height: 1.1;
-  --text-display--letter-spacing: -0.026em;
   --radius-field: calc(var(--radius) * 2.2);
   --radius-panel: calc(var(--radius) * 2.6);
   --radius-scene: calc(var(--radius) * 2.8);
-  --shadow-highlight: oklch(1 0 0 / 0.62);
 }
 
 /* Dark tokens — "Royale Noir" homage, re-asserted on/under a dark XP root so the light values never win by proximity. */
@@ -158,46 +99,11 @@
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.574 0.1623 27.404);
   --destructive-foreground: oklch(1 0 0);
-  --ring-opacity: 1;
   --border: oklch(0.3847 0.0136 256.762 / var(--ring-opacity));
   --input: oklch(0.4441 0.0229 248.341);
   --ring: oklch(0.7319 0.1299 74.539);
   --canvas: oklch(0.1763 0.0052 248.125);
   --shadow-color: oklch(0 0 0);
-
-  --badge-neutral: oklch(from var(--foreground) l c h / 0.1);
-  --badge-neutral-foreground: var(--foreground);
-  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.12);
-  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.14);
-  --badge-red: oklch(from var(--color-red-400) l c h / 0.18);
-  --badge-red-foreground: var(--color-red-300);
-  --badge-red-border: oklch(from var(--color-red-400) l c h / 0.22);
-  --badge-red-hover: oklch(from var(--color-red-400) l c h / 0.26);
-  --badge-orange: oklch(from var(--color-orange-400) l c h / 0.2);
-  --badge-orange-foreground: var(--color-orange-300);
-  --badge-orange-border: oklch(from var(--color-orange-400) l c h / 0.24);
-  --badge-orange-hover: oklch(from var(--color-orange-400) l c h / 0.28);
-  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.22);
-  --badge-yellow-foreground: var(--color-yellow-300);
-  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.26);
-  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.3);
-  --badge-green: oklch(from var(--color-green-400) l c h / 0.2);
-  --badge-green-foreground: var(--color-green-300);
-  --badge-green-border: oklch(from var(--color-green-400) l c h / 0.24);
-  --badge-green-hover: oklch(from var(--color-green-400) l c h / 0.28);
-  --badge-blue: oklch(from var(--color-blue-400) l c h / 0.2);
-  --badge-blue-foreground: var(--color-blue-300);
-  --badge-blue-border: oklch(from var(--color-blue-400) l c h / 0.24);
-  --badge-blue-hover: oklch(from var(--color-blue-400) l c h / 0.28);
-  --badge-purple: oklch(from var(--color-purple-400) l c h / 0.2);
-  --badge-purple-foreground: var(--color-purple-300);
-  --badge-purple-border: oklch(from var(--color-purple-400) l c h / 0.24);
-  --badge-purple-hover: oklch(from var(--color-purple-400) l c h / 0.28);
-  --badge-pink: oklch(from var(--color-pink-400) l c h / 0.2);
-  --badge-pink-foreground: var(--color-pink-300);
-  --badge-pink-border: oklch(from var(--color-pink-400) l c h / 0.24);
-  --badge-pink-hover: oklch(from var(--color-pink-400) l c h / 0.28);
-  --shadow-highlight: oklch(1 0 0 / 0.055);
 }
 
 /* XP collapses motion UNCONDITIONALLY (Luna tempo IS "reduced"; skin.config matches with motion:"reduced" flag).

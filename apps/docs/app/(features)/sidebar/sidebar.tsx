@@ -7,6 +7,7 @@ import Link from "next/link";
 import type { RefObject } from "react";
 import { useEffect, useId, useRef } from "react";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
+import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
@@ -32,6 +33,7 @@ import { SidebarModeSelector } from "./mode-selector";
 import { DocsNavGroup, SkillConcernNavGroups } from "./nav-groups";
 import {
   agentNavItems,
+  ctaGuide,
   extensionNavItems,
   getUseCaseNavGroups,
   guideNavItems,
@@ -64,6 +66,22 @@ type DocsSidebarProps = DocsSidebarContentProps & {
 
 function sidebarNavigationInert(isMobile: boolean, state: "expanded" | "collapsed"): true | undefined {
   return !isMobile && state === "collapsed" ? true : undefined;
+}
+
+function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; active: ActivePageId; onNavigate: () => void }) {
+  const cta = ctaGuide(guides);
+  if (!cta) return null;
+
+  return (
+    <ButtonLink
+      render={<Link href={`/${cta.id}`} onClick={onNavigate} aria-current={active === cta.id ? "page" : undefined} />}
+      variant="solid"
+      tone="primary"
+      className="w-full"
+    >
+      {cta.name}
+    </ButtonLink>
+  );
 }
 
 export function DocsSidebarContent({
@@ -174,9 +192,7 @@ export function DocsSidebarContent({
                 An opinionated, customizable superset of shadcn/ui
               </p>
             </div>
-            <ButtonLink render={<Link href="/create" onClick={closeMobile} />} variant="solid" tone="primary" className="w-full">
-              Create app
-            </ButtonLink>
+            <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
             <div className="grid gap-3">
               <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
             </div>

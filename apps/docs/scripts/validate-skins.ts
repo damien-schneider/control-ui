@@ -1,10 +1,11 @@
 /* biome-ignore-all lint/suspicious/noExplicitAny: Babel parser nodes are the dynamic input boundary for skin validation. */
 
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { parse } from "@babel/parser";
 import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
+import { THEME_CONTRACT_NAMES } from "../src/registry/lib/theme-contract";
 import { collectSkinContract } from "./skin-contract/collect";
 
 const contract = collectSkinContract();
@@ -133,9 +134,71 @@ function propertyName(node: any): string | undefined {
   return undefined;
 }
 
+function filesUnder(directory: string, extensions: string[]): string[] {
+  return readdirSync(directory).flatMap((entry) => {
+    const candidate = path.join(directory, entry);
+    if (statSync(candidate).isDirectory()) return filesUnder(candidate, extensions);
+    return extensions.some((extension) => candidate.endsWith(extension)) && !candidate.includes(".test.") ? [candidate] : [];
+  });
+}
+
+const STYLE_KEY_DECLARATION = /["'](--[\w-]+)["']\s*:/g;
+const ARBITRARY_PROPERTY_DECLARATION = /\[(--[\w-]+):/g;
+
+function declaredCustomProperties(root: string): Set<string> {
+  const declared = new Set<string>();
+  for (const file of filesUnder(root, [".css"])) {
+    postcss.parse(readFileSync(file, "utf8"), { from: file }).walkDecls((declaration) => {
+      if (declaration.prop.startsWith("--")) declared.add(declaration.prop);
+    });
+  }
+  for (const file of filesUnder(root, [".ts", ".tsx"])) {
+    const source = readFileSync(file, "utf8");
+    for (const match of source.matchAll(STYLE_KEY_DECLARATION)) declared.add(match[1]);
+    for (const match of source.matchAll(ARBITRARY_PROPERTY_DECLARATION)) declared.add(match[1]);
+  }
+  return declared;
+}
+
+const registryDeclared = declaredCustomProperties(path.join(process.cwd(), "src/registry"));
+const packDeclared = new Map(
+  readdirSync(skinRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => [entry.name, declaredCustomProperties(path.join(skinRoot, entry.name))]),
+);
+
+function referenceResolves(name: string, packId: string | undefined): boolean {
+  if (packId && name.startsWith(`--${packId}-`)) return packDeclared.get(packId)?.has(name) ?? false;
+  return THEME_CONTRACT_NAMES.has(name) || name.startsWith("--tw-") || name.startsWith("--color-") || registryDeclared.has(name);
+}
+
+function walkStrings(node: any, callback: (value: string) => void): void {
+  if (!node || typeof node !== "object") return;
+  if (node.type === "StringLiteral" && typeof node.value === "string") callback(node.value);
+  if (node.type === "TemplateElement" && typeof node.value?.cooked === "string") callback(node.value.cooked);
+  for (const [key, value] of Object.entries(node)) {
+    if (["loc", "start", "end"].includes(key)) continue;
+    if (Array.isArray(value)) for (const child of value) walkStrings(child, callback);
+    else walkStrings(value, callback);
+  }
+}
+
+function validateVarReferences(file: string, ast: any): void {
+  const packId = path.basename(path.dirname(path.resolve(file)));
+  walkStrings(ast, (value) => {
+    if (/shadow-\[var\(--/.test(value)) {
+      failures.push(`${file}: shadow-[var(--…)] reads as a shadow COLOR under tailwind-merge; use shadow-(--…) in "${value}"`);
+    }
+    for (const match of value.matchAll(/var\((--[\w-]+)/g)) {
+      if (!referenceResolves(match[1], packId)) failures.push(`${file}: var(${match[1]}) resolves to no declaration`);
+    }
+  });
+}
+
 // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: This validator reports every nested config failure in one source pass.
 function validateConfig(file: string, source: string): void {
   const ast = parse(source, { sourceType: "module", plugins: ["typescript", "jsx"] });
+  validateVarReferences(file, ast.program);
   for (const node of ast.program.body) {
     if (node.type !== "ExportNamedDeclaration" || node.declaration?.type !== "VariableDeclaration") continue;
     const declaration = node.declaration.declarations.find((candidate: any) => candidate.id.name === "skin");

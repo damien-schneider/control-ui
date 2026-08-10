@@ -19,6 +19,9 @@ import "./globals.css";
 
 export const metadata: Metadata = siteMetadata;
 
+// Sidebar state comes from a cookie read here, so no route can produce a static shell.
+export const instant = false;
+
 // next/font self-hosts geist, fills --font-geist-sans; theme.css's --font-sans consumes it first, falls to system stack when app shell absent.
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
 // Same contract for linear pack's face: it reads --font-inter, falling back to the system stack when the shell doesn't provide it.

@@ -129,6 +129,19 @@ try {
     throw new Error("The replacement skin did not install its active config");
   }
 
+  const driftedComponentPath = path.join(rootComponents, "chat-message.tsx");
+  const skinCssPath = path.join(rootComponents, "styles/skin.css");
+  writeFileSync(driftedComponentPath, `${readFileSync(driftedComponentPath, "utf8")}\n// local drift\n`);
+  const customSkinCss = `${readFileSync(skinCssPath, "utf8")}\n/* custom skin */\n`;
+  writeFileSync(skinCssPath, customSkinCss);
+  run("bunx", ["shadcn", "add", `${registryBase}/r/update.json`, "--yes", "--overwrite"], rootFixture);
+  if (readFileSync(driftedComponentPath, "utf8").includes("// local drift")) {
+    throw new Error("The update manifest did not refresh drifted component source");
+  }
+  if (readFileSync(skinCssPath, "utf8") !== customSkinCss) {
+    throw new Error("The update manifest touched the active skin");
+  }
+
   const sourceFixture = fixture("source-layout", true);
   install(sourceFixture, "skin-refined");
   install(sourceFixture, "chat-composer");
@@ -224,7 +237,7 @@ try {
   if (shikiVersion !== "^4.3.1") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);
 
   console.log(
-    `Registry install smoke test passed (root layout, src layout, all alias, ${fullInstallFixtures.length} per-skin full installs, source invariance, and TypeScript).`,
+    `Registry install smoke test passed (root layout, src layout, all alias, update overwrite, ${fullInstallFixtures.length} per-skin full installs, source invariance, and TypeScript).`,
   );
 } finally {
   if (server.exitCode === null) server.kill();

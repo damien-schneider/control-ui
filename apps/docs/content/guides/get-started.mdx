@@ -74,3 +74,18 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
 
   <GuideCode kind="component-usage" />
 </GuideSection>
+
+<GuideSection id="update" title="Update installed components">
+  Installed component source is owned but never edited: every customization lives in the skin-owned files. Updating is
+  therefore a reinstall. The `update` manifest bundles core and the complete component set with no skin, so overwriting
+  from it refreshes every installed source while `skin.config.tsx`, `skin-theme.css`, and `skin.css` — including a fully
+  custom skin — stay untouched.
+
+  <GuideCode kind="update-install" />
+
+  <GuidePoints>
+    <GuidePoint>`--diff` prints a per-file unified diff between the registry and your install; identical files are skipped.</GuidePoint>
+    <GuidePoint>To refresh a stock skin too, reinstall its pack afterwards: `npx shadcn@latest add …/r/skin-<id>.json`.</GuidePoint>
+    <GuidePoint>`all-<skin>` manifests with `--overwrite` also update everything, but reset the three skin files to that pack.</GuidePoint>
+  </GuidePoints>
+</GuideSection>

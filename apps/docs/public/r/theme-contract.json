@@ -136,8 +136,8 @@
     {
       "name": "--ring-opacity",
       "group": "color",
-      "tier": "advanced",
-      "description": "Alpha of the border/ring hairlines; 0 = borderless."
+      "tier": "derived",
+      "description": "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."
     },
     {
       "name": "--popup-item-foreground",
@@ -154,193 +154,193 @@
     {
       "name": "--badge-neutral",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft neutral-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-neutral-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the neutral-family badge."
     },
     {
       "name": "--badge-neutral-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline neutral-family badge variant."
     },
     {
       "name": "--badge-neutral-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled neutral-family badge links and buttons."
     },
     {
       "name": "--badge-red",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft red-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-red-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the red-family badge."
     },
     {
       "name": "--badge-red-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline red-family badge variant."
     },
     {
       "name": "--badge-red-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled red-family badge links and buttons."
     },
     {
       "name": "--badge-orange",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft orange-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-orange-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the orange-family badge."
     },
     {
       "name": "--badge-orange-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline orange-family badge variant."
     },
     {
       "name": "--badge-orange-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled orange-family badge links and buttons."
     },
     {
       "name": "--badge-yellow",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft yellow-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-yellow-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the yellow-family badge."
     },
     {
       "name": "--badge-yellow-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline yellow-family badge variant."
     },
     {
       "name": "--badge-yellow-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled yellow-family badge links and buttons."
     },
     {
       "name": "--badge-green",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft green-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-green-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the green-family badge."
     },
     {
       "name": "--badge-green-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline green-family badge variant."
     },
     {
       "name": "--badge-green-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled green-family badge links and buttons."
     },
     {
       "name": "--badge-blue",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft blue-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-blue-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the blue-family badge."
     },
     {
       "name": "--badge-blue-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline blue-family badge variant."
     },
     {
       "name": "--badge-blue-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled blue-family badge links and buttons."
     },
     {
       "name": "--badge-purple",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft purple-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-purple-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the purple-family badge."
     },
     {
       "name": "--badge-purple-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline purple-family badge variant."
     },
     {
       "name": "--badge-purple-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled purple-family badge links and buttons."
     },
     {
       "name": "--badge-pink",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Soft pink-family badge background; the skin owns the exact hue."
     },
     {
       "name": "--badge-pink-foreground",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Text color on the pink-family badge."
     },
     {
       "name": "--badge-pink-border",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Border of the outline pink-family badge variant."
     },
     {
       "name": "--badge-pink-hover",
       "group": "color",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Hover background of filled pink-family badge links and buttons."
     },
     {
@@ -370,7 +370,7 @@
     {
       "name": "--text-micro",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "10px rung — kbd, badge counters, dense numeric meta."
     },
     {
@@ -388,19 +388,19 @@
     {
       "name": "--text-body",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "14px rung — DEFAULT body & control text."
     },
     {
       "name": "--text-body-lg",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "16px rung — emphasized / larger body."
     },
     {
       "name": "--text-heading-4",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Smallest heading rung (15px)."
     },
     {
@@ -418,13 +418,13 @@
     {
       "name": "--text-heading-3",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Heading rung (18px)."
     },
     {
       "name": "--text-heading-3--line-height",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Line-height paired onto text-heading-3."
     },
     {
@@ -436,13 +436,13 @@
     {
       "name": "--text-heading-2",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Heading rung (22px)."
     },
     {
       "name": "--text-heading-2--line-height",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Line-height paired onto text-heading-2."
     },
     {
@@ -454,37 +454,37 @@
     {
       "name": "--text-heading-1",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Largest content heading (30px — in-page / markdown h1)."
     },
     {
       "name": "--text-heading-1--line-height",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Line-height paired onto text-heading-1."
     },
     {
       "name": "--text-heading-1--font-weight",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Weight paired onto text-heading-1."
     },
     {
       "name": "--text-heading-1--letter-spacing",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Tracking paired onto text-heading-1."
     },
     {
       "name": "--text-display",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Display rung above h1 (36px — page titles, heroes)."
     },
     {
       "name": "--text-display--line-height",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Line-height paired onto text-display."
     },
     {
@@ -496,7 +496,7 @@
     {
       "name": "--text-display--letter-spacing",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Tracking paired onto text-display."
     },
     {
@@ -562,8 +562,8 @@
     {
       "name": "--corner-shape",
       "group": "radius",
-      "tier": "advanced",
-      "description": "Progressive corner reshape (round | squircle | scoop | …)."
+      "tier": "derived",
+      "description": "Progressive corner reshape (round | squircle | scoop | …); defaults to round."
     },
     {
       "name": "--corner-radius-fit",
@@ -580,7 +580,7 @@
     {
       "name": "--radius-popover",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Popup container corner, concentric with the fitted row corner."
     },
     {
@@ -592,7 +592,7 @@
     {
       "name": "--shadow-highlight",
       "group": "shadow",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Inner top light painted along raised surfaces' top edge (carries its resting alpha)."
     },
     {
@@ -616,32 +616,32 @@
     {
       "name": "--shadow-control-multiplier",
       "group": "shadow",
-      "tier": "advanced",
-      "description": "Elevation tier: controls."
+      "tier": "derived",
+      "description": "Elevation tier: controls; defaults to 1."
     },
     {
       "name": "--shadow-panel-multiplier",
       "group": "shadow",
-      "tier": "advanced",
-      "description": "Elevation tier: panels."
+      "tier": "derived",
+      "description": "Elevation tier: panels; defaults to 2."
     },
     {
       "name": "--shadow-popover-multiplier",
       "group": "shadow",
-      "tier": "advanced",
-      "description": "Elevation tier: floating popovers."
+      "tier": "derived",
+      "description": "Elevation tier: floating popovers; defaults to 4."
     },
     {
       "name": "--shadow-modal-multiplier",
       "group": "shadow",
-      "tier": "advanced",
-      "description": "Elevation tier: dialogs and sheets."
+      "tier": "derived",
+      "description": "Elevation tier: dialogs and sheets; defaults to 5."
     },
     {
       "name": "--shadow-ambient-multiplier",
       "group": "shadow",
-      "tier": "advanced",
-      "description": "Elevation tier: ambient scene lift."
+      "tier": "derived",
+      "description": "Elevation tier: ambient scene lift; defaults to 8."
     },
     {
       "name": "--ease-standard",
@@ -736,19 +736,19 @@
     {
       "name": "--control-h-xs",
       "group": "layout",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Derived control height: xs (×0.78, px-snapped)."
     },
     {
       "name": "--control-h-sm",
       "group": "layout",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Derived control height: sm (×0.89, px-snapped)."
     },
     {
       "name": "--control-h-lg",
       "group": "layout",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Derived control height: lg (×1.11, px-snapped)."
     }
   ]

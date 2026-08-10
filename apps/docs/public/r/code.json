@@ -5,9 +5,9 @@
   "title": "Code",
   "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
   "dependencies": [
-    "@tanstack/react-virtual@^3.14.8",
-    "lucide-react@^1.27.0",
-    "shiki@^4.3.1"
+    "@tanstack/react-virtual@^3.14.9",
+    "lucide-react@^1.31.0",
+    "shiki@^4.4.3"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/button.json",

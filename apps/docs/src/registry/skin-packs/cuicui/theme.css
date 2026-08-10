@@ -12,8 +12,6 @@
   --primary-foreground: oklch(1 0 0);
   --destructive: oklch(0.576 0.1761 14.132);
   --destructive-foreground: oklch(1 0 0);
-
-  --ring-opacity: 1;
   --popover-opacity: 0.9;
   --backdrop-blur-popover: 16px;
   --overlay-opacity: 0.36;
@@ -35,11 +33,9 @@
   --radius-field: calc(var(--radius) * 1.85);
   --radius-panel: var(--radius);
   --radius-scene: calc(var(--radius) * 2);
-  --corner-shape: round;
 
   --popover-padding: 0.375rem;
   --radius-popup-item: calc(var(--radius-control) * 0.72);
-  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
 
   --padding-x: 1rem;
   --padding-y: 0.625rem;
@@ -54,54 +50,6 @@
   --duration-fast: 150ms;
   --duration-base: 240ms;
   --duration-slow: 420ms;
-
-  --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
-  --badge-neutral-foreground: var(--foreground);
-  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
-  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.12);
-  --badge-red: oklch(from var(--color-red-500) l c h / 0.14);
-  --badge-red-foreground: var(--color-red-800);
-  --badge-red-border: oklch(from var(--color-red-500) l c h / 0.18);
-  --badge-red-hover: oklch(from var(--color-red-500) l c h / 0.2);
-  --badge-orange: oklch(from var(--color-orange-500) l c h / 0.16);
-  --badge-orange-foreground: var(--color-orange-800);
-  --badge-orange-border: oklch(from var(--color-orange-500) l c h / 0.2);
-  --badge-orange-hover: oklch(from var(--color-orange-500) l c h / 0.24);
-  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.2);
-  --badge-yellow-foreground: var(--color-yellow-800);
-  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.24);
-  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.28);
-  --badge-green: oklch(from var(--color-green-500) l c h / 0.16);
-  --badge-green-foreground: var(--color-green-800);
-  --badge-green-border: oklch(from var(--color-green-500) l c h / 0.2);
-  --badge-green-hover: oklch(from var(--color-green-500) l c h / 0.24);
-  --badge-blue: oklch(from var(--color-blue-500) l c h / 0.16);
-  --badge-blue-foreground: var(--color-blue-800);
-  --badge-blue-border: oklch(from var(--color-blue-500) l c h / 0.2);
-  --badge-blue-hover: oklch(from var(--color-blue-500) l c h / 0.24);
-  --badge-purple: oklch(from var(--color-purple-500) l c h / 0.16);
-  --badge-purple-foreground: var(--color-purple-800);
-  --badge-purple-border: oklch(from var(--color-purple-500) l c h / 0.2);
-  --badge-purple-hover: oklch(from var(--color-purple-500) l c h / 0.24);
-  --badge-pink: oklch(from var(--color-pink-500) l c h / 0.16);
-  --badge-pink-foreground: var(--color-pink-800);
-  --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
-  --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --text-body: 0.875rem;
-  --text-body-lg: 1rem;
-  --text-heading-4: 0.9375rem;
-  --text-heading-3: 1.125rem;
-  --text-heading-3--line-height: 1.35;
-  --text-heading-2: 1.375rem;
-  --text-heading-2--line-height: 1.25;
-  --text-heading-1: 1.875rem;
-  --text-heading-1--line-height: 1.15;
-  --text-heading-1--font-weight: 700;
-  --text-heading-1--letter-spacing: -0.018em;
-  --text-display: 2.25rem;
-  --text-display--line-height: 1.1;
-  --text-display--letter-spacing: -0.026em;
-  --shadow-highlight: oklch(1 0 0 / 0.62);
 }
 
 :root:not(.dark)[data-skin="cuicui"],
@@ -118,7 +66,7 @@
   --secondary-foreground: oklch(0.269 0 0);
   --accent: oklch(0.8659 0.1539 86.484);
   --accent-foreground: oklch(0.269 0 0);
-  --border: oklch(from oklch(0.708 0 0) l c h / 0.22);
+  --border: oklch(from oklch(0.708 0 0) l c h / calc(0.22 * var(--ring-opacity)));
   --input: oklch(from oklch(0.708 0 0) l c h / 0.28);
   --ring: oklch(from var(--primary) l c h / 0.38);
   --canvas: oklch(0.985 0 0);
@@ -138,47 +86,13 @@
   --secondary-foreground: oklch(0.985 0 0);
   --accent: oklch(0.7259 0.1609 48.691);
   --accent-foreground: oklch(0.145 0 0);
-  --border: oklch(from oklch(0.708 0 0) l c h / 0.16);
+  --border: oklch(from oklch(0.708 0 0) l c h / calc(0.16 * var(--ring-opacity)));
   --input: oklch(from oklch(0.708 0 0) l c h / 0.18);
   --ring: oklch(from var(--primary) l c h / 0.52);
   --canvas: oklch(0.145 0 0);
   --popover-opacity: 0.82;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 1;
-
-  --badge-neutral: oklch(from var(--foreground) l c h / 0.1);
-  --badge-neutral-foreground: var(--foreground);
-  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.12);
-  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.14);
-  --badge-red: oklch(from var(--color-red-400) l c h / 0.18);
-  --badge-red-foreground: var(--color-red-300);
-  --badge-red-border: oklch(from var(--color-red-400) l c h / 0.22);
-  --badge-red-hover: oklch(from var(--color-red-400) l c h / 0.26);
-  --badge-orange: oklch(from var(--color-orange-400) l c h / 0.2);
-  --badge-orange-foreground: var(--color-orange-300);
-  --badge-orange-border: oklch(from var(--color-orange-400) l c h / 0.24);
-  --badge-orange-hover: oklch(from var(--color-orange-400) l c h / 0.28);
-  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.22);
-  --badge-yellow-foreground: var(--color-yellow-300);
-  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.26);
-  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.3);
-  --badge-green: oklch(from var(--color-green-400) l c h / 0.2);
-  --badge-green-foreground: var(--color-green-300);
-  --badge-green-border: oklch(from var(--color-green-400) l c h / 0.24);
-  --badge-green-hover: oklch(from var(--color-green-400) l c h / 0.28);
-  --badge-blue: oklch(from var(--color-blue-400) l c h / 0.2);
-  --badge-blue-foreground: var(--color-blue-300);
-  --badge-blue-border: oklch(from var(--color-blue-400) l c h / 0.24);
-  --badge-blue-hover: oklch(from var(--color-blue-400) l c h / 0.28);
-  --badge-purple: oklch(from var(--color-purple-400) l c h / 0.2);
-  --badge-purple-foreground: var(--color-purple-300);
-  --badge-purple-border: oklch(from var(--color-purple-400) l c h / 0.24);
-  --badge-purple-hover: oklch(from var(--color-purple-400) l c h / 0.28);
-  --badge-pink: oklch(from var(--color-pink-400) l c h / 0.2);
-  --badge-pink-foreground: var(--color-pink-300);
-  --badge-pink-border: oklch(from var(--color-pink-400) l c h / 0.24);
-  --badge-pink-hover: oklch(from var(--color-pink-400) l c h / 0.28);
-  --shadow-highlight: oklch(1 0 0 / 0.055);
 }
 
 @media (prefers-reduced-motion: reduce) {

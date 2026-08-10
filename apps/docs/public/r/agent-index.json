@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 161,
+    "count": 162,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -96,6 +96,13 @@
         "summary": "Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.",
         "kind": "Block",
         "href": "/use-cases"
+      },
+      {
+        "id": "create",
+        "name": "Create app",
+        "kind": "Guide",
+        "summary": "Scaffold a Next.js app with every Control UI component installed as editable source on the Refined skin.",
+        "href": "/create"
       },
       {
         "id": "overview",
@@ -578,6 +585,7 @@
         "kind": "Agent",
         "summary": "Inline file and media previews for chat turns.",
         "href": "/ai/inline-attachment",
+        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json"
       },
       {

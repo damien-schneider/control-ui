@@ -6,6 +6,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 ## Documentation
 
+- [Create app](http://127.0.0.1:3000/create): Scaffold a Next.js app with every Control UI component installed as editable source on the Refined skin.
 - [Overview](http://127.0.0.1:3000/overview): An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
 - [Get started](http://127.0.0.1:3000/get-started): Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.
 - [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
@@ -31,7 +32,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [InlineCitation](http://127.0.0.1:3000/ai/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation. Status: beta.
 - [SourceBadge](http://127.0.0.1:3000/ai/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
 - [ActionBar](http://127.0.0.1:3000/ai/action-bar): Reusable hover actions for message and response controls.
-- [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns.
+- [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns. Status: beta.
 - [MarkdownBlock](http://127.0.0.1:3000/ai/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
 - [CodeBlockEditor](http://127.0.0.1:3000/ai/code-block-editor): Editable code surface with Shiki highlighting and token-based light/dark themes.
 - [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): Layout primitives for full chat threads, turns, and thoughts.

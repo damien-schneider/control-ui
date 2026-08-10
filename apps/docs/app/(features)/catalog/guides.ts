@@ -8,10 +8,22 @@ type GuideSectionCatalogEntry = {
     | "component-usage"
     | "runtime-agnostic-message"
     | "agent-endpoints"
-    | "agent-llms";
+    | "agent-llms"
+    | "update-install";
 };
 
 export const guideEntries = [
+  {
+    id: "create",
+    kind: "Guide",
+    name: "Create app",
+    summary: "Scaffold a Next.js app with every Control UI component installed as editable source on the Refined skin.",
+    cta: true,
+    sections: [
+      { id: "command", title: "Create your app" },
+      { id: "included", title: "What you get" },
+    ],
+  },
   {
     id: "overview",
     kind: "Guide",
@@ -35,6 +47,7 @@ export const guideEntries = [
       { id: "install-block", title: "Install a block", code: "block-install" },
       { id: "wire-css", title: "Wire the CSS" },
       { id: "use", title: "Compose your runtime", code: "component-usage" },
+      { id: "update", title: "Update installed components", code: "update-install" },
     ],
   },
   {
@@ -94,5 +107,6 @@ export const guideEntries = [
   name: string;
   summary: string;
   layout?: "default" | "wide";
+  cta?: true;
   sections: readonly GuideSectionCatalogEntry[];
 }[];

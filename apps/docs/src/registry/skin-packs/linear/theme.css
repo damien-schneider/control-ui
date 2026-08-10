@@ -7,7 +7,6 @@
 
   /* Type scale: Linear runs one flat 13px band for ALL chrome (nav rows, controls, body) and reserves
      the larger rungs for content headings. Label == body on purpose. */
-  --text-micro: 0.625rem; /* 10px */
   --text-label: 0.8125rem; /* 13px — sm controls, nav rows, tooltips */
   --text-body: 0.8125rem; /* 13px — THE workhorse */
   --text-body-lg: 0.9375rem; /* 15px */
@@ -44,7 +43,6 @@
   --accent-foreground: oklch(0.2228 0.0079 274.573);
   --destructive: oklch(0.576 0.1835 23.679);
   --destructive-foreground: oklch(1 0 0);
-  --ring-opacity: 1;
   --border: oklch(0.9255 0.0027 286.347 / var(--ring-opacity)); /* #e6e6e8 hairline */
   --input: oklch(0.9042 0.0027 286.346); /* #dfdfe1 — fields carry a touch more edge */
   --ring: oklch(0.5674 0.1585 275.206); /* focus == brand */
@@ -71,7 +69,6 @@
   --shadow-panel-multiplier: 1;
   --shadow-popover-multiplier: 5;
   --shadow-modal-multiplier: 8;
-  --shadow-ambient-multiplier: 8;
 
   /* THE radius knob: 4px. Controls ride 1.5x (6px), panels 3x (12px) — small, never pill-shaped by
      token (the button pill is a deliberate slot choice, not a radius side effect). */
@@ -80,23 +77,18 @@
   --radius-field: calc(var(--radius) * 2); /* 8px — composer shell, user bubble */
   --radius-panel: calc(var(--radius) * 3); /* 12px — dialogs, code, the content sheet */
   --radius-scene: calc(var(--radius) * 3.5); /* 14px */
-  --corner-shape: round;
 
   /* Concentric floating-list geometry is authored here so the pack owns the exact 4px-derived ratios. */
   --popover-padding: 0.25rem;
   /* Rows carry the SAME 6px corner as controls (Linear has one row corner everywhere: menus, nav,
      tree, and the sliding selection pill, which the library shapes from this token). */
   --radius-popup-item: var(--radius-control);
-  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
 
   --padding-x: 0.75rem;
   --padding-y: 0.5rem;
 
   /* Control ramp: 32px base, so `sm` lands on Linear's 28px button. */
   --control-h: 2rem;
-  --control-h-xs: round(var(--control-h) * 0.78, 1px);
-  --control-h-sm: round(var(--control-h) * 0.89, 1px);
-  --control-h-lg: round(var(--control-h) * 1.11, 1px);
 
   /* Motion is a snap, not a glide — Linear's whole feel rests on this. */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,39 +96,6 @@
   --duration-fast: 90ms;
   --duration-base: 130ms;
   --duration-slow: 200ms;
-
-  --badge-neutral: oklch(from var(--foreground) l c h / 0.08);
-  --badge-neutral-foreground: var(--foreground);
-  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.1);
-  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.12);
-  --badge-red: oklch(from var(--color-red-500) l c h / 0.14);
-  --badge-red-foreground: var(--color-red-800);
-  --badge-red-border: oklch(from var(--color-red-500) l c h / 0.18);
-  --badge-red-hover: oklch(from var(--color-red-500) l c h / 0.2);
-  --badge-orange: oklch(from var(--color-orange-500) l c h / 0.16);
-  --badge-orange-foreground: var(--color-orange-800);
-  --badge-orange-border: oklch(from var(--color-orange-500) l c h / 0.2);
-  --badge-orange-hover: oklch(from var(--color-orange-500) l c h / 0.24);
-  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.2);
-  --badge-yellow-foreground: var(--color-yellow-800);
-  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.24);
-  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.28);
-  --badge-green: oklch(from var(--color-green-500) l c h / 0.16);
-  --badge-green-foreground: var(--color-green-800);
-  --badge-green-border: oklch(from var(--color-green-500) l c h / 0.2);
-  --badge-green-hover: oklch(from var(--color-green-500) l c h / 0.24);
-  --badge-blue: oklch(from var(--color-blue-500) l c h / 0.16);
-  --badge-blue-foreground: var(--color-blue-800);
-  --badge-blue-border: oklch(from var(--color-blue-500) l c h / 0.2);
-  --badge-blue-hover: oklch(from var(--color-blue-500) l c h / 0.24);
-  --badge-purple: oklch(from var(--color-purple-500) l c h / 0.16);
-  --badge-purple-foreground: var(--color-purple-800);
-  --badge-purple-border: oklch(from var(--color-purple-500) l c h / 0.2);
-  --badge-purple-hover: oklch(from var(--color-purple-500) l c h / 0.24);
-  --badge-pink: oklch(from var(--color-pink-500) l c h / 0.16);
-  --badge-pink-foreground: var(--color-pink-800);
-  --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
-  --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
 }
 
 /* Dark tokens: the real Linear night — near-black canvas, panel one step up, popups two. */
@@ -158,7 +117,6 @@
   --accent-foreground: oklch(0.9784 0.0011 197.139);
   --destructive: oklch(0.576 0.1835 23.679);
   --destructive-foreground: oklch(1 0 0);
-  --ring-opacity: 1;
   --border: oklch(0.2618 0.0113 278.089 / var(--ring-opacity)); /* #23242a */
   --input: oklch(0.2986 0.0109 278.197);
   --ring: oklch(0.6102 0.1404 276.317); /* the indigo lifts a rung to stay legible on ink */
@@ -167,39 +125,6 @@
   --shadow-color: oklch(0 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.05);
   --shadow-opacity: 1;
-
-  --badge-neutral: oklch(from var(--foreground) l c h / 0.1);
-  --badge-neutral-foreground: var(--foreground);
-  --badge-neutral-border: oklch(from var(--foreground) l c h / 0.12);
-  --badge-neutral-hover: oklch(from var(--foreground) l c h / 0.14);
-  --badge-red: oklch(from var(--color-red-400) l c h / 0.18);
-  --badge-red-foreground: var(--color-red-300);
-  --badge-red-border: oklch(from var(--color-red-400) l c h / 0.22);
-  --badge-red-hover: oklch(from var(--color-red-400) l c h / 0.26);
-  --badge-orange: oklch(from var(--color-orange-400) l c h / 0.2);
-  --badge-orange-foreground: var(--color-orange-300);
-  --badge-orange-border: oklch(from var(--color-orange-400) l c h / 0.24);
-  --badge-orange-hover: oklch(from var(--color-orange-400) l c h / 0.28);
-  --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.22);
-  --badge-yellow-foreground: var(--color-yellow-300);
-  --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.26);
-  --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.3);
-  --badge-green: oklch(from var(--color-green-400) l c h / 0.2);
-  --badge-green-foreground: var(--color-green-300);
-  --badge-green-border: oklch(from var(--color-green-400) l c h / 0.24);
-  --badge-green-hover: oklch(from var(--color-green-400) l c h / 0.28);
-  --badge-blue: oklch(from var(--color-blue-400) l c h / 0.2);
-  --badge-blue-foreground: var(--color-blue-300);
-  --badge-blue-border: oklch(from var(--color-blue-400) l c h / 0.24);
-  --badge-blue-hover: oklch(from var(--color-blue-400) l c h / 0.28);
-  --badge-purple: oklch(from var(--color-purple-400) l c h / 0.2);
-  --badge-purple-foreground: var(--color-purple-300);
-  --badge-purple-border: oklch(from var(--color-purple-400) l c h / 0.24);
-  --badge-purple-hover: oklch(from var(--color-purple-400) l c h / 0.28);
-  --badge-pink: oklch(from var(--color-pink-400) l c h / 0.2);
-  --badge-pink-foreground: var(--color-pink-300);
-  --badge-pink-border: oklch(from var(--color-pink-400) l c h / 0.24);
-  --badge-pink-hover: oklch(from var(--color-pink-400) l c h / 0.28);
 }
 
 /* prefers-reduced-motion: token-driven, so every derived tempo flattens together. */

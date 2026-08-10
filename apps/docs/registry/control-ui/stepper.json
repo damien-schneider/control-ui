@@ -5,7 +5,7 @@
   "title": "Stepper",
   "description": "Static and interactive workflow steps with horizontal and vertical layouts.",
   "dependencies": [
-    "lucide-react@^1.27.0"
+    "lucide-react@^1.31.0"
   ],
   "registryDependencies": [
     "core"

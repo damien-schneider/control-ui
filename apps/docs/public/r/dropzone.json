@@ -5,7 +5,7 @@
   "title": "Dropzone",
   "description": "Composable file intake with validation, managed selection, and drag-activated overlays.",
   "dependencies": [
-    "lucide-react@^1.27.0"
+    "lucide-react@^1.31.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/button.json",

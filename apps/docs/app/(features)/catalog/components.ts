@@ -365,6 +365,7 @@ export const componentEntries = [
     kind: "Agent",
     name: "InlineAttachment",
     summary: "Inline file and media previews for chat turns.",
+    status: "beta",
     registryKind: "inline-attachment",
     paths: {
       example: sourceFile("Example", "src/registry/examples/inline-attachment.tsx", "example"),
