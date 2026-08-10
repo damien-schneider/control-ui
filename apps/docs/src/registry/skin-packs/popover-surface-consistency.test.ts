@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import skinContract from "../../../public/r/skin-contract.json";
+import { SKIN_POPUP_PARTS } from "../skin";
 import { skin as cuicui } from "./cuicui/skin.config";
 import { skin as linear } from "./linear/skin.config";
 import { appleLiquidGlassSurfaceSelector } from "./modern-apple/modern-apple-liquid-glass-runtime";
@@ -40,9 +41,17 @@ describe("semantic surface roles", () => {
   });
 
   test("advanced skins own shared popup styling through the family", () => {
+    // list-content is the inner scroller; a pack may leave it on the recipe default.
+    const optionalParts = new Set<string>(["list-content"]);
+    const allowedParts: readonly string[] = SKIN_POPUP_PARTS;
     for (const skin of POPUP_FAMILY_SKINS) {
-      expect(Object.keys(skin.families?.popup ?? {}).sort()).toEqual(["item", "label", "list-surface", "separator", "shortcut", "surface"]);
-      expect(Object.values(skin.families?.popup ?? {}).every((classes) => classes.length > 0)).toBe(true);
+      const popup = skin.families?.popup ?? {};
+      const declared = Object.keys(popup);
+      for (const part of declared) expect(allowedParts).toContain(part);
+      for (const part of SKIN_POPUP_PARTS) {
+        if (!optionalParts.has(part)) expect(declared).toContain(part);
+      }
+      expect(Object.values(popup).every((classes) => classes.length > 0)).toBe(true);
       expect(skin.slots?.select?.content).toBeUndefined();
       expect(skin.slots?.["dropdown-menu"]?.content).toBeUndefined();
       expect(skin.slots?.["dropdown-menu"]?.item).toBeUndefined();

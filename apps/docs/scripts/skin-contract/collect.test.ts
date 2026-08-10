@@ -92,7 +92,7 @@ describe("skin contract generation", () => {
       values: [],
     });
 
-    expect(stateAt(contract, "activity", "root", "data-status")).toEqual(activityStatus);
+    expect(stateAt(contract, "activity", "root", "data-activity-state")).toEqual({ ...activityStatus, attribute: "data-activity-state" });
     expect(stateAt(contract, "activity", "announcement", "data-status")).toEqual(activityStatus);
     expect(stateAt(contract, "activity", "status", "data-status")).toEqual(activityStatus);
     expect(stateAt(contract, "activity", "root", "data-activity-kind")).toEqual({

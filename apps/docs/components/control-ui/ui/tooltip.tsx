@@ -96,7 +96,6 @@ export function TooltipContent({
           role="tooltip"
           data-control-ui="tooltip"
           data-slot="content"
-          data-surface="floating"
           className={cn(
             "relative flex w-fit max-w-xs origin-[var(--transform-origin)] flex-col bg-foreground px-2.5 py-1 text-xs text-balance text-background shadow-pop outline-none transition-[opacity,scale] duration-[var(--duration-fast)] data-[instant]:transition-none data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
             !arrow && "rounded-[var(--radius-control)]",

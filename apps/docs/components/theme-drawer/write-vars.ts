@@ -72,8 +72,10 @@ export function toCss(t: ThemeState): string {
     return `/* No token edits — the "${t.skin}" skin's own theme.css already defines every token. */`;
   }
   const block = (decls: [string, string][]) => decls.map(([name, value]) => `  ${name}: ${value};`).join("\n");
-  const parts: string[] = [];
-  if (rootDecls.length > 0) parts.push(`:root {\n${block(rootDecls)}\n}`);
-  if (darkDecls.length > 0) parts.push(`.dark {\n${block(darkDecls)}\n}`);
+  const parts: string[] = [
+    `/* Paste after the "${t.skin}" skin's theme.css import — selectors tie on specificity, so source order decides. */`,
+  ];
+  if (rootDecls.length > 0) parts.push(`[data-skin="${t.skin}"] {\n${block(rootDecls)}\n}`);
+  if (darkDecls.length > 0) parts.push(`:where(.dark) [data-skin="${t.skin}"],\n.dark[data-skin="${t.skin}"] {\n${block(darkDecls)}\n}`);
   return parts.join("\n\n");
 }

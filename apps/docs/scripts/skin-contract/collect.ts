@@ -283,8 +283,17 @@ function typeAliases(): Map<string, string> {
     const source = readFileSync(file, "utf8");
     const ast = parse(source, { sourceType: "module", plugins: ["typescript"] });
     visit(ast, (node) => {
-      if (node.type !== "TSTypeAliasDeclaration") return;
-      aliases.set(node.id.name, source.slice(node.typeAnnotation.start, node.typeAnnotation.end));
+      if (node.type === "TSTypeAliasDeclaration") {
+        aliases.set(node.id.name, source.slice(node.typeAnnotation.start, node.typeAnnotation.end));
+        return;
+      }
+      const isConstArray =
+        node.type === "VariableDeclarator" &&
+        node.id.type === "Identifier" &&
+        node.init?.type === "TSAsExpression" &&
+        node.init.expression.type === "ArrayExpression" &&
+        node.init.typeAnnotation?.typeName?.name === "const";
+      if (isConstArray) aliases.set(node.id.name, source.slice(node.init.expression.start, node.init.expression.end));
     });
   }
   return aliases;
@@ -303,6 +312,11 @@ function stateShapeFromType(
   if (/^[A-Za-z_$][\w$]*$/.test(normalized) && !seen.has(normalized)) {
     const alias = aliases.get(normalized);
     if (alias) return stateShapeFromType(alias, aliases, new Set([...seen, normalized]));
+  }
+  const constIndexed = normalized.match(/^\(typeof ([A-Za-z_$][\w$]*)\)\[number\]$/);
+  if (constIndexed && !seen.has(constIndexed[1])) {
+    const alias = aliases.get(constIndexed[1]);
+    if (alias) return stateShapeFromType(alias, aliases, new Set([...seen, constIndexed[1]]));
   }
   return { valueKind: "open", values: [] };
 }

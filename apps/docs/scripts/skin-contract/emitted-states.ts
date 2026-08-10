@@ -54,7 +54,6 @@ export type EmittedStateContract = {
   "activity:root:data-activity-kind": ActivityKind;
   "activity:root:data-activity-name": string;
   "activity:root:data-activity-state": ActivityState;
-  "activity:root:data-status": ActivityState;
   "activity:announcement:data-status": ActivityState;
   "activity:status:data-status": ActivityState;
   "context:root:data-status": ContextStatus;

@@ -156,13 +156,6 @@ function coreContractDeclarationIsAllowed(declaration: Declaration): boolean {
 
   const selector = declarationRule(declaration)?.selector ?? "";
   if (isReducedMotionOverride && /\[data-motion\s*=\s*(?:"reduced"|'reduced'|reduced)\]/.test(selector)) return true;
-  if (
-    declaration.prop === "--corner-shape" &&
-    /\[data-corners\s*=/.test(selector) &&
-    /^(?:round|squircle|scoop)$/.test(declaration.value.trim())
-  ) {
-    return true;
-  }
 
   const squircleFallback = atRules.some(
     (atRule) => atRule.name === "supports" && /not\s*\(corner-shape\s*:\s*squircle\)/.test(atRule.params),

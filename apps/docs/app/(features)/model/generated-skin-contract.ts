@@ -247,12 +247,6 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["error", "pending", "running", "success"],
             },
-            {
-              attribute: "data-status",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["error", "pending", "running", "success"],
-            },
           ],
         },
         announcement: {
@@ -962,8 +956,8 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-color",
               source: "control-ui",
-              valueKind: "open",
-              values: [],
+              valueKind: "enum",
+              values: ["blue", "green", "neutral", "orange", "pink", "purple", "red", "yellow"],
             },
             {
               attribute: "data-size",
@@ -8997,10 +8991,6 @@ export const generatedSkinContract: SkinContract = {
         {
           scope: "toast",
           part: "root",
-        },
-        {
-          scope: "tooltip",
-          part: "content",
         },
         {
           scope: "trigger-menu",

@@ -67,7 +67,6 @@ export function Activity({ kind = "default", name, state = "pending", statusLabe
         data-activity-state={state}
         data-activity-kind={kind}
         data-activity-name={name}
-        data-status={state}
         data-surface={kind === "tool" ? "panel" : undefined}
         aria-busy={context.isRunning || undefined}
         className={cn("group/activity my-1 min-w-0 text-body", skinSlot("activity", "root", { kind, state }), className)}

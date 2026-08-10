@@ -731,7 +731,9 @@ export type SkinPaintContexts = {
   };
 };
 
-export type SkinPopupPart = "surface" | "list-surface" | "list-content" | "item" | "label" | "separator" | "shortcut";
+export const SKIN_POPUP_PARTS = ["surface", "list-surface", "list-content", "item", "label", "separator", "shortcut"] as const;
+
+export type SkinPopupPart = (typeof SKIN_POPUP_PARTS)[number];
 
 export type SkinFamilyContexts = {
   popup: {

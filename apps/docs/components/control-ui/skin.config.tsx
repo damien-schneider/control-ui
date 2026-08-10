@@ -16,7 +16,10 @@ const refined: ControlUiSkin = { id: "refined" };
 
 let current = refined;
 
-export const skin: ControlUiSkin = {
+// -? forces every ControlUiSkin key to be forwarded — omitting one (how `families` once went missing) fails to compile.
+type CompleteSkinView = ControlUiSkin & { [K in keyof ControlUiSkin]-?: unknown };
+
+export const skin: CompleteSkinView = {
   get id() {
     return current.id;
   },
@@ -37,6 +40,9 @@ export const skin: ControlUiSkin = {
   },
   get slots() {
     return current.slots;
+  },
+  get families() {
+    return current.families;
   },
   get paints() {
     return current.paints;

@@ -263,19 +263,6 @@
     background-origin: border-box;
   }
 
-  /* Optional declarative preset hook. Prefer overriding --corner-shape directly for full control. */
-  :where([data-corners="round"]) {
-    --corner-shape: round;
-  }
-
-  :where([data-corners="squircle"]) {
-    --corner-shape: squircle;
-  }
-
-  :where([data-corners="scoop"]) {
-    --corner-shape: scoop;
-  }
-
   @supports (corner-shape: squircle) {
     :where([data-control-ui][data-slot]) {
       corner-shape: var(--corner-shape);
