@@ -4,7 +4,6 @@
   "type": "registry:component",
   "title": "ChatComposer",
   "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/chat-composer-editor.css\";",
   "dependencies": [
     "prosemirror-commands@^1.7.1",
     "prosemirror-history@^1.5.0",
@@ -65,6 +64,9 @@
       "type": "registry:component"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/chat-composer.json"
   }

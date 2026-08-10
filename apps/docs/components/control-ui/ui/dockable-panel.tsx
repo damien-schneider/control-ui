@@ -271,7 +271,7 @@ export function DockablePanelDragHandle({
       aria-label="Drag panel"
       aria-pressed={context.dragging}
       className={cn(
-        "flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch rounded-[var(--radius-control)] px-2 text-left active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:outline-none",
+        "flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch rounded-[var(--radius-control)] px-2 text-left active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] focus-visible:outline-none",
         skinSlot("dockable-panel", "drag-handle", { dragging: context.dragging }),
         className,
       )}

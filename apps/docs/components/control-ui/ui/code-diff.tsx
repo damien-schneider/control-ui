@@ -450,7 +450,10 @@ function CodeDiffFileSection({
               data-slot="expand-button"
               data-control="true"
               onClick={() => expandGap(row.gapIndex)}
-              className="cursor-pointer rounded-control px-1.5 py-0.5 text-muted-foreground outline-none hover:bg-foreground/8 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/20"
+              className={cn(
+                "cursor-pointer rounded-control px-1.5 py-0.5 text-muted-foreground outline-none hover:bg-foreground/8 hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
+                skinSlot("code-diff", "expand-button", {}),
+              )}
               aria-label="Expand hidden lines"
             >
               ⋯

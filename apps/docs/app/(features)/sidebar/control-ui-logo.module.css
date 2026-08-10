@@ -20,7 +20,7 @@
   overflow: hidden;
   background: var(--control-ui-logo-foreground);
   border-radius: var(--radius-control);
-  corner-shape: var(--corner-shape-control);
+  corner-shape: var(--corner-shape);
 }
 
 .top {

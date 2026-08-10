@@ -9,7 +9,7 @@ export function Textarea({ className, ...props }: TextareaProps) {
       data-control-ui="textarea"
       data-slot="root"
       className={cn(
-        "field-sizing-content min-h-16 max-h-64 w-full min-w-0 resize-none rounded-[var(--radius-control)] bg-card/72 px-3 py-2 text-body text-foreground shadow-sm ring-1 ring-inset ring-border outline-none transition placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive",
+        "field-sizing-content min-h-16 max-h-64 w-full min-w-0 resize-none rounded-[var(--radius-control)] bg-card/72 px-3 py-2 text-body text-foreground shadow-sm ring-1 ring-inset ring-border outline-none transition placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive",
         skinSlot("textarea", "root", {}),
         className,
       )}

@@ -39,7 +39,7 @@ export function Checkbox({
         "bg-card/72 shadow-sm ring-1 ring-inset ring-border transition duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:ring-foreground/25",
         "data-[checked]:bg-primary data-[checked]:text-primary-foreground data-[checked]:ring-primary",
         "data-[indeterminate]:bg-primary data-[indeterminate]:text-primary-foreground data-[indeterminate]:ring-primary",
-        "focus-visible:ring-2 focus-visible:ring-foreground/20",
+        "focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
         "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
         "data-[invalid]:ring-2 data-[invalid]:ring-destructive",
         skinSlot("checkbox", "root", { checked: checked ?? false, disabled: disabled ?? false }),

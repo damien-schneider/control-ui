@@ -4,7 +4,6 @@
   "type": "registry:style",
   "title": "Liquid metal skin",
   "description": "Polished metal skin with a WebGL shader control surface.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
   "dependencies": [
     "metal-fx@^1.0.4"
   ],
@@ -33,6 +32,10 @@
       "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+    "@import \"../components/control-ui/styles/skin.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/liquid-metal/skin.json"
   }

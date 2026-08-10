@@ -60,7 +60,7 @@ export function CollapsibleTrigger({ render, className, children, ...props }: Co
   return (
     <CollapsiblePrimitive.Trigger
       className={cn(
-        "cursor-pointer outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:ring-2 focus-visible:ring-foreground/20",
+        "cursor-pointer outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
         "[&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-standard)] [&[data-state=open]>svg]:rotate-90",
       )}
       {...props}

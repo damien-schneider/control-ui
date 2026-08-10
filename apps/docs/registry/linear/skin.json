@@ -4,7 +4,6 @@
   "type": "registry:style",
   "title": "Linear skin",
   "description": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -26,6 +25,10 @@
       "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+    "@import \"../components/control-ui/styles/skin.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/linear/skin.json"
   }

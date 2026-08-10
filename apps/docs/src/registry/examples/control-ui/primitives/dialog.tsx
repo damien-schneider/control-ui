@@ -25,7 +25,7 @@ export function PrimitiveDialogExample() {
           <div className="px-4">
             <input
               defaultValue="Ada Lovelace"
-              className="h-9 w-full rounded-[var(--radius-control)] bg-background px-3 text-sm text-foreground outline-none ring-1 ring-inset ring-border focus-visible:ring-2 focus-visible:ring-foreground/20"
+              className="h-9 w-full rounded-[var(--radius-control)] bg-background px-3 text-sm text-foreground outline-none ring-1 ring-inset ring-border focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]"
             />
           </div>
           <DialogFooter>

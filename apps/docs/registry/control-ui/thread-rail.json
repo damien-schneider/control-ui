@@ -4,7 +4,6 @@
   "type": "registry:component",
   "title": "ThreadRail",
   "description": "Conversation minimap for scanning and jumping between chat turns.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/thread-rail.css\";",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -21,6 +20,9 @@
       "type": "registry:component"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/thread-rail.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/thread-rail.json"
   }

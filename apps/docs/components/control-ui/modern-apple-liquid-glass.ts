@@ -279,14 +279,7 @@ function radius(
 
 function cornerExponent(styles: CSSStyleDeclaration): number {
   if (!CSS.supports("corner-shape: squircle")) return 2;
-  const shape = [
-    styles.getPropertyValue("corner-shape"),
-    styles.getPropertyValue("--corner-shape-popover"),
-    styles.getPropertyValue("--corner-shape-panel"),
-    styles.getPropertyValue("--corner-shape"),
-  ]
-    .join(" ")
-    .toLowerCase();
+  const shape = [styles.getPropertyValue("corner-shape"), styles.getPropertyValue("--corner-shape")].join(" ").toLowerCase();
   return shape.includes("squircle") || shape.includes("superellipse") ? 4 : 2;
 }
 

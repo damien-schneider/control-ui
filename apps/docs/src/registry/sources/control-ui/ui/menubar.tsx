@@ -54,7 +54,7 @@ export function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
       data-control="true"
       data-size="sm"
       className={cn(
-        "inline-flex cursor-default select-none items-center rounded-[var(--radius-control)] font-medium text-foreground outline-none transition hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-foreground/20 data-[popup-open]:bg-foreground/7 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-45",
+        "inline-flex cursor-default select-none items-center rounded-[var(--radius-control)] font-medium text-foreground outline-none transition hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[popup-open]:bg-foreground/7 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-45",
         controlSize({ size: "sm" }),
         skinSlot("menubar", "trigger", {}),
         className,

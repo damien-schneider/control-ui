@@ -86,7 +86,7 @@ function ToastList() {
               data-control-ui="toast"
               data-slot="action"
               className={cn(
-                "shrink-0 cursor-pointer rounded-[var(--radius-control)] px-2 py-1 text-xs font-medium text-foreground ring-1 ring-inset ring-border transition hover:bg-foreground/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20",
+                "shrink-0 cursor-pointer rounded-[var(--radius-control)] px-2 py-1 text-xs font-medium text-foreground ring-1 ring-inset ring-border transition hover:bg-foreground/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
                 skinSlot("toast", "action", {}),
               )}
             />
@@ -96,7 +96,7 @@ function ToastList() {
             data-slot="close"
             aria-label="Close"
             className={cn(
-              "-mr-1 -mt-1 shrink-0 cursor-pointer rounded-[var(--radius-control)] p-1 text-muted-foreground opacity-70 transition hover:bg-muted hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20",
+              "-mr-1 -mt-1 shrink-0 cursor-pointer rounded-[var(--radius-control)] p-1 text-muted-foreground opacity-70 transition hover:bg-muted hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
               skinSlot("toast", "close", {}),
             )}
           >

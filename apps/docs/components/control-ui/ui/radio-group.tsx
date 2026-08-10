@@ -33,7 +33,7 @@ export function Radio({ className, disabled, ...props }: RadioProps) {
         "group/radio relative inline-flex size-4 shrink-0 cursor-pointer items-center justify-center rounded-full outline-none",
         "bg-card/72 shadow-sm ring-1 ring-inset ring-border transition duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:ring-foreground/25",
         "data-[checked]:bg-primary data-[checked]:ring-primary",
-        "focus-visible:ring-2 focus-visible:ring-foreground/20",
+        "focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
         "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
         "data-[invalid]:ring-2 data-[invalid]:ring-destructive",
         skinSlot("radio-group", "item", { disabled: disabled ?? false }),

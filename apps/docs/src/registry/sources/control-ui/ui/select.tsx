@@ -46,7 +46,7 @@ export function SelectTrigger({ size = "sm", variant = "surface", className, chi
       data-size={size}
       data-variant={variant}
       className={cn(
-        "group relative isolate inline-flex shrink-0 cursor-pointer items-center justify-between overflow-visible rounded-[var(--radius-control)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-45",
+        "group relative isolate inline-flex shrink-0 cursor-pointer items-center justify-between overflow-visible rounded-[var(--radius-control)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
         variantClasses[variant],
         controlSize({ size }),
         skinSlot("select", "trigger", { size, variant }),

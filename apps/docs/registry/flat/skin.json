@@ -4,7 +4,6 @@
   "type": "registry:theme",
   "title": "Flat skin",
   "description": "Neutral reset skin with square corners, no shadows, and instant motion.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -26,6 +25,10 @@
       "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+    "@import \"../components/control-ui/styles/skin.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/flat/skin.json"
   }

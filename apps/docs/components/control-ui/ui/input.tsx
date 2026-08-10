@@ -8,7 +8,7 @@ import { skinSlot } from "@/components/control-ui/skin";
 
 // Auto-wires to Field through `FieldControl render={<Input/>}`, which is what publishes validity data-* ring styles off.
 const fieldClasses =
-  "rounded-[var(--radius-control)] border bg-card/72 text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive";
+  "rounded-[var(--radius-control)] border bg-card/72 text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive";
 
 export function Input({ size = "md", className, ...props }: InputProps) {
   return (

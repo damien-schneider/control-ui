@@ -205,7 +205,7 @@ function useUserAskOptionContext() {
 const optionRowClasses = cn(
   "grid w-full grid-cols-[auto_minmax(0,1fr)] items-start gap-2.5 rounded-[var(--radius-popup-item)] px-2 py-1.5 text-left text-sm",
   "transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
-  "hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20",
+  "hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
 );
 
 function optionIndicatorClasses(selected: boolean) {

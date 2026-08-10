@@ -4,7 +4,6 @@
   "type": "registry:style",
   "title": "SendAurora",
   "description": "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/send-aurora.css\";",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -21,6 +20,9 @@
       "type": "registry:component"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/send-aurora.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/send-aurora.json"
   }

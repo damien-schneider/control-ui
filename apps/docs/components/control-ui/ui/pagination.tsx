@@ -27,7 +27,7 @@ export function PaginationItem({ className, ...props }: ComponentProps<"li">) {
 }
 
 const paginationLinkChrome =
-  "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-control)] px-2.5 text-sm font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/20 aria-disabled:pointer-events-none aria-disabled:opacity-45 [&>svg]:size-4 [&>svg]:shrink-0";
+  "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-control)] px-2.5 text-sm font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] aria-disabled:pointer-events-none aria-disabled:opacity-45 [&>svg]:size-4 [&>svg]:shrink-0";
 
 export function PaginationLink({ isActive = false, className, ...props }: PaginationLinkProps) {
   return (

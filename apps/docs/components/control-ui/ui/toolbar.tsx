@@ -47,7 +47,7 @@ export function ToolbarButton({ iconOnly = false, className, ...props }: Refined
       data-size="sm"
       data-icon-only={iconOnly ? "true" : undefined}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-[var(--toolbar-item-radius-fit)] font-medium text-muted-foreground outline-none transition-colors select-none hover:bg-foreground/6 hover:text-foreground data-[pressed]:bg-foreground/8 data-[pressed]:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex shrink-0 items-center justify-center rounded-[var(--toolbar-item-radius-fit)] font-medium text-muted-foreground outline-none transition-colors select-none hover:bg-foreground/6 hover:text-foreground data-[pressed]:bg-foreground/8 data-[pressed]:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         controlSize({ size: "sm" }),
         "px-2",
         iconOnly && "aspect-square px-0",
@@ -71,7 +71,7 @@ export function ToolbarLink({ variant = "default", className, ...props }: Refine
       data-size="sm"
       data-variant={variant}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-[var(--toolbar-item-radius-fit)] font-medium text-muted-foreground no-underline outline-none transition-colors hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex shrink-0 items-center justify-center rounded-[var(--toolbar-item-radius-fit)] font-medium text-muted-foreground no-underline outline-none transition-colors hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         controlSize({ size: "sm" }),
         "px-2",
         // inside TrackHighlight track pill owns every background, and active row yields its emphasis while pill visits hovered sibling
@@ -126,7 +126,7 @@ export function ToolbarInput({ className, ...props }: RefinedToolbarInputProps) 
       data-control="true"
       data-size="sm"
       className={cn(
-        "min-w-0 rounded-[var(--toolbar-item-radius-fit)] bg-transparent font-medium text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 data-[disabled]:opacity-50",
+        "min-w-0 rounded-[var(--toolbar-item-radius-fit)] bg-transparent font-medium text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[disabled]:opacity-50",
         controlSize({ size: "sm" }),
         "px-2",
         "group-data-[variant=inverse]/toolbar:text-background group-data-[variant=inverse]/toolbar:placeholder:text-background/70 group-data-[variant=inverse]/toolbar:focus-visible:ring-background/30",

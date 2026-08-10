@@ -29,6 +29,31 @@ function literalAttribute(attributes: any[], name: string): { present: boolean; 
   return { present: true, dynamic: true };
 }
 
+function propertyKeyName(member: any): string | undefined {
+  if (member.type !== "TSPropertySignature") return undefined;
+  return member.key.type === "StringLiteral" ? member.key.value : member.key.name;
+}
+
+function skinSlotContextsMembers(node: any): any[] {
+  if (node.type !== "TSTypeAliasDeclaration" || node.id.name !== "SkinSlotContexts") return [];
+  return node.typeAnnotation.type === "TSTypeLiteral" ? node.typeAnnotation.members : [];
+}
+
+function declaredSlotParts(): Set<string> {
+  const source = readFileSync(join(registryRoot, "skin.ts"), "utf8");
+  const ast = parse(source, { sourceType: "module", plugins: ["typescript"] });
+  const declared = new Set<string>();
+  visit(ast, (node) => {
+    for (const member of skinSlotContextsMembers(node)) {
+      const scope = propertyKeyName(member);
+      const parts = member.typeAnnotation?.typeAnnotation;
+      if (!scope || parts?.type !== "TSTypeLiteral") continue;
+      for (const part of parts.members.map(propertyKeyName)) if (part) declared.add(`${scope}:${part}`);
+    }
+  });
+  return declared;
+}
+
 function literalObjectProperty(node: any, name: string): string | undefined {
   const property = node.properties.find((candidate: any) => {
     if (candidate.type !== "ObjectProperty") return false;
@@ -177,6 +202,9 @@ describe("Control UI anatomy contract", () => {
       });
     }
     for (const hook of slotHooks) if (!renderedParts.has(hook)) violations.push(`${hook} is a skin slot without rendered anatomy`);
+    for (const declared of declaredSlotParts()) {
+      if (!slotHooks.has(declared)) violations.push(`${declared} is declared in SkinSlotContexts but no component calls skinSlot for it`);
+    }
     expect(violations).toEqual([]);
   });
 

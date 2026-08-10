@@ -4,7 +4,6 @@
   "type": "registry:style",
   "title": "Typography",
   "description": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/type-scale.css\";",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -16,6 +15,9 @@
       "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/type-scale.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/typography.json"
   }

@@ -566,24 +566,6 @@
       "description": "Progressive corner reshape (round | squircle | scoop | …)."
     },
     {
-      "name": "--corner-shape-control",
-      "group": "radius",
-      "tier": "derived",
-      "description": "Corner shape for controls; defaults to --corner-shape."
-    },
-    {
-      "name": "--corner-shape-popover",
-      "group": "radius",
-      "tier": "derived",
-      "description": "Corner shape for floating surfaces; defaults to --corner-shape."
-    },
-    {
-      "name": "--corner-shape-panel",
-      "group": "radius",
-      "tier": "derived",
-      "description": "Corner shape for panels; defaults to --corner-shape."
-    },
-    {
       "name": "--corner-radius-fit",
       "group": "radius",
       "tier": "advanced",

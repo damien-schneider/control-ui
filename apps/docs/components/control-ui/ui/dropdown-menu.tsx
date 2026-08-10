@@ -46,7 +46,7 @@ export function DropdownMenuTrigger({
       data-icon-only={iconOnly ? "true" : undefined}
       data-variant={variant}
       className={cn(
-        "relative isolate inline-flex shrink-0 cursor-pointer items-center justify-center overflow-visible rounded-[var(--radius-control)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-45",
+        "relative isolate inline-flex shrink-0 cursor-pointer items-center justify-center overflow-visible rounded-[var(--radius-control)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
         variantClasses[variant],
         controlSize({ size }),
         iconOnly && "aspect-square px-0",

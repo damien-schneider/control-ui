@@ -19,7 +19,7 @@ import { skinSlot } from "@/components/control-ui/skin";
 
 // `variant` is structure only — radius and size come from shared control tokens
 const buttonVariant = cva(
-  "relative isolate inline-flex shrink-0 cursor-pointer items-center justify-center overflow-visible whitespace-nowrap rounded-[var(--radius-control)] font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-45 active:scale-[0.98]",
+  "relative isolate inline-flex shrink-0 cursor-pointer items-center justify-center overflow-visible whitespace-nowrap rounded-[var(--radius-control)] font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45 active:scale-[0.98]",
   {
     variants: {
       variant: {
@@ -170,7 +170,7 @@ export function ButtonLabel({
       className={cn(
         buttonRecipeClasses(variant, tone, size, shape),
         iconOnly && "aspect-square px-0",
-        "has-focus-visible:ring-2 has-focus-visible:ring-foreground/20",
+        "has-focus-visible:ring-2 has-focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
         skinClasses,
         className,
       )}

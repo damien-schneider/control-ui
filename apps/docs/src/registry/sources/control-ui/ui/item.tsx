@@ -10,7 +10,7 @@ import { Separator } from "@/components/control-ui/ui/separator";
 
 // `render` turns whole row into link or button, so it becomes one focus and hover target.
 const itemVariant = cva(
-  "flex items-center gap-3 rounded-[var(--radius-lg)] p-3 text-sm outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/20 [&[href]]:cursor-pointer",
+  "flex items-center gap-3 rounded-[var(--radius-lg)] p-3 text-sm outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] [&[href]]:cursor-pointer",
   {
     variants: {
       variant: {

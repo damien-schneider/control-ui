@@ -66,13 +66,7 @@ function normalizeCornerShape(value: string): LiquidCornerShape {
 }
 
 function controlCornerShape(styles: CSSStyleDeclaration): LiquidCornerShape {
-  return normalizeCornerShape(
-    [
-      styles.getPropertyValue("corner-shape"),
-      styles.getPropertyValue("--corner-shape-control"),
-      styles.getPropertyValue("--corner-shape"),
-    ].join(" "),
-  );
+  return normalizeCornerShape([styles.getPropertyValue("corner-shape"), styles.getPropertyValue("--corner-shape")].join(" "));
 }
 
 function controlKind(rect: DOMRectReadOnly, cornerRadius: number, cornerShape: LiquidCornerShape): "circle" | "pill" {
@@ -213,7 +207,7 @@ function styleChromeNodes(canvas: HTMLCanvasElement, inner: HTMLSpanElement) {
     width: "100%",
     zIndex: "1",
   });
-  canvas.style.setProperty("corner-shape", "var(--corner-shape-control, var(--corner-shape, round))");
+  canvas.style.setProperty("corner-shape", "var(--corner-shape, round)");
 
   Object.assign(inner.style, {
     background:
@@ -225,7 +219,7 @@ function styleChromeNodes(canvas: HTMLCanvasElement, inner: HTMLSpanElement) {
     position: "absolute",
     zIndex: "1",
   });
-  inner.style.setProperty("corner-shape", "var(--corner-shape-control, var(--corner-shape, round))");
+  inner.style.setProperty("corner-shape", "var(--corner-shape, round)");
 }
 
 function primeControl(control: HTMLElement) {
@@ -241,7 +235,7 @@ function primeControl(control: HTMLElement) {
   }
   control.style.isolation = "isolate";
   control.style.overflow = "visible";
-  control.style.setProperty("corner-shape", "var(--corner-shape-control, var(--corner-shape, round))");
+  control.style.setProperty("corner-shape", "var(--corner-shape, round)");
 
   return previousStyle;
 }

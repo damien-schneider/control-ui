@@ -4,7 +4,6 @@
   "type": "registry:style",
   "title": "Windows XP skin",
   "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -26,6 +25,10 @@
       "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+    "@import \"../components/control-ui/styles/skin.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/xp/skin.json"
   }

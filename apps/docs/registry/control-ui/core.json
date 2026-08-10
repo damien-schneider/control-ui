@@ -4,7 +4,6 @@
   "type": "registry:base",
   "title": "Control UI core",
   "description": "Shared contracts, skin resolver, utilities, token bindings, and invariant mechanics for Control UI.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/theme.css\"; @import \"../components/control-ui/styles/effects.css\";",
   "dependencies": [
     "class-variance-authority@^0.7.1",
     "clsx@^2.1.1",
@@ -53,6 +52,10 @@
       "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/theme.css\"": {},
+    "@import \"../components/control-ui/styles/effects.css\"": {}
+  },
   "meta": {
     "internal": true,
     "sourceManifestPath": "registry/control-ui/core.json"

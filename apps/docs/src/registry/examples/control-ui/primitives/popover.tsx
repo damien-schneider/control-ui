@@ -29,7 +29,7 @@ export function PrimitivePopoverExample() {
             <input
               id="popover-width"
               defaultValue="320px"
-              className="h-8 w-24 rounded-[var(--radius-control)] bg-background px-2 text-right outline-none ring-1 ring-inset ring-border focus-visible:ring-2 focus-visible:ring-foreground/20"
+              className="h-8 w-24 rounded-[var(--radius-control)] bg-background px-2 text-right outline-none ring-1 ring-inset ring-border focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]"
             />
             <label htmlFor="popover-height" className="text-muted-foreground">
               Height
@@ -37,7 +37,7 @@ export function PrimitivePopoverExample() {
             <input
               id="popover-height"
               defaultValue="180px"
-              className="h-8 w-24 rounded-[var(--radius-control)] bg-background px-2 text-right outline-none ring-1 ring-inset ring-border focus-visible:ring-2 focus-visible:ring-foreground/20"
+              className="h-8 w-24 rounded-[var(--radius-control)] bg-background px-2 text-right outline-none ring-1 ring-inset ring-border focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]"
             />
           </div>
         </PopoverContent>

@@ -64,11 +64,6 @@
   --font-body: var(--font-sans);
   --font-display: var(--font-sans);
 
-  /* per-surface corner shapes follow the skin's single --corner-shape knob */
-  --corner-shape-control: var(--corner-shape);
-  --corner-shape-popover: var(--corner-shape);
-  --corner-shape-panel: var(--corner-shape);
-
   --popup-item-foreground: var(--foreground);
   --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
   --popup-item-disabled-opacity: 0.4;
@@ -92,6 +87,16 @@
      at gap*ratio, so header controls never clip. */
   --nest-corner-ratio: 3.41421356;
   --control-h-md: var(--control-h);
+
+  /* shadcn Sidebar compat: --sidebar* aliases existing tokens; row state derives from --foreground alpha. */
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: oklch(from var(--foreground) l c h / 0.06);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 @theme inline {
@@ -117,6 +122,14 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 
   /* Self-references, not values: @theme merges globally across all skin packs in one Tailwind build,
      so a value here could never differ per skin. Self-ref keeps the var alive in the emitted utility,
@@ -268,68 +281,6 @@
       corner-shape: var(--corner-shape);
     }
 
-    :where(
-        [data-control-ui="button"][data-slot="root"],
-        [data-control-ui="checkbox"][data-slot="root"],
-        [data-control-ui="input"][data-slot="root"],
-        [data-control-ui="input-group"][data-slot="root"],
-        [data-control-ui="dropdown-menu"][data-slot="trigger"],
-        [data-control-ui="select"][data-slot="trigger"],
-        [data-control-ui="tabs"][data-slot="tab"],
-        [data-control-ui="tabs"][data-slot="indicator"],
-        [data-control-ui="tabs"][data-slot="list"],
-        [data-control-ui="dropdown-menu"][data-slot="item"],
-        [data-control-ui="select"][data-slot="item"],
-        [data-control-ui="command"][data-slot="item"],
-        [data-control-ui="trigger-menu"][data-slot="item"],
-        [data-control-ui="kbd"][data-slot="root"],
-        [data-control-ui="context-menu"][data-slot="item"],
-        [data-control-ui="context-menu"][data-slot="checkbox-item"],
-        [data-control-ui="context-menu"][data-slot="radio-item"],
-        [data-control-ui="context-menu"][data-slot="sub-trigger"],
-        [data-control-ui="slider"][data-slot="indicator"],
-        [data-control-ui="slider"][data-slot="thumb"],
-        [data-control-ui="slider"][data-slot="track"],
-        [data-control-ui="badge"][data-slot="root"],
-        [data-control-ui="native-select"][data-slot="root"],
-        [data-control-ui="textarea"][data-slot="root"],
-        [data-control-ui="menubar"][data-slot="item"],
-        [data-control-ui="menubar"][data-slot="sub-trigger"],
-        [data-control-ui="navigation-menu"][data-slot="trigger"],
-        [data-control-ui="input-otp"][data-slot="slot"],
-        [data-control-ui="combobox"][data-slot="input"],
-        [data-control-ui="combobox"][data-slot="trigger"],
-        [data-control-ui="combobox"][data-slot="item"],
-        [data-control-ui="pagination"][data-slot="link"],
-        [data-control-ui="autocomplete"][data-slot="input"],
-        [data-control-ui="autocomplete"][data-slot="item"],
-        [data-control-ui="autocomplete"][data-slot="clear"],
-        [data-control-ui="toolbar"][data-slot="root"],
-        [data-control-ui="toolbar"][data-slot="button"],
-        [data-control-ui="toolbar"][data-slot="link"],
-        [data-control-ui="toolbar"][data-slot="input"],
-        [data-control-ui="dockable-panel"][data-slot="drag-handle"],
-        [data-control-ui="dockable-panel"][data-slot="toggle"],
-        [data-control-ui="dockable-panel"][data-slot="dock"],
-        [data-control-ui="dockable-panel"][data-slot="close"],
-        [data-control-ui="number-field"][data-slot="group"],
-        [data-control-ui="calendar"][data-slot="day"],
-        [data-control-ui="color-picker"][data-slot="trigger"],
-        [data-control-ui="audio-recorder"][data-slot="root"],
-        [data-control-ui="audio-recorder"][data-slot="trigger"],
-        [data-control-ui="audio-recorder"][data-slot="cancel"],
-        [data-control-ui="audio-recorder"][data-slot="submit"]
-      ) {
-      corner-shape: var(--corner-shape-control);
-    }
-
-    :where([data-control-ui][data-slot][data-surface="floating"]) {
-      corner-shape: var(--corner-shape-popover);
-    }
-
-    :where([data-control-ui][data-slot][data-surface="modal"], [data-control-ui][data-slot][data-surface="panel"]) {
-      corner-shape: var(--corner-shape-panel);
-    }
   }
 
   /* Squircle w/o corner-shape support falls back to plain round radius, reading over-rounded; shrink
@@ -504,7 +455,7 @@
     --tabs-indicator-shadow: var(--shadow-sm);
     --tabs-indicator-ease: var(--ease-standard);
     --tabs-trigger-font-size: var(--text-label);
-    --tabs-trigger-focus-shadow: 0 0 0 2px oklch(from var(--foreground) l c h / 0.2);
+    --tabs-trigger-focus-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
     --tabs-line-border-color: var(--border);
     --tabs-line-indicator-bg: var(--foreground);
     position: relative;

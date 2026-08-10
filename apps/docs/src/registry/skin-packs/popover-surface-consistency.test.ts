@@ -12,7 +12,6 @@ import { skin as xp } from "./xp/skin.config";
 const POPUP_FAMILY_SKINS = [cuicui, linear, modernApple, xp];
 
 const MODERN_APPLE_CSS = readFileSync(fileURLToPath(new URL("./modern-apple/skin.css", import.meta.url)), "utf8");
-const CORE_CSS = readFileSync(fileURLToPath(new URL("../sources/control-ui/theme.css", import.meta.url)), "utf8");
 
 // JSON import types each scope as its own literal key; reading map through record shape keeps runtime
 // scope string indexable without asserting that key exists.
@@ -24,13 +23,6 @@ function hasContractPart(scope: string, part: string) {
 }
 
 describe("semantic surface roles", () => {
-  test("core corner geometry is role-driven", () => {
-    expect(CORE_CSS).toContain(':where([data-control-ui][data-slot][data-surface="floating"])');
-    expect(CORE_CSS).toContain(
-      ':where([data-control-ui][data-slot][data-surface="modal"], [data-control-ui][data-slot][data-surface="panel"])',
-    );
-  });
-
   test("Modern Apple material and runtime share the same role selector", () => {
     expect(MODERN_APPLE_CSS).toContain(
       ':is([data-control-ui][data-slot][data-surface="floating"], [data-control-ui][data-slot][data-surface="modal"])',

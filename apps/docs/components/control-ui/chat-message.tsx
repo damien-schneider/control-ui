@@ -60,6 +60,7 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
         "group flex w-full gap-2",
         message.isUser ? "justify-end" : "justify-start",
         message.isCompact ? "py-1" : "py-2",
+        skinSlot("chat-message", "row", {}),
         className,
       )}
       {...props}

@@ -3,7 +3,6 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcss, { type AtRule, type Declaration, type Node, type Root, type Rule } from "postcss";
-import { assertCompleteSkinTokens } from "../lib/define-skin-tokens";
 import { REQUIRED_THEME_CONTRACT, THEME_CONTRACT, THEME_CONTRACT_NAMES } from "../lib/theme-contract";
 
 const DERIVED_CONTRACT_NAMES = new Set(THEME_CONTRACT.filter((token) => token.tier === "derived").map((token) => token.name));
@@ -240,34 +239,6 @@ describe("theme contract ownership", () => {
       .filter((declaration) => THEME_CONTRACT_NAMES.has(declaration.prop) && !coreContractDeclarationIsAllowed(declaration))
       .map(sourceLabel);
     expect(offenders).toEqual([]);
-  });
-});
-
-describe("generated skin token maps", () => {
-  const complete = Object.fromEntries(THEME_CONTRACT.map((token) => [token.name, "initial"]));
-
-  test("accept complete explicit light and dark maps", () => {
-    expect(() => assertCompleteSkinTokens({ light: complete, dark: complete }, "test skin")).not.toThrow();
-  });
-
-  test("reject a missing mode value", () => {
-    const light = { ...complete };
-    delete light["--primary"];
-    expect(() => assertCompleteSkinTokens({ light, dark: complete }, "test skin")).toThrow("--primary (light)");
-  });
-
-  test("derived-tier tokens are optional — the core default covers them", () => {
-    const light = { ...complete };
-    const dark = { ...complete };
-    for (const name of DERIVED_CONTRACT_NAMES) {
-      delete light[name];
-      delete dark[name];
-    }
-    expect(() => assertCompleteSkinTokens({ light, dark }, "test skin")).not.toThrow();
-  });
-
-  test("reject a token outside the contract", () => {
-    expect(() => assertCompleteSkinTokens({ light: { ...complete, "--unknown": "1" }, dark: complete }, "test skin")).toThrow("--unknown");
   });
 });
 

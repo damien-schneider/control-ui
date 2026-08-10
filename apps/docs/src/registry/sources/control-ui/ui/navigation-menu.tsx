@@ -63,7 +63,7 @@ export function NavigationMenuTrigger({ className, children, ...props }: Navigat
       data-control="true"
       data-size="sm"
       className={cn(
-        "inline-flex cursor-default select-none items-center rounded-[var(--radius-control)] font-medium text-muted-foreground outline-none transition hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 data-[popup-open]:bg-foreground/7 data-[popup-open]:text-foreground",
+        "inline-flex cursor-default select-none items-center rounded-[var(--radius-control)] font-medium text-muted-foreground outline-none transition hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[popup-open]:bg-foreground/7 data-[popup-open]:text-foreground",
         controlSize({ size: "sm" }),
         skinSlot("navigation-menu", "trigger", {}),
         className,
@@ -106,7 +106,7 @@ export function NavigationMenuLink({ variant = "default", className, active, chi
       data-variant={variant}
       active={active}
       className={cn(
-        "block select-none rounded-[var(--radius-md)] px-3 py-2 text-body text-foreground no-underline outline-none transition hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-foreground/20 data-[active]:bg-foreground/6 data-[active]:text-foreground",
+        "block select-none rounded-[var(--radius-md)] px-3 py-2 text-body text-foreground no-underline outline-none transition hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[active]:bg-foreground/6 data-[active]:text-foreground",
         variant === "compact" &&
           "inline-flex h-[var(--control-h-sm)] items-center px-[calc(var(--padding-x)*0.75)] py-0 text-xs font-medium text-muted-foreground hover:text-foreground",
         skinSlot("navigation-menu", "link", { active: Boolean(active), variant }),

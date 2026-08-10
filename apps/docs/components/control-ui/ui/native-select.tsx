@@ -12,7 +12,7 @@ export function NativeSelect({ size = "md", className, children, ...props }: Nat
         data-slot="root"
         data-size={size}
         className={cn(
-          "w-full min-w-0 cursor-pointer appearance-none rounded-[var(--radius-control)] pr-[calc(var(--padding-x)*1.4)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive",
+          "w-full min-w-0 cursor-pointer appearance-none rounded-[var(--radius-control)] pr-[calc(var(--padding-x)*1.4)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive",
           controlSurfaceClasses,
           controlSize({ size }),
           skinSlot("native-select", "root", { size }),

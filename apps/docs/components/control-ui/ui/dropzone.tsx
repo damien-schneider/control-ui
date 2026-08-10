@@ -171,7 +171,7 @@ export function DropzoneTrigger({ className, children, onClick, disabled, ...pro
       data-state={context.visualState}
       data-disabled={triggerDisabled ? "true" : undefined}
       className={cn(
-        "flex min-h-32 w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-[var(--radius-panel)] border border-dashed border-border bg-card p-6 text-center text-foreground outline-none transition-[background-color,border-color,color,opacity] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:bg-muted/50 focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-50 data-[state=accept]:border-primary data-[state=accept]:text-primary-text data-[state=reject]:border-destructive data-[state=reject]:text-destructive-text data-[state=unknown]:border-muted-foreground data-[state=unknown]:text-muted-foreground",
+        "flex min-h-32 w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-[var(--radius-panel)] border border-dashed border-border bg-card p-6 text-center text-foreground outline-none transition-[background-color,border-color,color,opacity] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:bg-muted/50 focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=accept]:border-primary data-[state=accept]:text-primary-text data-[state=reject]:border-destructive data-[state=reject]:text-destructive-text data-[state=unknown]:border-muted-foreground data-[state=unknown]:text-muted-foreground",
         skinSlot("dropzone", "trigger", {
           state: context.visualState,
           disabled: triggerDisabled,

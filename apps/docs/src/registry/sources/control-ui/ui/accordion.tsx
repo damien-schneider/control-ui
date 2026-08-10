@@ -37,7 +37,7 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
         data-slot="trigger"
         className={cn(
           "group flex flex-1 items-center justify-between gap-4 py-3 text-left text-sm font-medium text-foreground outline-none",
-          "cursor-pointer select-none transition-colors hover:text-foreground/80 focus-visible:ring-2 focus-visible:ring-foreground/20",
+          "cursor-pointer select-none transition-colors hover:text-foreground/80 focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
           "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
           skinSlot("accordion", "trigger", {}),
           className,

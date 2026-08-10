@@ -1389,7 +1389,6 @@
       "type": "registry:component",
       "title": "ChatComposer",
       "description": "Prompt composer with controlled text, submit state, and trigger-menu support.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/chat-composer-editor.css\";",
       "dependencies": [
         "prosemirror-commands@^1.7.1",
         "prosemirror-history@^1.5.0",
@@ -1450,6 +1449,9 @@
           "type": "registry:component"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/control-ui/chat-composer.json"
       }
@@ -1580,7 +1582,6 @@
       "type": "registry:ui",
       "title": "Code",
       "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/code.css\";",
       "dependencies": [
         "@tanstack/react-virtual@^3.14.8",
         "lucide-react@^1.27.0",
@@ -1609,6 +1610,9 @@
           "type": "registry:ui"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/code.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/control-ui/code.json"
       }
@@ -2044,7 +2048,6 @@
       "type": "registry:component",
       "title": "DynamicNotification",
       "description": "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/dynamic-notification.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2083,6 +2086,9 @@
           "type": "registry:component"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/dynamic-notification.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/control-ui/dynamic-notification.json"
       }
@@ -2934,7 +2940,6 @@
       "type": "registry:style",
       "title": "SendAurora",
       "description": "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/send-aurora.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2951,6 +2956,9 @@
           "type": "registry:component"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/send-aurora.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/control-ui/send-aurora.json"
       }
@@ -3051,7 +3059,6 @@
       "type": "registry:style",
       "title": "Cuicui skin",
       "description": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -3074,6 +3081,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/cuicui/skin.json"
       }
@@ -3084,7 +3095,6 @@
       "type": "registry:theme",
       "title": "Flat skin",
       "description": "Neutral reset skin with square corners, no shadows, and instant motion.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3106,6 +3116,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/flat/skin.json"
       }
@@ -3116,7 +3130,6 @@
       "type": "registry:style",
       "title": "Linear skin",
       "description": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3138,6 +3151,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/linear/skin.json"
       }
@@ -3148,7 +3165,6 @@
       "type": "registry:style",
       "title": "Liquid metal skin",
       "description": "Polished metal skin with a WebGL shader control surface.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [
         "metal-fx@^1.0.4"
       ],
@@ -3177,6 +3193,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/liquid-metal/skin.json"
       }
@@ -3220,6 +3240,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/modern-apple/skin.json"
       }
@@ -3230,7 +3254,6 @@
       "type": "registry:theme",
       "title": "Refined skin",
       "description": "Compact, calm starting skin with a complete Control UI token contract.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3252,6 +3275,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/refined/skin.json"
       }
@@ -3262,7 +3289,6 @@
       "type": "registry:theme",
       "title": "Rig skin",
       "description": "Brutalist skin with coral accents, squared corners, and dense typography.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3284,6 +3310,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/rig/skin.json"
       }
@@ -3294,7 +3324,6 @@
       "type": "registry:style",
       "title": "Windows XP skin",
       "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3316,6 +3345,10 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/xp/skin.json"
       }
@@ -3583,7 +3616,6 @@
       "type": "registry:component",
       "title": "ThreadRail",
       "description": "Conversation minimap for scanning and jumping between chat turns.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/thread-rail.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3600,6 +3632,9 @@
           "type": "registry:component"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/thread-rail.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/control-ui/thread-rail.json"
       }
@@ -3787,7 +3822,6 @@
       "type": "registry:style",
       "title": "Typography",
       "description": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
-      "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/type-scale.css\";",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3799,6 +3833,9 @@
           "type": "registry:file"
         }
       ],
+      "css": {
+        "@import \"../components/control-ui/styles/type-scale.css\"": {}
+      },
       "meta": {
         "sourceManifestPath": "registry/control-ui/typography.json"
       }

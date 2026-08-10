@@ -4,7 +4,6 @@
   "type": "registry:theme",
   "title": "Rig skin",
   "description": "Brutalist skin with coral accents, squared corners, and dense typography.",
-  "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\";",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -26,6 +25,10 @@
       "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+    "@import \"../components/control-ui/styles/skin.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/rig/skin.json"
   }

@@ -24,9 +24,9 @@ describe("theme anatomy coverage", () => {
     expect(unknown).toEqual([]);
   });
 
-  test("surface corner geometry uses semantic roles instead of component lists", () => {
-    expect(CSS).toContain(':where([data-control-ui][data-slot][data-surface="floating"])');
-    expect(CSS).toContain(':where([data-control-ui][data-slot][data-surface="modal"], [data-control-ui][data-slot][data-surface="panel"])');
+  test("corner geometry rides the single --corner-shape knob on the universal anatomy selector", () => {
+    expect(/:where\(\[data-control-ui\]\[data-slot\]\)\s*\{\s*corner-shape: var\(--corner-shape\);/.test(CSS)).toBe(true);
+    expect(CSS).not.toContain("--corner-shape-control");
     expect(CSS).toContain('[data-control-ui="chat-message"][data-slot="root"]');
     expect(CSS).toContain('[data-control-ui="chat-composer"][data-slot="root"]');
     expect(skinContract.semanticFamilies.surfaces.floating.length).toBeGreaterThan(10);

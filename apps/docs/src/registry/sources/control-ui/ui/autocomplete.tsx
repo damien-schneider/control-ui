@@ -31,7 +31,7 @@ export function AutocompleteClear({ className, children, ...props }: Autocomplet
       data-slot="clear"
       aria-label="Clear search"
       className={cn(
-        "inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-[var(--radius-control)] text-muted-foreground outline-none transition hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-45",
+        "inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-[var(--radius-control)] text-muted-foreground outline-none transition hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
         skinSlot("autocomplete", "clear", {}),
         className,
       )}
@@ -59,7 +59,7 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
         data-control="true"
         data-size={size}
         className={cn(
-          "w-full min-w-0 rounded-[var(--radius-control)] pr-9 font-medium outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-foreground/20 disabled:cursor-not-allowed disabled:opacity-45",
+          "w-full min-w-0 rounded-[var(--radius-control)] pr-9 font-medium outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
           controlSurfaceClasses,
           controlSize({ size }),
           skinSlot("autocomplete", "input", { size }),

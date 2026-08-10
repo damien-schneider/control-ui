@@ -165,7 +165,7 @@ export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
       data-slot="panel"
       data-slide="panel"
       className={cn(
-        "outline-none data-[hidden]:hidden focus-visible:ring-2 focus-visible:ring-foreground/20 [&[hidden]]:hidden",
+        "outline-none data-[hidden]:hidden focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] [&[hidden]]:hidden",
         skinSlot("tabs", "panel", {}),
         className,
       )}

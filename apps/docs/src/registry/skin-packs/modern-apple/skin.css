@@ -148,7 +148,7 @@
  * surface, per user pref). Shares surface gloss+0.5px hairline; CONTAINED drop (popover's big
  * ambient would clip at this edge-pinned panel's float gap). border:0 — hairline IS the edge. */
 [data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"] [data-control-ui="sidebar"][data-slot="inner"] {
-  corner-shape: var(--corner-shape-panel, var(--corner-shape, round));
+  corner-shape: var(--corner-shape, round);
   border: 0;
   background-color: oklch(from var(--popover) l c h / var(--popover-opacity));
   -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);

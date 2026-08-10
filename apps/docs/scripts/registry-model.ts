@@ -476,7 +476,7 @@ function isHostOwnedPackageImport(source: string, specifier: string) {
   return hostOwnedPackageImports.has(`${source}::${specifier}`);
 }
 
-function registryDocs(files: RegistrySourceFile[]) {
+function registryCss(files: RegistrySourceFile[]): RegistryItem["css"] | undefined {
   const styles = [
     ...new Set(
       files.filter((file) => file.target.includes("/styles/")).map((file) => file.target.replace("@components/", "../components/")),
@@ -488,7 +488,7 @@ function registryDocs(files: RegistrySourceFile[]) {
     return (leftRank === -1 ? order.length : leftRank) - (rightRank === -1 ? order.length : rightRank) || left.localeCompare(right);
   });
   if (styles.length === 0) return undefined;
-  return `Add these imports once to app/globals.css: ${styles.map((style) => `@import "${style}";`).join(" ")}`;
+  return Object.fromEntries(styles.map((style) => [`@import "${style}"`, {}]));
 }
 
 type RegistryBuildContext = {
@@ -573,11 +573,11 @@ function createRegistryItem(definition: Definition, context: RegistryBuildContex
     type: definition.type,
     title: definition.title,
     description: definition.description,
-    docs: definition.docs ?? registryDocs(files),
+    docs: definition.docs,
     dependencies: [...npmDependencies].sort(),
     registryDependencies: [...registryDependencies].filter((id) => id !== definition.id).sort(),
     files,
-    css: definition.css,
+    css: definition.css ?? registryCss(files),
     meta: {
       internal: definition.internal || undefined,
       sourceManifestPath: sourceManifestPath(definition),

@@ -572,7 +572,7 @@ function FileExplorerBreadcrumbs({
                 type="button"
                 aria-current={isCurrent ? "page" : undefined}
                 className={cn(
-                  "min-w-0 truncate rounded-[var(--radius-popup-item)] px-1 py-0.5 text-muted-foreground outline-none transition hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/20",
+                  "min-w-0 truncate rounded-[var(--radius-popup-item)] px-1 py-0.5 text-muted-foreground outline-none transition hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
                   isCurrent && "text-foreground",
                 )}
                 onClick={() => onSelect(breadcrumb)}
