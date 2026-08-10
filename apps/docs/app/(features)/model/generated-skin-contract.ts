@@ -78,6 +78,7 @@ export const generatedSkinContract: SkinContract = {
     progress: ["progress"],
     "radio-group": ["radio-group"],
     resizable: ["resizable"],
+    "rich-tooltip": ["rich-tooltip"],
     "scroll-area": ["scroll-area"],
     select: ["select"],
     separator: ["separator"],
@@ -4396,8 +4397,18 @@ export const generatedSkinContract: SkinContract = {
     "inline-attachment": {
       parts: {
         root: {
+          context: {
+            state: "InlineAttachmentState",
+          },
           registryItems: ["inline-attachment"],
-          states: [],
+          states: [
+            {
+              attribute: "data-state",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["error", "pending", "ready"],
+            },
+          ],
         },
         action: {
           registryItems: ["inline-attachment"],
@@ -4408,6 +4419,10 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         image: {
+          registryItems: ["inline-attachment"],
+          states: [],
+        },
+        placeholder: {
           registryItems: ["inline-attachment"],
           states: [],
         },
@@ -6154,6 +6169,144 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["resizable"],
+    },
+    "rich-tooltip": {
+      parts: {
+        close: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        content: {
+          context: {
+            tone: "RichTooltipTone",
+          },
+          registryItems: ["rich-tooltip"],
+          states: [
+            {
+              attribute: "data-align",
+              source: "external",
+              valueKind: "enum",
+              values: ["center", "end", "start"],
+            },
+            {
+              attribute: "data-closed",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-ending-style",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-instant",
+              source: "external",
+              valueKind: "enum",
+              values: ["click", "dismiss", "focus", "trigger-change"],
+            },
+            {
+              attribute: "data-open",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-side",
+              source: "external",
+              valueKind: "enum",
+              values: ["bottom", "inline-end", "inline-start", "left", "right", "top"],
+            },
+            {
+              attribute: "data-starting-style",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-tone",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["accent", "surface"],
+            },
+          ],
+        },
+        description: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        dot: {
+          context: {
+            active: "boolean",
+          },
+          registryItems: ["rich-tooltip"],
+          states: [
+            {
+              attribute: "data-active",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        footer: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        header: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        media: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        next: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        previous: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        progress: {
+          context: {
+            variant: "RichTooltipProgressVariant",
+          },
+          registryItems: ["rich-tooltip"],
+          states: [
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["count", "dots"],
+            },
+          ],
+        },
+        title: {
+          registryItems: ["rich-tooltip"],
+          states: [],
+        },
+        trigger: {
+          registryItems: ["rich-tooltip"],
+          states: [
+            {
+              attribute: "data-popup-open",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-pressed",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+      },
+      registryItems: ["rich-tooltip"],
     },
     "scroll-area": {
       parts: {
@@ -8521,6 +8674,11 @@ export const generatedSkinContract: SkinContract = {
         context: {},
       },
     },
+    "inline-attachment": {
+      halftone: {
+        context: {},
+      },
+    },
     skeleton: {
       shimmer: {
         context: {},
@@ -8822,6 +8980,10 @@ export const generatedSkinContract: SkinContract = {
         },
         {
           scope: "popover",
+          part: "content",
+        },
+        {
+          scope: "rich-tooltip",
           part: "content",
         },
         {

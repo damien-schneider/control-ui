@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 160,
+    "count": 161,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -757,6 +757,14 @@
         "summary": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
         "href": "/primitives/tooltip",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tooltip.json"
+      },
+      {
+        "id": "rich-tooltip",
+        "name": "Rich tooltip",
+        "kind": "Primitive",
+        "summary": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
+        "href": "/primitives/rich-tooltip",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/rich-tooltip.json"
       },
       {
         "id": "drawer",

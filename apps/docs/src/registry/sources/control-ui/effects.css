@@ -53,6 +53,52 @@
   }
 }
 
+/* halftone — "media is being generated" fill for a box whose final size is already reserved (image gen placeholder).
+ * The lattice never moves and the mask is a fixed corner-to-corner fade; the dots themselves breathe, which is what
+ * reads as halftone. A travelling mask was tried and rejected: it leaves the box blank for most of the cycle.
+ * Registration required to interpolate the radius — browsers without @property hold the resting dot, never a broken box.
+ * Token-parameterized (pack re-values, no fork): --halftone-color, -dot (resting radius), -gap (lattice pitch). */
+@property --halftone-pulse {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@utility halftone {
+  --halftone-radius: calc(var(--halftone-dot, 1.4px) * var(--halftone-pulse));
+  background-image: radial-gradient(
+    circle at center,
+    var(--halftone-color, oklch(from var(--muted-foreground) l c h / 0.7)) var(--halftone-radius),
+    transparent calc(var(--halftone-radius) + 0.4px)
+  );
+  background-size: var(--halftone-gap, 11px) var(--halftone-gap, 11px);
+  -webkit-mask-image: linear-gradient(to top left, transparent 0%, oklch(0 0 0) 30%, oklch(0 0 0) 70%, transparent 100%);
+  mask-image: linear-gradient(to top left, transparent 0%, oklch(0 0 0) 30%, oklch(0 0 0) 70%, transparent 100%);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: aui-halftone calc(var(--duration-slow) * 6) var(--ease-standard) infinite;
+
+  /* Reduced motion: dots hold at their resting radius — still a legible placeholder, just no breathing. */
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+  :where([data-motion="reduced"]) & {
+    animation: none;
+  }
+}
+
+@keyframes aui-halftone {
+  0%,
+  100% {
+    --halftone-pulse: 0.55;
+  }
+  50% {
+    --halftone-pulse: 1.5;
+  }
+}
+
 /* progress-sweep — retro alt to shimmer-text: hard-edged --primary blocks marching L-to-R, clipped to text (Minecraft/Windows XP bar).
  * Token-parameterized (pack re-values, no fork): --progress-sweep-color, -block/-step (lit width/repeat period, gap=step−block), -fade (dim gap alpha).
  * text-shadow cleared — glyph shadow would paint over transparent fill (same reason as the fill reset). */

@@ -47,6 +47,7 @@ export const registryKindIds = [
   "dialog",
   "popover",
   "tooltip",
+  "rich-tooltip",
   "drawer",
   "responsive-dialog",
   "toast",

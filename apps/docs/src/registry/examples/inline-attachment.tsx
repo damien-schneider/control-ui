@@ -5,15 +5,18 @@ import {
   InlineAttachmentTitle,
 } from "@/components/control-ui/inline-attachment";
 
-// Shared demo driver, identical in both sources — twinning explained in chat-message.tsx.
 export function InlineAttachmentExample() {
   return (
-    <div className="flex justify-end p-6">
+    <div className="flex flex-wrap items-start justify-center gap-4 p-6">
       <InlineAttachment name="handwritten-note.jpeg">
         <InlineAttachmentMedia />
         <InlineAttachmentContent>
           <InlineAttachmentTitle />
         </InlineAttachmentContent>
+      </InlineAttachment>
+
+      <InlineAttachment name="app-icon.png" state="pending" aspect={1} className="max-w-48">
+        <InlineAttachmentMedia />
       </InlineAttachment>
     </div>
   );

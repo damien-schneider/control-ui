@@ -5,7 +5,7 @@
   "title": "Radio group",
   "description": "Single-choice radio set for plans, filters, and option lists.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/core.json"

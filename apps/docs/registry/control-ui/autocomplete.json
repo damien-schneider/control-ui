@@ -5,7 +5,7 @@
   "title": "Autocomplete",
   "description": "Free-text input with search-as-you-type suggestions.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core",

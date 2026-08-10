@@ -5,7 +5,7 @@
   "title": "Field",
   "description": "Form field wrapper for labels, descriptions, errors, and validity state.",
   "dependencies": [
-    "@base-ui/react@^1.6.0",
+    "@base-ui/react@^1.7.0",
     "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [

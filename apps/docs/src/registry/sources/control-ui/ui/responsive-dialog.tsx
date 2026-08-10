@@ -75,7 +75,8 @@ export function ResponsiveDialog({ open: controlledOpen, defaultOpen = false, on
   );
 }
 
-export function ResponsiveDialogTrigger(props: ComponentProps<typeof DialogTrigger>) {
+// handle brands to one primitive — a Dialog handle cannot address a Drawer
+export function ResponsiveDialogTrigger(props: Omit<ComponentProps<typeof DialogTrigger>, "handle">) {
   const isMobile = useResponsiveDialogContext();
   return isMobile ? <DrawerTrigger {...props} /> : <DialogTrigger {...props} />;
 }

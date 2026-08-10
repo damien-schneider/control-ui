@@ -5,7 +5,7 @@
   "title": "Toggle",
   "description": "Pressed-state button and toggle group built on the Button surface.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "button",

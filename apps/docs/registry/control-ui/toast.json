@@ -5,7 +5,7 @@
   "title": "Toast",
   "description": "Transient notifications with a callable toast API and single Toaster mount.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"

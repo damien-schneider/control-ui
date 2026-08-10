@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@ai-sdk/react": "^4.0.40",
-    "@base-ui/react": "^1.6.0",
+    "@base-ui/react": "^1.7.0",
     "@control-ui/skills": "*",
     "@hugeicons/core-free-icons": "^4.2.3",
     "@hugeicons/react": "^1.1.9",
@@ -82,7 +82,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "postcss": "^8.5.23",
     "postcss-selector-parser": "^7.1.4",
-    "shadcn": "4.15.0",
+    "shadcn": "4.16.2",
     "tailwindcss": "^4.3.3"
   }
 }

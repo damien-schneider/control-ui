@@ -5,7 +5,7 @@
   "title": "Context Menu",
   "description": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"

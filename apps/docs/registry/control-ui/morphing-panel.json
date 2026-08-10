@@ -5,7 +5,7 @@
   "title": "Morphing Panel",
   "description": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"

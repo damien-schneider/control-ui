@@ -415,6 +415,31 @@ export const primitiveEntries = [
     ),
   },
   {
+    id: "rich-tooltip",
+    category: "overlays",
+    kind: "Primitive",
+    name: "Rich tooltip",
+    summary:
+      "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/rich-tooltip.tsx",
+        example: sourceFile("Rich tooltip preview", "src/registry/examples/control-ui/primitives/rich-tooltip.tsx", "example"),
+        source: sourceFile("Base UI Popover slot", "src/registry/sources/control-ui/ui/rich-tooltip.tsx", "component"),
+        supportFiles: [
+          sourceFile("Tour navigation", "src/registry/sources/control-ui/ui/rich-tooltip-tour.ts", "support"),
+          surfaceVariantsFile,
+        ],
+        registryKind: "rich-tooltip",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/rich-tooltip").then((mod) => ({
+        default: mod.PrimitiveRichTooltipExample,
+      })),
+    ),
+  },
+  {
     id: "drawer",
     category: "overlays",
     kind: "Primitive",

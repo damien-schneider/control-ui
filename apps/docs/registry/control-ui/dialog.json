@@ -5,7 +5,7 @@
   "title": "Dialog",
   "description": "Modal dialog for focused tasks, confirmations, and custom panels.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "button",

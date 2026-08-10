@@ -5,7 +5,7 @@
   "title": "Collapsible",
   "description": "Accessible disclosure primitive with measured open and close motion.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"

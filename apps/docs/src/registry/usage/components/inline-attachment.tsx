@@ -5,10 +5,10 @@ import {
   InlineAttachmentTitle,
 } from "@/components/control-ui/inline-attachment";
 
-export function Example() {
+export function Example({ url }: { url?: string }) {
   return (
-    <InlineAttachment name="note.jpeg">
-      <InlineAttachmentMedia />
+    <InlineAttachment name="app-icon.png" state={url ? "ready" : "pending"} aspect={1}>
+      <InlineAttachmentMedia src={url} />
       <InlineAttachmentContent>
         <InlineAttachmentTitle />
       </InlineAttachmentContent>

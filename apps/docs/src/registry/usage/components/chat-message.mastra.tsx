@@ -1,6 +1,7 @@
 import type { MastraDBMessage } from "@mastra/core/agent/message-list";
 import {
   type DynamicToolPart,
+  type FilePart,
   MessageFactory,
   type MessageRoleRendererProps,
   type MessageRoleRenderers,
@@ -23,7 +24,12 @@ import {
 import { ChatThought } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import type { ActivityState, ChatRole } from "@/components/control-ui/contracts";
-import { InlineAttachment, InlineAttachmentContent, InlineAttachmentTitle } from "@/components/control-ui/inline-attachment";
+import {
+  InlineAttachment,
+  InlineAttachmentContent,
+  InlineAttachmentMedia,
+  InlineAttachmentTitle,
+} from "@/components/control-ui/inline-attachment";
 import { SourceBadge } from "@/components/control-ui/source-badge";
 
 function renderJson(value: unknown) {
@@ -46,6 +52,27 @@ function renderMessage(from: ChatRole, children: ReactNode) {
         </ChatMessageBody>
       </ChatMessageRow>
     </ChatMessage>
+  );
+}
+
+function isImageMediaType(mimeType: string) {
+  return mimeType === "image" || mimeType.startsWith("image/");
+}
+
+// Mastra file parts carry base64 in `data`; a provider that already hands back a data URL passes straight through.
+function fileSrc({ mimeType, data }: FilePart) {
+  return data.startsWith("data:") ? data : `data:${mimeType};base64,${data}`;
+}
+
+function renderFile(part: FilePart) {
+  const name = "filename" in part && typeof part.filename === "string" ? part.filename : "Attachment";
+  return (
+    <InlineAttachment name={name}>
+      {isImageMediaType(part.mimeType) ? <InlineAttachmentMedia src={fileSrc(part)} alt={name} /> : null}
+      <InlineAttachmentContent>
+        <InlineAttachmentTitle />
+      </InlineAttachmentContent>
+    </InlineAttachment>
   );
 }
 
@@ -131,13 +158,7 @@ export function Example({ message }: { message: MastraDBMessage }) {
       status={messageStatus}
       Text={({ text }) => <span>{text}</span>}
       Reasoning={({ reasoning }) => <ChatThought details={reasoning}>Reasoning</ChatThought>}
-      File={(part) => (
-        <InlineAttachment name={"filename" in part && typeof part.filename === "string" ? part.filename : "Attachment"}>
-          <InlineAttachmentContent>
-            <InlineAttachmentTitle />
-          </InlineAttachmentContent>
-        </InlineAttachment>
-      )}
+      File={renderFile}
       StepStart={() => <hr />}
       ToolInvocation={renderToolInvocation}
       DynamicTool={renderDynamicTool}

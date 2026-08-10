@@ -5,7 +5,7 @@
   "title": "Tabs",
   "description": "Segmented and browser-style navigation with a stable active indicator.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/core.json"

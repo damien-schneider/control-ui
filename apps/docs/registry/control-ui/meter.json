@@ -5,7 +5,7 @@
   "title": "Meter",
   "description": "Static range meter for quota, storage, score, or usage values.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"

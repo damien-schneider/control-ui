@@ -5,7 +5,7 @@
   "title": "Popover",
   "description": "Anchored floating panel for inline settings and contextual content.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/core.json"

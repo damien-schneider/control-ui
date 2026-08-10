@@ -5,7 +5,7 @@
   "title": "Button",
   "description": "Accessible action button with size, variant, and semantic tone support.",
   "dependencies": [
-    "@base-ui/react@^1.6.0",
+    "@base-ui/react@^1.7.0",
     "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [

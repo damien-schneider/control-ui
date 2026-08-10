@@ -5,7 +5,7 @@
   "title": "Combobox",
   "description": "Searchable single-select with input and floating option list.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"

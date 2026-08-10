@@ -14,11 +14,21 @@ import {
 import { ChatThought } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import type { ActivityState } from "@/components/control-ui/contracts";
-import { InlineAttachment, InlineAttachmentContent, InlineAttachmentTitle } from "@/components/control-ui/inline-attachment";
+import {
+  InlineAttachment,
+  InlineAttachmentContent,
+  InlineAttachmentMedia,
+  InlineAttachmentTitle,
+} from "@/components/control-ui/inline-attachment";
 import { SourceBadge } from "@/components/control-ui/source-badge";
 
 function renderJson(value: unknown) {
   return typeof value === "string" ? value : JSON.stringify(value, null, 2);
+}
+
+// mediaType is either a full type ("image/png") or just the top-level segment ("image"); "image/*" normalizes to the latter.
+function isImageMediaType(mediaType: string) {
+  return mediaType === "image" || mediaType.startsWith("image/");
 }
 
 function activityState(state: ToolUIPart["state"] | DynamicToolUIPart["state"]): ActivityState {
@@ -81,14 +91,17 @@ function renderPart(part: UIMessage["parts"][number]) {
           Reasoning
         </ChatThought>
       );
-    case "file":
+    case "file": {
+      const name = part.filename ?? "Attachment";
       return (
-        <InlineAttachment key={key} name={part.filename ?? "Attachment"}>
+        <InlineAttachment key={key} name={name}>
+          {isImageMediaType(part.mediaType) ? <InlineAttachmentMedia src={part.url} alt={name} /> : null}
           <InlineAttachmentContent>
             <InlineAttachmentTitle />
           </InlineAttachmentContent>
         </InlineAttachment>
       );
+    }
     case "source-url":
       return (
         <SourceBadge key={key} href={part.url}>

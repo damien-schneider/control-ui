@@ -64,6 +64,7 @@
 - `dialog` (Dialog) — Modal dialog for focused tasks, confirmations, and custom panels. — `npx shadcn@latest add http://127.0.0.1:3000/r/dialog.json`
 - `popover` (Popover) — Anchored floating panel for inline settings and contextual content. — `npx shadcn@latest add http://127.0.0.1:3000/r/popover.json`
 - `tooltip` (Tooltip) — Hover or focus hint popup with Base UI positioning and Control UI tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/tooltip.json`
+- `rich-tooltip` (Rich tooltip) — Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter. — `npx shadcn@latest add http://127.0.0.1:3000/r/rich-tooltip.json`
 - `drawer` (Drawer) — Swipeable edge panel for mobile sheets and off-canvas surfaces. — `npx shadcn@latest add http://127.0.0.1:3000/r/drawer.json`
 - `responsive-dialog` (Responsive dialog) — Modal dialog on desktop that becomes a swipeable bottom drawer on mobile. — `npx shadcn@latest add http://127.0.0.1:3000/r/responsive-dialog.json`
 - `toast` (Toast) — Transient notifications with a callable toast API and single Toaster mount. — `npx shadcn@latest add http://127.0.0.1:3000/r/toast.json`

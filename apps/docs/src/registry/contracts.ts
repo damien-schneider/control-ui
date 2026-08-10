@@ -17,6 +17,7 @@ export type ChatRole = "user" | "assistant" | "system" | "tool";
 export type ChatDensity = "compact" | "comfortable";
 export type ChatState = "idle" | "streaming" | "pending" | "error";
 export type ChatTone = "neutral" | "success" | "warning" | "danger";
+export type InlineAttachmentState = "ready" | "pending" | "error";
 
 export type DropzoneSelectionMode = "append" | "replace";
 export type DropzoneVisualState = "idle" | "accept" | "reject" | "unknown" | "processing";
@@ -174,6 +175,7 @@ export type OpenChangeReason =
   | "cancel-open"
   | "input-change"
   | "input-clear"
+  | "input-press"
   | "clear-press"
   | "chip-remove-press"
   | "imperative-action"
@@ -441,6 +443,9 @@ export type DropdownMenuSeparatorProps = ComponentProps<"div">;
 export type DropdownMenuLabelProps = ComponentProps<"div">;
 
 export type PopoverContentPadding = "default" | "none";
+
+export type RichTooltipTone = "accent" | "surface";
+export type RichTooltipProgressVariant = "count" | "dots";
 
 export type ContextMenuProps = {
   children?: ReactNode;

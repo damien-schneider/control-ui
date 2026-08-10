@@ -67,6 +67,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Dialog](http://127.0.0.1:3000/primitives/dialog): Modal dialog for focused tasks, confirmations, and custom panels.
 - [Popover](http://127.0.0.1:3000/primitives/popover): Anchored floating panel for inline settings and contextual content.
 - [Tooltip](http://127.0.0.1:3000/primitives/tooltip): Hover or focus hint popup with Base UI positioning and Control UI tokens.
+- [Rich tooltip](http://127.0.0.1:3000/primitives/rich-tooltip): Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.
 - [Drawer](http://127.0.0.1:3000/primitives/drawer): Swipeable edge panel for mobile sheets and off-canvas surfaces.
 - [Responsive dialog](http://127.0.0.1:3000/primitives/responsive-dialog): Modal dialog on desktop that becomes a swipeable bottom drawer on mobile.
 - [Toast](http://127.0.0.1:3000/primitives/toast): Transient notifications with a callable toast API and single Toaster mount.

@@ -32,10 +32,13 @@ import type {
   DropzoneVisualState,
   DynamicNotificationState,
   DynamicNotificationVariant,
+  InlineAttachmentState,
   NavigationMenuLinkVariant,
   PopoverContentPadding,
   ResizableHandleVariant,
   ResizablePanelGroupVariant,
+  RichTooltipProgressVariant,
+  RichTooltipTone,
   SelectionIndicator,
   SelectTriggerVariant,
   SliderVariant,
@@ -136,6 +139,20 @@ export type SkinSlotContexts = {
     header: StatelessPart;
     title: StatelessPart;
     description: StatelessPart;
+  };
+  "rich-tooltip": {
+    trigger: StatelessPart;
+    content: { tone: RichTooltipTone };
+    media: StatelessPart;
+    header: StatelessPart;
+    title: StatelessPart;
+    description: StatelessPart;
+    footer: StatelessPart;
+    progress: { variant: RichTooltipProgressVariant };
+    dot: { active: boolean };
+    previous: StatelessPart;
+    next: StatelessPart;
+    close: StatelessPart;
   };
   drawer: {
     trigger: StatelessPart;
@@ -475,7 +492,7 @@ export type SkinSlotContexts = {
     root: StatelessPart;
   };
   "inline-attachment": {
-    root: StatelessPart;
+    root: { state: InlineAttachmentState };
     image: StatelessPart;
     content: StatelessPart;
     action: StatelessPart;
@@ -708,6 +725,9 @@ export type SkinPaintContexts = {
   };
   "chat-message": {
     streaming: StatelessPart;
+  };
+  "inline-attachment": {
+    halftone: StatelessPart;
   };
 };
 

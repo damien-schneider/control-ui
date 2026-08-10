@@ -30,10 +30,13 @@ import type {
   DropzoneVisualState,
   DynamicNotificationState,
   DynamicNotificationVariant,
+  InlineAttachmentState,
   NavigationMenuLinkVariant,
   PopoverContentPadding,
   ResizableHandleVariant,
   ResizablePanelGroupVariant,
+  RichTooltipProgressVariant,
+  RichTooltipTone,
   SelectTriggerVariant,
   SliderVariant,
   StepperContentMode,
@@ -127,6 +130,7 @@ export type EmittedStateContract = {
   "dynamic-notification:island:data-state": DynamicNotificationState;
   "dynamic-notification:island:data-variant": DynamicNotificationVariant;
   "field:root:data-orientation": "horizontal" | "vertical" | "responsive";
+  "inline-attachment:root:data-state": InlineAttachmentState;
   "inline-citation:source:data-activation-direction": "left" | "right";
   "input:root:data-size": ControlSize;
   "input-group:root:data-size": ControlSize;
@@ -141,6 +145,8 @@ export type EmittedStateContract = {
   "drawer:content:data-variant": DrawerContentVariant;
   "popover:content:data-padding": PopoverContentPadding;
   "resizable:handle:data-variant": ResizableHandleVariant;
+  "rich-tooltip:content:data-tone": RichTooltipTone;
+  "rich-tooltip:progress:data-variant": RichTooltipProgressVariant;
   "resizable:panel-group:data-variant": ResizablePanelGroupVariant;
   "select:trigger:data-variant": SelectTriggerVariant;
   "toolbar:button:data-icon-only": true;

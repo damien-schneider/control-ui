@@ -5,7 +5,7 @@
   "title": "Separator",
   "description": "Hairline divider using the shared border token.",
   "dependencies": [
-    "@base-ui/react@^1.6.0"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"

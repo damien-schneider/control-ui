@@ -10,7 +10,7 @@
       "title": "Accordion",
       "description": "Stacked disclosure rows with measured panel animation.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
@@ -104,7 +104,7 @@
       "title": "Alert dialog",
       "description": "Modal confirmation dialog for destructive or blocking decisions.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -214,6 +214,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -330,6 +331,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -446,6 +448,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -562,6 +565,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -678,6 +682,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -794,6 +799,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -910,6 +916,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -1026,6 +1033,7 @@
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
+        "http://127.0.0.1:3000/r/rich-tooltip.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
         "http://127.0.0.1:3000/r/select.json",
         "http://127.0.0.1:3000/r/settings-block.json",
@@ -1170,7 +1178,7 @@
       "title": "Autocomplete",
       "description": "Free-text input with search-as-you-type suggestions.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -1194,7 +1202,7 @@
       "title": "Avatar",
       "description": "Profile image with initials fallback and composable overlapping groups.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1217,7 +1225,7 @@
       "title": "Badge",
       "description": "Compact status, label, or count chip.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -1241,7 +1249,7 @@
       "title": "Button",
       "description": "Accessible action button with size, variant, and semantic tone support.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -1527,7 +1535,7 @@
       "title": "Checkbox",
       "description": "Single checkbox control with checked and indeterminate states.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1550,7 +1558,7 @@
       "title": "Checkbox Group",
       "description": "Multi-select checkbox set with shared state and select-all support.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1704,7 +1712,7 @@
       "title": "Collapsible",
       "description": "Accessible disclosure primitive with measured open and close motion.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1727,7 +1735,7 @@
       "title": "Color Picker",
       "description": "Color input with picker UI, formats, presets, and contrast helpers.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1769,7 +1777,7 @@
       "title": "Combobox",
       "description": "Searchable single-select with input and floating option list.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1854,7 +1862,7 @@
       "title": "Context Menu",
       "description": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1903,7 +1911,7 @@
       "title": "Dialog",
       "description": "Modal dialog for focused tasks, confirmations, and custom panels.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1956,7 +1964,7 @@
       "title": "Drawer",
       "description": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1979,7 +1987,7 @@
       "title": "DropdownMenu",
       "description": "Dropdown menu for actions, resources, labels, separators, and submenus.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2143,7 +2151,7 @@
       "title": "Field",
       "description": "Form field wrapper for labels, descriptions, errors, and validity state.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -2202,7 +2210,7 @@
       "title": "Form",
       "description": "Form wrapper that coordinates field validation and returned errors.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2248,7 +2256,7 @@
       "title": "Hover card",
       "description": "Hover or focus preview panel for profiles, links, and contextual details.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2342,7 +2350,7 @@
       "title": "Input",
       "description": "Text field primitive sized and styled to match other controls.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2365,7 +2373,7 @@
       "title": "Input group",
       "description": "Joined input wrapper for addons, icons, and focus-within rings.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2388,7 +2396,7 @@
       "title": "Input OTP",
       "description": "One-time-code field with grouped, focus-aware slots.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2411,7 +2419,7 @@
       "title": "Item",
       "description": "List row with media, content, and trailing actions.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -2510,7 +2518,7 @@
       "title": "Menubar",
       "description": "Desktop command bar with nested menus, shortcuts, and separators.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2533,7 +2541,7 @@
       "title": "Meter",
       "description": "Static range meter for quota, storage, score, or usage values.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2556,7 +2564,7 @@
       "title": "Morphing Panel",
       "description": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2600,7 +2608,7 @@
       "title": "Navigation menu",
       "description": "Site navigation menu with a shared animated viewport.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2651,7 +2659,7 @@
       "title": "Number Field",
       "description": "Numeric input with stepper buttons and optional drag-to-change behavior.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2735,7 +2743,7 @@
       "title": "Popover",
       "description": "Anchored floating panel for inline settings and contextual content.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2758,7 +2766,7 @@
       "title": "Progress",
       "description": "Determinate task progress with optional label and value rows.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2781,7 +2789,7 @@
       "title": "Radio group",
       "description": "Single-choice radio set for plans, filters, and option lists.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2847,12 +2855,41 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "rich-tooltip",
+      "type": "registry:ui",
+      "title": "Rich tooltip",
+      "description": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
+      "dependencies": [
+        "@base-ui/react@^1.7.0",
+        "lucide-react@^1.27.0"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/ui/rich-tooltip-tour.ts",
+          "target": "@components/control-ui/ui/rich-tooltip-tour.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/rich-tooltip.tsx",
+          "target": "@components/control-ui/ui/rich-tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/rich-tooltip.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll area",
       "description": "Scroll container with overlay scrollbars and edge fades.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2875,7 +2912,7 @@
       "title": "Select",
       "description": "Single-choice picker with a token-matched trigger and floating list.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2959,7 +2996,7 @@
       "title": "Sidebar",
       "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1",
         "lucide-react@^1.27.0"
       ],
@@ -3290,7 +3327,7 @@
       "title": "Slider",
       "description": "Single-value range control with branded and plain treatments.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -3385,7 +3422,7 @@
       "title": "Switch",
       "description": "On/off control with token-driven track, thumb, and press motion.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3453,7 +3490,7 @@
       "title": "Tabs",
       "description": "Segmented and browser-style navigation with a stable active indicator.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3595,7 +3632,7 @@
       "title": "Toast",
       "description": "Transient notifications with a callable toast API and single Toaster mount.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3618,7 +3655,7 @@
       "title": "Toggle",
       "description": "Pressed-state button and toggle group built on the Button surface.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3642,7 +3679,7 @@
       "title": "Toolbar",
       "description": "Roving-focus toolbar for editor controls and compact actions.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3665,7 +3702,7 @@
       "title": "Tooltip",
       "description": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3688,7 +3725,7 @@
       "title": "Tree",
       "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
       "dependencies": [
-        "@base-ui/react@^1.6.0",
+        "@base-ui/react@^1.7.0",
         "lucide-react@^1.27.0"
       ],
       "registryDependencies": [
@@ -3713,7 +3750,7 @@
       "title": "Trigger Menu",
       "description": "Caret-anchored command or mention menu for text editors.",
       "dependencies": [
-        "@base-ui/react@^1.6.0"
+        "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
