@@ -52,7 +52,7 @@
     {
       "name": "--primary-text",
       "group": "color",
-      "tier": "core",
+      "tier": "derived",
       "description": "Readable brand text color on base and card surfaces."
     },
     {
@@ -106,7 +106,7 @@
     {
       "name": "--destructive-text",
       "group": "color",
-      "tier": "core",
+      "tier": "derived",
       "description": "Readable destructive text color on base and card surfaces."
     },
     {
@@ -376,7 +376,7 @@
     {
       "name": "--text-caption",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "11px rung — overlines, timestamps, group labels."
     },
     {
@@ -406,13 +406,13 @@
     {
       "name": "--text-heading-4--line-height",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Line-height paired onto text-heading-4."
     },
     {
       "name": "--text-heading-4--font-weight",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Weight paired onto text-heading-4."
     },
     {
@@ -430,7 +430,7 @@
     {
       "name": "--text-heading-3--font-weight",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Weight paired onto text-heading-3."
     },
     {
@@ -448,7 +448,7 @@
     {
       "name": "--text-heading-2--font-weight",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Weight paired onto text-heading-2."
     },
     {
@@ -490,7 +490,7 @@
     {
       "name": "--text-display--font-weight",
       "group": "typography",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Weight paired onto text-display."
     },
     {
@@ -568,7 +568,7 @@
     {
       "name": "--corner-radius-fit",
       "group": "radius",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Fallback radius shrink where corner-shape: squircle is unsupported."
     },
     {
@@ -610,7 +610,7 @@
     {
       "name": "--shadow-y",
       "group": "shadow",
-      "tier": "advanced",
+      "tier": "derived",
       "description": "Vertical bias: 0 = centered, 1 = default bottom cast."
     },
     {

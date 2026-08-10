@@ -6,21 +6,16 @@
   /* Canonical font-size source (see /primitives/typography); components use these rungs, never raw text-[Npx].
      Declared raw (not @theme) so a skin can re-value a rung. Body/UI family = 10-16px band, ~95% of UI text. */
   --text-micro: 0.625rem; /* 10px — kbd, badge counters, dense numeric meta */
-  --text-caption: 0.6875rem; /* 11px — overlines, timestamps, section / group labels */
   --text-label: 0.75rem; /* 12px — form labels + small chrome (nav item, tooltip, shortcut) */
   --text-body: 0.875rem; /* 14px — DEFAULT body & control text (the workhorse; absorbs old text-sm) */
   --text-body-lg: 1rem; /* 16px — emphasized / larger body */
 
   /* Heading hierarchy, numbered (heading-1 = largest); each pairs line-height+weight via v4 `--text-*--…` so one utility carries all three. */
   --text-heading-4: 0.9375rem; /* 15px */
-  --text-heading-4--line-height: 1.4;
-  --text-heading-4--font-weight: 600;
   --text-heading-3: 1.125rem; /* 18px */
   --text-heading-3--line-height: 1.35;
-  --text-heading-3--font-weight: 600;
   --text-heading-2: 1.375rem; /* 22px */
   --text-heading-2--line-height: 1.25;
-  --text-heading-2--font-weight: 600;
   --text-heading-1: 1.875rem; /* 30px — content h1 (in-page / markdown) */
   --text-heading-1--line-height: 1.15;
   --text-heading-1--font-weight: 700;
@@ -29,7 +24,6 @@
   /* Biggest rung, above content h1: page titles + hero. font-family isn't a paired-token prop, apply `font-display` separately. */
   --text-display: 2.25rem; /* 36px */
   --text-display--line-height: 1.1;
-  --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
 
   /* shadcn base names, full colors, authored in oklch (wider gamut, matches Tailwind/shadcn v4); any format still works.
@@ -42,7 +36,6 @@
   --popover-foreground: oklch(0.3042 0.0266 63);
   --primary: oklch(0.3184 0.0327 61);
   --primary-foreground: oklch(0.9852 0.0058 85);
-  --primary-text: oklch(from var(--primary) 0.48 c h);
   --muted: oklch(0.9425 0.0104 79);
   --muted-foreground: oklch(0.52 0.0224 72);
   --secondary: oklch(0.9425 0.0104 79);
@@ -51,7 +44,6 @@
   --accent-foreground: oklch(0.3184 0.0327 61);
   --destructive: oklch(0.568 0.1961 32);
   --destructive-foreground: oklch(0.9852 0.0058 85);
-  --destructive-text: oklch(from var(--destructive) 0.48 c h);
   /* Border/ring opacity. Used by ring-border and border hairlines; 0 = transparent. */
   --ring-opacity: 1;
   --border: oklch(0.8851 0.0135 76 / var(--ring-opacity));
@@ -114,7 +106,6 @@
   --shadow-highlight: oklch(1 0 0 / 0.62);
   --shadow-size: 1; /* global geometry multiplier: 1 = default depth, 0 = flat */
   --shadow-opacity: 1; /* global alpha multiplier: 1 = default density, 0 = invisible */
-  --shadow-y: 1; /* vertical bias: 0 = centered, 1 = default bottom cast */
   --shadow-control-multiplier: 1;
   --shadow-panel-multiplier: 2;
   --shadow-popover-multiplier: 4;
@@ -131,7 +122,6 @@
   /* Squircle reads ~half as round as a circular arc at same radius; browsers w/o corner-shape support fall back to
      plain round and look over-rounded. This ratio shrinks the fallback radius (squircle only, see @supports not
      below) to keep cross-browser look close. 1 = no change, 0.5 = halve. */
-  --corner-radius-fit: 0.5;
 
   /* Floating-list (select/dropdown) concentric corners: container radius = row radius + padding, so hovered row nests exactly. */
   --popover-padding: 0.25rem; /* gap between container edge and rows (also = p-* on the popup) */
@@ -178,7 +168,6 @@
   --popover-foreground: oklch(0.9645 0.008 84);
   --primary: oklch(0.9645 0.008 84);
   --primary-foreground: oklch(0.2311 0.0131 64);
-  --primary-text: oklch(from var(--primary) 0.78 c h);
   --muted: oklch(0.2668 0.0132 66);
   --muted-foreground: oklch(0.7405 0.0175 76);
   --secondary: oklch(0.2668 0.0132 66);
@@ -187,7 +176,6 @@
   --accent-foreground: oklch(0.9645 0.008 84);
   --destructive: oklch(0.551 0.1799 32);
   --destructive-foreground: oklch(0.9645 0.008 84);
-  --destructive-text: oklch(from var(--destructive) 0.78 c h);
   --ring-opacity: 1;
   --border: oklch(0.3082 0.0147 67 / var(--ring-opacity));
   --input: oklch(0.3082 0.0147 67);

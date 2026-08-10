@@ -10,10 +10,8 @@
 
   --primary: oklch(0.574 0.2067 283.833);
   --primary-foreground: oklch(1 0 0);
-  --primary-text: oklch(from var(--primary) 0.48 c h);
   --destructive: oklch(0.576 0.1761 14.132);
   --destructive-foreground: oklch(1 0 0);
-  --destructive-text: oklch(from var(--destructive) 0.48 c h);
 
   --ring-opacity: 1;
   --popover-opacity: 0.9;
@@ -25,7 +23,6 @@
   --shadow-color: oklch(0.145 0 0);
   --shadow-size: 0.7;
   --shadow-opacity: 0.9;
-  --shadow-y: 1;
   --shadow-control-multiplier: 0.8;
   --shadow-panel-multiplier: 1.8;
   --shadow-popover-multiplier: 3.2;
@@ -90,27 +87,20 @@
   --badge-pink-foreground: var(--color-pink-800);
   --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
   --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --text-caption: 0.6875rem;
   --text-body: 0.875rem;
   --text-body-lg: 1rem;
   --text-heading-4: 0.9375rem;
-  --text-heading-4--line-height: 1.4;
-  --text-heading-4--font-weight: 600;
   --text-heading-3: 1.125rem;
   --text-heading-3--line-height: 1.35;
-  --text-heading-3--font-weight: 600;
   --text-heading-2: 1.375rem;
   --text-heading-2--line-height: 1.25;
-  --text-heading-2--font-weight: 600;
   --text-heading-1: 1.875rem;
   --text-heading-1--line-height: 1.15;
   --text-heading-1--font-weight: 700;
   --text-heading-1--letter-spacing: -0.018em;
   --text-display: 2.25rem;
   --text-display--line-height: 1.1;
-  --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.026em;
-  --corner-radius-fit: 0.5;
   --shadow-highlight: oklch(1 0 0 / 0.62);
 }
 
@@ -136,8 +126,6 @@
 
 .dark[data-skin="cuicui"],
 :where(.dark) [data-skin="cuicui"] {
-  --primary-text: oklch(from var(--primary) 0.78 c h);
-  --destructive-text: oklch(from var(--destructive) 0.78 c h);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);

@@ -6,7 +6,7 @@ import postcss, { type AtRule, type Declaration, type Node, type Root, type Rule
 import { REQUIRED_THEME_CONTRACT, THEME_CONTRACT, THEME_CONTRACT_NAMES } from "../lib/theme-contract";
 
 const DERIVED_CONTRACT_NAMES = new Set(THEME_CONTRACT.filter((token) => token.tier === "derived").map((token) => token.name));
-const SKIN_ROOT_DEFAULTS_SELECTOR = /^:where\(\[data-skin\]\)$/;
+const SKIN_ROOT_DEFAULTS_SELECTOR = /^:where\(\[data-skin\]\)$|^:where\(\.dark \[data-skin\], \.dark\[data-skin\]\)$/;
 
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const CORE_THEME_PATH = fileURLToPath(new URL("../sources/control-ui/theme.css", import.meta.url));

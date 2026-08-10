@@ -8,28 +8,22 @@
   /* Type scale: Linear runs one flat 13px band for ALL chrome (nav rows, controls, body) and reserves
      the larger rungs for content headings. Label == body on purpose. */
   --text-micro: 0.625rem; /* 10px */
-  --text-caption: 0.6875rem; /* 11px */
   --text-label: 0.8125rem; /* 13px — sm controls, nav rows, tooltips */
   --text-body: 0.8125rem; /* 13px — THE workhorse */
   --text-body-lg: 0.9375rem; /* 15px */
 
   /* Headings stay tight and semibold; no 700 anywhere (Linear tops out at semibold). */
   --text-heading-4: 0.875rem;
-  --text-heading-4--line-height: 1.4;
-  --text-heading-4--font-weight: 600;
   --text-heading-3: 1rem;
   --text-heading-3--line-height: 1.4;
-  --text-heading-3--font-weight: 600;
   --text-heading-2: 1.1875rem;
   --text-heading-2--line-height: 1.3;
-  --text-heading-2--font-weight: 600;
   --text-heading-1: 1.5rem; /* 24px — the issue-title rung */
   --text-heading-1--line-height: 1.25;
   --text-heading-1--font-weight: 600;
   --text-heading-1--letter-spacing: -0.014em;
   --text-display: 2rem;
   --text-display--line-height: 1.15;
-  --text-display--font-weight: 600;
   --text-display--letter-spacing: -0.022em;
 
   /* Light: pure-white surfaces on a cool gray paper. card == background so the shell's content frame
@@ -42,7 +36,6 @@
   --popover-foreground: oklch(0.2228 0.0079 274.573);
   --primary: oklch(0.5674 0.1585 275.206); /* #5e6ad2 — THE Linear indigo */
   --primary-foreground: oklch(1 0 0);
-  --primary-text: oklch(from var(--primary) 0.48 c h);
   --muted: oklch(0.9614 0.0013 286.375); /* #f2f2f3 */
   --muted-foreground: oklch(0.5401 0.0124 280.281); /* #6d6e76 */
   --secondary: oklch(0.9614 0.0013 286.375);
@@ -51,7 +44,6 @@
   --accent-foreground: oklch(0.2228 0.0079 274.573);
   --destructive: oklch(0.576 0.1835 23.679);
   --destructive-foreground: oklch(1 0 0);
-  --destructive-text: oklch(from var(--destructive) 0.48 c h);
   --ring-opacity: 1;
   --border: oklch(0.9255 0.0027 286.347 / var(--ring-opacity)); /* #e6e6e8 hairline */
   --input: oklch(0.9042 0.0027 286.346); /* #dfdfe1 — fields carry a touch more edge */
@@ -75,7 +67,6 @@
   --shadow-highlight: oklch(1 0 0 / 0.08); /* matte: a whisper of top light, not a lit-paper rim */
   --shadow-size: 1;
   --shadow-opacity: 0.75;
-  --shadow-y: 1;
   --shadow-control-multiplier: 0.6;
   --shadow-panel-multiplier: 1;
   --shadow-popover-multiplier: 5;
@@ -146,7 +137,6 @@
   --badge-pink-foreground: var(--color-pink-800);
   --badge-pink-border: oklch(from var(--color-pink-500) l c h / 0.2);
   --badge-pink-hover: oklch(from var(--color-pink-500) l c h / 0.24);
-  --corner-radius-fit: 0.5;
 }
 
 /* Dark tokens: the real Linear night — near-black canvas, panel one step up, popups two. */
@@ -160,7 +150,6 @@
   --popover-foreground: oklch(0.9784 0.0011 197.139);
   --primary: oklch(0.5674 0.1585 275.206);
   --primary-foreground: oklch(1 0 0);
-  --primary-text: oklch(from var(--primary) 0.78 c h);
   --muted: oklch(0.2277 0.0057 285.935);
   --muted-foreground: oklch(0.6488 0.0146 262.359); /* #8a8f98 */
   --secondary: oklch(0.2277 0.0057 285.935);
@@ -169,7 +158,6 @@
   --accent-foreground: oklch(0.9784 0.0011 197.139);
   --destructive: oklch(0.576 0.1835 23.679);
   --destructive-foreground: oklch(1 0 0);
-  --destructive-text: oklch(from var(--destructive) 0.78 c h);
   --ring-opacity: 1;
   --border: oklch(0.2618 0.0113 278.089 / var(--ring-opacity)); /* #23242a */
   --input: oklch(0.2986 0.0109 278.197);

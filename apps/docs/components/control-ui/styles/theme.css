@@ -68,6 +68,18 @@
   --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
   --popup-item-disabled-opacity: 0.4;
 
+  /* every shipped pack agreed on these verbatim; the dark block below carries the two mode-split ones */
+  --primary-text: oklch(from var(--primary) 0.48 c h);
+  --destructive-text: oklch(from var(--destructive) 0.48 c h);
+  --text-caption: 0.6875rem;
+  --text-heading-4--line-height: 1.4;
+  --text-heading-4--font-weight: 600;
+  --text-heading-3--font-weight: 600;
+  --text-heading-2--font-weight: 600;
+  --text-display--font-weight: 600;
+  --corner-radius-fit: 0.5;
+  --shadow-y: 1;
+
   /* tw-scale rungs multiply from THE radius knob; the squircle fallback below re-derives them ×fit */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -97,6 +109,11 @@
   --sidebar-accent-foreground: var(--foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+}
+
+:where(.dark [data-skin], .dark[data-skin]) {
+  --primary-text: oklch(from var(--primary) 0.78 c h);
+  --destructive-text: oklch(from var(--destructive) 0.78 c h);
 }
 
 @theme inline {
