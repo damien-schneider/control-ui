@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type {
+  ActivityDetailFormat,
   ActivityKind,
   ActivityState,
   AlertVariant,
@@ -389,7 +390,7 @@ export type SkinSlotContexts = {
     content: StatelessPart;
     detail: StatelessPart;
     "detail-label": StatelessPart;
-    "detail-content": StatelessPart;
+    "detail-content": { format: ActivityDetailFormat };
   };
   context: {
     root: { status: ContextStatus };

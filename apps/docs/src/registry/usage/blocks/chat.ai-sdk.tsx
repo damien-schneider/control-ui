@@ -48,7 +48,7 @@ function renderToolPart(part: ToolUIPart | DynamicToolUIPart) {
         {part.input !== undefined ? (
           <ActivityDetail>
             <ActivityDetailLabel>Input</ActivityDetailLabel>
-            <ActivityDetailContent className="font-mono text-caption">{JSON.stringify(part.input, null, 2)}</ActivityDetailContent>
+            <ActivityDetailContent format="code">{JSON.stringify(part.input, null, 2)}</ActivityDetailContent>
           </ActivityDetail>
         ) : null}
         {part.output !== undefined || part.errorText ? (

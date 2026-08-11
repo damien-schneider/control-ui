@@ -120,7 +120,7 @@ export function ActivityExample() {
         <ActivityContent>
           <ActivityDetail>
             <ActivityDetailLabel>Input</ActivityDetailLabel>
-            <ActivityDetailContent className="font-mono text-caption">{`{ "path": "chat.json" }`}</ActivityDetailContent>
+            <ActivityDetailContent format="code">{`{ "path": "chat.json" }`}</ActivityDetailContent>
           </ActivityDetail>
           <ActivityDetail>
             <ActivityDetailLabel>Output</ActivityDetailLabel>

@@ -51,6 +51,7 @@ export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit"> & {
 
 export type ActivityState = "pending" | "running" | "success" | "error";
 export type ActivityKind = "default" | "tool" | "reasoning" | "signal";
+export type ActivityDetailFormat = "text" | "code";
 
 export type ActivityProps = Omit<CollapsibleProps, "children"> & {
   children?: ReactNode;

@@ -134,7 +134,6 @@ describe("Activity", () => {
 
     expect(html).toContain('data-activity-kind="tool"');
     expect(html).toContain('data-activity-name="read_file"');
-    expect(html).toContain('data-surface="panel"');
     expect(html).toContain('data-slot="detail"');
     expect(html).toContain('data-slot="detail-label"');
     expect(html).toContain('data-slot="detail-content"');

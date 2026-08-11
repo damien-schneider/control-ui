@@ -131,7 +131,6 @@
 
   /* Crosshair L-ticks in 4 corners: ::before=TL+BR, ::after=TR+BL, each a horiz+vert hairline; inset so they read despite overflow clipping. */
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"],
-  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"],
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"],
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"],
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"] {
@@ -144,8 +143,6 @@
 
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::before,
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::after,
-  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::before,
-  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::after,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
@@ -160,7 +157,6 @@
   }
 
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::before,
-  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::before,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::before {
@@ -172,7 +168,6 @@
   }
 
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::after,
-  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]::after,
   [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::after,
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::after {
@@ -187,14 +182,6 @@
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]:focus-within {
     --rig-tick-c: var(--primary);
     box-shadow: inset 0 0 0 1.5px oklch(from var(--primary) l c h / 0.55);
-  }
-
-  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"][data-activity-state="running"] {
-    --rig-tick-c: var(--primary);
-  }
-
-  [data-skin="rig"] [data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"][data-activity-state="error"] {
-    --rig-tick-c: oklch(0.5988 0.2021 25.776);
   }
 
   [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="content"],

@@ -173,8 +173,6 @@ export const skin: ControlUiSkin = {
       root: surface,
     },
     activity: {
-      root: ({ kind }) => (kind === "tool" ? surface : undefined),
-      trigger: ({ kind }) => (kind === "tool" ? "bg-[var(--cuicui-control-bg)]" : undefined),
       status: ({ kind }) => (kind === "tool" ? "cuicui-gradient-text font-medium" : undefined),
     },
     "chat-message": {

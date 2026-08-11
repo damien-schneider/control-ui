@@ -71,9 +71,7 @@ function renderToolInvocation(part: ToolInvocationPart) {
       <ActivityContent>
         <ActivityDetail>
           <ActivityDetailLabel>Input</ActivityDetailLabel>
-          <ActivityDetailContent className="font-mono text-caption">
-            {JSON.stringify(invocation.rawInput ?? invocation.args, null, 2)}
-          </ActivityDetailContent>
+          <ActivityDetailContent format="code">{JSON.stringify(invocation.rawInput ?? invocation.args, null, 2)}</ActivityDetailContent>
         </ActivityDetail>
         {invocation.result !== undefined || invocation.errorText ? (
           <ActivityDetail>

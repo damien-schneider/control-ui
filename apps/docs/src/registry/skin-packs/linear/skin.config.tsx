@@ -203,10 +203,6 @@ export const skin: ControlUiSkin = {
     "chat-layout": {
       root: "rounded-[var(--radius-scene)] border-border bg-card shadow-(--linear-panel-shadow)",
     },
-    activity: {
-      root: ({ kind }) => (kind === "tool" ? "rounded-[var(--radius-panel)] bg-card shadow-none" : undefined),
-      trigger: ({ kind }) => (kind === "tool" ? "rounded-[var(--radius-panel)]" : undefined),
-    },
     "chat-message": {
       content: ({ role }) =>
         role === "user"

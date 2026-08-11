@@ -109,13 +109,6 @@ export const skin: ControlUiSkin = {
     "chat-message": {
       content: ({ role }) => (role === "user" ? lunaBubble : undefined),
     },
-    activity: {
-      root: ({ kind }) =>
-        kind === "tool"
-          ? "rounded-none border border-[var(--xp-groupbox-border)] bg-background shadow-[inset_1px_1px_0_var(--xp-bevel-light)]"
-          : undefined,
-      trigger: ({ kind }) => (kind === "tool" ? "rounded-none bg-[var(--secondary)] text-foreground" : undefined),
-    },
     "chat-composer": {
       shell: `rounded-[3px] ${xpField}`,
       submit: lunaSolid,

@@ -64,13 +64,6 @@ export const skin: ControlUiSkin = {
     "thread-rail": {
       popover: "rounded-[var(--radius-lg)]",
     },
-    activity: {
-      root: ({ kind }) =>
-        kind === "tool"
-          ? "rounded-[var(--radius-panel)] border border-[var(--glass-rim)] bg-[var(--glass-fill)] backdrop-blur-[var(--backdrop-blur-glass)] backdrop-saturate-[1.8]"
-          : undefined,
-      trigger: ({ kind }) => (kind === "tool" ? "bg-transparent" : undefined),
-    },
     input: {
       root: appleField,
     },

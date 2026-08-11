@@ -278,8 +278,18 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         "detail-content": {
+          context: {
+            format: "ActivityDetailFormat",
+          },
           registryItems: ["activity"],
-          states: [],
+          states: [
+            {
+              attribute: "data-format",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["code", "text"],
+            },
+          ],
         },
         "detail-label": {
           registryItems: ["activity"],
@@ -9044,10 +9054,6 @@ export const generatedSkinContract: SkinContract = {
         },
       ],
       panel: [
-        {
-          scope: "activity",
-          part: "root",
-        },
         {
           scope: "alert",
           part: "root",

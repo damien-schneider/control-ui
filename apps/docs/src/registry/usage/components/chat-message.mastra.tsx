@@ -90,9 +90,7 @@ function renderToolInvocation(part: ToolInvocationPart) {
       <ActivityContent>
         <ActivityDetail>
           <ActivityDetailLabel>Input</ActivityDetailLabel>
-          <ActivityDetailContent className="font-mono text-caption">
-            {renderJson(invocation.rawInput ?? invocation.args)}
-          </ActivityDetailContent>
+          <ActivityDetailContent format="code">{renderJson(invocation.rawInput ?? invocation.args)}</ActivityDetailContent>
         </ActivityDetail>
         {invocation.result !== undefined || invocation.errorText ? (
           <ActivityDetail>
@@ -121,7 +119,7 @@ function renderDynamicTool(part: DynamicToolPart) {
         {part.input !== undefined ? (
           <ActivityDetail>
             <ActivityDetailLabel>Input</ActivityDetailLabel>
-            <ActivityDetailContent className="font-mono text-caption">{renderJson(part.input)}</ActivityDetailContent>
+            <ActivityDetailContent format="code">{renderJson(part.input)}</ActivityDetailContent>
           </ActivityDetail>
         ) : null}
         {part.output !== undefined ? (

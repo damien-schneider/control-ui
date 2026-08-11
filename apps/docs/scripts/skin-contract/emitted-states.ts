@@ -1,4 +1,5 @@
 import type {
+  ActivityDetailFormat,
   ActivityKind,
   ActivityState,
   AlertVariant,
@@ -55,6 +56,7 @@ export type EmittedStateContract = {
   "activity:root:data-activity-name": string;
   "activity:root:data-activity-state": ActivityState;
   "activity:announcement:data-status": ActivityState;
+  "activity:detail-content:data-format": ActivityDetailFormat;
   "activity:status:data-status": ActivityState;
   "context:root:data-status": ContextStatus;
   "context:trigger:data-status": ContextStatus;

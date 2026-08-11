@@ -4,7 +4,7 @@ import { Check, ChevronRight, CircleAlert, CircleDashed, LoaderCircle } from "lu
 import type { ComponentProps, ReactNode } from "react";
 import { createContext, useContext } from "react";
 
-import type { ActivityKind, ActivityProps, ActivityState, ScrollAreaProps } from "@/components/control-ui/contracts";
+import type { ActivityDetailFormat, ActivityKind, ActivityProps, ActivityState, ScrollAreaProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinSlot } from "@/components/control-ui/skin";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
@@ -67,9 +67,12 @@ export function Activity({ kind = "default", name, state = "pending", statusLabe
         data-activity-state={state}
         data-activity-kind={kind}
         data-activity-name={name}
-        data-surface={kind === "tool" ? "panel" : undefined}
         aria-busy={context.isRunning || undefined}
-        className={cn("group/activity my-1 min-w-0 text-body", skinSlot("activity", "root", { kind, state }), className)}
+        className={cn(
+          "group/activity my-1 min-w-0 text-body [--activity-content-indent:calc(var(--activity-row-padding-x)+var(--activity-icon-size)+var(--activity-row-gap))] [--activity-icon-size:1rem] [--activity-row-gap:0.5rem] [--activity-row-padding-x:0.375rem]",
+          skinSlot("activity", "root", { kind, state }),
+          className,
+        )}
         {...props}
       >
         <span
@@ -91,7 +94,8 @@ export function Activity({ kind = "default", name, state = "pending", statusLabe
 
 type ActivityRowProps = ComponentProps<"div">;
 
-const activityRowClassName = "flex min-h-8 w-fit max-w-full items-center gap-2 px-1.5 py-1 text-left text-muted-foreground";
+const activityRowClassName =
+  "flex min-h-8 w-fit max-w-full items-center gap-[var(--activity-row-gap)] px-[var(--activity-row-padding-x)] py-1 text-left text-muted-foreground";
 
 export function ActivityRow({ className, ...props }: ActivityRowProps) {
   return (
@@ -146,7 +150,7 @@ export function ActivityIcon({ className, children, ...props }: ActivityIconProp
       data-slot="icon"
       {...props}
       className={cn(
-        "flex size-4 shrink-0 items-center justify-center text-muted-foreground [&_svg]:size-4",
+        "flex size-[var(--activity-icon-size)] shrink-0 items-center justify-center text-muted-foreground [&_svg]:size-[var(--activity-icon-size)]",
         activity.isRunning && "text-foreground",
         activity.isRunning && !children && "[&_svg]:animate-spin",
         activity.isError && "text-destructive-text",
@@ -230,7 +234,7 @@ export function ActivityContent({
         className={cn("min-w-0", scrollAreaClassName)}
         {...resolvedScrollAreaProps}
       >
-        <div className="grid min-w-0 gap-2 px-1 pb-2 pt-1">{children}</div>
+        <div className="grid min-w-0 gap-3 pb-2 pl-[var(--activity-content-indent)] pr-1 pt-0.5">{children}</div>
       </ScrollArea>
     </CollapsibleContent>
   );
@@ -257,22 +261,30 @@ export function ActivityDetailLabel({ className, ...props }: ActivityDetailLabel
       data-control-ui="activity"
       data-slot="detail-label"
       {...props}
-      className={cn("text-caption font-medium text-muted-foreground", skinSlot("activity", "detail-label", {}), className)}
+      className={cn(
+        "text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground",
+        skinSlot("activity", "detail-label", {}),
+        className,
+      )}
     />
   );
 }
 
-export type ActivityDetailContentProps = ComponentProps<"div">;
+export type ActivityDetailContentProps = ComponentProps<"div"> & {
+  format?: ActivityDetailFormat;
+};
 
-export function ActivityDetailContent({ className, ...props }: ActivityDetailContentProps) {
+export function ActivityDetailContent({ format = "text", className, ...props }: ActivityDetailContentProps) {
   return (
     <div
       data-control-ui="activity"
       data-slot="detail-content"
+      data-format={format}
       {...props}
       className={cn(
         "min-w-0 whitespace-pre-wrap wrap-anywhere text-label leading-5 text-foreground",
-        skinSlot("activity", "detail-content", {}),
+        format === "code" && "w-fit max-w-full rounded-[var(--radius-control)] bg-muted/50 px-2 py-1.5 font-mono text-caption",
+        skinSlot("activity", "detail-content", { format }),
         className,
       )}
     />

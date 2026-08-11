@@ -37,7 +37,7 @@ export function ChatMessageExample() {
               <ActivityContent>
                 <ActivityDetail>
                   <ActivityDetailLabel>Input</ActivityDetailLabel>
-                  <ActivityDetailContent className="font-mono text-caption">{`{ "surface": "control-ui" }`}</ActivityDetailContent>
+                  <ActivityDetailContent format="code">{`{ "surface": "control-ui" }`}</ActivityDetailContent>
                 </ActivityDetail>
                 <ActivityDetail>
                   <ActivityDetailLabel>Output</ActivityDetailLabel>

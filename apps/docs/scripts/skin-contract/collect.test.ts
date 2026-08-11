@@ -48,7 +48,6 @@ describe("skin contract generation", () => {
     expect(contract.semanticFamilies.popup.label).toContainEqual({ scope: "autocomplete", part: "group-label" });
     expect(contract.semanticFamilies.surfaces.modal).toContainEqual({ scope: "dialog", part: "content" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "code-diff", part: "root" });
-    expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "activity", part: "root" });
   });
 
   test("derives only emitted external states and preserves finite Control UI state values", () => {
