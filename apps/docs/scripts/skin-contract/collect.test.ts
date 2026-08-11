@@ -99,7 +99,7 @@ describe("skin contract generation", () => {
       attribute: "data-activity-kind",
       source: "control-ui",
       valueKind: "enum",
-      values: ["default", "tool"],
+      values: ["default", "reasoning", "signal", "tool"],
     });
     expect(stateAt(contract, "activity", "root", "data-activity-name")).toEqual({
       attribute: "data-activity-name",

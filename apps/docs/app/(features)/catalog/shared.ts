@@ -17,6 +17,7 @@ export const registryKindIds = [
   "code-block-editor",
   "chat-layout",
   "thread-rail",
+  "transcript-divider",
   "user-ask",
   "task-list",
   "audio-recorder",

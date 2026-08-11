@@ -50,7 +50,7 @@ export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit"> & {
 };
 
 export type ActivityState = "pending" | "running" | "success" | "error";
-export type ActivityKind = "default" | "tool";
+export type ActivityKind = "default" | "tool" | "reasoning" | "signal";
 
 export type ActivityProps = Omit<CollapsibleProps, "children"> & {
   children?: ReactNode;
@@ -58,6 +58,10 @@ export type ActivityProps = Omit<CollapsibleProps, "children"> & {
   name?: string;
   state?: ActivityState;
   statusLabel?: ReactNode;
+};
+
+export type TranscriptDividerProps = ComponentProps<"div"> & {
+  tone?: ChatTone;
 };
 
 export type ContextSegmentKind = "system" | "tool" | "message" | "source" | "reasoning" | "cache" | "other";

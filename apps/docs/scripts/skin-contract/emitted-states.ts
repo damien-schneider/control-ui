@@ -184,6 +184,7 @@ export type EmittedStateContract = {
   "task-list:item:data-status": TaskStatus;
   "task-list:item-indicator:data-status": TaskStatus;
   "thread-rail:item:data-from": ChatRole;
+  "transcript-divider:root:data-tone": ChatTone;
   "toggle:root:data-size": ControlSize;
   "toggle:root:data-tone": ButtonTone;
   "toggle:root:data-variant": ButtonVariant;

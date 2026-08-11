@@ -19,7 +19,8 @@
     "http://127.0.0.1:3000/r/markdown-block.json",
     "http://127.0.0.1:3000/r/model-switcher.json",
     "http://127.0.0.1:3000/r/source-badge.json",
-    "http://127.0.0.1:3000/r/thread-rail.json"
+    "http://127.0.0.1:3000/r/thread-rail.json",
+    "http://127.0.0.1:3000/r/transcript-divider.json"
   ],
   "files": [],
   "meta": {}

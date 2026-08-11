@@ -226,6 +226,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -341,6 +342,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -456,6 +458,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -571,6 +574,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -686,6 +690,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -801,6 +806,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -916,6 +922,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -1031,6 +1038,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",
@@ -1304,7 +1312,8 @@
         "http://127.0.0.1:3000/r/markdown-block.json",
         "http://127.0.0.1:3000/r/model-switcher.json",
         "http://127.0.0.1:3000/r/source-badge.json",
-        "http://127.0.0.1:3000/r/thread-rail.json"
+        "http://127.0.0.1:3000/r/thread-rail.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json"
       ],
       "files": [],
       "meta": {}
@@ -3529,6 +3538,25 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "transcript-divider",
+      "type": "registry:component",
+      "title": "TranscriptDivider",
+      "description": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/transcript-divider.tsx",
+          "target": "@components/control-ui/transcript-divider.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {}
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "tree",
       "type": "registry:ui",
       "title": "Tree",
@@ -3708,6 +3736,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
         "http://127.0.0.1:3000/r/typography.json",

@@ -99,6 +99,7 @@
     "http://127.0.0.1:3000/r/toggle.json",
     "http://127.0.0.1:3000/r/toolbar.json",
     "http://127.0.0.1:3000/r/tooltip.json",
+    "http://127.0.0.1:3000/r/transcript-divider.json",
     "http://127.0.0.1:3000/r/tree.json",
     "http://127.0.0.1:3000/r/trigger-menu.json",
     "http://127.0.0.1:3000/r/typography.json",

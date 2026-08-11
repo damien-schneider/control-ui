@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "transcript-divider",
+  "type": "registry:component",
+  "title": "TranscriptDivider",
+  "description": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/transcript-divider.tsx",
+      "target": "@components/control-ui/transcript-divider.tsx",
+      "type": "registry:component",
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { TranscriptDividerProps } from \"@/components/control-ui/contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\nexport function TranscriptDivider({ tone = \"neutral\", className, children, ...props }: TranscriptDividerProps) {\n  return (\n    <div\n      data-control-ui=\"transcript-divider\"\n      data-slot=\"root\"\n      data-tone={tone}\n      className={cn(\n        \"my-2 flex min-w-0 items-center text-caption text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border\",\n        tone === \"danger\" && \"text-destructive-text\",\n        skinSlot(\"transcript-divider\", \"root\", { tone }),\n        className,\n      )}\n      {...props}\n    >\n      {children != null ? <TranscriptDividerLabel>{children}</TranscriptDividerLabel> : null}\n    </div>\n  );\n}\n\nexport type TranscriptDividerLabelProps = ComponentProps<\"span\">;\n\nexport function TranscriptDividerLabel({ className, ...props }: TranscriptDividerLabelProps) {\n  return (\n    <span\n      data-control-ui=\"transcript-divider\"\n      data-slot=\"label\"\n      className={cn(\"min-w-0 truncate px-2\", skinSlot(\"transcript-divider\", \"label\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ],
+  "meta": {}
+}

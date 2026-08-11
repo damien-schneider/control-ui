@@ -103,6 +103,7 @@ export const generatedSkinContract: SkinContract = {
     toolbar: ["toolbar"],
     tooltip: ["tooltip"],
     "track-highlight": ["track-highlight"],
+    "transcript-divider": ["transcript-divider"],
     tree: ["tree"],
     "trigger-menu": ["trigger-menu"],
     "user-ask": ["user-ask"],
@@ -233,7 +234,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-activity-kind",
               source: "control-ui",
               valueKind: "enum",
-              values: ["default", "tool"],
+              values: ["default", "reasoning", "signal", "tool"],
             },
             {
               attribute: "data-activity-name",
@@ -8371,6 +8372,29 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["track-highlight"],
+    },
+    "transcript-divider": {
+      parts: {
+        root: {
+          context: {
+            tone: "ChatTone",
+          },
+          registryItems: ["transcript-divider"],
+          states: [
+            {
+              attribute: "data-tone",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["danger", "neutral", "success", "warning"],
+            },
+          ],
+        },
+        label: {
+          registryItems: ["transcript-divider"],
+          states: [],
+        },
+      },
+      registryItems: ["transcript-divider"],
     },
     tree: {
       parts: {

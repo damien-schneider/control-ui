@@ -19,7 +19,8 @@
     "markdown-block",
     "model-switcher",
     "source-badge",
-    "thread-rail"
+    "thread-rail",
+    "transcript-divider"
   ],
   "files": [],
   "meta": {

@@ -12,7 +12,7 @@ import {
 
 export function Example() {
   return (
-    <Activity state="running" defaultOpen>
+    <Activity kind="reasoning" state="running" defaultOpen>
       <ActivityTrigger>
         <ActivityIcon>
           <BookOpen />

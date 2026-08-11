@@ -362,6 +362,7 @@ function definitions(): Definition[] {
         "code-block-editor",
         "chat-layout",
         "thread-rail",
+        "transcript-divider",
         "model-switcher",
       ],
     },

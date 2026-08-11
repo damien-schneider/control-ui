@@ -297,6 +297,9 @@
     "track-highlight": [
       "track-highlight"
     ],
+    "transcript-divider": [
+      "transcript-divider"
+    ],
     "tree": [
       "tree"
     ],
@@ -451,6 +454,8 @@
               "valueKind": "enum",
               "values": [
                 "default",
+                "reasoning",
+                "signal",
                 "tool"
               ]
             },
@@ -10719,6 +10724,40 @@
       },
       "registryItems": [
         "track-highlight"
+      ]
+    },
+    "transcript-divider": {
+      "parts": {
+        "root": {
+          "context": {
+            "tone": "ChatTone"
+          },
+          "registryItems": [
+            "transcript-divider"
+          ],
+          "states": [
+            {
+              "attribute": "data-tone",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "danger",
+                "neutral",
+                "success",
+                "warning"
+              ]
+            }
+          ]
+        },
+        "label": {
+          "registryItems": [
+            "transcript-divider"
+          ],
+          "states": []
+        }
+      },
+      "registryItems": [
+        "transcript-divider"
       ]
     },
     "tree": {

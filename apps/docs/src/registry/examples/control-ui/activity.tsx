@@ -1,4 +1,4 @@
-import { BookOpen, Globe, LoaderCircle, Search, SquareTerminal } from "lucide-react";
+import { BookOpen, Globe, LoaderCircle, Radio, Search, SquareTerminal } from "lucide-react";
 
 import type { ReactNode } from "react";
 
@@ -49,7 +49,17 @@ export function ActivityExample() {
         </ActivityRow>
       </Activity>
 
-      <Activity state="running" defaultOpen className="[--activity-content-max-height:12rem]">
+      <Activity kind="signal" state="success">
+        <ActivityRow>
+          <ActivityIcon>
+            <Radio />
+          </ActivityIcon>
+          <ActivityTitle>CI signal — build failed on PR #42</ActivityTitle>
+          <ActivityStatus>Delivered</ActivityStatus>
+        </ActivityRow>
+      </Activity>
+
+      <Activity kind="reasoning" state="running" defaultOpen className="[--activity-content-max-height:12rem]">
         <ActivityTrigger>
           <ActivityIcon>
             <BookOpen />

@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 162,
+    "count": 163,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -544,6 +544,14 @@
         "summary": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
         "href": "/ai/activity",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/activity.json"
+      },
+      {
+        "id": "transcript-divider",
+        "name": "TranscriptDivider",
+        "kind": "Agent",
+        "summary": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
+        "href": "/ai/transcript-divider",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/transcript-divider.json"
       },
       {
         "id": "context",

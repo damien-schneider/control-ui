@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "transcript-divider",
+  "type": "registry:component",
+  "title": "TranscriptDivider",
+  "description": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/transcript-divider.tsx",
+      "target": "@components/control-ui/transcript-divider.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/transcript-divider.json"
+  }
+}

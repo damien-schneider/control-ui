@@ -460,6 +460,10 @@ export type SkinSlotContexts = {
     footer: StatelessPart;
     file: StatelessPart;
   };
+  "transcript-divider": {
+    root: { tone: ChatTone };
+    label: StatelessPart;
+  };
   "markdown-block": {
     root: StatelessPart;
     header: StatelessPart;

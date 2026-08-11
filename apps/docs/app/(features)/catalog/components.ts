@@ -291,6 +291,24 @@ export const componentEntries = [
     preview: preview(() => import("@/src/registry/examples/control-ui/activity").then((mod) => ({ default: mod.ActivityExample }))),
   },
   {
+    id: "transcript-divider",
+    kind: "Agent",
+    name: "TranscriptDivider",
+    summary: "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
+    registryKind: "transcript-divider",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/transcript-divider.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/components/transcript-divider.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/transcript-divider.tsx", "usage"),
+      },
+      source: sourceFile("Component", "src/registry/sources/control-ui/transcript-divider.tsx", "component"),
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/transcript-divider").then((mod) => ({ default: mod.TranscriptDividerExample })),
+    ),
+  },
+  {
     id: "context",
     kind: "Agent",
     name: "Context",
