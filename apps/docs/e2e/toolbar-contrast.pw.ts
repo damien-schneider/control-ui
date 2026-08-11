@@ -140,12 +140,13 @@ async function minimumContrasts(toolbar: Locator, regions: GlyphRegion[]): Promi
         const width = Math.min(image.width - left, Math.round(region.width * scale));
         const height = Math.min(image.height - top, Math.round(region.height * scale));
         const { data } = context.getImageData(left, top, width, height);
-        const clusters = backdropClusters(data);
+        const clusters = [...backdropClusters(data).values()];
         const totalPixels = data.length / 4;
+        const qualifying = clusters.filter((cluster) => cluster.count / totalPixels >= minimumShare);
+        const dominant = clusters.reduce((largest, cluster) => (cluster.count > largest.count ? cluster : largest));
 
         let minimum = Number.POSITIVE_INFINITY;
-        for (const cluster of clusters.values()) {
-          if (cluster.count / totalPixels < minimumShare) continue;
+        for (const cluster of qualifying.length > 0 ? qualifying : [dominant]) {
           const backdrop: [number, number, number] = [
             Math.round(cluster.red / cluster.count),
             Math.round(cluster.green / cluster.count),
@@ -168,10 +169,17 @@ test("floating toolbar controls keep rendered contrast across every skin and mod
   await page.waitForLoadState("networkidle");
 
   const toolbar = page.locator("[data-docs-floating-toolbar]");
+  const editor = page.locator("[data-docs-floating-panel]");
   const violations: string[] = [];
 
   for (const skin of SKINS) {
-    await toolbar.getByRole("button", { name: "Edit theme" }).click();
+    // a click can land before hydration on a cold dev server; only re-click while the editor stays closed
+    await expect(async () => {
+      if ((await editor.getAttribute("data-state")) !== "open") {
+        await toolbar.getByRole("button", { name: "Edit theme" }).click();
+      }
+      await expect(editor).toHaveAttribute("data-state", "open", { timeout: 2_000 });
+    }).toPass();
     await page.getByRole("button", { name: skin.label, exact: true }).click();
     await page.keyboard.press("Escape");
     await page.mouse.move(0, 0);

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-// The theme editor is the floating toolbar, morphed: same surface, expanded to (near) the whole viewport on every breakpoint.
+// The theme editor is the floating toolbar, morphed: same surface, expanded to (near) the whole content area on every breakpoint.
 // The pill hangs from the bottom edge below lg and from the top edge from lg, and the morph grows away from whichever edge holds it.
 for (const { name, width, height, dock } of [
   { name: "mobile", width: 360, height: 900, dock: "bottom" },
@@ -12,6 +12,7 @@ for (const { name, width, height, dock } of [
 
     const panel = page.locator("[data-docs-floating-panel]");
     const toolbar = page.locator("[data-docs-floating-toolbar]");
+    const contentArea = page.locator('[data-control-ui="sidebar"][data-slot="inset"]');
     const editTheme = page.getByRole("button", { name: "Edit theme" });
     const heading = page.getByRole("heading", { name: "Theme editor" });
 
@@ -31,11 +32,13 @@ for (const { name, width, height, dock } of [
     await expect(heading).toBeVisible();
     await expect(toolbar).toHaveAttribute("inert", "");
 
+    const contentBox = await contentArea.boundingBox();
+    if (!contentBox) throw new Error("Content area geometry is unavailable");
     // Poll both axes: the morph eases width and height together, so a plain read lands mid-transition.
     await expect
       .poll(async () => {
         const box = await panel.boundingBox();
-        return box ? Math.round(Math.min(box.width / width, box.height / height) * 100) : 0;
+        return box ? Math.round(Math.min(box.width / contentBox.width, box.height / contentBox.height) * 100) : 0;
       })
       .toBeGreaterThan(94);
 

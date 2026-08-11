@@ -84,11 +84,12 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
     .toBe("oklch(0.94 0.05 105)");
 
   await openThemeEditor();
-  await page
+  // the builder page behind the editor also matches /Refined/, so stay inside the panel
+  await themeEditor
     .getByRole("button", { name: /Refined/ })
     .first()
     .click();
-  await page
+  await themeEditor
     .getByRole("button", { name: /Browser Paper/ })
     .first()
     .click();

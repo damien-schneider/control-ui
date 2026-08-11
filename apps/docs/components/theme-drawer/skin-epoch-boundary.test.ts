@@ -6,7 +6,7 @@ const read = (rel: string) => readFileSync(fileURLToPath(new URL(rel, import.met
 
 describe("the theme editor shell", () => {
   test("the docs floating toolbar hosts the theme editor content", () => {
-    const sidebar = read("../../app/(features)/sidebar/sidebar.tsx");
-    expect(sidebar).toContain("<ThemeEditorContent");
+    const toolbar = read("../../app/(features)/sidebar/floating-toolbar.tsx");
+    expect(toolbar).toContain("<ThemeEditorContent");
   });
 });

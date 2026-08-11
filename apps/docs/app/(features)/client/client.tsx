@@ -8,6 +8,7 @@ import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import type { ActivePageId, DocsShellData, IntegrationId, SearchItem, SetupPreferenceUpdate } from "@/app/(features)/model/types";
 import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/routed-page";
 import { buildSearchItems } from "@/app/(features)/registry-api/search";
+import { DocsFloatingToolbar } from "@/app/(features)/sidebar/floating-toolbar";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import type { SidebarMode } from "@/app/(features)/sidebar/types";
 import { clampSidebarWidth, readStoredSidebarWidth, SIDEBAR_WIDTH_VAR } from "@/app/(features)/sidebar/width";
@@ -263,6 +264,13 @@ function DocsShellContent({
           </ScrollArea>
           <SkinSourcePanel skins={skinPages} />
         </div>
+        <DocsFloatingToolbar
+          active={activePage}
+          searchItems={searchItems}
+          skills={skills}
+          lastSectionMode={lastSidebarMode}
+          onLastSectionModeChange={onLastSidebarModeChange}
+        />
       </SidebarInset>
     </SidebarProvider>
   );
