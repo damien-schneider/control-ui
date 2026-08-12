@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("Use cases owns block browsing and canonical detail routes", async ({ page }) => {
   await page.goto("/ai");
+  await page.waitForLoadState("networkidle");
 
   const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
   const useCasesMode = sectionNavigation.getByRole("link", { name: "Use cases" });
@@ -32,13 +33,22 @@ test("Use cases stays single-column and toolbar-safe on mobile", async ({ page }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/use-cases");
 
+  const sidebarTrigger = page.getByRole("button", { name: "Toggle Sidebar" });
+  await expect(sidebarTrigger).toBeVisible();
+  await sidebarTrigger.click();
+
   const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
+  await expect(sectionNavigation).toBeVisible();
   for (const name of ["Primitives", "AI", "Use cases", "Skills"]) {
     await expect(sectionNavigation.getByRole("link", { name })).toHaveCount(1);
   }
 
+  await page.keyboard.press("Escape");
+  await expect(sectionNavigation).toBeHidden();
+
   const toolbar = page.locator("[data-docs-floating-toolbar]");
   await expect(toolbar).toBeVisible();
+  await expect(toolbar.getByRole("navigation")).toHaveCount(0);
   const toolbarBox = await toolbar.boundingBox();
   expect(toolbarBox).not.toBeNull();
   expect(toolbarBox?.x ?? -1).toBeGreaterThanOrEqual(0);

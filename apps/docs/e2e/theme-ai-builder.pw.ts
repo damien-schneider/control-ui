@@ -84,12 +84,14 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
     .toBe("oklch(0.94 0.05 105)");
 
   await openThemeEditor();
-  // the builder page behind the editor also matches /Refined/, so stay inside the panel
-  await themeEditor
+  // both the builder page behind the editor and the hidden collapsed toolbar also match /Refined/,
+  // so stay inside the editor's content region
+  const editorContent = page.getByRole("region", { name: "Theme editor" });
+  await editorContent
     .getByRole("button", { name: /Refined/ })
     .first()
     .click();
-  await themeEditor
+  await editorContent
     .getByRole("button", { name: /Browser Paper/ })
     .first()
     .click();

@@ -196,6 +196,7 @@ export function tokenLabel(token: ThemeContractToken): string {
 export type TokenCategory = {
   group: ThemeContractGroup;
   title: string;
+  description: string;
   core: ThemeContractToken[];
   advanced: ThemeContractToken[];
 };
@@ -210,6 +211,16 @@ const GROUP_TITLES: Record<ThemeContractGroup, string> = {
   layout: "Layout & density",
 };
 
+const GROUP_DESCRIPTIONS: Record<ThemeContractGroup, string> = {
+  color: "Semantic surfaces, text, borders, and status roles.",
+  typography: "Font families and the shared type scale.",
+  radius: "Corner character and derived control geometry.",
+  shadow: "Elevation, highlights, color, and opacity.",
+  motion: "Durations, easing, and reduced-motion behavior.",
+  surface: "Overlay opacity, backdrop blur, and scroll fades.",
+  layout: "Control sizing, density, spacing, and chrome.",
+};
+
 const GROUP_ORDER: readonly ThemeContractGroup[] = ["color", "typography", "radius", "shadow", "motion", "surface", "layout"];
 
 const isBadgeToken = (token: ThemeContractToken) => token.name.startsWith("--badge-");
@@ -220,6 +231,7 @@ export const TOKEN_CATEGORIES: readonly TokenCategory[] = GROUP_ORDER.map((group
   return {
     group,
     title: GROUP_TITLES[group],
+    description: GROUP_DESCRIPTIONS[group],
     core: tokens.filter((token) => token.tier === "core"),
     // derived tokens stay editable — override sheet outranks their :where() core default
     advanced: tokens.filter((token) => token.tier !== "core"),

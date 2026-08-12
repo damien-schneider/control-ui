@@ -1,16 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
 
-async function alignmentError(target: Locator, indicator: Locator) {
-  const [targetBox, indicatorBox] = await Promise.all([target.boundingBox(), indicator.boundingBox()]);
-  if (!targetBox || !indicatorBox) return Number.POSITIVE_INFINITY;
-  return Math.max(
-    Math.abs(targetBox.x - indicatorBox.x),
-    Math.abs(targetBox.y - indicatorBox.y),
-    Math.abs(targetBox.width - indicatorBox.width),
-    Math.abs(targetBox.height - indicatorBox.height),
-  );
-}
-
 async function horizontalInsetError(container: Locator, content: Locator) {
   const [containerBox, contentBox] = await Promise.all([container.boundingBox(), content.boundingBox()]);
   if (!containerBox || !contentBox) return Number.POSITIVE_INFINITY;
@@ -19,104 +8,59 @@ async function horizontalInsetError(container: Locator, content: Locator) {
   return Math.abs(leftInset - rightInset);
 }
 
-async function cornerRadii(locator: Locator) {
-  return locator.evaluate((element) => {
-    const styles = getComputedStyle(element);
-    return [styles.borderTopLeftRadius, styles.borderTopRightRadius, styles.borderBottomRightRadius, styles.borderBottomLeftRadius];
-  });
-}
-
-test("floating toolbar pill chases hover and yields active emphasis", async ({ page }) => {
+test("floating toolbar contains search and skin controls while section navigation follows the sidebar header", async ({ page }) => {
   await page.goto("/primitives/button");
 
   const toolbar = page.locator("[data-docs-floating-toolbar]");
-  const modes = page.getByRole("navigation", { name: "Documentation sections" });
-  const activeMode = modes.locator("[aria-current=page]");
-  const hoveredMode = modes.getByTitle("Skills");
-  const idleMode = modes.getByTitle("AI");
-  const pill = modes.locator('[data-control-ui="track-highlight"][data-slot="root"]');
+  const sidebarHeader = page.locator('[data-control-ui="sidebar"][data-slot="header"]');
+  const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
 
-  await expect(toolbar).toHaveAttribute("role", "toolbar");
-  // Single-layer mode: no dedicated hover layer, the one pill serves both states.
-  await expect(modes.locator('[data-control-ui="track-highlight"][data-slot="hover"]')).toHaveCount(0);
-  await expect(pill).toHaveAttribute("data-visible", "");
-  await expect(pill).not.toHaveAttribute("data-hover", "");
-  await expect.poll(() => alignmentError(activeMode, pill)).toBeLessThan(1);
+  await expect(toolbar.getByRole("combobox", { name: "Search documentation" })).toBeVisible();
+  await expect(toolbar.getByRole("button", { name: "Edit theme" })).toBeVisible();
+  const presetControls = toolbar.getByRole("group", { name: "Skin presets" });
+  for (const label of ["Refined", "Rig", "Flat", "Windows XP", "Liquid metal", "Modern Apple", "Cuicui", "Linear"]) {
+    await expect(presetControls.getByRole("button", { name: label })).toBeVisible();
+  }
+  const refinedPreset = presetControls.getByRole("button", { name: "Refined" });
+  await expect(refinedPreset).toHaveAttribute("aria-pressed", "true");
+  await expect(refinedPreset).toHaveText("Refined");
+  const applePreset = presetControls.getByRole("button", { name: "Modern Apple" });
+  await applePreset.hover();
+  await expect(page.getByRole("tooltip").filter({ hasText: "Modern Apple" })).toBeVisible();
+  await expect(toolbar.getByRole("navigation")).toHaveCount(0);
+  await expect(toolbar.getByRole("link")).toHaveCount(0);
+  await expect(sectionNavigation).toBeVisible();
+  await expect(sectionNavigation.locator('[aria-current="page"]')).toHaveAccessibleName("Primitives");
 
-  const cssColor = (locator: Locator) => locator.evaluate((element) => getComputedStyle(element).color);
-  const restBackground = await pill.evaluate((element) => getComputedStyle(element).backgroundColor);
-  const restActiveColor = await cssColor(activeMode);
-  expect(restActiveColor).not.toBe(await cssColor(idleMode));
+  const [headerBox, navigationBox] = await Promise.all([sidebarHeader.boundingBox(), sectionNavigation.boundingBox()]);
+  expect(headerBox).not.toBeNull();
+  expect(navigationBox).not.toBeNull();
+  expect(navigationBox?.y ?? 0).toBeGreaterThanOrEqual((headerBox?.y ?? 0) + (headerBox?.height ?? 0) - 1);
 
-  await toolbar.evaluate((element) => {
-    element.setAttribute("style", "--duration-slow: 10s; --ease-emphasized: linear");
-  });
-  await hoveredMode.hover();
-  // Pill leaves the active row: hover paint on the pill, track flags the chase, active row yields its emphasis.
-  await expect(pill).toHaveAttribute("data-hover", "");
-  await expect(modes).toHaveAttribute("data-track-hover", "");
-  await expect.poll(() => cssColor(activeMode)).toBe(await cssColor(idleMode));
+  const rigPreset = presetControls.getByRole("button", { name: "Rig" });
+  await rigPreset.click();
+  await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
+  await expect(rigPreset).toHaveAttribute("aria-pressed", "true");
+  await expect(rigPreset).toHaveText("Rig");
+  await expect(refinedPreset).toHaveText("");
+});
 
-  const hoverMotion = await pill.evaluate((element) => {
-    const transitions = element
-      .getAnimations()
-      .filter((animation): animation is CSSTransition => animation instanceof CSSTransition && animation.transitionProperty !== "opacity");
-    for (const transition of transitions) {
-      transition.pause();
-      transition.currentTime = 5_000;
-    }
-    return transitions.map((transition) => ({
-      property: transition.transitionProperty,
-      duration: transition.effect?.getTiming().duration,
-      easing: transition.effect?.getTiming().easing,
-    }));
-  });
+test("sidebar setup controls follow the section selector", async ({ page }) => {
+  await page.goto("/ai");
+  await page.waitForLoadState("networkidle");
 
-  expect(hoverMotion.some(({ property }) => property === "left" || property === "right")).toBe(true);
-  expect(hoverMotion.every(({ duration, easing }) => duration === 10_000 && easing === "linear")).toBe(true);
+  const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
+  const integration = page.getByTestId("integration-select");
+  await expect(sectionNavigation).toBeVisible();
+  await expect(integration).toBeVisible();
 
-  const [activeBox, hoveredBox, midpointBox] = await Promise.all([activeMode.boundingBox(), hoveredMode.boundingBox(), pill.boundingBox()]);
-  expect(activeBox).not.toBeNull();
-  expect(hoveredBox).not.toBeNull();
-  expect(midpointBox).not.toBeNull();
-  expect(midpointBox?.x).toBeGreaterThan(activeBox?.x ?? Number.POSITIVE_INFINITY);
-  expect(midpointBox?.x).toBeLessThan(hoveredBox?.x ?? Number.NEGATIVE_INFINITY);
-
-  await pill.evaluate((element) =>
-    element.getAnimations().forEach((animation) => {
-      animation.finish();
-    }),
-  );
-  await expect.poll(() => alignmentError(hoveredMode, pill)).toBeLessThan(1);
-  await expect(activeMode).toHaveAttribute("aria-current", "page");
-  // Visiting paint ≠ resting paint, and rows never regrow their own background under the pill.
-  expect(await pill.evaluate((element) => getComputedStyle(element).backgroundColor)).not.toBe(restBackground);
-  await expect(hoveredMode).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
-
-  expect(await cornerRadii(pill)).toEqual(await cornerRadii(hoveredMode));
-
-  const concentricGeometry = await toolbar.evaluate((element) => {
-    const toolbarStyles = getComputedStyle(element);
-    const item = element.querySelector<HTMLElement>('[data-control-ui="track-highlight"][data-slot="root"]');
-    if (!item) return null;
-    return {
-      outerRadius: Number.parseFloat(toolbarStyles.borderTopLeftRadius),
-      itemRadius: Number.parseFloat(getComputedStyle(item).borderTopLeftRadius),
-      padding: Number.parseFloat(toolbarStyles.paddingLeft),
-    };
-  });
-  expect(concentricGeometry).not.toBeNull();
-  expect(concentricGeometry?.outerRadius).toBeCloseTo((concentricGeometry?.itemRadius ?? 0) + (concentricGeometry?.padding ?? 0), 1);
-
-  // Restore real tempo before leaving so the return trip settles within poll timeouts.
-  await toolbar.evaluate((element) => element.removeAttribute("style"));
-  await page.mouse.move(0, 0);
-  // Pointer gone: pill returns home with its resting paint and the active row re-emphasizes.
-  await expect(pill).not.toHaveAttribute("data-hover", "");
-  await expect(modes).not.toHaveAttribute("data-track-hover", "");
-  await expect.poll(() => alignmentError(activeMode, pill)).toBeLessThan(1);
-  await expect.poll(() => pill.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(restBackground);
-  await expect.poll(() => cssColor(activeMode)).toBe(restActiveColor);
+  await expect
+    .poll(async () => {
+      const [navigationBox, integrationBox] = await Promise.all([sectionNavigation.boundingBox(), integration.boundingBox()]);
+      if (!navigationBox || !integrationBox) return false;
+      return integrationBox.y >= navigationBox.y + navigationBox.height - 1;
+    })
+    .toBe(true);
 });
 
 test("search closes without moving through a second focus state", async ({ page }) => {
@@ -158,74 +102,69 @@ for (const { name, width, height } of [
   { name: "desktop", width: 1280, height: 800 },
   { name: "mobile", width: 390, height: 844 },
 ]) {
-  test(`floating toolbar uses fixed theme-driven width endpoints on ${name}`, async ({ page }) => {
+  test(`floating toolbar fits its controls and expands for search on ${name}`, async ({ page }) => {
     await page.setViewportSize({ width, height });
     await page.goto("/primitives/button");
+    await page.waitForLoadState("networkidle");
 
-    // The morphing panel owns the geometry now; the toolbar is its collapsed face and just fills it.
     const panel = page.locator("[data-docs-floating-panel]");
     const toolbar = page.locator("[data-docs-floating-toolbar]");
-    const selectionHighlight = toolbar.locator('[data-control-ui="track-highlight"][data-slot="root"]');
-    const mode = toolbar.getByTitle("Skills");
-    const search = toolbar.locator('input[aria-label="Search documentation"]');
-    await expect(selectionHighlight).toHaveAttribute("data-visible", "");
-
-    const endpoints = await panel.evaluate((element) => {
-      const resolveLength = (property: string) => {
-        const probe = document.createElement("div");
-        probe.style.position = "absolute";
-        probe.style.width = `var(${property})`;
-        element.append(probe);
-        const resolvedWidth = probe.getBoundingClientRect().width;
-        probe.remove();
-        return resolvedWidth;
-      };
-      return {
-        rest: resolveLength("--floating-toolbar-rest-width"),
-        search: resolveLength("--floating-toolbar-search-width"),
-        maximum: window.innerWidth - 16,
-      };
-    });
+    const skinControls = toolbar.locator("[data-skin-controls]");
+    const themeEditorTrigger = toolbar.getByRole("button", { name: "Edit theme" });
+    const search = toolbar.getByRole("combobox", { name: "Search documentation" });
+    const maximumWidth = width - 16;
     const restingWidth = await panel.evaluate((element) => element.getBoundingClientRect().width);
-    expect(restingWidth).toBeCloseTo(Math.min(endpoints.rest, endpoints.maximum), 1);
+    const focusedEndpoint = await toolbar.evaluate((element) => {
+      const probe = document.createElement("div");
+      probe.style.position = "fixed";
+      probe.style.width = "min(34rem, calc(100vw - 1rem))";
+      element.append(probe);
+      const resolvedWidth = probe.getBoundingClientRect().width;
+      probe.remove();
+      return resolvedWidth;
+    });
 
-    await mode.focus();
+    expect(restingWidth).toBeLessThan(maximumWidth);
+    await expect.poll(() => toolbar.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(restingWidth, 1);
+    await expect.poll(() => skinControls.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(1);
+
+    await themeEditorTrigger.focus();
     await expect.poll(() => panel.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(restingWidth, 1);
 
-    // setProperty, not setAttribute: the panel's inline style carries its own collapsed/expanded size vars.
-    await panel.evaluate((element) => {
+    await toolbar.evaluate((element) => {
       if (!(element instanceof HTMLElement)) return;
-      element.style.setProperty("--duration-slow", "10s");
-      element.style.setProperty("--ease-emphasized", "linear");
+      element.style.setProperty("--duration-base", "10s");
+      element.style.setProperty("--ease-standard", "linear");
     });
     await search.focus();
 
-    const widthMotion = await panel.evaluate((element) => {
-      const transition = element
-        .getAnimations()
-        .find((animation): animation is CSSTransition => animation instanceof CSSTransition && animation.transitionProperty === "width");
-      if (!transition) return null;
-      transition.pause();
-      transition.currentTime = 5_000;
-      return {
-        duration: transition.effect?.getTiming().duration,
-        easing: transition.effect?.getTiming().easing,
-      };
+    const widthMotions = await toolbar.evaluate((element) => {
+      const transitions = element
+        .getAnimations({ subtree: true })
+        .filter((animation): animation is CSSTransition => animation instanceof CSSTransition);
+      for (const transition of transitions) {
+        transition.pause();
+        transition.currentTime = 5_000;
+      }
+      return transitions
+        .filter((transition) => transition.transitionProperty === "width")
+        .map((transition) => ({
+          duration: transition.effect?.getTiming().duration,
+          easing: transition.effect?.getTiming().easing,
+        }));
     });
-    expect(widthMotion).toEqual({ duration: 10_000, easing: "linear" });
+    expect(widthMotions).toHaveLength(2);
+    expect(widthMotions.every((motion) => motion.duration === 10_000 && motion.easing === "linear")).toBe(true);
 
-    const midpointWidth = await panel.evaluate((element) => element.getBoundingClientRect().width);
-    const expandedWidth = Math.min(endpoints.search, endpoints.maximum);
+    const midpointWidth = await toolbar.evaluate((element) => element.getBoundingClientRect().width);
     expect(midpointWidth).toBeGreaterThan(restingWidth);
-    expect(midpointWidth).toBeLessThan(expandedWidth);
+    expect(midpointWidth).toBeLessThan(focusedEndpoint);
+    await expect.poll(() => panel.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(midpointWidth, 1);
 
-    await panel.evaluate((element) =>
-      element.getAnimations().forEach((animation) => {
-        animation.finish();
-      }),
-    );
-    await expect.poll(() => panel.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(expandedWidth, 1);
-    // The pill face tracks the panel exactly — no second width animation of its own.
-    await expect.poll(() => toolbar.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(expandedWidth, 1);
+    await toolbar.evaluate((element) => {
+      for (const animation of element.getAnimations({ subtree: true })) animation.finish();
+    });
+    await expect.poll(() => panel.evaluate((element) => element.getBoundingClientRect().width)).toBeCloseTo(focusedEndpoint, 1);
+    expect(focusedEndpoint).toBeLessThanOrEqual(maximumWidth + 1);
   });
 }

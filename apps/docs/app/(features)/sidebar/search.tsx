@@ -79,7 +79,10 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
         if (!event.currentTarget.contains(event.relatedTarget)) setQuery("");
       }}
     >
-      <div className="group/search relative flex min-w-0 flex-[0_0_var(--control-h-sm)] items-center rounded-[var(--toolbar-item-radius-fit)] text-background/70 outline-hidden transition-[flex-basis,background-color,color] duration-[var(--duration-base)] ease-[var(--ease-standard)] focus-within:flex-[1_1_100%] focus-within:bg-background/10 focus-within:text-background hover:bg-background/10 hover:text-background">
+      <div
+        data-docs-sidebar-search=""
+        className="group/search relative flex w-[var(--control-h-sm)] min-w-0 shrink-0 items-center rounded-[var(--toolbar-item-radius-fit)] text-background/70 outline-hidden transition-[width,background-color,color] duration-[var(--duration-base)] ease-[var(--ease-standard)] focus-within:w-[calc(min(34rem,calc(100vw-1rem))_-_2_*_var(--toolbar-padding,0.25rem)_-_2px)] focus-within:bg-background/10 focus-within:text-background hover:bg-background/10 hover:text-background"
+      >
         <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] flex w-[var(--control-h-sm)] items-center justify-center">
           <HugeiconsIcon icon={Search01Icon} size={15} strokeWidth={1.7} />
         </span>

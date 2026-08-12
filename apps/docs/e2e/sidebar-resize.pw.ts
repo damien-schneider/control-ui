@@ -130,7 +130,7 @@ test("collapsed state and committed width survive a skin remount", async ({ page
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
 
   await page.getByRole("button", { name: "Edit theme" }).click();
-  await page.getByRole("button", { name: "Cuicui", exact: true }).click();
+  await page.getByLabel("Choose a skin").getByRole("button", { name: "Cuicui", exact: true }).click();
   await page.keyboard.press("Escape");
   await expect(page.locator("html")).toHaveAttribute("data-skin", "cuicui");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
@@ -151,7 +151,7 @@ test("persisted desktop collapse leaves the mobile sheet interactive", async ({ 
 
   await page.setViewportSize({ width: 800, height: 900 });
   await page.reload();
-  await page.locator("[data-docs-floating-toolbar]").getByRole("button", { name: "Toggle Sidebar" }).click();
+  await page.getByRole("button", { name: "Toggle Sidebar" }).click();
 
   const sidebarNavigation = page.locator("[data-docs-sidebar-navigation]");
   await expect(sidebarNavigation).not.toHaveAttribute("inert");

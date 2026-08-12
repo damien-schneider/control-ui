@@ -2,14 +2,13 @@
 
 import { CustomizeIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ChevronRightIcon, ShieldCheckIcon, SparklesIcon, XIcon } from "lucide-react";
+import { ShieldCheckIcon, SparklesIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { useId, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, buttonContentClasses, buttonRecipeClasses } from "@/components/control-ui/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
@@ -21,6 +20,7 @@ import { MiniColorSwatch, TokenControl, VarTag } from "./controls";
 import { downloadThemeArtifact } from "./custom-themes";
 import { SKIN_META_BY_ID } from "./presets";
 import { SkinSelector } from "./skin-selector";
+import { ThemeArchitecture } from "./theme-architecture";
 import { useThemeRuntime } from "./theme-runtime-context";
 import { BADGE_TOKEN_ROWS, TOKEN_CATEGORIES, type TokenCategory, tokenControlSpec } from "./token-metadata";
 import type { LabelMode, ThemeState, TokenValues } from "./types";
@@ -66,23 +66,37 @@ function overriddenTokenNames(t: ThemeState): Set<string> {
   return new Set([...Object.keys(t.overrides), ...Object.keys(t.light), ...Object.keys(t.dark)]);
 }
 
+function SummaryMetric({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="min-w-0 px-3 py-2.5 first:pl-0">
+      <dt className="text-[9px] font-medium text-muted-foreground">{label}</dt>
+      <dd className="mt-0.5 truncate text-[11px] font-semibold text-foreground">{value}</dd>
+    </div>
+  );
+}
+
 function ThemeVariableSummary({ t, overridden }: { t: ThemeState; overridden: Set<string> }) {
   const activeMeta = SKIN_META_BY_ID[t.skin];
   const fixCount = Object.keys(t.textFixes).length;
 
   return (
-    <div className="grid grid-cols-3 gap-2.5">
-      <div className="rounded-[var(--radius-control)] bg-foreground/5 p-3">
-        <span className="block text-[9px] font-medium text-muted-foreground">Skin</span>
-        <span className="block truncate text-[11px] font-semibold text-foreground">{activeMeta.label}</span>
-      </div>
-      <div className="rounded-[var(--radius-control)] bg-foreground/5 p-3">
-        <span className="block text-[9px] font-medium text-muted-foreground">Token edits</span>
-        <span className="block text-[11px] font-semibold text-foreground">{overridden.size === 0 ? "None" : overridden.size}</span>
-      </div>
-      <div className="rounded-[var(--radius-control)] bg-foreground/5 p-3">
-        <span className="block text-[9px] font-medium text-muted-foreground">Contrast</span>
-        <span className="block text-[11px] font-semibold text-foreground">{fixCount ? `${fixCount} fixed` : "Checked"}</span>
+    <dl className="grid grid-cols-3 divide-x divide-border/70 border-y border-border/70">
+      <SummaryMetric label="Skin" value={activeMeta.label} />
+      <SummaryMetric label="Token edits" value={overridden.size === 0 ? "None" : overridden.size} />
+      <SummaryMetric label="Contrast" value={fixCount ? `${fixCount} fixed` : "Checked"} />
+    </dl>
+  );
+}
+
+function EditorSectionHeading({ id, number, title, description }: { id?: string; number: string; title: string; description: string }) {
+  return (
+    <div className="grid gap-2 sm:grid-cols-[2rem_minmax(0,1fr)]">
+      <span className="font-mono text-[10px] text-primary">{number}</span>
+      <div className="min-w-0">
+        <h3 id={id} className="text-[14px] font-semibold text-foreground">
+          {title}
+        </h3>
+        <p className="mt-1 max-w-2xl text-[11px] leading-5 text-muted-foreground">{description}</p>
       </div>
     </div>
   );
@@ -202,37 +216,15 @@ function BadgePaletteRows({ values, overridden, onChange, onReset }: Omit<TokenE
   );
 }
 
-function SectionTrigger({ title, touched, total, className }: { title: string; touched: number; total: number; className?: string }) {
-  return (
-    <CollapsibleTrigger
-      className={cn(
-        "flex w-full items-center gap-2 rounded-[var(--radius-control)] px-1 py-1.5 text-left hover:bg-foreground/4",
-        className,
-      )}
-    >
-      <ChevronRightIcon aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />
-      <span className="min-w-0 flex-1 truncate text-[12px] font-semibold text-foreground">{title}</span>
-      {touched > 0 ? (
-        <Badge variant="secondary" size="sm">
-          {touched}
-        </Badge>
-      ) : null}
-      <span className="text-[9px] font-medium tabular-nums text-muted-foreground">{total}</span>
-    </CollapsibleTrigger>
-  );
-}
-
 function CategorySection({
   category,
   editor,
-  defaultOpen,
   preview,
   afterCore,
   beforeTokens,
 }: {
   category: TokenCategory;
   editor: TokenEditorProps;
-  defaultOpen?: boolean;
   preview?: ReactNode;
   afterCore?: ReactNode;
   beforeTokens?: ReactNode;
@@ -241,41 +233,60 @@ function CategorySection({
   const badgeTokens = isColor ? BADGE_TOKEN_ROWS.flatMap((row) => row.tokens) : [];
   const allNames = [...category.core, ...category.advanced, ...badgeTokens].map((token) => token.name);
   const touched = allNames.filter((name) => editor.overridden.has(name)).length;
-  const advancedTouched = [...category.advanced, ...badgeTokens].filter((token) => editor.overridden.has(token.name)).length;
+  const advancedTotal = category.advanced.length + badgeTokens.length;
 
   return (
-    <Collapsible defaultOpen={defaultOpen} className="self-start rounded-[var(--radius-panel)] border border-border/70 bg-card/40 p-2">
-      <SectionTrigger title={category.title} touched={touched} total={allNames.length} />
-      <CollapsibleContent>
-        <div className="flex flex-col gap-4 px-1 pt-3 pb-1.5">
-          {preview}
-          {beforeTokens}
-          <TokenList tokens={category.core} {...editor} />
-          {afterCore}
-          {category.advanced.length > 0 ? (
-            <Collapsible>
-              <SectionTrigger title="Advanced" touched={advancedTouched} total={category.advanced.length + badgeTokens.length} />
-              <CollapsibleContent>
-                <div className="flex flex-col gap-4 pt-3">
-                  <TokenList tokens={category.advanced} {...editor} />
-                  {isColor ? (
-                    <div className="flex flex-col gap-2">
-                      <span className="text-[11px] font-medium text-muted-foreground">Badge palette</span>
-                      <BadgePaletteRows
-                        values={editor.values}
-                        overridden={editor.overridden}
-                        onChange={editor.onChange}
-                        onReset={editor.onReset}
-                      />
-                    </div>
-                  ) : null}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
+    <section
+      id={`theme-tokens-${category.group}`}
+      aria-labelledby={`theme-tokens-${category.group}-title`}
+      className="grid scroll-mt-6 gap-5 border-border/70 border-t py-7 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-8"
+    >
+      <header className="min-w-0 lg:sticky lg:top-0 lg:z-10 lg:self-start lg:-mx-2 lg:bg-background/95 lg:px-2 lg:py-2 lg:backdrop-blur-sm">
+        <div className="flex flex-wrap items-center gap-2">
+          <h4 id={`theme-tokens-${category.group}-title`} className="text-[12px] font-semibold text-foreground">
+            {category.title}
+          </h4>
+          <span className="text-[9px] tabular-nums text-muted-foreground">{allNames.length} tokens</span>
+          {touched > 0 ? (
+            <Badge variant="secondary" size="sm">
+              {touched} edited
+            </Badge>
           ) : null}
         </div>
-      </CollapsibleContent>
-    </Collapsible>
+        <p className="mt-1.5 text-[10px] leading-4 text-muted-foreground">{category.description}</p>
+        {preview ? <div className="mt-4">{preview}</div> : null}
+      </header>
+      <div className="min-w-0">
+        {beforeTokens ? <div className="mb-4">{beforeTokens}</div> : null}
+        <TokenList tokens={category.core} {...editor} />
+        {afterCore ? <div className="mt-5">{afterCore}</div> : null}
+        {advancedTotal > 0 ? (
+          <div className="mt-6 border-border/70 border-t pt-5">
+            <div className="mb-4 flex items-baseline justify-between gap-3">
+              <div>
+                <h5 className="text-[11px] font-semibold text-foreground">Advanced</h5>
+                <p className="mt-0.5 text-[9px] text-muted-foreground">Derived and fine-grained values</p>
+              </div>
+              <span className="text-[9px] tabular-nums text-muted-foreground">{advancedTotal} tokens</span>
+            </div>
+            <div className="flex flex-col gap-4">
+              <TokenList tokens={category.advanced} {...editor} />
+              {isColor ? (
+                <div className="flex flex-col gap-2">
+                  <span className="text-[11px] font-medium text-muted-foreground">Badge palette</span>
+                  <BadgePaletteRows
+                    values={editor.values}
+                    overridden={editor.overridden}
+                    onChange={editor.onChange}
+                    onReset={editor.onReset}
+                  />
+                </div>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
   );
 }
 
@@ -371,75 +382,94 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
         </div>
       </div>
 
-      <ScrollArea className="min-h-0 flex-1">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 py-5">
-          <SkinSelector
-            skin={t.skin}
-            customThemeId={t.customThemeId}
-            customThemes={customThemes}
-            sourceOpen={skinSource !== null}
-            onSelect={selectSkinAndSource}
-            onSelectCustom={selectCustomTheme}
-            onRenameCustom={renameCustomTheme}
-            onDuplicateCustom={duplicateCustomTheme}
-            onDeleteCustom={deleteCustomTheme}
-            onExportCustom={(id) => {
-              const artifact = exportCustomTheme(id);
-              if (artifact) downloadThemeArtifact(artifact);
-            }}
-            onViewSource={viewSkinSource}
-          />
-          <div className="grid gap-2.5 md:grid-cols-2 md:items-start">
-            <ThemeVariableSummary t={t} overridden={overridden} />
-
-            <div className="flex items-center justify-between gap-3 rounded-[var(--radius-control)] bg-foreground/5 px-3 py-2.5">
-              <span className="flex min-w-0 flex-col">
-                <span className="text-[11px] font-medium text-foreground">CSS variable names</span>
-                <span className="text-[9px] text-muted-foreground">Caption every control with its theme.css token</span>
-              </span>
-              <Switch
-                aria-label="Caption every control with its CSS variable name"
-                checked={t.labelMode === "css"}
-                onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
+      <ScrollArea mask={false} className="min-h-0 flex-1">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-6 sm:px-5 sm:py-8">
+          <section id="theme-skin" aria-labelledby="theme-skin-title">
+            <EditorSectionHeading
+              number="01"
+              id="theme-skin-title"
+              title="Choose a skin"
+              description="The selected pack is live across the docs. Start with a token-led theme or an advanced pack that also targets component anatomy."
+            />
+            <div className="mt-5 sm:pl-10">
+              <SkinSelector
+                skin={t.skin}
+                customThemeId={t.customThemeId}
+                customThemes={customThemes}
+                sourceOpen={skinSource !== null}
+                onSelect={selectSkinAndSource}
+                onSelectCustom={selectCustomTheme}
+                onRenameCustom={renameCustomTheme}
+                onDuplicateCustom={duplicateCustomTheme}
+                onDeleteCustom={deleteCustomTheme}
+                onExportCustom={(id) => {
+                  const artifact = exportCustomTheme(id);
+                  if (artifact) downloadThemeArtifact(artifact);
+                }}
+                onViewSource={viewSkinSource}
               />
             </div>
-          </div>
+          </section>
 
-          <div className="grid gap-2.5 md:grid-cols-2 xl:grid-cols-3">
-            {TOKEN_CATEGORIES.map((category) => {
-              let beforeTokens: ReactNode = null;
-              if (category.group === "motion") beforeTokens = reduceMotionRow;
-              else if (category.group === "surface") beforeTokens = <LayerPreview values={values} />;
+          <ThemeArchitecture skin={t.skin} />
 
-              return (
-                <CategorySection
-                  key={category.group}
-                  category={category}
-                  editor={editor}
-                  defaultOpen={category.group === "color"}
-                  preview={category.group === "shadow" ? <ElevationPreview /> : null}
-                  beforeTokens={beforeTokens}
-                  afterCore={
-                    category.group === "color" ? (
-                      <div className="grid gap-3">
-                        <ContrastPanel t={t} onFix={(textFixes) => patch({ textFixes })} />
-                        <Link
-                          href="/theme-accessibility"
-                          onClick={() => setOpen(false)}
-                          className={buttonRecipeClasses("surface", "neutral", "sm")}
-                        >
-                          <span className={buttonContentClasses}>
-                            <ShieldCheckIcon aria-hidden className="size-3.5" />
-                            Open full accessibility audit
-                          </span>
-                        </Link>
-                      </div>
-                    ) : null
-                  }
+          <section id="theme-tokens" aria-labelledby="theme-tokens-title" className="scroll-mt-6 border-border border-t pt-8">
+            <EditorSectionHeading
+              number="03"
+              id="theme-tokens-title"
+              title="Edit the token contract"
+              description="Every category stays visible: core values first, then derived and fine-grained controls. Changes apply immediately to the component preview and the docs."
+            />
+            <div className="mt-5 grid gap-4 sm:pl-10 md:grid-cols-2 md:items-start">
+              <ThemeVariableSummary t={t} overridden={overridden} />
+              <div className="flex items-center justify-between gap-3 rounded-[var(--radius-control)] bg-foreground/5 px-3 py-2.5">
+                <span className="flex min-w-0 flex-col">
+                  <span className="text-[11px] font-medium text-foreground">CSS variable names</span>
+                  <span className="text-[9px] text-muted-foreground">Show the theme.css token on each control</span>
+                </span>
+                <Switch
+                  aria-label="Caption every control with its CSS variable name"
+                  checked={t.labelMode === "css"}
+                  onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
                 />
-              );
-            })}
-          </div>
+              </div>
+            </div>
+
+            <div className="mt-3">
+              {TOKEN_CATEGORIES.map((category) => {
+                let preview: ReactNode = null;
+                if (category.group === "shadow") preview = <ElevationPreview />;
+                else if (category.group === "surface") preview = <LayerPreview values={values} />;
+
+                return (
+                  <CategorySection
+                    key={category.group}
+                    category={category}
+                    editor={editor}
+                    preview={preview}
+                    beforeTokens={category.group === "motion" ? reduceMotionRow : null}
+                    afterCore={
+                      category.group === "color" ? (
+                        <div className="grid gap-3">
+                          <ContrastPanel t={t} onFix={(textFixes) => patch({ textFixes })} />
+                          <Link
+                            href="/theme-accessibility"
+                            onClick={() => setOpen(false)}
+                            className={buttonRecipeClasses("surface", "neutral", "sm")}
+                          >
+                            <span className={buttonContentClasses}>
+                              <ShieldCheckIcon aria-hidden className="size-3.5" />
+                              Open full accessibility audit
+                            </span>
+                          </Link>
+                        </div>
+                      ) : null
+                    }
+                  />
+                );
+              })}
+            </div>
+          </section>
         </div>
       </ScrollArea>
 

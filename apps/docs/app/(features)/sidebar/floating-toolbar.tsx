@@ -3,11 +3,10 @@
 import { useEffect, useId, useRef } from "react";
 import type { ActivePageId, DocsSkill, SearchItem } from "@/app/(features)/model/types";
 import { MorphingPanel, MorphingPanelContent } from "@/components/control-ui/ui/morphing-panel";
-import { SidebarTrigger } from "@/components/control-ui/ui/sidebar";
-import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
+import { Toolbar, ToolbarButton, ToolbarGroup } from "@/components/control-ui/ui/toolbar";
+import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { ThemeDrawerTrigger, ThemeEditorContent } from "@/components/theme-drawer/theme-drawer";
 import { useThemeDrawer } from "@/components/theme-drawer-context";
-import { SidebarModeSelector } from "./mode-selector";
 import { SidebarSearch } from "./search";
 import type { SidebarMode } from "./types";
 import { useSidebarNavigation } from "./use-sidebar-navigation";
@@ -21,7 +20,7 @@ type DocsFloatingToolbarProps = {
 };
 
 export function DocsFloatingToolbar({ active, searchItems, skills, lastSectionMode, onLastSectionModeChange }: DocsFloatingToolbarProps) {
-  const { mode, modeHrefs, closeMobile, onNavigate, onModeNavigate } = useSidebarNavigation({
+  const { closeMobile, onNavigate } = useSidebarNavigation({
     active,
     searchItems,
     skills,
@@ -60,27 +59,27 @@ export function DocsFloatingToolbar({ active, searchItems, skills, lastSectionMo
     <MorphingPanel
       open={themeEditorOpen}
       onOpenChange={(nextOpen) => setThemeEditorOpen(nextOpen)}
-      collapsedSize={{ width: "var(--floating-toolbar-width)", height: "var(--floating-toolbar-height)" }}
+      collapsedSize={{ width: "auto", height: "var(--floating-toolbar-height)" }}
       expandedSize={{
         width: "calc(100% - 1rem)",
         height: "calc(100% - var(--floating-toolbar-top) - var(--floating-toolbar-bottom))",
       }}
       data-docs-floating-panel=""
-      className="group/floating-panel absolute bottom-(--floating-toolbar-bottom) left-1/2 z-40 max-w-[calc(100%-1rem)] -translate-x-1/2 overflow-visible data-[state=open]:z-50 [--floating-toolbar-bottom:max(0.75rem,env(safe-area-inset-bottom))] [--floating-toolbar-height:calc(var(--control-h-sm)_+_2_*_var(--toolbar-padding,0.25rem)_+_2px)] [--floating-toolbar-rest-width:19rem] [--floating-toolbar-search-width:21rem] [--floating-toolbar-top:max(0.5rem,env(safe-area-inset-top))] [--floating-toolbar-width:var(--floating-toolbar-rest-width)] has-[input:focus]:[--floating-toolbar-width:var(--floating-toolbar-search-width)] data-[state=closed]:bg-transparent data-[state=closed]:shadow-none data-[state=closed]:ring-0 sm:[--floating-toolbar-rest-width:24rem] sm:[--floating-toolbar-search-width:26rem] sm:[--toolbar-padding:0.375rem] lg:top-(--floating-toolbar-top) lg:bottom-auto"
+      className="group/floating-panel absolute bottom-(--floating-toolbar-bottom) left-1/2 z-40 max-w-[calc(100%-1rem)] -translate-x-1/2 overflow-visible data-[state=closed]:w-fit data-[state=open]:z-50 [--floating-toolbar-bottom:max(0.75rem,env(safe-area-inset-bottom))] [--floating-toolbar-height:calc(var(--control-h-sm)_+_2_*_var(--toolbar-padding,0.25rem)_+_2px)] [--floating-toolbar-top:max(0.5rem,env(safe-area-inset-top))] data-[state=closed]:bg-transparent data-[state=closed]:shadow-none data-[state=closed]:ring-0 sm:[--toolbar-padding:0.375rem] lg:top-(--floating-toolbar-top) lg:bottom-auto"
     >
       <Toolbar
         aria-label="Documentation controls"
         data-docs-floating-toolbar=""
         variant="inverse"
         inert={themeEditorOpen || undefined}
-        className="absolute inset-0 size-full transition-[opacity,filter,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:gap-0 group-data-[state=open]/floating-panel:pointer-events-none group-data-[state=open]/floating-panel:opacity-0 group-data-[state=open]/floating-panel:blur-sm"
+        className="relative h-full w-max max-w-[calc(100vw-1rem)] transition-[opacity,filter,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:gap-0 group-data-[state=open]/floating-panel:pointer-events-none group-data-[state=open]/floating-panel:opacity-0 group-data-[state=open]/floating-panel:blur-sm"
       >
         <SidebarSearch items={searchItems} onNavigate={onNavigate} />
-        <ToolbarGroup className="min-w-0 flex-[1_1_100%] justify-center overflow-hidden opacity-100 transition-[flex-basis,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] peer-focus-within:pointer-events-none peer-focus-within:flex-[0_1_0%] peer-focus-within:opacity-0">
-          <SidebarTrigger render={<ToolbarButton iconOnly />} className="lg:hidden" />
-          <ToolbarSeparator className="h-5 self-auto" />
-          <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
-          <ToolbarSeparator className="h-5 self-auto" />
+        <ToolbarGroup
+          data-skin-controls=""
+          className="w-max shrink-0 justify-start gap-0 overflow-x-hidden opacity-100 transition-[width,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] peer-focus-within:pointer-events-none peer-focus-within:w-0 peer-focus-within:opacity-0 sm:gap-0.5"
+        >
+          <SkinPresetControls />
           <ThemeDrawerTrigger render={<ToolbarButton ref={themeDrawerTriggerRef} iconOnly />} iconOnly onToggle={closeMobile} />
         </ToolbarGroup>
       </Toolbar>

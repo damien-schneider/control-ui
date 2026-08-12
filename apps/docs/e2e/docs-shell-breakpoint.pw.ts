@@ -12,8 +12,7 @@ for (const { name, width, docked } of [
 
     const dockedSidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
     const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
-    const toolbar = page.locator("[data-docs-floating-toolbar]");
-    const sidebarTrigger = toolbar.getByRole("button", { name: "Toggle Sidebar" });
+    const sidebarTrigger = page.getByRole("button", { name: "Toggle Sidebar" });
     const panel = page.locator("[data-docs-floating-panel]");
     const contentPanel = page.locator('[data-control-ui="sidebar-layout"][data-slot="content"]');
 

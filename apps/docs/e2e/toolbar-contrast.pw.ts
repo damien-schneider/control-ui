@@ -29,11 +29,19 @@ async function glyphRegions(toolbar: Locator): Promise<GlyphRegion[]> {
       return styles.visibility === "visible" && Number.parseFloat(styles.opacity) > 0;
     };
 
+    // multicolor logo svgs paint with their own fills, not the text color the contrast math uses
+    const paintsWithTextColor = (glyph: Element) =>
+      glyph.tagName !== "svg" ||
+      glyph.getAttribute("stroke") === "currentColor" ||
+      glyph.getAttribute("fill") === "currentColor" ||
+      glyph.querySelector('[stroke="currentColor"], [fill="currentColor"]') !== null;
+
     const glyphsOf = (element: HTMLElement) => {
       const nested = [...element.querySelectorAll("svg, span")]
+        .filter(paintsWithTextColor)
         .map((glyph) => ({ rect: glyph.getBoundingClientRect(), text: (glyph.textContent ?? "").trim().length > 0 }))
         .filter(({ rect }) => rect.width > 1 && rect.height > 1);
-      if (nested.length > 0) return nested;
+      if (nested.length > 0 || element.querySelector("svg, span")) return nested;
       const range = document.createRange();
       range.selectNodeContents(element);
       const contentRect = range.getBoundingClientRect();
@@ -180,7 +188,7 @@ test("floating toolbar controls keep rendered contrast across every skin and mod
       }
       await expect(editor).toHaveAttribute("data-state", "open", { timeout: 2_000 });
     }).toPass();
-    await page.getByRole("button", { name: skin.label, exact: true }).click();
+    await page.getByLabel("Choose a skin").getByRole("button", { name: skin.label, exact: true }).click();
     await page.keyboard.press("Escape");
     await page.mouse.move(0, 0);
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin.id);

@@ -121,3 +121,9 @@
     border-radius: inherit;
   }
 }
+
+@supports (interpolate-size: allow-keywords) {
+  [data-skin-controls] {
+    interpolate-size: allow-keywords;
+  }
+}

@@ -111,5 +111,5 @@ test("skin source retry replaces the error with loading state", async ({ page })
 
   await retryStarted;
   releaseRetry?.();
-  await expect(page.getByText("theme.css", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Refined source").getByText("theme.css", { exact: true })).toBeVisible();
 });

@@ -23,6 +23,7 @@ import {
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { ControlUiLogo } from "./control-ui-logo";
 import { primitiveCategorySidebarIcons, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
+import { SidebarModeSelector } from "./mode-selector";
 import { DocsNavGroup, SkillConcernNavGroups } from "./nav-groups";
 import {
   agentNavItems,
@@ -99,7 +100,7 @@ export function DocsSidebarContent({
   sidebarWrapperRef,
   updateSetupPreference,
 }: DocsSidebarProps) {
-  const { activeItem, mode, closeMobile, onNavigate } = useSidebarNavigation({
+  const { activeItem, mode, modeHrefs, closeMobile, onNavigate, onModeNavigate } = useSidebarNavigation({
     active,
     searchItems,
     skills,
@@ -143,10 +144,9 @@ export function DocsSidebarContent({
             </p>
           </div>
           <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
-          <div className="grid gap-3">
-            <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
-          </div>
         </SidebarHeader>
+        <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
+        <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
 
         <SidebarContent>
           <DocsNavGroup

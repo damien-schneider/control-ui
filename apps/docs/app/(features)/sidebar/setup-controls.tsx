@@ -20,7 +20,7 @@ export function SidebarSetupControls({
   if (scope === "none") return null;
 
   return (
-    <div className="grid gap-3">
+    <div className="grid gap-3 px-2 pb-2">
       <SidebarControlSection title="Integration">
         <Select
           value={integration}

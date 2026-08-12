@@ -246,14 +246,14 @@ function DocsShellContent({
         >
           <div
             data-docs-sidebar-trigger=""
-            className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto hidden w-full max-w-7xl justify-start px-2 pt-3"
+            className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex"
           >
             <SidebarTrigger className="pointer-events-auto" onClick={() => resizeHandleRef.current?.focus()} />
           </div>
           <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
             <div
               data-docs-page-grid=""
-              className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-1 pb-24 md:px-2 md:pt-2 lg:pt-[calc(var(--control-h-sm)+1.5rem)] 2xl:grid-cols-[minmax(0,1fr)_180px]"
+              className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-[calc(var(--control-h-sm)+1rem)] pb-24 md:px-2 lg:pt-[calc(var(--control-h-sm)+1.5rem)] 2xl:grid-cols-[minmax(0,1fr)_180px]"
             >
               {pageContent}
 
