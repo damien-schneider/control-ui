@@ -1,0 +1,209 @@
+@layer components {
+  :where([data-control-family="context"][data-slot="root"]) {
+    --context-graph-radius: 9999px;
+    --context-limit-marker-color: var(--destructive-text);
+    --context-overage-fill: oklch(from var(--destructive-text) l c h / 0.22);
+    --context-track-fill: var(--muted);
+    --context-segment-message-fill: oklch(from var(--primary) l c h / 0.65);
+    --context-segment-reasoning-fill: oklch(from var(--foreground) l c h / 0.5);
+    --context-segment-source-fill: oklch(from var(--accent-foreground) l c h / 0.65);
+    --context-segment-tool-fill: var(--primary);
+  }
+
+  :where([data-control-family="context"][data-slot="trigger-indicator"]) {
+    fill: none;
+  }
+
+  :where([data-control-family="context"][data-slot="trigger-track"]) {
+    stroke: oklch(from var(--border) l c h / 0.7);
+  }
+
+  :where([data-control-family="context"][data-slot="trigger-track"][data-status="unavailable"]) {
+    stroke: var(--muted);
+  }
+
+  :where([data-control-family="context"][data-slot="trigger-value"]) {
+    stroke: var(--primary);
+  }
+
+  :where([data-control-family="context"][data-slot="trigger-value"][data-status="over-limit"]) {
+    stroke: var(--destructive-text);
+  }
+
+  :where([data-control-family="context"][data-slot="trigger-label"]) {
+    opacity: 0;
+    transition-property: max-width, opacity;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-context-trigger-button="true"]:is(:hover, :focus-visible, [data-popup-open]) [data-control-family="context"][data-slot="trigger-label"]) {
+    opacity: 1;
+  }
+
+  :where([data-control-family="context"][data-slot="title"]) {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="context"][data-slot="description"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="context"][data-slot="summary"]) {
+    font-size: var(--text-sm);
+  }
+
+  :where([data-control-family="context"][data-slot="summary-value"]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="context"][data-slot="graph"]) {
+    border-radius: var(--context-graph-radius);
+  }
+
+  :where([data-control-family="context"][data-slot="track"]) {
+    fill: var(--context-track-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="segment"]) {
+    fill: var(--border);
+  }
+
+  :where([data-control-family="context"][data-slot="segment"][data-kind="system"]) {
+    fill: oklch(from var(--foreground) l c h / 0.75);
+  }
+
+  :where([data-control-family="context"][data-slot="segment"][data-kind="tool"]) {
+    fill: var(--context-segment-tool-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="segment"][data-kind="message"]) {
+    fill: var(--context-segment-message-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="segment"][data-kind="source"]) {
+    fill: var(--context-segment-source-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="segment"][data-kind="reasoning"]) {
+    fill: var(--context-segment-reasoning-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="segment"][data-kind="cache"]) {
+    fill: oklch(from var(--muted-foreground) l c h / 0.55);
+  }
+
+  :where([data-control-family="context"][data-slot="overage"]) {
+    fill: var(--context-overage-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="limit-marker"]) {
+    stroke: var(--context-limit-marker-color);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-indicator"]) {
+    border-radius: 9999px;
+    background: var(--border);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="system"]) {
+    background: oklch(from var(--foreground) l c h / 0.75);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="tool"]) {
+    background: var(--context-segment-tool-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="message"]) {
+    background: var(--context-segment-message-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="source"]) {
+    background: var(--context-segment-source-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="reasoning"]) {
+    background: var(--context-segment-reasoning-fill);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="cache"]) {
+    background: oklch(from var(--muted-foreground) l c h / 0.55);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-item"][data-tone="available"] [data-slot="legend-indicator"]) {
+    background: var(--muted);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-item"][data-tone="over-limit"] [data-slot="legend-indicator"]) {
+    background: var(--destructive-text);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-label"]) {
+    font-size: var(--text-sm);
+  }
+
+  :where([data-control-family="context"]:is([data-slot="legend-description"], [data-slot="legend-value"])) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="context"][data-slot="legend-value"]) {
+    --_context-legend-value-number-style: tabular-nums;
+    font-variant-numeric: var(--_context-legend-value-number-style);
+  }
+
+  :where([data-control-family="context"][data-slot="summary-value"]) {
+    --_context-summary-value-number-style: tabular-nums;
+    font-variant-numeric: var(--_context-summary-value-number-style);
+  }
+}
+
+@property --context-graph-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --context-track-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --context-segment-tool-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --context-segment-message-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --context-segment-source-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --context-segment-reasoning-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --context-overage-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --context-limit-marker-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

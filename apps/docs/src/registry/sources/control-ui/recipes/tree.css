@@ -1,0 +1,139 @@
+@layer components {
+  :where([data-control-family="tree"][data-slot="root"]) {
+    --tree-item-trigger-radius: var(--radius-popup-item);
+    --tree-item-trigger-foreground: var(--foreground);
+    --tree-item-trigger-hover-background: oklch(from var(--foreground) l c h / 0.04);
+    --tree-item-trigger-hover-foreground: var(--foreground);
+    --tree-item-trigger-selected-background: oklch(from var(--foreground) l c h / 0.06);
+    --tree-item-trigger-selected-foreground: var(--foreground);
+    --tree-item-trigger-font-size: var(--text-body);
+    --tree-item-trigger-selected-font-weight: 400;
+  }
+
+  :where([data-control-family="tree"][data-slot="root"], [data-control-family="tree"][data-slot="item"]) {
+    outline: none;
+  }
+
+  :where([data-control-family="tree"][data-slot="item-trigger"]) {
+    border-radius: var(--tree-item-trigger-radius);
+    background-color: transparent;
+    color: var(--tree-item-trigger-foreground);
+    font-size: var(--tree-item-trigger-font-size);
+    font-weight: 400;
+    outline: none;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="tree"][data-slot="item-trigger"]:hover) {
+      background-color: var(--tree-item-trigger-hover-background);
+      color: var(--tree-item-trigger-hover-foreground);
+    }
+  }
+
+  :where([data-control-family="tree"][data-slot="item-trigger"][data-selected]) {
+    background-color: var(--tree-item-trigger-selected-background);
+    color: var(--tree-item-trigger-selected-foreground);
+    font-weight: var(--tree-item-trigger-selected-font-weight);
+  }
+
+  :where([data-control-family="tree"][data-slot="item-trigger"][aria-disabled="true"]) {
+    opacity: 0.5;
+  }
+
+  :where(
+    [data-control-family="tree"][data-indicator="slide"] [data-control-family="tree"][data-slot="item-trigger"]:is(
+      :hover,
+      [data-selected]
+    )
+  ) {
+    background-color: transparent;
+  }
+
+  :where([data-control-family="tree"][data-slot="item-indicator"]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="tree"][data-slot="item-indicator"][data-state]) {
+    transition: rotate var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="tree"][data-slot="item-indicator"][data-state="open"]) {
+    rotate: 90deg;
+  }
+
+  :where([data-control-family="tree"][data-slot="item-content"]) {
+    height: var(--collapsible-panel-height);
+    overflow: hidden;
+    opacity: 1;
+    transition-property: height, opacity;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where(
+    [data-control-family="tree"][data-slot="item-content"]:is([data-starting-style], [data-ending-style])
+  ) {
+    height: 0;
+    opacity: 0;
+  }
+
+  :where([data-control-family="tree"][data-slot="item-group"]) {
+    translate: 0 0;
+    transition: translate var(--duration-base) var(--ease-emphasized);
+  }
+
+  :where(
+    [data-control-family="tree"][data-slot="item-content"]:is([data-starting-style], [data-ending-style])
+      > [data-slot="item-group"]
+  ) {
+    translate: 0 -0.25rem;
+  }
+}
+
+@property --tree-item-trigger-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --tree-item-trigger-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --tree-item-trigger-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --tree-item-trigger-hover-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --tree-item-trigger-selected-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --tree-item-trigger-selected-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --tree-item-trigger-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 1rem;
+}
+
+@property --tree-item-trigger-selected-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}

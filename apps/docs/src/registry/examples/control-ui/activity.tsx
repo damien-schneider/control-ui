@@ -59,7 +59,7 @@ export function ActivityExample() {
         </ActivityRow>
       </Activity>
 
-      <Activity kind="reasoning" state="running" defaultOpen className="[--activity-content-max-height:12rem]">
+      <Activity kind="reasoning" state="running" defaultOpen>
         <ActivityTrigger>
           <ActivityIcon>
             <BookOpen />
@@ -67,7 +67,7 @@ export function ActivityExample() {
           <ActivityTitle>Thinking</ActivityTitle>
           <ActivityStatus className="sr-only" />
         </ActivityTrigger>
-        <ActivityContent>
+        <ActivityContent maxHeight="12rem">
           <Timeline>
             {thinkingTrace.map((item) => (
               <TimelineItem key={item.label} state={item.state}>

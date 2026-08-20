@@ -1,14 +1,5 @@
-/*
- * Send aurora — anchored ChatComposer extension (fills the chat-composer:send-layer anchor). Token-driven,
- * the data-motion="reduced" kill-switch collapses the sweep to 0ms (it finishes instantly at opacity 0).
- * One-shot replay is structural: the component remounts per send (key={sendCount}); the sweep keyframe
- * plays on mount and `forwards` parks the layer invisible until the next send remounts it.
- * Reads the shared --duration-* and --ease-* tokens.
- */
-
 @layer components {
   :where([data-send-aurora]) {
-    /* palette knobs — baseline defaults; a skin pack re-values them, the `colors` prop overrides inline */
     --aurora-1: oklch(0.66 0.24 356);
     --aurora-2: oklch(0.71 0.19 41);
     --aurora-3: oklch(0.85 0.15 91);
@@ -17,6 +8,35 @@
     opacity: 0;
     animation: send-aurora-sweep calc(var(--duration-slow) * 4) var(--ease-emphasized) forwards;
   }
+
+  :where([data-send-aurora] [data-column="center"]) {
+    translate: 0 calc(var(--spacing) * -20);
+  }
+
+  :where([data-send-aurora] [data-band]) {
+    filter: blur(var(--blur-xl));
+  }
+
+  :where([data-send-aurora] [data-band="1"]) {
+    background-color: var(--aurora-1);
+  }
+
+  :where([data-send-aurora] [data-band="2"]) {
+    background-color: var(--aurora-2);
+  }
+
+  :where([data-send-aurora] [data-band="3"]) {
+    background-color: var(--aurora-3);
+  }
+
+  :where([data-send-aurora] [data-band="4"]) {
+    background-color: var(--aurora-4);
+  }
+
+  :where([data-send-aurora] [data-band="5"]) {
+    background-color: var(--aurora-5);
+  }
+
 }
 
 @keyframes send-aurora-sweep {

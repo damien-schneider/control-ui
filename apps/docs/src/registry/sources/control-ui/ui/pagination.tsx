@@ -1,48 +1,53 @@
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
-import type { ComponentProps } from "react";
-import type { PaginationLinkProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { PaginationEllipsisProps, PaginationLinkProps } from "@/components/control-ui/contracts";
+import type { PaginationKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // Links are control-shaped by hand rather than importing Button, so pagination installs alone.
-export function Pagination({ className, ...props }: ComponentProps<"nav">) {
+export function Pagination({ className, ...props }: ComponentProps<"nav"> & { style?: CSSProperties & PaginationKnobStyle }) {
   return (
     // the <nav> already carries role; label names landmark
     <nav
       aria-label="pagination"
       data-control-ui="pagination"
+      data-control-family="pagination"
       data-slot="root"
-      className={cn("mx-auto flex w-full justify-center", skinSlot("pagination", "root", {}), className)}
+      className={cn("mx-auto flex w-full justify-center", className)}
       {...props}
     />
   );
 }
 
-export function PaginationContent({ className, ...props }: ComponentProps<"ul">) {
-  return <ul data-control-ui="pagination" data-slot="content" className={cn("flex flex-row items-center gap-1", className)} {...props} />;
+export function PaginationContent({ className, ...props }: ComponentProps<"ul"> & { style?: CSSProperties & PaginationKnobStyle }) {
+  return (
+    <ul
+      data-control-ui="pagination"
+      data-control-family="pagination"
+      data-slot="content"
+      className={cn("flex flex-row items-center gap-1", className)}
+      {...props}
+    />
+  );
 }
 
-export function PaginationItem({ className, ...props }: ComponentProps<"li">) {
-  return <li data-control-ui="pagination" data-slot="item" className={className} {...props} />;
+export function PaginationItem({ className, ...props }: ComponentProps<"li"> & { style?: CSSProperties & PaginationKnobStyle }) {
+  return <li data-control-ui="pagination" data-control-family="pagination" data-slot="item" className={className} {...props} />;
 }
 
 const paginationLinkChrome =
-  "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-control)] px-2.5 text-sm font-medium outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] aria-disabled:pointer-events-none aria-disabled:opacity-45 [&>svg]:size-4 [&>svg]:shrink-0";
+  "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center gap-1 whitespace-nowrap px-2.5 aria-disabled:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0";
 
 export function PaginationLink({ isActive = false, className, ...props }: PaginationLinkProps) {
   return (
     <a
       aria-current={isActive ? "page" : undefined}
       data-control-ui="pagination"
+      data-control-family="pagination"
       data-slot="link"
       data-control="true"
       data-active={isActive ? "true" : undefined}
-      className={cn(
-        paginationLinkChrome,
-        isActive ? "bg-card/72 text-foreground shadow-sm ring-1 ring-inset ring-border" : "text-foreground hover:bg-foreground/6",
-        skinSlot("pagination", "link", { active: isActive }),
-        className,
-      )}
+      className={cn(paginationLinkChrome, className)}
       {...props}
     />
   );
@@ -66,16 +71,14 @@ export function PaginationNext({ className, ...props }: ComponentProps<typeof Pa
   );
 }
 
-export function PaginationEllipsis({ className, ...props }: ComponentProps<"span">) {
+export function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
   return (
     <span
       aria-hidden="true"
       data-control-ui="pagination"
+      data-control-family="pagination"
       data-slot="ellipsis"
-      className={cn(
-        "flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] items-center justify-center text-muted-foreground [&>svg]:size-4",
-        className,
-      )}
+      className={cn("flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] items-center justify-center [&>svg]:size-4", className)}
       {...props}
     >
       <MoreHorizontal />

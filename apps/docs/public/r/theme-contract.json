@@ -140,18 +140,6 @@
       "description": "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."
     },
     {
-      "name": "--popup-item-foreground",
-      "group": "color",
-      "tier": "derived",
-      "description": "Text color of popup (menu/select) rows; defaults to --foreground."
-    },
-    {
-      "name": "--popup-item-highlight-background",
-      "group": "color",
-      "tier": "derived",
-      "description": "Highlighted or selected popup row fill; defaults to a 6% foreground wash."
-    },
-    {
       "name": "--badge-neutral",
       "group": "color",
       "tier": "derived",
@@ -702,12 +690,6 @@
       "group": "surface",
       "tier": "advanced",
       "description": "Edge-fade depth of scrollable surfaces; 0 = hard edges."
-    },
-    {
-      "name": "--popup-item-disabled-opacity",
-      "group": "surface",
-      "tier": "derived",
-      "description": "Opacity of disabled popup rows; defaults to 0.4."
     },
     {
       "name": "--popover-padding",

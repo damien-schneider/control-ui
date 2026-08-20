@@ -1,10 +1,8 @@
 "use client";
 
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
-import { cva } from "class-variance-authority";
 import type { SliderProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 const MAX_VISIBLE_STEP_TICKS = 50;
 
@@ -17,46 +15,6 @@ function tickPositions(min: number, max: number, step: number | undefined): numb
   if (stepCount <= 1 || stepCount > MAX_VISIBLE_STEP_TICKS) return [];
   return Array.from({ length: stepCount - 1 }, (_, i) => ((i + 1) / stepCount) * 100);
 }
-
-// label/showValue only grow taller labeled bar under "plain" — default variant ignores them
-const trackVariant = cva("relative w-full grow overflow-hidden transition-colors duration-[var(--duration-fast)]", {
-  variants: {
-    variant: {
-      default: "h-1.5 rounded-full bg-muted",
-      plain: "h-1.5 rounded-[3px] bg-foreground/6 data-[dragging]:bg-foreground/10",
-    },
-  },
-  defaultVariants: { variant: "default" },
-});
-
-const indicatorVariant = cva("transition-colors duration-[var(--duration-fast)]", {
-  variants: {
-    variant: {
-      default: "rounded-full bg-primary",
-      plain: "bg-foreground/14 data-[dragging]:bg-foreground/25",
-    },
-  },
-  defaultVariants: { variant: "default" },
-});
-
-const thumbVariant = cva(
-  "block outline-none transition-[transform,background-color,box-shadow,height,width] duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/30",
-  {
-    variants: {
-      variant: {
-        default:
-          "size-3.5 rounded-full border border-border bg-background shadow-sm hover:scale-110 data-[dragging]:scale-110 data-[dragging]:shadow-md",
-        plain:
-          "h-4 w-0.5 rounded-[1px] bg-foreground/30 after:absolute after:-inset-3 after:content-[''] hover:bg-foreground/50 data-[dragging]:h-5 data-[dragging]:bg-foreground/70",
-      },
-    },
-    defaultVariants: { variant: "default" },
-  },
-);
-
-// bottom-anchored so grow-on-drag reads as tick rising from track, not expanding from its middle
-const tick =
-  "pointer-events-none absolute bottom-0 h-1.5 w-px bg-foreground/15 transition-[height,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-data-[dragging]:h-3 group-data-[dragging]:bg-foreground/25";
 
 export function Slider({
   className,
@@ -71,17 +29,23 @@ export function Slider({
   max = 100,
   step,
   disabled,
+  style,
   ...props
 }: SliderProps) {
   const showValueResolved = showValue ?? Boolean(label);
   const labeled = variant === "plain" && (label !== undefined || showValue === true);
   const ticks = labeled ? tickPositions(min, max, step) : [];
+  const trackStyle = style;
+  const indicatorStyle = style;
+  const thumbStyle = style;
 
   // explicit, never spread: Base UI reads controlled-ness from `value !== undefined`, and spread can carry `undefined` for tick
   return (
     <SliderPrimitive.Root
       data-control-ui="slider"
+      data-range-kind="slider"
       data-slot="root"
+      data-control-family="range"
       data-variant={variant}
       data-labeled={labeled ? "true" : undefined}
       value={value}
@@ -92,34 +56,56 @@ export function Slider({
       disabled={disabled}
       onValueChange={onValueChange ? (next) => onValueChange(Array.isArray(next) ? next[0] : next) : undefined}
       className={cn(
-        "group relative flex w-full cursor-pointer touch-none select-none items-center data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
-        skinSlot("slider", "root", { variant, labeled }),
+        "group relative flex w-full cursor-pointer touch-none select-none items-center data-[disabled]:cursor-not-allowed",
         className,
       )}
+      style={style}
       {...props}
     >
       <SliderPrimitive.Control
         data-control-ui="slider"
+        data-control-family="range"
+        data-range-kind="slider"
         data-slot="control"
-        className={cn("flex w-full items-center", labeled ? "h-[1.875rem]" : "py-1.5", skinSlot("slider", "control", {}))}
+        className={cn("flex w-full items-center", labeled ? "h-[1.875rem]" : "py-1.5")}
       >
         <SliderPrimitive.Track
           data-control-ui="slider"
+          data-control-family="range"
+          data-range-kind="slider"
           data-slot="track"
-          className={cn(trackVariant({ variant }), labeled && "h-full rounded-[var(--radius-control)]", skinSlot("slider", "track", {}))}
+          data-variant={variant}
+          className={cn("relative w-full grow overflow-hidden", variant === "default" ? "h-1.5" : "h-1.5", labeled && "h-full")}
+          style={trackStyle}
         >
           <SliderPrimitive.Indicator
             data-control-ui="slider"
+            data-control-family="range"
+            data-range-kind="slider"
             data-slot="indicator"
-            className={cn(indicatorVariant({ variant }), skinSlot("slider", "indicator", {}))}
+            data-variant={variant}
+            style={indicatorStyle}
           />
           {ticks.map((pct) => (
-            <span key={pct} aria-hidden className={tick} style={{ left: `${pct}%` }} />
+            <span
+              key={pct}
+              aria-hidden
+              data-control-ui="slider"
+              data-control-family="range"
+              data-range-kind="slider"
+              data-slot="tick"
+              className="pointer-events-none absolute bottom-0 h-1.5 w-px"
+              style={{ left: `${pct}%` }}
+            />
           ))}
           <SliderPrimitive.Thumb
             data-control-ui="slider"
+            data-control-family="range"
+            data-range-kind="slider"
             data-slot="thumb"
-            className={cn(thumbVariant({ variant }), skinSlot("slider", "thumb", {}))}
+            data-variant={variant}
+            className={cn("block", variant === "default" ? "size-3.5" : "after:absolute after:-inset-3 after:content-['']")}
+            style={thumbStyle}
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>
@@ -128,12 +114,10 @@ export function Slider({
           {label ? (
             <SliderPrimitive.Label
               data-control-ui="slider"
+              data-control-family="range"
+              data-range-kind="slider"
               data-slot="label"
-              className={cn(
-                "select-none text-caption leading-3.5 tracking-tight text-muted-foreground transition-all duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
-                "group-data-[dragging]:-translate-x-1 group-data-[dragging]:-translate-y-1.5 group-data-[dragging]:scale-90",
-                skinSlot("slider", "label", {}),
-              )}
+              className="select-none"
             >
               {label}
             </SliderPrimitive.Label>
@@ -143,12 +127,10 @@ export function Slider({
           {showValueResolved && (
             <SliderPrimitive.Value
               data-control-ui="slider"
+              data-control-family="range"
+              data-range-kind="slider"
               data-slot="value"
-              className={cn(
-                "select-none text-caption leading-3.5 tracking-tight text-muted-foreground tabular-nums transition-all duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
-                "group-data-[dragging]:translate-x-0.5 group-data-[dragging]:-translate-y-1.5 group-data-[dragging]:text-foreground",
-                skinSlot("slider", "value", {}),
-              )}
+              className="select-none"
             >
               {(_, values) => (formatValue ? formatValue(values[0]) : Math.round(values[0]))}
             </SliderPrimitive.Value>

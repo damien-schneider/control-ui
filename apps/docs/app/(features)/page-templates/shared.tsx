@@ -35,6 +35,10 @@ export function PageHeader({
   );
 }
 
+export function SectionStack({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={className ? `grid min-w-0 gap-16 ${className}` : "grid min-w-0 gap-16"}>{children}</div>;
+}
+
 export function SectionTitle({ title, description }: { title: string; description?: string }) {
   return (
     <div className="mb-3">
@@ -65,14 +69,12 @@ export function CompositionSection({
   return (
     <section id="composition" className="min-w-0 scroll-mt-20">
       <SectionTitle title="Composition" description={description} />
-      <div className="grid min-w-0 gap-8">
+      <div className="grid min-w-0 gap-12">
         {items.map((item) => (
           <div key={item.title} className="min-w-0">
-            <div className="mb-3">
-              <h3 className="text-body-lg font-semibold tracking-tight">{item.title}</h3>
-              {item.description ? <p className="mt-1 text-body text-muted-foreground">{item.description}</p> : null}
-            </div>
-            <CodeBlock code={item.code} lang="text" />
+            <h3 className="text-body-lg font-semibold tracking-tight">{item.title}</h3>
+            {item.description ? <p className="mt-1 text-body text-muted-foreground">{item.description}</p> : null}
+            <pre className="mt-6 min-w-0 overflow-x-auto font-mono text-body leading-7">{item.code}</pre>
           </div>
         ))}
       </div>

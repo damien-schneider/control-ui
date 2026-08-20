@@ -13,11 +13,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/infinite-canvas.css",
+      "target": "@components/control-ui/styles/recipes/infinite-canvas.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/infinite-canvas.tsx",
       "target": "@components/control-ui/ui/infinite-canvas.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/infinite-canvas.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/infinite-canvas.json"
   }

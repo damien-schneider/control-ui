@@ -58,7 +58,7 @@ describe("mergeCodeTokenLineWithEmphasis", () => {
     );
 
     expect(runs.map((run) => run.content).join("")).toBe("input.trim()");
-    expect(runs.find((run) => run.content === "trim")).toEqual({ content: "trim", style: functionStyle, emphasis: true });
+    expect(runs.find((run) => run.content === "trim")).toEqual({ content: "trim", style: functionStyle, emphasis: true, start: 6 });
   });
 
   test("keeps emphasis when syntax tokens are missing or invalid", () => {
@@ -68,8 +68,8 @@ describe("mergeCodeTokenLineWithEmphasis", () => {
     ];
 
     expect(mergeCodeTokenLineWithEmphasis("before after", null, segments)).toEqual([
-      { content: "before", emphasis: false },
-      { content: " after", emphasis: true },
+      { content: "before", emphasis: false, start: 0 },
+      { content: " after", emphasis: true, start: 6 },
     ]);
     expect(
       mergeCodeTokenLineWithEmphasis("before after", [{ content: "wrong" }], segments)

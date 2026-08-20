@@ -1,22 +1,15 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 
 import type { InputGroupAddonProps, InputGroupProps } from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
-
-// ring lifts on focus-within, so addon and field read as one control
 
 export function InputGroup({ size = "md", className, render, children, ...props }: InputGroupProps) {
-  const classes = cn(
-    "flex min-w-0 w-full items-center overflow-hidden rounded-[var(--radius-control)] border bg-card/72 text-foreground shadow-sm outline-none transition focus-within:ring-2 focus-within:ring-foreground/20 aria-invalid:ring-2 aria-invalid:ring-destructive data-[invalid]:ring-2 data-[invalid]:ring-destructive",
-    controlSize({ size }),
-    skinSlot("input-group", "root", { size }),
-    className,
-  );
+  const classes = cn("flex min-w-0 w-full items-center overflow-hidden", controlSize({ size }), className);
 
   return useRender({
     defaultTagName: "div",
@@ -25,6 +18,8 @@ export function InputGroup({ size = "md", className, render, children, ...props 
       ...props,
       "data-control-ui": "input-group",
       "data-slot": "root",
+      "data-control-family": "field",
+      "data-control": "true",
       "data-size": size,
       className: classes,
       children,
@@ -36,24 +31,25 @@ export function InputGroupAddon({ className, ...props }: InputGroupAddonProps) {
   return (
     <span
       data-control-ui="input-group"
+      data-control-family="field"
+      data-field-kind="input-group"
       data-slot="addon"
-      className={cn("inline-flex shrink-0 items-center text-muted-foreground", skinSlot("input-group", "addon", {}), className)}
+      className={cn("inline-flex shrink-0 items-center", className)}
       {...props}
     />
   );
 }
 
-export function InputGroupInput({ className, ...props }: ComponentProps<"input">) {
+export function InputGroupInput({ className, ...props }: ComponentProps<"input"> & { style?: CSSProperties & FieldKnobStyle }) {
   return (
     <input
       data-control-ui="input-group"
+      data-control-family="field"
+      data-field-kind="input-group"
       data-slot="input"
-      className={cn(
-        "h-full min-w-0 flex-1 bg-transparent text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-        skinSlot("input-group", "input", {}),
-        className,
-      )}
+      className={cn("h-full min-w-0 flex-1", className)}
       {...props}
+      data-input-group-part="input"
     />
   );
 }

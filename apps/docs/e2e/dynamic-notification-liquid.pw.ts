@@ -382,9 +382,12 @@ for (const material of thinkingMaterials) {
 
     const stops = await island.evaluate((element) => {
       const styles = getComputedStyle(element);
-      return ["--dn-ink-plateau", "--dn-ink-mid-stop", "--dn-ink-low-stop", "--dn-ink-tail-stop"].map((property) =>
-        Number.parseFloat(styles.getPropertyValue(property)),
-      );
+      return [
+        "--_dynamic-notification-ink-plateau",
+        "--_dynamic-notification-ink-mid-stop",
+        "--_dynamic-notification-ink-low-stop",
+        "--_dynamic-notification-ink-tail-stop",
+      ].map((property) => Number.parseFloat(styles.getPropertyValue(property)));
     });
     expect(stops).toEqual([40, 47, 53, 60]);
 

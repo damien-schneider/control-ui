@@ -5,7 +5,6 @@ import type { CSSProperties, ReactNode, Ref } from "react";
 import { Children, createContext, Fragment, isValidElement, useContext, useRef, useState } from "react";
 import type { ControlSize, TabsListProps, TabsPanelProps, TabsProps, TabsTabProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 type RegisterTabsPanel = (value: string, node: HTMLDivElement | null) => (() => void) | undefined;
 
@@ -35,8 +34,7 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
     };
   });
 
-  // auto→auto never transitions and CSS cannot measure sibling, so outgoing height is captured pre-commit
-  // and cleared right after starting frame, or controlled switch that skips onValueChange would morph from stale one
+  // Captured height bridges CSS's auto-to-auto transition gap.
   const handleValueChange = (value: TValue) => {
     const root = rootRef.current;
     if (root) {
@@ -57,9 +55,10 @@ export function Tabs<TValue extends string = string>({ className, onValueChange,
     <TabsPanelsContext.Provider value={registerPanel}>
       <TabsPrimitive.Root
         data-control-ui="tabs"
+        data-control-family="tabs"
         data-slot="root"
         data-slide="scope"
-        className={cn(skinSlot("tabs", "root", {}), className)}
+        className={className}
         onValueChange={handleValueChange}
         {...props}
         ref={rootRef}
@@ -78,7 +77,7 @@ const controlHeights: Record<ControlSize, string> = {
 };
 
 type TabsListStyle = CSSProperties & {
-  "--tabs-trigger-h"?: string;
+  "--_tabs-trigger-h"?: string;
 };
 
 function countTabs(children: ReactNode): number {
@@ -93,21 +92,21 @@ function countTabs(children: ReactNode): number {
 export function TabsList({ size = "sm", variant = "default", className, children, style, ...props }: TabsListProps) {
   const isSingle = countTabs(children) === 1;
   const controlStyle = {
-    "--tabs-trigger-h": controlHeights[size],
+    "--_tabs-trigger-h": controlHeights[size],
     ...style,
   } satisfies TabsListStyle;
 
   return (
     <TabsPrimitive.List
       data-control-ui="tabs"
+      data-control-family="tabs"
       data-slot="list"
       data-size={size}
       data-variant={variant}
       data-single={isSingle ? "true" : undefined}
       className={cn(
         "group/tabs-list",
-        skinSlot("tabs", "list", { size, variant }),
-        variant === "browser" && "gap-0 rounded-b-none p-0 px-(--tabs-trigger-radius-fit) pt-(--tabs-list-padding)",
+        variant === "browser" && "gap-0 p-0 px-(--_tabs-trigger-radius-fit) pt-(--tabs-list-padding)",
         className,
       )}
       style={controlStyle}
@@ -117,12 +116,13 @@ export function TabsList({ size = "sm", variant = "default", className, children
       {isSingle ? null : (
         <TabsPrimitive.Indicator
           data-control-ui="tabs"
+          data-control-family="tabs"
           data-slot="indicator"
-          className={cn(
-            skinSlot("tabs", "indicator", {}),
-            variant === "browser" &&
-              "top-auto bottom-0 z-0 h-(--tabs-trigger-h) w-(--tabs-browser-indicator-width) transform-[translateX(var(--tabs-browser-indicator-x))] rounded-none",
-          )}
+          className={
+            variant === "browser"
+              ? "top-auto bottom-0 z-0 h-(--_tabs-trigger-h) w-(--_tabs-browser-indicator-width) transform-[translateX(var(--_tabs-browser-indicator-x))]"
+              : undefined
+          }
         />
       )}
     </TabsPrimitive.List>
@@ -130,18 +130,7 @@ export function TabsList({ size = "sm", variant = "default", className, children
 }
 
 export function TabsTab({ className, ...props }: TabsTabProps) {
-  return (
-    <TabsPrimitive.Tab
-      data-control-ui="tabs"
-      data-slot="tab"
-      className={cn(
-        skinSlot("tabs", "tab", {}),
-        "group-data-[variant=browser]/tabs-list:rounded-t-[var(--tabs-trigger-radius-fit)] group-data-[variant=browser]/tabs-list:rounded-b-none",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <TabsPrimitive.Tab data-control-ui="tabs" data-control-family="tabs" data-slot="tab" className={className} {...props} />;
 }
 
 export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
@@ -162,13 +151,10 @@ export function TabsPanel({ className, value, ref, ...props }: TabsPanelProps) {
       ref={panelRef}
       value={value}
       data-control-ui="tabs"
+      data-control-family="tabs"
       data-slot="panel"
       data-slide="panel"
-      className={cn(
-        "outline-none data-[hidden]:hidden focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] [&[hidden]]:hidden",
-        skinSlot("tabs", "panel", {}),
-        className,
-      )}
+      className={cn("data-[hidden]:hidden [&[hidden]]:hidden", className)}
       {...props}
     />
   );

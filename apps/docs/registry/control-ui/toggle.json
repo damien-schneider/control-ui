@@ -13,11 +13,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/button.css",
+      "target": "@components/control-ui/styles/recipes/button.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/toggle.tsx",
       "target": "@components/control-ui/ui/toggle.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/button.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/toggle.json"
   }

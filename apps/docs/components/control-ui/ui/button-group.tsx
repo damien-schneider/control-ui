@@ -1,9 +1,7 @@
 import { cva } from "class-variance-authority";
-import type { ComponentProps } from "react";
-import type { ButtonGroupProps, ButtonGroupSeparatorProps, ControlSize } from "@/components/control-ui/contracts";
+import type { ButtonGroupProps, ButtonGroupSeparatorProps, ButtonGroupTextProps } from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // selected controls sit above adjacent focus rings, keeping their shared seams visible
 const buttonGroupVariant = cva(
@@ -27,29 +25,25 @@ export function ButtonGroup({ orientation = "horizontal", className, ...props }:
     <div
       role="group"
       data-control-ui="button-group"
+      data-control-family="button-group"
       data-slot="root"
       data-orientation={orientation}
-      className={cn(buttonGroupVariant({ orientation }), skinSlot("button-group", "root", { orientation }), className)}
+      className={cn(buttonGroupVariant({ orientation }), className)}
       {...props}
     />
   );
 }
 
-// non-interactive addon, e.g. a `https://` prefix or unit suffix
-type ButtonGroupTextProps = ComponentProps<"div"> & {
-  size?: ControlSize;
-};
-
 export function ButtonGroupText({ size = "sm", className, ...props }: ButtonGroupTextProps) {
   return (
     <div
       data-control-ui="button-group"
+      data-control-family="button-group"
       data-slot="text"
       data-size={size}
       className={cn(
-        "inline-flex items-center whitespace-nowrap rounded-[var(--radius-control)] border bg-card/72 font-medium text-muted-foreground shadow-sm [&>svg]:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0",
+        "inline-flex items-center whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0",
         controlSize({ size }),
-        skinSlot("button-group", "text", {}),
         className,
       )}
       {...props}
@@ -62,9 +56,10 @@ export function ButtonGroupSeparator({ orientation = "vertical", className, ...p
     <div
       aria-hidden="true"
       data-control-ui="button-group"
+      data-control-family="button-group"
       data-slot="separator"
       data-orientation={orientation}
-      className={cn("shrink-0 self-stretch bg-border", orientation === "vertical" ? "w-px" : "h-px w-full", className)}
+      className={cn("shrink-0 self-stretch", orientation === "vertical" ? "w-px" : "h-px w-full", className)}
       {...props}
     />
   );

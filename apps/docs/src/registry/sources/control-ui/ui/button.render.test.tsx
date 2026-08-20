@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { renderToString } from "react-dom/server";
+import type { ButtonProps } from "@/components/control-ui/contracts";
 import { ButtonLabel, ButtonLink } from "./button";
 
 describe("ButtonLink rendered element", () => {
@@ -25,5 +26,14 @@ describe("ButtonLabel rendered element", () => {
     expect(html).toStartWith("<label");
     expect(html).toContain('for="theme-file"');
     expect(html).not.toContain('role="button"');
+  });
+});
+
+describe("Button knob style types", () => {
+  test("rejects custom properties outside the public knob contract", () => {
+    // @ts-expect-error Unknown custom property must fail contextual style typing.
+    const invalidStyle: ButtonProps["style"] = { "--button-not-a-knob": "red" };
+
+    expect(invalidStyle).toBeDefined();
   });
 });

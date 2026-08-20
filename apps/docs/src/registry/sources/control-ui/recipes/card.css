@@ -1,0 +1,75 @@
+@layer components {
+  :where([data-control-family="card"][data-slot="root"]) {
+    --card-radius: var(--radius-lg);
+    --card-background: var(--card);
+    --card-border-color: var(--border);
+    --card-border-width: 1px;
+    --card-shadow: var(--shadow-sm);
+    --card-backdrop-filter: none;
+    border: var(--card-border-width) solid var(--card-border-color);
+    border-radius: var(--card-radius);
+    background: var(--card-background);
+    color: var(--card-foreground);
+    box-shadow: var(--card-shadow);
+    -webkit-backdrop-filter: var(--card-backdrop-filter);
+    backdrop-filter: var(--card-backdrop-filter);
+  }
+
+  :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"]) {
+    --card-shadow: var(--shadow-pop);
+  }
+
+  :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="header"]) {
+    border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
+  }
+
+  :where([data-control-family="card"][data-slot="title"]) {
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  :where([data-control-family="card"][data-slot="description"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-body);
+  }
+
+  :where([data-control-family="card"][data-slot="title"]) {
+    line-height: 1;
+  }
+}
+
+@property --card-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --card-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --card-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --card-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --card-shadow {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}
+
+@property --card-backdrop-filter {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}

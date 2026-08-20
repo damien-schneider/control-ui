@@ -1,0 +1,245 @@
+@layer components {
+  :where([data-control-family="toolbar"][data-slot="root"]) {
+    --toolbar-radius: calc(
+      min(var(--_toolbar-item-radius), calc(var(--control-h-sm) / 2)) +
+      clamp(0px, calc(min(var(--_toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--toolbar-padding))
+    );
+    --toolbar-padding: 0.25rem;
+    --toolbar-background: oklch(from var(--card) l c h / 0.72);
+    --toolbar-foreground: var(--foreground);
+    --toolbar-border-color: var(--border);
+    --toolbar-shadow: var(--shadow-sm);
+    --toolbar-item-foreground: var(--muted-foreground);
+    --toolbar-item-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --toolbar-item-hover-foreground: var(--foreground);
+    --toolbar-item-active-background: oklch(from var(--foreground) l c h / 0.08);
+    --toolbar-item-active-foreground: var(--foreground);
+    --toolbar-separator-background: var(--border);
+    --_toolbar-item-radius: var(--radius-sm);
+    --_toolbar-item-focus-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+    border: 1px solid var(--toolbar-border-color);
+    padding: var(--toolbar-padding);
+    border-radius: var(--toolbar-radius);
+    background-color: var(--toolbar-background);
+    color: var(--toolbar-foreground);
+    box-shadow: var(--toolbar-shadow);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"]) {
+    --toolbar-background: var(--foreground);
+    --toolbar-foreground: var(--background);
+    --toolbar-border-color: transparent;
+    --toolbar-shadow: var(--shadow-pop);
+  }
+
+  :where(
+    [data-control-family="toolbar"][data-slot="button"],
+    [data-control-family="toolbar"][data-slot="link"],
+    [data-control-family="toolbar"][data-slot="input"]
+  ) {
+    --_toolbar-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
+    border-radius: var(--_toolbar-item-radius);
+    color: var(--toolbar-item-foreground);
+    font-weight: 500;
+    transition-property: background-color, color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where(
+      [data-control-family="toolbar"][data-slot="button"]:hover,
+      [data-control-family="toolbar"][data-slot="link"]:hover
+    ) {
+      background-color: var(--toolbar-item-hover-background);
+      color: var(--toolbar-item-hover-foreground);
+    }
+  }
+
+  :where(
+    [data-control-family="toolbar"][data-slot="button"]:is([data-pressed], [data-active]),
+    [data-control-family="toolbar"][data-slot="link"]:is([data-pressed], [data-active])
+  ) {
+    background-color: var(--toolbar-item-active-background);
+    color: var(--toolbar-item-active-foreground);
+  }
+
+  :where(
+    [data-control-family="toolbar"][data-slot="button"]:focus-visible,
+    [data-control-family="toolbar"][data-slot="link"]:focus-visible,
+    [data-control-family="toolbar"][data-slot="input"]:focus-visible
+  ) {
+    box-shadow: var(--_toolbar-item-focus-shadow);
+  }
+
+  :where(
+    [data-control-family="toolbar"][data-slot="button"][data-disabled],
+    [data-control-family="toolbar"][data-slot="input"][data-disabled]
+  ) {
+    opacity: 0.5;
+  }
+
+  :where([data-control-family="toolbar"][data-slot="input"]) {
+    --_toolbar-input-foreground: var(--foreground);
+    --_toolbar-input-placeholder-foreground: var(--muted-foreground);
+    background-color: transparent;
+    color: var(--_toolbar-input-foreground);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="input"])::placeholder {
+    color: var(--_toolbar-input-placeholder-foreground);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="link"][data-variant="track"]:is([data-pressed], [data-active])) {
+    background-color: transparent;
+  }
+
+  :where([data-control-family="toolbar"][data-slot="link"][data-variant="track"]) {
+    --_toolbar-track-font-size: var(--text-caption);
+    --_toolbar-track-active-hover-foreground: var(--muted-foreground);
+    font-size: var(--_toolbar-track-font-size);
+  }
+
+  @media (width >= 40rem) {
+    :where([data-control-family="toolbar"][data-slot="link"][data-variant="track"]) {
+      --_toolbar-track-font-size: var(--text-label);
+    }
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="toolbar"][data-slot="link"][data-variant="track"]:hover) {
+      background-color: transparent;
+    }
+  }
+
+  :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"]) {
+    --toolbar-item-foreground: oklch(from var(--background) l c h / 0.7);
+    --toolbar-item-hover-background: oklch(from var(--background) l c h / 0.1);
+    --toolbar-item-hover-foreground: var(--background);
+    --toolbar-item-active-background: var(--background);
+    --toolbar-item-active-foreground: var(--foreground);
+    --toolbar-separator-background: oklch(from var(--background) l c h / 0.2);
+    --_toolbar-item-focus-shadow: 0 0 0 2px oklch(from var(--background) l c h / 0.3);
+  }
+
+  :where(
+    [data-control-family="toolbar"][data-slot="root"][data-variant="inverse"]
+      [data-control-family="button"][data-slot="root"]
+  ) {
+    --button-bg: transparent;
+    --button-foreground: oklch(from var(--background) l c h / 0.7);
+    --button-hover-bg: oklch(from var(--background) l c h / 0.1);
+    --button-hover-foreground: var(--background);
+    --button-press-bg: oklch(from var(--background) l c h / 0.12);
+    --button-active-bg: var(--background);
+    --button-active-foreground: var(--foreground);
+    --button-active-hover-bg: var(--background);
+    --button-shadow: 0 0 transparent;
+    --button-active-shadow: 0 0 transparent;
+  }
+
+  :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"] [data-slot="link"][data-variant="track"]) {
+    --_toolbar-track-active-hover-foreground: oklch(from var(--background) l c h / 0.7);
+  }
+
+  :where([data-track-hover] [data-control-family="toolbar"][data-slot="link"][data-variant="track"][data-active]) {
+    color: var(--_toolbar-track-active-hover-foreground);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"] [data-slot="input"]) {
+    --_toolbar-input-foreground: var(--background);
+    --_toolbar-input-placeholder-foreground: oklch(from var(--background) l c h / 0.7);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="separator"]) {
+    background-color: var(--toolbar-separator-background);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="input"]) {
+    --_toolbar-input-outline: none;
+    outline-style: var(--_toolbar-input-outline);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="link"]) {
+    --_toolbar-link-decoration: none;
+    text-decoration-line: var(--_toolbar-link-decoration);
+    --_toolbar-link-outline: none;
+    outline-style: var(--_toolbar-link-outline);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="button"]) {
+    --_toolbar-button-outline: none;
+    outline-style: var(--_toolbar-button-outline);
+  }
+}
+
+@property --toolbar-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --toolbar-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --toolbar-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --toolbar-item-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-item-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-item-hover-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-item-active-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-item-active-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --toolbar-separator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

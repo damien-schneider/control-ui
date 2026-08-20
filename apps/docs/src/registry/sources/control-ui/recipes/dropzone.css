@@ -1,0 +1,151 @@
+@layer components {
+  :where([data-control-family="dropzone"][data-slot="root"]) {
+    --dropzone-surface-radius: var(--radius-panel);
+    --dropzone-surface-foreground: var(--foreground);
+    --dropzone-surface-border-color: var(--border);
+    --dropzone-accept-border-color: var(--primary);
+    --dropzone-reject-border-color: var(--destructive);
+    --dropzone-overlay-background: oklch(from var(--card) l c h / 0.95);
+  }
+  :where(
+    [data-control-family="dropzone"][data-slot="trigger"],
+    [data-control-family="dropzone"][data-slot="overlay"]
+  ) {
+    border: 1px dashed var(--dropzone-surface-border-color);
+    border-radius: var(--dropzone-surface-radius);
+    color: var(--dropzone-surface-foreground);
+  }
+
+  :where([data-control-family="dropzone"][data-slot="trigger"]) {
+    background-color: var(--card);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="dropzone"][data-slot="trigger"]:hover) {
+      background-color: oklch(from var(--muted) l c h / 0.5);
+    }
+  }
+
+  :where([data-control-family="dropzone"][data-slot="trigger"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="dropzone"][data-slot="trigger"]:disabled) {
+    opacity: 0.5;
+  }
+
+  :where([data-control-family="dropzone"][data-slot="overlay"]) {
+    border-style: solid;
+    background-color: var(--dropzone-overlay-background);
+    opacity: 0;
+  }
+
+  :where([data-control-family="dropzone"][data-slot="overlay"][data-active]) {
+    opacity: 1;
+  }
+
+  :where(
+    [data-control-family="dropzone"][data-slot="trigger"][data-state="accept"],
+    [data-control-family="dropzone"][data-slot="overlay"][data-state="accept"]
+  ) {
+    border-color: var(--dropzone-accept-border-color);
+    color: var(--primary-text);
+  }
+
+  :where(
+    [data-control-family="dropzone"][data-slot="trigger"][data-state="reject"],
+    [data-control-family="dropzone"][data-slot="overlay"][data-state="reject"]
+  ) {
+    border-color: var(--dropzone-reject-border-color);
+    color: var(--destructive-text);
+  }
+
+  :where(
+    [data-control-family="dropzone"][data-slot="trigger"][data-state="unknown"],
+    [data-control-family="dropzone"][data-slot="overlay"][data-state="unknown"]
+  ) {
+    border-color: var(--muted-foreground);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="dropzone"][data-slot="status"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-sm);
+  }
+
+  :where([data-control-family="dropzone"][data-slot="feedback-message"]) {
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  :where([data-control-family="dropzone"][data-slot="feedback-spinner"]) {
+    animation: var(--animate-spin);
+  }
+
+  :where([data-control-family="dropzone"][data-slot="overlay"]) {
+    --_dropzone-overlay-text-align: center;
+    text-align: var(--_dropzone-overlay-text-align);
+    --_dropzone-overlay-transition-property: display,opacity;
+    transition-property: var(--_dropzone-overlay-transition-property);
+    transition-behavior: allow-discrete;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @starting-style {
+    :where([data-control-family="dropzone"][data-slot="overlay"]) {
+      opacity: 0%;
+    }
+  }
+
+  :where([data-control-family="dropzone"][data-slot="trigger"]) {
+    --_dropzone-trigger-text-align: center;
+    text-align: var(--_dropzone-trigger-text-align);
+    --_dropzone-trigger-outline: none;
+    outline-style: var(--_dropzone-trigger-outline);
+    --_dropzone-trigger-transition-property: background-color,border-color,color,opacity,box-shadow;
+    transition-property: var(--_dropzone-trigger-transition-property);
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="item"][data-slot="title"][data-dropzone-part="file-title"]) {
+    line-height: normal;
+  }
+}
+
+@property --dropzone-surface-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --dropzone-surface-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dropzone-surface-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dropzone-accept-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dropzone-reject-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dropzone-overlay-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

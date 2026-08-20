@@ -12,7 +12,6 @@ import type {
 } from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // Button and Link forward Base UI's `render` prop, so composed trigger still receives roving-focus wiring.
 
@@ -21,15 +20,10 @@ export function Toolbar({ orientation = "horizontal", variant = "default", class
     <ToolbarPrimitive.Root
       orientation={orientation}
       data-control-ui="toolbar"
+      data-control-family="toolbar"
       data-slot="root"
       data-variant={variant}
-      className={cn(
-        "group/toolbar inline-flex gap-1 rounded-[var(--toolbar-radius)] border p-[var(--toolbar-padding)]",
-        variant === "default" ? "bg-card/72 shadow-sm" : "border-transparent bg-foreground text-background shadow-pop",
-        orientation === "vertical" ? "flex-col items-stretch" : "items-center",
-        skinSlot("toolbar", "root", { orientation, variant }),
-        className,
-      )}
+      className={cn("group/toolbar inline-flex gap-1", orientation === "vertical" ? "flex-col items-stretch" : "items-center", className)}
       {...props}
     />
   );
@@ -42,17 +36,16 @@ export function ToolbarButton({ iconOnly = false, className, ...props }: Refined
   return (
     <ToolbarPrimitive.Button
       data-control-ui="toolbar"
+      data-control-family="toolbar"
       data-slot="button"
       data-control="true"
       data-size="sm"
       data-icon-only={iconOnly ? "true" : undefined}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-[var(--toolbar-item-radius-fit)] font-medium text-muted-foreground outline-none transition-colors select-none hover:bg-foreground/6 hover:text-foreground data-[pressed]:bg-foreground/8 data-[pressed]:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex shrink-0 items-center justify-center select-none data-[disabled]:pointer-events-none [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         controlSize({ size: "sm" }),
         "px-2",
         iconOnly && "aspect-square px-0",
-        "group-data-[variant=inverse]/toolbar:border-transparent group-data-[variant=inverse]/toolbar:bg-transparent group-data-[variant=inverse]/toolbar:bg-none group-data-[variant=inverse]/toolbar:text-background/70 group-data-[variant=inverse]/toolbar:shadow-none group-data-[variant=inverse]/toolbar:ring-0 group-data-[variant=inverse]/toolbar:backdrop-blur-none group-data-[variant=inverse]/toolbar:hover:bg-background/10 group-data-[variant=inverse]/toolbar:hover:text-background group-data-[variant=inverse]/toolbar:data-[active=true]:bg-background group-data-[variant=inverse]/toolbar:data-[active=true]:text-foreground group-data-[variant=inverse]/toolbar:data-[pressed]:bg-background group-data-[variant=inverse]/toolbar:data-[pressed]:text-foreground group-data-[variant=inverse]/toolbar:focus-visible:ring-background/30",
-        skinSlot("toolbar", "button", {}),
         className,
       )}
       {...props}
@@ -66,19 +59,15 @@ export function ToolbarLink({ variant = "default", className, ...props }: Refine
   return (
     <ToolbarPrimitive.Link
       data-control-ui="toolbar"
+      data-control-family="toolbar"
       data-slot="link"
       data-control="true"
       data-size="sm"
       data-variant={variant}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-[var(--toolbar-item-radius-fit)] font-medium text-muted-foreground no-underline outline-none transition-colors hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex shrink-0 items-center justify-center [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         controlSize({ size: "sm" }),
-        "px-2",
-        // inside TrackHighlight track pill owns every background, and active row yields its emphasis while pill visits hovered sibling
-        variant === "track"
-          ? "relative z-[2] gap-1 px-1 text-caption shadow-none hover:bg-transparent data-[active=true]:bg-transparent data-[active=true]:text-foreground [[data-track-hover]_&]:data-[active=true]:text-muted-foreground sm:px-1.5 sm:text-label group-data-[variant=inverse]/toolbar:text-background/70 group-data-[variant=inverse]/toolbar:hover:bg-transparent group-data-[variant=inverse]/toolbar:hover:text-background group-data-[variant=inverse]/toolbar:data-[active=true]:bg-transparent group-data-[variant=inverse]/toolbar:data-[active=true]:text-foreground group-data-[variant=inverse]/toolbar:[[data-track-hover]_&]:data-[active=true]:text-background/70 group-data-[variant=inverse]/toolbar:focus-visible:ring-background/30"
-          : "group-data-[variant=inverse]/toolbar:text-background/70 group-data-[variant=inverse]/toolbar:hover:bg-background/10 group-data-[variant=inverse]/toolbar:hover:text-background group-data-[variant=inverse]/toolbar:data-[active=true]:bg-background group-data-[variant=inverse]/toolbar:data-[active=true]:text-foreground group-data-[variant=inverse]/toolbar:focus-visible:ring-background/30",
-        skinSlot("toolbar", "link", { variant }),
+        variant === "track" ? "relative z-[2] gap-1 px-1 sm:px-1.5" : "px-2",
         className,
       )}
       {...props}
@@ -90,8 +79,9 @@ export function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {
   return (
     <ToolbarPrimitive.Group
       data-control-ui="toolbar"
+      data-control-family="toolbar"
       data-slot="group"
-      className={cn("inline-flex items-center gap-1", skinSlot("toolbar", "group", {}), className)}
+      className={cn("inline-flex items-center gap-1", className)}
       {...props}
     />
   );
@@ -103,14 +93,9 @@ export function ToolbarSeparator({ orientation = "vertical", className, ...props
     <ToolbarPrimitive.Separator
       orientation={orientation}
       data-control-ui="toolbar"
+      data-control-family="toolbar"
       data-slot="separator"
-      className={cn(
-        "shrink-0 self-stretch bg-border",
-        orientation === "vertical" ? "w-px" : "h-px w-full",
-        "group-data-[variant=inverse]/toolbar:bg-background/20",
-        skinSlot("toolbar", "separator", {}),
-        className,
-      )}
+      className={cn("shrink-0 self-stretch", orientation === "vertical" ? "w-px" : "h-px w-full", className)}
       {...props}
     />
   );
@@ -122,17 +107,11 @@ export function ToolbarInput({ className, ...props }: RefinedToolbarInputProps) 
   return (
     <ToolbarPrimitive.Input
       data-control-ui="toolbar"
+      data-control-family="toolbar"
       data-slot="input"
       data-control="true"
       data-size="sm"
-      className={cn(
-        "min-w-0 rounded-[var(--toolbar-item-radius-fit)] bg-transparent font-medium text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[disabled]:opacity-50",
-        controlSize({ size: "sm" }),
-        "px-2",
-        "group-data-[variant=inverse]/toolbar:text-background group-data-[variant=inverse]/toolbar:placeholder:text-background/70 group-data-[variant=inverse]/toolbar:focus-visible:ring-background/30",
-        skinSlot("toolbar", "input", {}),
-        className,
-      )}
+      className={cn("min-w-0", controlSize({ size: "sm" }), "px-2", className)}
       {...props}
     />
   );

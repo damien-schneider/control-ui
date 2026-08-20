@@ -3,8 +3,8 @@
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 import type { CSSProperties } from "react";
 import type { ScrollAreaProps } from "@/components/control-ui/contracts";
+import type { ScrollAreaKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 const maskXOverflowClasses = cn(
   "data-[overflow-x-start]:mask-l-from-[calc(100%_-_var(--scroll-fade-size))]",
@@ -16,39 +16,30 @@ const maskYOverflowClasses = cn(
   "data-[overflow-y-end]:mask-b-from-[calc(100%_-_var(--scroll-fade-size))]",
 );
 
-const scrollbarVisibilityClasses = {
-  always: "opacity-100",
-  hover: "opacity-0 transition-opacity duration-[var(--duration-fast)] data-[hovering]:opacity-100 data-[scrolling]:opacity-100",
-  scroll: "opacity-0 transition-opacity duration-[var(--duration-fast)] data-[scrolling]:opacity-100",
-};
-
 function Scrollbar({
   orientation,
   visibility,
+  thumbStyle,
 }: {
   orientation: "vertical" | "horizontal";
   visibility: ScrollAreaProps["scrollbarVisibility"];
+  thumbStyle?: CSSProperties & ScrollAreaKnobStyle;
 }) {
   return (
     <ScrollAreaPrimitive.Scrollbar
       orientation={orientation}
       data-control-ui="scroll-area"
+      data-control-family="scroll-area"
       data-slot="scrollbar"
-      className={cn(
-        "m-px flex touch-none select-none",
-        orientation === "vertical" ? "w-1.5 justify-center" : "h-1.5 flex-col",
-        scrollbarVisibilityClasses[visibility ?? "scroll"],
-        skinSlot("scroll-area", "scrollbar", { orientation }),
-      )}
+      data-visibility={visibility}
+      className={cn("m-px flex touch-none select-none", orientation === "vertical" ? "w-1.5 justify-center" : "h-1.5 flex-col")}
     >
       <ScrollAreaPrimitive.Thumb
         data-control-ui="scroll-area"
+        data-control-family="scroll-area"
         data-slot="thumb"
-        className={cn(
-          "flex-1 rounded-full bg-foreground/25 transition-colors hover:bg-foreground/40",
-          orientation === "vertical" ? "w-full" : "h-full",
-          skinSlot("scroll-area", "thumb", {}),
-        )}
+        className={cn("flex-1", orientation === "vertical" ? "w-full" : "h-full")}
+        style={thumbStyle}
       />
     </ScrollAreaPrimitive.Scrollbar>
   );
@@ -73,6 +64,7 @@ export function ScrollArea({
   lockAxis,
   scrollbarVisibility = "scroll",
   children,
+  style,
   ...props
 }: ScrollAreaProps) {
   const lockX = lockAxis === "x" || lockAxis === "both";
@@ -80,35 +72,46 @@ export function ScrollArea({
   const resolvedViewportStyle = viewportStyle(maxHeight, lockX, lockY);
   const { style: viewportPropsStyle, ...resolvedViewportProps } = viewportProps ?? {};
   const mergedViewportStyle = viewportPropsStyle || resolvedViewportStyle ? { ...viewportPropsStyle, ...resolvedViewportStyle } : undefined;
+  const thumbStyle = style;
+  const cornerStyle = style;
 
   return (
     <ScrollAreaPrimitive.Root
-      data-control-ui="scroll-area"
-      data-slot="root"
-      className={cn("relative overflow-hidden", skinSlot("scroll-area", "root", {}), className)}
       {...props}
+      data-control-ui="scroll-area"
+      data-control-family="scroll-area"
+      data-slot="root"
+      className={cn("relative overflow-hidden", className)}
+      style={style}
     >
       {/* overscroll stays at default so wheel falls through to parent — `overscroll-contain` would trap it */}
       <ScrollAreaPrimitive.Viewport
-        ref={viewportRef}
-        className={cn(
-          "h-full w-full rounded-[inherit] outline-none",
-          mask && !lockX && maskXOverflowClasses,
-          mask && !lockY && maskYOverflowClasses,
-          viewportClassName,
-        )}
-        style={mergedViewportStyle}
+        data-control-ui="scroll-area"
+        data-control-family="scroll-area"
+        data-slot="viewport"
         {...resolvedViewportProps}
+        data-scroll-area-part="viewport"
+        ref={viewportRef}
+        className={cn("h-full w-full", mask && !lockX && maskXOverflowClasses, mask && !lockY && maskYOverflowClasses, viewportClassName)}
+        style={mergedViewportStyle}
       >
-        <ScrollAreaPrimitive.Content style={{ minWidth: 0 }}>{children}</ScrollAreaPrimitive.Content>
+        <ScrollAreaPrimitive.Content
+          data-control-ui="scroll-area"
+          data-control-family="scroll-area"
+          data-slot="content"
+          style={{ minWidth: 0 }}
+        >
+          {children}
+        </ScrollAreaPrimitive.Content>
       </ScrollAreaPrimitive.Viewport>
-      {!lockY && <Scrollbar orientation="vertical" visibility={scrollbarVisibility} />}
-      {!lockX && <Scrollbar orientation="horizontal" visibility={scrollbarVisibility} />}
+      {!lockY && <Scrollbar orientation="vertical" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
+      {!lockX && <Scrollbar orientation="horizontal" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
       {!lockX && !lockY && (
         <ScrollAreaPrimitive.Corner
           data-control-ui="scroll-area"
+          data-control-family="scroll-area"
           data-slot="corner"
-          className={cn("bg-transparent", skinSlot("scroll-area", "corner", {}))}
+          style={cornerStyle}
         />
       )}
     </ScrollAreaPrimitive.Root>

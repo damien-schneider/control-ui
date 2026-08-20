@@ -5,11 +5,15 @@ import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react"
 import { createContext, useContext, useRef, useState } from "react";
 
 import type { SourceReference } from "@/components/control-ui/contracts";
+import type { InlineCitationKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { SourceFavicon, sourceHostname } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
+
+type InlineCitationStyleProps<Props, Style> = Omit<Props, "style"> & {
+  style?: CSSProperties & Style;
+};
 
 type SlideDirection = "left" | "right";
 
@@ -46,7 +50,7 @@ export type InlineCitationProps = ComponentProps<"span"> & {
   open?: PopoverRootProps["open"];
   defaultOpen?: PopoverRootProps["defaultOpen"];
   onOpenChange?: PopoverRootProps["onOpenChange"];
-};
+} & { style?: CSSProperties & InlineCitationKnobStyle };
 
 // No anchor positioning = no hold animation = nothing ever unmounts clone.
 function supportsCrossSlide() {
@@ -115,9 +119,10 @@ export function InlineCitation({ sources, open, defaultOpen, onOpenChange, class
     <InlineCitationContext.Provider value={context}>
       <span
         data-control-ui="inline-citation"
+        data-control-family="inline-citation"
         data-slot="root"
         {...props}
-        className={cn("not-prose inline-flex align-baseline", skinSlot("inline-citation", "root", {}), className)}
+        className={cn("not-prose inline-flex align-baseline", className)}
       >
         <Popover open={open} defaultOpen={defaultOpen} onOpenChange={handleOpenChange}>
           {children ?? (
@@ -132,7 +137,7 @@ export function InlineCitation({ sources, open, defaultOpen, onOpenChange, class
   );
 }
 
-export type InlineCitationTriggerProps = ComponentProps<typeof PopoverTrigger>;
+export type InlineCitationTriggerProps = InlineCitationStyleProps<ComponentProps<typeof PopoverTrigger>, InlineCitationKnobStyle>;
 
 export function InlineCitationTrigger({
   "aria-label": ariaLabel,
@@ -154,12 +159,9 @@ export function InlineCitationTrigger({
       {...props}
       disabled={disabled || !firstSource}
       data-control-ui="inline-citation"
+      data-control-family="inline-citation"
       data-slot="trigger"
-      className={cn(
-        "ml-1 inline-flex h-6 max-w-52 items-center gap-1.5 rounded-full border border-border bg-muted/55 px-1.5 pr-2 align-baseline text-caption font-normal text-muted-foreground outline-none transition-colors duration-[var(--duration-fast)] hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring",
-        skinSlot("inline-citation", "trigger", {}),
-        className,
-      )}
+      className={cn("ml-1 inline-flex h-6 max-w-52 items-center gap-1.5 px-1.5 pr-2 align-baseline", className)}
     >
       {children ?? (
         <>
@@ -171,7 +173,7 @@ export function InlineCitationTrigger({
   );
 }
 
-export type InlineCitationFaviconsProps = ComponentProps<"span"> & {
+export type InlineCitationFaviconsProps = InlineCitationStyleProps<ComponentProps<"span">, InlineCitationKnobStyle> & {
   limit?: number;
 };
 
@@ -181,25 +183,27 @@ export function InlineCitationFavicons({ limit = 3, className, ...props }: Inlin
     <span
       aria-hidden="true"
       data-control-ui="inline-citation"
+      data-control-family="inline-citation"
       data-slot="favicons"
       {...props}
-      className={cn("flex shrink-0 -space-x-1", skinSlot("inline-citation", "favicons", {}), className)}
+      className={cn("flex shrink-0 -space-x-1", className)}
     >
       {sources.slice(0, limit).map((source) => (
         <SourceFavicon
           key={source.href}
           data-control-ui="inline-citation"
+          data-control-family="inline-citation"
           data-slot="favicon"
           href={source.href}
           faviconSrc={source.faviconSrc}
-          className={cn("size-3.5 rounded-full border border-background bg-muted", skinSlot("inline-citation", "favicon", {}))}
+          className="size-3.5"
         />
       ))}
     </span>
   );
 }
 
-export type InlineCitationLabelProps = ComponentProps<"span">;
+export type InlineCitationLabelProps = ComponentProps<"span"> & { style?: CSSProperties & InlineCitationKnobStyle };
 
 export function InlineCitationLabel({ className, children, ...props }: InlineCitationLabelProps) {
   const { sources } = useInlineCitation();
@@ -208,9 +212,10 @@ export function InlineCitationLabel({ className, children, ...props }: InlineCit
   return (
     <span
       data-control-ui="inline-citation"
+      data-control-family="inline-citation"
       data-slot="label"
       {...props}
-      className={cn("min-w-0 truncate", skinSlot("inline-citation", "label", {}), className)}
+      className={cn("min-w-0 truncate", className)}
     >
       {children ??
         (firstSource
@@ -231,7 +236,7 @@ export function InlineCitationContent({ className, children, align = "start", pa
       data-control-ui="inline-citation"
       data-slot="content"
       data-slide="scope"
-      className={cn("w-[min(24rem,calc(100vw-2rem))] overflow-hidden", skinSlot("inline-citation", "content", {}), className)}
+      className={cn("w-[min(24rem,calc(100vw-2rem))] overflow-hidden", className)}
     >
       {children ?? (
         <>
@@ -243,19 +248,16 @@ export function InlineCitationContent({ className, children, align = "start", pa
   );
 }
 
-export type InlineCitationNavigationProps = ComponentProps<"div">;
+export type InlineCitationNavigationProps = InlineCitationStyleProps<ComponentProps<"div">, InlineCitationKnobStyle>;
 
 export function InlineCitationNavigation({ className, children, ...props }: InlineCitationNavigationProps) {
   return (
     <div
       data-control-ui="inline-citation"
+      data-control-family="inline-citation"
       data-slot="navigation"
       {...props}
-      className={cn(
-        "flex min-h-10 items-center gap-1 border-b border-border bg-muted/45 px-2",
-        skinSlot("inline-citation", "navigation", {}),
-        className,
-      )}
+      className={cn("flex min-h-10 items-center gap-1 px-2", className)}
     >
       {children ?? (
         <>
@@ -288,7 +290,7 @@ export function InlineCitationPrevious({ className, children, disabled, onClick,
       }}
       data-control-ui="inline-citation"
       data-slot="previous"
-      className={cn(skinSlot("inline-citation", "previous", {}), className)}
+      className={className}
     >
       {children ?? <ArrowLeft aria-hidden="true" />}
     </Button>
@@ -315,14 +317,14 @@ export function InlineCitationNext({ className, children, disabled, onClick, ...
       }}
       data-control-ui="inline-citation"
       data-slot="next"
-      className={cn(skinSlot("inline-citation", "next", {}), className)}
+      className={className}
     >
       {children ?? <ArrowRight aria-hidden="true" />}
     </Button>
   );
 }
 
-export type InlineCitationPositionProps = ComponentProps<"span">;
+export type InlineCitationPositionProps = InlineCitationStyleProps<ComponentProps<"span">, InlineCitationKnobStyle>;
 
 export function InlineCitationPosition({ className, children, ...props }: InlineCitationPositionProps) {
   const { currentIndex, sources } = useInlineCitation();
@@ -332,17 +334,19 @@ export function InlineCitationPosition({ className, children, ...props }: Inline
       aria-live="polite"
       aria-atomic="true"
       data-control-ui="inline-citation"
+      data-control-family="inline-citation"
       data-slot="position"
       {...props}
-      className={cn("ml-auto px-1 text-caption tabular-nums text-muted-foreground", skinSlot("inline-citation", "position", {}), className)}
+      className={cn("ml-auto px-1", className)}
     >
       {children ?? `${sources.length === 0 ? 0 : currentIndex + 1}/${sources.length}`}
     </span>
   );
 }
 
-export type InlineCitationSourceProps = ComponentProps<"article"> & {
+export type InlineCitationSourceProps = Omit<ComponentProps<"article">, "style"> & {
   source?: SourceReference;
+  style?: CSSProperties & InlineCitationKnobStyle;
 };
 
 type SourcePanelStyle = CSSProperties & {
@@ -356,50 +360,52 @@ function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
     <>
       <div
         data-control-ui="inline-citation"
+        data-control-family="inline-citation"
         data-slot="source-header"
-        className={cn("flex items-center gap-2", skinSlot("inline-citation", "source-header", {}))}
+        className="flex items-center gap-2"
       >
         <SourceFavicon
           data-control-ui="inline-citation"
+          data-control-family="inline-citation"
           data-slot="source-favicon"
           href={source.href}
           faviconSrc={source.faviconSrc}
-          className={cn("size-5 rounded-full bg-muted", skinSlot("inline-citation", "source-favicon", {}))}
+          className="size-5"
         />
-        <span className="min-w-0 truncate text-caption text-muted-foreground">{hostname}</span>
+        <span
+          data-control-ui="inline-citation"
+          data-control-family="inline-citation"
+          data-slot="source-hostname"
+          className="min-w-0 truncate"
+        >
+          {hostname}
+        </span>
       </div>
       <a
         data-control-ui="inline-citation"
+        data-control-family="inline-citation"
         data-slot="source-title"
         href={source.href}
         target="_blank"
         rel="noreferrer noopener"
-        className={cn(
-          "group/source-title flex min-w-0 items-start gap-2 text-label font-medium leading-5 text-foreground outline-none hover:underline focus-visible:underline",
-          skinSlot("inline-citation", "source-title", {}),
-        )}
+        className="group/source-title flex min-w-0 items-start gap-2"
       >
         <span className="min-w-0 flex-1 wrap-anywhere">{source.title ?? hostname}</span>
-        <ExternalLink aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-muted-foreground" />
+        <ExternalLink
+          data-control-ui="inline-citation"
+          data-control-family="inline-citation"
+          data-slot="source-external-icon"
+          aria-hidden="true"
+          className="mt-0.5 size-3.5 shrink-0"
+        />
       </a>
       {source.description ? (
-        <p
-          data-control-ui="inline-citation"
-          data-slot="source-description"
-          className={cn("line-clamp-3 text-caption leading-5 text-muted-foreground", skinSlot("inline-citation", "source-description", {}))}
-        >
+        <p data-control-ui="inline-citation" data-control-family="inline-citation" data-slot="source-description" className="line-clamp-3">
           {source.description}
         </p>
       ) : null}
       {source.quote ? (
-        <blockquote
-          data-control-ui="inline-citation"
-          data-slot="source-quote"
-          className={cn(
-            "rounded-[var(--radius-control)] bg-muted/55 px-3 py-2 text-caption leading-5 text-muted-foreground",
-            skinSlot("inline-citation", "source-quote", {}),
-          )}
-        >
+        <blockquote data-control-ui="inline-citation" data-control-family="inline-citation" data-slot="source-quote" className="px-3 py-2">
           “{source.quote}”
         </blockquote>
       ) : null}
@@ -412,9 +418,10 @@ export function InlineCitationSource({ source: sourceProp, className, children, 
   const source = sourceProp ?? currentSource;
   // custom children read CURRENT source, so cloning them would send incoming content out instead of outgoing one
   const slides = !sourceProp && !children;
-  const panelClassName = cn("grid gap-3 p-4", skinSlot("inline-citation", "source", {}), className);
+  const panelClassName = cn("grid gap-3 p-4", className);
+  const sourceStyle = style;
   const enteringStyle: SourcePanelStyle | undefined =
-    slides && entering?.previousHeight ? { "--aui-slide-prev-height": `${entering.previousHeight}px`, ...style } : style;
+    slides && entering?.previousHeight ? { "--aui-slide-prev-height": `${entering.previousHeight}px`, ...sourceStyle } : sourceStyle;
 
   if (!source) return null;
 
@@ -424,6 +431,7 @@ export function InlineCitationSource({ source: sourceProp, className, children, 
         // remounted per source: starting translate must be element's FIRST value, or transition eases into it instead of jumping there
         key={`source-${currentIndex}`}
         data-control-ui="inline-citation"
+        data-control-family="inline-citation"
         data-slot="source"
         data-slide="panel"
         data-activation-direction={slides ? entering?.direction : undefined}
@@ -445,11 +453,13 @@ export function InlineCitationSource({ source: sourceProp, className, children, 
           aria-hidden="true"
           inert
           data-control-ui="inline-citation"
+          data-control-family="inline-citation"
           data-slot="source"
           data-slide="panel"
           data-ending-style=""
           data-activation-direction={exiting.direction}
           onAnimationEnd={() => endExit(exiting.id)}
+          style={sourceStyle}
           className={panelClassName}
         >
           <InlineCitationSourceDetails source={exiting.source} />

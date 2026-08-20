@@ -20,10 +20,10 @@ describe("MorphingPanel", () => {
     expect(html).toContain('data-slot="content"');
     expect(html).toContain('data-state="closed"');
     expect(html).toContain('aria-expanded="false"');
-    expect(html).toContain("--morphing-panel-collapsed-width:132px");
-    expect(html).toContain("--morphing-panel-collapsed-height:52px");
-    expect(html).toContain("--morphing-panel-expanded-width:320px");
-    expect(html).toContain("--morphing-panel-expanded-height:240px");
+    expect(html).toContain("--_morphing-panel-collapsed-width:132px");
+    expect(html).toContain("--_morphing-panel-collapsed-height:52px");
+    expect(html).toContain("--_morphing-panel-expanded-width:320px");
+    expect(html).toContain("--_morphing-panel-expanded-height:240px");
   });
 
   test("supports controlled and initially open disclosure state", () => {
@@ -42,7 +42,7 @@ describe("MorphingPanel", () => {
 
     expect(controlled).toContain('data-state="open"');
     expect(controlled).toContain('aria-expanded="true"');
-    expect(controlled).toContain("--morphing-panel-expanded-height:188px");
+    expect(controlled).toContain("--_morphing-panel-expanded-height:188px");
     expect(uncontrolled).toContain('data-state="open"');
     expect(uncontrolled).toContain('aria-expanded="true"');
   });

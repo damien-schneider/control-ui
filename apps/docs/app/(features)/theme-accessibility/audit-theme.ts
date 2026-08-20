@@ -216,7 +216,7 @@ function createActiveTabProbe(pair: ThemeAuditPair): ActiveTabProbe {
   list.dataset.controlUi = "tabs";
   list.dataset.slot = "list";
   list.dataset.size = "sm";
-  list.style.setProperty("--tabs-trigger-h", "32px");
+  list.style.setProperty("--_tabs-trigger-h", "32px");
   list.style.setProperty("--active-tab-width", "96px");
   list.style.setProperty("--active-tab-left", "0px");
   tab.dataset.controlUi = "tabs";

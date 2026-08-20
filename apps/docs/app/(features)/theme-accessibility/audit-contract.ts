@@ -136,7 +136,7 @@ const activeTabPairs = ["background", "card"].map(
     category: "Component states",
     label: `Active tab on ${surface}`,
     foreground: "--tabs-active-foreground",
-    background: "--tabs-indicator-bg",
+    background: "--tabs-indicator-background",
     surface: `--${surface}`,
     probe: "tabs-active",
     threshold: 4.5,

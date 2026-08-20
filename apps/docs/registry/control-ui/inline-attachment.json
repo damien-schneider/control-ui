@@ -13,8 +13,16 @@
       "path": "src/registry/sources/control-ui/inline-attachment.tsx",
       "target": "@components/control-ui/inline-attachment.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/inline-attachment.css",
+      "target": "@components/control-ui/styles/recipes/inline-attachment.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/inline-attachment.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/inline-attachment.json"
   }

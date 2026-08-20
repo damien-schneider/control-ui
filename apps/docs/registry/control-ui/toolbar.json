@@ -12,11 +12,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/toolbar.css",
+      "target": "@components/control-ui/styles/recipes/toolbar.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/toolbar.tsx",
       "target": "@components/control-ui/ui/toolbar.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/toolbar.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/toolbar.json"
   }

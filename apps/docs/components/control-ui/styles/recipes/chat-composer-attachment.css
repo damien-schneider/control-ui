@@ -1,0 +1,152 @@
+@layer components {
+  :where([data-slot="root"][data-control-family="chat-composer-attachment"]) {
+    border: 1px solid
+      var(--chat-composer-attachment-border-color);
+    border-radius: var(--chat-composer-attachment-radius);
+    background: var(--chat-composer-attachment-background);
+    box-shadow:
+      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
+      var(--chat-composer-attachment-shadow);
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-state="uploading"]) {
+    border-color: oklch(from var(--primary) l c h / 0.35);
+    box-shadow:
+      inset 0 0 0 1px oklch(from var(--primary) l c h / 0.15),
+      var(--chat-composer-attachment-shadow);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-state="error"]) {
+    border-color: oklch(from var(--destructive) l c h / 0.45);
+    box-shadow:
+      inset 0 0 0 1px oklch(from var(--destructive) l c h / 0.2),
+      var(--chat-composer-attachment-shadow);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="preview"]) {
+    border-radius: calc(var(--radius-field) - 0.25rem);
+    background: var(--muted);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-kind="pdf"] [data-slot="preview"]) {
+    background: oklch(from var(--destructive) l c h / 0.1);
+    color: var(--destructive-text);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-kind="spreadsheet"] [data-slot="preview"]) {
+    background: oklch(from var(--primary) l c h / 0.1);
+    color: var(--primary-text);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="preview-label"]) {
+    font-size: var(--text-micro);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="status"]) {
+    border: 2px solid oklch(from var(--background) l c h / 0.75);
+    border-top-color: var(--primary);
+    border-radius: 9999px;
+    background: transparent;
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="title"]) {
+    color: var(--foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="description"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="description"][data-state="error"]) {
+    color: var(--destructive-text);
+  }
+
+  :where([data-control-family="button"][data-chat-composer-attachment-remove="true"]) {
+    border-radius: 9999px;
+    background: var(--foreground);
+    color: var(--background);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="button"][data-chat-composer-attachment-remove="true"]:hover) {
+      background: oklch(from var(--foreground) l c h / 0.85);
+    }
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="progress"]) {
+    background: var(--chat-composer-attachment-progress-background);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="progress-indicator"]) {
+    border-radius: 9999px;
+    background: var(--chat-composer-attachment-progress-foreground);
+    transition-property: width;
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="title"]) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="status"]) {
+    animation: var(--animate-spin);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="preview-label"]) {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"]) {
+    --chat-composer-attachment-background: oklch(from var(--card) l c h / 0.92);
+    --chat-composer-attachment-border-color: oklch(from var(--border) l c h / 0.8);
+    --chat-composer-attachment-radius: var(--radius-field);
+    --chat-composer-attachment-shadow: var(--shadow-sm);
+    --chat-composer-attachment-progress-background: oklch(from var(--foreground) l c h / 0.1);
+    --chat-composer-attachment-progress-foreground: var(--primary);
+    --_chat-composer-attachment-root-text-align: left;
+    text-align: var(--_chat-composer-attachment-root-text-align);
+  }
+}
+
+@property --chat-composer-attachment-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --chat-composer-attachment-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --chat-composer-attachment-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --chat-composer-attachment-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --chat-composer-attachment-progress-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --chat-composer-attachment-progress-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

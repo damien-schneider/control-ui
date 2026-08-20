@@ -1,0 +1,108 @@
+@layer components {
+  :where([data-control-family="badge"][data-slot="root"]) {
+    --badge-radius: var(--radius-control);
+    --badge-background: var(--_badge-color-background);
+    --badge-foreground: var(--_badge-color-foreground);
+    --badge-border-color: transparent;
+    --_badge-color-background: var(--badge-neutral);
+    --_badge-color-foreground: var(--badge-neutral-foreground);
+    --_badge-color-border: var(--badge-neutral-border);
+    --_badge-color-background-hover: var(--badge-neutral-hover);
+    --_badge-hover-background: var(--_badge-color-background-hover);
+    border-color: var(--badge-border-color);
+    border-radius: var(--badge-radius);
+    background: var(--badge-background);
+    color: var(--badge-foreground);
+    outline: none;
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-variant="outline"]) {
+    --badge-background: transparent;
+    --badge-border-color: var(--_badge-color-border);
+    --_badge-hover-background: var(--_badge-color-background);
+  }
+
+  :where(a[data-control-family="badge"][data-slot="root"]:hover, button[data-control-family="badge"][data-slot="root"]:hover) {
+    background: var(--_badge-hover-background);
+  }
+
+
+  :where([data-control-family="badge"][data-slot="root"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="red"]) {
+    --_badge-color-background: var(--badge-red);
+    --_badge-color-foreground: var(--badge-red-foreground);
+    --_badge-color-border: var(--badge-red-border);
+    --_badge-color-background-hover: var(--badge-red-hover);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="orange"]) {
+    --_badge-color-background: var(--badge-orange);
+    --_badge-color-foreground: var(--badge-orange-foreground);
+    --_badge-color-border: var(--badge-orange-border);
+    --_badge-color-background-hover: var(--badge-orange-hover);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="yellow"]) {
+    --_badge-color-background: var(--badge-yellow);
+    --_badge-color-foreground: var(--badge-yellow-foreground);
+    --_badge-color-border: var(--badge-yellow-border);
+    --_badge-color-background-hover: var(--badge-yellow-hover);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="green"]) {
+    --_badge-color-background: var(--badge-green);
+    --_badge-color-foreground: var(--badge-green-foreground);
+    --_badge-color-border: var(--badge-green-border);
+    --_badge-color-background-hover: var(--badge-green-hover);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="blue"]) {
+    --_badge-color-background: var(--badge-blue);
+    --_badge-color-foreground: var(--badge-blue-foreground);
+    --_badge-color-border: var(--badge-blue-border);
+    --_badge-color-background-hover: var(--badge-blue-hover);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="purple"]) {
+    --_badge-color-background: var(--badge-purple);
+    --_badge-color-foreground: var(--badge-purple-foreground);
+    --_badge-color-border: var(--badge-purple-border);
+    --_badge-color-background-hover: var(--badge-purple-hover);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-color="pink"]) {
+    --_badge-color-background: var(--badge-pink);
+    --_badge-color-foreground: var(--badge-pink-foreground);
+    --_badge-color-border: var(--badge-pink-border);
+    --_badge-color-background-hover: var(--badge-pink-hover);
+  }
+}
+
+@property --badge-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --badge-background {
+  syntax: "*";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --badge-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --badge-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+

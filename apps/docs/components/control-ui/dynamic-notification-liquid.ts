@@ -582,11 +582,6 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     return Number.isFinite(parsed) ? parsed : 0;
   }
 
-  function targetRibbonHorizon(host: HTMLElement): number {
-    const parsed = Number.parseFloat(getComputedStyle(host).getPropertyValue("--dn-ribbon-horizon"));
-    return Number.isFinite(parsed) ? Math.min(1, Math.max(0, parsed / 100)) : 0.5;
-  }
-
   /* Called from draw(), never observer: setting canvas.width clears buffer, so separate resize task shows blank frame. */
   function resize(): void {
     // layout box, immune to the @starting-style scale at mount
@@ -721,7 +716,7 @@ export function createDynamicNotificationLiquid(canvas: HTMLCanvasElement, optio
     gl.uniform1f(liquid.reveal, reveal);
     gl.uniform1f(liquid.settle, settle);
     gl.uniform1f(liquid.lift, lift);
-    gl.uniform1f(liquid.ribbonHorizon, targetRibbonHorizon(host));
+    gl.uniform1f(liquid.ribbonHorizon, 0.5);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     delete canvas.dataset.glassFailed;
     if (canvas.dataset.glassReady !== "true") canvas.dataset.glassReady = "true";

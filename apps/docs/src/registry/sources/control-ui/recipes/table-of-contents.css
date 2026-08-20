@@ -1,0 +1,88 @@
+@layer components {
+  :where([data-control-family="table-of-contents"][data-slot="root"]) {
+    --table-of-contents-rail-background: oklch(from var(--border) l c h / 0.6);
+    --table-of-contents-highlight-radius: var(--radius-md);
+    --table-of-contents-highlight-background: oklch(from var(--foreground) l c h / 0.04);
+    border: 1px solid oklch(from var(--border) l c h / 0.7);
+    border-radius: var(--radius-panel);
+    background-color: oklch(from var(--card) l c h / 0.8);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(var(--blur-sm));
+    font-size: var(--text-sm);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="label"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+    font-weight: 500;
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="rail"]) {
+    background-color: var(--table-of-contents-rail-background);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="item"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="0"]) {
+    font-weight: 500;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="table-of-contents"][data-slot="item"]:hover) {
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="item"]:focus-visible) {
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="item"][data-active]) {
+    color: var(--foreground);
+  }
+
+  :where(
+    [data-control-family="table-of-contents"][data-slot="root"]
+      [data-control-family="track-highlight"][data-slot="root"]
+  ) {
+    --track-highlight-radius: var(--table-of-contents-highlight-radius);
+    --track-highlight-background: var(--table-of-contents-highlight-background);
+    --track-highlight-ring-color: transparent;
+    --track-highlight-shadow: none;
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="root"][data-variant="trail"]) {
+    --table-of-contents-highlight-radius: 0px;
+    --table-of-contents-highlight-background: transparent;
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="trail"]) {
+    border-radius: 9999px;
+    background-color: var(--foreground);
+  }
+}
+
+@property --table-of-contents-rail-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --table-of-contents-highlight-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --table-of-contents-highlight-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

@@ -1,7 +1,85 @@
 @import "tailwindcss";
 
 @import "../src/registry/sources/control-ui/theme.css";
+@import "../src/registry/sources/control-ui/recipes/button.css";
+@import "../src/registry/sources/control-ui/recipes/field.css";
+@import "../src/registry/sources/control-ui/recipes/field-parts.css";
+@import "../src/registry/sources/control-ui/recipes/popup.css";
+@import "../src/registry/sources/control-ui/recipes/popup-controls.css";
+@import "../src/registry/sources/control-ui/recipes/popup-lists.css";
+@import "../src/registry/sources/control-ui/recipes/popup-motion.css";
+@import "../src/registry/sources/control-ui/recipes/card.css";
+@import "../src/registry/sources/control-ui/recipes/tabs.css";
+@import "../src/registry/sources/control-ui/recipes/choice.css";
+@import "../src/registry/sources/control-ui/recipes/switch.css";
+@import "../src/registry/sources/control-ui/recipes/range.css";
+@import "../src/registry/sources/control-ui/recipes/alert.css";
+@import "../src/registry/sources/control-ui/recipes/badge.css";
+@import "../src/registry/sources/control-ui/recipes/empty.css";
+@import "../src/registry/sources/control-ui/recipes/item.css";
+@import "../src/registry/sources/control-ui/recipes/table.css";
+@import "../src/registry/sources/control-ui/recipes/chat-message.css";
+@import "../src/registry/sources/control-ui/recipes/skeleton.css";
+@import "../src/registry/sources/control-ui/recipes/toast.css";
+@import "../src/registry/sources/control-ui/recipes/thread-rail.css";
+@import "../src/registry/sources/control-ui/recipes/avatar.css";
+@import "../src/registry/sources/control-ui/recipes/button-group.css";
+@import "../src/registry/sources/control-ui/recipes/collapsible.css";
+@import "../src/registry/sources/control-ui/recipes/accordion.css";
+@import "../src/registry/sources/control-ui/recipes/kbd.css";
+@import "../src/registry/sources/control-ui/recipes/pagination.css";
+@import "../src/registry/sources/control-ui/recipes/spinner.css";
+@import "../src/registry/sources/control-ui/recipes/stepper.css";
+@import "../src/registry/sources/control-ui/recipes/scroll-area.css";
+@import "../src/registry/sources/control-ui/recipes/timeline.css";
+@import "../src/registry/sources/control-ui/recipes/track-highlight.css";
+@import "../src/registry/sources/control-ui/recipes/tree.css";
+@import "../src/registry/sources/control-ui/recipes/sidebar.css";
+@import "../src/registry/sources/control-ui/recipes/table-of-contents.css";
+@import "../src/registry/sources/control-ui/recipes/drawer.css";
+@import "../src/registry/sources/control-ui/recipes/phone-input.css";
+@import "../src/registry/sources/control-ui/recipes/dropzone.css";
+@import "../src/registry/sources/control-ui/recipes/toolbar.css";
+@import "../src/registry/sources/control-ui/recipes/dockable-panel.css";
+@import "../src/registry/sources/control-ui/recipes/infinite-canvas.css";
+@import "../src/registry/sources/control-ui/recipes/morphing-panel.css";
+@import "../src/registry/sources/control-ui/recipes/resizable.css";
+@import "../src/registry/sources/control-ui/recipes/calendar.css";
+@import "../src/registry/sources/control-ui/recipes/gradient-editor.css";
+@import "../src/registry/sources/control-ui/recipes/action-bar.css";
+@import "../src/registry/sources/control-ui/recipes/transcript-divider.css";
+@import "../src/registry/sources/control-ui/recipes/source-badge.css";
+@import "../src/registry/sources/control-ui/recipes/activity.css";
+@import "../src/registry/sources/control-ui/recipes/markdown.css";
+@import "../src/registry/sources/control-ui/recipes/markdown-block.css";
+@import "../src/registry/sources/control-ui/recipes/chat-layout.css";
+@import "../src/registry/sources/control-ui/recipes/audio-recorder.css";
+@import "../src/registry/sources/control-ui/recipes/audio-visualizer.css";
+@import "../src/registry/sources/control-ui/recipes/environment-variables.css";
+@import "../src/registry/sources/control-ui/recipes/inline-citation.css";
+@import "../src/registry/sources/control-ui/recipes/code.css";
+@import "../src/registry/sources/control-ui/recipes/code-diff.css";
+@import "../src/registry/sources/control-ui/recipes/chat-composer.css";
+@import "../src/registry/sources/control-ui/recipes/chat-composer-attachment.css";
+@import "../src/registry/sources/control-ui/recipes/user-ask.css";
+@import "../src/registry/sources/control-ui/recipes/user-ask-details.css";
+@import "../src/registry/sources/control-ui/recipes/task-list.css";
+@import "../src/registry/sources/control-ui/recipes/context.css";
+@import "../src/registry/sources/control-ui/recipes/inline-attachment.css";
+@import "../src/registry/sources/control-ui/recipes/code-block-editor.css";
+@import "../src/registry/sources/control-ui/recipes/dynamic-notification.css";
+@import "../src/registry/sources/control-ui/recipes/dynamic-notification-input.css";
+@import "../src/registry/sources/control-ui/recipes/dynamic-notification-motion.css";
+@import "../src/registry/sources/control-ui/recipes/breadcrumb.css";
+@import "../src/registry/sources/control-ui/recipes/color-picker.css";
+@import "../src/registry/sources/control-ui/recipes/color-picker-details.css";
+@import "../src/registry/sources/control-ui/recipes/color-picker-values.css";
+@import "../src/registry/sources/control-ui/recipes/label.css";
+@import "../src/registry/sources/control-ui/recipes/rich-tooltip.css";
+@import "../src/registry/sources/control-ui/recipes/separator.css";
 @import "../src/registry/sources/control-ui/effects.css";
+@import "../src/registry/sources/control-ui/extensions/view-transition.css";
+@import "../src/registry/sources/control-ui/extensions/control-effects.css";
 /* every pack ships here so the live editor can switch data-skin without loading another stylesheet */
 @import "../src/registry/skin-packs/refined/theme.css";
 @import "../src/registry/skin-packs/refined/skin.css";
@@ -20,14 +98,19 @@
 @import "../src/registry/skin-packs/linear/theme.css";
 @import "../src/registry/skin-packs/linear/skin.css";
 @import "../src/registry/sources/control-ui/code.css";
-@import "../src/registry/sources/control-ui/thread-rail.css";
 @import "../src/registry/sources/control-ui/chat-composer-editor.css";
-@import "../src/registry/sources/control-ui/dynamic-notification.css";
 @import "../src/registry/sources/control-ui/extensions/send-aurora.css";
 
 @source "../components";
 @source "../src/registry";
 @source "../examples";
+
+[data-control-ui="button"][data-flavor="neon"] {
+  --button-bg: oklch(0.55 0.24 330);
+  --button-hover-bg: oklch(0.5 0.26 330);
+  --button-foreground: oklch(0.98 0.02 330);
+  --button-shadow: 0 0 14px oklch(0.62 0.24 330 / 0.55);
+}
 
 /*
  * Docs-owned paper grain (shippable theme never paints <body>; consumer opts in by copying this).

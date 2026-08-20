@@ -1,34 +1,31 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import { cva } from "class-variance-authority";
-import type { ComponentProps } from "react";
-import type { ItemGroupProps, ItemProps, ItemSeparatorProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type {
+  ItemDescriptionProps,
+  ItemFooterProps,
+  ItemGroupProps,
+  ItemMediaProps,
+  ItemProps,
+  ItemSeparatorProps,
+  ItemTitleProps,
+} from "@/components/control-ui/contracts";
+import type { ItemKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Separator } from "@/components/control-ui/ui/separator";
-
-// `render` turns whole row into link or button, so it becomes one focus and hover target.
-const itemVariant = cva(
-  "flex items-center gap-3 rounded-[var(--radius-lg)] p-3 text-sm outline-none transition duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] [&[href]]:cursor-pointer",
-  {
-    variants: {
-      variant: {
-        default: "",
-        outline: "ring-1 ring-inset ring-border",
-        muted: "bg-muted/50",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  },
-);
 
 export function ItemGroup({ className, ...props }: ItemGroupProps) {
   return (
     // biome-ignore lint/a11y/useSemanticElements: Item may render as a link or button, so a ul would require invalid wrappers.
-    <div role="list" data-control-ui="item" data-slot="group" className={cn("group/item-group flex flex-col", className)} {...props} />
+    <div
+      role="list"
+      data-control-ui="item"
+      data-control-family="item"
+      data-slot="group"
+      className={cn("group/item-group flex flex-col", className)}
+      {...props}
+    />
   );
 }
 
@@ -43,63 +40,75 @@ export function Item({ variant = "default", render, className, children, ...prop
     props: {
       ...props,
       "data-control-ui": "item",
+      "data-control-family": "item",
       "data-slot": "root",
       "data-variant": variant,
-      className: cn(itemVariant({ variant }), skinSlot("item", "root", { variant }), className),
+      className: cn("flex items-center gap-3 p-3 [&[href]]:cursor-pointer", className),
       children,
     },
   });
 }
 
-export function ItemMedia({ className, ...props }: ComponentProps<"div">) {
+export function ItemMedia({ className, ...props }: ItemMediaProps) {
   return (
     <div
       data-control-ui="item"
+      data-control-family="item"
       data-slot="media"
-      className={cn(
-        "flex shrink-0 items-center justify-center self-start text-muted-foreground [&>svg]:size-5 [&>svg]:shrink-0",
-        className,
-      )}
+      className={cn("flex shrink-0 items-center justify-center self-start [&>svg]:size-5 [&>svg]:shrink-0", className)}
       {...props}
     />
   );
 }
 
-export function ItemContent({ className, ...props }: ComponentProps<"div">) {
-  return <div data-control-ui="item" data-slot="content" className={cn("flex min-w-0 flex-1 flex-col gap-0.5", className)} {...props} />;
-}
-
-export function ItemTitle({ className, ...props }: ComponentProps<"div">) {
+export function ItemContent({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle }) {
   return (
     <div
       data-control-ui="item"
-      data-slot="title"
-      className={cn("flex w-fit items-center gap-2 text-sm font-medium leading-none text-foreground", className)}
+      data-control-family="item"
+      data-slot="content"
+      className={cn("flex min-w-0 flex-1 flex-col gap-0.5", className)}
       {...props}
     />
   );
 }
 
-export function ItemDescription({ className, ...props }: ComponentProps<"p">) {
+export function ItemTitle({ className, ...props }: ItemTitleProps) {
   return (
-    <p
+    <div
       data-control-ui="item"
-      data-slot="description"
-      className={cn("line-clamp-2 text-sm/relaxed text-muted-foreground", className)}
+      data-control-family="item"
+      data-slot="title"
+      className={cn("flex w-fit items-center gap-2", className)}
       {...props}
     />
+  );
+}
+
+export function ItemDescription({ className, ...props }: ItemDescriptionProps) {
+  return (
+    <p data-control-ui="item" data-control-family="item" data-slot="description" className={cn("line-clamp-2", className)} {...props} />
   );
 }
 
 // never shrinks, so long content column cannot squeeze actions
-export function ItemActions({ className, ...props }: ComponentProps<"div">) {
-  return <div data-control-ui="item" data-slot="actions" className={cn("flex shrink-0 items-center gap-1.5", className)} {...props} />;
-}
-
-export function ItemHeader({ className, ...props }: ComponentProps<"div">) {
+export function ItemActions({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle }) {
   return (
     <div
       data-control-ui="item"
+      data-control-family="item"
+      data-slot="actions"
+      className={cn("flex shrink-0 items-center gap-1.5", className)}
+      {...props}
+    />
+  );
+}
+
+export function ItemHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle }) {
+  return (
+    <div
+      data-control-ui="item"
+      data-control-family="item"
       data-slot="header"
       className={cn("flex basis-full items-center justify-between gap-2", className)}
       {...props}
@@ -107,12 +116,13 @@ export function ItemHeader({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-export function ItemFooter({ className, ...props }: ComponentProps<"div">) {
+export function ItemFooter({ className, ...props }: ItemFooterProps) {
   return (
     <div
       data-control-ui="item"
+      data-control-family="item"
       data-slot="footer"
-      className={cn("flex basis-full items-center justify-between gap-2 text-caption text-muted-foreground", className)}
+      className={cn("flex basis-full items-center justify-between gap-2", className)}
       {...props}
     />
   );

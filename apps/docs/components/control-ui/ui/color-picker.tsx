@@ -40,8 +40,7 @@ import {
   setChannel,
 } from "@/components/control-ui/lib/color";
 import { contrastOf, fixColorForContrast, nextFixLevel, TARGET_RATIO, wcagLevels } from "@/components/control-ui/lib/contrast";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingContentClasses, floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { Input } from "@/components/control-ui/ui/input";
 import { NumberField, NumberFieldGroup, NumberFieldInput } from "@/components/control-ui/ui/number-field";
@@ -53,8 +52,7 @@ const HUE_GRADIENT =
 // adapts to light and dark through border token
 const CHECKER = "repeating-conic-gradient(oklch(from var(--border) l c h) 0 25%, transparent 0 50%)";
 const CHECKER_SIZE = "10px 10px";
-const RING_THUMB =
-  "block size-4 -translate-x-1/2 rounded-full border-2 border-white bg-transparent shadow-[0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.35)] outline-none transition-transform duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/40 data-[dragging]:scale-110";
+const RING_THUMB = "block size-4 -translate-x-1/2";
 
 const isColorFormat = (v: string): v is ColorFormat => v === "hex" || v === "rgb" || v === "hsl" || v === "oklch";
 const CHANNEL_NAMES: Record<ChannelId, string> = {
@@ -211,20 +209,31 @@ export function ColorPickerTrigger({
   return (
     <PopoverPrimitive.Trigger
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="trigger"
       data-disabled={disabled ? "true" : undefined}
       disabled={disabled}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? `Choose color (${valueString})`) : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn(
-        "relative inline-flex size-8 shrink-0 cursor-pointer overflow-hidden rounded-[var(--radius-control)] ring-1 ring-inset ring-border outline-none transition focus-visible:ring-2 focus-visible:ring-foreground/40 disabled:cursor-not-allowed disabled:opacity-50",
-        skinSlot("color-picker", "trigger", { disabled }),
-        className,
-      )}
+      className={cn("relative inline-flex size-8 shrink-0 cursor-pointer overflow-hidden disabled:cursor-not-allowed", className)}
       {...props}
     >
-      <span aria-hidden className="absolute inset-0" style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }} />
-      <span aria-hidden className="absolute inset-0 rounded-[inherit]" style={{ backgroundColor: valueString }} />
+      <span
+        data-control-ui="color-picker"
+        data-control-family="color-picker"
+        data-slot="trigger-checker"
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }}
+      />
+      <span
+        data-control-ui="color-picker"
+        data-control-family="color-picker"
+        data-slot="trigger-color"
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backgroundColor: valueString }}
+      />
     </PopoverPrimitive.Trigger>
   );
 }
@@ -241,18 +250,25 @@ export function ColorPickerContent({
     <PopoverPrimitive.Portal>
       {/* portal lands outside token-scoped tree, so scope is re-asserted here */}
       <PopoverPrimitive.Positioner
+        data-control-ui="color-picker"
+        data-popup-kind="color-picker"
+        data-control-family="popup"
+        data-slot="positioner"
         data-skin={skinId()}
         data-effects={skinEffects()}
         side={side}
         align={align}
         sideOffset={sideOffset}
-        className="z-[80] outline-none"
+        className="z-[80]"
       >
         <PopoverPrimitive.Popup
           data-control-ui="color-picker"
+          data-popup-kind="color-picker"
+          data-control-family="popup"
           data-slot="content"
           data-surface="floating"
-          className={cn("grid w-64 gap-3 p-3", floatingContentClasses, skinSlot("color-picker", "content", {}), className)}
+          data-popup-part="surface"
+          className={cn("grid w-64 gap-3 p-3", className)}
           {...props}
         >
           {children}
@@ -266,9 +282,13 @@ export function ColorPickerPanel({ className, children, ...props }: ColorPickerP
   return (
     <div
       data-control-ui="color-picker"
+      data-popup-kind="color-picker"
+      data-control-family="popup"
       data-slot="panel"
       data-surface="floating"
-      className={cn("grid w-64 gap-3 p-3", floatingSurfaceClasses, skinSlot("color-picker", "panel", {}), className)}
+      data-popup-part="surface"
+      data-popup-static=""
+      className={cn("grid w-64 gap-3 p-3", className)}
       {...props}
     >
       {children}
@@ -276,7 +296,7 @@ export function ColorPickerPanel({ className, children, ...props }: ColorPickerP
   );
 }
 
-export function ColorPickerArea({ className, ...props }: ColorPickerAreaProps) {
+export function ColorPickerArea({ className, style, ...props }: ColorPickerAreaProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
   const { areaRef, onPointerDown, dragging } = useColorArea((offset, rect) => {
     if (disabled) return;
@@ -301,22 +321,35 @@ export function ColorPickerArea({ className, ...props }: ColorPickerAreaProps) {
     <div
       ref={areaRef}
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="area"
+      data-disabled={disabled ? "true" : undefined}
       data-dragging={dragging ? "true" : undefined}
       role="group"
       aria-label="Saturation and brightness"
       onPointerDown={disabled ? undefined : onPointerDown}
       className={cn(
-        "group relative h-40 w-full touch-none select-none overflow-hidden rounded-[var(--radius-field)] ring-1 ring-inset ring-border/60",
-        disabled ? "cursor-not-allowed opacity-50" : "cursor-crosshair",
-        skinSlot("color-picker", "area", {}),
+        "group relative h-40 w-full touch-none select-none overflow-hidden",
+        disabled ? "cursor-not-allowed" : "cursor-crosshair",
         className,
       )}
-      style={{ backgroundColor: `hsl(${hsva.h} 100% 50%)` }}
+      style={{ ...style, backgroundColor: `hsl(${hsva.h} 100% 50%)` }}
       {...props}
     >
-      <span aria-hidden className="absolute inset-0 bg-linear-to-r/srgb from-white to-transparent" />
-      <span aria-hidden className="absolute inset-0 bg-linear-to-t/srgb from-black to-transparent" />
+      <span
+        aria-hidden
+        data-control-ui="color-picker"
+        data-control-family="color-picker"
+        data-slot="area-saturation"
+        className="absolute inset-0"
+      />
+      <span
+        aria-hidden
+        data-control-ui="color-picker"
+        data-control-family="color-picker"
+        data-slot="area-brightness"
+        className="absolute inset-0"
+      />
       <input
         type="range"
         aria-label="Saturation"
@@ -350,23 +383,21 @@ export function ColorPickerAreaThumb({ className, ...props }: ColorPickerAreaThu
   return (
     <div
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="area-thumb"
       aria-hidden
-      className={cn(
-        "pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-[0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.4)] transition-[box-shadow] duration-[var(--duration-fast)] group-has-[input:focus-visible]:ring-2 group-has-[input:focus-visible]:ring-foreground/50 group-data-[dragging]:scale-110",
-        skinSlot("color-picker", "area-thumb", {}),
-        className,
-      )}
+      className={cn("pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2", className)}
       {...props}
     />
   );
 }
 
-export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy }: ColorPickerHueProps) {
+export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ...props }: ColorPickerHueProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
   return (
     <SliderPrimitive.Root
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="hue"
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Hue") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
@@ -376,17 +407,22 @@ export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-label
       step={1}
       disabled={disabled}
       onValueChange={(next) => setHsva({ h: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex h-4 w-full touch-none select-none items-center", skinSlot("color-picker", "hue", {}), className)}
+      className={cn("relative flex h-4 w-full touch-none select-none items-center", className)}
+      {...props}
     >
       <SliderPrimitive.Control className="flex h-4 w-full items-center">
         <SliderPrimitive.Track
-          className="relative h-3 w-full rounded-full ring-1 ring-inset ring-border/50"
+          data-control-ui="color-picker"
+          data-control-family="color-picker"
+          data-slot="hue-track"
+          className="relative h-3 w-full"
           style={{ backgroundImage: HUE_GRADIENT }}
         >
           <SliderPrimitive.Thumb
             data-control-ui="color-picker"
+            data-control-family="color-picker"
             data-slot="hue-thumb"
-            className={cn(RING_THUMB, skinSlot("color-picker", "hue-thumb", {}))}
+            className={RING_THUMB}
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>
@@ -394,13 +430,19 @@ export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-label
   );
 }
 
-export function ColorPickerAlpha({ className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy }: ColorPickerAlphaProps) {
+export function ColorPickerAlpha({
+  className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  ...props
+}: ColorPickerAlphaProps) {
   const { hsva, setHsva, alpha, disabled } = useColorPicker();
   if (!alpha) return null;
   const opaque = formatColor({ ...hsva, a: 1 }, "hex");
   return (
     <SliderPrimitive.Root
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="alpha"
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Opacity") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
@@ -410,11 +452,15 @@ export function ColorPickerAlpha({ className, "aria-label": ariaLabel, "aria-lab
       step={0.01}
       disabled={disabled}
       onValueChange={(next) => setHsva({ a: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex h-4 w-full touch-none select-none items-center", skinSlot("color-picker", "alpha", {}), className)}
+      className={cn("relative flex h-4 w-full touch-none select-none items-center", className)}
+      {...props}
     >
       <SliderPrimitive.Control className="flex h-4 w-full items-center">
         <SliderPrimitive.Track
-          className="relative h-3 w-full rounded-full ring-1 ring-inset ring-border/50"
+          data-control-ui="color-picker"
+          data-control-family="color-picker"
+          data-slot="alpha-track"
+          className="relative h-3 w-full"
           style={{
             backgroundImage: `linear-gradient(to right, transparent, ${opaque}), ${CHECKER}`,
             backgroundSize: `auto, ${CHECKER_SIZE}`,
@@ -422,8 +468,9 @@ export function ColorPickerAlpha({ className, "aria-label": ariaLabel, "aria-lab
         >
           <SliderPrimitive.Thumb
             data-control-ui="color-picker"
+            data-control-family="color-picker"
             data-slot="alpha-thumb"
-            className={cn(RING_THUMB, skinSlot("color-picker", "alpha-thumb", {}))}
+            className={RING_THUMB}
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>
@@ -436,7 +483,7 @@ export function ColorPickerAlpha({ className, "aria-label": ariaLabel, "aria-lab
 const WHEEL_HUE =
   "conic-gradient(from 90deg, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
 
-export function ColorPickerWheel({ className, ...props }: ColorPickerWheelProps) {
+export function ColorPickerWheel({ className, style, ...props }: ColorPickerWheelProps) {
   const { hsva, setHsva, disabled } = useColorPicker();
   const { areaRef, onPointerDown, dragging } = useColorArea((offset, rect) => {
     if (disabled) return;
@@ -452,28 +499,27 @@ export function ColorPickerWheel({ className, ...props }: ColorPickerWheelProps)
     <div
       ref={areaRef}
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="wheel"
+      data-disabled={disabled ? "true" : undefined}
       data-dragging={dragging ? "true" : undefined}
       role="group"
       aria-label="Color wheel"
       onPointerDown={disabled ? undefined : onPointerDown}
       className={cn(
-        "group relative aspect-square w-full touch-none select-none rounded-full ring-1 ring-inset ring-border/60",
-        disabled ? "cursor-not-allowed opacity-50" : "cursor-crosshair",
-        skinSlot("color-picker", "wheel", {}),
+        "group relative aspect-square w-full touch-none select-none",
+        disabled ? "cursor-not-allowed" : "cursor-crosshair",
         className,
       )}
-      style={{ backgroundImage: `radial-gradient(circle at center, #fff, transparent 70%), ${WHEEL_HUE}` }}
+      style={{ ...style, backgroundImage: `radial-gradient(circle at center, #fff, transparent 70%), ${WHEEL_HUE}` }}
       {...props}
     >
       <div
         data-control-ui="color-picker"
+        data-control-family="color-picker"
         data-slot="wheel-thumb"
         aria-hidden
-        className={cn(
-          "pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-[0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.4)] group-has-[input:focus-visible]:ring-2 group-has-[input:focus-visible]:ring-foreground/50 group-data-[dragging]:scale-110",
-          skinSlot("color-picker", "wheel-thumb", {}),
-        )}
+        className="pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2"
         style={{ left: `${left}%`, top: `${top}%` }}
       />
       <input
@@ -523,12 +569,13 @@ export function ColorPickerInput({
       value={shown}
       disabled={disabled}
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="input"
       spellCheck={false}
       autoComplete="off"
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Color value") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("font-mono text-caption", className)}
+      className={className}
       onFocus={() => {
         setDraft(valueString);
         setEditing(true);
@@ -550,6 +597,7 @@ export function ColorPickerFormatSelect({
   className,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  style,
 }: ColorPickerFormatSelectProps) {
   const { format, setFormat, disabled } = useColorPicker();
   return (
@@ -567,6 +615,7 @@ export function ColorPickerFormatSelect({
         aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Color format") : ariaLabel}
         aria-labelledby={ariaLabelledBy}
         className={className}
+        style={style}
       >
         <SelectValue />
       </SelectTrigger>
@@ -587,8 +636,9 @@ export function ColorPickerChannels({ className, children, ...props }: ColorPick
   return (
     <div
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="channels"
-      className={cn("grid grid-flow-col auto-cols-fr gap-1.5", skinSlot("color-picker", "channels", {}), className)}
+      className={cn("grid grid-flow-col auto-cols-fr gap-1.5", className)}
       {...props}
     >
       {children ?? specs.map((spec) => <ColorPickerChannel key={spec.id} channel={spec.id} label={spec.label} />)}
@@ -601,7 +651,13 @@ export function ColorPickerChannel({ channel, label, className, "aria-label": ar
   const spec = getChannels(hsva, format).find((s) => s.id === channel);
   if (!spec) return null;
   return (
-    <div className={cn("grid gap-1 text-center", className)} {...props}>
+    <div
+      data-control-ui="color-picker"
+      data-control-family="color-picker"
+      data-slot="channel"
+      className={cn("grid gap-1", className)}
+      {...props}
+    >
       <NumberField
         size="sm"
         value={spec.value}
@@ -613,11 +669,13 @@ export function ColorPickerChannel({ channel, label, className, "aria-label": ar
           if (value !== null) setChannelValue(channel, value);
         }}
       >
-        <NumberFieldGroup data-control-ui="color-picker" data-slot="channel" className="w-full">
+        <NumberFieldGroup data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel" className="w-full">
           <NumberFieldInput aria-label={ariaLabel ?? `${CHANNEL_NAMES[channel]} channel`} className="px-1" />
         </NumberFieldGroup>
       </NumberField>
-      <span className="text-micro text-muted-foreground">{label ?? spec.label}</span>
+      <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel-label">
+        {label ?? spec.label}
+      </span>
     </div>
   );
 }
@@ -661,12 +719,17 @@ export function ColorPickerEyeDropper({ className, children, ...props }: ColorPi
 
 export function ColorPickerSwatches({ colors, label, className, children, ...props }: ColorPickerSwatchesProps) {
   return (
-    <div className="grid gap-1.5">
-      {label ? <span className="text-micro text-muted-foreground">{label}</span> : null}
+    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-group" className="grid gap-1.5">
+      {label ? (
+        <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-label">
+          {label}
+        </span>
+      ) : null}
       <div
         data-control-ui="color-picker"
+        data-control-family="color-picker"
         data-slot="swatches"
-        className={cn("flex flex-wrap gap-1.5", skinSlot("color-picker", "swatches", {}), className)}
+        className={cn("flex flex-wrap gap-1.5", className)}
         {...props}
       >
         {colors?.map((color) => (
@@ -685,21 +748,32 @@ export function ColorPickerSwatch({ color, className, "aria-label": ariaLabel, .
     <button
       type="button"
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="swatch"
       data-selected={selected ? "true" : undefined}
       aria-pressed={selected}
       aria-label={ariaLabel ?? `Set color ${color}`}
       title={color}
       onClick={() => setFromString(color)}
-      className={cn(
-        "relative size-6 shrink-0 cursor-pointer overflow-hidden rounded-md ring-1 ring-inset ring-border/60 outline-none transition focus-visible:ring-2 focus-visible:ring-foreground/40 data-[selected=true]:ring-2 data-[selected=true]:ring-foreground",
-        skinSlot("color-picker", "swatch", { selected }),
-        className,
-      )}
+      className={cn("relative size-6 shrink-0 cursor-pointer overflow-hidden", className)}
       {...props}
     >
-      <span aria-hidden className="absolute inset-0" style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }} />
-      <span aria-hidden className="absolute inset-0" style={{ backgroundColor: color }} />
+      <span
+        data-control-ui="color-picker"
+        data-control-family="color-picker"
+        data-slot="swatch-checker"
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }}
+      />
+      <span
+        data-control-ui="color-picker"
+        data-control-family="color-picker"
+        data-slot="swatch-color"
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backgroundColor: color }}
+      />
     </button>
   );
 }
@@ -710,14 +784,11 @@ export function ColorPickerSwatchAdd({ onAdd, className, children, ...props }: C
     <button
       type="button"
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="swatch-add"
       aria-label="Add current color"
       onClick={() => onAdd?.(valueString)}
-      className={cn(
-        "flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md border border-dashed border-border text-muted-foreground outline-none transition hover:border-foreground/40 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/40",
-        skinSlot("color-picker", "swatch-add", {}),
-        className,
-      )}
+      className={cn("flex size-6 shrink-0 cursor-pointer items-center justify-center", className)}
       {...props}
     >
       {children ?? <PlusIcon />}
@@ -743,18 +814,24 @@ export function ColorPickerContrast({ background = "#ffffff", className, ...prop
   return (
     <div
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="contrast"
-      className={cn("flex items-center gap-1.5 text-caption", skinSlot("color-picker", "contrast", {}), className)}
+      className={cn("flex items-center gap-1.5", className)}
       {...props}
     >
-      <span className="tabular-nums text-muted-foreground">{ratio.toFixed(2)}:1</span>
+      <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="contrast-ratio">
+        {ratio.toFixed(2)}:1
+      </span>
       <WcagPill ok={levels.AA}>AA</WcagPill>
       <WcagPill ok={levels.AAA}>AAA</WcagPill>
       {target ? (
         <button
           type="button"
+          data-control-ui="color-picker"
+          data-control-family="color-picker"
+          data-slot="contrast-fix"
           onClick={applyFix}
-          className="ml-auto cursor-pointer rounded-[var(--radius-sm)] px-1.5 py-0.5 font-medium text-foreground underline decoration-dotted underline-offset-2 hover:bg-foreground/6"
+          className="ml-auto cursor-pointer px-1.5 py-0.5"
         >
           Fix → {target}
         </button>
@@ -766,10 +843,11 @@ export function ColorPickerContrast({ background = "#ffffff", className, ...prop
 function WcagPill({ ok, children }: { ok: boolean; children: ReactNode }) {
   return (
     <span
-      className={cn(
-        "inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-1.5 py-0.5 font-medium",
-        ok ? "bg-foreground/6 text-foreground" : "text-muted-foreground line-through decoration-1",
-      )}
+      data-control-ui="color-picker"
+      data-control-family="color-picker"
+      data-slot="contrast-level"
+      data-passing={ok ? "true" : undefined}
+      className="inline-flex items-center gap-1 px-1.5 py-0.5"
     >
       {ok ? "✓" : "✕"} {children}
     </span>
@@ -781,19 +859,41 @@ export function ColorPickerOutput({ className, children, renderValue, ...props }
   return (
     <div
       data-control-ui="color-picker"
+      data-control-family="color-picker"
       data-slot="output"
-      className={cn("flex items-center gap-2", skinSlot("color-picker", "output", {}), className)}
+      className={cn("flex items-center gap-2", className)}
       {...props}
     >
       {renderValue
         ? renderValue({ value: valueString })
         : (children ?? (
             <>
-              <span className="relative size-6 shrink-0 overflow-hidden rounded-md ring-1 ring-inset ring-border/60">
-                <span aria-hidden className="absolute inset-0" style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }} />
-                <span aria-hidden className="absolute inset-0" style={{ backgroundColor: valueString }} />
+              <span
+                data-control-ui="color-picker"
+                data-control-family="color-picker"
+                data-slot="output-swatch"
+                className="relative size-6 shrink-0 overflow-hidden"
+              >
+                <span
+                  data-control-ui="color-picker"
+                  data-control-family="color-picker"
+                  data-slot="output-checker"
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{ backgroundImage: CHECKER, backgroundSize: CHECKER_SIZE }}
+                />
+                <span
+                  data-control-ui="color-picker"
+                  data-control-family="color-picker"
+                  data-slot="output-color"
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{ backgroundColor: valueString }}
+                />
               </span>
-              <span className="font-mono text-caption text-muted-foreground">{valueString}</span>
+              <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="output-value">
+                {valueString}
+              </span>
             </>
           ))}
     </div>

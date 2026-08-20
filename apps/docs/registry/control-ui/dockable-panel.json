@@ -13,6 +13,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/dockable-panel.css",
+      "target": "@components/control-ui/styles/recipes/dockable-panel.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/dockable-panel-geometry.ts",
       "target": "@components/control-ui/ui/dockable-panel-geometry.ts",
       "type": "registry:ui"
@@ -23,6 +28,9 @@
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/dockable-panel.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/dockable-panel.json"
   }

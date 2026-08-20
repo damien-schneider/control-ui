@@ -16,3 +16,6 @@ coverage
 .env*.local
 .vercel
 test-results/
+
+# control-ui update POC manifest
+.control-ui/

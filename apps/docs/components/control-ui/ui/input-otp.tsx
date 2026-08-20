@@ -4,19 +4,17 @@ import { OTPField as OTPFieldPrimitive } from "@base-ui/react/otp-field";
 import { Fragment } from "react";
 import type { InputOTPProps, InputOTPSeparatorProps, InputOTPSlotProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
-
-const slotClasses =
-  "relative flex size-[var(--control-h-md)] items-center justify-center rounded-[var(--radius-control)] bg-card/72 text-center text-body font-medium tabular-nums text-foreground shadow-sm ring-1 ring-inset ring-border outline-none transition placeholder:text-muted-foreground focus:z-[1] focus:ring-2 focus:ring-foreground/20 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50";
 
 export function InputOTPSlot({ index, length, className, ...props }: InputOTPSlotProps) {
   return (
     <OTPFieldPrimitive.Input
       data-control-ui="input-otp"
+      data-field-kind="input-otp"
       data-slot="slot"
+      data-control-family="field"
       data-control="true"
       aria-label={length ? `Character ${index + 1} of ${length}` : `Character ${index + 1}`}
-      className={cn(slotClasses, skinSlot("input-otp", "slot", {}), className)}
+      className={cn("relative flex size-[var(--control-h-md)] items-center justify-center", className)}
       {...props}
     />
   );
@@ -26,8 +24,10 @@ export function InputOTPSeparator({ className, ...props }: InputOTPSeparatorProp
   return (
     <OTPFieldPrimitive.Separator
       data-control-ui="input-otp"
+      data-control-family="field"
+      data-field-kind="input-otp"
       data-slot="separator"
-      className={cn("h-px w-2.5 shrink-0 rounded-full bg-border", skinSlot("input-otp", "separator", {}), className)}
+      className={cn("h-px w-2.5 shrink-0", className)}
       {...props}
     />
   );
@@ -37,9 +37,11 @@ export function InputOTP({ length = 6, separator = false, className, children, .
   return (
     <OTPFieldPrimitive.Root
       data-control-ui="input-otp"
+      data-control-family="field"
+      data-field-kind="input-otp"
       data-slot="root"
       length={length}
-      className={cn("flex items-center gap-2", skinSlot("input-otp", "root", {}), className)}
+      className={cn("flex items-center gap-2", className)}
       {...props}
     >
       {children ??

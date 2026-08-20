@@ -19,7 +19,7 @@ describe("registry source closure", () => {
         "src/registry/sources/control-ui/dynamic-notification-liquid.ts",
         "src/registry/sources/control-ui/dynamic-notification-siri-wave.ts",
         "src/registry/lib/liquid-glass-optics.ts",
-        "src/registry/sources/control-ui/dynamic-notification.css",
+        "src/registry/sources/control-ui/recipes/dynamic-notification.css",
       ]),
     );
     expect(installedPaths).toContain("src/registry/sources/control-ui/ui/button.tsx");

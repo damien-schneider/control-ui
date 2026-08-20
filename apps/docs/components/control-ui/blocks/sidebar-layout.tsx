@@ -3,7 +3,6 @@
 import { BotIcon, LayoutDashboardIcon, SettingsIcon, SquareTerminalIcon, WorkflowIcon } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import {
   Sidebar,
   SidebarContent,
@@ -87,12 +86,7 @@ export function SidebarLayout({ children }: { children: ReactNode }) {
         <header className="flex h-14 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger />
         </header>
-        <div
-          data-control-ui="sidebar-layout"
-          data-slot="content"
-          data-surface="panel"
-          className={cn("flex flex-1 flex-col gap-4 p-4", skinSlot("sidebar-layout", "content", {}))}
-        >
+        <div data-control-ui="sidebar-layout" data-slot="content" data-surface="panel" className={cn("flex flex-1 flex-col gap-4 p-4")}>
           {children}
         </div>
       </SidebarInset>

@@ -1,0 +1,53 @@
+@layer components {
+  :where([data-control-family="button"][data-user-ask-dismiss="true"]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="kbd"][data-user-ask-submit-kbd="true"]) {
+    background: oklch(from var(--primary-foreground) l c h / 0.15);
+    color: var(--primary-foreground);
+    box-shadow: inset 0 0 0 1px oklch(from var(--primary-foreground) l c h / 0.25);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-input"]) {
+    font-weight: var(--font-weight-medium);
+    --_user-ask-option-input-outline: none;
+    outline-style: var(--_user-ask-option-input-outline);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-indicator"]) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-description"]) {
+    font-weight: var(--font-weight-normal);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="recommended"]) {
+    font-weight: var(--font-weight-normal);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-label"]) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="title"]) {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="root"]) {
+    --_user-ask-root-outline: none;
+    outline-style: var(--_user-ask-root-outline);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-indicator"]) {
+    --_user-ask-option-indicator-number-style: tabular-nums;
+    font-variant-numeric: var(--_user-ask-option-indicator-number-style);
+  }
+
+
+  :where([data-control-family="user-ask"][data-slot="pagination-count"]) {
+    --_user-ask-pagination-count-number-style: tabular-nums;
+    font-variant-numeric: var(--_user-ask-pagination-count-number-style);
+  }
+}

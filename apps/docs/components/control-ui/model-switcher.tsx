@@ -12,6 +12,7 @@ export function ModelSwitcher({
   size = "sm",
   variant = "surface",
   className,
+  style,
 }: ModelSwitcherProps) {
   const fallback = defaultValue ?? models[0]?.value;
 
@@ -21,12 +22,28 @@ export function ModelSwitcher({
         size={size}
         variant={variant}
         className={cn("max-w-52", className)}
+        style={style}
         aria-label="Model"
         data-control-ui="model-switcher"
+        data-control-family="button"
+        data-button-kind="model-switcher"
         data-slot="root"
       >
-        <span className="flex min-w-0 items-center gap-1.5">
-          <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-primary" />
+        <span
+          data-control-ui="model-switcher"
+          data-control-family="button"
+          data-button-kind="model-switcher"
+          data-slot="value"
+          className="flex min-w-0 items-center gap-1.5"
+        >
+          <span
+            data-control-ui="model-switcher"
+            data-control-family="button"
+            data-button-kind="model-switcher"
+            data-slot="indicator"
+            aria-hidden="true"
+            className="size-1.5 shrink-0"
+          />
           <SelectValue placeholder="Model">
             {(current: string) => models.find((model) => model.value === current)?.label ?? "Model"}
           </SelectValue>
@@ -36,7 +53,17 @@ export function ModelSwitcher({
         {models.map((model) => (
           <SelectItem key={model.value} value={model.value}>
             <span className="truncate">{model.label}</span>
-            {model.hint ? <span className="ml-auto pl-4 text-micro text-muted-foreground">{model.hint}</span> : null}
+            {model.hint ? (
+              <span
+                data-control-ui="model-switcher"
+                data-control-family="button"
+                data-button-kind="model-switcher"
+                data-slot="hint"
+                className="ml-auto pl-4"
+              >
+                {model.hint}
+              </span>
+            ) : null}
           </SelectItem>
         ))}
       </SelectContent>

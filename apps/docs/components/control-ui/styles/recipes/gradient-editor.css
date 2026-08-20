@@ -1,0 +1,105 @@
+@layer components {
+  :where([data-control-family="gradient-editor"][data-slot="root"]) {
+    --gradient-editor-add-border-color: var(--border);
+    --gradient-editor-add-radius: 9999px;
+    --gradient-editor-preview-radius: var(--radius-field);
+    --gradient-editor-preview-ring-color: oklch(from var(--border) l c h / 0.6);
+    --gradient-editor-stop-border-color: oklch(1 0 0);
+    --gradient-editor-stop-radius: 9999px;
+    --gradient-editor-stop-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.4);
+    --gradient-editor-track-radius: 9999px;
+  }
+  :where([data-control-family="gradient-editor"][data-slot="preview"]) {
+    border-radius: var(--gradient-editor-preview-radius);
+    box-shadow: inset 0 0 0 1px var(--gradient-editor-preview-ring-color);
+  }
+
+  :where([data-control-family="gradient-editor"][data-slot="track"]) {
+    border: 0;
+    border-radius: var(--gradient-editor-track-radius);
+    box-shadow: inset 0 0 0 1px oklch(from var(--border) l c h / 0.6);
+  }
+
+  :where([data-control-family="gradient-editor"][data-slot="stop"]) {
+    border: 2px solid var(--gradient-editor-stop-border-color);
+    border-radius: var(--gradient-editor-stop-radius);
+    box-shadow: var(--gradient-editor-stop-shadow);
+    outline: none;
+    transition: scale var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="gradient-editor"][data-slot="stop"]:focus-visible) {
+    box-shadow: var(--gradient-editor-stop-shadow), 0 0 0 2px oklch(from var(--foreground) l c h / 0.5);
+  }
+
+  :where([data-control-family="gradient-editor"][data-slot="stop-add"]) {
+    border: 1px dashed var(--gradient-editor-add-border-color);
+    border-radius: var(--gradient-editor-add-radius);
+    color: var(--muted-foreground);
+    outline: none;
+    transition: border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="gradient-editor"][data-slot="stop-add"]:hover) {
+      border-color: oklch(from var(--foreground) l c h / 0.4);
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="gradient-editor"][data-slot="stop-add"]:focus-visible) {
+    box-shadow: 0 0 0 2px oklch(from var(--foreground) l c h / 0.4);
+  }
+
+  :where([data-control-family="gradient-editor"][data-slot="stop"][data-selected="true"]) {
+    --_gradient-editor-stop-scale: 115% 115%;
+    scale: var(--_gradient-editor-stop-scale);
+  }
+}
+
+@property --gradient-editor-preview-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --gradient-editor-preview-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --gradient-editor-track-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --gradient-editor-stop-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --gradient-editor-stop-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --gradient-editor-stop-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --gradient-editor-add-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --gradient-editor-add-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

@@ -33,10 +33,26 @@ describe("phone input registry contract", () => {
     expect(html).toContain("readOnly");
   });
 
+  test("forwards typed knob overrides to owned country controls", () => {
+    const html = renderToString(
+      <PhoneInput
+        defaultCountry="FR"
+        style={{
+          "--phone-input-country-border-color": "oklch(0.5 0.1 250)",
+          "--phone-input-chevron-foreground": "oklch(0.4 0.1 250)",
+        }}
+      />,
+    );
+
+    expect(html.match(/--phone-input-country-border-color:oklch\(0.5 0.1 250\)/g)?.length).toBeGreaterThan(1);
+    expect(html.match(/--phone-input-chevron-foreground:oklch\(0.4 0.1 250\)/g)?.length).toBeGreaterThan(1);
+  });
+
   test("owns its domain helper and references shared primitives", () => {
     expect(MANIFEST.files.map((file) => file.path).sort()).toEqual([
       "src/registry/lib/phone-input-format.ts",
       "src/registry/lib/phone-number.ts",
+      "src/registry/sources/control-ui/recipes/phone-input.css",
       "src/registry/sources/control-ui/ui/phone-input.tsx",
     ]);
     expect(MANIFEST.dependencies.some((dependency) => dependency.startsWith("libphonenumber-js@"))).toBe(true);

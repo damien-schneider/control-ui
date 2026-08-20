@@ -19,15 +19,15 @@ import type {
   ContextMenuTriggerProps,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 // Composes like DropdownMenu behind right-click trigger; API stays shadcn/ui context-menu compatible.
 
-const popupClasses = cn("min-w-[10rem]", floatingListContentClasses);
+const popupClasses = "min-w-[10rem]";
 
 // group/cmi lets gutter glyphs and shortcuts key off highlighted row if pack wants them to.
-const itemClasses = cn("group/cmi relative", floatingListItemClasses);
+const itemClasses = cn("group/cmi relative", popupItemStructureClasses, "px-[calc(var(--padding-x)*0.5)] py-1");
 
 export function ContextMenu(props: ContextMenuProps) {
   return <ContextMenuPrimitive.Root {...props} />;
@@ -37,8 +37,10 @@ export function ContextMenuTrigger({ className, ...props }: ContextMenuTriggerPr
   return (
     <ContextMenuPrimitive.Trigger
       data-control-ui="context-menu"
+      data-control-family="popup"
+      data-popup-kind="context-menu"
       data-slot="trigger"
-      className={cn(skinSlot("context-menu", "trigger", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -52,8 +54,10 @@ export function ContextMenuGroup({ className, ...props }: ContextMenuGroupProps)
   return (
     <ContextMenuPrimitive.Group
       data-control-ui="context-menu"
+      data-control-family="popup"
+      data-popup-kind="context-menu"
       data-slot="group"
-      className={cn(skinSlot("context-menu", "group", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -63,13 +67,15 @@ export function ContextMenuContent({ className, children, ...props }: ContextMen
   return (
     <ContextMenuPrimitive.Portal>
       {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
-      <ContextMenuPrimitive.Positioner data-skin={skinId()} data-effects={skinEffects()} className="z-[80] outline-none">
+      <ContextMenuPrimitive.Positioner data-skin={skinId()} data-effects={skinEffects()} className="z-[80]">
         <ContextMenuPrimitive.Popup
           data-control-ui="context-menu"
+          data-popup-kind="context-menu"
           data-slot="content"
           data-surface="floating"
+          data-control-family="popup"
           data-popup-part="list-surface"
-          className={cn(popupClasses, skinFamily("popup", "list-surface"), skinSlot("context-menu", "content", {}), className)}
+          className={cn(popupClasses, className)}
           {...props}
         >
           {children}
@@ -83,15 +89,11 @@ export function ContextMenuItem({ className, inset = false, ...props }: ContextM
   return (
     <ContextMenuPrimitive.Item
       data-control-ui="context-menu"
+      data-popup-kind="context-menu"
       data-slot="item"
+      data-control-family="popup"
       data-popup-part="item"
-      className={cn(
-        itemClasses,
-        inset && "pl-8",
-        skinFamily("popup", "item"),
-        skinSlot("context-menu", "item", { disabled: Boolean(props.disabled) }),
-        className,
-      )}
+      className={cn(itemClasses, inset && "ps-8", className)}
       {...props}
     />
   );
@@ -101,18 +103,14 @@ export function ContextMenuCheckboxItem({ className, children, ...props }: Conte
   return (
     <ContextMenuPrimitive.CheckboxItem
       data-control-ui="context-menu"
+      data-popup-kind="context-menu"
       data-slot="checkbox-item"
+      data-control-family="popup"
       data-popup-part="item"
-      className={cn(
-        itemClasses,
-        "pl-8",
-        skinFamily("popup", "item"),
-        skinSlot("context-menu", "checkbox-item", { disabled: Boolean(props.disabled) }),
-        className,
-      )}
+      className={cn(itemClasses, "ps-8", className)}
       {...props}
     >
-      <span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center">
+      <span className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.CheckboxItemIndicator>
           <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
             <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -128,8 +126,10 @@ export function ContextMenuRadioGroup<TValue extends string = string>({ classNam
   return (
     <ContextMenuPrimitive.RadioGroup
       data-control-ui="context-menu"
+      data-control-family="popup"
+      data-popup-kind="context-menu"
       data-slot="radio-group"
-      className={cn(skinSlot("context-menu", "radio-group", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -139,20 +139,22 @@ export function ContextMenuRadioItem({ className, children, ...props }: ContextM
   return (
     <ContextMenuPrimitive.RadioItem
       data-control-ui="context-menu"
+      data-popup-kind="context-menu"
       data-slot="radio-item"
+      data-control-family="popup"
       data-popup-part="item"
-      className={cn(
-        itemClasses,
-        "pl-8",
-        skinFamily("popup", "item"),
-        skinSlot("context-menu", "radio-item", { disabled: Boolean(props.disabled) }),
-        className,
-      )}
+      className={cn(itemClasses, "ps-8", className)}
       {...props}
     >
-      <span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center">
+      <span className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.RadioItemIndicator>
-          <span className="block size-1.5 rounded-full bg-current" />
+          <span
+            data-control-ui="context-menu"
+            data-control-family="popup"
+            data-popup-kind="context-menu"
+            data-slot="radio-indicator"
+            className="block size-1.5"
+          />
         </ContextMenuPrimitive.RadioItemIndicator>
       </span>
       {children}
@@ -164,15 +166,11 @@ export function ContextMenuLabel({ className, inset = false, ...props }: Context
   return (
     <ContextMenuPrimitive.GroupLabel
       data-control-ui="context-menu"
+      data-popup-kind="context-menu"
       data-slot="label"
+      data-control-family="popup"
       data-popup-part="label"
-      className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-1 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground",
-        inset && "pl-8",
-        skinFamily("popup", "label"),
-        skinSlot("context-menu", "label", {}),
-        className,
-      )}
+      className={cn("px-[calc(var(--padding-x)*0.5)] py-1", inset && "ps-8", className)}
       {...props}
     />
   );
@@ -182,14 +180,11 @@ export function ContextMenuSeparator({ className, ...props }: ContextMenuSeparat
   return (
     <ContextMenuPrimitive.Separator
       data-control-ui="context-menu"
+      data-popup-kind="context-menu"
       data-slot="separator"
+      data-control-family="popup"
       data-popup-part="separator"
-      className={cn(
-        "-mx-[var(--popover-padding)] my-1 h-px bg-border",
-        skinFamily("popup", "separator"),
-        skinSlot("context-menu", "separator", {}),
-        className,
-      )}
+      className={cn("-mx-[var(--popover-padding)] my-1 h-px", className)}
       {...props}
     />
   );
@@ -199,14 +194,11 @@ export function ContextMenuShortcut({ className, ...props }: ContextMenuShortcut
   return (
     <span
       data-control-ui="context-menu"
+      data-popup-kind="context-menu"
       data-slot="shortcut"
+      data-control-family="popup"
       data-popup-part="shortcut"
-      className={cn(
-        "ml-auto pl-6 text-body tracking-[0.02em] text-muted-foreground",
-        skinFamily("popup", "shortcut"),
-        skinSlot("context-menu", "shortcut", {}),
-        className,
-      )}
+      className={cn("ms-auto ps-6", className)}
       {...props}
     />
   );
@@ -220,20 +212,22 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
   return (
     <ContextMenuPrimitive.SubmenuTrigger
       data-control-ui="context-menu"
+      data-popup-kind="context-menu"
       data-slot="sub-trigger"
+      data-control-family="popup"
       data-popup-part="item"
-      className={cn(
-        itemClasses,
-        "data-[popup-open]:bg-foreground/6",
-        inset && "pl-8",
-        skinFamily("popup", "item"),
-        skinSlot("context-menu", "sub-trigger", { disabled: Boolean(props.disabled) }),
-        className,
-      )}
+      className={cn(itemClasses, inset && "ps-8", className)}
       {...props}
     >
       {children}
-      <span aria-hidden="true" className="ml-auto pl-4 text-body leading-none">
+      <span
+        data-control-ui="context-menu"
+        data-popup-kind="context-menu"
+        data-control-family="popup"
+        data-slot="sub-trigger-indicator"
+        aria-hidden="true"
+        className="ms-auto ps-4"
+      >
         ›
       </span>
     </ContextMenuPrimitive.SubmenuTrigger>
@@ -246,16 +240,18 @@ export function ContextMenuSubContent({ className, children, ...props }: Context
       <ContextMenuPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}
-        className="z-[80] outline-none"
+        className="z-[80]"
         sideOffset={-4}
         alignOffset={-5}
       >
         <ContextMenuPrimitive.Popup
           data-control-ui="context-menu"
+          data-popup-kind="context-menu"
           data-slot="sub-content"
           data-surface="floating"
+          data-control-family="popup"
           data-popup-part="list-surface"
-          className={cn(popupClasses, skinFamily("popup", "list-surface"), skinSlot("context-menu", "sub-content", {}), className)}
+          className={cn(popupClasses, className)}
           {...props}
         >
           {children}

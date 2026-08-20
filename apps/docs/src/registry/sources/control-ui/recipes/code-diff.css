@@ -1,0 +1,197 @@
+@layer components {
+  :where([data-control-family="code-diff"][data-slot="root"]) {
+    --code-diff-background: var(--background);
+    --code-diff-border-color: var(--border);
+    --code-diff-radius: var(--radius-panel);
+    --code-diff-foreground: var(--code-foreground);
+    --code-diff-add-background: var(--diff-add-line);
+    --code-diff-del-background: var(--diff-del-line);
+    border: 1px solid var(--code-diff-border-color);
+    border-radius: var(--code-diff-radius);
+    background: var(--code-diff-background);
+    box-shadow: var(--shadow-sm);
+  }
+
+  :where([data-control-family="code-diff"]:is([data-slot="header"], [data-slot="file-header"])) {
+    border-bottom: 1px solid var(--border);
+    background: var(--diff-gutter-bg);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="title"]),
+
+  :where([data-control-family="code-diff"][data-slot="file-header"] > span:first-child) {
+    color: var(--muted-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="body"] > div) {
+    color: var(--code-diff-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="line"][data-line-type="add"]) {
+    background: var(--code-diff-add-background);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="line"][data-line-type="del"]) {
+    background: var(--code-diff-del-background);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="emphasis"]) {
+    border-radius: 2px;
+  }
+
+  :where([data-control-family="code-diff"][data-slot="emphasis"][data-line-type="add"]) {
+    background: var(--diff-add-emphasis);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="emphasis"][data-line-type="del"]) {
+    background: var(--diff-del-emphasis);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="line"][data-indicators="bars"][data-line-type="add"]) {
+    border-left: 2px solid var(--diff-add-fg);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="line"][data-indicators="bars"][data-line-type="del"]) {
+    border-left: 2px solid var(--diff-del-fg);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="line"][data-side="left"]),
+
+  :where([data-control-family="code-diff"][data-slot="empty-half"][data-side="left"]) {
+    border-right: 1px solid oklch(from var(--border) l c h / 0.6);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="empty-half"]) {
+    background: var(--diff-gutter-bg);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="gutter"]) {
+    color: var(--diff-context-fg);
+    opacity: 0.7;
+  }
+
+  :where([data-control-family="code-diff"][data-slot="gutter"][data-line-type="add"]) {
+    background: var(--diff-add-gutter);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="gutter"][data-line-type="del"]) {
+    background: var(--diff-del-gutter);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="marker"]) {
+    color: transparent;
+  }
+
+  :where([data-control-family="code-diff"][data-slot="marker"][data-line-type="add"]),
+
+  :where([data-control-family="code-diff"][data-slot="stat-additions"]) {
+    color: var(--diff-add-fg);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="marker"][data-line-type="del"]),
+
+  :where([data-control-family="code-diff"][data-slot="stat-deletions"]) {
+    color: var(--diff-del-fg);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="stat"]) {
+    font-size: var(--text-micro);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="expander"]) {
+    background: var(--diff-gutter-bg);
+    color: var(--muted-foreground);
+    font-size: var(--text-micro);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="expand-button"]) {
+    border-radius: var(--radius-control);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="expand-button"]:hover) {
+    background: oklch(from var(--foreground) l c h / 0.08);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="expand-button"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="code-diff"][data-slot="title"]) {
+    font-family: var(--font-mono);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="file-title"]) {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="expander-label"]) {
+    font-family: var(--font-mono);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="expand-button"]) {
+    --_code-diff-expand-button-outline: none;
+    outline-style: var(--_code-diff-expand-button-outline);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="gutter"]) {
+    --_code-diff-gutter-text-align: right;
+    text-align: var(--_code-diff-gutter-text-align);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="stat"]) {
+    --_code-diff-stat-number-style: tabular-nums;
+    font-variant-numeric: var(--_code-diff-stat-number-style);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="marker"]) {
+    --_code-diff-marker-number-style: tabular-nums;
+    font-variant-numeric: var(--_code-diff-marker-number-style);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="gutter"]) {
+    --_code-diff-gutter-number-style: tabular-nums;
+    font-variant-numeric: var(--_code-diff-gutter-number-style);
+  }
+}
+
+@property --code-diff-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --code-diff-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --code-diff-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --code-diff-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --code-diff-add-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --code-diff-del-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

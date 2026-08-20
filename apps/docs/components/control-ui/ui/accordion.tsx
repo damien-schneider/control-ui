@@ -4,15 +4,15 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { ChevronDown } from "lucide-react";
 import type { AccordionItemProps, AccordionPanelProps, AccordionProps, AccordionTriggerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // Panel height animates from Base UI's --accordion-panel-height, with no JS measuring.
 export function Accordion({ className, ...props }: AccordionProps) {
   return (
     <AccordionPrimitive.Root
       data-control-ui="accordion"
+      data-control-family="accordion"
       data-slot="root"
-      className={cn(skinSlot("accordion", "root", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -22,8 +22,9 @@ export function AccordionItem({ className, ...props }: AccordionItemProps) {
   return (
     <AccordionPrimitive.Item
       data-control-ui="accordion"
+      data-control-family="accordion"
       data-slot="item"
-      className={cn("border-b border-border last:border-b-0", skinSlot("accordion", "item", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -34,20 +35,18 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         data-control-ui="accordion"
+        data-control-family="accordion"
         data-slot="trigger"
-        className={cn(
-          "group flex flex-1 items-center justify-between gap-4 py-3 text-left text-sm font-medium text-foreground outline-none",
-          "cursor-pointer select-none transition-colors hover:text-foreground/80 focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
-          "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
-          skinSlot("accordion", "trigger", {}),
-          className,
-        )}
+        className={cn("group flex flex-1 cursor-pointer select-none items-center justify-between gap-4 py-3", className)}
         {...props}
       >
         {children}
         <ChevronDown
           aria-hidden="true"
-          className="size-4 shrink-0 text-muted-foreground transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] group-data-[panel-open]:rotate-180"
+          data-control-ui="accordion"
+          data-control-family="accordion"
+          data-slot="icon"
+          className="size-4 shrink-0"
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -56,17 +55,7 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
 
 export function AccordionPanel({ className, children, ...props }: AccordionPanelProps) {
   return (
-    <AccordionPrimitive.Panel
-      data-control-ui="accordion"
-      data-slot="panel"
-      className={cn(
-        "h-[var(--accordion-panel-height)] overflow-hidden text-sm text-muted-foreground",
-        "transition-[height] duration-[var(--duration-base)] ease-[var(--ease-emphasized)]",
-        "data-[starting-style]:h-0 data-[ending-style]:h-0",
-        skinSlot("accordion", "panel", {}),
-      )}
-      {...props}
-    >
+    <AccordionPrimitive.Panel data-control-ui="accordion" data-control-family="accordion" data-slot="panel" {...props}>
       <div className={cn("pb-3", className)}>{children}</div>
     </AccordionPrimitive.Panel>
   );

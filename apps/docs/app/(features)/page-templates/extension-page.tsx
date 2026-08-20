@@ -6,7 +6,7 @@ import type { DocsExtension } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
-import { InstallPanel, PageHeader, RegistryDependencyReferences, SectionCode, SectionTitle } from "./shared";
+import { InstallPanel, PageHeader, RegistryDependencyReferences, SectionCode, SectionStack, SectionTitle } from "./shared";
 
 // Extension page: optional installable layered on library. attach mode is load-bearing fact —
 // root extensions mount once and discover targets by anatomy; anchored extensions are activated from skin.config
@@ -18,7 +18,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
   return (
     <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
       <PageHeader label="Extensions" title={extension.name} summary={extension.summary} status={extension.status} />
-      <div className="grid min-w-0 gap-10">
+      <SectionStack>
         {hasExtensionDemo(extension.id) ? (
           <section id="preview" className="min-w-0 scroll-mt-20">
             <SectionTitle
@@ -59,7 +59,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
           <SectionTitle title="Source" description="Owned source and private support files" />
           <SourceTabs files={files} />
         </section>
-      </div>
+      </SectionStack>
     </section>
   );
 }

@@ -1,15 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
-import type { CompositionExample, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import type { CompositionExample, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import {
   CompositionSection,
   InstallPanel,
   PageHeader,
   RegistryDependencyReferences,
   SectionCode,
+  SectionStack,
   SectionTitle,
   SupportFiles,
 } from "./shared";
@@ -53,6 +55,7 @@ type RegistryItemInstall = {
 };
 
 const emptyRegistryItemExamples: RegistryItemExample[] = [];
+const emptyKnobFamilies: DocsKnobFamily[] = [];
 
 export function RegistryItemPage({
   label,
@@ -65,6 +68,7 @@ export function RegistryItemPage({
   compositionDescription,
   install,
   usageCode,
+  knobs = emptyKnobFamilies,
   dependencies,
   libraryDependencies,
   source,
@@ -80,6 +84,7 @@ export function RegistryItemPage({
   compositionDescription: string;
   install: RegistryItemInstall;
   usageCode?: string;
+  knobs?: DocsKnobFamily[];
   dependencies?: RegistryItemFileSection;
   libraryDependencies?: DocsRegistryDependency[];
   source?: RegistryItemSourceSection;
@@ -94,17 +99,18 @@ export function RegistryItemPage({
 
       <RegistryItemExamples examples={examples} />
 
-      <div className="grid min-w-0 gap-10">
+      <SectionStack>
         <CompositionSection items={composition} description={compositionDescription} />
         <InstallPanel commands={install.commands} manifestHref={install.manifestHref} subtitle={install.subtitle}>
           {install.children}
         </InstallPanel>
         {usageCode ? <SectionCode id="usage" title="Usage" code={usageCode} /> : null}
+        <KnobsSection families={knobs} />
         {dependencies ? <SupportFiles {...dependencies} /> : null}
         {libraryDependencies ? <RegistryDependencyReferences dependencies={libraryDependencies} /> : null}
         {source ? <RegistryItemSource {...source} /> : null}
         {children}
-      </div>
+      </SectionStack>
     </section>
   );
 }
@@ -113,7 +119,7 @@ function RegistryItemExamples({ examples }: { examples: RegistryItemExample[] })
   if (examples.length === 0) return null;
 
   return (
-    <section id="examples" className="mb-10 min-w-0 scroll-mt-20">
+    <section id="examples" className="mb-16 min-w-0 scroll-mt-20">
       <SectionTitle title="Examples" />
       <div className="grid min-w-0 gap-8">
         {examples.map((example) => (
@@ -136,6 +142,42 @@ function RegistryItemSource({ files, title = "Raw code", description = "Primary 
     <section id="source" className="min-w-0 scroll-mt-20">
       <SectionTitle title={title} description={description} />
       <SourceTabs files={files} />
+    </section>
+  );
+}
+
+function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
+  if (families.length === 0) return null;
+
+  return (
+    <section id="knobs" className="min-w-0 scroll-mt-20">
+      <SectionTitle
+        title="Knobs"
+        description="Typed custom properties the recipe paints with. Set one on the root — style, a utility class, or a skin — and every slot inherits it."
+      />
+      <div className="grid min-w-0 gap-4">
+        {families.map((family) => (
+          <div key={family.id} className="min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
+            <div className="flex items-baseline justify-between gap-3 border-b border-border/70 bg-muted/30 px-4 py-2 text-caption text-muted-foreground">
+              <span>
+                <code className="font-medium text-foreground">--{family.id}-*</code> · {family.knobs.length} knobs
+              </span>
+              <Link href="/skins#component-knobs" className="shrink-0 underline underline-offset-4 hover:text-foreground">
+                How the cascade resolves
+              </Link>
+            </div>
+            <div className="divide-y divide-border/50">
+              {family.knobs.map((knob) => (
+                <div key={knob.name} className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
+                  <code className="min-w-0 break-all font-mono text-label text-foreground sm:w-72 sm:shrink-0">{knob.name}</code>
+                  <code className="shrink-0 font-mono text-caption text-muted-foreground sm:w-40">{knob.syntax}</code>
+                  <code className="min-w-0 break-all font-mono text-caption text-muted-foreground">{knob.defaultValue}</code>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

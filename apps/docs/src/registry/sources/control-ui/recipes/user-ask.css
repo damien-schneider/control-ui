@@ -1,0 +1,180 @@
+@layer components {
+  :where([data-control-family="user-ask"][data-slot="root"]) {
+    --user-ask-background: oklch(from var(--card) l c h / 0.9);
+    --user-ask-border-color: var(--border);
+    --user-ask-foreground: var(--foreground);
+    --user-ask-radius: var(--radius-field);
+    --user-ask-shadow: var(--shadow-md);
+    --user-ask-indicator-background: var(--muted);
+    --user-ask-indicator-foreground: var(--muted-foreground);
+    --user-ask-input-background: transparent;
+    --user-ask-input-foreground: var(--foreground);
+    --user-ask-option-hover-background: oklch(from var(--muted) l c h / 0.5);
+    --user-ask-option-radius: var(--radius-popup-item);
+    --user-ask-option-selected-background: oklch(from var(--muted) l c h / 0.7);
+    border: 1px solid var(--user-ask-border-color);
+    border-radius: var(--user-ask-radius);
+    background: var(--user-ask-background);
+    color: var(--user-ask-foreground);
+    box-shadow:
+      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
+      var(--user-ask-shadow);
+    backdrop-filter: blur(var(--backdrop-blur-popover));
+    font-size: var(--text-body);
+    transition-property: opacity, translate;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  @starting-style {
+    :where([data-control-family="user-ask"][data-slot="root"]) {
+      opacity: 0;
+      translate: 0 0.5rem;
+    }
+  }
+
+  :where([data-control-family="user-ask"][data-slot="title"]) {
+    color: var(--foreground);
+    font-size: var(--text-sm);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="pagination"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-micro);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option"]) {
+    border-radius: var(--user-ask-option-radius);
+    font-size: var(--text-sm);
+    transition-property: background-color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+    text-align: left;
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option"][data-selected]) {
+    background: var(--user-ask-option-selected-background);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="user-ask"][data-slot="option"]:hover) {
+      background: var(--user-ask-option-hover-background);
+    }
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option"]:disabled) {
+    opacity: 0.5;
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-indicator"]) {
+    border-radius: var(--radius-control);
+    background: var(--user-ask-indicator-background);
+    color: var(--user-ask-indicator-foreground);
+    font-size: var(--text-micro);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-indicator"][data-selected]) {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-label"]) {
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="user-ask"]:is([data-slot="recommended"], [data-slot="option-description"], [data-slot="freeform-label"])) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-description"]) {
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-input"]) {
+    --_user-ask-input-placeholder-paint: var(--muted-foreground);
+    border: 0;
+    background: var(--user-ask-input-background);
+    color: var(--user-ask-input-foreground);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-input"])::placeholder {
+    color: var(--_user-ask-input-placeholder-paint);
+    font-weight: 400;
+  }
+
+}
+
+@property --user-ask-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --user-ask-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --user-ask-option-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --user-ask-option-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-option-selected-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-indicator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-indicator-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-input-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --user-ask-input-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

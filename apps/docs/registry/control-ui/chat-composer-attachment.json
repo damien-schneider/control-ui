@@ -17,8 +17,16 @@
       "path": "src/registry/sources/control-ui/chat-composer-attachment.tsx",
       "target": "@components/control-ui/chat-composer-attachment.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/chat-composer-attachment.css",
+      "target": "@components/control-ui/styles/recipes/chat-composer-attachment.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/chat-composer-attachment.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/chat-composer-attachment.json"
   }

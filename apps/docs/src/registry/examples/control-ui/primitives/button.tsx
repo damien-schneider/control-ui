@@ -82,6 +82,20 @@ export function PrimitiveButtonExample() {
           <ArrowUpRightIcon className="size-3.5" />
         </ButtonLink>
       </Row>
+      <Row label="Knobs">
+        <Button variant="solid" style={{ "--button-radius": "2px" }}>
+          Sharp instance
+        </Button>
+        <Button variant="solid" style={{ "--button-press-scale": "0.85" }}>
+          Deep press
+        </Button>
+        <Button variant="surface" className="[--button-radius:2px] md:[--button-radius:9999px]">
+          Responsive radius
+        </Button>
+        <Button variant="solid" data-flavor="neon">
+          Consumer flavor
+        </Button>
+      </Row>
     </div>
   );
 }

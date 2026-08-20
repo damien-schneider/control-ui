@@ -4,17 +4,14 @@ import { XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import { createContext, useContext } from "react";
 
+import type { ButtonKnobStyle, ChatComposerAttachmentKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type ChatComposerAttachmentKind = "image" | "pdf" | "spreadsheet" | "document" | "archive" | "audio" | "video" | "file";
 export type ChatComposerAttachmentStatus = "idle" | "uploading" | "uploaded" | "error";
 export type ChatComposerAttachmentVariant = "auto" | "preview" | "file";
-
-/** Typed so custom property is declared rather than asserted. */
-type ChatComposerAttachmentStyle = CSSProperties & { "--chat-composer-attachment-progress"?: string };
 
 type ChatComposerAttachmentContextValue = {
   name: string;
@@ -95,7 +92,7 @@ function defaultDescription(context: ChatComposerAttachmentContextValue) {
 export type ChatComposerAttachmentsProps = ComponentProps<"div"> & {
   label?: string;
   viewportClassName?: string;
-};
+} & { style?: CSSProperties & ChatComposerAttachmentKnobStyle };
 
 export function ChatComposerAttachments({
   label = "Attachments",
@@ -107,8 +104,9 @@ export function ChatComposerAttachments({
   return (
     <div
       data-control-ui="chat-composer-attachments"
+      data-control-family="chat-composer-attachment"
       data-slot="root"
-      className={cn("min-w-0", skinSlot("chat-composer-attachments", "root", {}), className)}
+      className={cn("min-w-0", className)}
       {...props}
     >
       <ScrollArea
@@ -118,13 +116,14 @@ export function ChatComposerAttachments({
         lockAxis="y"
         mask
         scrollbarVisibility="hover"
-        className={cn("w-full", skinSlot("chat-composer-attachments", "scroll", {}))}
+        className="w-full"
         viewportClassName={cn("pb-2", viewportClassName)}
       >
         <ul
           data-control-ui="chat-composer-attachments"
+          data-control-family="chat-composer-attachment"
           data-slot="list"
-          className={cn("flex w-max min-w-full list-none gap-2 px-3 pt-3", skinSlot("chat-composer-attachments", "list", {}))}
+          className="flex w-max min-w-full list-none gap-2 px-3 pt-3"
         >
           {children}
         </ul>
@@ -133,7 +132,7 @@ export function ChatComposerAttachments({
   );
 }
 
-export type ChatComposerAttachmentProps = ComponentProps<"li"> & {
+export type ChatComposerAttachmentProps = Omit<ComponentProps<"li">, "style"> & {
   name: string;
   type?: string;
   description?: ReactNode;
@@ -144,6 +143,7 @@ export type ChatComposerAttachmentProps = ComponentProps<"li"> & {
   variant?: ChatComposerAttachmentVariant;
   onRemove?: () => void;
   removeLabel?: string;
+  style?: CSSProperties & ChatComposerAttachmentKnobStyle;
 };
 
 export function ChatComposerAttachment({
@@ -159,7 +159,6 @@ export function ChatComposerAttachment({
   removeLabel,
   className,
   children,
-  style,
   role,
   "aria-label": ariaLabel,
   ...props
@@ -170,10 +169,6 @@ export function ChatComposerAttachment({
   else resolvedVariant = variant;
   const extension = extensionFromName(name);
   const progress = progressValue(progressInput);
-  const attachmentStyle: ChatComposerAttachmentStyle = {
-    "--chat-composer-attachment-progress": `${progress ?? 0}%`,
-    ...style,
-  };
 
   return (
     <ChatComposerAttachmentContext.Provider
@@ -195,21 +190,19 @@ export function ChatComposerAttachment({
         role={role}
         aria-label={ariaLabel ?? name}
         data-control-ui="chat-composer-attachment"
+        data-control-family="chat-composer-attachment"
         data-slot="root"
         data-surface="panel"
         data-kind={resolvedKind}
         data-state={status}
         data-variant={resolvedVariant}
         className={cn(
-          "relative shrink-0 overflow-hidden rounded-field border border-border/80 bg-card/92 text-left shadow-sm ring-1 ring-foreground/4 transition-[background-color,border-color,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
-          "data-[state=uploading]:border-primary/35 data-[state=uploading]:ring-primary/15 data-[state=error]:border-destructive/45 data-[state=error]:ring-destructive/20",
+          "relative shrink-0 overflow-hidden",
           resolvedVariant === "preview"
             ? "flex h-14 w-fit max-w-40 items-center p-1"
             : "flex h-14 w-64 max-w-[calc(100vw-5rem)] items-center gap-2 p-1.5 pr-8",
-          skinSlot("chat-composer-attachment", "root", { kind: resolvedKind, status, variant: resolvedVariant }),
           className,
         )}
-        style={attachmentStyle}
         {...props}
       >
         {children ?? (
@@ -230,7 +223,9 @@ export function ChatComposerAttachment({
   );
 }
 
-export type ChatComposerAttachmentPreviewProps = ComponentProps<"div">;
+export type ChatComposerAttachmentPreviewProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatComposerAttachmentKnobStyle;
+};
 
 export function ChatComposerAttachmentPreview({ className, children, ...props }: ChatComposerAttachmentPreviewProps) {
   const context = useChatComposerAttachmentContext();
@@ -239,13 +234,11 @@ export function ChatComposerAttachmentPreview({ className, children, ...props }:
   return (
     <div
       data-control-ui="chat-composer-attachment"
+      data-control-family="chat-composer-attachment"
       data-slot="preview"
       className={cn(
-        "relative grid shrink-0 place-items-center overflow-hidden rounded-[calc(var(--radius-field)-0.25rem)] bg-muted text-muted-foreground",
+        "relative grid shrink-0 place-items-center overflow-hidden",
         context.variant === "preview" ? "h-full w-fit min-w-10 max-w-full" : "size-10",
-        context.kind === "pdf" && "bg-destructive/10 text-destructive-text",
-        context.kind === "spreadsheet" && "bg-primary/10 text-primary-text",
-        skinSlot("chat-composer-attachment", "preview", { kind: context.kind, status: context.status, variant: context.variant }),
         className,
       )}
       {...props}
@@ -260,37 +253,45 @@ export function ChatComposerAttachmentPreview({ className, children, ...props }:
             className="h-full w-auto max-w-full object-contain"
           />
         ) : (
-          <span className="text-micro font-semibold uppercase">{label}</span>
+          <span
+            data-control-ui="chat-composer-attachment"
+            data-control-family="chat-composer-attachment"
+            data-slot="preview-label"
+            className="uppercase"
+          >
+            {label}
+          </span>
         ))}
       {context.status === "uploading" && (
         <span
           aria-hidden="true"
           data-control-ui="chat-composer-attachment"
+          data-control-family="chat-composer-attachment"
           data-slot="status"
-          className={cn(
-            "absolute right-1 top-1 size-4 rounded-full border-2 border-background/75 border-t-primary animate-spin",
-            skinSlot("chat-composer-attachment", "status", { status: context.status }),
-          )}
+          className="absolute right-1 top-1 size-4"
         />
       )}
     </div>
   );
 }
 
-export type ChatComposerAttachmentContentProps = ComponentProps<"div">;
+export type ChatComposerAttachmentContentProps = ComponentProps<"div"> & { style?: CSSProperties & ChatComposerAttachmentKnobStyle };
 
 export function ChatComposerAttachmentContent({ className, ...props }: ChatComposerAttachmentContentProps) {
   return (
     <div
       data-control-ui="chat-composer-attachment"
+      data-control-family="chat-composer-attachment"
       data-slot="content"
-      className={cn("min-w-0 flex-1", skinSlot("chat-composer-attachment", "content", {}), className)}
+      className={cn("min-w-0 flex-1", className)}
       {...props}
     />
   );
 }
 
-export type ChatComposerAttachmentTitleProps = ComponentProps<"div">;
+export type ChatComposerAttachmentTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatComposerAttachmentKnobStyle;
+};
 
 export function ChatComposerAttachmentTitle({ className, children, ...props }: ChatComposerAttachmentTitleProps) {
   const { name } = useChatComposerAttachmentContext();
@@ -298,8 +299,9 @@ export function ChatComposerAttachmentTitle({ className, children, ...props }: C
   return (
     <div
       data-control-ui="chat-composer-attachment"
+      data-control-family="chat-composer-attachment"
       data-slot="title"
-      className={cn("truncate text-label font-medium text-foreground", skinSlot("chat-composer-attachment", "title", {}), className)}
+      className={cn("truncate", className)}
       {...props}
     >
       {children ?? name}
@@ -307,7 +309,9 @@ export function ChatComposerAttachmentTitle({ className, children, ...props }: C
   );
 }
 
-export type ChatComposerAttachmentDescriptionProps = ComponentProps<"div">;
+export type ChatComposerAttachmentDescriptionProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatComposerAttachmentKnobStyle;
+};
 
 export function ChatComposerAttachmentDescription({ className, children, ...props }: ChatComposerAttachmentDescriptionProps) {
   const context = useChatComposerAttachmentContext();
@@ -315,12 +319,9 @@ export function ChatComposerAttachmentDescription({ className, children, ...prop
   return (
     <div
       data-control-ui="chat-composer-attachment"
+      data-control-family="chat-composer-attachment"
       data-slot="description"
-      className={cn(
-        "truncate text-caption text-muted-foreground data-[state=error]:text-destructive-text",
-        skinSlot("chat-composer-attachment", "description", { status: context.status }),
-        className,
-      )}
+      className={cn("truncate", className)}
       data-state={context.status}
       {...props}
     >
@@ -329,7 +330,9 @@ export function ChatComposerAttachmentDescription({ className, children, ...prop
   );
 }
 
-export type ChatComposerAttachmentRemoveProps = ComponentProps<typeof Button>;
+export type ChatComposerAttachmentRemoveProps = Omit<ComponentProps<typeof Button>, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle & ChatComposerAttachmentKnobStyle;
+};
 
 export function ChatComposerAttachmentRemove({
   className,
@@ -350,15 +353,12 @@ export function ChatComposerAttachmentRemove({
   return (
     <Button
       data-control-ui="chat-composer-attachment"
+      data-chat-composer-attachment-remove="true"
       data-slot="remove"
       aria-label={ariaLabel ?? removeLabel ?? `Remove ${name}`}
       size="xs"
       variant="solid"
-      className={cn(
-        "absolute right-1 top-1 z-10 size-5 rounded-full bg-foreground p-0 text-background shadow-sm hover:bg-foreground/85",
-        skinSlot("chat-composer-attachment", "remove", {}),
-        className,
-      )}
+      className={cn("absolute right-1 top-1 z-10 size-5 p-0", className)}
       onClick={handleClick}
       {...props}
     >
@@ -367,9 +367,11 @@ export function ChatComposerAttachmentRemove({
   );
 }
 
-export type ChatComposerAttachmentProgressProps = ComponentProps<"div">;
+export type ChatComposerAttachmentProgressProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatComposerAttachmentKnobStyle;
+};
 
-export function ChatComposerAttachmentProgress({ className, children, ...props }: ChatComposerAttachmentProgressProps) {
+export function ChatComposerAttachmentProgress({ className, children, style, ...props }: ChatComposerAttachmentProgressProps) {
   const { status, progress } = useChatComposerAttachmentContext();
 
   if (status !== "uploading" && progress == null) return null;
@@ -378,18 +380,19 @@ export function ChatComposerAttachmentProgress({ className, children, ...props }
     <div
       aria-hidden="true"
       data-control-ui="chat-composer-attachment"
+      data-control-family="chat-composer-attachment"
       data-slot="progress"
-      className={cn("absolute inset-x-0 bottom-0 h-1 bg-foreground/10", skinSlot("chat-composer-attachment", "progress", {}), className)}
+      className={cn("absolute inset-x-0 bottom-0 h-1", className)}
+      style={style}
       {...props}
     >
       {children ?? (
         <div
           data-control-ui="chat-composer-attachment"
+          data-control-family="chat-composer-attachment"
           data-slot="progress-indicator"
-          className={cn(
-            "h-full w-[var(--chat-composer-attachment-progress)] rounded-full bg-primary transition-[width] duration-[var(--duration-slow)] ease-[var(--ease-emphasized)]",
-            skinSlot("chat-composer-attachment", "progress-indicator", {}),
-          )}
+          className="h-full"
+          style={{ width: `${progress ?? 0}%` }}
         />
       )}
     </div>

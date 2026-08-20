@@ -5,19 +5,26 @@
   "title": "Slider",
   "description": "Single-value range control with branded and plain treatments.",
   "dependencies": [
-    "@base-ui/react@^1.7.0",
-    "class-variance-authority@^0.7.1"
+    "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
     "core"
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/range.css",
+      "target": "@components/control-ui/styles/recipes/range.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/slider.tsx",
       "target": "@components/control-ui/ui/slider.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/range.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/slider.json"
   }

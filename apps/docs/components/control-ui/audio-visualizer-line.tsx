@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 
 import type { AudioVisualizerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // Line reading. audio-visualizer.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.
 // Drawn as mirrored SVG envelope — no canvas, no rAF.
@@ -57,7 +56,7 @@ function envelopePath(levels: readonly number[]) {
   return `${smoothPath(upper)} L ${lowerReversed[0]?.x.toFixed(2) ?? 0} ${lowerReversed[0]?.y.toFixed(2) ?? LINE_CENTER}${smoothPath(lowerReversed).replace(/^M [^C]+/, "")} Z`;
 }
 
-export function AudioVisualizer({ levels, points, active = true, className, ...props }: AudioVisualizerProps) {
+export function AudioVisualizer({ levels, points, active = true, className, style, ...props }: AudioVisualizerProps) {
   const visible = resolveAudioVisualizerLevels(levels, points);
   const path = envelopePath(visible);
   const pathStyle: AudioVisualizerPathStyle = { d: `path('${path}')` };
@@ -65,36 +64,41 @@ export function AudioVisualizer({ levels, points, active = true, className, ...p
   return (
     <div
       data-control-ui="audio-visualizer"
+      data-control-family="audio-visualizer"
       data-slot="root"
       data-variant="line"
       data-active={active ? "true" : undefined}
       aria-hidden="true"
-      className={cn(
-        "h-7 w-44 shrink-0 overflow-hidden rounded-[var(--radius-control)] px-1.5",
-        skinSlot("audio-visualizer", "root", { variant: "line" }),
-        className,
-      )}
+      className={cn("h-7 w-44 shrink-0 overflow-hidden px-1.5", className)}
+      style={style}
       {...props}
     >
       <svg
         data-control-ui="audio-visualizer"
+        data-control-family="audio-visualizer"
         data-slot="track"
         data-active={active ? "true" : undefined}
         viewBox={`0 0 ${LINE_VIEWBOX_WIDTH} ${LINE_VIEWBOX_HEIGHT}`}
         preserveAspectRatio="none"
         aria-hidden="true"
-        className="size-full overflow-visible opacity-55 transition-opacity duration-[var(--duration-base)] ease-[var(--ease-standard)] data-[active=true]:opacity-100"
+        className="size-full overflow-visible"
       >
-        <path d={`M 0 ${LINE_CENTER} H ${LINE_VIEWBOX_WIDTH}`} vectorEffect="non-scaling-stroke" className="stroke-border/55" />
+        <path
+          data-control-ui="audio-visualizer"
+          data-control-family="audio-visualizer"
+          data-slot="baseline"
+          d={`M 0 ${LINE_CENTER} H ${LINE_VIEWBOX_WIDTH}`}
+          vectorEffect="non-scaling-stroke"
+        />
         <path
           data-control-ui="audio-visualizer-line"
-          data-slot="root"
+          data-control-family="audio-visualizer"
+          data-slot="waveform"
           d={path}
           style={pathStyle}
           strokeWidth="1"
           strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
-          className="fill-primary/18 stroke-primary/80 transition-[d] duration-[var(--duration-base)] ease-[var(--ease-standard)]"
         />
       </svg>
     </div>

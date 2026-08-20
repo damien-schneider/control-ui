@@ -455,7 +455,10 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
                           <Link
                             href="/theme-accessibility"
                             onClick={() => setOpen(false)}
-                            className={buttonRecipeClasses("surface", "neutral", "sm")}
+                            data-control-ui="button"
+                            data-slot="root"
+                            data-variant="surface"
+                            className={buttonRecipeClasses("sm")}
                           >
                             <span className={buttonContentClasses}>
                               <ShieldCheckIcon aria-hidden className="size-3.5" />
@@ -478,7 +481,10 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
         <Link
           href="/theme-ai-builder"
           onClick={() => setOpen(false)}
-          className={cn(buttonRecipeClasses("surface", "neutral", "sm"), "w-full sm:w-auto")}
+          data-control-ui="button"
+          data-slot="root"
+          data-variant="surface"
+          className={cn(buttonRecipeClasses("sm"), "w-full sm:w-auto")}
         >
           <span className={buttonContentClasses}>
             <SparklesIcon aria-hidden className="size-3.5" />

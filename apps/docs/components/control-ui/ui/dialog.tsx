@@ -1,23 +1,29 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
+import { skinAdornment } from "@/components/control-ui/adornments";
 import type { ButtonProps, DialogContentProps, DialogProps } from "@/components/control-ui/contracts";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinAdornment, skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
-import { surfaceEnterExitMotionClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
 export function Dialog(props: DialogProps) {
   return <DialogPrimitive.Root {...props} />;
 }
 
-export function DialogTrigger({ className, ...props }: ComponentProps<typeof DialogPrimitive.Trigger>) {
+export function DialogTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Trigger> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <DialogPrimitive.Trigger
       data-control-ui="dialog"
+      data-control-family="popup"
+      data-popup-kind="dialog"
       data-slot="trigger"
-      className={cn(skinSlot("dialog", "trigger", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -33,12 +39,11 @@ export function DialogClose({ className, children, variant = "surface", size = "
       render={(renderProps) => (
         <Button
           {...renderProps}
-          data-control-ui="dialog"
-          data-slot="close"
+          data-dialog-part="close"
           variant={variant}
           size={size}
           tone={tone}
-          className={cn(renderProps.className, skinSlot("dialog", "close", {}), className)}
+          className={cn(renderProps.className, className)}
         >
           {children}
         </Button>
@@ -52,32 +57,31 @@ export function DialogContent({ className, children, showCloseButton = true, ...
     <DialogPrimitive.Portal>
       {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <DialogPrimitive.Backdrop
+        data-control-ui="dialog"
+        data-popup-kind="dialog"
+        data-slot="backdrop"
+        data-control-family="popup"
+        data-popup-part="backdrop"
         data-skin={skinId()}
         data-effects={skinEffects()}
-        className="fixed inset-0 z-[70] bg-[oklch(from_var(--foreground)_l_c_h/var(--overlay-opacity))] backdrop-blur-[var(--backdrop-blur-overlay)] transition-opacity duration-[var(--duration-base)] ease-[var(--ease-standard)] data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 dark:bg-[oklch(from_var(--background)_l_c_h/var(--overlay-opacity))]"
+        className="fixed inset-0 z-[70]"
       />
       <DialogPrimitive.Popup
         data-skin={skinId()}
         data-effects={skinEffects()}
         data-control-ui="dialog"
+        data-popup-kind="dialog"
         data-slot="content"
+        data-control-family="popup"
+        data-popup-part="surface"
         data-surface="modal"
-        className={cn(
-          "fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 gap-4 rounded-panel border bg-popover backdrop-blur-[var(--backdrop-blur-popover)] p-0 text-popover-foreground shadow-modal outline-none",
-          surfaceEnterExitMotionClasses,
-          skinSlot("dialog", "content", {}),
-          className,
-        )}
+        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 gap-4 p-0", className)}
         {...props}
       >
         {skinAdornment("dialog", "titlebar", {})}
         {children}
         {showCloseButton ? (
-          <DialogClose
-            variant="ghost"
-            size="xs"
-            className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0 opacity-70 hover:opacity-100"
-          >
+          <DialogClose variant="ghost" size="xs" className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0">
             <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
               <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
@@ -89,45 +93,53 @@ export function DialogContent({ className, children, showCloseButton = true, ...
   );
 }
 
-export function DialogHeader({ className, ...props }: ComponentProps<"div">) {
+export function DialogHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="dialog"
+      data-control-family="popup"
+      data-popup-kind="dialog"
       data-slot="header"
-      className={cn("grid gap-1.5 p-4 pb-0", skinSlot("dialog", "header", {}), className)}
+      className={cn("grid gap-1.5 p-4 pb-0", className)}
       {...props}
     />
   );
 }
 
-export function DialogFooter({ className, ...props }: ComponentProps<"div">) {
+export function DialogFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="dialog"
+      data-control-family="popup"
+      data-popup-kind="dialog"
       data-slot="footer"
-      className={cn("flex flex-col-reverse gap-2 p-4 pt-0 sm:flex-row sm:justify-end", skinSlot("dialog", "footer", {}), className)}
+      className={cn("flex flex-col-reverse gap-2 p-4 pt-0 sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );
 }
 
-export function DialogTitle({ className, ...props }: ComponentProps<"h2">) {
+export function DialogTitle({ className, ...props }: ComponentProps<"h2"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <DialogPrimitive.Title
       data-control-ui="dialog"
+      data-control-family="popup"
+      data-popup-kind="dialog"
       data-slot="title"
-      className={cn("text-lg font-semibold leading-none tracking-tight", skinSlot("dialog", "title", {}), className)}
+      className={className}
       {...props}
     />
   );
 }
 
-export function DialogDescription({ className, ...props }: ComponentProps<"p">) {
+export function DialogDescription({ className, ...props }: ComponentProps<"p"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <DialogPrimitive.Description
       data-control-ui="dialog"
+      data-control-family="popup"
+      data-popup-kind="dialog"
       data-slot="description"
-      className={cn("text-sm text-muted-foreground", skinSlot("dialog", "description", {}), className)}
+      className={className}
       {...props}
     />
   );

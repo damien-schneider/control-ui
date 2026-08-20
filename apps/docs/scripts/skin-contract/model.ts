@@ -1,4 +1,4 @@
-import type { SkinPopupPart } from "../../src/registry/skin";
+import type { PopupPart } from "../../src/registry/contracts";
 
 export type ContractState = {
   attribute: string;
@@ -26,14 +26,13 @@ export const skinSurfaceFamilies = ["floating", "modal", "panel"] as const;
 export type SkinSurfaceFamily = (typeof skinSurfaceFamilies)[number];
 
 export type SkinContract = {
-  version: 5;
+  version: 6;
   selectorPattern: string;
   registryItemMapping: Record<string, string[]>;
   scopes: Record<string, ContractScope>;
-  paints: Record<string, Record<string, { context: Record<string, string> }>>;
   adornments: Record<string, Record<string, { context: Record<string, string> }>>;
   semanticFamilies: {
-    popup: Record<SkinPopupPart, AnatomyReference[]>;
+    popup: Record<PopupPart, AnatomyReference[]>;
     controls: AnatomyReference[];
     surfaces: Record<SkinSurfaceFamily, AnatomyReference[]>;
   };

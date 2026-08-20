@@ -13,6 +13,217 @@ export const primitiveCategories = [
 export type PrimitiveCategoryId = (typeof primitiveCategories)[number]["id"];
 
 const surfaceVariantsFile = sourceFile("Surface variants", "src/registry/sources/control-ui/surface-variants.ts", "surface-variants");
+const buttonRecipeFile = sourceFile(
+  "Button recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/button.css",
+  "recipe-css",
+);
+const fieldRecipeFiles = [
+  sourceFile("Field recipe — controls + @property knobs", "src/registry/sources/control-ui/recipes/field.css", "recipe-css"),
+  sourceFile("Field recipe — descendants", "src/registry/sources/control-ui/recipes/field-parts.css", "recipe-css"),
+] as const;
+export const popupRecipeFiles = [
+  sourceFile("Popup recipe — shared surfaces and items", "src/registry/sources/control-ui/recipes/popup.css", "recipe-css"),
+  sourceFile("Popup recipe — component controls", "src/registry/sources/control-ui/recipes/popup-controls.css", "recipe-css"),
+  sourceFile("Popup recipe — searchable lists", "src/registry/sources/control-ui/recipes/popup-lists.css", "recipe-css"),
+  sourceFile("Popup recipe — surface motion", "src/registry/sources/control-ui/recipes/popup-motion.css", "recipe-css"),
+] as const;
+const richTooltipRecipeFile = sourceFile(
+  "Rich tooltip recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/rich-tooltip.css",
+  "recipe-css",
+);
+const colorPickerRecipeFiles = [
+  sourceFile("Color picker recipe — controls", "src/registry/sources/control-ui/recipes/color-picker.css", "recipe-css"),
+  sourceFile("Color picker recipe — details", "src/registry/sources/control-ui/recipes/color-picker-details.css", "recipe-css"),
+  sourceFile("Color picker recipe — values", "src/registry/sources/control-ui/recipes/color-picker-values.css", "recipe-css"),
+] as const;
+const cardRecipeFile = sourceFile(
+  "Card recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/card.css",
+  "recipe-css",
+);
+const tabsRecipeFile = sourceFile(
+  "Tabs recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/tabs.css",
+  "recipe-css",
+);
+const choiceRecipeFile = sourceFile(
+  "Choice recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/choice.css",
+  "recipe-css",
+);
+const switchRecipeFile = sourceFile(
+  "Switch recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/switch.css",
+  "recipe-css",
+);
+const rangeRecipeFile = sourceFile(
+  "Range recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/range.css",
+  "recipe-css",
+);
+const alertRecipeFile = sourceFile(
+  "Alert recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/alert.css",
+  "recipe-css",
+);
+const badgeRecipeFile = sourceFile(
+  "Badge recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/badge.css",
+  "recipe-css",
+);
+const emptyRecipeFile = sourceFile(
+  "Empty recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/empty.css",
+  "recipe-css",
+);
+const itemRecipeFile = sourceFile(
+  "Item recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/item.css",
+  "recipe-css",
+);
+const tableRecipeFile = sourceFile(
+  "Table recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/table.css",
+  "recipe-css",
+);
+const skeletonRecipeFile = sourceFile(
+  "Skeleton recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/skeleton.css",
+  "recipe-css",
+);
+const toastRecipeFile = sourceFile(
+  "Toast recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/toast.css",
+  "recipe-css",
+);
+const avatarRecipeFile = sourceFile(
+  "Avatar recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/avatar.css",
+  "recipe-css",
+);
+const buttonGroupRecipeFile = sourceFile(
+  "Button group recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/button-group.css",
+  "recipe-css",
+);
+const collapsibleRecipeFile = sourceFile(
+  "Collapsible recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/collapsible.css",
+  "recipe-css",
+);
+const accordionRecipeFile = sourceFile(
+  "Accordion recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/accordion.css",
+  "recipe-css",
+);
+const kbdRecipeFile = sourceFile("Kbd recipe — paint + @property knobs", "src/registry/sources/control-ui/recipes/kbd.css", "recipe-css");
+const paginationRecipeFile = sourceFile(
+  "Pagination recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/pagination.css",
+  "recipe-css",
+);
+const spinnerRecipeFile = sourceFile(
+  "Spinner recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/spinner.css",
+  "recipe-css",
+);
+const timelineRecipeFile = sourceFile(
+  "Timeline recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/timeline.css",
+  "recipe-css",
+);
+const stepperRecipeFile = sourceFile(
+  "Stepper recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/stepper.css",
+  "recipe-css",
+);
+const scrollAreaRecipeFile = sourceFile(
+  "Scroll area recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/scroll-area.css",
+  "recipe-css",
+);
+const treeRecipeFile = sourceFile(
+  "Tree recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/tree.css",
+  "recipe-css",
+);
+const sidebarRecipeFile = sourceFile(
+  "Sidebar recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/sidebar.css",
+  "recipe-css",
+);
+const tableOfContentsRecipeFile = sourceFile(
+  "Table of contents recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/table-of-contents.css",
+  "recipe-css",
+);
+const drawerRecipeFile = sourceFile(
+  "Drawer recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/drawer.css",
+  "recipe-css",
+);
+const phoneInputRecipeFile = sourceFile(
+  "Phone input recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/phone-input.css",
+  "recipe-css",
+);
+const dropzoneRecipeFile = sourceFile(
+  "Dropzone recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/dropzone.css",
+  "recipe-css",
+);
+const toolbarRecipeFile = sourceFile(
+  "Toolbar recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/toolbar.css",
+  "recipe-css",
+);
+const dockablePanelRecipeFile = sourceFile(
+  "Dockable panel recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/dockable-panel.css",
+  "recipe-css",
+);
+const infiniteCanvasRecipeFile = sourceFile(
+  "Infinite canvas recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/infinite-canvas.css",
+  "recipe-css",
+);
+const morphingPanelRecipeFile = sourceFile(
+  "Morphing panel recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/morphing-panel.css",
+  "recipe-css",
+);
+const resizableRecipeFile = sourceFile(
+  "Resizable recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/resizable.css",
+  "recipe-css",
+);
+const calendarRecipeFile = sourceFile(
+  "Calendar recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/calendar.css",
+  "recipe-css",
+);
+const gradientEditorRecipeFile = sourceFile(
+  "Gradient editor recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/gradient-editor.css",
+  "recipe-css",
+);
+const markdownRecipeFile = sourceFile(
+  "Markdown recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/markdown.css",
+  "recipe-css",
+);
+const codeRecipeFile = sourceFile(
+  "Code recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/code.css",
+  "recipe-css",
+);
+const codeDiffRecipeFile = sourceFile(
+  "Code diff recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/code-diff.css",
+  "recipe-css",
+);
 
 export const primitiveEntries = [
   {
@@ -28,8 +239,8 @@ export const primitiveEntries = [
         example: sourceFile("Button preview", "src/registry/examples/control-ui/primitives/button.tsx", "example"),
         source: sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "component"),
         supportFiles: [
+          buttonRecipeFile,
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
-          sourceFile("Effect utilities", "src/registry/sources/control-ui/effects.css", "effect-css"),
         ],
         registryKind: "button",
       },
@@ -50,6 +261,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/collapsible.tsx",
         example: sourceFile("Collapsible preview", "src/registry/examples/control-ui/primitives/collapsible.tsx", "example"),
         source: sourceFile("Base UI Collapsible slot", "src/registry/sources/control-ui/ui/collapsible.tsx", "component"),
+        supportFiles: [collapsibleRecipeFile],
         registryKind: "collapsible",
       },
     },
@@ -69,6 +281,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/tabs.tsx",
         example: sourceFile("Tabs preview", "src/registry/examples/control-ui/primitives/tabs.tsx", "example"),
         source: sourceFile("Base UI Tabs slot", "src/registry/sources/control-ui/ui/tabs.tsx", "component"),
+        supportFiles: [tabsRecipeFile],
         registryKind: "tabs",
       },
     },
@@ -93,6 +306,7 @@ export const primitiveEntries = [
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
           sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
+          sidebarRecipeFile,
         ],
         composition: [
           {
@@ -132,6 +346,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/scroll-area.tsx",
         example: sourceFile("Scroll area preview", "src/registry/examples/control-ui/primitives/scroll-area.tsx", "example"),
         source: sourceFile("Base UI Scroll area slot", "src/registry/sources/control-ui/ui/scroll-area.tsx", "component"),
+        supportFiles: [scrollAreaRecipeFile],
         registryKind: "scroll-area",
       },
     },
@@ -150,6 +365,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/table-of-contents.tsx",
         example: sourceFile("Table of contents preview", "src/registry/examples/control-ui/primitives/table-of-contents.tsx", "example"),
         source: sourceFile("Table of contents slot", "src/registry/sources/control-ui/ui/table-of-contents.tsx", "component"),
+        supportFiles: [tableOfContentsRecipeFile],
         registryKind: "table-of-contents",
       },
     },
@@ -170,6 +386,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/timeline.tsx",
         example: sourceFile("Timeline preview", "src/registry/examples/control-ui/primitives/timeline.tsx", "example"),
         source: sourceFile("Timeline slot", "src/registry/sources/control-ui/ui/timeline.tsx", "component"),
+        supportFiles: [timelineRecipeFile],
         registryKind: "timeline",
       },
     },
@@ -188,6 +405,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/stepper.tsx",
         example: sourceFile("Static stepper preview", "src/registry/examples/control-ui/primitives/stepper.tsx", "example"),
         source: sourceFile("Stepper slot", "src/registry/sources/control-ui/ui/stepper.tsx", "component"),
+        supportFiles: [stepperRecipeFile],
         registryKind: "stepper",
       },
     },
@@ -222,6 +440,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/skeleton.tsx",
         example: sourceFile("Skeleton preview", "src/registry/examples/control-ui/primitives/skeleton.tsx", "example"),
         source: sourceFile("Skeleton slot", "src/registry/sources/control-ui/ui/skeleton.tsx", "component"),
+        supportFiles: [skeletonRecipeFile],
         registryKind: "skeleton",
       },
     },
@@ -241,6 +460,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/slider.tsx",
         example: sourceFile("Slider preview", "src/registry/examples/control-ui/primitives/slider.tsx", "example"),
         source: sourceFile("Base UI Slider slot", "src/registry/sources/control-ui/ui/slider.tsx", "component"),
+        supportFiles: [rangeRecipeFile],
         registryKind: "slider",
       },
     },
@@ -262,8 +482,8 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Select slot", "src/registry/sources/control-ui/ui/select.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
-          surfaceVariantsFile,
-          sourceFile("Effect utilities", "src/registry/sources/control-ui/effects.css", "effect-css"),
+          buttonRecipeFile,
+          ...popupRecipeFiles,
         ],
         registryKind: "select",
       },
@@ -286,8 +506,8 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Dropdown Menu slot", "src/registry/sources/control-ui/ui/dropdown-menu.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
-          surfaceVariantsFile,
-          sourceFile("Effect utilities", "src/registry/sources/control-ui/effects.css", "effect-css"),
+          buttonRecipeFile,
+          ...popupRecipeFiles,
         ],
         registryKind: "dropdown-menu",
       },
@@ -308,7 +528,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/context-menu.tsx",
         example: sourceFile("Context menu preview", "src/registry/examples/control-ui/primitives/context-menu.tsx", "example"),
         source: sourceFile("Base UI Context menu slot", "src/registry/sources/control-ui/ui/context-menu.tsx", "component"),
-        supportFiles: [surfaceVariantsFile],
+        supportFiles: [...popupRecipeFiles],
         registryKind: "context-menu",
       },
     },
@@ -328,7 +548,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/toggle.tsx",
         example: sourceFile("Toggle preview", "src/registry/examples/control-ui/primitives/toggle.tsx", "example"),
         source: sourceFile("Base UI Toggle slot", "src/registry/sources/control-ui/ui/toggle.tsx", "component"),
-        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control")],
+        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"), buttonRecipeFile],
         registryKind: "toggle",
       },
     },
@@ -348,6 +568,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/switch.tsx",
         example: sourceFile("Switch preview", "src/registry/examples/control-ui/primitives/switch.tsx", "example"),
         source: sourceFile("Base UI Switch slot", "src/registry/sources/control-ui/ui/switch.tsx", "component"),
+        supportFiles: [switchRecipeFile],
         registryKind: "switch",
       },
     },
@@ -367,7 +588,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/dialog.tsx",
         example: sourceFile("Dialog preview", "src/registry/examples/control-ui/primitives/dialog.tsx", "example"),
         source: sourceFile("Base UI Dialog slot", "src/registry/sources/control-ui/ui/dialog.tsx", "component"),
-        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control")],
+        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"), ...popupRecipeFiles],
         registryKind: "dialog",
       },
     },
@@ -387,7 +608,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/popover.tsx",
         example: sourceFile("Popover preview", "src/registry/examples/control-ui/primitives/popover.tsx", "example"),
         source: sourceFile("Base UI Popover slot", "src/registry/sources/control-ui/ui/popover.tsx", "component"),
-        supportFiles: [surfaceVariantsFile],
+        supportFiles: [...popupRecipeFiles],
         registryKind: "popover",
       },
     },
@@ -407,6 +628,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/tooltip.tsx",
         example: sourceFile("Tooltip preview", "src/registry/examples/control-ui/primitives/tooltip.tsx", "example"),
         source: sourceFile("Base UI Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "component"),
+        supportFiles: [...popupRecipeFiles],
         registryKind: "tooltip",
       },
     },
@@ -429,6 +651,8 @@ export const primitiveEntries = [
         supportFiles: [
           sourceFile("Tour navigation", "src/registry/sources/control-ui/ui/rich-tooltip-tour.ts", "support"),
           surfaceVariantsFile,
+          richTooltipRecipeFile,
+          ...popupRecipeFiles,
         ],
         registryKind: "rich-tooltip",
       },
@@ -451,6 +675,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/drawer.tsx",
         example: sourceFile("Drawer preview", "src/registry/examples/control-ui/primitives/drawer.tsx", "example"),
         source: sourceFile("Base UI Drawer slot", "src/registry/sources/control-ui/ui/drawer.tsx", "component"),
+        supportFiles: [drawerRecipeFile],
         registryKind: "drawer",
       },
     },
@@ -540,7 +765,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/toast.tsx",
         example: sourceFile("Toast preview", "src/registry/examples/control-ui/primitives/toast.tsx", "example"),
         source: sourceFile("Base UI Toast slot", "src/registry/sources/control-ui/ui/toast.tsx", "component"),
-        supportFiles: [surfaceVariantsFile],
+        supportFiles: [toastRecipeFile],
         registryKind: "toast",
       },
     },
@@ -560,7 +785,10 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/input.tsx",
         example: sourceFile("Input preview", "src/registry/examples/control-ui/primitives/input.tsx", "example"),
         source: sourceFile("Base UI Input slot", "src/registry/sources/control-ui/ui/input.tsx", "component"),
-        supportFiles: [sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants")],
+        supportFiles: [
+          ...fieldRecipeFiles,
+          sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+        ],
         registryKind: "input",
       },
     },
@@ -580,7 +808,10 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/input-group.tsx",
         example: sourceFile("Input group preview", "src/registry/examples/control-ui/primitives/input-group.tsx", "example"),
         source: sourceFile("Input group slot", "src/registry/sources/control-ui/ui/input-group.tsx", "component"),
-        supportFiles: [sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants")],
+        supportFiles: [
+          ...fieldRecipeFiles,
+          sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+        ],
         registryKind: "input-group",
       },
     },
@@ -603,6 +834,7 @@ export const primitiveEntries = [
         supportFiles: [
           sourceFile("Dropzone hook", "src/registry/hooks/use-dropzone.ts", "hook"),
           sourceFile("Dropzone file policy", "src/registry/lib/dropzone-validation.ts", "policy"),
+          dropzoneRecipeFile,
         ],
         composition: [
           {
@@ -649,6 +881,7 @@ export const primitiveEntries = [
         supportFiles: [
           sourceFile("Phone number schemas", "src/registry/lib/phone-number.ts", "util"),
           sourceFile("Phone input formatting", "src/registry/lib/phone-input-format.ts", "util"),
+          phoneInputRecipeFile,
         ],
         composition: [
           {
@@ -688,6 +921,7 @@ export const primitiveEntries = [
           sourceFile("Dialog slot", "src/registry/sources/control-ui/ui/dialog.tsx", "skin-control"),
           sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
           surfaceVariantsFile,
+          ...popupRecipeFiles,
         ],
         registryKind: "command",
       },
@@ -708,6 +942,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/kbd.tsx",
         example: sourceFile("Kbd preview", "src/registry/examples/control-ui/primitives/kbd.tsx", "example"),
         source: sourceFile("Kbd slot", "src/registry/sources/control-ui/ui/kbd.tsx", "component"),
+        supportFiles: [kbdRecipeFile],
         registryKind: "kbd",
       },
     },
@@ -727,6 +962,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/checkbox.tsx",
         example: sourceFile("Checkbox preview", "src/registry/examples/control-ui/primitives/checkbox.tsx", "example"),
         source: sourceFile("Base UI Checkbox slot", "src/registry/sources/control-ui/ui/checkbox.tsx", "component"),
+        supportFiles: [choiceRecipeFile],
         registryKind: "checkbox",
       },
     },
@@ -746,6 +982,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/radio-group.tsx",
         example: sourceFile("Radio group preview", "src/registry/examples/control-ui/primitives/radio-group.tsx", "example"),
         source: sourceFile("Base UI Radio group slot", "src/registry/sources/control-ui/ui/radio-group.tsx", "component"),
+        supportFiles: [choiceRecipeFile],
         registryKind: "radio-group",
       },
     },
@@ -765,6 +1002,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/accordion.tsx",
         example: sourceFile("Accordion preview", "src/registry/examples/control-ui/primitives/accordion.tsx", "example"),
         source: sourceFile("Base UI Accordion slot", "src/registry/sources/control-ui/ui/accordion.tsx", "component"),
+        supportFiles: [accordionRecipeFile],
         registryKind: "accordion",
       },
     },
@@ -784,6 +1022,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/avatar.tsx",
         example: sourceFile("Avatar preview", "src/registry/examples/control-ui/primitives/avatar.tsx", "example"),
         source: sourceFile("Base UI Avatar slot", "src/registry/sources/control-ui/ui/avatar.tsx", "component"),
+        supportFiles: [avatarRecipeFile],
         registryKind: "avatar",
       },
     },
@@ -803,6 +1042,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/progress.tsx",
         example: sourceFile("Progress preview", "src/registry/examples/control-ui/primitives/progress.tsx", "example"),
         source: sourceFile("Base UI Progress slot", "src/registry/sources/control-ui/ui/progress.tsx", "component"),
+        supportFiles: [rangeRecipeFile],
         registryKind: "progress",
       },
     },
@@ -822,7 +1062,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/hover-card.tsx",
         example: sourceFile("Hover card preview", "src/registry/examples/control-ui/primitives/hover-card.tsx", "example"),
         source: sourceFile("Base UI Preview card slot", "src/registry/sources/control-ui/ui/hover-card.tsx", "component"),
-        supportFiles: [surfaceVariantsFile],
+        supportFiles: [surfaceVariantsFile, ...popupRecipeFiles],
         registryKind: "hover-card",
       },
     },
@@ -842,7 +1082,11 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/alert-dialog.tsx",
         example: sourceFile("Alert dialog preview", "src/registry/examples/control-ui/primitives/alert-dialog.tsx", "example"),
         source: sourceFile("Base UI Alert dialog slot", "src/registry/sources/control-ui/ui/alert-dialog.tsx", "component"),
-        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"), surfaceVariantsFile],
+        supportFiles: [
+          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
+          surfaceVariantsFile,
+          ...popupRecipeFiles,
+        ],
         registryKind: "alert-dialog",
       },
     },
@@ -862,7 +1106,11 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/menubar.tsx",
         example: sourceFile("Menubar preview", "src/registry/examples/control-ui/primitives/menubar.tsx", "example"),
         source: sourceFile("Base UI Menubar slot", "src/registry/sources/control-ui/ui/menubar.tsx", "component"),
-        supportFiles: [surfaceVariantsFile],
+        supportFiles: [
+          sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+          buttonRecipeFile,
+          ...popupRecipeFiles,
+        ],
         registryKind: "menubar",
       },
     },
@@ -882,7 +1130,11 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/navigation-menu.tsx",
         example: sourceFile("Navigation menu preview", "src/registry/examples/control-ui/primitives/navigation-menu.tsx", "example"),
         source: sourceFile("Base UI Navigation Menu slot", "src/registry/sources/control-ui/ui/navigation-menu.tsx", "component"),
-        supportFiles: [surfaceVariantsFile],
+        supportFiles: [
+          sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+          buttonRecipeFile,
+          ...popupRecipeFiles,
+        ],
         registryKind: "navigation-menu",
       },
     },
@@ -904,7 +1156,10 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/field.tsx",
         example: sourceFile("Field preview", "src/registry/examples/control-ui/primitives/field.tsx", "example"),
         source: sourceFile("Base UI Field slot", "src/registry/sources/control-ui/ui/field.tsx", "component"),
-        supportFiles: [sourceFile("Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "skin-control")],
+        supportFiles: [
+          sourceFile("Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "skin-control"),
+          ...fieldRecipeFiles,
+        ],
         registryKind: "field",
       },
     },
@@ -943,7 +1198,10 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/native-select.tsx",
         example: sourceFile("Native select preview", "src/registry/examples/control-ui/primitives/native-select.tsx", "example"),
         source: sourceFile("Native select slot", "src/registry/sources/control-ui/ui/native-select.tsx", "component"),
-        supportFiles: [sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants")],
+        supportFiles: [
+          ...fieldRecipeFiles,
+          sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+        ],
         registryKind: "native-select",
       },
     },
@@ -963,6 +1221,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/textarea.tsx",
         example: sourceFile("Textarea preview", "src/registry/examples/control-ui/primitives/textarea.tsx", "example"),
         source: sourceFile("Textarea slot", "src/registry/sources/control-ui/ui/textarea.tsx", "component"),
+        supportFiles: [...fieldRecipeFiles],
         registryKind: "textarea",
       },
     },
@@ -982,6 +1241,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/input-otp.tsx",
         example: sourceFile("Input OTP preview", "src/registry/examples/control-ui/primitives/input-otp.tsx", "example"),
         source: sourceFile("Base UI OtpField slot", "src/registry/sources/control-ui/ui/input-otp.tsx", "component"),
+        supportFiles: [...fieldRecipeFiles],
         registryKind: "input-otp",
       },
     },
@@ -1003,7 +1263,9 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Combobox slot", "src/registry/sources/control-ui/ui/combobox.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+          ...fieldRecipeFiles,
           surfaceVariantsFile,
+          ...popupRecipeFiles,
         ],
         composition: [
           {
@@ -1040,6 +1302,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/alert.tsx",
         example: sourceFile("Alert preview", "src/registry/examples/control-ui/primitives/alert.tsx", "example"),
         source: sourceFile("Alert slot", "src/registry/sources/control-ui/ui/alert.tsx", "component"),
+        supportFiles: [alertRecipeFile],
         registryKind: "alert",
       },
     },
@@ -1060,7 +1323,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/badge.tsx",
         example: sourceFile("Badge preview", "src/registry/examples/control-ui/primitives/badge.tsx", "example"),
         source: sourceFile("Badge slot", "src/registry/sources/control-ui/ui/badge.tsx", "component"),
-        supportFiles: [sourceFile("Theme tokens", "src/registry/sources/control-ui/theme.css", "tokens")],
+        supportFiles: [sourceFile("Theme tokens", "src/registry/sources/control-ui/theme.css", "tokens"), badgeRecipeFile],
         registryKind: "badge",
       },
     },
@@ -1081,6 +1344,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/card.tsx",
         example: sourceFile("Card preview", "src/registry/examples/control-ui/primitives/card.tsx", "example"),
         source: sourceFile("Card slot", "src/registry/sources/control-ui/ui/card.tsx", "component"),
+        supportFiles: [cardRecipeFile],
         composition: [
           {
             title: "Panel anatomy",
@@ -1113,6 +1377,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/table.tsx",
         example: sourceFile("Table preview", "src/registry/examples/control-ui/primitives/table.tsx", "example"),
         source: sourceFile("Table slot", "src/registry/sources/control-ui/ui/table.tsx", "component"),
+        supportFiles: [tableRecipeFile],
         registryKind: "table",
       },
     },
@@ -1152,6 +1417,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/button-group.tsx",
         example: sourceFile("Button group preview", "src/registry/examples/control-ui/primitives/button-group.tsx", "example"),
         source: sourceFile("Button group slot", "src/registry/sources/control-ui/ui/button-group.tsx", "component"),
+        supportFiles: [buttonGroupRecipeFile],
         registryKind: "button-group",
       },
     },
@@ -1172,6 +1438,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/empty.tsx",
         example: sourceFile("Empty preview", "src/registry/examples/control-ui/primitives/empty.tsx", "example"),
         source: sourceFile("Empty slot", "src/registry/sources/control-ui/ui/empty.tsx", "component"),
+        supportFiles: [emptyRecipeFile],
         registryKind: "empty",
       },
     },
@@ -1192,7 +1459,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/item.tsx",
         example: sourceFile("Item preview", "src/registry/examples/control-ui/primitives/item.tsx", "example"),
         source: sourceFile("Item slot", "src/registry/sources/control-ui/ui/item.tsx", "component"),
-        supportFiles: [sourceFile("Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "skin-control")],
+        supportFiles: [sourceFile("Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "skin-control"), itemRecipeFile],
         composition: [
           {
             title: "Grouped content rows",
@@ -1225,6 +1492,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/pagination.tsx",
         example: sourceFile("Pagination preview", "src/registry/examples/control-ui/primitives/pagination.tsx", "example"),
         source: sourceFile("Pagination slot", "src/registry/sources/control-ui/ui/pagination.tsx", "component"),
+        supportFiles: [paginationRecipeFile],
         registryKind: "pagination",
       },
     },
@@ -1244,6 +1512,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/spinner.tsx",
         example: sourceFile("Spinner preview", "src/registry/examples/control-ui/primitives/spinner.tsx", "example"),
         source: sourceFile("Spinner slot", "src/registry/sources/control-ui/ui/spinner.tsx", "component"),
+        supportFiles: [spinnerRecipeFile],
         registryKind: "spinner",
       },
     },
@@ -1262,6 +1531,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/meter.tsx",
         example: sourceFile("Meter preview", "src/registry/examples/control-ui/primitives/meter.tsx", "example"),
         source: sourceFile("Base UI Meter slot", "src/registry/sources/control-ui/ui/meter.tsx", "component"),
+        supportFiles: [rangeRecipeFile],
         registryKind: "meter",
       },
     },
@@ -1280,6 +1550,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/tree.tsx",
         example: sourceFile("Tree preview", "src/registry/examples/control-ui/primitives/tree.tsx", "example"),
         source: sourceFile("Tree slot", "src/registry/sources/control-ui/ui/tree.tsx", "component"),
+        supportFiles: [treeRecipeFile],
         composition: [
           {
             title: "Branching tree",
@@ -1335,7 +1606,9 @@ export const primitiveEntries = [
         source: sourceFile("Base UI Autocomplete slot", "src/registry/sources/control-ui/ui/autocomplete.tsx", "component"),
         supportFiles: [
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+          ...fieldRecipeFiles,
           surfaceVariantsFile,
+          ...popupRecipeFiles,
           sourceFile("Scroll area", "src/registry/sources/control-ui/ui/scroll-area.tsx", "component"),
         ],
         composition: [
@@ -1372,7 +1645,10 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/number-field.tsx",
         example: sourceFile("Number field preview", "src/registry/examples/control-ui/primitives/number-field.tsx", "example"),
         source: sourceFile("Base UI Number field slot", "src/registry/sources/control-ui/ui/number-field.tsx", "component"),
-        supportFiles: [sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants")],
+        supportFiles: [
+          ...fieldRecipeFiles,
+          sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
+        ],
         registryKind: "number-field",
       },
     },
@@ -1399,6 +1675,7 @@ export const primitiveEntries = [
           sourceFile("Textarea binding", "src/registry/hooks/use-textarea-trigger-menu.ts", "binding"),
           sourceFile("Trigger detection", "src/registry/lib/trigger-detect.ts", "detect"),
           surfaceVariantsFile,
+          ...popupRecipeFiles,
         ],
         registryKind: "trigger-menu",
       },
@@ -1418,6 +1695,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/toolbar.tsx",
         example: sourceFile("Toolbar preview", "src/registry/examples/control-ui/primitives/toolbar.tsx", "example"),
         source: sourceFile("Toolbar slot", "src/registry/sources/control-ui/ui/toolbar.tsx", "component"),
+        supportFiles: [toolbarRecipeFile],
         registryKind: "toolbar",
       },
     },
@@ -1456,6 +1734,7 @@ export const primitiveEntries = [
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Drawer slot", "src/registry/sources/control-ui/ui/drawer.tsx", "skin-control"),
           sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
+          dockablePanelRecipeFile,
         ],
         composition: [
           {
@@ -1493,7 +1772,10 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/infinite-canvas.tsx",
         example: sourceFile("Infinite canvas preview", "src/registry/examples/control-ui/primitives/infinite-canvas.tsx", "example"),
         source: sourceFile("Infinite canvas", "src/registry/sources/control-ui/ui/infinite-canvas.tsx", "component"),
-        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control")],
+        supportFiles: [
+          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
+          infiniteCanvasRecipeFile,
+        ],
         composition: [
           {
             title: "Unbounded spatial workspace",
@@ -1526,6 +1808,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/morphing-panel.tsx",
         example: sourceFile("Morphing panel preview", "src/registry/examples/control-ui/primitives/morphing-panel.tsx", "example"),
         source: sourceFile("Morphing panel slot", "src/registry/sources/control-ui/ui/morphing-panel.tsx", "component"),
+        supportFiles: [morphingPanelRecipeFile],
         registryKind: "morphing-panel",
       },
     },
@@ -1554,6 +1837,8 @@ export const primitiveEntries = [
           sourceFile("Color area drag hook", "src/registry/hooks/use-color-area.ts", "hook"),
           sourceFile("Control variants", "src/registry/sources/control-ui/control-variants.ts", "control-variants"),
           surfaceVariantsFile,
+          ...colorPickerRecipeFiles,
+          ...popupRecipeFiles,
         ],
         registryKind: "color-picker",
       },
@@ -1578,6 +1863,7 @@ export const primitiveEntries = [
           sourceFile("Color picker slot", "src/registry/sources/control-ui/ui/color-picker.tsx", "color-picker"),
           sourceFile("Color engine", "src/registry/lib/color.ts", "color-engine"),
           surfaceVariantsFile,
+          gradientEditorRecipeFile,
         ],
         registryKind: "gradient-editor",
       },
@@ -1600,6 +1886,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/resizable.tsx",
         example: sourceFile("Resizable preview", "src/registry/examples/control-ui/primitives/resizable.tsx", "example"),
         source: sourceFile("Resizable slot", "src/registry/sources/control-ui/ui/resizable.tsx", "component"),
+        supportFiles: [resizableRecipeFile],
         registryKind: "resizable",
       },
     },
@@ -1634,6 +1921,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/calendar.tsx",
         example: sourceFile("Calendar preview", "src/registry/examples/control-ui/primitives/calendar.tsx", "example"),
         source: sourceFile("Calendar slot", "src/registry/sources/control-ui/ui/calendar.tsx", "component"),
+        supportFiles: [calendarRecipeFile],
         registryKind: "calendar",
       },
     },
@@ -1691,6 +1979,7 @@ export const primitiveEntries = [
           sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
           sourceFile("Shiki tokenizer", "src/registry/lib/code-tokens.ts", "tokenizer"),
           sourceFile("Code + diff tokens", "src/registry/sources/control-ui/code.css", "code-css"),
+          codeRecipeFile,
         ],
         registryKind: "code",
       },
@@ -1732,6 +2021,7 @@ export const primitiveEntries = [
           sourceFile("Diff engine", "src/registry/lib/diff.ts", "diff-engine"),
           sourceFile("Shiki tokenizer", "src/registry/lib/code-tokens.ts", "tokenizer"),
           sourceFile("Code + diff tokens", "src/registry/sources/control-ui/code.css", "code-css"),
+          codeDiffRecipeFile,
         ],
         registryKind: "code-diff",
       },
@@ -1775,6 +2065,7 @@ export const primitiveEntries = [
           sourceFile("Diff engine", "src/registry/lib/diff.ts", "diff-engine"),
           sourceFile("Shiki tokenizer", "src/registry/lib/code-tokens.ts", "tokenizer"),
           sourceFile("Code + diff tokens", "src/registry/sources/control-ui/code.css", "code-css"),
+          markdownRecipeFile,
         ],
         registryKind: "markdown",
       },

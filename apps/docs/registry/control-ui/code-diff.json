@@ -22,11 +22,19 @@
       "type": "registry:lib"
     },
     {
+      "path": "src/registry/sources/control-ui/recipes/code-diff.css",
+      "target": "@components/control-ui/styles/recipes/code-diff.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/code-diff.tsx",
       "target": "@components/control-ui/ui/code-diff.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/code-diff.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/code-diff.json"
   }

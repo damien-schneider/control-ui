@@ -7,6 +7,12 @@ test("activity disclosure bounds and scrolls a long trace", async ({ page }) => 
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
   await expect(trigger.locator("a")).toHaveCount(0);
 
+  await expect(trigger.locator('[data-control-ui="activity"][data-slot="icon"] svg')).toHaveCSS("animation-name", "none");
+  await expect(page.locator('[data-control-ui="timeline"][data-slot="item"][data-state="running"] svg')).toHaveCSS(
+    "animation-name",
+    "spin",
+  );
+
   const activity = trigger.locator("..");
   const viewport = activity.locator('[data-control-ui="activity"][data-slot="content-viewport"]');
   await expect(viewport).toBeVisible();

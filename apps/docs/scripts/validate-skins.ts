@@ -5,10 +5,16 @@ import path from "node:path";
 import { parse } from "@babel/parser";
 import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
+import { controlKnobContracts } from "../src/registry/knob-contracts";
 import { THEME_CONTRACT_NAMES } from "../src/registry/lib/theme-contract";
 import { collectSkinContract } from "./skin-contract/collect";
 
 const contract = collectSkinContract();
+const knobsByPrefix: Record<string, readonly string[]> = Object.fromEntries(
+  Object.entries(controlKnobContracts)
+    .sort(([left], [right]) => right.length - left.length)
+    .map(([family, knobs]) => [`--${family}-`, knobs]),
+);
 const supplied = process.argv.find((argument) => argument.startsWith("--skin="))?.slice("--skin=".length);
 const skinRoot = path.join(process.cwd(), "src/registry/skin-packs");
 const files = supplied
@@ -116,13 +122,59 @@ function validateSelectorStructure(file: string, selectorText: string, selector:
   }
 }
 
+function editDistance(left: string, right: string): number {
+  const distances = Array.from({ length: left.length + 1 }, (_, index) => [index, ...new Array<number>(right.length).fill(0)]);
+  for (let column = 1; column <= right.length; column++) distances[0][column] = column;
+  for (let row = 1; row <= left.length; row++) {
+    for (let column = 1; column <= right.length; column++) {
+      const substitution = left[row - 1] === right[column - 1] ? 0 : 1;
+      distances[row][column] = Math.min(
+        distances[row - 1][column] + 1,
+        distances[row][column - 1] + 1,
+        distances[row - 1][column - 1] + substitution,
+      );
+    }
+  }
+  return distances[left.length][right.length];
+}
+
+const nonPaintProperties = new Set(["--sidebar-width", "--sidebar-width-icon"]);
+
+function validateKnobName(file: string, name: string, line: number | undefined): void {
+  if (nonPaintProperties.has(name)) return;
+  if (name.startsWith("--_")) return;
+  const family = Object.entries(knobsByPrefix).find(([prefix]) => name.startsWith(prefix));
+  if (!family || family[1].includes(name)) return;
+  const [closest, distance] = family[1].map((knob): [string, number] => [knob, editDistance(name, knob)]).sort(([, a], [, b]) => a - b)[0];
+  const hint = distance <= 3 ? ` — did you mean ${closest}?` : "";
+  failures.push(`${file}:${line ?? "?"} unknown knob ${name}${hint}`);
+}
+
+function validateKnobs(file: string, root: postcss.Root): void {
+  root.walkDecls((declaration) => {
+    const line = declaration.source?.start?.line;
+    validateKnobName(file, declaration.prop, line);
+    for (const match of declaration.value.matchAll(/var\(\s*(--[\w-]+)/g)) validateKnobName(file, match[1] ?? "", line);
+  });
+  root.walkAtRules("property", (atRule) => {
+    const name = atRule.params.trim();
+    if (Object.keys(knobsByPrefix).some((prefix) => name.startsWith(prefix))) {
+      failures.push(
+        `${file}:${atRule.source?.start?.line ?? "?"} @property ${name} — knob registration belongs to the core recipe, never a skin`,
+      );
+    }
+  });
+}
+
 function validateCss(file: string, source: string): void {
   try {
-    postcss.parse(source, { from: file }).walkRules((rule) => {
-      selectorParser((root) => {
-        root.each((selector) => validateSelectorStructure(file, rule.selector.replace(/\s+/g, " "), selector));
+    const root = postcss.parse(source, { from: file });
+    root.walkRules((rule) => {
+      selectorParser((selectorRoot) => {
+        selectorRoot.each((selector) => validateSelectorStructure(file, rule.selector.replace(/\s+/g, " "), selector));
       }).processSync(rule.selector);
     });
+    validateKnobs(file, root);
   } catch (error) {
     failures.push(`${file}: invalid CSS: ${error instanceof Error ? error.message : String(error)}`);
   }
@@ -203,26 +255,24 @@ function validateConfig(file: string, source: string): void {
     if (node.type !== "ExportNamedDeclaration" || node.declaration?.type !== "VariableDeclaration") continue;
     const declaration = node.declaration.declarations.find((candidate: any) => candidate.id.name === "skin");
     if (declaration?.init?.type !== "ObjectExpression") continue;
-    for (const fieldName of ["slots", "paints", "adornments"] as const) {
-      const field = declaration.init.properties.find(
-        (property) => property.type === "ObjectProperty" && propertyName(property) === fieldName,
-      );
-      if (field?.type !== "ObjectProperty" || field.value.type !== "ObjectExpression") continue;
-      const allowed = fieldName === "slots" ? contract.scopes : contract[fieldName];
-      for (const scopeEntry of field.value.properties) {
-        const scope = propertyName(scopeEntry);
-        if (!scope || !(scope in allowed)) {
-          failures.push(`${file}: unknown ${fieldName} scope ${scope ?? "<dynamic>"}`);
-          continue;
-        }
-        if (scopeEntry.type !== "ObjectProperty" || scopeEntry.value.type !== "ObjectExpression") {
-          failures.push(`${file}: ${fieldName}.${scope} must be a scoped part map`);
-          continue;
-        }
-        for (const partEntry of scopeEntry.value.properties) {
-          const part = propertyName(partEntry);
-          const allowedParts = fieldName === "slots" ? contract.scopes[scope].parts : contract[fieldName][scope];
-          if (!part || !(part in allowedParts)) failures.push(`${file}: unknown ${fieldName} hook ${scope}:${part ?? "<dynamic>"}`);
+    const field = declaration.init.properties.find(
+      (property) => property.type === "ObjectProperty" && propertyName(property) === "adornments",
+    );
+    if (field?.type !== "ObjectProperty" || field.value.type !== "ObjectExpression") continue;
+    for (const scopeEntry of field.value.properties) {
+      const scope = propertyName(scopeEntry);
+      if (!scope || !(scope in contract.adornments)) {
+        failures.push(`${file}: unknown adornments scope ${scope ?? "<dynamic>"}`);
+        continue;
+      }
+      if (scopeEntry.type !== "ObjectProperty" || scopeEntry.value.type !== "ObjectExpression") {
+        failures.push(`${file}: adornments.${scope} must be a scoped part map`);
+        continue;
+      }
+      for (const partEntry of scopeEntry.value.properties) {
+        const part = propertyName(partEntry);
+        if (!part || !(part in contract.adornments[scope])) {
+          failures.push(`${file}: unknown adornments hook ${scope}:${part ?? "<dynamic>"}`);
         }
       }
     }

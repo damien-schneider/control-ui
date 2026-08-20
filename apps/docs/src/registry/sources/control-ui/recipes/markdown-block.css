@@ -1,0 +1,67 @@
+@layer components {
+  :where([data-control-family="markdown-block"][data-slot="root"]) {
+    --markdown-block-radius: var(--radius-panel);
+    --markdown-block-background: var(--background);
+    --markdown-block-border-color: var(--border);
+    --markdown-block-shadow: var(--shadow-sm);
+    --markdown-block-header-border-color: var(--border);
+    --markdown-block-icon-background: oklch(from var(--foreground) l c h / 0.08);
+    background: var(--markdown-block-background);
+    border: 1px solid var(--markdown-block-border-color);
+    border-radius: var(--markdown-block-radius);
+    box-shadow: var(--markdown-block-shadow);
+  }
+
+  :where([data-control-family="markdown-block"][data-slot="header"]) {
+    border-bottom: 1px solid var(--markdown-block-header-border-color);
+  }
+
+  :where([data-control-family="markdown-block"][data-slot="title"]) {
+    font-size: var(--text-sm);
+  }
+
+  :where([data-control-family="markdown-block"][data-slot="title-icon"]) {
+    background: var(--markdown-block-icon-background);
+    border-radius: var(--radius-md);
+    font-size: var(--text-micro);
+  }
+
+  :where([data-control-family="markdown-block"][data-slot="title"]) {
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+@property --markdown-block-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --markdown-block-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-block-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-block-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --markdown-block-header-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-block-icon-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

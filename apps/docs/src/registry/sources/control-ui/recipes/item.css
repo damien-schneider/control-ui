@@ -1,0 +1,95 @@
+@layer components {
+  :where([data-control-family="item"][data-slot="root"]) {
+    --item-radius: var(--radius-lg);
+    --item-hover-background: transparent;
+    --item-hover-border-color: var(--_item-border-color);
+    --item-border-width: 0px;
+    --item-active-scale: 1;
+    --_item-background: transparent;
+    --_item-border-color: transparent;
+    outline: var(--item-border-width) solid var(--_item-border-color);
+    outline-offset: calc(-1 * var(--item-border-width));
+    border-radius: var(--item-radius);
+    background: var(--_item-background);
+    box-shadow: none;
+    color: var(--foreground);
+    transition-property: background-color, box-shadow, color, outline-color, scale;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="item"][data-slot="root"][data-variant="outline"]) {
+    --_item-border-color: var(--border);
+    --item-border-width: 1px;
+  }
+
+  :where([data-control-family="item"][data-slot="root"][data-variant="muted"]) {
+    --_item-background: oklch(from var(--muted) l c h / 0.5);
+  }
+
+  :where([data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):hover) {
+    outline-color: var(--item-hover-border-color);
+    background: var(--item-hover-background);
+    box-shadow: none;
+  }
+
+  :where([data-control-family="item"][data-slot="root"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="item"][data-slot="root"]:is(a, button, [href], [role="button"]):active) {
+    scale: var(--item-active-scale);
+  }
+
+  :where([data-control-family="item"][data-slot="footer"]) {
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="item"][data-slot="description"]) {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="item"][data-slot="title"]) {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="item"][data-slot="media"]) {
+    color: var(--muted-foreground);
+  }
+}
+
+@property --item-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --item-hover-background {
+  syntax: "*";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --item-hover-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --item-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --item-active-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}

@@ -1,13 +1,15 @@
 "use client";
 
 import { ChevronRight, CircleCheck, CircleDashed, Loader2 } from "lucide-react";
-import type { ComponentProps, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext, useEffect, useId, useState } from "react";
 
 import type { TaskListProps, TaskStatus } from "@/components/control-ui/contracts";
+import type { TaskListKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+
+type TaskListStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 
 type TaskEntry = {
   key: string;
@@ -83,13 +85,10 @@ export function TaskList({ className, children, ...props }: TaskListProps) {
       <TaskListContext.Provider value={{ total, current, currentNumber: total === 0 ? 0 : currentIndex + 1, allCompleted }}>
         <Collapsible
           data-control-ui="task-list"
+          data-control-family="task-list"
           data-slot="root"
           data-surface="panel"
-          className={cn(
-            "w-full overflow-hidden rounded-field border bg-card/90 text-body shadow-md ring-1 ring-foreground/4 backdrop-blur",
-            skinSlot("task-list", "root", {}),
-            className,
-          )}
+          className={cn("w-full overflow-hidden", className)}
           {...props}
         >
           {children}
@@ -99,25 +98,30 @@ export function TaskList({ className, children, ...props }: TaskListProps) {
   );
 }
 
-export type TaskListTriggerProps = ComponentProps<"button">;
+export type TaskListTriggerProps = TaskListStyleProps<ComponentProps<"button">, TaskListKnobStyle>;
 
 export function TaskListTrigger({ className, children, ...props }: TaskListTriggerProps) {
   const { allCompleted } = useTaskListContext();
 
   return (
     <CollapsibleTrigger
-      className={cn(
-        "flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-muted/40",
-        "transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
-        className,
-      )}
+      data-control-ui="task-list"
+      data-control-family="task-list"
+      data-slot="trigger"
+      className={cn("flex w-full items-center gap-2 px-3 py-2", className)}
       {...props}
     >
       {children ?? (
         <>
           <TaskListIndicator status={allCompleted ? "completed" : "active"} />
           <TaskListProgress />
-          <ChevronRight aria-hidden="true" className="size-3.5 shrink-0 text-muted-foreground" />
+          <ChevronRight
+            aria-hidden="true"
+            data-control-ui="task-list"
+            data-control-family="task-list"
+            data-slot="chevron"
+            className="size-3.5 shrink-0"
+          />
           {/* expanded list already shows current task, so pill's preview hides while open */}
           <TaskListLabel className="in-data-[state=open]:hidden" />
         </>
@@ -126,24 +130,19 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
   );
 }
 
-export type TaskListProgressProps = ComponentProps<"span">;
+export type TaskListProgressProps = TaskListStyleProps<ComponentProps<"span">, TaskListKnobStyle>;
 
 export function TaskListProgress({ className, children, ...props }: TaskListProgressProps) {
   const { currentNumber, total } = useTaskListContext();
 
   return (
-    <span
-      data-control-ui="task-list"
-      data-slot="progress"
-      className={cn("shrink-0 font-medium tabular-nums text-muted-foreground", skinSlot("task-list", "progress", {}), className)}
-      {...props}
-    >
+    <span data-control-ui="task-list" data-control-family="task-list" data-slot="progress" className={cn("shrink-0", className)} {...props}>
       {children ?? `Task ${currentNumber} of ${total}`}
     </span>
   );
 }
 
-export type TaskListLabelProps = ComponentProps<"span">;
+export type TaskListLabelProps = TaskListStyleProps<ComponentProps<"span">, TaskListKnobStyle>;
 
 export function TaskListLabel({ className, children, ...props }: TaskListLabelProps) {
   const { current } = useTaskListContext();
@@ -151,8 +150,9 @@ export function TaskListLabel({ className, children, ...props }: TaskListLabelPr
   return (
     <span
       data-control-ui="task-list"
+      data-control-family="task-list"
       data-slot="label"
-      className={cn("min-w-0 flex-1 truncate text-foreground", skinSlot("task-list", "label", {}), className)}
+      className={cn("min-w-0 flex-1 truncate", className)}
       {...props}
     >
       {children ?? current?.label}
@@ -160,7 +160,7 @@ export function TaskListLabel({ className, children, ...props }: TaskListLabelPr
   );
 }
 
-export type TaskListContentProps = ComponentProps<"ol">;
+export type TaskListContentProps = ComponentProps<"ol"> & { style?: CSSProperties & TaskListKnobStyle };
 
 export function TaskListContent({ className, children, ...props }: TaskListContentProps) {
   return (
@@ -168,8 +168,9 @@ export function TaskListContent({ className, children, ...props }: TaskListConte
     <CollapsibleContent keepMounted>
       <ol
         data-control-ui="task-list"
+        data-control-family="task-list"
         data-slot="items"
-        className={cn("flex flex-col gap-0.5 px-2 pb-2", skinSlot("task-list", "items", {}), className)}
+        className={cn("flex flex-col gap-0.5 px-2 pb-2", className)}
         {...props}
       >
         {children}
@@ -178,7 +179,7 @@ export function TaskListContent({ className, children, ...props }: TaskListConte
   );
 }
 
-export type TaskListItemProps = Omit<ComponentProps<"li">, "children"> & {
+export type TaskListItemProps = TaskListStyleProps<Omit<ComponentProps<"li">, "children">, TaskListKnobStyle> & {
   label: string;
   status?: TaskStatus;
   children?: ReactNode;
@@ -194,14 +195,10 @@ export function TaskListItem({ label, status = "pending", className, children, .
   return (
     <li
       data-control-ui="task-list"
+      data-control-family="task-list"
       data-slot="item"
       data-status={status}
-      className={cn(
-        "flex items-center gap-2 rounded-[var(--radius-popup-item)] px-1.5 py-1 text-sm text-foreground",
-        "data-[status=pending]:text-muted-foreground data-[status=pending]:opacity-70",
-        skinSlot("task-list", "item", { status }),
-        className,
-      )}
+      className={cn("flex items-center gap-2 px-1.5 py-1", className)}
       {...props}
     >
       <TaskListIndicator status={status} />
@@ -216,7 +213,7 @@ const indicatorIcons = {
   completed: CircleCheck,
 } as const;
 
-export type TaskListIndicatorProps = ComponentProps<"span"> & {
+export type TaskListIndicatorProps = TaskListStyleProps<ComponentProps<"span">, TaskListKnobStyle> & {
   status?: TaskStatus;
 };
 
@@ -226,18 +223,14 @@ export function TaskListIndicator({ status = "pending", className, ...props }: T
   return (
     <span
       data-control-ui="task-list"
+      data-control-family="task-list"
       data-slot="item-indicator"
       data-status={status}
-      className={cn(
-        "inline-flex shrink-0 items-center justify-center text-muted-foreground/70",
-        "data-[status=active]:text-primary-text data-[status=completed]:text-primary-text",
-        skinSlot("task-list", "item-indicator", { status }),
-        className,
-      )}
+      className={cn("inline-flex shrink-0 items-center justify-center", className)}
       {...props}
     >
       {/* loader, not expressive motion — like Spinner it keeps turning under reduced motion */}
-      <Icon aria-hidden="true" className={cn("size-3.5", status === "active" && "animate-spin")} />
+      <Icon aria-hidden="true" className="size-3.5" />
       <span className="sr-only">{status}</span>
     </span>
   );

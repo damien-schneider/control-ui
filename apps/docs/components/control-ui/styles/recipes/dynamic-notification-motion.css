@@ -1,0 +1,276 @@
+@layer components {
+  :where([data-control-family="dynamic-notification"][data-slot="root"]) {
+    --_dynamic-notification-word-stagger: calc(var(--duration-fast) * 0.35);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="root"][data-state="thinking"]) {
+    --_dynamic-notification-ink-plateau: calc(50% - 10%);
+    --_dynamic-notification-ink-mid-stop: calc(50% - 3%);
+    --_dynamic-notification-ink-low-stop: calc(50% + 3%);
+    --_dynamic-notification-ink-tail-stop: calc(50% + 10%);
+    --_dynamic-notification-ink-mid: oklch(0 0 0 / 0.72);
+    --_dynamic-notification-ink-low: oklch(0 0 0 / 0.3);
+    --_dynamic-notification-ink-tail: oklch(0 0 0 / 0.1);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="root"][data-state="expanded"]) {
+    --_dynamic-notification-ink-plateau: 70%;
+    --_dynamic-notification-ink-mid-stop: 82%;
+    --_dynamic-notification-ink-low-stop: 92%;
+    --_dynamic-notification-ink-tail-stop: 100%;
+    --_dynamic-notification-ink-mid: oklch(0 0 0 / 0.78);
+    --_dynamic-notification-ink-low: oklch(0 0 0 / 0.55);
+    --_dynamic-notification-ink-tail: oklch(0 0 0 / 0.4);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="island"]) {
+    interpolate-size: allow-keywords;
+    width: 8.5rem;
+    height: 2.5rem;
+    border-radius: calc(2.5rem / 2);
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+    filter: blur(0);
+    transition:
+      width calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
+      height calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
+      border-radius calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
+      box-shadow calc(var(--duration-slow) * 2) var(--ease-standard),
+      opacity var(--duration-slow) var(--ease-emphasized),
+      scale calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
+      translate calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
+      filter var(--duration-slow) var(--ease-emphasized),
+      --_dynamic-notification-ink-mid calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
+      --_dynamic-notification-ink-low calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
+      --_dynamic-notification-ink-tail calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
+      --_dynamic-notification-ink-plateau calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
+      --_dynamic-notification-ink-mid-stop calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
+      --_dynamic-notification-ink-low-stop calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
+      --_dynamic-notification-ink-tail-stop calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing);
+  }
+
+  @starting-style {
+    :where([data-control-family="dynamic-notification"][data-slot="island"]) {
+      opacity: 0;
+      scale: 0.85;
+      translate: 0 -0.4rem;
+      filter: blur(10px);
+    }
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="thinking"]) {
+    width: min(10rem, 100%);
+    height: 5.75rem;
+    border-radius: 2.75rem;
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="expanded"]) {
+    width: min(22.5rem, 100%);
+    height: auto;
+    border-radius: var(--dynamic-notification-expanded-radius);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="pill"]) {
+    opacity: 1;
+    filter: blur(0);
+    scale: 1;
+    transition: opacity var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55), filter var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55), scale var(--duration-base) var(--ease-emphasized) calc(var(--duration-slow) * 0.55);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="island"]:not([data-state="collapsed"]) :where([data-control-family="dynamic-notification"][data-slot="pill"])) {
+    opacity: 0;
+    filter: blur(6px);
+    scale: 0.8;
+    pointer-events: none;
+    transition-duration: var(--duration-fast);
+    transition-delay: calc(var(--duration-fast) * 0);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="content"]) {
+    width: min(22.5rem, 100%);
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+    scale: 1;
+    transform-origin: 50% 0%;
+    transition:
+      opacity calc(var(--duration-slow) * 1.4) var(--ease-emphasized) calc(var(--duration-fast) * 0.6),
+      filter calc(var(--duration-slow) * 1.4) var(--ease-emphasized) calc(var(--duration-fast) * 0.6),
+      translate calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing) calc(var(--duration-fast) * 0.6),
+      scale calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing) calc(var(--duration-fast) * 0.6);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="island"]:not([data-state="expanded"]) :where([data-control-family="dynamic-notification"][data-slot="content"])) {
+    opacity: 0;
+    filter: blur(10px);
+    translate: 0 -0.5rem;
+    scale: 0.94;
+    transition: opacity var(--duration-base) var(--ease-standard), filter var(--duration-base) var(--ease-standard), translate var(--duration-base) var(--ease-standard), scale var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="message"] [data-control-family="dynamic-notification"][data-slot="word"]) {
+    display: inline-block;
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="expanded"] :where([data-control-family="dynamic-notification"][data-slot="message"]) [data-control-family="dynamic-notification"][data-slot="word"]) {
+    animation: dn-word-in calc(var(--duration-slow) * 1.8) var(--dynamic-notification-content-easing) both;
+    animation-delay: calc(var(--duration-base) * 0.8 + var(--_dynamic-notification-word-index, 0) * var(--_dynamic-notification-word-stagger));
+  }
+
+  :where([data-control-family="dynamic-notification"][data-slot="indicator"]) {
+    background: radial-gradient(circle at 30% 30%, oklch(0.85 0.1 210 / 0.9), transparent 60%),
+      conic-gradient(
+        from 210deg,
+        var(--dynamic-notification-indicator-start),
+        var(--dynamic-notification-indicator-middle),
+        var(--dynamic-notification-indicator-end),
+        var(--dynamic-notification-indicator-start)
+      );
+    box-shadow: 0 0 8px oklch(0.7 0.17 250 / 0.55);
+    animation: dn-indicator-breathe calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="dynamic-notification"][data-slot="island"]) {
+      --_dynamic-notification-word-stagger: 0ms;
+    }
+
+  }
+
+  :where([data-motion="reduced"] :where([data-control-family="dynamic-notification"][data-slot="island"])) {
+    --_dynamic-notification-word-stagger: 0ms;
+  }
+
+}
+
+@keyframes dn-word-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    translate: 0 0.4em;
+  }
+}
+
+@keyframes dn-indicator-breathe {
+  0%, 100% {
+    scale: 1;
+    opacity: 0.85;
+  }
+
+  50% {
+    scale: 1.35;
+    opacity: 1;
+  }
+}
+
+@property --_dynamic-notification-ink-mid {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0 0 0 / 0.97);
+}
+
+@property --_dynamic-notification-ink-low {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0 0 0 / 0.97);
+}
+
+@property --_dynamic-notification-ink-tail {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0 0 0 / 0.97);
+}
+
+@property --_dynamic-notification-ink-plateau {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+
+@property --_dynamic-notification-ink-mid-stop {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+
+@property --_dynamic-notification-ink-low-stop {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+
+@property --_dynamic-notification-ink-tail-stop {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+
+@property --dynamic-notification-content-easing {
+  syntax: "*";
+  inherits: true;
+  initial-value: linear(
+    0,
+    0.0553 4.55%,
+    0.1795 9.09%,
+    0.328 13.64%,
+    0.4745 18.18%,
+    0.6054 22.73%,
+    0.7148 27.27%,
+    0.8017 31.82%,
+    0.868 36.36%,
+    0.9166 40.91%,
+    0.9509 45.45%,
+    0.9741 50%,
+    0.9891 54.55%,
+    0.9982 59.09%,
+    1.0032 63.64%,
+    1.0056 68.18%,
+    1.0063 72.73%,
+    1.006 77.27%,
+    1.0053 81.82%,
+    1.0044 86.36%,
+    1.0034 90.91%,
+    1.0026 95.45%,
+    1
+  );
+}
+
+@property --dynamic-notification-expanded-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+@property --dynamic-notification-morph-easing {
+  syntax: "*";
+  inherits: true;
+  initial-value: linear(
+    0,
+    0.0568 3.85%,
+    0.1888 7.69%,
+    0.351 11.54%,
+    0.5142 15.38%,
+    0.6608 19.23%,
+    0.7824 23.08%,
+    0.8767 26.92%,
+    0.9449 30.77%,
+    0.9908 34.62%,
+    1.0187 38.46%,
+    1.0332 42.31%,
+    1.0382 46.15%,
+    1.0372 50%,
+    1.0327 53.85%,
+    1.0266 57.69%,
+    1.0203 61.54%,
+    1.0145 65.38%,
+    1.0095 69.23%,
+    1.0056 73.08%,
+    1.0027 76.92%,
+    1.0008 80.77%,
+    0.9995 84.62%,
+    0.9988 88.46%,
+    0.9986 92.31%,
+    0.9985 96.15%,
+    1
+  );
+}

@@ -1,21 +1,22 @@
 "use client";
 
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import type {
   SelectContentProps,
   SelectItemProps,
   SelectProps,
   SelectTriggerProps,
-  SelectTriggerVariant,
   SelectValueProps,
 } from "@/components/control-ui/contracts";
-import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
-type RefinedSelectTriggerProps = SelectTriggerProps & Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render">;
+type RefinedSelectTriggerProps = SelectTriggerProps &
+  Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render"> & { style?: CSSProperties & PopupKnobStyle };
 
 // Base UI's own root is generic (`SelectRoot<Value>`) and reports null once selection is cleared;
 // naming TValue here is what keeps caller's literal union alive, and null never reaches declared value.
@@ -33,42 +34,40 @@ export function Select<TValue extends string = string>({ children, onValueChange
 }
 
 export function SelectTrigger({ size = "sm", variant = "surface", className, children, disabled, ...props }: RefinedSelectTriggerProps) {
-  const variantClasses: Record<SelectTriggerVariant, string> = {
-    surface: controlSurfaceClasses,
-    ghost: "text-foreground hover:bg-foreground/6 data-[popup-open]:bg-foreground/7",
-  };
-
   return (
     <SelectPrimitive.Trigger
       data-control-ui="select"
+      data-control-family="button"
       data-slot="trigger"
       data-control="true"
       data-size={size}
       data-variant={variant}
+      data-tone="neutral"
+      data-shape="default"
       className={cn(
-        "group relative isolate inline-flex shrink-0 cursor-pointer items-center justify-between overflow-visible rounded-[var(--radius-control)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
-        variantClasses[variant],
+        "group relative isolate inline-flex shrink-0 items-center justify-between overflow-visible",
         controlSize({ size }),
-        skinSlot("select", "trigger", { size, variant }),
         className,
       )}
       disabled={disabled}
       {...props}
+      data-select-part="trigger"
     >
       <span
         data-control-ui="button"
+        data-control-family="button"
         data-slot="content"
-        className={cn("relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]", skinSlot("button", "content", {}))}
+        className="relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]"
       >
         {children}
       </span>
       <SelectPrimitive.Icon
         data-control-ui="select"
+        data-control-family="popup"
+        data-popup-kind="select"
         data-slot="icon"
-        className={cn(
-          "relative z-[1] text-muted-foreground transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)] group-data-[popup-open]:rotate-180",
-          skinSlot("select", "icon", {}),
-        )}
+        data-select-part="icon"
+        className="relative z-[1]"
       >
         <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
           <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
@@ -96,20 +95,16 @@ export function SelectContent({ className, children, ...props }: SelectContentPr
         side="bottom"
         align="start"
         sideOffset={6}
-        className="z-[80] outline-none"
+        className="z-[80]"
       >
         <SelectPrimitive.Popup
           data-control-ui="select"
+          data-popup-kind="select"
           data-slot="content"
           data-surface="floating"
+          data-control-family="popup"
           data-popup-part="list-surface"
-          className={cn(
-            "max-h-[min(20rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto",
-            floatingListContentClasses,
-            skinFamily("popup", "list-surface"),
-            skinSlot("select", "content", {}),
-            className,
-          )}
+          className={cn("max-h-[min(20rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto", className)}
           {...props}
         >
           {children}
@@ -123,19 +118,22 @@ export function SelectItem({ className, children, disabled, ...props }: SelectIt
   return (
     <SelectPrimitive.Item
       data-control-ui="select"
+      data-popup-kind="select"
       data-slot="item"
+      data-control-family="popup"
       data-popup-part="item"
       disabled={disabled}
-      className={cn(
-        floatingListItemClasses,
-        skinFamily("popup", "item"),
-        skinSlot("select", "item", { disabled: Boolean(disabled) }),
-        className,
-      )}
+      className={cn(popupItemStructureClasses, "px-[calc(var(--padding-x)*0.5)] py-1", className)}
       {...props}
     >
       <SelectPrimitive.ItemText className="flex min-w-0 flex-1 items-center gap-2">{children}</SelectPrimitive.ItemText>
-      <span className="flex size-3.5 shrink-0 items-center justify-center text-foreground">
+      <span
+        data-control-ui="select"
+        data-control-family="popup"
+        data-popup-kind="select"
+        data-slot="item-indicator"
+        className="flex size-3.5 shrink-0 items-center justify-center"
+      >
         <SelectPrimitive.ItemIndicator>
           <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
             <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />

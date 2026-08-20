@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 
 const CSS = readFileSync(new URL("./theme.css", import.meta.url), "utf8");
+const TABS_RECIPE = readFileSync(new URL("./recipes/tabs.css", import.meta.url), "utf8");
 const XP_SKIN = readFileSync(new URL("../../skin-packs/xp/skin.css", import.meta.url), "utf8");
 const LIQUID_METAL_SKIN = readFileSync(new URL("../../skin-packs/liquid-metal/skin.css", import.meta.url), "utf8");
 const LIQUID_METAL_RUNTIME = readFileSync(new URL("../../skin-packs/liquid-metal/liquid-metal-runtime.tsx", import.meta.url), "utf8");
@@ -40,9 +41,9 @@ describe("reduced motion contract", () => {
   });
 
   test("tabs and controls keep fast standard feedback motion", () => {
-    expect(CSS).toContain("background-color var(--duration-fast) var(--ease-standard)");
-    expect(CSS).toContain("box-shadow var(--duration-fast) var(--ease-standard)");
-    expect(CSS).toContain("transition: color var(--duration-fast) var(--ease-standard);");
+    expect(TABS_RECIPE).toContain("background-color var(--duration-fast) var(--ease-standard)");
+    expect(TABS_RECIPE).toContain("box-shadow var(--duration-fast) var(--ease-standard)");
+    expect(TABS_RECIPE).toContain("transition: color var(--duration-fast) var(--ease-standard);");
   });
 
   test("skin motion overrides stay token-driven", () => {

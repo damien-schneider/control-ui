@@ -1,0 +1,47 @@
+@layer components {
+  :where([data-control-family="button-group"][data-slot="root"]) {
+    --button-group-text-radius: var(--radius-control);
+    --button-group-text-background: oklch(from var(--card) l c h / 0.72);
+    --button-group-text-foreground: var(--muted-foreground);
+    --button-group-separator-background: var(--border);
+  }
+  :where([data-control-family="button-group"][data-slot="text"]) {
+    border: 1px solid var(--border);
+    border-radius: var(--button-group-text-radius);
+    background: var(--button-group-text-background);
+    box-shadow: var(--shadow-sm);
+    color: var(--button-group-text-foreground);
+  }
+
+  :where([data-control-family="button-group"][data-slot="separator"]) {
+    background: var(--button-group-separator-background);
+  }
+
+  :where([data-control-family="button-group"][data-slot="text"]) {
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+@property --button-group-text-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --button-group-text-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --button-group-text-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --button-group-separator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

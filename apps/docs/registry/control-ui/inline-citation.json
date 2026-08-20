@@ -18,8 +18,16 @@
       "path": "src/registry/sources/control-ui/inline-citation.tsx",
       "target": "@components/control-ui/inline-citation.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/inline-citation.css",
+      "target": "@components/control-ui/styles/recipes/inline-citation.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/inline-citation.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/inline-citation.json"
   }

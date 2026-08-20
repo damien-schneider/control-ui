@@ -13,8 +13,7 @@ import type {
 } from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 
 // Every item has its own Trigger and Content, but single viewport morphs between them rather than one popup per item.
 
@@ -24,8 +23,10 @@ export function NavigationMenu({ className, children, ...props }: NavigationMenu
   return (
     <NavigationMenuPrimitive.Root
       data-control-ui="navigation-menu"
+      data-control-family="popup"
+      data-popup-kind="navigation-menu"
       data-slot="root"
-      className={cn("relative flex max-w-max flex-1 items-center justify-center", skinSlot("navigation-menu", "root", {}), className)}
+      className={cn("relative flex max-w-max flex-1 items-center justify-center", className)}
       {...props}
     >
       {children}
@@ -37,8 +38,10 @@ export function NavigationMenuList({ className, ...props }: NavigationMenuListPr
   return (
     <NavigationMenuPrimitive.List
       data-control-ui="navigation-menu"
+      data-control-family="popup"
+      data-popup-kind="navigation-menu"
       data-slot="list"
-      className={cn("flex flex-1 list-none items-center justify-center gap-0.5", skinSlot("navigation-menu", "list", {}), className)}
+      className={cn("flex flex-1 list-none items-center justify-center gap-0.5", className)}
       {...props}
     />
   );
@@ -48,8 +51,10 @@ export function NavigationMenuItem({ className, ...props }: NavigationMenuItemPr
   return (
     <NavigationMenuPrimitive.Item
       data-control-ui="navigation-menu"
+      data-control-family="popup"
+      data-popup-kind="navigation-menu"
       data-slot="item"
-      className={cn("relative", skinSlot("navigation-menu", "item", {}), className)}
+      className={cn("relative", className)}
       {...props}
     />
   );
@@ -59,19 +64,24 @@ export function NavigationMenuTrigger({ className, children, ...props }: Navigat
   return (
     <NavigationMenuPrimitive.Trigger
       data-control-ui="navigation-menu"
+      data-control-family="button"
       data-slot="trigger"
       data-control="true"
+      data-cursor="default"
       data-size="sm"
-      className={cn(
-        "inline-flex cursor-default select-none items-center rounded-[var(--radius-control)] font-medium text-muted-foreground outline-none transition hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[popup-open]:bg-foreground/7 data-[popup-open]:text-foreground",
-        controlSize({ size: "sm" }),
-        skinSlot("navigation-menu", "trigger", {}),
-        className,
-      )}
+      data-variant="quiet"
+      data-tone="neutral"
+      data-shape="default"
+      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), className)}
       {...props}
     >
       {children}
-      <NavigationMenuPrimitive.Icon className="text-muted-foreground transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[popup-open]:rotate-180">
+      <NavigationMenuPrimitive.Icon
+        data-control-ui="navigation-menu"
+        data-control-family="popup"
+        data-popup-kind="navigation-menu"
+        data-slot="icon"
+      >
         <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
           <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -84,13 +94,10 @@ export function NavigationMenuContent({ className, children, ...props }: Navigat
   return (
     <NavigationMenuPrimitive.Content
       data-control-ui="navigation-menu"
+      data-control-family="popup"
+      data-popup-kind="navigation-menu"
       data-slot="content"
-      className={cn(
-        // panel moves into shared viewport when active, sliding per data-activation-direction
-        "h-full w-full p-[var(--popover-padding)] transition-[opacity,translate] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[starting-style]:data-[activation-direction=left]:-translate-x-3 data-[starting-style]:data-[activation-direction=right]:translate-x-3 data-[ending-style]:data-[activation-direction=left]:translate-x-3 data-[ending-style]:data-[activation-direction=right]:-translate-x-3",
-        skinSlot("navigation-menu", "content", {}),
-        className,
-      )}
+      className={cn("h-full w-full p-[var(--popover-padding)]", className)}
       {...props}
     >
       {children}
@@ -102,14 +109,15 @@ export function NavigationMenuLink({ variant = "default", className, active, chi
   return (
     <NavigationMenuPrimitive.Link
       data-control-ui="navigation-menu"
+      data-popup-kind="navigation-menu"
       data-slot="link"
+      data-control-family="popup"
+      data-popup-part="navigation-link"
       data-variant={variant}
       active={active}
       className={cn(
-        "block select-none rounded-[var(--radius-md)] px-3 py-2 text-body text-foreground no-underline outline-none transition hover:bg-foreground/6 focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] data-[active]:bg-foreground/6 data-[active]:text-foreground",
-        variant === "compact" &&
-          "inline-flex h-[var(--control-h-sm)] items-center px-[calc(var(--padding-x)*0.75)] py-0 text-xs font-medium text-muted-foreground hover:text-foreground",
-        skinSlot("navigation-menu", "link", { active: Boolean(active), variant }),
+        "block select-none px-3 py-2",
+        variant === "compact" && "inline-flex h-[var(--control-h-sm)] items-center px-[calc(var(--padding-x)*0.75)] py-0",
         className,
       )}
       {...props}
@@ -125,25 +133,34 @@ export function NavigationMenuViewport({ className, ...props }: NavigationMenuVi
       {/* Portal escapes token-scoped ancestor — positioner re-asserts ACTIVE skin's scope.
           before:* strip bridges sideOffset gap so hover survives trigger→popup. */}
       <NavigationMenuPrimitive.Positioner
+        data-control-ui="navigation-menu"
+        data-control-family="popup"
+        data-popup-kind="navigation-menu"
+        data-slot="positioner"
         data-skin={skinId()}
         data-effects={skinEffects()}
         sideOffset={8}
         collisionPadding={{ top: 5, bottom: 5, left: 16, right: 16 }}
         collisionAvoidance={{ side: "none" }}
-        className="z-[80] h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] outline-none transition-[top,left,right,bottom] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] before:absolute before:inset-x-0 before:top-[-8px] before:h-2 before:content-['']"
+        className="z-[80] h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] before:absolute before:inset-x-0 before:top-[-8px] before:h-2 before:content-['']"
       >
-        <NavigationMenuPrimitive.Popup className="relative h-[var(--popup-height)] w-[var(--popup-width)] origin-[var(--transform-origin)] outline-none transition-[opacity,transform,width,height,scale] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:scale-95 data-[ending-style]:opacity-0">
+        <NavigationMenuPrimitive.Popup
+          data-control-ui="navigation-menu"
+          data-control-family="popup"
+          data-popup-kind="navigation-menu"
+          data-slot="popup"
+          className="relative h-[var(--popup-height)] w-[var(--popup-width)]"
+        >
           <NavigationMenuPrimitive.Viewport
             data-control-ui="navigation-menu"
+            data-popup-kind="navigation-menu"
             data-slot="viewport"
             data-surface="floating"
-            className={cn(
-              "relative h-full w-full overflow-hidden",
-              floatingSurfaceClasses,
-              skinSlot("navigation-menu", "viewport", {}),
-              className,
-            )}
+            data-control-family="popup"
+            data-popup-part="surface"
+            className={cn("relative h-full w-full overflow-hidden", className)}
             {...props}
+            data-navigation-menu-part="viewport"
           />
         </NavigationMenuPrimitive.Popup>
       </NavigationMenuPrimitive.Positioner>

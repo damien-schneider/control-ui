@@ -6,14 +6,16 @@ import { Button } from "@/components/control-ui/ui/button";
 import { DropdownMenu, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { Toolbar, ToolbarButton, ToolbarInput } from "@/components/control-ui/ui/toolbar";
 
-const THEME = readFileSync(new URL("./theme.css", import.meta.url), "utf8");
+const RECIPE = readFileSync(new URL("./recipes/toolbar.css", import.meta.url), "utf8");
 
 describe("Toolbar contracts", () => {
   test("derives the shell radius from the fitted item radius and padding", () => {
-    expect(THEME).toContain("--toolbar-item-radius: var(--radius-sm);");
-    expect(THEME).toContain("--toolbar-item-radius-fit: min(var(--toolbar-item-radius), calc(var(--control-h-sm) / 2));");
-    expect(THEME).toContain("--toolbar-radius-offset: clamp(0px, calc(var(--toolbar-item-radius-fit) * 1000), var(--toolbar-padding));");
-    expect(THEME).toContain("--toolbar-radius: calc(var(--toolbar-item-radius-fit) + var(--toolbar-radius-offset));");
+    expect(RECIPE).toContain("--_toolbar-item-radius: var(--radius-sm);");
+    expect(RECIPE).toContain("--_toolbar-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));");
+    expect(RECIPE).toContain(
+      "clamp(0px, calc(min(var(--_toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--toolbar-padding))",
+    );
+    expect(RECIPE).toContain("--toolbar-padding: 0.25rem;");
   });
 
   test("keeps menu semantics when a button renders a DropdownMenu trigger", () => {

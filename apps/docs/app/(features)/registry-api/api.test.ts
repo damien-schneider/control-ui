@@ -30,7 +30,7 @@ describe("registry anatomy discovery", () => {
   test("an item separates its own anatomy from installed dependency anatomy", () => {
     const result = getRegistryItem("code-diff");
     if ("error" in result) throw new Error(result.error);
-    expect(result.data.anatomy?.version).toBe(5);
+    expect(result.data.anatomy?.version).toBe(6);
     expect("root" in (result.data.anatomy?.ownScopes["code-diff"].parts ?? {})).toBe(true);
     expect(result.data.anatomy?.ownScopes.button).toBeUndefined();
     expect(result.data.anatomy?.installedScopes.button).toBeDefined();

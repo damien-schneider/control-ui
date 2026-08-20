@@ -82,7 +82,7 @@ describe("Activity", () => {
     expect(html).toContain('data-slot="content"');
     expect(html).toContain('data-control-ui="scroll-area"');
     expect(html).toContain('data-slot="content-viewport"');
-    expect(html).toContain("--activity-content-max-height");
+    expect(html).toContain("max-height:var(--activity-content-max-height, min(24rem, 50dvh))");
     expect(html).toContain('data-control-ui="timeline"');
     expect(html).toContain("Ran the validation command");
   });
@@ -111,7 +111,7 @@ describe("Activity", () => {
       </Activity>,
     );
 
-    expect(html).not.toContain("--activity-content-max-height");
+    expect(html).not.toContain("max-height:");
     expect(html).toContain("Unbounded content");
   });
 
@@ -138,5 +138,30 @@ describe("Activity", () => {
     expect(html).toContain('data-slot="detail-label"');
     expect(html).toContain('data-slot="detail-content"');
     expect(html).not.toContain('data-control-ui="tool-call"');
+  });
+  test("forwards retained knob styles to their painted parts", () => {
+    const html = renderToString(
+      <Activity defaultOpen>
+        <ActivityTrigger
+          style={{
+            "--activity-row-foreground": "oklch(0.4 0.1 250)",
+            "--activity-trigger-radius": "3px",
+          }}
+        >
+          <ActivityTitle>Thinking</ActivityTitle>
+        </ActivityTrigger>
+        <ActivityContent>
+          <ActivityDetail>
+            <ActivityDetailContent style={{ "--activity-code-background": "oklch(0.2 0.02 250)" }} format="code">
+              src/app.tsx
+            </ActivityDetailContent>
+          </ActivityDetail>
+        </ActivityContent>
+      </Activity>,
+    );
+
+    expect(html).toContain("--activity-row-foreground:oklch(0.4 0.1 250)");
+    expect(html).toContain("--activity-trigger-radius:3px");
+    expect(html).toContain("--activity-code-background:oklch(0.2 0.02 250)");
   });
 });

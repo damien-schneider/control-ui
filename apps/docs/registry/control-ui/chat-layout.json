@@ -15,8 +15,16 @@
       "path": "src/registry/sources/control-ui/chat-layout.tsx",
       "target": "@components/control-ui/chat-layout.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/chat-layout.css",
+      "target": "@components/control-ui/styles/recipes/chat-layout.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/chat-layout.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/chat-layout.json"
   }

@@ -1,0 +1,158 @@
+@layer components {
+  :where([data-control-family="inline-citation"][data-slot="root"]) {
+    --inline-citation-navigation-background: oklch(from var(--muted) l c h / 0.45);
+    --inline-citation-quote-background: oklch(from var(--muted) l c h / 0.55);
+    --inline-citation-quote-radius: var(--radius-control);
+    --inline-citation-trigger-background: oklch(from var(--muted) l c h / 0.55);
+    --inline-citation-trigger-border-color: var(--border);
+    --inline-citation-trigger-foreground: var(--muted-foreground);
+    --inline-citation-trigger-hover-background: var(--muted);
+    --inline-citation-trigger-hover-foreground: var(--foreground);
+    --inline-citation-trigger-radius: 9999px;
+  }
+  :where([data-control-family="inline-citation"][data-slot="trigger"]) {
+    border: 1px solid var(--inline-citation-trigger-border-color);
+    border-radius: var(--inline-citation-trigger-radius);
+    background: var(--inline-citation-trigger-background);
+    color: var(--inline-citation-trigger-foreground);
+    font-size: var(--text-caption);
+    transition-property: background-color, color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="inline-citation"][data-slot="trigger"]:hover) {
+      background: var(--inline-citation-trigger-hover-background);
+      color: var(--inline-citation-trigger-hover-foreground);
+    }
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="trigger"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--ring);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="favicon"]) {
+    border: 1px solid var(--background);
+    border-radius: 9999px;
+    background: var(--muted);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="navigation"]) {
+    border-bottom: 1px solid var(--border);
+    background: var(--inline-citation-navigation-background);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source"]) {
+    --_inline-citation-meta-font-size: var(--text-caption);
+    --_inline-citation-meta-foreground: var(--muted-foreground);
+  }
+
+  :where([data-control-family="inline-citation"]:is([data-slot="position"], [data-slot="source-hostname"], [data-slot="source-description"], [data-slot="source-quote"])) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-favicon"]) {
+    border-radius: 9999px;
+    background: var(--muted);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-title"]) {
+    color: var(--foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-title"]:is(:hover, :focus-visible)) {
+    text-decoration-line: underline;
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-external-icon"]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-quote"]) {
+    border-radius: var(--inline-citation-quote-radius);
+    background: var(--inline-citation-quote-background);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-quote"]) {
+    line-height: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-description"]) {
+    line-height: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-title"]) {
+    font-weight: var(--font-weight-medium);
+    line-height: calc(var(--spacing) * 5);
+    --_inline-citation-source-title-outline: none;
+    outline-style: var(--_inline-citation-source-title-outline);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="trigger"]) {
+    font-weight: var(--font-weight-normal);
+    --_inline-citation-trigger-outline: none;
+    outline-style: var(--_inline-citation-trigger-outline);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="position"]) {
+    --_inline-citation-position-number-style: tabular-nums;
+    font-variant-numeric: var(--_inline-citation-position-number-style);
+  }
+}
+
+@property --inline-citation-trigger-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --inline-citation-trigger-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --inline-citation-trigger-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --inline-citation-trigger-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --inline-citation-trigger-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --inline-citation-trigger-hover-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --inline-citation-navigation-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --inline-citation-quote-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --inline-citation-quote-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}

@@ -1,14 +1,13 @@
 "use client";
 
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
-import type { ComponentProps } from "react";
-import type { DrawerContentPadding, DrawerContentSurface, DrawerContentVariant } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { DrawerContentPadding, DrawerContentSurface, DrawerContentVariant, DrawerSide } from "@/components/control-ui/contracts";
+import type { DrawerKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 
 // Base UI Drawer throughout — native swipe gestures and snap points, no vaul.
-
-type DrawerSide = "bottom" | "top" | "right" | "left";
 
 // swipeDirection is dismiss axis — always edge drawer is pinned to
 const swipeFor: Record<DrawerSide, ComponentProps<typeof DrawerPrimitive.Root>["swipeDirection"]> = {
@@ -18,51 +17,45 @@ const swipeFor: Record<DrawerSide, ComponentProps<typeof DrawerPrimitive.Root>["
   left: "left",
 };
 
-// literal class strings — Tailwind's scanner cannot see interpolated ones
-// floating pads viewport so every corner rounds, and its closed transform must add that gap back or panel keeps sliver on screen
 const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: string; popup: string }>> = {
   edge: {
     bottom: {
       viewport: "items-end justify-center",
-      popup: "w-full max-h-[85vh] rounded-t-panel border-t data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full",
+      popup: "w-full max-h-[85vh]",
     },
     top: {
       viewport: "items-start justify-center",
-      popup: "w-full max-h-[85vh] rounded-b-panel border-b data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full",
+      popup: "w-full max-h-[85vh]",
     },
     right: {
       viewport: "items-stretch justify-end",
-      popup: "h-full w-3/4 max-w-sm border-l data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full",
+      popup: "h-full w-3/4 max-w-sm",
     },
     left: {
       viewport: "items-stretch justify-start",
-      popup: "h-full w-3/4 max-w-sm border-r data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full",
+      popup: "h-full w-3/4 max-w-sm",
     },
   },
   floating: {
     bottom: {
       viewport:
-        "items-end justify-center p-2 pb-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-bottom))]",
-      popup:
-        "w-full max-h-[85vh] rounded-panel border data-[starting-style]:translate-y-[calc(100%+var(--drawer-float-gap))] data-[ending-style]:translate-y-[calc(100%+var(--drawer-float-gap))]",
+        "items-end justify-center p-2 pb-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-bottom))]",
+      popup: "w-full max-h-[85vh]",
     },
     top: {
       viewport:
-        "items-start justify-center p-2 pt-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-top))]",
-      popup:
-        "w-full max-h-[85vh] rounded-panel border data-[starting-style]:translate-y-[calc((100%+var(--drawer-float-gap))*-1)] data-[ending-style]:translate-y-[calc((100%+var(--drawer-float-gap))*-1)]",
+        "items-start justify-center p-2 pt-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-top))]",
+      popup: "w-full max-h-[85vh]",
     },
     right: {
       viewport:
-        "items-stretch justify-end p-2 pr-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-right))]",
-      popup:
-        "w-3/4 max-w-sm rounded-panel border data-[starting-style]:translate-x-[calc(100%+var(--drawer-float-gap))] data-[ending-style]:translate-x-[calc(100%+var(--drawer-float-gap))]",
+        "items-stretch justify-end p-2 pr-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-right))]",
+      popup: "w-3/4 max-w-sm",
     },
     left: {
       viewport:
-        "items-stretch justify-start p-2 pl-[var(--drawer-float-gap)] [--drawer-float-gap:max(--spacing(2),env(safe-area-inset-left))]",
-      popup:
-        "w-3/4 max-w-sm rounded-panel border data-[starting-style]:translate-x-[calc((100%+var(--drawer-float-gap))*-1)] data-[ending-style]:translate-x-[calc((100%+var(--drawer-float-gap))*-1)]",
+        "items-stretch justify-start p-2 pl-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-left))]",
+      popup: "w-3/4 max-w-sm",
     },
   },
 };
@@ -86,26 +79,20 @@ export function Drawer(props: ComponentProps<typeof DrawerPrimitive.Root> & { si
   return <DrawerPrimitive.Root swipeDirection={swipeDirection ?? swipeFor[side]} {...rest} />;
 }
 
-export function DrawerTrigger({ className, ...props }: ComponentProps<typeof DrawerPrimitive.Trigger>) {
+export function DrawerTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof DrawerPrimitive.Trigger> & { style?: CSSProperties & DrawerKnobStyle }) {
   return (
-    <DrawerPrimitive.Trigger
-      data-control-ui="drawer"
-      data-slot="trigger"
-      className={cn(skinSlot("drawer", "trigger", {}), className)}
-      {...props}
-    />
+    <DrawerPrimitive.Trigger data-control-ui="drawer" data-control-family="drawer" data-slot="trigger" className={className} {...props} />
   );
 }
 
-export function DrawerClose({ className, ...props }: ComponentProps<typeof DrawerPrimitive.Close>) {
-  return (
-    <DrawerPrimitive.Close
-      data-control-ui="drawer"
-      data-slot="close"
-      className={cn(skinSlot("drawer", "close", {}), className)}
-      {...props}
-    />
-  );
+export function DrawerClose({
+  className,
+  ...props
+}: ComponentProps<typeof DrawerPrimitive.Close> & { style?: CSSProperties & DrawerKnobStyle }) {
+  return <DrawerPrimitive.Close data-control-ui="drawer" data-control-family="drawer" data-slot="close" className={className} {...props} />;
 }
 
 export function DrawerContent({
@@ -115,54 +102,61 @@ export function DrawerContent({
   padding = "default",
   surface = "background",
   variant = "edge",
+  style,
   ...props
-}: ComponentProps<typeof DrawerPrimitive.Popup> & {
+}: Omit<ComponentProps<typeof DrawerPrimitive.Popup>, "style"> & {
   side?: DrawerSide;
   padding?: DrawerContentPadding;
   surface?: DrawerContentSurface;
   variant?: DrawerContentVariant;
+  style?: CSSProperties & DrawerKnobStyle;
 }) {
   const place = placement[variant][side];
   const grabbable = side === "bottom" || side === "top";
+  const backdropStyle: (CSSProperties & DrawerKnobStyle) | undefined = style
+    ? {
+        "--drawer-backdrop-background": style["--drawer-backdrop-background"],
+      }
+    : undefined;
   return (
     <DrawerPrimitive.Portal>
       {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <DrawerPrimitive.Backdrop
+        data-control-ui="drawer"
+        data-control-family="drawer"
+        data-slot="backdrop"
         data-skin={skinId()}
         data-effects={skinEffects()}
-        className="fixed inset-0 z-[70] bg-[oklch(from_var(--foreground)_l_c_h/var(--overlay-opacity))] backdrop-blur-[var(--backdrop-blur-overlay)] transition-opacity duration-[var(--duration-base)] data-[swiping]:duration-0 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 dark:bg-[oklch(from_var(--background)_l_c_h/var(--overlay-opacity))]"
+        className="fixed inset-0 z-[70]"
+        style={backdropStyle}
       />
       <DrawerPrimitive.Viewport
+        data-control-ui="drawer"
+        data-control-family="drawer"
+        data-slot="viewport"
         data-skin={skinId()}
         data-effects={skinEffects()}
         className={cn("fixed inset-0 z-[71] flex", place.viewport)}
       >
         <DrawerPrimitive.Popup
           data-control-ui="drawer"
+          data-control-family="drawer"
           data-slot="content"
+          data-side={side}
           data-surface="modal"
           data-padding={padding}
           data-surface-variant={surface}
           data-variant={variant}
-          className={cn(
-            "flex flex-col gap-4 text-foreground shadow-modal outline-none transform-[translate(var(--drawer-swipe-movement-x,0),var(--drawer-swipe-movement-y,0))] transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[swiping]:duration-0",
-            surface === "background" ? "bg-background" : "bg-card",
-            padding === "default" && contentPadding[side],
-            place.popup,
-            skinSlot("drawer", "content", { padding, surface, variant }),
-            className,
-          )}
+          className={cn("flex flex-col gap-4", padding === "default" && contentPadding[side], place.popup, className)}
+          style={style}
           {...props}
         >
           {grabbable ? (
             <div
               data-control-ui="drawer"
+              data-control-family="drawer"
               data-slot="handle"
-              className={cn(
-                "mx-auto h-1.5 w-12 shrink-0 rounded-full bg-muted-foreground/30",
-                handleGap[side],
-                skinSlot("drawer", "handle", {}),
-              )}
+              className={cn("mx-auto h-1.5 w-12 shrink-0", handleGap[side])}
             />
           ) : null}
           <DrawerPrimitive.Content className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto">{children}</DrawerPrimitive.Content>
@@ -172,45 +166,51 @@ export function DrawerContent({
   );
 }
 
-export function DrawerHeader({ className, ...props }: ComponentProps<"div">) {
+export function DrawerHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & DrawerKnobStyle }) {
   return (
     <div
       data-control-ui="drawer"
+      data-control-family="drawer"
       data-slot="header"
-      className={cn("flex flex-col gap-1.5 px-4 text-center sm:text-left", skinSlot("drawer", "header", {}), className)}
+      className={cn("flex flex-col gap-1.5 px-4", className)}
       {...props}
     />
   );
 }
 
-export function DrawerFooter({ className, ...props }: ComponentProps<"div">) {
+export function DrawerFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & DrawerKnobStyle }) {
   return (
     <div
       data-control-ui="drawer"
+      data-control-family="drawer"
       data-slot="footer"
-      className={cn("mt-auto flex flex-col gap-2 px-4", skinSlot("drawer", "footer", {}), className)}
+      className={cn("mt-auto flex flex-col gap-2 px-4", className)}
       {...props}
     />
   );
 }
 
-export function DrawerTitle({ className, ...props }: ComponentProps<typeof DrawerPrimitive.Title>) {
-  return (
-    <DrawerPrimitive.Title
-      data-control-ui="drawer"
-      data-slot="title"
-      className={cn("font-semibold text-foreground", skinSlot("drawer", "title", {}), className)}
-      {...props}
-    />
-  );
+export function DrawerTitle({
+  className,
+  ...props
+}: Omit<ComponentProps<typeof DrawerPrimitive.Title>, "style"> & {
+  style?: CSSProperties & DrawerKnobStyle;
+}) {
+  return <DrawerPrimitive.Title data-control-ui="drawer" data-control-family="drawer" data-slot="title" className={className} {...props} />;
 }
 
-export function DrawerDescription({ className, ...props }: ComponentProps<typeof DrawerPrimitive.Description>) {
+export function DrawerDescription({
+  className,
+  ...props
+}: Omit<ComponentProps<typeof DrawerPrimitive.Description>, "style"> & {
+  style?: CSSProperties & DrawerKnobStyle;
+}) {
   return (
     <DrawerPrimitive.Description
       data-control-ui="drawer"
+      data-control-family="drawer"
       data-slot="description"
-      className={cn("text-sm text-muted-foreground", skinSlot("drawer", "description", {}), className)}
+      className={className}
       {...props}
     />
   );

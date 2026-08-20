@@ -1,9 +1,9 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import { createContext, useContext } from "react";
+import type { MarkdownBlockKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { CodeCopy, type CodeCopyProps } from "@/components/control-ui/ui/code";
 import { Markdown } from "@/components/control-ui/ui/markdown";
 
@@ -15,8 +15,9 @@ function useMarkdownBlockContext() {
   return code;
 }
 
-export type MarkdownBlockProps = ComponentProps<"figure"> & {
+export type MarkdownBlockProps = Omit<ComponentProps<"figure">, "style"> & {
   code: string;
+  style?: CSSProperties & MarkdownBlockKnobStyle;
 };
 
 export function MarkdownBlock({ code, className, children, ...props }: MarkdownBlockProps) {
@@ -24,13 +25,10 @@ export function MarkdownBlock({ code, className, children, ...props }: MarkdownB
     <MarkdownBlockContext.Provider value={code}>
       <figure
         data-control-ui="markdown-block"
+        data-control-family="markdown-block"
         data-slot="root"
         data-surface="panel"
-        className={cn(
-          "my-4 overflow-hidden rounded-panel border bg-background shadow-sm",
-          skinSlot("markdown-block", "root", {}),
-          className,
-        )}
+        className={cn("my-4 overflow-hidden", className)}
         {...props}
       >
         {children}
@@ -39,34 +37,42 @@ export function MarkdownBlock({ code, className, children, ...props }: MarkdownB
   );
 }
 
-export type MarkdownBlockHeaderProps = ComponentProps<"figcaption">;
+export type MarkdownBlockHeaderProps = Omit<ComponentProps<"figcaption">, "style"> & {
+  style?: CSSProperties & MarkdownBlockKnobStyle;
+};
 
 export function MarkdownBlockHeader({ className, ...props }: MarkdownBlockHeaderProps) {
   return (
     <figcaption
       data-control-ui="markdown-block"
+      data-control-family="markdown-block"
       data-slot="header"
-      className={cn(
-        "sticky top-0 z-10 flex items-center justify-between gap-3 border-b px-4 py-2",
-        skinSlot("markdown-block", "header", {}),
-        className,
-      )}
+      className={cn("sticky top-0 z-10 flex items-center justify-between gap-3 px-4 py-2", className)}
       {...props}
     />
   );
 }
 
-export type MarkdownBlockTitleProps = ComponentProps<"div">;
+export type MarkdownBlockTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & MarkdownBlockKnobStyle;
+};
 
 export function MarkdownBlockTitle({ children = "Markdown", className, ...props }: MarkdownBlockTitleProps) {
   return (
     <div
       data-control-ui="markdown-block"
+      data-control-family="markdown-block"
       data-slot="title"
-      className={cn("flex min-w-0 items-center gap-2 text-sm font-medium", skinSlot("markdown-block", "title", {}), className)}
+      className={cn("flex min-w-0 items-center gap-2", className)}
       {...props}
     >
-      <span aria-hidden="true" className="flex size-5 items-center justify-center rounded-md bg-foreground/8 text-micro">
+      <span
+        aria-hidden="true"
+        data-control-ui="markdown-block"
+        data-control-family="markdown-block"
+        data-slot="title-icon"
+        className="flex size-5 items-center justify-center"
+      >
         MD
       </span>
       <span className="truncate">{children}</span>
@@ -82,7 +88,7 @@ export function MarkdownBlockCopy({ "aria-label": ariaLabel = "Copy markdown", .
   return <CodeCopy value={code} aria-label={ariaLabel} {...props} />;
 }
 
-export type MarkdownBlockContentProps = ComponentProps<"div">;
+export type MarkdownBlockContentProps = ComponentProps<"div"> & { style?: CSSProperties & MarkdownBlockKnobStyle };
 
 export function MarkdownBlockContent({ children, className, ...props }: MarkdownBlockContentProps) {
   const code = useMarkdownBlockContext();
@@ -90,12 +96,9 @@ export function MarkdownBlockContent({ children, className, ...props }: Markdown
   return (
     <div
       data-control-ui="markdown-block"
+      data-control-family="markdown-block"
       data-slot="content"
-      className={cn(
-        "max-h-[420px] overflow-auto mask-y-from-[calc(100%_-_var(--scroll-fade-size))] p-4",
-        skinSlot("markdown-block", "content", {}),
-        className,
-      )}
+      className={cn("max-h-[420px] overflow-auto mask-y-from-[calc(100%_-_var(--scroll-fade-size))] p-4", className)}
       {...props}
     >
       {children ?? <Markdown content={code} />}

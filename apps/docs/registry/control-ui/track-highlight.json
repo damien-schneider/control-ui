@@ -18,8 +18,16 @@
       "path": "src/registry/sources/control-ui/extensions/track-highlight.tsx",
       "target": "@components/control-ui/extensions/track-highlight.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/track-highlight.css",
+      "target": "@components/control-ui/styles/recipes/track-highlight.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/track-highlight.css\"": {}
+  },
   "meta": {
     "internal": true,
     "sourceManifestPath": "registry/control-ui/track-highlight.json"

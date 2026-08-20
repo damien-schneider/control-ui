@@ -13,8 +13,6 @@ import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import type { SidebarMode } from "@/app/(features)/sidebar/types";
 import { clampSidebarWidth, readStoredSidebarWidth, SIDEBAR_WIDTH_VAR } from "@/app/(features)/sidebar/width";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
-import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
@@ -90,7 +88,6 @@ export function DocsShell({ defaultSidebarOpen, ...props }: DocsShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(defaultSidebarOpen);
   const [lastSidebarMode, setLastSidebarMode] = useState<SidebarMode | null>(null);
 
-  // skinSlot reads mutable config — epoch remount refreshes compiler-memoized descendants
   return (
     <SkinEpochBoundary>
       {isHydrated ? (
@@ -239,10 +236,7 @@ function DocsShellContent({
           data-control-ui="sidebar-layout"
           data-slot="content"
           data-surface="panel"
-          className={cn(
-            "relative m-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:m-2",
-            skinSlot("sidebar-layout", "content", {}),
-          )}
+          className="relative m-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:m-2"
         >
           <div
             data-docs-sidebar-trigger=""

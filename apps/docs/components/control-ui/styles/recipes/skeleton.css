@@ -1,0 +1,29 @@
+@layer components {
+  :where([data-control-family="skeleton"][data-slot="root"]) {
+    --skeleton-radius: var(--radius-control);
+    --skeleton-background: var(--muted);
+    border-radius: var(--skeleton-radius);
+    background-color: var(--skeleton-background);
+    background-image: linear-gradient(
+      100deg,
+      transparent 30%,
+      oklch(from var(--foreground) l c h / 0.06) 50%,
+      transparent 70%
+    );
+    background-size: 220% 100%;
+    animation: shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
+  }
+
+}
+
+@property --skeleton-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --skeleton-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

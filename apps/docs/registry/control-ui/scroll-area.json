@@ -12,11 +12,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/scroll-area.css",
+      "target": "@components/control-ui/styles/recipes/scroll-area.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/scroll-area.tsx",
       "target": "@components/control-ui/ui/scroll-area.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/scroll-area.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/scroll-area.json"
   }

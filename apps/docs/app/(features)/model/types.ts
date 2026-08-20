@@ -59,6 +59,7 @@ export type SourceFile = {
   path: string;
   code: string;
   slot?: string;
+  shared?: boolean;
 };
 
 export type DocsRegistryDependency = {
@@ -82,6 +83,9 @@ export type CompositionExample = {
   code: string;
 };
 
+export type DocsKnob = { name: string; syntax: string; defaultValue: string };
+export type DocsKnobFamily = { id: string; knobs: DocsKnob[] };
+
 export type DocsPrimitive = {
   id: PrimitiveId;
   category: PrimitiveCategoryId;
@@ -99,6 +103,7 @@ export type DocsPrimitive = {
     composition?: CompositionExample[];
     registryKind: RegistryKindId;
     registryDependencies: DocsRegistryDependency[];
+    knobs: DocsKnobFamily[];
   };
 };
 
@@ -208,6 +213,7 @@ export type DocsComponent = {
   registryDependencies: DocsRegistryDependency[];
   registryKind: RegistryKindId;
   versions?: DocsComponentVersion[];
+  knobs: DocsKnobFamily[];
 };
 
 export type DocsBlock = {

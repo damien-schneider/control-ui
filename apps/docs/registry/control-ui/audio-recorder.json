@@ -27,8 +27,16 @@
       "path": "src/registry/sources/control-ui/audio-recorder.tsx",
       "target": "@components/control-ui/audio-recorder.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/audio-recorder.css",
+      "target": "@components/control-ui/styles/recipes/audio-recorder.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/audio-recorder.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/audio-recorder.json"
   }

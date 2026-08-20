@@ -1,0 +1,18 @@
+@layer components {
+  :where([data-control-family="action-bar"][data-slot="root"]) {
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="action-bar"][data-slot="root"]:is(:where(.group\/turn):hover *)) {
+      --_action-bar-root-opacity: 100%;
+      opacity: var(--_action-bar-root-opacity);
+    }
+  }
+
+  :where([data-control-family="action-bar"][data-slot="root"]:is(:where(.group\/turn):focus-within *)) {
+    --_action-bar-root-opacity: 100%;
+    opacity: var(--_action-bar-root-opacity);
+  }
+}

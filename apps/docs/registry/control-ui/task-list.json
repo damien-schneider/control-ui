@@ -13,11 +13,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/task-list.css",
+      "target": "@components/control-ui/styles/recipes/task-list.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/task-list.tsx",
       "target": "@components/control-ui/task-list.tsx",
       "type": "registry:component"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/task-list.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/task-list.json"
   }

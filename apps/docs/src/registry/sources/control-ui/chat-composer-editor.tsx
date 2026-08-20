@@ -5,10 +5,11 @@ import { history, redo, undo } from "prosemirror-history";
 import { keymap } from "prosemirror-keymap";
 import { EditorState, Plugin } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 
 import { useChatComposerContext } from "@/components/control-ui/chat-composer";
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/contracts";
+import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { MESSAGE_GHOST_INHERIT, spawnExitGhost } from "./chat-composer-editor/ghost";
 import { createEditorSchema } from "./chat-composer-editor/schema";
@@ -18,7 +19,11 @@ import type { ChatComposerEditorApi, ChatComposerEditorProps } from "./chat-comp
 const SUBMIT_KEY = "Enter";
 
 // doc is source of truth: it re-hydrates only on external value changes, never on its own keystrokes, which would fight caret.
-export function ChatComposerEditor({ className, placeholder, extensions = [] }: ChatComposerEditorProps) {
+export function ChatComposerEditor({
+  className,
+  placeholder,
+  extensions = [],
+}: ChatComposerEditorProps & { style?: CSSProperties & ChatComposerKnobStyle }) {
   const input = useChatComposerContext();
 
   const mountRef = useRef<HTMLDivElement>(null);
@@ -133,31 +138,40 @@ export function ChatComposerEditor({ className, placeholder, extensions = [] }: 
   }, [input.value]);
 
   return (
-    <div data-control-ui="chat-composer-editor" data-slot="root" className={cn("relative", className)}>
+    <div data-control-ui="chat-composer-editor" data-control-family="chat-composer" data-slot="root" className={cn("relative", className)}>
       {input.value === "" && placeholder ? (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-[var(--padding-x)] top-[var(--padding-y)] text-sm leading-6 text-muted-foreground"
+          data-control-ui="chat-composer-editor"
+          data-control-family="chat-composer"
+          data-slot="placeholder"
+          className="pointer-events-none absolute left-[var(--padding-x)] top-[var(--padding-y)]"
         >
           {placeholder}
         </div>
       ) : null}
       <div
         ref={mountRef}
+        data-control-ui="chat-composer-editor"
+        data-control-family="chat-composer"
+        data-slot="editor"
         className={cn(
-          "[&_.ProseMirror]:max-h-[40dvh] [&_.ProseMirror]:min-h-16 [&_.ProseMirror]:w-full [&_.ProseMirror]:overflow-y-auto [&_.ProseMirror]:whitespace-pre-wrap [&_.ProseMirror]:break-words [&_.ProseMirror]:px-[var(--padding-x)] [&_.ProseMirror]:py-[var(--padding-y)] [&_.ProseMirror]:text-sm [&_.ProseMirror]:leading-6 [&_.ProseMirror]:outline-none",
+          "[&_.ProseMirror]:max-h-[40dvh] [&_.ProseMirror]:min-h-16 [&_.ProseMirror]:w-full [&_.ProseMirror]:overflow-y-auto [&_.ProseMirror]:whitespace-pre-wrap [&_.ProseMirror]:break-words [&_.ProseMirror]:px-[var(--padding-x)] [&_.ProseMirror]:py-[var(--padding-y)]",
           mounted ? "" : "hidden",
         )}
       />
       {/* keeps field visible before editor mounts */}
       {mounted ? null : (
         <textarea
+          data-control-ui="chat-composer-editor"
+          data-control-family="chat-composer"
+          data-slot="fallback"
           aria-label="Message"
           defaultValue={input.value}
           readOnly
           rows={2}
           placeholder={placeholder}
-          className="min-h-16 w-full resize-none bg-transparent px-[var(--padding-x)] py-[var(--padding-y)] text-sm leading-6 outline-none placeholder:text-muted-foreground"
+          className="min-h-16 w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)]"
         />
       )}
       {mounted

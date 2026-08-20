@@ -13,10 +13,10 @@ import type {
   ComboboxProps,
   ComboboxTriggerProps,
 } from "@/components/control-ui/contracts";
-import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { emitComboboxValueChange } from "./combobox-disabled-selection";
 
 type DisabledComboboxValueRegistry = {
@@ -59,24 +59,15 @@ export function ComboboxTrigger({ className, children, ...props }: ComboboxTrigg
   return (
     <ComboboxPrimitive.Trigger
       data-control-ui="combobox"
+      data-control-family="field"
+      data-field-kind="combobox"
       data-slot="trigger"
       aria-label="Toggle suggestions"
-      className={cn(
-        "group inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-[var(--radius-control)] text-muted-foreground outline-none transition hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
-        skinSlot("combobox", "trigger", {}),
-        className,
-      )}
+      className={cn("group inline-flex size-6 shrink-0 cursor-pointer items-center justify-center disabled:cursor-not-allowed", className)}
       {...props}
     >
       {children ?? (
-        <ComboboxPrimitive.Icon
-          data-control-ui="combobox"
-          data-slot="icon"
-          className={cn(
-            "transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)] group-data-[popup-open]:rotate-180",
-            skinSlot("combobox", "icon", {}),
-          )}
-        >
+        <ComboboxPrimitive.Icon data-control-ui="combobox" data-control-family="field" data-field-kind="combobox" data-slot="icon">
           <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
             <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -90,21 +81,19 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
   return (
     <ComboboxPrimitive.InputGroup
       data-control-ui="combobox"
+      data-control-family="field"
+      data-field-kind="combobox"
       data-slot="root"
-      className={cn("relative flex w-full items-center", skinSlot("combobox", "root", {}))}
+      className="relative flex w-full items-center"
     >
       <ComboboxPrimitive.Input
         data-control-ui="combobox"
+        data-field-kind="combobox"
         data-slot="input"
         data-control="true"
+        data-control-family="field"
         data-size={size}
-        className={cn(
-          "w-full min-w-0 rounded-[var(--radius-control)] pr-9 font-medium outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
-          controlSurfaceClasses,
-          controlSize({ size }),
-          skinSlot("combobox", "input", { size }),
-          className,
-        )}
+        className={cn("w-full min-w-0 pr-9 disabled:cursor-not-allowed", controlSize({ size }), className)}
         {...props}
       />
       <ComboboxTrigger className="absolute right-1.5 top-1/2 -translate-y-1/2" />
@@ -117,25 +106,25 @@ export function ComboboxContent({ className, children, sideOffset = 6, ...props 
     <ComboboxPrimitive.Portal>
       {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <ComboboxPrimitive.Positioner
+        data-control-ui="combobox"
+        data-popup-kind="combobox"
+        data-control-family="popup"
+        data-slot="positioner"
         data-skin={skinId()}
         data-effects={skinEffects()}
         side="bottom"
         align="start"
         sideOffset={sideOffset}
-        className="z-[80] outline-none"
+        className="z-[80]"
       >
         <ComboboxPrimitive.Popup
           data-control-ui="combobox"
+          data-popup-kind="combobox"
+          data-control-family="popup"
           data-slot="content"
           data-surface="floating"
           data-popup-part="list-surface"
-          className={cn(
-            "w-[var(--anchor-width)] max-w-[var(--available-width)] origin-[var(--transform-origin)]",
-            floatingListContentClasses,
-            skinFamily("popup", "list-surface"),
-            skinSlot("combobox", "content", {}),
-            className,
-          )}
+          className={cn("w-[var(--anchor-width)] max-w-[var(--available-width)]", className)}
           {...props}
         >
           {children}
@@ -149,14 +138,11 @@ export function ComboboxList<Value = unknown>({ className, children, ...props }:
   return (
     <ComboboxPrimitive.List
       data-control-ui="combobox"
+      data-popup-kind="combobox"
       data-slot="list"
+      data-control-family="popup"
       data-popup-part="list-content"
-      className={cn(
-        "max-h-[min(18rem,var(--available-height))] overflow-y-auto overscroll-contain outline-none",
-        skinFamily("popup", "list-content"),
-        skinSlot("combobox", "list", {}),
-        className,
-      )}
+      className={cn("max-h-[min(18rem,var(--available-height))] overflow-y-auto overscroll-contain", className)}
       {...props}
     >
       {children}
@@ -168,12 +154,10 @@ export function ComboboxEmpty({ className, children, ...props }: ComboboxEmptyPr
   return (
     <ComboboxPrimitive.Empty
       data-control-ui="combobox"
+      data-control-family="field"
+      data-field-kind="combobox"
       data-slot="empty"
-      className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-6 text-center text-body text-muted-foreground empty:h-0 empty:overflow-hidden empty:p-0",
-        skinSlot("combobox", "empty", {}),
-        className,
-      )}
+      className={cn("px-[calc(var(--padding-x)*0.5)] py-6 empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}
     >
       {children}
@@ -189,22 +173,25 @@ export function ComboboxItem<Value = unknown>({ className, children, disabled, v
   return (
     <ComboboxPrimitive.Item
       data-control-ui="combobox"
+      data-popup-kind="combobox"
+      data-control-family="popup"
       data-slot="item"
       data-popup-part="item"
       data-disabled={disabled ? "true" : undefined}
       aria-disabled={disabled || undefined}
       disabled={disabled}
       value={value}
-      className={cn(
-        floatingListItemClasses,
-        skinFamily("popup", "item"),
-        skinSlot("combobox", "item", { disabled: Boolean(disabled) }),
-        className,
-      )}
+      className={cn(popupItemStructureClasses, className)}
       {...props}
     >
       <span className="flex min-w-0 flex-1 items-center gap-2 truncate">{children}</span>
-      <span className="flex size-3.5 shrink-0 items-center justify-center text-foreground">
+      <span
+        data-control-ui="combobox"
+        data-popup-kind="combobox"
+        data-control-family="popup"
+        data-slot="item-indicator"
+        className="flex size-3.5 shrink-0 items-center justify-center"
+      >
         <ComboboxPrimitive.ItemIndicator>
           <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
             <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -219,8 +206,10 @@ export function ComboboxGroup({ className, children, ...props }: ComboboxGroupPr
   return (
     <ComboboxPrimitive.Group
       data-control-ui="combobox"
+      data-control-family="field"
+      data-field-kind="combobox"
       data-slot="group"
-      className={cn("py-1", skinSlot("combobox", "group", {}), className)}
+      className={cn("py-1", className)}
       {...props}
     >
       {children}
@@ -232,14 +221,11 @@ export function ComboboxGroupLabel({ className, children, ...props }: ComboboxGr
   return (
     <ComboboxPrimitive.GroupLabel
       data-control-ui="combobox"
+      data-popup-kind="combobox"
       data-slot="group-label"
+      data-control-family="popup"
       data-popup-part="label"
-      className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-1 text-caption font-medium text-muted-foreground",
-        skinFamily("popup", "label"),
-        skinSlot("combobox", "group-label", {}),
-        className,
-      )}
+      className={cn("px-[calc(var(--padding-x)*0.5)] py-1", className)}
       {...props}
     >
       {children}

@@ -10,11 +10,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/kbd.css",
+      "target": "@components/control-ui/styles/recipes/kbd.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/kbd.tsx",
       "target": "@components/control-ui/ui/kbd.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/kbd.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/kbd.json"
   }

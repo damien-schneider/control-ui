@@ -1,7 +1,8 @@
-import type { ComponentProps, ElementType, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, ElementType, ReactNode } from "react";
 import { Activity, ActivityContent, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
+import { skinAdornment } from "@/components/control-ui/adornments";
+import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinAdornment, skinSlot } from "@/components/control-ui/skin";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 type ChatThoughtCollapsible = {
@@ -10,20 +11,18 @@ type ChatThoughtCollapsible = {
   Content: ElementType;
 };
 
-export type ChatLayoutProps = ComponentProps<"section">;
+export type ChatLayoutProps = Omit<ComponentProps<"section">, "style"> & {
+  style?: CSSProperties & ChatLayoutKnobStyle;
+};
 
 export function ChatLayout({ children, className, ...props }: ChatLayoutProps) {
   return (
     <section
       data-control-ui="chat-layout"
+      data-control-family="chat-layout"
       data-slot="root"
       data-surface="panel"
-      className={cn(
-        // border carries definition when flat skin collapses --shadow-size to 0
-        "relative mx-auto flex min-h-[640px] w-full max-w-3xl flex-col overflow-hidden rounded-scene border bg-background shadow-md",
-        skinSlot("chat-layout", "root", {}),
-        className,
-      )}
+      className={cn("relative mx-auto flex min-h-[640px] w-full max-w-3xl flex-col overflow-hidden", className)}
       {...props}
     >
       {skinAdornment("chat-layout", "titlebar", {})}
@@ -39,7 +38,7 @@ export function ChatThread({ children, className, ...props }: ChatThreadProps) {
     <div
       data-control-ui="chat-thread"
       data-slot="root"
-      className={cn("flex min-h-0 flex-1 flex-col gap-8 overflow-y-auto px-4 py-6 sm:px-8", skinSlot("chat-thread", "root", {}), className)}
+      className={cn("flex min-h-0 flex-1 flex-col gap-8 overflow-y-auto px-4 py-6 sm:px-8", className)}
       {...props}
     >
       {children}
@@ -65,10 +64,11 @@ export function ChatTurn({ from, children, className, ...props }: ChatTurnProps)
   );
 }
 
-export type ChatThoughtProps = ComponentProps<"div"> & {
+export type ChatThoughtProps = Omit<ComponentProps<"div">, "style"> & {
   details?: ReactNode;
   defaultOpen?: boolean;
   collapsible?: ChatThoughtCollapsible;
+  style?: CSSProperties & ChatLayoutKnobStyle;
 };
 
 export function ChatThought({
@@ -77,6 +77,7 @@ export function ChatThought({
   defaultOpen = false,
   collapsible,
   className,
+  style,
   ...props
 }: ChatThoughtProps) {
   if (collapsible) {
@@ -88,35 +89,35 @@ export function ChatThought({
       <Root
         defaultOpen={defaultOpen}
         data-control-ui="chat-thought"
+        data-control-family="chat-layout"
         data-slot="root"
-        className={cn("mb-2 self-start", skinSlot("chat-thought", "root", {}), className)}
+        className={cn("mb-2 self-start", className)}
+        style={style}
         {...props}
       >
         <Trigger
           type="button"
           data-control-ui="chat-thought"
+          data-control-family="chat-layout"
           data-slot="trigger"
-          className="inline-flex items-center gap-1 rounded-[var(--radius-control)] px-1.5 py-1 text-caption font-medium text-muted-foreground transition hover:bg-foreground/4 hover:text-foreground [&[data-state=open]>span:last-child]:rotate-90"
+          className="inline-flex items-center gap-1 px-1.5 py-1"
         >
           {children}
-          <span
-            aria-hidden="true"
-            className="text-sm leading-none transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)]"
-          >
+          <span aria-hidden="true" data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="chevron">
             ›
           </span>
         </Trigger>
         <Content>
           <ScrollArea
-            maxHeight="var(--activity-content-max-height, min(24rem, 50dvh))"
+            maxHeight="min(24rem, 50dvh)"
             lockAxis="x"
-            viewportProps={{ "data-control-ui": "activity", "data-slot": "content-viewport" }}
+            viewportProps={{
+              "data-control-ui": "activity",
+              "data-control-family": "activity",
+              "data-slot": "content-viewport",
+            }}
           >
-            <div
-              data-control-ui="chat-thought"
-              data-slot="details"
-              className={cn("min-w-0 px-1 pb-2 pt-1 text-caption leading-5 text-muted-foreground", skinSlot("chat-thought", "details", {}))}
-            >
+            <div data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="details" className="min-w-0 px-1 pb-2 pt-1">
               {skinAdornment("chat-thought", "details", {})}
               {details}
             </div>
@@ -131,22 +132,23 @@ export function ChatThought({
       state="success"
       defaultOpen={defaultOpen}
       data-control-ui="chat-thought"
+      data-control-family="chat-layout"
       data-slot="root"
-      className={cn("my-0 mb-2 self-start", skinSlot("chat-thought", "root", {}), className)}
+      className={cn("my-0 mb-2 self-start", className)}
+      style={style}
       {...props}
     >
       <ActivityTrigger
         data-control-ui="chat-thought"
+        data-control-family="chat-layout"
         data-slot="trigger"
-        className="min-h-0 w-fit gap-1 px-1.5 py-1 text-caption font-medium"
+        className="min-h-0 w-fit gap-1 px-1.5 py-1"
       >
-        <ActivityTitle className="text-caption font-medium">{children}</ActivityTitle>
+        <ActivityTitle data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="title">
+          {children}
+        </ActivityTitle>
       </ActivityTrigger>
-      <ActivityContent
-        data-control-ui="chat-thought"
-        data-slot="details"
-        className={cn("text-caption leading-5 text-muted-foreground", skinSlot("chat-thought", "details", {}))}
-      >
+      <ActivityContent data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="details">
         {skinAdornment("chat-thought", "details", {})}
         {details}
       </ActivityContent>

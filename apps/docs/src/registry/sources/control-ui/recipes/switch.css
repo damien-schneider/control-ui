@@ -1,0 +1,144 @@
+@layer components {
+  :where([data-control-family="switch"][data-slot="root"]) {
+    --switch-background: oklch(from var(--foreground) l c h / 0.14);
+    --switch-hover-background: oklch(from var(--foreground) l c h / 0.2);
+    --switch-checked-background: var(--primary);
+    --switch-checked-hover-background: oklch(from var(--primary) l c h / 0.9);
+    --switch-thumb-radius: 9999px;
+    --switch-thumb-background: var(--background);
+    border-radius: 9999px;
+    background: var(--switch-background);
+    outline: none;
+    transition: background-color var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"]:hover) {
+    background: var(--switch-hover-background);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"]:active) {
+    background: oklch(from var(--foreground) l c h / 0.25);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-checked]) {
+    background: var(--switch-checked-background);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-checked]:hover) {
+    background: var(--switch-checked-hover-background);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-checked]:active) {
+    background: oklch(from var(--primary) l c h / 0.8);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"]:focus-visible) {
+    box-shadow: 0 0 0 2px oklch(from var(--foreground) l c h / 0.3);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-disabled]) {
+    opacity: 0.5;
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-disabled]:hover) {
+    background: var(--switch-background);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-disabled][data-checked]:hover) {
+    background: var(--switch-checked-background);
+  }
+
+  :where([data-control-family="switch"][data-slot="thumb"]) {
+    border-radius: var(--switch-thumb-radius);
+    background: var(--switch-thumb-background);
+    box-shadow: var(--shadow-sm);
+    transition-property: translate, width;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-disabled] [data-slot="thumb"]) {
+    opacity: 0.8;
+  }
+
+  :where([data-control-family="switch"][data-slot="thumb-icon"]) {
+    color: oklch(from var(--foreground) l c h / 0.7);
+    transition-property: color, opacity;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-checked] [data-slot="thumb-icon"]:not([data-switch-icon="unchecked"])) {
+    color: var(--primary-text);
+  }
+
+  :where([data-control-family="switch"][data-slot="thumb-icon"][data-switch-icon="unchecked"]) {
+    color: oklch(from var(--foreground) l c h / 0.6);
+    opacity: 1;
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-checked] [data-switch-icon="unchecked"]) {
+    opacity: 0;
+  }
+
+  :where([data-control-family="switch"][data-slot="thumb-icon"][data-switch-icon="checked"]) {
+    color: var(--primary-text);
+    opacity: 0;
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-checked] [data-switch-icon="checked"]) {
+    opacity: 1;
+  }
+
+  :where([data-control-family="switch"][data-slot="root"]) {
+    border-radius: calc(infinity * 1px);
+    --_switch-root-outline: none;
+    outline-style: var(--_switch-root-outline);
+  }
+
+  :where([data-control-family="switch"][data-slot="thumb"][data-checked]) {
+    --_switch-thumb-translate: calc(var(--spacing) * 4) 0;
+    translate: var(--_switch-thumb-translate);
+  }
+
+  :where([data-control-family="switch"][data-slot="thumb"]:is(:where(.group\/switch):active *)[data-checked]) {
+    --_switch-thumb-translate: calc(var(--spacing) * 3) 0;
+    translate: var(--_switch-thumb-translate);
+  }
+}
+
+@property --switch-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --switch-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --switch-checked-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --switch-checked-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --switch-thumb-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --switch-thumb-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

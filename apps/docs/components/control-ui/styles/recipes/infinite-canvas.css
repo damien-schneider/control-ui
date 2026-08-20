@@ -1,0 +1,90 @@
+@layer components {
+  :where([data-control-family="infinite-canvas"][data-slot="root"]) {
+    --infinite-canvas-radius: var(--radius-panel);
+    --infinite-canvas-background: var(--canvas);
+    --infinite-canvas-grid-dot-color: oklch(from var(--foreground) l c h / 0.16);
+    --infinite-canvas-border-color: var(--border);
+    --infinite-canvas-controls-radius: var(--radius-control);
+    --infinite-canvas-controls-background: var(--card);
+    --infinite-canvas-controls-border-color: var(--border);
+    --infinite-canvas-controls-shadow: var(--shadow-sm);
+    border-radius: var(--infinite-canvas-radius);
+    background-color: var(--infinite-canvas-background);
+    background-image: radial-gradient(
+      circle at center,
+      var(--infinite-canvas-grid-dot-color) 1px,
+      transparent 1px
+    );
+    box-shadow: 0 0 0 1px var(--infinite-canvas-border-color);
+  }
+
+  :where([data-control-family="infinite-canvas"][data-slot="root"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--ring);
+  }
+
+  :where([data-control-family="infinite-canvas"][data-slot="controls"]) {
+    border-radius: var(--infinite-canvas-controls-radius);
+    background-color: var(--infinite-canvas-controls-background);
+    box-shadow:
+      var(--infinite-canvas-controls-shadow),
+      0 0 0 1px
+        var(--infinite-canvas-controls-border-color);
+  }
+
+  :where([data-control-family="infinite-canvas"][data-slot="root"]) {
+    --_infinite-canvas-root-outline: none;
+    outline-style: var(--_infinite-canvas-root-outline);
+  }
+
+  :where([data-control-family="infinite-canvas"][data-slot="content"]) {
+    --_infinite-canvas-content-transform-origin: 0 0;
+    transform-origin: var(--_infinite-canvas-content-transform-origin);
+  }
+}
+
+@property --infinite-canvas-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --infinite-canvas-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --infinite-canvas-grid-dot-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --infinite-canvas-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --infinite-canvas-controls-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --infinite-canvas-controls-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --infinite-canvas-controls-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --infinite-canvas-controls-shadow {
+  syntax: "*";
+  inherits: true;
+}

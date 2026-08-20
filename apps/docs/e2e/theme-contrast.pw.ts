@@ -7,6 +7,7 @@ import { BADGE_COLORS } from "../components/control-ui/contracts";
 const SKINS = ["refined", "xp", "flat", "rig", "liquid-metal", "modern-apple", "cuicui", "linear"];
 const MODES = ["light", "dark"] as const;
 const DOCS_ROOT = fileURLToPath(new URL("../", import.meta.url));
+const CORE_THEME = readFileSync(path.join(DOCS_ROOT, "src/registry/sources/control-ui/theme.css"), "utf8");
 const TAILWIND_PALETTE = readFileSync(path.join(DOCS_ROOT, "node_modules/tailwindcss/theme.css"), "utf8").replace(
   "@theme default",
   ":root",
@@ -17,7 +18,7 @@ const SKIN_THEMES = SKINS.map((skin) => readFileSync(path.join(DOCS_ROOT, "src/r
 
 test("semantic fills and badges clear WCAG AA across every skin and mode", async ({ page }) => {
   await page.setContent("<!doctype html><html><body></body></html>");
-  await page.addStyleTag({ content: `${TAILWIND_PALETTE}\n${SKIN_THEMES}` });
+  await page.addStyleTag({ content: `${TAILWIND_PALETTE}\n${CORE_THEME}\n${SKIN_THEMES}` });
   const violations: string[] = [];
 
   for (const skin of SKINS) {

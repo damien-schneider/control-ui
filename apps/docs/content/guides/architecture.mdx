@@ -14,11 +14,11 @@
 
 <GuideSection id="skins" title="Skins over one component tree">
   Every skin owns the same three files over one component source. Its `theme.css` explicitly resolves the complete token
-  contract for light and dark modes; it never inherits another skin's values. `skin.css` handles CSS that tokens and classes
-  cannot express, and `skin.config.tsx` supplies typed design-system choices, semantic families, exact slot overrides, and
-  optional adornments. Shared popup material, rows, labels, separators, and shortcuts resolve once through
-  `families.popup`; exact component slots remain only for genuine exceptions. Resolution order is component recipe, family,
-  exact slot, then caller `className`.
+  contract for light and dark modes; it never inherits another skin's values. Component recipes declare registered,
+  typed custom-property knobs for every visual decision. Scoped `skin.css` re-values those knobs and owns CSS-only work:
+  pseudo-elements, keyframes, native chrome, relational selectors, and uniform semantic families. `skin.config.tsx`
+  contains only typed design-system behavior choices and optional adornments. Resolution order is component recipe, skin
+  knob values, CSS-only skin rules, then caller `className`.
 
   <SkinFileStack />
   <SkinResolutionMap />
@@ -38,21 +38,19 @@
 ```
 
   The generated `skin-contract.json` is the equivalent of a `defineAnatomy` catalog, but it is built from the component
-  source instead of becoming a browser-side object. It lists scopes, parts, states, paints, adornments, semantic families,
-  and registry ownership in one agent-readable artifact. Item API responses separate `ownScopes` from `installedScopes`,
-  so an agent sees both the requested component and the anatomy brought by its dependency closure.
+  source instead of becoming a browser-side object. It lists scopes, parts, states, adornments, semantic families, and
+  registry ownership in one agent-readable artifact. Item API responses separate `ownScopes` from `installedScopes`, so
+  an agent sees both the requested component and the anatomy brought by its dependency closure.
 </GuideSection>
 
 <GuideSection id="skin-cost" title="Keep the active skin sparse">
-  `skin.config.tsx` is one shared ES module. Components do not reload or clone it: `skinFamily(family, part)` and
-  `skinSlot(scope, part, context)` each perform one optional property lookup against the active object. A large config does
-  remain in the active JavaScript bundle because dynamic lookup cannot tree-shake individual keys, so broad visual decisions
-  belong in tokens, semantic families, and scoped CSS. Keep exact slots for exceptions that need component context, paints
-  for exclusive render treatments, and adornments for optional structure. Edit the installed component directly when the
-  markup or behavior itself must change.
+  `skin.config.tsx` is one shared ES module containing only behavior choices and optional adornments. Component rendering
+  performs no runtime class lookup: recipes read registered custom properties directly from CSS. Visual breadth therefore
+  adds no active JavaScript, and unused component recipes remain outside an install unless the component manifest declares
+  them.
 
   Bundle tests cap every shipped config at 4 kB gzip. Refined and Flat remain nearly empty; richer packs pay only for their
-  one active config, not once per rendered component.
+  behavior and adornment config, not once per rendered component.
 </GuideSection>
 
 <GuideSection id="customization-ladder" title="Choose the smallest customization surface">
@@ -64,7 +62,7 @@
   <GuidePoints>
     <GuidePoint>Change a token when the contract already names the value.</GuidePoint>
     <GuidePoint>Use a prop when alternatives coexist at different call sites; use a skin-level choice when one decision applies across the design system.</GuidePoint>
-    <GuidePoint>Use slots, skin CSS, utilities, or an optional extension only when the shallower surfaces cannot express the result.</GuidePoint>
+    <GuidePoint>Use component knobs, scoped skin CSS, utilities, or an optional extension only when the shallower surfaces cannot express the result.</GuidePoint>
     <GuidePoint>Edit the installed component source when the anatomy itself must change.</GuidePoint>
   </GuidePoints>
 </GuideSection>
@@ -76,8 +74,7 @@
 
   <RegistryPipeline />
 
-  The current anatomy contract is version 5. It adds generated popup-family membership through `data-popup-part`, so a skin
-  can style one semantic popup concept without enumerating DropdownMenu, Select, ContextMenu, Menubar, Combobox,
-  Autocomplete, Popover, HoverCard, and TriggerMenu slots. This pre-release registry uses clean contract cutovers: reinstall
-  core, affected components or blocks, and the selected skin together.
+  The current anatomy contract is version 6. It removes runtime class and paint maps: component visuals now flow through
+  registered CSS knob contracts, while skin config retains only behavior and adornments. This pre-release registry uses a
+  clean contract cutover: reinstall core, affected components or blocks, and the selected skin together.
 </GuideSection>

@@ -28,8 +28,16 @@
       "path": "src/registry/sources/control-ui/environment-variables.tsx",
       "target": "@components/control-ui/environment-variables.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/environment-variables.css",
+      "target": "@components/control-ui/styles/recipes/environment-variables.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/environment-variables.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/environment-variables.json"
   }

@@ -42,11 +42,13 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
           </>
         ),
       }}
+      knobs={primitive.registry.knobs}
       dependencies={
         supportFiles.length > 0
           ? {
               files: supportFiles,
-              description: "Private support files installed with this primitive. Public dependencies stay linked to their own pages.",
+              description:
+                "Support files installed with this primitive — shared ones arrive once with your first Control UI component. Public dependencies stay linked to their own pages.",
             }
           : undefined
       }
@@ -54,7 +56,7 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
       source={{
         files: [primitive.registry.source, ...supportFiles],
         title: "Raw code",
-        description: "This primitive's owned source and private support files",
+        description: "This primitive's source, plus the shared foundation it rides on",
       }}
     >
       <AvailableExtensions hostId={primitive.id} extensions={extensions} />

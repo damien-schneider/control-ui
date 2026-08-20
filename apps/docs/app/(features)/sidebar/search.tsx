@@ -8,8 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { SearchItem } from "@/app/(features)/model/types";
 import { matchSearchItems, scoreCommandSearchItem } from "@/app/(features)/registry-api/search";
-import { cn } from "@/components/control-ui/lib/cn";
-import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@/components/control-ui/ui/command";
 import { ToolbarButton, ToolbarInput } from "@/components/control-ui/ui/toolbar";
@@ -81,7 +79,7 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
     >
       <div
         data-docs-sidebar-search=""
-        className="group/search relative flex w-[var(--control-h-sm)] min-w-0 shrink-0 items-center rounded-[var(--toolbar-item-radius-fit)] text-background/70 outline-hidden transition-[width,background-color,color] duration-[var(--duration-base)] ease-[var(--ease-standard)] focus-within:w-[calc(min(34rem,calc(100vw-1rem))_-_2_*_var(--toolbar-padding,0.25rem)_-_2px)] focus-within:bg-background/10 focus-within:text-background hover:bg-background/10 hover:text-background"
+        className="group/search relative flex w-[var(--control-h-sm)] min-w-0 shrink-0 items-center rounded-[min(var(--radius-sm),calc(var(--control-h-sm)/2))] text-background/70 outline-hidden transition-[width,background-color,color] duration-[var(--duration-base)] ease-[var(--ease-standard)] focus-within:w-[calc(min(34rem,calc(100vw-1rem))_-_2_*_var(--floating-toolbar-padding)_-_2px)] focus-within:bg-background/10 focus-within:text-background hover:bg-background/10 hover:text-background"
       >
         <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] flex w-[var(--control-h-sm)] items-center justify-center">
           <HugeiconsIcon icon={Search01Icon} size={15} strokeWidth={1.7} />
@@ -111,13 +109,10 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
         </ToolbarButton>
 
         <div
+          data-control-family="popup"
           data-surface="floating"
-          className={cn(
-            // Results open away from edge toolbar is docked to: upward below lg, downward from lg.
-            // entry offset rides var rather than a `lg:` translate utility — open state then wins by variant count alone, at every breakpoint.
-            "pointer-events-none invisible absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-[min(22rem,calc(100vw-1rem))] -translate-x-1/2 translate-y-(--search-results-offset) overflow-hidden border-0 p-0 opacity-0 transition-[opacity,transform,visibility] duration-[var(--duration-fast)] ease-[var(--ease-standard)] [--search-results-offset:0.25rem] group-focus-within/search:pointer-events-auto group-focus-within/search:visible group-focus-within/search:translate-y-0 group-focus-within/search:opacity-100 lg:top-[calc(100%+0.75rem)] lg:bottom-auto lg:[--search-results-offset:-0.25rem]",
-            floatingSurfaceClasses,
-          )}
+          data-popup-part="list-surface"
+          className="pointer-events-none invisible absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-[min(22rem,calc(100vw-1rem))] -translate-x-1/2 translate-y-(--search-results-offset) overflow-hidden border-0 p-0 opacity-0 transition-[opacity,transform,visibility] duration-[var(--duration-fast)] ease-[var(--ease-standard)] [--search-results-offset:0.25rem] group-focus-within/search:pointer-events-auto group-focus-within/search:visible group-focus-within/search:translate-y-0 group-focus-within/search:opacity-100 lg:top-[calc(100%+0.75rem)] lg:bottom-auto lg:[--search-results-offset:-0.25rem]"
         >
           <CommandList key={query.trim() || "browse"}>
             <CommandEmpty>No results found.</CommandEmpty>

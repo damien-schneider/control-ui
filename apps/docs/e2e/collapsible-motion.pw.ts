@@ -51,7 +51,7 @@ test("streaming paint owns only message text", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/ai/chat-message");
 
-  const messageContent = page.locator('[data-control-ui="chat-message"][data-slot="content"].shimmer-text');
+  const messageContent = page.locator('[data-control-ui="chat-message"][data-slot="content"][data-streaming]');
   const toolActivity = page.locator('[data-control-ui="activity"][data-slot="root"][data-activity-kind="tool"]');
   const trigger = toolActivity.locator('[data-control-ui="activity"][data-slot="trigger"]');
 

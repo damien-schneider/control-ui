@@ -2,12 +2,11 @@ import type { CSSProperties } from "react";
 
 import type { AudioVisualizerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // Bars reading. audio-visualizer-line.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.
 // Runtime-agnostic — feed it any rolling 0..1 window.
 
-type AudioVisualizerLevelStyle = CSSProperties & Record<"--audio-visualizer-inset", string>;
+type AudioVisualizerLevelStyle = CSSProperties & Record<"--_audio-visualizer-level-opacity", string>;
 
 const DEFAULT_POINTS = 28;
 const MAX_POINTS = 128;
@@ -22,48 +21,49 @@ function resolveAudioVisualizerLevels(levels: readonly number[], points?: number
   return padded.map((level, position) => ({ key: `bar-${position}`, level }));
 }
 
-export function AudioVisualizer({ levels, points, active = true, className, ...props }: AudioVisualizerProps) {
+export function AudioVisualizer({ levels, points, active = true, className, style, ...props }: AudioVisualizerProps) {
   const visible = resolveAudioVisualizerLevels(levels, points);
 
   return (
     <div
       data-control-ui="audio-visualizer"
+      data-control-family="audio-visualizer"
       data-slot="root"
       data-variant="bars"
       data-active={active ? "true" : undefined}
       aria-hidden="true"
-      className={cn(
-        "h-7 w-44 shrink-0 overflow-hidden rounded-[var(--radius-control)] px-1.5 py-1.5",
-        skinSlot("audio-visualizer", "root", { variant: "bars" }),
-        className,
-      )}
+      className={cn("h-7 w-44 shrink-0 overflow-hidden px-1.5 py-1.5", className)}
+      style={style}
       {...props}
     >
       <span
         data-control-ui="audio-visualizer"
+        data-control-family="audio-visualizer"
         data-slot="track"
         data-active={active ? "true" : undefined}
-        className="flex size-full items-stretch justify-end gap-px opacity-55 mask-l-from-90% transition-opacity duration-[var(--duration-base)] ease-[var(--ease-standard)] data-[active=true]:opacity-100"
+        className="flex size-full items-stretch justify-end gap-px mask-l-from-90%"
       >
         {visible.map(({ key, level }) => {
           const perceptualLevel = Math.sqrt(level);
           const visibleLevel = MIN_VISIBLE_LEVEL + perceptualLevel * (1 - MIN_VISIBLE_LEVEL);
           const levelStyle: AudioVisualizerLevelStyle = {
-            "--audio-visualizer-inset": `${(1 - visibleLevel) * 50}%`,
-            opacity: 0.48 + perceptualLevel * 0.52,
+            "--_audio-visualizer-level-opacity": `${0.48 + perceptualLevel * 0.52}`,
+            clipPath: `inset(${(1 - visibleLevel) * 50}% 0 round var(--radius-control))`,
           };
 
           return (
             <span
               key={key}
               data-control-ui="audio-visualizer"
+              data-control-family="audio-visualizer"
               data-slot="bar-track"
-              className="flex w-1 shrink-0 translate-x-0 items-center opacity-100 blur-none transition-[opacity,filter,translate] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] starting:translate-x-1 starting:opacity-0 starting:blur-xs"
+              className="flex w-1 shrink-0 items-center"
             >
               <span
                 data-control-ui="audio-visualizer"
+                data-control-family="audio-visualizer"
                 data-slot="bar"
-                className="block h-full w-full rounded-[var(--radius-control)] bg-primary/80 [clip-path:inset(var(--audio-visualizer-inset)_0_round_var(--radius-control))] transition-[clip-path,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)]"
+                className="block h-full w-full"
                 style={levelStyle}
               />
             </span>

@@ -1,0 +1,97 @@
+@layer components {
+  :where([data-control-family="empty"][data-slot="root"]) {
+    --empty-radius: var(--radius-lg);
+    --empty-background: transparent;
+    --empty-border-color: transparent;
+    --empty-border-width: 0px;
+    --empty-border-style: solid;
+    --empty-media-radius: var(--radius-lg);
+    --empty-media-background: var(--muted);
+    border: var(--empty-border-width) var(--empty-border-style)
+      var(--empty-border-color);
+    border-radius: var(--empty-radius);
+    background: var(--empty-background);
+    box-shadow: none;
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="empty"][data-slot="media"]) {
+    border-radius: var(--empty-media-radius);
+    background: var(--empty-media-background);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="empty"][data-slot="content"]) {
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    --_empty-content-text-wrap: balance;
+    text-wrap: var(--_empty-content-text-wrap);
+  }
+
+  :where([data-control-family="empty"][data-slot="description"]) {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="empty"][data-slot="title"]) {
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    font-weight: var(--font-weight-medium);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="empty"][data-slot="header"]) {
+    --_empty-header-text-align: center;
+    text-align: var(--_empty-header-text-align);
+  }
+
+  :where([data-control-family="empty"][data-slot="root"]) {
+    --_empty-root-text-align: center;
+    text-align: var(--_empty-root-text-align);
+    --_empty-root-text-wrap: balance;
+    text-wrap: var(--_empty-root-text-wrap);
+  }
+}
+
+@property --empty-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --empty-background {
+  syntax: "*";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --empty-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --empty-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --empty-border-style {
+  syntax: "*";
+  inherits: true;
+  initial-value: solid;
+}
+
+@property --empty-media-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --empty-media-background {
+  syntax: "*";
+  inherits: true;
+  initial-value: transparent;
+}

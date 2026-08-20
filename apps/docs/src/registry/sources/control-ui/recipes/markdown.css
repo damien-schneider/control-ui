@@ -1,0 +1,163 @@
+@layer components {
+  :where([data-control-family="markdown"][data-slot="root"]) {
+    --markdown-foreground: oklch(from var(--foreground) l c h / 0.9);
+    --markdown-blockquote-border-color: var(--border);
+    --markdown-blockquote-foreground: var(--muted-foreground);
+    --markdown-inline-code-background: color-mix(in oklab, var(--foreground) 8%, transparent);
+    --markdown-inline-code-foreground: var(--foreground);
+    --markdown-inline-code-radius: 0.25rem;
+    --markdown-link-foreground: var(--primary-text);
+    --markdown-table-cell-border-color: var(--border);
+    --markdown-table-header-background: var(--muted);
+    color: var(--markdown-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="markdown"][data-slot="table-cell"]) {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--markdown-table-cell-border-color);
+  }
+
+  :where([data-control-family="markdown"][data-slot="table-header"]) {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--border);
+    background-color: var(--markdown-table-header-background);
+    --_markdown-table-header-text-align: left;
+    text-align: var(--_markdown-table-header-text-align);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  :where([data-control-family="markdown"][data-slot="table"]) {
+    border-collapse: collapse;
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="markdown"][data-slot="emphasis"]) {
+    font-style: italic;
+  }
+
+  :where([data-control-family="markdown"][data-slot="strong"]) {
+    font-weight: var(--font-weight-semibold);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="markdown"][data-slot="separator"]) {
+    border-color: var(--border);
+  }
+
+  :where([data-control-family="markdown"][data-slot="blockquote"]) {
+    border-color: var(--markdown-blockquote-border-color);
+    border-left-style: solid;
+    border-left-width: 2px;
+    color: var(--markdown-blockquote-foreground);
+    font-style: italic;
+  }
+
+  :where([data-control-family="markdown"][data-slot="link"]) {
+    font-weight: var(--font-weight-medium);
+    color: var(--markdown-link-foreground);
+    --_markdown-link-decoration: underline;
+    text-decoration-line: var(--_markdown-link-decoration);
+    text-underline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="markdown"][data-slot="link"]:hover) {
+      --_markdown-link-decoration: none;
+      text-decoration-line: var(--_markdown-link-decoration);
+    }
+  }
+
+  :where([data-control-family="markdown"][data-slot="list-item"]) {
+    line-height: calc(var(--spacing) * 7);
+  }
+
+  :where([data-control-family="markdown"][data-slot="paragraph"]) {
+    line-height: calc(var(--spacing) * 7);
+  }
+
+  :where([data-control-family="markdown"][data-slot="h3"]) {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="markdown"][data-slot="h2"]) {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="markdown"][data-slot="h1"]) {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="markdown"][data-slot="inline-code"]) {
+    border-radius: var(--markdown-inline-code-radius);
+    background-color: var(--markdown-inline-code-background);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--markdown-inline-code-foreground);
+  }
+}
+
+@property --markdown-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-blockquote-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-blockquote-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-inline-code-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-inline-code-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-inline-code-radius {
+  syntax: "<length-percentage>+";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --markdown-link-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-table-cell-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --markdown-table-header-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

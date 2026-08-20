@@ -123,18 +123,11 @@ describe("buildOverrideSheetCss — the portal fix: scope the diff to the ACTIVE
   });
 });
 
-// Controls only matter if components still READ these tokens; guards against silent regression to hardcoded backdrop (e.g. bg-black/50) ignoring --overlay-*.
 describe("component contract: portalled surfaces still consume the overlay/popover tokens", () => {
   const read = (rel: string) => readFileSync(fileURLToPath(new URL(rel, import.meta.url)), "utf8");
 
-  test("dialog backdrop reads --overlay-opacity + --backdrop-blur-overlay", () => {
-    const src = read("../control-ui/ui/dialog.tsx");
-    expect(src).toContain("var(--overlay-opacity)");
-    expect(src).toContain("var(--backdrop-blur-overlay)");
-  });
-
-  test("sheet backdrop reads --overlay-opacity + --backdrop-blur-overlay", () => {
-    const src = read("../control-ui/ui/sheet.tsx");
+  test("the shared modal backdrop recipe reads --overlay-opacity + --backdrop-blur-overlay", () => {
+    const src = read("../control-ui/styles/recipes/popup.css");
     expect(src).toContain("var(--overlay-opacity)");
     expect(src).toContain("var(--backdrop-blur-overlay)");
   });
@@ -145,7 +138,6 @@ describe("component contract: portalled surfaces still consume the overlay/popov
   });
 
   test("portalled surfaces re-assert data-skin (so they need the scoped override sheet)", () => {
-    // Reason buildOverrideSheetCss exists: without re-assertion they'd inherit inline <html> override and sheet would be redundant.
     expect(read("../control-ui/ui/dialog.tsx")).toContain("data-skin={skinId()}");
   });
 });

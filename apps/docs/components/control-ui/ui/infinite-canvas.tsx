@@ -12,7 +12,6 @@ import type {
   InfiniteCanvasTransform,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
 const DEFAULT_TRANSFORM: InfiniteCanvasTransform = { x: 0, y: 0, scale: 1 };
@@ -220,6 +219,11 @@ export function InfiniteCanvas({
   }
 
   const context: InfiniteCanvasContextValue = { transform, minScale, maxScale, reset, zoomBy };
+  const canvasStyle = {
+    ...style,
+    backgroundPosition: `${transform.x}px ${transform.y}px`,
+    backgroundSize: `${GRID_SIZE * transform.scale}px ${GRID_SIZE * transform.scale}px`,
+  };
 
   return (
     <InfiniteCanvasContext.Provider value={context}>
@@ -227,22 +231,15 @@ export function InfiniteCanvas({
         ref={rootRef}
         {...props}
         data-control-ui="infinite-canvas"
+        data-control-family="infinite-canvas"
         data-slot="root"
         data-panning={panning || undefined}
         aria-label={ariaLabel}
         role="application"
         aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown + - 0"
         tabIndex={0}
-        className={cn(
-          "relative isolate overflow-hidden overscroll-contain rounded-[var(--radius-panel)] bg-canvas bg-radial-[circle_at_center,oklch(from_var(--foreground)_l_c_h/0.16)_1px,transparent_1px] outline-none ring-1 ring-border touch-none select-none focus-visible:ring-2 focus-visible:ring-ring data-panning:cursor-grabbing",
-          skinSlot("infinite-canvas", "root", { panning }),
-          className,
-        )}
-        style={{
-          ...style,
-          backgroundPosition: `${transform.x}px ${transform.y}px`,
-          backgroundSize: `${GRID_SIZE * transform.scale}px ${GRID_SIZE * transform.scale}px`,
-        }}
+        className={cn("relative isolate overflow-hidden overscroll-contain touch-none select-none data-panning:cursor-grabbing", className)}
+        style={canvasStyle}
         onPointerDown={beginPan}
         onPointerMove={updatePan}
         onPointerUp={endPan}
@@ -261,11 +258,11 @@ export function InfiniteCanvasContent({ className, style, ...props }: InfiniteCa
     <div
       {...props}
       data-control-ui="infinite-canvas"
+      data-control-family="infinite-canvas"
       data-slot="content"
       data-scale={transform.scale}
       className={cn(
-        "pointer-events-none absolute top-0 left-0 h-0 w-0 transform-gpu [transform-origin:0_0] will-change-transform [&>*]:pointer-events-auto",
-        skinSlot("infinite-canvas", "content", { scale: transform.scale }),
+        "pointer-events-none absolute top-0 left-0 h-0 w-0 transform-gpu will-change-transform [&>*]:pointer-events-auto",
         className,
       )}
       style={{
@@ -281,14 +278,11 @@ export function InfiniteCanvasControls({ className, ...props }: InfiniteCanvasCo
   const percentage = Math.round(canvas.transform.scale * 100);
   return (
     <div
-      {...props}
       data-control-ui="infinite-canvas"
+      data-control-family="infinite-canvas"
       data-slot="controls"
-      className={cn(
-        "absolute right-3 bottom-3 z-40 flex items-center gap-0.5 rounded-[var(--radius-control)] bg-card p-1 shadow-sm ring-1 ring-border",
-        skinSlot("infinite-canvas", "controls", {}),
-        className,
-      )}
+      className={cn("absolute right-3 bottom-3 z-40 flex items-center gap-0.5 p-1", className)}
+      {...props}
     >
       <Button
         type="button"

@@ -6,7 +6,6 @@ import { Streamdown } from "streamdown";
 
 import type { MarkdownProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { markdownComponents } from "@/components/control-ui/ui/markdown-elements";
 
 // Chrome-less on purpose so it drops straight into chat message; MarkdownBlock composes it for headered, copyable block.
@@ -17,12 +16,9 @@ export function Markdown({ content, className, ...props }: MarkdownProps) {
   return (
     <div
       data-control-ui="markdown"
+      data-control-family="markdown"
       data-slot="root"
-      className={cn(
-        "text-label text-foreground/90 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
-        skinSlot("markdown", "root", {}),
-        className,
-      )}
+      className={cn("[&>*:first-child]:mt-0 [&>*:last-child]:mb-0", className)}
       {...props}
     >
       <Streamdown

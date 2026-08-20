@@ -14,11 +14,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/tree.css",
+      "target": "@components/control-ui/styles/recipes/tree.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/tree.tsx",
       "target": "@components/control-ui/ui/tree.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/tree.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/tree.json"
   }

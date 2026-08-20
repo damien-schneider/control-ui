@@ -410,7 +410,7 @@
         "id": "skin-authoring",
         "name": "Skin authoring",
         "kind": "Skill",
-        "summary": "Author a skin as three files with strict roles — theme.css owns the complete token contract, skin.config restyles slots and declares DS choices, skin.css says only what classes cannot.",
+        "summary": "Author a skin as three files with strict roles — theme.css owns shared tokens, skin.css re-values registered component knobs, and skin.config declares behavior and adornments.",
         "href": "/skills/skin-authoring"
       },
       {

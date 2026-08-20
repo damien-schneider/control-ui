@@ -11,8 +11,8 @@ import type {
   TriggerMenuProps,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 // Controlled by headless engine and anchored to virtual caret rect, with no trigger button of its own.
 // initialFocus/finalFocus={false} keep focus in editor, so arrows and Enter keep flowing to caret while menu is up.
@@ -32,28 +32,28 @@ export function TriggerMenu({
       <PopoverPrimitive.Portal>
         {/* portal escapes both token scope and ChatLayout's overflow clip, so scope is re-asserted here */}
         <PopoverPrimitive.Positioner
+          data-control-ui="trigger-menu"
+          data-popup-kind="trigger-menu"
+          data-control-family="popup"
+          data-slot="positioner"
           data-skin={skinId()}
           data-effects={skinEffects()}
           anchor={anchorRect === null ? undefined : () => ({ getBoundingClientRect: () => anchorRect })}
           side={side}
           align={align}
           sideOffset={sideOffset}
-          className="z-[80] outline-none"
+          className="z-[80]"
         >
           <PopoverPrimitive.Popup
             data-control-ui="trigger-menu"
+            data-popup-kind="trigger-menu"
+            data-control-family="popup"
             data-slot="root"
             data-surface="floating"
             data-popup-part="list-surface"
             initialFocus={false}
             finalFocus={false}
-            className={cn(
-              "max-h-[min(18rem,var(--available-height))] w-64 max-w-[var(--available-width)] overflow-y-auto",
-              floatingListContentClasses,
-              skinFamily("popup", "list-surface"),
-              skinSlot("trigger-menu", "root", {}),
-              className,
-            )}
+            className={cn("max-h-[min(18rem,var(--available-height))] w-64 max-w-[var(--available-width)] overflow-y-auto", className)}
           >
             {children}
           </PopoverPrimitive.Popup>
@@ -67,10 +67,12 @@ export function TriggerMenuList({ className, ...props }: TriggerMenuListProps) {
   return (
     <div
       data-control-ui="trigger-menu"
+      data-popup-kind="trigger-menu"
       data-slot="list"
+      data-control-family="popup"
       data-popup-part="list-content"
       role="listbox"
-      className={cn("flex flex-col gap-0.5", skinFamily("popup", "list-content"), skinSlot("trigger-menu", "list", {}), className)}
+      className={cn("flex flex-col gap-0.5", className)}
       {...props}
     />
   );
@@ -80,6 +82,8 @@ export function TriggerMenuItem({ className, active = false, disabled = false, o
   return (
     <div
       data-control-ui="trigger-menu"
+      data-popup-kind="trigger-menu"
+      data-control-family="popup"
       data-slot="item"
       data-popup-part="item"
       role="option"
@@ -92,14 +96,10 @@ export function TriggerMenuItem({ className, active = false, disabled = false, o
       // keeps focus in editor on click, so insertion still targets caret
       onMouseDown={(event) => {
         event.preventDefault();
+        if (disabled) return;
         onMouseDown?.(event);
       }}
-      className={cn(
-        floatingListItemClasses,
-        skinFamily("popup", "item"),
-        skinSlot("trigger-menu", "item", { highlighted: active, disabled }),
-        className,
-      )}
+      className={cn(popupItemStructureClasses, className)}
       {...props}
     />
   );
@@ -109,12 +109,10 @@ export function TriggerMenuIcon({ className, ...props }: TriggerMenuIconProps) {
   return (
     <span
       data-control-ui="trigger-menu"
+      data-control-family="popup"
+      data-popup-kind="trigger-menu"
       data-slot="icon"
-      className={cn(
-        "flex size-5 shrink-0 items-center justify-center text-muted-foreground [&_svg]:size-4",
-        skinSlot("trigger-menu", "icon", {}),
-        className,
-      )}
+      className={cn("flex size-5 shrink-0 items-center justify-center [&_svg]:size-4", className)}
       {...props}
     />
   );
@@ -124,12 +122,10 @@ export function TriggerMenuEmpty({ className, ...props }: TriggerMenuEmptyProps)
   return (
     <div
       data-control-ui="trigger-menu"
+      data-control-family="popup"
+      data-popup-kind="trigger-menu"
       data-slot="empty"
-      className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-2 text-body text-muted-foreground",
-        skinSlot("trigger-menu", "empty", {}),
-        className,
-      )}
+      className={cn("px-[calc(var(--padding-x)*0.5)] py-2", className)}
       {...props}
     />
   );
@@ -139,8 +135,10 @@ export function TriggerMenuGroup({ className, ...props }: TriggerMenuGroupProps)
   return (
     <div
       data-control-ui="trigger-menu"
+      data-control-family="popup"
+      data-popup-kind="trigger-menu"
       data-slot="group"
-      className={cn("flex flex-col gap-0.5", skinSlot("trigger-menu", "group", {}), className)}
+      className={cn("flex flex-col gap-0.5", className)}
       {...props}
     />
   );
@@ -150,14 +148,11 @@ export function TriggerMenuGroupLabel({ className, ...props }: TriggerMenuGroupL
   return (
     <div
       data-control-ui="trigger-menu"
+      data-popup-kind="trigger-menu"
       data-slot="group-label"
+      data-control-family="popup"
       data-popup-part="label"
-      className={cn(
-        "px-[calc(var(--padding-x)*0.5)] pb-0.5 pt-1 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground",
-        skinFamily("popup", "label"),
-        skinSlot("trigger-menu", "group-label", {}),
-        className,
-      )}
+      className={cn("px-[calc(var(--padding-x)*0.5)] pb-0.5 pt-1 uppercase", className)}
       {...props}
     />
   );

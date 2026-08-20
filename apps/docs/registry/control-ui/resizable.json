@@ -5,7 +5,6 @@
   "title": "Resizable",
   "description": "Accessible resizable panel groups and split layouts with keyboard support.",
   "dependencies": [
-    "class-variance-authority@^0.7.1",
     "react-resizable-panels@^4.12.2"
   ],
   "registryDependencies": [
@@ -13,11 +12,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/resizable.css",
+      "target": "@components/control-ui/styles/recipes/resizable.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/resizable.tsx",
       "target": "@components/control-ui/ui/resizable.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/resizable.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/resizable.json"
   }

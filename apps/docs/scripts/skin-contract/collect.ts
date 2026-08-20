@@ -382,7 +382,7 @@ export function collectSkinContract(): SkinContract {
   const ownership = sourceOwners();
   const aliases = typeAliases();
   const emittedStates = emittedStateTypes(aliases);
-  const popupParts = new Set(stateShapeFromType("SkinPopupPart", aliases).values);
+  const popupParts = new Set(stateShapeFromType("PopupPart", aliases).values);
   const registryItemMapping = new Map<string, Set<string>>();
   const files = [
     ...filesUnder(path.join(registryRoot, "sources", "control-ui")),
@@ -461,22 +461,6 @@ export function collectSkinContract(): SkinContract {
     });
   }
 
-  const slotContexts = nestedContextType("SkinSlotContexts");
-  for (const [scope, scopeParts] of Object.entries(slotContexts)) {
-    for (const [part, context] of Object.entries(scopeParts)) {
-      const key = `${scope}:${part}`;
-      const current = parts.get(key) ?? {
-        states: [],
-        controls: false,
-        registryItems: new Set(),
-        surfaces: new Set(),
-        popupParts: new Set(),
-      };
-      current.context = context;
-      parts.set(key, current);
-    }
-  }
-
   const unusedEmittedStates = new Set(emittedStates.keys());
   const undeclaredOpenStates: string[] = [];
   for (const [partKey, part] of parts) {
@@ -539,11 +523,10 @@ export function collectSkinContract(): SkinContract {
     );
 
   return {
-    version: 5,
+    version: 6,
     selectorPattern: '[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])',
     registryItemMapping: sortRecord(Object.fromEntries([...registryItemMapping].map(([scope, items]) => [scope, [...items].sort()]))),
     scopes: sortRecord(scopes),
-    paints: contextHooks("SkinPaintContexts"),
     adornments: contextHooks("SkinAdornmentContexts"),
     semanticFamilies: {
       popup: sortRecord(Object.fromEntries(Object.entries(popup).map(([part, references]) => [part, sortReferences(references)]))),

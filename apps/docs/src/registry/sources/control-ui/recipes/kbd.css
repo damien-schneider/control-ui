@@ -1,0 +1,48 @@
+@layer components {
+  :where([data-control-family="kbd"][data-slot="root"]) {
+    --kbd-radius: var(--radius-control);
+    --kbd-background: oklch(from var(--card) l c h / 0.6);
+    --kbd-foreground: var(--muted-foreground);
+    --kbd-border-color: var(--border);
+    --kbd-shadow: var(--shadow-sm);
+    border-radius: var(--kbd-radius);
+    background: var(--kbd-background);
+    box-shadow: inset 0 0 0 1px var(--kbd-border-color), var(--kbd-shadow);
+    color: var(--kbd-foreground);
+    font-size: var(--text-micro);
+  }
+
+  :where([data-control-family="kbd"][data-slot="root"]) {
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+@property --kbd-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --kbd-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --kbd-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --kbd-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --kbd-shadow {
+  syntax: "*";
+  inherits: true;
+}

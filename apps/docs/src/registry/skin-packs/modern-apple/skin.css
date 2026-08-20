@@ -26,11 +26,11 @@
     oklch(0.9 0.014 262 / 0.4) 100%
   );
   /* Float gap: wide enough that soft drop shadow renders on all sides (native p-2/8px was too tight). */
-  --sidebar-float-gap: 0.875rem;
+  --apple-sidebar-float-gap: 0.875rem;
   /* DS menu material (Figma 2004:25200/25203) doesn't translate to CSS: Figma's stacked-fill blend
    * modes + inner-shadow spread math produce different results in background-blend-mode/box-shadow.
    * We reproduce the DS's VISUAL RESULT instead: one translucent grey fill + white top gloss + hairline + soft drop. */
-  --popup-fill: rgba(217, 217, 217, 0.55);
+  --_apple-popup-fill: oklch(0.8665 0 0 / 0.55);
   /* Shared glass "look" (popover, sidebar, …): white top gloss + hairline edge. Drop/lift added
    * per-surface (popover = big soft ambient; edge-pinned sidebar = contained, avoids clipping). */
   --surface-gloss: rgba(255, 255, 255, 0.6);
@@ -82,7 +82,7 @@
   /* Dark menu material (DS node 2004:25203): graphite rgba(64,64,64,.8) fill + light inner ring +
    * thin edge rim + soft drop. DS's background-blend-mode:luminosity is a no-op in CSS (see light
    * block) so tone is baked into fill alpha instead. */
-  --popup-fill: rgba(64, 64, 64, 0.8);
+  --_apple-popup-fill: oklch(0.3715 0 0 / 0.8);
   --surface-gloss: rgba(255, 255, 255, 0.12);
   --surface-hairline: rgba(255, 255, 255, 0.2);
   --menu-shadow:
@@ -102,12 +102,10 @@
   --menu-selection: oklch(0.5641 0.2301 259.998);
 }
 
-/* DS popup material for every floating list/panel: one translucent grey fill (--popup-fill) +
- * --menu-shadow (inner edge-darkening/ring + outer drop/hairline). The unlayered skin rule beats
- * layered base materials while geometry stays in the shared popover classes. */
+/* Shared popup material; geometry stays in recipes while this unlayered skin family owns material. */
 [data-skin="modern-apple"]
   :is([data-control-ui][data-slot][data-surface="floating"], [data-control-ui][data-slot][data-surface="modal"]) {
-  background: var(--popup-fill);
+  background: var(--_apple-popup-fill);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow: var(--menu-shadow);
@@ -140,64 +138,288 @@
  * already draws gap/padding/rounding/border/shadow. Here: (1) re-materialise as Liquid Glass, (2)
  * widen float gap so drop shadow isn't clipped (native p-2/8px < shadow blur). Not an overflow bug. */
 [data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"] [data-control-ui="sidebar"][data-slot="container"] {
-  padding: var(--sidebar-float-gap);
+  padding: var(--apple-sidebar-float-gap);
   overflow: visible; /* the main sidebar is not a resizable clip panel — never crop its own shadow */
 }
 
-/* Floating sidebar uses lighter --popover-based glass, NOT grey --popup-fill (distinct from menu
- * surface, per user pref). Shares surface gloss+0.5px hairline; CONTAINED drop (popover's big
- * ambient would clip at this edge-pinned panel's float gap). border:0 — hairline IS the edge. */
-[data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"] [data-control-ui="sidebar"][data-slot="inner"] {
-  corner-shape: var(--corner-shape, round);
-  border: 0;
-  background-color: oklch(from var(--popover) l c h / var(--popover-opacity));
-  -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
-  backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
-  box-shadow:
+/* Lighter glass and contained elevation avoid clipping at the edge-pinned sidebar float gap. */
+[data-skin="modern-apple"] [data-control-ui="sidebar"][data-control-family="sidebar"][data-slot="root"][data-variant="floating"] {
+  --sidebar-inner-border-width: 0px;
+  --sidebar-inner-background: oklch(from var(--popover) l c h / var(--popover-opacity));
+  --sidebar-inner-shadow:
     inset 0 1px 0 0 var(--surface-gloss),
     inset 0 0 0 0.5px var(--surface-hairline),
-    0 3px 12px -1px rgba(0, 0, 0, 0.14),
-    0 1px 4px rgba(0, 0, 0, 0.08);
+    0 3px 12px -1px oklch(0 0 0 / 0.14),
+    0 1px 4px oklch(0 0 0 / 0.08);
+  corner-shape: var(--corner-shape, round);
+  -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
+  backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
 }
 
 /* Collapsed icon rail: reserve wider float gap on both gap+container so ~3rem icon column isn't
  * eaten by padding (native floating only budgets 8px). data-collapsible="icon" only while collapsed. */
 [data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"][data-collapsible="icon"] [data-control-ui="sidebar"][data-slot="gap"],
 [data-skin="modern-apple"] [data-control-ui="sidebar"][data-slot="root"][data-variant="floating"][data-collapsible="icon"] [data-control-ui="sidebar"][data-slot="container"] {
-  width: calc(var(--sidebar-width-icon) + var(--sidebar-float-gap) * 2 + 2px);
+  width: calc(var(--sidebar-width-icon) + var(--apple-sidebar-float-gap) * 2 + 2px);
 }
 
 /* Canvas gets glass gradient; background-attachment:fixed pins it so wrapper+inset share one seamless wash. */
-[data-skin="modern-apple"] :is([data-control-ui="sidebar"][data-slot="wrapper"], [data-control-ui="sidebar"][data-slot="inset"]) {
-  background-image: var(--canvas-gradient);
+[data-skin="modern-apple"] :where([data-control-ui="sidebar"][data-slot="wrapper"]) {
   background-attachment: fixed;
 }
 
-/* Content stays flat: config slot already strips frame border/radius/bg/shadow; this guards against residual box-shadow. */
-[data-skin="modern-apple"] :is([data-control-ui="sidebar"][data-slot="inset"], [data-control-ui="sidebar-layout"][data-slot="content"]) {
+[data-skin="modern-apple"] :where([data-control-ui="sidebar"][data-control-family="sidebar"][data-slot="root"]) {
+  --sidebar-wrapper-background-image: var(--canvas-gradient);
+  --sidebar-inset-background-image: var(--canvas-gradient);
+  --sidebar-inset-shadow: none;
+}
+
+[data-skin="modern-apple"] :where([data-control-ui="sidebar"][data-slot="inset"]) {
+  background-attachment: fixed;
+}
+
+[data-skin="modern-apple"] [data-control-ui="sidebar-layout"][data-slot="content"] {
   box-shadow: none;
 }
 
 /* scroll fades + streaming sweep come from library effects.css (token-driven, recolor for free). */
 
 @layer components {
+  [data-skin="modern-apple"] :where([data-control-ui="button"][data-control-family="button"][data-slot="root"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"]) {
+    --button-bg: var(--glass-fill);
+    --button-foreground: var(--foreground);
+    --button-hover-bg: var(--glass-fill-hover);
+    --button-hover-foreground: var(--foreground);
+    --button-press-bg: var(--glass-fill-active);
+    --button-press-scale: 0.97;
+    --button-shadow:
+      inset 0 0 0 0.5px var(--glass-rim),
+      inset 0 1px 0 0 var(--glass-gloss),
+      0 1px 2px 0 oklch(0 0 0 / 0.06);
+    --button-focus-shadow: 0 0 0 3px var(--ring);
+    -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
+    backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
+  }
+
+  [data-skin="modern-apple"]
+    :where([data-control-ui="button"][data-control-family="button"][data-slot="root"][data-variant="solid"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"][data-variant="solid"]) {
+    --button-bg: var(--primary);
+    --button-foreground: var(--primary-foreground);
+    --button-hover-bg: var(--primary);
+    --button-hover-foreground: var(--primary-foreground);
+    --button-press-bg: var(--primary);
+    --button-shadow:
+      inset 0 1px 0 0 oklch(1 0 0 / 0.35),
+      0 1px 3px 0 rgb(10 102 240 / 0.4);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  @media (hover: hover) {
+    [data-skin="modern-apple"]
+      :where([data-control-ui="button"][data-slot="root"][data-variant="solid"]:hover, [data-control-ui="toggle"][data-slot="root"][data-variant="solid"]:hover) {
+      filter: brightness(1.05);
+    }
+  }
+
+  [data-skin="modern-apple"]
+    :where([data-control-ui="button"][data-slot="root"][data-variant="solid"]:active, [data-control-ui="toggle"][data-slot="root"][data-variant="solid"]:active) {
+    filter: brightness(0.95);
+  }
+
+  [data-skin="modern-apple"]
+    :where(
+      [data-control-ui="toolbar"][data-slot="root"][data-variant="inverse"]
+        [data-control-ui="button"][data-control-family="button"][data-slot="root"]
+    ) {
+    --button-bg: transparent;
+    --button-foreground: oklch(from var(--background) l c h / 0.7);
+    --button-hover-bg: oklch(from var(--background) l c h / 0.1);
+    --button-hover-foreground: var(--background);
+    --button-press-bg: oklch(from var(--background) l c h / 0.12);
+    --button-active-bg: var(--background);
+    --button-active-foreground: var(--foreground);
+    --button-active-hover-bg: var(--background);
+    --button-shadow: 0 0 transparent;
+    --button-active-shadow: 0 0 transparent;
+  }
+
   /* Apple segmented control: recessed well + raised glass segment. Pure re-values of library's
    * component-local knobs; geometry/states/line variant stay baseline's. */
-  [data-skin="modern-apple"] :where([data-control-ui="tabs"][data-slot="list"]) {
-    --tabs-trigger-radius: 0.5625rem; /* 9px segment corner */
-    --tabs-list-padding: 0.125rem; /* the tight 2px well inset */
-    --tabs-list-gap: 0.125rem;
-    --tabs-list-bg: var(--segmented-bg);
+  [data-skin="modern-apple"] :where([data-control-ui="tabs"][data-slot="list"]) { /* 9px segment corner */
+  }
+  [data-skin="modern-apple"] :where([data-control-ui="tabs"][data-control-family="tabs"][data-slot="root"]) {
+    --tabs-trigger-radius: 0.5625rem;
+    --tabs-list-padding: 0.125rem;
+    --tabs-list-background: var(--segmented-bg);
     --tabs-list-backdrop-filter: blur(var(--backdrop-blur-glass));
-    --tabs-indicator-bg: var(--segmented-active-bg);
+    --tabs-line-border-color: var(--hairline);
+    --tabs-indicator-background: var(--segmented-active-bg);
     --tabs-indicator-shadow:
       inset 0 1px 0 0 var(--glass-gloss),
       0 1px 3px oklch(from var(--shadow-color) l c h / 0.18),
       0 0 0 0.5px oklch(from var(--shadow-color) l c h / 0.04);
-    --tabs-indicator-ease: var(--ease-emphasized);
-    --tabs-trigger-font-size: var(--text-body);
+    --tabs-line-indicator-background: var(--primary);
     --tabs-trigger-focus-shadow: 0 0 0 3px var(--ring);
-    --tabs-line-border-color: var(--hairline);
-    --tabs-line-indicator-bg: var(--primary);
   }
+}
+
+@layer components {
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
+    --popup-radius: 0.75rem;
+    --popup-border-width: 0px;
+  }
+
+  [data-skin="modern-apple"] :where([data-popup-part="list-surface"]) {
+    padding: 0.25rem;
+  }
+
+  [data-skin="modern-apple"] :where([data-popup-part="item"]) {
+    min-height: 1.5rem;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.8125rem;
+  }
+
+  [data-skin="modern-apple"] :where([data-popup-part="item"][data-highlighted]) {
+    color: var(--primary-foreground);
+  }
+
+  [data-skin="modern-apple"] :where([data-popup-part="label"]) {
+    padding: 0.25rem 0.5rem;
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"], [data-control-family="popup"][data-popup-part="bar"]) {
+    --popup-item-radius: var(--radius-popup-item);
+    --popup-item-highlight-background: var(--menu-selection);
+    --popup-item-disabled-opacity: 0.4;
+    --popup-separator-color: var(--hairline);
+  }
+
+  [data-skin="modern-apple"] :where([data-popup-part="separator"]) {
+    margin-inline: 0;
+  }
+
+  [data-skin="modern-apple"] :where([data-popup-part="shortcut"]) {
+    margin-inline-start: auto;
+    font-size: var(--text-caption);
+    letter-spacing: 0.1em;
+  }
+
+  [data-skin="modern-apple"]
+    :where([data-control-ui="select"][data-control-family="button"][data-slot="trigger"], [data-control-ui="dropdown-menu"][data-control-family="button"][data-slot="trigger"]) {
+    --button-radius: var(--radius-control);
+    --button-bg: var(--glass-fill);
+    --button-foreground: var(--foreground);
+    --button-hover-bg: var(--glass-fill-hover);
+    --button-hover-foreground: var(--foreground);
+    --button-press-bg: var(--glass-fill-active);
+    --button-press-scale: 0.97;
+    --button-shadow:
+      inset 0 0 0 0.5px var(--glass-rim),
+      inset 0 1px 0 0 var(--glass-gloss),
+      0 1px 2px 0 oklch(0 0 0 / 0.06);
+    --button-focus-shadow: 0 0 0 3px var(--ring);
+    -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
+    backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="select"][data-slot="item"][data-highlighted])
+    :where([data-control-ui="select"][data-slot="item-indicator"]),
+  [data-skin="modern-apple"] :where([data-control-ui="context-menu"][data-slot="item"][data-highlighted])
+    :where([data-popup-part="shortcut"]) {
+    color: var(--primary-foreground);
+  }
+  [data-skin="modern-apple"] :where([data-control-ui="dialog"][data-control-family="popup"][data-popup-part="surface"]) {
+    --popup-radius: 0.75rem;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="dialog"][data-slot="title"]) {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+}
+
+@layer components {
+  [data-skin="modern-apple"] :where([data-control-family="field"][data-control="true"]) {
+    --field-radius: var(--radius-control);
+    --field-background: transparent;
+    --field-foreground: var(--foreground);
+    --field-border-color: var(--input);
+    --field-border-width: 1px;
+    --field-shadow: inset 0 1px 2px oklch(0 0 0 / 0.04);
+    --field-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
+    --field-focus-border-color: var(--input);
+    --field-focus-ring-color: var(--ring);
+    --field-focus-ring-width: 3px;
+  }
+}
+@layer components {
+  [data-skin="modern-apple"] :where([data-control-ui="thread-rail"][data-control-family="thread-rail"][data-slot="root"]) {
+    --thread-rail-popover-radius: var(--radius-lg);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="sidebar-layout"][data-slot="content"]) {
+    @apply m-0 rounded-none border-0 bg-transparent shadow-none lg:m-0;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="sidebar"][data-slot="inner"]) {
+    @apply backdrop-blur-[var(--backdrop-blur-glass)] backdrop-saturate-[1.8];
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="sidebar"][data-control-family="sidebar"][data-slot="root"]) {
+    --sidebar-inner-background: var(--glass-fill);
+    --sidebar-inner-border-color: var(--glass-rim);
+    --sidebar-inner-border-width: 1px;
+    --sidebar-inner-radius: var(--radius-panel);
+    --sidebar-menu-button-radius: var(--radius-control);
+    --sidebar-menu-button-active-background: oklch(from var(--primary) l c h / 0.14);
+    --sidebar-menu-button-active-foreground: var(--foreground);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="slider"][data-control-family="range"][data-slot="root"]) {
+    --range-indicator-background: var(--primary);
+    --range-thumb-radius: 9999px;
+    --range-thumb-background: white;
+    --range-thumb-border-color: var(--glass-rim);
+    --range-thumb-shadow: 0 1px 3px oklch(0 0 0 / 0.28);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="chat-message"][data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
+    --chat-message-radius: var(--radius-field);
+    --chat-message-corner-radius: var(--radius-field);
+    --chat-message-background: var(--primary);
+    --chat-message-foreground: var(--primary-foreground);
+    --chat-message-shadow: none;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="chat-composer"][data-control-family="chat-composer"][data-slot="root"]) {
+    --chat-composer-shell-background: transparent;
+    --chat-composer-shell-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
+    --chat-composer-shell-border-color: var(--input);
+    --chat-composer-shell-radius: var(--radius-control);
+    --chat-composer-shell-shadow: inset 0 1px 2px oklch(0 0 0 / 0.04);
+    --chat-composer-input-foreground: var(--foreground);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="chat-composer"][data-slot="shell"]) {
+    @apply focus-visible:ring-[3px] focus-visible:ring-[var(--ring)] focus-visible:ring-offset-0;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="chat-composer"][data-slot="submit"]) {
+    @apply rounded-[var(--radius-control)] border-0 bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_1px_3px_0_rgba(10,102,240,0.4)] hover:brightness-105 active:brightness-95 active:scale-[0.97] focus-visible:ring-[3px] focus-visible:ring-[var(--ring)] focus-visible:ring-offset-0;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="markdown-block"][data-slot="root"]) {
+    @apply rounded-[var(--radius-panel)] border border-[var(--glass-rim)];
+  }
+
+  [data-skin="modern-apple"] :where([data-control-ui="chat-layout"][data-slot="root"]) {
+    @apply rounded-[var(--radius-scene)] border border-[var(--glass-rim)] bg-[oklch(from_var(--card)_l_c_h/0.7)] backdrop-blur-[var(--backdrop-blur-popover)] backdrop-saturate-[1.8] shadow-(--shadow-soft);
+  }
+
 }

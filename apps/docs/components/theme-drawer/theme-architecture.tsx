@@ -52,22 +52,12 @@ function SkinFileStack({ skin }: { skin: SkinId }) {
   );
 }
 
-function ResolutionOrder({ familyCount, slotCount }: { familyCount: number; slotCount: number }) {
+function ResolutionOrder() {
   const layers = [
     { name: "Component recipe", detail: "Baseline variants, state, and anatomy" },
-    {
-      name: "Semantic family",
-      detail: familyCount
-        ? `${familyCount} active ${familyCount === 1 ? "entry" : "entries"} in this skin`
-        : "Shared treatment when the skin defines one",
-    },
-    {
-      name: "Exact slot",
-      detail: slotCount
-        ? `${slotCount} active ${slotCount === 1 ? "override" : "overrides"} in this skin`
-        : "Component-specific override when needed",
-    },
-    { name: "Caller className", detail: "Layout and placement; merged last" },
+    { name: "Skin knobs", detail: "Registered custom properties re-valued in skin.css" },
+    { name: "Skin CSS", detail: "Pseudo-elements, relational selectors, and shared families" },
+    { name: "Caller className", detail: "Per-instance utilities merged last" },
   ];
 
   return (
@@ -138,7 +128,7 @@ function ComponentAnatomyPreview() {
         <div>
           <h4 className="text-[11px] font-semibold text-foreground">Anatomy is the contract</h4>
           <p className="mt-1 text-[10px] leading-4 text-muted-foreground">
-            Components emit a scope and part. Skins target that stable pair without forking the component source.
+            Components emit scope, part, and semantic state. Recipes paint that stable anatomy without forking component source.
           </p>
         </div>
         <div className="grid gap-2">
@@ -151,8 +141,8 @@ function ComponentAnatomyPreview() {
             <VarTag>data-slot=&quot;root&quot;</VarTag>
           </div>
           <div className="flex items-center justify-between gap-3">
-            <span className="text-[10px] text-muted-foreground">Override key</span>
-            <VarTag>slots.button.root</VarTag>
+            <span className="text-[10px] text-muted-foreground">Knob</span>
+            <VarTag>--button-bg</VarTag>
           </div>
         </div>
       </div>
@@ -163,13 +153,10 @@ function ComponentAnatomyPreview() {
 export function ThemeArchitecture({ skin }: { skin: SkinId }) {
   const config = SKIN_CONFIGS[skin];
   const meta = SKIN_META_BY_ID[skin];
-  const familyCount = nestedEntryCount(config.families);
-  const slotCount = nestedEntryCount(config.slots);
-  const paintCount = nestedEntryCount(config.paints);
   const adornmentCount = nestedEntryCount(config.adornments);
   const effectCount = config.effects?.length ?? 0;
   const hasSystemChoice = Boolean(config.motion || config.colorScheme || config.sidebarLayout || config.sidebarWidth || config.indicators);
-  const configuredCount = familyCount + slotCount + paintCount + adornmentCount + effectCount + (hasSystemChoice ? 1 : 0);
+  const configuredCount = adornmentCount + effectCount + (hasSystemChoice ? 1 : 0);
 
   return (
     <section id="theme-architecture" aria-labelledby="theme-architecture-title" className="scroll-mt-6 border-border border-t pt-8">
@@ -179,7 +166,7 @@ export function ThemeArchitecture({ skin }: { skin: SkinId }) {
             id="theme-architecture-title"
             number="02"
             title="Understand the skin stack"
-            description="Tokens feed one shared component tree. CSS handles structure the recipes cannot express; typed config targets families, slots, and optional behavior."
+            description="Tokens feed shared CSS recipes. Typed config remains only for behavior and optional adornments."
           />
           <div className="mt-5 pl-0 sm:pl-10">
             <div className="flex flex-wrap items-center gap-2">
@@ -187,7 +174,7 @@ export function ThemeArchitecture({ skin }: { skin: SkinId }) {
                 {meta.kind === "theme" ? "Theme pack" : "Advanced pack"}
               </Badge>
               <span className="text-[10px] text-muted-foreground">
-                {configuredCount === 0 ? "Token and CSS layers only" : `${configuredCount} configured skin hooks`}
+                {configuredCount === 0 ? "CSS and tokens only" : `${configuredCount} configured skin hooks`}
               </span>
             </div>
             <p className="mt-3 max-w-lg text-[10px] leading-4 text-muted-foreground">{meta.description}</p>
@@ -195,7 +182,7 @@ export function ThemeArchitecture({ skin }: { skin: SkinId }) {
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
           <SkinFileStack skin={skin} />
-          <ResolutionOrder familyCount={familyCount} slotCount={slotCount} />
+          <ResolutionOrder />
         </div>
       </div>
       <div className="mt-6">

@@ -1,0 +1,90 @@
+@layer components {
+  :where([data-control-family="code-block-editor"][data-slot="root"]) {
+    --code-block-editor-background: var(--background);
+    --code-block-editor-border-color: var(--border);
+    --code-block-editor-radius: min(var(--radius-panel), calc(0.5rem * var(--nest-corner-ratio)));
+    --code-block-editor-shadow: var(--shadow-sm);
+    --code-block-editor-code-background: var(--background);
+    --code-block-editor-title-foreground: var(--muted-foreground);
+    border: 1px solid var(--code-block-editor-border-color);
+    border-radius: var(--code-block-editor-radius);
+    background: var(--code-block-editor-background);
+    box-shadow: var(--code-block-editor-shadow);
+  }
+
+  :where([data-control-family="code-block-editor"][data-slot="root"][data-chrome="embedded"]) {
+    border-width: 0px;
+    border-radius: 0px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  :where([data-control-family="code-block-editor"][data-slot="header"]) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  :where([data-control-family="code-block-editor"][data-slot="title"]) {
+    color: var(--code-block-editor-title-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="code-block-editor"]:is([data-slot="content"], [data-slot="editor"])) {
+    background: var(--code-block-editor-code-background);
+    color: var(--code-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="code-block-editor"][data-slot="root"][data-chrome="embedded"] :is([data-slot="content"], [data-slot="editor"])) {
+    background: transparent;
+  }
+
+  :where([data-control-family="code-block-editor"][data-slot="editor"]) {
+    border-width: 0px;
+    outline: none;
+  }
+
+  :where([data-control-family="button"][data-code-block-editor-floating-copy="true"]) {
+    background: oklch(from var(--background) l c h / 0.85);
+    box-shadow: inset 0 0 0 1px var(--border), var(--shadow-sm);
+    backdrop-filter: blur(var(--backdrop-blur-popover));
+  }
+
+  :where([data-control-family="code-block-editor"][data-slot="title"]) {
+    font-family: var(--font-mono);
+  }
+}
+
+@property --code-block-editor-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --code-block-editor-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --code-block-editor-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --code-block-editor-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --code-block-editor-title-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --code-block-editor-code-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

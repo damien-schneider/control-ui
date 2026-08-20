@@ -1,7 +1,7 @@
 "use client";
 
 import { CircleAlert, CloudUpload, FileIcon, LoaderCircle, Search, XIcon } from "lucide-react";
-import { type ComponentProps, createContext, type ReactNode, useContext, useEffect, useState } from "react";
+import { type ComponentProps, type CSSProperties, createContext, type ReactNode, useContext, useEffect, useState } from "react";
 import type { DropzoneOverlayScope, DropzoneVisualState } from "@/components/control-ui/contracts";
 import {
   type DropzoneDropDetails,
@@ -10,9 +10,9 @@ import {
   type UseDropzoneReturn,
   useDropzone,
 } from "@/components/control-ui/hooks/use-dropzone";
+import type { DropzoneKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type DropzoneFileRejection, type DropzonePolicy, formatDropzoneFileSize } from "@/components/control-ui/lib/dropzone-validation";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 
@@ -25,22 +25,30 @@ export type DropzoneProps = Omit<ComponentProps<"div">, "defaultValue" | "onChan
   getFilesFromEvent?: DropzoneGetFilesFromEvent;
   onDrop?: (details: DropzoneDropDetails) => void;
   onError?: (error: Error) => void;
+} & { style?: CSSProperties & DropzoneKnobStyle };
+export type DropzoneAreaProps = ComponentProps<"div"> & { style?: CSSProperties & DropzoneKnobStyle };
+export type DropzoneInputProps = Omit<ComponentProps<"input">, "accept" | "disabled" | "multiple" | "onChange" | "onClick" | "type"> & {
+  style?: CSSProperties & DropzoneKnobStyle;
 };
-export type DropzoneAreaProps = ComponentProps<"div">;
-export type DropzoneInputProps = Omit<ComponentProps<"input">, "accept" | "disabled" | "multiple" | "onChange" | "onClick" | "type">;
-export type DropzoneTriggerProps = ComponentProps<"button">;
-export type DropzoneOverlayProps = ComponentProps<"div"> & { scope?: DropzoneOverlayScope };
+export type DropzoneTriggerProps = Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & DropzoneKnobStyle;
+};
+export type DropzoneOverlayProps = Omit<ComponentProps<"div">, "style"> & {
+  scope?: DropzoneOverlayScope;
+  style?: CSSProperties & DropzoneKnobStyle;
+};
 export type DropzoneFileListProps = Omit<ComponentProps<"ul">, "children"> & {
   children?: (file: File, index: number) => ReactNode;
-};
+} & { style?: CSSProperties & DropzoneKnobStyle };
 export type DropzoneRejectionListProps = Omit<ComponentProps<"ul">, "children"> & {
   children?: (rejection: DropzoneFileRejection, index: number) => ReactNode;
-};
+} & { style?: CSSProperties & DropzoneKnobStyle };
 export type DropzoneContextValue = UseDropzoneReturn & {
   registerGlobalOverlay: () => () => void;
 };
-export type DropzoneStatusProps = Omit<ComponentProps<"div">, "children"> & {
+export type DropzoneStatusProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   children?: (state: DropzoneContextValue) => ReactNode;
+  style?: CSSProperties & DropzoneKnobStyle;
 };
 export type DropzoneRemoveProps = ComponentProps<typeof Button> & { file: File };
 export type DropzoneClearProps = ComponentProps<typeof Button>;
@@ -106,10 +114,11 @@ export function Dropzone({
       <div
         {...props}
         data-control-ui="dropzone"
+        data-control-family="dropzone"
         data-slot="root"
         data-disabled={dropzone.disabled ? "true" : undefined}
         data-empty={empty ? "true" : undefined}
-        className={cn("min-w-0", skinSlot("dropzone", "root", { disabled: dropzone.disabled, empty }), className)}
+        className={cn("min-w-0", className)}
       >
         {children}
       </div>
@@ -125,17 +134,11 @@ export function DropzoneArea({ className, ...props }: DropzoneAreaProps) {
       {...areaProps}
       aria-busy={context.isProcessing ? "true" : "false"}
       data-control-ui="dropzone"
+      data-control-family="dropzone"
       data-slot="area"
       data-state={context.visualState}
       data-disabled={context.disabled ? "true" : undefined}
-      className={cn(
-        "relative isolate min-w-0",
-        skinSlot("dropzone", "area", {
-          state: context.visualState,
-          disabled: context.disabled,
-        }),
-        className,
-      )}
+      className={cn("relative isolate min-w-0", className)}
     />
   );
 }
@@ -151,8 +154,9 @@ export function DropzoneInput({ className, "aria-label": ariaLabel, "aria-labell
     <input
       {...inputProps}
       data-control-ui="dropzone"
+      data-control-family="dropzone"
       data-slot="input"
-      className={cn("sr-only", skinSlot("dropzone", "input", {}), className)}
+      className={cn("sr-only", className)}
     />
   );
 }
@@ -167,15 +171,12 @@ export function DropzoneTrigger({ className, children, onClick, disabled, ...pro
       type="button"
       disabled={triggerDisabled}
       data-control-ui="dropzone"
+      data-control-family="dropzone"
       data-slot="trigger"
       data-state={context.visualState}
       data-disabled={triggerDisabled ? "true" : undefined}
       className={cn(
-        "flex min-h-32 w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-[var(--radius-panel)] border border-dashed border-border bg-card p-6 text-center text-foreground outline-none transition-[background-color,border-color,color,opacity] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:bg-muted/50 focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=accept]:border-primary data-[state=accept]:text-primary-text data-[state=reject]:border-destructive data-[state=reject]:text-destructive-text data-[state=unknown]:border-muted-foreground data-[state=unknown]:text-muted-foreground",
-        skinSlot("dropzone", "trigger", {
-          state: context.visualState,
-          disabled: triggerDisabled,
-        }),
+        "flex min-h-32 w-full cursor-pointer flex-col items-center justify-center gap-3 p-6 disabled:cursor-not-allowed",
         className,
       )}
       onClick={(event) => {
@@ -202,19 +203,12 @@ export function DropzoneOverlay({ scope = "local", className, children, ...props
       {...props}
       aria-hidden="true"
       data-control-ui="dropzone"
+      data-control-family="dropzone"
       data-slot="overlay"
       data-state={context.visualState}
       data-active={active ? "true" : undefined}
       data-scope={scope}
-      className={cn(
-        "pointer-events-none absolute inset-0 z-10 hidden items-center justify-center rounded-[var(--radius-panel)] border border-primary bg-card/95 p-6 text-center text-primary-text opacity-0 transition-[display,opacity] transition-discrete duration-[var(--duration-fast)] ease-[var(--ease-standard)] data-[active=true]:flex data-[active=true]:opacity-100 data-[state=reject]:border-destructive data-[state=reject]:text-destructive-text data-[state=unknown]:border-muted-foreground data-[state=unknown]:text-muted-foreground starting:opacity-0",
-        skinSlot("dropzone", "overlay", {
-          state: context.visualState,
-          active,
-          scope,
-        }),
-        className,
-      )}
+      className={cn("pointer-events-none absolute inset-0 z-10 hidden items-center justify-center p-6 data-[active=true]:flex", className)}
     >
       {children ?? <DropzoneFeedback state={context.visualState} />}
     </div>
@@ -238,12 +232,13 @@ export function DropzoneFileList({
       aria-label={ariaLabelledBy ? ariaLabel : (ariaLabel ?? "Selected files")}
       aria-labelledby={ariaLabelledBy}
       data-control-ui="dropzone"
+      data-control-family="dropzone"
       data-slot="file-list"
       data-empty={empty ? "true" : undefined}
-      className={cn("mt-3 flex flex-col gap-2", skinSlot("dropzone", "file-list", { empty }), className)}
+      className={cn("mt-3 flex flex-col gap-2", className)}
     >
       {context.value.map((file, index) => (
-        <li key={getFileRenderKey(file)} data-control-ui="dropzone" data-slot="file" className={skinSlot("dropzone", "file", {})}>
+        <li key={getFileRenderKey(file)} data-control-ui="dropzone" data-control-family="dropzone" data-slot="file" className={undefined}>
           {children ? children(file, index) : <DefaultFile file={file} />}
         </li>
       ))}
@@ -268,16 +263,18 @@ export function DropzoneRejectionList({
       aria-label={ariaLabelledBy ? ariaLabel : (ariaLabel ?? "Rejected files")}
       aria-labelledby={ariaLabelledBy}
       data-control-ui="dropzone"
+      data-control-family="dropzone"
       data-slot="rejection-list"
       data-empty={empty ? "true" : undefined}
-      className={cn("mt-3 flex flex-col gap-2", skinSlot("dropzone", "rejection-list", { empty }), className)}
+      className={cn("mt-3 flex flex-col gap-2", className)}
     >
       {context.fileRejections.map((rejection, index) => (
         <li
           key={getFileRenderKey(rejection.file)}
           data-control-ui="dropzone"
+          data-control-family="dropzone"
           data-slot="rejection"
-          className={skinSlot("dropzone", "rejection", {})}
+          className={undefined}
         >
           {children ? children(rejection, index) : <DefaultRejection rejection={rejection} />}
         </li>
@@ -294,9 +291,10 @@ export function DropzoneStatus({ className, children, role = "status", "aria-liv
       role={role}
       aria-live={ariaLive}
       data-control-ui="dropzone"
+      data-control-family="dropzone"
       data-slot="status"
       data-state={context.visualState}
-      className={cn("mt-3 text-sm text-muted-foreground", skinSlot("dropzone", "status", { state: context.visualState }), className)}
+      className={cn("mt-3", className)}
     >
       {children ? children(context) : getDropzoneStatusMessage(context)}
     </div>
@@ -348,7 +346,7 @@ function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
   let icon: ReactNode = <CloudUpload aria-hidden="true" />;
   let message = "Drop files here or choose files.";
   if (state === "processing") {
-    icon = <LoaderCircle className="animate-spin" aria-hidden="true" />;
+    icon = <LoaderCircle data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-spinner" aria-hidden="true" />;
     message = "Checking files…";
   } else if (state === "accept") {
     icon = <CloudUpload aria-hidden="true" />;
@@ -362,9 +360,13 @@ function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
   }
 
   return (
-    <span className="flex flex-col items-center gap-2">
-      <span className="[&>svg]:size-6">{icon}</span>
-      <span className="text-sm font-medium">{message}</span>
+    <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback" className="flex flex-col items-center gap-2">
+      <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-icon" className="[&>svg]:size-6">
+        {icon}
+      </span>
+      <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-message">
+        {message}
+      </span>
     </span>
   );
 }
@@ -376,7 +378,9 @@ function DefaultFile({ file }: { file: File }) {
         <FileIcon aria-hidden="true" />
       </ItemMedia>
       <ItemContent>
-        <ItemTitle className="wrap-anywhere leading-normal">{file.name}</ItemTitle>
+        <ItemTitle data-dropzone-part="file-title" className="wrap-anywhere">
+          {file.name}
+        </ItemTitle>
         <ItemDescription>{formatDropzoneFileSize(file.size)}</ItemDescription>
       </ItemContent>
       <ItemActions>
@@ -389,13 +393,15 @@ function DefaultFile({ file }: { file: File }) {
 function DefaultRejection({ rejection }: { rejection: DropzoneFileRejection }) {
   return (
     <Item variant="muted" className="py-2">
-      <ItemMedia className="text-destructive-text">
+      <ItemMedia data-dropzone-invalid="">
         <CircleAlert aria-hidden="true" />
       </ItemMedia>
       <ItemContent>
-        <ItemTitle className="wrap-anywhere leading-normal">{rejection.file.name}</ItemTitle>
+        <ItemTitle data-dropzone-part="file-title" className="wrap-anywhere">
+          {rejection.file.name}
+        </ItemTitle>
         {rejection.errors.map((error) => (
-          <ItemDescription key={`${error.code}-${error.message}`} className="text-destructive-text">
+          <ItemDescription key={`${error.code}-${error.message}`} data-dropzone-invalid="">
             {error.message}
           </ItemDescription>
         ))}

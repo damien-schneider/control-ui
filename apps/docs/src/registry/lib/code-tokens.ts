@@ -15,7 +15,7 @@ export type CodeToken = { content: string; style?: CodeTokenStyle };
 export type CodeTokenLine = CodeToken[];
 export type CodeTokenLines = CodeTokenLine[];
 export type CodeEmphasisSegment = { text: string; emphasis: boolean };
-export type CodeTokenEmphasisRun = CodeToken & { emphasis: boolean };
+export type CodeTokenEmphasisRun = CodeToken & { emphasis: boolean; start: number };
 
 export const CODE_THEME_NAME = "agent-code";
 export const CODE_VARIABLE_PREFIX = "--code-";
@@ -160,16 +160,19 @@ export function mergeCodeTokenLineWithEmphasis(
   let segmentIndex = 0;
   let tokenOffset = 0;
   let segmentOffset = 0;
+  let runStart = 0;
 
   while (tokenIndex < validTokens.length && segmentIndex < validSegments.length) {
     const token = validTokens[tokenIndex];
     const segment = validSegments[segmentIndex];
     const length = Math.min(token.content.length - tokenOffset, segment.text.length - segmentOffset);
     runs.push({
+      start: runStart,
       content: token.content.slice(tokenOffset, tokenOffset + length),
       ...(token.style ? { style: token.style } : {}),
       emphasis: segment.emphasis,
     });
+    runStart += length;
 
     tokenOffset += length;
     segmentOffset += length;

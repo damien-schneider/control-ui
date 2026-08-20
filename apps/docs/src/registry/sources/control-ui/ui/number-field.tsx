@@ -11,9 +11,8 @@ import type {
   NumberFieldProps,
   NumberFieldScrubAreaProps,
 } from "@/components/control-ui/contracts";
-import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // Group carries surface and Input stays transparent, so stepper and field fuse into one joined segment.
 // `size` lives on Root and reaches Group through context, so one prop resizes whole unit.
@@ -35,18 +34,12 @@ export function NumberFieldGroup({ className, children, ...props }: NumberFieldG
   return (
     <NumberFieldPrimitive.Group
       data-control-ui="number-field"
+      data-field-kind="number-field"
       data-slot="group"
       data-control="true"
+      data-control-family="field"
       data-size={size}
-      className={cn(
-        "inline-flex items-stretch overflow-hidden rounded-[var(--radius-control)] font-medium outline-none transition duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-within:ring-2 focus-within:ring-foreground/20 data-[invalid]:ring-2 data-[invalid]:ring-destructive data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
-        controlSurfaceClasses,
-        controlSize({ size }),
-        // ramp bundles padding and gap for single-element control; joined segment keeps height and drops both
-        "gap-0 px-0",
-        skinSlot("number-field", "group", { size }),
-        className,
-      )}
+      className={cn("inline-flex items-stretch overflow-hidden", controlSize({ size }), "gap-0 px-0", className)}
       {...props}
     >
       {children}
@@ -58,12 +51,10 @@ export function NumberFieldInput({ className, ...props }: NumberFieldInputProps)
   return (
     <NumberFieldPrimitive.Input
       data-control-ui="number-field"
+      data-control-family="field"
+      data-field-kind="number-field"
       data-slot="input"
-      className={cn(
-        "h-full min-w-0 flex-1 bg-transparent px-2 text-center font-medium tabular-nums text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed",
-        skinSlot("number-field", "input", {}),
-        className,
-      )}
+      className={cn("h-full min-w-0 flex-1 px-2 disabled:cursor-not-allowed", className)}
       {...props}
     />
   );
@@ -73,13 +64,11 @@ export function NumberFieldDecrement({ className, children, ...props }: NumberFi
   return (
     <NumberFieldPrimitive.Decrement
       data-control-ui="number-field"
+      data-control-family="field"
+      data-field-kind="number-field"
       data-slot="decrement"
       aria-label="Decrease"
-      className={cn(
-        "flex aspect-square h-full shrink-0 cursor-pointer select-none items-center justify-center border-r border-border text-muted-foreground outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:text-foreground active:bg-foreground/6 data-[disabled]:cursor-not-allowed data-[disabled]:text-muted-foreground/50",
-        skinSlot("number-field", "decrement", {}),
-        className,
-      )}
+      className={cn("flex aspect-square h-full shrink-0 cursor-pointer select-none items-center justify-center", className)}
       {...props}
     >
       {children ?? <MinusIcon />}
@@ -91,13 +80,11 @@ export function NumberFieldIncrement({ className, children, ...props }: NumberFi
   return (
     <NumberFieldPrimitive.Increment
       data-control-ui="number-field"
+      data-control-family="field"
+      data-field-kind="number-field"
       data-slot="increment"
       aria-label="Increase"
-      className={cn(
-        "flex aspect-square h-full shrink-0 cursor-pointer select-none items-center justify-center border-l border-border text-muted-foreground outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:text-foreground active:bg-foreground/6 data-[disabled]:cursor-not-allowed data-[disabled]:text-muted-foreground/50",
-        skinSlot("number-field", "increment", {}),
-        className,
-      )}
+      className={cn("flex aspect-square h-full shrink-0 cursor-pointer select-none items-center justify-center", className)}
       {...props}
     >
       {children ?? <PlusIcon />}
@@ -110,15 +97,18 @@ export function NumberFieldScrubArea({ className, children, ...props }: NumberFi
   return (
     <NumberFieldPrimitive.ScrubArea
       data-control-ui="number-field"
+      data-control-family="field"
+      data-field-kind="number-field"
       data-slot="scrub-area"
-      className={cn("cursor-ew-resize select-none", skinSlot("number-field", "scrub-area", {}), className)}
+      className={cn("cursor-ew-resize select-none", className)}
       {...props}
     >
       {children}
       <NumberFieldPrimitive.ScrubAreaCursor
         data-control-ui="number-field"
+        data-control-family="field"
+        data-field-kind="number-field"
         data-slot="scrub-cursor"
-        className={cn("drop-shadow-sm", skinSlot("number-field", "scrub-cursor", {}))}
       >
         <CursorGrowIcon />
       </NumberFieldPrimitive.ScrubAreaCursor>
@@ -160,7 +150,18 @@ function PlusIcon() {
 
 function CursorGrowIcon() {
   return (
-    <svg width="26" height="14" viewBox="0 0 24 14" fill="currentColor" className="block text-foreground" aria-hidden="true">
+    <svg
+      data-control-ui="number-field"
+      data-field-kind="number-field"
+      data-control-family="field"
+      data-slot="drag-icon"
+      width="26"
+      height="14"
+      viewBox="0 0 24 14"
+      fill="currentColor"
+      className="block"
+      aria-hidden="true"
+    >
       <path d="M19.5 5.5 6.5 5.52V2L1 7l5.5 5V8.5h13V12L25 7l-5.5-5v3.5Z" />
     </svg>
   );

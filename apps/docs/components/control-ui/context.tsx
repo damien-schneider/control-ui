@@ -1,12 +1,12 @@
 "use client";
 
 import { X } from "lucide-react";
-import type { ComponentProps, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext } from "react";
 
 import type { ContextProps, ContextSegmentKind } from "@/components/control-ui/contracts";
+import type { ButtonKnobStyle, ContextKnobStyle, PopupKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Popover,
@@ -20,6 +20,8 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import type { ContextModel } from "./context-model";
 import { deriveContextModel } from "./context-model";
 
+type ContextStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
+
 type ContextValue = {
   model: ContextModel;
   modelName: string | undefined;
@@ -28,16 +30,6 @@ type ContextValue = {
 };
 
 const ContextValueContext = createContext<ContextValue | null>(null);
-
-const kindClasses = {
-  system: { graph: "fill-foreground/75", indicator: "bg-foreground/75" },
-  tool: { graph: "fill-primary", indicator: "bg-primary" },
-  message: { graph: "fill-primary/65", indicator: "bg-primary/65" },
-  source: { graph: "fill-accent-foreground/65", indicator: "bg-accent-foreground/65" },
-  reasoning: { graph: "fill-foreground/50", indicator: "bg-foreground/50" },
-  cache: { graph: "fill-muted-foreground/55", indicator: "bg-muted-foreground/55" },
-  other: { graph: "fill-border", indicator: "bg-border" },
-} satisfies Record<ContextSegmentKind, { graph: string; indicator: string }>;
 
 function useContextValue(): ContextValue {
   const context = useContext(ContextValueContext);
@@ -73,9 +65,10 @@ export function Context({
       <div
         {...props}
         data-control-ui="context"
+        data-control-family="context"
         data-slot="root"
         data-status={model.status}
-        className={cn("inline-flex", skinSlot("context", "root", { status: model.status }), className)}
+        className={cn("inline-flex", className)}
       >
         <Popover open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
           {children ?? (
@@ -90,7 +83,7 @@ export function Context({
   );
 }
 
-export type ContextTriggerProps = ComponentProps<typeof Button>;
+export type ContextTriggerProps = ContextStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & ContextKnobStyle>;
 
 export function ContextTrigger({
   "aria-label": ariaLabel,
@@ -114,11 +107,13 @@ export function ContextTrigger({
   return (
     <span
       data-control-ui="context"
+      data-control-family="context"
       data-slot="trigger"
       data-status={model.status}
-      className={cn("relative inline-flex", skinSlot("context", "trigger", { status: model.status }))}
+      className="relative inline-flex"
     >
       <Button
+        data-context-trigger-button="true"
         {...props}
         render={<PopoverTrigger />}
         variant={variant}
@@ -130,18 +125,22 @@ export function ContextTrigger({
           <>
             <svg
               data-control-ui="context"
+              data-control-family="context"
               data-slot="trigger-indicator"
               data-status={model.status}
               viewBox="0 0 16 16"
               aria-hidden="true"
-              className={cn("size-4 shrink-0 -rotate-90 fill-none", skinSlot("context", "trigger-indicator", { status: model.status }))}
+              className="size-4 shrink-0 -rotate-90"
             >
               <circle
                 cx="8"
                 cy="8"
                 r="6.25"
                 strokeWidth="1.5"
-                className={model.status === "unavailable" ? "stroke-muted" : "stroke-border/70"}
+                data-control-ui="context"
+                data-control-family="context"
+                data-slot="trigger-track"
+                data-status={model.status}
               />
               {model.status !== "unavailable" ? (
                 <circle
@@ -152,17 +151,18 @@ export function ContextTrigger({
                   strokeDasharray={`${visualPercentage} 100`}
                   strokeLinecap="round"
                   strokeWidth="1.5"
-                  className={model.status === "over-limit" ? "stroke-destructive-text" : "stroke-primary"}
+                  data-control-ui="context"
+                  data-control-family="context"
+                  data-slot="trigger-value"
+                  data-status={model.status}
                 />
               ) : null}
             </svg>
             <span
               data-control-ui="context"
+              data-control-family="context"
               data-slot="trigger-label"
-              className={cn(
-                "max-w-0 overflow-hidden opacity-0 transition-[max-width,opacity] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover/context:max-w-32 group-hover/context:opacity-100 group-focus-visible/context:max-w-32 group-focus-visible/context:opacity-100 group-data-[popup-open]/context:max-w-32 group-data-[popup-open]/context:opacity-100",
-                skinSlot("context", "trigger-label", {}),
-              )}
+              className="max-w-0 overflow-hidden group-hover/context:max-w-32 group-focus-visible/context:max-w-32 group-data-[popup-open]/context:max-w-32"
             >
               {shortLabel}
             </span>
@@ -173,7 +173,7 @@ export function ContextTrigger({
   );
 }
 
-export type ContextContentProps = ComponentProps<typeof PopoverContent>;
+export type ContextContentProps = ContextStyleProps<ComponentProps<typeof PopoverContent>, PopupKnobStyle & ContextKnobStyle>;
 
 export function ContextContent({
   "aria-label": ariaLabel,
@@ -190,6 +190,7 @@ export function ContextContent({
 
   return (
     <PopoverContent
+      data-context-content="true"
       {...props}
       // default panel carries no title, so popup needs name of its own
       aria-label={ariaLabel ?? (modelName ? `Context window · ${modelName}` : "Context window")}
@@ -200,7 +201,7 @@ export function ContextContent({
       padding={padding}
       className={cn("w-[min(28rem,calc(100vw-2rem))] overflow-hidden", className)}
     >
-      <div data-control-ui="context" data-slot="content" className={cn("overflow-hidden", skinSlot("context", "content", {}))}>
+      <div data-control-ui="context" data-control-family="context" data-slot="content" className="overflow-hidden">
         {children ?? (
           <ScrollArea maxHeight="min(36rem, calc(100dvh - 8rem))" lockAxis="x">
             <div className="grid gap-4 p-4">
@@ -215,15 +216,16 @@ export function ContextContent({
   );
 }
 
-export type ContextHeaderProps = ComponentProps<"div">;
+export type ContextHeaderProps = ComponentProps<"div"> & { style?: CSSProperties & ContextKnobStyle };
 
 export function ContextHeader({ className, children, ...props }: ContextHeaderProps) {
   return (
     <div
       {...props}
       data-control-ui="context"
+      data-control-family="context"
       data-slot="header"
-      className={cn("flex items-start gap-3 p-4 pb-0", skinSlot("context", "header", {}), className)}
+      className={cn("flex items-start gap-3 p-4 pb-0", className)}
     >
       {children ?? (
         <>
@@ -238,28 +240,28 @@ export function ContextHeader({ className, children, ...props }: ContextHeaderPr
   );
 }
 
-export type ContextTitleProps = ComponentProps<typeof PopoverTitle>;
+export type ContextTitleProps = ContextStyleProps<ComponentProps<typeof PopoverTitle>, ContextKnobStyle>;
 
 export function ContextTitle({ className, children, ...props }: ContextTitleProps) {
   return (
-    <PopoverTitle {...props} className={cn("text-sm font-medium", className)}>
+    <PopoverTitle {...props} data-control-ui="context" data-control-family="context" data-slot="title" className={className}>
       {children ?? "Context window"}
     </PopoverTitle>
   );
 }
 
-export type ContextDescriptionProps = ComponentProps<typeof PopoverDescription>;
+export type ContextDescriptionProps = ContextStyleProps<ComponentProps<typeof PopoverDescription>, ContextKnobStyle>;
 
 export function ContextDescription({ className, children, ...props }: ContextDescriptionProps) {
   const { modelName } = useContextValue();
   return (
-    <PopoverDescription {...props} className={cn("text-caption text-muted-foreground", className)}>
+    <PopoverDescription {...props} data-control-ui="context" data-control-family="context" data-slot="description" className={className}>
       {children ?? modelName ?? "Token usage by context segment"}
     </PopoverDescription>
   );
 }
 
-export type ContextSummaryProps = ComponentProps<"div">;
+export type ContextSummaryProps = ContextStyleProps<ComponentProps<"div">, ContextKnobStyle>;
 
 export function ContextSummary({ className, children, ...props }: ContextSummaryProps) {
   const { model, numberFormatter, percentageFormatter } = useContextValue();
@@ -269,18 +271,15 @@ export function ContextSummary({ className, children, ...props }: ContextSummary
     <div
       {...props}
       data-control-ui="context"
+      data-control-family="context"
       data-slot="summary"
       data-status={model.status}
-      className={cn(
-        "flex items-baseline justify-between gap-3 text-sm",
-        skinSlot("context", "summary", { status: model.status }),
-        className,
-      )}
+      className={cn("flex items-baseline justify-between gap-3", className)}
     >
       {children ?? (
         <>
           <span>{percentage === null ? `${numberFormatter.format(model.usedTokens)} tokens used` : `${percentage} used`}</span>
-          <span className="tabular-nums text-muted-foreground">
+          <span data-control-ui="context" data-control-family="context" data-slot="summary-value">
             {model.maxTokens === null
               ? "Limit unavailable"
               : `${numberFormatter.format(model.usedTokens)} / ${numberFormatter.format(model.maxTokens)} tokens`}
@@ -291,7 +290,7 @@ export function ContextSummary({ className, children, ...props }: ContextSummary
   );
 }
 
-export type ContextGraphProps = Omit<ComponentProps<"svg">, "children">;
+export type ContextGraphProps = ContextStyleProps<Omit<ComponentProps<"svg">, "children">, ContextKnobStyle>;
 
 export function ContextGraph({ className, ...props }: ContextGraphProps) {
   const { model } = useContextValue();
@@ -300,48 +299,48 @@ export function ContextGraph({ className, ...props }: ContextGraphProps) {
     <svg
       {...props}
       data-control-ui="context"
+      data-control-family="context"
       data-slot="graph"
       data-status={model.status}
       viewBox="0 0 100 10"
       preserveAspectRatio="none"
       aria-hidden="true"
-      className={cn("h-2.5 w-full overflow-hidden rounded-full", skinSlot("context", "graph", { status: model.status }), className)}
+      className={cn("h-2.5 w-full overflow-hidden", className)}
     >
-      <rect
-        data-control-ui="context"
-        data-slot="track"
-        x="0"
-        y="0"
-        width="100"
-        height="10"
-        rx="5"
-        className={cn("fill-muted", skinSlot("context", "track", {}))}
-      />
+      <rect data-control-ui="context" data-control-family="context" data-slot="track" x="0" y="0" width="100" height="10" rx="5" />
       {model.segments.map((segment) => (
         <rect
           key={segment.segment.id}
           data-control-ui="context"
+          data-control-family="context"
           data-slot="segment"
           data-kind={segment.kind}
           x={segment.start}
           y="0"
           width={segment.width}
           height="10"
-          className={cn(kindClasses[segment.kind].graph, skinSlot("context", "segment", { kind: segment.kind }))}
         />
       ))}
       {model.status === "over-limit" && model.limitPosition !== null ? (
         <>
-          <rect x={model.limitPosition} y="0" width={100 - model.limitPosition} height="10" className="fill-destructive-text/22" />
+          <rect
+            data-control-ui="context"
+            data-control-family="context"
+            data-slot="overage"
+            x={model.limitPosition}
+            y="0"
+            width={100 - model.limitPosition}
+            height="10"
+          />
           <line
             data-control-ui="context"
+            data-control-family="context"
             data-slot="limit-marker"
             x1={model.limitPosition}
             x2={model.limitPosition}
             y1="0"
             y2="10"
             vectorEffect="non-scaling-stroke"
-            className={cn("stroke-destructive-text", skinSlot("context", "limit-marker", {}))}
           />
         </>
       ) : null}
@@ -349,45 +348,48 @@ export function ContextGraph({ className, ...props }: ContextGraphProps) {
   );
 }
 
-export type ContextLegendProps = ComponentProps<"ul">;
+export type ContextLegendProps = ContextStyleProps<ComponentProps<"ul">, ContextKnobStyle>;
 
 type ContextLegendRowProps = {
   kind: ContextSegmentKind;
   label: ReactNode;
   description?: ReactNode;
   value?: ReactNode;
-  indicatorClassName: string;
+  tone?: "available" | "over-limit";
 };
 
-function ContextLegendRow({ kind, label, description, value, indicatorClassName }: ContextLegendRowProps) {
+function ContextLegendRow({ kind, label, description, value, tone }: ContextLegendRowProps) {
   return (
     <li
       data-control-ui="context"
+      data-control-family="context"
       data-slot="legend-item"
       data-kind={kind}
-      className={cn("grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 py-1.5", skinSlot("context", "legend-item", { kind }))}
+      data-tone={tone}
+      className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 py-1.5"
     >
       <div className="flex min-w-0 items-start gap-2">
         <span
           data-control-ui="context"
+          data-control-family="context"
           data-slot="legend-indicator"
           data-kind={kind}
           aria-hidden="true"
-          className={cn("mt-1 size-2.5 shrink-0 rounded-full", indicatorClassName, skinSlot("context", "legend-indicator", { kind }))}
+          className="mt-1 size-2.5 shrink-0"
         />
         <div className="min-w-0">
-          <div className="text-sm">{label}</div>
+          <div data-control-ui="context" data-control-family="context" data-slot="legend-label">
+            {label}
+          </div>
           {description !== undefined && description !== null ? (
-            <div className="text-caption text-muted-foreground">{description}</div>
+            <div data-control-ui="context" data-control-family="context" data-slot="legend-description">
+              {description}
+            </div>
           ) : null}
         </div>
       </div>
       {value !== undefined && value !== null ? (
-        <span
-          data-control-ui="context"
-          data-slot="legend-value"
-          className={cn("text-caption tabular-nums text-muted-foreground", skinSlot("context", "legend-value", {}))}
-        >
+        <span data-control-ui="context" data-control-family="context" data-slot="legend-value">
           {value}
         </span>
       ) : null}
@@ -399,7 +401,7 @@ export function ContextLegend({ className, children, ...props }: ContextLegendPr
   const { model, numberFormatter, percentageFormatter } = useContextValue();
 
   return (
-    <ul {...props} data-control-ui="context" data-slot="legend" className={cn("grid", skinSlot("context", "legend", {}), className)}>
+    <ul {...props} data-control-ui="context" data-control-family="context" data-slot="legend" className={cn("grid", className)}>
       {children ?? (
         <>
           {model.segments.map((segment) => (
@@ -408,7 +410,6 @@ export function ContextLegend({ className, children, ...props }: ContextLegendPr
               kind={segment.kind}
               label={segment.segment.label}
               description={segment.segment.description}
-              indicatorClassName={kindClasses[segment.kind].indicator}
               value={`${numberFormatter.format(segment.tokens)} tokens${
                 segment.ratio === null ? "" : ` · ${percentageFormatter.format(segment.ratio)}`
               }`}
@@ -418,7 +419,7 @@ export function ContextLegend({ className, children, ...props }: ContextLegendPr
             <ContextLegendRow
               kind="other"
               label="Available"
-              indicatorClassName="bg-muted"
+              tone="available"
               value={`${numberFormatter.format(model.remainingTokens)} tokens · ${percentageFormatter.format(
                 model.remainingTokens / (model.maxTokens ?? 1),
               )}`}
@@ -428,13 +429,11 @@ export function ContextLegend({ className, children, ...props }: ContextLegendPr
             <ContextLegendRow
               kind="other"
               label="Over limit"
-              indicatorClassName="bg-destructive-text"
+              tone="over-limit"
               value={`${numberFormatter.format(model.overageTokens)} tokens over limit`}
             />
           ) : null}
-          {model.status === "unavailable" ? (
-            <ContextLegendRow kind="other" label="Limit unavailable" indicatorClassName="bg-muted" />
-          ) : null}
+          {model.status === "unavailable" ? <ContextLegendRow kind="other" label="Limit unavailable" /> : null}
         </>
       )}
     </ul>

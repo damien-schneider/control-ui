@@ -7,18 +7,11 @@ import type { DynamicNotificationProps, DynamicNotificationState, DynamicNotific
 import { createDynamicNotificationGlass } from "@/components/control-ui/dynamic-notification-glass";
 import { createDynamicNotificationLiquid } from "@/components/control-ui/dynamic-notification-liquid";
 import { type DynamicNotificationController, useDynamicNotification } from "@/components/control-ui/hooks/use-dynamic-notification";
+import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
-/*
- * Anatomy is variant-agnostic: `variant` swaps only island material. glass and liquid each paint CSS fallback
- * that their optional WebGL companion upgrades, so neither leaves a hole when extension is not installed.
- * Morph and text choreography live in dynamic-notification.css.
- */
-
-/** Per-word stagger index reply animation reads from CSS. */
-type DynamicNotificationWordStyle = CSSProperties & { "--dn-word-index"?: string };
+type DynamicNotificationWordStyle = CSSProperties & { "--_dynamic-notification-word-index"?: string };
 
 type DynamicNotificationShellContextValue = Pick<DynamicNotificationController, "open" | "disabled" | "setOpen"> & {
   state: DynamicNotificationState;
@@ -33,12 +26,6 @@ type DynamicNotificationReplyContextValue = Pick<
 
 const DynamicNotificationShellContext = createContext<DynamicNotificationShellContextValue | null>(null);
 const DynamicNotificationReplyContext = createContext<DynamicNotificationReplyContextValue | null>(null);
-
-const materialClassesByVariant = {
-  surface: "bg-popover text-popover-foreground shadow-pop ring-1 ring-inset ring-border backdrop-blur-[var(--backdrop-blur-popover)]",
-  glass: "text-white shadow-pop ring-1 ring-inset ring-white/12",
-  liquid: "text-white text-shadow-[0_1px_2px_oklch(0_0_0/0.25)]",
-} satisfies Record<DynamicNotificationVariant, string>;
 
 function resolveNotificationState(open: boolean, loading: boolean): DynamicNotificationState {
   if (!open) return "collapsed";
@@ -130,10 +117,11 @@ export function DynamicNotification({
       <DynamicNotificationReplyContext.Provider value={replyContext}>
         <div
           data-control-ui="dynamic-notification"
+          data-control-family="dynamic-notification"
           data-slot="root"
           data-state={state}
           data-variant={variant}
-          className={cn("relative flex w-full justify-center", skinSlot("dynamic-notification", "root", { state, variant }), className)}
+          className={cn("relative flex w-full justify-center", className)}
           {...props}
         >
           {children}
@@ -143,11 +131,10 @@ export function DynamicNotification({
   );
 }
 
-export type DynamicNotificationIslandProps = ComponentProps<"section">;
+export type DynamicNotificationIslandProps = ComponentProps<"section"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationIsland({ className, onKeyDown, ...props }: DynamicNotificationIslandProps) {
   const { open, setOpen, state, variant } = useDynamicNotificationShellContext();
-  const materialClasses = materialClassesByVariant[variant];
 
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
     onKeyDown?.(event);
@@ -162,22 +149,18 @@ export function DynamicNotificationIsland({ className, onKeyDown, ...props }: Dy
       aria-label="Assistant notification"
       aria-busy={state === "thinking" || undefined}
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="island"
       data-state={state}
       data-variant={variant}
       onKeyDown={handleKeyDown}
-      className={cn(
-        "relative isolate overflow-hidden outline-none",
-        materialClasses,
-        skinSlot("dynamic-notification", "island", { state, variant }),
-        className,
-      )}
+      className={cn("relative isolate overflow-hidden", className)}
       {...props}
     />
   );
 }
 
-export type DynamicNotificationGlassProps = ComponentProps<"canvas">;
+export type DynamicNotificationGlassProps = ComponentProps<"canvas"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 /** Optional upgrade for variant="glass" — CSS fallback stays underneath. */
 export function DynamicNotificationGlass({ className, ...props }: DynamicNotificationGlassProps) {
@@ -195,14 +178,15 @@ export function DynamicNotificationGlass({ className, ...props }: DynamicNotific
       aria-hidden="true"
       tabIndex={-1}
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="glass"
-      className={cn("pointer-events-none absolute inset-0 -z-10 size-full", skinSlot("dynamic-notification", "glass", {}), className)}
+      className={cn("pointer-events-none absolute inset-0 -z-10 size-full", className)}
       {...props}
     />
   );
 }
 
-export type DynamicNotificationLiquidProps = ComponentProps<"canvas">;
+export type DynamicNotificationLiquidProps = ComponentProps<"canvas"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 /** WebGL transmits nearest scene through surface while keeping distortion concentrated at its edge. */
 export function DynamicNotificationLiquid({ className, ...props }: DynamicNotificationLiquidProps) {
@@ -220,14 +204,15 @@ export function DynamicNotificationLiquid({ className, ...props }: DynamicNotifi
       aria-hidden="true"
       tabIndex={-1}
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="liquid"
-      className={cn("pointer-events-none absolute inset-0 -z-10 size-full", skinSlot("dynamic-notification", "liquid", {}), className)}
+      className={cn("pointer-events-none absolute inset-0 -z-10 size-full", className)}
       {...props}
     />
   );
 }
 
-export type DynamicNotificationPillProps = ComponentProps<"button">;
+export type DynamicNotificationPillProps = ComponentProps<"button"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationPill({ className, children, onClick, ...props }: DynamicNotificationPillProps) {
   const { contentId, disabled, open, setOpen } = useDynamicNotificationShellContext();
@@ -246,15 +231,11 @@ export function DynamicNotificationPill({ className, children, onClick, ...props
       // inert, not CSS visibility: it lands with React commit, so tab order is right mid-morph instead of flipping halfway through
       inert={open}
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="pill"
       onClick={handleClick}
       disabled={disabled}
-      className={cn(
-        "absolute inset-0 flex cursor-pointer items-center justify-center gap-2 px-4 text-caption font-medium outline-none",
-        "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-current/25",
-        skinSlot("dynamic-notification", "pill", {}),
-        className,
-      )}
+      className={cn("absolute inset-0 flex cursor-pointer items-center justify-center gap-2 px-4", className)}
       {...props}
     >
       {children}
@@ -262,7 +243,7 @@ export function DynamicNotificationPill({ className, children, onClick, ...props
   );
 }
 
-export type DynamicNotificationIndicatorProps = ComponentProps<"span">;
+export type DynamicNotificationIndicatorProps = ComponentProps<"span"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 /** Breathing orb marking assistant activity; dynamic-notification.css animates it. */
 export function DynamicNotificationIndicator({ className, ...props }: DynamicNotificationIndicatorProps) {
@@ -270,14 +251,15 @@ export function DynamicNotificationIndicator({ className, ...props }: DynamicNot
     <span
       aria-hidden="true"
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="indicator"
-      className={cn("size-2 shrink-0 rounded-full", skinSlot("dynamic-notification", "indicator", {}), className)}
+      className={cn("size-2 shrink-0", className)}
       {...props}
     />
   );
 }
 
-export type DynamicNotificationContentProps = ComponentProps<"div">;
+export type DynamicNotificationContentProps = ComponentProps<"div"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationContent({ className, id, ...props }: DynamicNotificationContentProps) {
   const { contentId, state } = useDynamicNotificationShellContext();
@@ -287,25 +269,23 @@ export function DynamicNotificationContent({ className, id, ...props }: DynamicN
       id={id ?? contentId}
       inert={state !== "expanded"}
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="content"
-      className={cn(
-        "flex w-[min(var(--dn-expanded-width),100%)] flex-col gap-2.5 px-4 pt-3 pb-3.5",
-        skinSlot("dynamic-notification", "content", {}),
-        className,
-      )}
+      className={cn("flex flex-col gap-2.5 px-4 pt-3 pb-3.5", className)}
       {...props}
     />
   );
 }
 
-export type DynamicNotificationTitleProps = ComponentProps<"div">;
+export type DynamicNotificationTitleProps = ComponentProps<"div"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationTitle({ className, ...props }: DynamicNotificationTitleProps) {
   return (
     <div
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="title"
-      className={cn("flex-1 text-caption font-medium tracking-wide opacity-55", skinSlot("dynamic-notification", "title", {}), className)}
+      className={cn("flex-1", className)}
       {...props}
     />
   );
@@ -313,15 +293,16 @@ export function DynamicNotificationTitle({ className, ...props }: DynamicNotific
 
 export type DynamicNotificationMessageProps = Omit<ComponentProps<"p">, "children"> & {
   children: string;
-};
+} & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationMessage({ className, children, ...props }: DynamicNotificationMessageProps) {
   return (
     <p
       aria-live="polite"
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="message"
-      className={cn("text-body-lg leading-snug", skinSlot("dynamic-notification", "message", {}), className)}
+      className={className}
       {...props}
     >
       <DynamicNotificationWords key={children} text={children} />
@@ -333,18 +314,18 @@ function DynamicNotificationWords({ text }: { text: string }) {
   let wordIndex = 0;
   return text.split(/(\s+)/).map((part, position) => {
     if (part.length === 0 || /^\s+$/.test(part)) return part;
-    const style: DynamicNotificationWordStyle = { "--dn-word-index": `${wordIndex}` };
+    const style: DynamicNotificationWordStyle = { "--_dynamic-notification-word-index": `${wordIndex}` };
     wordIndex += 1;
     return (
       // biome-ignore lint/suspicious/noArrayIndexKey: split positions are stable for a given text; the list remounts wholesale (key={text}) when the message changes.
-      <span key={position} data-control-ui="dynamic-notification" data-slot="word" style={style}>
+      <span key={position} data-control-ui="dynamic-notification" data-control-family="dynamic-notification" data-slot="word" style={style}>
         {part}
       </span>
     );
   });
 }
 
-export type DynamicNotificationReplyProps = ComponentProps<"form">;
+export type DynamicNotificationReplyProps = ComponentProps<"form"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationReply({ className, onSubmit, ...props }: DynamicNotificationReplyProps) {
   const { handleReplySubmit } = useDynamicNotificationReplyContext();
@@ -358,15 +339,16 @@ export function DynamicNotificationReply({ className, onSubmit, ...props }: Dyna
   return (
     <form
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="reply"
       onSubmit={handleSubmit}
-      className={cn("flex items-center gap-2", skinSlot("dynamic-notification", "reply", {}), className)}
+      className={cn("flex items-center gap-2", className)}
       {...props}
     />
   );
 }
 
-export type DynamicNotificationReplyInputProps = ComponentProps<"input">;
+export type DynamicNotificationReplyInputProps = ComponentProps<"input"> & { style?: CSSProperties & DynamicNotificationKnobStyle };
 
 export function DynamicNotificationReplyInput({ className, onChange, disabled, ...props }: DynamicNotificationReplyInputProps) {
   const { disabled: contextDisabled, state } = useDynamicNotificationShellContext();
@@ -391,15 +373,12 @@ export function DynamicNotificationReplyInput({ className, onChange, disabled, .
       type="text"
       aria-label="Reply"
       data-control-ui="dynamic-notification"
+      data-control-family="dynamic-notification"
       data-slot="reply-input"
       value={reply}
       onChange={handleChange}
       disabled={disabled ?? contextDisabled}
-      className={cn(
-        "h-9 min-w-0 flex-1 rounded-full bg-current/8 px-3.5 text-body outline-none ring-1 ring-inset ring-current/10 transition-shadow duration-[var(--duration-fast)] placeholder:text-current/45 focus-visible:ring-2 focus-visible:ring-current/30 disabled:cursor-not-allowed disabled:opacity-50",
-        skinSlot("dynamic-notification", "reply-input", {}),
-        className,
-      )}
+      className={cn("h-9 min-w-0 flex-1 px-3.5 disabled:cursor-not-allowed", className)}
       {...props}
     />
   );
@@ -413,6 +392,7 @@ export function DynamicNotificationReplySubmit({ className, disabled, children, 
   return (
     <Button
       data-control-ui="dynamic-notification"
+      data-dynamic-notification-submit="true"
       data-slot="reply-submit"
       type="submit"
       variant="solid"
@@ -421,7 +401,7 @@ export function DynamicNotificationReplySubmit({ className, disabled, children, 
       shape="circle"
       aria-label="Send reply"
       disabled={disabled ?? !canSubmit}
-      className={cn("shrink-0", skinSlot("dynamic-notification", "reply-submit", {}), className)}
+      className={cn("shrink-0", className)}
       {...props}
     >
       {children ?? (
@@ -447,6 +427,7 @@ export function DynamicNotificationClose({ className, children, onClick, ...prop
   return (
     <Button
       data-control-ui="dynamic-notification"
+      data-dynamic-notification-close="true"
       data-slot="close"
       variant="quiet"
       size="sm"
@@ -454,7 +435,7 @@ export function DynamicNotificationClose({ className, children, onClick, ...prop
       shape="circle"
       aria-label="Dismiss"
       onClick={handleClick}
-      className={cn("-mr-1.5 shrink-0 text-current/55 hover:text-current", skinSlot("dynamic-notification", "close", {}), className)}
+      className={cn("-mr-1.5 shrink-0", className)}
       {...props}
     >
       {children ?? (

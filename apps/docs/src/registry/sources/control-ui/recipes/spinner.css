@@ -1,0 +1,16 @@
+@layer components {
+  :where([data-control-family="spinner"][data-slot="root"]) {
+    --spinner-foreground: var(--muted-foreground);
+    color: var(--spinner-foreground);
+  }
+
+  :where([data-control-family="spinner"][data-slot="indicator"]) {
+    animation: spin calc(var(--duration-slow) * 3.333) linear infinite;
+  }
+}
+
+@property --spinner-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

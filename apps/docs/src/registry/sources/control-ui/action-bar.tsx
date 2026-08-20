@@ -1,10 +1,10 @@
 "use client";
 
-import type { ComponentProps, MouseEvent, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
+import type { ActionBarKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
 export type ActionBarCopyValue = string | (() => string | Promise<string>);
@@ -18,7 +18,7 @@ export type ActionBarContextValue = {
   onEditError?: (error: unknown) => void;
 };
 
-export type ActionBarProps = ComponentProps<"div"> & {
+export type ActionBarProps = Omit<ComponentProps<"div">, "style"> & {
   label?: string;
   align?: "start" | "end";
   context?: ActionBarContextValue;
@@ -28,6 +28,7 @@ export type ActionBarProps = ComponentProps<"div"> & {
   onCopyError?: (error: unknown) => void;
   onEdit?: (value: string) => void;
   onEditError?: (error: unknown) => void;
+  style?: CSSProperties & ActionBarKnobStyle;
 };
 
 const ActionBarContext = createContext<ActionBarContextValue>({});
@@ -64,15 +65,11 @@ export function ActionBar({
     <ActionBarContext.Provider value={actionContext}>
       <div
         data-control-ui="action-bar"
+        data-control-family="action-bar"
         data-slot="root"
         role="toolbar"
         aria-label={label}
-        className={cn(
-          "mt-1 flex min-h-8 items-center gap-1 opacity-0 transition-opacity duration-[var(--duration-base)] group-hover/turn:opacity-100 group-focus-within/turn:opacity-100",
-          align === "end" ? "justify-end" : "justify-start",
-          skinSlot("action-bar", "root", {}),
-          className,
-        )}
+        className={cn("mt-1 flex min-h-8 items-center gap-1", align === "end" ? "justify-end" : "justify-start", className)}
         {...props}
       >
         {children}

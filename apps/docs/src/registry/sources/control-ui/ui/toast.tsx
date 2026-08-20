@@ -2,9 +2,9 @@
 
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import type { ReactNode } from "react";
+import type { ToasterProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 
 // Base UI's Toast manager, not sonner, behind module-level manager so `toast()` stays callable anywhere.
 
@@ -31,74 +31,68 @@ export const toast = Object.assign((title: ReactNode, options?: ToastOptions) =>
 // lets custom viewport read live toast list inside Provider
 export const useToast = ToastPrimitive.useToastManager;
 
-// destructive is the only status colour token contract exposes; packs colour rest off data-type
-function dotClass(type: string | undefined) {
-  if (!type || type === "message") return undefined;
-  return type === "error" ? "bg-destructive" : "bg-foreground";
-}
-
-function ToastList() {
+function ToastList({
+  rootStyle,
+  indicatorStyle,
+  actionStyle,
+  closeStyle,
+}: Pick<ToasterProps, "rootStyle" | "indicatorStyle" | "actionStyle" | "closeStyle">) {
   const { toasts } = ToastPrimitive.useToastManager();
   return toasts.map((entry) => {
-    const dot = dotClass(entry.type);
     return (
       <ToastPrimitive.Root
         key={entry.id}
         toast={entry}
         data-control-ui="toast"
+        data-control-family="toast"
+        data-type={entry.type ?? "message"}
+        style={rootStyle}
         data-slot="root"
         data-surface="floating"
-        // Base UI's own stack physics, retokenised so motion kill-switch flattens them too
         className={cn(
           "[--gap:0.75rem] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))]",
-          "absolute right-0 bottom-0 left-auto z-[calc(1000-var(--toast-index))] w-full origin-bottom select-none",
-          floatingSurfaceClasses,
-          "transform-[translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height))))_scale(var(--scale))]",
+          "absolute right-0 bottom-0 left-auto z-[calc(1000-var(--toast-index))] h-[var(--height)] w-full select-none data-[expanded]:h-[var(--toast-height)]",
           "after:absolute after:top-full after:left-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
-          "data-[ending-style]:opacity-0 data-[limited]:opacity-0 data-[expanded]:transform-[translateX(var(--toast-swipe-movement-x))_translateY(var(--offset-y))] data-[starting-style]:transform-[translateY(150%)]",
-          "[&[data-ending-style]:not([data-limited]):not([data-swipe-direction])]:transform-[translateY(150%)]",
-          "data-[ending-style]:data-[swipe-direction=down]:transform-[translateY(calc(var(--toast-swipe-movement-y)+150%))] data-[ending-style]:data-[swipe-direction=up]:transform-[translateY(calc(var(--toast-swipe-movement-y)-150%))]",
-          "data-[ending-style]:data-[swipe-direction=left]:transform-[translateX(calc(var(--toast-swipe-movement-x)-150%))_translateY(var(--offset-y))] data-[ending-style]:data-[swipe-direction=right]:transform-[translateX(calc(var(--toast-swipe-movement-x)+150%))_translateY(var(--offset-y))]",
-          "h-[var(--height)] data-[expanded]:h-[var(--toast-height)] [transition:transform_var(--duration-slow)_var(--ease-emphasized),opacity_var(--duration-slow),height_var(--duration-fast)]",
-          skinSlot("toast", "root", {}),
         )}
       >
-        <ToastPrimitive.Content className="flex items-start gap-3 p-3 transition-opacity duration-[var(--duration-base)] data-[behind]:opacity-0 data-[expanded]:opacity-100">
-          {dot ? <span aria-hidden="true" className={cn("mt-1.5 size-2 shrink-0 rounded-full", dot)} /> : null}
+        <ToastPrimitive.Content
+          data-control-ui="toast"
+          data-control-family="toast"
+          data-slot="content"
+          className="flex items-start gap-3 p-3"
+        >
+          {entry.type && entry.type !== "message" ? (
+            <span
+              aria-hidden="true"
+              data-control-ui="toast"
+              data-control-family="toast"
+              data-slot="indicator"
+              style={indicatorStyle}
+              className="mt-1.5 size-2 shrink-0"
+            />
+          ) : null}
           <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            {entry.title ? (
-              <ToastPrimitive.Title
-                data-control-ui="toast"
-                data-slot="title"
-                className={cn("text-sm font-semibold leading-none tracking-tight", skinSlot("toast", "title", {}))}
-              />
-            ) : null}
+            {entry.title ? <ToastPrimitive.Title data-control-ui="toast" data-control-family="toast" data-slot="title" /> : null}
             {entry.description ? (
-              <ToastPrimitive.Description
-                data-control-ui="toast"
-                data-slot="description"
-                className={cn("text-sm text-muted-foreground", skinSlot("toast", "description", {}))}
-              />
+              <ToastPrimitive.Description data-control-ui="toast" data-control-family="toast" data-slot="description" />
             ) : null}
           </div>
           {entry.actionProps ? (
             <ToastPrimitive.Action
               data-control-ui="toast"
+              data-control-family="toast"
               data-slot="action"
-              className={cn(
-                "shrink-0 cursor-pointer rounded-[var(--radius-control)] px-2 py-1 text-xs font-medium text-foreground ring-1 ring-inset ring-border transition hover:bg-foreground/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
-                skinSlot("toast", "action", {}),
-              )}
+              style={actionStyle}
+              className="shrink-0 cursor-pointer px-2 py-1"
             />
           ) : null}
           <ToastPrimitive.Close
             data-control-ui="toast"
+            data-control-family="toast"
             data-slot="close"
+            style={closeStyle}
             aria-label="Close"
-            className={cn(
-              "-mr-1 -mt-1 shrink-0 cursor-pointer rounded-[var(--radius-control)] p-1 text-muted-foreground opacity-70 transition hover:bg-muted hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
-              skinSlot("toast", "close", {}),
-            )}
+            className="-mr-1 -mt-1 shrink-0 cursor-pointer p-1"
           >
             <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
               <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
@@ -111,19 +105,19 @@ function ToastList() {
 }
 
 // Mount once at app root — every toast() lands here, and portalled viewport re-asserts skin scope.
-export function Toaster({ className, timeout, limit }: { className?: string; timeout?: number; limit?: number }) {
+export function Toaster({ className, timeout, limit, rootStyle, indicatorStyle, actionStyle, closeStyle }: ToasterProps) {
   return (
     <ToastPrimitive.Provider toastManager={toastManager} timeout={timeout} limit={limit}>
       <ToastPrimitive.Portal>
         <ToastPrimitive.Viewport
+          data-control-ui="toast"
+          data-control-family="toast"
+          data-slot="viewport"
           data-skin={skinId()}
           data-effects={skinEffects()}
-          className={cn(
-            "fixed right-4 bottom-4 z-[95] mx-auto w-[calc(100vw-2rem)] outline-none sm:right-6 sm:bottom-6 sm:w-[22.5rem]",
-            className,
-          )}
+          className={cn("fixed right-4 bottom-4 z-[95] mx-auto w-[calc(100vw-2rem)] sm:right-6 sm:bottom-6 sm:w-[22.5rem]", className)}
         >
-          <ToastList />
+          <ToastList rootStyle={rootStyle} indicatorStyle={indicatorStyle} actionStyle={actionStyle} closeStyle={closeStyle} />
         </ToastPrimitive.Viewport>
       </ToastPrimitive.Portal>
     </ToastPrimitive.Provider>

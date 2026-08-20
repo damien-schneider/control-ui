@@ -30,18 +30,40 @@ test("gallery columns respond to their available width", async ({ page }) => {
   await page.goto("/primitives");
 
   const cards = page.locator('[data-gallery-card="primitive"]');
-  const desktopBoxes = await Promise.all([cards.nth(0).boundingBox(), cards.nth(1).boundingBox(), cards.nth(2).boundingBox()]);
-  expect(desktopBoxes.every(Boolean)).toBe(true);
-  expect(new Set(desktopBoxes.map((box) => Math.round(box?.y ?? 0))).size).toBe(1);
+  await expect(cards).toHaveCount(primitiveEntries.length);
+  await expect(cards.nth(0)).toBeVisible();
+  await expect(cards.nth(1)).toBeVisible();
+  await expect(cards.nth(2)).toBeVisible();
+  await expect
+    .poll(() =>
+      cards.evaluateAll((elements) => {
+        const boxes = elements.slice(0, 3).map((element) => element.getBoundingClientRect());
+        return (
+          boxes.length === 3 &&
+          boxes.every(({ width, height }) => width > 0 && height > 0) &&
+          new Set(boxes.map(({ y }) => Math.round(y))).size === 1
+        );
+      }),
+    )
+    .toBe(true);
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(cards).toHaveCount(primitiveEntries.length);
   await expect(cards.nth(0)).toBeVisible();
   await expect(cards.nth(1)).toBeVisible();
-  const mobileBoxes = await Promise.all([cards.nth(0).boundingBox(), cards.nth(1).boundingBox()]);
-  expect(mobileBoxes.every(Boolean)).toBe(true);
-  expect(Math.round(mobileBoxes[0]?.x ?? 0)).toBe(Math.round(mobileBoxes[1]?.x ?? 0));
-  expect(mobileBoxes[1]?.y ?? 0).toBeGreaterThan(mobileBoxes[0]?.y ?? 0);
+  await expect
+    .poll(() =>
+      cards.evaluateAll((elements) => {
+        const boxes = elements.slice(0, 2).map((element) => element.getBoundingClientRect());
+        return (
+          boxes.length === 2 &&
+          boxes.every(({ width, height }) => width > 0 && height > 0) &&
+          Math.round(boxes[0]?.x ?? 0) === Math.round(boxes[1]?.x ?? 0) &&
+          (boxes[1]?.y ?? 0) > (boxes[0]?.y ?? 0)
+        );
+      }),
+    )
+    .toBe(true);
 });
 
 test("gallery previews mount near the viewport, unmount when distant, and navigate without console errors", async ({ page }) => {

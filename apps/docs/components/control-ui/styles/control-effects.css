@@ -1,0 +1,113 @@
+/* Control effects: data-driven + CSS-first. Primitives emit stable anatomy plus data-control; a skin or extension root opts in via data-effects="top-shine ripple".
+ * No effect injects DOM: top-shine on ::before, ripple on control's own background-image (clipped by border-radius, composes with both).
+ * ControlEffectsRoot only feeds click geometry via --aui-ripple-* + retriggers keyframes — streaming DOM updates cost nothing (no observer, nothing to re-sync). */
+[data-effects~="top-shine"] :where([data-control-ui][data-control="true"]),
+[data-effects~="ripple"] :where([data-control-ui][data-control="true"]),
+[data-effects~="hover-circle"] :where([data-control-ui][data-control="true"]) {
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+}
+
+[data-effects~="top-shine"] :where([data-control-ui][data-control="true"])::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  inset-inline: 0.5rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, oklch(from var(--foreground) l c h / 0.32), transparent);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+[data-effects~="top-shine"] :where([data-control-ui][data-control="true"]:hover)::before,
+[data-effects~="top-shine"] :where([data-control-ui][data-control="true"]:focus-visible)::before {
+  opacity: 1;
+}
+
+/* ripple — click feedback via control's own background-image; ControlEffectsRoot sets --aui-ripple-x/y/r from pointer + toggles data-ripple, keyframes animate the two registered properties the radial-gradient reads.
+ * Registration required for interpolation — browsers without @property degrade to a brief static flash, never broken layout. */
+@property --aui-ripple-scale {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --aui-ripple-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+[data-effects~="ripple"] :where([data-control-ui][data-control="true"][data-ripple]) {
+  background-image: radial-gradient(
+    circle calc(var(--aui-ripple-r, 0px) * var(--aui-ripple-scale)) at var(--aui-ripple-x, 50%) var(--aui-ripple-y, 50%),
+    oklch(from var(--foreground) l c h / calc(0.24 * var(--aui-ripple-alpha))) 0%,
+    oklch(from var(--foreground) l c h / calc(0.14 * var(--aui-ripple-alpha))) 42%,
+    transparent 70%
+  );
+  animation: aui-ripple-pulse calc(var(--duration-slow) * 2.2) var(--ease-emphasized) forwards;
+}
+
+/* Reduced motion: no pulse — gradient stays at registered initial values (scale 0/alpha 0), i.e. invisible. */
+@media (prefers-reduced-motion: reduce) {
+  [data-effects~="ripple"] :where([data-control-ui][data-control="true"][data-ripple]) {
+    animation: none;
+    background-image: none;
+  }
+}
+
+@keyframes aui-ripple-pulse {
+  0% {
+    --aui-ripple-scale: 0;
+    --aui-ripple-alpha: 0.45;
+  }
+  70% {
+    --aui-ripple-alpha: 0.18;
+  }
+  100% {
+    --aui-ripple-scale: 1;
+    --aui-ripple-alpha: 0;
+  }
+}
+
+/* hover-circle — pointer-following blend disc: grows from the cursor on enter, tracks it across the
+ * control, recedes on leave; mix-blend-mode:difference inverts whatever it crosses (text included).
+ * ControlEffectsRoot only streams --aui-hover-circle-x/y/r (CSS can't observe pointer coords); the
+ * grow/shrink is a registered-property transition on :hover, everything else stays declarative.
+ * The disc is the ::after's own background — clipped by border-radius:inherit, no injected DOM.
+ * Tokens: --aui-hover-circle-color (disc paint), radius fed per-control by the runtime.
+ * Registration required for interpolation — without @property the disc still appears/disappears, it just skips the growth. */
+@property --aui-hover-circle-scale {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+/* Hover-capable pointers only: on touch, :hover sticks after tap and the disc would freeze mid-control. */
+@media (hover: hover) {
+  [data-effects~="hover-circle"] :where([data-control-ui][data-control="true"])::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    border-radius: inherit;
+    background-image: radial-gradient(
+      circle calc(var(--aui-hover-circle-r, 6rem) * var(--aui-hover-circle-scale)) at var(--aui-hover-circle-x, 50%)
+        var(--aui-hover-circle-y, 50%),
+      var(--aui-hover-circle-color, oklch(1 0 0 / 0.24)) calc(100% - 1px),
+      transparent 100%
+    );
+    mix-blend-mode: difference;
+    transition: --aui-hover-circle-scale calc(var(--duration-slow) * 1.6) var(--ease-emphasized);
+  }
+
+  /* Same disabled guard as the ripple's JS check — a dead control never lights up. */
+  [data-effects~="hover-circle"]
+    :where([data-control-ui][data-control="true"]:hover:not(:disabled, [aria-disabled="true"], [data-disabled="true"]))::after {
+    --aui-hover-circle-scale: 1;
+  }
+}

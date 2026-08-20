@@ -10,11 +10,20 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/skeleton.css",
+      "target": "@components/control-ui/styles/recipes/skeleton.css",
+      "type": "registry:file",
+      "content": "@layer components {\n  :where([data-control-family=\"skeleton\"][data-slot=\"root\"]) {\n    --skeleton-radius: var(--radius-control);\n    --skeleton-background: var(--muted);\n    border-radius: var(--skeleton-radius);\n    background-color: var(--skeleton-background);\n    background-image: linear-gradient(\n      100deg,\n      transparent 30%,\n      oklch(from var(--foreground) l c h / 0.06) 50%,\n      transparent 70%\n    );\n    background-size: 220% 100%;\n    animation: shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;\n  }\n\n}\n\n@property --skeleton-radius {\n  syntax: \"<length-percentage>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --skeleton-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/skeleton.tsx",
       "target": "@components/control-ui/ui/skeleton.tsx",
       "type": "registry:ui",
-      "content": "import type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinPaint, skinSlot } from \"@/components/control-ui/skin\";\n\n// sweep rather than flat pulse, so it reads as \"streaming in\"\nexport function Skeleton({ className, ...props }: ComponentProps<\"div\">) {\n  return (\n    <div\n      data-control-ui=\"skeleton\"\n      data-slot=\"root\"\n      className={cn(\"rounded-md\", skinPaint(\"skeleton\", \"shimmer\", {}) ?? \"shimmer\", skinSlot(\"skeleton\", \"root\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport type { SkeletonKnobStyle } from \"@/components/control-ui/knob-contracts\";\n\nexport function Skeleton({ className, ...props }: Omit<ComponentProps<\"div\">, \"style\"> & { style?: CSSProperties & SkeletonKnobStyle }) {\n  return <div data-control-ui=\"skeleton\" data-control-family=\"skeleton\" data-slot=\"root\" className={className} {...props} />;\n}\n"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/skeleton.css\"": {}
+  },
   "meta": {}
 }

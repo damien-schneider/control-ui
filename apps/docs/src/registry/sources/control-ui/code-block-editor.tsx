@@ -1,9 +1,10 @@
 "use client";
 
 import { CheckIcon, CopyIcon } from "lucide-react";
-import type { ChangeEvent, ComponentProps, ReactNode } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, ReactNode } from "react";
 import { Children, createContext, Fragment, isValidElement, use, useEffect, useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
+import type { ButtonKnobStyle, CodeBlockEditorKnobStyle, CodeKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import {
   type CodeBlockEditorTokenLines,
@@ -13,6 +14,8 @@ import {
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+
+type CodeBlockEditorStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 
 export type CodeBlockEditorOverflow = "wrap" | "scroll";
 export type CodeBlockEditorHighlight = "auto" | "none";
@@ -36,32 +39,27 @@ function useCodeBlockEditorContext() {
   return context;
 }
 
-function resolveCodeBlockEditorClasses({ overflow, chrome, density, variant }: CodeBlockEditorContextValue) {
-  const isEmbedded = chrome === "embedded";
+function resolveCodeBlockEditorClasses({ overflow, density, variant }: CodeBlockEditorContextValue) {
   const isCommand = variant === "command";
   const isCompact = density === "compact" || isCommand;
   const scrollOverflowClassName = isCommand ? "w-full max-w-full overflow-x-auto whitespace-pre" : "w-max min-w-full whitespace-pre";
 
   return {
     codeClassName: cn(
-      "font-mono leading-5 text-[color:var(--code-foreground)]",
-      isCompact ? "min-h-0 px-3 py-2 text-label" : "min-h-[160px] p-4 text-label",
-      isEmbedded ? "bg-transparent" : "bg-background",
+      isCompact ? "min-h-0 px-3 py-2" : "min-h-[160px] p-4",
       overflow === "scroll" ? scrollOverflowClassName : "w-full whitespace-pre-wrap break-words",
     ),
     editorClassName: cn(
-      "w-full max-w-full overflow-auto font-mono leading-5 text-[color:var(--code-foreground)]",
-      isCompact ? "max-h-[320px] min-h-0 px-3 py-2 text-label" : "max-h-[520px] min-h-[160px] p-4 text-label",
-      isEmbedded ? "bg-transparent" : "bg-background",
+      "w-full max-w-full overflow-auto",
+      isCompact ? "max-h-[320px] min-h-0 px-3 py-2" : "max-h-[520px] min-h-[160px] p-4",
       overflow === "scroll" ? "whitespace-pre" : "whitespace-pre-wrap break-words",
     ),
-    scrollAreaClassName: cn(isEmbedded ? "bg-transparent" : "bg-background"),
     scrollable: !isCommand,
     maxHeight: isCompact ? "320px" : "520px",
   };
 }
 
-export type CodeBlockEditorProps = ComponentProps<"figure"> & {
+export type CodeBlockEditorProps = CodeBlockEditorStyleProps<ComponentProps<"figure">, CodeBlockEditorKnobStyle> & {
   overflow?: CodeBlockEditorOverflow;
   chrome?: CodeBlockEditorChrome;
   density?: CodeBlockEditorDensity;
@@ -72,9 +70,9 @@ function hasCodeBlockEditorHeader(children: ReactNode) {
   return Children.toArray(children).some((child) => isValidElement(child) && child.type === CodeBlockEditorHeader);
 }
 
-export type CodeBlockEditorHeaderProps = ComponentProps<"figcaption">;
-export type CodeBlockEditorTitleProps = ComponentProps<"span">;
-export type CodeBlockEditorActionsProps = ComponentProps<"div">;
+export type CodeBlockEditorHeaderProps = CodeBlockEditorStyleProps<ComponentProps<"figcaption">, CodeBlockEditorKnobStyle>;
+export type CodeBlockEditorTitleProps = CodeBlockEditorStyleProps<ComponentProps<"span">, CodeBlockEditorKnobStyle>;
+export type CodeBlockEditorActionsProps = ComponentProps<"div"> & { style?: CSSProperties & CodeBlockEditorKnobStyle };
 
 export type CodeBlockEditorCopyProps = Omit<ComponentProps<typeof Button>, "children" | "onClick"> & {
   value: string;
@@ -83,7 +81,7 @@ export type CodeBlockEditorCopyProps = Omit<ComponentProps<typeof Button>, "chil
   copiedAriaLabel?: string;
 };
 
-export type CodeBlockEditorContentProps = Omit<ComponentProps<"pre">, "children"> & {
+export type CodeBlockEditorContentProps = CodeBlockEditorStyleProps<Omit<ComponentProps<"pre">, "children">, CodeBlockEditorKnobStyle> & {
   code: string;
   lang?: string;
   tokens?: CodeBlockEditorTokenLines | null;
@@ -92,7 +90,10 @@ export type CodeBlockEditorContentProps = Omit<ComponentProps<"pre">, "children"
   scrollAreaClassName?: string;
 };
 
-export type CodeBlockEditorTextareaProps = Omit<ComponentProps<"textarea">, "defaultValue" | "value"> & {
+export type CodeBlockEditorTextareaProps = CodeBlockEditorStyleProps<
+  Omit<ComponentProps<"textarea">, "defaultValue" | "value">,
+  CodeBlockEditorKnobStyle
+> & {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
@@ -188,7 +189,7 @@ function CodeBlockEditorCode({
   tokens?: CodeBlockEditorTokenLines | null;
   highlight: CodeBlockEditorHighlight;
   maxHeight: string;
-  scrollAreaClassName: string;
+  scrollAreaClassName?: string;
   scrollable: boolean;
 }) {
   const highlightedTokens = useHighlightedTokens({ code, lang, tokens, highlight });
@@ -215,7 +216,7 @@ function CodeBlockEditorCode({
     );
 
   const block = (
-    <pre className={className} {...props}>
+    <pre data-control-ui="code-block-editor" data-control-family="code-block-editor" data-slot="content" className={className} {...props}>
       {codeNode}
     </pre>
   );
@@ -246,18 +247,14 @@ export function CodeBlockEditor({
     <CodeBlockEditorContext.Provider value={{ overflow: resolvedOverflow, chrome, density, variant, hasHeader }}>
       <figure
         data-control-ui="code-block-editor"
+        data-control-family="code-block-editor"
         data-slot="root"
         data-surface="panel"
         data-variant={variant}
+        data-chrome={chrome}
+        data-density={density}
         data-header={hasHeader ? "true" : undefined}
-        className={cn(
-          "min-w-0 [--nest-gap:0.5rem]",
-          !hasHeader && "relative",
-          isEmbedded
-            ? "my-0 overflow-hidden rounded-none border-0 bg-transparent shadow-none ring-0 [--nest-radius:0px]"
-            : "my-4 overflow-hidden rounded-[var(--nest-radius)] border bg-background shadow-sm [--nest-radius:min(var(--radius-panel),calc(var(--nest-gap)*var(--nest-corner-ratio)))]",
-          className,
-        )}
+        className={cn("min-w-0", !hasHeader && "relative", isEmbedded ? "my-0 overflow-hidden" : "my-4 overflow-hidden", className)}
         {...props}
       >
         {children}
@@ -270,8 +267,9 @@ export function CodeBlockEditorHeader({ className, ...props }: CodeBlockEditorHe
   return (
     <figcaption
       data-control-ui="code-block-editor"
+      data-control-family="code-block-editor"
       data-slot="header"
-      className={cn("flex min-h-11 items-center justify-between gap-3 border-b px-3 py-2", className)}
+      className={cn("flex min-h-11 items-center justify-between gap-3 px-3 py-2", className)}
       {...props}
     />
   );
@@ -281,8 +279,9 @@ export function CodeBlockEditorTitle({ className, ...props }: CodeBlockEditorTit
   return (
     <span
       data-control-ui="code-block-editor"
+      data-control-family="code-block-editor"
       data-slot="title"
-      className={cn("block min-w-0 truncate font-mono text-label text-muted-foreground", className)}
+      className={cn("block min-w-0 truncate", className)}
       {...props}
     />
   );
@@ -290,7 +289,13 @@ export function CodeBlockEditorTitle({ className, ...props }: CodeBlockEditorTit
 
 export function CodeBlockEditorActions({ className, ...props }: CodeBlockEditorActionsProps) {
   return (
-    <div data-control-ui="code-block-editor" data-slot="actions" className={cn("flex shrink-0 items-center gap-1", className)} {...props} />
+    <div
+      data-control-ui="code-block-editor"
+      data-control-family="code-block-editor"
+      data-slot="actions"
+      className={cn("flex shrink-0 items-center gap-1", className)}
+      {...props}
+    />
   );
 }
 
@@ -337,14 +342,13 @@ export function CodeBlockEditorCopy({
   );
 }
 
-export type CodeBlockEditorFloatingCopyProps = Omit<CodeBlockEditorCopyProps, "children" | "copiedLabel">;
+export type CodeBlockEditorFloatingCopyProps = Omit<CodeBlockEditorCopyProps, "children" | "copiedLabel" | "style"> & {
+  style?: CSSProperties & ButtonKnobStyle & CodeKnobStyle;
+};
 
 export function CodeBlockEditorFloatingCopy({ className, ...props }: CodeBlockEditorFloatingCopyProps) {
   return (
-    <CodeBlockEditorCopy
-      className={cn("absolute top-2 right-2 z-10 bg-background/85 shadow-sm ring-1 ring-inset ring-border backdrop-blur", className)}
-      {...props}
-    />
+    <CodeBlockEditorCopy data-code-block-editor-floating-copy="true" className={cn("absolute top-2 right-2 z-10", className)} {...props} />
   );
 }
 
@@ -368,7 +372,7 @@ export function CodeBlockEditorContent({
       tokens={tokens}
       highlight={highlight}
       maxHeight={maxHeight ?? classes.maxHeight}
-      scrollAreaClassName={cn(classes.scrollAreaClassName, scrollAreaClassName)}
+      scrollAreaClassName={scrollAreaClassName}
       scrollable={classes.scrollable}
       className={cn(classes.codeClassName, className)}
       {...props}
@@ -409,11 +413,14 @@ export function CodeBlockEditorTextarea({
 
   return (
     <textarea
+      data-control-ui="code-block-editor"
+      data-control-family="code-block-editor"
+      data-slot="editor"
       value={currentValue}
       onChange={handleChange}
       aria-label={ariaLabel ?? (fileName ? `${fileName} code` : "Code editor")}
       spellCheck={false}
-      className={cn(editorClassName, "block resize-y border-0 outline-none", className)}
+      className={cn(editorClassName, "block resize-y", className)}
       {...props}
     />
   );

@@ -1,23 +1,36 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import type { PopoverContentPadding } from "@/components/control-ui/contracts";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingContentClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 
+type PopoverPopupProps = Omit<ComponentProps<typeof PopoverPrimitive.Popup>, "style"> & {
+  side?: ComponentProps<typeof PopoverPrimitive.Positioner>["side"];
+  align?: ComponentProps<typeof PopoverPrimitive.Positioner>["align"];
+  sideOffset?: number;
+  collisionPadding?: ComponentProps<typeof PopoverPrimitive.Positioner>["collisionPadding"];
+  padding?: PopoverContentPadding;
+  style?: CSSProperties & PopupKnobStyle;
+};
 // shadcn-shaped facade, so shadcn Popover snippets compose verbatim
 export function Popover(props: ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root {...props} />;
 }
 
-export function PopoverTrigger({ className, ...props }: ComponentProps<typeof PopoverPrimitive.Trigger>) {
+export function PopoverTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof PopoverPrimitive.Trigger> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <PopoverPrimitive.Trigger
       data-control-ui="popover"
+      data-control-family="popup"
+      data-popup-kind="popover"
       data-slot="trigger"
-      className={cn(skinSlot("popover", "trigger", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -37,13 +50,7 @@ export function PopoverContent({
   collisionPadding,
   padding = "default",
   ...props
-}: ComponentProps<typeof PopoverPrimitive.Popup> & {
-  side?: ComponentProps<typeof PopoverPrimitive.Positioner>["side"];
-  align?: ComponentProps<typeof PopoverPrimitive.Positioner>["align"];
-  sideOffset?: number;
-  collisionPadding?: ComponentProps<typeof PopoverPrimitive.Positioner>["collisionPadding"];
-  padding?: PopoverContentPadding;
-}) {
+}: PopoverPopupProps) {
   return (
     <PopoverPrimitive.Portal>
       {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
@@ -54,22 +61,17 @@ export function PopoverContent({
         align={align}
         sideOffset={sideOffset}
         collisionPadding={collisionPadding}
-        className="z-[80] outline-none"
+        className="z-[80]"
       >
         <PopoverPrimitive.Popup
           data-control-ui="popover"
+          data-popup-kind="popover"
           data-slot="content"
           data-surface="floating"
+          data-control-family="popup"
           data-popup-part="surface"
           data-padding={padding}
-          className={cn(
-            "w-72",
-            padding === "default" && "p-4",
-            floatingContentClasses,
-            skinFamily("popup", "surface"),
-            skinSlot("popover", "content", { padding }),
-            className,
-          )}
+          className={cn("w-72", padding === "default" && "p-4", className)}
           {...props}
         >
           {children}
@@ -79,45 +81,62 @@ export function PopoverContent({
   );
 }
 
-export function PopoverHeader({ className, ...props }: ComponentProps<"div">) {
+export function PopoverHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="popover"
+      data-control-family="popup"
+      data-popup-kind="popover"
       data-slot="header"
-      className={cn("grid gap-1.5 pb-3", skinSlot("popover", "header", {}), className)}
+      className={cn("grid gap-1.5 pb-3", className)}
       {...props}
     />
   );
 }
 
-export function PopoverTitle({ className, ...props }: ComponentProps<typeof PopoverPrimitive.Title>) {
+export function PopoverTitle({
+  className,
+  ...props
+}: ComponentProps<typeof PopoverPrimitive.Title> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <PopoverPrimitive.Title
       data-control-ui="popover"
+      data-control-family="popup"
+      data-popup-kind="popover"
       data-slot="title"
-      className={cn("text-sm font-semibold leading-none tracking-tight", skinSlot("popover", "title", {}), className)}
+      className={className}
       {...props}
     />
   );
 }
 
-export function PopoverDescription({ className, ...props }: ComponentProps<typeof PopoverPrimitive.Description>) {
+export function PopoverDescription({
+  className,
+  ...props
+}: ComponentProps<typeof PopoverPrimitive.Description> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <PopoverPrimitive.Description
       data-control-ui="popover"
+      data-control-family="popup"
+      data-popup-kind="popover"
       data-slot="description"
-      className={cn("text-sm text-muted-foreground", skinSlot("popover", "description", {}), className)}
+      className={className}
       {...props}
     />
   );
 }
 
-export function PopoverClose({ className, ...props }: ComponentProps<typeof PopoverPrimitive.Close>) {
+export function PopoverClose({
+  className,
+  ...props
+}: ComponentProps<typeof PopoverPrimitive.Close> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <PopoverPrimitive.Close
       data-control-ui="popover"
+      data-control-family="popup"
+      data-popup-kind="popover"
       data-slot="close"
-      className={cn(skinSlot("popover", "close", {}), className)}
+      className={className}
       {...props}
     />
   );

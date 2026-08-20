@@ -12,11 +12,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/spinner.css",
+      "target": "@components/control-ui/styles/recipes/spinner.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/spinner.tsx",
       "target": "@components/control-ui/ui/spinner.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/spinner.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/spinner.json"
   }

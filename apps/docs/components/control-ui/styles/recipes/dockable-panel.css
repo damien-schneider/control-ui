@@ -1,0 +1,108 @@
+@layer components {
+  :where([data-control-family="dockable-panel"][data-slot="root"]) {
+    --dockable-panel-radius: var(--radius-panel);
+    --dockable-panel-background: var(--card);
+    --dockable-panel-foreground: var(--card-foreground);
+    --dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
+    --dockable-panel-shadow: var(--shadow-pop);
+    --dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
+    --dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
+  }
+  :where(
+    [data-control-family="dockable-panel"][data-slot="root"],
+    [data-dockable-panel-root]
+  ) {
+    border: 1px solid var(--dockable-panel-border-color);
+    border-radius: var(--dockable-panel-radius);
+    outline: none;
+    background-color: var(--dockable-panel-background);
+    color: var(--dockable-panel-foreground);
+    box-shadow: var(--dockable-panel-shadow);
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="root"][data-dragging]) {
+    box-shadow: var(--shadow-modal);
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="header"]) {
+    border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="drag-handle"]) {
+    border-radius: var(--radius-control);
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="drag-handle"]:focus-visible) {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="title"]) {
+    color: var(--foreground);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="drop-zone"]) {
+    border-radius: var(--radius-panel);
+    background-color: oklch(from var(--background) l c h / 0.12);
+    box-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.2);
+    transition-property: background-color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="drop-zone"][data-active]) {
+    background-color: var(--dockable-panel-drop-zone-active-background);
+    box-shadow:
+      var(--shadow-sm),
+      0 0 0 1px
+        var(--dockable-panel-drop-zone-active-border-color);
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="drag-handle"]) {
+    --_dockable-panel-drag-handle-text-align: left;
+    text-align: var(--_dockable-panel-drag-handle-text-align);
+  }
+}
+
+@property --dockable-panel-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --dockable-panel-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dockable-panel-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dockable-panel-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dockable-panel-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --dockable-panel-drop-zone-active-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --dockable-panel-drop-zone-active-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

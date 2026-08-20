@@ -6,7 +6,15 @@ import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import { publicRegistryHref, registryInstallCommands } from "@/app/(features)/model/registry";
 import type { DocsBlock, IntegrationId, SourceFile } from "@/app/(features)/model/types";
 import { blockPreviewCode } from "./block-preview-code";
-import { CompositionSection, InstallPanel, PageHeader, RegistryDependencyReferences, SectionCode, SectionTitle } from "./shared";
+import {
+  CompositionSection,
+  InstallPanel,
+  PageHeader,
+  RegistryDependencyReferences,
+  SectionCode,
+  SectionStack,
+  SectionTitle,
+} from "./shared";
 
 export function UseCasePage({ block, integration }: { block: DocsBlock; integration: IntegrationId }) {
   const kind = getUseCaseKind(block.useCaseKind);
@@ -24,7 +32,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
         <BlockPreview blockId={block.id} integration={integration} />
       </PreviewTabs>
 
-      <div className="grid min-w-0 gap-10">
+      <SectionStack>
         <CompositionSection
           items={composition}
           description={`How this ${kind.singularLabel.toLowerCase()} nests its exported parts and installed Control UI sources.`}
@@ -46,7 +54,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
             <SourceTabs files={files} />
           </div>
         </section>
-      </div>
+      </SectionStack>
     </section>
   );
 }

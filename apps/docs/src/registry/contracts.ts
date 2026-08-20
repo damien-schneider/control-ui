@@ -1,44 +1,83 @@
 import type { ComponentProps, CSSProperties, MouseEvent, ReactElement, ReactNode, Ref } from "react";
-
-/** Controlled value triple shared by every choice control. `defaultValue` is NoInfer — one uncontrolled option would otherwise pin TValue to that literal. */
+import type {
+  AccordionKnobStyle,
+  ActivityKnobStyle,
+  AlertKnobStyle,
+  AudioVisualizerKnobStyle,
+  AvatarKnobStyle,
+  BadgeKnobStyle,
+  ButtonGroupKnobStyle,
+  ButtonKnobStyle,
+  CardKnobStyle,
+  ChatComposerKnobStyle,
+  ChatMessageKnobStyle,
+  ChoiceKnobStyle,
+  CollapsibleKnobStyle,
+  ColorPickerKnobStyle,
+  ContextKnobStyle,
+  DockablePanelKnobStyle,
+  DynamicNotificationKnobStyle,
+  EmptyKnobStyle,
+  FieldKnobStyle,
+  GradientEditorKnobStyle,
+  InfiniteCanvasKnobStyle,
+  ItemKnobStyle,
+  KbdKnobStyle,
+  LabelKnobStyle,
+  MarkdownKnobStyle,
+  MorphingPanelKnobStyle,
+  PaginationKnobStyle,
+  PopupKnobStyle,
+  RangeKnobStyle,
+  ResizableKnobStyle,
+  ScrollAreaKnobStyle,
+  SidebarKnobStyle,
+  SpinnerKnobStyle,
+  StepperKnobStyle,
+  SwitchKnobStyle,
+  TableKnobStyle,
+  TableOfContentsKnobStyle,
+  TabsKnobStyle,
+  TaskListKnobStyle,
+  ThreadRailKnobStyle,
+  TimelineKnobStyle,
+  ToastKnobStyle,
+  ToolbarKnobStyle,
+  TranscriptDividerKnobStyle,
+  TreeKnobStyle,
+  UserAskKnobStyle,
+} from "./knob-contracts";
 export type ControlledChoice<TValue extends string = string> = {
   value?: TValue;
   defaultValue?: NoInfer<TValue>;
   onValueChange?: (value: TValue) => void;
 };
-
 export type ControlledMultiChoice<TValue extends string = string> = {
   value?: TValue[];
   defaultValue?: NoInfer<TValue>[];
   onValueChange?: (value: TValue[]) => void;
 };
-
 export type ChatRole = "user" | "assistant" | "system" | "tool";
 export type ChatDensity = "compact" | "comfortable";
 export type ChatState = "idle" | "streaming" | "pending" | "error";
 export type ChatTone = "neutral" | "success" | "warning" | "danger";
 export type InlineAttachmentState = "ready" | "pending" | "error";
-
 export type DropzoneSelectionMode = "append" | "replace";
 export type DropzoneVisualState = "idle" | "accept" | "reject" | "unknown" | "processing";
 export type DropzoneOverlayScope = "local" | "global";
 export type DropzoneValueChangeReason = "drop" | "input" | "remove" | "clear";
-
 export type ChatMessageProps = ComponentProps<"article"> & {
   from: ChatRole;
   state?: ChatState;
   density?: ChatDensity;
   tone?: ChatTone;
-};
-
+} & { style?: CSSProperties & ChatMessageKnobStyle };
 export type ChatComposerSubmitPayload = {
   value: string;
   clear: () => void;
-  // rich editor only — plain-textarea path never sets it
   mentions?: MentionItem[];
 };
-
-export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit"> & {
+export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit" | "style"> & {
   children?: ReactNode;
   value?: string;
   defaultValue?: string;
@@ -47,28 +86,25 @@ export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit"> & {
   state?: "idle" | "submitting" | "disabled";
   density?: ChatDensity;
   disabled?: boolean;
+  style?: CSSProperties & ChatComposerKnobStyle;
 };
-
 export type ActivityState = "pending" | "running" | "success" | "error";
 export type ActivityKind = "default" | "tool" | "reasoning" | "signal";
 export type ActivityDetailFormat = "text" | "code";
-
-export type ActivityProps = Omit<CollapsibleProps, "children"> & {
+export type ActivityProps = Omit<CollapsibleProps, "children" | "style"> & {
   children?: ReactNode;
   kind?: ActivityKind;
   name?: string;
   state?: ActivityState;
   statusLabel?: ReactNode;
+  style?: CSSProperties & ActivityKnobStyle;
 };
-
-export type TranscriptDividerProps = ComponentProps<"div"> & {
+export type TranscriptDividerProps = Omit<ComponentProps<"div">, "style"> & {
   tone?: ChatTone;
+  style?: CSSProperties & TranscriptDividerKnobStyle;
 };
-
 export type ContextSegmentKind = "system" | "tool" | "message" | "source" | "reasoning" | "cache" | "other";
-
 export type ContextStatus = "normal" | "over-limit" | "unavailable";
-
 export type ContextSegment = {
   id: string;
   label: string;
@@ -76,7 +112,6 @@ export type ContextSegment = {
   kind?: ContextSegmentKind;
   description?: ReactNode;
 };
-
 export type ContextProps = Omit<ComponentProps<"div">, "children"> & {
   segments: readonly ContextSegment[];
   maxTokens?: number | null;
@@ -86,8 +121,7 @@ export type ContextProps = Omit<ComponentProps<"div">, "children"> & {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
   children?: ReactNode;
-};
-
+} & { style?: CSSProperties & ContextKnobStyle };
 export type SourceReference = {
   href: string;
   title?: string;
@@ -95,53 +129,48 @@ export type SourceReference = {
   quote?: string;
   faviconSrc?: string | false;
 };
-
-/** Resolved answers keyed by question id; freeform option resolves to its typed text. */
 export type UserAskAnswers = Record<string, string>;
-
-// Replaces composer in place. Questions/options self-register — count, numbering, pagination derived, never passed.
-export type UserAskProps = ComponentProps<"section"> & {
+export type UserAskProps = Omit<ComponentProps<"section">, "style"> & {
   children?: ReactNode;
   onComplete?: (answers: UserAskAnswers) => void;
   onDismiss?: () => void;
+  style?: CSSProperties & UserAskKnobStyle;
 };
-
 export type AudioVisualizerVariant = "bars" | "line";
-
-// audio-visualizer.tsx (bars) and audio-visualizer-line.tsx both export `AudioVisualizer` on these props — swap = import-path change.
-export type AudioVisualizerProps = Omit<ComponentProps<"div">, "children"> & {
-  /** Rolling window of 0..1 levels, oldest first (e.g. RMS per frame from AnalyserNode). */
+export type AudioVisualizerProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   levels: readonly number[];
-  /** Inactive keeps last shape with quieter emphasis. */
   active?: boolean;
-  /** Latest N levels, left-padded with silence. Default 28, capped at 128. */
   points?: number;
+  style?: CSSProperties & AudioVisualizerKnobStyle;
 };
-
-export type ThreadRailProps = ComponentProps<"nav">;
-
-export type ThreadRailItemProps = ComponentProps<"div"> & {
+export type ToasterProps = {
+  className?: string;
+  timeout?: number;
+  limit?: number;
+  rootStyle?: CSSProperties & ToastKnobStyle;
+  indicatorStyle?: CSSProperties & ToastKnobStyle;
+  actionStyle?: CSSProperties & ToastKnobStyle;
+  closeStyle?: CSSProperties & ToastKnobStyle;
+};
+export type ThreadRailProps = ComponentProps<"nav"> & { style?: CSSProperties & ThreadRailKnobStyle };
+export type ThreadRailItemProps = Omit<ComponentProps<"div">, "style"> & {
   from?: ChatRole;
   inView?: boolean;
   active?: boolean;
+  style?: CSSProperties & ThreadRailKnobStyle;
 };
-
 export type RenderProp<Props, State extends Record<string, unknown> = Record<string, unknown>> =
   | ReactElement
   | ((props: Props, state: State) => ReactElement<unknown>);
-
-// One step drives height (--control-h-*), padding, text across Button, Select/DropdownMenu triggers, Input.
 export type ControlSize = "xs" | "sm" | "md" | "lg";
-
-// effects.css keys off data-effects. Here, not in optional extension: ControlUiSkin.effects references it without ripple runtime installed.
 export type ControlEffect = "top-shine" | "ripple" | "hover-circle";
-
-// variant = structure, tone = color intent — orthogonal, no solidDanger/ghostDanger explosion.
-export type ButtonVariant = "solid" | "surface" | "ghost" | "quiet";
+export const buttonVariants = ["solid", "surface", "ghost", "quiet"] as const;
+export type ButtonVariant = (typeof buttonVariants)[number];
 export type ButtonSize = ControlSize;
-export type ButtonTone = "neutral" | "primary" | "danger";
-export type ButtonShape = "default" | "circle";
-
+export const buttonTones = ["neutral", "primary", "danger"] as const;
+export type ButtonTone = (typeof buttonTones)[number];
+export const buttonShapes = ["default", "circle"] as const;
+export type ButtonShape = (typeof buttonShapes)[number];
 export type ButtonAppearanceProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -149,22 +178,31 @@ export type ButtonAppearanceProps = {
   active?: boolean;
   iconOnly?: boolean;
   shape?: ButtonShape;
+  style?: CSSProperties & ButtonKnobStyle;
 };
-
 export type ButtonProps = ComponentProps<"button"> &
   ButtonAppearanceProps & {
     render?: RenderProp<ComponentProps<"button">, { disabled: boolean }>;
     nativeButton?: boolean;
   };
-
 export type ButtonLinkProps = ComponentProps<"a"> &
   ButtonAppearanceProps & {
     render?: RenderProp<ComponentProps<"a">>;
   };
-
 export type ButtonLabelProps = ComponentProps<"label"> & ButtonAppearanceProps;
-
-// Superset across every popup primitive — one shape whichever backs contract.
+export const popupParts = [
+  "backdrop",
+  "surface",
+  "list-surface",
+  "list-content",
+  "bar",
+  "item",
+  "navigation-link",
+  "label",
+  "separator",
+  "shortcut",
+] as const;
+export type PopupPart = (typeof popupParts)[number];
 export type OpenChangeReason =
   | "trigger-hover"
   | "trigger-focus"
@@ -186,8 +224,6 @@ export type OpenChangeReason =
   | "imperative-action"
   | "swipe"
   | "none";
-
-// cancel() blocks pending state change; allowPropagation() opts Escape back into bubbling (Base UI stops it by default).
 export type OpenChangeEventDetails = {
   reason: OpenChangeReason;
   event: Event;
@@ -197,83 +233,65 @@ export type OpenChangeEventDetails = {
   isPropagationAllowed: boolean;
   trigger: Element | undefined;
 };
-
 export type CollapsibleProps = Omit<ComponentProps<"div">, "onChange"> & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
   children?: ReactNode;
-};
-
-export type CollapsibleTriggerProps = ComponentProps<"button"> & {
+} & { style?: CSSProperties & CollapsibleKnobStyle };
+export type CollapsibleTriggerProps = Omit<ComponentProps<"button">, "style"> & {
   "data-slot"?: string;
   render?: RenderProp<ComponentProps<"button">, { open: boolean }>;
   nativeButton?: boolean;
+  style?: CSSProperties & CollapsibleKnobStyle;
 };
-
 export type CollapsibleContentProps = ComponentProps<"div"> & {
   "data-slot"?: string;
-  /** Keep panel mounted while closed — hidden children that register themselves (TaskList items) need it. */
   keepMounted?: boolean;
-};
-
-export type MorphingPanelDimensions = {
-  width: string;
-  height: string;
-};
-
-export type MorphingPanelProps = CollapsibleProps & {
+} & { style?: CSSProperties & CollapsibleKnobStyle };
+export type MorphingPanelDimensions = { width: string; height: string };
+export type MorphingPanelProps = Omit<CollapsibleProps, "style"> & {
   collapsedSize: MorphingPanelDimensions;
   expandedSize: MorphingPanelDimensions;
+  style?: CSSProperties & MorphingPanelKnobStyle;
 };
-
-export type MorphingPanelTriggerProps = CollapsibleTriggerProps;
-export type MorphingPanelContentProps = CollapsibleContentProps;
-
+export type MorphingPanelTriggerProps = Omit<CollapsibleTriggerProps, "style"> & {
+  style?: CSSProperties & MorphingPanelKnobStyle;
+};
+export type MorphingPanelContentProps = Omit<CollapsibleContentProps, "style"> & {
+  style?: CSSProperties & MorphingPanelKnobStyle;
+};
 export type TaskStatus = "pending" | "active" | "completed";
-
-// Collapsed pill reads "Task 3 of 5 › label" — items register status, pill derives progress.
-export type TaskListProps = CollapsibleProps;
-
-export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & ControlledChoice<TValue>;
-
+export type TaskListProps = Omit<CollapsibleProps, "style"> & { style?: CSSProperties & TaskListKnobStyle };
+export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledChoice<TValue> & { style?: CSSProperties & TabsKnobStyle };
 export type TabsListVariant = "default" | "browser";
-
-export type TabsListProps = ComponentProps<"div"> & {
+export type TabsListProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
   size?: ControlSize;
   variant?: TabsListVariant;
 };
-
-export type TabsTabProps = Omit<ComponentProps<"button">, "value"> & {
+export type TabsTabProps = Omit<Omit<ComponentProps<"button">, "value">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
   value: string;
-  /** Render as another element (e.g. router Link) to turn tab strip into nav; set nativeButton={false} for non-<button>. */
   render?: RenderProp<ComponentProps<"button">, { active: boolean; disabled: boolean }>;
   nativeButton?: boolean;
 };
-
-export type TabsPanelProps = ComponentProps<"div"> & {
+export type TabsPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
   value: string;
 };
-
 export type TimelineState = "neutral" | "pending" | "running" | "success" | "error";
-
-export type TimelineProps = ComponentProps<"ol">;
-
+export type TimelineProps = ComponentProps<"ol"> & { style?: CSSProperties & TimelineKnobStyle };
 export type TimelineItemProps = ComponentProps<"li"> & {
   state?: TimelineState;
-};
-
-export type TimelineIndicatorProps = ComponentProps<"span">;
-export type TimelineSeparatorProps = ComponentProps<"span">;
-export type TimelineContentProps = ComponentProps<"div">;
-export type TimelineTitleProps = ComponentProps<"div">;
-export type TimelineDescriptionProps = ComponentProps<"div">;
-export type TimelineMetaProps = ComponentProps<"div">;
-
+} & { style?: CSSProperties & TimelineKnobStyle };
+export type TimelineIndicatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+export type TimelineSeparatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+export type TimelineContentProps = ComponentProps<"div"> & { style?: CSSProperties & TimelineKnobStyle };
+export type TimelineTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+export type TimelineDescriptionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+export type TimelineMetaProps = ComponentProps<"div"> & { style?: CSSProperties & TimelineKnobStyle };
 export type StepperOrientation = "horizontal" | "vertical";
 export type StepperContentMode = "current" | "all";
 export type StepperState = "neutral" | "complete" | "current" | "upcoming";
-
 export type StepperProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
   value?: number | null;
   defaultValue?: number | null;
@@ -281,52 +299,55 @@ export type StepperProps = Omit<ComponentProps<"div">, "defaultValue" | "onChang
   orientation?: StepperOrientation;
   contentMode?: StepperContentMode;
   responsive?: boolean;
-};
-
-export type StepperListProps = ComponentProps<"ol">;
-
+} & { style?: CSSProperties & StepperKnobStyle };
+export type StepperListProps = ComponentProps<"ol"> & { style?: CSSProperties & StepperKnobStyle };
 export type StepperItemProps = Omit<ComponentProps<"li">, "value"> & {
   step: number;
   disabled?: boolean;
   invalid?: boolean;
-};
-
-export type StepperTriggerProps = ComponentProps<"button">;
-export type StepperIndicatorProps = ComponentProps<"span">;
-export type StepperSeparatorProps = ComponentProps<"span">;
-export type StepperTitleProps = ComponentProps<"span">;
-export type StepperDescriptionProps = ComponentProps<"span">;
-
+} & { style?: CSSProperties & StepperKnobStyle };
+export type StepperTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+export type StepperIndicatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+export type StepperSeparatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+export type StepperTitleProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+export type StepperDescriptionProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
 export type StepperContentProps = ComponentProps<"section"> & {
   step: number;
   keepMounted?: boolean;
+} & { style?: CSSProperties & StepperKnobStyle };
+export const sidebarMenuButtonVariants = ["default", "outline"] as const;
+export type SidebarMenuButtonVariant = (typeof sidebarMenuButtonVariants)[number];
+export const sidebarMenuButtonSizes = ["default", "sm", "lg"] as const;
+export type SidebarMenuButtonSize = (typeof sidebarMenuButtonSizes)[number];
+export type SidebarRailProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
+export type SidebarInsetProps = Omit<ComponentProps<"main">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
+export type SidebarGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & SidebarKnobStyle } & {
+  render?: RenderProp<ComponentProps<"div">>;
 };
-
-// Library-original (Base UI has none). WAI-ARIA APG treeview — <li> is focusable treeitem, trigger row presentational.
-// Selection stays string[] even single-select — both modes share one shape.
+export type SidebarMenuButtonProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle } & {
+  render?: RenderProp<ComponentProps<"button">>;
+  isActive?: boolean;
+  tooltip?: ReactNode;
+  variant?: SidebarMenuButtonVariant;
+  size?: SidebarMenuButtonSize;
+};
 export type TreeSelectionMode = "none" | "single" | "multiple";
-
 export type TreeInteractionReason = "pointer" | "keyboard" | "imperative";
-
 export type TreeSelectionChangeDetails = {
   value: string;
   reason: TreeInteractionReason;
 };
-
 export type TreeExpandedChangeDetails = {
   value: string;
   expanded: boolean;
   reason: TreeInteractionReason;
 };
-
-/** Shared by row-in-track lists (Tree, SidebarMenu). Default comes from ControlUiSkin.indicators; explicit prop wins. */
 export type SelectionIndicator = "none" | "slide";
 export const SIDEBAR_COOKIE_NAME = "sidebar_state";
-
 export type TreeSelectionIndicator = SelectionIndicator;
-
-export type TreeProps = Omit<ComponentProps<"ul">, "onChange" | "defaultValue"> & {
-  /** `single` (default), `multiple` (Cmd/Ctrl-click, Cmd/Ctrl-Space, Shift-range), or `none`. */
+export type TreeProps = Omit<Omit<ComponentProps<"ul">, "onChange" | "defaultValue">, "style"> & {
+  style?: CSSProperties & TreeKnobStyle;
+} & {
   selectionMode?: TreeSelectionMode;
   value?: string[];
   defaultValue?: string[];
@@ -334,227 +355,181 @@ export type TreeProps = Omit<ComponentProps<"ul">, "onChange" | "defaultValue"> 
   expandedValue?: string[];
   defaultExpandedValue?: string[];
   onExpandedChange?: (expanded: string[], details: TreeExpandedChangeDetails) => void;
-  /** `slide` suppresses per-row backgrounds — one pill glides to hover and rests on selection. Default ControlUiSkin.indicators.tree, else none. */
   indicator?: TreeSelectionIndicator;
 };
-
 export type TreeItemProps = Omit<ComponentProps<"li">, "value"> & {
-  /** Stable id/path — selection + expansion key, and roving/`data-value` handle. */
   value: string;
   disabled?: boolean;
-  /** Type-ahead text. Falls back to the `TreeItemLabel` text content when omitted. */
   label?: string;
   children?: ReactNode;
 };
-
-export type TreeItemTriggerProps = ComponentProps<"div"> & {
+export type TreeItemTriggerProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TreeKnobStyle } & {
   render?: RenderProp<ComponentProps<"div">>;
 };
-
-export type TreeItemIndicatorProps = ComponentProps<"span">;
-
+export type TreeItemIndicatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & TreeKnobStyle };
 export type TreeItemLabelProps = ComponentProps<"span"> & {
   render?: RenderProp<ComponentProps<"span">>;
 };
-
-export type TreeItemContentProps = ComponentProps<"div">;
-
+export type TreeItemContentProps = ComponentProps<"div"> & { style?: CSSProperties & TreeKnobStyle };
+export const scrollAreaScrollbarVisibilities = ["scroll", "hover", "always"] as const;
+export type ScrollAreaScrollbarVisibility = (typeof scrollAreaScrollbarVisibilities)[number];
 export type ScrollAreaLockAxis = "x" | "y" | "both";
 export type ScrollAreaViewportProps = Omit<ComponentProps<"div">, "children" | "className" | "ref"> & {
   "data-control-ui"?: string;
+  "data-control-family"?: string;
   "data-slot"?: string;
 };
-
-export type ScrollAreaProps = ComponentProps<"div"> & {
+export type ScrollAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ScrollAreaKnobStyle } & {
   viewportClassName?: string;
   viewportProps?: ScrollAreaViewportProps;
   viewportRef?: Ref<HTMLDivElement>;
   maxHeight?: string;
   mask?: boolean;
   lockAxis?: ScrollAreaLockAxis;
-  scrollbarVisibility?: "scroll" | "hover" | "always";
+  scrollbarVisibility?: ScrollAreaScrollbarVisibility;
 };
-
 export type TocItem = {
-  /** Fragment link to section, e.g. `#install`. */
   href: string;
   label: string;
-  /** Heading depth (1 = h1, 2 = h2, 3 = h3, ...). Drives indentation. Defaults to nesting depth, then 2. */
   level?: number;
   children?: TocItem[];
 };
-
-export type TableOfContentsVariant = "background" | "trail" | "both";
-
-// Indicator, scroll, offset are CSS — only in-view detection runs in JS.
-export type TableOfContentsProps = Omit<ComponentProps<"nav">, "children"> & {
+export const tableOfContentsVariants = ["background", "trail", "both"] as const;
+export type TableOfContentsVariant = (typeof tableOfContentsVariants)[number];
+export type TableOfContentsProps = Omit<Omit<ComponentProps<"nav">, "children">, "style"> & {
+  style?: CSSProperties & TableOfContentsKnobStyle;
+} & {
   items: TocItem[];
-  /** Heading shown above list and used as nav's accessible name. Defaults to "On this page". */
   label?: string;
-  /** Active item treatment. Defaults to both trail and background. */
   variant?: TableOfContentsVariant;
 };
-
 export type SelectProps<TValue extends string = string> = ControlledChoice<TValue> & {
   disabled?: boolean;
   name?: string;
   children?: ReactNode;
 };
-
-export type SelectTriggerVariant = "surface" | "ghost";
-
-export type SelectTriggerProps = ComponentProps<"button"> & {
+export const selectTriggerVariants = ["surface", "ghost"] as const;
+export type SelectTriggerVariant = (typeof selectTriggerVariants)[number];
+export type SelectTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle } & {
   size?: ControlSize;
   variant?: SelectTriggerVariant;
 };
-
 export type SelectValueProps = {
   placeholder?: ReactNode;
   children?: ReactNode | ((value: string) => ReactNode);
 };
-
-export type SelectContentProps = ComponentProps<"div">;
-
-export type SelectItemProps = ComponentProps<"div"> & {
+export type SelectContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type SelectItemProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   value: string;
   label?: string;
   disabled?: boolean;
 };
-
 export type DropdownMenuProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type DropdownMenuTriggerVariant = "surface" | "ghost";
-
-export type DropdownMenuTriggerProps = ComponentProps<"button"> & {
+export const dropdownMenuTriggerVariants = ["surface", "ghost"] as const;
+export type DropdownMenuTriggerVariant = (typeof dropdownMenuTriggerVariants)[number];
+export type DropdownMenuTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle } & {
   size?: ControlSize;
   iconOnly?: boolean;
   variant?: DropdownMenuTriggerVariant;
 };
-
-export type DropdownMenuContentProps = ComponentProps<"div">;
-
-export type DropdownMenuItemProps = Omit<ComponentProps<"div">, "onClick"> & {
+export type DropdownMenuContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type DropdownMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   disabled?: boolean;
   onClick?: (event: MouseEvent) => void;
 };
-
-export type DropdownMenuSeparatorProps = ComponentProps<"div">;
-
-export type DropdownMenuLabelProps = ComponentProps<"div">;
-
-export type PopoverContentPadding = "default" | "none";
-
+export type DropdownMenuSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type DropdownMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export const popoverContentPaddings = ["default", "none"] as const;
+export type PopoverContentPadding = (typeof popoverContentPaddings)[number];
 export type RichTooltipTone = "accent" | "surface";
 export type RichTooltipProgressVariant = "count" | "dots";
-
 export type ContextMenuProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type ContextMenuTriggerProps = ComponentProps<"div">;
-
-export type ContextMenuGroupProps = ComponentProps<"div">;
-
-export type ContextMenuContentProps = ComponentProps<"div">;
-
-export type ContextMenuItemProps = Omit<ComponentProps<"div">, "onClick"> & {
+export type ContextMenuTriggerProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuGroupProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   disabled?: boolean;
   inset?: boolean;
   onClick?: (event: MouseEvent) => void;
 };
-
-export type ContextMenuCheckboxItemProps = Omit<ComponentProps<"div">, "onClick"> & {
+export type ContextMenuCheckboxItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+} & {
   checked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   disabled?: boolean;
 };
-
 export type ContextMenuRadioGroupProps<TValue extends string = string> = ComponentProps<"div"> &
-  Omit<ControlledChoice<TValue>, "defaultValue">;
-
-export type ContextMenuRadioItemProps = Omit<ComponentProps<"div">, "onClick"> & {
+  Omit<ControlledChoice<TValue>, "defaultValue"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuRadioItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+} & {
   value: string;
   disabled?: boolean;
 };
-
-export type ContextMenuLabelProps = ComponentProps<"div"> & {
+export type ContextMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   inset?: boolean;
 };
-
-export type ContextMenuSeparatorProps = ComponentProps<"div">;
-
-export type ContextMenuShortcutProps = ComponentProps<"span">;
-
+export type ContextMenuSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type ContextMenuShortcutProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 export type ContextMenuSubProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type ContextMenuSubTriggerProps = Omit<ComponentProps<"div">, "onClick"> & {
+export type ContextMenuSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+} & {
   disabled?: boolean;
   inset?: boolean;
 };
-
-export type ContextMenuSubContentProps = ComponentProps<"div">;
-
-export type MenubarProps = ComponentProps<"div"> & {
+export type ContextMenuSubContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type MenubarProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   modal?: boolean;
   loopFocus?: boolean;
   disabled?: boolean;
   orientation?: "horizontal" | "vertical";
 };
-
 export type MenubarMenuProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type MenubarTriggerProps = ComponentProps<"button">;
-
-export type MenubarContentProps = ComponentProps<"div">;
-
-export type MenubarItemProps = Omit<ComponentProps<"div">, "onClick"> & {
+export type MenubarTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle };
+export type MenubarContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type MenubarGroupProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+export type MenubarItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   disabled?: boolean;
   onClick?: (event: MouseEvent) => void;
 };
-
-export type MenubarSeparatorProps = ComponentProps<"div">;
-
-export type MenubarLabelProps = ComponentProps<"div"> & {
+export type MenubarSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type MenubarLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   inset?: boolean;
 };
-
-export type MenubarGroupProps = ComponentProps<"div">;
-
-export type MenubarShortcutProps = ComponentProps<"span">;
-
+export type MenubarShortcutProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 export type MenubarSubProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type MenubarSubTriggerProps = Omit<ComponentProps<"div">, "onClick"> & {
+export type MenubarSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   disabled?: boolean;
   inset?: boolean;
 };
-
-export type MenubarSubContentProps = ComponentProps<"div">;
-
-// Triggers share one floating viewport that morphs between panels.
+export type MenubarSubContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 export type NavigationMenuProps = ComponentProps<"nav"> & {
   value?: string | null;
   defaultValue?: string | null;
@@ -562,34 +537,28 @@ export type NavigationMenuProps = ComponentProps<"nav"> & {
   orientation?: "horizontal" | "vertical";
   delay?: number;
   closeDelay?: number;
-};
-
-export type NavigationMenuListProps = ComponentProps<"ul">;
-
+} & { style?: CSSProperties & PopupKnobStyle };
+export type NavigationMenuListProps = ComponentProps<"ul"> & { style?: CSSProperties & PopupKnobStyle };
 export type NavigationMenuItemProps = ComponentProps<"li"> & {
   value?: string;
+} & { style?: CSSProperties & PopupKnobStyle };
+export type NavigationMenuTriggerProps = Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle & PopupKnobStyle;
 };
-
-export type NavigationMenuTriggerProps = ComponentProps<"button">;
-
-export type NavigationMenuContentProps = ComponentProps<"div">;
-
-export type NavigationMenuLinkVariant = "default" | "compact";
-
-export type NavigationMenuLinkProps = ComponentProps<"a"> & {
+export type NavigationMenuContentProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+export const navigationMenuLinkVariants = ["default", "compact"] as const;
+export type NavigationMenuLinkVariant = (typeof navigationMenuLinkVariants)[number];
+export type NavigationMenuLinkProps = Omit<ComponentProps<"a">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   active?: boolean;
   closeOnClick?: boolean;
   variant?: NavigationMenuLinkVariant;
 };
-
-export type NavigationMenuViewportProps = ComponentProps<"div">;
-
+export type NavigationMenuViewportProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 export type ModelOption = {
   value: string;
   label: string;
   hint?: ReactNode;
 };
-
 export type ModelSwitcherProps = {
   models: ModelOption[];
   value?: string;
@@ -598,95 +567,81 @@ export type ModelSwitcherProps = {
   size?: "xs" | "sm";
   variant?: SelectTriggerVariant;
   className?: string;
+  style?: CSSProperties & ButtonKnobStyle;
 };
-
 export type DialogProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type DialogContentProps = ComponentProps<"div"> & {
+export type DialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   showCloseButton?: boolean;
 };
-
 export type ResponsiveDialogProps = DialogProps;
-
 export type ResponsiveDialogContentProps = DialogContentProps & {
   dialogClassName?: string;
   drawerClassName?: string;
 };
-
-export type InputProps = Omit<ComponentProps<"input">, "size"> & {
+export type InputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
 };
-
-export type InputGroupProps = ComponentProps<"div"> & {
+export type InputGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   render?: RenderProp<ComponentProps<"div">>;
   size?: ControlSize;
 };
-
-export type InputGroupAddonProps = ComponentProps<"span">;
-
-// <label> when htmlFor set, else <span> for group captions.
-export type LabelProps = ComponentProps<"label">;
-
-// label/showValue only grow taller labeled bar under "plain" — default variant ignores them.
+export type InputGroupAddonProps = ComponentProps<"span"> & { style?: CSSProperties & FieldKnobStyle };
+export type LabelProps = Omit<ComponentProps<"label">, "style"> & { style?: CSSProperties & LabelKnobStyle };
 export type SliderVariant = "default" | "plain";
-
-export type SliderProps = {
-  variant?: SliderVariant;
-  value?: number;
-  defaultValue?: number;
-  onValueChange?: (value: number) => void;
-  min?: number;
-  max?: number;
-  step?: number;
-  disabled?: boolean;
-  label?: string;
-  showValue?: boolean;
-  formatValue?: (value: number) => string;
-  className?: string;
-  "aria-label"?: string;
-};
-
-// Composes Button slot: pressed surfaces through Button's data-active — never special-case toggle anatomy. `active` force-overrides.
+export type SliderProps = Omit<
+  {
+    variant?: SliderVariant;
+    value?: number;
+    defaultValue?: number;
+    onValueChange?: (value: number) => void;
+    min?: number;
+    max?: number;
+    step?: number;
+    disabled?: boolean;
+    label?: string;
+    showValue?: boolean;
+    formatValue?: (value: number) => string;
+    className?: string;
+    "aria-label"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
 export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value"> & {
   pressed?: boolean;
   defaultPressed?: boolean;
   onPressedChange?: (pressed: boolean) => void;
-  /** Identifies toggle inside ToggleGroup (group's value is set of pressed values). */
   value?: string;
-  /** Show shared Checkbox/SelectItem tick when pressed — for tile-style toggles. Never hand-roll it. */
   showCheck?: boolean;
 };
-
 export type ToggleGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledMultiChoice<TValue> & {
-    /** Allow several toggles pressed at once. Default false — single-select. */
     multiple?: boolean;
     disabled?: boolean;
     orientation?: "horizontal" | "vertical";
   };
-
-export type CheckboxProps = {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-  indeterminate?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  name?: string;
-  value?: string;
-  id?: string;
-  className?: string;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
-};
-
-// Group owns value; compose label beside Radio.
+export type CheckboxProps = Omit<
+  {
+    checked?: boolean;
+    defaultChecked?: boolean;
+    onCheckedChange?: (checked: boolean) => void;
+    indeterminate?: boolean;
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    name?: string;
+    value?: string;
+    id?: string;
+    className?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & ChoiceKnobStyle };
 export type RadioGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledChoice<TValue> & {
     disabled?: boolean;
@@ -694,176 +649,142 @@ export type RadioGroupProps<TValue extends string = string> = Omit<ComponentProp
     required?: boolean;
     name?: string;
     orientation?: "horizontal" | "vertical";
-  };
-
-export type RadioProps = {
-  value: string;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  id?: string;
-  className?: string;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
-};
-
-// Own anatomy — pill track plus sliding thumb, not restyled Button like Toggle.
-export type SwitchProps = {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  name?: string;
-  value?: string;
-  id?: string;
-  className?: string;
-  /** single thumb glyph shown in both states; its colour flips when checked. */
-  icon?: ReactNode;
-  /** Thumb glyph shown while checked. Overrides `icon`. Cross-fades with `uncheckedIcon`. */
-  checkedIcon?: ReactNode;
-  /** Thumb glyph shown while unchecked. Overrides `icon`. Cross-fades with `checkedIcon`. */
-  uncheckedIcon?: ReactNode;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
-  "aria-describedby"?: string;
-};
-
-// Pure layout and text — never paints control; drop Input/Select/Textarea into FieldControl's render.
-// Base UI stamps data-valid/-invalid/-dirty/-touched/-filled/-focused on every part — validity styling needs no JS.
+  } & { style?: CSSProperties & ChoiceKnobStyle };
+export type RadioProps = Omit<
+  {
+    value: string;
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    id?: string;
+    className?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & ChoiceKnobStyle };
+export type SwitchProps = Omit<
+  {
+    checked?: boolean;
+    defaultChecked?: boolean;
+    onCheckedChange?: (checked: boolean) => void;
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    name?: string;
+    value?: string;
+    id?: string;
+    className?: string;
+    icon?: ReactNode;
+    checkedIcon?: ReactNode;
+    uncheckedIcon?: ReactNode;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    "aria-describedby"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & SwitchKnobStyle };
 export type FieldProps = ComponentProps<"div"> & {
   orientation?: "vertical" | "horizontal" | "responsive";
-  /** Field name; keys Form `errors` and takes precedence over control's own name. */
   name?: string;
   disabled?: boolean;
   invalid?: boolean;
   validationMode?: "onSubmit" | "onBlur" | "onChange";
-};
-
-export type FieldLabelProps = ComponentProps<"label">;
-
-export type FieldContentProps = ComponentProps<"div">;
-
-export type FieldTitleProps = ComponentProps<"div">;
-
-// render intersected straight off Base UI's Field.Control in slot source — typing and merging match exactly.
-export type FieldControlProps = ComponentProps<"input">;
-
-export type FieldDescriptionProps = ComponentProps<"p">;
-
-// `match` narrows error to specific ValidityState key; omit to show on any invalid.
+} & { style?: CSSProperties & FieldKnobStyle };
+export type FieldLabelProps = Omit<ComponentProps<"label">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldContentProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldControlProps = Omit<ComponentProps<"input">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 export type FieldErrorMatch = boolean | keyof ValidityState;
-
-export type FieldErrorProps = ComponentProps<"div"> & {
+export type FieldErrorProps = Omit<ComponentProps<"div">, "style"> & {
   match?: FieldErrorMatch;
+  style?: CSSProperties & FieldKnobStyle;
 };
-
-export type FieldGroupProps = ComponentProps<"div">;
-
-export type FieldSeparatorProps = ComponentProps<"div"> & {
+export type FieldGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldSeparatorProps = Omit<ComponentProps<"div">, "style"> & {
   children?: ReactNode;
+  style?: CSSProperties & FieldKnobStyle;
 };
-
-// One labelled row inside Fieldset — Base UI scopes label, description, validity to that control.
-export type FieldItemProps = ComponentProps<"div">;
-
-export type FieldSetProps = ComponentProps<"fieldset">;
-
-export type FieldLegendProps = ComponentProps<"div">;
-
-// Merges externally-returned errors, keyed by Field name, onto matching FieldError.
+export type FieldItemProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldSetProps = Omit<ComponentProps<"fieldset">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type FieldLegendProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 export type FormErrors = Record<string, string | string[]>;
-
 export type FormProps = ComponentProps<"form"> & {
   errors?: FormErrors;
   validationMode?: "onSubmit" | "onBlur" | "onChange";
 };
-
-// Real native <select>, not floating Base UI Select.
-export type NativeSelectProps = Omit<ComponentProps<"select">, "size"> & {
+export type NativeSelectProps = Omit<Omit<ComponentProps<"select">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
 };
-
-// Auto-grows through field-sizing-content, no JS measurement.
-export type TextareaProps = ComponentProps<"textarea">;
-
-// Panel height-animates from --accordion-panel-height, pure CSS.
+export type TextareaProps = Omit<ComponentProps<"textarea">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 export type AccordionValue = (string | number)[];
-
 export type AccordionProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
   value?: AccordionValue;
   defaultValue?: AccordionValue;
   onValueChange?: (value: AccordionValue) => void;
   multiple?: boolean;
   disabled?: boolean;
-};
-
-export type AccordionItemProps = ComponentProps<"div"> & {
-  value?: string | number;
-  disabled?: boolean;
-};
-
-export type AccordionTriggerProps = ComponentProps<"button">;
-
-export type AccordionPanelProps = ComponentProps<"div">;
-
-export type AvatarProps = ComponentProps<"span">;
-
-export type AvatarGroupProps = ComponentProps<"div">;
-
+} & { style?: CSSProperties & AccordionKnobStyle };
+export type AccordionItemProps = Omit<
+  ComponentProps<"div"> & {
+    value?: string | number;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & AccordionKnobStyle };
+export type AccordionTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & AccordionKnobStyle };
+export type AccordionPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AccordionKnobStyle };
+export type AvatarProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & AvatarKnobStyle };
+export type AvatarGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AvatarKnobStyle };
 export type AvatarImageProps = ComponentProps<"img"> & {
   onLoadingStatusChange?: (status: "idle" | "loading" | "loaded" | "error") => void;
-};
-
-export type AvatarFallbackProps = ComponentProps<"span"> & {
+} & { style?: CSSProperties & AvatarKnobStyle };
+export type AvatarFallbackProps = Omit<ComponentProps<"span">, "style"> & {
   delay?: number;
+  style?: CSSProperties & AvatarKnobStyle;
 };
-
-// value null = indeterminate.
-export type ProgressProps = ComponentProps<"div"> & {
-  value: number | null;
-  min?: number;
-  max?: number;
-  format?: Intl.NumberFormatOptions;
-  getAriaValueText?: (formattedValue: string | null, value: number | null) => string;
-  locale?: Intl.LocalesArgument;
-};
-
-export type ProgressTrackProps = ComponentProps<"div">;
-
-export type ProgressIndicatorProps = ComponentProps<"div">;
-
-export type ProgressLabelProps = ComponentProps<"span">;
-
-export type ProgressValueProps = Omit<ComponentProps<"span">, "children"> & {
-  children?: ((formattedValue: string | null, value: number | null) => ReactNode) | null;
-};
-
-// Base UI PreviewCard; re-asserts skin scope on portal.
+export type ProgressProps = Omit<
+  ComponentProps<"div"> & {
+    value: number | null;
+    min?: number;
+    max?: number;
+    format?: Intl.NumberFormatOptions;
+    getAriaValueText?: (formattedValue: string | null, value: number | null) => string;
+    locale?: Intl.LocalesArgument;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
+export type ProgressTrackProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+export type ProgressIndicatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+export type ProgressLabelProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+export type ProgressValueProps = Omit<
+  Omit<ComponentProps<"span">, "children"> & {
+    children?: ((formattedValue: string | null, value: number | null) => ReactNode) | null;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
 export type HoverCardProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type HoverCardContentProps = ComponentProps<"div"> & {
-  side?: "top" | "bottom" | "left" | "right";
-  align?: "start" | "center" | "end";
-  sideOffset?: number;
-};
-
-// No light dismiss — explicit action required. Re-asserts skin scope on portal.
+export type HoverCardContentProps = Omit<
+  ComponentProps<"div"> & {
+    side?: "top" | "bottom" | "left" | "right";
+    align?: "start" | "center" | "end";
+    sideOffset?: number;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
 export type AlertDialogProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
 };
-
-export type AlertDialogContentProps = ComponentProps<"div">;
-
+export type AlertDialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 export type InputOTPProps = {
   length?: number;
   separator?: boolean;
@@ -880,19 +801,16 @@ export type InputOTPProps = {
   children?: ReactNode;
   "aria-label"?: string;
   "aria-describedby"?: string;
-};
-
+} & { style?: CSSProperties & FieldKnobStyle };
 export type InputOTPSlotProps = {
   index: number;
   length?: number;
   disabled?: boolean;
   placeholder?: string;
   className?: string;
+  style?: CSSProperties & FieldKnobStyle;
 };
-
-export type InputOTPSeparatorProps = ComponentProps<"div">;
-
-// Searchable single-select — selecting locks to discrete value, unlike Autocomplete.
+export type InputOTPSeparatorProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
 export type ComboboxProps<Value = string> = {
   children?: ReactNode;
   items?: readonly Value[];
@@ -913,128 +831,140 @@ export type ComboboxProps<Value = string> = {
   itemToStringLabel?: (itemValue: Value) => string;
   isItemEqualToValue?: (itemValue: Value, value: Value) => boolean;
 };
-
-export type ComboboxInputProps = Omit<ComponentProps<"input">, "size"> & {
+export type ComboboxInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
 };
-
-export type ComboboxTriggerProps = ComponentProps<"button">;
-
-export type ComboboxContentProps = ComponentProps<"div"> & {
-  sideOffset?: number;
-};
-
+export type ComboboxTriggerProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
+export type ComboboxContentProps = Omit<
+  ComponentProps<"div"> & {
+    sideOffset?: number;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
 export type ComboboxListProps<Value = unknown> = Omit<ComponentProps<"div">, "children"> & {
   children?: ReactNode | ((item: Value, index: number) => ReactNode);
-};
-
-export type ComboboxItemProps<Value = unknown> = Omit<ComponentProps<"div">, "value"> & {
-  value?: Value;
-  disabled?: boolean;
-};
-
-export type ComboboxEmptyProps = ComponentProps<"div">;
-export type ComboboxGroupProps = ComponentProps<"div">;
-export type ComboboxGroupLabelProps = ComponentProps<"div">;
-
-export type AlertVariant = "default" | "destructive";
-export type AlertProps = ComponentProps<"div"> & { variant?: AlertVariant };
-export type AlertTitleProps = ComponentProps<"div">;
-export type AlertDescriptionProps = ComponentProps<"div">;
-
-export type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
-export type BadgeSize = "sm" | "md";
-/** Stable application-facing families; each skin may tune exact hue. */
+} & { style?: CSSProperties & PopupKnobStyle };
+export type ComboboxItemProps<Value = unknown> = Omit<
+  Omit<ComponentProps<"div">, "value"> & {
+    value?: Value;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+export type ComboboxEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type ComboboxGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+export type ComboboxGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export const alertVariants = ["default", "destructive"] as const;
+export type AlertVariant = (typeof alertVariants)[number];
+export type AlertProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle } & { variant?: AlertVariant };
+export type AlertTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
+export type AlertDescriptionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
+export const badgeVariants = ["default", "secondary", "destructive", "outline"] as const;
+export type BadgeVariant = (typeof badgeVariants)[number];
+export const badgeSizes = ["sm", "md"] as const;
+export type BadgeSize = (typeof badgeSizes)[number];
 export const BADGE_COLORS = ["neutral", "red", "orange", "yellow", "green", "blue", "purple", "pink"] as const;
 export type BadgeColor = (typeof BADGE_COLORS)[number];
-export type BadgeProps = ComponentProps<"span"> & {
+export type BadgeProps = Omit<ComponentProps<"span">, "style"> & {
   variant?: BadgeVariant;
   size?: BadgeSize;
   color?: BadgeColor;
   render?: RenderProp<ComponentProps<"span">>;
+  style?: CSSProperties & BadgeKnobStyle;
 };
-
-// Header is grid — CardAction pins to its own top-right column.
 export type CardVariant = "default" | "sectioned";
-export type CardProps = ComponentProps<"div"> & { variant?: CardVariant };
-export type CardHeaderProps = ComponentProps<"div">;
-export type CardTitleProps = ComponentProps<"div">;
-export type CardDescriptionProps = ComponentProps<"div">;
-export type CardActionProps = ComponentProps<"div">;
-export type CardContentProps = ComponentProps<"div">;
-export type CardFooterProps = ComponentProps<"div">;
-
-// <table> ships wrapped in overflow-x-auto — wide tables scroll instead of blowing out layout.
-export type TableProps = ComponentProps<"table">;
+export type CardProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & CardKnobStyle } & { variant?: CardVariant };
+export type CardHeaderProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+export type CardTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & CardKnobStyle };
+export type CardDescriptionProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+export type CardActionProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+export type CardContentProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+export type CardFooterProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+export type TableProps = Omit<ComponentProps<"table">, "style"> & { style?: CSSProperties & TableKnobStyle };
 export type TableSectionProps = ComponentProps<"tbody">;
-export type TableRowProps = ComponentProps<"tr">;
-export type TableHeadProps = ComponentProps<"th">;
-export type TableCellProps = ComponentProps<"td">;
-export type TableCaptionProps = ComponentProps<"caption">;
-
-// Native CSS aspect-ratio set inline, no Radix. Defaults to 16/9.
+export type TableHeaderProps = Omit<ComponentProps<"thead">, "style"> & { style?: CSSProperties & TableKnobStyle };
+export type TableBodyProps = Omit<ComponentProps<"tbody">, "style"> & { style?: CSSProperties & TableKnobStyle };
+export type TableFooterProps = Omit<ComponentProps<"tfoot">, "style"> & { style?: CSSProperties & TableKnobStyle };
+export type TableRowProps = Omit<ComponentProps<"tr">, "style"> & { style?: CSSProperties & TableKnobStyle };
+export type TableHeadProps = Omit<ComponentProps<"th">, "style"> & { style?: CSSProperties & TableKnobStyle };
+export type TableCellProps = ComponentProps<"td"> & { style?: CSSProperties & TableKnobStyle };
+export type TableCaptionProps = Omit<ComponentProps<"caption">, "style"> & { style?: CSSProperties & TableKnobStyle };
 export type AspectRatioProps = ComponentProps<"div"> & { ratio?: number };
-
-// Collapses inner corners, overlaps borders — children read as one segmented control.
+export type KbdProps = Omit<ComponentProps<"kbd">, "style"> & { style?: CSSProperties & KbdKnobStyle };
+export type ButtonGroupTextProps = Omit<
+  ComponentProps<"div"> & {
+    size?: ControlSize;
+  },
+  "style"
+> & { style?: CSSProperties & ButtonGroupKnobStyle };
 export type ButtonGroupProps = ComponentProps<"div"> & {
   orientation?: "horizontal" | "vertical";
-};
-
-export type ButtonGroupSeparatorProps = ComponentProps<"div"> & {
-  orientation?: "horizontal" | "vertical";
-};
-
-export type EmptyProps = ComponentProps<"div">;
-
-export type ItemProps = ComponentProps<"div"> & {
-  variant?: "default" | "outline" | "muted";
-  render?: RenderProp<ComponentProps<"div">>;
-};
-
-export type ItemGroupProps = ComponentProps<"div">;
-
+} & { style?: CSSProperties & ButtonGroupKnobStyle };
+export type ButtonGroupSeparatorProps = Omit<
+  ComponentProps<"div"> & {
+    orientation?: "horizontal" | "vertical";
+  },
+  "style"
+> & { style?: CSSProperties & ButtonGroupKnobStyle };
+export type EmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+export type EmptyMediaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+export type EmptyContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+export type EmptyDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+export type EmptyTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+export const itemVariants = ["default", "outline", "muted"] as const;
+export type ItemVariant = (typeof itemVariants)[number];
+export type ItemProps = Omit<
+  ComponentProps<"div"> & {
+    variant?: ItemVariant;
+    render?: RenderProp<ComponentProps<"div">>;
+  },
+  "style"
+> & { style?: CSSProperties & ItemKnobStyle };
+export type ItemDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+export type ItemFooterProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+export type ItemMediaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+export type ItemTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+export type ItemGroupProps = ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle };
 export type ItemSeparatorProps = ComponentProps<"div">;
-
-// Control-shaped without importing Button — pagination installs alone.
-export type PaginationLinkProps = ComponentProps<"a"> & {
-  isActive?: boolean;
-};
-
-// Deliberately outside motion kill-switch — loader must keep turning under reduced motion.
-export type SpinnerProps = ComponentProps<"span"> & {
-  size?: ControlSize;
-};
-
-// value required — role="meter" is static gauge, never indeterminate like Progress.
-export type MeterProps = ComponentProps<"div"> & {
-  value: number;
-  min?: number;
-  max?: number;
-  format?: Intl.NumberFormatOptions;
-  getAriaValueText?: (formattedValue: string, value: number) => string;
-  locale?: Intl.LocalesArgument;
-};
-
-export type MeterTrackProps = ComponentProps<"div">;
-
-export type MeterIndicatorProps = ComponentProps<"div">;
-
-export type MeterLabelProps = ComponentProps<"span">;
-
-export type MeterValueProps = Omit<ComponentProps<"span">, "children"> & {
-  children?: ((formattedValue: string, value: number) => ReactNode) | null;
-};
-
-// orientation visual-only, never forwarded to primitive. Stays plain string[]: Base UI reports its own string[], so narrower union could not be honoured back without asserting.
+export type PaginationEllipsisProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PaginationKnobStyle };
+export type PaginationLinkProps = Omit<
+  ComponentProps<"a"> & {
+    isActive?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PaginationKnobStyle };
+export type SpinnerProps = Omit<
+  ComponentProps<"span"> & {
+    size?: ControlSize;
+  },
+  "style"
+> & { style?: CSSProperties & SpinnerKnobStyle };
+export type MeterProps = Omit<
+  ComponentProps<"div"> & {
+    value: number;
+    min?: number;
+    max?: number;
+    format?: Intl.NumberFormatOptions;
+    getAriaValueText?: (formattedValue: string, value: number) => string;
+    locale?: Intl.LocalesArgument;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
+export type MeterTrackProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+export type MeterIndicatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+export type MeterLabelProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+export type MeterValueProps = Omit<
+  Omit<ComponentProps<"span">, "children"> & {
+    children?: ((formattedValue: string, value: number) => ReactNode) | null;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
 export type CheckboxGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledMultiChoice & {
-    /** Names of all child checkbox values. Set this alongside select-all checkbox to drive indeterminate. */
     allValues?: string[];
     disabled?: boolean;
     orientation?: "horizontal" | "vertical";
   };
-
-// Free text, unlike Combobox — value is filtering input string, selecting only fills it.
 export type AutocompleteProps<Value = string> = {
   children?: ReactNode;
   items?: readonly Value[];
@@ -1048,7 +978,6 @@ export type AutocompleteProps<Value = string> = {
   readOnly?: boolean;
   required?: boolean;
   name?: string;
-  /** list (default): filter items by query. both/inline: inline-complete from active item. none: static list. */
   mode?: "list" | "both" | "inline" | "none";
   autoHighlight?: boolean | "always";
   limit?: number;
@@ -1056,96 +985,114 @@ export type AutocompleteProps<Value = string> = {
   filter?: ((itemValue: Value, query: string, itemToString?: (itemValue: Value) => string) => boolean) | null;
   itemToStringValue?: (itemValue: Value) => string;
 };
-
-export type AutocompleteInputProps = Omit<ComponentProps<"input">, "size"> & {
+export type AutocompleteInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
   size?: ControlSize;
 };
-
-export type AutocompleteClearProps = ComponentProps<"button">;
-
-export type AutocompleteContentProps = ComponentProps<"div"> & {
-  sideOffset?: number;
-};
-
+export type AutocompleteClearProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
+export type AutocompleteContentProps = Omit<
+  ComponentProps<"div"> & {
+    sideOffset?: number;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
 export type AutocompleteListProps<Value = unknown> = Omit<ComponentProps<"div">, "children"> & {
   children?: ReactNode | ((item: Value, index: number) => ReactNode);
-};
-
-export type AutocompleteItemProps<Value = unknown> = Omit<ComponentProps<"div">, "value"> & {
-  value?: Value;
-  disabled?: boolean;
-};
-
-export type AutocompleteEmptyProps = ComponentProps<"div">;
-export type AutocompleteGroupProps = ComponentProps<"div">;
-export type AutocompleteGroupLabelProps = ComponentProps<"div">;
-
-// Roving-tabindex group: arrow keys move between controls, whole toolbar is one Tab stop.
+} & { style?: CSSProperties & PopupKnobStyle };
+export type AutocompleteItemProps<Value = unknown> = Omit<
+  Omit<ComponentProps<"div">, "value"> & {
+    value?: Value;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+export type AutocompleteEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type AutocompleteGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+export type AutocompleteGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 export type ToolbarVariant = "default" | "inverse";
 export type ToolbarLinkVariant = "default" | "track";
-
-export type ToolbarProps = ComponentProps<"div"> & {
+export type ToolbarProps = Omit<ComponentProps<"div">, "style"> & {
   orientation?: "horizontal" | "vertical";
   variant?: ToolbarVariant;
+  style?: CSSProperties & ToolbarKnobStyle;
 };
-
-export type ToolbarButtonProps = ComponentProps<"button"> & {
+export type ToolbarButtonProps = Omit<ComponentProps<"button">, "style"> & {
   iconOnly?: boolean;
+  style?: CSSProperties & ToolbarKnobStyle;
 };
-export type ToolbarLinkProps = ComponentProps<"a"> & {
+export type ToolbarLinkProps = Omit<ComponentProps<"a">, "style"> & {
   variant?: ToolbarLinkVariant;
+  style?: CSSProperties & ToolbarKnobStyle;
 };
-export type ToolbarGroupProps = ComponentProps<"div">;
-export type ToolbarSeparatorProps = ComponentProps<"div"> & {
+export type ToolbarGroupProps = ComponentProps<"div"> & { style?: CSSProperties & ToolbarKnobStyle };
+export type ToolbarSeparatorProps = Omit<ComponentProps<"div">, "style"> & {
   orientation?: "horizontal" | "vertical";
+  style?: CSSProperties & ToolbarKnobStyle;
 };
-export type ToolbarInputProps = ComponentProps<"input">;
-
-// Dragging previews both destinations; mobile presentation composes Drawer.
+export type ToolbarInputProps = Omit<ComponentProps<"input">, "style"> & {
+  style?: CSSProperties & ToolbarKnobStyle;
+};
 export type DockablePanelPlacement = "left" | "right";
-
-export type DockablePanelProps = Omit<ComponentProps<"aside">, "onChange" | "ref"> & {
+export type DockablePanelProps = Omit<ComponentProps<"aside">, "onChange" | "ref" | "style"> & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   placement?: DockablePanelPlacement;
   defaultPlacement?: DockablePanelPlacement;
   onPlacementChange?: (placement: DockablePanelPlacement) => void;
+  style?: CSSProperties & DockablePanelKnobStyle;
 };
-
-export type DockablePanelHeaderProps = ComponentProps<"div">;
-export type DockablePanelDragHandleProps = ComponentProps<"button">;
-export type DockablePanelTitleProps = ComponentProps<"h2">;
-export type DockablePanelActionsProps = ComponentProps<"div">;
-export type DockablePanelToggleProps = Omit<ComponentProps<"button">, "children"> & { children?: ReactNode };
-export type DockablePanelDockProps = Omit<ComponentProps<"button">, "children"> & {
-  placement: DockablePanelPlacement;
-  children?: ReactNode;
+export type DockablePanelHeaderProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & DockablePanelKnobStyle;
 };
-export type DockablePanelCloseProps = Omit<ComponentProps<"button">, "children"> & { children?: ReactNode };
+export type DockablePanelDragHandleProps = Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
+export type DockablePanelTitleProps = Omit<ComponentProps<"h2">, "style"> & {
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
+export type DockablePanelActionsProps = ComponentProps<"div"> & { style?: CSSProperties & DockablePanelKnobStyle };
+export type DockablePanelToggleProps = Omit<Omit<ComponentProps<"button">, "children"> & { children?: ReactNode }, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle;
+};
+export type DockablePanelDockProps = Omit<
+  Omit<ComponentProps<"button">, "children"> & {
+    placement: DockablePanelPlacement;
+    children?: ReactNode;
+  },
+  "style"
+> & { style?: CSSProperties & ButtonKnobStyle };
+export type DockablePanelCloseProps = Omit<Omit<ComponentProps<"button">, "children"> & { children?: ReactNode }, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle;
+};
 export type DockablePanelContentPadding = "default" | "none";
-export type DockablePanelContentProps = ComponentProps<"div"> & { padding?: DockablePanelContentPadding };
-
+export type DockablePanelContentProps = ComponentProps<"div"> & {
+  padding?: DockablePanelContentPadding;
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
 export type InfiniteCanvasTransform = { x: number; y: number; scale: number };
 export type InfiniteCanvasMoveReason = "pointer" | "wheel" | "keyboard" | "control";
 export type InfiniteCanvasMoveDetails = { reason: InfiniteCanvasMoveReason };
-export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "onWheel" | "ref"> & {
+export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "onWheel" | "ref" | "style"> & {
   transform?: InfiniteCanvasTransform;
   defaultTransform?: InfiniteCanvasTransform;
   onTransformChange?: (transform: InfiniteCanvasTransform, details: InfiniteCanvasMoveDetails) => void;
   minScale?: number;
   maxScale?: number;
   onWheel?: (event: WheelEvent) => void;
+  style?: CSSProperties & InfiniteCanvasKnobStyle;
 };
-export type InfiniteCanvasContentProps = ComponentProps<"div">;
-export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children">;
-
-export type DrawerContentPadding = "default" | "none";
-export type DrawerContentSurface = "background" | "card";
-// edge pins popup flush to its viewport edge; floating insets it so every corner rounds.
-export type DrawerContentVariant = "edge" | "floating";
-
-// size lives on Root, reaches Group through context; value/defaultValue passed explicitly to keep Base UI's `value !== undefined` controlled detection intact.
+export type InfiniteCanvasContentProps = ComponentProps<"div"> & { style?: CSSProperties & InfiniteCanvasKnobStyle };
+export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children" | "style"> & {
+  style?: CSSProperties & InfiniteCanvasKnobStyle;
+};
+export const drawerSides = ["bottom", "top", "right", "left"] as const;
+export type DrawerSide = (typeof drawerSides)[number];
+export const drawerContentPaddings = ["default", "none"] as const;
+export type DrawerContentPadding = (typeof drawerContentPaddings)[number];
+export const drawerContentSurfaces = ["background", "card"] as const;
+export type DrawerContentSurface = (typeof drawerContentSurfaces)[number];
+export const drawerContentVariants = ["edge", "floating"] as const;
+export type DrawerContentVariant = (typeof drawerContentVariants)[number];
 export type NumberFieldChangeReason =
   | "input-change"
   | "input-clear"
@@ -1157,8 +1104,6 @@ export type NumberFieldChangeReason =
   | "wheel"
   | "scrub"
   | "none";
-
-// Cancel controls stay optional: onValueCommitted exposes only reason+event, so one type serves both callbacks.
 export type NumberFieldChangeEventDetails = {
   reason: NumberFieldChangeReason;
   event: Event;
@@ -1168,10 +1113,8 @@ export type NumberFieldChangeEventDetails = {
   isPropagationAllowed?: boolean;
   trigger?: Element | undefined;
 };
-
 export type NumberFieldProps = {
   size?: ControlSize;
-  /** Controlled raw value; `null` clears. Base UI reads controlled-ness from `value !== undefined`. */
   value?: number | null;
   defaultValue?: number;
   onValueChange?: (value: number | null, eventDetails: NumberFieldChangeEventDetails) => void;
@@ -1194,56 +1137,55 @@ export type NumberFieldProps = {
   id?: string;
   inputRef?: Ref<HTMLInputElement>;
   className?: string;
-  style?: CSSProperties;
+  style?: CSSProperties & FieldKnobStyle;
   children?: ReactNode;
 };
-
-export type NumberFieldGroupProps = ComponentProps<"div">;
-export type NumberFieldInputProps = ComponentProps<"input">;
-export type NumberFieldIncrementProps = ComponentProps<"button"> & { nativeButton?: boolean };
-export type NumberFieldDecrementProps = ComponentProps<"button"> & { nativeButton?: boolean };
+export type NumberFieldGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type NumberFieldInputProps = Omit<ComponentProps<"input">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+export type NumberFieldIncrementProps = ComponentProps<"button"> & { nativeButton?: boolean } & { style?: CSSProperties & FieldKnobStyle };
+export type NumberFieldDecrementProps = ComponentProps<"button"> & { nativeButton?: boolean } & { style?: CSSProperties & FieldKnobStyle };
 export type NumberFieldScrubAreaProps = ComponentProps<"span"> & {
   direction?: "horizontal" | "vertical";
   pixelSensitivity?: number;
   teleportDistance?: number;
-};
-
+} & { style?: CSSProperties & FieldKnobStyle };
 export type ColorFormat = "hex" | "rgb" | "hsl" | "oklch";
-
-// DOM-less Root, no div props. Internal model is HSVA — hue and saturation survive at black, white, gray.
 export type ColorPickerProps = {
-  /** Controlled color string; parsed by engine, re-emitted in `format`. */
   value?: string;
-  /** Uncontrolled seed. Defaults to "#000000". */
   defaultValue?: string;
   onValueChange?: (value: string) => void;
   format?: ColorFormat;
   defaultFormat?: ColorFormat;
   onFormatChange?: (format: ColorFormat) => void;
-  /** Enable alpha channel (slider + alpha field + 8-digit hex). Default true. */
   alpha?: boolean;
   disabled?: boolean;
-  // Popover pass-through — omit for inline usage.
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
   children?: ReactNode;
 };
-
-export type ColorPickerTriggerProps = ComponentProps<"button">;
-export type ColorPickerContentProps = ComponentProps<"div"> & {
+export type ColorPickerTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   side?: "top" | "right" | "bottom" | "left";
   align?: "start" | "center" | "end";
   sideOffset?: number;
 };
-export type ColorPickerPanelProps = ComponentProps<"div">;
-export type ColorPickerAreaProps = ComponentProps<"div">;
-export type ColorPickerAreaThumbProps = ComponentProps<"div">;
-export type ColorPickerHueProps = Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby">;
-export type ColorPickerAlphaProps = Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby">;
-export type ColorPickerWheelProps = ComponentProps<"div">;
-export type ColorPickerEyeDropperProps = Omit<ComponentProps<"button">, "onError">;
-export type ColorPickerInputProps = Omit<ComponentProps<"input">, "value" | "defaultValue" | "onChange" | "size"> & {
+export type ColorPickerPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type ColorPickerAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerAreaThumbProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerHueProps = Omit<Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby" | "style">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+};
+export type ColorPickerAlphaProps = Omit<Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby" | "style">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+};
+export type ColorPickerWheelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerEyeDropperProps = Omit<Omit<ComponentProps<"button">, "onError">, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle;
+};
+export type ColorPickerInputProps = Omit<Omit<ComponentProps<"input">, "value" | "defaultValue" | "onChange" | "size">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
   size?: ControlSize;
 };
 export type ColorPickerFormatSelectProps = {
@@ -1252,48 +1194,69 @@ export type ColorPickerFormatSelectProps = {
   className?: string;
   "aria-label"?: string;
   "aria-labelledby"?: string;
+  style?: CSSProperties & ButtonKnobStyle;
 };
-export type ColorPickerChannelsProps = ComponentProps<"div">;
-export type ColorPickerChannelProps = Omit<ComponentProps<"div">, "children" | "aria-label"> & {
+export type ColorPickerChannelsProps = ComponentProps<"div"> & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerChannelProps = Omit<Omit<ComponentProps<"div">, "children" | "aria-label">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
   channel: "r" | "g" | "b" | "h" | "s" | "l" | "okl" | "okc" | "okh" | "a";
   label?: ReactNode;
   "aria-label"?: string;
 };
-export type ColorPickerSwatchesProps = ComponentProps<"div"> & { colors?: string[]; label?: ReactNode };
-export type ColorPickerSwatchProps = Omit<ComponentProps<"button">, "color"> & { color: string };
-export type ColorPickerSwatchAddProps = Omit<ComponentProps<"button">, "onClick"> & { onAdd?: (value: string) => void };
-export type ColorPickerContrastProps = Omit<ComponentProps<"div">, "children"> & {
-  /** surface current color sits on, as CSS color string. Default "#ffffff". */
+export type ColorPickerSwatchesProps = ComponentProps<"div"> & {
+  colors?: string[];
+  label?: ReactNode;
+} & { style?: CSSProperties & ColorPickerKnobStyle };
+export type ColorPickerSwatchProps = Omit<Omit<ComponentProps<"button">, "color">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  color: string;
+};
+export type ColorPickerSwatchAddProps = Omit<Omit<ComponentProps<"button">, "onClick">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  onAdd?: (value: string) => void;
+};
+export type ColorPickerContrastProps = Omit<Omit<ComponentProps<"div">, "children">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
   background?: string;
 };
-export type ColorPickerOutputProps = Omit<ComponentProps<"div">, "children"> & {
+export type ColorPickerOutputProps = Omit<Omit<ComponentProps<"div">, "children">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
   children?: ReactNode;
   renderValue?: (state: { value: string }) => ReactNode;
 };
-
-// Public value is CSS gradient string; each stop opens ColorPicker popover.
 export type GradientType = "linear" | "radial" | "conic";
 export type GradientStop = { id: string; position: number; color: string };
-
 export type GradientEditorProps = Omit<ComponentProps<"div">, "onChange" | "defaultValue"> & {
   value?: string;
   defaultStops?: GradientStop[];
   defaultType?: GradientType;
   defaultAngle?: number;
   onValueChange?: (value: string) => void;
+} & { style?: CSSProperties & GradientEditorKnobStyle };
+export type GradientEditorPreviewProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & GradientEditorKnobStyle;
 };
-export type GradientEditorPreviewProps = ComponentProps<"div">;
-export type GradientEditorTrackProps = ComponentProps<"fieldset">;
-export type GradientEditorStopProps = ComponentProps<"button"> & { stop: GradientStop };
-export type GradientEditorStopAddProps = Omit<ComponentProps<"button">, "onClick">;
+export type GradientEditorTrackProps = Omit<ComponentProps<"fieldset">, "style"> & {
+  style?: CSSProperties & GradientEditorKnobStyle;
+};
+export type GradientEditorStopProps = Omit<ComponentProps<"button">, "style"> & {
+  stop: GradientStop;
+  style?: CSSProperties & GradientEditorKnobStyle;
+};
+export type GradientEditorStopAddProps = Omit<ComponentProps<"button">, "onClick" | "style"> & {
+  style?: CSSProperties & GradientEditorKnobStyle;
+};
 export type GradientEditorTypeSelectProps = {
   size?: ControlSize;
   className?: string;
   "aria-label"?: string;
   "aria-labelledby"?: string;
 };
-
-// Backend-agnostic: use-trigger-menu drives UI and keyboard, binding (textarea DOM or ProseMirror plugin) feeds trigger state and performs insertion.
 export type TriggerMenuItemData = {
   id: string;
   label: string;
@@ -1301,18 +1264,11 @@ export type TriggerMenuItemData = {
   icon?: ReactNode;
   keywords?: readonly string[];
   disabled?: boolean;
-  // "@" mention triggers only — "/" command triggers ignore both.
   kind?: string;
   image?: string;
 };
-
-// Surfaced on submit payload beside plain-text value; ProseMirror-shaped editor props live in chat-composer-editor/types.ts.
 export type MentionItem = { id: string; label: string; kind: string };
-
 export type TriggerSelectContext = { char: string; query: string };
-
-// function `items` is taken as already filtered — async sources resolve upstream.
-// insert "replace" swaps typed <char><query> token for item; "none" removes token and leaves rest to onSelect.
 export type TriggerConfig<Item extends TriggerMenuItemData = TriggerMenuItemData> = {
   char: string;
   items: readonly Item[] | ((query: string) => readonly Item[]);
@@ -1321,8 +1277,6 @@ export type TriggerConfig<Item extends TriggerMenuItemData = TriggerMenuItemData
   insertText?: (item: Item) => string;
   onSelect?: (item: Item, ctx: TriggerSelectContext) => void;
 };
-
-// Anchored to virtual caret rect, never steals focus from editor (initialFocus={false}).
 export type TriggerMenuProps = {
   open: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
@@ -1332,39 +1286,33 @@ export type TriggerMenuProps = {
   sideOffset?: number;
   className?: string;
   children?: ReactNode;
-};
-
-export type TriggerMenuListProps = ComponentProps<"div">;
-export type TriggerMenuItemProps = Omit<ComponentProps<"div">, "onSelect"> & {
-  active?: boolean;
-  disabled?: boolean;
-};
-export type TriggerMenuEmptyProps = ComponentProps<"div">;
-export type TriggerMenuGroupProps = ComponentProps<"div">;
-export type TriggerMenuGroupLabelProps = ComponentProps<"div">;
-export type TriggerMenuIconProps = ComponentProps<"span">;
-
-// Backed by react-resizable-panels v4. Sizes take percentage (0..100) or CSS length; layout maps panel id → percentage.
+} & { style?: CSSProperties & PopupKnobStyle };
+export type TriggerMenuListProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+export type TriggerMenuItemProps = Omit<
+  Omit<ComponentProps<"div">, "onSelect"> & {
+    active?: boolean;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+export type TriggerMenuEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type TriggerMenuGroupProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+export type TriggerMenuGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type TriggerMenuIconProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 export type ResizableLayout = { [panelId: string]: number };
 export type ResizablePanelGroupVariant = "framed" | "nested";
-// Both keep same 1px track — switching paint never shifts layout.
 export type ResizableHandleVariant = "solid" | "hover";
-
-export type ResizablePanelGroupProps = ComponentProps<"div"> & {
+export type ResizablePanelGroupProps = Omit<ComponentProps<"div">, "style"> & {
   orientation?: "horizontal" | "vertical";
   variant?: ResizablePanelGroupVariant;
   defaultLayout?: ResizableLayout;
   disableCursor?: boolean;
   disabled?: boolean;
-  // fires on every pointer move
   onLayoutChange?: (layout: ResizableLayout) => void;
-  // fires once drag settles — persist here
   onLayoutChanged?: (layout: ResizableLayout, meta: { isUserInteraction: boolean }) => void;
+  style?: CSSProperties & ResizableKnobStyle;
 };
-
 export type ResizablePanelSize = { asPercentage: number; inPixels: number };
-
-// attach via panelRef
 export interface ResizablePanelHandle {
   collapse: () => void;
   expand: () => void;
@@ -1372,64 +1320,46 @@ export interface ResizablePanelHandle {
   isCollapsed: () => boolean;
   resize: (size: number | string) => void;
 }
-
 export type ResizablePanelProps = Omit<ComponentProps<"div">, "onResize"> & {
-  // percentage (0..100) or CSS length — "240px", "20rem", "30vh"
   defaultSize?: number | string;
   minSize?: number | string;
   maxSize?: number | string;
-  // snaps to collapsedSize once dragged below minSize
   collapsible?: boolean;
   collapsedSize?: number | string;
   groupResizeBehavior?: "preserve-relative-size" | "preserve-pixel-size";
-  // freezes this panel; neighbour resize can still shift it
   disabled?: boolean;
   panelRef?: Ref<ResizablePanelHandle>;
   onResize?: (size: ResizablePanelSize, id: string | number | undefined, prevSize: ResizablePanelSize | undefined) => void;
-};
-
-export type ResizableHandleProps = Omit<ComponentProps<"div">, "role" | "tabIndex"> & {
+} & { style?: CSSProperties & ResizableKnobStyle };
+export type ResizableHandleProps = Omit<ComponentProps<"div">, "role" | "tabIndex" | "style"> & {
   variant?: ResizableHandleVariant;
-  // grip nub at separator's centre; under "hover" it fades in with line
   withHandle?: boolean;
-  // pins this separator; neighbours can still move it indirectly
   disabled?: boolean;
-  // double-click otherwise resets size
   disableDoubleClick?: boolean;
+  style?: CSSProperties & ResizableKnobStyle;
 };
-
-// Model types (CodeTokenLines, DiffFile, DiffLine) stay in lib/code-tokens.ts and lib/diff.ts — contracts.ts ships with every primitive install, must not pull diff engine into plain Button install.
 export type CodeOverflow = "wrap" | "scroll";
-// "auto" = build-time tokens, or client effect when absent
 export type CodeHighlight = "auto" | "none";
 export type CodeDensity = "default" | "compact";
-// "embedded" drops chrome — block can nest inside message or diff
 export type CodeChrome = "standalone" | "embedded";
 export type DiffStyle = "unified" | "split";
 export type CodeDiffLineType = "add" | "del" | "context";
-// non-color marker for added/removed lines: "classic" +/- glyphs, "bars" side rule
 export type DiffIndicators = "classic" | "bars" | "none";
 export type DiffLineKind = "word" | "char" | "none";
-
-// Fenced code blocks route to Code, ```diff fences to CodeDiff.
-export type MarkdownProps = Omit<ComponentProps<"div">, "children"> & { content: string };
-
-// Material only — anatomy identical across all three. glass and liquid degrade to CSS when their WebGL companion is not installed.
+export type MarkdownProps = Omit<ComponentProps<"div">, "children" | "style"> & {
+  content: string;
+  style?: CSSProperties & MarkdownKnobStyle;
+};
 export type DynamicNotificationVariant = "surface" | "glass" | "liquid";
-
-// Derived from `open` + `loading`, never set directly.
 export type DynamicNotificationState = "collapsed" | "thinking" | "expanded";
-
 export type DynamicNotificationReplyPayload = {
   value: string;
   clear: () => void;
 };
-
-export type DynamicNotificationProps = Omit<ComponentProps<"div">, "onChange"> & {
+export type DynamicNotificationProps = Omit<ComponentProps<"div">, "onChange" | "style"> & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
-  // holds intermediate "thinking" size — flip off when answer lands
   loading?: boolean;
   replyValue?: string;
   defaultReplyValue?: string;
@@ -1437,4 +1367,5 @@ export type DynamicNotificationProps = Omit<ComponentProps<"div">, "onChange"> &
   onReply?: (payload: DynamicNotificationReplyPayload) => void | Promise<void>;
   variant?: DynamicNotificationVariant;
   disabled?: boolean;
+  style?: CSSProperties & DynamicNotificationKnobStyle;
 };

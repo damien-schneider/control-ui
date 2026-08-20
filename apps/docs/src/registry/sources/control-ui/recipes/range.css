@@ -1,0 +1,235 @@
+@layer components {
+  :where([data-control-family="range"][data-slot="root"]) {
+    --range-track-radius: 9999px;
+    --range-track-background: var(--muted);
+    --range-indicator-radius: 9999px;
+    --range-indicator-background: var(--primary);
+    --range-thumb-radius: 9999px;
+    --range-thumb-background: var(--background);
+    --range-thumb-border-color: var(--border);
+    --range-thumb-shadow: var(--shadow-sm);
+    --_range-thumb-border-width: 1px;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"], [data-control-family="range"][data-range-kind="progress"][data-slot="track"], [data-control-family="range"][data-range-kind="meter"][data-slot="track"]) {
+    border-radius: var(--range-track-radius);
+    background: var(--range-track-background);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]) {
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-variant="plain"]) {
+    --range-track-radius: 3px;
+    --range-track-background: oklch(from var(--foreground) l c h / 0.06);
+    --range-indicator-radius: 0px;
+    --range-indicator-background: oklch(from var(--foreground) l c h / 0.14);
+    --range-thumb-radius: 1px;
+    --range-thumb-background: oklch(from var(--foreground) l c h / 0.3);
+    --range-thumb-shadow: none;
+    --_range-thumb-border-width: 0px;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"][data-dragging]) {
+    background: oklch(from var(--foreground) l c h / 0.1);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"], [data-control-family="range"][data-range-kind="progress"][data-slot="indicator"], [data-control-family="range"][data-range-kind="meter"][data-slot="indicator"]) {
+    height: 100%;
+    border-radius: var(--range-indicator-radius);
+    background: var(--range-indicator-background);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"]) {
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"][data-dragging]) {
+    --range-indicator-background: var(--primary);
+    background: var(--range-indicator-background);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]) {
+    position: relative;
+    border: var(--_range-thumb-border-width) solid var(--range-thumb-border-color);
+    border-radius: var(--range-thumb-radius);
+    background: var(--range-thumb-background);
+    box-shadow: var(--range-thumb-shadow);
+    outline: none;
+    transition-property: scale, background-color, box-shadow, height, width;
+    transition-duration: var(--duration-fast);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:focus-visible) {
+    --range-thumb-shadow: var(--shadow-sm);
+    box-shadow: var(--range-thumb-shadow), 0 0 0 2px oklch(from var(--foreground) l c h / 0.3);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:where(:hover, [data-dragging])) {
+    scale: 1.1;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-dragging]) {
+    box-shadow: var(--shadow-md);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"]) {
+    height: 1rem;
+    width: 0.125rem;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"]:where(:hover, [data-dragging])) {
+    --range-thumb-background: oklch(from var(--foreground) l c h / 0.5);
+    scale: 1;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="plain"][data-dragging]) {
+    --range-thumb-background: oklch(from var(--foreground) l c h / 0.7);
+    height: 1.25rem;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="tick"]) {
+    background: oklch(from var(--foreground) l c h / 0.15);
+    transition-property: height, background-color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-dragging] [data-slot="tick"]) {
+    height: 0.75rem;
+    background: oklch(from var(--foreground) l c h / 0.25);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"]:is([data-slot="label"], [data-slot="value"])) {
+    color: var(--muted-foreground);
+    transition-property: color, scale, translate;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-dragging] [data-slot="label"]) {
+    translate: -0.25rem -0.375rem;
+    scale: 0.9;
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-dragging] [data-slot="value"]) {
+    translate: 0.125rem -0.375rem;
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="value"]) {
+    font-size: var(--text-caption);
+    line-height: calc(var(--spacing) * 3.5);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="label"]) {
+    font-size: var(--text-caption);
+    line-height: calc(var(--spacing) * 3.5);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-disabled]) {
+    opacity: 50%;
+  }
+
+  :where([data-control-family="range"][data-range-kind="progress"][data-slot="indicator"]) {
+    --_range-progress-indicator-transition-property: width;
+    transition-property: var(--_range-progress-indicator-transition-property);
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="range"][data-range-kind="progress"][data-slot="value"]) {
+    font-size: var(--text-label);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="range"][data-range-kind="progress"][data-slot="label"]) {
+    font-size: var(--text-label);
+    font-weight: var(--font-weight-medium);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="range"][data-range-kind="meter"][data-slot="indicator"]) {
+    --_range-meter-indicator-transition-property: width;
+    transition-property: var(--_range-meter-indicator-transition-property);
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="range"][data-range-kind="meter"][data-slot="value"]) {
+    font-size: var(--text-label);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="range"][data-range-kind="meter"][data-slot="label"]) {
+    font-size: var(--text-label);
+    font-weight: var(--font-weight-medium);
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="value"]) {
+    --_range-slider-value-number-style: tabular-nums;
+    font-variant-numeric: var(--_range-slider-value-number-style);
+  }
+
+  :where([data-control-family="range"][data-range-kind="progress"][data-slot="value"]) {
+    --_range-progress-value-number-style: tabular-nums;
+    font-variant-numeric: var(--_range-progress-value-number-style);
+  }
+
+  :where([data-control-family="range"][data-range-kind="meter"][data-slot="value"]) {
+    --_range-meter-value-number-style: tabular-nums;
+    font-variant-numeric: var(--_range-meter-value-number-style);
+  }
+}
+
+@property --range-track-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --range-track-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --range-indicator-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --range-indicator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --range-thumb-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --range-thumb-background {
+  syntax: "*";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --range-thumb-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --range-thumb-shadow {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}

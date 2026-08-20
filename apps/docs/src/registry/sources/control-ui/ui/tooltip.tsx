@@ -2,9 +2,10 @@
 
 import type { TooltipPopupProps, TooltipPositionerProps } from "@base-ui/react/tooltip";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
-import type { ComponentProps, Ref } from "react";
+import type { ComponentProps, CSSProperties, Ref } from "react";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId, skinSlot } from "@/components/control-ui/skin";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 
 type TooltipProviderProps = Omit<ComponentProps<typeof TooltipPrimitive.Provider>, "delay" | "timeout"> & {
   delay?: number;
@@ -44,12 +45,13 @@ export function TooltipTrigger({ render, children, ref, ...props }: TooltipTrigg
 
 type TooltipContentPositionerProps = Omit<TooltipPositionerProps, keyof TooltipPopupProps>;
 
-type TooltipContentProps = TooltipPopupProps &
-  TooltipContentPositionerProps & {
-    arrow?: boolean;
-    hidden?: boolean;
-    ref?: Ref<HTMLDivElement>;
-  };
+export type TooltipContentProps = Omit<TooltipPopupProps & Omit<TooltipContentPositionerProps, "style">, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+} & {
+  arrow?: boolean;
+  hidden?: boolean;
+  ref?: Ref<HTMLDivElement>;
+};
 
 export function TooltipContent({
   className,
@@ -90,30 +92,41 @@ export function TooltipContent({
 
   return (
     <TooltipPrimitive.Portal>
-      <TooltipPrimitive.Positioner data-skin={skinId()} data-effects={skinEffects()} className="z-[90] outline-none" {...positionerProps}>
+      <TooltipPrimitive.Positioner
+        data-control-ui="tooltip"
+        data-popup-kind="tooltip"
+        data-control-family="popup"
+        data-slot="positioner"
+        data-skin={skinId()}
+        data-effects={skinEffects()}
+        className="z-[90]"
+        {...positionerProps}
+      >
         <TooltipPrimitive.Popup
           ref={ref}
           role="tooltip"
           data-control-ui="tooltip"
+          data-popup-kind="tooltip"
+          data-control-family="popup"
+          data-popup-part="surface"
           data-slot="content"
-          className={cn(
-            "relative flex w-fit max-w-xs origin-[var(--transform-origin)] flex-col bg-foreground px-2.5 py-1 text-xs text-balance text-background shadow-pop outline-none transition-[opacity,scale] duration-[var(--duration-fast)] data-[instant]:transition-none data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
-            !arrow && "rounded-[var(--radius-control)]",
-            skinSlot("tooltip", "content", {}),
-            arrow && "rounded-[clamp(0px,var(--radius-control),3px)]",
-            className,
-          )}
+          data-arrow={arrow ? "true" : undefined}
+          className={cn("relative flex w-fit max-w-xs flex-col px-2.5 py-1", className)}
           {...props}
         >
           {children}
           {arrow ? (
             <TooltipPrimitive.Arrow
+              data-control-ui="tooltip"
+              data-control-family="popup"
+              data-popup-kind="tooltip"
+              data-slot="arrow"
               className={cn(
-                "flex text-foreground",
-                "data-[side=top]:-bottom-[8px] data-[side=top]:rotate-180",
+                "flex",
+                "data-[side=top]:-bottom-[8px]",
                 "data-[side=bottom]:-top-[8px]",
-                "data-[side=left]:-right-[10px] data-[side=left]:rotate-90",
-                "data-[side=right]:-left-[10px] data-[side=right]:-rotate-90",
+                "data-[side=left]:-right-[10px]",
+                "data-[side=right]:-left-[10px]",
               )}
             >
               <TooltipArrowSvg />
@@ -128,7 +141,13 @@ export function TooltipContent({
 function TooltipArrowSvg() {
   return (
     <svg aria-hidden="true" focusable="false" width="12" height="8" viewBox="0 0 12 8" fill="none" overflow="visible">
-      <path d="M0 7L4 2Q6 0 8 2L12 7L12 8L0 8Z" className="fill-current" />
+      <path
+        data-control-ui="tooltip"
+        data-popup-kind="tooltip"
+        data-control-family="popup"
+        data-slot="arrow-shape"
+        d="M0 7L4 2Q6 0 8 2L12 7L12 8L0 8Z"
+      />
     </svg>
   );
 }

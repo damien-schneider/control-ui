@@ -5,7 +5,6 @@ import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, ReactNode } from "react";
 import type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 function CollapsibleTriggerElement({
   triggerProps,
@@ -14,7 +13,7 @@ function CollapsibleTriggerElement({
   className,
   children,
 }: {
-  triggerProps: ComponentProps<"button"> & { "data-control-ui"?: string; "data-slot"?: string };
+  triggerProps: ComponentProps<"button"> & { "data-control-ui"?: string; "data-control-family"?: string; "data-slot"?: string };
   open: boolean;
   render: CollapsibleTriggerProps["render"];
   className?: string;
@@ -29,9 +28,11 @@ function CollapsibleTriggerElement({
     props: {
       ...triggerProps,
       "data-control-ui": triggerProps["data-control-ui"] ?? "collapsible",
+      "data-control-family": triggerProps["data-control-family"] ?? "collapsible",
       "data-slot": triggerProps["data-slot"] ?? "trigger",
       "data-state": open ? "open" : "closed",
-      className: cn(triggerProps.className, skinSlot("collapsible", "trigger", { state: open ? "open" : "closed" }), className),
+      "data-collapsible-part": "trigger",
+      className: cn(triggerProps.className, className),
       children,
     },
   });
@@ -45,10 +46,11 @@ export function Collapsible({ className, ...props }: CollapsibleProps) {
       render={(renderProps, state) => (
         <div
           data-control-ui="collapsible"
+          data-control-family="collapsible"
           data-slot="root"
           {...renderProps}
           data-state={state.open ? "open" : "closed"}
-          className={cn(renderProps.className, skinSlot("collapsible", "root", { state: state.open ? "open" : "closed" }))}
+          className={renderProps.className}
         />
       )}
       {...props}
@@ -59,11 +61,12 @@ export function Collapsible({ className, ...props }: CollapsibleProps) {
 export function CollapsibleTrigger({ render, className, children, ...props }: CollapsibleTriggerProps) {
   return (
     <CollapsiblePrimitive.Trigger
-      className={cn(
-        "cursor-pointer outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
-        "[&>svg]:transition-transform [&>svg]:duration-[var(--duration-base)] [&>svg]:ease-[var(--ease-standard)] [&[data-state=open]>svg]:rotate-90",
-      )}
+      data-control-ui="collapsible"
+      data-control-family="collapsible"
+      data-slot="trigger"
+      className="cursor-pointer"
       {...props}
+      data-collapsible-part="trigger"
       render={(triggerProps, state) => (
         <CollapsibleTriggerElement triggerProps={triggerProps} open={state.open} render={render} className={className}>
           {children}
@@ -76,18 +79,17 @@ export function CollapsibleTrigger({ render, className, children, ...props }: Co
 export function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {
   return (
     <CollapsiblePrimitive.Panel
-      className={cn(
-        "h-[var(--collapsible-panel-height)] overflow-hidden transition-[height,opacity] duration-[var(--duration-slow)] ease-[var(--ease-standard)]",
-        "data-[starting-style]:h-0 data-[starting-style]:opacity-0 data-[ending-style]:h-0 data-[ending-style]:opacity-0",
-      )}
+      className="h-[var(--collapsible-panel-height)] overflow-hidden data-ending-style:h-0 data-starting-style:h-0"
       {...props}
       render={(renderProps, state) => (
         <div
           data-control-ui="collapsible"
+          data-control-family="collapsible"
           data-slot="content"
           {...renderProps}
+          data-collapsible-part="content"
           data-state={state.open ? "open" : "closed"}
-          className={cn(renderProps.className, skinSlot("collapsible", "content", { state: state.open ? "open" : "closed" }))}
+          className={renderProps.className}
         />
       )}
     >

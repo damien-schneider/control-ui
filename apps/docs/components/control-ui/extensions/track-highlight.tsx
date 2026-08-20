@@ -1,24 +1,16 @@
 "use client";
 
-import type { ReactNode, RefObject } from "react";
+import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react";
 import { useEffect, useRef } from "react";
-
 import { createTrackHighlight } from "@/components/control-ui/extensions/create-track-highlight";
+import type { TrackHighlightKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 
 // Always-on tracks import this directly; skin-driven indicators lazy() it so geometry engine ships only when asked.
 
-// paint stays per-layer below, so overriding one layer never drags other along through tailwind-merge
-const trackHighlightBaseClasses =
-  "pointer-events-none absolute -z-10 rounded-[var(--radius-popup-item)] opacity-0 transition-[top,left,right,bottom,opacity,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] data-[visible]:opacity-100";
+const trackHighlightStructureClasses = "pointer-events-none absolute -z-10";
 
-// engine stamps data-hover while chasing non-active row, so "resting on active" and "visiting on hover" never read same
-const trackHighlightRestClasses =
-  "bg-(--track-highlight-bg) shadow-(--track-highlight-shadow) ring-1 ring-(--track-highlight-ring) data-[hover]:bg-(--track-highlight-hover-bg) data-[hover]:shadow-none data-[hover]:ring-transparent";
-
-const trackHighlightHoverClasses = "bg-(--track-highlight-hover-bg)";
-
-export type TrackHighlightProps = {
+export type TrackHighlightProps = Omit<ComponentProps<"div">, "children" | "ref" | "style"> & {
   /** Track container (`relative isolate`) highlight is measured against. Defaults to highlight's parent element. */
   trackRef?: RefObject<HTMLElement | null>;
   /** Selector for highlightable rows, resolved within track. */
@@ -31,8 +23,8 @@ export type TrackHighlightProps = {
   followHover?: boolean;
   /** Non-empty = second layer that follows hover while primary layer stays pinned on selection. */
   hoverClassName?: string;
-  className?: string;
   children?: ReactNode;
+  style?: CSSProperties & TrackHighlightKnobStyle;
 };
 
 export function TrackHighlight({
@@ -43,7 +35,9 @@ export function TrackHighlight({
   followHover,
   hoverClassName,
   className,
+  style,
   children,
+  ...props
 }: TrackHighlightProps) {
   const ref = useRef<HTMLDivElement>(null);
   const hoverRef = useRef<HTMLDivElement>(null);
@@ -60,11 +54,14 @@ export function TrackHighlight({
   return (
     <>
       <div
+        {...props}
         ref={ref}
         data-control-ui="track-highlight"
+        data-control-family="track-highlight"
         data-slot="root"
         aria-hidden
-        className={cn(trackHighlightBaseClasses, trackHighlightRestClasses, className)}
+        style={style}
+        className={cn(trackHighlightStructureClasses, className)}
       >
         {children}
       </div>
@@ -72,9 +69,11 @@ export function TrackHighlight({
         <div
           ref={hoverRef}
           data-control-ui="track-highlight"
+          data-control-family="track-highlight"
           data-slot="hover"
           aria-hidden
-          className={cn(trackHighlightBaseClasses, trackHighlightHoverClasses, hoverClassName)}
+          style={style}
+          className={cn(trackHighlightStructureClasses, hoverClassName)}
         />
       ) : null}
     </>

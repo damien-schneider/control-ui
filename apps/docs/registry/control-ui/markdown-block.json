@@ -15,8 +15,16 @@
       "path": "src/registry/sources/control-ui/markdown-block.tsx",
       "target": "@components/control-ui/markdown-block.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/markdown-block.css",
+      "target": "@components/control-ui/styles/recipes/markdown-block.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/markdown-block.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/markdown-block.json"
   }

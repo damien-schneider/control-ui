@@ -32,18 +32,30 @@
       "type": "registry:component"
     },
     {
-      "path": "src/registry/sources/control-ui/dynamic-notification.css",
-      "target": "@components/control-ui/styles/dynamic-notification.css",
-      "type": "registry:file"
-    },
-    {
       "path": "src/registry/sources/control-ui/dynamic-notification.tsx",
       "target": "@components/control-ui/dynamic-notification.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/dynamic-notification-input.css",
+      "target": "@components/control-ui/styles/recipes/dynamic-notification-input.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/dynamic-notification-motion.css",
+      "target": "@components/control-ui/styles/recipes/dynamic-notification-motion.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/dynamic-notification.css",
+      "target": "@components/control-ui/styles/recipes/dynamic-notification.css",
+      "type": "registry:file"
     }
   ],
   "css": {
-    "@import \"../components/control-ui/styles/dynamic-notification.css\"": {}
+    "@import \"../components/control-ui/styles/recipes/dynamic-notification.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/dynamic-notification-input.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/dynamic-notification-motion.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/control-ui/dynamic-notification.json"

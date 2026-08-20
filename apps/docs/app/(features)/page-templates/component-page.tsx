@@ -123,6 +123,7 @@ export function ComponentPage({
         children: installDescription,
       }}
       usageCode={usageCode}
+      knobs={component.knobs}
       dependencies={dependencyDetails(files)}
       libraryDependencies={component.registryDependencies}
       source={{

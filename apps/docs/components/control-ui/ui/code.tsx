@@ -7,9 +7,9 @@ import { Children, createContext, isValidElement, useContext, useEffect, useMemo
 
 import type { CodeChrome, CodeDensity, CodeHighlight, CodeOverflow } from "@/components/control-ui/contracts";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
+import type { CodeKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens } from "@/components/control-ui/lib/code-tokens";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
@@ -32,10 +32,11 @@ function useCodeContext(): CodeContextValue {
   return context;
 }
 
-export type CodeProps = ComponentProps<"figure"> & {
+export type CodeProps = Omit<ComponentProps<"figure">, "style"> & {
   overflow?: CodeOverflow;
   chrome?: CodeChrome;
   density?: CodeDensity;
+  style?: CSSProperties & CodeKnobStyle;
 };
 
 function hasCodeHeader(children: ReactNode) {
@@ -50,6 +51,7 @@ export function Code({ overflow = "scroll", chrome = "standalone", density = "de
     <CodeContext.Provider value={{ chrome, density, overflow, hasHeader }}>
       <figure
         data-control-ui="code"
+        data-control-family="code"
         data-slot="root"
         data-surface="panel"
         data-chrome={chrome}
@@ -58,10 +60,7 @@ export function Code({ overflow = "scroll", chrome = "standalone", density = "de
         className={cn(
           "min-w-0 [--nest-gap:0.5rem]",
           !hasHeader && "relative",
-          isEmbedded
-            ? "my-0 overflow-hidden rounded-none border-0 bg-transparent shadow-none ring-0"
-            : "my-4 overflow-hidden rounded-panel border bg-background shadow-sm",
-          skinSlot("code", "root", { chrome, density }),
+          isEmbedded ? "my-0 overflow-hidden" : "my-4 overflow-hidden",
           className,
         )}
         {...props}
@@ -72,40 +71,43 @@ export function Code({ overflow = "scroll", chrome = "standalone", density = "de
   );
 }
 
-export type CodeHeaderProps = ComponentProps<"figcaption">;
+export type CodeHeaderProps = Omit<ComponentProps<"figcaption">, "style"> & { style?: CSSProperties & CodeKnobStyle };
 
 export function CodeHeader({ className, ...props }: CodeHeaderProps) {
   return (
     <figcaption
       data-control-ui="code"
+      data-control-family="code"
       data-slot="header"
-      className={cn("flex min-h-10 items-center justify-between gap-3 border-b px-3 py-1.5", skinSlot("code", "header", {}), className)}
+      className={cn("flex min-h-10 items-center justify-between gap-3 px-3 py-1.5", className)}
       {...props}
     />
   );
 }
 
-export type CodeTitleProps = ComponentProps<"span">;
+export type CodeTitleProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & CodeKnobStyle };
 
 export function CodeTitle({ className, ...props }: CodeTitleProps) {
   return (
     <span
       data-control-ui="code"
+      data-control-family="code"
       data-slot="title"
-      className={cn("block min-w-0 truncate font-mono text-label text-muted-foreground", skinSlot("code", "title", {}), className)}
+      className={cn("block min-w-0 truncate", className)}
       {...props}
     />
   );
 }
 
-export type CodeActionsProps = ComponentProps<"div">;
+export type CodeActionsProps = ComponentProps<"div"> & { style?: CSSProperties & CodeKnobStyle };
 
 export function CodeActions({ className, ...props }: CodeActionsProps) {
   return (
     <div
       data-control-ui="code"
+      data-control-family="code"
       data-slot="actions"
-      className={cn("flex shrink-0 items-center gap-1 ms-auto", skinSlot("code", "actions", {}), className)}
+      className={cn("flex shrink-0 items-center gap-1 ms-auto", className)}
       {...props}
     />
   );
@@ -164,12 +166,7 @@ export function CodeCopy({
 export type CodeFloatingCopyProps = Omit<CodeCopyProps, "children" | "copiedLabel">;
 
 export function CodeFloatingCopy({ className, ...props }: CodeFloatingCopyProps) {
-  return (
-    <CodeCopy
-      className={cn("absolute top-2 right-2 z-10 bg-background/85 shadow-sm ring-1 ring-inset ring-border backdrop-blur", className)}
-      {...props}
-    />
-  );
+  return <CodeCopy data-code-floating="true" className={cn("absolute top-2 right-2 z-10", className)} {...props} />;
 }
 
 /** Null until resolved, and whenever highlighting is off or language is unknown — callers fall back to plain text. */
@@ -245,16 +242,18 @@ function CodeRow({
       ref={measureRef}
       data-index={index}
       data-control-ui="code"
+      data-control-family="code"
       data-slot="line"
-      className={cn("flex min-h-5 w-full", skinSlot("code", "line", {}))}
+      className="flex min-h-5 w-full"
       style={style}
     >
       {showLineNumbers ? (
         <span
           data-control-ui="code"
+          data-control-family="code"
           data-slot="gutter"
           aria-hidden="true"
-          className={cn("shrink-0 select-none pr-3 pl-4 text-right tabular-nums text-muted-foreground/60", skinSlot("code", "gutter", {}))}
+          className="shrink-0 select-none pr-3 pl-4"
           style={{ minWidth: "3.5rem" }}
         >
           {number}
@@ -273,7 +272,7 @@ function CodeRow({
   );
 }
 
-export type CodeContentProps = Omit<ComponentProps<"div">, "children"> & {
+export type CodeContentProps = Omit<ComponentProps<"div">, "children" | "style"> & {
   code: string;
   lang?: string;
   tokens?: CodeTokenLines | null;
@@ -282,6 +281,7 @@ export type CodeContentProps = Omit<ComponentProps<"div">, "children"> & {
   startLine?: number;
   maxHeight?: string;
   virtualize?: boolean;
+  style?: CSSProperties & CodeKnobStyle;
 };
 
 export function CodeContent({
@@ -321,19 +321,23 @@ export function CodeContent({
     enabled: shouldVirtualize,
   });
 
-  const gridClassName = cn(
-    // the `color:` label stops tailwind-merge reading this arbitrary utility as font size
-    "font-mono leading-5 text-[color:var(--code-foreground)]",
-    isCompact ? "py-2 text-micro" : "py-3 text-label",
-    overflow === "scroll" ? "w-max min-w-full" : "w-full",
-  );
+  const gridClassName = cn(isCompact ? "py-2" : "py-3", overflow === "scroll" ? "w-max min-w-full" : "w-full");
+  const textStyle = style;
 
   const grid = shouldVirtualize ? (
     <>
-      <pre data-control-ui="code" data-slot="accessible-source" className="sr-only">
+      <pre data-control-ui="code" data-control-family="code" data-slot="accessible-source" className="sr-only">
         <code>{code}</code>
       </pre>
-      <div aria-hidden="true" className={gridClassName} style={{ position: "relative", height: `${virtualizer.getTotalSize()}px` }}>
+      <div
+        data-control-ui="code"
+        data-control-family="code"
+        data-slot="grid"
+        data-density={isCompact ? "compact" : "default"}
+        aria-hidden="true"
+        className={gridClassName}
+        style={{ ...textStyle, position: "relative", height: `${virtualizer.getTotalSize()}px` }}
+      >
         {virtualizer.getVirtualItems().map((item) => (
           <CodeRow
             key={item.key}
@@ -350,7 +354,14 @@ export function CodeContent({
       </div>
     </>
   ) : (
-    <div className={gridClassName}>
+    <div
+      data-control-ui="code"
+      data-control-family="code"
+      data-slot="grid"
+      data-density={isCompact ? "compact" : "default"}
+      className={gridClassName}
+      style={textStyle}
+    >
       {plainLines.map((plain, index) => (
         <CodeRow
           // biome-ignore lint/suspicious/noArrayIndexKey: line position is the row identity
@@ -368,8 +379,14 @@ export function CodeContent({
   const content = useScrollArea ? (
     <ScrollArea
       maxHeight={maxHeight}
-      viewportClassName={cn(skinSlot("code", "content", {}), className)}
-      viewportProps={{ ...props, "data-control-ui": "code", "data-slot": "content", style }}
+      viewportClassName={className}
+      viewportProps={{
+        ...props,
+        "data-control-ui": "code",
+        "data-control-family": "code",
+        "data-slot": "content",
+        style,
+      }}
       viewportRef={setScrollElement}
     >
       {grid}
@@ -378,8 +395,9 @@ export function CodeContent({
     <div
       ref={setScrollElement}
       data-control-ui="code"
+      data-control-family="code"
       data-slot="content"
-      className={cn("overflow-auto", skinSlot("code", "content", {}), className)}
+      className={cn("overflow-auto", className)}
       style={{ ...style, maxHeight }}
       {...props}
     >

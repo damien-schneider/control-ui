@@ -1,0 +1,115 @@
+@layer components {
+  :where([data-control-family="morphing-panel"][data-slot="root"]) {
+    --morphing-panel-radius: var(--radius-control);
+    --morphing-panel-background: var(--card);
+    --morphing-panel-foreground: var(--card-foreground);
+    --morphing-panel-border-color: oklch(from var(--border) l c h / 0.8);
+    --morphing-panel-shadow: var(--shadow-md);
+    --morphing-panel-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    border-radius: var(--morphing-panel-radius);
+    background-color: var(--morphing-panel-background);
+    color: var(--morphing-panel-foreground);
+    box-shadow:
+      var(--morphing-panel-shadow),
+      0 0 0 1px var(--morphing-panel-border-color);
+    transition-property: width, height, border-radius, box-shadow;
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="root"][data-state="open"]) {
+    --morphing-panel-radius: var(--radius-panel);
+    --morphing-panel-shadow: var(--shadow-pop);
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="trigger"]) {
+    border-radius: inherit;
+    outline: none;
+    color: currentColor;
+    font-size: var(--text-body);
+    font-weight: 500;
+    transition-property: top, right, width, height, border-radius, padding, color, background-color, box-shadow;
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="trigger"][data-state="open"]) {
+    border-radius: var(--radius-control);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="morphing-panel"][data-slot="trigger"]:hover) {
+      background-color: var(--morphing-panel-trigger-hover-background);
+    }
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="trigger"]:focus-visible) {
+    box-shadow: inset 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="trigger"] > svg) {
+    transition-property: rotate;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="trigger"][data-state="open"] > svg) {
+    rotate: 45deg;
+  }
+
+  :where([data-control-family="morphing-panel"][data-slot="content"]) {
+    --_morphing-panel-content-hidden-translate: --spacing(1);
+    border-radius: inherit;
+    outline: none;
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+    transition-property: opacity, filter, translate;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where(
+    [data-control-family="morphing-panel"][data-slot="content"][data-starting-style],
+    [data-control-family="morphing-panel"][data-slot="content"][data-ending-style]
+  ) {
+    opacity: 0;
+    filter: blur(var(--blur-sm));
+    translate: 0 calc(var(--_morphing-panel-content-hidden-translate) * -1);
+  }
+}
+
+@property --morphing-panel-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --morphing-panel-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --morphing-panel-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --morphing-panel-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --morphing-panel-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --morphing-panel-trigger-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

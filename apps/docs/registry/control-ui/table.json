@@ -10,11 +10,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/table.css",
+      "target": "@components/control-ui/styles/recipes/table.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/table.tsx",
       "target": "@components/control-ui/ui/table.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/table.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/table.json"
   }

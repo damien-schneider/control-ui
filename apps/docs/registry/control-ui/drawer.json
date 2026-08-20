@@ -12,11 +12,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/drawer.css",
+      "target": "@components/control-ui/styles/recipes/drawer.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/drawer.tsx",
       "target": "@components/control-ui/ui/drawer.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/drawer.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/drawer.json"
   }

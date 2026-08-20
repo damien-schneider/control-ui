@@ -1,7 +1,6 @@
 import type { NativeSelectProps } from "@/components/control-ui/contracts";
-import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // real native <select>, not floating Base UI Select — its options open OS menu, so nothing portals and no scope is re-asserted.
 export function NativeSelect({ size = "md", className, children, ...props }: NativeSelectProps) {
@@ -9,20 +8,24 @@ export function NativeSelect({ size = "md", className, children, ...props }: Nat
     <div className="relative inline-flex w-full items-center">
       <select
         data-control-ui="native-select"
+        data-field-kind="native-select"
         data-slot="root"
         data-size={size}
-        className={cn(
-          "w-full min-w-0 cursor-pointer appearance-none rounded-[var(--radius-control)] pr-[calc(var(--padding-x)*1.4)] font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:ring-2 data-[invalid]:ring-destructive",
-          controlSurfaceClasses,
-          controlSize({ size }),
-          skinSlot("native-select", "root", { size }),
-          className,
-        )}
+        data-control-family="field"
+        data-control="true"
+        className={cn("w-full min-w-0 cursor-pointer pr-[calc(var(--padding-x)*1.4)]", controlSize({ size }), className)}
         {...props}
       >
         {children}
       </select>
-      <span aria-hidden="true" className="pointer-events-none absolute right-[calc(var(--padding-x)*0.6)] text-muted-foreground">
+      <span
+        aria-hidden="true"
+        data-control-ui="native-select"
+        data-control-family="field"
+        data-field-kind="native-select"
+        data-slot="icon"
+        className="pointer-events-none absolute right-[calc(var(--padding-x)*0.6)]"
+      >
         <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
           <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>

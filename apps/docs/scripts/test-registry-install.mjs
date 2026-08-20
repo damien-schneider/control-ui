@@ -1,5 +1,5 @@
 import { spawn, spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
@@ -214,7 +214,22 @@ try {
     throw new Error("The @components target did not resolve for both root and src layouts");
   }
 
+  const recipeFiles = ["button.css", "field.css", "popup.css"];
+  for (const componentsRoot of [rootComponents, sourceComponents, aggregateComponents]) {
+    for (const recipe of recipeFiles) {
+      if (!existsSync(path.join(componentsRoot, "styles/recipes", recipe))) {
+        throw new Error(`${componentsRoot} is missing the ${recipe} recipe`);
+      }
+    }
+  }
+
   const aggregateGlobals = readFileSync(path.join(aggregateFixture, "app/globals.css"), "utf8");
+  for (const recipe of recipeFiles) {
+    if (!aggregateGlobals.includes(`components/control-ui/styles/recipes/${recipe}`)) {
+      throw new Error(`The all item did not wire the ${recipe} recipe into app/globals.css`);
+    }
+  }
+
   for (const stylesheet of ["theme.css", "effects.css", "skin-theme.css", "skin.css"]) {
     if (!aggregateGlobals.includes(`components/control-ui/styles/${stylesheet}`)) {
       throw new Error(`The all item did not wire ${stylesheet} into app/globals.css`);
@@ -234,7 +249,7 @@ try {
   }
 
   const shikiVersion = JSON.parse(readFileSync(path.join(sourceFixture, "package.json"), "utf8")).dependencies?.shiki;
-  if (shikiVersion !== "^4.3.1") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);
+  if (shikiVersion !== "^4.4.3") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);
 
   console.log(
     `Registry install smoke test passed (root layout, src layout, all alias, update overwrite, ${fullInstallFixtures.length} per-skin full installs, source invariance, and TypeScript).`,

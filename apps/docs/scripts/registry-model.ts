@@ -56,6 +56,11 @@ type Definition = {
 
 const root = process.cwd();
 const componentRoot = siteConfig.registry.componentRoot;
+const recipeSourceRoot = "src/registry/sources/control-ui/recipes/";
+
+function isRecipeSource(source: string) {
+  return source.startsWith(recipeSourceRoot);
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
@@ -86,8 +91,10 @@ const hostOwnedPackageImports = new Set([
 
 const coreFiles = [
   "src/registry/contracts.ts",
+  "src/registry/knob-contracts.ts",
   "src/registry/skin.ts",
   "src/registry/lib/cn.ts",
+  "src/registry/adornments.ts",
   "src/registry/hooks/use-copy-to-clipboard.ts",
   "src/registry/sources/control-ui/control-variants.ts",
   "src/registry/sources/control-ui/surface-variants.ts",
@@ -95,13 +102,15 @@ const coreFiles = [
   "src/registry/sources/control-ui/effects.css",
 ] as const;
 
+if (coreFiles.length !== 10) throw new Error(`Control UI core must contain exactly 10 files; received ${coreFiles.length}`);
+
 const internalDefinitions: Definition[] = [
   {
     id: "breadcrumb",
     type: "registry:ui",
     title: "Breadcrumb",
     description: "Semantic breadcrumb styled with Control UI tokens.",
-    seeds: ["src/registry/sources/control-ui/ui/breadcrumb.tsx"],
+    seeds: ["src/registry/sources/control-ui/ui/breadcrumb.tsx", "src/registry/sources/control-ui/recipes/breadcrumb.css"],
     primary: ["src/registry/sources/control-ui/ui/breadcrumb.tsx"],
     internal: true,
   },
@@ -110,7 +119,7 @@ const internalDefinitions: Definition[] = [
     type: "registry:ui",
     title: "Label",
     description: "Accessible form label used by composed controls.",
-    seeds: ["src/registry/sources/control-ui/ui/label.tsx"],
+    seeds: ["src/registry/sources/control-ui/ui/label.tsx", "src/registry/sources/control-ui/recipes/label.css"],
     primary: ["src/registry/sources/control-ui/ui/label.tsx"],
     internal: true,
   },
@@ -137,7 +146,7 @@ const internalDefinitions: Definition[] = [
     type: "registry:ui",
     title: "Separator",
     description: "Hairline divider using the shared border token.",
-    seeds: ["src/registry/sources/control-ui/ui/separator.tsx"],
+    seeds: ["src/registry/sources/control-ui/ui/separator.tsx", "src/registry/sources/control-ui/recipes/separator.css"],
     primary: ["src/registry/sources/control-ui/ui/separator.tsx"],
     internal: true,
   },
@@ -167,6 +176,7 @@ const internalDefinitions: Definition[] = [
     seeds: [
       "src/registry/sources/control-ui/extensions/create-track-highlight.ts",
       "src/registry/sources/control-ui/extensions/track-highlight.tsx",
+      "src/registry/sources/control-ui/recipes/track-highlight.css",
     ],
     primary: ["src/registry/sources/control-ui/extensions/track-highlight.tsx"],
     internal: true,
@@ -377,6 +387,8 @@ function sourceManifestPath(item: Definition) {
 
 const directSourceTargets = new Map([
   ["src/registry/contracts.ts", `${componentRoot}/contracts.ts`],
+  ["src/registry/knob-contracts.ts", `${componentRoot}/knob-contracts.ts`],
+  ["src/registry/adornments.ts", `${componentRoot}/adornments.ts`],
   ["src/registry/skin.ts", `${componentRoot}/skin.ts`],
   ["src/registry/examples/control-ui/primitives/type-scale.css", `${componentRoot}/styles/type-scale.css`],
   ["src/registry/starters/next/layout.tsx", "~/app/layout.tsx"],
@@ -390,6 +402,7 @@ const sourceTargetRoots = [
   ["src/registry/blocks/", `${componentRoot}/blocks/`],
   ["src/registry/sources/control-ui/ui/", `${componentRoot}/ui/`],
   ["src/registry/sources/control-ui/extensions/", `${componentRoot}/extensions/`],
+  ["src/registry/sources/control-ui/recipes/", `${componentRoot}/styles/recipes/`],
   ["src/registry/sources/control-ui/", `${componentRoot}/`],
 ] as const;
 
@@ -408,7 +421,7 @@ function rootedSourceTarget(filePath: string) {
   for (const [sourceRoot, targetRoot] of sourceTargetRoots) {
     if (!filePath.startsWith(sourceRoot)) continue;
     const relative = filePath.slice(sourceRoot.length);
-    if (relative.endsWith(".css")) return `${componentRoot}/styles/${path.basename(relative)}`;
+    if (relative.endsWith(".css") && !targetRoot.includes("/styles/")) return `${componentRoot}/styles/${path.basename(relative)}`;
     return `${targetRoot}${relative}`;
   }
   return undefined;
@@ -494,9 +507,15 @@ function registryCss(files: RegistrySourceFile[]): RegistryItem["css"] | undefin
     ),
   ].sort((left, right) => {
     const order = ["theme.css", "effects.css", "skin-theme.css", "skin.css"];
-    const leftRank = order.indexOf(path.basename(left));
-    const rightRank = order.indexOf(path.basename(right));
-    return (leftRank === -1 ? order.length : leftRank) - (rightRank === -1 ? order.length : rightRank) || left.localeCompare(right);
+    const leftName = path.basename(left);
+    const rightName = path.basename(right);
+    const leftRank = order.indexOf(leftName);
+    const rightRank = order.indexOf(rightName);
+    const rank = (leftRank === -1 ? order.length : leftRank) - (rightRank === -1 ? order.length : rightRank);
+    if (rank !== 0) return rank;
+    if (rightName.startsWith(`${leftName.slice(0, -4)}-`)) return -1;
+    if (leftName.startsWith(`${rightName.slice(0, -4)}-`)) return 1;
+    return 0;
   });
   if (styles.length === 0) return undefined;
   return Object.fromEntries(styles.map((style) => [`@import "${style}"`, {}]));
@@ -538,7 +557,7 @@ function collectDefinitionSources(definition: Definition, context: RegistryBuild
   const owned = new Set<string>();
   const registryDependencies = new Set(definition.dependencies ?? []);
   const npmDependencies = new Set<string>();
-  const queue = [...definition.seeds];
+  const queue = definition.seeds.filter((source) => !isRecipeSource(source));
 
   while (queue.length > 0) {
     const source = queue.shift();
@@ -568,13 +587,14 @@ function collectDefinitionSources(definition: Definition, context: RegistryBuild
 
 function createRegistryItem(definition: Definition, context: RegistryBuildContext): RegistrySourceItem {
   const { owned, registryDependencies, npmDependencies } = collectDefinitionSources(definition, context);
+  const sources = new Set([...owned, ...definition.seeds.filter(isRecipeSource)]);
 
-  if (definition.id !== "core" && [...owned].some((source) => includesString(coreFiles, source))) {
+  if (definition.id !== "core" && [...sources].some((source) => includesString(coreFiles, source))) {
     throw new Error(`${definition.id} owns a core file`);
   }
   if (definition.id !== "core") registryDependencies.add("core");
 
-  const files = [...owned]
+  const files = [...sources]
     .sort()
     .map<RegistrySourceFile>((source) => ({ path: source, target: sourceToTarget(source), type: fileType(source) }));
 
@@ -619,21 +639,24 @@ function createSourceTargetLookup(allSources: Set<string>) {
   return sourceByTarget;
 }
 
+function assignPrimarySourceOwners(ownerBySource: Map<string, string>, item: Definition) {
+  for (const source of item.primary) {
+    const current = ownerBySource.get(source);
+    if (current && current !== item.id) throw new Error(`${source} is primary for both ${current} and ${item.id}`);
+    ownerBySource.set(source, item.id);
+  }
+}
+
+function assignSeedSourceOwners(ownerBySource: Map<string, string>, item: Definition) {
+  for (const source of item.seeds) {
+    if (!isRecipeSource(source) && !ownerBySource.has(source)) ownerBySource.set(source, item.id);
+  }
+}
+
 function createSourceOwners(items: Definition[]) {
   const ownerBySource = new Map<string, string>();
-  for (const item of items) {
-    for (const source of item.primary) {
-      const current = ownerBySource.get(source);
-      if (current && current !== item.id) throw new Error(`${source} is primary for both ${current} and ${item.id}`);
-      ownerBySource.set(source, item.id);
-    }
-  }
-
-  for (const item of items) {
-    for (const source of item.seeds) {
-      if (!ownerBySource.has(source)) ownerBySource.set(source, item.id);
-    }
-  }
+  for (const item of items) assignPrimarySourceOwners(ownerBySource, item);
+  for (const item of items) assignSeedSourceOwners(ownerBySource, item);
   return ownerBySource;
 }
 
@@ -705,6 +728,54 @@ function assertFullInstallInvariance(output: RegistrySourceItem[]) {
   }
 }
 
+function assertDefinitionRecipes(definition: Definition, item: RegistrySourceItem, attachedRecipes: Set<string>) {
+  for (const recipe of definition.seeds.filter(isRecipeSource)) {
+    attachedRecipes.add(recipe);
+    const target = sourceToTarget(recipe);
+    if (!item.files.some((file) => file.path === recipe && file.target === target)) {
+      throw new Error(`${definition.id} does not ship attached recipe ${recipe}`);
+    }
+    const importKey = `@import "${target.replace("@components/", "../components/")}"`;
+    if (!item.css || !(importKey in item.css)) {
+      throw new Error(`${definition.id} does not import attached recipe ${recipe}`);
+    }
+  }
+}
+
+function assertRecipeAttachments(items: Definition[], output: RegistrySourceItem[], ownerBySource: Map<string, string>) {
+  const attachedRecipes = new Set<string>();
+  for (const definition of items) {
+    if (!definition.seeds.some(isRecipeSource)) continue;
+    const item = output.find((candidate) => candidate.name === definition.id);
+    if (!item) throw new Error(`Registry output is missing ${definition.id}`);
+    assertDefinitionRecipes(definition, item, attachedRecipes);
+  }
+
+  const recipes = readdirSync(path.join(root, "src/registry/sources/control-ui/recipes"))
+    .filter((name) => name.endsWith(".css"))
+    .map((name) => `${recipeSourceRoot}${name}`);
+  const missing = recipes.filter((recipe) => !attachedRecipes.has(recipe));
+  if (missing.length > 0) throw new Error(`Recipes are not attached to registry items: ${missing.join(", ")}`);
+  const ownedRecipes = recipes.filter((recipe) => ownerBySource.has(recipe));
+  if (ownedRecipes.length > 0) {
+    throw new Error(`Recipes must not introduce registry dependencies: ${ownedRecipes.join(", ")}`);
+  }
+}
+
+export type RecipeSourceExpectation = {
+  recipe: string;
+  sources: string[];
+};
+
+export function createRecipeSourceExpectations(): RecipeSourceExpectation[] {
+  return definitions().flatMap((definition) => {
+    const sources = definition.primary.filter(
+      (source) => source.startsWith("src/registry/sources/control-ui/") && /\.(?:ts|tsx)$/.test(source),
+    );
+    return definition.seeds.filter(isRecipeSource).map((recipe) => ({ recipe, sources }));
+  });
+}
+
 export function createRegistryItems(): RegistrySourceItem[] {
   const items = definitions();
   assertUniqueDefinitionIds(items);
@@ -719,6 +790,7 @@ export function createRegistryItems(): RegistrySourceItem[] {
   assertKnownRegistryDependencies(output);
   assertActiveSkinOwnership(output);
   assertFullInstallInvariance(output);
+  assertRecipeAttachments(items, output, context.ownerBySource);
 
   return output.sort((a, b) => a.name.localeCompare(b.name));
 }

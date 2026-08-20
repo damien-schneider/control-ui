@@ -1,0 +1,98 @@
+@layer components {
+  :where([data-control-family="chat-layout"][data-slot="root"]) {
+    --chat-layout-radius: var(--radius-scene);
+    --chat-layout-background: var(--background);
+    --chat-layout-border-color: var(--border);
+    --chat-layout-shadow: var(--shadow-md);
+    --chat-layout-thought-foreground: var(--muted-foreground);
+    --chat-layout-thought-hover-background: oklch(from var(--foreground) l c h / 0.04);
+  }
+
+  :where([data-slot="root"][data-control-family="chat-layout"]) {
+    background: var(--chat-layout-background);
+    border: 1px solid var(--chat-layout-border-color);
+    border-radius: var(--chat-layout-radius);
+    box-shadow: var(--chat-layout-shadow);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="trigger"]) {
+    border-radius: var(--radius-control);
+    color: var(--chat-layout-thought-foreground);
+    font-size: var(--text-caption);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="chat-layout"][data-slot="trigger"]:hover) {
+      background: var(--chat-layout-thought-hover-background);
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="chevron"]) {
+    font-size: var(--text-sm);
+    transition: rotate var(--duration-base) var(--ease-emphasized);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="details"]),
+
+  :where([data-control-family="chat-layout"][data-slot="title"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="details"]) {
+    line-height: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="title"]) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="trigger"]) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="chevron"]) {
+    line-height: 1;
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="trigger"][data-state=open] > span:last-child) {
+    --_chat-layout-chat-thought-trigger-span-rotate: 90deg;
+    rotate: var(--_chat-layout-chat-thought-trigger-span-rotate);
+  }
+}
+
+@property --chat-layout-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --chat-layout-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --chat-layout-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --chat-layout-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --chat-layout-thought-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --chat-layout-thought-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

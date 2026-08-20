@@ -5,10 +5,10 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { CodeOverflow, DiffIndicators, DiffLineKind, DiffStyle } from "@/components/control-ui/contracts";
+import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
 import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine } from "@/components/control-ui/lib/diff";
-import { skinSlot } from "@/components/control-ui/skin";
 import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
@@ -27,7 +27,7 @@ type VisualRow =
   | { kind: "unified"; id: string; line: DiffLine }
   | { kind: "split"; id: string; left: DiffLine | null; right: DiffLine | null };
 
-export type CodeDiffProps = Omit<ComponentProps<"figure">, "children"> & {
+export type CodeDiffProps = Omit<ComponentProps<"figure">, "children" | "style"> & {
   // one path or other: `patch` is partial and cannot expand context, text pair can
   patch?: string;
   oldText?: string;
@@ -42,6 +42,7 @@ export type CodeDiffProps = Omit<ComponentProps<"figure">, "children"> & {
   maxHeight?: string;
   header?: boolean;
   children?: ReactNode;
+  style?: CSSProperties & CodeDiffKnobStyle;
 };
 
 // tokens are indexed by line number, so partial file's holes are rebuilt as blank lines to keep indices honest
@@ -176,15 +177,8 @@ function rowForLine(diffStyle: DiffStyle, line: DiffLine, id: string): VisualRow
   return { kind: "split", id, left: null, right: line };
 }
 
-const lineTint: Record<DiffLine["type"], string> = {
-  add: "bg-[var(--diff-add-line)]",
-  del: "bg-[var(--diff-del-line)]",
-  context: "",
-};
-
 const markerFor: Record<DiffLine["type"], string> = { add: "+", del: "-", context: "" };
 
-// word-diff emphasis wins over syntax tokens when line carries segments
 function DiffCode({
   line,
   tokens,
@@ -194,23 +188,29 @@ function DiffCode({
   tokens: CodeTokenLines[number] | null;
   overflow: CodeOverflow;
 }): ReactNode {
-  const emphasisVar = line.type === "del" ? "var(--diff-del-emphasis)" : "var(--diff-add-emphasis)";
   const wrapClass = overflow === "wrap" ? "whitespace-pre-wrap break-words" : "whitespace-pre";
   if (line.segments && line.segments.length > 0) {
     const runs = mergeCodeTokenLineWithEmphasis(line.text, tokens, line.segments);
     return (
       <code className={cn("min-w-0 flex-1 pr-4", wrapClass)}>
-        {runs.map((run, index) => {
-          const style: CSSProperties | undefined =
-            run.style || run.emphasis
-              ? {
-                  ...run.style,
-                  ...(run.emphasis ? { backgroundColor: emphasisVar, borderRadius: "2px" } : {}),
-                }
-              : undefined;
+        {runs.map((run) => {
+          const style: CSSProperties | undefined = run.style || undefined;
+          if (run.emphasis) {
+            return (
+              <span
+                key={run.start}
+                data-control-ui="code-diff"
+                data-control-family="code-diff"
+                data-slot="emphasis"
+                data-line-type={line.type}
+                style={style}
+              >
+                {run.content}
+              </span>
+            );
+          }
           return (
-            // biome-ignore lint/suspicious/noArrayIndexKey: run order is the identity within a line
-            <span key={index} style={style}>
+            <span key={run.start} style={style}>
               {run.content}
             </span>
           );
@@ -225,23 +225,15 @@ function DiffCode({
   );
 }
 
-const gutterTint: Record<DiffLine["type"], string> = {
-  add: "bg-[var(--diff-add-gutter)]",
-  del: "bg-[var(--diff-del-gutter)]",
-  context: "",
-};
-
 function Gutter({ children, type }: { children: ReactNode; type: DiffLine["type"] }) {
   return (
     <span
       data-control-ui="code-diff"
+      data-control-family="code-diff"
+      data-line-type={type}
       data-slot="gutter"
       aria-hidden="true"
-      className={cn(
-        "shrink-0 select-none px-2 text-right tabular-nums text-[var(--diff-context-fg)] opacity-70",
-        gutterTint[type],
-        skinSlot("code-diff", "gutter", {}),
-      )}
+      className="shrink-0 select-none px-2"
       style={{ minWidth: "2.75rem" }}
     >
       {children}
@@ -251,19 +243,18 @@ function Gutter({ children, type }: { children: ReactNode; type: DiffLine["type"
 
 function Marker({ type, indicators }: { type: DiffLine["type"]; indicators: DiffIndicators }) {
   if (indicators !== "classic") return null;
-  let color = "text-transparent";
-  if (type === "add") color = "text-[var(--diff-add-fg)]";
-  else if (type === "del") color = "text-[var(--diff-del-fg)]";
   return (
-    <span aria-hidden="true" className={cn("shrink-0 select-none pl-1 pr-1 tabular-nums", color)}>
+    <span
+      data-control-ui="code-diff"
+      data-control-family="code-diff"
+      data-slot="marker"
+      data-line-type={type}
+      aria-hidden="true"
+      className="shrink-0 select-none pl-1 pr-1"
+    >
       {markerFor[type] || " "}
     </span>
   );
-}
-
-function barClass(type: DiffLine["type"], indicators: DiffIndicators): string {
-  if (indicators !== "bars" || type === "context") return "";
-  return type === "add" ? "border-l-2 border-[var(--diff-add-fg)]" : "border-l-2 border-[var(--diff-del-fg)]";
 }
 
 function UnifiedRow({
@@ -280,15 +271,12 @@ function UnifiedRow({
   return (
     <div
       data-control-ui="code-diff"
+      data-control-family="code-diff"
       data-slot="line"
       data-line-type={line.type}
+      data-indicators={indicators}
       aria-hidden="true"
-      className={cn(
-        "flex w-full",
-        lineTint[line.type],
-        barClass(line.type, indicators),
-        skinSlot("code-diff", "line", { lineType: line.type }),
-      )}
+      className="flex w-full"
     >
       <Gutter type={line.type}>{line.oldNo ?? ""}</Gutter>
       <Gutter type={line.type}>{line.newNo ?? ""}</Gutter>
@@ -314,23 +302,24 @@ function SplitHalf({
   if (!line)
     return (
       <div
+        data-control-ui="code-diff"
+        data-control-family="code-diff"
+        data-slot="empty-half"
+        data-side={side}
         aria-hidden="true"
-        className={cn("flex min-w-0 flex-1 bg-[var(--diff-gutter-bg)]", side === "left" && "border-r border-border/60")}
+        className="flex min-w-0 flex-1"
       />
     );
   return (
     <div
       data-control-ui="code-diff"
+      data-control-family="code-diff"
       data-slot="line"
       data-line-type={line.type}
+      data-indicators={indicators}
+      data-side={side}
       aria-hidden="true"
-      className={cn(
-        "flex min-w-0 flex-1",
-        lineTint[line.type],
-        barClass(line.type, indicators),
-        side === "left" && "border-r border-border/60",
-        skinSlot("code-diff", "line", { lineType: line.type }),
-      )}
+      className="flex min-w-0 flex-1"
     >
       <Gutter type={line.type}>{side === "left" ? (line.oldNo ?? "") : (line.newNo ?? "")}</Gutter>
       <Marker type={line.type} indicators={indicators} />
@@ -345,13 +334,13 @@ function fileTitle(file: DiffFile): string {
 
 function DiffStats({ additions, deletions }: { additions: number; deletions: number }) {
   return (
-    <span
-      data-control-ui="code-diff"
-      data-slot="stat"
-      className={cn("flex items-center gap-1.5 text-micro tabular-nums", skinSlot("code-diff", "stat", {}))}
-    >
-      <span className="text-[var(--diff-add-fg)]">+{additions}</span>
-      <span className="text-[var(--diff-del-fg)]">−{deletions}</span>
+    <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat" className="flex items-center gap-1.5">
+      <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat-additions">
+        +{additions}
+      </span>
+      <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat-deletions">
+        −{deletions}
+      </span>
     </span>
   );
 }
@@ -427,33 +416,21 @@ function CodeDiffFileSection({
     setExpanded((current) => new Set(current).add(gapIndex));
   }
 
-  const gridClassName = cn(
-    "font-mono text-label leading-5 text-[color:var(--code-foreground)]",
-    overflow === "scroll" ? "w-max min-w-full" : "w-full",
-  );
+  const gridClassName = overflow === "scroll" ? "w-max min-w-full" : "w-full";
 
   function renderRow(row: VisualRow): ReactNode {
     if (row.kind === "separator") {
       return (
-        <div
-          data-control-ui="code-diff"
-          data-slot="expander"
-          className={cn(
-            "flex items-center gap-2 bg-[var(--diff-gutter-bg)] px-3 py-1 text-micro text-muted-foreground",
-            skinSlot("code-diff", "expander", {}),
-          )}
-        >
+        <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander" className="flex items-center gap-2 px-3 py-1">
           {row.canExpand ? (
             <button
               type="button"
               data-control-ui="code-diff"
+              data-control-family="code-diff"
               data-slot="expand-button"
               data-control="true"
               onClick={() => expandGap(row.gapIndex)}
-              className={cn(
-                "cursor-pointer rounded-control px-1.5 py-0.5 text-muted-foreground outline-none hover:bg-foreground/8 hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
-                skinSlot("code-diff", "expand-button", {}),
-              )}
+              className="cursor-pointer px-1.5 py-0.5"
               aria-label="Expand hidden lines"
             >
               ⋯
@@ -463,7 +440,9 @@ function CodeDiffFileSection({
               ⋯
             </span>
           )}
-          <span className="truncate font-mono">{row.label}</span>
+          <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander-label" className="truncate">
+            {row.label}
+          </span>
         </div>
       );
     }
@@ -471,7 +450,7 @@ function CodeDiffFileSection({
       return <UnifiedRow line={row.line} tokens={lineTokens(row.line, tokens)} indicators={diffIndicators} overflow={overflow} />;
     }
     return (
-      <div data-control-ui="code-diff" data-slot="row" className={cn("flex w-full", skinSlot("code-diff", "row", {}))}>
+      <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="row" className="flex w-full">
         <SplitHalf
           line={row.left}
           tokens={row.left ? lineTokens(row.left, tokens) : null}
@@ -491,24 +470,31 @@ function CodeDiffFileSection({
   }
 
   return (
-    <section data-control-ui="code-diff" data-slot="file" data-file-name={file.name}>
+    <section data-control-ui="code-diff" data-control-family="code-diff" data-slot="file" data-file-name={file.name}>
       {showFileHeader ? (
         <div
           data-control-ui="code-diff"
+          data-control-family="code-diff"
           data-slot="file-header"
-          className="flex min-h-9 items-center justify-between gap-3 border-b bg-[var(--diff-gutter-bg)] px-3 py-1.5"
+          className="flex min-h-9 items-center justify-between gap-3 px-3 py-1.5"
         >
-          <span className="min-w-0 truncate font-mono text-label text-muted-foreground">{fileTitle(file)}</span>
+          <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="file-title" className="min-w-0 truncate">
+            {fileTitle(file)}
+          </span>
           <DiffStats additions={file.additions} deletions={file.deletions} />
         </div>
       ) : null}
-      <pre data-control-ui="code-diff" data-slot="accessible-source" className="sr-only">
+      <pre data-control-ui="code-diff" data-control-family="code-diff" data-slot="accessible-source" className="sr-only">
         <code>{accessibleDiffText(file, rows)}</code>
       </pre>
       <ScrollArea
         maxHeight={maxHeight}
-        viewportClassName={skinSlot("code-diff", "body", {})}
-        viewportProps={{ "data-control-ui": "code-diff", "data-slot": "body" }}
+        viewportClassName={undefined}
+        viewportProps={{
+          "data-control-ui": "code-diff",
+          "data-control-family": "code-diff",
+          "data-slot": "body",
+        }}
         viewportRef={scrollRef}
       >
         {shouldVirtualize ? (
@@ -550,6 +536,7 @@ export function CodeDiff({
   maxHeight = "32rem",
   header = true,
   className,
+  style,
   ...props
 }: CodeDiffProps) {
   const options = { name, lang, lineDiffType, maxLineDiffLength };
@@ -563,38 +550,27 @@ export function CodeDiff({
   return (
     <figure
       data-control-ui="code-diff"
+      data-control-family="code-diff"
       data-slot="root"
       data-surface="panel"
       data-diff-style={diffStyle}
       data-file-count={files.length}
       data-header={header ? "true" : undefined}
-      className={cn(
-        "my-4 overflow-hidden rounded-panel border bg-background shadow-sm",
-        // diff rows carry no padding of their own, so band must cover overlay's full footprint
-        !header && "relative pt-9",
-        skinSlot("code-diff", "root", { diffStyle }),
-        className,
-      )}
+      className={cn("my-4 overflow-hidden", !header && "relative pt-9", className)}
+      style={style}
       {...props}
     >
       {header ? (
         <figcaption
           data-control-ui="code-diff"
+          data-control-family="code-diff"
           data-slot="header"
-          className={cn("flex min-h-10 items-center justify-between gap-3 border-b px-3 py-1.5", skinSlot("code-diff", "header", {}))}
+          className="flex min-h-10 items-center justify-between gap-3 px-3 py-1.5"
         >
-          <span
-            data-control-ui="code-diff"
-            data-slot="title"
-            className={cn("min-w-0 truncate font-mono text-label text-muted-foreground", skinSlot("code-diff", "title", {}))}
-          >
+          <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="title" className="min-w-0 truncate">
             {files.length === 1 ? fileTitle(files[0]) : `${files.length} files`}
           </span>
-          <div
-            data-control-ui="code-diff"
-            data-slot="actions"
-            className={cn("flex shrink-0 items-center gap-2", skinSlot("code-diff", "actions", {}))}
-          >
+          <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="actions" className="flex shrink-0 items-center gap-2">
             <DiffStats additions={additions} deletions={deletions} />
             <CodeDiffCopy value={copyValue} />
           </div>

@@ -1,0 +1,104 @@
+@layer components {
+  :where([data-control-family="audio-recorder"][data-slot="root"]) {
+    --audio-recorder-active-foreground: var(--foreground);
+    --audio-recorder-foreground: var(--muted-foreground);
+    --audio-recorder-recording-ring-color: oklch(from var(--destructive) l c h / 0.25);
+    --audio-recorder-error-foreground: var(--destructive-text);
+    color: var(--audio-recorder-foreground);
+    transition: color var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="audio-recorder"][data-slot="root"]:is([data-state="recording"], [data-state="recorded"])) {
+    color: var(--audio-recorder-active-foreground);
+  }
+
+  :where([data-control-family="audio-recorder"][data-slot="trigger"][data-recorder-state="recording"]) {
+    box-shadow: 0 0 0 2px var(--audio-recorder-recording-ring-color);
+  }
+
+  :where([data-control-family="audio-recorder"][data-slot="trigger"][data-status-only="true"]:disabled) {
+    opacity: 1;
+  }
+
+  :where(
+    [data-control-family="audio-recorder"]:is(
+      [data-slot="visualizer"],
+      [data-slot="status"],
+      [data-slot="duration"],
+      [data-slot="cancel"],
+      [data-slot="submit"]
+    )
+  ) {
+    --_audio-recorder-content-hidden-scale: 100%;
+    --_audio-recorder-content-visible-scale: 100%;
+    --_audio-recorder-content-transition-property: opacity, filter, translate, scale, visibility;
+    opacity: 0;
+    filter: blur(var(--blur-xs));
+    translate: calc(var(--spacing) * 1) 0;
+    scale: var(--_audio-recorder-content-hidden-scale);
+    visibility: hidden;
+    transition-property: var(--_audio-recorder-content-transition-property);
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+    transition-behavior: allow-discrete;
+  }
+
+  :where([data-control-family="audio-recorder"]:is([data-slot="cancel"], [data-slot="submit"])) {
+    --_audio-recorder-content-hidden-scale: 95%;
+  }
+
+  :where([data-control-family="audio-recorder"][data-visible="true"]) {
+    opacity: 1;
+    filter: blur(0px);
+    translate: 0px 0;
+    scale: var(--_audio-recorder-content-visible-scale);
+    visibility: visible;
+  }
+
+  :where([data-control-family="audio-recorder"]:is([data-slot="cancel"], [data-slot="submit"]):disabled) {
+    opacity: 0;
+  }
+
+  :where([data-control-family="audio-recorder"]:is([data-slot="status"], [data-slot="duration"])) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="audio-recorder"][data-slot="status"][data-tone="error"]) {
+    color: var(--audio-recorder-error-foreground);
+  }
+
+  :where([data-control-family="audio-recorder"][data-slot="duration"]) {
+    --_audio-recorder-duration-text-align: right;
+    text-align: var(--_audio-recorder-duration-text-align);
+  }
+
+  :where([data-control-family="audio-recorder"][data-slot="duration"]) {
+    --_audio-recorder-duration-number-style: tabular-nums;
+    font-variant-numeric: var(--_audio-recorder-duration-number-style);
+  }
+}
+
+@property --audio-recorder-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --audio-recorder-active-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --audio-recorder-recording-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --audio-recorder-error-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

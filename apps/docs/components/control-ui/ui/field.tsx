@@ -19,11 +19,7 @@ import type {
   FieldTitleProps,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Separator } from "@/components/control-ui/ui/separator";
-
-// Pure layout and text — never paints control; consumer passes Input/Select/Textarea through FieldControl's `render`.
-// Base UI stamps data-valid/-invalid/-dirty/-touched/-filled/-focused, so skins react without JS.
 
 const fieldVariants = cva("group/field flex w-full gap-3", {
   variants: {
@@ -45,48 +41,88 @@ export function Field({ className, orientation = "vertical", ...props }: FieldPr
   return (
     <FieldPrimitive.Root
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="root"
       data-orientation={orientation}
-      className={cn(fieldVariants({ orientation }), skinSlot("field", "root", {}), className)}
+      className={cn(fieldVariants({ orientation }), className)}
       {...props}
     />
   );
 }
 
 export function FieldContent({ className, ...props }: FieldContentProps) {
-  return <div data-control-ui="field" data-slot="content" className={cn("flex min-w-0 flex-1 flex-col gap-1", className)} {...props} />;
+  return (
+    <div
+      data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
+      data-slot="content"
+      className={cn("flex min-w-0 flex-1 flex-col gap-1", className)}
+      {...props}
+    />
+  );
 }
 
 export function FieldTitle({ className, ...props }: FieldTitleProps) {
-  return <div data-control-ui="field" data-slot="title" className={cn("text-label font-medium text-foreground", className)} {...props} />;
+  return (
+    <div data-control-ui="field" data-control-family="field" data-field-kind="field" data-slot="title" className={className} {...props} />
+  );
 }
 
 export function FieldLabel({ className, ...props }: FieldLabelProps) {
   return (
     <FieldPrimitive.Label
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="label"
-      className={cn("text-label font-medium text-foreground data-[disabled]:opacity-50", skinSlot("field", "label", {}), className)}
+      className={className}
       {...props}
     />
   );
 }
 
-// `render` is pulled off Base UI primitive so composed controls merge correctly
 type RefinedFieldControlProps = FieldControlProps & Pick<ComponentProps<typeof FieldPrimitive.Control>, "render">;
 
-export function FieldControl({ className, ...props }: RefinedFieldControlProps) {
-  // without render prop this falls back to bare <input>
+export function FieldControl({ className, render, ...props }: RefinedFieldControlProps) {
+  const classes = cn("w-full", className);
 
-  return <FieldPrimitive.Control data-control-ui="field" data-slot="control" className={cn("w-full", className)} {...props} />;
+  if (render !== undefined) {
+    return (
+      <FieldPrimitive.Control
+        data-control-ui="field"
+        data-control-family="field"
+        data-field-kind="field"
+        data-slot="control"
+        className={classes}
+        render={render}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <FieldPrimitive.Control
+      data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
+      data-slot="control"
+      data-control="true"
+      className={classes}
+      {...props}
+    />
+  );
 }
 
 export function FieldDescription({ className, ...props }: FieldDescriptionProps) {
   return (
     <FieldPrimitive.Description
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="description"
-      className={cn("text-caption text-muted-foreground", skinSlot("field", "description", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -96,8 +132,10 @@ export function FieldError({ className, ...props }: FieldErrorProps) {
   return (
     <FieldPrimitive.Error
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="error"
-      className={cn("text-caption text-destructive-text", skinSlot("field", "error", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -107,6 +145,8 @@ export function FieldGroup({ className, ...props }: FieldGroupProps) {
   return (
     <div
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="group"
       className={cn("group/field-group @container/field-group flex flex-col gap-5", className)}
       {...props}
@@ -118,17 +158,21 @@ export function FieldSeparator({ children, className, ...props }: FieldSeparator
   return (
     <div
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="separator"
       data-content={children ? "true" : undefined}
-      className={cn("relative h-px text-caption", children && "my-2 h-5", className)}
+      className={cn("relative h-px", children && "my-2 h-5", className)}
       {...props}
     >
-      <Separator className={cn(children && "absolute top-1/2")} />
+      <Separator className={children ? "absolute top-1/2" : undefined} />
       {children ? (
         <span
           data-control-ui="field"
+          data-control-family="field"
+          data-field-kind="field"
           data-slot="separator-content"
-          className="relative mx-auto block w-fit bg-background px-2 text-muted-foreground"
+          className="relative mx-auto block w-fit px-2"
         >
           {children}
         </span>
@@ -138,12 +182,13 @@ export function FieldSeparator({ children, className, ...props }: FieldSeparator
 }
 
 export function FieldItem({ className, ...props }: FieldItemProps) {
-  // scopes label, description, and validity to this one row of Fieldset
   return (
     <FieldPrimitive.Item
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="item"
-      className={cn("flex items-center gap-2", skinSlot("field", "item", {}), className)}
+      className={cn("flex items-center gap-2", className)}
       {...props}
     />
   );
@@ -153,8 +198,10 @@ export function FieldSet({ className, ...props }: FieldSetProps) {
   return (
     <FieldsetPrimitive.Root
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="set"
-      className={cn("m-0 flex min-w-0 flex-col gap-4 border-0 p-0", skinSlot("field", "set", {}), className)}
+      className={cn("m-0 flex min-w-0 flex-col gap-4 p-0", className)}
       {...props}
     />
   );
@@ -164,8 +211,10 @@ export function FieldLegend({ className, ...props }: FieldLegendProps) {
   return (
     <FieldsetPrimitive.Legend
       data-control-ui="field"
+      data-control-family="field"
+      data-field-kind="field"
       data-slot="legend"
-      className={cn("text-label font-semibold text-foreground", skinSlot("field", "legend", {}), className)}
+      className={className}
       {...props}
     />
   );

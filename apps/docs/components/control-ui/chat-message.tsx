@@ -1,12 +1,12 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import { createContext, useContext } from "react";
 
 import type { ChatMessageProps } from "@/components/control-ui/contracts";
 import { useChatMessage } from "@/components/control-ui/hooks/use-chat-message";
+import type { ChatMessageKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinPaint, skinSlot } from "@/components/control-ui/skin";
 
 type ChatMessageContextValue = ReturnType<typeof useChatMessage>;
 
@@ -33,12 +33,13 @@ export function ChatMessage({
     <ChatMessageContext.Provider value={message}>
       <article
         data-control-ui="chat-message"
+        data-control-family="chat-message"
         data-slot="root"
         data-role={from}
         data-state={state}
         data-density={density}
         data-tone={tone}
-        className={cn("w-full", skinSlot("chat-message", "root", { role: from, state, density, tone }), className)}
+        className={cn("w-full", className)}
         {...props}
       >
         {children}
@@ -47,7 +48,7 @@ export function ChatMessage({
   );
 }
 
-export type ChatMessageRowProps = ComponentProps<"div">;
+export type ChatMessageRowProps = ComponentProps<"div"> & { style?: CSSProperties & ChatMessageKnobStyle };
 
 export function ChatMessageRow({ className, children, ...props }: ChatMessageRowProps) {
   const message = useChatMessageContext();
@@ -55,12 +56,12 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
   return (
     <div
       data-control-ui="chat-message"
+      data-control-family="chat-message"
       data-slot="row"
       className={cn(
         "group flex w-full gap-2",
         message.isUser ? "justify-end" : "justify-start",
         message.isCompact ? "py-1" : "py-2",
-        skinSlot("chat-message", "row", {}),
         className,
       )}
       {...props}
@@ -70,38 +71,57 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
   );
 }
 
-export type ChatMessageAvatarProps = ComponentProps<"div">;
+export type ChatMessageAvatarProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatMessageKnobStyle;
+};
 
 export function ChatMessageAvatar({ className, ...props }: ChatMessageAvatarProps) {
   return (
     <div
       data-control-ui="chat-message"
+      data-control-family="chat-message"
       data-slot="avatar"
-      className={cn(
-        "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border bg-card text-caption text-muted-foreground",
-        skinSlot("chat-message", "avatar", {}),
-        className,
-      )}
+      className={cn("mt-0.5 flex size-6 shrink-0 items-center justify-center", className)}
       {...props}
     />
   );
 }
 
-export type ChatMessageBodyProps = ComponentProps<"div">;
+export type ChatMessageBodyProps = ComponentProps<"div"> & { style?: CSSProperties & ChatMessageKnobStyle };
 
 export function ChatMessageBody({ className, ...props }: ChatMessageBodyProps) {
   const message = useChatMessageContext();
 
-  return <div className={cn("min-w-0", message.isUser ? "max-w-[76%]" : "max-w-[80%] flex-1", className)} {...props} />;
+  return (
+    <div
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="body"
+      className={cn("min-w-0", message.isUser ? "max-w-[76%]" : "max-w-[80%] flex-1", className)}
+      {...props}
+    />
+  );
 }
 
-export type ChatMessageHeaderProps = ComponentProps<"div">;
+export type ChatMessageHeaderProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatMessageKnobStyle;
+};
 
 export function ChatMessageHeader({ className, ...props }: ChatMessageHeaderProps) {
-  return <div className={cn("mb-1 flex items-center gap-2 px-1 text-caption text-muted-foreground", className)} {...props} />;
+  return (
+    <div
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="header"
+      className={cn("mb-1 flex items-center gap-2 px-1", className)}
+      {...props}
+    />
+  );
 }
 
-export type ChatMessageContentProps = ComponentProps<"div">;
+export type ChatMessageContentProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatMessageKnobStyle;
+};
 
 export function ChatMessageContent({ className, ...props }: ChatMessageContentProps) {
   const message = useChatMessageContext();
@@ -109,24 +129,28 @@ export function ChatMessageContent({ className, ...props }: ChatMessageContentPr
   return (
     <div
       data-control-ui="chat-message"
+      data-control-family="chat-message"
       data-slot="content"
       data-role={message.from}
-      className={cn(
-        "text-body leading-5",
-        message.isUser &&
-          "rounded-field rounded-se-lg bg-primary px-[var(--padding-x)] py-[var(--padding-y)] text-primary-foreground shadow-sm",
-        // shimmer sweep IS generating indicator — caret dot would sit hidden underneath it
-        message.isAssistant && (message.isStreaming ? (skinPaint("chat-message", "streaming", {}) ?? "shimmer-text") : "text-foreground"),
-        skinSlot("chat-message", "content", { role: message.from }),
-        className,
-      )}
+      data-streaming={message.isStreaming ? "" : undefined}
+      className={cn(message.isUser && "px-[var(--padding-x)] py-[var(--padding-y)]", className)}
       {...props}
     />
   );
 }
 
-export type ChatMessageActionsProps = ComponentProps<"div">;
+export type ChatMessageActionsProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ChatMessageKnobStyle;
+};
 
 export function ChatMessageActions({ className, ...props }: ChatMessageActionsProps) {
-  return <div className={cn("mt-1 flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100", className)} {...props} />;
+  return (
+    <div
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="actions"
+      className={cn("mt-1 flex items-center gap-1", className)}
+      {...props}
+    />
+  );
 }

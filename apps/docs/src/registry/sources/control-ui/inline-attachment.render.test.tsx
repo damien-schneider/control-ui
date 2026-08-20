@@ -34,7 +34,7 @@ describe("InlineAttachment", () => {
       </InlineAttachment>,
     );
 
-    expect(html).toContain("--inline-attachment-aspect:1");
+    expect(html).toContain("aspect-ratio:1");
   });
 
   test("a ready attachment stays openable and renders its media", () => {

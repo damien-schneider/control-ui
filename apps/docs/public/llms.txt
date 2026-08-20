@@ -185,7 +185,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Provenance without noise](http://127.0.0.1:3000/skills/ux-provenance-without-noise): Surface source, runtime, and ownership cues only where they help the user trust or act.
 - [Dense but scannable](http://127.0.0.1:3000/skills/ux-dense-but-scannable): Favor compact surfaces that support repeated work without flattening hierarchy.
 - [Say it once](http://127.0.0.1:3000/skills/ux-say-it-once): Cut redundant AI-slop copy so labels, controls, and state carry the obvious meaning.
-- [Skin authoring](http://127.0.0.1:3000/skills/skin-authoring): Author a skin as three files with strict roles — theme.css owns the complete token contract, skin.config restyles slots and declares DS choices, skin.css says only what classes cannot.
+- [Skin authoring](http://127.0.0.1:3000/skills/skin-authoring): Author a skin as three files with strict roles — theme.css owns shared tokens, skin.css re-values registered component knobs, and skin.config declares behavior and adornments.
 - [Extension authoring](http://127.0.0.1:3000/skills/extension-authoring): Author an extension as an optional installable layered on the library — root-mounted for cross-cutting anatomy-attached behavior, anchored for component-scoped fx activated from skin.config.
 - [Registry-first DX](http://127.0.0.1:3000/skills/registry-first-dx): Keep the registry manifest and installed source as the contract users can inspect.
 - [Skin completeness](http://127.0.0.1:3000/skills/skin-completeness): Treat a skin as a complete source recipe, not a partial class override layer.

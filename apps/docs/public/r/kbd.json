@@ -10,11 +10,20 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/kbd.css",
+      "target": "@components/control-ui/styles/recipes/kbd.css",
+      "type": "registry:file",
+      "content": "@layer components {\n  :where([data-control-family=\"kbd\"][data-slot=\"root\"]) {\n    --kbd-radius: var(--radius-control);\n    --kbd-background: oklch(from var(--card) l c h / 0.6);\n    --kbd-foreground: var(--muted-foreground);\n    --kbd-border-color: var(--border);\n    --kbd-shadow: var(--shadow-sm);\n    border-radius: var(--kbd-radius);\n    background: var(--kbd-background);\n    box-shadow: inset 0 0 0 1px var(--kbd-border-color), var(--kbd-shadow);\n    color: var(--kbd-foreground);\n    font-size: var(--text-micro);\n  }\n\n  :where([data-control-family=\"kbd\"][data-slot=\"root\"]) {\n    font-family: var(--font-sans);\n    font-weight: var(--font-weight-medium);\n  }\n}\n\n@property --kbd-radius {\n  syntax: \"<length-percentage>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --kbd-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --kbd-foreground {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --kbd-border-color {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n\n@property --kbd-shadow {\n  syntax: \"*\";\n  inherits: true;\n}\n"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/kbd.tsx",
       "target": "@components/control-ui/ui/kbd.tsx",
       "type": "registry:ui",
-      "content": "import type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\nimport { skinSlot } from \"@/components/control-ui/skin\";\n\nexport function Kbd({ className, ...props }: ComponentProps<\"kbd\">) {\n  return (\n    <kbd\n      data-control-ui=\"kbd\"\n      data-slot=\"root\"\n      className={cn(\n        \"inline-flex h-5 min-w-5 select-none items-center justify-center gap-1 rounded-[var(--radius-control)] px-1.5 font-sans text-micro font-medium text-muted-foreground ring-1 ring-inset ring-border bg-card/60 shadow-sm\",\n        skinSlot(\"kbd\", \"root\", {}),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function KbdGroup({ className, ...props }: ComponentProps<\"span\">) {\n  return (\n    <span\n      data-control-ui=\"kbd\"\n      data-slot=\"group\"\n      className={cn(\"inline-flex items-center gap-1\", skinSlot(\"kbd\", \"group\", {}), className)}\n      {...props}\n    />\n  );\n}\n"
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport type { KbdProps } from \"@/components/control-ui/contracts\";\nimport type { KbdKnobStyle } from \"@/components/control-ui/knob-contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\n\nexport function Kbd({ className, ...props }: KbdProps) {\n  return (\n    <kbd\n      data-control-ui=\"kbd\"\n      data-control-family=\"kbd\"\n      data-slot=\"root\"\n      className={cn(\"inline-flex h-5 min-w-5 select-none items-center justify-center gap-1 px-1.5\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function KbdGroup({ className, ...props }: ComponentProps<\"span\"> & { style?: CSSProperties & KbdKnobStyle }) {\n  return (\n    <span\n      data-control-ui=\"kbd\"\n      data-control-family=\"kbd\"\n      data-slot=\"group\"\n      className={cn(\"inline-flex items-center gap-1\", className)}\n      {...props}\n    />\n  );\n}\n"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/kbd.css\"": {}
+  },
   "meta": {}
 }

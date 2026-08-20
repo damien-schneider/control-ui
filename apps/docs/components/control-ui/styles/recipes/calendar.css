@@ -1,0 +1,143 @@
+@layer components {
+  :where([data-control-family="calendar"][data-slot="root"]) {
+    --calendar-day-radius: var(--radius-control);
+    --calendar-today-background: var(--accent);
+    --calendar-selected-background: var(--primary);
+    --calendar-selected-foreground: var(--primary-foreground);
+    --calendar-range-background: var(--accent);
+  }
+
+  :where([data-control-family="calendar"][data-slot="caption-label"]) {
+    color: var(--foreground);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: var(--text-sm--line-height, 1.25rem);
+  }
+
+  :where([data-control-family="calendar"][data-slot="weekday"]) {
+    color: var(--muted-foreground);
+    font-size: 0.72rem;
+    font-weight: 400;
+  }
+
+  :where([data-control-family="calendar"][data-slot="nav-button"]) {
+    border-radius: var(--radius-control);
+    outline: none;
+    color: var(--muted-foreground);
+    transition-property: background-color, color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="calendar"][data-slot="nav-button"]:hover) {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+  }
+
+  :where([data-control-family="calendar"][data-slot="nav-button"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="calendar"][data-slot="nav-button"]:disabled) {
+    opacity: 0.4;
+  }
+
+  :where([data-control-family="calendar"][data-slot="day"]) {
+    border-radius: var(--calendar-day-radius);
+    outline: none;
+    color: var(--foreground);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: 1;
+    transition-property: background-color, color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="calendar"][data-slot="day"]:hover) {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+  }
+
+  :where([data-control-family="calendar"][data-slot="day"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="calendar"][data-slot="day"]:disabled) {
+    opacity: 0.4;
+  }
+
+  :where([data-control-family="calendar"][data-slot="day"][data-today]) {
+    background-color: var(--calendar-today-background);
+    color: var(--accent-foreground);
+    font-weight: 500;
+  }
+
+  :where(
+    [data-control-family="calendar"][data-slot="day"][data-selected-single],
+    [data-control-family="calendar"][data-slot="day"][data-range-start],
+    [data-control-family="calendar"][data-slot="day"][data-range-end]
+  ) {
+    background-color: var(--calendar-selected-background);
+    color: var(--calendar-selected-foreground);
+  }
+
+  :where([data-control-family="calendar"][data-slot="day"][data-range-middle]) {
+    border-radius: 0;
+    background-color: var(--calendar-range-background);
+    color: var(--accent-foreground);
+  }
+
+  :where([data-control-family="calendar"][data-slot="day"][data-range-start]) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  :where([data-control-family="calendar"][data-slot="day"][data-range-end]) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  :where([data-control-family="calendar"][data-slot="day-cell"]) {
+    --_calendar-day-cell-text-align: center;
+    text-align: var(--_calendar-day-cell-text-align);
+  }
+
+  :where([data-control-family="calendar"][data-slot="month-grid"]) {
+    border-collapse: collapse;
+  }
+}
+
+@property --calendar-day-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --calendar-today-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --calendar-selected-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --calendar-selected-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --calendar-range-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

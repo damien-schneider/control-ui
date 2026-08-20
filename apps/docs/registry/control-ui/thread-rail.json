@@ -10,8 +10,8 @@
   ],
   "files": [
     {
-      "path": "src/registry/sources/control-ui/thread-rail.css",
-      "target": "@components/control-ui/styles/thread-rail.css",
+      "path": "src/registry/sources/control-ui/recipes/thread-rail.css",
+      "target": "@components/control-ui/styles/recipes/thread-rail.css",
       "type": "registry:file"
     },
     {
@@ -21,7 +21,7 @@
     }
   ],
   "css": {
-    "@import \"../components/control-ui/styles/thread-rail.css\"": {}
+    "@import \"../components/control-ui/styles/recipes/thread-rail.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/control-ui/thread-rail.json"

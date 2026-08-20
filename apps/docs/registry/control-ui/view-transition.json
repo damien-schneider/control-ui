@@ -15,11 +15,19 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/sources/control-ui/extensions/view-transition.css",
+      "target": "@components/control-ui/styles/view-transition.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/extensions/view-transition.ts",
       "target": "@components/control-ui/extensions/view-transition.ts",
       "type": "registry:component"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/view-transition.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/view-transition.json"
   }

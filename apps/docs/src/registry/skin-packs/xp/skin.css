@@ -82,31 +82,108 @@
     font-size: 0.75rem;
   }
 
+  [data-skin="xp"] :where([data-control-ui="button"][data-control-family="button"][data-slot="root"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"]) {
+    --button-radius: max(3px, var(--radius-control));
+    --button-foreground: var(--foreground);
+    --button-hover-bg: transparent;
+    --button-hover-foreground: var(--foreground);
+    --button-press-bg: transparent;
+    --button-shadow: 0 0 transparent;
+    --button-active-bg: transparent;
+    --button-active-foreground: var(--foreground);
+    --button-active-hover-bg: transparent;
+    --button-focus-shadow: 0 0 transparent;
+    border: 1px solid transparent;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="button"][data-slot="root"]:focus-visible, [data-control-ui="toggle"][data-slot="root"]:focus-visible),
+  [data-skin="xp"] :where(label[data-control-ui="button"][data-slot="root"]:has(:focus-visible)) {
+    outline: 1px dotted var(--foreground);
+    outline-offset: -3px;
+  }
+
+  @media (hover: hover) {
+    [data-skin="xp"] :where([data-control-ui="button"][data-slot="root"]:hover, [data-control-ui="toggle"][data-slot="root"]:hover) {
+      border-color: var(--xp-bevel-dark);
+      box-shadow:
+        inset 1px 1px 0 var(--xp-bevel-light),
+        inset -1px -1px 0 var(--xp-bevel-dark);
+    }
+  }
+
+  [data-skin="xp"] :where([data-control-ui="button"][data-slot="root"]:active, [data-control-ui="toggle"][data-slot="root"]:active) {
+    box-shadow:
+      inset 1px 1px 0 var(--xp-bevel-dark),
+      inset -1px -1px 0 var(--xp-bevel-light);
+  }
+
+  [data-skin="xp"] :where([data-control-ui="button"][data-control-family="button"][data-slot="root"][data-variant="surface"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"][data-variant="surface"]) {
+    --button-press-scale: 1;
+    --button-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    --button-active-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    background-image: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
+    border-color: var(--xp-control-border);
+  }
+
+
+  @media (hover: hover) {
+    [data-skin="xp"]
+      :where([data-control-ui="button"][data-slot="root"][data-variant="surface"]:hover, [data-control-ui="toggle"][data-slot="root"][data-variant="surface"]:hover) {
+      border-color: var(--xp-control-border);
+      box-shadow:
+        inset 0 0 0 1px var(--ring),
+        inset 0 1px 0 var(--xp-bevel-light);
+    }
+  }
+
+  [data-skin="xp"]
+    :where([data-control-ui="button"][data-slot="root"][data-variant="surface"]:active, [data-control-ui="toggle"][data-slot="root"][data-variant="surface"]:active) {
+    background-image: linear-gradient(to bottom, var(--xp-control-bottom), var(--xp-control-top));
+    box-shadow: inset 0 1px 0 var(--xp-bevel-light);
+  }
+
+  [data-skin="xp"] :where([data-control-ui="button"][data-control-family="button"][data-slot="root"][data-variant="solid"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"][data-variant="solid"]) {
+    --button-press-scale: 1;
+    --button-shadow:
+      inset 0 0 0 1px var(--xp-solid-ring),
+      inset 0 1px 0 var(--xp-bevel-light);
+    background-image: linear-gradient(to bottom, var(--xp-solid-top), var(--xp-solid-bottom));
+    border-color: var(--xp-control-border);
+    font-weight: 700;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="button"][data-slot="content"], [data-control-ui="toggle"][data-slot="content"]) {
+    gap: 0.25rem;
+    line-height: 1;
+  }
+
   /* classic XP tab strip: baseline recipe keeps geometry/states; knobs re-value component-local vars.
      un-tokenizable Luna reading stays as rules: raised gradient boxes on the Luna desktop gray; active tab white,
      1px taller, cuts baseline, wears orange top stripe (tabs-indicator slides via Base UI --active-tab-* vars). */
   [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="list"]) {
-    --tabs-list-h: calc(var(--tabs-trigger-h) + 3px);
-    --tabs-trigger-radius: 0px; /* squares the strip; the tab/indicator keep their own 3px tops */
-    --tabs-list-bg: transparent;
-    --tabs-indicator-bg: var(--xp-tab-accent);
-    --tabs-indicator-shadow: none;
-    --tabs-line-indicator-bg: var(--xp-tab-accent);
+    --_tabs-list-h: calc(var(--_tabs-trigger-h) + 3px); /* squares the strip; the tab/indicator keep their own 3px tops */
     align-items: flex-end;
     /* real declarations (not gap knob) on purpose: must also hold in line variant, whose baseline resets gap/padding/min-height. */
-    min-height: var(--tabs-list-h);
+    min-height: var(--_tabs-list-h);
     gap: 2px;
     border-bottom: 1px solid var(--border);
     padding: 0;
   }
+  [data-skin="xp"] :where([data-control-ui="tabs"][data-control-family="tabs"][data-slot="root"]) {
+    --tabs-trigger-radius: 0px;
+    --tabs-list-background: transparent;
+    --tabs-indicator-background: var(--xp-tab-accent);
+    --tabs-indicator-shadow: none;
+    --tabs-line-indicator-background: var(--xp-tab-accent);
+  }
 
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="list"][data-variant="browser"]) {
-    --tabs-indicator-bg: var(--background);
+  [data-skin="xp"] :where([data-control-ui="tabs"][data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
+    --tabs-indicator-background: var(--background);
   }
 
   [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"]) {
     /* height/cursor restated (baseline values) so the single-tab reset keeps the full Luna box */
-    height: var(--tabs-trigger-h);
+    height: var(--_tabs-trigger-h);
     cursor: pointer;
     border: 1px solid var(--border);
     border-bottom: none;
@@ -120,7 +197,7 @@
 
   [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"][aria-selected="true"]),
   [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"][data-active]) {
-    height: calc(var(--tabs-trigger-h) + 2px);
+    height: calc(var(--_tabs-trigger-h) + 2px);
     margin-bottom: -1px;
     background: var(--background);
     color: var(--foreground);
@@ -233,4 +310,243 @@
   border-radius: 3px;
   border: 1px solid var(--xp-groupbox-border);
   box-shadow: inset 1px 1px 0 var(--xp-bevel-light);
+}
+
+@layer components {
+  [data-skin="xp"] :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
+    --popup-radius: 0px;
+    --popup-background: var(--popover);
+    --popup-foreground: var(--foreground);
+    --popup-border-color: var(--xp-field-border);
+    --popup-border-width: 1px;
+    --popup-shadow: 3px 3px 4px oklch(0 0 0 / 0.35);
+    --popup-backdrop-blur: 0px;
+  }
+
+  [data-skin="xp"] :where([data-popup-part="list-surface"]) {
+    padding: 0.125rem;
+  }
+
+  [data-skin="xp"] :where([data-popup-part="item"]) {
+    min-height: 1.5rem;
+    padding: 0.125rem 1.25rem;
+    font-size: 0.75rem;
+  }
+
+  [data-skin="xp"] :where([data-popup-part="item"][data-highlighted]) {
+    color: var(--primary-foreground);
+  }
+
+  [data-skin="xp"] :where([data-popup-part="label"]) {
+    font-size: 0.6875rem;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
+  [data-skin="xp"] :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"], [data-control-family="popup"][data-popup-part="bar"]) {
+    --popup-item-radius: 0px;
+    --popup-item-highlight-background: var(--primary);
+    --popup-item-disabled-opacity: 0.4;
+    --popup-separator-color: var(--xp-separator);
+  }
+
+  [data-skin="xp"] :where([data-popup-part="separator"]) {
+    margin-inline: 0.25rem;
+  }
+
+  [data-skin="xp"] :where([data-popup-part="shortcut"]) {
+    font-size: 0.6875rem;
+  }
+
+  [data-skin="xp"]
+    :where([data-control-ui="select"][data-control-family="button"][data-slot="trigger"], [data-control-ui="dropdown-menu"][data-control-family="button"][data-slot="trigger"]) {
+    --button-radius: max(3px, var(--radius-control));
+    --button-bg: var(--xp-control-bottom);
+    --button-foreground: var(--foreground);
+    --button-hover-bg: var(--xp-control-top);
+    --button-hover-foreground: var(--foreground);
+    --button-press-bg: var(--xp-control-bottom);
+    --button-press-scale: 1;
+    --button-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    --button-focus-shadow: none;
+    border: 1px solid var(--xp-control-border);
+    background-image: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
+  }
+
+  [data-skin="xp"]
+    :where([data-control-ui="select"][data-slot="trigger"], [data-control-ui="dropdown-menu"][data-slot="trigger"]):focus-visible {
+    outline: 1px dotted var(--foreground);
+    outline-offset: -3px;
+  }
+
+  [data-skin="xp"]
+    :where([data-control-ui="select"][data-slot="trigger"], [data-control-ui="dropdown-menu"][data-slot="trigger"]):active {
+    background-image: linear-gradient(to bottom, var(--xp-control-bottom), var(--xp-control-top));
+  }
+
+  [data-skin="xp"] :where([data-control-ui="select"][data-slot="icon"]) {
+    rotate: 0deg;
+    color: var(--xp-control-border);
+  }
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-control-family="popup"][data-popup-part="surface"]) {
+    --popup-radius: 5px 5px 0 0;
+    --popup-background: var(--background);
+    --popup-border-color: var(--xp-frame);
+    --popup-border-width: 3px;
+    --popup-shadow: 3px 3px 8px oklch(0 0 0 / 0.35);
+    --popup-backdrop-blur: 0px;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="header"]) {
+    padding: 0.5rem 0.75rem 0;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="title"]) {
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="description"]) {
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+  }
+
+  [data-skin="xp"] :where([data-control-family="button"][data-dialog-part="close"]) {
+    --button-radius: 3px;
+    --button-bg: var(--xp-close-bottom);
+    --button-foreground: white;
+    --button-hover-bg: var(--xp-close-top);
+    --button-hover-foreground: white;
+    --button-press-bg: var(--xp-close-bottom);
+    --button-shadow: inset 0 1px 0 oklch(1 0 0 / 0.45);
+    border: 1px solid oklch(1 0 0 / 0.7);
+    background-image: linear-gradient(to bottom, var(--xp-close-top), var(--xp-close-bottom));
+  }
+
+}
+
+@layer components {
+  [data-skin="xp"] :where([data-control-family="field"][data-control="true"]) {
+    --field-radius: var(--radius-control);
+    --field-background: var(--background);
+    --field-foreground: var(--foreground);
+    --field-border-color: var(--xp-field-border);
+    --field-border-width: 1px;
+    --field-shadow: inset 1px 1px 0 var(--xp-bevel-dark);
+    --field-focus-border-color: var(--primary);
+    --field-focus-ring-width: 0px;
+  }
+
+  [data-skin="xp"] :where(:is([data-control-ui="field"], [data-control-family="field"])):focus-visible,
+  [data-skin="xp"] :where(:is([data-control-ui="field"], [data-control-family="field"])):focus-within {
+    outline: 1px dotted var(--foreground);
+    outline-offset: -3px;
+  }
+}
+@layer components {
+
+  [data-skin="xp"] :where([data-control-ui="sidebar"][data-control-family="sidebar"][data-slot="root"]) {
+    --sidebar-inner-background: var(--xp-task-pane-top);
+    --sidebar-inner-background-image: linear-gradient(to bottom, var(--xp-task-pane-top), var(--xp-task-pane-bottom));
+    --sidebar-inner-border-color: var(--xp-field-border);
+    --sidebar-inner-border-width: 1px;
+    --sidebar-inner-radius: 0px;
+    --sidebar-inner-shadow: none;
+    --sidebar-menu-button-radius: 0px;
+    --sidebar-menu-button-foreground: var(--xp-link);
+    --sidebar-menu-button-hover-background: oklch(from var(--primary) l c h / 0.1);
+    --sidebar-menu-button-active-background: var(--primary);
+    --sidebar-menu-button-active-foreground: var(--primary-foreground);
+    --sidebar-group-label-foreground: var(--xp-link);
+  }
+
+  [data-skin="xp"] :where([data-control-ui="sidebar"][data-slot="group-label"]) {
+    @apply normal-case;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="slider"][data-control-family="range"][data-slot="root"]) {
+    --range-track-radius: var(--radius-control);
+    --range-track-background: var(--xp-scroll-track);
+    --range-indicator-radius: var(--radius-control);
+    --range-indicator-background: var(--primary);
+    --range-thumb-radius: var(--radius-control);
+    --range-thumb-background: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
+    --range-thumb-border-color: var(--xp-control-border);
+    --range-thumb-shadow: inset 0 1px 0 var(--xp-bevel-light);
+  }
+
+  [data-skin="xp"] :where([data-control-ui="scroll-area"][data-slot="root"]) {
+    @apply xp-scrollbar;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="scroll-area"][data-slot="scrollbar"]) {
+    @apply xp-scroll-track;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="scroll-area"][data-slot="thumb"]) {
+    @apply xp-scroll-thumb;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="chat-composer"][data-control-family="chat-composer"][data-slot="root"]) {
+    --chat-composer-shell-background: var(--background);
+    --chat-composer-shell-border-color: var(--xp-field-border);
+    --chat-composer-shell-radius: var(--radius-control);
+    --chat-composer-shell-shadow: inset 1px 1px 0 var(--xp-bevel-dark);
+    --chat-composer-input-foreground: var(--foreground);
+  }
+
+  [data-skin="xp"] :where([data-control-ui="chat-composer"][data-slot="shell"]) {
+    @apply focus-within:ring-0 focus-visible:border-[var(--primary)] focus-visible:ring-0 focus-visible:outline-1 focus-visible:outline-dotted focus-visible:outline-[var(--foreground)] focus-visible:outline-offset-[-3px];
+  }
+
+  [data-skin="xp"] :where([data-control-ui="chat-composer"][data-slot="submit"]) {
+    @apply rounded-[max(3px,var(--radius-control))] border border-[var(--xp-control-border)] bg-linear-to-b from-(--xp-solid-top) to-(--xp-solid-bottom) font-bold text-foreground shadow-[inset_0_0_0_1px_var(--xp-solid-ring),inset_0_1px_0_var(--xp-bevel-light)] active:scale-100 focus-visible:ring-0 focus-visible:outline-1 focus-visible:outline-dotted focus-visible:outline-[var(--foreground)] focus-visible:outline-offset-[-3px];
+  }
+
+  [data-skin="xp"] :where([data-control-ui="markdown-block"][data-slot="root"]) {
+    @apply rounded-none border border-[var(--xp-groupbox-border)] xp-scrollbar;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="markdown-block"][data-slot="header"]) {
+    @apply rounded-none border-b border-[var(--xp-groupbox-border)] bg-[var(--secondary)];
+  }
+
+  [data-skin="xp"] :where([data-control-ui="thread-rail"][data-control-family="thread-rail"][data-slot="root"]) {
+    --thread-rail-item-radius: 0px;
+    --thread-rail-line-radius: 0px;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="chat-layout"][data-slot="root"]) {
+    @apply rounded-none rounded-t-[8px] border-[3px] border-[var(--xp-frame)] shadow-[3px_3px_8px_rgba(0,0,0,0.35)];
+  }
+
+  [data-skin="xp"] :where([data-control-ui="chat-thread"][data-slot="root"]) {
+    @apply xp-scrollbar;
+  }
+
+}
+
+@layer components {
+  [data-skin="xp"] :where([data-control-ui="chat-message"][data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
+    --chat-message-radius: 3px;
+    --chat-message-corner-radius: 3px;
+    --chat-message-background: var(--background);
+    --chat-message-background-image: linear-gradient(to bottom, var(--xp-bubble-user-top), var(--xp-bubble-user-bottom));
+    --chat-message-border-color: var(--xp-field-border);
+    --chat-message-border-width: 1px;
+    --chat-message-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    --chat-message-foreground: var(--foreground);
+  }
+
+  [data-skin="xp"] :where([data-control-ui="chat-message"][data-slot="content"][data-streaming]) {
+    @apply progress-sweep;
+  }
+
+  [data-skin="xp"] :where([data-control-ui="skeleton"][data-control-family="skeleton"][data-slot="root"]) {
+    --skeleton-background: var(--xp-skeleton);
+  }
+
+  [data-skin="xp"] :where([data-control-ui="skeleton"][data-slot="root"]) {
+    background-image: none;
+  }
 }

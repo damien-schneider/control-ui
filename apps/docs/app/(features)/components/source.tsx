@@ -113,6 +113,9 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
               {files.map((file) => (
                 <TabsTab key={file.path} value={file.path}>
                   {sourceFileName(file.path)}
+                  {file.shared ? (
+                    <span className="ml-1.5 font-normal text-[10px] text-muted-foreground uppercase tracking-wide">shared</span>
+                  ) : null}
                 </TabsTab>
               ))}
             </TabsList>

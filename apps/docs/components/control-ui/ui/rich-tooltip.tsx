@@ -2,13 +2,15 @@
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
-import type { ComponentProps, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 import type { RichTooltipProgressVariant, RichTooltipTone } from "@/components/control-ui/contracts";
+import type { PopupKnobStyle, RichTooltipKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingContentClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { stepAfter, stepBefore, type TourPosition, tourPosition } from "./rich-tooltip-tour";
+
+type RichTooltipContentKnobStyle = RichTooltipKnobStyle & PopupKnobStyle;
 
 type TourValue = TourPosition & {
   activeStep: string | null;
@@ -160,12 +162,17 @@ export function RichTooltip({
   );
 }
 
-export function RichTooltipTrigger({ className, ...props }: ComponentProps<typeof PopoverPrimitive.Trigger>) {
+export function RichTooltipTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof PopoverPrimitive.Trigger> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <PopoverPrimitive.Trigger
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="trigger"
-      className={cn(skinSlot("rich-tooltip", "trigger", {}), className)}
+      className={className}
       {...props}
     />
   );
@@ -191,7 +198,9 @@ function useAnchorScroll(anchor: AnchorProp, open: boolean, enabled: boolean) {
   }, [anchor, enabled, open]);
 }
 
-export type RichTooltipContentProps = ComponentProps<typeof PopoverPrimitive.Popup> & {
+export type RichTooltipContentProps = Omit<ComponentProps<typeof PopoverPrimitive.Popup>, "style"> & {
+  style?: CSSProperties & RichTooltipContentKnobStyle;
+} & {
   side?: ComponentProps<typeof PopoverPrimitive.Positioner>["side"];
   align?: ComponentProps<typeof PopoverPrimitive.Positioner>["align"];
   sideOffset?: number;
@@ -221,6 +230,10 @@ export function RichTooltipContent({
     <PopoverPrimitive.Portal>
       {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <PopoverPrimitive.Positioner
+        data-control-ui="rich-tooltip"
+        data-popup-kind="rich-tooltip"
+        data-control-family="popup"
+        data-slot="positioner"
         data-skin={skinId()}
         data-effects={skinEffects()}
         side={side}
@@ -228,35 +241,33 @@ export function RichTooltipContent({
         sideOffset={sideOffset}
         anchor={anchor}
         collisionPadding={collisionPadding}
-        className="z-[80] outline-none"
+        className="z-[80]"
       >
         <PopoverPrimitive.Popup
           data-control-ui="rich-tooltip"
+          data-popup-kind="rich-tooltip"
+          data-control-family="popup"
           data-slot="content"
           data-tone={tone}
           data-surface={isAccent ? undefined : "floating"}
           data-popup-part={isAccent ? undefined : "surface"}
-          className={cn(
-            "relative grid w-80 max-w-[calc(100vw-2rem)] gap-2 text-left [--rich-tooltip-padding:--spacing(4)] p-[var(--rich-tooltip-padding)]",
-            isAccent
-              ? "rounded-[var(--radius-popover)] bg-primary text-primary-foreground shadow-pop outline-none transition-[opacity,scale] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:scale-95 data-[ending-style]:opacity-0"
-              : floatingContentClasses,
-            !isAccent && skinFamily("popup", "surface"),
-            skinSlot("rich-tooltip", "content", { tone }),
-            className,
-          )}
+          className={cn("relative grid w-80 max-w-[calc(100vw-2rem)] gap-2 p-4", className)}
           {...props}
         >
           {children}
           {arrow ? (
             <PopoverPrimitive.Arrow
+              data-control-ui="rich-tooltip"
+              data-popup-kind="rich-tooltip"
+              data-control-family="popup"
+              data-slot="arrow"
+              data-tone={tone}
               className={cn(
                 "flex",
-                isAccent ? "[&_path]:fill-primary" : "[&_path]:fill-popover",
-                "data-[side=top]:-bottom-[8px] data-[side=top]:rotate-180",
+                "data-[side=top]:-bottom-[8px]",
                 "data-[side=bottom]:-top-[8px]",
-                "data-[side=left]:-right-[10px] data-[side=left]:rotate-90",
-                "data-[side=right]:-left-[10px] data-[side=right]:-rotate-90",
+                "data-[side=left]:-right-[10px]",
+                "data-[side=right]:-left-[10px]",
               )}
             >
               <RichTooltipArrowSvg />
@@ -277,73 +288,86 @@ function RichTooltipArrowSvg() {
 }
 
 // Cancels the content padding, so it only reads correctly as the first child. Inherited corners follow a skinned radius.
-export function RichTooltipMedia({ className, ...props }: ComponentProps<"div">) {
+export function RichTooltipMedia({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="media"
-      className={cn(
-        "-mx-[var(--rich-tooltip-padding)] -mt-[var(--rich-tooltip-padding)] mb-1 overflow-hidden [border-top-left-radius:inherit] [border-top-right-radius:inherit] [&_img]:w-full [&_img]:object-cover [&_video]:w-full",
-        skinSlot("rich-tooltip", "media", {}),
-        className,
-      )}
+      className={cn("-mx-4 -mt-4 mb-1 overflow-hidden [&_img]:w-full [&_img]:object-cover [&_video]:w-full", className)}
       {...props}
     />
   );
 }
 
-export function RichTooltipHeader({ className, ...props }: ComponentProps<"div">) {
+export function RichTooltipHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="header"
-      className={cn("flex items-start justify-between gap-3", skinSlot("rich-tooltip", "header", {}), className)}
+      className={cn("flex items-start justify-between gap-3", className)}
       {...props}
     />
   );
 }
 
-export function RichTooltipTitle({ className, ...props }: ComponentProps<typeof PopoverPrimitive.Title>) {
+export function RichTooltipTitle({
+  className,
+  ...props
+}: Omit<ComponentProps<typeof PopoverPrimitive.Title>, "style"> & {
+  style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
+}) {
   return (
     <PopoverPrimitive.Title
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="title"
-      className={cn("text-label font-semibold leading-6 tracking-tight", skinSlot("rich-tooltip", "title", {}), className)}
+      className={className}
       {...props}
     />
   );
 }
 
-export function RichTooltipDescription({ className, ...props }: ComponentProps<typeof PopoverPrimitive.Description>) {
+export function RichTooltipDescription({
+  className,
+  ...props
+}: Omit<ComponentProps<typeof PopoverPrimitive.Description>, "style"> & {
+  style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
+}) {
   const { tone } = useRichTooltipContext();
   return (
     <PopoverPrimitive.Description
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="description"
-      className={cn(
-        "text-body leading-5 text-pretty",
-        tone === "accent" ? "text-primary-foreground/85" : "text-muted-foreground",
-        skinSlot("rich-tooltip", "description", {}),
-        className,
-      )}
+      data-tone={tone}
+      className={className}
       {...props}
     />
   );
 }
 
-export function RichTooltipFooter({ className, ...props }: ComponentProps<"div">) {
+export function RichTooltipFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="footer"
-      className={cn("mt-2 flex items-center justify-between gap-3", skinSlot("rich-tooltip", "footer", {}), className)}
+      className={cn("mt-2 flex items-center justify-between gap-3", className)}
       {...props}
     />
   );
 }
 
-export type RichTooltipProgressProps = ComponentProps<"div"> & {
+export type RichTooltipProgressProps = Omit<ComponentProps<"div">, "style"> & {
   variant?: RichTooltipProgressVariant;
+  style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
 };
 
 export function RichTooltipProgress({ className, variant = "count", children, ...props }: RichTooltipProgressProps) {
@@ -354,14 +378,12 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
   return (
     <div
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="progress"
       data-variant={variant}
-      className={cn(
-        "flex items-center gap-1.5 text-caption tabular-nums",
-        tone === "accent" ? "text-primary-foreground/75" : "text-muted-foreground",
-        skinSlot("rich-tooltip", "progress", { variant }),
-        className,
-      )}
+      data-tone={tone}
+      className={cn("flex items-center gap-1.5", className)}
       {...props}
     >
       <span className="sr-only">{`Step ${tour.index + 1} of ${tour.total}`}</span>
@@ -372,12 +394,11 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
               // biome-ignore lint/suspicious/noArrayIndexKey: dots are positional, they carry no other identity
               key={dot}
               data-control-ui="rich-tooltip"
+              data-control-family="popup"
+              data-popup-kind="rich-tooltip"
               data-slot="dot"
               data-active={dot === tour.index ? "true" : undefined}
-              className={cn(
-                "size-1.5 rounded-full bg-current opacity-35 transition-opacity duration-[var(--duration-fast)] data-[active]:opacity-100",
-                skinSlot("rich-tooltip", "dot", { active: dot === tour.index }),
-              )}
+              className="size-1.5"
             />
           ))
         ) : (
@@ -388,9 +409,16 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
 }
 
 const actionClasses =
-  "inline-flex h-7 shrink-0 cursor-pointer items-center justify-center gap-1 rounded-[var(--radius-control)] px-2 text-label font-medium outline-none transition-colors duration-[var(--duration-fast)] hover:bg-current/15 focus-visible:ring-2 focus-visible:ring-current/50 disabled:pointer-events-none disabled:opacity-40 [&_svg]:size-4";
+  "inline-flex h-7 shrink-0 cursor-pointer items-center justify-center gap-1 px-2 disabled:pointer-events-none [&_svg]:size-4";
 
-export function RichTooltipPrevious({ className, children, onClick, ...props }: ComponentProps<"button">) {
+export function RichTooltipPrevious({
+  className,
+  children,
+  onClick,
+  ...props
+}: Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
+}) {
   const tour = useTour();
   if (!tour || tour.total < 2) return null;
 
@@ -398,13 +426,15 @@ export function RichTooltipPrevious({ className, children, onClick, ...props }: 
     <button
       type="button"
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="previous"
       disabled={tour.isFirst}
       onClick={(event) => {
         onClick?.(event);
         if (!event.defaultPrevented) tour.previous();
       }}
-      className={cn(actionClasses, skinSlot("rich-tooltip", "previous", {}), className)}
+      className={cn(actionClasses, className)}
       {...props}
     >
       {children ?? (
@@ -417,7 +447,14 @@ export function RichTooltipPrevious({ className, children, onClick, ...props }: 
   );
 }
 
-export function RichTooltipNext({ className, children, onClick, ...props }: ComponentProps<"button">) {
+export function RichTooltipNext({
+  className,
+  children,
+  onClick,
+  ...props
+}: Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
+}) {
   const { dismiss } = useRichTooltipContext();
   const tour = useTour();
 
@@ -425,6 +462,8 @@ export function RichTooltipNext({ className, children, onClick, ...props }: Comp
     <button
       type="button"
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="next"
       onClick={(event) => {
         onClick?.(event);
@@ -432,7 +471,7 @@ export function RichTooltipNext({ className, children, onClick, ...props }: Comp
         if (tour) tour.next();
         else dismiss();
       }}
-      className={cn(actionClasses, skinSlot("rich-tooltip", "next", {}), className)}
+      className={cn(actionClasses, className)}
       {...props}
     >
       {children ??
@@ -448,12 +487,20 @@ export function RichTooltipNext({ className, children, onClick, ...props }: Comp
   );
 }
 
-export function RichTooltipClose({ className, children, ...props }: ComponentProps<typeof PopoverPrimitive.Close>) {
+export function RichTooltipClose({
+  className,
+  children,
+  ...props
+}: Omit<ComponentProps<typeof PopoverPrimitive.Close>, "style"> & {
+  style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
+}) {
   return (
     <PopoverPrimitive.Close
       data-control-ui="rich-tooltip"
+      data-control-family="popup"
+      data-popup-kind="rich-tooltip"
       data-slot="close"
-      className={cn(actionClasses, "-mr-1 size-7 px-0", skinSlot("rich-tooltip", "close", {}), className)}
+      className={cn(actionClasses, "-mr-1 size-7 px-0", className)}
       {...props}
     >
       {children ?? (

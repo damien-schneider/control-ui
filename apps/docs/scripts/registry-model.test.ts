@@ -57,3 +57,22 @@ describe("Control UI starter registry items", () => {
     ]);
   });
 });
+
+describe("recipe cascade order", () => {
+  test("shared popup foundations load before focused recipe modules", () => {
+    expect(Object.keys(registryItem("tooltip").css ?? {})).toEqual([
+      '@import "../components/control-ui/styles/recipes/popup.css"',
+      '@import "../components/control-ui/styles/recipes/popup-controls.css"',
+      '@import "../components/control-ui/styles/recipes/popup-lists.css"',
+      '@import "../components/control-ui/styles/recipes/popup-motion.css"',
+    ]);
+  });
+
+  test("dynamic notification foundations load before input and motion modules", () => {
+    expect(Object.keys(registryItem("dynamic-notification").css ?? {}).filter((entry) => entry.includes("/recipes/"))).toEqual([
+      '@import "../components/control-ui/styles/recipes/dynamic-notification.css"',
+      '@import "../components/control-ui/styles/recipes/dynamic-notification-input.css"',
+      '@import "../components/control-ui/styles/recipes/dynamic-notification-motion.css"',
+    ]);
+  });
+});

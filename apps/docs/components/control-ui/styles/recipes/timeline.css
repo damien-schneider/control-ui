@@ -1,0 +1,102 @@
+@layer components {
+  :where([data-control-family="timeline"][data-slot="root"]) {
+    --timeline-indicator-background: var(--background);
+    --timeline-indicator-foreground: var(--muted-foreground);
+    --timeline-running-foreground: var(--primary-text);
+    --timeline-success-foreground: var(--foreground);
+    --timeline-error-foreground: var(--destructive-text);
+    --timeline-separator-background: var(--border);
+    --timeline-title-foreground: var(--foreground);
+  }
+  :where([data-control-family="timeline"][data-slot="indicator"]) {
+    border-radius: 9999px;
+    background: var(--timeline-indicator-background);
+    color: var(--timeline-indicator-foreground);
+  }
+
+  :where(
+    [data-control-family="timeline"][data-slot="item"][data-state="running"]
+      [data-control-family="timeline"][data-slot="indicator"]
+  ) {
+    color: var(--timeline-running-foreground);
+  }
+
+  :where(
+    [data-control-family="timeline"][data-slot="item"][data-state="success"]
+      [data-control-family="timeline"][data-slot="indicator"]
+  ) {
+    color: var(--timeline-success-foreground);
+  }
+
+  :where(
+    [data-control-family="timeline"][data-slot="item"][data-state="error"]
+      [data-control-family="timeline"][data-slot="indicator"]
+  ) {
+    color: var(--timeline-error-foreground);
+  }
+
+  :where([data-control-family="timeline"][data-slot="separator"]) {
+    background: var(--timeline-separator-background);
+  }
+
+  :where([data-control-family="timeline"][data-slot="title"]) {
+    color: var(--timeline-title-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="timeline"][data-slot="description"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="timeline"][data-slot="description"]) {
+    line-height: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="timeline"][data-slot="title"]) {
+    font-weight: var(--font-weight-medium);
+    line-height: calc(var(--spacing) * 5);
+  }
+}
+
+@property --timeline-indicator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --timeline-indicator-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --timeline-running-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --timeline-success-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --timeline-error-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --timeline-separator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --timeline-title-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

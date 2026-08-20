@@ -62,9 +62,15 @@
       "path": "src/registry/sources/control-ui/chat-composer.tsx",
       "target": "@components/control-ui/chat-composer.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/chat-composer.css",
+      "target": "@components/control-ui/styles/recipes/chat-composer.css",
+      "type": "registry:file"
     }
   ],
   "css": {
+    "@import \"../components/control-ui/styles/recipes/chat-composer.css\"": {},
     "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {}
   },
   "meta": {

@@ -19,20 +19,17 @@ describe("CodeDiff renders", () => {
     expect(html).toContain('data-line-type="context"');
     expect(html).toContain('data-control-ui="scroll-area"');
     expect(html).toContain('data-slot="body"');
-    expect(html).toContain("var(--diff-add-gutter)");
-    expect(html).toContain("var(--diff-del-gutter)");
-    expect(html).toContain("var(--diff-add-emphasis)");
+    expect(html).toContain('data-slot="emphasis" data-line-type="add"');
     expect(html).toContain(">20</span>");
     // React splits "+" and number with comment node, so anatomy is asserted rather than "+2"
     expect(html).toContain('data-slot="stat"');
-    expect(html).toContain("var(--diff-add-fg)");
   });
 
   test("split: renders a two-column row structure without throwing", () => {
     const html = renderToString(<CodeDiff name="demo.ts" lang="ts" oldText={OLD} newText={NEW} diffStyle="split" />);
     expect(html).toContain('data-slot="row"');
-    expect(html).toContain('data-control-ui="code-diff" data-slot="line" data-line-type="del"');
-    expect(html).toContain('data-control-ui="code-diff" data-slot="line" data-line-type="add"');
+    expect(html).toContain('data-control-ui="code-diff" data-control-family="code-diff" data-slot="line" data-line-type="del"');
+    expect(html).toContain('data-control-ui="code-diff" data-control-family="code-diff" data-slot="line" data-line-type="add"');
   });
 
   test("patch input: parses and renders the git filename", () => {

@@ -16,7 +16,7 @@ import type {
   TreeSelectionMode,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { SELECTION_INDICATOR_BG_RESET, skinIndicator, skinSlot } from "@/components/control-ui/skin";
+import { skinIndicator } from "@/components/control-ui/skin";
 
 // lazy because highlight drags in JS geometry engine; it is decorative, so null fallback is fine
 const TrackHighlight = lazy(() =>
@@ -74,9 +74,7 @@ function useTreeItem() {
   return context;
 }
 
-// `satisfies` so style object needs no `as` cast
-type TreeStyle = CSSProperties & { "--tree-indent"?: string };
-type TreeItemStyle = CSSProperties & { "--tree-level"?: number };
+type TreeItemStyle = CSSProperties & { "--_tree-level"?: number };
 type TypeaheadRef = { current: { query: string; at: number } };
 type RegisteredTreeItem = {
   value: string;
@@ -329,17 +327,19 @@ export function Tree({
     toggleExpanded,
     setFocusedValue,
   };
-  const rootStyle = { "--tree-indent": "1.25rem", ...style } satisfies TreeStyle;
+  const rootStyle = style;
   const sliding = resolvedIndicator === "slide";
 
   const list = (
     <ul
       data-control-ui="tree"
+      data-control-family="tree"
+      data-indicator={resolvedIndicator}
       data-slot="root"
       // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: WAI-ARIA treeview requires role="tree" on the <ul> container.
       role="tree"
       aria-multiselectable={selectionMode === "multiple" || undefined}
-      className={cn("flex flex-col outline-none", skinSlot("tree", "root", { selectionMode }), sliding ? undefined : className)}
+      className={cn("flex flex-col", sliding ? undefined : className)}
       style={sliding ? undefined : rootStyle}
       onKeyDown={(event) => {
         onKeyDown?.(event);
@@ -362,7 +362,14 @@ export function Tree({
     <TreeContext.Provider value={contextValue}>
       {sliding ? (
         // wrapped, never injected into list: pill must stay sibling of treeitems for the <ul> content model to hold
-        <div data-control-ui="tree" data-slot="track" className={cn("relative isolate", className)} style={rootStyle}>
+        <div
+          data-control-ui="tree"
+          data-control-family="tree"
+          data-slot="track"
+          data-indicator={resolvedIndicator}
+          className={cn("relative isolate", className)}
+          style={rootStyle}
+        >
           <Suspense fallback={null}>
             <TrackHighlight
               itemSelector="[data-control-ui=tree][data-slot=item-trigger]"
@@ -399,12 +406,13 @@ export function TreeItem({ value, disabled = false, label, className, style, chi
     };
   };
 
-  const baseClass = cn("list-none outline-none", skinSlot("tree", "item", { level, selected, expanded, disabled }), className);
-  const itemStyle = { "--tree-level": level, ...style } satisfies TreeItemStyle;
+  const baseClass = cn("list-none", className);
+  const itemStyle = { "--_tree-level": level, ...style } satisfies TreeItemStyle;
 
   const shared = {
     ...props,
     "data-control-ui": "tree",
+    "data-control-family": "tree",
     "data-slot": "item",
     "data-value": value,
     "data-label": label,
@@ -466,6 +474,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
     props: {
       ...props,
       "data-control-ui": "tree",
+      "data-control-family": "tree",
       "data-slot": "item-trigger",
       "data-state": expanded ? "open" : "closed",
       "data-selected": selected || undefined,
@@ -473,28 +482,21 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
       onClick: (event: MouseEvent<HTMLDivElement>) => {
         onClick?.(event);
         if (item.disabled) return;
-        // VS Code model — whole row both selects and toggles
         const toggle = tree.selectionMode === "multiple" && (event.metaKey || event.ctrlKey);
         tree.select(item.value, "pointer", toggle);
         if (item.expandable) tree.toggleExpanded(item.value);
         focusItem(tree.getItem(item.value), tree);
       },
       className: cn(
-        "flex cursor-pointer select-none items-center gap-1.5 rounded-[var(--radius-popup-item)] py-1 pr-2 text-sm outline-none",
-        "pl-[calc(var(--tree-level,1)*var(--tree-indent))]",
-        "aria-disabled:pointer-events-none aria-disabled:opacity-50",
-        "hover:bg-foreground/[0.04] data-[selected]:bg-foreground/[0.06]",
-        skinSlot("tree", "item-trigger", { selected, expanded, disabled: item.disabled, indicator: tree.indicator }),
-        // after skinSlot so pill stays sole chrome; caller className still lands last
-        tree.indicator === "slide" ? SELECTION_INDICATOR_BG_RESET : undefined,
+        "flex cursor-pointer select-none items-center gap-1.5 py-1 pr-2",
+        "pl-[calc(var(--\\_tree-level,1)*1.25rem)]",
+        "aria-disabled:pointer-events-none",
         className,
       ),
       children,
     },
   });
 }
-
-// chevron for branches, aligned spacer for leaves
 
 export function TreeItemIndicator({ className, children, ...props }: TreeItemIndicatorProps) {
   const tree = useTree();
@@ -504,6 +506,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
     return (
       <span
         data-control-ui="tree"
+        data-control-family="tree"
         data-slot="item-indicator"
         aria-hidden
         className={cn("inline-flex size-4 shrink-0", className)}
@@ -518,15 +521,11 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
   return (
     <span
       data-control-ui="tree"
+      data-control-family="tree"
       data-slot="item-indicator"
       data-state={expanded ? "open" : "closed"}
       aria-hidden
-      className={cn(
-        "inline-flex size-4 shrink-0 items-center justify-center text-muted-foreground",
-        "transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] data-[state=open]:rotate-90",
-        skinSlot("tree", "item-indicator", {}),
-        className,
-      )}
+      className={cn("inline-flex size-4 shrink-0 items-center justify-center", className)}
       {...props}
     >
       {children ?? <ChevronRightIcon className="size-4" />}
@@ -557,8 +556,9 @@ export function TreeItemLabel({ className, children, render, ref, ...props }: Tr
       ...props,
       ref: labelRef,
       "data-control-ui": "tree",
+      "data-control-family": "tree",
       "data-slot": "item-label",
-      className: cn("min-w-0 flex-1 truncate", skinSlot("tree", "item-label", {}), className),
+      className: cn("min-w-0 flex-1 truncate", className),
       children,
     },
   });
@@ -568,32 +568,20 @@ export function TreeItemLabel({ className, children, render, ref, ...props }: Tr
 export function TreeItemContent({ className, children, ...props }: TreeItemContentProps) {
   return (
     <CollapsiblePrimitive.Panel
-      className={cn(
-        "h-[var(--collapsible-panel-height)] overflow-hidden",
-        "transition-[height,opacity] duration-[var(--duration-base)] ease-[var(--ease-emphasized)]",
-        "data-[starting-style]:h-0 data-[starting-style]:opacity-0",
-        "data-[ending-style]:h-0 data-[ending-style]:opacity-0",
-      )}
       {...props}
       render={(renderProps, state) => (
         <div
           {...renderProps}
           data-control-ui="tree"
+          data-control-family="tree"
           data-slot="item-content"
           data-state={state.open ? "open" : "closed"}
-          className={cn(renderProps.className, skinSlot("tree", "item-content", { state: state.open ? "open" : "closed" }))}
+          className={renderProps.className}
         />
       )}
     >
       {/* biome-ignore lint/a11y/useSemanticElements: WAI-ARIA treeview requires role="group" on the nested child list. */}
-      <ul
-        role="group"
-        className={cn(
-          "flex flex-col transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)]",
-          "[[data-starting-style]_&]:-translate-y-1 [[data-ending-style]_&]:-translate-y-1",
-          className,
-        )}
-      >
+      <ul role="group" data-control-ui="tree" data-control-family="tree" data-slot="item-group" className={cn("flex flex-col", className)}>
         {children}
       </ul>
     </CollapsiblePrimitive.Panel>

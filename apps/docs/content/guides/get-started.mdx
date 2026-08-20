@@ -14,9 +14,9 @@
   Start with Refined or choose another pack from the Skins catalog. Exactly one active pack owns `skin.config.tsx`,
   `skin-theme.css`, and `skin.css`; installing another pack replaces those three files.
 
-  The current skin anatomy contract is version 5. Version 5 adds generated `data-popup-part` membership and resolves shared
-  popup family classes before exact component slots. Reinstall core, popup components or their containing blocks, and the
-  selected skin together so source, generated anatomy, and skin configuration remain in sync.
+  The current skin anatomy contract is version 6. Version 6 removes runtime class and paint maps in favor of registered
+  component CSS knobs; skin config now contains only behavior choices and optional adornments. Reinstall core, affected
+  components or their containing blocks, and the selected skin together so source, recipes, and skin configuration remain in sync.
 
   Version 4 replaced ToolCall with Activity's typed tool variant. If upgrading from version 3 or earlier, remove both old
   install layouts before reinstalling:
@@ -60,6 +60,10 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
 @import "../components/control-ui/styles/skin-theme.css";
 @import "../components/control-ui/styles/skin.css";
 ```
+
+  Those paths are relative to your CSS entry. When the components alias does not resolve beside it — `app/globals.css`
+  with `@/*` pointing at `./src/*`, for instance — the registry still writes `../components/…` and the prefix has to
+  become `../src/components/…`.
 
   Stamp the installed pack id on the root. There is no implicit token fallback when `data-skin` is missing or invalid.
 

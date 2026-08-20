@@ -48,9 +48,6 @@
   --ring: oklch(0.5674 0.1585 275.206); /* focus == brand */
   --canvas: oklch(0.9734 0.0013 286.375); /* #f6f6f7 — the paper the white sheet sits on */
 
-  /* Popup rows: a whisper of ink, no brand tint (Linear highlights rows, it doesn't color them).
-     Derived from --foreground so the dark block inherits the same recipe with no restatement. */
-  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.05);
 
   /* Surfaces are opaque: no glass anywhere. The modal scrim is the only dim. */
   --popover-opacity: 1;
@@ -121,7 +118,6 @@
   --input: oklch(0.2986 0.0109 278.197);
   --ring: oklch(0.6102 0.1404 276.317); /* the indigo lifts a rung to stay legible on ink */
   --canvas: oklch(0.139 0.0029 246.256); /* #08090a */
-  --popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.07);
   --shadow-color: oklch(0 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.05);
   --shadow-opacity: 1;

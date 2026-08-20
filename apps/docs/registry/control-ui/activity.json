@@ -17,8 +17,16 @@
       "path": "src/registry/sources/control-ui/activity.tsx",
       "target": "@components/control-ui/activity.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/activity.css",
+      "target": "@components/control-ui/styles/recipes/activity.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/activity.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/activity.json"
   }

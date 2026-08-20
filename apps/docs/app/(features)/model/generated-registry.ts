@@ -6,6 +6,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/accordion.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/accordion.css",
+        target: "@components/control-ui/styles/recipes/accordion.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/accordion.tsx",
         target: "@components/control-ui/ui/accordion.tsx",
         type: "registry:ui",
@@ -22,6 +27,11 @@ export const registryMetadata = {
         target: "@components/control-ui/action-bar.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/action-bar.css",
+        target: "@components/control-ui/styles/recipes/action-bar.css",
+        type: "registry:file",
+      },
     ],
   },
   activity: {
@@ -34,13 +44,23 @@ export const registryMetadata = {
         target: "@components/control-ui/activity.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/activity.css",
+        target: "@components/control-ui/styles/recipes/activity.css",
+        type: "registry:file",
+      },
     ],
   },
   alert: {
-    dependencies: ["class-variance-authority@^0.7.1"],
+    dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/alert.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/alert.css",
+        target: "@components/control-ui/styles/recipes/alert.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/alert.tsx",
         target: "@components/control-ui/ui/alert.tsx",
@@ -53,6 +73,26 @@ export const registryMetadata = {
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/alert-dialog.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/alert-dialog.tsx",
         target: "@components/control-ui/ui/alert-dialog.tsx",
@@ -938,6 +978,11 @@ export const registryMetadata = {
         target: "@components/control-ui/audio-recorder.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/audio-recorder.css",
+        target: "@components/control-ui/styles/recipes/audio-recorder.css",
+        type: "registry:file",
+      },
     ],
   },
   "audio-visualizer": {
@@ -949,6 +994,11 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/audio-visualizer.tsx",
         target: "@components/control-ui/audio-visualizer.tsx",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/audio-visualizer.css",
+        target: "@components/control-ui/styles/recipes/audio-visualizer.css",
+        type: "registry:file",
       },
     ],
   },
@@ -970,6 +1020,36 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/autocomplete.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/autocomplete.tsx",
         target: "@components/control-ui/ui/autocomplete.tsx",
         type: "registry:ui",
@@ -982,6 +1062,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/avatar.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/avatar.css",
+        target: "@components/control-ui/styles/recipes/avatar.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/avatar.tsx",
         target: "@components/control-ui/ui/avatar.tsx",
         type: "registry:ui",
@@ -989,10 +1074,15 @@ export const registryMetadata = {
     ],
   },
   badge: {
-    dependencies: ["@base-ui/react@^1.7.0", "class-variance-authority@^0.7.1"],
+    dependencies: ["@base-ui/react@^1.7.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/badge.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/badge.css",
+        target: "@components/control-ui/styles/recipes/badge.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/badge.tsx",
         target: "@components/control-ui/ui/badge.tsx",
@@ -1006,6 +1096,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/breadcrumb.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/breadcrumb.css",
+        target: "@components/control-ui/styles/recipes/breadcrumb.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/breadcrumb.tsx",
         target: "@components/control-ui/ui/breadcrumb.tsx",
         type: "registry:ui",
@@ -1013,10 +1108,15 @@ export const registryMetadata = {
     ],
   },
   button: {
-    dependencies: ["@base-ui/react@^1.7.0", "class-variance-authority@^0.7.1"],
+    dependencies: ["@base-ui/react@^1.7.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/button.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/button.css",
+        target: "@components/control-ui/styles/recipes/button.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/button.tsx",
         target: "@components/control-ui/ui/button.tsx",
@@ -1030,6 +1130,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/button-group.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/button-group.css",
+        target: "@components/control-ui/styles/recipes/button-group.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/button-group.tsx",
         target: "@components/control-ui/ui/button-group.tsx",
         type: "registry:ui",
@@ -1042,6 +1147,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/calendar.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/calendar.css",
+        target: "@components/control-ui/styles/recipes/calendar.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/calendar.tsx",
         target: "@components/control-ui/ui/calendar.tsx",
         type: "registry:ui",
@@ -1053,6 +1163,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/card.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/card.css",
+        target: "@components/control-ui/styles/recipes/card.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/card.tsx",
         target: "@components/control-ui/ui/card.tsx",
@@ -1151,6 +1266,11 @@ export const registryMetadata = {
         target: "@components/control-ui/chat-composer.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/chat-composer.css",
+        target: "@components/control-ui/styles/recipes/chat-composer.css",
+        type: "registry:file",
+      },
     ],
   },
   "chat-composer-attachment": {
@@ -1163,6 +1283,11 @@ export const registryMetadata = {
         target: "@components/control-ui/chat-composer-attachment.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/chat-composer-attachment.css",
+        target: "@components/control-ui/styles/recipes/chat-composer-attachment.css",
+        type: "registry:file",
+      },
     ],
   },
   "chat-layout": {
@@ -1174,6 +1299,11 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/chat-layout.tsx",
         target: "@components/control-ui/chat-layout.tsx",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/chat-layout.css",
+        target: "@components/control-ui/styles/recipes/chat-layout.css",
+        type: "registry:file",
       },
     ],
   },
@@ -1192,6 +1322,11 @@ export const registryMetadata = {
         target: "@components/control-ui/chat-message.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/chat-message.css",
+        target: "@components/control-ui/styles/recipes/chat-message.css",
+        type: "registry:file",
+      },
     ],
   },
   checkbox: {
@@ -1199,6 +1334,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/checkbox.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/choice.css",
+        target: "@components/control-ui/styles/recipes/choice.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/checkbox.tsx",
         target: "@components/control-ui/ui/checkbox.tsx",
@@ -1234,6 +1374,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/code.css",
+        target: "@components/control-ui/styles/recipes/code.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/code.tsx",
         target: "@components/control-ui/ui/code.tsx",
         type: "registry:ui",
@@ -1255,6 +1400,11 @@ export const registryMetadata = {
         target: "@components/control-ui/code-block-editor.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/code-block-editor.css",
+        target: "@components/control-ui/styles/recipes/code-block-editor.css",
+        type: "registry:file",
+      },
     ],
   },
   "code-diff": {
@@ -1266,6 +1416,11 @@ export const registryMetadata = {
         path: "src/registry/lib/diff.ts",
         target: "@components/control-ui/lib/diff.ts",
         type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/code-diff.css",
+        target: "@components/control-ui/styles/recipes/code-diff.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/ui/code-diff.tsx",
@@ -1291,6 +1446,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/collapsible.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/collapsible.css",
+        target: "@components/control-ui/styles/recipes/collapsible.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/collapsible.tsx",
         target: "@components/control-ui/ui/collapsible.tsx",
@@ -1319,6 +1479,41 @@ export const registryMetadata = {
         type: "registry:lib",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/color-picker-details.css",
+        target: "@components/control-ui/styles/recipes/color-picker-details.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/color-picker-values.css",
+        target: "@components/control-ui/styles/recipes/color-picker-values.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/color-picker.css",
+        target: "@components/control-ui/styles/recipes/color-picker.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/color-picker.tsx",
         target: "@components/control-ui/ui/color-picker.tsx",
         type: "registry:ui",
@@ -1330,6 +1525,36 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/combobox.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/combobox-disabled-selection.ts",
         target: "@components/control-ui/ui/combobox-disabled-selection.ts",
@@ -1347,6 +1572,26 @@ export const registryMetadata = {
     registryDependencies: ["button", "core", "dialog", "scroll-area"],
     sourceManifestPath: "registry/control-ui/command.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/command.tsx",
         target: "@components/control-ui/ui/command.tsx",
@@ -1369,6 +1614,11 @@ export const registryMetadata = {
         target: "@components/control-ui/context.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/context.css",
+        target: "@components/control-ui/styles/recipes/context.css",
+        type: "registry:file",
+      },
     ],
   },
   "context-menu": {
@@ -1376,6 +1626,26 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/context-menu.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/context-menu.tsx",
         target: "@components/control-ui/ui/context-menu.tsx",
@@ -1394,6 +1664,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/extensions/control-effects.css",
+        target: "@components/control-ui/styles/control-effects.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/extensions/control-effects.ts",
         target: "@components/control-ui/extensions/control-effects.ts",
         type: "registry:component",
@@ -1406,6 +1681,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/core.json",
     files: [
       {
+        path: "src/registry/adornments.ts",
+        target: "@components/control-ui/adornments.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/contracts.ts",
         target: "@components/control-ui/contracts.ts",
         type: "registry:lib",
@@ -1414,6 +1694,11 @@ export const registryMetadata = {
         path: "src/registry/hooks/use-copy-to-clipboard.ts",
         target: "@components/control-ui/hooks/use-copy-to-clipboard.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts.ts",
+        target: "@components/control-ui/knob-contracts.ts",
+        type: "registry:lib",
       },
       {
         path: "src/registry/lib/cn.ts",
@@ -1453,6 +1738,26 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/dialog.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/dialog.tsx",
         target: "@components/control-ui/ui/dialog.tsx",
         type: "registry:ui",
@@ -1464,6 +1769,11 @@ export const registryMetadata = {
     registryDependencies: ["button", "core", "drawer", "sidebar"],
     sourceManifestPath: "registry/control-ui/dockable-panel.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/dockable-panel.css",
+        target: "@components/control-ui/styles/recipes/dockable-panel.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/dockable-panel-geometry.ts",
         target: "@components/control-ui/ui/dockable-panel-geometry.ts",
@@ -1482,6 +1792,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/drawer.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/drawer.css",
+        target: "@components/control-ui/styles/recipes/drawer.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/drawer.tsx",
         target: "@components/control-ui/ui/drawer.tsx",
         type: "registry:ui",
@@ -1493,6 +1808,31 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/dropdown-menu.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/button.css",
+        target: "@components/control-ui/styles/recipes/button.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/dropdown-menu.tsx",
         target: "@components/control-ui/ui/dropdown-menu.tsx",
@@ -1514,6 +1854,11 @@ export const registryMetadata = {
         path: "src/registry/lib/dropzone-validation.ts",
         target: "@components/control-ui/lib/dropzone-validation.ts",
         type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/dropzone.css",
+        target: "@components/control-ui/styles/recipes/dropzone.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/ui/dropzone.tsx",
@@ -1548,14 +1893,24 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
-        path: "src/registry/sources/control-ui/dynamic-notification.css",
-        target: "@components/control-ui/styles/dynamic-notification.css",
-        type: "registry:file",
-      },
-      {
         path: "src/registry/sources/control-ui/dynamic-notification.tsx",
         target: "@components/control-ui/dynamic-notification.tsx",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/dynamic-notification-input.css",
+        target: "@components/control-ui/styles/recipes/dynamic-notification-input.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/dynamic-notification-motion.css",
+        target: "@components/control-ui/styles/recipes/dynamic-notification-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/dynamic-notification.css",
+        target: "@components/control-ui/styles/recipes/dynamic-notification.css",
+        type: "registry:file",
       },
     ],
   },
@@ -1564,6 +1919,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/empty.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/empty.css",
+        target: "@components/control-ui/styles/recipes/empty.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/empty.tsx",
         target: "@components/control-ui/ui/empty.tsx",
@@ -1591,6 +1951,11 @@ export const registryMetadata = {
         target: "@components/control-ui/environment-variables.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/environment-variables.css",
+        target: "@components/control-ui/styles/recipes/environment-variables.css",
+        type: "registry:file",
+      },
     ],
   },
   field: {
@@ -1598,6 +1963,16 @@ export const registryMetadata = {
     registryDependencies: ["core", "separator"],
     sourceManifestPath: "registry/control-ui/field.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/field.tsx",
         target: "@components/control-ui/ui/field.tsx",
@@ -1640,6 +2015,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/gradient-editor.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/gradient-editor.css",
+        target: "@components/control-ui/styles/recipes/gradient-editor.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/gradient-editor.tsx",
         target: "@components/control-ui/ui/gradient-editor.tsx",
         type: "registry:ui",
@@ -1652,6 +2032,26 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/hover-card.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/hover-card.tsx",
         target: "@components/control-ui/ui/hover-card.tsx",
         type: "registry:ui",
@@ -1663,6 +2063,11 @@ export const registryMetadata = {
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/infinite-canvas.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/infinite-canvas.css",
+        target: "@components/control-ui/styles/recipes/infinite-canvas.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/infinite-canvas.tsx",
         target: "@components/control-ui/ui/infinite-canvas.tsx",
@@ -1680,6 +2085,11 @@ export const registryMetadata = {
         target: "@components/control-ui/inline-attachment.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/inline-attachment.css",
+        target: "@components/control-ui/styles/recipes/inline-attachment.css",
+        type: "registry:file",
+      },
     ],
   },
   "inline-citation": {
@@ -1692,6 +2102,11 @@ export const registryMetadata = {
         target: "@components/control-ui/inline-citation.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/inline-citation.css",
+        target: "@components/control-ui/styles/recipes/inline-citation.css",
+        type: "registry:file",
+      },
     ],
   },
   input: {
@@ -1699,6 +2114,16 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/input.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/input.tsx",
         target: "@components/control-ui/ui/input.tsx",
@@ -1712,6 +2137,16 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/input-group.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/input-group.tsx",
         target: "@components/control-ui/ui/input-group.tsx",
         type: "registry:ui",
@@ -1724,6 +2159,16 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/input-otp.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/input-otp.tsx",
         target: "@components/control-ui/ui/input-otp.tsx",
         type: "registry:ui",
@@ -1731,10 +2176,15 @@ export const registryMetadata = {
     ],
   },
   item: {
-    dependencies: ["@base-ui/react@^1.7.0", "class-variance-authority@^0.7.1"],
+    dependencies: ["@base-ui/react@^1.7.0"],
     registryDependencies: ["core", "separator"],
     sourceManifestPath: "registry/control-ui/item.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/item.css",
+        target: "@components/control-ui/styles/recipes/item.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/item.tsx",
         target: "@components/control-ui/ui/item.tsx",
@@ -1748,6 +2198,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/kbd.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/kbd.css",
+        target: "@components/control-ui/styles/recipes/kbd.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/kbd.tsx",
         target: "@components/control-ui/ui/kbd.tsx",
         type: "registry:ui",
@@ -1759,6 +2214,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/label.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/label.css",
+        target: "@components/control-ui/styles/recipes/label.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/label.tsx",
         target: "@components/control-ui/ui/label.tsx",
@@ -1784,6 +2244,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/markdown.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/markdown.css",
+        target: "@components/control-ui/styles/recipes/markdown.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/markdown-elements.tsx",
         target: "@components/control-ui/ui/markdown-elements.tsx",
         type: "registry:ui",
@@ -1805,6 +2270,11 @@ export const registryMetadata = {
         target: "@components/control-ui/markdown-block.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/markdown-block.css",
+        target: "@components/control-ui/styles/recipes/markdown-block.css",
+        type: "registry:file",
+      },
     ],
   },
   menubar: {
@@ -1812,6 +2282,31 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/menubar.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/button.css",
+        target: "@components/control-ui/styles/recipes/button.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/menubar.tsx",
         target: "@components/control-ui/ui/menubar.tsx",
@@ -1824,6 +2319,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/meter.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/range.css",
+        target: "@components/control-ui/styles/recipes/range.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/meter.tsx",
         target: "@components/control-ui/ui/meter.tsx",
@@ -1849,6 +2349,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/morphing-panel.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/morphing-panel.css",
+        target: "@components/control-ui/styles/recipes/morphing-panel.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/morphing-panel.tsx",
         target: "@components/control-ui/ui/morphing-panel.tsx",
         type: "registry:ui",
@@ -1861,6 +2366,16 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/native-select.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/native-select.tsx",
         target: "@components/control-ui/ui/native-select.tsx",
         type: "registry:ui",
@@ -1872,6 +2387,31 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/navigation-menu.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/button.css",
+        target: "@components/control-ui/styles/recipes/button.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/navigation-menu.tsx",
         target: "@components/control-ui/ui/navigation-menu.tsx",
@@ -1902,6 +2442,16 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/number-field.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/number-field.tsx",
         target: "@components/control-ui/ui/number-field.tsx",
         type: "registry:ui",
@@ -1913,6 +2463,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/pagination.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/pagination.css",
+        target: "@components/control-ui/styles/recipes/pagination.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/pagination.tsx",
         target: "@components/control-ui/ui/pagination.tsx",
@@ -1936,6 +2491,11 @@ export const registryMetadata = {
         type: "registry:lib",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/phone-input.css",
+        target: "@components/control-ui/styles/recipes/phone-input.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/phone-input.tsx",
         target: "@components/control-ui/ui/phone-input.tsx",
         type: "registry:ui",
@@ -1947,6 +2507,26 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/popover.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/popover.tsx",
         target: "@components/control-ui/ui/popover.tsx",
@@ -1960,6 +2540,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/progress.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/range.css",
+        target: "@components/control-ui/styles/recipes/range.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/progress.tsx",
         target: "@components/control-ui/ui/progress.tsx",
         type: "registry:ui",
@@ -1972,6 +2557,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/radio-group.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/choice.css",
+        target: "@components/control-ui/styles/recipes/choice.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/radio-group.tsx",
         target: "@components/control-ui/ui/radio-group.tsx",
         type: "registry:ui",
@@ -1979,10 +2569,15 @@ export const registryMetadata = {
     ],
   },
   resizable: {
-    dependencies: ["class-variance-authority@^0.7.1", "react-resizable-panels@^4.12.2"],
+    dependencies: ["react-resizable-panels@^4.12.2"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/resizable.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/resizable.css",
+        target: "@components/control-ui/styles/recipes/resizable.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/resizable.tsx",
         target: "@components/control-ui/ui/resizable.tsx",
@@ -2008,6 +2603,31 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/rich-tooltip.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/rich-tooltip.css",
+        target: "@components/control-ui/styles/recipes/rich-tooltip.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/rich-tooltip-tour.ts",
         target: "@components/control-ui/ui/rich-tooltip-tour.ts",
         type: "registry:ui",
@@ -2025,6 +2645,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/scroll-area.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/scroll-area.css",
+        target: "@components/control-ui/styles/recipes/scroll-area.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/scroll-area.tsx",
         target: "@components/control-ui/ui/scroll-area.tsx",
         type: "registry:ui",
@@ -2036,6 +2661,31 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/select.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/button.css",
+        target: "@components/control-ui/styles/recipes/button.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/select.tsx",
         target: "@components/control-ui/ui/select.tsx",
@@ -2065,6 +2715,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/separator.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/separator.css",
+        target: "@components/control-ui/styles/recipes/separator.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/separator.tsx",
         target: "@components/control-ui/ui/separator.tsx",
@@ -2112,6 +2767,11 @@ export const registryMetadata = {
         type: "registry:hook",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/sidebar.css",
+        target: "@components/control-ui/styles/recipes/sidebar.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/sidebar.tsx",
         target: "@components/control-ui/ui/sidebar.tsx",
         type: "registry:ui",
@@ -2135,6 +2795,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/skeleton.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/skeleton.css",
+        target: "@components/control-ui/styles/recipes/skeleton.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/skeleton.tsx",
         target: "@components/control-ui/ui/skeleton.tsx",
@@ -2334,10 +2999,15 @@ export const registryMetadata = {
     ],
   },
   slider: {
-    dependencies: ["@base-ui/react@^1.7.0", "class-variance-authority@^0.7.1"],
+    dependencies: ["@base-ui/react@^1.7.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/slider.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/range.css",
+        target: "@components/control-ui/styles/recipes/range.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/slider.tsx",
         target: "@components/control-ui/ui/slider.tsx",
@@ -2351,6 +3021,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/source-badge.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/source-badge.css",
+        target: "@components/control-ui/styles/recipes/source-badge.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/source-badge.tsx",
         target: "@components/control-ui/source-badge.tsx",
         type: "registry:component",
@@ -2362,6 +3037,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/spinner.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/spinner.css",
+        target: "@components/control-ui/styles/recipes/spinner.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/spinner.tsx",
         target: "@components/control-ui/ui/spinner.tsx",
@@ -2375,6 +3055,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/stepper.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/stepper.css",
+        target: "@components/control-ui/styles/recipes/stepper.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/stepper.tsx",
         target: "@components/control-ui/ui/stepper.tsx",
         type: "registry:ui",
@@ -2386,6 +3071,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/switch.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/switch.css",
+        target: "@components/control-ui/styles/recipes/switch.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/switch.tsx",
         target: "@components/control-ui/ui/switch.tsx",
@@ -2399,6 +3089,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/table.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/table.css",
+        target: "@components/control-ui/styles/recipes/table.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/table.tsx",
         target: "@components/control-ui/ui/table.tsx",
         type: "registry:ui",
@@ -2406,10 +3101,15 @@ export const registryMetadata = {
     ],
   },
   "table-of-contents": {
-    dependencies: ["class-variance-authority@^0.7.1"],
+    dependencies: [],
     registryDependencies: ["core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/table-of-contents.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/table-of-contents.css",
+        target: "@components/control-ui/styles/recipes/table-of-contents.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/table-of-contents.tsx",
         target: "@components/control-ui/ui/table-of-contents.tsx",
@@ -2423,6 +3123,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/tabs.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/tabs.css",
+        target: "@components/control-ui/styles/recipes/tabs.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/tabs.tsx",
         target: "@components/control-ui/ui/tabs.tsx",
         type: "registry:ui",
@@ -2435,6 +3140,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/task-list.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/task-list.css",
+        target: "@components/control-ui/styles/recipes/task-list.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/task-list.tsx",
         target: "@components/control-ui/task-list.tsx",
         type: "registry:component",
@@ -2446,6 +3156,16 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/textarea.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/field-parts.css",
+        target: "@components/control-ui/styles/recipes/field-parts.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/field.css",
+        target: "@components/control-ui/styles/recipes/field.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/textarea.tsx",
         target: "@components/control-ui/ui/textarea.tsx",
@@ -2471,8 +3191,8 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/thread-rail.json",
     files: [
       {
-        path: "src/registry/sources/control-ui/thread-rail.css",
-        target: "@components/control-ui/styles/thread-rail.css",
+        path: "src/registry/sources/control-ui/recipes/thread-rail.css",
+        target: "@components/control-ui/styles/recipes/thread-rail.css",
         type: "registry:file",
       },
       {
@@ -2488,6 +3208,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/timeline.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/timeline.css",
+        target: "@components/control-ui/styles/recipes/timeline.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/timeline.tsx",
         target: "@components/control-ui/ui/timeline.tsx",
         type: "registry:ui",
@@ -2499,6 +3224,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/toast.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/toast.css",
+        target: "@components/control-ui/styles/recipes/toast.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/toast.tsx",
         target: "@components/control-ui/ui/toast.tsx",
@@ -2512,6 +3242,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/toggle.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/button.css",
+        target: "@components/control-ui/styles/recipes/button.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/toggle.tsx",
         target: "@components/control-ui/ui/toggle.tsx",
         type: "registry:ui",
@@ -2524,6 +3259,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/toolbar.json",
     files: [
       {
+        path: "src/registry/sources/control-ui/recipes/toolbar.css",
+        target: "@components/control-ui/styles/recipes/toolbar.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/toolbar.tsx",
         target: "@components/control-ui/ui/toolbar.tsx",
         type: "registry:ui",
@@ -2535,6 +3275,26 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/tooltip.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/tooltip.tsx",
         target: "@components/control-ui/ui/tooltip.tsx",
@@ -2557,6 +3317,11 @@ export const registryMetadata = {
         target: "@components/control-ui/extensions/track-highlight.tsx",
         type: "registry:component",
       },
+      {
+        path: "src/registry/sources/control-ui/recipes/track-highlight.css",
+        target: "@components/control-ui/styles/recipes/track-highlight.css",
+        type: "registry:file",
+      },
     ],
   },
   "transcript-divider": {
@@ -2564,6 +3329,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/transcript-divider.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/transcript-divider.css",
+        target: "@components/control-ui/styles/recipes/transcript-divider.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/transcript-divider.tsx",
         target: "@components/control-ui/transcript-divider.tsx",
@@ -2576,6 +3346,11 @@ export const registryMetadata = {
     registryDependencies: ["core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/tree.json",
     files: [
+      {
+        path: "src/registry/sources/control-ui/recipes/tree.css",
+        target: "@components/control-ui/styles/recipes/tree.css",
+        type: "registry:file",
+      },
       {
         path: "src/registry/sources/control-ui/ui/tree.tsx",
         target: "@components/control-ui/ui/tree.tsx",
@@ -2602,6 +3377,26 @@ export const registryMetadata = {
         path: "src/registry/lib/trigger-detect.ts",
         target: "@components/control-ui/lib/trigger-detect.ts",
         type: "registry:lib",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/ui/trigger-menu.tsx",
@@ -2737,6 +3532,16 @@ export const registryMetadata = {
         type: "registry:hook",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/user-ask-details.css",
+        target: "@components/control-ui/styles/recipes/user-ask-details.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/user-ask.css",
+        target: "@components/control-ui/styles/recipes/user-ask.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/user-ask.tsx",
         target: "@components/control-ui/user-ask.tsx",
         type: "registry:component",
@@ -2752,6 +3557,11 @@ export const registryMetadata = {
         path: "src/registry/hooks/use-morph-transition.ts",
         target: "@components/control-ui/hooks/use-morph-transition.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/sources/control-ui/extensions/view-transition.css",
+        target: "@components/control-ui/styles/view-transition.css",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/extensions/view-transition.ts",

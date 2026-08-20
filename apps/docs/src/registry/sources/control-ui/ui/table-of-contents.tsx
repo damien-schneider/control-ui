@@ -1,40 +1,20 @@
 "use client";
 
-import { cva } from "class-variance-authority";
 import { useEffect, useState } from "react";
 
 import type { TableOfContentsProps, TableOfContentsVariant } from "@/components/control-ui/contracts";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 const DETECTION_MARGIN = "-80px 0px -20% 0px";
 const indentByDepth = ["pl-3", "pl-5", "pl-7", "pl-9", "pl-11", "pl-14"] as const;
 
-// one moving band rather than per-row border that snaps
 const TOC_ITEM_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"]';
 const TOC_ACTIVE_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"][data-active]';
 
-// rows shift only their own text colour — trail and background live on shared band so it can glide between ranges
-const tableOfContentsItemClass =
-  "block py-1.5 text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none motion-reduce:transition-none data-[active]:text-foreground";
-
-// one inset per edge, so growing range's top never drags its bottom
-// ring-0/shadow-none strip extension's default pill chrome — this band is flat wash, not card
-const tableOfContentsHighlightVariant = cva("ring-0 shadow-none duration-[var(--duration-base)] ease-[var(--ease-emphasized)]", {
-  variants: {
-    variant: {
-      background: "rounded-md bg-foreground/4",
-      trail: "rounded-none bg-transparent",
-      both: "rounded-md bg-foreground/4",
-    },
-  },
-  defaultVariants: {
-    variant: "both",
-  },
-});
-
-const tableOfContentsTrailClass = "absolute inset-y-0 left-0 w-0.5 rounded-full bg-foreground";
+const tableOfContentsItemClass = "block py-1.5";
+const tableOfContentsHighlightClass = "";
+const tableOfContentsTrailClass = "absolute inset-y-0 left-0 w-0.5";
 
 function getScrollContainer(el: HTMLElement): HTMLElement | null {
   let node = el.parentElement;
@@ -131,47 +111,58 @@ function activeIdsInRange(visibleIds: string[], targetIds: string[]) {
   return new Set(targetIds.slice(firstIndex, lastIndex + 1));
 }
 
-export function TableOfContents({ items, label = "On this page", variant = "both", className, ...props }: TableOfContentsProps) {
+export function TableOfContents({ items, label = "On this page", variant = "both", className, style, ...props }: TableOfContentsProps) {
   const baseLevel = Math.min(...collectLevels(items), 2);
   const normalizedItems = normalizeItems(items, baseLevel);
   const flatItems = flattenItems(normalizedItems);
   const targetIds = flatItems.map((item) => item.href.replace(/^#/, ""));
   const visibleIds = useVisibleSections(targetIds);
   const activeSet = activeIdsInRange(visibleIds, targetIds);
+  const railStyle = style;
+  const highlightStyle = style;
 
   if (items.length === 0) return null;
 
   return (
     <nav
       data-control-ui="table-of-contents"
+      data-control-family="table-of-contents"
       data-slot="root"
       data-variant={variant}
       aria-label={label}
-      className={cn(
-        "sticky top-6 rounded-2xl border border-border/70 bg-card/80 p-4 text-sm shadow-sm backdrop-blur",
-        skinSlot("table-of-contents", "root", {}),
-        className,
-      )}
+      className={cn("sticky top-6 p-4", className)}
+      style={style}
       {...props}
     >
-      <p className="mb-3 text-xs font-medium text-muted-foreground">{label}</p>
-      {/* isolates stacking context so rail and band never leak onto nav's portals */}
-      <div data-control-ui="table-of-contents" data-slot="track" className="relative isolate">
+      <p data-control-ui="table-of-contents" data-control-family="table-of-contents" data-slot="label" className="mb-3">
+        {label}
+      </p>
+      <div data-control-ui="table-of-contents" data-control-family="table-of-contents" data-slot="track" className="relative isolate">
         <span
           aria-hidden
           data-control-ui="table-of-contents"
+          data-control-family="table-of-contents"
           data-slot="rail"
-          className="pointer-events-none absolute inset-y-0 left-0 -z-20 w-px bg-border/60"
+          className="pointer-events-none absolute inset-y-0 left-0 -z-20 w-px"
+          style={railStyle}
         />
         <TrackHighlight
+          data-variant={variant}
           itemSelector={TOC_ITEM_SELECTOR}
           activeSelector={TOC_ACTIVE_SELECTOR}
           range
           followHover={false}
-          className={tableOfContentsHighlightVariant({ variant })}
+          style={{ ...highlightStyle, "--track-highlight-transition-duration": "var(--duration-base)" }}
+          className={tableOfContentsHighlightClass}
         >
           {variant !== "background" && (
-            <div aria-hidden data-control-ui="table-of-contents" data-slot="trail" className={tableOfContentsTrailClass} />
+            <div
+              aria-hidden
+              data-control-ui="table-of-contents"
+              data-control-family="table-of-contents"
+              data-slot="trail"
+              className={tableOfContentsTrailClass}
+            />
           )}
         </TrackHighlight>
         <TocList items={normalizedItems} activeSet={activeSet} variant={variant} root />
@@ -194,9 +185,9 @@ function TocList({
   return (
     <ul
       data-control-ui="table-of-contents"
+      data-control-family="table-of-contents"
       data-slot="list"
       data-nested={root ? undefined : "true"}
-      className={cn(root && skinSlot("table-of-contents", "list", {}))}
     >
       {items.map((item) => {
         const targetId = item.href.replace(/^#/, "");
@@ -206,6 +197,7 @@ function TocList({
           <li key={item.href}>
             <a
               data-control-ui="table-of-contents"
+              data-control-family="table-of-contents"
               data-slot="item"
               data-active={isActive || undefined}
               data-variant={variant}
@@ -213,12 +205,7 @@ function TocList({
               data-depth={item.depth}
               aria-current={isActive ? "location" : undefined}
               href={item.href}
-              className={cn(
-                tableOfContentsItemClass,
-                item.depth === 0 && "font-medium",
-                itemIndentClass(item.depth),
-                skinSlot("table-of-contents", "item", { active: isActive, variant }),
-              )}
+              className={cn(tableOfContentsItemClass, itemIndentClass(item.depth))}
             >
               {item.label}
             </a>

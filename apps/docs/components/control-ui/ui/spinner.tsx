@@ -1,7 +1,6 @@
 import { Loader2 } from "lucide-react";
 import type { SpinnerProps } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 // Deliberately outside motion kill-switch — loader must keep turning under reduced motion.
 const spinnerSize = {
@@ -16,11 +15,18 @@ export function Spinner({ size = "sm", className, ...props }: SpinnerProps) {
     <span
       role="status"
       data-control-ui="spinner"
+      data-control-family="spinner"
       data-slot="root"
-      className={cn("inline-flex text-muted-foreground", skinSlot("spinner", "root", {}), className)}
+      className={cn("inline-flex", className)}
       {...props}
     >
-      <Loader2 aria-hidden="true" className={cn("animate-spin", spinnerSize[size])} />
+      <Loader2
+        aria-hidden="true"
+        data-control-ui="spinner"
+        data-control-family="spinner"
+        data-slot="indicator"
+        className={spinnerSize[size]}
+      />
       <span className="sr-only">Loading</span>
     </span>
   );

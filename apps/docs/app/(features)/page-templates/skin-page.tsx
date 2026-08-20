@@ -1,11 +1,21 @@
 import Link from "next/link";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
+import { CodeBlock } from "@/app/(features)/components/source";
 import { generatedSkinContract } from "@/app/(features)/model/generated-skin-contract";
 import { fullInstallCommand, fullInstallManifestHref, packInstallCommand } from "@/app/(features)/model/registry";
 import type { DocsSkinPage } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
-import { InstallPanel, PageHeader, SectionTitle } from "./shared";
+import { InstallPanel, PageHeader, SectionStack, SectionTitle } from "./shared";
 import { TokenContractTable } from "./token-contract";
+
+const knobCascadeExample = `/* app-wide: a token, on :root */
+:root { --radius-field: 0.75rem; }
+
+/* one family, everywhere: a knob, on the family root */
+[data-control-ui="chat-composer"] { --chat-composer-shell-radius: 0; }
+
+/* one instance, on the root element:
+   className="[--chat-composer-shell-radius:0]"  or  style={{ "--chat-composer-shell-radius": "0" }} */`;
 
 export function SkinPage({ skin }: { skin: DocsSkinPage }) {
   const install = packInstallCommand(skin.id);
@@ -17,7 +27,7 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
   return (
     <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
       <PageHeader label={`Skin / ${kindLabel}`} title={skin.label} summary={skin.description} />
-      <div className="grid min-w-0 gap-10">
+      <SectionStack>
         {unavailable ? (
           <div
             id="install"
@@ -47,24 +57,27 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
             {skin.kind === "advanced" ? ", and includes the pack's declared runtimes or extensions" : ""}.
           </InstallPanel>
         ) : null}
-      </div>
+      </SectionStack>
     </section>
   );
 }
 
-const SLOT_VS_SKIN = [
+const SKIN_VALUE_RULES = [
   {
-    label: "token first",
-    body: "A value the contract already exposes (radius, color) goes in theme.css; a value it doesn't (an invented var) goes in skin.css, never theme.css.",
+    label: "theme token",
+    body: "Global semantic color, radius, type, and motion values live in theme.css and feed every recipe.",
   },
   {
-    label: "skinSlot",
-    body: "When the property is ALSO painted by the cva recipe (twMerge would evict a bare CSS rule) or reacts to slot state; also the channel to APPLY a pack's own @utility.",
+    label: "component knob",
+    body: "A component-specific visual is re-valued through its registered --component-* property in scoped skin.css.",
   },
-  { label: "skin.css", body: "Root inheritance, descendant families, keyframes; never on a property the recipe paints as a utility." },
+  {
+    label: "custom CSS",
+    body: "Use scoped skin.css for pseudo-elements, keyframes, native chrome, relational selectors, and uniform semantic families.",
+  },
   {
     label: "never",
-    body: "No un-layered CSS. Never re-style a slot skin.config can already reach, and never re-implement a library recipe in skin.css — re-value its component-local vars instead.",
+    body: "Do not repaint a recipe-owned property directly or invent a second variable for a value the component knob contract already exposes.",
   },
 ] as const;
 
@@ -109,8 +122,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
     <section className="mx-auto min-w-0 w-full max-w-4xl px-5 py-12">
       <PageHeader label="Skins" title={skinsOverview.label} summary={skinsOverview.description} wide />
 
-      <div className="grid min-w-0 gap-10">
-        {/* Customization ladder (token vs variant vs DS choice vs slot vs skin.css vs utility vs extension vs source) has ONE home — Architecture guide; link, don't re-state. */}
+      <SectionStack>
         <p className="max-w-2xl text-body leading-6 text-muted-foreground">
           Not sure a skin is even the right tool? The{" "}
           <Link href="/architecture#customization-ladder" className="font-medium text-foreground underline underline-offset-4">
@@ -120,10 +132,10 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           app that never uses it. This page picks up once the answer is a skin.
         </p>
 
-        <section id="slot-vs-skin" className="min-w-0 scroll-mt-20">
-          <SectionTitle title="Slot vs skin.css" description="Where a skin author paints each property, in order of preference." />
+        <section id="skin-values" className="min-w-0 scroll-mt-20">
+          <SectionTitle title="Where skin values live" description="One owner for each visual decision." />
           <div className="grid gap-2">
-            {SLOT_VS_SKIN.map((rule) => (
+            {SKIN_VALUE_RULES.map((rule) => (
               <div
                 key={rule.label}
                 className="flex gap-3 rounded-xl border border-border/70 bg-card px-4 py-3 text-body leading-6 shadow-sm"
@@ -148,12 +160,12 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
         <section id="anatomy" className="min-w-0 scroll-mt-20">
           <SectionTitle
             title="The anatomy contract"
-            description="Generated from the canonical component DOM and typed skin contexts. Scope identifies the component; slot is local to that scope."
+            description="Generated from canonical component DOM. Scope identifies the component; slot is local to that scope."
           />
           <p className="mb-4 max-w-2xl text-body leading-6 text-muted-foreground">
             Copy a selector as{" "}
-            <code>[data-skin=&quot;brand&quot;] [data-control-ui=&quot;chat-composer&quot;][data-slot=&quot;shell&quot;]</code>. Paints and
-            adornments are listed separately in the{" "}
+            <code>[data-skin=&quot;brand&quot;] [data-control-ui=&quot;chat-composer&quot;][data-slot=&quot;shell&quot;]</code>. Optional
+            adornment anchors are listed separately in the{" "}
             <Link href="/r/skin-contract.json" className="font-medium text-foreground underline underline-offset-4">
               full machine-readable contract
             </Link>
@@ -217,12 +229,17 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           </p>
         </section>
 
-        <section id="gotcha" className="min-w-0 scroll-mt-20">
-          <SectionTitle title="Gotcha — custom @utility and twMerge" />
-          <p className="max-w-2xl text-body leading-6 text-muted-foreground">
-            A pack's own <code>@utility</code> (xp-bevel-up, xp-scrollbar…) is unknown to tailwind-merge, so it is NOT evicted by group when
-            a caller passes a conflicting utility. Exclusive visual hooks such as skeleton shimmer and streaming text live under the
-            separate <code>paints</code> map and resolve through <code>skinPaint(scope, part, context) ?? fallback</code>.
+        <section id="component-knobs" className="min-w-0 scroll-mt-20">
+          <SectionTitle
+            title="Component knobs and the cascade"
+            description="Tokens theme the whole app from :root. Knobs theme one family and live on its root element — every slot inherits."
+          />
+          <CodeBlock lang="css" code={knobCascadeExample} />
+          <p className="mt-3 max-w-2xl text-body leading-6 text-muted-foreground">
+            The recipe declares each knob's default on the family root at zero specificity, so a value set on that element always wins:{" "}
+            <code>style</code> beats a skin, a skin beats the recipe, a utility class beats both. Setting a knob on <code>:root</code> does
+            nothing — the family root re-declares it; re-value the token it derives from instead. Portaled surfaces are their own root: set{" "}
+            <code>--popup-*</code> on the popup content, not on the trigger. Each component page lists its knobs with type and default.
           </p>
         </section>
 
@@ -252,7 +269,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
             })}
           </div>
         </section>
-      </div>
+      </SectionStack>
     </section>
   );
 }

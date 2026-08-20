@@ -24,8 +24,16 @@
       "path": "src/registry/sources/control-ui/code-block-editor.tsx",
       "target": "@components/control-ui/code-block-editor.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/code-block-editor.css",
+      "target": "@components/control-ui/styles/recipes/code-block-editor.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/code-block-editor.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/code-block-editor.json"
   }

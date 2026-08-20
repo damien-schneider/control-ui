@@ -14,8 +14,16 @@
       "path": "src/registry/sources/control-ui/action-bar.tsx",
       "target": "@components/control-ui/action-bar.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/action-bar.css",
+      "target": "@components/control-ui/styles/recipes/action-bar.css",
+      "type": "registry:file"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/action-bar.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/action-bar.json"
   }

@@ -1,15 +1,15 @@
 "use client";
 
 import { AlertTriangleIcon, EyeIcon, EyeOffIcon, FileUpIcon, PlusIcon, RotateCcwIcon, SaveIcon, Trash2Icon } from "lucide-react";
-import type { ChangeEvent, ClipboardEvent, ComponentProps, ReactNode, SubmitEvent } from "react";
+import type { ChangeEvent, ClipboardEvent, ComponentProps, CSSProperties, ReactNode, SubmitEvent } from "react";
 import { createContext, use, useId } from "react";
-
 import {
   type EnvironmentVariableRow,
   type EnvironmentVariablesController,
   type UseEnvironmentVariablesOptions,
   useEnvironmentVariables,
 } from "@/components/control-ui/hooks/use-environment-variables";
+import type { EnvironmentVariablesKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import {
   collectEnvironmentVariables,
@@ -72,7 +72,7 @@ export type EnvironmentVariablesRootProps<TRow extends EnvironmentVariableRow = 
   valuePlaceholder?: string;
   duplicateKeyMessage?: ReactNode;
   onSubmit?: (payload: EnvironmentVariablesSubmitPayload<TRow>) => void | Promise<void>;
-};
+} & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
 export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = EnvironmentVariableRow>({
   editor,
@@ -122,6 +122,7 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
     >
       <form
         data-control-ui="environment-variables"
+        data-control-family="environment-variables"
         data-slot="root"
         data-surface="panel"
         data-disabled={disabled ? "true" : undefined}
@@ -212,12 +213,18 @@ function EnvironmentVariablesComponent<TRow extends EnvironmentVariableRow = Env
 export type EnvironmentVariablesHeaderProps = ComponentProps<"div"> & {
   title?: ReactNode;
   description?: ReactNode;
-};
+} & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
 export function EnvironmentVariablesHeader({ title, description, className, children, ...props }: EnvironmentVariablesHeaderProps) {
   if (children) {
     return (
-      <div data-control-ui="environment-variables" data-slot="header" className={cn("flex flex-col gap-1", className)} {...props}>
+      <div
+        data-control-ui="environment-variables"
+        data-control-family="environment-variables"
+        data-slot="header"
+        className={cn("flex flex-col gap-1", className)}
+        {...props}
+      >
         {children}
       </div>
     );
@@ -226,14 +233,33 @@ export function EnvironmentVariablesHeader({ title, description, className, chil
   if (!title && !description) return null;
 
   return (
-    <div data-control-ui="environment-variables" data-slot="header" className={cn("flex flex-col gap-1", className)} {...props}>
-      {title ? <div className="text-label font-semibold text-foreground">{title}</div> : null}
-      {description ? <div className="max-w-2xl text-caption text-muted-foreground">{description}</div> : null}
+    <div
+      data-control-ui="environment-variables"
+      data-control-family="environment-variables"
+      data-slot="header"
+      className={cn("flex flex-col gap-1", className)}
+      {...props}
+    >
+      {title ? (
+        <div data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="title">
+          {title}
+        </div>
+      ) : null}
+      {description ? (
+        <div
+          data-control-ui="environment-variables"
+          data-control-family="environment-variables"
+          data-slot="description"
+          className="max-w-2xl"
+        >
+          {description}
+        </div>
+      ) : null}
     </div>
   );
 }
 
-export type EnvironmentVariablesToolbarProps = ComponentProps<"div">;
+export type EnvironmentVariablesToolbarProps = ComponentProps<"div"> & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
 export function EnvironmentVariablesToolbar({ className, children, ...props }: EnvironmentVariablesToolbarProps) {
   const { readOnly } = useEnvironmentVariablesContext("EnvironmentVariables.Toolbar");
@@ -242,14 +268,24 @@ export function EnvironmentVariablesToolbar({ className, children, ...props }: E
   return (
     <div
       data-control-ui="environment-variables"
+      data-control-family="environment-variables"
       data-slot="toolbar"
       className={cn("flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center", className)}
       {...props}
     >
       {children ?? (
         <>
-          <p className="min-w-0 flex-1 text-caption text-muted-foreground">
-            Paste one or more <code className="font-mono text-foreground">KEY=value</code> lines directly into any field.
+          <p
+            data-control-ui="environment-variables"
+            data-control-family="environment-variables"
+            data-slot="hint"
+            className="min-w-0 flex-1"
+          >
+            Paste one or more{" "}
+            <code data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="hint-code">
+              KEY=value
+            </code>{" "}
+            lines directly into any field.
           </p>
           <EnvironmentVariablesUploadButton />
         </>
@@ -310,19 +346,28 @@ export function EnvironmentVariablesUploadButton({
 
 export type EnvironmentVariablesRowsProps = ComponentProps<"div"> & {
   rowErrors?: EnvironmentVariablesRowErrors;
-};
+} & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
 export function EnvironmentVariablesRows({ rowErrors, className, children, ...props }: EnvironmentVariablesRowsProps) {
   const { editor, keyLabel, valueLabel, readOnly } = useEnvironmentVariablesContext("EnvironmentVariables.Rows");
 
   return (
-    <div data-control-ui="environment-variables" data-slot="rows" className={cn("min-w-0", className)} {...props}>
+    <div
+      data-control-ui="environment-variables"
+      data-control-family="environment-variables"
+      data-slot="rows"
+      className={cn("min-w-0", className)}
+      {...props}
+    >
       {children ?? (
         <>
           <div
             aria-hidden="true"
+            data-control-ui="environment-variables"
+            data-control-family="environment-variables"
+            data-slot="column-labels"
             className={cn(
-              "hidden min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] gap-2 px-1 pb-1 text-caption font-medium text-muted-foreground sm:grid",
+              "hidden min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] gap-2 px-1 pb-1 sm:grid",
               readOnly && "grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]",
             )}
           >
@@ -343,7 +388,7 @@ export type EnvironmentVariablesRowProps = Omit<ComponentProps<"div">, "children
   row: EnvironmentVariableRow;
   index: number;
   rowErrors?: EnvironmentVariablesRowErrors;
-};
+} & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
 export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...props }: EnvironmentVariablesRowProps) {
   const {
@@ -376,6 +421,7 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
   return (
     <div
       data-control-ui="environment-variables"
+      data-control-family="environment-variables"
       data-slot="row"
       className={cn(
         "relative grid min-w-0 gap-3 py-2 pr-9 pl-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] sm:gap-2 sm:px-1",
@@ -384,36 +430,62 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
       {...props}
     >
       <div className="flex min-w-0 flex-col gap-1.5">
-        <label htmlFor={keyInputId} className="text-caption font-medium text-muted-foreground sm:sr-only">
+        <label
+          data-control-ui="environment-variables"
+          data-control-family="environment-variables"
+          data-slot="field-label"
+          htmlFor={keyInputId}
+          className="sm:sr-only"
+        >
           {keyLabel}
         </label>
         <Input
+          data-control-ui="environment-variables"
+          data-control-family="environment-variables"
+          data-slot="key-input"
           id={keyInputId}
           size="sm"
           value={row.key}
           placeholder={keyPlaceholder}
           disabled={isDisabled}
           aria-invalid={Boolean(keyError)}
-          className={cn("font-mono text-caption", keyError && "ring-2 ring-destructive/70")}
           onChange={(event) => editor.updateRow(index, { key: event.target.value })}
           onPaste={handlePaste}
         />
-        {keyError ? <p className="text-caption text-destructive-text">{keyError}</p> : null}
+        {keyError ? (
+          <p data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="field-error">
+            {keyError}
+          </p>
+        ) : null}
       </div>
 
       <div className="flex min-w-0 flex-col gap-1.5">
-        <label htmlFor={valueInputId} className="text-caption font-medium text-muted-foreground sm:sr-only">
+        <label
+          data-control-ui="environment-variables"
+          data-control-family="environment-variables"
+          data-slot="field-label"
+          htmlFor={valueInputId}
+          className="sm:sr-only"
+        >
           {valueLabel}
         </label>
-        <InputGroup size="sm" className={cn(valueError && "ring-2 ring-destructive/70")}>
+        <InputGroup
+          data-control-ui="environment-variables"
+          data-control-family="environment-variables"
+          data-slot="value-group"
+          data-invalid={valueError ? "true" : undefined}
+          size="sm"
+        >
           <InputGroupInput
+            data-control-ui="environment-variables"
+            data-control-family="environment-variables"
+            data-slot="value-input"
             id={valueInputId}
             value={row.value}
             placeholder={valuePlaceholder}
             disabled={isDisabled}
             aria-invalid={Boolean(valueError)}
             type={editor.isValueRevealed(index) ? "text" : "password"}
-            className="font-mono text-caption"
             onChange={(event) => editor.updateRow(index, { value: event.target.value })}
             onPaste={handlePaste}
           />
@@ -436,7 +508,11 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
             </Button>
           </InputGroupAddon>
         </InputGroup>
-        {valueError ? <p className="text-caption text-destructive-text">{valueError}</p> : null}
+        {valueError ? (
+          <p data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="field-error">
+            {valueError}
+          </p>
+        ) : null}
       </div>
 
       {!readOnly ? (
@@ -549,12 +625,13 @@ export function EnvironmentVariablesSubmitButton({
   );
 }
 
-export type EnvironmentVariablesActionsProps = ComponentProps<"div">;
+export type EnvironmentVariablesActionsProps = ComponentProps<"div"> & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
 export function EnvironmentVariablesActions({ className, ...props }: EnvironmentVariablesActionsProps) {
   return (
     <div
       data-control-ui="environment-variables"
+      data-control-family="environment-variables"
       data-slot="actions"
       className={cn("flex min-w-0 items-center justify-between gap-2", className)}
       {...props}
@@ -562,8 +639,9 @@ export function EnvironmentVariablesActions({ className, ...props }: Environment
   );
 }
 
-export type EnvironmentVariablesMessageProps = ComponentProps<"div"> & {
+export type EnvironmentVariablesMessageProps = Omit<ComponentProps<"div">, "style"> & {
   error?: ReactNode;
+  style?: CSSProperties & EnvironmentVariablesKnobStyle;
 };
 
 export function EnvironmentVariablesMessage({ error, className, children, ...props }: EnvironmentVariablesMessageProps) {
@@ -574,11 +652,9 @@ export function EnvironmentVariablesMessage({ error, className, children, ...pro
     <div
       role="alert"
       data-control-ui="environment-variables"
+      data-control-family="environment-variables"
       data-slot="message"
-      className={cn(
-        "flex items-start gap-2 border-y border-destructive/40 bg-destructive/5 px-3 py-2 text-caption text-destructive-text",
-        className,
-      )}
+      className={cn("flex items-start gap-2 px-3 py-2", className)}
       {...props}
     >
       <AlertTriangleIcon aria-hidden="true" className="mt-0.5 size-3.5 shrink-0" />
@@ -608,7 +684,7 @@ export function EnvironmentVariablesUploadError(props: EnvironmentVariablesUploa
 export type EnvironmentVariablesReadOnlyListProps = ComponentProps<"div"> & {
   rows?: readonly EnvironmentVariableRow[];
   emptyMessage?: ReactNode;
-};
+} & { style?: CSSProperties & EnvironmentVariablesKnobStyle };
 
 export function EnvironmentVariablesReadOnlyList({
   rows,
@@ -622,21 +698,30 @@ export function EnvironmentVariablesReadOnlyList({
   const filledRows = resolvedRows.filter((row) => row.key.trim());
 
   return (
-    <div data-control-ui="environment-variables" data-slot="readonly-list" className={cn("flex flex-col gap-1", className)} {...props}>
+    <div
+      data-control-ui="environment-variables"
+      data-control-family="environment-variables"
+      data-slot="readonly-list"
+      className={cn("flex flex-col gap-1", className)}
+      {...props}
+    >
       {children ??
         (filledRows.length > 0 ? (
           filledRows.map((row) => <EnvironmentVariablesReadOnlyItem key={row.key} name={row.key} value={row.value} />)
         ) : (
-          <div className="px-3 py-4 text-center text-caption text-muted-foreground">{emptyMessage}</div>
+          <div data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="empty" className="px-3 py-4">
+            {emptyMessage}
+          </div>
         ))}
     </div>
   );
 }
 
-export type EnvironmentVariablesReadOnlyItemProps = ComponentProps<"div"> & {
+export type EnvironmentVariablesReadOnlyItemProps = Omit<ComponentProps<"div">, "style"> & {
   name: ReactNode;
   value?: ReactNode;
   revealed?: boolean;
+  style?: CSSProperties & EnvironmentVariablesKnobStyle;
 };
 
 export function EnvironmentVariablesReadOnlyItem({
@@ -649,12 +734,27 @@ export function EnvironmentVariablesReadOnlyItem({
   return (
     <div
       data-control-ui="environment-variables"
+      data-control-family="environment-variables"
       data-slot="readonly-item"
-      className={cn("grid min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3 px-1 py-2 text-caption", className)}
+      className={cn("grid min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3 px-1 py-2", className)}
       {...props}
     >
-      <span className="min-w-0 truncate font-mono font-medium text-foreground">{name}</span>
-      <span className="min-w-0 truncate font-mono text-muted-foreground">{revealed ? value : "********"}</span>
+      <span
+        data-control-ui="environment-variables"
+        data-control-family="environment-variables"
+        data-slot="readonly-key"
+        className="min-w-0 truncate"
+      >
+        {name}
+      </span>
+      <span
+        data-control-ui="environment-variables"
+        data-control-family="environment-variables"
+        data-slot="readonly-value"
+        className="min-w-0 truncate"
+      >
+        {revealed ? value : "********"}
+      </span>
     </div>
   );
 }

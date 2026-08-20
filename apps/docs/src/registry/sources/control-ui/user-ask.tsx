@@ -1,15 +1,17 @@
 "use client";
 
 import { Check, ChevronLeft, ChevronRight, PencilLine } from "lucide-react";
-import type { ChangeEvent, ComponentProps, MouseEvent } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, MouseEvent } from "react";
 import { createContext, useContext, useEffect, useId, useRef } from "react";
 
 import type { UserAskProps } from "@/components/control-ui/contracts";
 import { useUserAsk } from "@/components/control-ui/hooks/use-user-ask";
+import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd } from "@/components/control-ui/ui/kbd";
+
+type UserAskStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 
 type UserAskContextValue = ReturnType<typeof useUserAsk> & {
   titleId: string;
@@ -64,18 +66,13 @@ export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, c
       <section
         ref={panelRef}
         data-control-ui="user-ask"
+        data-control-family="user-ask"
         data-slot="root"
         data-surface="panel"
         aria-labelledby={titleId}
         tabIndex={-1}
         onKeyDown={ask.handleKeyDown}
-        className={cn(
-          "relative w-full rounded-field border bg-card/90 p-3 text-body shadow-md ring-1 ring-foreground/4 outline-none backdrop-blur",
-          // @starting-style rises panel into place with no JS choreography
-          "transition-[opacity,translate] duration-[var(--duration-base)] ease-[var(--ease-emphasized)] starting:translate-y-2 starting:opacity-0",
-          skinSlot("user-ask", "root", {}),
-          className,
-        )}
+        className={cn("relative w-full p-3", className)}
         {...props}
       >
         {children}
@@ -84,38 +81,33 @@ export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, c
   );
 }
 
-export type UserAskHeaderProps = ComponentProps<"header">;
+export type UserAskHeaderProps = ComponentProps<"header"> & { style?: CSSProperties & UserAskKnobStyle };
 
 export function UserAskHeader({ className, ...props }: UserAskHeaderProps) {
   return (
     <header
       data-control-ui="user-ask"
+      data-control-family="user-ask"
       data-slot="header"
-      className={cn("flex items-start justify-between gap-3 px-1 pb-2", skinSlot("user-ask", "header", {}), className)}
+      className={cn("flex items-start justify-between gap-3 px-1 pb-2", className)}
       {...props}
     />
   );
 }
 
-export type UserAskTitleProps = ComponentProps<"h3">;
+export type UserAskTitleProps = UserAskStyleProps<ComponentProps<"h3">, UserAskKnobStyle>;
 
 export function UserAskTitle({ className, children, ...props }: UserAskTitleProps) {
   const ask = useUserAskContext();
 
   return (
-    <h3
-      id={ask.titleId}
-      data-control-ui="user-ask"
-      data-slot="title"
-      className={cn("text-sm font-semibold text-foreground", skinSlot("user-ask", "title", {}), className)}
-      {...props}
-    >
+    <h3 id={ask.titleId} data-control-ui="user-ask" data-control-family="user-ask" data-slot="title" className={className} {...props}>
       {children ?? ask.activeQuestion?.title}
     </h3>
   );
 }
 
-export type UserAskPaginationProps = ComponentProps<"div">;
+export type UserAskPaginationProps = UserAskStyleProps<ComponentProps<"div">, UserAskKnobStyle>;
 
 export function UserAskPagination({ className, ...props }: UserAskPaginationProps) {
   const ask = useUserAskContext();
@@ -124,8 +116,9 @@ export function UserAskPagination({ className, ...props }: UserAskPaginationProp
   return (
     <div
       data-control-ui="user-ask"
+      data-control-family="user-ask"
       data-slot="pagination"
-      className={cn("flex shrink-0 items-center gap-1 text-micro text-muted-foreground", skinSlot("user-ask", "pagination", {}), className)}
+      className={cn("flex shrink-0 items-center gap-1", className)}
       {...props}
     >
       <Button
@@ -138,7 +131,7 @@ export function UserAskPagination({ className, ...props }: UserAskPaginationProp
       >
         <ChevronLeft aria-hidden="true" className="size-3.5" />
       </Button>
-      <span className="tabular-nums">
+      <span data-control-ui="user-ask" data-control-family="user-ask" data-slot="pagination-count">
         {ask.activeIndex + 1} of {ask.questions.length}
       </span>
       <Button
@@ -160,7 +153,7 @@ export type UserAskQuestionProps = Omit<ComponentProps<"div">, "title"> & {
   title: string;
   /** Pre-selects option carrying this value (e.g. recommended one) until user picks another. */
   defaultValue?: string;
-};
+} & { style?: CSSProperties & UserAskKnobStyle };
 
 export function UserAskQuestion({ id, title, defaultValue, className, children, ...props }: UserAskQuestionProps) {
   const ask = useUserAskContext();
@@ -178,9 +171,10 @@ export function UserAskQuestion({ id, title, defaultValue, className, children, 
         aria-labelledby={active ? ask.titleId : undefined}
         hidden={!active}
         data-control-ui="user-ask"
+        data-control-family="user-ask"
         data-slot="question"
         data-active={active ? "" : undefined}
-        className={cn("flex flex-col gap-0.5", skinSlot("user-ask", "question", { active }), className)}
+        className={cn("flex flex-col gap-0.5", className)}
         {...props}
       >
         {children}
@@ -202,21 +196,9 @@ function useUserAskOptionContext() {
   return context;
 }
 
-const optionRowClasses = cn(
-  "grid w-full grid-cols-[auto_minmax(0,1fr)] items-start gap-2.5 rounded-[var(--radius-popup-item)] px-2 py-1.5 text-left text-sm",
-  "transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
-  "hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]",
-);
+const optionRowClasses = "grid w-full grid-cols-[auto_minmax(0,1fr)] items-start gap-2.5 px-2 py-1.5";
 
-function optionIndicatorClasses(selected: boolean) {
-  return cn(
-    "mt-px inline-flex size-5 shrink-0 items-center justify-center rounded-[var(--radius-control)] text-micro font-medium tabular-nums",
-    selected ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
-    skinSlot("user-ask", "option-indicator", { selected }),
-  );
-}
-
-export type UserAskOptionProps = Omit<ComponentProps<"button">, "value"> & {
+export type UserAskOptionProps = UserAskStyleProps<Omit<ComponentProps<"button">, "value">, UserAskKnobStyle> & {
   value: string;
   recommended?: boolean;
 };
@@ -254,20 +236,22 @@ export function UserAskOption({
         aria-checked={selected}
         disabled={disabled}
         data-control-ui="user-ask"
+        data-control-family="user-ask"
         data-slot="option"
         data-selected={selected ? "" : undefined}
         data-recommended={recommended ? "" : undefined}
         onClick={handleClick}
-        className={cn(
-          optionRowClasses,
-          "disabled:cursor-not-allowed disabled:opacity-50",
-          selected && "bg-muted/70",
-          skinSlot("user-ask", "option", { selected, disabled }),
-          className,
-        )}
+        className={cn(optionRowClasses, "disabled:cursor-not-allowed", className)}
         {...props}
       >
-        <span aria-hidden="true" data-control-ui="user-ask" data-slot="option-indicator" className={optionIndicatorClasses(selected)}>
+        <span
+          aria-hidden="true"
+          data-control-ui="user-ask"
+          data-control-family="user-ask"
+          data-slot="option-indicator"
+          data-selected={selected ? "" : undefined}
+          className="mt-px inline-flex size-5 shrink-0 items-center justify-center"
+        >
           {selected ? <Check className="size-3" /> : index + 1}
         </span>
         <span className="min-w-0">{children}</span>
@@ -276,42 +260,39 @@ export function UserAskOption({
   );
 }
 
-export type UserAskOptionLabelProps = ComponentProps<"span">;
+export type UserAskOptionLabelProps = UserAskStyleProps<ComponentProps<"span">, UserAskKnobStyle>;
 
 export function UserAskOptionLabel({ className, children, ...props }: UserAskOptionLabelProps) {
   const option = useUserAskOptionContext();
 
   return (
-    <span
-      data-control-ui="user-ask"
-      data-slot="option-label"
-      className={cn("block font-medium text-foreground", skinSlot("user-ask", "option-label", {}), className)}
-      {...props}
-    >
+    <span data-control-ui="user-ask" data-control-family="user-ask" data-slot="option-label" className={cn("block", className)} {...props}>
       {children}
-      {option.recommended ? <span className="font-normal text-muted-foreground"> (Recommended)</span> : null}
+      {option.recommended ? (
+        <span data-control-ui="user-ask" data-control-family="user-ask" data-slot="recommended">
+          {" "}
+          (Recommended)
+        </span>
+      ) : null}
     </span>
   );
 }
 
-export type UserAskOptionDescriptionProps = ComponentProps<"span">;
+export type UserAskOptionDescriptionProps = UserAskStyleProps<ComponentProps<"span">, UserAskKnobStyle>;
 
 export function UserAskOptionDescription({ className, ...props }: UserAskOptionDescriptionProps) {
   return (
     <span
       data-control-ui="user-ask"
+      data-control-family="user-ask"
       data-slot="option-description"
-      className={cn(
-        "block pt-0.5 text-caption font-normal text-muted-foreground",
-        skinSlot("user-ask", "option-description", {}),
-        className,
-      )}
+      className={cn("block pt-0.5", className)}
       {...props}
     />
   );
 }
 
-export type UserAskOptionInputProps = Omit<ComponentProps<"input">, "value"> & {
+export type UserAskOptionInputProps = UserAskStyleProps<Omit<ComponentProps<"input">, "value">, UserAskKnobStyle> & {
   /** Row label while unselected (option's "Other" affordance). */
   label?: string;
 };
@@ -322,6 +303,7 @@ export function UserAskOptionInput({
   disabled = false,
   className,
   onChange,
+  style,
   ...props
 }: UserAskOptionInputProps) {
   const ask = useUserAskContext();
@@ -357,20 +339,25 @@ export function UserAskOptionInput({
         aria-checked={false}
         disabled={disabled}
         data-control-ui="user-ask"
+        data-control-family="user-ask"
         data-slot="option"
         data-freeform=""
         onClick={() => ask.select(question.id, key)}
-        className={cn(
-          optionRowClasses,
-          "disabled:cursor-not-allowed disabled:opacity-50",
-          skinSlot("user-ask", "option", { selected, disabled }),
-          className,
-        )}
+        className={cn(optionRowClasses, "disabled:cursor-not-allowed", className)}
+        style={style}
       >
-        <span aria-hidden="true" data-control-ui="user-ask" data-slot="option-indicator" className={optionIndicatorClasses(false)}>
+        <span
+          aria-hidden="true"
+          data-control-ui="user-ask"
+          data-control-family="user-ask"
+          data-slot="option-indicator"
+          className="mt-px inline-flex size-5 shrink-0 items-center justify-center"
+        >
           {index + 1}
         </span>
-        <span className="min-w-0 text-muted-foreground">{label}</span>
+        <span data-control-ui="user-ask" data-control-family="user-ask" data-slot="freeform-label" className="min-w-0">
+          {label}
+        </span>
       </button>
     );
   }
@@ -378,12 +365,21 @@ export function UserAskOptionInput({
   return (
     <div
       data-control-ui="user-ask"
+      data-control-family="user-ask"
       data-slot="option"
       data-selected=""
       data-freeform=""
-      className={cn(optionRowClasses, "bg-muted/70", skinSlot("user-ask", "option", { selected, disabled }), className)}
+      className={cn(optionRowClasses, className)}
+      style={style}
     >
-      <span aria-hidden="true" data-control-ui="user-ask" data-slot="option-indicator" className={optionIndicatorClasses(true)}>
+      <span
+        aria-hidden="true"
+        data-control-ui="user-ask"
+        data-control-family="user-ask"
+        data-slot="option-indicator"
+        data-selected=""
+        className="mt-px inline-flex size-5 shrink-0 items-center justify-center"
+      >
         <PencilLine className="size-3" />
       </span>
       <input
@@ -392,24 +388,27 @@ export function UserAskOptionInput({
         type="text"
         aria-label={label}
         data-control-ui="user-ask"
+        data-control-family="user-ask"
         data-slot="option-input"
         value={ask.freeformTextFor(question.id)}
         onChange={handleChange}
         placeholder={placeholder}
-        className="min-w-0 bg-transparent font-medium text-foreground outline-none placeholder:font-normal placeholder:text-muted-foreground"
+        className="min-w-0"
+        style={style}
       />
     </div>
   );
 }
 
-export type UserAskFooterProps = ComponentProps<"footer">;
+export type UserAskFooterProps = ComponentProps<"footer"> & { style?: CSSProperties & UserAskKnobStyle };
 
 export function UserAskFooter({ className, ...props }: UserAskFooterProps) {
   return (
     <footer
       data-control-ui="user-ask"
+      data-control-family="user-ask"
       data-slot="footer"
-      className={cn("flex items-center justify-end gap-2 px-1 pt-3", skinSlot("user-ask", "footer", {}), className)}
+      className={cn("flex items-center justify-end gap-2 px-1 pt-3", className)}
       {...props}
     />
   );
@@ -428,12 +427,13 @@ export function UserAskDismiss({ className, children, onClick, ...props }: UserA
   return (
     <Button
       data-control-ui="user-ask"
+      data-user-ask-dismiss="true"
       data-slot="dismiss"
       type="button"
       variant="quiet"
       size="xs"
       onClick={handleClick}
-      className={cn("gap-1.5 text-muted-foreground", className)}
+      className={cn("gap-1.5", className)}
       {...props}
     >
       {children ?? (
@@ -459,6 +459,7 @@ export function UserAskSubmit({ className, children, disabled, onClick, ...props
   return (
     <Button
       data-control-ui="user-ask"
+      data-user-ask-submit="true"
       data-slot="submit"
       type="button"
       variant="solid"
@@ -472,7 +473,7 @@ export function UserAskSubmit({ className, children, disabled, onClick, ...props
       {children ?? (
         <>
           Continue
-          <Kbd className="bg-primary-foreground/15 text-primary-foreground ring-primary-foreground/25">⏎</Kbd>
+          <Kbd data-user-ask-submit-kbd="true">⏎</Kbd>
         </>
       )}
     </Button>

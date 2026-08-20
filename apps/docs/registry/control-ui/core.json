@@ -12,6 +12,11 @@
   "registryDependencies": [],
   "files": [
     {
+      "path": "src/registry/adornments.ts",
+      "target": "@components/control-ui/adornments.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/contracts.ts",
       "target": "@components/control-ui/contracts.ts",
       "type": "registry:lib"
@@ -20,6 +25,11 @@
       "path": "src/registry/hooks/use-copy-to-clipboard.ts",
       "target": "@components/control-ui/hooks/use-copy-to-clipboard.ts",
       "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/knob-contracts.ts",
+      "target": "@components/control-ui/knob-contracts.ts",
+      "type": "registry:lib"
     },
     {
       "path": "src/registry/lib/cn.ts",

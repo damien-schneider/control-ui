@@ -1,0 +1,158 @@
+@layer components {
+  :where([data-control-family="field"][data-field-kind="input-group"][data-slot="addon"]),
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]),
+
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]),
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]),
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]),
+
+  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="icon"]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-input-group-part="input"]),
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"]) {
+    outline: none;
+    background: transparent;
+    color: var(--foreground);
+  }
+
+  :where([data-input-group-part="input"])::placeholder,
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"])::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]),
+
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]) {
+    border-radius: var(--radius-control);
+    outline: none;
+    transition-property: color, box-shadow;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:hover),
+
+    :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:hover),
+
+    :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:hover),
+
+    :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:hover) {
+      color: var(--foreground);
+    }
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:focus-visible),
+
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:focus-visible) {
+    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="trigger"]:disabled),
+
+  :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:disabled) {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"]) {
+    transition-property: rotate;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="field"][data-field-kind="combobox"][data-popup-open] :where([data-control-family="field"][data-field-kind="combobox"][data-slot="icon"])) {
+    rotate: 180deg;
+  }
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]) {
+    border-inline-end: 1px solid var(--border);
+  }
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]) {
+    border-inline-start: 1px solid var(--border);
+  }
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]),
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]) {
+    outline: none;
+    transition-property: color, background-color;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:active),
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:active) {
+    background: oklch(from var(--foreground) l c h / 0.06);
+  }
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"][data-disabled]),
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"][data-disabled]) {
+    color: oklch(from var(--muted-foreground) l c h / 0.5);
+  }
+
+  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="scrub-cursor"]) {
+    color: var(--foreground);
+    filter: drop-shadow(0 1px 1px oklch(0 0 0 / 0.05));
+  }
+
+  :where([data-control-family="field"][data-field-kind="input-otp"][data-slot="separator"]) {
+    border-radius: 9999px;
+    background: var(--border);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="title"]) {
+    color: var(--foreground);
+    font-size: var(--text-label);
+    font-weight: 500;
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="label"]) {
+    color: var(--foreground);
+    font-size: var(--text-label);
+    font-weight: 500;
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="label"][data-disabled]) {
+    opacity: 0.5;
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="description"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="error"]) {
+    color: var(--destructive-text);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="separator"]) {
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="separator-content"]) {
+    background-color: var(--background);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="set"]) {
+    border-width: 0px;
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="legend"]) {
+    color: var(--foreground);
+    font-size: var(--text-label);
+    font-weight: 600;
+  }
+}

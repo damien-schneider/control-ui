@@ -37,6 +37,7 @@ const registrySourceRoot = path.join(root, "src/registry");
 const blocksRoot = path.join(registrySourceRoot, "blocks");
 const sourcesRoot = path.join(registrySourceRoot, "sources");
 const skinPacksRoot = path.join(registrySourceRoot, "skin-packs");
+const recipeSourceRoot = "src/registry/sources/control-ui/recipes/";
 const registryRoot = path.join(root, "registry");
 const publicRegistryRoot = path.join(root, "public/r");
 const failures: string[] = [];
@@ -79,7 +80,7 @@ function usesRuntimeProvider(source: string) {
 const componentFiles = componentEntries.map((component) => `${component.id}.tsx`);
 const documentedComponents = new Set<string>(componentEntries.map((component) => component.id));
 const documentedPrimitives = new Set<string>(primitiveEntries.map((primitive) => primitive.id));
-const coreBlockImports = new Set(["contracts", "skin"]);
+const coreBlockImports = new Set(["contracts", "knob-contracts", "skin"]);
 
 for (const sourceName of readdirSync(sourcesRoot)) {
   const sourcePath = path.join(sourcesRoot, sourceName);
@@ -108,7 +109,8 @@ for (const sourcePath of walk(registrySourceRoot).filter((file) => /\.(ts|tsx)$/
     relativePath.includes("src/registry/hooks/") ||
     relativePath.includes("src/registry/blocks/") ||
     relativePath.includes("src/registry/lib/") ||
-    relativePath === "src/registry/contracts.ts";
+    relativePath === "src/registry/contracts.ts" ||
+    relativePath === "src/registry/knob-contracts.ts";
 
   if (isProviderAgnosticSource && usesRuntimeProvider(source)) {
     failures.push(`${relativePath} uses a runtime provider API; installable Control UI must stay runner-agnostic`);
@@ -197,6 +199,7 @@ const hostOwnedSourceImports = new Set([
   "src/registry/starters/next/layout.tsx::next/font/google",
 ]);
 const ownerByTarget = new Map<string, string>();
+const sourceByTarget = new Map<string, string>();
 const targetBySource = new Map<string, string>();
 
 for (const [id, manifest] of manifests) {
@@ -229,11 +232,14 @@ for (const [id, manifest] of manifests) {
     if (isActiveSkinTarget && !id.startsWith("skin-")) failures.push(`${id} owns active skin target ${file.target}`);
 
     const owner = ownerByTarget.get(file.target);
+    const existingSource = sourceByTarget.get(file.target);
     const sharedBySkins = isActiveSkinTarget && owner?.startsWith("skin-") && id.startsWith("skin-");
-    if (owner && owner !== id && !sharedBySkins) {
+    const sharedRecipe = file.path.startsWith(recipeSourceRoot) && existingSource === file.path;
+    if (owner && owner !== id && !sharedBySkins && !sharedRecipe) {
       failures.push(`${file.target} is owned by both ${owner} and ${id}`);
     } else if (!owner) {
       ownerByTarget.set(file.target, id);
+      sourceByTarget.set(file.target, file.path);
     }
     targetBySource.set(file.path, file.target);
   }

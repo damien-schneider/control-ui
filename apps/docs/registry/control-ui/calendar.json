@@ -12,11 +12,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/calendar.css",
+      "target": "@components/control-ui/styles/recipes/calendar.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/calendar.tsx",
       "target": "@components/control-ui/ui/calendar.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/calendar.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/calendar.json"
   }

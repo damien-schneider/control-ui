@@ -212,13 +212,6 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     return Number.isFinite(parsed) ? parsed * dpr : 0;
   }
 
-  function targetRibbonHorizon(): number {
-    const host = canvas.parentElement;
-    if (!host) return 0.5;
-    const parsed = Number.parseFloat(getComputedStyle(host).getPropertyValue("--dn-ribbon-horizon"));
-    return Number.isFinite(parsed) ? Math.min(1, Math.max(0, parsed / 100)) : 0.5;
-  }
-
   /* Called from draw(), never an observer: setting canvas.width clears the buffer, and rAF ticks run
      before ResizeObserver callbacks, so an observer-side resize would wipe the drawn pixels before paint. */
   function resize(): void {
@@ -259,7 +252,7 @@ export function createDynamicNotificationGlass(canvas: HTMLCanvasElement, option
     activeGl.uniform1f(activeGlass.reveal, reveal);
     activeGl.uniform1f(activeGlass.settle, settle);
     activeGl.uniform1f(activeGlass.lift, lift);
-    activeGl.uniform1f(activeGlass.ribbonHorizon, targetRibbonHorizon());
+    activeGl.uniform1f(activeGlass.ribbonHorizon, 0.5);
   }
 
   function draw(): void {

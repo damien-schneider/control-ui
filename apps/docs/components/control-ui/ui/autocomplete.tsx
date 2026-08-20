@@ -12,10 +12,10 @@ import type {
   AutocompleteListProps,
   AutocompleteProps,
 } from "@/components/control-ui/contracts";
-import { controlSize, controlSurfaceClasses } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinFamily, skinId, skinSlot } from "@/components/control-ui/skin";
-import { floatingListContentClasses, floatingListItemClasses } from "@/components/control-ui/surface-variants";
+import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 // Free text, unlike Combobox — value is filter string, and picking item only fills field.
@@ -28,13 +28,11 @@ export function AutocompleteClear({ className, children, ...props }: Autocomplet
   return (
     <AutocompletePrimitive.Clear
       data-control-ui="autocomplete"
+      data-control-family="field"
+      data-field-kind="autocomplete"
       data-slot="clear"
       aria-label="Clear search"
-      className={cn(
-        "inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-[var(--radius-control)] text-muted-foreground outline-none transition hover:text-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
-        skinSlot("autocomplete", "clear", {}),
-        className,
-      )}
+      className={cn("inline-flex size-6 shrink-0 cursor-pointer items-center justify-center disabled:cursor-not-allowed", className)}
       {...props}
     >
       {children ?? (
@@ -50,21 +48,19 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
   return (
     <AutocompletePrimitive.InputGroup
       data-control-ui="autocomplete"
+      data-control-family="field"
+      data-field-kind="autocomplete"
       data-slot="root"
-      className={cn("relative flex w-full items-center", skinSlot("autocomplete", "root", {}))}
+      className="relative flex w-full items-center"
     >
       <AutocompletePrimitive.Input
         data-control-ui="autocomplete"
+        data-field-kind="autocomplete"
         data-slot="input"
         data-control="true"
+        data-control-family="field"
         data-size={size}
-        className={cn(
-          "w-full min-w-0 rounded-[var(--radius-control)] pr-9 font-medium outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] disabled:cursor-not-allowed disabled:opacity-45",
-          controlSurfaceClasses,
-          controlSize({ size }),
-          skinSlot("autocomplete", "input", { size }),
-          className,
-        )}
+        className={cn("w-full min-w-0 pr-9 disabled:cursor-not-allowed", controlSize({ size }), className)}
         {...props}
       />
       <AutocompleteClear className="absolute right-1.5 top-1/2 -translate-y-1/2" />
@@ -77,25 +73,25 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
     <AutocompletePrimitive.Portal>
       {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <AutocompletePrimitive.Positioner
+        data-control-ui="autocomplete"
+        data-popup-kind="autocomplete"
+        data-control-family="popup"
+        data-slot="positioner"
         data-skin={skinId()}
         data-effects={skinEffects()}
         side="bottom"
         align="start"
         sideOffset={sideOffset}
-        className="z-[80] outline-none"
+        className="z-[80]"
       >
         <AutocompletePrimitive.Popup
           data-control-ui="autocomplete"
+          data-popup-kind="autocomplete"
+          data-control-family="popup"
           data-slot="content"
           data-surface="floating"
           data-popup-part="list-surface"
-          className={cn(
-            "w-[var(--anchor-width)] max-w-[var(--available-width)] origin-[var(--transform-origin)]",
-            floatingListContentClasses,
-            skinFamily("popup", "list-surface"),
-            skinSlot("autocomplete", "content", {}),
-            className,
-          )}
+          className={cn("w-[var(--anchor-width)] max-w-[var(--available-width)]", className)}
           {...props}
         >
           {children}
@@ -110,9 +106,11 @@ export function AutocompleteList<Value = unknown>({ className, children, ...prop
     <ScrollArea className="w-full" maxHeight="min(18rem, var(--available-height))">
       <AutocompletePrimitive.List
         data-control-ui="autocomplete"
+        data-popup-kind="autocomplete"
         data-slot="list"
+        data-control-family="popup"
         data-popup-part="list-content"
-        className={cn("outline-none", skinFamily("popup", "list-content"), skinSlot("autocomplete", "list", {}), className)}
+        className={className}
         {...props}
       >
         {children}
@@ -125,12 +123,10 @@ export function AutocompleteEmpty({ className, children, ...props }: Autocomplet
   return (
     <AutocompletePrimitive.Empty
       data-control-ui="autocomplete"
+      data-control-family="field"
+      data-field-kind="autocomplete"
       data-slot="empty"
-      className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-6 text-center text-body text-muted-foreground empty:h-0 empty:overflow-hidden empty:p-0",
-        skinSlot("autocomplete", "empty", {}),
-        className,
-      )}
+      className={cn("px-[calc(var(--padding-x)*0.5)] py-6 empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}
     >
       {children}
@@ -142,15 +138,12 @@ export function AutocompleteItem<Value = unknown>({ className, children, disable
   return (
     <AutocompletePrimitive.Item
       data-control-ui="autocomplete"
+      data-popup-kind="autocomplete"
+      data-control-family="popup"
       data-slot="item"
       data-popup-part="item"
       disabled={disabled}
-      className={cn(
-        floatingListItemClasses,
-        skinFamily("popup", "item"),
-        skinSlot("autocomplete", "item", { disabled: Boolean(disabled) }),
-        className,
-      )}
+      className={cn(popupItemStructureClasses, className)}
       {...props}
     >
       <span className="flex min-w-0 flex-1 items-center gap-2 truncate">{children}</span>
@@ -162,8 +155,10 @@ export function AutocompleteGroup({ className, children, ...props }: Autocomplet
   return (
     <AutocompletePrimitive.Group
       data-control-ui="autocomplete"
+      data-control-family="field"
+      data-field-kind="autocomplete"
       data-slot="group"
-      className={cn("py-1", skinSlot("autocomplete", "group", {}), className)}
+      className={cn("py-1", className)}
       {...props}
     >
       {children}
@@ -175,14 +170,11 @@ export function AutocompleteGroupLabel({ className, children, ...props }: Autoco
   return (
     <AutocompletePrimitive.GroupLabel
       data-control-ui="autocomplete"
+      data-popup-kind="autocomplete"
       data-slot="group-label"
+      data-control-family="popup"
       data-popup-part="label"
-      className={cn(
-        "px-[calc(var(--padding-x)*0.5)] py-1 text-caption font-medium text-muted-foreground",
-        skinFamily("popup", "label"),
-        skinSlot("autocomplete", "group-label", {}),
-        className,
-      )}
+      className={cn("px-[calc(var(--padding-x)*0.5)] py-1", className)}
       {...props}
     >
       {children}

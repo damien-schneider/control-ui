@@ -1,0 +1,49 @@
+@layer components {
+  :where([data-control-family="avatar"][data-slot="root"]) {
+    --avatar-radius: 9999px;
+    --avatar-group-ring-color: var(--background);
+    --avatar-fallback-background: var(--muted);
+    --avatar-fallback-foreground: var(--muted-foreground);
+    border-radius: var(--avatar-radius);
+  }
+
+
+  :where([data-control-family="avatar"][data-slot="group"] > [data-control-family="avatar"]) {
+    box-shadow: 0 0 0 2px var(--avatar-group-ring-color);
+  }
+
+  :where([data-control-family="avatar"][data-slot="fallback"]) {
+    border-radius: 9999px;
+    background: var(--avatar-fallback-background);
+    color: var(--avatar-fallback-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="avatar"][data-slot="fallback"]) {
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+@property --avatar-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --avatar-group-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --avatar-fallback-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --avatar-fallback-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

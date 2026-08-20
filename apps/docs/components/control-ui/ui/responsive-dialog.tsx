@@ -103,7 +103,14 @@ export function ResponsiveDialogClose({
     <DrawerClose
       {...props}
       render={(renderProps) => (
-        <Button {...renderProps} variant={variant} size={size} tone={tone} className={cn(renderProps.className, className)}>
+        <Button
+          {...renderProps}
+          data-dialog-part="close"
+          variant={variant}
+          size={size}
+          tone={tone}
+          className={cn(renderProps.className, className)}
+        >
           {children}
         </Button>
       )}
@@ -133,11 +140,7 @@ export function ResponsiveDialogContent({
     <DrawerContent className={cn("relative pb-[max(1rem,env(safe-area-inset-bottom))]", className, drawerClassName)} {...props}>
       {children}
       {showCloseButton ? (
-        <ResponsiveDialogClose
-          variant="ghost"
-          size="xs"
-          className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0 opacity-70 hover:opacity-100"
-        >
+        <ResponsiveDialogClose variant="ghost" size="xs" className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0">
           <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
             <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
           </svg>

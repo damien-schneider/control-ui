@@ -94,8 +94,15 @@ export function registryDocumentedSourceFiles(registryKind: string, declaredFile
     }
   }
 
-  return documentedFiles.map((file) => {
+  const documentedPaths = new Set(documentedFiles.map((file) => file.path));
+  const files: SourceFile[] = documentedFiles.map((file) => {
     const declaredFile = declaredByPath.get(file.path);
     return source(declaredFile?.label ?? sourceLabel(file.path), file.path, declaredFile?.slot ?? sourceSlot(file.type));
   });
+  for (const declaredFile of declaredFiles) {
+    if (!documentedPaths.has(declaredFile.path)) {
+      files.push({ ...source(declaredFile.label, declaredFile.path, declaredFile.slot), shared: true });
+    }
+  }
+  return files;
 }

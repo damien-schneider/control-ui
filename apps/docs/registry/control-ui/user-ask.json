@@ -19,11 +19,25 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/sources/control-ui/recipes/user-ask-details.css",
+      "target": "@components/control-ui/styles/recipes/user-ask-details.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/user-ask.css",
+      "target": "@components/control-ui/styles/recipes/user-ask.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/user-ask.tsx",
       "target": "@components/control-ui/user-ask.tsx",
       "type": "registry:component"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/user-ask.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/user-ask-details.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/user-ask.json"
   }

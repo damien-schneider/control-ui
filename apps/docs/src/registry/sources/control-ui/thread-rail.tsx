@@ -4,9 +4,8 @@ import type { ComponentProps, CSSProperties, ReactElement, ReactNode } from "rea
 import { Children, cloneElement, createContext, isValidElement, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import type { ThreadRailItemProps, ThreadRailProps } from "@/components/control-ui/contracts";
+import type { ThreadRailKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
-import { floatingSurfaceClasses } from "@/components/control-ui/surface-variants";
 
 // thread-rail.css owns fisheye, visibility, slide, and enter/exit. React keeps only current turn index
 // and one measured height, because no stable CSS interpolates one intrinsic size to another.
@@ -32,7 +31,7 @@ function useItem() {
   return context;
 }
 
-export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
+export function ThreadRail({ className, children, style, ...props }: ThreadRailProps) {
   const [hovered, setHovered] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const activeLayerRef = useRef<HTMLDivElement>(null);
@@ -41,11 +40,11 @@ export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
   const items = Children.toArray(children).filter((child): child is ReactElement<ThreadRailItemProps & { index?: number }> =>
     isValidElement(child),
   );
-  // lifted so single travelling card can render whichever item is hovered
-  const contents = items.map((item) => {
+  const popovers = items.map((item) => {
     const popover = Children.toArray(item.props.children).find((child) => isValidElement(child) && child.type === ThreadRailPopover);
-    return isValidElement<ThreadRailPopoverProps>(popover) ? popover.props.children : null;
+    return isValidElement<ThreadRailPopoverProps>(popover) ? popover.props : undefined;
   });
+  const activePopover = popovers[hovered];
 
   // `transition: height` needs explicit border-box height; offsetHeight ignores cross-fade scale, and offset/client delta re-adds borders whatever skin
   useIsomorphicLayoutEffect(() => {
@@ -56,17 +55,21 @@ export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
   }, [hovered]);
 
   // fallback for browsers without anchor positioning; anchor path ignores it
-  const railStyle: CSSProperties & Record<"--aui-rail-active-index", number> = { "--aui-rail-active-index": hovered };
+  const railStyle: CSSProperties & Record<"--aui-rail-active-index", number> = {
+    ...style,
+    "--aui-rail-active-index": hovered,
+  };
 
   return (
     <RailContext.Provider value={{ current: hovered, activate: setHovered }}>
       <nav
         data-control-ui="thread-rail"
+        data-control-family="thread-rail"
         data-slot="root"
         aria-label="Conversation timeline"
         style={railStyle}
         // widest fisheye tick gets — fixed column stops card drifting as ticks resize
-        className={cn("aui-thread-rail flex w-4 flex-col", skinSlot("thread-rail", "root", {}), className)}
+        className={cn("flex w-4 flex-col", className)}
         {...props}
       >
         {items.map((item, index) => cloneElement(item, { index }))}
@@ -74,23 +77,23 @@ export function ThreadRail({ className, children, ...props }: ThreadRailProps) {
         <div
           ref={cardRef}
           data-control-ui="thread-rail"
+          data-control-family="thread-rail"
           data-slot="popover"
           data-surface="floating"
-          style={{ height: cardHeight }}
-          className={cn(
-            "aui-thread-rail-card pointer-events-none z-20 ml-3 w-72 overflow-hidden text-left",
-            floatingSurfaceClasses,
-            skinSlot("thread-rail", "popover", {}),
-          )}
+          style={{ ...activePopover?.style, height: cardHeight }}
+          className={cn("pointer-events-none z-20 ms-3 w-72 overflow-hidden", activePopover?.className)}
         >
           {items.map((item, index) => (
             <div
+              data-control-ui="thread-rail"
+              data-control-family="thread-rail"
+              data-slot="popover-layer"
               key={item.key ?? index}
               ref={index === hovered ? activeLayerRef : undefined}
               data-active={index === hovered ? "true" : undefined}
-              className="aui-thread-rail-card-layer p-3.5"
+              className="p-3.5"
             >
-              {contents[index] ?? null}
+              {popovers[index]?.children ?? null}
             </div>
           ))}
         </div>
@@ -115,6 +118,7 @@ export function ThreadRailItem({
     <ItemContext.Provider value={{ index, inView: isInView, activate: rail.activate }}>
       <div
         data-control-ui="thread-rail"
+        data-control-family="thread-rail"
         data-slot="item"
         data-from={from}
         data-in-view={isInView ? "true" : undefined}
@@ -122,7 +126,7 @@ export function ThreadRailItem({
         // driven by state, not :hover, so card's anchor survives pointer leaving
         data-rail-current={index === rail.current ? "true" : undefined}
         // tiles rows with no gap, so :hover travels tick to tick without ever losing anchor
-        className={cn("aui-thread-rail-item group relative flex items-center py-1", skinSlot("thread-rail", "item", {}), className)}
+        className={cn("relative flex items-center py-1", className)}
         {...props}
       >
         {children}
@@ -131,7 +135,9 @@ export function ThreadRailItem({
   );
 }
 
-export type ThreadRailLineProps = ComponentProps<"button">;
+export type ThreadRailLineProps = Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
 export function ThreadRailLine({ className, ...props }: ThreadRailLineProps) {
   const { index, inView, activate } = useItem();
@@ -139,92 +145,101 @@ export function ThreadRailLine({ className, ...props }: ThreadRailLineProps) {
   return (
     <button
       data-control-ui="thread-rail"
+      data-control-family="thread-rail"
       data-slot="line"
       type="button"
       aria-current={inView ? "location" : undefined}
-      // the ±4px hit area spans full 9px row so pointer travel never gaps
       onMouseEnter={() => activate(index)}
       onFocus={() => activate(index)}
-      // width and tone belong to thread-rail.css — structure only here
-      className={cn(
-        "aui-thread-rail-tick relative block h-px cursor-pointer rounded-full",
-        // taller invisible hit area so a 1px tick is easy to hover and focus.
-        "before:absolute before:-inset-y-1 before:inset-x-0 before:content-['']",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
-        skinSlot("thread-rail", "line", {}),
-        className,
-      )}
+      className={cn("relative block h-px cursor-pointer before:absolute before:-inset-y-1 before:inset-x-0 before:content-['']", className)}
       {...props}
     />
   );
 }
 
-export type ThreadRailPopoverProps = ComponentProps<"div"> & { children?: ReactNode };
+export type ThreadRailPopoverProps = Omit<ComponentProps<"div">, "style"> & {
+  children?: ReactNode;
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
-// pure marker — ThreadRail lifts its children into shared travelling card
 export function ThreadRailPopover(_props: ThreadRailPopoverProps) {
   return null;
 }
 
-export type ThreadRailTitleProps = ComponentProps<"div">;
+export type ThreadRailTitleProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
 export function ThreadRailTitle({ className, ...props }: ThreadRailTitleProps) {
   return (
     <div
       data-control-ui="thread-rail"
+      data-control-family="thread-rail"
       data-slot="title"
-      className={cn("truncate text-body font-medium text-foreground", skinSlot("thread-rail", "title", {}), className)}
+      className={cn("truncate", className)}
+      {...props}
+    />
+  );
+}
+export type ThreadRailSummaryProps = Omit<ComponentProps<"p">, "style"> & {
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
+
+export function ThreadRailSummary({ className, ...props }: ThreadRailSummaryProps) {
+  return (
+    <p
+      data-control-ui="thread-rail"
+      data-control-family="thread-rail"
+      data-slot="summary"
+      className={cn("mt-1.5 line-clamp-3", className)}
       {...props}
     />
   );
 }
 
-export type ThreadRailSummaryProps = ComponentProps<"p">;
-
-export function ThreadRailSummary({ className, ...props }: ThreadRailSummaryProps) {
-  return <p className={cn("mt-1.5 line-clamp-3 text-label leading-5 text-muted-foreground", className)} {...props} />;
-}
-
-export type ThreadRailFooterProps = ComponentProps<"div">;
+export type ThreadRailFooterProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
 export function ThreadRailFooter({ className, ...props }: ThreadRailFooterProps) {
   return (
     <div
       data-control-ui="thread-rail"
+      data-control-family="thread-rail"
       data-slot="footer"
-      className={cn(
-        "mt-3 flex flex-wrap items-center gap-2 border-t border-border/60 pt-2.5",
-        skinSlot("thread-rail", "footer", {}),
-        className,
-      )}
+      className={cn("mt-3 flex flex-wrap items-center gap-2 pt-2.5", className)}
       {...props}
     />
   );
 }
 
-export type ThreadRailFileProps = ComponentProps<"span">;
+export type ThreadRailFileProps = Omit<ComponentProps<"span">, "style"> & {
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
 export function ThreadRailFile({ className, ...props }: ThreadRailFileProps) {
   return (
     <span
       data-control-ui="thread-rail"
+      data-control-family="thread-rail"
       data-slot="file"
-      className={cn(
-        "inline-flex max-w-[180px] items-center gap-1.5 truncate text-label text-muted-foreground",
-        skinSlot("thread-rail", "file", {}),
-        className,
-      )}
+      className={cn("inline-flex max-w-[180px] items-center gap-1.5 truncate", className)}
       {...props}
     />
   );
 }
 
-export type ThreadRailFileIconProps = ComponentProps<"span">;
+export type ThreadRailFileIconProps = Omit<ComponentProps<"span">, "style"> & {
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
 export function ThreadRailFileIcon({ className, children, ...props }: ThreadRailFileIconProps) {
   return (
     <span
-      className={cn("inline-flex size-3.5 shrink-0 items-center justify-center text-label leading-none opacity-70", className)}
+      data-control-ui="thread-rail"
+      data-control-family="thread-rail"
+      data-slot="file-icon"
+      className={cn("inline-flex size-3.5 shrink-0 items-center justify-center", className)}
       aria-hidden
       {...props}
     >
@@ -242,9 +257,10 @@ export function ThreadRailFileIcon({ className, children, ...props }: ThreadRail
     </span>
   );
 }
-
-export type ThreadRailMoreProps = ComponentProps<"span">;
+export type ThreadRailMoreProps = Omit<ComponentProps<"span">, "style"> & {
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
 export function ThreadRailMore({ className, ...props }: ThreadRailMoreProps) {
-  return <span className={cn("text-label font-medium text-muted-foreground", className)} {...props} />;
+  return <span data-control-ui="thread-rail" data-control-family="thread-rail" data-slot="more" className={className} {...props} />;
 }

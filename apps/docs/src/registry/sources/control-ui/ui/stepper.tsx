@@ -17,7 +17,6 @@ import type {
   StepperTriggerProps,
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 
 type StepperContextValue = {
   value: number | null;
@@ -74,12 +73,12 @@ function defaultIndicatorContent(step: number, state: StepperState, invalid: boo
 
 function itemLayout(orientation: StepperOrientation, responsive: boolean) {
   if (orientation === "vertical") {
-    return "grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] pb-6 text-left last:pb-0";
+    return "grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] pb-6 last:pb-0";
   }
   return cn(
-    "relative grid min-w-0 flex-1 grid-cols-1 justify-items-center text-center",
+    "relative grid min-w-0 flex-1 grid-cols-1 justify-items-center",
     responsive &&
-      "@max-md/stepper:w-full @max-md/stepper:flex-none @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch @max-md/stepper:pb-6 @max-md/stepper:text-left @max-md/stepper:last:pb-0",
+      "@max-md/stepper:w-full @max-md/stepper:flex-none @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch @max-md/stepper:pb-6 @max-md/stepper:last:pb-0",
   );
 }
 
@@ -143,16 +142,12 @@ export function Stepper({
         {...props}
         id={id}
         data-control-ui="stepper"
+        data-control-family="stepper"
         data-slot="root"
         data-orientation={orientation}
         data-content-mode={contentMode}
         data-responsive={responsive ? "true" : undefined}
-        className={cn(
-          responsive && "@container/stepper",
-          "w-full",
-          skinSlot("stepper", "root", { orientation, contentMode, responsive }),
-          className,
-        )}
+        className={cn(responsive && "@container/stepper", "w-full", className)}
       >
         {children}
       </div>
@@ -166,12 +161,12 @@ export function StepperList({ className, ...props }: StepperListProps) {
     <ol
       {...props}
       data-control-ui="stepper"
+      data-control-family="stepper"
       data-slot="list"
       data-orientation={orientation}
       className={cn(
         orientation === "horizontal" ? "flex w-full items-start" : "flex w-full flex-col",
         orientation === "horizontal" && responsive && "@max-md/stepper:flex-col @max-md/stepper:items-stretch",
-        skinSlot("stepper", "list", { orientation, responsive }),
         className,
       )}
     />
@@ -195,18 +190,14 @@ export function StepperItem({ step, disabled = false, invalid = false, className
       <li
         {...props}
         data-control-ui="stepper"
+        data-control-family="stepper"
         data-slot="item"
         data-step={step}
         data-state={state}
         data-disabled={disabled ? "true" : undefined}
         data-invalid={invalid ? "true" : undefined}
         aria-current={state === "current" ? "step" : undefined}
-        className={cn(
-          "relative",
-          itemLayout(orientation, responsive),
-          skinSlot("stepper", "item", { state, disabled, invalid }),
-          className,
-        )}
+        className={cn("relative", itemLayout(orientation, responsive), className)}
       >
         {children}
       </li>
@@ -223,6 +214,7 @@ export function StepperTrigger({ disabled: disabledProp, className, onClick, typ
     <button
       {...props}
       data-control-ui="stepper"
+      data-control-family="stepper"
       data-slot="trigger"
       data-state={state}
       data-invalid={invalid ? "true" : undefined}
@@ -230,12 +222,11 @@ export function StepperTrigger({ disabled: disabledProp, className, onClick, typ
       disabled={isDisabled}
       aria-controls={contentId}
       className={cn(
-        "group/stepper-trigger col-span-full row-span-3 row-start-1 grid w-full min-w-0 grid-cols-1 justify-items-center rounded-sm text-center outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
-        orientation === "vertical" && "row-span-2 grid-cols-[2rem_minmax(0,1fr)] justify-items-stretch text-left",
+        "group/stepper-trigger col-span-full row-span-3 row-start-1 grid w-full min-w-0 grid-cols-1 justify-items-center disabled:pointer-events-none disabled:cursor-not-allowed",
+        orientation === "vertical" && "row-span-2 grid-cols-[2rem_minmax(0,1fr)] justify-items-stretch",
         orientation === "horizontal" &&
           responsive &&
-          "@max-md/stepper:row-span-2 @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch @max-md/stepper:text-left",
-        skinSlot("stepper", "trigger", { state, disabled: isDisabled, invalid }),
+          "@max-md/stepper:row-span-2 @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch",
         className,
       )}
       onClick={(event) => {
@@ -257,16 +248,13 @@ export function StepperIndicator({ className, children, ...props }: StepperIndic
     <span
       {...props}
       data-control-ui="stepper"
+      data-control-family="stepper"
       data-slot="indicator"
       data-state={state}
       data-invalid={invalid ? "true" : undefined}
       className={cn(
-        "relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border bg-background text-xs font-semibold tabular-nums text-muted-foreground transition-[color,background-color,border-color,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
-        state === "complete" && !invalid && "border-primary bg-primary text-primary-foreground",
-        state === "current" && !invalid && "border-primary text-primary-text ring-4 ring-primary/10",
-        invalid && "border-dashed border-destructive bg-destructive/10 text-destructive-text",
+        "relative z-10 flex size-8 shrink-0 items-center justify-center",
         partLayout(orientation, responsive, "indicator"),
-        skinSlot("stepper", "indicator", { state, invalid }),
         className,
       )}
     >
@@ -283,18 +271,18 @@ export function StepperSeparator({ className, ...props }: StepperSeparatorProps)
     <span
       {...props}
       data-control-ui="stepper"
+      data-control-family="stepper"
       data-slot="separator"
       data-state={state}
+      data-invalid={invalid ? "true" : undefined}
       aria-hidden="true"
       className={cn(
-        "absolute bg-border transition-colors duration-[var(--duration-base)] ease-[var(--ease-standard)]",
-        state === "complete" && !invalid && "bg-primary",
+        "absolute",
         orientation === "horizontal" && "top-4 right-[calc(-50%+1rem)] left-[calc(50%+1rem)] h-px",
         orientation === "vertical" && "top-8 bottom-0 left-4 w-px",
         orientation === "horizontal" &&
           responsive &&
           "@max-md/stepper:top-8 @max-md/stepper:right-auto @max-md/stepper:bottom-0 @max-md/stepper:left-4 @max-md/stepper:h-auto @max-md/stepper:w-px",
-        skinSlot("stepper", "separator", { state, invalid }),
         className,
       )}
     />
@@ -309,13 +297,9 @@ export function StepperTitle({ className, ...props }: StepperTitleProps) {
       {...props}
       id={titleId}
       data-control-ui="stepper"
+      data-control-family="stepper"
       data-slot="title"
-      className={cn(
-        "min-w-0 text-sm font-medium leading-tight text-foreground",
-        partLayout(orientation, responsive, "title"),
-        skinSlot("stepper", "title", {}),
-        className,
-      )}
+      className={cn("min-w-0", partLayout(orientation, responsive, "title"), className)}
     />
   );
 }
@@ -326,13 +310,9 @@ export function StepperDescription({ className, ...props }: StepperDescriptionPr
     <span
       {...props}
       data-control-ui="stepper"
+      data-control-family="stepper"
       data-slot="description"
-      className={cn(
-        "min-w-0 text-sm leading-relaxed text-muted-foreground",
-        partLayout(orientation, responsive, "description"),
-        skinSlot("stepper", "description", {}),
-        className,
-      )}
+      className={cn("min-w-0", partLayout(orientation, responsive, "description"), className)}
     />
   );
 }
@@ -348,11 +328,12 @@ export function StepperContent({ step, keepMounted = true, className, ...props }
       {...props}
       id={`${baseId}-step-${step}-content`}
       data-control-ui="stepper"
+      data-control-family="stepper"
       data-slot="content"
       data-state={active ? "active" : "inactive"}
       hidden={hidden}
       aria-labelledby={`${baseId}-step-${step}-title`}
-      className={cn("mt-6 outline-none", skinSlot("stepper", "content", { active }), className)}
+      className={cn("mt-6", className)}
     />
   );
 }

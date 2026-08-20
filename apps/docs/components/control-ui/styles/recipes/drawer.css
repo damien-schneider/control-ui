@@ -1,0 +1,180 @@
+@layer components {
+  :where([data-control-family="drawer"][data-slot="backdrop"], [data-control-family="drawer"][data-slot="content"]) {
+    --drawer-backdrop-background: oklch(from var(--foreground) l c h / var(--overlay-opacity));
+    --drawer-content-radius: var(--radius-panel);
+    --drawer-content-background: var(--background);
+    --drawer-content-foreground: var(--foreground);
+    --drawer-content-border-color: var(--border);
+    --drawer-content-shadow: var(--shadow-modal);
+  }
+  :where([data-control-family="drawer"][data-slot="backdrop"]) {
+    background-color: var(--drawer-backdrop-background);
+    backdrop-filter: blur(var(--backdrop-blur-overlay));
+  }
+
+  :where(.dark [data-control-family="drawer"][data-slot="backdrop"]) {
+    --drawer-backdrop-background: oklch(from var(--background) l c h / var(--overlay-opacity));
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"]) {
+    --_drawer-content-closed-translate: 0 100%;
+    border: 0 solid var(--drawer-content-border-color);
+    background-color: var(--drawer-content-background);
+    color: var(--drawer-content-foreground);
+    box-shadow: var(--drawer-content-shadow);
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-surface-variant="card"]) {
+    --drawer-content-background: var(--card);
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="floating"]) {
+    border-width: 1px;
+    border-radius: var(--drawer-content-radius);
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="edge"][data-side="bottom"]) {
+    border-top-width: 1px;
+    border-radius: var(--drawer-content-radius) var(--drawer-content-radius) 0 0;
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="edge"][data-side="top"]) {
+    border-bottom-width: 1px;
+    --_drawer-content-closed-translate: 0 -100%;
+    border-radius: 0 0 var(--drawer-content-radius) var(--drawer-content-radius);
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="edge"][data-side="right"]) {
+    border-left-width: 1px;
+    --_drawer-content-closed-translate: 100% 0;
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="edge"][data-side="left"]) {
+    border-right-width: 1px;
+    --_drawer-content-closed-translate: -100% 0;
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="floating"][data-side="bottom"]) {
+    --_drawer-content-closed-translate: 0 calc(100% + var(--_drawer-float-gap));
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="floating"][data-side="top"]) {
+    --_drawer-content-closed-translate: 0 calc(-100% - var(--_drawer-float-gap));
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="floating"][data-side="right"]) {
+    --_drawer-content-closed-translate: calc(100% + var(--_drawer-float-gap)) 0;
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-variant="floating"][data-side="left"]) {
+    --_drawer-content-closed-translate: calc(-100% - var(--_drawer-float-gap)) 0;
+  }
+
+  :where([data-control-family="drawer"][data-slot="handle"]) {
+    border-radius: 9999px;
+    background-color: oklch(from var(--muted-foreground) l c h / 0.3);
+  }
+
+  :where([data-control-family="drawer"][data-slot="title"]) {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  :where([data-control-family="drawer"][data-slot="description"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-sm);
+  }
+
+  :where([data-control-family="drawer"][data-slot="header"]) {
+    --_drawer-header-text-align: center;
+    text-align: var(--_drawer-header-text-align);
+  }
+
+  @media (width >= 40rem) {
+    :where([data-control-family="drawer"][data-slot="header"]) {
+      --_drawer-header-text-align: left;
+      text-align: var(--_drawer-header-text-align);
+    }
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"]) {
+    --_drawer-content-outline: none;
+    outline-style: var(--_drawer-content-outline);
+    transform: translate(var(--drawer-swipe-movement-x, 0), var(--drawer-swipe-movement-y, 0));
+    --_drawer-content-transition-property: transform, translate, scale, rotate;
+    transition-property: var(--_drawer-content-transition-property);
+    --_drawer-content-transition-duration: var(--duration-base);
+    transition-duration: var(--_drawer-content-transition-duration);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where(
+  [data-control-family="drawer"][data-slot="content"][data-starting-style],
+  [data-control-family="drawer"][data-slot="content"][data-ending-style]
+) {
+    translate: var(--_drawer-content-closed-translate);
+  }
+
+  :where([data-control-family="drawer"][data-slot="content"][data-swiping]) {
+    --_drawer-content-transition-duration: 0ms;
+    transition-duration: var(--_drawer-content-transition-duration);
+  }
+
+  :where([data-control-family="drawer"][data-slot="backdrop"]) {
+    --_drawer-backdrop-transition-property: opacity;
+    transition-property: var(--_drawer-backdrop-transition-property);
+    transition-timing-function: var(--ease-standard);
+    --_drawer-backdrop-transition-duration: var(--duration-base);
+    transition-duration: var(--_drawer-backdrop-transition-duration);
+  }
+
+  :where([data-control-family="drawer"][data-slot="backdrop"][data-swiping]) {
+    --_drawer-backdrop-transition-duration: 0ms;
+    transition-duration: var(--_drawer-backdrop-transition-duration);
+  }
+
+  :where([data-control-family="drawer"][data-slot="backdrop"][data-ending-style]) {
+    --_drawer-backdrop-opacity: 0%;
+    opacity: var(--_drawer-backdrop-opacity);
+  }
+
+  :where([data-control-family="drawer"][data-slot="backdrop"][data-starting-style]) {
+    --_drawer-backdrop-opacity: 0%;
+    opacity: var(--_drawer-backdrop-opacity);
+  }
+}
+
+@property --drawer-backdrop-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --drawer-content-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --drawer-content-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --drawer-content-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --drawer-content-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --drawer-content-shadow {
+  syntax: "*";
+  inherits: true;
+}

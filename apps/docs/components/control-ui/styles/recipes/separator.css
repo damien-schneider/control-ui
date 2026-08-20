@@ -1,0 +1,12 @@
+@layer components {
+  :where([data-control-family="separator"][data-slot="root"]) {
+    --separator-root-background: var(--border);
+    background-color: var(--separator-root-background);
+  }
+}
+
+@property --separator-root-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

@@ -10,11 +10,19 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/label.css",
+      "target": "@components/control-ui/styles/recipes/label.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/label.tsx",
       "target": "@components/control-ui/ui/label.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/label.css\"": {}
+  },
   "meta": {
     "internal": true,
     "sourceManifestPath": "registry/control-ui/label.json"

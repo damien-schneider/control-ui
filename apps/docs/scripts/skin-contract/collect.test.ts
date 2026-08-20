@@ -16,12 +16,11 @@ describe("skin contract generation", () => {
     expect(Object.keys(first.scopes)).toEqual([...Object.keys(first.scopes)].sort());
   });
 
-  test("resolves contexts, ownership, paints, adornments, and semantic families", () => {
+  test("resolves ownership, adornments, and semantic families", () => {
     const contract = collectSkinContract();
-    expect(contract.version).toBe(5);
+    expect(contract.version).toBe(6);
     expect(contract.selectorPattern).toBe('[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])');
     expect(contract.scopes["code-diff"].registryItems).toContain("code-diff");
-    expect(contract.scopes.button.parts.root.context?.variant).toContain("ButtonVariant");
     expect(contract.scopes.button.parts.root.registryItems).toEqual(["button"]);
     expect(contract.scopes.button.parts.content.registryItems).toEqual(["button", "dropdown-menu", "select"]);
     expect(contract.scopes.button.parts.root.states).toContainEqual({
@@ -37,7 +36,6 @@ describe("skin contract generation", () => {
       valueKind: "presence",
       values: [],
     });
-    expect(contract.paints.skeleton.shimmer).toEqual({ context: {} });
     expect(contract.adornments["chat-composer"]["send-layer"].context.sendCount).toBe("number");
     expect(contract.scopes.skeleton?.parts.paint).toBeUndefined();
     expect(contract.semanticFamilies.surfaces.floating).toContainEqual({ scope: "dropdown-menu", part: "content" });
@@ -146,13 +144,7 @@ describe("skin contract generation", () => {
     expect(stateAt(contract, "tree", "item", "data-disabled")).toEqual(presenceState("data-disabled"));
     expect(stateAt(contract, "tree", "item", "data-selected")).toEqual(presenceState("data-selected"));
     expect(stateAt(contract, "tree", "item-trigger", "data-selected")).toEqual(presenceState("data-selected"));
-    expect(stateAt(contract, "sidebar", "menu-button", "data-active")).toEqual({
-      attribute: "data-active",
-      source: "control-ui",
-      valueKind: "enum",
-      values: ["false", "true"],
-    });
-    expect(contract.scopes["tool-call"]).toBeUndefined();
+    expect(stateAt(contract, "sidebar", "menu-button", "data-active")).toEqual(presenceState("data-active"));
   });
 
   test("keeps guide copy synchronized with the generated contract version", () => {

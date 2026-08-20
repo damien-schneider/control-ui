@@ -1,23 +1,22 @@
 "use client";
 
 import { CheckIcon, MicIcon, XIcon } from "lucide-react";
-import type { ComponentProps, MouseEvent } from "react";
+import type { ComponentProps, CSSProperties, MouseEvent } from "react";
 import { createContext, use } from "react";
 // point this at ./audio-visualizer-line for line reading — same export, same contract, no call site moves
 import { AudioVisualizer } from "@/components/control-ui/audio-visualizer";
 import type { UseAudioRecorderOptions, UseAudioRecorderResult } from "@/components/control-ui/hooks/use-audio-recorder";
 import { useAudioRecorder } from "@/components/control-ui/hooks/use-audio-recorder";
+import type { AudioRecorderKnobStyle, AudioVisualizerKnobStyle, ButtonKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatAudioRecorderDuration } from "@/components/control-ui/lib/format-audio-recorder-duration";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
-const AudioRecorderContext = createContext<UseAudioRecorderResult | null>(null);
+type AudioRecorderStyleProps<Props, Style> = Omit<Props, "style"> & {
+  style?: CSSProperties & Style;
+};
 
-const recorderContentMotion =
-  "invisible translate-x-1 opacity-0 blur-xs transition-[opacity,filter,translate,visibility,color] transition-discrete duration-[var(--duration-base)] ease-[var(--ease-emphasized)] data-[visible=true]:visible data-[visible=true]:translate-x-0 data-[visible=true]:opacity-100 data-[visible=true]:blur-none";
-const recorderControlMotion =
-  "invisible translate-x-1 scale-95 opacity-0 blur-xs transition-[opacity,filter,translate,scale,visibility] transition-discrete duration-[var(--duration-base)] ease-[var(--ease-emphasized)] disabled:opacity-0 data-[visible=true]:visible data-[visible=true]:translate-x-0 data-[visible=true]:scale-100 data-[visible=true]:opacity-100 data-[visible=true]:blur-none";
+const AudioRecorderContext = createContext<UseAudioRecorderResult | null>(null);
 
 // lets call site stand its own part inside <AudioRecorder>, e.g. different visualizer per instance
 export function useAudioRecorderContext() {
@@ -29,9 +28,10 @@ export function useAudioRecorderContext() {
 export type { AudioRecording } from "@/components/control-ui/hooks/use-audio-recorder";
 
 // no bundled device picker — pair `deviceId` with useAudioInputDevices and any list UI
-export type AudioRecorderProps = ComponentProps<"div"> &
+export type AudioRecorderProps = Omit<ComponentProps<"div">, "style"> &
   UseAudioRecorderOptions & {
     label?: string;
+    style?: CSSProperties & AudioRecorderKnobStyle;
   };
 
 export function AudioRecorder({
@@ -54,6 +54,7 @@ export function AudioRecorder({
       {/* biome-ignore lint/a11y/useSemanticElements: toolbar-like group, not a form fieldset */}
       <div
         data-control-ui="audio-recorder"
+        data-control-family="audio-recorder"
         data-slot="root"
         data-state={recorder.state}
         data-disabled={recorder.isDisabled ? "true" : undefined}
@@ -61,12 +62,7 @@ export function AudioRecorder({
         role="group"
         aria-label={label}
         aria-disabled={recorder.isDisabled || undefined}
-        className={cn(
-          "flex min-h-8 w-full min-w-0 max-w-full items-center gap-2 pr-1 text-muted-foreground transition-colors duration-[var(--duration-base)] ease-[var(--ease-standard)]",
-          "data-[state=recording]:text-foreground data-[state=recorded]:text-foreground",
-          skinSlot("audio-recorder", "root", {}),
-          className,
-        )}
+        className={cn("flex min-h-8 w-full min-w-0 max-w-full items-center gap-2 pr-1", className)}
         {...props}
       >
         {children ?? <AudioRecorderDefaultLayout points={barCount} />}
@@ -79,12 +75,22 @@ function AudioRecorderDefaultLayout({ points }: { points?: number }) {
   return (
     <>
       <AudioRecorderTrigger />
-      <div data-control-ui="audio-recorder" data-slot="content" className="grid min-w-0 flex-1 items-center overflow-hidden">
+      <div
+        data-control-ui="audio-recorder"
+        data-control-family="audio-recorder"
+        data-slot="content"
+        className="grid min-w-0 flex-1 items-center overflow-hidden"
+      >
         <AudioRecorderStatus className="col-start-1 row-start-1 w-full flex-none" />
         <AudioRecorderVisualizer points={points} className="col-start-1 row-start-1 w-full" />
       </div>
       <AudioRecorderDuration />
-      <div data-control-ui="audio-recorder" data-slot="actions" className="flex shrink-0 items-center gap-1">
+      <div
+        data-control-ui="audio-recorder"
+        data-control-family="audio-recorder"
+        data-slot="actions"
+        className="flex shrink-0 items-center gap-1"
+      >
         <AudioRecorderCancel />
         <AudioRecorderSubmit />
       </div>
@@ -92,7 +98,7 @@ function AudioRecorderDefaultLayout({ points }: { points?: number }) {
   );
 }
 
-export type AudioRecorderTriggerProps = ComponentProps<typeof Button>;
+export type AudioRecorderTriggerProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle>;
 
 export function AudioRecorderTrigger({ className, children, disabled, onClick, ...props }: AudioRecorderTriggerProps) {
   const recorder = useAudioRecorderContext();
@@ -113,6 +119,7 @@ export function AudioRecorderTrigger({ className, children, disabled, onClick, .
   return (
     <Button
       data-control-ui="audio-recorder"
+      data-control-family="audio-recorder"
       data-slot="trigger"
       data-recorder-state={recorder.state}
       data-status-only={isStatusOnly ? "true" : undefined}
@@ -126,11 +133,7 @@ export function AudioRecorderTrigger({ className, children, disabled, onClick, .
       aria-label={ariaLabel}
       title={recorder.error?.message}
       disabled={disabled ?? (recorder.isDisabled || !recorder.canStart)}
-      className={cn(
-        "data-[recorder-state=recording]:ring-2 data-[recorder-state=recording]:ring-destructive/25 data-[status-only=true]:cursor-default data-[status-only=true]:disabled:opacity-100",
-        skinSlot("audio-recorder", "trigger", {}),
-        className,
-      )}
+      className={cn("data-[status-only=true]:cursor-default", className)}
       onClick={handleClick}
       {...props}
     >
@@ -165,7 +168,10 @@ function audioRecorderTriggerLabel(recorder: UseAudioRecorderResult) {
       return recorder.error ? "Retry voice recording" : "Start voice recording";
   }
 }
-export type AudioRecorderVisualizerProps = Omit<ComponentProps<"div">, "children"> & {
+export type AudioRecorderVisualizerProps = AudioRecorderStyleProps<
+  Omit<ComponentProps<"div">, "children">,
+  AudioVisualizerKnobStyle & AudioRecorderKnobStyle
+> & {
   points?: number;
 };
 
@@ -177,19 +183,20 @@ export function AudioRecorderVisualizer({ points, className, ...props }: AudioRe
   return (
     <AudioVisualizer
       data-control-ui="audio-recorder"
+      data-control-family="audio-recorder"
       data-slot="visualizer"
       data-visible={isVisible ? "true" : undefined}
       active={recorder.state === "recording"}
       levels={recorder.levels}
       points={points}
       aria-hidden={!isVisible}
-      className={cn(recorderContentMotion, skinSlot("audio-recorder", "visualizer", {}), className)}
+      className={className}
       {...props}
     />
   );
 }
 
-export type AudioRecorderStatusProps = ComponentProps<"span">;
+export type AudioRecorderStatusProps = AudioRecorderStyleProps<ComponentProps<"span">, AudioRecorderKnobStyle>;
 
 export function AudioRecorderStatus({ className, children, ...props }: AudioRecorderStatusProps) {
   const recorder = useAudioRecorderContext();
@@ -199,17 +206,13 @@ export function AudioRecorderStatus({ className, children, ...props }: AudioReco
   return (
     <span
       data-control-ui="audio-recorder"
+      data-control-family="audio-recorder"
       data-slot="status"
       data-visible={isVisible ? "true" : undefined}
       data-tone={recorder.state === "error" ? "error" : "neutral"}
       aria-hidden={!isVisible}
       aria-live="polite"
-      className={cn(
-        "min-w-0 flex-1 truncate text-caption text-muted-foreground data-[tone=error]:text-destructive-text",
-        recorderContentMotion,
-        skinSlot("audio-recorder", "status", {}),
-        className,
-      )}
+      className={cn("min-w-0 flex-1 truncate", className)}
       {...props}
     >
       {message}
@@ -224,7 +227,7 @@ function audioRecorderStatusMessage(recorder: UseAudioRecorderResult) {
   return null;
 }
 
-export type AudioRecorderDurationProps = ComponentProps<"span">;
+export type AudioRecorderDurationProps = AudioRecorderStyleProps<ComponentProps<"span">, AudioRecorderKnobStyle>;
 
 export function AudioRecorderDuration({ className, children, ...props }: AudioRecorderDurationProps) {
   const recorder = useAudioRecorderContext();
@@ -233,15 +236,11 @@ export function AudioRecorderDuration({ className, children, ...props }: AudioRe
   return (
     <span
       data-control-ui="audio-recorder"
+      data-control-family="audio-recorder"
       data-slot="duration"
       data-visible={isVisible ? "true" : undefined}
       aria-hidden={!isVisible}
-      className={cn(
-        "w-10 shrink-0 text-right text-caption tabular-nums text-muted-foreground",
-        recorderContentMotion,
-        skinSlot("audio-recorder", "duration", {}),
-        className,
-      )}
+      className={cn("w-10 shrink-0", className)}
       {...props}
     >
       {children ?? formatAudioRecorderDuration(recorder.durationMs)}
@@ -249,7 +248,7 @@ export function AudioRecorderDuration({ className, children, ...props }: AudioRe
   );
 }
 
-export type AudioRecorderCancelProps = ComponentProps<typeof Button>;
+export type AudioRecorderCancelProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle>;
 
 export function AudioRecorderCancel({ className, children, disabled, onClick, tabIndex, ...props }: AudioRecorderCancelProps) {
   const recorder = useAudioRecorderContext();
@@ -263,6 +262,7 @@ export function AudioRecorderCancel({ className, children, disabled, onClick, ta
   return (
     <Button
       data-control-ui="audio-recorder"
+      data-control-family="audio-recorder"
       data-slot="cancel"
       data-visible={isVisible ? "true" : undefined}
       type="button"
@@ -275,7 +275,7 @@ export function AudioRecorderCancel({ className, children, disabled, onClick, ta
       aria-hidden={!isVisible}
       tabIndex={isVisible ? tabIndex : -1}
       disabled={disabled ?? (recorder.isDisabled || !isVisible)}
-      className={cn(recorderControlMotion, skinSlot("audio-recorder", "cancel", {}), className)}
+      className={className}
       onClick={handleClick}
       {...props}
     >
@@ -284,7 +284,7 @@ export function AudioRecorderCancel({ className, children, disabled, onClick, ta
   );
 }
 
-export type AudioRecorderSubmitProps = ComponentProps<typeof Button>;
+export type AudioRecorderSubmitProps = AudioRecorderStyleProps<ComponentProps<typeof Button>, ButtonKnobStyle & AudioRecorderKnobStyle>;
 
 export function AudioRecorderSubmit({ className, children, disabled, onClick, tabIndex, ...props }: AudioRecorderSubmitProps) {
   const recorder = useAudioRecorderContext();
@@ -298,6 +298,7 @@ export function AudioRecorderSubmit({ className, children, disabled, onClick, ta
   return (
     <Button
       data-control-ui="audio-recorder"
+      data-control-family="audio-recorder"
       data-slot="submit"
       data-visible={isVisible ? "true" : undefined}
       type="button"
@@ -310,7 +311,7 @@ export function AudioRecorderSubmit({ className, children, disabled, onClick, ta
       aria-hidden={!isVisible}
       tabIndex={isVisible ? tabIndex : -1}
       disabled={disabled ?? (recorder.state === "submitting" || !isVisible)}
-      className={cn(recorderControlMotion, skinSlot("audio-recorder", "submit", {}), className)}
+      className={className}
       onClick={handleClick}
       {...props}
     >

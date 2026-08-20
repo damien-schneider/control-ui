@@ -1,0 +1,124 @@
+@layer components {
+  :where([data-control-family="color-picker"][data-slot="output-value"]) {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="output-swatch"]) {
+    border-radius: var(--color-picker-output-swatch-radius);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--border) 60%, transparent);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="contrast-level"]) {
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="contrast-fix"]) {
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--foreground);
+    --_color-picker-contrast-fix-decoration: underline;
+    text-decoration-line: var(--_color-picker-contrast-fix-decoration);
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="color-picker"][data-slot="contrast-fix"]:hover) {
+      background-color: color-mix(in oklab, var(--foreground) 6%, transparent);
+    }
+  }
+
+  :where([data-control-family="color-picker"][data-slot="contrast-ratio"]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="contrast"]) {
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatch-add"]) {
+    border-radius: var(--radius-md);
+    border-width: 1px;
+    border-style: dashed;
+    --_color-picker-swatch-add-border-color: var(--border);
+    border-color: var(--_color-picker-swatch-add-border-color);
+    --_color-picker-swatch-add-foreground: var(--muted-foreground);
+    color: var(--_color-picker-swatch-add-foreground);
+    --_color-picker-swatch-add-outline: none;
+    outline-style: var(--_color-picker-swatch-add-outline);
+    --_color-picker-swatch-add-transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-property: var(--_color-picker-swatch-add-transition-property);
+    transition-timing-function: var(--ease-standard);
+    transition-duration: var(--duration-fast);
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="color-picker"][data-slot="swatch-add"]:hover) {
+      --_color-picker-swatch-add-border-color: color-mix(in oklab, var(--foreground) 40%, transparent);
+      border-color: var(--_color-picker-swatch-add-border-color);
+      --_color-picker-swatch-add-foreground: var(--foreground);
+      color: var(--_color-picker-swatch-add-foreground);
+    }
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatch-add"]:focus-visible) {
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--foreground) 40%, transparent);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatch"]) {
+    border-radius: var(--color-picker-swatch-radius);
+    --_color-picker-swatch-outline: none;
+    outline-style: var(--_color-picker-swatch-outline);
+    --_color-picker-swatch-transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-property: var(--_color-picker-swatch-transition-property);
+    transition-timing-function: var(--ease-standard);
+    transition-duration: var(--duration-fast);
+    --_color-picker-swatch-shadow: inset 0 0 0 1px color-mix(in oklab, var(--border) 60%, transparent);
+    box-shadow: var(--_color-picker-swatch-shadow);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatch"]:focus-visible) {
+    --_color-picker-swatch-shadow: inset 0 0 0 2px color-mix(in oklab, var(--foreground) 40%, transparent);
+    box-shadow: var(--_color-picker-swatch-shadow);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatch"][data-selected="true"]) {
+    --_color-picker-swatch-shadow: inset 0 0 0 2px var(--foreground);
+    box-shadow: var(--_color-picker-swatch-shadow);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatches-label"]) {
+    font-size: var(--text-micro);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="channel-label"]) {
+    font-size: var(--text-micro);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="channel"]) {
+    --_color-picker-channel-text-align: center;
+    text-align: var(--_color-picker-channel-text-align);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="input"]) {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+  }
+}
+
+@property --color-picker-output-swatch-radius {
+  syntax: "<length-percentage>+";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --color-picker-swatch-radius {
+  syntax: "<length-percentage>+";
+  inherits: true;
+  initial-value: 0px;
+}

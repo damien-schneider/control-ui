@@ -1,0 +1,24 @@
+@layer components {
+  :where([data-control-family="label"][data-slot="root"]) {
+    --label-root-foreground: var(--muted-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="label"][data-slot="root"]) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="label"][data-slot="root"]) {
+    color: var(--label-root-foreground);
+  }
+
+  :where([data-control-family="label"][data-slot="root"]:is(:where(.peer):disabled ~ *)) {
+    opacity: 70%;
+  }
+}
+
+@property --label-root-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

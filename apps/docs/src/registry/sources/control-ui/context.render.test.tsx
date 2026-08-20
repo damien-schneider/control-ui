@@ -19,10 +19,10 @@ describe("Context", () => {
     expect(html.match(/<button/g)).toHaveLength(1);
     expect(html).toContain('aria-label="Context window: 100,000 of 200,000 tokens used (50%)"');
     expect(html).toContain("50% context");
-    expect(html).toContain('data-control-ui="context" data-slot="root"');
-    expect(html).toContain('data-control-ui="context" data-slot="trigger"');
-    expect(html).toContain('data-control-ui="context" data-slot="trigger-indicator"');
-    expect(html).toContain('data-control-ui="context" data-slot="trigger-label"');
+    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="root"');
+    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger"');
+    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger-indicator"');
+    expect(html).toContain('data-control-ui="context" data-control-family="context" data-slot="trigger-label"');
     expect(html).not.toContain('data-control-ui="popover" data-slot="content"');
     expect(html).not.toContain("Context window</");
   });

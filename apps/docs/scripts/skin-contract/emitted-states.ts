@@ -20,12 +20,14 @@ import type {
   ContextSegmentKind,
   ContextStatus,
   ControlSize,
+  DiffIndicators,
   DiffStyle,
   DockablePanelContentPadding,
   DockablePanelPlacement,
   DrawerContentPadding,
   DrawerContentSurface,
   DrawerContentVariant,
+  DrawerSide,
   DropdownMenuTriggerVariant,
   DropzoneOverlayScope,
   DropzoneVisualState,
@@ -38,7 +40,10 @@ import type {
   ResizablePanelGroupVariant,
   RichTooltipProgressVariant,
   RichTooltipTone,
+  ScrollAreaScrollbarVisibility,
   SelectTriggerVariant,
+  SidebarMenuButtonSize,
+  SidebarMenuButtonVariant,
   SliderVariant,
   StepperContentMode,
   StepperOrientation,
@@ -49,6 +54,7 @@ import type {
   TimelineState,
   ToolbarLinkVariant,
   ToolbarVariant,
+  TreeSelectionIndicator,
 } from "../../src/registry/contracts";
 
 export type EmittedStateContract = {
@@ -58,13 +64,17 @@ export type EmittedStateContract = {
   "activity:announcement:data-status": ActivityState;
   "activity:detail-content:data-format": ActivityDetailFormat;
   "activity:status:data-status": ActivityState;
+  "activity:status:data-kind": ActivityKind;
   "context:root:data-status": ContextStatus;
   "context:trigger:data-status": ContextStatus;
   "context:trigger-indicator:data-status": ContextStatus;
   "context:summary:data-status": ContextStatus;
+  "context:trigger-track:data-status": ContextStatus;
+  "context:trigger-value:data-status": ContextStatus;
   "context:graph:data-status": ContextStatus;
   "context:segment:data-kind": ContextSegmentKind;
   "context:legend-item:data-kind": ContextSegmentKind;
+  "context:legend-item:data-tone": "available" | "over-limit";
   "context:legend-indicator:data-kind": ContextSegmentKind;
   "audio-recorder:root:data-disabled": true;
   "audio-recorder:root:data-error": true;
@@ -105,15 +115,28 @@ export type EmittedStateContract = {
   "code:root:data-density": CodeDensity;
   "code:line:data-index": number;
   "code-block-editor:root:data-variant": "default" | "command";
+  "code-block-editor:root:data-chrome": CodeChrome;
+  "code-block-editor:root:data-density": CodeDensity;
   "code-diff:root:data-diff-style": DiffStyle;
   "code-diff:root:data-file-count": number;
   "code-diff:file:data-file-name": string;
+  "code-diff:emphasis:data-line-type": CodeDiffLineType;
   "code-diff:line:data-line-type": CodeDiffLineType;
+  "code-diff:empty-half:data-side": "left" | "right";
+  "code-diff:gutter:data-line-type": CodeDiffLineType;
+  "code-diff:line:data-indicators": DiffIndicators;
+  "code-diff:line:data-side": "left" | "right";
+  "code-diff:marker:data-line-type": CodeDiffLineType;
   "combobox:input:data-size": ControlSize;
   "dockable-panel:root:data-placement": DockablePanelPlacement;
   "dockable-panel:drop-zone:data-side": DockablePanelPlacement;
   "infinite-canvas:root:data-panning": true;
   "infinite-canvas:content:data-scale": number;
+  "calendar:day:data-today": true;
+  "calendar:day:data-selected-single": true;
+  "calendar:day:data-range-start": true;
+  "calendar:day:data-range-middle": true;
+  "calendar:day:data-range-end": true;
   "dropzone:root:data-disabled": true;
   "dropzone:root:data-empty": true;
   "dropzone:area:data-disabled": true;
@@ -144,10 +167,19 @@ export type EmittedStateContract = {
   "drawer:content:data-padding": DrawerContentPadding;
   "drawer:content:data-surface-variant": DrawerContentSurface;
   "drawer:content:data-variant": DrawerContentVariant;
+  "drawer:content:data-side": DrawerSide;
+  "sheet:content:data-side": "left" | "right";
   "popover:content:data-padding": PopoverContentPadding;
   "resizable:handle:data-variant": ResizableHandleVariant;
+  "resizable:handle:data-axis": "horizontal" | "vertical";
+  "resizable:handle-grip:data-axis": "horizontal" | "vertical";
+  "resizable:handle-grip:data-variant": ResizableHandleVariant;
   "rich-tooltip:content:data-tone": RichTooltipTone;
+  "rich-tooltip:arrow:data-tone": RichTooltipTone;
+  "rich-tooltip:description:data-tone": RichTooltipTone;
+  "rich-tooltip:progress:data-tone": RichTooltipTone;
   "rich-tooltip:progress:data-variant": RichTooltipProgressVariant;
+  "phone-input:check:data-visible": true;
   "resizable:panel-group:data-variant": ResizablePanelGroupVariant;
   "select:trigger:data-variant": SelectTriggerVariant;
   "toolbar:button:data-icon-only": true;
@@ -160,13 +192,20 @@ export type EmittedStateContract = {
   "number-field:group:data-size": ControlSize;
   "radio-group:root:data-orientation": "horizontal" | "vertical";
   "select:trigger:data-size": ControlSize;
+  "scroll-area:scrollbar:data-visibility": ScrollAreaScrollbarVisibility;
   "sidebar:root:data-collapsible": "offcanvas" | "icon" | "none";
   "sidebar:root:data-side": "left" | "right";
   "sidebar:root:data-state": "expanded" | "collapsed";
   "sidebar:root:data-variant": "sidebar" | "floating" | "inset";
-  "sidebar:menu-button:data-active": boolean;
-  "sidebar:menu-button:data-size": "default" | "sm" | "lg";
+  "sidebar:menu:data-indicator": TreeSelectionIndicator;
+  "sidebar:menu-track:data-indicator": TreeSelectionIndicator;
+  "sidebar:menu-button:data-active": true;
+  "sidebar:menu-button:data-size": SidebarMenuButtonSize;
+  "sidebar:menu-button:data-variant": SidebarMenuButtonVariant;
   "slider:root:data-variant": SliderVariant;
+  "slider:track:data-variant": SliderVariant;
+  "slider:indicator:data-variant": SliderVariant;
+  "slider:thumb:data-variant": SliderVariant;
   "stepper:root:data-content-mode": StepperContentMode;
   "stepper:root:data-orientation": StepperOrientation;
   "stepper:indicator:data-state": StepperState;
@@ -190,6 +229,8 @@ export type EmittedStateContract = {
   "toggle:root:data-size": ControlSize;
   "toggle:root:data-tone": ButtonTone;
   "toggle:root:data-variant": ButtonVariant;
+  "tree:root:data-indicator": TreeSelectionIndicator;
+  "tree:track:data-indicator": TreeSelectionIndicator;
   "tree:item:data-disabled": true;
   "tree:item:data-label": string;
   "tree:item:data-selected": true;

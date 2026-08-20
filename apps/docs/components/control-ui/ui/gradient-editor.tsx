@@ -20,7 +20,6 @@ import type {
 } from "@/components/control-ui/contracts";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatGradient } from "@/components/control-ui/lib/color";
-import { skinSlot } from "@/components/control-ui/skin";
 import {
   ColorPicker,
   ColorPickerAlpha,
@@ -128,8 +127,9 @@ export function GradientEditor({
     <GradientEditorContext.Provider value={ctx}>
       <div
         data-control-ui="gradient-editor"
+        data-control-family="gradient-editor"
         data-slot="root"
-        className={cn("grid gap-3", skinSlot("gradient-editor", "root", {}), className)}
+        className={cn("grid gap-3", className)}
         {...props}
       >
         {children}
@@ -138,20 +138,22 @@ export function GradientEditor({
   );
 }
 
-export function GradientEditorPreview({ className, "aria-label": ariaLabel = "Gradient preview", ...props }: GradientEditorPreviewProps) {
+export function GradientEditorPreview({
+  className,
+  style,
+  "aria-label": ariaLabel = "Gradient preview",
+  ...props
+}: GradientEditorPreviewProps) {
   const { gradient } = useGradientEditor();
   return (
     <div
       data-control-ui="gradient-editor"
+      data-control-family="gradient-editor"
       data-slot="preview"
       role="img"
       aria-label={ariaLabel}
-      className={cn(
-        "h-32 w-full rounded-[var(--radius-field)] ring-1 ring-inset ring-border/60",
-        skinSlot("gradient-editor", "preview", {}),
-        className,
-      )}
-      style={{ backgroundImage: gradient }}
+      className={cn("h-32 w-full", className)}
+      style={{ ...style, backgroundImage: gradient }}
       {...props}
     />
   );
@@ -160,6 +162,7 @@ export function GradientEditorPreview({ className, "aria-label": ariaLabel = "Gr
 export function GradientEditorTrack({
   className,
   children,
+  style,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
   ...props
@@ -170,15 +173,12 @@ export function GradientEditorTrack({
     <fieldset
       ref={trackRef}
       data-control-ui="gradient-editor"
+      data-control-family="gradient-editor"
       data-slot="track"
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient stops") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn(
-        "relative m-0 h-6 min-w-0 w-full cursor-copy rounded-full border-0 p-0 ring-1 ring-inset ring-border/60",
-        skinSlot("gradient-editor", "track", {}),
-        className,
-      )}
-      style={{ backgroundImage: stripe }}
+      className={cn("relative m-0 h-6 min-w-0 w-full cursor-copy p-0", className)}
+      style={{ ...style, backgroundImage: stripe }}
       onPointerDown={(event) => {
         // only bare track adds stop — click on handle is that handle's to deal with
         if (event.target !== event.currentTarget) return;
@@ -195,6 +195,7 @@ export function GradientEditorTrack({
 export function GradientEditorStop({
   stop,
   className,
+  style,
   onPointerDown,
   onKeyDown,
   onFocus,
@@ -287,6 +288,7 @@ export function GradientEditorStop({
     <button
       type="button"
       data-control-ui="gradient-editor"
+      data-control-family="gradient-editor"
       data-slot="stop"
       data-selected={selected ? "true" : undefined}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? defaultLabel) : ariaLabel}
@@ -296,11 +298,10 @@ export function GradientEditorStop({
       onKeyDown={handleKeyDown}
       onDoubleClick={handleDoubleClick}
       className={cn(
-        "-translate-x-1/2 absolute top-1/2 size-5 -translate-y-1/2 cursor-grab overflow-hidden rounded-full border-2 border-white shadow-[0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.4)] outline-none transition-transform duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-foreground/50 data-[selected=true]:scale-115 active:cursor-grabbing",
-        skinSlot("gradient-editor", "stop", { selected }),
+        "-translate-x-1/2 absolute top-1/2 size-5 -translate-y-1/2 cursor-grab overflow-hidden active:cursor-grabbing",
         className,
       )}
-      style={{ left: `${stop.position * 100}%`, backgroundColor: stop.color }}
+      style={{ ...style, left: `${stop.position * 100}%`, backgroundColor: stop.color }}
       {...props}
     />
   );
@@ -312,14 +313,11 @@ export function GradientEditorStopAdd({ className, children, ...props }: Gradien
     <button
       type="button"
       data-control-ui="gradient-editor"
+      data-control-family="gradient-editor"
       data-slot="stop-add"
       aria-label="Add gradient stop"
       onClick={() => addStop(0.5)}
-      className={cn(
-        "flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dashed border-border text-muted-foreground outline-none transition hover:border-foreground/40 hover:text-foreground focus-visible:ring-2 focus-visible:ring-foreground/40",
-        skinSlot("gradient-editor", "stop-add", {}),
-        className,
-      )}
+      className={cn("flex size-7 shrink-0 cursor-pointer items-center justify-center", className)}
       {...props}
     >
       {children ?? (

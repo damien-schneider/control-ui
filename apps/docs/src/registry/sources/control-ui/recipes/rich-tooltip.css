@@ -1,0 +1,250 @@
+@layer components {
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="progress"]) {
+    --_rich-tooltip-dot-radius: var(--_rich-tooltip-content-dot-radius);
+    --_rich-tooltip-dot-opacity: var(--_rich-tooltip-content-dot-opacity);
+    --_rich-tooltip-dot-transition-property: opacity;
+    --_rich-tooltip-dot-transition-easing: var(--_rich-tooltip-content-dot-transition-easing);
+    --_rich-tooltip-dot-transition-duration: var(--_rich-tooltip-content-dot-transition-duration);
+    --_rich-tooltip-progress-font-size: var(--_rich-tooltip-content-progress-font-size);
+    --_rich-tooltip-progress-foreground: var(--_rich-tooltip-content-progress-foreground);
+    font-size: var(--_rich-tooltip-progress-font-size);
+    color: var(--_rich-tooltip-progress-foreground);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="dot"]) {
+    border-radius: var(--_rich-tooltip-dot-radius);
+    background-color: var(--rich-tooltip-dot-background);
+    opacity: var(--_rich-tooltip-dot-opacity);
+    transition-property: var(--_rich-tooltip-dot-transition-property);
+    transition-timing-function: var(--_rich-tooltip-dot-transition-easing);
+    transition-duration: var(--_rich-tooltip-dot-transition-duration);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="dot"][data-active]) {
+    --_rich-tooltip-dot-opacity: 100%;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="description"]) {
+    --_rich-tooltip-description-font-size: var(--_rich-tooltip-content-description-font-size);
+    font-size: var(--_rich-tooltip-description-font-size);
+    --_rich-tooltip-description-line-height: var(--_rich-tooltip-content-description-line-height);
+    line-height: var(--_rich-tooltip-description-line-height);
+    --_rich-tooltip-description-foreground: var(--_rich-tooltip-content-description-foreground);
+    color: var(--_rich-tooltip-description-foreground);
+    --_rich-tooltip-description-text-wrap: pretty;
+    text-wrap: var(--_rich-tooltip-description-text-wrap);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="title"]) {
+    --_rich-tooltip-title-font-size: var(--_rich-tooltip-content-title-font-size);
+    font-size: var(--_rich-tooltip-title-font-size);
+    --_rich-tooltip-title-font-weight: var(--_rich-tooltip-content-title-font-weight);
+    font-weight: var(--_rich-tooltip-title-font-weight);
+    --_rich-tooltip-title-line-height: var(--_rich-tooltip-content-title-line-height);
+    line-height: var(--_rich-tooltip-title-line-height);
+    --_rich-tooltip-title-letter-spacing: var(--_rich-tooltip-content-title-letter-spacing);
+    letter-spacing: var(--_rich-tooltip-title-letter-spacing);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"]) {
+    --rich-tooltip-action-background: transparent;
+    --rich-tooltip-action-foreground: currentColor;
+    --rich-tooltip-action-radius: var(--radius-control);
+    --rich-tooltip-content-background: var(--primary);
+    --rich-tooltip-content-foreground: var(--primary-foreground);
+    --rich-tooltip-content-radius: var(--radius-popover);
+    --rich-tooltip-content-shadow: inset 0 1px 0
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))), 0 calc(0.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-0.25px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity))), 0 calc(1.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))), 0 calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-1.5px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))), 0 calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      calc(14px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      calc(-3px * var(--shadow-size) * var(--shadow-popover-multiplier))
+      oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity)));
+    --rich-tooltip-dot-background: currentcolor;
+    --_rich-tooltip-description-font-size: var(--text-body);
+    --_rich-tooltip-content-description-font-size: var(--_rich-tooltip-description-font-size);
+    --_rich-tooltip-description-foreground: var(--muted-foreground);
+    --_rich-tooltip-content-description-foreground: var(--_rich-tooltip-description-foreground);
+    --_rich-tooltip-description-line-height: calc(var(--spacing) * 5);
+    --_rich-tooltip-content-description-line-height: var(--_rich-tooltip-description-line-height);
+    --_rich-tooltip-dot-radius: calc(infinity * 1px);
+    --_rich-tooltip-content-dot-radius: var(--_rich-tooltip-dot-radius);
+    --_rich-tooltip-dot-opacity: 35%;
+    --_rich-tooltip-content-dot-opacity: var(--_rich-tooltip-dot-opacity);
+    --_rich-tooltip-dot-transition-easing: var(--ease-standard);
+    --_rich-tooltip-content-dot-transition-easing: var(--_rich-tooltip-dot-transition-easing);
+    --_rich-tooltip-dot-transition-duration: var(--duration-fast);
+    --_rich-tooltip-content-dot-transition-duration: var(--_rich-tooltip-dot-transition-duration);
+    --_rich-tooltip-progress-font-size: var(--text-caption);
+    --_rich-tooltip-content-progress-font-size: var(--_rich-tooltip-progress-font-size);
+    --_rich-tooltip-progress-foreground: var(--muted-foreground);
+    --_rich-tooltip-content-progress-foreground: var(--_rich-tooltip-progress-foreground);
+    --_rich-tooltip-title-font-size: var(--text-label);
+    --_rich-tooltip-content-title-font-size: var(--_rich-tooltip-title-font-size);
+    --_rich-tooltip-title-font-weight: var(--font-weight-semibold);
+    --_rich-tooltip-content-title-font-weight: var(--_rich-tooltip-title-font-weight);
+    --_rich-tooltip-title-line-height: calc(var(--spacing) * 6);
+    --_rich-tooltip-content-title-line-height: var(--_rich-tooltip-title-line-height);
+    --_rich-tooltip-title-letter-spacing: var(--tracking-tight);
+    --_rich-tooltip-content-title-letter-spacing: var(--_rich-tooltip-title-letter-spacing);
+    --_rich-tooltip-arrow-rotate: 0deg;
+    --_rich-tooltip-action-outline: none;
+    --_rich-tooltip-action-transition-property: background-color, color, box-shadow;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="accent"]) {
+    --_rich-tooltip-arrow-path-fill: var(--primary);
+    --_rich-tooltip-description-foreground: color-mix(in oklab, var(--primary-foreground) 85%, transparent);
+    --_rich-tooltip-progress-foreground: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
+    border-radius: var(--rich-tooltip-content-radius);
+    background-color: var(--rich-tooltip-content-background);
+    color: var(--rich-tooltip-content-foreground);
+    --_rich-tooltip-content-outline: none;
+    outline-style: var(--_rich-tooltip-content-outline);
+    --_rich-tooltip-content-transition-property: opacity,scale;
+    transition-property: var(--_rich-tooltip-content-transition-property);
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+    box-shadow: var(--rich-tooltip-content-shadow);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="surface"]) {
+    --_rich-tooltip-arrow-path-fill: oklch(from var(--popover) l c h / var(--popover-opacity));
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="arrow"]) {
+    rotate: var(--_rich-tooltip-arrow-rotate);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="arrow"] path) {
+    fill: var(--_rich-tooltip-arrow-path-fill);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="progress"]) {
+    --_rich-tooltip-progress-number-style: tabular-nums;
+    font-variant-numeric: var(--_rich-tooltip-progress-number-style);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="media"]) {
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-side="top"]) {
+    --_rich-tooltip-arrow-rotate: 180deg;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-side="left"]) {
+    --_rich-tooltip-arrow-rotate: 90deg;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-side="right"]) {
+    --_rich-tooltip-arrow-rotate: calc(90deg * -1);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="accent"][data-starting-style]) {
+    --_rich-tooltip-content-scale: 95% 95%;
+    scale: var(--_rich-tooltip-content-scale);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="accent"][data-ending-style]) {
+    --_rich-tooltip-content-scale: 95% 95%;
+    scale: var(--_rich-tooltip-content-scale);
+  }
+
+  :where(
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"],
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"],
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]
+) {
+    border-radius: var(--rich-tooltip-action-radius);
+    background: var(--rich-tooltip-action-background);
+    color: var(--rich-tooltip-action-foreground);
+    font-size: var(--text-label);
+    font-weight: var(--font-weight-medium);
+    transition-property: var(--_rich-tooltip-action-transition-property);
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+    outline-style: var(--_rich-tooltip-action-outline);
+  }
+
+  @media (hover: hover) {
+    :where(
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:hover,
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:hover,
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:hover
+  ) {
+      background: oklch(from currentColor l c h / 0.15);
+    }
+  }
+
+  :where(
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:focus-visible,
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:focus-visible,
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:focus-visible
+) {
+    box-shadow: 0 0 0 2px oklch(from currentColor l c h / 0.5);
+  }
+
+  :where(
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:disabled,
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:disabled,
+  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:disabled
+) {
+    opacity: 0.4;
+  }
+}
+
+@property --rich-tooltip-content-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --rich-tooltip-content-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --rich-tooltip-content-radius {
+  syntax: "<length-percentage>+";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --rich-tooltip-content-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --rich-tooltip-dot-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --rich-tooltip-action-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --rich-tooltip-action-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --rich-tooltip-action-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

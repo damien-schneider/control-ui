@@ -8,6 +8,7 @@ import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { type CatalogSourceFile, catalogStatus, integrationIds } from "@/app/(features)/catalog/shared";
 import { type CatalogSkinMeta, skinMetas } from "@/app/(features)/catalog/skins";
 import { source } from "@/app/(features)/model/data-source";
+import { knobFamiliesFor } from "@/app/(features)/model/knob-docs";
 import { publicRegistryDependencies, registryDocumentedSourceFiles } from "@/app/(features)/model/registry-source-files";
 import type {
   CompositionExample,
@@ -163,6 +164,7 @@ function getComponents(): DocsComponent[] {
       registryDependencies: registryDependencyReferences(entry.registryKind),
       registryKind: entry.registryKind,
       versions: getComponentVersions(entry, declaredSupport),
+      knobs: knobFamiliesFor([installed.source, ...installed.supportFiles]),
     };
   });
 }
@@ -219,6 +221,7 @@ function getPrimitives(): DocsPrimitive[] {
         composition: hasCompositionArray(entry.paths.registry) ? compositionArray(entry.paths.registry.composition) : undefined,
         registryDependencies: registryDependencyReferences(entry.paths.registry.registryKind),
         registryKind: entry.paths.registry.registryKind,
+        knobs: knobFamiliesFor([installed.source, ...installed.supportFiles]),
       },
     };
   });
@@ -325,6 +328,7 @@ export function getDocsShellData(): DocsShellData {
       hook: component.hook ? sourceOutline(component.hook) : undefined,
       supportFiles: component.supportFiles?.map(sourceOutline),
       source: sourceOutline(component.source),
+      knobs: [],
       versions: component.versions?.map((version) => ({
         ...version,
         example: sourceOutline(version.example),
@@ -346,6 +350,7 @@ export function getDocsShellData(): DocsShellData {
         examples: primitive.registry.examples?.map((example) => ({ ...example, source: sourceOutline(example.source) })),
         source: sourceOutline(primitive.registry.source),
         supportFiles: primitive.registry.supportFiles?.map(sourceOutline),
+        knobs: [],
       },
     })),
     hooks: data.hooks.map((hook) => ({ ...hook, source: sourceOutline(hook.source) })),

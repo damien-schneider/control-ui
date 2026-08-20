@@ -1,6 +1,6 @@
 "use client";
 
-import type { PointerEvent as ReactPointerEvent } from "react";
+import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 import { createContext, use, useRef, useState } from "react";
 import type {
   DockablePanelActionsProps,
@@ -15,8 +15,8 @@ import type {
   DockablePanelToggleProps,
 } from "@/components/control-ui/contracts";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
+import type { DockablePanelKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSlot } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerContent } from "@/components/control-ui/ui/drawer";
 import { clampDockablePanelPosition, dockablePanelSideAt, oppositeDockablePanelSide } from "./dockable-panel-geometry";
@@ -158,15 +158,20 @@ export function DockablePanel({
     togglePlacement,
     dragHandleProps: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   };
+  const dropZoneStyle = dragging
+    ? ({
+        height: dragHeight,
+        "--dockable-panel-drop-zone-active-background": style?.["--dockable-panel-drop-zone-active-background"],
+        "--dockable-panel-drop-zone-active-border-color": style?.["--dockable-panel-drop-zone-active-border-color"],
+      } satisfies CSSProperties & DockablePanelKnobStyle)
+    : undefined;
 
   if (isMobile) {
     return (
       <DockablePanelContext.Provider value={context}>
         <Drawer open={open} onOpenChange={setOpen} side="bottom">
           <DrawerContent
-            data-control-ui="dockable-panel"
-            data-slot="root"
-            data-surface="panel"
+            data-dockable-panel-root=""
             data-placement={placement}
             padding="none"
             variant="floating"
@@ -189,25 +194,25 @@ export function DockablePanel({
     <DockablePanelContext.Provider value={context}>
       {dragging ? (
         <>
-          <DockablePanelDropZone side="left" active={potentialDock === "left"} height={dragHeight} />
-          <DockablePanelDropZone side="right" active={potentialDock === "right"} height={dragHeight} />
+          <DockablePanelDropZone side="left" active={potentialDock === "left"} style={dropZoneStyle} />
+          <DockablePanelDropZone side="right" active={potentialDock === "right"} style={dropZoneStyle} />
         </>
       ) : null}
       <aside
         ref={panelRef}
         data-control-ui="dockable-panel"
+        data-control-family="dockable-panel"
         data-slot="root"
         data-surface="panel"
         data-placement={placement}
         data-dragging={dragging ? "true" : undefined}
         aria-label={ariaLabel}
         className={cn(
-          "absolute z-30 flex w-[min(22rem,calc(50%_-_1.125rem))] flex-col overflow-hidden rounded-[var(--radius-panel)] bg-card text-card-foreground shadow-pop ring-1 ring-border/80 outline-none",
+          "absolute z-30 flex w-[min(22rem,calc(50%_-_1.125rem))] flex-col overflow-hidden",
           !dragging && placement === "left" && "top-3 left-3 max-h-[calc(100%_-_1.5rem)]",
           !dragging && placement === "right" && "top-3 right-3 max-h-[calc(100%_-_1.5rem)]",
           dragging && "top-0 left-0 max-h-[calc(100%_-_1.5rem)]",
-          dragging && "select-none shadow-modal",
-          skinSlot("dockable-panel", "root", { placement, dragging }),
+          dragging && "select-none",
           className,
         )}
         style={dragging && dragPosition ? { ...style, transform: `translate3d(${dragPosition.x}px, ${dragPosition.y}px, 0)` } : style}
@@ -226,12 +231,9 @@ export function DockablePanelHeader({ className, ...props }: DockablePanelHeader
   return (
     <div
       data-control-ui="dockable-panel"
+      data-control-family="dockable-panel"
       data-slot="header"
-      className={cn(
-        "flex min-h-11 shrink-0 items-center gap-2 border-b border-border/70 px-2",
-        skinSlot("dockable-panel", "header", {}),
-        className,
-      )}
+      className={cn("flex min-h-11 shrink-0 items-center gap-2 px-2", className)}
       {...props}
     />
   );
@@ -251,12 +253,9 @@ export function DockablePanelDragHandle({
     return (
       <div
         data-control-ui="dockable-panel"
+        data-control-family="dockable-panel"
         data-slot="drag-handle"
-        className={cn(
-          "flex min-w-0 flex-1 items-center self-stretch px-2 text-left",
-          skinSlot("dockable-panel", "drag-handle", { dragging: false }),
-          className,
-        )}
+        className={cn("flex min-w-0 flex-1 items-center self-stretch px-2", className)}
       >
         {children}
       </div>
@@ -267,14 +266,11 @@ export function DockablePanelDragHandle({
     <button
       type="button"
       data-control-ui="dockable-panel"
+      data-control-family="dockable-panel"
       data-slot="drag-handle"
       aria-label="Drag panel"
       aria-pressed={context.dragging}
-      className={cn(
-        "flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch rounded-[var(--radius-control)] px-2 text-left active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))] focus-visible:outline-none",
-        skinSlot("dockable-panel", "drag-handle", { dragging: context.dragging }),
-        className,
-      )}
+      className={cn("flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch px-2 active:cursor-grabbing", className)}
       onPointerDown={(event) => {
         onPointerDown?.(event);
         if (!event.defaultPrevented) context.dragHandleProps.onPointerDown(event);
@@ -302,8 +298,9 @@ export function DockablePanelTitle({ className, ...props }: DockablePanelTitlePr
   return (
     <h2
       data-control-ui="dockable-panel"
+      data-control-family="dockable-panel"
       data-slot="title"
-      className={cn("truncate text-sm font-semibold", skinSlot("dockable-panel", "title", {}), className)}
+      className={cn("truncate", className)}
       {...props}
     />
   );
@@ -313,8 +310,9 @@ export function DockablePanelActions({ className, ...props }: DockablePanelActio
   return (
     <div
       data-control-ui="dockable-panel"
+      data-control-family="dockable-panel"
       data-slot="actions"
-      className={cn("ml-auto flex shrink-0 items-center gap-0.5", skinSlot("dockable-panel", "actions", {}), className)}
+      className={cn("ml-auto flex shrink-0 items-center gap-0.5", className)}
       {...props}
     />
   );
@@ -334,8 +332,9 @@ export function DockablePanelToggle({ className, children, "aria-label": ariaLab
       aria-label={ariaLabel ?? label}
       title={label}
       data-control-ui="dockable-panel"
+      data-control-family="button"
       data-slot="toggle"
-      className={cn(skinSlot("dockable-panel", "toggle", { placement }), className)}
+      className={className}
       onClick={(event) => {
         onClick?.(event);
         if (!event.defaultPrevented) togglePlacement();
@@ -369,8 +368,9 @@ export function DockablePanelDock({
       aria-label={ariaLabel ?? label}
       title={label}
       data-control-ui="dockable-panel"
+      data-control-family="button"
       data-slot="dock"
-      className={cn(skinSlot("dockable-panel", "dock", { active: placement === nextPlacement, placement: nextPlacement }), className)}
+      className={className}
       onClick={(event) => {
         onClick?.(event);
         if (!event.defaultPrevented) setPlacement(nextPlacement);
@@ -399,8 +399,9 @@ export function DockablePanelClose({
       aria-label={ariaLabel}
       title={ariaLabel}
       data-control-ui="dockable-panel"
+      data-control-family="button"
       data-slot="close"
-      className={cn(skinSlot("dockable-panel", "close", {}), className)}
+      className={className}
       onClick={(event) => {
         onClick?.(event);
         if (!event.defaultPrevented) close();
@@ -416,34 +417,34 @@ export function DockablePanelContent({ padding = "default", className, ...props 
   return (
     <div
       data-control-ui="dockable-panel"
+      data-control-family="dockable-panel"
       data-slot="content"
       data-padding={padding}
-      className={cn(
-        "min-h-0 flex-1 overflow-y-auto",
-        padding === "default" && "p-3",
-        skinSlot("dockable-panel", "content", { padding }),
-        className,
-      )}
+      className={cn("min-h-0 flex-1 overflow-y-auto", padding === "default" && "p-3", className)}
       {...props}
     />
   );
 }
 
-function DockablePanelDropZone({ side, active, height }: { side: "left" | "right"; active: boolean; height: number }) {
+function DockablePanelDropZone({
+  side,
+  active,
+  style,
+}: {
+  side: "left" | "right";
+  active: boolean;
+  style?: CSSProperties & DockablePanelKnobStyle;
+}) {
   return (
     <div
       data-control-ui="dockable-panel"
+      data-control-family="dockable-panel"
       data-slot="drop-zone"
       data-surface="panel"
       data-side={side}
       data-active={active ? "true" : undefined}
-      className={cn(
-        "pointer-events-none absolute top-3 z-20 w-[min(22rem,calc(50%_-_1.125rem))] rounded-[var(--radius-panel)] ring-1 transition-[background-color,box-shadow] duration-[var(--duration-fast)]",
-        active ? "bg-primary/12 ring-primary/55 shadow-sm" : "bg-background/12 ring-foreground/20",
-        side === "left" ? "left-3" : "right-3",
-        skinSlot("dockable-panel", "drop-zone", { side, active }),
-      )}
-      style={{ height }}
+      className={cn("pointer-events-none absolute top-3 z-20 w-[min(22rem,calc(50%_-_1.125rem))]", side === "left" ? "left-3" : "right-3")}
+      style={style}
     />
   );
 }

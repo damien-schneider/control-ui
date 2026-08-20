@@ -4,20 +4,26 @@
   "type": "registry:ui",
   "title": "Table of contents",
   "description": "Sticky in-page navigation with scroll-spy range highlighting.",
-  "dependencies": [
-    "class-variance-authority@^0.7.1"
-  ],
+  "dependencies": [],
   "registryDependencies": [
     "core",
     "track-highlight"
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/table-of-contents.css",
+      "target": "@components/control-ui/styles/recipes/table-of-contents.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/table-of-contents.tsx",
       "target": "@components/control-ui/ui/table-of-contents.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/table-of-contents.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/table-of-contents.json"
   }

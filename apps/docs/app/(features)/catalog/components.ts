@@ -1,5 +1,100 @@
 import { preview, sourceFile } from "./shared";
 
+const chatMessageRecipeFile = sourceFile(
+  "Chat message recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/chat-message.css",
+  "recipe-css",
+);
+const threadRailRecipeFile = sourceFile(
+  "Thread rail recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/thread-rail.css",
+  "recipe-css",
+);
+const actionBarRecipeFile = sourceFile(
+  "Action bar recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/action-bar.css",
+  "recipe-css",
+);
+const transcriptDividerRecipeFile = sourceFile(
+  "Transcript divider recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/transcript-divider.css",
+  "recipe-css",
+);
+const sourceBadgeRecipeFile = sourceFile(
+  "Source badge recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/source-badge.css",
+  "recipe-css",
+);
+const activityRecipeFile = sourceFile(
+  "Activity recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/activity.css",
+  "recipe-css",
+);
+const markdownBlockRecipeFile = sourceFile(
+  "Markdown block recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/markdown-block.css",
+  "recipe-css",
+);
+const chatLayoutRecipeFile = sourceFile(
+  "Chat layout recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/chat-layout.css",
+  "recipe-css",
+);
+const audioRecorderRecipeFile = sourceFile(
+  "Audio recorder recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/audio-recorder.css",
+  "recipe-css",
+);
+const audioVisualizerRecipeFile = sourceFile(
+  "Audio visualizer recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/audio-visualizer.css",
+  "recipe-css",
+);
+const environmentVariablesRecipeFile = sourceFile(
+  "Environment variables recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/environment-variables.css",
+  "recipe-css",
+);
+const inlineCitationRecipeFile = sourceFile(
+  "Inline citation recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/inline-citation.css",
+  "recipe-css",
+);
+const contextRecipeFile = sourceFile(
+  "Context recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/context.css",
+  "recipe-css",
+);
+const chatComposerRecipeFile = sourceFile(
+  "Chat composer recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/chat-composer.css",
+  "recipe-css",
+);
+const chatComposerAttachmentRecipeFile = sourceFile(
+  "Chat composer attachment recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/chat-composer-attachment.css",
+  "recipe-css",
+);
+const userAskRecipeFiles = [
+  sourceFile("User ask recipe — panel + @property knobs", "src/registry/sources/control-ui/recipes/user-ask.css", "recipe-css"),
+  sourceFile("User ask recipe — nested details", "src/registry/sources/control-ui/recipes/user-ask-details.css", "recipe-css"),
+] as const;
+const taskListRecipeFile = sourceFile(
+  "Task list recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/task-list.css",
+  "recipe-css",
+);
+const inlineAttachmentRecipeFile = sourceFile(
+  "Inline attachment recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/inline-attachment.css",
+  "recipe-css",
+);
+const codeBlockEditorRecipeFile = sourceFile(
+  "Code block editor recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/code-block-editor.css",
+  "recipe-css",
+);
+
 export const componentEntries = [
   {
     id: "chat-message",
@@ -15,6 +110,7 @@ export const componentEntries = [
       },
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-chat-message.ts", "hook"),
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-message.tsx", "component"),
+      supportFiles: [chatMessageRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/chat-message").then((mod) => ({ default: mod.ChatMessageExample }))),
     previewClassName: "flex min-h-[280px] items-start justify-center",
@@ -40,6 +136,7 @@ export const componentEntries = [
         sourceFile("Mention extension", "src/registry/sources/control-ui/chat-composer-editor/extensions/mention.tsx", "support"),
         sourceFile("Exit-animation ghost", "src/registry/sources/control-ui/chat-composer-editor/ghost.ts", "support"),
         sourceFile("Editor motion (blur choreography)", "src/registry/sources/control-ui/chat-composer-editor.css", "editor-css"),
+        chatComposerRecipeFile,
       ],
     },
     preview: preview(() =>
@@ -59,6 +156,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/chat-composer-attachment.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-composer-attachment.tsx", "component"),
+      supportFiles: [chatComposerAttachmentRecipeFile],
     },
     preview: preview(() =>
       import("@/src/registry/examples/chat-composer-attachment").then((mod) => ({ default: mod.ChatComposerAttachmentExample })),
@@ -78,6 +176,7 @@ export const componentEntries = [
       },
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-user-ask.ts", "hook"),
       source: sourceFile("Component", "src/registry/sources/control-ui/user-ask.tsx", "component"),
+      supportFiles: [...userAskRecipeFiles],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/user-ask").then((mod) => ({ default: mod.UserAskExample }))),
   },
@@ -94,6 +193,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/task-list.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/task-list.tsx", "component"),
+      supportFiles: [taskListRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/task-list").then((mod) => ({ default: mod.TaskListExample }))),
   },
@@ -115,6 +215,7 @@ export const componentEntries = [
         // Waveform rendering is delegated to AudioVisualizer usage family (bars ships by default;
         // swap to line version by repointing one import in your owned audio-recorder.tsx).
         sourceFile("Waveform (AudioVisualizer, bars version)", "src/registry/sources/control-ui/audio-visualizer.tsx", "audio-visualizer"),
+        audioRecorderRecipeFile,
       ],
       source: sourceFile("Component", "src/registry/sources/control-ui/audio-recorder.tsx", "component"),
     },
@@ -150,6 +251,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/audio-visualizer.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer.tsx", "component"),
+      supportFiles: [audioVisualizerRecipeFile],
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/audio-visualizer").then((mod) => ({ default: mod.AudioVisualizerExample })),
@@ -164,6 +266,7 @@ export const componentEntries = [
         paths: {
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer.tsx", "example"),
           source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer.tsx", "component"),
+          supportFiles: [audioVisualizerRecipeFile],
         },
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/audio-visualizer").then((mod) => ({ default: mod.AudioVisualizerExample })),
@@ -176,6 +279,7 @@ export const componentEntries = [
         paths: {
           example: sourceFile("Example", "src/registry/examples/control-ui/audio-visualizer-line.tsx", "example"),
           source: sourceFile("Component", "src/registry/sources/control-ui/audio-visualizer-line.tsx", "component"),
+          supportFiles: [audioVisualizerRecipeFile],
         },
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/audio-visualizer-line").then((mod) => ({ default: mod.AudioVisualizerLineExample })),
@@ -202,7 +306,21 @@ export const componentEntries = [
       supportFiles: [
         sourceFile("Backdrop-blur WebGL engine", "src/registry/sources/control-ui/dynamic-notification-glass.ts", "glass-engine"),
         sourceFile("Refractive liquid WebGL engine", "src/registry/sources/control-ui/dynamic-notification-liquid.ts", "liquid-engine"),
-        sourceFile("Island motion (morph choreography)", "src/registry/sources/control-ui/dynamic-notification.css", "notification-css"),
+        sourceFile(
+          "Dynamic notification recipe — paint + @property knobs",
+          "src/registry/sources/control-ui/recipes/dynamic-notification.css",
+          "recipe-css",
+        ),
+        sourceFile(
+          "Dynamic notification input recipe",
+          "src/registry/sources/control-ui/recipes/dynamic-notification-input.css",
+          "recipe-css",
+        ),
+        sourceFile(
+          "Dynamic notification motion recipe",
+          "src/registry/sources/control-ui/recipes/dynamic-notification-motion.css",
+          "recipe-css",
+        ),
       ],
     },
     preview: preview(() =>
@@ -268,7 +386,7 @@ export const componentEntries = [
       },
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-environment-variables.ts", "hook"),
       source: sourceFile("Component", "src/registry/sources/control-ui/environment-variables.tsx", "component"),
-      supportFiles: [sourceFile(".env parser", "src/registry/lib/env-file.ts", "env-file")],
+      supportFiles: [sourceFile(".env parser", "src/registry/lib/env-file.ts", "env-file"), environmentVariablesRecipeFile],
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/environment-variables").then((mod) => ({ default: mod.EnvironmentVariablesExample })),
@@ -287,6 +405,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/activity.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/activity.tsx", "component"),
+      supportFiles: [activityRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/activity").then((mod) => ({ default: mod.ActivityExample }))),
   },
@@ -303,6 +422,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/transcript-divider.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/transcript-divider.tsx", "component"),
+      supportFiles: [transcriptDividerRecipeFile],
     },
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/transcript-divider").then((mod) => ({ default: mod.TranscriptDividerExample })),
@@ -322,7 +442,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("AI SDK usage", "src/registry/usage/components/context.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/context.tsx", "component"),
-      supportFiles: [sourceFile("Derivation model", "src/registry/sources/control-ui/context-model.ts", "support")],
+      supportFiles: [sourceFile("Derivation model", "src/registry/sources/control-ui/context-model.ts", "support"), contextRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/context").then((mod) => ({ default: mod.ContextExample }))),
   },
@@ -336,6 +456,7 @@ export const componentEntries = [
     paths: {
       example: sourceFile("Example", "src/registry/examples/control-ui/inline-citation.tsx", "example"),
       source: sourceFile("Component", "src/registry/sources/control-ui/inline-citation.tsx", "component"),
+      supportFiles: [inlineCitationRecipeFile],
       usage: {
         mastra: sourceFile("Usage", "src/registry/usage/components/inline-citation.tsx", "usage"),
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/inline-citation.tsx", "usage"),
@@ -358,6 +479,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/source-badge.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/source-badge.tsx", "component"),
+      supportFiles: [sourceBadgeRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/source-badge").then((mod) => ({ default: mod.SourceBadgeExample }))),
   },
@@ -374,7 +496,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/action-bar.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/action-bar.tsx", "component"),
-      supportFiles: [sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook")],
+      supportFiles: [sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"), actionBarRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/action-bar").then((mod) => ({ default: mod.ActionBarExample }))),
   },
@@ -392,6 +514,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/inline-attachment.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/inline-attachment.tsx", "component"),
+      supportFiles: [inlineAttachmentRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/inline-attachment").then((mod) => ({ default: mod.InlineAttachmentExample }))),
   },
@@ -408,7 +531,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/markdown-block.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/markdown-block.tsx", "component"),
-      supportFiles: [sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook")],
+      supportFiles: [sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"), markdownBlockRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/markdown-block").then((mod) => ({ default: mod.MarkdownBlockExample }))),
   },
@@ -429,6 +552,7 @@ export const componentEntries = [
         sourceFile("Shiki helper", "src/registry/lib/code-block-shiki.ts", "shiki-helper"),
         sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"),
         sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
+        codeBlockEditorRecipeFile,
       ],
     },
     preview: preview(() =>
@@ -448,6 +572,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/chat-layout.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/chat-layout.tsx", "component"),
+      supportFiles: [chatLayoutRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/chat-layout").then((mod) => ({ default: mod.ChatLayoutExample }))),
   },
@@ -464,10 +589,7 @@ export const componentEntries = [
         "ai-sdk": sourceFile("Usage", "src/registry/usage/components/thread-rail.tsx", "usage"),
       },
       source: sourceFile("Component", "src/registry/sources/control-ui/thread-rail.tsx", "component"),
-      supportFiles: [
-        sourceFile("Interaction layer", "src/registry/sources/control-ui/thread-rail.css", "thread-rail-css"),
-        sourceFile("Surface variants", "src/registry/sources/control-ui/surface-variants.ts", "surface-variants"),
-      ],
+      supportFiles: [threadRailRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/control-ui/thread-rail").then((mod) => ({ default: mod.ThreadRailExample }))),
   },

@@ -35,7 +35,7 @@ export const skin: ControlUiSkin = {
     source: sourceFile("Effects contract", "src/registry/sources/control-ui/extensions/control-effects.ts", "extension"),
     supportFiles: [
       sourceFile("Runtime + subtree root", "src/registry/sources/control-ui/extensions/control-effects-root.tsx", "extension"),
-      sourceFile("Effect styles", "src/registry/sources/control-ui/effects.css", "effect-css"),
+      sourceFile("Effect styles", "src/registry/sources/control-ui/extensions/control-effects.css", "effect-css"),
     ],
   },
   {
@@ -70,7 +70,10 @@ const { morph, triggerProps, surfaceProps } = useMorphTransition({ open });
 </Dialog>`,
     },
     source: sourceFile("View transition driver", "src/registry/sources/control-ui/extensions/view-transition.ts", "extension"),
-    supportFiles: [sourceFile("Morph binding", "src/registry/hooks/use-morph-transition.ts", "hook")],
+    supportFiles: [
+      sourceFile("Morph binding", "src/registry/hooks/use-morph-transition.ts", "hook"),
+      sourceFile("Transition presets", "src/registry/sources/control-ui/extensions/view-transition.css", "effect-css"),
+    ],
   },
   {
     id: "send-aurora",

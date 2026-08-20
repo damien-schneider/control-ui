@@ -1,0 +1,37 @@
+@layer components {
+  :where([data-control-family="transcript-divider"][data-slot="root"]) {
+    --transcript-divider-foreground: var(--muted-foreground);
+    --transcript-divider-line-color: var(--border);
+    --transcript-divider-danger-foreground: var(--destructive-text);
+    color: var(--transcript-divider-foreground);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="transcript-divider"][data-slot="root"])::before,
+
+  :where([data-control-family="transcript-divider"][data-slot="root"])::after {
+    background: var(--transcript-divider-line-color);
+  }
+
+  :where([data-control-family="transcript-divider"][data-slot="root"][data-tone="danger"]) {
+    color: var(--transcript-divider-danger-foreground);
+  }
+}
+
+@property --transcript-divider-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --transcript-divider-line-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --transcript-divider-danger-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

@@ -197,7 +197,6 @@ export function formatColor(hsva: Hsva, format: ColorFormat, opts?: { alpha?: bo
   }
 }
 
-// common cases only — anything else falls through to DOM canvas
 const NAMED: Record<string, string> = {
   transparent: "#00000000",
   black: "#000000",
@@ -220,26 +219,7 @@ function readAlpha(token: string | undefined): number {
   return clamp01(Number.parseFloat(t));
 }
 
-// fallback for formats regex branch skips (lab()/lch()/color()/arbitrary names); DOM-only, null on server
-let srgbCtx: CanvasRenderingContext2D | null = null;
-function parseViaCanvas(color: string): Rgba | null {
-  if (typeof document === "undefined") return null;
-  if (!srgbCtx) {
-    const canvas = document.createElement("canvas");
-    canvas.width = 1;
-    canvas.height = 1;
-    srgbCtx = canvas.getContext("2d", { willReadFrequently: true });
-  }
-  if (!srgbCtx) return null;
-  srgbCtx.clearRect(0, 0, 1, 1);
-  srgbCtx.fillStyle = "#000";
-  srgbCtx.fillStyle = color; // rejected values leave the sentinel #000 in place
-  srgbCtx.fillRect(0, 0, 1, 1);
-  const data = srgbCtx.getImageData(0, 0, 1, 1).data;
-  return { r: data[0], g: data[1], b: data[2], a: data[3] / 255 };
-}
-
-// SSR-safe for hex/rgb/hsl/oklch/known-named; exotic formats/unknown names go through DOM canvas
+// Pure parser: identical server/client results keep controlled color UI hydration-safe.
 export function parseColor(input: string): Hsva | null {
   const raw = input.trim().toLowerCase();
   if (!raw) return null;
@@ -274,8 +254,7 @@ export function parseColor(input: string): Hsva | null {
     return oklchaToHsva({ L, C, H: Number.parseFloat(oklch[3]), a: readAlpha(oklch[4]) });
   }
 
-  const viaCanvas = parseViaCanvas(raw);
-  return viaCanvas ? rgbaToHsva(viaCanvas) : null;
+  return null;
 }
 
 // preserves hue (+sat at true black) on achromatic mutation so area/hue thumbs don't jump to red; `prev` = color before edit

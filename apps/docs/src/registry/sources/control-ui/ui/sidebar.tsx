@@ -1,15 +1,23 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import { createContext, lazy, Suspense, useContext, useEffect, useRef, useState } from "react";
-import { type RenderProp, type SelectionIndicator, SIDEBAR_COOKIE_NAME } from "@/components/control-ui/contracts";
+import {
+  type SelectionIndicator,
+  SIDEBAR_COOKIE_NAME,
+  type SidebarGroupLabelProps,
+  type SidebarInsetProps,
+  type SidebarMenuButtonProps,
+  type SidebarRailProps,
+} from "@/components/control-ui/contracts";
 import { controlSize } from "@/components/control-ui/control-variants";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
+import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts";
 import { cn } from "@/components/control-ui/lib/cn";
-import { SELECTION_INDICATOR_BG_RESET, skinIndicator, skinSidebarLayout, skinSidebarWidth, skinSlot } from "@/components/control-ui/skin";
+import { skinIndicator, skinSidebarLayout, skinSidebarWidth } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/control-ui/ui/sheet";
@@ -27,10 +35,13 @@ const TrackHighlight = lazy(() =>
 
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 /** Exported so blocks can set width through `style` and stay type-checked. */
-export type SidebarStyle = CSSProperties & {
-  "--sidebar-width"?: string;
-  "--sidebar-width-icon"?: string;
-};
+export type SidebarStyle = CSSProperties &
+  SidebarKnobStyle & {
+    "--sidebar-width"?: string;
+    "--sidebar-width-icon"?: string;
+  };
+
+type SidebarSurfaceStyle = CSSProperties & SidebarKnobStyle;
 
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
@@ -66,6 +77,13 @@ export function useSidebar() {
   return context;
 }
 
+export type SidebarProviderProps = Omit<ComponentProps<"div">, "style"> & {
+  defaultOpen?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  style?: SidebarStyle;
+};
+
 export function SidebarProvider({
   defaultOpen = true,
   open: openProp,
@@ -75,11 +93,7 @@ export function SidebarProvider({
   style,
   children,
   ...props
-}: ComponentProps<"div"> & {
-  defaultOpen?: boolean;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-}) {
+}: SidebarProviderProps) {
   const isMobile = useIsMobile(SIDEBAR_MOBILE_BREAKPOINT);
   const [openMobile, setOpenMobile] = useState(false);
 
@@ -132,13 +146,10 @@ export function SidebarProvider({
         <div
           ref={ref}
           data-control-ui="sidebar"
+          data-control-family="sidebar"
           data-slot="wrapper"
           style={wrapperStyle}
-          className={cn(
-            "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
-            skinSlot("sidebar", "wrapper", {}),
-            className,
-          )}
+          className={cn("group/sidebar-wrapper flex min-h-svh w-full", className)}
           {...props}
         >
           {children}
@@ -155,11 +166,13 @@ export function Sidebar({
   ref,
   className,
   children,
+  style,
   ...props
-}: ComponentProps<"div"> & {
+}: Omit<ComponentProps<"div">, "style"> & {
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
+  style?: SidebarSurfaceStyle;
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
   // variant prop → skin → docked; drives gap, padding, rounding, and shadow geometry no per-slot class can express
@@ -170,13 +183,11 @@ export function Sidebar({
       <div
         ref={ref}
         data-control-ui="sidebar"
+        data-control-family="sidebar"
         data-slot="root"
         data-surface="panel"
-        className={cn(
-          "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
-          skinSlot("sidebar", "root", { dragging: false }) ?? skinSlot("sidebar", "inner", { dragging: false }),
-          className,
-        )}
+        className={cn("flex h-full w-(--sidebar-width) flex-col", className)}
+        style={style}
         {...props}
       >
         {children}
@@ -185,27 +196,30 @@ export function Sidebar({
   }
 
   if (isMobile) {
-    const mobileSheetStyle: SidebarStyle = { "--sidebar-width": SIDEBAR_WIDTH_MOBILE };
+    const mobileSheetStyle: SidebarStyle & SidebarSurfaceStyle = {
+      "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+      ...style,
+    };
 
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
         <SheetContent
           ref={ref}
           data-control-ui="sidebar"
+          data-control-family="sidebar"
           data-slot="root"
           data-surface="panel"
           side={side}
-          className={cn(
-            "w-(--sidebar-width) gap-0 bg-sidebar p-0 text-sidebar-foreground",
-            skinSlot("sidebar", "root", { dragging: false }) ?? skinSlot("sidebar", "inner", { dragging: false }),
-          )}
+          className="w-(--sidebar-width) gap-0 p-0"
           style={mobileSheetStyle}
         >
           <SheetHeader className="sr-only">
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
           </SheetHeader>
-          <div className="flex h-full w-full flex-col">{children}</div>
+          <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="inner" className="flex h-full w-full flex-col">
+            {children}
+          </div>
         </SheetContent>
       </Sheet>
     );
@@ -213,22 +227,24 @@ export function Sidebar({
 
   return (
     <div
-      className="group peer hidden text-sidebar-foreground lg:block"
+      className="group peer hidden lg:block"
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="root"
       data-surface="panel"
       data-state={state}
       data-collapsible={state === "collapsed" ? collapsible : ""}
       data-variant={resolvedVariant}
       data-side={side}
+      style={style}
     >
       <div
         data-control-ui="sidebar"
+        data-control-family="sidebar"
         data-slot="gap"
         className={cn(
-          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
+          "relative w-(--sidebar-width)",
           "group-data-[collapsible=offcanvas]:w-0",
-          "group-data-[side=right]:rotate-180",
           resolvedVariant === "floating" || resolvedVariant === "inset"
             ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
@@ -237,27 +253,21 @@ export function Sidebar({
       <div
         ref={ref}
         data-control-ui="sidebar"
+        data-control-family="sidebar"
         data-slot="container"
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-[var(--duration-base)] ease-[var(--ease-standard)] lg:flex",
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) lg:flex",
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
           resolvedVariant === "floating" || resolvedVariant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
           className,
         )}
         {...props}
       >
-        <div
-          data-control-ui="sidebar"
-          data-slot="inner"
-          className={cn(
-            "flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-[var(--radius-panel)] group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-md",
-            skinSlot("sidebar", "inner", { dragging: false }) ?? skinSlot("sidebar", "root", { dragging: false }),
-          )}
-        >
+        <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="inner" className="flex h-full w-full flex-col">
           {children}
         </div>
       </div>
@@ -274,7 +284,7 @@ export function SidebarTrigger({ className, onClick, size = "sm", ...props }: Co
       data-slot="trigger"
       variant="ghost"
       size={size}
-      className={cn(sidebarTriggerWidth[size], "px-0", skinSlot("sidebar", "trigger", {}), className)}
+      className={cn(sidebarTriggerWidth[size], "px-0", className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
@@ -287,24 +297,24 @@ export function SidebarTrigger({ className, onClick, size = "sm", ...props }: Co
   );
 }
 
-export function SidebarRail({ className, ...props }: ComponentProps<"button">) {
+export function SidebarRail({ className, ...props }: SidebarRailProps) {
   const { toggleSidebar } = useSidebar();
 
   return (
     <button
       type="button"
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="rail"
       aria-label="Toggle Sidebar"
       tabIndex={-1}
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-[background-color,translate] duration-[var(--duration-base)] ease-[var(--ease-standard)] after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] after:transition-colors after:duration-[var(--duration-base)] after:ease-[var(--ease-standard)] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 lg:flex",
+        "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 group-data-[side=left]:-right-4 group-data-[side=right]:left-0 lg:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
-        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
-        skinSlot("sidebar", "rail", {}),
+        "group-data-[collapsible=offcanvas]:translate-x-0",
         className,
       )}
       {...props}
@@ -312,15 +322,15 @@ export function SidebarRail({ className, ...props }: ComponentProps<"button">) {
   );
 }
 
-export function SidebarInset({ className, ...props }: ComponentProps<"main">) {
+export function SidebarInset({ className, ...props }: SidebarInsetProps) {
   return (
     <main
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="inset"
       className={cn(
-        "relative flex w-full flex-1 flex-col bg-background transition-[margin,border-radius,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
-        "lg:peer-data-[variant=inset]:m-2 lg:peer-data-[variant=inset]:ml-0 lg:peer-data-[variant=inset]:rounded-xl lg:peer-data-[variant=inset]:shadow-sm lg:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
-        skinSlot("sidebar", "inset", {}),
+        "relative flex w-full flex-1 flex-col",
+        "lg:peer-data-[variant=inset]:m-2 lg:peer-data-[variant=inset]:ml-0 lg:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         className,
       )}
       {...props}
@@ -328,23 +338,25 @@ export function SidebarInset({ className, ...props }: ComponentProps<"main">) {
   );
 }
 
-export function SidebarHeader({ className, ...props }: ComponentProps<"div">) {
+export function SidebarHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
   return (
     <div
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="header"
-      className={cn("flex flex-col gap-2 p-2", skinSlot("sidebar", "header", {}), className)}
+      className={cn("flex flex-col gap-2 p-2", className)}
       {...props}
     />
   );
 }
 
-export function SidebarFooter({ className, ...props }: ComponentProps<"div">) {
+export function SidebarFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
   return (
     <div
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="footer"
-      className={cn("flex flex-col gap-2 p-2", skinSlot("sidebar", "footer", {}), className)}
+      className={cn("flex flex-col gap-2 p-2", className)}
       {...props}
     />
   );
@@ -355,7 +367,7 @@ export function SidebarContent({ className, children, ...props }: ComponentProps
     <ScrollArea
       data-control-ui="sidebar"
       data-slot="content"
-      className={cn("min-h-0 flex-1 group-data-[collapsible=icon]:overflow-hidden", skinSlot("sidebar", "content", {}), className)}
+      className={cn("min-h-0 flex-1 group-data-[collapsible=icon]:overflow-hidden", className)}
       lockAxis="x"
       {...props}
     >
@@ -364,36 +376,30 @@ export function SidebarContent({ className, children, ...props }: ComponentProps
   );
 }
 
-export function SidebarGroup({ className, ...props }: ComponentProps<"div">) {
+export function SidebarGroup({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
   return (
     <div
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="group"
-      className={cn("relative flex w-full min-w-0 flex-col p-2", skinSlot("sidebar", "group", {}), className)}
+      className={cn("relative flex w-full min-w-0 flex-col p-2", className)}
       {...props}
     />
   );
 }
 
-export function SidebarGroupLabel({
-  className,
-  render,
-  children,
-  ...props
-}: ComponentProps<"div"> & {
-  render?: RenderProp<ComponentProps<"div">>;
-}) {
+export function SidebarGroupLabel({ className, render, children, ...props }: SidebarGroupLabelProps) {
   return useRender({
     defaultTagName: "div",
     render,
     props: {
       ...props,
       "data-control-ui": "sidebar",
+      "data-control-family": "sidebar",
       "data-slot": "group-label",
       className: cn(
-        "flex h-[var(--control-h-sm)] shrink-0 items-center gap-2 rounded-md px-2 text-caption font-medium text-sidebar-foreground/70 outline-hidden transition-[margin,opacity] duration-[var(--duration-base)] ease-[var(--ease-standard)] focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "flex h-[var(--control-h-sm)] shrink-0 items-center gap-2 px-2 [&>svg]:size-4 [&>svg]:shrink-0",
         "group-data-[collapsible=icon]:-mt-[var(--control-h-sm)] group-data-[collapsible=icon]:opacity-0",
-        skinSlot("sidebar", "group-label", {}),
         className,
       ),
       children,
@@ -417,7 +423,7 @@ export function SidebarMenu({
    * Defaults to ControlUiSkin.indicators.sidebar, else `none`.
    */
   indicator?: SidebarSelectionIndicator;
-}) {
+} & { style?: CSSProperties & SidebarKnobStyle }) {
   // prop → skin → off
   const resolvedIndicator = indicator ?? skinIndicator("sidebar") ?? "none";
   const sliding = resolvedIndicator === "slide";
@@ -425,8 +431,10 @@ export function SidebarMenu({
   const list = (
     <ul
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="menu"
-      className={cn("flex w-full min-w-0 flex-col gap-1", skinSlot("sidebar", "menu", {}), sliding ? undefined : className)}
+      data-indicator={resolvedIndicator}
+      className={cn("flex w-full min-w-0 flex-col gap-1", sliding ? undefined : className)}
       {...props}
     >
       <SidebarMenuContext.Provider value={resolvedIndicator}>{children}</SidebarMenuContext.Provider>
@@ -438,11 +446,17 @@ export function SidebarMenu({
   // wrapped, never injected into the <ul>: pill must stay sibling of menu items
   // paint routes through the --track-highlight-* knobs so skin re-values vars instead of fighting utilities
   return (
-    <div data-control-ui="sidebar" data-slot="menu-track" className={cn("relative isolate", className)}>
+    <div
+      data-control-ui="sidebar"
+      data-control-family="sidebar"
+      data-slot="menu-track"
+      data-indicator={resolvedIndicator}
+      className={cn("relative isolate", className)}
+    >
       <Suspense fallback={null}>
         <TrackHighlight
           itemSelector='[data-control-ui="sidebar"][data-slot="menu-button"]'
-          activeSelector='[data-control-ui="sidebar"][data-slot="menu-button"][data-active="true"]'
+          activeSelector='[data-control-ui="sidebar"][data-slot="menu-button"][data-active]'
         />
       </Suspense>
       {list}
@@ -450,25 +464,25 @@ export function SidebarMenu({
   );
 }
 
-export function SidebarMenuItem({ className, ...props }: ComponentProps<"li">) {
+export function SidebarMenuItem({ className, ...props }: ComponentProps<"li"> & { style?: CSSProperties & SidebarKnobStyle }) {
   return (
     <li
       data-control-ui="sidebar"
+      data-control-family="sidebar"
       data-slot="menu-item"
-      className={cn("group/menu-item relative", skinSlot("sidebar", "menu-item", {}), className)}
+      className={cn("group/menu-item relative", className)}
       {...props}
     />
   );
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center overflow-hidden rounded-[var(--radius-popup-item)] text-left outline-hidden transition-[width,height,padding] duration-[var(--duration-base)] ease-[var(--ease-standard)] group-data-[collapsible=icon]:px-0! hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 active:bg-foreground/8 active:text-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-foreground/8 data-[active=true]:font-medium data-[active=true]:text-foreground data-[state=open]:hover:bg-foreground/8 data-[state=open]:hover:text-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  "peer/menu-button flex w-full items-center overflow-hidden group-data-[collapsible=icon]:px-0! disabled:pointer-events-none aria-disabled:pointer-events-none [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "hover:bg-foreground/6 hover:text-foreground",
-        outline:
-          "bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-foreground/6 hover:text-foreground hover:shadow-[0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.08)]",
+        default: null,
+        outline: null,
       },
       size: {
         default: `${controlSize({ size: "md" })} group-data-[collapsible=icon]:size-[var(--control-h-md)]!`,
@@ -489,13 +503,8 @@ export function SidebarMenuButton({
   className,
   children,
   ...props
-}: ComponentProps<"button"> & {
-  render?: RenderProp<ComponentProps<"button">>;
-  isActive?: boolean;
-  tooltip?: ReactNode;
-} & VariantProps<typeof sidebarMenuButtonVariants>) {
+}: SidebarMenuButtonProps) {
   const { isMobile, state } = useSidebar();
-  const indicator = useContext(SidebarMenuContext);
 
   const button = useRender({
     defaultTagName: "button",
@@ -503,16 +512,12 @@ export function SidebarMenuButton({
     props: {
       ...props,
       "data-control-ui": "sidebar",
+      "data-control-family": "sidebar",
       "data-slot": "menu-button",
       "data-size": size,
-      "data-active": isActive,
-      className: cn(
-        sidebarMenuButtonVariants({ variant, size }),
-        skinSlot("sidebar", "menu-button", { active: isActive, indicator }),
-        // after skinSlot so pill stays sole chrome; text emphasis survives and caller className lands last
-        indicator === "slide" ? SELECTION_INDICATOR_BG_RESET : undefined,
-        className,
-      ),
+      "data-variant": variant,
+      "data-active": isActive || undefined,
+      className: cn(sidebarMenuButtonVariants({ variant, size }), className),
       children,
     },
   });

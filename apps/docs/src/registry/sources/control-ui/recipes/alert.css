@@ -1,0 +1,78 @@
+@layer components {
+  :where([data-control-family="alert"][data-slot="root"]) {
+    --alert-radius: var(--radius-lg);
+    --alert-background: var(--card);
+    --alert-border-color: var(--border);
+    --alert-shadow: none;
+    --_alert-foreground: var(--card-foreground);
+    --_alert-description-color: var(--muted-foreground);
+    border: 1px solid var(--alert-border-color);
+    border-radius: var(--alert-radius);
+    background: var(--alert-background);
+    box-shadow: var(--alert-shadow);
+    color: var(--_alert-foreground);
+  }
+
+  :where([data-control-family="alert"][data-slot="root"][data-variant="destructive"]) {
+    --_alert-foreground: var(--destructive-text);
+    --alert-border-color: oklch(from var(--destructive) l c h / 0.5);
+    --_alert-description-color: oklch(from var(--destructive-text) l c h / 0.9);
+  }
+
+  :where([data-control-family="alert"][data-slot="description"]) {
+    color: var(--_alert-description-color);
+  }
+
+  :where([data-control-family="alert"][data-slot="description"]) {
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    --__alert-description-p-line-height: var(--leading-relaxed);
+  }
+
+  :where([data-control-family="alert"][data-slot="description"] p) {
+    line-height: var(--__alert-description-p-line-height);
+  }
+
+  :where([data-control-family="alert"][data-slot="title"]) {
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  :where([data-control-family="alert"][data-slot="root"]) {
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+  }
+
+  :where([data-control-family="alert"][data-slot="root"] > svg) {
+    color: currentcolor;
+  }
+
+  :where([data-control-family="alert"][data-slot="root"] > svg) {
+    --_alert-root-svg-translate: 0 calc(var(--spacing) * 0.5);
+    translate: var(--_alert-root-svg-translate);
+  }
+}
+
+@property --alert-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --alert-background {
+  syntax: "*";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --alert-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --alert-shadow {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}

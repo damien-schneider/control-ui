@@ -1,0 +1,255 @@
+@layer components {
+  :where([data-control-family="thread-rail"][data-slot="root"]) {
+    --thread-rail-item-radius: 9999px;
+    --thread-rail-item-background: transparent;
+    --thread-rail-line-radius: 9999px;
+    --thread-rail-popover-radius: var(--radius-popover);
+    --thread-rail-popover-background: var(--popover);
+    --thread-rail-popover-border-color: var(--border);
+    --thread-rail-popover-border-width: 1px;
+    --thread-rail-popover-shadow: var(--shadow-pop);
+    --thread-rail-popover-backdrop-blur: var(--backdrop-blur-popover);
+    --aui-rail-pitch: 9px;
+    --aui-rail-inset: 12.5px;
+    position: relative;
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="item"]) {
+    border-radius: var(--thread-rail-item-radius);
+    background: var(--thread-rail-item-background);
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="line"]) {
+    width: 0.5rem;
+    border-radius: var(--thread-rail-line-radius);
+    background: oklch(from var(--foreground) l c h / 0.2);
+    outline: none;
+    transition:
+      width var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard);
+  }
+
+  :where(
+    [data-control-family="thread-rail"][data-slot="item"][data-in-view]
+      [data-control-family="thread-rail"][data-slot="line"]
+  ) {
+    background: oklch(from var(--foreground) l c h / 0.6);
+  }
+
+  :where(
+    [data-control-family="thread-rail"][data-slot="item"]:has(
+        + [data-control-family="thread-rail"][data-slot="item"]:hover
+      )
+      [data-control-family="thread-rail"][data-slot="line"],
+    [data-control-family="thread-rail"][data-slot="item"]:hover
+      + [data-control-family="thread-rail"][data-slot="item"]
+      [data-control-family="thread-rail"][data-slot="line"],
+    [data-control-family="thread-rail"][data-slot="item"]:has(
+        + [data-control-family="thread-rail"][data-slot="item"]:focus-within
+      )
+      [data-control-family="thread-rail"][data-slot="line"],
+    [data-control-family="thread-rail"][data-slot="item"]:focus-within
+      + [data-control-family="thread-rail"][data-slot="item"]
+      [data-control-family="thread-rail"][data-slot="line"]
+  ) {
+    width: 0.75rem;
+    background: oklch(from var(--foreground) l c h / 0.45);
+  }
+
+  :where(
+    [data-control-family="thread-rail"][data-slot="item"]:where(:hover, :focus-within)
+      [data-control-family="thread-rail"][data-slot="line"]
+  ) {
+    width: 1rem;
+    background: var(--foreground);
+  }
+
+  :where(
+    [data-control-family="thread-rail"][data-slot="item"][data-rail-current]
+      [data-control-family="thread-rail"][data-slot="line"]
+  ) {
+    anchor-name: --aui-rail-active;
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="line"]:focus-visible) {
+    box-shadow: 0 0 0 2px oklch(from var(--ring) l c h / 0.5);
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="popover"]) {
+    position: absolute;
+    inset-inline-start: 100%;
+    top: 0;
+    translate: 0 calc(var(--aui-rail-inset) + var(--aui-rail-active-index, 0) * var(--aui-rail-pitch) - 50%);
+    scale: 0.98;
+    opacity: 0;
+    border-radius: var(--thread-rail-popover-radius);
+    background: var(--thread-rail-popover-background);
+    padding: 0px;
+    box-shadow: inset 0 0 0 var(--thread-rail-popover-border-width) var(--thread-rail-popover-border-color),
+      var(--thread-rail-popover-shadow);
+    color: var(--popover-foreground);
+    -webkit-backdrop-filter: blur(var(--thread-rail-popover-backdrop-blur));
+    backdrop-filter: blur(var(--thread-rail-popover-backdrop-blur));
+    transition:
+      top var(--duration-slow) var(--ease-standard),
+      translate var(--duration-slow) var(--ease-standard),
+      height var(--duration-slow) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard),
+      scale var(--duration-base) var(--ease-standard);
+    will-change: top, translate, height, opacity, scale;
+  }
+
+  :where(
+    [data-control-family="thread-rail"][data-slot="root"]:has(
+        [data-control-family="thread-rail"][data-slot="item"]:hover
+      )
+      [data-control-family="thread-rail"][data-slot="popover"],
+    [data-control-family="thread-rail"][data-slot="root"]:focus-within
+      [data-control-family="thread-rail"][data-slot="popover"]
+  ) {
+    scale: 1;
+    opacity: 1;
+  }
+
+  @starting-style {
+    :where(
+      [data-control-family="thread-rail"][data-slot="root"]:has(
+          [data-control-family="thread-rail"][data-slot="item"]:hover
+        )
+        [data-control-family="thread-rail"][data-slot="popover"],
+      [data-control-family="thread-rail"][data-slot="root"]:focus-within
+        [data-control-family="thread-rail"][data-slot="popover"]
+    ) {
+      scale: 0.98;
+      opacity: 0;
+    }
+  }
+
+  @supports (top: anchor(--aui-rail-active center)) {
+    :where([data-control-family="thread-rail"][data-slot="popover"]) {
+      top: anchor(--aui-rail-active center);
+      translate: 0 -50%;
+    }
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="popover-layer"]) {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    transform-origin: left center;
+    scale: 0.96;
+    opacity: 0;
+    filter: blur(4px);
+    transition:
+      opacity var(--duration-base) var(--ease-standard),
+      scale var(--duration-base) var(--ease-standard),
+      filter var(--duration-base) var(--ease-standard);
+  }
+
+  :where(
+    [data-control-family="thread-rail"][data-slot="root"]:is(
+        :has([data-control-family="thread-rail"][data-slot="item"]:hover),
+        :focus-within
+      )
+      [data-control-family="thread-rail"][data-slot="popover-layer"][data-active]
+  ) {
+    scale: 1;
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="title"]) {
+    color: var(--foreground);
+    font-size: var(--text-body);
+    font-weight: 500;
+  }
+
+  :where(
+    [data-control-family="thread-rail"][data-slot="summary"],
+    [data-control-family="thread-rail"][data-slot="file"],
+    [data-control-family="thread-rail"][data-slot="file-icon"],
+    [data-control-family="thread-rail"][data-slot="more"]
+  ) {
+    color: var(--muted-foreground);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="file-icon"]) {
+    opacity: 0.7;
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="more"]) {
+    font-weight: 500;
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="footer"]) {
+    border-block-start: 1px solid oklch(from var(--border) l c h / 0.6);
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="file-icon"]) {
+    line-height: 1;
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="summary"]) {
+    line-height: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="thread-rail"][data-slot="popover"]) {
+    --_thread-rail-popover-text-align: left;
+    text-align: var(--_thread-rail-popover-text-align);
+  }
+}
+
+@property --thread-rail-item-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --thread-rail-item-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --thread-rail-line-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --thread-rail-popover-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --thread-rail-popover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --thread-rail-popover-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --thread-rail-popover-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --thread-rail-popover-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --thread-rail-popover-backdrop-blur {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}

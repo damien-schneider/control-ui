@@ -6,9 +6,7 @@ import type { EditorView } from "prosemirror-view";
 import { useEffect } from "react";
 import type { MentionItem, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
 import { useTriggerMenu } from "@/components/control-ui/hooks/use-trigger-menu";
-import { cn } from "@/components/control-ui/lib/cn";
 import { detectTrigger } from "@/components/control-ui/lib/trigger-detect";
-import { skinSlot } from "@/components/control-ui/skin";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 import { spawnExitGhost } from "../ghost";
 import type { ChatComposerEditorApi, ChatComposerEditorExtension } from "../types";
@@ -53,21 +51,43 @@ const mentionNode: NodeSpec = {
     const kind = attrString(node.attrs.kind, "mention");
     const icon = typeof node.attrs.icon === "string" ? node.attrs.icon : null;
     const attrs = {
-      class: cn(
-        "inline-flex items-center gap-1 rounded-[var(--radius-popup-item)] bg-primary/10 px-1 align-baseline font-medium text-primary-text",
-        skinSlot("chat-composer", "mention", {}),
-      ),
+      class: "inline-flex items-center gap-1 px-1 align-baseline",
       "data-control-ui": "chat-composer",
+      "data-control-family": "chat-composer",
       "data-slot": "mention",
       "data-mention": kind,
       "data-id": id,
       "data-icon": icon ?? "",
       contenteditable: "false",
     };
-    const labelSpan: DOMOutputSpec = ["span", { class: "truncate" }, label];
+    const labelSpan: DOMOutputSpec = [
+      "span",
+      {
+        class: "truncate",
+        "data-control-ui": "chat-composer",
+        "data-control-family": "chat-composer",
+        "data-slot": "mention-label",
+      },
+      label,
+    ];
     return icon === null
       ? ["span", attrs, labelSpan]
-      : ["span", attrs, ["img", { src: icon, alt: "", class: "size-4 shrink-0 rounded-[3px]" }], labelSpan];
+      : [
+          "span",
+          attrs,
+          [
+            "img",
+            {
+              src: icon,
+              alt: "",
+              class: "size-4 shrink-0",
+              "data-control-ui": "chat-composer",
+              "data-control-family": "chat-composer",
+              "data-slot": "mention-icon",
+            },
+          ],
+          labelSpan,
+        ];
   },
   leafText: (node) => `@${attrString(node.attrs.label, "")}`,
 };
@@ -255,7 +275,16 @@ function MentionOverlay<Item extends TriggerMenuItemData>({ editor, triggers, si
             >
               {item.icon ? <TriggerMenuIcon>{item.icon}</TriggerMenuIcon> : null}
               <span className="flex-1 truncate">{item.label}</span>
-              {item.description ? <span className="truncate text-micro text-muted-foreground">{item.description}</span> : null}
+              {item.description ? (
+                <span
+                  data-control-ui="chat-composer"
+                  data-control-family="chat-composer"
+                  data-slot="mention-description"
+                  className="truncate"
+                >
+                  {item.description}
+                </span>
+              ) : null}
             </TriggerMenuItem>
           ))
         )}

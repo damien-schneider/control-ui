@@ -15,10 +15,7 @@ afterAll(() => rmSync(temporaryDirectory, { recursive: true, force: true }));
 async function bundledSkinConfig(skinId: string): Promise<{ code: string; gzipBytes: number }> {
   const entrypoint = path.join(temporaryDirectory, `${skinId}.tsx`);
   const skinConfig = path.join(skinPacks, skinId, "skin.config.tsx");
-  writeFileSync(
-    entrypoint,
-    `import { skinSlot } from ${JSON.stringify(skinRuntime)};\nconsole.log(skinSlot("button", "root", { variant: "solid", tone: "neutral", size: "sm", active: false }));\n`,
-  );
+  writeFileSync(entrypoint, `import { activeSkin } from ${JSON.stringify(skinRuntime)};\nconsole.log(activeSkin());\n`);
   const result = await Bun.build({
     entrypoints: [entrypoint],
     minify: true,

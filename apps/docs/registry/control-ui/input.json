@@ -12,11 +12,25 @@
   ],
   "files": [
     {
+      "path": "src/registry/sources/control-ui/recipes/field-parts.css",
+      "target": "@components/control-ui/styles/recipes/field-parts.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/field.css",
+      "target": "@components/control-ui/styles/recipes/field.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/ui/input.tsx",
       "target": "@components/control-ui/ui/input.tsx",
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/field.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+  },
   "meta": {
     "sourceManifestPath": "registry/control-ui/input.json"
   }

@@ -51,13 +51,6 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),
   // color knobs
   token("--ring-opacity", "color", "derived", "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."),
-  token("--popup-item-foreground", "color", "derived", "Text color of popup (menu/select) rows; defaults to --foreground."),
-  token(
-    "--popup-item-highlight-background",
-    "color",
-    "derived",
-    "Highlighted or selected popup row fill; defaults to a 6% foreground wash.",
-  ),
   ...badgeColorTokens,
 
   token("--font-sans", "typography", "core", "Typeface for the whole UI."),
@@ -124,7 +117,6 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--overlay-opacity", "surface", "advanced", "Modal overlay (dialog backdrop) dim strength."),
   token("--backdrop-blur-overlay", "surface", "advanced", "Backdrop blur of the modal overlay."),
   token("--scroll-fade-size", "surface", "advanced", "Edge-fade depth of scrollable surfaces; 0 = hard edges."),
-  token("--popup-item-disabled-opacity", "surface", "derived", "Opacity of disabled popup rows; defaults to 0.4."),
 
   token("--popover-padding", "layout", "advanced", "Gap between popup container edge and rows (drives concentric corners)."),
   token("--padding-x", "layout", "advanced", "Horizontal content density of rounded surfaces (bubble, composer)."),
