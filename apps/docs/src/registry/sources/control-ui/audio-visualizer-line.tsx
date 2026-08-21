@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-import type { AudioVisualizerProps } from "@/components/control-ui/contracts";
+import type { AudioVisualizerProps } from "@/components/control-ui/audio-visualizer";
 import { cn } from "@/components/control-ui/lib/cn";
 
 // Line reading. audio-visualizer.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.

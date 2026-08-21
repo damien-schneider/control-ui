@@ -1,33 +1,31 @@
 @layer components {
   :where([data-control-family="tabs"][data-slot="root"]) {
-    --tabs-trigger-radius: var(--radius-control);
-    --tabs-list-padding: 0.25rem;
-    --tabs-list-radius: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-list-radius-offset));
-    --tabs-list-background: oklch(from var(--foreground) l c h / 0.07);
-    --tabs-list-backdrop-filter: none;
-    --tabs-indicator-background: var(--background);
-    --tabs-active-foreground: var(--foreground);
-    --tabs-indicator-shadow: var(--shadow-sm);
-    --tabs-trigger-focus-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-    --tabs-line-border-color: var(--border);
-    --tabs-line-indicator-background: var(--foreground);
+    --cui-tabs-trigger-radius: var(--radius-control);
+    --cui-tabs-list-padding: 0.25rem;
+    --cui-tabs-list-radius: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-list-radius-offset));
+    --cui-tabs-list-background: oklch(from var(--foreground) l c h / 0.07);
+    --cui-tabs-list-backdrop-filter: none;
+    --cui-tabs-indicator-background: var(--background);
+    --cui-tabs-foreground: var(--muted-foreground);
+    --cui-tabs-active-foreground: var(--foreground);
+    --cui-tabs-indicator-shadow: var(--shadow-sm);
+    --cui-tabs-border-color: var(--border);
   }
   :where([data-control-family="tabs"][data-slot="list"]) {
-    --_tabs-trigger-radius-fit: min(var(--tabs-trigger-radius), calc(var(--_tabs-trigger-h) / 2));
-    --_tabs-list-radius-offset: clamp(0px, calc(var(--_tabs-trigger-radius-fit) * 1000), var(--tabs-list-padding));
-    --_tabs-list-h: calc(var(--_tabs-trigger-h) + var(--tabs-list-padding) + var(--tabs-list-padding));
+    --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--_tabs-trigger-h) / 2));
+    --_tabs-list-radius-offset: clamp(0px, calc(var(--_tabs-trigger-radius-fit) * 1000), var(--cui-tabs-list-padding));
     position: relative;
     display: flex;
-    min-height: var(--_tabs-list-h);
+    min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding) + var(--cui-tabs-list-padding));
     width: fit-content;
     align-items: center;
     gap: 0.25rem;
-    border-radius: var(--tabs-list-radius);
-    background: var(--tabs-list-background);
+    border-radius: var(--cui-tabs-list-radius);
+    background: var(--cui-tabs-list-background);
     box-shadow: inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.06);
-    padding: var(--tabs-list-padding);
-    -webkit-backdrop-filter: var(--tabs-list-backdrop-filter);
-    backdrop-filter: var(--tabs-list-backdrop-filter);
+    padding: var(--cui-tabs-list-padding);
+    -webkit-backdrop-filter: var(--cui-tabs-list-backdrop-filter);
+    backdrop-filter: var(--cui-tabs-list-backdrop-filter);
   }
 
   :where([data-control-family="tabs"][data-slot="indicator"]) {
@@ -39,8 +37,8 @@
     width: var(--active-tab-width);
     transform: translateX(var(--active-tab-left)) translateY(-50%);
     border-radius: var(--_tabs-trigger-radius-fit);
-    background: var(--tabs-indicator-background);
-    box-shadow: var(--tabs-indicator-shadow);
+    background: var(--cui-tabs-indicator-background);
+    box-shadow: var(--cui-tabs-indicator-shadow);
     transition:
       width var(--duration-base) var(--ease-standard),
       transform var(--duration-base) var(--ease-standard),
@@ -61,7 +59,7 @@
     white-space: nowrap;
     border-radius: var(--_tabs-trigger-radius-fit);
     padding-inline: 0.875rem;
-    color: var(--muted-foreground);
+    color: var(--cui-tabs-foreground);
     font-size: var(--text-label);
     font-weight: 500;
     outline: none;
@@ -73,11 +71,7 @@
   }
 
   :where([data-control-family="tabs"][data-slot="tab"]:is([aria-selected="true"], [data-active])) {
-    color: var(--tabs-active-foreground);
-  }
-
-  :where([data-control-family="tabs"][data-slot="tab"]:focus-visible) {
-    box-shadow: var(--tabs-trigger-focus-shadow);
+    color: var(--cui-tabs-active-foreground);
   }
 
   :where([data-control-family="tabs"][data-slot="tab"][data-disabled]) {
@@ -87,73 +81,43 @@
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
     --_tabs-browser-corner-double: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-trigger-radius-fit));
-    min-height: calc(var(--_tabs-trigger-h) + var(--tabs-list-padding));
+    min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding));
     align-items: flex-end;
     isolation: isolate;
-    border-radius: var(--tabs-list-radius) var(--tabs-list-radius) 0 0;
-    box-shadow: inset 0 -1px 0 var(--tabs-line-border-color);
+    border-radius: var(--cui-tabs-list-radius) var(--cui-tabs-list-radius) 0 0;
+    box-shadow: inset 0 -1px 0 var(--cui-tabs-border-color);
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"]) {
     --_tabs-browser-indicator-width: calc(var(--active-tab-width) + var(--_tabs-browser-corner-double));
     --_tabs-browser-indicator-x: calc(var(--active-tab-left) - var(--_tabs-trigger-radius-fit));
+    border-radius: 0px;
     -webkit-mask:
       radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) left var(--_tabs-trigger-radius-fit) top /
-        var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
+      var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
       radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) right var(--_tabs-trigger-radius-fit) top /
-        var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
-      linear-gradient(oklch(0 0 0) 0 0) center top /
-        calc(100% - var(--_tabs-browser-corner-double) - var(--_tabs-browser-corner-double)) var(--_tabs-trigger-radius-fit) no-repeat,
+      var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
+      linear-gradient(oklch(0 0 0) 0 0) center top / calc(100% - var(--_tabs-browser-corner-double) - var(--_tabs-browser-corner-double))
+      var(--_tabs-trigger-radius-fit) no-repeat,
       linear-gradient(oklch(0 0 0) 0 0) center bottom / calc(100% - var(--_tabs-browser-corner-double))
-        calc(100% - var(--_tabs-trigger-radius-fit)) no-repeat,
+      calc(100% - var(--_tabs-trigger-radius-fit)) no-repeat,
       radial-gradient(circle var(--_tabs-trigger-radius-fit) at top left, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) left bottom /
-        var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat,
+      var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat,
       radial-gradient(circle var(--_tabs-trigger-radius-fit) at top right, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) right bottom /
-        var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat;
+      var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat;
     mask:
       radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) left var(--_tabs-trigger-radius-fit) top /
-        var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
+      var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
       radial-gradient(circle closest-side, oklch(0 0 0) calc(100% - 0.5px), transparent 100%) right var(--_tabs-trigger-radius-fit) top /
-        var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
-      linear-gradient(oklch(0 0 0) 0 0) center top /
-        calc(100% - var(--_tabs-browser-corner-double) - var(--_tabs-browser-corner-double)) var(--_tabs-trigger-radius-fit) no-repeat,
+      var(--_tabs-browser-corner-double) var(--_tabs-browser-corner-double) no-repeat,
+      linear-gradient(oklch(0 0 0) 0 0) center top / calc(100% - var(--_tabs-browser-corner-double) - var(--_tabs-browser-corner-double))
+      var(--_tabs-trigger-radius-fit) no-repeat,
       linear-gradient(oklch(0 0 0) 0 0) center bottom / calc(100% - var(--_tabs-browser-corner-double))
-        calc(100% - var(--_tabs-trigger-radius-fit)) no-repeat,
+      calc(100% - var(--_tabs-trigger-radius-fit)) no-repeat,
       radial-gradient(circle var(--_tabs-trigger-radius-fit) at top left, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) left bottom /
-        var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat,
+      var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat,
       radial-gradient(circle var(--_tabs-trigger-radius-fit) at top right, transparent calc(100% - 0.5px), oklch(0 0 0) 100%) right bottom /
-        var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat;
-  }
-
-  :where([data-tabs="line"] [data-control-family="tabs"][data-slot="root"]) {
-    --tabs-list-padding: 0px;
-  }
-
-  :where([data-tabs="line"] [data-control-family="tabs"][data-slot="list"]) {
-    min-height: var(--_tabs-trigger-h);
-    width: 100%;
-    gap: 0;
-    border-radius: 0;
-    border-block-end: 1px solid var(--tabs-line-border-color);
-    background: transparent;
-    padding: 0;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
-
-  :where([data-tabs="line"] [data-control-family="tabs"][data-slot="indicator"]) {
-    top: auto;
-    bottom: 0;
-    height: 2px;
-    transform: translateX(var(--active-tab-left));
-    border-radius: 9999px;
-    background: var(--tabs-line-indicator-background);
-    box-shadow: none;
-  }
-
-  :where([data-tabs="line"] [data-control-family="tabs"][data-slot="tab"]) {
-    border-radius: 0;
-    padding-inline: 1rem;
+      var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) no-repeat;
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-single="true"]) {
@@ -173,92 +137,72 @@
   }
 
   :where([data-control-family="tabs"][data-slot="panel"]) {
-    --_tabs-panel-outline: none;
-    outline-style: var(--_tabs-panel-outline);
+    outline-style: none;
   }
 
-  :where([data-control-family="tabs"][data-slot="panel"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring,oklch(from var(--foreground) l c h / 0.2));
-  }
-
-  :where([data-control-family="tabs"][data-slot="tab"]:is(:where(.group\/tabs-list)[data-variant="browser"] *)) {
+  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-control-family="tabs"][data-slot="tab"]) {
     border-top-left-radius: var(--_tabs-trigger-radius-fit);
     border-top-right-radius: var(--_tabs-trigger-radius-fit);
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
-
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-slot="indicator"]) {
-    border-radius: 0px;
-  }
 }
 
-@property --tabs-trigger-radius {
+@property --cui-tabs-trigger-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --tabs-list-padding {
+@property --cui-tabs-list-padding {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --tabs-list-radius {
+@property --cui-tabs-list-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --tabs-list-background {
+@property --cui-tabs-list-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --tabs-list-backdrop-filter {
+@property --cui-tabs-list-backdrop-filter {
   syntax: "*";
   inherits: true;
   initial-value: none;
 }
 
-@property --tabs-indicator-background {
+@property --cui-tabs-indicator-background {
+  syntax: "*";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-tabs-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --tabs-active-foreground {
+@property --cui-tabs-active-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --tabs-indicator-shadow {
+@property --cui-tabs-indicator-shadow {
   syntax: "*";
   inherits: true;
   initial-value: none;
 }
 
-@property --tabs-trigger-focus-shadow {
-  syntax: "*";
-  inherits: true;
-  initial-value: none;
-}
-
-@property --tabs-line-border-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --tabs-line-indicator-background {
+@property --cui-tabs-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

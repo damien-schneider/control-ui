@@ -100,7 +100,7 @@ export const componentEntries = [
     id: "chat-message",
     kind: "Agent",
     name: "ChatMessage",
-    summary: "Composable chat message with typed role, density, and tone state.",
+    summary: "Composable chat message with typed role, density, and lifecycle state.",
     registryKind: "chat-message",
     paths: {
       example: sourceFile("Example", "src/registry/examples/chat-message.tsx", "example"),

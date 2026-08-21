@@ -1,4 +1,4 @@
-import type { SourceReference } from "@/components/control-ui/contracts";
+import type { SourceReference } from "@/components/control-ui/inline-citation";
 import { InlineCitation } from "@/components/control-ui/inline-citation";
 
 const sources = [

@@ -12,14 +12,7 @@
     --duration-slow: 0ms !important;
   }
 
-  :where(
-    [data-skin],
-    [data-skin] *,
-    [data-skin]::before,
-    [data-skin]::after,
-    [data-skin] *::before,
-    [data-skin] *::after
-  ) {
+  :where([data-skin], [data-skin] *, [data-skin]::before, [data-skin]::after, [data-skin] *::before, [data-skin] *::after) {
     scroll-behavior: auto !important;
     transition-delay: 0ms !important;
     transition-duration: 0ms !important;
@@ -65,12 +58,15 @@
   --font-body: var(--font-sans);
   --font-display: var(--font-sans);
 
-
   /* majority defaults measured over the shipped packs; a pack declares one only to diverge,
      and the dark block below carries the mode-split ones */
   --primary-text: oklch(from var(--primary) 0.48 c h);
   --destructive-text: oklch(from var(--destructive) 0.48 c h);
   --ring-opacity: 1;
+  --focus-ring: var(--ring);
+  --focus-ring-width: 2px;
+  --focus-ring-style: solid;
+  --focus-ring-offset: 2px;
 
   --text-micro: 0.625rem;
   --text-caption: 0.6875rem;
@@ -154,8 +150,7 @@
      corner saturates below the --radius-popup-item token. Container must match the visible corner, not
      the token, or it out-rounds the row and the overflow clip cuts it flat. */
   --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
-  /* Sub-pixel guard for concentric nesting in ring-clipped containers (popup rows, code-block tabs);
-     shared with `rounded-nested` (effects.css). Bump to border+~2px if a clipped container ever gets a real border. */
+  /* Sub-pixel guard for concentric nesting in ring-clipped containers. Bump to border+~2px if one ever gets a real border. */
   --nest-safe: 1px;
   /* Corner-fit ratio = 2+sqrt(2): control at gap `g` from corner radius R is sliced once R > ratio*g.
      Caps corners that can outgrow their content inset (code-block --radius-panel vs fixed tab inset)
@@ -286,92 +281,92 @@
   /* Global knobs (size/opacity/y) + tier multipliers keep control/panel/popover/modal/ambient shadows
      distinct without per-component math. Each tier layers tight+mid+long alphas for one soft umber
      penumbra ("soft daylight"); every length multiplies the global knobs so --shadow-size:0 flattens all. */
-  --shadow-xs: inset 0 1px 0
-      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+  --shadow-xs:
+    inset 0 1px 0 oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
     0 calc(1px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
-      calc(1.5px * var(--shadow-size) * var(--shadow-control-multiplier))
-      calc(-0.5px * var(--shadow-size) * var(--shadow-control-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(1.5px * var(--shadow-size) * var(--shadow-control-multiplier)) calc(-0.5px * var(--shadow-size) * var(--shadow-control-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(2px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
-      calc(4px * var(--shadow-size) * var(--shadow-control-multiplier))
-      calc(-2px * var(--shadow-size) * var(--shadow-control-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity)));
-  --shadow-sm: inset 0 1px 0
-      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    calc(4px * var(--shadow-size) * var(--shadow-control-multiplier)) calc(-2px * var(--shadow-size) * var(--shadow-control-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity)));
+  --shadow-sm:
+    inset 0 1px 0
+    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
     0 calc(1px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
-      calc(1px * var(--shadow-size) * var(--shadow-control-multiplier))
-      calc(-0.5px * var(--shadow-size) * var(--shadow-control-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(1px * var(--shadow-size) * var(--shadow-control-multiplier))
+    calc(-0.5px * var(--shadow-size) * var(--shadow-control-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(2px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
-      calc(4px * var(--shadow-size) * var(--shadow-control-multiplier))
-      calc(-1px * var(--shadow-size) * var(--shadow-control-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(4px * var(--shadow-size) * var(--shadow-control-multiplier))
+    calc(-1px * var(--shadow-size) * var(--shadow-control-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(4px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
-      calc(10px * var(--shadow-size) * var(--shadow-control-multiplier))
-      calc(-2px * var(--shadow-size) * var(--shadow-control-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity)));
-  --shadow-md: inset 0 1px 0
-      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    calc(10px * var(--shadow-size) * var(--shadow-control-multiplier))
+    calc(-2px * var(--shadow-size) * var(--shadow-control-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity)));
+  --shadow-md:
+    inset 0 1px 0
+    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
     0 calc(1px * var(--shadow-size) * var(--shadow-panel-multiplier) * var(--shadow-y))
-      calc(1.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
-      calc(-0.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(1.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+    calc(-0.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(2.5px * var(--shadow-size) * var(--shadow-panel-multiplier) * var(--shadow-y))
-      calc(5px * var(--shadow-size) * var(--shadow-panel-multiplier))
-      calc(-1.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+    calc(-1.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(5px * var(--shadow-size) * var(--shadow-panel-multiplier) * var(--shadow-y))
-      calc(10px * var(--shadow-size) * var(--shadow-panel-multiplier))
-      calc(-2.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity)));
-  --shadow-pop: inset 0 1px 0
-      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    calc(10px * var(--shadow-size) * var(--shadow-panel-multiplier))
+    calc(-2.5px * var(--shadow-size) * var(--shadow-panel-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity)));
+  --shadow-pop:
+    inset 0 1px 0
+    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
     0 calc(0.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
-      calc(0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      calc(-0.25px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity))),
+    calc(0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    calc(-0.25px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity))),
     0 calc(1.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
-      calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      calc(-0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    calc(-0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
-      calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      calc(-1.5px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
+    calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    calc(-1.5px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
     0 calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
-      calc(14px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      calc(-3px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity))); /* floating popovers */
-  --shadow-modal: inset 0 1px 0
-      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
+    calc(14px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    calc(-3px * var(--shadow-size) * var(--shadow-popover-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity))); /* floating popovers */
+  --shadow-modal:
+    inset 0 1px 0
+    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))),
     0 calc(0.6px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
-      calc(1px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      calc(-0.3px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(1px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    calc(-0.3px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(1.6px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
-      calc(3.2px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      calc(-0.8px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
+    calc(3.2px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    calc(-0.8px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
     0 calc(3.4px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
-      calc(7px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      calc(-1.6px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity))),
+    calc(7px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    calc(-1.6px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity))),
     0 calc(7px * var(--shadow-size) * var(--shadow-modal-multiplier) * var(--shadow-y))
-      calc(16px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      calc(-3px * var(--shadow-size) * var(--shadow-modal-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity))); /* dialogs and sheets */
-  --shadow-soft: 0 calc(0.75px * var(--shadow-size) * var(--shadow-ambient-multiplier) * var(--shadow-y))
-      calc(2px * var(--shadow-size) * var(--shadow-ambient-multiplier))
-      calc(-0.75px * var(--shadow-size) * var(--shadow-ambient-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.03 * var(--shadow-opacity))),
+    calc(16px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    calc(-3px * var(--shadow-size) * var(--shadow-modal-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity))); /* dialogs and sheets */
+  --shadow-soft:
+    0 calc(0.75px * var(--shadow-size) * var(--shadow-ambient-multiplier) * var(--shadow-y))
+    calc(2px * var(--shadow-size) * var(--shadow-ambient-multiplier)) calc(-0.75px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.03 * var(--shadow-opacity))),
     0 calc(2px * var(--shadow-size) * var(--shadow-ambient-multiplier) * var(--shadow-y))
-      calc(5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
-      calc(-1.5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
+    calc(5px * var(--shadow-size) * var(--shadow-ambient-multiplier)) calc(-1.5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))),
     0 calc(4.5px * var(--shadow-size) * var(--shadow-ambient-multiplier) * var(--shadow-y))
-      calc(12px * var(--shadow-size) * var(--shadow-ambient-multiplier))
-      calc(-2.5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))); /* ambient lift */
+    calc(12px * var(--shadow-size) * var(--shadow-ambient-multiplier)) calc(-2.5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
+    oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))); /* ambient lift */
 
   /* bare `transition*` utilities inherit the themed curve + tempo */
   --default-transition-duration: var(--duration-fast);
@@ -392,7 +387,6 @@
     :where([data-control-ui][data-slot]) {
       corner-shape: var(--corner-shape);
     }
-
   }
 
   /* Squircle w/o corner-shape support falls back to plain round radius, reading over-rounded; shrink
@@ -405,7 +399,10 @@
         --radius-control: calc(var(--radius) * 2 * var(--corner-radius-fit));
         --radius-popup-item: calc(var(--radius-control) * 0.6);
         --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
-        --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
+        --radius-popover: calc(
+          var(--radius-popup-item-fit) +
+          clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px)
+        );
         /* Each derives straight from --radius; must mirror the :where([data-skin]) scale above ×fit. */
         --radius-sm: calc(var(--radius) * 0.6 * var(--corner-radius-fit));
         --radius-md: calc(var(--radius) * 0.8 * var(--corner-radius-fit));
@@ -421,10 +418,25 @@
 }
 
 @layer components {
-  :where(
-      [data-control-ui="chat-message"][data-slot="root"],
-      [data-control-ui="chat-composer"][data-slot="root"]
-    ) {
+  /* THE keyboard focus indicator, for every Control UI element in one rule. An outline, not a
+     box-shadow: a skin that re-paints box-shadow cannot erase it, and forced-colors mode repaints
+     outline-color with a system color while it drops box-shadow entirely. Opt OUT (a part that takes
+     programmatic focus but is not a target) by re-valuing --focus-ring-width to 0px on that part.
+     A control rendered as a <label> never takes focus itself — the input it wraps does. */
+  :where([data-control-family]):focus-visible,
+  :where(label[data-control-family][data-control="true"]):has(:focus-visible) {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family]):focus-visible,
+    :where(label[data-control-family][data-control="true"]):has(:focus-visible) {
+      outline-color: transparent;
+    }
+  }
+
+  :where([data-control-ui="chat-message"][data-slot="root"], [data-control-ui="chat-composer"][data-slot="root"]) {
     opacity: 1;
     filter: none;
     translate: 0 0;
@@ -450,11 +462,6 @@
       translate: 0 0.75rem;
     }
   }
-
-
-
-
-
 
   /* Cross-slide switch, shared by every surface that swaps one panel for another (tabs panels, inline
      citation sources). Contract: the element owning the switch carries data-slide="scope", each swapped
@@ -576,7 +583,9 @@
     @supports (height: calc-size(auto, size)) {
       :where([data-slide="panel"]:not([inert])) {
         height: calc-size(auto, size);
-        transition: translate var(--duration-slow) var(--ease-emphasized), height var(--duration-slow) var(--ease-emphasized);
+        transition:
+          translate var(--duration-slow) var(--ease-emphasized),
+          height var(--duration-slow) var(--ease-emphasized);
       }
 
       :where([data-slide="panel"][data-starting-style]) {
@@ -595,5 +604,4 @@
       opacity: 1;
     }
   }
-
 }

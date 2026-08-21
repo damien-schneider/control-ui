@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/collapsible-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/collapsible-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/collapsible.css",
       "target": "@components/control-ui/styles/recipes/collapsible.css",
       "type": "registry:file"

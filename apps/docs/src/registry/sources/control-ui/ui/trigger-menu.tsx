@@ -1,18 +1,41 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import type {
-  TriggerMenuEmptyProps,
-  TriggerMenuGroupLabelProps,
-  TriggerMenuGroupProps,
-  TriggerMenuIconProps,
-  TriggerMenuItemProps,
-  TriggerMenuListProps,
-  TriggerMenuProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+
+export type TriggerMenuProps = {
+  open: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  anchorRect: DOMRect | null;
+  side?: "top" | "bottom";
+  align?: "start" | "center" | "end";
+  sideOffset?: number;
+  className?: string;
+  children?: ReactNode;
+} & { style?: CSSProperties & PopupKnobStyle };
+
+export type TriggerMenuListProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type TriggerMenuItemProps = Omit<
+  Omit<ComponentProps<"div">, "onSelect"> & {
+    active?: boolean;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+
+export type TriggerMenuEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type TriggerMenuGroupProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type TriggerMenuGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type TriggerMenuIconProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 // Controlled by headless engine and anchored to virtual caret rect, with no trigger button of its own.
 // initialFocus/finalFocus={false} keep focus in editor, so arrows and Enter keep flowing to caret while menu is up.

@@ -1,23 +1,20 @@
 @layer components {
   :where([data-control-family="dockable-panel"][data-slot="root"]) {
-    --dockable-panel-radius: var(--radius-panel);
-    --dockable-panel-background: var(--card);
-    --dockable-panel-foreground: var(--card-foreground);
-    --dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
-    --dockable-panel-shadow: var(--shadow-pop);
-    --dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
-    --dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
+    --cui-dockable-panel-radius: var(--radius-panel);
+    --cui-dockable-panel-background: var(--card);
+    --cui-dockable-panel-foreground: var(--card-foreground);
+    --cui-dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
+    --cui-dockable-panel-shadow: var(--shadow-pop);
+    --cui-dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
+    --cui-dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
   }
-  :where(
-    [data-control-family="dockable-panel"][data-slot="root"],
-    [data-dockable-panel-root]
-  ) {
-    border: 1px solid var(--dockable-panel-border-color);
-    border-radius: var(--dockable-panel-radius);
+  :where([data-control-family="dockable-panel"][data-slot="root"], [data-dockable-panel-root]) {
+    border: 1px solid var(--cui-dockable-panel-border-color);
+    border-radius: var(--cui-dockable-panel-radius);
     outline: none;
-    background-color: var(--dockable-panel-background);
-    color: var(--dockable-panel-foreground);
-    box-shadow: var(--dockable-panel-shadow);
+    background-color: var(--cui-dockable-panel-background);
+    color: var(--cui-dockable-panel-foreground);
+    box-shadow: var(--cui-dockable-panel-shadow);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="root"][data-dragging]) {
@@ -30,11 +27,7 @@
 
   :where([data-control-family="dockable-panel"][data-slot="drag-handle"]) {
     border-radius: var(--radius-control);
-  }
-
-  :where([data-control-family="dockable-panel"][data-slot="drag-handle"]:focus-visible) {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+    text-align: left;
   }
 
   :where([data-control-family="dockable-panel"][data-slot="title"]) {
@@ -53,55 +46,49 @@
   }
 
   :where([data-control-family="dockable-panel"][data-slot="drop-zone"][data-active]) {
-    background-color: var(--dockable-panel-drop-zone-active-background);
+    background-color: var(--cui-dockable-panel-drop-zone-active-background);
     box-shadow:
       var(--shadow-sm),
-      0 0 0 1px
-        var(--dockable-panel-drop-zone-active-border-color);
-  }
-
-  :where([data-control-family="dockable-panel"][data-slot="drag-handle"]) {
-    --_dockable-panel-drag-handle-text-align: left;
-    text-align: var(--_dockable-panel-drag-handle-text-align);
+      0 0 0 1px var(--cui-dockable-panel-drop-zone-active-border-color);
   }
 }
 
-@property --dockable-panel-radius {
+@property --cui-dockable-panel-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --dockable-panel-background {
+@property --cui-dockable-panel-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --dockable-panel-foreground {
+@property --cui-dockable-panel-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --dockable-panel-border-color {
+@property --cui-dockable-panel-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --dockable-panel-shadow {
+@property --cui-dockable-panel-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --dockable-panel-drop-zone-active-background {
+@property --cui-dockable-panel-drop-zone-active-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --dockable-panel-drop-zone-active-border-color {
+@property --cui-dockable-panel-drop-zone-active-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

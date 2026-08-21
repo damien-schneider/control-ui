@@ -1,22 +1,68 @@
 "use client";
 
 import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomplete";
-import type {
-  AutocompleteClearProps,
-  AutocompleteContentProps,
-  AutocompleteEmptyProps,
-  AutocompleteGroupLabelProps,
-  AutocompleteGroupProps,
-  AutocompleteInputProps,
-  AutocompleteItemProps,
-  AutocompleteListProps,
-  AutocompleteProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+
+export type AutocompleteProps<Value = string> = {
+  children?: ReactNode;
+  items?: readonly Value[];
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  name?: string;
+  mode?: "list" | "both" | "inline" | "none";
+  autoHighlight?: boolean | "always";
+  limit?: number;
+  openOnInputClick?: boolean;
+  filter?: ((itemValue: Value, query: string, itemToString?: (itemValue: Value) => string) => boolean) | null;
+  itemToStringValue?: (itemValue: Value) => string;
+};
+
+export type AutocompleteInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
+  size?: ControlSize;
+};
+
+export type AutocompleteClearProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type AutocompleteContentProps = Omit<
+  ComponentProps<"div"> & {
+    sideOffset?: number;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+
+export type AutocompleteListProps<Value = unknown> = Omit<ComponentProps<"div">, "children"> & {
+  children?: ReactNode | ((item: Value, index: number) => ReactNode);
+} & { style?: CSSProperties & PopupKnobStyle };
+
+export type AutocompleteItemProps<Value = unknown> = Omit<
+  Omit<ComponentProps<"div">, "value"> & {
+    value?: Value;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+
+export type AutocompleteEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type AutocompleteGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type AutocompleteGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 // Free text, unlike Combobox — value is filter string, and picking item only fills field.
 
@@ -48,7 +94,6 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
   return (
     <AutocompletePrimitive.InputGroup
       data-control-ui="autocomplete"
-      data-control-family="field"
       data-field-kind="autocomplete"
       data-slot="root"
       className="relative flex w-full items-center"

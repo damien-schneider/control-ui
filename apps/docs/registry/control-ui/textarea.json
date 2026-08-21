@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/field-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/field-parts.css",
       "target": "@components/control-ui/styles/recipes/field-parts.css",
       "type": "registry:file"

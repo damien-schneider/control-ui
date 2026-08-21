@@ -2,7 +2,7 @@
 
 import { CheckIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
-import type { OpenChangeEventDetails } from "@/components/control-ui/contracts";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
 import { AspectRatio } from "@/components/control-ui/ui/aspect-ratio";
 import { Button } from "@/components/control-ui/ui/button";

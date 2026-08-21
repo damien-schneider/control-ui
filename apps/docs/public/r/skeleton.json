@@ -6,20 +6,27 @@
   "description": "Loading placeholder with a token-driven shimmer.",
   "dependencies": [],
   "registryDependencies": [
-    "http://127.0.0.1:3000/r/core.json"
+    "http://127.0.0.1:3000/r/core.json",
+    "http://127.0.0.1:3000/r/effects.json"
   ],
   "files": [
+    {
+      "path": "src/registry/knob-contracts/skeleton-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/skeleton-knobs.ts",
+      "type": "registry:component",
+      "content": "// Generated from src/registry/sources/control-ui/recipes/skeleton.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const skeletonKnobs = [\"--cui-skeleton-radius\", \"--cui-skeleton-background\"] as const;\nexport type SkeletonKnobStyle = Partial<Record<(typeof skeletonKnobs)[number], string>>;\n"
+    },
     {
       "path": "src/registry/sources/control-ui/recipes/skeleton.css",
       "target": "@components/control-ui/styles/recipes/skeleton.css",
       "type": "registry:file",
-      "content": "@layer components {\n  :where([data-control-family=\"skeleton\"][data-slot=\"root\"]) {\n    --skeleton-radius: var(--radius-control);\n    --skeleton-background: var(--muted);\n    border-radius: var(--skeleton-radius);\n    background-color: var(--skeleton-background);\n    background-image: linear-gradient(\n      100deg,\n      transparent 30%,\n      oklch(from var(--foreground) l c h / 0.06) 50%,\n      transparent 70%\n    );\n    background-size: 220% 100%;\n    animation: shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;\n  }\n\n}\n\n@property --skeleton-radius {\n  syntax: \"<length-percentage>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --skeleton-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
+      "content": "@layer components {\n  :where([data-control-family=\"skeleton\"][data-slot=\"root\"]) {\n    --cui-skeleton-radius: var(--radius-control);\n    --cui-skeleton-background: var(--muted);\n    border-radius: var(--cui-skeleton-radius);\n    background-color: var(--cui-skeleton-background);\n    background-image: linear-gradient(100deg, transparent 30%, oklch(from var(--foreground) l c h / 0.06) 50%, transparent 70%);\n    background-size: 220% 100%;\n    animation: shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;\n  }\n}\n\n@property --cui-skeleton-radius {\n  syntax: \"<length-percentage>\";\n  inherits: true;\n  initial-value: 0px;\n}\n\n@property --cui-skeleton-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
     },
     {
       "path": "src/registry/sources/control-ui/ui/skeleton.tsx",
       "target": "@components/control-ui/ui/skeleton.tsx",
       "type": "registry:ui",
-      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport type { SkeletonKnobStyle } from \"@/components/control-ui/knob-contracts\";\n\nexport function Skeleton({ className, ...props }: Omit<ComponentProps<\"div\">, \"style\"> & { style?: CSSProperties & SkeletonKnobStyle }) {\n  return <div data-control-ui=\"skeleton\" data-control-family=\"skeleton\" data-slot=\"root\" className={className} {...props} />;\n}\n"
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport type { SkeletonKnobStyle } from \"@/components/control-ui/knob-contracts/skeleton-knobs\";\n\nexport function Skeleton({ className, ...props }: Omit<ComponentProps<\"div\">, \"style\"> & { style?: CSSProperties & SkeletonKnobStyle }) {\n  return <div data-control-ui=\"skeleton\" data-control-family=\"skeleton\" data-slot=\"root\" className={className} {...props} />;\n}\n"
     }
   ],
   "css": {

@@ -1,101 +1,86 @@
 @layer components {
   :where([data-control-family="timeline"][data-slot="root"]) {
-    --timeline-indicator-background: var(--background);
-    --timeline-indicator-foreground: var(--muted-foreground);
-    --timeline-running-foreground: var(--primary-text);
-    --timeline-success-foreground: var(--foreground);
-    --timeline-error-foreground: var(--destructive-text);
-    --timeline-separator-background: var(--border);
-    --timeline-title-foreground: var(--foreground);
+    --cui-timeline-indicator-background: var(--background);
+    --cui-timeline-indicator-foreground: var(--muted-foreground);
+    --cui-timeline-running-foreground: var(--primary-text);
+    --cui-timeline-success-foreground: var(--foreground);
+    --cui-timeline-error-foreground: var(--destructive-text);
+    --cui-timeline-separator-background: var(--border);
+    --cui-timeline-title-foreground: var(--foreground);
   }
   :where([data-control-family="timeline"][data-slot="indicator"]) {
     border-radius: 9999px;
-    background: var(--timeline-indicator-background);
-    color: var(--timeline-indicator-foreground);
+    background: var(--cui-timeline-indicator-background);
+    color: var(--cui-timeline-indicator-foreground);
   }
 
-  :where(
-    [data-control-family="timeline"][data-slot="item"][data-state="running"]
-      [data-control-family="timeline"][data-slot="indicator"]
-  ) {
-    color: var(--timeline-running-foreground);
+  :where([data-control-family="timeline"][data-slot="item"][data-state="running"] [data-control-family="timeline"][data-slot="indicator"]) {
+    color: var(--cui-timeline-running-foreground);
   }
 
-  :where(
-    [data-control-family="timeline"][data-slot="item"][data-state="success"]
-      [data-control-family="timeline"][data-slot="indicator"]
-  ) {
-    color: var(--timeline-success-foreground);
+  :where([data-control-family="timeline"][data-slot="item"][data-state="success"] [data-control-family="timeline"][data-slot="indicator"]) {
+    color: var(--cui-timeline-success-foreground);
   }
 
-  :where(
-    [data-control-family="timeline"][data-slot="item"][data-state="error"]
-      [data-control-family="timeline"][data-slot="indicator"]
-  ) {
-    color: var(--timeline-error-foreground);
+  :where([data-control-family="timeline"][data-slot="item"][data-state="error"] [data-control-family="timeline"][data-slot="indicator"]) {
+    color: var(--cui-timeline-error-foreground);
   }
 
   :where([data-control-family="timeline"][data-slot="separator"]) {
-    background: var(--timeline-separator-background);
+    background: var(--cui-timeline-separator-background);
   }
 
   :where([data-control-family="timeline"][data-slot="title"]) {
-    color: var(--timeline-title-foreground);
+    color: var(--cui-timeline-title-foreground);
     font-size: var(--text-label);
+    font-weight: var(--font-weight-medium);
+    line-height: calc(var(--spacing) * 5);
   }
 
   :where([data-control-family="timeline"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-label);
-  }
-
-  :where([data-control-family="timeline"][data-slot="description"]) {
-    line-height: calc(var(--spacing) * 5);
-  }
-
-  :where([data-control-family="timeline"][data-slot="title"]) {
-    font-weight: var(--font-weight-medium);
     line-height: calc(var(--spacing) * 5);
   }
 }
 
-@property --timeline-indicator-background {
+@property --cui-timeline-indicator-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --timeline-indicator-foreground {
+@property --cui-timeline-indicator-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --timeline-running-foreground {
+@property --cui-timeline-running-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --timeline-success-foreground {
+@property --cui-timeline-success-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --timeline-error-foreground {
+@property --cui-timeline-error-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --timeline-separator-background {
+@property --cui-timeline-separator-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --timeline-title-foreground {
+@property --cui-timeline-title-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

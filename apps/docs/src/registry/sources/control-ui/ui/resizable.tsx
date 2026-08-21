@@ -1,9 +1,57 @@
 "use client";
 
+import type { ComponentProps, CSSProperties, Ref } from "react";
 import { createContext, useContext } from "react";
 import { Group, Panel, Separator } from "react-resizable-panels";
-import type { ResizableHandleProps, ResizablePanelGroupProps, ResizablePanelProps } from "@/components/control-ui/contracts";
+import type { ResizableKnobStyle } from "@/components/control-ui/knob-contracts/resizable-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type ResizableLayout = { [panelId: string]: number };
+
+export type ResizablePanelGroupVariant = "framed" | "nested";
+
+export type ResizableHandleVariant = "solid" | "hover";
+
+export type ResizablePanelGroupProps = Omit<ComponentProps<"div">, "style"> & {
+  orientation?: "horizontal" | "vertical";
+  variant?: ResizablePanelGroupVariant;
+  defaultLayout?: ResizableLayout;
+  disableCursor?: boolean;
+  disabled?: boolean;
+  onLayoutChange?: (layout: ResizableLayout) => void;
+  onLayoutChanged?: (layout: ResizableLayout, meta: { isUserInteraction: boolean }) => void;
+  style?: CSSProperties & ResizableKnobStyle;
+};
+
+export type ResizablePanelSize = { asPercentage: number; inPixels: number };
+
+export interface ResizablePanelHandle {
+  collapse: () => void;
+  expand: () => void;
+  getSize: () => ResizablePanelSize;
+  isCollapsed: () => boolean;
+  resize: (size: number | string) => void;
+}
+
+export type ResizablePanelProps = Omit<ComponentProps<"div">, "onResize"> & {
+  defaultSize?: number | string;
+  minSize?: number | string;
+  maxSize?: number | string;
+  collapsible?: boolean;
+  collapsedSize?: number | string;
+  groupResizeBehavior?: "preserve-relative-size" | "preserve-pixel-size";
+  disabled?: boolean;
+  panelRef?: Ref<ResizablePanelHandle>;
+  onResize?: (size: ResizablePanelSize, id: string | number | undefined, prevSize: ResizablePanelSize | undefined) => void;
+} & { style?: CSSProperties & ResizableKnobStyle };
+
+export type ResizableHandleProps = Omit<ComponentProps<"div">, "role" | "tabIndex" | "style"> & {
+  variant?: ResizableHandleVariant;
+  withHandle?: boolean;
+  disabled?: boolean;
+  disableDoubleClick?: boolean;
+  style?: CSSProperties & ResizableKnobStyle;
+};
 
 type Orientation = "horizontal" | "vertical";
 const OrientationContext = createContext<Orientation>("horizontal");

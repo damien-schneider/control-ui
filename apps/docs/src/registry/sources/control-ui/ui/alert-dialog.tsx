@@ -1,12 +1,22 @@
 "use client";
 
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
-import type { ComponentProps, CSSProperties } from "react";
-import type { AlertDialogContentProps, AlertDialogProps, ButtonProps } from "@/components/control-ui/contracts";
-import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
+import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { Button } from "@/components/control-ui/ui/button";
+
+export type AlertDialogProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export type AlertDialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 // No light dismiss — neither backdrop nor Esc closes it, so it needs explicit action.
 export function AlertDialog(props: AlertDialogProps) {
@@ -20,7 +30,6 @@ export function AlertDialogTrigger({
   return (
     <AlertDialogPrimitive.Trigger
       data-control-ui="alert-dialog"
-      data-control-family="popup"
       data-popup-kind="alert-dialog"
       data-slot="trigger"
       className={className}
@@ -46,7 +55,7 @@ export function AlertDialogClose({
       render={(renderProps) => (
         <Button
           {...renderProps}
-          data-dialog-part="close"
+          data-popup-part="close"
           variant={variant}
           size={size}
           tone={tone}

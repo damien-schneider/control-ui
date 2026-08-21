@@ -86,7 +86,13 @@ export function SidebarLayout({ children }: { children: ReactNode }) {
         <header className="flex h-14 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger />
         </header>
-        <div data-control-ui="sidebar-layout" data-slot="content" data-surface="panel" className={cn("flex flex-1 flex-col gap-4 p-4")}>
+        <div
+          data-control-ui="sidebar-layout"
+          data-control-family="sidebar-layout"
+          data-slot="content"
+          data-surface="panel"
+          className={cn("flex flex-1 flex-col gap-4 p-4")}
+        >
           {children}
         </div>
       </SidebarInset>

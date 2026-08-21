@@ -1,31 +1,30 @@
 @layer components {
   :where([data-control-family="markdown"][data-slot="root"]) {
-    --markdown-foreground: oklch(from var(--foreground) l c h / 0.9);
-    --markdown-blockquote-border-color: var(--border);
-    --markdown-blockquote-foreground: var(--muted-foreground);
-    --markdown-inline-code-background: color-mix(in oklab, var(--foreground) 8%, transparent);
-    --markdown-inline-code-foreground: var(--foreground);
-    --markdown-inline-code-radius: 0.25rem;
-    --markdown-link-foreground: var(--primary-text);
-    --markdown-table-cell-border-color: var(--border);
-    --markdown-table-header-background: var(--muted);
-    color: var(--markdown-foreground);
+    --cui-markdown-foreground: oklch(from var(--foreground) l c h / 0.9);
+    --cui-markdown-blockquote-border-color: var(--border);
+    --cui-markdown-blockquote-foreground: var(--muted-foreground);
+    --cui-markdown-inline-code-background: color-mix(in oklab, var(--foreground) 8%, transparent);
+    --cui-markdown-inline-code-foreground: var(--foreground);
+    --cui-markdown-inline-code-radius: 0.25rem;
+    --cui-markdown-link-foreground: var(--primary-text);
+    --cui-markdown-table-cell-border-color: var(--border);
+    --cui-markdown-table-header-background: var(--muted);
+    color: var(--cui-markdown-foreground);
     font-size: var(--text-label);
   }
 
   :where([data-control-family="markdown"][data-slot="table-cell"]) {
     border-style: solid;
     border-width: 1px;
-    border-color: var(--markdown-table-cell-border-color);
+    border-color: var(--cui-markdown-table-cell-border-color);
   }
 
   :where([data-control-family="markdown"][data-slot="table-header"]) {
     border-style: solid;
     border-width: 1px;
     border-color: var(--border);
-    background-color: var(--markdown-table-header-background);
-    --_markdown-table-header-text-align: left;
-    text-align: var(--_markdown-table-header-text-align);
+    background-color: var(--cui-markdown-table-header-background);
+    text-align: left;
     font-weight: var(--font-weight-semibold);
   }
 
@@ -48,16 +47,16 @@
   }
 
   :where([data-control-family="markdown"][data-slot="blockquote"]) {
-    border-color: var(--markdown-blockquote-border-color);
+    border-color: var(--cui-markdown-blockquote-border-color);
     border-left-style: solid;
     border-left-width: 2px;
-    color: var(--markdown-blockquote-foreground);
+    color: var(--cui-markdown-blockquote-foreground);
     font-style: italic;
   }
 
   :where([data-control-family="markdown"][data-slot="link"]) {
     font-weight: var(--font-weight-medium);
-    color: var(--markdown-link-foreground);
+    color: var(--cui-markdown-link-foreground);
     --_markdown-link-decoration: underline;
     text-decoration-line: var(--_markdown-link-decoration);
     text-underline-offset: 2px;
@@ -100,63 +99,63 @@
   }
 
   :where([data-control-family="markdown"][data-slot="inline-code"]) {
-    border-radius: var(--markdown-inline-code-radius);
-    background-color: var(--markdown-inline-code-background);
+    border-radius: var(--cui-markdown-inline-code-radius);
+    background-color: var(--cui-markdown-inline-code-background);
     font-family: var(--font-mono);
     font-size: 0.9em;
-    color: var(--markdown-inline-code-foreground);
+    color: var(--cui-markdown-inline-code-foreground);
   }
 }
 
-@property --markdown-foreground {
+@property --cui-markdown-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --markdown-blockquote-border-color {
+@property --cui-markdown-blockquote-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --markdown-blockquote-foreground {
+@property --cui-markdown-blockquote-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --markdown-inline-code-background {
+@property --cui-markdown-inline-code-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --markdown-inline-code-foreground {
+@property --cui-markdown-inline-code-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --markdown-inline-code-radius {
+@property --cui-markdown-inline-code-radius {
   syntax: "<length-percentage>+";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --markdown-link-foreground {
+@property --cui-markdown-link-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --markdown-table-cell-border-color {
+@property --cui-markdown-table-cell-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --markdown-table-header-background {
+@property --cui-markdown-table-header-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

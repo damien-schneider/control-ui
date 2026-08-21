@@ -17,6 +17,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/code-diff-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/code-diff-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/lib/diff.ts",
       "target": "@components/control-ui/lib/diff.ts",
       "type": "registry:lib"

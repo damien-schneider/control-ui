@@ -20,6 +20,11 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/knob-contracts/environment-variables-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/environment-variables-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/lib/env-file.ts",
       "target": "@components/control-ui/lib/env-file.ts",
       "type": "registry:lib"

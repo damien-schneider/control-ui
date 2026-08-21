@@ -1,9 +1,31 @@
 "use client";
 
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
-import type { ReactNode } from "react";
-import type { SwitchProps } from "@/components/control-ui/contracts";
+import type { CSSProperties, ReactNode } from "react";
+import type { SwitchKnobStyle } from "@/components/control-ui/knob-contracts/switch-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type SwitchProps = Omit<
+  {
+    checked?: boolean;
+    defaultChecked?: boolean;
+    onCheckedChange?: (checked: boolean) => void;
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    name?: string;
+    value?: string;
+    id?: string;
+    className?: string;
+    icon?: ReactNode;
+    checkedIcon?: ReactNode;
+    uncheckedIcon?: ReactNode;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    "aria-describedby"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & SwitchKnobStyle };
 
 // Own anatomy, not restyled Button way Toggle is.
 // thumb stretches on press and its checked offset shrinks by same amount, so it stays flush right while widening.
@@ -45,7 +67,7 @@ export function Switch({
       nativeButton
       render={<button type="button" />}
       className={cn(
-        "group/switch relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center p-0.5",
+        "relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center p-0.5",
         "data-[disabled]:cursor-not-allowed",
         className,
       )}
@@ -55,7 +77,7 @@ export function Switch({
         data-control-ui="switch"
         data-control-family="switch"
         data-slot="thumb"
-        className={cn("pointer-events-none relative block size-4", "group-active/switch:w-5")}
+        className="pointer-events-none relative block"
       >
         {hasIcon ? <SwitchThumbIcon icon={singleIcon} checkedIcon={onIcon} uncheckedIcon={offIcon} /> : null}
       </SwitchPrimitive.Thumb>

@@ -14,8 +14,8 @@ import {
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
-import type { TimelineState } from "@/components/control-ui/contracts";
 import { SourceBadge } from "@/components/control-ui/source-badge";
+import type { TimelineState } from "@/components/control-ui/ui/timeline";
 import {
   Timeline,
   TimelineContent,

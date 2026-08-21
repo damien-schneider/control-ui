@@ -1,23 +1,17 @@
 @layer components {
   :where([data-control-family="label"][data-slot="root"]) {
-    --label-root-foreground: var(--muted-foreground);
+    --cui-label-root-foreground: var(--muted-foreground);
+    color: var(--cui-label-root-foreground);
     font-size: var(--text-caption);
-  }
-
-  :where([data-control-family="label"][data-slot="root"]) {
     font-weight: var(--font-weight-medium);
   }
 
-  :where([data-control-family="label"][data-slot="root"]) {
-    color: var(--label-root-foreground);
-  }
-
-  :where([data-control-family="label"][data-slot="root"]:is(:where(.peer):disabled ~ *)) {
+  :where([data-control-family="field"][data-control="true"]:disabled ~ [data-control-family="label"][data-slot="root"]) {
     opacity: 70%;
   }
 }
 
-@property --label-root-foreground {
+@property --cui-label-root-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

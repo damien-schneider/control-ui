@@ -3,9 +3,11 @@
 import { X } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext } from "react";
-
-import type { ContextProps, ContextSegmentKind } from "@/components/control-ui/contracts";
-import type { ButtonKnobStyle, ContextKnobStyle, PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ContextSegment, ContextSegmentKind } from "@/components/control-ui/context-model";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { ContextKnobStyle } from "@/components/control-ui/knob-contracts/context-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import {
@@ -19,6 +21,17 @@ import {
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import type { ContextModel } from "./context-model";
 import { deriveContextModel } from "./context-model";
+
+export type ContextProps = Omit<ComponentProps<"div">, "children"> & {
+  segments: readonly ContextSegment[];
+  maxTokens?: number | null;
+  model?: string;
+  locale?: Intl.LocalesArgument;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  children?: ReactNode;
+} & { style?: CSSProperties & ContextKnobStyle };
 
 type ContextStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 
@@ -190,7 +203,6 @@ export function ContextContent({
 
   return (
     <PopoverContent
-      data-context-content="true"
       {...props}
       // default panel carries no title, so popup needs name of its own
       aria-label={ariaLabel ?? (modelName ? `Context window · ${modelName}` : "Context window")}

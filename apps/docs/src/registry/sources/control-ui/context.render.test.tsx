@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import type { ContextSegment } from "@/components/control-ui/contracts";
+import type { ContextSegment } from "@/components/control-ui/context-model";
 import { Context, ContextGraph, ContextLegend, ContextSummary } from "./context";
 
 const segments = [

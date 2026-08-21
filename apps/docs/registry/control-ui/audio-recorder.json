@@ -19,6 +19,21 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/knob-contracts/audio-recorder-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/audio-recorder-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/knob-contracts/button-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/lib/format-audio-recorder-duration.ts",
       "target": "@components/control-ui/lib/format-audio-recorder-duration.ts",
       "type": "registry:lib"

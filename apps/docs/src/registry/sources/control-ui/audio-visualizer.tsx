@@ -1,7 +1,13 @@
-import type { CSSProperties } from "react";
-
-import type { AudioVisualizerProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { AudioVisualizerKnobStyle } from "@/components/control-ui/knob-contracts/audio-visualizer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type AudioVisualizerProps = Omit<ComponentProps<"div">, "children" | "style"> & {
+  levels: readonly number[];
+  active?: boolean;
+  points?: number;
+  style?: CSSProperties & AudioVisualizerKnobStyle;
+};
 
 // Bars reading. audio-visualizer-line.tsx exports same `AudioVisualizer` on same props, so swapping is import-path change.
 // Runtime-agnostic — feed it any rolling 0..1 window.

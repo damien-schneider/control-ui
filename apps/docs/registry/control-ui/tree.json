@@ -14,6 +14,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/tree-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/tree-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/tree.css",
       "target": "@components/control-ui/styles/recipes/tree.css",
       "type": "registry:file"

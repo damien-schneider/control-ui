@@ -3,15 +3,25 @@
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import type { MorphingPanelContentProps, MorphingPanelProps, MorphingPanelTriggerProps } from "@/components/control-ui/contracts";
+import type { MorphingPanelKnobStyle } from "@/components/control-ui/knob-contracts/morphing-panel-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps } from "@/components/control-ui/ui/collapsible";
 
-export type {
-  MorphingPanelContentProps,
-  MorphingPanelDimensions,
-  MorphingPanelProps,
-  MorphingPanelTriggerProps,
-} from "@/components/control-ui/contracts";
+export type MorphingPanelDimensions = { width: string; height: string };
+
+export type MorphingPanelProps = Omit<CollapsibleProps, "style"> & {
+  collapsedSize: MorphingPanelDimensions;
+  expandedSize: MorphingPanelDimensions;
+  style?: CSSProperties & MorphingPanelKnobStyle;
+};
+
+export type MorphingPanelTriggerProps = Omit<CollapsibleTriggerProps, "style"> & {
+  style?: CSSProperties & MorphingPanelKnobStyle;
+};
+
+export type MorphingPanelContentProps = Omit<CollapsibleContentProps, "style"> & {
+  style?: CSSProperties & MorphingPanelKnobStyle;
+};
 
 type MorphingPanelStyle = CSSProperties & {
   "--_morphing-panel-collapsed-height": string;
@@ -42,7 +52,6 @@ function MorphingPanelTriggerElement({
     props: {
       ...triggerProps,
       "data-control-ui": "morphing-panel",
-      "data-control-family": "morphing-panel",
       "data-slot": "trigger",
       "data-state": panelState,
       className: cn(triggerProps.className, className),

@@ -1,13 +1,17 @@
 import type { ComponentProps, CSSProperties } from "react";
-import type {
-  EmptyContentProps,
-  EmptyDescriptionProps,
-  EmptyMediaProps,
-  EmptyProps,
-  EmptyTitleProps,
-} from "@/components/control-ui/contracts";
-import type { EmptyKnobStyle } from "@/components/control-ui/knob-contracts";
+
+import type { EmptyKnobStyle } from "@/components/control-ui/knob-contracts/empty-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type EmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+
+export type EmptyMediaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+
+export type EmptyContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+
+export type EmptyDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+
+export type EmptyTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
 
 export function Empty({ className, ...props }: EmptyProps) {
   return (

@@ -14,6 +14,7 @@
   ],
   "registryDependencies": [
     "button",
+    "chat-message",
     "core",
     "trigger-menu"
   ],
@@ -22,6 +23,11 @@
       "path": "src/registry/hooks/use-chat-composer.ts",
       "target": "@components/control-ui/hooks/use-chat-composer.ts",
       "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/knob-contracts/chat-composer-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/chat-composer-knobs.ts",
+      "type": "registry:component"
     },
     {
       "path": "src/registry/sources/control-ui/chat-composer-editor.css",

@@ -2,24 +2,61 @@
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Menubar as MenubarPrimitive } from "@base-ui/react/menubar";
-import type {
-  MenubarContentProps,
-  MenubarGroupProps,
-  MenubarItemProps,
-  MenubarLabelProps,
-  MenubarMenuProps,
-  MenubarProps,
-  MenubarSeparatorProps,
-  MenubarShortcutProps,
-  MenubarSubContentProps,
-  MenubarSubProps,
-  MenubarSubTriggerProps,
-  MenubarTriggerProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+
+export type MenubarProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  modal?: boolean;
+  loopFocus?: boolean;
+  disabled?: boolean;
+  orientation?: "horizontal" | "vertical";
+};
+
+export type MenubarMenuProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export type MenubarTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle };
+
+export type MenubarContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type MenubarGroupProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type MenubarItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  disabled?: boolean;
+  onClick?: (event: MouseEvent) => void;
+};
+
+export type MenubarSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type MenubarLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  inset?: boolean;
+};
+
+export type MenubarShortcutProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type MenubarSubProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export type MenubarSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  disabled?: boolean;
+  inset?: boolean;
+};
+
+export type MenubarSubContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 // row of independent Menu.Root menus — each trigger drops its own full menu.
 

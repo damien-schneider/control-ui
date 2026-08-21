@@ -19,16 +19,16 @@ describe("AudioRecorder", () => {
   });
   test("forwards retained knob styles to their painted compound parts", () => {
     const html = renderToString(
-      <AudioRecorder style={{ "--audio-recorder-foreground": "oklch(0.5 0.1 250)" }}>
-        <AudioRecorderTrigger style={{ "--audio-recorder-recording-ring-color": "oklch(0.7 0.15 250)" }} />
-        <AudioRecorderVisualizer style={{ "--audio-visualizer-bar-background": "oklch(0.6 0.12 250)" }} />
-        <AudioRecorderStatus style={{ "--audio-recorder-error-foreground": "oklch(0.6 0.2 20)" }} />
+      <AudioRecorder style={{ "--cui-audio-recorder-foreground": "oklch(0.5 0.1 250)" }}>
+        <AudioRecorderTrigger style={{ "--cui-audio-recorder-recording-ring-color": "oklch(0.7 0.15 250)" }} />
+        <AudioRecorderVisualizer style={{ "--cui-audio-visualizer-bar-background": "oklch(0.6 0.12 250)" }} />
+        <AudioRecorderStatus style={{ "--cui-audio-recorder-error-foreground": "oklch(0.6 0.2 20)" }} />
       </AudioRecorder>,
     );
 
-    expect(html).toContain("--audio-recorder-foreground:oklch(0.5 0.1 250)");
-    expect(html).toContain("--audio-recorder-recording-ring-color:oklch(0.7 0.15 250)");
-    expect(html).toContain("--audio-visualizer-bar-background:oklch(0.6 0.12 250)");
-    expect(html).toContain("--audio-recorder-error-foreground:oklch(0.6 0.2 20)");
+    expect(html).toContain("--cui-audio-recorder-foreground:oklch(0.5 0.1 250)");
+    expect(html).toContain("--cui-audio-recorder-recording-ring-color:oklch(0.7 0.15 250)");
+    expect(html).toContain("--cui-audio-visualizer-bar-background:oklch(0.6 0.12 250)");
+    expect(html).toContain("--cui-audio-recorder-error-foreground:oklch(0.6 0.2 20)");
   });
 });

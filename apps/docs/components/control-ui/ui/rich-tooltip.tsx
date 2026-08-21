@@ -4,11 +4,16 @@ import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import type { RichTooltipProgressVariant, RichTooltipTone } from "@/components/control-ui/contracts";
-import type { PopupKnobStyle, RichTooltipKnobStyle } from "@/components/control-ui/knob-contracts";
+
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
+import type { RichTooltipKnobStyle } from "@/components/control-ui/knob-contracts/rich-tooltip-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { stepAfter, stepBefore, type TourPosition, tourPosition } from "./rich-tooltip-tour";
+
+export type RichTooltipTone = "accent" | "surface";
+
+export type RichTooltipProgressVariant = "count" | "dots";
 
 type RichTooltipContentKnobStyle = RichTooltipKnobStyle & PopupKnobStyle;
 
@@ -223,7 +228,7 @@ export function RichTooltipContent({
   ...props
 }: RichTooltipContentProps) {
   const { tone } = useRichTooltipContext();
-  const isAccent = tone === "accent";
+  const isSurface = tone === "surface";
   useAnchorScroll(anchor, true, scrollAnchorIntoView);
 
   return (
@@ -249,8 +254,8 @@ export function RichTooltipContent({
           data-control-family="popup"
           data-slot="content"
           data-tone={tone}
-          data-surface={isAccent ? undefined : "floating"}
-          data-popup-part={isAccent ? undefined : "surface"}
+          data-surface={isSurface ? "floating" : undefined}
+          data-popup-part={isSurface ? "surface" : undefined}
           className={cn("relative grid w-80 max-w-[calc(100vw-2rem)] gap-2 p-4", className)}
           {...props}
         >

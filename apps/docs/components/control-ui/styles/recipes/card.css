@@ -1,22 +1,22 @@
 @layer components {
   :where([data-control-family="card"][data-slot="root"]) {
-    --card-radius: var(--radius-lg);
-    --card-background: var(--card);
-    --card-border-color: var(--border);
-    --card-border-width: 1px;
-    --card-shadow: var(--shadow-sm);
-    --card-backdrop-filter: none;
-    border: var(--card-border-width) solid var(--card-border-color);
-    border-radius: var(--card-radius);
-    background: var(--card-background);
+    --cui-card-radius: var(--radius-lg);
+    --cui-card-background: var(--card);
+    --cui-card-border-color: var(--border);
+    --cui-card-border-width: 1px;
+    --cui-card-shadow: var(--shadow-sm);
+    --cui-card-backdrop-filter: none;
+    border: var(--cui-card-border-width) solid var(--cui-card-border-color);
+    border-radius: var(--cui-card-radius);
+    background: var(--cui-card-background);
     color: var(--card-foreground);
-    box-shadow: var(--card-shadow);
-    -webkit-backdrop-filter: var(--card-backdrop-filter);
-    backdrop-filter: var(--card-backdrop-filter);
+    box-shadow: var(--cui-card-shadow);
+    -webkit-backdrop-filter: var(--cui-card-backdrop-filter);
+    backdrop-filter: var(--cui-card-backdrop-filter);
   }
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"]) {
-    --card-shadow: var(--shadow-pop);
+    --cui-card-shadow: var(--shadow-pop);
   }
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="header"]) {
@@ -32,43 +32,39 @@
     color: var(--muted-foreground);
     font-size: var(--text-body);
   }
-
-  :where([data-control-family="card"][data-slot="title"]) {
-    line-height: 1;
-  }
 }
 
-@property --card-radius {
+@property --cui-card-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --card-background {
+@property --cui-card-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --card-border-color {
+@property --cui-card-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --card-border-width {
+@property --cui-card-border-width {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --card-shadow {
+@property --cui-card-shadow {
   syntax: "*";
   inherits: true;
   initial-value: none;
 }
 
-@property --card-backdrop-filter {
+@property --cui-card-backdrop-filter {
   syntax: "*";
   inherits: true;
   initial-value: none;

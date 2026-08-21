@@ -10,12 +10,12 @@ const RECIPE = readFileSync(new URL("./recipes/toolbar.css", import.meta.url), "
 
 describe("Toolbar contracts", () => {
   test("derives the shell radius from the fitted item radius and padding", () => {
-    expect(RECIPE).toContain("--_toolbar-item-radius: var(--radius-sm);");
-    expect(RECIPE).toContain("--_toolbar-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));");
+    expect(RECIPE).toContain("--cui-toolbar-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));");
+    expect(RECIPE).toContain("border-radius: var(--cui-toolbar-item-radius);");
     expect(RECIPE).toContain(
-      "clamp(0px, calc(min(var(--_toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--toolbar-padding))",
+      "clamp(0px, calc(min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--cui-toolbar-padding))",
     );
-    expect(RECIPE).toContain("--toolbar-padding: 0.25rem;");
+    expect(RECIPE).toContain("--cui-toolbar-padding: 0.25rem;");
   });
 
   test("keeps menu semantics when a button renders a DropdownMenu trigger", () => {

@@ -3,16 +3,22 @@
   "name": "chat-message",
   "type": "registry:component",
   "title": "ChatMessage",
-  "description": "Composable chat message with typed role, density, and tone state.",
+  "description": "Composable chat message with typed role, density, and lifecycle state.",
   "dependencies": [],
   "registryDependencies": [
-    "core"
+    "core",
+    "effects"
   ],
   "files": [
     {
       "path": "src/registry/hooks/use-chat-message.ts",
       "target": "@components/control-ui/hooks/use-chat-message.ts",
       "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/knob-contracts/chat-message-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/chat-message-knobs.ts",
+      "type": "registry:component"
     },
     {
       "path": "src/registry/sources/control-ui/chat-message.tsx",

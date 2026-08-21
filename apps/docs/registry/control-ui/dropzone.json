@@ -19,6 +19,11 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/knob-contracts/dropzone-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/dropzone-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/lib/dropzone-validation.ts",
       "target": "@components/control-ui/lib/dropzone-validation.ts",
       "type": "registry:lib"

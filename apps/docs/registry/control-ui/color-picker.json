@@ -12,13 +12,29 @@
     "core",
     "input",
     "number-field",
-    "select"
+    "select",
+    "surface-variants"
   ],
   "files": [
     {
       "path": "src/registry/hooks/use-color-area.ts",
       "target": "@components/control-ui/hooks/use-color-area.ts",
       "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/knob-contracts/button-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/knob-contracts/color-picker-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/color-picker-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/knob-contracts/popup-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+      "type": "registry:component"
     },
     {
       "path": "src/registry/lib/color.ts",

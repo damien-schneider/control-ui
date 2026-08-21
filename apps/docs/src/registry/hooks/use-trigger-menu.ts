@@ -1,7 +1,28 @@
+import type { ReactNode } from "react";
 import { useRef, useState } from "react";
-
-import type { TriggerConfig, TriggerMenuItemData } from "../contracts";
 import type { TriggerMatch } from "../lib/trigger-detect";
+
+export type TriggerMenuItemData = {
+  id: string;
+  label: string;
+  description?: string;
+  icon?: ReactNode;
+  keywords?: readonly string[];
+  disabled?: boolean;
+  kind?: string;
+  image?: string;
+};
+
+export type TriggerSelectContext = { char: string; query: string };
+
+export type TriggerConfig<Item extends TriggerMenuItemData = TriggerMenuItemData> = {
+  char: string;
+  items: readonly Item[] | ((query: string) => readonly Item[]);
+  filter?: (item: Item, query: string) => boolean;
+  insert?: "replace" | "none";
+  insertText?: (item: Item) => string;
+  onSelect?: (item: Item, ctx: TriggerSelectContext) => void;
+};
 
 // Never touches DOM or editor: binding feeds state through `report` and performs insertion through `onCommit`,
 // which is what lets one popup serve plain <textarea> and ProseMirror editor unchanged.

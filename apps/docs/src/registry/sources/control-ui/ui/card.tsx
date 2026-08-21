@@ -1,13 +1,22 @@
-import type {
-  CardActionProps,
-  CardContentProps,
-  CardDescriptionProps,
-  CardFooterProps,
-  CardHeaderProps,
-  CardProps,
-  CardTitleProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { CardKnobStyle } from "@/components/control-ui/knob-contracts/card-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type CardVariant = "default" | "sectioned";
+
+export type CardProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & CardKnobStyle } & { variant?: CardVariant };
+
+export type CardHeaderProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+
+export type CardTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & CardKnobStyle };
+
+export type CardDescriptionProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+
+export type CardActionProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+
+export type CardContentProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
+
+export type CardFooterProps = ComponentProps<"div"> & { style?: CSSProperties & CardKnobStyle };
 
 export function Card({ variant = "default", className, ...props }: CardProps) {
   return (

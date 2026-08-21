@@ -1,19 +1,19 @@
 @layer components {
   :where([data-control-family="switch"][data-slot="root"]) {
-    --switch-background: oklch(from var(--foreground) l c h / 0.14);
-    --switch-hover-background: oklch(from var(--foreground) l c h / 0.2);
-    --switch-checked-background: var(--primary);
-    --switch-checked-hover-background: oklch(from var(--primary) l c h / 0.9);
-    --switch-thumb-radius: 9999px;
-    --switch-thumb-background: var(--background);
-    border-radius: 9999px;
-    background: var(--switch-background);
+    --cui-switch-background: oklch(from var(--foreground) l c h / 0.14);
+    --cui-switch-hover-background: oklch(from var(--foreground) l c h / 0.2);
+    --cui-switch-checked-background: var(--primary);
+    --cui-switch-checked-hover-background: oklch(from var(--primary) l c h / 0.9);
+    --cui-switch-thumb-radius: 9999px;
+    --cui-switch-thumb-background: var(--background);
+    border-radius: calc(infinity * 1px);
+    background: var(--cui-switch-background);
     outline: none;
     transition: background-color var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="switch"][data-slot="root"]:hover) {
-    background: var(--switch-hover-background);
+    background: var(--cui-switch-hover-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"]:active) {
@@ -21,19 +21,15 @@
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked]) {
-    background: var(--switch-checked-background);
+    background: var(--cui-switch-checked-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked]:hover) {
-    background: var(--switch-checked-hover-background);
+    background: var(--cui-switch-checked-hover-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked]:active) {
     background: oklch(from var(--primary) l c h / 0.8);
-  }
-
-  :where([data-control-family="switch"][data-slot="root"]:focus-visible) {
-    box-shadow: 0 0 0 2px oklch(from var(--foreground) l c h / 0.3);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-disabled]) {
@@ -41,17 +37,19 @@
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-disabled]:hover) {
-    background: var(--switch-background);
+    background: var(--cui-switch-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-disabled][data-checked]:hover) {
-    background: var(--switch-checked-background);
+    background: var(--cui-switch-checked-background);
   }
 
   :where([data-control-family="switch"][data-slot="thumb"]) {
-    border-radius: var(--switch-thumb-radius);
-    background: var(--switch-thumb-background);
+    border-radius: var(--cui-switch-thumb-radius);
+    background: var(--cui-switch-thumb-background);
     box-shadow: var(--shadow-sm);
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
     transition-property: translate, width;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
@@ -90,54 +88,52 @@
     opacity: 1;
   }
 
-  :where([data-control-family="switch"][data-slot="root"]) {
-    border-radius: calc(infinity * 1px);
-    --_switch-root-outline: none;
-    outline-style: var(--_switch-root-outline);
-  }
-
   :where([data-control-family="switch"][data-slot="thumb"][data-checked]) {
     --_switch-thumb-translate: calc(var(--spacing) * 4) 0;
     translate: var(--_switch-thumb-translate);
   }
 
-  :where([data-control-family="switch"][data-slot="thumb"]:is(:where(.group\/switch):active *)[data-checked]) {
+  :where([data-control-family="switch"][data-slot="root"]:active [data-control-family="switch"][data-slot="thumb"]) {
+    width: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"]:active [data-control-family="switch"][data-slot="thumb"][data-checked]) {
     --_switch-thumb-translate: calc(var(--spacing) * 3) 0;
     translate: var(--_switch-thumb-translate);
   }
 }
 
-@property --switch-background {
+@property --cui-switch-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --switch-hover-background {
+@property --cui-switch-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --switch-checked-background {
+@property --cui-switch-checked-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --switch-checked-hover-background {
+@property --cui-switch-checked-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --switch-thumb-radius {
+@property --cui-switch-thumb-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --switch-thumb-background {
+@property --cui-switch-thumb-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

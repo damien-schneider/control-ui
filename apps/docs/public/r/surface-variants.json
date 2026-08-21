@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "surface-variants",
+  "type": "registry:item",
+  "title": "Surface variants",
+  "description": "Popup part names and surface variant resolution shared across popup-family components.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/surface-variants.ts",
+      "target": "@components/control-ui/surface-variants.ts",
+      "type": "registry:component",
+      "content": "export const popupItemStructureClasses = \"flex min-h-[var(--control-h-xs)] select-none items-center gap-2\";\n\nexport const popupParts = [\n  \"backdrop\",\n  \"surface\",\n  \"list-surface\",\n  \"list-content\",\n  \"bar\",\n  \"item\",\n  \"navigation-link\",\n  \"label\",\n  \"separator\",\n  \"shortcut\",\n] as const;\n\nexport type PopupPart = (typeof popupParts)[number];\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

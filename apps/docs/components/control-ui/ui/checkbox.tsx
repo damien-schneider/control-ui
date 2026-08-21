@@ -1,8 +1,28 @@
 "use client";
 
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
-import type { CheckboxProps } from "@/components/control-ui/contracts";
+import type { CSSProperties } from "react";
+import type { ChoiceKnobStyle } from "@/components/control-ui/knob-contracts/choice-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type CheckboxProps = Omit<
+  {
+    checked?: boolean;
+    defaultChecked?: boolean;
+    onCheckedChange?: (checked: boolean) => void;
+    indeterminate?: boolean;
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    name?: string;
+    value?: string;
+    id?: string;
+    className?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & ChoiceKnobStyle };
 
 // tick and dash swap on Root's data-indeterminate in pure CSS.
 export function Checkbox({

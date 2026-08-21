@@ -63,7 +63,9 @@ describe("Control UI cross-slide panel switch", () => {
     expect(CSS).toContain("@supports (height: calc-size(auto, size))");
     expect(CSS).toMatch(/\[data-slide="panel"\]:not\(\[inert\]\)\)\s*\{\s*height: calc-size\(auto, size\);/);
     expect(CSS).toContain("height: var(--aui-slide-prev-height, calc-size(auto, size));");
-    expect(CSS).toContain("translate var(--duration-slow) var(--ease-emphasized), height var(--duration-slow) var(--ease-emphasized)");
+    expect(CSS).toMatch(
+      /translate\s+var\(--duration-slow\)\s+var\(--ease-emphasized\),\s*height\s+var\(--duration-slow\)\s+var\(--ease-emphasized\)/,
+    );
     expect(TABS_TSX).toContain("--aui-slide-prev-height");
     expect(INLINE_CITATION_TSX).toContain("--aui-slide-prev-height");
     // stamp is cleared right after starting frame — controlled switch that bypasses

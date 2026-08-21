@@ -69,6 +69,7 @@
   --border: oklch(from oklch(0.708 0 0) l c h / calc(0.22 * var(--ring-opacity)));
   --input: oklch(from oklch(0.708 0 0) l c h / 0.28);
   --ring: oklch(from var(--primary) l c h / 0.38);
+  --focus-ring: var(--primary);
   --canvas: oklch(0.985 0 0);
 }
 
@@ -89,6 +90,7 @@
   --border: oklch(from oklch(0.708 0 0) l c h / calc(0.16 * var(--ring-opacity)));
   --input: oklch(from oklch(0.708 0 0) l c h / 0.18);
   --ring: oklch(from var(--primary) l c h / 0.52);
+  --focus-ring: var(--primary);
   --canvas: oklch(0.145 0 0);
   --popover-opacity: 0.82;
   --shadow-color: oklch(0 0 0);

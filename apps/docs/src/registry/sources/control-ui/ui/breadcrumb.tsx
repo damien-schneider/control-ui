@@ -3,8 +3,8 @@
 import { useRender } from "@base-ui/react/use-render";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
-import type { RenderProp } from "@/components/control-ui/contracts";
-import type { BreadcrumbKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { RenderProp } from "@/components/control-ui/control-props";
+import type { BreadcrumbKnobStyle } from "@/components/control-ui/knob-contracts/breadcrumb-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
 export function Breadcrumb({ className, ...props }: ComponentProps<"nav"> & { style?: CSSProperties & BreadcrumbKnobStyle }) {

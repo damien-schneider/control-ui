@@ -5,7 +5,7 @@ export const hookEntries = [
     id: "use-chat-message",
     kind: "Hook",
     name: "useChatMessage",
-    summary: "Typed role, density, and tone state for ChatMessage.",
+    summary: "Typed role, density, and lifecycle state for ChatMessage.",
     target: "components/control-ui/hooks/use-chat-message.ts",
     install: "the ChatMessage component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-chat-message.ts", "hook"),
@@ -83,14 +83,6 @@ export const utilEntries = [
     summary: "Skin slot and adornment resolvers for the Control UI library.",
     target: "components/control-ui/skin.ts",
     source: sourceFile("Skin resolver", "src/registry/skin.ts", "util"),
-  },
-  {
-    id: "contracts",
-    kind: "Util",
-    name: "contracts",
-    summary: "Shared prop and slot contracts for swappable skins.",
-    target: "components/control-ui/contracts.ts",
-    source: sourceFile("Type contracts", "src/registry/contracts.ts", "util"),
   },
   {
     id: "serialize",

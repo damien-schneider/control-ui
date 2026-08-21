@@ -1,8 +1,22 @@
 "use client";
 
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
-import type { AvatarFallbackProps, AvatarGroupProps, AvatarImageProps, AvatarProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { AvatarKnobStyle } from "@/components/control-ui/knob-contracts/avatar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type AvatarProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & AvatarKnobStyle };
+
+export type AvatarGroupProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AvatarKnobStyle };
+
+export type AvatarImageProps = ComponentProps<"img"> & {
+  onLoadingStatusChange?: (status: "idle" | "loading" | "loaded" | "error") => void;
+} & { style?: CSSProperties & AvatarKnobStyle };
+
+export type AvatarFallbackProps = Omit<ComponentProps<"span">, "style"> & {
+  delay?: number;
+  style?: CSSProperties & AvatarKnobStyle;
+};
 
 export function Avatar({ className, ...props }: AvatarProps) {
   return (

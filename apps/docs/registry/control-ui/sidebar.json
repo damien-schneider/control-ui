@@ -24,6 +24,11 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/knob-contracts/sidebar-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/sidebar-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/sidebar.css",
       "target": "@components/control-ui/styles/recipes/sidebar.css",
       "type": "registry:file"

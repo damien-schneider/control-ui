@@ -9,7 +9,7 @@ import {
   type UseEnvironmentVariablesOptions,
   useEnvironmentVariables,
 } from "@/components/control-ui/hooks/use-environment-variables";
-import type { EnvironmentVariablesKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { EnvironmentVariablesKnobStyle } from "@/components/control-ui/knob-contracts/environment-variables-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import {
   collectEnvironmentVariables,

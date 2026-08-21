@@ -57,9 +57,14 @@ type Definition = {
 const root = process.cwd();
 const componentRoot = siteConfig.registry.componentRoot;
 const recipeSourceRoot = "src/registry/sources/control-ui/recipes/";
+const knobContractSourceRoot = "src/registry/knob-contracts/";
 
 function isRecipeSource(source: string) {
   return source.startsWith(recipeSourceRoot);
+}
+
+function isKnobContractSource(source: string) {
+  return source.startsWith(knobContractSourceRoot);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -90,21 +95,76 @@ const hostOwnedPackageImports = new Set([
 ]);
 
 const coreFiles = [
-  "src/registry/contracts.ts",
-  "src/registry/knob-contracts.ts",
   "src/registry/skin.ts",
   "src/registry/lib/cn.ts",
-  "src/registry/adornments.ts",
-  "src/registry/hooks/use-copy-to-clipboard.ts",
+  "src/registry/sources/control-ui/control-props.ts",
   "src/registry/sources/control-ui/control-variants.ts",
-  "src/registry/sources/control-ui/surface-variants.ts",
   "src/registry/sources/control-ui/theme.css",
-  "src/registry/sources/control-ui/effects.css",
 ] as const;
 
-if (coreFiles.length !== 10) throw new Error(`Control UI core must contain exactly 10 files; received ${coreFiles.length}`);
+if (coreFiles.length !== 5) throw new Error(`Control UI core must contain exactly 5 files; received ${coreFiles.length}`);
+
+const styleUtilitySource = "src/registry/sources/control-ui/effects.css";
+
+const codeBySource = new Map<string, string>();
+
+function sourceCode(source: string) {
+  const cached = codeBySource.get(source);
+  if (cached !== undefined) return cached;
+  const code = readFileSync(path.join(root, source), "utf8").replaceAll(/\/\*[\s\S]*?\*\/|\/\/.*/g, " ");
+  codeBySource.set(source, code);
+  return code;
+}
+
+function styleUtilityNames(kind: "utility" | "keyframes") {
+  return [...sourceCode(styleUtilitySource).matchAll(new RegExp(`@${kind}\\s+([\\w-]+)`, "g"))].map((match) => match[1]);
+}
+
+const styleUtilities = styleUtilityNames("utility");
+const styleUtilityIdentifiers = [...styleUtilities, ...styleUtilityNames("keyframes")];
+
+function referencedNames(candidates: string[], source: string) {
+  if (source === styleUtilitySource) return [];
+  const code = sourceCode(source);
+  return candidates.filter((name) => new RegExp(`(^|[^\\w-])${name}([^\\w-]|$)`).test(code));
+}
+
+function referencedStyleUtilities(source: string) {
+  return referencedNames(styleUtilities, source);
+}
+
+function usesStyleUtilities(sources: Iterable<string>) {
+  return [...sources].some((source) => referencedNames(styleUtilityIdentifiers, source).length > 0);
+}
 
 const internalDefinitions: Definition[] = [
+  {
+    id: "effects",
+    type: "registry:style",
+    title: "Control UI effects",
+    description: "Token-driven shimmer, halftone, and sweep utilities shared by the components that use them.",
+    seeds: [styleUtilitySource],
+    primary: [styleUtilitySource],
+    internal: true,
+  },
+  {
+    id: "surface-variants",
+    type: "registry:item",
+    title: "Surface variants",
+    description: "Popup part names and surface variant resolution shared across popup-family components.",
+    seeds: ["src/registry/sources/control-ui/surface-variants.ts"],
+    primary: ["src/registry/sources/control-ui/surface-variants.ts"],
+    internal: true,
+  },
+  {
+    id: "use-copy-to-clipboard",
+    type: "registry:item",
+    title: "useCopyToClipboard",
+    description: "Clipboard write with a self-resetting copied flag.",
+    seeds: ["src/registry/hooks/use-copy-to-clipboard.ts"],
+    primary: ["src/registry/hooks/use-copy-to-clipboard.ts"],
+    internal: true,
+  },
   {
     id: "breadcrumb",
     type: "registry:ui",
@@ -314,6 +374,7 @@ function definitions(): Definition[] {
       type: "registry:base",
       title: "Control UI core",
       description: "Shared contracts, skin resolver, utilities, token bindings, and invariant mechanics for Control UI.",
+      docs: `Components compile once a skin pack is installed (it creates skin.config.tsx). Pick one at ${siteConfig.url.origin}/skins, e.g.: npx shadcn@latest add ${siteConfig.url.origin}/r/skin-refined.json --overwrite`,
       seeds: [...coreFiles],
       primary: [...coreFiles],
       internal: true,
@@ -386,9 +447,6 @@ function sourceManifestPath(item: Definition) {
 }
 
 const directSourceTargets = new Map([
-  ["src/registry/contracts.ts", `${componentRoot}/contracts.ts`],
-  ["src/registry/knob-contracts.ts", `${componentRoot}/knob-contracts.ts`],
-  ["src/registry/adornments.ts", `${componentRoot}/adornments.ts`],
   ["src/registry/skin.ts", `${componentRoot}/skin.ts`],
   ["src/registry/examples/control-ui/primitives/type-scale.css", `${componentRoot}/styles/type-scale.css`],
   ["src/registry/starters/next/layout.tsx", "~/app/layout.tsx"],
@@ -396,6 +454,7 @@ const directSourceTargets = new Map([
 ]);
 
 const sourceTargetRoots = [
+  ["src/registry/knob-contracts/", `${componentRoot}/knob-contracts/`],
   ["src/registry/hooks/", `${componentRoot}/hooks/`],
   ["src/registry/lib/", `${componentRoot}/lib/`],
   ["src/registry/blocks/control-ui/", `${componentRoot}/blocks/`],
@@ -444,7 +503,7 @@ function fileType(filePath: string): RegistryFileType {
   if (filePath.endsWith("skin.config.tsx") || filePath.endsWith("modern-apple-liquid-glass.ts")) return "registry:lib";
   if (filePath.includes("/blocks/")) return "registry:block";
   if (filePath.includes("/hooks/")) return "registry:hook";
-  if (filePath.includes("/lib/") || filePath.endsWith("contracts.ts") || filePath.endsWith("skin.ts")) return "registry:lib";
+  if (filePath.includes("/lib/") || filePath.endsWith("skin.ts")) return "registry:lib";
   if (filePath.includes("/ui/")) return "registry:ui";
   return "registry:component";
 }
@@ -564,6 +623,11 @@ function collectDefinitionSources(definition: Definition, context: RegistryBuild
     if (!source || owned.has(source)) continue;
     if (!existsSync(path.join(root, source))) throw new Error(`${definition.id} references missing ${source}`);
 
+    if (isKnobContractSource(source)) {
+      owned.add(source);
+      continue;
+    }
+
     const owner = context.ownerBySource.get(source);
     if (owner && owner !== definition.id) {
       registryDependencies.add(owner);
@@ -593,6 +657,7 @@ function createRegistryItem(definition: Definition, context: RegistryBuildContex
     throw new Error(`${definition.id} owns a core file`);
   }
   if (definition.id !== "core") registryDependencies.add("core");
+  if (definition.id !== "effects" && usesStyleUtilities(sources)) registryDependencies.add("effects");
 
   const files = [...sources]
     .sort()
@@ -658,6 +723,29 @@ function createSourceOwners(items: Definition[]) {
   for (const item of items) assignPrimarySourceOwners(ownerBySource, item);
   for (const item of items) assignSeedSourceOwners(ownerBySource, item);
   return ownerBySource;
+}
+
+function assertUniqueModuleBasenames(output: RegistrySourceItem[]) {
+  for (const item of output) {
+    const ownerByBasename = new Map<string, string>();
+    for (const file of item.files) {
+      if (!/\.tsx?$/.test(file.path)) continue;
+      const basename = path.basename(file.path).replace(/\.tsx?$/, "");
+      const twin = ownerByBasename.get(basename);
+      if (twin) {
+        throw new Error(`${item.name} ships ${twin} and ${file.path}; the CLI rewrites imports by basename and would repoint them`);
+      }
+      ownerByBasename.set(basename, file.path);
+    }
+  }
+}
+
+function assertStyleUtilitiesAreUsed(output: RegistrySourceItem[]) {
+  const used = new Set(
+    output.flatMap((item) => (item.name === "effects" ? [] : item.files.flatMap((file) => referencedStyleUtilities(file.path)))),
+  );
+  const unused = styleUtilities.filter((name) => !used.has(name));
+  if (unused.length > 0) throw new Error(`${styleUtilitySource} defines unused utilities: ${unused.join(", ")}`);
 }
 
 function assertKnownRegistryDependencies(output: RegistrySourceItem[]) {
@@ -756,9 +844,9 @@ function assertRecipeAttachments(items: Definition[], output: RegistrySourceItem
     .map((name) => `${recipeSourceRoot}${name}`);
   const missing = recipes.filter((recipe) => !attachedRecipes.has(recipe));
   if (missing.length > 0) throw new Error(`Recipes are not attached to registry items: ${missing.join(", ")}`);
-  const ownedRecipes = recipes.filter((recipe) => ownerBySource.has(recipe));
-  if (ownedRecipes.length > 0) {
-    throw new Error(`Recipes must not introduce registry dependencies: ${ownedRecipes.join(", ")}`);
+  const owned = [...ownerBySource.keys()].filter((source) => isRecipeSource(source) || isKnobContractSource(source));
+  if (owned.length > 0) {
+    throw new Error(`Paint contracts must not introduce registry dependencies: ${owned.join(", ")}`);
   }
 }
 
@@ -788,6 +876,8 @@ export function createRegistryItems(): RegistrySourceItem[] {
   } satisfies RegistryBuildContext;
   const output = items.map((definition) => createRegistryItem(definition, context));
   assertKnownRegistryDependencies(output);
+  assertStyleUtilitiesAreUsed(output);
+  assertUniqueModuleBasenames(output);
   assertActiveSkinOwnership(output);
   assertFullInstallInvariance(output);
   assertRecipeAttachments(items, output, context.ownerBySource);

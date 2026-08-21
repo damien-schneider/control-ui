@@ -9,7 +9,7 @@ import {
   type ToolInvocationPart,
 } from "@mastra/react";
 import type { ReactNode } from "react";
-
+import type { ActivityState } from "@/components/control-ui/activity";
 import {
   Activity,
   ActivityContent,
@@ -23,7 +23,7 @@ import {
 } from "@/components/control-ui/activity";
 import { ChatThought } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import type { ActivityState, ChatRole } from "@/components/control-ui/contracts";
+import type { ChatRole } from "@/components/control-ui/hooks/use-chat-message";
 import {
   InlineAttachment,
   InlineAttachmentContent,

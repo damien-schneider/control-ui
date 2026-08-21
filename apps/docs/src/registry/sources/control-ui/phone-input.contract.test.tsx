@@ -17,7 +17,6 @@ describe("phone input registry contract", () => {
       <PhoneInput defaultCountry="FR" name="phone" value="+33612345678" onValueChange={() => {}} aria-label="Phone number" />,
     );
 
-    expect(html).toContain('data-phone-input=""');
     expect(html).toContain('type="tel"');
     expect(html).toContain('aria-label="Phone number"');
     expect(html.match(/name="phone"/g)).toHaveLength(1);
@@ -38,18 +37,19 @@ describe("phone input registry contract", () => {
       <PhoneInput
         defaultCountry="FR"
         style={{
-          "--phone-input-country-border-color": "oklch(0.5 0.1 250)",
-          "--phone-input-chevron-foreground": "oklch(0.4 0.1 250)",
+          "--cui-phone-input-country-border-color": "oklch(0.5 0.1 250)",
+          "--cui-phone-input-chevron-foreground": "oklch(0.4 0.1 250)",
         }}
       />,
     );
 
-    expect(html.match(/--phone-input-country-border-color:oklch\(0.5 0.1 250\)/g)?.length).toBeGreaterThan(1);
-    expect(html.match(/--phone-input-chevron-foreground:oklch\(0.4 0.1 250\)/g)?.length).toBeGreaterThan(1);
+    expect(html.match(/--cui-phone-input-country-border-color:oklch\(0.5 0.1 250\)/g)?.length).toBeGreaterThan(1);
+    expect(html.match(/--cui-phone-input-chevron-foreground:oklch\(0.4 0.1 250\)/g)?.length).toBeGreaterThan(1);
   });
 
   test("owns its domain helper and references shared primitives", () => {
     expect(MANIFEST.files.map((file) => file.path).sort()).toEqual([
+      "src/registry/knob-contracts/phone-input-knobs.ts",
       "src/registry/lib/phone-input-format.ts",
       "src/registry/lib/phone-number.ts",
       "src/registry/sources/control-ui/recipes/phone-input.css",

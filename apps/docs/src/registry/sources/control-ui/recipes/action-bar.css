@@ -5,14 +5,12 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="action-bar"][data-slot="root"]:is(:where(.group\/turn):hover *)) {
-      --_action-bar-root-opacity: 100%;
-      opacity: var(--_action-bar-root-opacity);
+    :where([data-control-family="chat-layout"][data-slot="turn"]:hover [data-control-family="action-bar"][data-slot="root"]) {
+      opacity: 1;
     }
   }
 
-  :where([data-control-family="action-bar"][data-slot="root"]:is(:where(.group\/turn):focus-within *)) {
-    --_action-bar-root-opacity: 100%;
-    opacity: var(--_action-bar-root-opacity);
+  :where([data-control-family="chat-layout"][data-slot="turn"]:focus-within [data-control-family="action-bar"][data-slot="root"]) {
+    opacity: 1;
   }
 }

@@ -6,7 +6,7 @@ const repositoryRoot = path.resolve(process.cwd(), "../..");
 const generatedTypeScript = [
   "apps/docs/app/(features)/model/generated-registry.ts",
   "apps/docs/app/(features)/model/generated-skin-contract.ts",
-  "apps/docs/src/registry/knob-contracts.ts",
+  "apps/docs/src/registry/knob-contracts",
 ];
 
 describe("generated TypeScript", () => {

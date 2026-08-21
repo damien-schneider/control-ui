@@ -11,7 +11,7 @@ import {
 } from "./modern-apple-liquid-glass";
 
 export const appleLiquidGlassSurfaceSelector =
-  '[data-control-ui][data-slot][data-surface="floating"], [data-control-ui][data-slot][data-surface="modal"]';
+  '[data-control-family][data-slot][data-surface="floating"], [data-control-family][data-slot][data-surface="modal"]';
 const captureExcludeSelector = '[data-apple-liquid-glass-capture-excluded], [data-control-ui="dynamic-notification"][data-slot="root"]';
 
 type Attachment = AppleLiquidGlassSurface & {

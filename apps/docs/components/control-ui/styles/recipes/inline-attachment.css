@@ -1,34 +1,35 @@
 @layer components {
   :where([data-control-family="inline-attachment"][data-slot="root"]) {
-    --inline-attachment-background: var(--muted);
-    --inline-attachment-hover-shadow: var(--shadow-md);
-    --inline-attachment-radius: var(--radius-scene);
-    --inline-attachment-ring-color: var(--border);
-    --inline-attachment-shadow: var(--shadow-sm);
-    --inline-attachment-content-background: oklch(from var(--background) l c h / 0.85);
-    --inline-attachment-content-foreground: var(--foreground);
-    --inline-attachment-content-radius: var(--radius-control);
-    --inline-attachment-content-shadow: var(--shadow-sm);
+    --cui-inline-attachment-background: var(--muted);
+    --cui-inline-attachment-hover-shadow: var(--shadow-md);
+    --cui-inline-attachment-radius: var(--radius-scene);
+    --cui-inline-attachment-ring-color: var(--border);
+    --cui-inline-attachment-shadow: var(--shadow-sm);
+    --cui-inline-attachment-content-background: oklch(from var(--background) l c h / 0.85);
+    --cui-inline-attachment-content-foreground: var(--foreground);
+    --cui-inline-attachment-content-radius: var(--radius-control);
+    --cui-inline-attachment-content-shadow: var(--shadow-sm);
     --_inline-attachment-media-hover-scale: 1.02;
-    border-radius: var(--inline-attachment-radius);
-    background: var(--inline-attachment-background);
+    border-radius: var(--cui-inline-attachment-radius);
+    background: var(--cui-inline-attachment-background);
     box-shadow:
-      inset 0 0 0 1px var(--inline-attachment-ring-color),
-      var(--inline-attachment-shadow);
+      inset 0 0 0 1px var(--cui-inline-attachment-ring-color),
+      var(--cui-inline-attachment-shadow);
     transition: box-shadow var(--duration-fast) var(--ease-standard);
+    text-align: left;
   }
 
   @media (hover: hover) {
     :where([data-control-family="inline-attachment"][data-slot="root"]:hover) {
       box-shadow:
-        inset 0 0 0 1px var(--inline-attachment-ring-color),
-        var(--inline-attachment-hover-shadow);
+        inset 0 0 0 1px var(--cui-inline-attachment-ring-color),
+        var(--cui-inline-attachment-hover-shadow);
     }
 
     :where([data-control-family="inline-attachment"][data-slot="root"]:disabled:hover) {
       box-shadow:
-        inset 0 0 0 1px var(--inline-attachment-ring-color),
-        var(--inline-attachment-shadow);
+        inset 0 0 0 1px var(--cui-inline-attachment-ring-color),
+        var(--cui-inline-attachment-shadow);
     }
   }
 
@@ -49,7 +50,9 @@
   :where([data-control-family="inline-attachment"][data-slot="document-sheet"]) {
     border-radius: 1rem;
     background: oklch(from var(--card) l c h / 0.78);
-    box-shadow: inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.1), var(--shadow-sm);
+    box-shadow:
+      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.1),
+      var(--shadow-sm);
   }
 
   :where([data-control-family="inline-attachment"][data-slot="document-heading"]) {
@@ -80,12 +83,13 @@
   }
 
   :where([data-control-family="inline-attachment"][data-slot="content"]) {
-    border-radius: var(--inline-attachment-content-radius);
-    background: var(--inline-attachment-content-background);
-    color: var(--inline-attachment-content-foreground);
-    box-shadow: var(--inline-attachment-content-shadow);
+    border-radius: var(--cui-inline-attachment-content-radius);
+    background: var(--cui-inline-attachment-content-background);
+    color: var(--cui-inline-attachment-content-foreground);
+    box-shadow: var(--cui-inline-attachment-content-shadow);
     backdrop-filter: blur(var(--backdrop-blur-popover));
     font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="inline-attachment"][data-slot="description"]) {
@@ -98,64 +102,55 @@
     background: oklch(from var(--foreground) l c h / 0.08);
     font-size: var(--text-micro);
   }
-
-  :where([data-control-family="inline-attachment"][data-slot="content"]) {
-    font-weight: var(--font-weight-medium);
-  }
-
-  :where([data-control-family="inline-attachment"][data-slot="root"]) {
-    --_inline-attachment-root-text-align: left;
-    text-align: var(--_inline-attachment-root-text-align);
-  }
 }
 
-@property --inline-attachment-radius {
+@property --cui-inline-attachment-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --inline-attachment-background {
+@property --cui-inline-attachment-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --inline-attachment-ring-color {
+@property --cui-inline-attachment-ring-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --inline-attachment-shadow {
+@property --cui-inline-attachment-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --inline-attachment-hover-shadow {
+@property --cui-inline-attachment-hover-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --inline-attachment-content-radius {
+@property --cui-inline-attachment-content-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --inline-attachment-content-background {
+@property --cui-inline-attachment-content-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --inline-attachment-content-foreground {
+@property --cui-inline-attachment-content-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --inline-attachment-content-shadow {
+@property --cui-inline-attachment-content-shadow {
   syntax: "*";
   inherits: true;
 }

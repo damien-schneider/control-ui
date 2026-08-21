@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 163,
+    "count": 162,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -166,7 +166,7 @@
         "kind": "Skin",
         "summary": "Compact, calm starting skin with a complete Control UI token contract.",
         "href": "/skins/refined",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite"
       },
       {
         "id": "xp",
@@ -174,7 +174,7 @@
         "kind": "Skin",
         "summary": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
         "href": "/skins/xp",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite"
       },
       {
         "id": "liquid-metal",
@@ -182,7 +182,7 @@
         "kind": "Skin",
         "summary": "Polished metal skin with a WebGL shader control surface.",
         "href": "/skins/liquid-metal",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite"
       },
       {
         "id": "rig",
@@ -190,7 +190,7 @@
         "kind": "Skin",
         "summary": "Brutalist skin with coral accents, squared corners, and dense typography.",
         "href": "/skins/rig",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite"
       },
       {
         "id": "flat",
@@ -198,7 +198,7 @@
         "kind": "Skin",
         "summary": "Neutral reset skin with square corners, no shadows, and instant motion.",
         "href": "/skins/flat",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite"
       },
       {
         "id": "modern-apple",
@@ -206,7 +206,7 @@
         "kind": "Skin",
         "summary": "Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.",
         "href": "/skins/modern-apple",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite"
       },
       {
         "id": "cuicui",
@@ -214,7 +214,7 @@
         "kind": "Skin",
         "summary": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
         "href": "/skins/cuicui",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite"
       },
       {
         "id": "linear",
@@ -222,7 +222,7 @@
         "kind": "Skin",
         "summary": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.",
         "href": "/skins/linear",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json"
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite"
       },
       {
         "id": "css-first-interactivity",
@@ -466,7 +466,7 @@
         "id": "chat-message",
         "name": "ChatMessage",
         "kind": "Agent",
-        "summary": "Composable chat message with typed role, density, and tone state.",
+        "summary": "Composable chat message with typed role, density, and lifecycle state.",
         "href": "/ai/chat-message",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
       },
@@ -1219,7 +1219,7 @@
         "id": "use-chat-message",
         "name": "useChatMessage",
         "kind": "Hook",
-        "summary": "Typed role, density, and tone state for ChatMessage.",
+        "summary": "Typed role, density, and lifecycle state for ChatMessage.",
         "href": "/hooks/use-chat-message"
       },
       {
@@ -1270,13 +1270,6 @@
         "kind": "Util",
         "summary": "Skin slot and adornment resolvers for the Control UI library.",
         "href": "/utils/skin"
-      },
-      {
-        "id": "contracts",
-        "name": "contracts",
-        "kind": "Util",
-        "summary": "Shared prop and slot contracts for swappable skins.",
-        "href": "/utils/contracts"
       },
       {
         "id": "serialize",

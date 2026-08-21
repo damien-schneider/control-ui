@@ -1,31 +1,31 @@
 @layer components {
   :where([data-control-family="empty"][data-slot="root"]) {
-    --empty-radius: var(--radius-lg);
-    --empty-background: transparent;
-    --empty-border-color: transparent;
-    --empty-border-width: 0px;
-    --empty-border-style: solid;
-    --empty-media-radius: var(--radius-lg);
-    --empty-media-background: var(--muted);
-    border: var(--empty-border-width) var(--empty-border-style)
-      var(--empty-border-color);
-    border-radius: var(--empty-radius);
-    background: var(--empty-background);
+    --cui-empty-radius: var(--radius-lg);
+    --cui-empty-background: transparent;
+    --cui-empty-border-color: transparent;
+    --cui-empty-border-width: 0px;
+    --cui-empty-border-style: solid;
+    --cui-empty-media-radius: var(--radius-lg);
+    --cui-empty-media-background: var(--muted);
+    border: var(--cui-empty-border-width) var(--cui-empty-border-style) var(--cui-empty-border-color);
+    border-radius: var(--cui-empty-radius);
+    background: var(--cui-empty-background);
     box-shadow: none;
     color: var(--foreground);
+    text-align: center;
+    text-wrap: balance;
   }
 
   :where([data-control-family="empty"][data-slot="media"]) {
-    border-radius: var(--empty-media-radius);
-    background: var(--empty-media-background);
+    border-radius: var(--cui-empty-media-radius);
+    background: var(--cui-empty-media-background);
     color: var(--muted-foreground);
   }
 
   :where([data-control-family="empty"][data-slot="content"]) {
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
-    --_empty-content-text-wrap: balance;
-    text-wrap: var(--_empty-content-text-wrap);
+    text-wrap: balance;
   }
 
   :where([data-control-family="empty"][data-slot="description"]) {
@@ -42,55 +42,47 @@
   }
 
   :where([data-control-family="empty"][data-slot="header"]) {
-    --_empty-header-text-align: center;
-    text-align: var(--_empty-header-text-align);
-  }
-
-  :where([data-control-family="empty"][data-slot="root"]) {
-    --_empty-root-text-align: center;
-    text-align: var(--_empty-root-text-align);
-    --_empty-root-text-wrap: balance;
-    text-wrap: var(--_empty-root-text-wrap);
+    text-align: center;
   }
 }
 
-@property --empty-radius {
+@property --cui-empty-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --empty-background {
+@property --cui-empty-background {
   syntax: "*";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --empty-border-color {
+@property --cui-empty-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --empty-border-width {
+@property --cui-empty-border-width {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --empty-border-style {
+@property --cui-empty-border-style {
   syntax: "*";
   inherits: true;
   initial-value: solid;
 }
 
-@property --empty-media-radius {
+@property --cui-empty-media-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --empty-media-background {
+@property --cui-empty-media-background {
   syntax: "*";
   inherits: true;
   initial-value: transparent;

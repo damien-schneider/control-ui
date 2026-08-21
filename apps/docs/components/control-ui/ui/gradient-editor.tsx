@@ -1,6 +1,8 @@
 "use client";
 
 import type {
+  ComponentProps,
+  CSSProperties,
   FocusEvent as ReactFocusEvent,
   KeyboardEvent as ReactKeyboardEvent,
   MouseEvent as ReactMouseEvent,
@@ -8,16 +10,8 @@ import type {
   RefObject,
 } from "react";
 import { createContext, useContext, useRef, useState } from "react";
-import type {
-  GradientEditorPreviewProps,
-  GradientEditorProps,
-  GradientEditorStopAddProps,
-  GradientEditorStopProps,
-  GradientEditorTrackProps,
-  GradientEditorTypeSelectProps,
-  GradientStop,
-  GradientType,
-} from "@/components/control-ui/contracts";
+import type { ControlSize } from "@/components/control-ui/control-variants";
+import type { GradientEditorKnobStyle } from "@/components/control-ui/knob-contracts/gradient-editor-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatGradient } from "@/components/control-ui/lib/color";
 import {
@@ -31,6 +25,42 @@ import {
   ColorPickerTrigger,
 } from "@/components/control-ui/ui/color-picker";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
+
+export type GradientType = "linear" | "radial" | "conic";
+
+export type GradientStop = { id: string; position: number; color: string };
+
+export type GradientEditorProps = Omit<ComponentProps<"div">, "onChange" | "defaultValue"> & {
+  value?: string;
+  defaultStops?: GradientStop[];
+  defaultType?: GradientType;
+  defaultAngle?: number;
+  onValueChange?: (value: string) => void;
+} & { style?: CSSProperties & GradientEditorKnobStyle };
+
+export type GradientEditorPreviewProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & GradientEditorKnobStyle;
+};
+
+export type GradientEditorTrackProps = Omit<ComponentProps<"fieldset">, "style"> & {
+  style?: CSSProperties & GradientEditorKnobStyle;
+};
+
+export type GradientEditorStopProps = Omit<ComponentProps<"button">, "style"> & {
+  stop: GradientStop;
+  style?: CSSProperties & GradientEditorKnobStyle;
+};
+
+export type GradientEditorStopAddProps = Omit<ComponentProps<"button">, "onClick" | "style"> & {
+  style?: CSSProperties & GradientEditorKnobStyle;
+};
+
+export type GradientEditorTypeSelectProps = {
+  size?: ControlSize;
+  className?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+};
 
 const DEFAULT_STOPS: GradientStop[] = [
   { id: "stop-1", position: 0, color: "#7c3aed" },

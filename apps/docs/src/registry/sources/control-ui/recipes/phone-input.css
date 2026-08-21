@@ -1,23 +1,23 @@
 @layer components {
   :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="root"]) {
-    --phone-input-country-border-color: var(--border);
-    --phone-input-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
-    --phone-input-trigger-focus-background: oklch(from var(--foreground) l c h / 0.06);
-    --phone-input-metadata-foreground: var(--muted-foreground);
-    --phone-input-chevron-foreground: var(--muted-foreground);
+    --cui-phone-input-country-border-color: var(--border);
+    --cui-phone-input-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-phone-input-trigger-focus-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-phone-input-metadata-foreground: var(--muted-foreground);
+    --cui-phone-input-chevron-foreground: var(--muted-foreground);
   }
   :where([data-control-family="field"][data-phone-input-country]) {
-    border-inline-end: 1px solid var(--phone-input-country-border-color);
+    border-inline-end: 1px solid var(--cui-phone-input-country-border-color);
   }
 
   @media (hover: hover) {
     :where([data-control-family="phone-input"][data-slot="country-trigger"]:hover) {
-      background-color: var(--phone-input-trigger-hover-background);
+      background-color: var(--cui-phone-input-trigger-hover-background);
     }
   }
 
   :where([data-control-family="phone-input"][data-slot="country-trigger"]:focus-visible) {
-    background-color: var(--phone-input-trigger-focus-background);
+    background-color: var(--cui-phone-input-trigger-focus-background);
   }
 
   :where([data-control-family="phone-input"][data-slot="country-trigger"]:disabled) {
@@ -30,8 +30,9 @@
   }
 
   :where([data-control-family="phone-input"][data-slot="metadata"]) {
-    color: var(--phone-input-metadata-foreground);
+    color: var(--cui-phone-input-metadata-foreground);
     font-size: var(--text-caption);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="phone-input"][data-slot="country-code"]) {
@@ -41,7 +42,11 @@
 
   :where([data-control-family="phone-input"][data-slot="chevron"]) {
     --_phone-input-chevron-rotate: 0deg;
-    color: var(--phone-input-chevron-foreground);
+    color: var(--cui-phone-input-chevron-foreground);
+    transition-property: transform, translate, scale, rotate;
+    transition-duration: var(--duration-base);
+    rotate: var(--_phone-input-chevron-rotate);
+    transition-timing-function: var(--ease-emphasized);
   }
 
   :where([data-control-family="phone-input"][data-slot="chevron"][data-open]) {
@@ -52,59 +57,43 @@
     opacity: 0;
   }
 
-  :where([data-control-family="phone-input"][data-slot="chevron"]) {
-    --_phone-input-chevron-transition-property: transform, translate, scale, rotate;
-    transition-property: var(--_phone-input-chevron-transition-property);
-    transition-duration: var(--duration-base);
-    rotate: var(--_phone-input-chevron-rotate);
-    transition-timing-function: var(--ease-emphasized);
-  }
-
   :where([data-control-family="phone-input"][data-slot="country-trigger"]) {
-    --_phone-input-country-trigger-outline: none;
-    outline-style: var(--_phone-input-country-trigger-outline);
-    --_phone-input-country-trigger-transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
-    transition-property: var(--_phone-input-country-trigger-transition-property);
+    outline-style: none;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
   }
 
-  :where([data-control-family="phone-input"][data-slot="metadata"]) {
-    --_phone-input-metadata-number-style: tabular-nums;
-    font-variant-numeric: var(--_phone-input-metadata-number-style);
-  }
-
-  :where([data-control-family="field"][data-input-group-part="input"][data-phone-input-control]) {
-    --_phone-input-input-group-input-number-style: tabular-nums;
-    font-variant-numeric: var(--_phone-input-input-group-input-number-style);
+  :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="input"]) {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-@property --phone-input-country-border-color {
+@property --cui-phone-input-country-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --phone-input-trigger-hover-background {
+@property --cui-phone-input-trigger-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --phone-input-trigger-focus-background {
+@property --cui-phone-input-trigger-focus-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --phone-input-metadata-foreground {
+@property --cui-phone-input-metadata-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --phone-input-chevron-foreground {
+@property --cui-phone-input-chevron-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

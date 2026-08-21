@@ -2,7 +2,8 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import skinContract from "../../../public/r/skin-contract.json";
-import { popupParts } from "../contracts";
+import { knobPrefix } from "../../../scripts/knob-contracts/collect";
+import { popupParts } from "../sources/control-ui/surface-variants";
 import { appleLiquidGlassSurfaceSelector } from "./modern-apple/modern-apple-liquid-glass-runtime";
 
 const popupSkinCss = ["cuicui", "linear", "modern-apple", "xp"].map((skin) => ({
@@ -21,19 +22,22 @@ function hasContractPart(scope: string, part: string) {
 }
 
 describe("semantic surface roles", () => {
-  test("Modern Apple material and runtime share the same role selector", () => {
-    expect(MODERN_APPLE_CSS).toContain(
-      ':is([data-control-ui][data-slot][data-surface="floating"], [data-control-ui][data-slot][data-surface="modal"])',
-    );
+  test("Modern Apple runtime discovers semantic surfaces while CSS paints through family knobs", () => {
     expect(appleLiquidGlassSurfaceSelector).toBe(
-      '[data-control-ui][data-slot][data-surface="floating"], [data-control-ui][data-slot][data-surface="modal"]',
+      '[data-control-family][data-slot][data-surface="floating"], [data-control-family][data-slot][data-surface="modal"]',
     );
+    expect(MODERN_APPLE_CSS).toContain(`${knobPrefix}popup-background: var(--_apple-popup-fill)`);
+    expect(MODERN_APPLE_CSS).toContain('[data-slot][data-popup-part="surface"][data-surface="floating"]');
+    expect(MODERN_APPLE_CSS).toContain('[data-popup-part="surface"][data-apple-liquid-glass-ready="true"]');
+    expect(MODERN_APPLE_CSS).toContain(`${knobPrefix}popup-background: transparent`);
+    expect(MODERN_APPLE_CSS).toContain(`${knobPrefix}thread-rail-popover-background: var(--_apple-popup-fill)`);
+    expect(MODERN_APPLE_CSS).not.toContain(":is([data-control-family][data-slot][data-surface=");
   });
 
   test("advanced skins re-value popup knobs in CSS", () => {
     for (const { skin, css } of popupSkinCss) {
       expect(css).toContain(`[data-skin="${skin}"]`);
-      expect(css).toContain("--popup-");
+      expect(css).toContain(`${knobPrefix}popup-`);
     }
   });
 

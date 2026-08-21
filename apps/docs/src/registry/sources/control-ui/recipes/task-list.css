@@ -1,21 +1,21 @@
 @layer components {
   :where([data-control-family="task-list"][data-slot="root"]) {
-    --task-list-background: oklch(from var(--card) l c h / 0.9);
-    --task-list-border-color: var(--border);
-    --task-list-foreground: var(--foreground);
-    --task-list-radius: var(--radius-field);
-    --task-list-shadow: var(--shadow-md);
-    --task-list-indicator-active-foreground: var(--primary-text);
-    --task-list-indicator-foreground: oklch(from var(--muted-foreground) l c h / 0.7);
-    --task-list-item-foreground: var(--foreground);
-    --task-list-item-pending-foreground: var(--muted-foreground);
-    border: 1px solid var(--task-list-border-color);
-    border-radius: var(--task-list-radius);
-    background: var(--task-list-background);
-    color: var(--task-list-foreground);
+    --cui-task-list-background: oklch(from var(--card) l c h / 0.9);
+    --cui-task-list-border-color: var(--border);
+    --cui-task-list-foreground: var(--foreground);
+    --cui-task-list-radius: var(--radius-field);
+    --cui-task-list-shadow: var(--shadow-md);
+    --cui-task-list-indicator-active-foreground: var(--primary-text);
+    --cui-task-list-indicator-foreground: oklch(from var(--muted-foreground) l c h / 0.7);
+    --cui-task-list-item-foreground: var(--foreground);
+    --cui-task-list-item-pending-foreground: var(--muted-foreground);
+    border: 1px solid var(--cui-task-list-border-color);
+    border-radius: var(--cui-task-list-radius);
+    background: var(--cui-task-list-background);
+    color: var(--cui-task-list-foreground);
     box-shadow:
       inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
-      var(--task-list-shadow);
+      var(--cui-task-list-shadow);
     backdrop-filter: blur(var(--backdrop-blur-popover));
     font-size: var(--text-body);
   }
@@ -23,6 +23,7 @@
   :where([data-control-family="task-list"][data-slot="trigger"]) {
     font-size: var(--text-sm);
     transition: background-color var(--duration-fast) var(--ease-standard);
+    text-align: left;
   }
 
   @media (hover: hover) {
@@ -41,21 +42,21 @@
 
   :where([data-control-family="task-list"][data-slot="item"]) {
     border-radius: var(--radius-popup-item);
-    color: var(--task-list-item-foreground);
+    color: var(--cui-task-list-item-foreground);
     font-size: var(--text-sm);
   }
 
   :where([data-control-family="task-list"][data-slot="item"][data-status="pending"]) {
-    color: var(--task-list-item-pending-foreground);
+    color: var(--cui-task-list-item-pending-foreground);
     opacity: 0.7;
   }
 
   :where([data-control-family="task-list"][data-slot="item-indicator"]) {
-    color: var(--task-list-indicator-foreground);
+    color: var(--cui-task-list-indicator-foreground);
   }
 
   :where([data-control-family="task-list"][data-slot="item-indicator"]:is([data-status="active"], [data-status="completed"])) {
-    color: var(--task-list-indicator-active-foreground);
+    color: var(--cui-task-list-indicator-active-foreground);
   }
 
   :where([data-control-family="task-list"][data-slot="item-indicator"][data-status="active"] > svg) {
@@ -64,16 +65,7 @@
 
   :where([data-control-family="task-list"][data-slot="progress"]) {
     font-weight: var(--font-weight-medium);
-  }
-
-  :where([data-control-family="task-list"][data-slot="trigger"]) {
-    --_task-list-trigger-text-align: left;
-    text-align: var(--_task-list-trigger-text-align);
-  }
-
-  :where([data-control-family="task-list"][data-slot="progress"]) {
-    --_task-list-progress-number-style: tabular-nums;
-    font-variant-numeric: var(--_task-list-progress-number-style);
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -83,54 +75,54 @@
   }
 }
 
-@property --task-list-radius {
+@property --cui-task-list-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --task-list-background {
+@property --cui-task-list-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --task-list-foreground {
+@property --cui-task-list-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --task-list-border-color {
+@property --cui-task-list-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --task-list-shadow {
+@property --cui-task-list-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --task-list-item-foreground {
+@property --cui-task-list-item-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --task-list-item-pending-foreground {
+@property --cui-task-list-item-pending-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --task-list-indicator-foreground {
+@property --cui-task-list-indicator-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --task-list-indicator-active-foreground {
+@property --cui-task-list-indicator-active-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

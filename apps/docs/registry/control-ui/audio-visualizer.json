@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/audio-visualizer.tsx",
       "target": "@components/control-ui/audio-visualizer.tsx",
       "type": "registry:component"

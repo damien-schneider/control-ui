@@ -36,7 +36,6 @@
   :where([data-send-aurora] [data-band="5"]) {
     background-color: var(--aurora-5);
   }
-
 }
 
 @keyframes send-aurora-sweep {

@@ -1,19 +1,45 @@
 "use client";
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
-import type { ComponentProps } from "react";
-import type {
-  NavigationMenuContentProps,
-  NavigationMenuItemProps,
-  NavigationMenuLinkProps,
-  NavigationMenuListProps,
-  NavigationMenuProps,
-  NavigationMenuTriggerProps,
-  NavigationMenuViewportProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
+
+export type NavigationMenuProps = ComponentProps<"nav"> & {
+  value?: string | null;
+  defaultValue?: string | null;
+  onValueChange?: (value: string | null) => void;
+  orientation?: "horizontal" | "vertical";
+  delay?: number;
+  closeDelay?: number;
+} & { style?: CSSProperties & PopupKnobStyle };
+
+export type NavigationMenuListProps = ComponentProps<"ul"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type NavigationMenuItemProps = ComponentProps<"li"> & {
+  value?: string;
+} & { style?: CSSProperties & PopupKnobStyle };
+
+export type NavigationMenuTriggerProps = Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle & PopupKnobStyle;
+};
+
+export type NavigationMenuContentProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+
+export const navigationMenuLinkVariants = ["default", "compact"] as const;
+
+export type NavigationMenuLinkVariant = (typeof navigationMenuLinkVariants)[number];
+
+export type NavigationMenuLinkProps = Omit<ComponentProps<"a">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  active?: boolean;
+  closeOnClick?: boolean;
+  variant?: NavigationMenuLinkVariant;
+};
+
+export type NavigationMenuViewportProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 // Every item has its own Trigger and Content, but single viewport morphs between them rather than one popup per item.
 
@@ -160,7 +186,6 @@ export function NavigationMenuViewport({ className, ...props }: NavigationMenuVi
             data-popup-part="surface"
             className={cn("relative h-full w-full overflow-hidden", className)}
             {...props}
-            data-navigation-menu-part="viewport"
           />
         </NavigationMenuPrimitive.Popup>
       </NavigationMenuPrimitive.Positioner>

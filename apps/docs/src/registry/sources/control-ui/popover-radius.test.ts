@@ -138,7 +138,7 @@ describe("code-block panel: capped corner keeps header tabs (inset --nest-gap) u
       for (const radius of RADII) {
         const s = sample(radius, hxs);
         const containerR = Math.min(s.panelR, NEST_GAP * s.cornerRatio); // the --nest-radius cap
-        const tabTarget = Math.max(0, containerR - NEST_GAP - s.nestSafe); // rounded-nested
+        const tabTarget = Math.max(0, containerR - NEST_GAP - s.nestSafe);
         const tabRendered = Math.min(tabTarget, s.controlHxs / 2);
         if (containerR <= 0.01) continue; // square panel, square tabs — nothing to clip
         const gap = clearance(containerR, tabRendered, NEST_GAP);

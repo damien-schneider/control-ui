@@ -1,4 +1,16 @@
-import type { ContextSegment, ContextSegmentKind, ContextStatus } from "@/components/control-ui/contracts";
+import type { ReactNode } from "react";
+
+export type ContextSegmentKind = "system" | "tool" | "message" | "source" | "reasoning" | "cache" | "other";
+
+export type ContextStatus = "normal" | "over-limit" | "unavailable";
+
+export type ContextSegment = {
+  id: string;
+  label: string;
+  tokens: number;
+  kind?: ContextSegmentKind;
+  description?: ReactNode;
+};
 
 export type ContextModelSegment = {
   segment: ContextSegment;

@@ -33,6 +33,9 @@
   --border: oklch(0.8851 0.0135 76 / var(--ring-opacity));
   --input: oklch(0.8851 0.0135 76);
   --ring: oklch(0.6903 0.0198 74);
+  --focus-ring: var(--foreground);
+  /* every control is chamfered by clip-path, which eats an outward ring; the indicator draws inside it */
+  --focus-ring-offset: -3px;
   --text-label: 0.75rem;
   --radius-control: calc(var(--radius) * 2);
   --radius-field: calc(var(--radius) * 2.2);
@@ -88,5 +91,6 @@
   --border: oklch(0.3082 0.0147 67 / var(--ring-opacity));
   --input: oklch(0.3082 0.0147 67);
   --ring: oklch(0.5521 0.0181 70);
+  --focus-ring: var(--foreground);
   --shadow-color: oklch(0 0 0);
 }

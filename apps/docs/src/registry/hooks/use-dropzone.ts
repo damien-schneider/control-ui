@@ -12,7 +12,6 @@ import {
   useState,
 } from "react";
 
-import type { DropzoneValueChangeReason, DropzoneVisualState } from "../contracts";
 import {
   compileDropzoneAccept,
   type DropzoneFileMetadata,
@@ -23,6 +22,10 @@ import {
   processDropzoneFiles,
   toDropzoneError,
 } from "../lib/dropzone-validation";
+
+export type DropzoneVisualState = "idle" | "accept" | "reject" | "unknown" | "processing";
+
+export type DropzoneValueChangeReason = "drop" | "input" | "remove" | "clear";
 
 export type DropzoneEvent = ReactDragEvent<HTMLElement> | ChangeEvent<HTMLInputElement>;
 export type DropzoneGetFilesFromEvent = (event: DropzoneEvent, signal: AbortSignal) => readonly File[] | Promise<readonly File[]>;

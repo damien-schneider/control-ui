@@ -1,4 +1,4 @@
-import { THEME_AUDIT_PAIRS, type ThemeAuditPair, type ThemeAuditResult } from "./audit-contract";
+import { THEME_AUDIT_PAIRS, type ThemeAuditAnatomy, type ThemeAuditPair, type ThemeAuditResult } from "./audit-contract";
 
 type Rgb = [number, number, number];
 
@@ -137,154 +137,124 @@ function unresolvedResult(pair: ThemeAuditPair, resolvedForeground: string | nul
   return { ...pair, ratio: null, status: "unresolved", resolvedForeground, resolvedBackground };
 }
 
+function buildAnatomy(parent: HTMLElement, anatomy: ThemeAuditAnatomy, tag: string): HTMLElement {
+  let current = parent;
+  for (const node of anatomy) {
+    const element = document.createElement(node === anatomy.at(-1) ? tag : "div");
+    for (const [name, value] of Object.entries(node.attributes)) element.setAttribute(name, value);
+    if (node.style) element.style.cssText = node.style;
+    current.append(element);
+    current = element;
+  }
+  return current;
+}
+
+function buildPaintLayer(parent: HTMLElement, paint: string): HTMLElement {
+  const element = document.createElement("div");
+  element.style.cssText = `width:100%;height:100%;background:${paint}`;
+  parent.append(element);
+  return element;
+}
+
+type PaintElement = { element: HTMLElement; token: string };
+
+function buildPaintElements(container: HTMLElement, pair: ThemeAuditPair): { parent: HTMLElement; elements: PaintElement[] } {
+  const definitions = [
+    ...(pair.underlays ?? []).map((token) => ({ token, paint: undefined, anatomy: undefined })),
+    { token: pair.surface, paint: pair.surfacePaint, anatomy: pair.surfaceAnatomy },
+    { token: pair.background, paint: pair.backgroundPaint, anatomy: pair.backgroundAnatomy },
+  ];
+  const elements: PaintElement[] = [];
+  let parent = container;
+  for (const { token, paint, anatomy } of definitions) {
+    parent = anatomy ? buildAnatomy(parent, anatomy, "div") : buildPaintLayer(parent, paint ?? `var(${token})`);
+    elements.push({ element: parent, token });
+  }
+  return { parent, elements };
+}
+
+function buildForeground(parent: HTMLElement, pair: ThemeAuditPair, measuresOutline: boolean): HTMLElement {
+  const foreground = pair.foregroundAnatomy
+    ? buildAnatomy(parent, pair.foregroundAnatomy, measuresOutline ? "button" : "span")
+    : parent.appendChild(document.createElement("span"));
+  if (!(pair.foregroundAnatomy ?? pair.backgroundAnatomy ?? pair.surfaceAnatomy)) {
+    foreground.style.color = `var(${pair.foreground})`;
+  }
+  foreground.textContent = "Ag";
+  return foreground;
+}
+
+function resolveForeground(
+  pair: ThemeAuditPair,
+  foreground: HTMLElement,
+  measuresOutline: boolean,
+): { paint: string | null; dependenciesResolve: boolean; insideOutline: boolean } {
+  const styles = getComputedStyle(foreground);
+  const dependenciesResolve = (pair.dependencies ?? []).every((token) => styles.getPropertyValue(token).trim().length > 0);
+  const paintedByRecipe = Boolean(pair.foregroundAnatomy ?? pair.backgroundAnatomy ?? pair.surfaceAnatomy);
+  const tokenDeclared = paintedByRecipe || styles.getPropertyValue(pair.foreground).trim().length > 0;
+  const measured = measuresOutline ? outlineIndicator(foreground, styles) : styles.color;
+  return {
+    paint: tokenDeclared ? measured : null,
+    dependenciesResolve,
+    insideOutline: measuresOutline && Number.parseFloat(styles.outlineOffset) < 0,
+  };
+}
+
+function resolveBackground(elements: readonly PaintElement[], context: CanvasRenderingContext2D): ResolvedPaint | null {
+  let pixels = [WHITE];
+  let css: string | null = null;
+  for (const { element, token } of elements) {
+    if (getComputedStyle(element).getPropertyValue(token).trim().length === 0) return null;
+    const paint = sampleBackground(element, pixels, context);
+    if (!paint) return null;
+    pixels = paint.pixels;
+    css = paint.css;
+  }
+  return css ? { css, pixels } : null;
+}
+
 function auditTokenPair(root: HTMLElement, pair: ThemeAuditPair, context: CanvasRenderingContext2D): ThemeAuditResult {
   const mount = root === document.documentElement ? document.body : root;
   const container = document.createElement("div");
   container.style.cssText = "position:fixed;left:-10000px;top:0;width:64px;height:64px;overflow:hidden;pointer-events:none";
-
-  const paintDefinitions = [
-    ...(pair.underlays ?? []).map((token) => ({ token, paint: undefined })),
-    { token: pair.surface, paint: pair.surfacePaint },
-    { token: pair.background, paint: pair.backgroundPaint },
-  ];
-  const paintElements = paintDefinitions.map(({ token, paint }) => {
-    const element = document.createElement("div");
-    element.style.cssText = `width:100%;height:100%;background:${paint ?? `var(${token})`}`;
-    return { element, token };
-  });
-  let parent = container;
-  for (const { element } of paintElements) {
-    parent.append(element);
-    parent = element;
-  }
-
-  const foreground = document.createElement("span");
-  foreground.style.color = `var(${pair.foreground})`;
-  parent.append(foreground);
+  const { parent, elements } = buildPaintElements(container, pair);
+  const measuresOutline = pair.measure === "outline";
+  const foreground = buildForeground(parent, pair, measuresOutline);
   mount.append(container);
+  if (measuresOutline) foreground.focus();
 
-  const foregroundStyles = getComputedStyle(foreground);
-  const hasForeground = foregroundStyles.getPropertyValue(pair.foreground).trim().length > 0;
-  const hasDependencies = (pair.dependencies ?? []).every((token) => foregroundStyles.getPropertyValue(token).trim().length > 0);
-  const resolvedForeground = hasForeground ? foregroundStyles.color : null;
-  let backdrops = [WHITE];
-  let resolvedBackground: string | null = null;
-  let resolved = true;
-
-  for (const { element, token } of paintElements) {
-    if (getComputedStyle(element).getPropertyValue(token).trim().length === 0) {
-      resolved = false;
-      break;
-    }
-    const paint = sampleBackground(element, backdrops, context);
-    if (!paint) {
-      resolved = false;
-      break;
-    }
-    backdrops = paint.pixels;
-    resolvedBackground = paint.css;
-  }
+  const resolvedForeground = resolveForeground(pair, foreground, measuresOutline);
+  const resolvedBackground = resolveBackground(elements, context);
+  const comparisonBackground =
+    resolvedBackground && resolvedForeground.insideOutline
+      ? sampleBackground(foreground, resolvedBackground.pixels, context)
+      : resolvedBackground;
   container.remove();
-
-  if (!resolvedForeground || !hasDependencies || !resolved || !resolvedBackground) {
-    return unresolvedResult(pair, resolvedForeground, resolvedBackground);
+  if (!resolvedForeground.paint || !resolvedForeground.dependenciesResolve || !comparisonBackground) {
+    return unresolvedResult(pair, resolvedForeground.paint, comparisonBackground?.css ?? null);
   }
-  const ratio = minimumContrast(resolvedForeground, backdrops, context);
+  const ratio = minimumContrast(resolvedForeground.paint, comparisonBackground.pixels, context);
   return {
     ...pair,
     ratio,
     status: ratio >= pair.threshold ? "pass" : "fail",
-    resolvedForeground,
-    resolvedBackground,
+    resolvedForeground: resolvedForeground.paint,
+    resolvedBackground: comparisonBackground.css,
   };
 }
 
-type ActiveTabProbe = {
-  surface: HTMLDivElement;
-  list: HTMLDivElement;
-  tab: HTMLDivElement;
-  indicator: HTMLSpanElement;
-};
-
-function createActiveTabProbe(pair: ThemeAuditPair): ActiveTabProbe {
-  const surface = document.createElement("div");
-  const list = document.createElement("div");
-  const tab = document.createElement("div");
-  const indicator = document.createElement("span");
-
-  surface.style.cssText = `position:fixed;left:-10000px;top:0;width:240px;height:80px;overflow:hidden;pointer-events:none;background:var(${pair.surface})`;
-  list.dataset.controlUi = "tabs";
-  list.dataset.slot = "list";
-  list.dataset.size = "sm";
-  list.style.setProperty("--_tabs-trigger-h", "32px");
-  list.style.setProperty("--active-tab-width", "96px");
-  list.style.setProperty("--active-tab-left", "0px");
-  tab.dataset.controlUi = "tabs";
-  tab.dataset.slot = "tab";
-  tab.dataset.active = "true";
-  tab.setAttribute("aria-selected", "true");
-  tab.textContent = "Active tab";
-  indicator.dataset.controlUi = "tabs";
-  indicator.dataset.slot = "indicator";
-  list.append(tab, indicator);
-  surface.append(list);
-  return { surface, list, tab, indicator };
-}
-
-function ownsBackground(styles: CSSStyleDeclaration): boolean {
-  return styles.backgroundImage !== "none" || styles.backgroundColor !== "rgba(0, 0, 0, 0)";
-}
-
-function sampleActiveTab(probe: ActiveTabProbe, context: CanvasRenderingContext2D): ResolvedPaint | null {
-  const surfacePaint = sampleBackground(probe.surface, [WHITE], context);
-  if (!surfacePaint) return null;
-  const listPaint = sampleBackground(probe.list, surfacePaint.pixels, context);
-  if (!listPaint) return null;
-
-  const indicatorCoversGlyph = probe.indicator.getBoundingClientRect().height >= probe.tab.getBoundingClientRect().height / 2;
-  let tabBackdrop = listPaint;
-  let resolvedBackground = listPaint.css;
-  if (indicatorCoversGlyph) {
-    const indicatorPaint = sampleBackground(probe.indicator, listPaint.pixels, context);
-    if (!indicatorPaint) return null;
-    tabBackdrop = indicatorPaint;
-    if (ownsBackground(getComputedStyle(probe.indicator))) resolvedBackground = indicatorPaint.css;
-  }
-
-  const tabPaint = sampleBackground(probe.tab, tabBackdrop.pixels, context);
-  if (!tabPaint) return null;
-  if (ownsBackground(getComputedStyle(probe.tab))) resolvedBackground = tabPaint.css;
-  return { css: resolvedBackground, pixels: tabPaint.pixels };
-}
-
-function auditActiveTab(root: HTMLElement, pair: ThemeAuditPair, context: CanvasRenderingContext2D): ThemeAuditResult {
-  const mount = root === document.documentElement ? document.body : root;
-  const probe = createActiveTabProbe(pair);
-  mount.append(probe.surface);
-
-  const listStyles = getComputedStyle(probe.list);
-  const hasForeground = listStyles.getPropertyValue(pair.foreground).trim().length > 0;
-  const hasBackground = listStyles.getPropertyValue(pair.background).trim().length > 0;
-  const resolvedForeground = hasForeground ? getComputedStyle(probe.tab).color : null;
-  const tabPaint = sampleActiveTab(probe, context);
-  probe.surface.remove();
-
-  if (!resolvedForeground || !hasBackground || !tabPaint) {
-    return unresolvedResult(pair, resolvedForeground, tabPaint?.css ?? null);
-  }
-  const ratio = minimumContrast(resolvedForeground, tabPaint.pixels, context);
-  return {
-    ...pair,
-    ratio,
-    status: ratio >= pair.threshold ? "pass" : "fail",
-    resolvedForeground,
-    resolvedBackground: tabPaint.css,
-  };
-}
-
-function auditPair(root: HTMLElement, pair: ThemeAuditPair, context: CanvasRenderingContext2D): ThemeAuditResult {
-  if (pair.probe === "tabs-active") return auditActiveTab(root, pair, context);
-  return auditTokenPair(root, pair, context);
+/**
+ * An indicator paints no pixel when a skin zeroes it to `none`/`0px`, and none the user can see when
+ * the skin clips the control's own box — a clip-path or hidden overflow eats an outward outline the
+ * same way it ate the box-shadow ring it replaced. Either way there is no color to measure.
+ */
+function outlineIndicator(element: HTMLElement, styles: CSSStyleDeclaration): string | null {
+  if (!element.matches(":focus-visible")) return null;
+  if (styles.outlineStyle === "none" || Number.parseFloat(styles.outlineWidth) === 0) return null;
+  const clipped = styles.clipPath !== "none" || styles.overflow !== "visible";
+  if (clipped && Number.parseFloat(styles.outlineOffset) >= 0) return null;
+  return styles.outlineColor;
 }
 
 export function auditTheme(root: HTMLElement, pairs: readonly ThemeAuditPair[] = THEME_AUDIT_PAIRS): ThemeAuditResult[] {
@@ -293,5 +263,5 @@ export function auditTheme(root: HTMLElement, pairs: readonly ThemeAuditPair[] =
   canvas.height = 1;
   const context = canvas.getContext("2d", { willReadFrequently: true });
   if (!context) throw new Error("Canvas 2D context unavailable");
-  return pairs.map((pair) => auditPair(root, pair, context));
+  return pairs.map((pair) => auditTokenPair(root, pair, context));
 }

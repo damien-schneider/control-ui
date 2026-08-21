@@ -14,7 +14,7 @@ import {
   Nav as NavBase,
   Weekday as WeekdayBase,
 } from "react-day-picker";
-import type { CalendarKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { CalendarKnobStyle } from "@/components/control-ui/knob-contracts/calendar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
 // react-day-picker v10 — Base UI ships no calendar, so this is one primitive reaching outside it.

@@ -1,4 +1,4 @@
-import type { PopupPart } from "../../src/registry/contracts";
+import type { PopupPart } from "../../src/registry/sources/control-ui/surface-variants";
 
 export type ContractState = {
   attribute: string;
@@ -9,6 +9,7 @@ export type ContractState = {
 
 export type ContractPart = {
   context?: Record<string, string>;
+  family?: string;
   registryItems: string[];
   states: ContractState[];
 };

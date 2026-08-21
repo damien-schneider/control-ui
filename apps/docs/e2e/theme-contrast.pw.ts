@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "@playwright/test";
-import { BADGE_COLORS } from "../components/control-ui/contracts";
+import { BADGE_COLORS } from "../components/control-ui/ui/badge";
 
 const SKINS = ["refined", "xp", "flat", "rig", "liquid-metal", "modern-apple", "cuicui", "linear"];
 const MODES = ["light", "dark"] as const;

@@ -1,36 +1,34 @@
 @layer components {
-  :where(
-    [data-control-family="track-highlight"][data-slot="root"],
-    [data-control-family="track-highlight"][data-slot="hover"]
-  ) {
-    --_track-highlight-transition-property: top, left, right, bottom, opacity, background-color, box-shadow;
+  :where([data-control-family="track-highlight"][data-slot="root"], [data-control-family="track-highlight"][data-slot="hover"]) {
     --_track-highlight-opacity: 0;
-    border-radius: var(--track-highlight-radius);
+    border-radius: var(--cui-track-highlight-radius);
     opacity: var(--_track-highlight-opacity);
-    transition-property: var(--_track-highlight-transition-property);
-    transition-duration: var(--track-highlight-transition-duration);
+    transition-property: top, left, right, bottom, opacity, background-color, box-shadow;
+    transition-duration: var(--cui-track-highlight-transition-duration);
     transition-timing-function: var(--ease-emphasized);
   }
 
   :where([data-control-family="track-highlight"][data-slot="root"]) {
-    --track-highlight-background: var(--card);
-    --track-highlight-hover-background: color-mix(in oklab, var(--card) 92%, var(--foreground) 8%);
-    --track-highlight-radius: var(--radius-popup-item);
-    --track-highlight-ring-color: oklch(from var(--foreground) l c h / 0.05);
-    --track-highlight-shadow: var(--shadow-sm);
-    --track-highlight-transition-duration: var(--duration-fast);
-    background: var(--track-highlight-background);
-    box-shadow: 0 0 0 1px var(--track-highlight-ring-color), var(--track-highlight-shadow);
+    --cui-track-highlight-background: var(--card);
+    --cui-track-highlight-hover-background: color-mix(in oklab, var(--card) 92%, var(--foreground) 8%);
+    --cui-track-highlight-radius: var(--radius-popup-item);
+    --cui-track-highlight-ring-color: oklch(from var(--foreground) l c h / 0.05);
+    --cui-track-highlight-shadow: var(--shadow-sm);
+    --cui-track-highlight-transition-duration: var(--duration-fast);
+    background: var(--cui-track-highlight-background);
+    box-shadow:
+      0 0 0 1px var(--cui-track-highlight-ring-color),
+      var(--cui-track-highlight-shadow);
   }
 
   :where([data-control-family="track-highlight"][data-slot="root"][data-hover]) {
-    --track-highlight-background: var(--track-highlight-hover-background);
-    --track-highlight-ring-color: transparent;
-    --track-highlight-shadow: none;
+    --cui-track-highlight-background: var(--cui-track-highlight-hover-background);
+    --cui-track-highlight-ring-color: transparent;
+    --cui-track-highlight-shadow: none;
   }
 
   :where([data-control-family="track-highlight"][data-slot="hover"]) {
-    background: var(--track-highlight-hover-background);
+    background: var(--cui-track-highlight-hover-background);
   }
 
   :where(
@@ -41,35 +39,35 @@
   }
 }
 
-@property --track-highlight-radius {
+@property --cui-track-highlight-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --track-highlight-background {
+@property --cui-track-highlight-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
-@property --track-highlight-hover-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --track-highlight-ring-color {
+@property --cui-track-highlight-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --track-highlight-shadow {
+@property --cui-track-highlight-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-track-highlight-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --track-highlight-transition-duration {
+@property --cui-track-highlight-transition-duration {
   syntax: "<time>";
   inherits: true;
   initial-value: 0s;

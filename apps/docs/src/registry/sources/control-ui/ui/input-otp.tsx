@@ -1,9 +1,39 @@
 "use client";
 
 import { OTPField as OTPFieldPrimitive } from "@base-ui/react/otp-field";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { Fragment } from "react";
-import type { InputOTPProps, InputOTPSeparatorProps, InputOTPSlotProps } from "@/components/control-ui/contracts";
+import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type InputOTPProps = {
+  length?: number;
+  separator?: boolean;
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  name?: string;
+  mask?: boolean;
+  id?: string;
+  className?: string;
+  children?: ReactNode;
+  "aria-label"?: string;
+  "aria-describedby"?: string;
+} & { style?: CSSProperties & FieldKnobStyle };
+
+export type InputOTPSlotProps = {
+  index: number;
+  length?: number;
+  disabled?: boolean;
+  placeholder?: string;
+  className?: string;
+  style?: CSSProperties & FieldKnobStyle;
+};
+
+export type InputOTPSeparatorProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
 
 export function InputOTPSlot({ index, length, className, ...props }: InputOTPSlotProps) {
   return (

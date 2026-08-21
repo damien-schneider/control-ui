@@ -1,13 +1,18 @@
 @layer components {
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"], [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]) {
-    --choice-radius: var(--radius-sm);
-    --choice-border-color: var(--border);
-    --choice-checked-background: var(--primary);
-    --choice-checked-border-color: var(--primary);
+  :where(
+    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"],
+    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]
+  ) {
+    --cui-choice-radius: var(--radius-sm);
+    --cui-choice-border-color: var(--border);
+    --cui-choice-checked-background: var(--primary);
+    --cui-choice-checked-border-color: var(--primary);
     --_choice-background: oklch(from var(--card) l c h / 0.72);
-    border-radius: var(--choice-radius);
+    border-radius: var(--cui-choice-radius);
     background: var(--_choice-background);
-    box-shadow: inset 0 0 0 1px var(--choice-border-color), var(--shadow-sm);
+    box-shadow:
+      inset 0 0 0 1px var(--cui-choice-border-color),
+      var(--shadow-sm);
     color: currentColor;
     outline: none;
     transition-property: background-color, box-shadow, color;
@@ -16,33 +21,48 @@
   }
 
   :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]) {
-    --choice-radius: 9999px;
+    --cui-choice-radius: 9999px;
+    outline-style: none;
   }
 
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:hover, [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:hover) {
-    --choice-border-color: oklch(from var(--foreground) l c h / 0.25);
+  :where(
+    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:hover,
+    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:hover
+  ) {
+    --cui-choice-border-color: oklch(from var(--foreground) l c h / 0.25);
   }
 
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:is([data-checked], [data-indeterminate]), [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:is([data-checked], [data-indeterminate])) {
-    --_choice-background: var(--choice-checked-background);
-    --choice-border-color: var(--choice-checked-border-color);
+  :where(
+    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:is([data-checked], [data-indeterminate]),
+    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:is([data-checked], [data-indeterminate])
+  ) {
+    --_choice-background: var(--cui-choice-checked-background);
+    --cui-choice-border-color: var(--cui-choice-checked-border-color);
     color: var(--primary-foreground);
   }
 
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:focus-visible, [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:focus-visible) {
-    box-shadow: inset 0 0 0 1px var(--choice-border-color), var(--shadow-sm), 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-  }
-
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-disabled], [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-disabled]) {
+  :where(
+    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-disabled],
+    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-disabled]
+  ) {
     opacity: 0.5;
   }
 
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-invalid], [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-invalid]) {
-    --choice-border-color: var(--destructive);
-    box-shadow: inset 0 0 0 1px var(--choice-border-color), var(--shadow-sm), 0 0 0 1px var(--destructive);
+  :where(
+    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-invalid],
+    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-invalid]
+  ) {
+    --cui-choice-border-color: var(--destructive);
+    box-shadow:
+      inset 0 0 0 1px var(--cui-choice-border-color),
+      var(--shadow-sm),
+      0 0 0 1px var(--destructive);
   }
 
-  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"] [data-slot="indicator"], [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"] [data-slot="indicator"]) {
+  :where(
+    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"] [data-slot="indicator"],
+    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"] [data-slot="indicator"]
+  ) {
     color: currentColor;
   }
 
@@ -51,40 +71,34 @@
     background: var(--primary-foreground);
   }
 
-  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]) {
-    --_choice-radio-group-item-outline: none;
-    outline-style: var(--_choice-radio-group-item-outline);
-  }
-
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="indicator"]) {
     color: currentcolor;
   }
 
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]) {
-    --_choice-checkbox-root-outline: none;
-    outline-style: var(--_choice-checkbox-root-outline);
+    outline-style: none;
   }
 }
 
-@property --choice-radius {
+@property --cui-choice-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --choice-border-color {
+@property --cui-choice-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --choice-checked-background {
+@property --cui-choice-checked-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --choice-checked-border-color {
+@property --cui-choice-checked-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

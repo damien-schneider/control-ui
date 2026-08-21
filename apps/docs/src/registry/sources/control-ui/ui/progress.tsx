@@ -1,14 +1,34 @@
 "use client";
 
 import { Progress as ProgressPrimitive } from "@base-ui/react/progress";
-import type {
-  ProgressIndicatorProps,
-  ProgressLabelProps,
-  ProgressProps,
-  ProgressTrackProps,
-  ProgressValueProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { RangeKnobStyle } from "@/components/control-ui/knob-contracts/range-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type ProgressProps = Omit<
+  ComponentProps<"div"> & {
+    value: number | null;
+    min?: number;
+    max?: number;
+    format?: Intl.NumberFormatOptions;
+    getAriaValueText?: (formattedValue: string | null, value: number | null) => string;
+    locale?: Intl.LocalesArgument;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
+
+export type ProgressTrackProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+
+export type ProgressIndicatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+
+export type ProgressLabelProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+
+export type ProgressValueProps = Omit<
+  Omit<ComponentProps<"span">, "children"> & {
+    children?: ((formattedValue: string | null, value: number | null) => ReactNode) | null;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
 
 // value null = indeterminate.
 export function Progress({ className, ...props }: ProgressProps) {

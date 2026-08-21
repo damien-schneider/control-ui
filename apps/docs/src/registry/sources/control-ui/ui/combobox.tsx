@@ -1,23 +1,69 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, use, useEffect, useState } from "react";
-import type {
-  ComboboxContentProps,
-  ComboboxEmptyProps,
-  ComboboxGroupLabelProps,
-  ComboboxGroupProps,
-  ComboboxInputProps,
-  ComboboxItemProps,
-  ComboboxListProps,
-  ComboboxProps,
-  ComboboxTriggerProps,
-} from "@/components/control-ui/contracts";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { emitComboboxValueChange } from "./combobox-disabled-selection";
+
+export type ComboboxProps<Value = string> = {
+  children?: ReactNode;
+  items?: readonly Value[];
+  value?: Value | null;
+  defaultValue?: Value | null;
+  onValueChange?: (value: Value | null) => void;
+  inputValue?: string;
+  defaultInputValue?: string;
+  onInputValueChange?: (inputValue: string) => void;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  name?: string;
+  autoHighlight?: boolean;
+  itemToStringLabel?: (itemValue: Value) => string;
+  isItemEqualToValue?: (itemValue: Value, value: Value) => boolean;
+};
+
+export type ComboboxInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
+  size?: ControlSize;
+};
+
+export type ComboboxTriggerProps = ComponentProps<"button"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type ComboboxContentProps = Omit<
+  ComponentProps<"div"> & {
+    sideOffset?: number;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ComboboxListProps<Value = unknown> = Omit<ComponentProps<"div">, "children"> & {
+  children?: ReactNode | ((item: Value, index: number) => ReactNode);
+} & { style?: CSSProperties & PopupKnobStyle };
+
+export type ComboboxItemProps<Value = unknown> = Omit<
+  Omit<ComponentProps<"div">, "value"> & {
+    value?: Value;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ComboboxEmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type ComboboxGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type ComboboxGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 type DisabledComboboxValueRegistry = {
   register: (value: unknown, disabled: boolean) => () => void;
@@ -81,7 +127,6 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
   return (
     <ComboboxPrimitive.InputGroup
       data-control-ui="combobox"
-      data-control-family="field"
       data-field-kind="combobox"
       data-slot="root"
       className="relative flex w-full items-center"

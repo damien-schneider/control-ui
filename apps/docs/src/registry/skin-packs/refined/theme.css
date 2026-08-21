@@ -26,6 +26,7 @@
   --border: oklch(0.8851 0.0135 76 / var(--ring-opacity));
   --input: oklch(0.8851 0.0135 76);
   --ring: oklch(0.6903 0.0198 74);
+  --focus-ring: oklch(0.5 0.0198 74);
 
   /* Page canvas, a level below --background/--card/--popover (all elevated surfaces); GitHub Primer calls this `canvas`.
      Keep it clear of --muted (0.9425): when the two match, every muted surface dropped straight onto the page — a
@@ -112,6 +113,7 @@
   --border: oklch(0.3082 0.0147 67 / var(--ring-opacity));
   --input: oklch(0.3082 0.0147 67);
   --ring: oklch(0.5521 0.0181 70);
+  --focus-ring: oklch(0.66 0.0181 70);
   --canvas: oklch(0.1618 0.0096 61);
   --shadow-color: oklch(0 0 0);
   /* In dark the inner top light is a faint edge catch, not a glow. */

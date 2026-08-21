@@ -1,19 +1,43 @@
 "use client";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import type { ComponentProps } from "react";
-import type {
-  DropdownMenuContentProps,
-  DropdownMenuItemProps,
-  DropdownMenuLabelProps,
-  DropdownMenuProps,
-  DropdownMenuSeparatorProps,
-  DropdownMenuTriggerProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+
+export type DropdownMenuProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export const dropdownMenuTriggerVariants = ["surface", "ghost"] as const;
+
+export type DropdownMenuTriggerVariant = (typeof dropdownMenuTriggerVariants)[number];
+
+export type DropdownMenuTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle } & {
+  size?: ControlSize;
+  iconOnly?: boolean;
+  variant?: DropdownMenuTriggerVariant;
+};
+
+export type DropdownMenuContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type DropdownMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  disabled?: boolean;
+  onClick?: (event: MouseEvent) => void;
+};
+
+export type DropdownMenuSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type DropdownMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 type RefinedDropdownMenuTriggerProps = DropdownMenuTriggerProps &
   Pick<ComponentProps<typeof MenuPrimitive.Trigger>, "nativeButton" | "render">;

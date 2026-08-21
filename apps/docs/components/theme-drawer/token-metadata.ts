@@ -1,5 +1,5 @@
-import { BADGE_COLORS } from "@/src/registry/contracts";
 import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
+import { BADGE_COLORS } from "@/src/registry/sources/control-ui/ui/badge";
 import { CORNER_LABEL, EASE, EASE_LABEL, FONT, FONT_LABEL, FONT_MONO, FONT_MONO_LABEL } from "./types";
 
 // Decides only how token is EDITED; lib/theme-contract.ts stays source of names, groups, and tiers.

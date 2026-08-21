@@ -3,6 +3,7 @@ import path from "node:path";
 import postcss from "postcss";
 
 export const recipesDir = "src/registry/sources/control-ui/recipes";
+export const knobPrefix = "--cui-";
 
 export type KnobDoc = { name: string; syntax: string; initialValue: string; defaultValue: string };
 export type KnobFamily = { id: string; recipes: string[]; knobs: KnobDoc[] };
@@ -36,13 +37,13 @@ export function collectKnobFamilies(cwd = process.cwd()): KnobFamily[] {
     .sort()
     .map((file) => readRecipe(cwd, file));
   const stems = recipes.map((recipe) => recipe.stem);
-  const ownsKnob = (recipe: RecipeKnobs) => [...recipe.registered.keys()].some((knob) => knob.startsWith(`--${recipe.stem}-`));
+  const ownsKnob = (recipe: RecipeKnobs) => [...recipe.registered.keys()].some((knob) => knob.startsWith(`${knobPrefix}${recipe.stem}-`));
   const isCompanion = (recipe: RecipeKnobs) =>
     !ownsKnob(recipe) && stems.some((other) => other !== recipe.stem && recipe.stem.startsWith(`${other}-`));
   const familyIds = recipes.filter((recipe) => !isCompanion(recipe)).map((recipe) => recipe.stem);
   const familiesByLength = [...familyIds].sort((left, right) => right.length - left.length);
   const familyOf = (name: string) => {
-    const family = familiesByLength.find((candidate) => name.startsWith(`--${candidate}-`));
+    const family = familiesByLength.find((candidate) => name.startsWith(`${knobPrefix}${candidate}-`));
     if (!family) throw new Error(`${name} matches no recipe family in ${recipesDir}`);
     return family;
   };
@@ -62,4 +63,8 @@ export function collectKnobFamilies(cwd = process.cwd()): KnobFamily[] {
     }
   }
   return [...families.values()].sort((left, right) => left.id.localeCompare(right.id));
+}
+
+export function knobsByFamily(): Record<string, string[]> {
+  return Object.fromEntries(collectKnobFamilies().map((family) => [family.id, family.knobs.map((knob) => knob.name)]));
 }

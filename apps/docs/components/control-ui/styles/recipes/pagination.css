@@ -1,35 +1,36 @@
 @layer components {
   :where([data-control-family="pagination"][data-slot="root"]) {
-    --pagination-link-radius: var(--radius-control);
-    --pagination-link-background: transparent;
-    --pagination-link-hover-background: oklch(from var(--foreground) l c h / 0.06);
-    --pagination-link-foreground: var(--foreground);
-    --pagination-link-shadow: none;
+    --cui-pagination-link-radius: var(--radius-control);
+    --cui-pagination-link-background: transparent;
+    --cui-pagination-link-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-pagination-link-foreground: var(--foreground);
+    --cui-pagination-link-shadow: none;
   }
   :where([data-control-family="pagination"][data-slot="link"]) {
     --_pagination-link-border-color: transparent;
-    border-radius: var(--pagination-link-radius);
-    background: var(--pagination-link-background);
-    box-shadow: inset 0 0 0 1px var(--_pagination-link-border-color), var(--pagination-link-shadow);
-    color: var(--pagination-link-foreground);
+    border-radius: var(--cui-pagination-link-radius);
+    background: var(--cui-pagination-link-background);
+    box-shadow:
+      inset 0 0 0 1px var(--_pagination-link-border-color),
+      var(--cui-pagination-link-shadow);
+    color: var(--cui-pagination-link-foreground);
     outline: none;
-    transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="pagination"][data-slot="link"][data-active="true"]) {
-    --pagination-link-background: oklch(from var(--card) l c h / 0.72);
+    --cui-pagination-link-background: oklch(from var(--card) l c h / 0.72);
     --_pagination-link-border-color: var(--border);
-    --pagination-link-shadow: var(--shadow-sm);
+    --cui-pagination-link-shadow: var(--shadow-sm);
   }
 
   @media (hover: hover) {
     :where([data-control-family="pagination"][data-slot="link"]:hover) {
-      background: var(--pagination-link-hover-background);
+      background: var(--cui-pagination-link-hover-background);
     }
-  }
-
-  :where([data-control-family="pagination"][data-slot="link"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2)), inset 0 0 0 1px var(--_pagination-link-border-color), var(--pagination-link-shadow);
   }
 
   :where([data-control-family="pagination"][data-slot="link"][aria-disabled="true"]) {
@@ -41,31 +42,31 @@
   }
 }
 
-@property --pagination-link-radius {
+@property --cui-pagination-link-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --pagination-link-background {
+@property --cui-pagination-link-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --pagination-link-hover-background {
+@property --cui-pagination-link-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --pagination-link-foreground {
+@property --cui-pagination-link-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --pagination-link-shadow {
+@property --cui-pagination-link-shadow {
   syntax: "*";
   inherits: true;
 }

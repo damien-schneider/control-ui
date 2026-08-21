@@ -7,13 +7,7 @@
 
 @layer base {
   :root[data-skin="rig"] body {
-    background:
-      repeating-linear-gradient(
-        0deg,
-        oklch(from var(--foreground) l c h / 0.05) 0 1px,
-        transparent 1px 4px
-      ),
-      var(--background);
+    background: repeating-linear-gradient(0deg, oklch(from var(--foreground) l c h / 0.05) 0 1px, transparent 1px 4px), var(--background);
   }
 }
 
@@ -21,9 +15,7 @@
   /* Squared + diagonal cut on two corners; clip-path removes border there, so outlined controls use
    * an inset ring instead. Hard offset shadow rides filter:drop-shadow (honors clip-path shape;
    * box-shadow would get clipped away). Resting=flat, hover=shadow, press=sink. */
-  [data-skin="rig"] [data-control-ui][data-control="true"] {
-    border: 0;
-    border-radius: 0;
+  [data-skin="rig"] [data-control-family][data-control="true"] {
     clip-path: polygon(
       0 0,
       calc(100% - var(--rig-chamfer)) 0,
@@ -32,108 +24,110 @@
       var(--rig-chamfer) 100%,
       0 calc(100% - var(--rig-chamfer))
     );
-    box-shadow: none;
     text-shadow: none;
-    font-weight: 600;
     letter-spacing: 0.01em;
-    transition-property: transform, filter, background-color, color;
-    transition-duration: var(--duration-fast);
+    transition-property: transform, filter;
     transition-timing-function: var(--ease-standard);
   }
 
-  /* filter:drop-shadow paints RENDERED pixels — clean silhouette only on opaque solid fill; on
-   * translucent surface/ghost/quiet it'd trace the GLYPHS, ghosting the label. Those variants get
-   * nudge + brightness dip instead (brightness never offsets, can't duplicate). */
-  [data-skin="rig"] [data-control-ui][data-control="true"]:hover {
+  [data-skin="rig"] [data-control-family="button"][data-control="true"] {
+    --cui-button-radius: 0px;
+    --cui-button-shadow: none;
+    --cui-button-hover-shadow: none;
+    --cui-button-press-shadow: none;
+    border: 0;
+    font-weight: 600;
+  }
+
+  [data-skin="rig"] [data-control-family="field"][data-control="true"] {
+    --cui-field-radius: 0px;
+    --cui-field-border-width: 0px;
+    --cui-field-shadow: none;
+  }
+
+  [data-skin="rig"] [data-control-family="pagination"][data-control="true"] {
+    --cui-pagination-link-radius: 0px;
+    --cui-pagination-link-shadow: none;
+  }
+
+  [data-skin="rig"] [data-control-family="toolbar"][data-control="true"] {
+    --cui-toolbar-item-radius: 0px;
+    --cui-toolbar-item-shadow: none;
+    font-weight: 600;
+  }
+
+  [data-skin="rig"] [data-control-family="code-diff"][data-slot="expand-button"][data-control="true"] {
+    --cui-code-diff-expand-button-radius: 0px;
+    --cui-code-diff-expand-button-shadow: none;
+    font-weight: 600;
+  }
+
+  [data-skin="rig"] [data-control-family][data-control="true"]:hover {
     transform: translate(-1px, -1px);
   }
 
-  [data-skin="rig"] [data-control-ui][data-control="true"]:active {
+  [data-skin="rig"] [data-control-family][data-control="true"]:active {
     transform: translate(1px, 1px);
     filter: brightness(0.94);
-    transition-duration: 40ms;
   }
 
-  /* Solid only: box-shadow can't survive clip-path, so uses drop-shadow (safe: box is opaque); :not(disabled) guard out-specifies the disabled reset. */
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"]:not(:disabled):not([data-disabled]):hover {
+  [data-skin="rig"] [data-control-family="button"][data-control="true"][data-variant="solid"]:not(:disabled):not([data-disabled]):hover {
     filter: drop-shadow(3px 4px 0 oklch(from var(--foreground) l c h / 0.32));
   }
 
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"]:not(:disabled):not([data-disabled]):active {
+  [data-skin="rig"] [data-control-family="button"][data-control="true"][data-variant="solid"]:not(:disabled):not([data-disabled]):active {
     filter: drop-shadow(1px 1px 0 oklch(from var(--foreground) l c h / 0.4)) brightness(0.94);
   }
 
-  [data-skin="rig"] [data-control-ui][data-control="true"]:disabled,
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-disabled] {
+  [data-skin="rig"] [data-control-family][data-control="true"]:disabled,
+  [data-skin="rig"] [data-control-family][data-control="true"][data-disabled] {
     transform: none;
     filter: none;
   }
 
-  /* Solid = coral CTA; background-image sheen paints behind label (no z-index fight), chamfer still clips it. */
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"] {
-    background-color: var(--primary);
-    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.08), transparent 46%);
-    color: var(--primary-foreground);
+  [data-skin="rig"] [data-control-family="button"][data-control="true"][data-variant="solid"] {
+    --cui-button-bg: var(--primary);
+    --cui-button-bg-image: linear-gradient(180deg, oklch(1 0 0 / 0.08), transparent 46%);
+    --cui-button-foreground: var(--primary-foreground);
   }
 
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="solid"]:hover {
-    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.1), transparent 52%);
+  [data-skin="rig"] [data-control-family="button"][data-control="true"][data-variant="solid"]:hover {
+    --cui-button-bg-image: linear-gradient(180deg, oklch(1 0 0 / 0.1), transparent 52%);
+  }
+  [data-skin="rig"]
+    [data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"]) {
+    --cui-button-bg: oklch(from var(--foreground) l c h / 0.04);
+    --cui-button-bg-image: none;
+    --cui-button-shadow: inset 0 0 0 1.5px oklch(from var(--foreground) l c h / 0.5);
   }
 
-  /* Outlined: hairline ink ring via inset shadow (clip-safe); faint fill, coral glow blooms on hover. */
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="surface"],
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="ghost"],
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="quiet"] {
-    background-color: oklch(from var(--foreground) l c h / 0.04);
-    background-image: none;
-    box-shadow: inset 0 0 0 1.5px oklch(from var(--foreground) l c h / 0.5);
-  }
-
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="surface"]:hover,
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="ghost"]:hover,
-  [data-skin="rig"] [data-control-ui][data-control="true"][data-variant="quiet"]:hover {
-    background-color: oklch(from var(--foreground) l c h / 0.09);
-    box-shadow:
-      inset 0 0 0 1.5px var(--primary),
-      inset 0 0 0 5px oklch(from var(--primary) l c h / 0.12);
+  [data-skin="rig"]
+    [data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"]):hover {
+    --cui-button-hover-bg: oklch(from var(--foreground) l c h / 0.09);
+    --cui-button-hover-shadow: inset 0 0 0 1.5px var(--primary), inset 0 0 0 5px oklch(from var(--primary) l c h / 0.12);
   }
 
   /* User bubble = bg-primary coral both modes. Dark uses a deeper coral so the shared cream ink
    * keeps AA contrast against the bubble. */
   :is(.dark[data-skin="rig"], :where(.dark) [data-skin="rig"], [data-skin="rig"] :where(.dark))
-    [data-control-ui="chat-message"][data-slot="content"][data-role="user"] {
-    background-color: oklch(0.444 0.1277 32.246);
-    color: oklch(0.9313 0.0143 81.504);
+  [data-slot="content"][data-role="user"][data-control-family="chat-message"] {
+    --cui-chat-message-background: oklch(0.444 0.1277 32.246);
+    --cui-chat-message-foreground: oklch(0.9313 0.0143 81.504);
   }
 
-  [data-skin="rig"] [data-control-ui="tabs"][data-slot="list"],
-  [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"] {
-    border-radius: 0;
-  }
-
-  [data-skin="rig"] :where([data-control-ui="tabs"][data-control-family="tabs"][data-slot="root"]) {
-    --tabs-active-foreground: var(--primary-foreground);
-  }
-
-  [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"] {
-    transition: color var(--duration-fast) var(--ease-standard);
-  }
-
-  [data-skin="rig"] [data-control-ui="tabs"][data-slot="tab"]:hover {
-    color: var(--foreground);
-  }
-
-  [data-skin="rig"] [data-control-ui="tabs"][data-slot="indicator"] {
-    border-radius: 0;
-    background: var(--primary);
-    box-shadow: 0 0 0 1px oklch(from var(--primary) l c h / 0.35);
+  /* --cui-tabs-trigger-radius is the one radius: list, tab and indicator all derive from it. */
+  [data-skin="rig"] :where([data-slot="root"][data-control-family="tabs"]) {
+    --cui-tabs-trigger-radius: 0px;
+    --cui-tabs-active-foreground: var(--primary-foreground);
+    --cui-tabs-indicator-background: var(--primary);
+    --cui-tabs-indicator-shadow: 0 0 0 1px oklch(from var(--primary) l c h / 0.35);
   }
 
   /* Crosshair L-ticks in 4 corners: ::before=TL+BR, ::after=TR+BL, each a horiz+vert hairline; inset so they read despite overflow clipping. */
-  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"],
-  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"],
-  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"],
-  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"] {
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"],
+  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"],
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"],
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"] {
     position: relative;
     --rig-tick: 11px;
     --rig-tick-w: 1.5px;
@@ -141,14 +135,14 @@
     --rig-tick-c: oklch(from var(--primary) l c h / 0.6);
   }
 
-  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::before,
-  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::after,
-  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
-  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
-  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
-  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::after,
-  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::before,
-  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::after {
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::before,
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::after,
+  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::before,
+  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::after,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::before,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::after,
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]::before,
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]::after {
     content: "";
     position: absolute;
     inset: var(--rig-tick-inset);
@@ -156,10 +150,10 @@
     z-index: 2;
   }
 
-  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::before,
-  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::before,
-  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::before,
-  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::before {
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::before,
+  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::before,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::before,
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]::before {
     background:
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 0 / var(--rig-tick) var(--rig-tick-w) no-repeat,
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 0 / var(--rig-tick-w) var(--rig-tick) no-repeat,
@@ -167,10 +161,10 @@
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 100% / var(--rig-tick-w) var(--rig-tick) no-repeat;
   }
 
-  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"]::after,
-  [data-skin="rig"] [data-control-ui="code-block-editor"][data-slot="root"]::after,
-  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"]::after,
-  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]::after {
+  [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::after,
+  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::after,
+  [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::after,
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]::after {
     background:
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 0 / var(--rig-tick) var(--rig-tick-w) no-repeat,
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 100% 0 / var(--rig-tick-w) var(--rig-tick) no-repeat,
@@ -179,57 +173,57 @@
   }
 
   /* Composer ticks light coral + frame on focus: "armed" state. */
-  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"]:focus-within {
+  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]:focus-within {
     --rig-tick-c: var(--primary);
-    box-shadow: inset 0 0 0 1.5px oklch(from var(--primary) l c h / 0.55);
+    --cui-chat-composer-shell-shadow: inset 0 0 0 1.5px oklch(from var(--primary) l c h / 0.55);
   }
 
-  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="content"],
-  [data-skin="rig"] [data-control-ui="select"][data-slot="content"] {
-    border-radius: 0;
-    box-shadow:
-      0 0 0 1.5px oklch(from var(--foreground) l c h / 0.55),
-      inset 0 2px 0 var(--primary);
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-popup-part="list-surface"][data-control-family="popup"],
+  [data-skin="rig"] [data-control-ui="select"][data-popup-part="list-surface"][data-control-family="popup"] {
+    --cui-popup-radius: 0px;
+    --cui-popup-item-radius: 0px;
+    --cui-popup-border-width: 1.5px;
+    --cui-popup-border-color: oklch(from var(--foreground) l c h / 0.55);
+    --cui-popup-shadow: inset 0 2px 0 var(--primary);
   }
 
-  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"],
-  [data-skin="rig"] [data-control-ui="select"][data-slot="item"] {
-    border-radius: 0;
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"][data-control-family="popup"],
+  [data-skin="rig"] [data-control-ui="select"][data-slot="item"][data-control-family="popup"] {
     transition:
       background-color var(--duration-fast) var(--ease-standard),
       box-shadow var(--duration-fast) var(--ease-standard),
       transform var(--duration-fast) var(--ease-standard);
   }
 
-  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"]:hover,
-  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"][data-highlighted],
-  [data-skin="rig"] [data-control-ui="select"][data-slot="item"]:hover,
-  [data-skin="rig"] [data-control-ui="select"][data-slot="item"][data-highlighted] {
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"][data-control-family="popup"]:hover,
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="item"][data-highlighted][data-control-family="popup"],
+  [data-skin="rig"] [data-control-ui="select"][data-slot="item"][data-control-family="popup"]:hover,
+  [data-skin="rig"] [data-control-ui="select"][data-slot="item"][data-highlighted][data-control-family="popup"] {
     box-shadow: inset 2px 0 0 var(--primary);
     transform: translateX(2px);
   }
 
-  [data-skin="rig"] :where([data-control-ui="sidebar"][data-control-family="sidebar"][data-slot="root"]) {
-    --sidebar-menu-button-radius: 0px;
-    --sidebar-menu-button-hover-shadow: inset 2px 0 0 var(--primary);
-    --sidebar-menu-button-active-shadow: inset 2px 0 0 var(--primary);
+  [data-skin="rig"] :where([data-slot="root"][data-control-family="sidebar"]) {
+    --cui-sidebar-menu-button-radius: 0px;
+    --cui-sidebar-menu-button-hover-shadow: inset 2px 0 0 var(--primary);
+    --cui-sidebar-menu-button-active-shadow: inset 2px 0 0 var(--primary);
   }
 
-  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="menu-button"] {
+  [data-skin="rig"] [data-slot="menu-button"][data-control-family="sidebar"] {
     transition:
       background-color var(--duration-fast) var(--ease-standard),
       box-shadow var(--duration-fast) var(--ease-standard),
       transform var(--duration-fast) var(--ease-standard);
   }
 
-  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="menu-button"]:hover,
-  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="menu-button"][data-active="true"] {
+  [data-skin="rig"] [data-slot="menu-button"][data-control-family="sidebar"]:hover,
+  [data-skin="rig"] [data-slot="menu-button"][data-active="true"][data-control-family="sidebar"] {
     transform: translateX(2px);
   }
 
   /* Group labels = mono uppercase eyebrows (matches reference's "DATA EXTRACTION"/"001" style). */
-  [data-skin="rig"] [data-control-ui="sidebar"][data-slot="group-label"],
-  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="label"] {
+  [data-skin="rig"] [data-slot="group-label"][data-control-family="sidebar"],
+  [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="label"][data-control-family="popup"] {
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -237,10 +231,11 @@
     font-size: 0.68rem;
   }
 
-  [data-skin="rig"] [data-control-ui="tooltip"][data-slot="content"] {
-    border-radius: 0;
+  [data-skin="rig"] [data-control-ui="tooltip"][data-popup-part="surface"][data-control-family="popup"] {
+    --cui-popup-radius: 0px;
+    --cui-popup-border-width: 1.5px;
+    --cui-popup-border-color: oklch(from var(--primary) l c h / 0.5);
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
-    box-shadow: 0 0 0 1.5px oklch(from var(--primary) l c h / 0.5);
   }
 }

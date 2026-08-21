@@ -6,9 +6,15 @@ import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { componentEntries } from "../../../app/(features)/catalog/components";
 import { primitiveEntries } from "../../../app/(features)/catalog/primitives";
+import { isFamilyPartAttribute, slotAttribute, surfaceAttribute } from "../../../scripts/control-anatomy";
+import { knobPrefix, knobsByFamily } from "../../../scripts/knob-contracts/collect";
 import { createRecipeSourceExpectations } from "../../../scripts/registry-model";
-import { controlKnobContracts } from "../knob-contracts";
+import { collectSkinContract } from "../../../scripts/skin-contract/collect";
+
 import { THEME_CONTRACT_NAMES } from "../lib/theme-contract";
+
+const controlKnobContracts = knobsByFamily();
+const skinContract = collectSkinContract();
 
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const COMPONENTS_DIR = fileURLToPath(new URL("../sources/control-ui/", import.meta.url));
@@ -49,6 +55,21 @@ describe("knob naming", () => {
     expect(knobsWithRepeatedFamilyPrefix(["--chat-composer-chat-composer-editor-font-size"])).toEqual([
       "--chat-composer-chat-composer-editor-font-size",
     ]);
+  });
+});
+
+describe("skin interaction paint", () => {
+  test("Liquid Metal keeps its focus glow in both color modes", () => {
+    const liquidMetal = skins.find(({ id }) => id === "liquid-metal");
+    const focusShadows: string[] = [];
+    liquidMetal?.root.walkRules((rule) => {
+      if (!rule.selector.includes(":focus-visible")) return;
+      rule.walkDecls("--aui-liquid-control-shadow", (declaration) => {
+        focusShadows.push(declaration.value);
+      });
+    });
+    expect(focusShadows).toHaveLength(2);
+    expect(focusShadows.every((shadow) => shadow.includes("0 0 30px"))).toBe(true);
   });
 });
 
@@ -121,7 +142,7 @@ describe("family source coverage", () => {
   });
 
   test("companion recipes resolve through rendered knobs or their family filename", () => {
-    const companion = postcss.parse("a { color: var(--field-foreground); }");
+    const companion = postcss.parse("a { color: var(--cui-field-foreground); }");
     expect(recipeKnobFamilies(companion)).toEqual(["field"]);
     expect(recipeFilenameFamily("src/registry/sources/control-ui/recipes/field-parts.css")).toBe("field");
   });
@@ -215,6 +236,108 @@ function recipe(id: string): Root {
   return root;
 }
 
+function appearanceValueIsImplemented(attribute: string, value: string, css: string, source: string): boolean {
+  if (css.includes(`[${attribute}="${value}"]`)) return true;
+  const escapedValue = value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const prop = attribute.slice("data-".length);
+  return [
+    new RegExp(`${attribute}\\s*=\\s*["']${escapedValue}["']`),
+    new RegExp(`${attribute}\\s*=\\s*\\{[^}]*["']${escapedValue}["'][^}]*\\}`),
+    new RegExp(`\\b${prop}\\s*(?:===|!==)\\s*["']${escapedValue}["']`),
+    new RegExp(`^\\s*(?:["']${escapedValue}["']|${escapedValue})\\s*:`, "m"),
+  ].some((pattern) => pattern.test(source));
+}
+
+function appearanceDefaults(attribute: string, source: string): Set<string> {
+  const prop = attribute.slice("data-".length);
+  return new Set([...source.matchAll(new RegExp(`\\b${prop}\\s*=\\s*["']([^"']+)["']`, "g"))].flatMap((match) => match[1] ?? []));
+}
+
+function unhandledAppearanceValues(attribute: string, values: readonly string[], css: string, source: string): string[] {
+  const defaults = appearanceDefaults(attribute, source);
+  return values.filter((value) => !defaults.has(value) && !appearanceValueIsImplemented(attribute, value, css, source));
+}
+
+type AppearancePart = {
+  family?: string;
+  states: readonly {
+    attribute: string;
+    valueKind: string;
+    values: readonly string[];
+  }[];
+};
+
+const appearanceSourceCache = new Map<string, string>();
+
+function appearanceSource(scope: string, family: string): string {
+  const cacheKey = `${scope}:${family}`;
+  const cached = appearanceSourceCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+  const scopeMarkers = [`data-control-ui="${scope}"`, `"data-control-ui": "${scope}"`];
+  const familyMarkers = [`data-control-family="${family}"`, `"data-control-family": "${family}"`, `family = "${family}"`];
+  const source = readdirSync(COMPONENTS_DIR, { encoding: "utf8", recursive: true })
+    .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
+    .map((name) => readFileSync(path.join(COMPONENTS_DIR, name), "utf8"))
+    .filter(
+      (candidate) =>
+        scopeMarkers.some((marker) => candidate.includes(marker)) && familyMarkers.some((marker) => candidate.includes(marker)),
+    )
+    .join("\n");
+  appearanceSourceCache.set(cacheKey, source);
+  return source;
+}
+
+function appearancePartOffenders(scope: string, partName: string, part: AppearancePart, checked: Set<string>): string[] {
+  const family = part.family ?? scope;
+  const css = recipe(family).toString();
+  const source = appearanceSource(scope, family);
+  const offenders: string[] = [];
+  for (const state of part.states) {
+    if (!["data-variant", "data-tone"].includes(state.attribute) || state.valueKind !== "enum" || state.values.length < 2) continue;
+    const key = `${family}:${partName}:${state.attribute}:${state.values.join(",")}`;
+    if (checked.has(key)) continue;
+    checked.add(key);
+    const missing = unhandledAppearanceValues(state.attribute, state.values, css, source);
+    if (missing.length > 0) offenders.push(`${family}:${partName}:${state.attribute} leaves ${missing.join(", ")} unimplemented`);
+  }
+  return offenders;
+}
+
+function appearanceVocabularyOffenders(): string[] {
+  const checked = new Set<string>();
+  return Object.entries(skinContract.scopes).flatMap(([scope, definition]) =>
+    Object.entries(definition.parts).flatMap(([partName, part]) => appearancePartOffenders(scope, partName, part, checked)),
+  );
+}
+
+describe("appearance vocabularies", () => {
+  test("every typed variant and tone changes paint or rendering beyond one base value", () => {
+    expect(appearanceVocabularyOffenders()).toEqual([]);
+  });
+
+  test("rejects several stamped values with no implementation", () => {
+    expect(unhandledAppearanceValues("data-tone", ["neutral", "success", "danger"], '[data-tone="danger"] {}', "")).toEqual([
+      "neutral",
+      "success",
+    ]);
+  });
+
+  test("accepts a base value plus CSS and render implementations", () => {
+    expect(
+      unhandledAppearanceValues(
+        "data-variant",
+        ["default", "surface", "brand"],
+        '[data-variant="surface"] {}',
+        'variant = "default"; variant === "brand"',
+      ),
+    ).toEqual([]);
+  });
+
+  test("scope defaults cannot leak from sibling components in the same family", () => {
+    expect(appearanceSource("button", "button")).not.toContain('data-control-ui="menubar"');
+  });
+});
+
 function unknownKnobOffenders(root: Root, prefix: string, knobs: readonly string[], label: string): string[] {
   const contract = new Set<string>(knobs);
   const offenders: string[] = [];
@@ -233,6 +356,17 @@ function unknownKnobOffenders(root: Root, prefix: string, knobs: readonly string
   root.walkAtRules("property", (atRule) => {
     const name = atRule.params.trim();
     if (name.startsWith(prefix)) check(name, atRule.source?.start?.line);
+  });
+  return offenders;
+}
+
+const PRIVATE_GRAMMAR = /^--_[a-z][a-z0-9]*(?:-[a-z][a-z0-9]*)*$/;
+
+function privateNameOffenders(root: Root): string[] {
+  const offenders: string[] = [];
+  root.walkDecls((declaration) => {
+    if (!declaration.prop.startsWith("--_") || PRIVATE_GRAMMAR.test(declaration.prop)) return;
+    offenders.push(`${declaration.source?.start?.line ?? "?"} ${declaration.prop}`);
   });
   return offenders;
 }
@@ -359,7 +493,11 @@ function invalidPropertySyntaxOffenders(root: Root): string[] {
 }
 
 const FAMILY_ROOT_MARKERS: Record<string, readonly string[]> = {
-  button: ['[data-control-family="button"][data-slot="trigger"]', '[data-control-family="button"][data-dialog-part="close"]'],
+  "audio-recorder": ['[data-control-ui="audio-recorder"][data-slot="root"]'],
+  avatar: ['[data-control-family="avatar"][data-slot="favicon"]', '[data-control-family="avatar"][data-slot="source-favicon"]'],
+  context: ['[data-control-family="context"][data-slot="content"]'],
+  "inline-citation": ['[data-control-ui="inline-citation"][data-slot="content"]'],
+  button: ['[data-control-family="button"][data-slot="trigger"]', '[data-control-family="button"][data-popup-part="close"]'],
   choice: [
     '[data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]',
     '[data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]',
@@ -367,12 +505,13 @@ const FAMILY_ROOT_MARKERS: Record<string, readonly string[]> = {
   "color-picker": ["area", "alpha", "hue", "output", "swatch", "trigger", "wheel"].map(
     (slot) => `[data-control-family="color-picker"][data-slot="${slot}"]`,
   ),
-  drawer: ['[data-control-family="drawer"][data-slot="backdrop"]', '[data-control-family="drawer"][data-slot="content"]'],
   "phone-input": ['[data-control-family="field"][data-field-kind="phone-input"][data-slot="root"]'],
   popup: [
     '[data-popup-part="surface"]',
     '[data-popup-part="list-surface"]',
     '[data-popup-part="bar"]',
+    // A portalled backdrop is a root of its own: nothing above it carries popup knobs.
+    '[data-popup-part="backdrop"]',
     '[data-surface="modal"]',
     '[data-surface="floating"]',
   ].map((part) => `[data-control-family="popup"]${part}`),
@@ -397,13 +536,16 @@ function selectorSubjects(selector: string): string[] {
     );
 }
 
+function selectorDataAttributes(selector: string): string[] {
+  return [...selector.matchAll(/\[(data-[\w-]+)[=\]]/g)].map((match) => match[1]);
+}
+
 function compoundIsFamilyRoot(compound: string, family: string): boolean {
   const markerMatches = (marker: string) => (marker.match(/\[[^\]]+\]/g) ?? []).every((attribute) => compound.includes(attribute));
   if (FAMILY_ROOT_MARKERS[family]?.some(markerMatches)) return true;
   if (!compound.includes(`[data-control-family="${family}"]`)) return false;
-  return (
-    compound.includes('[data-slot="root"]') || compound.includes('[data-control="true"]') || !/\[data-(?:slot|[a-z-]+-part)=/.test(compound)
-  );
+  const namesAPart = selectorDataAttributes(compound).some((attribute) => attribute === slotAttribute || isFamilyPartAttribute(attribute));
+  return compound.includes('[data-slot="root"]') || compound.includes('[data-control="true"]') || !namesAPart;
 }
 
 function selectorIsFamilyRoot(selector: string, family: string): boolean {
@@ -424,14 +566,29 @@ function knobRootDefaultOffenders(root: Root, family: string, knobs: readonly st
   return knobs.filter((knob) => !declaredOnRoot.has(knob)).map((knob) => `${firstDeclarationLine.get(knob) ?? "?"} ${knob}`);
 }
 
+const stateAttributes = new Set(
+  Object.values(skinContract.scopes).flatMap((scope) =>
+    Object.values(scope.parts).flatMap((part) => part.states.map((state) => state.attribute)),
+  ),
+);
+const STATE_PSEUDOS = /:(?:hover|focus|focus-visible|focus-within|active|disabled|checked)/;
+const SKIN_RUNTIME_STATE_PREFIXES = ["data-apple-liquid-glass", "data-liquid-metal"] as const;
+
+function isStateScoped(selector: string): boolean {
+  if (STATE_PSEUDOS.test(selector)) return true;
+  return selectorDataAttributes(selector).some(
+    (attribute) =>
+      stateAttributes.has(attribute) ||
+      attribute === surfaceAttribute ||
+      SKIN_RUNTIME_STATE_PREFIXES.some((prefix) => attribute.startsWith(prefix)),
+  );
+}
 function knobPlacementOffenders(root: Root, family: string, knobs: readonly string[]): string[] {
   const contract = new Set(knobs);
-  const stateSelector =
-    /\[data-(?:state|active|checked|indeterminate|disabled|invalid|open|selected|dragging|pressed|current|expanded|collapsed)[=\]]|:(?:hover|focus|focus-visible|focus-within|active|disabled|checked)/;
   const offenders: string[] = [];
   root.walkDecls((declaration) => {
     if (!contract.has(declaration.prop) || declaration.parent?.type !== "rule") return;
-    if (!selectorIsFamilyRoot(declaration.parent.selector, family) && !stateSelector.test(declaration.parent.selector)) {
+    if (!selectorIsFamilyRoot(declaration.parent.selector, family) && !isStateScoped(declaration.parent.selector)) {
       offenders.push(`${declaration.source?.start?.line ?? "?"} ${declaration.prop}`);
     }
   });
@@ -466,13 +623,43 @@ function privateFallbackOffenders(root: Root, knobs: readonly string[]): string[
   return offenders;
 }
 
-function recipeIdentitySelectorOffenders(root: Root): string[] {
+// Slots hosted by another family's element (composed Button, render-prop trigger): the family attr belongs to the host, so recipes key them by data-control-ui.
+const COMPOSED_HOST_SLOTS: Record<string, "*" | readonly string[]> = {
+  "audio-recorder": "*",
+  "inline-citation": ["favicon", "content", "source-favicon"],
+  "morphing-panel": ["trigger"],
+};
+
+function selectorSlots(selector: string): string[] {
+  return [...selector.matchAll(/\[data-slot="([\w-]+)"\]/g)].flatMap((match) => (match[1] ? [match[1]] : []));
+}
+
+function selectorCompoundsOf(selector: string): string[] {
+  return selector
+    .replace(/:(?:where|is|not|has)\(/g, " ")
+    .split(/[\s>+~,()]+/)
+    .filter((token) => token.includes("[data-"));
+}
+
+function isComposedHostCompound(compound: string, family: string | undefined): boolean {
+  const composedSlots = family ? COMPOSED_HOST_SLOTS[family] : undefined;
+  if (!composedSlots || !compound.includes(`[data-control-ui="${family}"]`)) return false;
+  if (composedSlots === "*") return true;
+  const slots = selectorSlots(compound);
+  return slots.length > 0 && slots.every((slot) => composedSlots.includes(slot));
+}
+
+function recipeIdentitySelectorOffenders(root: Root, family?: string): string[] {
   const offenders: string[] = [];
   root.walkRules((rule) => {
     if (rule.parent?.type === "atrule" && rule.parent.name.endsWith("keyframes")) return;
-    if (/\[data-control-ui=/.test(rule.selector) || !/\[data-control-family=/.test(rule.selector)) {
-      offenders.push(`${rule.source?.start?.line ?? "?"} ${rule.selector}`);
-    }
+    const compounds = selectorCompoundsOf(rule.selector);
+    const uiCompounds = compounds.filter((compound) => compound.includes("[data-control-ui="));
+    const composedOk = uiCompounds.every((compound) => isComposedHostCompound(compound, family));
+    const hasIdentity =
+      compounds.some((compound) => compound.includes("[data-control-family=")) ||
+      uiCompounds.some((compound) => isComposedHostCompound(compound, family));
+    if (!composedOk || !hasIdentity) offenders.push(`${rule.source?.start?.line ?? "?"} ${rule.selector}`);
   });
   return offenders;
 }
@@ -509,6 +696,10 @@ function knobInheritanceOffenders(root: Root, knobs: readonly string[]): string[
 }
 
 describe("recipe architecture guards", () => {
+  test("rejects private names outside the grammar", () => {
+    expect(privateNameOffenders(postcss.parse("a { --__cross-element: red; }"))).toEqual(["1 --__cross-element"]);
+  });
+
   test("rejects private inheritance bridges", () => {
     const invalid = postcss.parse("a { --_example-child: var(--example-child); }");
     expect(privateInheritanceBridgeOffenders(invalid, ["--example-child"])).toEqual(["1 --_example-child -> --example-child"]);
@@ -590,7 +781,7 @@ describe("recipe architecture guards", () => {
 for (const family of families) {
   describe(`${family.id} paint contract`, () => {
     const root = recipe(family.id);
-    const prefix = `--${family.id}-`;
+    const prefix = `${knobPrefix}${family.id}-`;
 
     test("every family source stamps its semantic identity", () => {
       const sources = family.sources.map((name) => ({
@@ -606,7 +797,7 @@ for (const family of families) {
 
       if (family.id === "range") {
         const registration = root.nodes.find(
-          (node) => node.type === "atrule" && node.name === "property" && node.params.trim() === "--range-thumb-background",
+          (node) => node.type === "atrule" && node.name === "property" && node.params.trim() === "--cui-range-thumb-background",
         );
         expect(registration?.toString()).toContain('syntax: "*"');
       }
@@ -648,12 +839,13 @@ for (const family of families) {
     });
 
     test("recipe selectors key on data-control-family", () => {
-      expect(recipeIdentitySelectorOffenders(root)).toEqual([]);
+      expect(recipeIdentitySelectorOffenders(root, family.id)).toEqual([]);
     });
 
     test("contract names follow the public knob grammar", () => {
       const grammar = new RegExp(`^${prefix}[a-z][a-z0-9]*(?:-[a-z][a-z0-9]*)*$`);
       expect(family.knobs.filter((knob) => !grammar.test(knob))).toEqual([]);
+      expect(privateNameOffenders(root)).toEqual([]);
     });
 
     test("pseudo-elements remain outside functional selector arguments", () => {

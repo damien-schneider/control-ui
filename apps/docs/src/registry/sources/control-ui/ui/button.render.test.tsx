@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { renderToString } from "react-dom/server";
-import type { ButtonProps } from "@/components/control-ui/contracts";
+import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { ButtonLabel, ButtonLink } from "./button";
 
 describe("ButtonLink rendered element", () => {

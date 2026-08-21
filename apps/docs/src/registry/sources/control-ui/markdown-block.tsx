@@ -2,7 +2,7 @@
 
 import type { ComponentProps, CSSProperties } from "react";
 import { createContext, useContext } from "react";
-import type { MarkdownBlockKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { MarkdownBlockKnobStyle } from "@/components/control-ui/knob-contracts/markdown-block-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { CodeCopy, type CodeCopyProps } from "@/components/control-ui/ui/code";
 import { Markdown } from "@/components/control-ui/ui/markdown";

@@ -10,6 +10,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/label-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/label-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/label.css",
       "target": "@components/control-ui/styles/recipes/label.css",
       "type": "registry:file"

@@ -48,7 +48,6 @@
   --ring: oklch(0.5674 0.1585 275.206); /* focus == brand */
   --canvas: oklch(0.9734 0.0013 286.375); /* #f6f6f7 — the paper the white sheet sits on */
 
-
   /* Surfaces are opaque: no glass anywhere. The modal scrim is the only dim. */
   --popover-opacity: 1;
   --backdrop-blur-popover: 0px;

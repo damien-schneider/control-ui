@@ -1,16 +1,17 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
+import type { ComponentProps, CSSProperties } from "react";
 import { Streamdown } from "streamdown";
-
-import type { MarkdownProps } from "@/components/control-ui/contracts";
+import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/markdown-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { markdownComponents } from "@/components/control-ui/ui/markdown-elements";
 
-// Chrome-less on purpose so it drops straight into chat message; MarkdownBlock composes it for headered, copyable block.
+export type MarkdownProps = Omit<ComponentProps<"div">, "children" | "style"> & {
+  content: string;
+  style?: CSSProperties & MarkdownKnobStyle;
+};
 
-export type { MarkdownProps } from "@/components/control-ui/contracts";
+// Chrome-less on purpose so it drops straight into chat message; MarkdownBlock composes it for headered, copyable block.
 
 export function Markdown({ content, className, ...props }: MarkdownProps) {
   return (

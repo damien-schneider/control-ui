@@ -3,7 +3,7 @@ import type { Command, Plugin } from "prosemirror-state";
 import type { EditorView } from "prosemirror-view";
 import type { ReactNode } from "react";
 
-import type { ChatComposerSubmitPayload } from "@/components/control-ui/contracts";
+import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
 
 // stable for editor's lifetime, so extension never closes over stale view
 export type ChatComposerEditorApi = {

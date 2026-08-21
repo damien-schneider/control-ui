@@ -1,25 +1,63 @@
 "use client";
 
-import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
+import type { ComponentProps, CSSProperties, ReactNode, PointerEvent as ReactPointerEvent } from "react";
 import { createContext, use, useRef, useState } from "react";
-import type {
-  DockablePanelActionsProps,
-  DockablePanelCloseProps,
-  DockablePanelContentProps,
-  DockablePanelDockProps,
-  DockablePanelDragHandleProps,
-  DockablePanelHeaderProps,
-  DockablePanelPlacement,
-  DockablePanelProps,
-  DockablePanelTitleProps,
-  DockablePanelToggleProps,
-} from "@/components/control-ui/contracts";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
-import type { DockablePanelKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { DockablePanelKnobStyle } from "@/components/control-ui/knob-contracts/dockable-panel-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerContent } from "@/components/control-ui/ui/drawer";
 import { clampDockablePanelPosition, dockablePanelSideAt, oppositeDockablePanelSide } from "./dockable-panel-geometry";
+
+export type DockablePanelPlacement = "left" | "right";
+
+export type DockablePanelProps = Omit<ComponentProps<"aside">, "onChange" | "ref" | "style"> & {
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  placement?: DockablePanelPlacement;
+  defaultPlacement?: DockablePanelPlacement;
+  onPlacementChange?: (placement: DockablePanelPlacement) => void;
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
+
+export type DockablePanelHeaderProps = Omit<ComponentProps<"div">, "style"> & {
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
+
+export type DockablePanelDragHandleProps = Omit<ComponentProps<"button">, "style"> & {
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
+
+export type DockablePanelTitleProps = Omit<ComponentProps<"h2">, "style"> & {
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
+
+export type DockablePanelActionsProps = ComponentProps<"div"> & { style?: CSSProperties & DockablePanelKnobStyle };
+
+export type DockablePanelToggleProps = Omit<Omit<ComponentProps<"button">, "children"> & { children?: ReactNode }, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle;
+};
+
+export type DockablePanelDockProps = Omit<
+  Omit<ComponentProps<"button">, "children"> & {
+    placement: DockablePanelPlacement;
+    children?: ReactNode;
+  },
+  "style"
+> & { style?: CSSProperties & ButtonKnobStyle };
+
+export type DockablePanelCloseProps = Omit<Omit<ComponentProps<"button">, "children"> & { children?: ReactNode }, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle;
+};
+
+export type DockablePanelContentPadding = "default" | "none";
+
+export type DockablePanelContentProps = ComponentProps<"div"> & {
+  padding?: DockablePanelContentPadding;
+  style?: CSSProperties & DockablePanelKnobStyle;
+};
 
 type DockablePanelContextValue = {
   close: () => void;
@@ -161,8 +199,8 @@ export function DockablePanel({
   const dropZoneStyle = dragging
     ? ({
         height: dragHeight,
-        "--dockable-panel-drop-zone-active-background": style?.["--dockable-panel-drop-zone-active-background"],
-        "--dockable-panel-drop-zone-active-border-color": style?.["--dockable-panel-drop-zone-active-border-color"],
+        "--cui-dockable-panel-drop-zone-active-background": style?.["--cui-dockable-panel-drop-zone-active-background"],
+        "--cui-dockable-panel-drop-zone-active-border-color": style?.["--cui-dockable-panel-drop-zone-active-border-color"],
       } satisfies CSSProperties & DockablePanelKnobStyle)
     : undefined;
 

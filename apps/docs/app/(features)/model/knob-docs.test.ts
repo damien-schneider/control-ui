@@ -11,8 +11,8 @@ describe("knob docs", () => {
 
   test("knobs carry the recipe root default and the registered syntax", () => {
     const composer = data.components.find((candidate) => candidate.id === "chat-composer");
-    const radius = composer?.knobs.flatMap((family) => family.knobs).find((knob) => knob.name === "--chat-composer-shell-radius");
-    expect(radius).toEqual({ name: "--chat-composer-shell-radius", syntax: "<length>", defaultValue: "var(--radius-field)" });
+    const radius = composer?.knobs.flatMap((family) => family.knobs).find((knob) => knob.name === "--cui-chat-composer-shell-radius");
+    expect(radius).toEqual({ name: "--cui-chat-composer-shell-radius", syntax: "<length>", defaultValue: "var(--radius-field)" });
   });
 
   test("a family without knobs shows no section", () => {

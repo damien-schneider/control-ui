@@ -2,10 +2,18 @@
 
 import type { ComponentProps, CSSProperties, ReactElement, ReactNode } from "react";
 import { Children, cloneElement, createContext, isValidElement, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
-
-import type { ThreadRailItemProps, ThreadRailProps } from "@/components/control-ui/contracts";
-import type { ThreadRailKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ChatRole } from "@/components/control-ui/hooks/use-chat-message";
+import type { ThreadRailKnobStyle } from "@/components/control-ui/knob-contracts/thread-rail-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type ThreadRailProps = ComponentProps<"nav"> & { style?: CSSProperties & ThreadRailKnobStyle };
+
+export type ThreadRailItemProps = Omit<ComponentProps<"div">, "style"> & {
+  from?: ChatRole;
+  inView?: boolean;
+  active?: boolean;
+  style?: CSSProperties & ThreadRailKnobStyle;
+};
 
 // thread-rail.css owns fisheye, visibility, slide, and enter/exit. React keeps only current turn index
 // and one measured height, because no stable CSS interpolates one intrinsic size to another.

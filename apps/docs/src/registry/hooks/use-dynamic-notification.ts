@@ -1,7 +1,28 @@
-import type { SubmitEvent } from "react";
+import type { ComponentProps, CSSProperties, SubmitEvent } from "react";
 import { useMemo, useState } from "react";
+import type { OpenChangeEventDetails, OpenChangeReason } from "@/components/control-ui/control-props";
+import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts/dynamic-notification-knobs";
 
-import type { DynamicNotificationProps, OpenChangeEventDetails, OpenChangeReason } from "../contracts";
+export type DynamicNotificationVariant = "surface" | "glass" | "liquid";
+
+export type DynamicNotificationReplyPayload = {
+  value: string;
+  clear: () => void;
+};
+
+export type DynamicNotificationProps = Omit<ComponentProps<"div">, "onChange" | "style"> & {
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  loading?: boolean;
+  replyValue?: string;
+  defaultReplyValue?: string;
+  onReplyValueChange?: (value: string) => void;
+  onReply?: (payload: DynamicNotificationReplyPayload) => void | Promise<void>;
+  variant?: DynamicNotificationVariant;
+  disabled?: boolean;
+  style?: CSSProperties & DynamicNotificationKnobStyle;
+};
 
 // No Base UI primitive backs island, so details are hand-built to same shape every other popup emits.
 function createOpenChangeEventDetails(reason: OpenChangeReason, event: Event, trigger: Element | undefined): OpenChangeEventDetails {

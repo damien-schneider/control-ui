@@ -6,7 +6,8 @@
   "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
   "dependencies": [],
   "registryDependencies": [
-    "core"
+    "core",
+    "effects"
   ],
   "files": [
     {

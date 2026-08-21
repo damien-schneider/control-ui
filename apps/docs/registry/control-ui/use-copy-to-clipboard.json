@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-copy-to-clipboard",
+  "type": "registry:item",
+  "title": "useCopyToClipboard",
+  "description": "Clipboard write with a self-resetting copied flag.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-copy-to-clipboard.ts",
+      "target": "@components/control-ui/hooks/use-copy-to-clipboard.ts",
+      "type": "registry:hook"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/use-copy-to-clipboard.json"
+  }
+}

@@ -1,10 +1,20 @@
 "use client";
 
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
-import type { ReactNode } from "react";
-import type { ToasterProps } from "@/components/control-ui/contracts";
+import type { CSSProperties, ReactNode } from "react";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
+
+export type ToasterProps = {
+  className?: string;
+  timeout?: number;
+  limit?: number;
+  rootStyle?: CSSProperties & PopupKnobStyle;
+  indicatorStyle?: CSSProperties & PopupKnobStyle;
+  actionStyle?: CSSProperties & PopupKnobStyle;
+  closeStyle?: CSSProperties & PopupKnobStyle;
+};
 
 // Base UI's Toast manager, not sonner, behind module-level manager so `toast()` stays callable anywhere.
 
@@ -44,7 +54,9 @@ function ToastList({
         key={entry.id}
         toast={entry}
         data-control-ui="toast"
-        data-control-family="toast"
+        data-control-family="popup"
+        data-popup-kind="toast"
+        data-popup-part="surface"
         data-type={entry.type ?? "message"}
         style={rootStyle}
         data-slot="root"
@@ -57,7 +69,8 @@ function ToastList({
       >
         <ToastPrimitive.Content
           data-control-ui="toast"
-          data-control-family="toast"
+          data-control-family="popup"
+          data-popup-kind="toast"
           data-slot="content"
           className="flex items-start gap-3 p-3"
         >
@@ -65,22 +78,31 @@ function ToastList({
             <span
               aria-hidden="true"
               data-control-ui="toast"
-              data-control-family="toast"
+              data-control-family="popup"
+              data-popup-kind="toast"
               data-slot="indicator"
               style={indicatorStyle}
               className="mt-1.5 size-2 shrink-0"
             />
           ) : null}
           <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            {entry.title ? <ToastPrimitive.Title data-control-ui="toast" data-control-family="toast" data-slot="title" /> : null}
+            {entry.title ? (
+              <ToastPrimitive.Title data-control-ui="toast" data-control-family="popup" data-popup-kind="toast" data-slot="title" />
+            ) : null}
             {entry.description ? (
-              <ToastPrimitive.Description data-control-ui="toast" data-control-family="toast" data-slot="description" />
+              <ToastPrimitive.Description
+                data-control-ui="toast"
+                data-control-family="popup"
+                data-popup-kind="toast"
+                data-slot="description"
+              />
             ) : null}
           </div>
           {entry.actionProps ? (
             <ToastPrimitive.Action
               data-control-ui="toast"
-              data-control-family="toast"
+              data-control-family="popup"
+              data-popup-kind="toast"
               data-slot="action"
               style={actionStyle}
               className="shrink-0 cursor-pointer px-2 py-1"
@@ -88,7 +110,8 @@ function ToastList({
           ) : null}
           <ToastPrimitive.Close
             data-control-ui="toast"
-            data-control-family="toast"
+            data-control-family="popup"
+            data-popup-kind="toast"
             data-slot="close"
             style={closeStyle}
             aria-label="Close"
@@ -111,7 +134,8 @@ export function Toaster({ className, timeout, limit, rootStyle, indicatorStyle, 
       <ToastPrimitive.Portal>
         <ToastPrimitive.Viewport
           data-control-ui="toast"
-          data-control-family="toast"
+          data-control-family="popup"
+          data-popup-kind="toast"
           data-slot="viewport"
           data-skin={skinId()}
           data-effects={skinEffects()}

@@ -37,7 +37,7 @@ const registrySourceRoot = path.join(root, "src/registry");
 const blocksRoot = path.join(registrySourceRoot, "blocks");
 const sourcesRoot = path.join(registrySourceRoot, "sources");
 const skinPacksRoot = path.join(registrySourceRoot, "skin-packs");
-const recipeSourceRoot = "src/registry/sources/control-ui/recipes/";
+const paintContractRoots = ["src/registry/sources/control-ui/recipes/", "src/registry/knob-contracts/"];
 const registryRoot = path.join(root, "registry");
 const publicRegistryRoot = path.join(root, "public/r");
 const failures: string[] = [];
@@ -80,7 +80,6 @@ function usesRuntimeProvider(source: string) {
 const componentFiles = componentEntries.map((component) => `${component.id}.tsx`);
 const documentedComponents = new Set<string>(componentEntries.map((component) => component.id));
 const documentedPrimitives = new Set<string>(primitiveEntries.map((primitive) => primitive.id));
-const coreBlockImports = new Set(["contracts", "knob-contracts", "skin"]);
 
 for (const sourceName of readdirSync(sourcesRoot)) {
   const sourcePath = path.join(sourcesRoot, sourceName);
@@ -109,8 +108,8 @@ for (const sourcePath of walk(registrySourceRoot).filter((file) => /\.(ts|tsx)$/
     relativePath.includes("src/registry/hooks/") ||
     relativePath.includes("src/registry/blocks/") ||
     relativePath.includes("src/registry/lib/") ||
-    relativePath === "src/registry/contracts.ts" ||
-    relativePath === "src/registry/knob-contracts.ts";
+    relativePath.includes("src/registry/knob-contracts/") ||
+    relativePath === "src/registry/skin.ts";
 
   if (isProviderAgnosticSource && usesRuntimeProvider(source)) {
     failures.push(`${relativePath} uses a runtime provider API; installable Control UI must stay runner-agnostic`);
@@ -155,7 +154,7 @@ for (const blockPath of walk(blocksRoot).filter((file) => file.endsWith(".tsx"))
       continue;
     }
     if (importPath.includes("/")) continue;
-    if (coreBlockImports.has(importPath)) continue;
+    if (!existsSync(path.join(sourcesRoot, "control-ui", `${importPath}.tsx`))) continue;
     if (!documentedComponents.has(importPath)) failures.push(`${relativePath} imports undocumented agent "${importPath}"`);
   }
 }
@@ -234,8 +233,9 @@ for (const [id, manifest] of manifests) {
     const owner = ownerByTarget.get(file.target);
     const existingSource = sourceByTarget.get(file.target);
     const sharedBySkins = isActiveSkinTarget && owner?.startsWith("skin-") && id.startsWith("skin-");
-    const sharedRecipe = file.path.startsWith(recipeSourceRoot) && existingSource === file.path;
-    if (owner && owner !== id && !sharedBySkins && !sharedRecipe) {
+    const sharedPaintContract =
+      paintContractRoots.some((contractRoot) => file.path.startsWith(contractRoot)) && existingSource === file.path;
+    if (owner && owner !== id && !sharedBySkins && !sharedPaintContract) {
       failures.push(`${file.target} is owned by both ${owner} and ${id}`);
     } else if (!owner) {
       ownerByTarget.set(file.target, id);

@@ -4,7 +4,7 @@ import type { SkinContract } from "@/scripts/skin-contract/model";
 
 export const generatedSkinContract: SkinContract = {
   version: 6,
-  selectorPattern: '[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])',
+  selectorPattern: '[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])',
   registryItemMapping: {
     accordion: ["accordion"],
     "action-bar": ["action-bar"],
@@ -113,14 +113,9 @@ export const generatedSkinContract: SkinContract = {
     accordion: {
       parts: {
         root: {
+          family: "accordion",
           registryItems: ["accordion"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["accordion"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -136,25 +131,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         icon: {
+          family: "accordion",
           registryItems: ["accordion"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["accordion"],
-            },
-          ],
+          states: [],
         },
         item: {
+          family: "accordion",
           registryItems: ["accordion"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["accordion"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -176,14 +160,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         panel: {
+          family: "accordion",
           registryItems: ["accordion"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["accordion"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -223,14 +202,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "accordion",
           registryItems: ["accordion"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["accordion"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -251,15 +225,9 @@ export const generatedSkinContract: SkinContract = {
     "action-bar": {
       parts: {
         root: {
+          family: "action-bar",
           registryItems: ["action-bar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["action-bar"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["action-bar"],
@@ -267,6 +235,7 @@ export const generatedSkinContract: SkinContract = {
     activity: {
       parts: {
         root: {
+          family: "activity",
           registryItems: ["activity"],
           states: [
             {
@@ -287,23 +256,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["error", "pending", "running", "success"],
             },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
           ],
         },
         announcement: {
+          family: "activity",
           registryItems: ["activity"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -313,51 +271,28 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         chevron: {
+          family: "activity",
           registryItems: ["activity"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
-          ],
+          states: [],
         },
         content: {
           registryItems: ["activity"],
           states: [],
         },
         "content-viewport": {
+          family: "activity",
           registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
-          ],
+          states: [],
         },
         detail: {
+          family: "activity",
           registryItems: ["activity"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
-          ],
+          states: [],
         },
         "detail-content": {
+          family: "activity",
           registryItems: ["activity"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
             {
               attribute: "data-format",
               source: "control-ui",
@@ -367,25 +302,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "detail-label": {
+          family: "activity",
           registryItems: ["activity"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
-          ],
+          states: [],
         },
         icon: {
+          family: "activity",
           registryItems: ["activity"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
             {
               attribute: "data-status-icon",
               source: "control-ui",
@@ -395,25 +319,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         row: {
+          family: "activity",
           registryItems: ["activity"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
-          ],
+          states: [],
         },
         status: {
+          family: "activity",
           registryItems: ["activity"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
             {
               attribute: "data-kind",
               source: "control-ui",
@@ -429,26 +342,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "activity",
           registryItems: ["activity"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
-          ],
+          states: [],
         },
         trigger: {
+          family: "activity",
           registryItems: ["activity"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["activity"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["activity", "chat-layout"],
@@ -456,14 +357,9 @@ export const generatedSkinContract: SkinContract = {
     alert: {
       parts: {
         root: {
+          family: "alert",
           registryItems: ["alert"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["alert"],
-            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -473,26 +369,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "alert",
           registryItems: ["alert"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["alert"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "alert",
           registryItems: ["alert"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["alert"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["alert"],
@@ -500,6 +384,7 @@ export const generatedSkinContract: SkinContract = {
     "alert-dialog": {
       parts: {
         backdrop: {
+          family: "popup",
           registryItems: ["alert-dialog"],
           states: [
             {
@@ -507,12 +392,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -541,6 +420,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["alert-dialog"],
           states: [
             {
@@ -548,12 +428,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -594,14 +468,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "popup",
           registryItems: ["alert-dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -611,14 +480,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         footer: {
+          family: "popup",
           registryItems: ["alert-dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -628,14 +492,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "popup",
           registryItems: ["alert-dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -645,14 +504,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "popup",
           registryItems: ["alert-dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -664,12 +518,6 @@ export const generatedSkinContract: SkinContract = {
         trigger: {
           registryItems: ["alert-dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -705,14 +553,9 @@ export const generatedSkinContract: SkinContract = {
     "audio-recorder": {
       parts: {
         root: {
+          family: "audio-recorder",
           registryItems: ["audio-recorder"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -734,25 +577,13 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         actions: {
+          family: "audio-recorder",
           registryItems: ["audio-recorder"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
-          ],
+          states: [],
         },
         cancel: {
           registryItems: ["audio-recorder"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
             {
               attribute: "data-visible",
               source: "control-ui",
@@ -762,25 +593,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "audio-recorder",
           registryItems: ["audio-recorder"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
-          ],
+          states: [],
         },
         duration: {
+          family: "audio-recorder",
           registryItems: ["audio-recorder"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
             {
               attribute: "data-visible",
               source: "control-ui",
@@ -790,14 +610,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         status: {
+          family: "audio-recorder",
           registryItems: ["audio-recorder"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
             {
               attribute: "data-tone",
               source: "control-ui",
@@ -816,12 +631,6 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["audio-recorder"],
           states: [
             {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
-            {
               attribute: "data-visible",
               source: "control-ui",
               valueKind: "presence",
@@ -832,12 +641,6 @@ export const generatedSkinContract: SkinContract = {
         trigger: {
           registryItems: ["audio-recorder"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
             {
               attribute: "data-recorder-state",
               source: "control-ui",
@@ -856,12 +659,6 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["audio-recorder"],
           states: [
             {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-recorder"],
-            },
-            {
               attribute: "data-visible",
               source: "control-ui",
               valueKind: "presence",
@@ -875,6 +672,7 @@ export const generatedSkinContract: SkinContract = {
     "audio-visualizer": {
       parts: {
         root: {
+          family: "audio-visualizer",
           registryItems: ["audio-visualizer", "audio-visualizer-line"],
           states: [
             {
@@ -882,12 +680,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-visualizer"],
             },
             {
               attribute: "data-variant",
@@ -898,39 +690,22 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         bar: {
+          family: "audio-visualizer",
           registryItems: ["audio-visualizer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-visualizer"],
-            },
-          ],
+          states: [],
         },
         "bar-track": {
+          family: "audio-visualizer",
           registryItems: ["audio-visualizer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-visualizer"],
-            },
-          ],
+          states: [],
         },
         baseline: {
+          family: "audio-visualizer",
           registryItems: ["audio-visualizer-line"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-visualizer"],
-            },
-          ],
+          states: [],
         },
         track: {
+          family: "audio-visualizer",
           registryItems: ["audio-visualizer", "audio-visualizer-line"],
           states: [
             {
@@ -938,12 +713,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-visualizer"],
             },
           ],
         },
@@ -953,15 +722,9 @@ export const generatedSkinContract: SkinContract = {
     "audio-visualizer-line": {
       parts: {
         waveform: {
+          family: "audio-visualizer",
           registryItems: ["audio-visualizer-line"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["audio-visualizer"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["audio-visualizer-line"],
@@ -971,12 +734,6 @@ export const generatedSkinContract: SkinContract = {
         root: {
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -1058,14 +815,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         clear: {
+          family: "field",
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -1105,6 +857,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["autocomplete"],
           states: [
             {
@@ -1118,12 +871,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-empty",
@@ -1170,14 +917,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         empty: {
+          family: "field",
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -1187,14 +929,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "field",
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -1204,14 +941,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "group-label": {
+          family: "popup",
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -1221,14 +953,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "field",
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -1322,14 +1049,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -1351,14 +1073,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         list: {
+          family: "popup",
           registryItems: ["autocomplete"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -1368,6 +1085,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["autocomplete"],
           states: [
             {
@@ -1387,12 +1105,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-empty",
@@ -1426,47 +1138,24 @@ export const generatedSkinContract: SkinContract = {
     avatar: {
       parts: {
         root: {
+          family: "avatar",
           registryItems: ["avatar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["avatar"],
-            },
-          ],
+          states: [],
         },
         fallback: {
+          family: "avatar",
           registryItems: ["avatar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["avatar"],
-            },
-          ],
+          states: [],
         },
         group: {
+          family: "avatar",
           registryItems: ["avatar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["avatar"],
-            },
-          ],
+          states: [],
         },
         image: {
+          family: "avatar",
           registryItems: ["avatar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["avatar"],
-            },
             {
               attribute: "data-ending-style",
               source: "external",
@@ -1487,6 +1176,7 @@ export const generatedSkinContract: SkinContract = {
     badge: {
       parts: {
         root: {
+          family: "badge",
           registryItems: ["badge"],
           states: [
             {
@@ -1494,12 +1184,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["blue", "green", "neutral", "orange", "pink", "purple", "red", "yellow"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["badge"],
             },
             {
               attribute: "data-size",
@@ -1521,81 +1205,39 @@ export const generatedSkinContract: SkinContract = {
     breadcrumb: {
       parts: {
         root: {
+          family: "breadcrumb",
           registryItems: ["breadcrumb"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["breadcrumb"],
-            },
-          ],
+          states: [],
         },
         ellipsis: {
+          family: "breadcrumb",
           registryItems: ["breadcrumb"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["breadcrumb"],
-            },
-          ],
+          states: [],
         },
         item: {
+          family: "breadcrumb",
           registryItems: ["breadcrumb"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["breadcrumb"],
-            },
-          ],
+          states: [],
         },
         link: {
+          family: "breadcrumb",
           registryItems: ["breadcrumb"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["breadcrumb"],
-            },
-          ],
+          states: [],
         },
         list: {
+          family: "breadcrumb",
           registryItems: ["breadcrumb"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["breadcrumb"],
-            },
-          ],
+          states: [],
         },
         page: {
+          family: "breadcrumb",
           registryItems: ["breadcrumb"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["breadcrumb"],
-            },
-          ],
+          states: [],
         },
         separator: {
+          family: "breadcrumb",
           registryItems: ["breadcrumb"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["breadcrumb"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["breadcrumb"],
@@ -1603,6 +1245,7 @@ export const generatedSkinContract: SkinContract = {
     button: {
       parts: {
         root: {
+          family: "button",
           registryItems: ["button"],
           states: [
             {
@@ -1610,12 +1253,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
             },
             {
               attribute: "data-disabled",
@@ -1656,15 +1293,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "button",
           registryItems: ["button", "dropdown-menu", "select"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["button", "dropdown-menu", "select"],
@@ -1672,14 +1303,9 @@ export const generatedSkinContract: SkinContract = {
     "button-group": {
       parts: {
         root: {
+          family: "button-group",
           registryItems: ["button-group"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button-group"],
-            },
             {
               attribute: "data-orientation",
               source: "control-ui",
@@ -1689,14 +1315,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "button-group",
           registryItems: ["button-group"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button-group"],
-            },
             {
               attribute: "data-orientation",
               source: "control-ui",
@@ -1706,14 +1327,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         text: {
+          family: "button-group",
           registryItems: ["button-group"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button-group"],
-            },
             {
               attribute: "data-size",
               source: "control-ui",
@@ -1728,36 +1344,19 @@ export const generatedSkinContract: SkinContract = {
     calendar: {
       parts: {
         root: {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         "caption-label": {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         day: {
+          family: "calendar",
           registryItems: ["calendar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
             {
               attribute: "data-range-end",
               source: "control-ui",
@@ -1791,92 +1390,44 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "day-cell": {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         month: {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         "month-caption": {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         "month-grid": {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         months: {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         nav: {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         "nav-button": {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
         weekday: {
+          family: "calendar",
           registryItems: ["calendar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["calendar"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["calendar"],
@@ -1884,14 +1435,9 @@ export const generatedSkinContract: SkinContract = {
     card: {
       parts: {
         root: {
+          family: "card",
           registryItems: ["card"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["card"],
-            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -1901,70 +1447,34 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         action: {
+          family: "card",
           registryItems: ["card"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["card"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "card",
           registryItems: ["card"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["card"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "card",
           registryItems: ["card"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["card"],
-            },
-          ],
+          states: [],
         },
         footer: {
+          family: "card",
           registryItems: ["card"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["card"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "card",
           registryItems: ["card"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["card"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "card",
           registryItems: ["card"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["card"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["card"],
@@ -1972,14 +1482,9 @@ export const generatedSkinContract: SkinContract = {
     "chat-composer": {
       parts: {
         root: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
             {
               attribute: "data-density",
               source: "control-ui",
@@ -1995,36 +1500,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         accent: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         footer: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         mention: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
             {
               attribute: "data-icon",
               source: "control-ui",
@@ -2046,47 +1534,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "mention-description": {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         "mention-icon": {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         "mention-label": {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         shell: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -2100,37 +1565,19 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         textarea: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         toolbar: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         tools: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["chat-composer"],
@@ -2138,14 +1585,9 @@ export const generatedSkinContract: SkinContract = {
     "chat-composer-attachment": {
       parts: {
         root: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
             {
               attribute: "data-kind",
               source: "control-ui",
@@ -2167,25 +1609,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -2195,48 +1626,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         preview: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         "preview-label": {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         progress: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         "progress-indicator": {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         remove: {
           registryItems: ["chat-composer-attachment"],
@@ -2250,26 +1657,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         status: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["chat-composer-attachment"],
@@ -2277,26 +1672,14 @@ export const generatedSkinContract: SkinContract = {
     "chat-composer-attachments": {
       parts: {
         root: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         list: {
+          family: "chat-composer-attachment",
           registryItems: ["chat-composer-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer-attachment"],
-            },
-          ],
+          states: [],
         },
         scroll: {
           registryItems: ["chat-composer-attachment"],
@@ -2308,48 +1691,24 @@ export const generatedSkinContract: SkinContract = {
     "chat-composer-editor": {
       parts: {
         root: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         editor: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         fallback: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
         placeholder: {
+          family: "chat-composer",
           registryItems: ["chat-composer"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-composer"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["chat-composer"],
@@ -2357,15 +1716,9 @@ export const generatedSkinContract: SkinContract = {
     "chat-layout": {
       parts: {
         root: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-layout"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["chat-layout"],
@@ -2373,14 +1726,9 @@ export const generatedSkinContract: SkinContract = {
     "chat-message": {
       parts: {
         root: {
+          family: "chat-message",
           registryItems: ["chat-message"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-message"],
-            },
             {
               attribute: "data-density",
               source: "control-ui",
@@ -2399,56 +1747,27 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["error", "idle", "pending", "streaming"],
             },
-            {
-              attribute: "data-tone",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["danger", "neutral", "success", "warning"],
-            },
           ],
         },
         actions: {
+          family: "chat-message",
           registryItems: ["chat-message"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-message"],
-            },
-          ],
+          states: [],
         },
         avatar: {
+          family: "chat-message",
           registryItems: ["chat-message"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-message"],
-            },
-          ],
+          states: [],
         },
         body: {
+          family: "chat-message",
           registryItems: ["chat-message"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-message"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "chat-message",
           registryItems: ["chat-message"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-message"],
-            },
             {
               attribute: "data-role",
               source: "control-ui",
@@ -2464,26 +1783,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "chat-message",
           registryItems: ["chat-message"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-message"],
-            },
-          ],
+          states: [],
         },
         row: {
+          family: "chat-message",
           registryItems: ["chat-message"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-message"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["chat-message"],
@@ -2491,59 +1798,29 @@ export const generatedSkinContract: SkinContract = {
     "chat-thought": {
       parts: {
         root: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-layout"],
-            },
-          ],
+          states: [],
         },
         chevron: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-layout"],
-            },
-          ],
+          states: [],
         },
         details: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-layout"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-layout"],
-            },
-          ],
+          states: [],
         },
         trigger: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["chat-layout"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["chat-layout"],
@@ -2551,6 +1828,7 @@ export const generatedSkinContract: SkinContract = {
     "chat-thread": {
       parts: {
         root: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
           states: [],
         },
@@ -2559,7 +1837,8 @@ export const generatedSkinContract: SkinContract = {
     },
     "chat-turn": {
       parts: {
-        root: {
+        turn: {
+          family: "chat-layout",
           registryItems: ["chat-layout"],
           states: [
             {
@@ -2576,6 +1855,7 @@ export const generatedSkinContract: SkinContract = {
     checkbox: {
       parts: {
         root: {
+          family: "choice",
           registryItems: ["checkbox"],
           states: [
             {
@@ -2589,12 +1869,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["checkbox"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["choice"],
             },
             {
               attribute: "data-dirty",
@@ -2665,6 +1939,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         indicator: {
+          family: "choice",
           registryItems: ["checkbox"],
           states: [
             {
@@ -2678,12 +1953,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["checkbox"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["choice"],
             },
             {
               attribute: "data-dirty",
@@ -2793,6 +2062,7 @@ export const generatedSkinContract: SkinContract = {
     code: {
       parts: {
         root: {
+          family: "code",
           registryItems: ["code"],
           states: [
             {
@@ -2800,12 +2070,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["embedded", "standalone"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
             },
             {
               attribute: "data-density",
@@ -2822,47 +2086,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "accessible-source": {
+          family: "code",
           registryItems: ["code"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
-          ],
+          states: [],
         },
         actions: {
+          family: "code",
           registryItems: ["code"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "code",
           registryItems: ["code"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
-          ],
+          states: [],
         },
         grid: {
+          family: "code",
           registryItems: ["code"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
             {
               attribute: "data-density",
               source: "control-ui",
@@ -2872,36 +2113,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         gutter: {
+          family: "code",
           registryItems: ["code"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "code",
           registryItems: ["code"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
-          ],
+          states: [],
         },
         line: {
+          family: "code",
           registryItems: ["code"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
             {
               attribute: "data-index",
               source: "control-ui",
@@ -2911,15 +2135,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "code",
           registryItems: ["code"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["code"],
@@ -2927,6 +2145,7 @@ export const generatedSkinContract: SkinContract = {
     "code-block-editor": {
       parts: {
         root: {
+          family: "code-block-editor",
           registryItems: ["code-block-editor"],
           states: [
             {
@@ -2934,12 +2153,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["embedded", "standalone"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-block-editor"],
             },
             {
               attribute: "data-density",
@@ -2962,59 +2175,29 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         actions: {
+          family: "code-block-editor",
           registryItems: ["code-block-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-block-editor"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "code-block-editor",
           registryItems: ["code-block-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-block-editor"],
-            },
-          ],
+          states: [],
         },
         editor: {
+          family: "code-block-editor",
           registryItems: ["code-block-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-block-editor"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "code-block-editor",
           registryItems: ["code-block-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-block-editor"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "code-block-editor",
           registryItems: ["code-block-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-block-editor"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["code-block-editor"],
@@ -3022,14 +2205,9 @@ export const generatedSkinContract: SkinContract = {
     "code-diff": {
       parts: {
         root: {
+          family: "code-diff",
           registryItems: ["code-diff"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
             {
               attribute: "data-diff-style",
               source: "control-ui",
@@ -3051,47 +2229,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "accessible-source": {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         actions: {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         body: {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         emphasis: {
+          family: "code-diff",
           registryItems: ["code-diff"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
             {
               attribute: "data-line-type",
               source: "control-ui",
@@ -3101,14 +2256,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "empty-half": {
+          family: "code-diff",
           registryItems: ["code-diff"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
             {
               attribute: "data-side",
               source: "control-ui",
@@ -3118,47 +2268,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "expand-button": {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         expander: {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         "expander-label": {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         file: {
+          family: "code-diff",
           registryItems: ["code-diff"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
             {
               attribute: "data-file-name",
               source: "control-ui",
@@ -3168,36 +2295,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "file-header": {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         "file-title": {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         gutter: {
+          family: "code-diff",
           registryItems: ["code-diff"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
             {
               attribute: "data-line-type",
               source: "control-ui",
@@ -3207,25 +2317,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         line: {
+          family: "code-diff",
           registryItems: ["code-diff"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
             {
               attribute: "data-indicators",
               source: "control-ui",
@@ -3247,14 +2346,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         marker: {
+          family: "code-diff",
           registryItems: ["code-diff"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
             {
               attribute: "data-line-type",
               source: "control-ui",
@@ -3264,59 +2358,29 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         row: {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         stat: {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         "stat-additions": {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         "stat-deletions": {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "code-diff",
           registryItems: ["code-diff"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["code-diff"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["code-diff"],
@@ -3324,14 +2388,9 @@ export const generatedSkinContract: SkinContract = {
     collapsible: {
       parts: {
         root: {
+          family: "collapsible",
           registryItems: ["collapsible"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["collapsible"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -3341,20 +2400,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "collapsible",
           registryItems: ["collapsible"],
           states: [
-            {
-              attribute: "data-collapsible-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["content"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["collapsible"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -3364,20 +2412,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "collapsible",
           registryItems: ["collapsible"],
           states: [
-            {
-              attribute: "data-collapsible-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["trigger"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["collapsible"],
-            },
             {
               attribute: "data-panel-open",
               source: "external",
@@ -3392,14 +2429,9 @@ export const generatedSkinContract: SkinContract = {
     "color-picker": {
       parts: {
         alpha: {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -3451,14 +2483,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "alpha-thumb": {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -3516,14 +2543,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "alpha-track": {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -3575,14 +2597,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         area: {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -3598,72 +2615,37 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "area-brightness": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "area-saturation": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "area-thumb": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         channel: {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "channel-label": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         channels: {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "popup",
           registryItems: ["color-picker"],
           states: [
             {
@@ -3677,12 +2659,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -3723,36 +2699,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         contrast: {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "contrast-fix": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "contrast-level": {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-passing",
               source: "control-ui",
@@ -3762,15 +2721,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "contrast-ratio": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "eye-dropper": {
           registryItems: ["color-picker"],
@@ -3781,14 +2734,9 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         hue: {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -3840,14 +2788,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "hue-thumb": {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -3905,14 +2848,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "hue-track": {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -3964,80 +2902,39 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         output: {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "output-checker": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "output-color": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "output-swatch": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "output-value": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         panel: {
+          family: "popup",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4053,6 +2950,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["color-picker"],
           states: [
             {
@@ -4072,12 +2970,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-open",
@@ -4100,14 +2992,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         swatch: {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-selected",
               source: "control-ui",
@@ -4117,80 +3004,39 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "swatch-add": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "swatch-checker": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "swatch-color": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         swatches: {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "swatches-group": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "swatches-label": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         trigger: {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -4212,36 +3058,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "trigger-checker": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         "trigger-color": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
         wheel: {
+          family: "color-picker",
           registryItems: ["color-picker"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -4257,15 +3086,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "wheel-thumb": {
+          family: "color-picker",
           registryItems: ["color-picker"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["color-picker"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["color-picker"],
@@ -4275,12 +3098,6 @@ export const generatedSkinContract: SkinContract = {
         root: {
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -4368,6 +3185,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["combobox"],
           states: [
             {
@@ -4381,12 +3199,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-empty",
@@ -4433,14 +3245,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         empty: {
+          family: "field",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -4450,14 +3257,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "field",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -4467,14 +3269,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "group-label": {
+          family: "popup",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4484,14 +3281,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         icon: {
+          family: "field",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -4501,14 +3293,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "field",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -4602,14 +3389,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -4637,14 +3419,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-indicator": {
+          family: "popup",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4654,14 +3431,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         list: {
+          family: "popup",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4671,6 +3443,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["combobox"],
           states: [
             {
@@ -4690,12 +3463,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-empty",
@@ -4724,14 +3491,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "field",
           registryItems: ["combobox"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -4830,14 +3592,9 @@ export const generatedSkinContract: SkinContract = {
     command: {
       parts: {
         root: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4853,14 +3610,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "dialog-root": {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4870,14 +3622,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         empty: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4887,14 +3634,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4904,14 +3646,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4921,14 +3658,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "input-icon": {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4938,14 +3670,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "input-wrapper": {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4961,14 +3688,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -4990,14 +3712,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         list: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5007,14 +3724,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5024,14 +3736,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         shortcut: {
+          family: "popup",
           registryItems: ["command"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5046,14 +3753,9 @@ export const generatedSkinContract: SkinContract = {
     context: {
       parts: {
         root: {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -5063,36 +3765,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         graph: {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -5102,47 +3787,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         legend: {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         "legend-description": {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         "legend-indicator": {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-kind",
               source: "control-ui",
@@ -5152,14 +3814,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "legend-item": {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-kind",
               source: "control-ui",
@@ -5175,58 +3832,29 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "legend-label": {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         "legend-value": {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         "limit-marker": {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         overage: {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         segment: {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-kind",
               source: "control-ui",
@@ -5236,14 +3864,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         summary: {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -5253,47 +3876,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "summary-value": {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         track: {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         trigger: {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -5303,14 +3903,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "trigger-indicator": {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -5320,25 +3915,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "trigger-label": {
+          family: "context",
           registryItems: ["context"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
-          ],
+          states: [],
         },
         "trigger-track": {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -5348,14 +3932,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "trigger-value": {
+          family: "context",
           registryItems: ["context"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["context"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -5370,6 +3949,7 @@ export const generatedSkinContract: SkinContract = {
     "context-menu": {
       parts: {
         "checkbox-item": {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
             {
@@ -5377,12 +3957,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-disabled",
@@ -5411,6 +3985,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
             {
@@ -5424,12 +3999,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -5470,14 +4039,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5487,14 +4051,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -5516,14 +4075,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5533,14 +4087,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "radio-group": {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5550,14 +4099,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "radio-indicator": {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5567,6 +4111,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "radio-item": {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
             {
@@ -5574,12 +4119,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-disabled",
@@ -5608,14 +4147,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-orientation",
               source: "external",
@@ -5631,14 +4165,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         shortcut: {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5648,6 +4177,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "sub-content": {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
             {
@@ -5661,12 +4191,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -5707,14 +4231,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "sub-trigger": {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -5742,14 +4261,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "sub-trigger-indicator": {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5759,14 +4273,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "popup",
           registryItems: ["context-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5793,6 +4302,7 @@ export const generatedSkinContract: SkinContract = {
     dialog: {
       parts: {
         backdrop: {
+          family: "popup",
           registryItems: ["dialog"],
           states: [
             {
@@ -5800,12 +4310,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -5834,6 +4338,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["dialog"],
           states: [
             {
@@ -5841,12 +4346,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -5887,14 +4386,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "popup",
           registryItems: ["dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5904,14 +4398,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         footer: {
+          family: "popup",
           registryItems: ["dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5921,14 +4410,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "popup",
           registryItems: ["dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5938,14 +4422,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "popup",
           registryItems: ["dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -5957,12 +4436,6 @@ export const generatedSkinContract: SkinContract = {
         trigger: {
           registryItems: ["dialog"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -5989,14 +4462,9 @@ export const generatedSkinContract: SkinContract = {
     "dockable-panel": {
       parts: {
         root: {
+          family: "dockable-panel",
           registryItems: ["dockable-panel"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dockable-panel"],
-            },
             {
               attribute: "data-dragging",
               source: "control-ui",
@@ -6012,36 +4480,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         actions: {
+          family: "dockable-panel",
           registryItems: ["dockable-panel"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dockable-panel"],
-            },
-          ],
+          states: [],
         },
         close: {
+          family: "button",
           registryItems: ["dockable-panel"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "dockable-panel",
           registryItems: ["dockable-panel"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dockable-panel"],
-            },
             {
               attribute: "data-padding",
               source: "control-ui",
@@ -6051,28 +4502,17 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         dock: {
+          family: "button",
           registryItems: ["dockable-panel"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
-          ],
+          states: [],
         },
         "drag-handle": {
+          family: "dockable-panel",
           registryItems: ["dockable-panel"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dockable-panel"],
-            },
-          ],
+          states: [],
         },
         "drop-zone": {
+          family: "dockable-panel",
           registryItems: ["dockable-panel"],
           states: [
             {
@@ -6080,12 +4520,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dockable-panel"],
             },
             {
               attribute: "data-side",
@@ -6096,37 +4530,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "dockable-panel",
           registryItems: ["dockable-panel"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dockable-panel"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "dockable-panel",
           registryItems: ["dockable-panel"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dockable-panel"],
-            },
-          ],
+          states: [],
         },
         toggle: {
+          family: "button",
           registryItems: ["dockable-panel"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["dockable-panel"],
@@ -6134,6 +4550,7 @@ export const generatedSkinContract: SkinContract = {
     drawer: {
       parts: {
         backdrop: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
@@ -6141,12 +4558,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["drawer"],
             },
             {
               attribute: "data-ending-style",
@@ -6161,6 +4572,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["drawer"],
+            },
+            {
               attribute: "data-starting-style",
               source: "external",
               valueKind: "presence",
@@ -6169,10 +4586,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         close: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["drawer"],
@@ -6180,6 +4598,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
@@ -6187,12 +4606,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["drawer"],
             },
             {
               attribute: "data-ending-style",
@@ -6229,6 +4642,12 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["default", "none"],
+            },
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["drawer"],
             },
             {
               attribute: "data-side",
@@ -6275,10 +4694,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["drawer"],
@@ -6286,10 +4706,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         footer: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["drawer"],
@@ -6297,10 +4718,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         handle: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["drawer"],
@@ -6308,10 +4730,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["drawer"],
@@ -6319,10 +4742,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["drawer"],
@@ -6333,7 +4757,7 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["drawer"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["drawer"],
@@ -6341,6 +4765,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         viewport: {
+          family: "popup",
           registryItems: ["drawer"],
           states: [
             {
@@ -6348,12 +4773,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["drawer"],
             },
             {
               attribute: "data-ending-style",
@@ -6374,6 +4793,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["drawer"],
+            },
+            {
               attribute: "data-starting-style",
               source: "external",
               valueKind: "presence",
@@ -6387,6 +4812,7 @@ export const generatedSkinContract: SkinContract = {
     "dropdown-menu": {
       parts: {
         content: {
+          family: "popup",
           registryItems: ["dropdown-menu"],
           states: [
             {
@@ -6400,12 +4826,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -6440,14 +4860,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["dropdown-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -6463,25 +4878,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "popup",
           registryItems: ["dropdown-menu"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
-          ],
+          states: [],
         },
         separator: {
+          family: "popup",
           registryItems: ["dropdown-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-orientation",
               source: "external",
@@ -6491,14 +4895,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "button",
           registryItems: ["dropdown-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
             {
               attribute: "data-icon-only",
               source: "control-ui",
@@ -6549,14 +4948,9 @@ export const generatedSkinContract: SkinContract = {
     dropzone: {
       parts: {
         root: {
+          family: "dropzone",
           registryItems: ["dropzone"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -6572,14 +4966,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         area: {
+          family: "dropzone",
           registryItems: ["dropzone"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -6595,69 +4984,34 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         feedback: {
+          family: "dropzone",
           registryItems: ["dropzone"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
-          ],
+          states: [],
         },
         "feedback-icon": {
+          family: "dropzone",
           registryItems: ["dropzone"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
-          ],
+          states: [],
         },
         "feedback-message": {
+          family: "dropzone",
           registryItems: ["dropzone"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
-          ],
+          states: [],
         },
         "feedback-spinner": {
+          family: "dropzone",
           registryItems: ["dropzone"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
-          ],
+          states: [],
         },
         file: {
+          family: "dropzone",
           registryItems: ["dropzone"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
-          ],
+          states: [],
         },
         "file-list": {
+          family: "dropzone",
           registryItems: ["dropzone"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
             {
               attribute: "data-empty",
               source: "control-ui",
@@ -6667,17 +5021,12 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "dropzone",
           registryItems: ["dropzone"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
-          ],
+          states: [],
         },
         overlay: {
+          family: "dropzone",
           registryItems: ["dropzone"],
           states: [
             {
@@ -6685,12 +5034,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
             },
             {
               attribute: "data-scope",
@@ -6707,25 +5050,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         rejection: {
+          family: "dropzone",
           registryItems: ["dropzone"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
-          ],
+          states: [],
         },
         "rejection-list": {
+          family: "dropzone",
           registryItems: ["dropzone"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
             {
               attribute: "data-empty",
               source: "control-ui",
@@ -6735,14 +5067,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         status: {
+          family: "dropzone",
           registryItems: ["dropzone"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -6752,14 +5079,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "dropzone",
           registryItems: ["dropzone"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dropzone"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -6780,14 +5102,9 @@ export const generatedSkinContract: SkinContract = {
     "dynamic-notification": {
       parts: {
         root: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -6814,47 +5131,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         glass: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         indicator: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         island: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -6870,59 +5164,29 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         liquid: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         message: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         pill: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         reply: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         "reply-input": {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         "reply-submit": {
           registryItems: ["dynamic-notification"],
@@ -6936,26 +5200,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
         word: {
+          family: "dynamic-notification",
           registryItems: ["dynamic-notification"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["dynamic-notification"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["dynamic-notification"],
@@ -6963,70 +5215,34 @@ export const generatedSkinContract: SkinContract = {
     empty: {
       parts: {
         root: {
+          family: "empty",
           registryItems: ["empty"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["empty"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "empty",
           registryItems: ["empty"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["empty"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "empty",
           registryItems: ["empty"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["empty"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "empty",
           registryItems: ["empty"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["empty"],
-            },
-          ],
+          states: [],
         },
         media: {
+          family: "empty",
           registryItems: ["empty"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["empty"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "empty",
           registryItems: ["empty"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["empty"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["empty"],
@@ -7034,14 +5250,9 @@ export const generatedSkinContract: SkinContract = {
     "environment-variables": {
       parts: {
         root: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -7057,223 +5268,104 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         actions: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "column-labels": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         empty: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "field-error": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "field-label": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         hint: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "hint-code": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "key-input": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         message: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "readonly-item": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "readonly-key": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "readonly-list": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "readonly-value": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         row: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         rows: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         toolbar: {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
         "value-group": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
             {
               attribute: "data-invalid",
               source: "control-ui",
@@ -7283,15 +5375,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "value-input": {
+          family: "environment-variables",
           registryItems: ["environment-variables"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["environment-variables"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["environment-variables"],
@@ -7299,14 +5385,9 @@ export const generatedSkinContract: SkinContract = {
     field: {
       parts: {
         root: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -7364,14 +5445,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -7381,14 +5457,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         control: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -7440,14 +5511,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -7499,14 +5565,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         error: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -7570,14 +5631,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -7587,14 +5643,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -7646,14 +5697,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -7705,14 +5751,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         legend: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -7722,6 +5763,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "field",
           registryItems: ["field"],
           states: [
             {
@@ -7729,12 +5771,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
             },
             {
               attribute: "data-field-kind",
@@ -7745,14 +5781,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "separator-content": {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -7762,14 +5793,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         set: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -7779,14 +5805,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "field",
           registryItems: ["field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -7810,36 +5831,19 @@ export const generatedSkinContract: SkinContract = {
     "gradient-editor": {
       parts: {
         root: {
+          family: "gradient-editor",
           registryItems: ["gradient-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["gradient-editor"],
-            },
-          ],
+          states: [],
         },
         preview: {
+          family: "gradient-editor",
           registryItems: ["gradient-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["gradient-editor"],
-            },
-          ],
+          states: [],
         },
         stop: {
+          family: "gradient-editor",
           registryItems: ["gradient-editor"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["gradient-editor"],
-            },
             {
               attribute: "data-selected",
               source: "control-ui",
@@ -7849,26 +5853,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "stop-add": {
+          family: "gradient-editor",
           registryItems: ["gradient-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["gradient-editor"],
-            },
-          ],
+          states: [],
         },
         track: {
+          family: "gradient-editor",
           registryItems: ["gradient-editor"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["gradient-editor"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["gradient-editor"],
@@ -7876,6 +5868,7 @@ export const generatedSkinContract: SkinContract = {
     "hover-card": {
       parts: {
         content: {
+          family: "popup",
           registryItems: ["hover-card"],
           states: [
             {
@@ -7889,12 +5882,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -7929,6 +5916,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["hover-card"],
           states: [
             {
@@ -7948,12 +5936,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-open",
@@ -7976,14 +5958,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "popup",
           registryItems: ["hover-card"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -8004,14 +5981,9 @@ export const generatedSkinContract: SkinContract = {
     "infinite-canvas": {
       parts: {
         root: {
+          family: "infinite-canvas",
           registryItems: ["infinite-canvas"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["infinite-canvas"],
-            },
             {
               attribute: "data-panning",
               source: "control-ui",
@@ -8021,14 +5993,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "infinite-canvas",
           registryItems: ["infinite-canvas"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["infinite-canvas"],
-            },
             {
               attribute: "data-scale",
               source: "control-ui",
@@ -8038,15 +6005,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         controls: {
+          family: "infinite-canvas",
           registryItems: ["infinite-canvas"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["infinite-canvas"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["infinite-canvas"],
@@ -8054,14 +6015,9 @@ export const generatedSkinContract: SkinContract = {
     "inline-attachment": {
       parts: {
         root: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -8071,80 +6027,39 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         action: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         actions: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         document: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         "document-heading": {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         "document-line": {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
             {
               attribute: "data-width",
               source: "control-ui",
@@ -8154,70 +6069,34 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "document-sheet": {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         "document-stamp": {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         image: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         "media-image": {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         placeholder: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "inline-attachment",
           registryItems: ["inline-attachment"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-attachment"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["inline-attachment"],
@@ -8225,15 +6104,9 @@ export const generatedSkinContract: SkinContract = {
     "inline-citation": {
       parts: {
         root: {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         content: {
           registryItems: ["inline-citation"],
@@ -8248,68 +6121,38 @@ export const generatedSkinContract: SkinContract = {
         },
         favicon: {
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         favicons: {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         label: {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         navigation: {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         next: {
           registryItems: ["inline-citation"],
           states: [],
         },
         position: {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         previous: {
           registryItems: ["inline-citation"],
           states: [],
         },
         source: {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
           states: [
             {
@@ -8317,12 +6160,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["left", "right"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
             },
             {
               attribute: "data-ending-style",
@@ -8345,92 +6182,43 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "source-description": {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         "source-external-icon": {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         "source-favicon": {
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         "source-header": {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         "source-hostname": {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         "source-quote": {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         "source-title": {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
         trigger: {
+          family: "inline-citation",
           registryItems: ["inline-citation"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["inline-citation"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["inline-citation"],
@@ -8438,14 +6226,9 @@ export const generatedSkinContract: SkinContract = {
     input: {
       parts: {
         root: {
+          family: "field",
           registryItems: ["input"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -8502,14 +6285,9 @@ export const generatedSkinContract: SkinContract = {
     "input-group": {
       parts: {
         root: {
+          family: "field",
           registryItems: ["input-group"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-size",
               source: "control-ui",
@@ -8519,14 +6297,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         addon: {
+          family: "field",
           registryItems: ["input-group"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -8536,25 +6309,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "field",
           registryItems: ["input-group"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["input-group"],
-            },
-            {
-              attribute: "data-input-group-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["input"],
             },
           ],
         },
@@ -8564,6 +6326,7 @@ export const generatedSkinContract: SkinContract = {
     "input-otp": {
       parts: {
         root: {
+          family: "field",
           registryItems: ["input-otp"],
           states: [
             {
@@ -8571,12 +6334,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
             },
             {
               attribute: "data-dirty",
@@ -8641,14 +6398,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "field",
           registryItems: ["input-otp"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -8664,6 +6416,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         slot: {
+          family: "field",
           registryItems: ["input-otp"],
           states: [
             {
@@ -8671,12 +6424,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
             },
             {
               attribute: "data-dirty",
@@ -8746,14 +6493,9 @@ export const generatedSkinContract: SkinContract = {
     item: {
       parts: {
         root: {
+          family: "item",
           registryItems: ["item"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -8763,96 +6505,48 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         actions: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
         footer: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
         group: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
         media: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
         separator: {
           registryItems: ["item"],
           states: [],
         },
         title: {
+          family: "item",
           registryItems: ["item"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["item"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["item"],
@@ -8860,26 +6554,14 @@ export const generatedSkinContract: SkinContract = {
     kbd: {
       parts: {
         root: {
+          family: "kbd",
           registryItems: ["kbd"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["kbd"],
-            },
-          ],
+          states: [],
         },
         group: {
+          family: "kbd",
           registryItems: ["kbd"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["kbd"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["kbd"],
@@ -8887,15 +6569,9 @@ export const generatedSkinContract: SkinContract = {
     label: {
       parts: {
         root: {
+          family: "label",
           registryItems: ["label"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["label"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["label"],
@@ -8903,202 +6579,94 @@ export const generatedSkinContract: SkinContract = {
     markdown: {
       parts: {
         root: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         blockquote: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         emphasis: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         h1: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         h2: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         h3: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         "inline-code": {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         link: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         "list-item": {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         "ordered-list": {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         paragraph: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         separator: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         strong: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         table: {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         "table-cell": {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         "table-header": {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         "table-scroll": {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
         "unordered-list": {
+          family: "markdown",
           registryItems: ["markdown"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["markdown"],
@@ -9106,59 +6674,29 @@ export const generatedSkinContract: SkinContract = {
     "markdown-block": {
       parts: {
         root: {
+          family: "markdown-block",
           registryItems: ["markdown-block"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown-block"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "markdown-block",
           registryItems: ["markdown-block"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown-block"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "markdown-block",
           registryItems: ["markdown-block"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown-block"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "markdown-block",
           registryItems: ["markdown-block"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown-block"],
-            },
-          ],
+          states: [],
         },
         "title-icon": {
+          family: "markdown-block",
           registryItems: ["markdown-block"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["markdown-block"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["markdown-block"],
@@ -9166,14 +6704,9 @@ export const generatedSkinContract: SkinContract = {
     menubar: {
       parts: {
         root: {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-has-submenu-open",
               source: "external",
@@ -9201,6 +6734,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
             {
@@ -9214,12 +6748,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -9260,14 +6788,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9277,14 +6800,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -9306,14 +6824,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9323,14 +6836,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-orientation",
               source: "external",
@@ -9346,14 +6854,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         shortcut: {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9363,6 +6866,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "sub-content": {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
             {
@@ -9376,12 +6880,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -9422,14 +6920,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "sub-trigger": {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -9457,14 +6950,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "sub-trigger-indicator": {
+          family: "popup",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9474,14 +6962,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "button",
           registryItems: ["menubar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
             {
               attribute: "data-cursor",
               source: "control-ui",
@@ -9532,14 +7015,9 @@ export const generatedSkinContract: SkinContract = {
     meter: {
       parts: {
         root: {
+          family: "range",
           registryItems: ["meter"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-range-kind",
               source: "control-ui",
@@ -9549,14 +7027,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         indicator: {
+          family: "range",
           registryItems: ["meter"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-range-kind",
               source: "control-ui",
@@ -9566,14 +7039,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "range",
           registryItems: ["meter"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-range-kind",
               source: "control-ui",
@@ -9583,14 +7051,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         track: {
+          family: "range",
           registryItems: ["meter"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-range-kind",
               source: "control-ui",
@@ -9600,14 +7063,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         value: {
+          family: "range",
           registryItems: ["meter"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-range-kind",
               source: "control-ui",
@@ -9622,6 +7080,7 @@ export const generatedSkinContract: SkinContract = {
     "model-switcher": {
       parts: {
         root: {
+          family: "button",
           registryItems: ["model-switcher"],
           states: [
             {
@@ -9629,33 +7088,23 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["model-switcher"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
             },
           ],
         },
         hint: {
+          family: "popup",
           registryItems: ["model-switcher"],
           states: [
             {
-              attribute: "data-button-kind",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["model-switcher"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
             },
           ],
         },
         indicator: {
+          family: "button",
           registryItems: ["model-switcher"],
           states: [
             {
@@ -9663,16 +7112,11 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["model-switcher"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
             },
           ],
         },
         value: {
+          family: "button",
           registryItems: ["model-switcher"],
           states: [
             {
@@ -9680,12 +7124,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["model-switcher"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
             },
           ],
         },
@@ -9695,14 +7133,9 @@ export const generatedSkinContract: SkinContract = {
     "morphing-panel": {
       parts: {
         root: {
+          family: "morphing-panel",
           registryItems: ["morphing-panel"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["morphing-panel"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -9712,14 +7145,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "morphing-panel",
           registryItems: ["morphing-panel"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["morphing-panel"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -9731,12 +7159,6 @@ export const generatedSkinContract: SkinContract = {
         trigger: {
           registryItems: ["morphing-panel"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["morphing-panel"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -9751,14 +7173,9 @@ export const generatedSkinContract: SkinContract = {
     "native-select": {
       parts: {
         root: {
+          family: "field",
           registryItems: ["native-select"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -9774,14 +7191,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         icon: {
+          family: "field",
           registryItems: ["native-select"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -9796,14 +7208,9 @@ export const generatedSkinContract: SkinContract = {
     "navigation-menu": {
       parts: {
         root: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9813,6 +7220,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
             {
@@ -9826,12 +7234,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -9860,14 +7262,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         icon: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9883,14 +7280,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9900,6 +7292,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         link: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
             {
@@ -9907,12 +7300,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-popup-kind",
@@ -9929,14 +7316,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         list: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9946,6 +7328,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         popup: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
             {
@@ -9965,12 +7348,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -10005,6 +7382,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
             {
@@ -10024,12 +7402,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-instant",
@@ -10058,14 +7430,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "button",
           registryItems: ["navigation-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
             {
               attribute: "data-cursor",
               source: "control-ui",
@@ -10111,20 +7478,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         viewport: {
+          family: "popup",
           registryItems: ["navigation-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
-            {
-              attribute: "data-navigation-menu-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["viewport"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -10139,14 +7495,9 @@ export const generatedSkinContract: SkinContract = {
     "number-field": {
       parts: {
         decrement: {
+          family: "field",
           registryItems: ["number-field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -10216,14 +7567,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "drag-icon": {
+          family: "field",
           registryItems: ["number-field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -10233,14 +7579,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "field",
           registryItems: ["number-field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -10316,14 +7657,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         increment: {
+          family: "field",
           registryItems: ["number-field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -10393,14 +7729,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "field",
           registryItems: ["number-field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -10470,14 +7801,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "scrub-area": {
+          family: "field",
           registryItems: ["number-field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -10547,14 +7873,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "scrub-cursor": {
+          family: "field",
           registryItems: ["number-field"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -10629,50 +7950,27 @@ export const generatedSkinContract: SkinContract = {
     pagination: {
       parts: {
         root: {
+          family: "pagination",
           registryItems: ["pagination"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["pagination"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "pagination",
           registryItems: ["pagination"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["pagination"],
-            },
-          ],
+          states: [],
         },
         ellipsis: {
+          family: "pagination",
           registryItems: ["pagination"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["pagination"],
-            },
-          ],
+          states: [],
         },
         item: {
+          family: "pagination",
           registryItems: ["pagination"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["pagination"],
-            },
-          ],
+          states: [],
         },
         link: {
+          family: "pagination",
           registryItems: ["pagination"],
           states: [
             {
@@ -10680,12 +7978,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["pagination"],
             },
           ],
         },
@@ -10695,14 +7987,9 @@ export const generatedSkinContract: SkinContract = {
     "phone-input": {
       parts: {
         check: {
+          family: "phone-input",
           registryItems: ["phone-input"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["phone-input"],
-            },
             {
               attribute: "data-visible",
               source: "control-ui",
@@ -10712,14 +7999,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         chevron: {
+          family: "phone-input",
           registryItems: ["phone-input"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["phone-input"],
-            },
             {
               attribute: "data-open",
               source: "control-ui",
@@ -10729,48 +8011,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "country-code": {
+          family: "phone-input",
           registryItems: ["phone-input"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["phone-input"],
-            },
-          ],
+          states: [],
         },
         "country-trigger": {
+          family: "phone-input",
           registryItems: ["phone-input"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["phone-input"],
-            },
-          ],
+          states: [],
         },
         flag: {
+          family: "phone-input",
           registryItems: ["phone-input"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["phone-input"],
-            },
-          ],
+          states: [],
         },
         metadata: {
+          family: "phone-input",
           registryItems: ["phone-input"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["phone-input"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["phone-input"],
@@ -10778,14 +8036,9 @@ export const generatedSkinContract: SkinContract = {
     popover: {
       parts: {
         close: {
+          family: "popup",
           registryItems: ["popover"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -10795,6 +8048,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["popover"],
           states: [
             {
@@ -10808,12 +8062,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -10860,14 +8108,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "popup",
           registryItems: ["popover"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -10877,14 +8120,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "popup",
           registryItems: ["popover"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -10894,14 +8132,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "popup",
           registryItems: ["popover"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -10913,12 +8146,6 @@ export const generatedSkinContract: SkinContract = {
         trigger: {
           registryItems: ["popover"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -10945,6 +8172,7 @@ export const generatedSkinContract: SkinContract = {
     progress: {
       parts: {
         root: {
+          family: "range",
           registryItems: ["progress"],
           states: [
             {
@@ -10952,12 +8180,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
             },
             {
               attribute: "data-indeterminate",
@@ -10980,6 +8202,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         indicator: {
+          family: "range",
           registryItems: ["progress"],
           states: [
             {
@@ -10987,12 +8210,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
             },
             {
               attribute: "data-indeterminate",
@@ -11015,6 +8232,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "range",
           registryItems: ["progress"],
           states: [
             {
@@ -11022,12 +8240,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
             },
             {
               attribute: "data-indeterminate",
@@ -11050,6 +8262,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         track: {
+          family: "range",
           registryItems: ["progress"],
           states: [
             {
@@ -11057,12 +8270,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
             },
             {
               attribute: "data-indeterminate",
@@ -11085,6 +8292,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         value: {
+          family: "range",
           registryItems: ["progress"],
           states: [
             {
@@ -11092,12 +8300,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
             },
             {
               attribute: "data-indeterminate",
@@ -11125,6 +8327,7 @@ export const generatedSkinContract: SkinContract = {
     "radio-group": {
       parts: {
         root: {
+          family: "choice",
           registryItems: ["radio-group"],
           states: [
             {
@@ -11132,12 +8335,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["radio-group"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["choice"],
             },
             {
               attribute: "data-disabled",
@@ -11154,6 +8351,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         indicator: {
+          family: "choice",
           registryItems: ["radio-group"],
           states: [
             {
@@ -11167,12 +8365,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["radio-group"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["choice"],
             },
             {
               attribute: "data-dirty",
@@ -11249,6 +8441,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "choice",
           registryItems: ["radio-group"],
           states: [
             {
@@ -11262,12 +8455,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["radio-group"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["choice"],
             },
             {
               attribute: "data-dirty",
@@ -11337,6 +8524,7 @@ export const generatedSkinContract: SkinContract = {
     resizable: {
       parts: {
         handle: {
+          family: "resizable",
           registryItems: ["resizable"],
           states: [
             {
@@ -11344,12 +8532,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["horizontal", "vertical"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["resizable"],
             },
             {
               attribute: "data-separator",
@@ -11366,6 +8548,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "handle-grip": {
+          family: "resizable",
           registryItems: ["resizable"],
           states: [
             {
@@ -11373,12 +8556,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["horizontal", "vertical"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["resizable"],
             },
             {
               attribute: "data-variant",
@@ -11389,25 +8566,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         panel: {
+          family: "resizable",
           registryItems: ["resizable"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["resizable"],
-            },
-          ],
+          states: [],
         },
         "panel-group": {
+          family: "resizable",
           registryItems: ["resizable"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["resizable"],
-            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -11422,6 +8588,7 @@ export const generatedSkinContract: SkinContract = {
     "rich-tooltip": {
       parts: {
         arrow: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
             {
@@ -11435,12 +8602,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-open",
@@ -11475,14 +8636,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         close: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11492,6 +8648,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
             {
@@ -11505,12 +8662,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -11557,14 +8708,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11580,6 +8726,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         dot: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
             {
@@ -11587,12 +8734,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-popup-kind",
@@ -11603,14 +8744,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         footer: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11620,14 +8756,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11637,14 +8768,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         media: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11654,14 +8780,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         next: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11671,6 +8792,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
             {
@@ -11690,12 +8812,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-open",
@@ -11718,14 +8834,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         previous: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11735,14 +8846,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         progress: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11764,14 +8870,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11781,14 +8882,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -11815,14 +8911,9 @@ export const generatedSkinContract: SkinContract = {
     "scroll-area": {
       parts: {
         root: {
+          family: "scroll-area",
           registryItems: ["scroll-area"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["scroll-area"],
-            },
             {
               attribute: "data-has-overflow-x",
               source: "external",
@@ -11868,14 +8959,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "scroll-area",
           registryItems: ["scroll-area"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["scroll-area"],
-            },
             {
               attribute: "data-has-overflow-x",
               source: "external",
@@ -11921,25 +9007,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         corner: {
+          family: "scroll-area",
           registryItems: ["scroll-area"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["scroll-area"],
-            },
-          ],
+          states: [],
         },
         scrollbar: {
+          family: "scroll-area",
           registryItems: ["scroll-area"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["scroll-area"],
-            },
             {
               attribute: "data-has-overflow-x",
               source: "external",
@@ -12003,14 +9078,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         thumb: {
+          family: "scroll-area",
           registryItems: ["scroll-area"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["scroll-area"],
-            },
             {
               attribute: "data-orientation",
               source: "external",
@@ -12026,14 +9096,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         viewport: {
+          family: "scroll-area",
           registryItems: ["scroll-area"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["scroll-area"],
-            },
             {
               attribute: "data-has-overflow-x",
               source: "external",
@@ -12071,12 +9136,6 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
-              attribute: "data-scroll-area-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["viewport"],
-            },
-            {
               attribute: "data-scrolling",
               source: "external",
               valueKind: "presence",
@@ -12090,6 +9149,7 @@ export const generatedSkinContract: SkinContract = {
     select: {
       parts: {
         content: {
+          family: "popup",
           registryItems: ["select"],
           states: [
             {
@@ -12103,12 +9163,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -12143,14 +9197,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         icon: {
+          family: "popup",
           registryItems: ["select"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -12163,23 +9212,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
-            {
-              attribute: "data-select-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["icon"],
-            },
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["select"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -12207,14 +9245,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-indicator": {
+          family: "popup",
           registryItems: ["select"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -12224,14 +9257,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         trigger: {
+          family: "button",
           registryItems: ["select"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -12269,6 +9297,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["select"],
+            },
+            {
               attribute: "data-popup-open",
               source: "external",
               valueKind: "presence",
@@ -12297,12 +9331,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-select-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["trigger"],
             },
             {
               attribute: "data-shape",
@@ -12348,14 +9376,9 @@ export const generatedSkinContract: SkinContract = {
     separator: {
       parts: {
         root: {
+          family: "separator",
           registryItems: ["separator"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["separator"],
-            },
             {
               attribute: "data-orientation",
               source: "external",
@@ -12370,6 +9393,7 @@ export const generatedSkinContract: SkinContract = {
     sheet: {
       parts: {
         backdrop: {
+          family: "popup",
           registryItems: ["sheet"],
           states: [
             {
@@ -12377,12 +9401,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -12411,14 +9429,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         close: {
+          family: "popup",
           registryItems: ["sheet"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -12434,6 +9447,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["sheet"],
           states: [
             {
@@ -12441,12 +9455,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -12479,12 +9487,6 @@ export const generatedSkinContract: SkinContract = {
               values: ["sheet"],
             },
             {
-              attribute: "data-sheet-part",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["content"],
-            },
-            {
               attribute: "data-side",
               source: "control-ui",
               valueKind: "enum",
@@ -12499,14 +9501,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "popup",
           registryItems: ["sheet"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -12516,14 +9513,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
+          family: "popup",
           registryItems: ["sheet"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -12533,14 +9525,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "popup",
           registryItems: ["sheet"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -12555,6 +9542,7 @@ export const generatedSkinContract: SkinContract = {
     sidebar: {
       parts: {
         root: {
+          family: "sidebar",
           registryItems: ["sidebar"],
           states: [
             {
@@ -12562,12 +9550,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["icon", "none", "offcanvas"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
             },
             {
               attribute: "data-side",
@@ -12590,106 +9572,53 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         container: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         content: {
           registryItems: ["sidebar"],
           states: [],
         },
         footer: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         gap: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         group: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         "group-label": {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         inner: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         inset: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         menu: {
+          family: "sidebar",
           registryItems: ["sidebar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
             {
               attribute: "data-indicator",
               source: "control-ui",
@@ -12699,6 +9628,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "menu-button": {
+          family: "sidebar",
           registryItems: ["sidebar"],
           states: [
             {
@@ -12708,45 +9638,28 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-            {
               attribute: "data-size",
               source: "control-ui",
               valueKind: "enum",
-              values: ["default", "lg", "sm"],
+              values: ["size"],
             },
             {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["default", "outline"],
+              values: ["variant"],
             },
           ],
         },
         "menu-item": {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         "menu-track": {
+          family: "sidebar",
           registryItems: ["sidebar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
             {
               attribute: "data-indicator",
               source: "control-ui",
@@ -12756,30 +9669,18 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         rail: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
         trigger: {
           registryItems: ["sidebar"],
           states: [],
         },
         wrapper: {
+          family: "sidebar",
           registryItems: ["sidebar"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["sidebar"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["sidebar"],
@@ -12787,6 +9688,7 @@ export const generatedSkinContract: SkinContract = {
     "sidebar-layout": {
       parts: {
         content: {
+          family: "sidebar-layout",
           registryItems: ["sidebar-layout-block"],
           states: [],
         },
@@ -12796,15 +9698,9 @@ export const generatedSkinContract: SkinContract = {
     skeleton: {
       parts: {
         root: {
+          family: "skeleton",
           registryItems: ["skeleton"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["skeleton"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["skeleton"],
@@ -12812,14 +9708,9 @@ export const generatedSkinContract: SkinContract = {
     slider: {
       parts: {
         root: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -12889,14 +9780,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         control: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -12954,14 +9840,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         indicator: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -13025,14 +9906,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-range-kind",
               source: "control-ui",
@@ -13042,14 +9918,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         thumb: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -13119,14 +9990,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         tick: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-range-kind",
               source: "control-ui",
@@ -13136,14 +10002,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         track: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -13207,14 +10068,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         value: {
+          family: "range",
           registryItems: ["slider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["range"],
-            },
             {
               attribute: "data-dirty",
               source: "external",
@@ -13303,26 +10159,14 @@ export const generatedSkinContract: SkinContract = {
     spinner: {
       parts: {
         root: {
+          family: "spinner",
           registryItems: ["spinner"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["spinner"],
-            },
-          ],
+          states: [],
         },
         indicator: {
+          family: "spinner",
           registryItems: ["spinner"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["spinner"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["spinner"],
@@ -13330,6 +10174,7 @@ export const generatedSkinContract: SkinContract = {
     stepper: {
       parts: {
         root: {
+          family: "stepper",
           registryItems: ["stepper"],
           states: [
             {
@@ -13337,12 +10182,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["all", "current"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
             },
             {
               attribute: "data-orientation",
@@ -13359,14 +10198,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "stepper",
           registryItems: ["stepper"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -13376,25 +10210,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         description: {
+          family: "stepper",
           registryItems: ["stepper"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
-          ],
+          states: [],
         },
         indicator: {
+          family: "stepper",
           registryItems: ["stepper"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
             {
               attribute: "data-invalid",
               source: "control-ui",
@@ -13410,14 +10233,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "stepper",
           registryItems: ["stepper"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -13445,14 +10263,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         list: {
+          family: "stepper",
           registryItems: ["stepper"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
             {
               attribute: "data-orientation",
               source: "control-ui",
@@ -13462,14 +10275,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "stepper",
           registryItems: ["stepper"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
             {
               attribute: "data-invalid",
               source: "control-ui",
@@ -13485,25 +10293,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "stepper",
           registryItems: ["stepper"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
-          ],
+          states: [],
         },
         trigger: {
+          family: "stepper",
           registryItems: ["stepper"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["stepper"],
-            },
             {
               attribute: "data-invalid",
               source: "control-ui",
@@ -13524,6 +10321,7 @@ export const generatedSkinContract: SkinContract = {
     switch: {
       parts: {
         root: {
+          family: "switch",
           registryItems: ["switch"],
           states: [
             {
@@ -13531,12 +10329,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["switch"],
             },
             {
               attribute: "data-dirty",
@@ -13601,6 +10393,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         thumb: {
+          family: "switch",
           registryItems: ["switch"],
           states: [
             {
@@ -13608,12 +10401,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["switch"],
             },
             {
               attribute: "data-dirty",
@@ -13678,14 +10465,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "thumb-icon": {
+          family: "switch",
           registryItems: ["switch"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["switch"],
-            },
             {
               attribute: "data-switch-icon",
               source: "control-ui",
@@ -13700,103 +10482,49 @@ export const generatedSkinContract: SkinContract = {
     table: {
       parts: {
         root: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         body: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         caption: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         cell: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         container: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         footer: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         head: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
         row: {
+          family: "table",
           registryItems: ["table"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["table"],
@@ -13804,14 +10532,9 @@ export const generatedSkinContract: SkinContract = {
     "table-of-contents": {
       parts: {
         root: {
+          family: "table-of-contents",
           registryItems: ["table-of-contents"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table-of-contents"],
-            },
             {
               attribute: "data-variant",
               source: "control-ui",
@@ -13821,6 +10544,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "table-of-contents",
           registryItems: ["table-of-contents"],
           states: [
             {
@@ -13828,12 +10552,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table-of-contents"],
             },
             {
               attribute: "data-depth",
@@ -13856,25 +10574,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "table-of-contents",
           registryItems: ["table-of-contents"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table-of-contents"],
-            },
-          ],
+          states: [],
         },
         list: {
+          family: "table-of-contents",
           registryItems: ["table-of-contents"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table-of-contents"],
-            },
             {
               attribute: "data-nested",
               source: "control-ui",
@@ -13884,37 +10591,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         rail: {
+          family: "table-of-contents",
           registryItems: ["table-of-contents"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table-of-contents"],
-            },
-          ],
+          states: [],
         },
         track: {
+          family: "table-of-contents",
           registryItems: ["table-of-contents"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table-of-contents"],
-            },
-          ],
+          states: [],
         },
         trail: {
+          family: "table-of-contents",
           registryItems: ["table-of-contents"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["table-of-contents"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["table-of-contents"],
@@ -13922,6 +10611,7 @@ export const generatedSkinContract: SkinContract = {
     tabs: {
       parts: {
         root: {
+          family: "tabs",
           registryItems: ["tabs"],
           states: [
             {
@@ -13929,12 +10619,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "enum",
               values: ["down", "left", "none", "right", "up"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tabs"],
             },
             {
               attribute: "data-orientation",
@@ -13951,6 +10635,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         indicator: {
+          family: "tabs",
           registryItems: ["tabs"],
           states: [
             {
@@ -13958,12 +10643,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "enum",
               values: ["down", "left", "none", "right", "up"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tabs"],
             },
             {
               attribute: "data-orientation",
@@ -13974,6 +10653,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         list: {
+          family: "tabs",
           registryItems: ["tabs"],
           states: [
             {
@@ -13981,12 +10661,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "enum",
               values: ["down", "left", "none", "right", "up"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tabs"],
             },
             {
               attribute: "data-orientation",
@@ -14015,6 +10689,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         panel: {
+          family: "tabs",
           registryItems: ["tabs"],
           states: [
             {
@@ -14022,12 +10697,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "enum",
               values: ["down", "left", "none", "right", "up"],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tabs"],
             },
             {
               attribute: "data-ending-style",
@@ -14068,6 +10737,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         tab: {
+          family: "tabs",
           registryItems: ["tabs"],
           states: [
             {
@@ -14089,12 +10759,6 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tabs"],
-            },
-            {
               attribute: "data-disabled",
               source: "external",
               valueKind: "presence",
@@ -14114,36 +10778,19 @@ export const generatedSkinContract: SkinContract = {
     "task-list": {
       parts: {
         root: {
+          family: "task-list",
           registryItems: ["task-list"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
-          ],
+          states: [],
         },
         chevron: {
+          family: "task-list",
           registryItems: ["task-list"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
-          ],
+          states: [],
         },
         item: {
+          family: "task-list",
           registryItems: ["task-list"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -14153,14 +10800,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-indicator": {
+          family: "task-list",
           registryItems: ["task-list"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
             {
               attribute: "data-status",
               source: "control-ui",
@@ -14170,48 +10812,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         items: {
+          family: "task-list",
           registryItems: ["task-list"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
-          ],
+          states: [],
         },
         label: {
+          family: "task-list",
           registryItems: ["task-list"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
-          ],
+          states: [],
         },
         progress: {
+          family: "task-list",
           registryItems: ["task-list"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
-          ],
+          states: [],
         },
         trigger: {
+          family: "task-list",
           registryItems: ["task-list"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["task-list"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["task-list"],
@@ -14219,14 +10837,9 @@ export const generatedSkinContract: SkinContract = {
     textarea: {
       parts: {
         root: {
+          family: "field",
           registryItems: ["textarea"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["field"],
-            },
             {
               attribute: "data-field-kind",
               source: "control-ui",
@@ -14241,50 +10854,27 @@ export const generatedSkinContract: SkinContract = {
     "thread-rail": {
       parts: {
         root: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         file: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         "file-icon": {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         footer: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         item: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
           states: [
             {
@@ -14292,12 +10882,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
             },
             {
               attribute: "data-from",
@@ -14320,39 +10904,22 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         line: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         more: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         popover: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         "popover-layer": {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
           states: [
             {
@@ -14361,35 +10928,17 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
           ],
         },
         summary: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "thread-rail",
           registryItems: ["thread-rail"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thread-rail"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["thread-rail"],
@@ -14397,58 +10946,29 @@ export const generatedSkinContract: SkinContract = {
     timeline: {
       parts: {
         root: {
+          family: "timeline",
           registryItems: ["timeline"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
-          ],
+          states: [],
         },
         content: {
+          family: "timeline",
           registryItems: ["timeline"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
-          ],
+          states: [],
         },
         description: {
+          family: "timeline",
           registryItems: ["timeline"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
-          ],
+          states: [],
         },
         indicator: {
+          family: "timeline",
           registryItems: ["timeline"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
-          ],
+          states: [],
         },
         item: {
+          family: "timeline",
           registryItems: ["timeline"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -14458,37 +10978,19 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         meta: {
+          family: "timeline",
           registryItems: ["timeline"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
-          ],
+          states: [],
         },
         separator: {
+          family: "timeline",
           registryItems: ["timeline"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
-          ],
+          states: [],
         },
         title: {
+          family: "timeline",
           registryItems: ["timeline"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["timeline"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["timeline"],
@@ -14496,14 +10998,9 @@ export const generatedSkinContract: SkinContract = {
     toast: {
       parts: {
         root: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toast"],
-            },
             {
               attribute: "data-ending-style",
               source: "external",
@@ -14521,6 +11018,12 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["toast"],
             },
             {
               attribute: "data-starting-style",
@@ -14549,10 +11052,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         action: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["toast"],
@@ -14566,10 +11070,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         close: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["toast"],
@@ -14583,6 +11088,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
             {
@@ -14592,24 +11098,25 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toast"],
-            },
-            {
               attribute: "data-expanded",
               source: "external",
               valueKind: "presence",
               values: [],
             },
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["toast"],
+            },
           ],
         },
         description: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["toast"],
@@ -14623,10 +11130,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         indicator: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["toast"],
@@ -14634,10 +11142,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
             {
-              attribute: "data-control-family",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["toast"],
@@ -14651,19 +11160,20 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         viewport: {
+          family: "popup",
           registryItems: ["toast"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toast"],
-            },
             {
               attribute: "data-expanded",
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["toast"],
             },
           ],
         },
@@ -14673,6 +11183,7 @@ export const generatedSkinContract: SkinContract = {
     toggle: {
       parts: {
         root: {
+          family: "button",
           registryItems: ["toggle"],
           states: [
             {
@@ -14680,12 +11191,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["button"],
             },
             {
               attribute: "data-size",
@@ -14712,6 +11217,7 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         content: {
+          family: "button",
           registryItems: ["toggle"],
           states: [],
         },
@@ -14744,14 +11250,9 @@ export const generatedSkinContract: SkinContract = {
     toolbar: {
       parts: {
         root: {
+          family: "toolbar",
           registryItems: ["toolbar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toolbar"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -14773,14 +11274,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         button: {
+          family: "toolbar",
           registryItems: ["toolbar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toolbar"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -14814,14 +11310,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "toolbar",
           registryItems: ["toolbar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toolbar"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -14837,14 +11328,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         input: {
+          family: "toolbar",
           registryItems: ["toolbar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toolbar"],
-            },
             {
               attribute: "data-disabled",
               source: "external",
@@ -14872,14 +11358,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         link: {
+          family: "toolbar",
           registryItems: ["toolbar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toolbar"],
-            },
             {
               attribute: "data-orientation",
               source: "external",
@@ -14901,14 +11382,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         separator: {
+          family: "toolbar",
           registryItems: ["toolbar"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toolbar"],
-            },
             {
               attribute: "data-orientation",
               source: "external",
@@ -14923,6 +11399,7 @@ export const generatedSkinContract: SkinContract = {
     tooltip: {
       parts: {
         arrow: {
+          family: "popup",
           registryItems: ["tooltip"],
           states: [
             {
@@ -14936,12 +11413,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-instant",
@@ -14976,14 +11447,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "arrow-shape": {
+          family: "popup",
           registryItems: ["tooltip"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -14993,6 +11459,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         content: {
+          family: "popup",
           registryItems: ["tooltip"],
           states: [
             {
@@ -15012,12 +11479,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -15058,6 +11519,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["tooltip"],
           states: [
             {
@@ -15077,12 +11539,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-open",
@@ -15110,26 +11566,14 @@ export const generatedSkinContract: SkinContract = {
     "track-highlight": {
       parts: {
         root: {
+          family: "track-highlight",
           registryItems: ["track-highlight"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["track-highlight"],
-            },
-          ],
+          states: [],
         },
         hover: {
+          family: "track-highlight",
           registryItems: ["track-highlight"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["track-highlight"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["track-highlight"],
@@ -15137,14 +11581,9 @@ export const generatedSkinContract: SkinContract = {
     "transcript-divider": {
       parts: {
         root: {
+          family: "transcript-divider",
           registryItems: ["transcript-divider"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["transcript-divider"],
-            },
             {
               attribute: "data-tone",
               source: "control-ui",
@@ -15154,15 +11593,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "transcript-divider",
           registryItems: ["transcript-divider"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["transcript-divider"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["transcript-divider"],
@@ -15170,14 +11603,9 @@ export const generatedSkinContract: SkinContract = {
     tree: {
       parts: {
         root: {
+          family: "tree",
           registryItems: ["tree"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
             {
               attribute: "data-indicator",
               source: "control-ui",
@@ -15187,14 +11615,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "tree",
           registryItems: ["tree"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -15222,14 +11645,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-content": {
+          family: "tree",
           registryItems: ["tree"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -15239,25 +11657,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-group": {
+          family: "tree",
           registryItems: ["tree"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
-          ],
+          states: [],
         },
         "item-indicator": {
+          family: "tree",
           registryItems: ["tree"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
             {
               attribute: "data-state",
               source: "control-ui",
@@ -15267,25 +11674,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-label": {
+          family: "tree",
           registryItems: ["tree"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
-          ],
+          states: [],
         },
         "item-trigger": {
+          family: "tree",
           registryItems: ["tree"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
             {
               attribute: "data-selected",
               source: "control-ui",
@@ -15301,14 +11697,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         track: {
+          family: "tree",
           registryItems: ["tree"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["tree"],
-            },
             {
               attribute: "data-indicator",
               source: "control-ui",
@@ -15323,6 +11714,7 @@ export const generatedSkinContract: SkinContract = {
     "trigger-menu": {
       parts: {
         root: {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
             {
@@ -15336,12 +11728,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-ending-style",
@@ -15382,14 +11768,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         empty: {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -15399,14 +11780,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         group: {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -15416,14 +11792,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "group-label": {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -15433,14 +11804,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         icon: {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -15450,14 +11816,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         item: {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-disabled",
               source: "control-ui",
@@ -15479,14 +11840,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         list: {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
-            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -15496,6 +11852,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         positioner: {
+          family: "popup",
           registryItems: ["trigger-menu"],
           states: [
             {
@@ -15515,12 +11872,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["popup"],
             },
             {
               attribute: "data-open",
@@ -15548,15 +11899,9 @@ export const generatedSkinContract: SkinContract = {
     "user-ask": {
       parts: {
         root: {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         dismiss: {
           registryItems: ["user-ask"],
@@ -15570,47 +11915,24 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         footer: {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         "freeform-label": {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         header: {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         option: {
+          family: "user-ask",
           registryItems: ["user-ask"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
             {
               attribute: "data-freeform",
               source: "control-ui",
@@ -15632,25 +11954,14 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "option-description": {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         "option-indicator": {
+          family: "user-ask",
           registryItems: ["user-ask"],
           states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
             {
               attribute: "data-selected",
               source: "control-ui",
@@ -15660,50 +11971,27 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "option-input": {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         "option-label": {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         pagination: {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         "pagination-count": {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         question: {
+          family: "user-ask",
           registryItems: ["user-ask"],
           states: [
             {
@@ -15712,24 +12000,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "presence",
               values: [],
             },
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
           ],
         },
         recommended: {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
         submit: {
           registryItems: ["user-ask"],
@@ -15743,15 +12019,9 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         title: {
+          family: "user-ask",
           registryItems: ["user-ask"],
-          states: [
-            {
-              attribute: "data-control-family",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["user-ask"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["user-ask"],
@@ -15761,8 +12031,8 @@ export const generatedSkinContract: SkinContract = {
     button: {
       layer: {
         context: {
-          tone: "ButtonTone",
-          variant: "ButtonVariant",
+          tone: "ControlTone",
+          variant: "ControlVariant",
         },
       },
     },
@@ -15798,6 +12068,10 @@ export const generatedSkinContract: SkinContract = {
         },
         {
           scope: "dialog",
+          part: "backdrop",
+        },
+        {
+          scope: "drawer",
           part: "backdrop",
         },
         {
@@ -15999,6 +12273,10 @@ export const generatedSkinContract: SkinContract = {
           part: "content",
         },
         {
+          scope: "drawer",
+          part: "content",
+        },
+        {
           scope: "hover-card",
           part: "content",
         },
@@ -16017,6 +12295,10 @@ export const generatedSkinContract: SkinContract = {
         {
           scope: "sheet",
           part: "content",
+        },
+        {
+          scope: "toast",
+          part: "root",
         },
         {
           scope: "tooltip",

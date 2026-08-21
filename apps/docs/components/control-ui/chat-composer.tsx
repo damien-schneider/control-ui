@@ -2,11 +2,11 @@
 
 import type { ChangeEvent, ComponentProps, CSSProperties } from "react";
 import { createContext, useContext } from "react";
-import { hasSkinAdornment, skinAdornment } from "@/components/control-ui/adornments";
-import type { ChatComposerProps } from "@/components/control-ui/contracts";
+import type { ChatComposerProps } from "@/components/control-ui/hooks/use-chat-composer";
 import { useChatComposer } from "@/components/control-ui/hooks/use-chat-composer";
-import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { hasSkinAdornment, skinAdornment } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
 type ChatComposerContextValue = ReturnType<typeof useChatComposer>;

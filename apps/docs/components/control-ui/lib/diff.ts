@@ -1,6 +1,7 @@
 import type { StructuredPatch, StructuredPatchHunk } from "diff";
 import { diffChars, diffWordsWithSpace, parsePatch, structuredPatch } from "diff";
-import type { CodeDiffLineType } from "@/components/control-ui/contracts";
+
+export type CodeDiffLineType = "add" | "del" | "context";
 
 export type CodeLineType = CodeDiffLineType;
 export type LineDiffType = "word" | "char" | "none";

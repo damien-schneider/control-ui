@@ -11,7 +11,7 @@ import {
   ChatComposerToolbar,
   ChatComposerTools,
 } from "@/components/control-ui/chat-composer";
-import type { TaskStatus } from "@/components/control-ui/contracts";
+import type { TaskStatus } from "@/components/control-ui/task-list";
 import { TaskList, TaskListContent, TaskListItem, TaskListTrigger } from "@/components/control-ui/task-list";
 
 const planSteps = [

@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-
-import type { DiffStyle } from "@/components/control-ui/contracts";
 import { Button } from "@/components/control-ui/ui/button";
+import type { DiffStyle } from "@/components/control-ui/ui/code-diff";
 import { CodeDiff } from "@/components/control-ui/ui/code-diff";
 
 const OLD = `export function greet(name) {

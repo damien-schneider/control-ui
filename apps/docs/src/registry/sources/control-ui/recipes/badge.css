@@ -1,35 +1,30 @@
 @layer components {
   :where([data-control-family="badge"][data-slot="root"]) {
-    --badge-radius: var(--radius-control);
-    --badge-background: var(--_badge-color-background);
-    --badge-foreground: var(--_badge-color-foreground);
-    --badge-border-color: transparent;
+    --cui-badge-radius: var(--radius-control);
+    --cui-badge-background: var(--_badge-color-background);
+    --cui-badge-foreground: var(--_badge-color-foreground);
+    --cui-badge-border-color: transparent;
     --_badge-color-background: var(--badge-neutral);
     --_badge-color-foreground: var(--badge-neutral-foreground);
     --_badge-color-border: var(--badge-neutral-border);
     --_badge-color-background-hover: var(--badge-neutral-hover);
     --_badge-hover-background: var(--_badge-color-background-hover);
-    border-color: var(--badge-border-color);
-    border-radius: var(--badge-radius);
-    background: var(--badge-background);
-    color: var(--badge-foreground);
+    border-color: var(--cui-badge-border-color);
+    border-radius: var(--cui-badge-radius);
+    background: var(--cui-badge-background);
+    color: var(--cui-badge-foreground);
     outline: none;
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-variant="outline"]) {
-    --badge-background: transparent;
-    --badge-border-color: var(--_badge-color-border);
+    --cui-badge-background: transparent;
+    --cui-badge-border-color: var(--_badge-color-border);
     --_badge-hover-background: var(--_badge-color-background);
   }
 
   :where(a[data-control-family="badge"][data-slot="root"]:hover, button[data-control-family="badge"][data-slot="root"]:hover) {
     background: var(--_badge-hover-background);
-  }
-
-
-  :where([data-control-family="badge"][data-slot="root"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-color="red"]) {
@@ -82,27 +77,26 @@
   }
 }
 
-@property --badge-radius {
+@property --cui-badge-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --badge-background {
+@property --cui-badge-background {
   syntax: "*";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --badge-foreground {
+@property --cui-badge-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --badge-border-color {
+@property --cui-badge-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
-

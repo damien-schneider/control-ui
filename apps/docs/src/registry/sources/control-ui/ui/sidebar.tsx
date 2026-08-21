@@ -1,27 +1,40 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, lazy, Suspense, useContext, useEffect, useRef, useState } from "react";
-import {
-  type SelectionIndicator,
-  SIDEBAR_COOKIE_NAME,
-  type SidebarGroupLabelProps,
-  type SidebarInsetProps,
-  type SidebarMenuButtonProps,
-  type SidebarRailProps,
-} from "@/components/control-ui/contracts";
+import { type RenderProp, type SelectionIndicator, SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { controlSize } from "@/components/control-ui/control-variants";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
-import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinIndicator, skinSidebarLayout, skinSidebarWidth } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/control-ui/ui/sheet";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+
+export type SidebarMenuButtonVariant = NonNullable<VariantProps<typeof sidebarMenuButtonVariants>["variant"]>;
+
+export type SidebarMenuButtonSize = NonNullable<VariantProps<typeof sidebarMenuButtonVariants>["size"]>;
+
+export type SidebarRailProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
+
+export type SidebarInsetProps = Omit<ComponentProps<"main">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
+
+export type SidebarGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & SidebarKnobStyle } & {
+  render?: RenderProp<ComponentProps<"div">>;
+};
+
+export type SidebarMenuButtonProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle } & {
+  render?: RenderProp<ComponentProps<"button">>;
+  isActive?: boolean;
+  tooltip?: ReactNode;
+  variant?: SidebarMenuButtonVariant;
+  size?: SidebarMenuButtonSize;
+};
 
 /*
  * shadcn's Sidebar contract ported onto Control UI: provider owns open/collapsed state behind cookie and Cmd/Ctrl-B.

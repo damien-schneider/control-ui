@@ -6,9 +6,15 @@
   "description": "Loading placeholder with a token-driven shimmer.",
   "dependencies": [],
   "registryDependencies": [
-    "core"
+    "core",
+    "effects"
   ],
   "files": [
+    {
+      "path": "src/registry/knob-contracts/skeleton-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/skeleton-knobs.ts",
+      "type": "registry:component"
+    },
     {
       "path": "src/registry/sources/control-ui/recipes/skeleton.css",
       "target": "@components/control-ui/styles/recipes/skeleton.css",

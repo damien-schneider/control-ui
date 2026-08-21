@@ -1,11 +1,30 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import type { BadgeProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
+import type { BadgeKnobStyle } from "@/components/control-ui/knob-contracts/badge-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-type BadgeVariant = NonNullable<BadgeProps["variant"]>;
-type BadgeColor = NonNullable<BadgeProps["color"]>;
+export const badgeVariants = ["default", "secondary", "destructive", "outline"] as const;
+
+export type BadgeVariant = (typeof badgeVariants)[number];
+
+export const badgeSizes = ["sm", "md"] as const;
+
+export type BadgeSize = (typeof badgeSizes)[number];
+
+export const BADGE_COLORS = ["neutral", "red", "orange", "yellow", "green", "blue", "purple", "pink"] as const;
+
+export type BadgeColor = (typeof BADGE_COLORS)[number];
+
+export type BadgeProps = Omit<ComponentProps<"span">, "style"> & {
+  variant?: BadgeVariant;
+  size?: BadgeSize;
+  color?: BadgeColor;
+  render?: RenderProp<ComponentProps<"span">>;
+  style?: CSSProperties & BadgeKnobStyle;
+};
 
 const defaultColorByVariant: Record<BadgeVariant, BadgeColor> = {
   default: "neutral",

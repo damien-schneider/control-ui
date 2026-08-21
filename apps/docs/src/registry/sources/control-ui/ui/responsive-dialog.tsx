@@ -2,9 +2,10 @@
 
 import type { ComponentProps } from "react";
 import { createContext, useContext, useState, useSyncExternalStore } from "react";
-import type { OpenChangeEventDetails, ResponsiveDialogContentProps, ResponsiveDialogProps } from "@/components/control-ui/contracts";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+import type { DialogContentProps, DialogProps } from "@/components/control-ui/ui/dialog";
 import {
   Dialog,
   DialogClose,
@@ -26,6 +27,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/control-ui/ui/drawer";
+
+export type ResponsiveDialogProps = DialogProps;
+
+export type ResponsiveDialogContentProps = DialogContentProps & {
+  dialogClassName?: string;
+  drawerClassName?: string;
+};
 
 const MOBILE_QUERY = "(max-width: 767px)";
 const ResponsiveDialogContext = createContext<boolean | null>(null);
@@ -105,7 +113,7 @@ export function ResponsiveDialogClose({
       render={(renderProps) => (
         <Button
           {...renderProps}
-          data-dialog-part="close"
+          data-popup-part="close"
           variant={variant}
           size={size}
           tone={tone}

@@ -1,5 +1,5 @@
 import { Context } from "@/components/control-ui/context";
-import type { ContextSegment } from "@/components/control-ui/contracts";
+import type { ContextSegment } from "@/components/control-ui/context-model";
 
 const segments = [
   { id: "system", label: "System prompt", tokens: 12_000, kind: "system" },

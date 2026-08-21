@@ -1,8 +1,34 @@
 "use client";
 
 import { Meter as MeterPrimitive } from "@base-ui/react/meter";
-import type { MeterIndicatorProps, MeterLabelProps, MeterProps, MeterTrackProps, MeterValueProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { RangeKnobStyle } from "@/components/control-ui/knob-contracts/range-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type MeterProps = Omit<
+  ComponentProps<"div"> & {
+    value: number;
+    min?: number;
+    max?: number;
+    format?: Intl.NumberFormatOptions;
+    getAriaValueText?: (formattedValue: string, value: number) => string;
+    locale?: Intl.LocalesArgument;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
+
+export type MeterTrackProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+
+export type MeterIndicatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+
+export type MeterLabelProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & RangeKnobStyle };
+
+export type MeterValueProps = Omit<
+  Omit<ComponentProps<"span">, "children"> & {
+    children?: ((formattedValue: string, value: number) => ReactNode) | null;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
 
 // value is required — role="meter" is static gauge, never indeterminate way Progress can be.
 export function Meter({ className, ...props }: MeterProps) {

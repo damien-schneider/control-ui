@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "effects",
+  "type": "registry:style",
+  "title": "Control UI effects",
+  "description": "Token-driven shimmer, halftone, and sweep utilities shared by the components that use them.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/sources/control-ui/effects.css",
+      "target": "@components/control-ui/styles/effects.css",
+      "type": "registry:file"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/effects.css\"": {}
+  },
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/effects.json"
+  }
+}

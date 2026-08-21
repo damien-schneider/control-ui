@@ -28,6 +28,10 @@
   --border: oklch(0.6817 0.0116 204.079 / var(--ring-opacity));
   --input: oklch(0.6833 0.0533 246.812); /* classic field border */
   --ring: oklch(0.8118 0.1544 77.609); /* XP orange focus glow */
+  --focus-ring: var(--foreground);
+  --focus-ring-style: dotted;
+  --focus-ring-width: 1px;
+  --focus-ring-offset: -4px;
 
   /* page canvas — the XP dialog beige every panel sits on */
   --canvas: oklch(0.9318 0.0228 98.65);

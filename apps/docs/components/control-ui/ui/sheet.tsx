@@ -2,7 +2,7 @@
 
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import type { ComponentProps, CSSProperties } from "react";
-import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 
@@ -59,7 +59,6 @@ export function SheetContent({ className, children, side = "right", ...props }: 
           className,
         )}
         {...props}
-        data-sheet-part="content"
         data-side={side}
       >
         {children}

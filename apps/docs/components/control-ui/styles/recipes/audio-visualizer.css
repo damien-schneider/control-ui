@@ -1,13 +1,13 @@
 @layer components {
-  :where([data-control-family="audio-visualizer"][data-slot="root"]) {
-    --audio-visualizer-radius: var(--radius-control);
-    --audio-visualizer-bar-background: oklch(from var(--primary) l c h / 0.8);
-    --audio-visualizer-line-fill: oklch(from var(--primary) l c h / 0.18);
-    --audio-visualizer-line-stroke: oklch(from var(--primary) l c h / 0.8);
+  :where([data-control-family="audio-visualizer"][data-variant]) {
+    --cui-audio-visualizer-radius: var(--radius-control);
+    --cui-audio-visualizer-bar-background: oklch(from var(--primary) l c h / 0.8);
+    --cui-audio-visualizer-line-fill: oklch(from var(--primary) l c h / 0.18);
+    --cui-audio-visualizer-line-stroke: oklch(from var(--primary) l c h / 0.8);
   }
   :where([data-control-family="audio-visualizer"][data-slot="root"][data-variant]) {
     --_audio-visualizer-bar-track-filter: none;
-    border-radius: var(--audio-visualizer-radius);
+    border-radius: var(--cui-audio-visualizer-radius);
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="track"]) {
@@ -20,20 +20,29 @@
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="bar-track"]) {
-    transition: opacity var(--duration-base) var(--ease-emphasized), filter var(--duration-base) var(--ease-emphasized), translate var(--duration-base) var(--ease-emphasized);
+    transition:
+      opacity var(--duration-base) var(--ease-emphasized),
+      filter var(--duration-base) var(--ease-emphasized),
+      translate var(--duration-base) var(--ease-emphasized);
+    filter: var(--_audio-visualizer-bar-track-filter);
   }
 
   @starting-style {
     :where([data-control-family="audio-visualizer"][data-slot="bar-track"]) {
       opacity: 0;
+      --_audio-visualizer-bar-track-filter: blur(var(--blur-xs));
+      filter: var(--_audio-visualizer-bar-track-filter);
+      translate: var(--spacing) 0;
     }
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="bar"]) {
-    background: var(--audio-visualizer-bar-background);
+    background: var(--cui-audio-visualizer-bar-background);
     border-radius: var(--radius-control);
     opacity: var(--_audio-visualizer-level-opacity);
-    transition: clip-path var(--duration-base) var(--ease-standard), opacity var(--duration-base) var(--ease-standard);
+    transition:
+      clip-path var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="baseline"]) {
@@ -41,49 +50,31 @@
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="waveform"]) {
-    fill: var(--audio-visualizer-line-fill);
-    stroke: var(--audio-visualizer-line-stroke);
+    fill: var(--cui-audio-visualizer-line-fill);
+    stroke: var(--cui-audio-visualizer-line-stroke);
     transition: d var(--duration-base) var(--ease-standard);
-  }
-
-  :where([data-control-family="audio-visualizer"][data-slot="bar-track"]) {
-    filter: var(--_audio-visualizer-bar-track-filter);
-  }
-
-  @starting-style {
-    :where([data-control-family="audio-visualizer"][data-slot="bar-track"]) {
-      --_audio-visualizer-bar-track-filter: blur(var(--blur-xs));
-      filter: var(--_audio-visualizer-bar-track-filter);
-    }
-  }
-
-  @starting-style {
-    :where([data-control-family="audio-visualizer"][data-slot="bar-track"]) {
-      --_audio-visualizer-bar-track-translate: var(--spacing) 0;
-      translate: var(--_audio-visualizer-bar-track-translate);
-    }
   }
 }
 
-@property --audio-visualizer-radius {
+@property --cui-audio-visualizer-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --audio-visualizer-bar-background {
+@property --cui-audio-visualizer-bar-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --audio-visualizer-line-fill {
+@property --cui-audio-visualizer-line-fill {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --audio-visualizer-line-stroke {
+@property --cui-audio-visualizer-line-stroke {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -12,16 +12,22 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/separator-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/separator-knobs.ts",
+      "type": "registry:component",
+      "content": "// Generated from src/registry/sources/control-ui/recipes/separator.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const separatorKnobs = [\"--cui-separator-root-background\"] as const;\nexport type SeparatorKnobStyle = Partial<Record<(typeof separatorKnobs)[number], string>>;\n"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/separator.css",
       "target": "@components/control-ui/styles/recipes/separator.css",
       "type": "registry:file",
-      "content": "@layer components {\n  :where([data-control-family=\"separator\"][data-slot=\"root\"]) {\n    --separator-root-background: var(--border);\n    background-color: var(--separator-root-background);\n  }\n}\n\n@property --separator-root-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
+      "content": "@layer components {\n  :where([data-control-family=\"separator\"][data-slot=\"root\"]) {\n    --cui-separator-root-background: var(--border);\n    background-color: var(--cui-separator-root-background);\n  }\n}\n\n@property --cui-separator-root-background {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
     },
     {
       "path": "src/registry/sources/control-ui/ui/separator.tsx",
       "target": "@components/control-ui/ui/separator.tsx",
       "type": "registry:ui",
-      "content": "import { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\";\nimport type { ComponentProps, CSSProperties } from \"react\";\nimport type { SeparatorKnobStyle } from \"@/components/control-ui/knob-contracts\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\n\n// axis comes straight from prop, never data-attribute, so no skin can break it\nexport function Separator({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: Omit<ComponentProps<typeof SeparatorPrimitive>, \"style\"> & { style?: CSSProperties & SeparatorKnobStyle }) {\n  return (\n    <SeparatorPrimitive\n      data-control-ui=\"separator\"\n      data-control-family=\"separator\"\n      data-slot=\"root\"\n      orientation={orientation}\n      className={cn(\"shrink-0\", orientation === \"vertical\" ? \"h-full w-px\" : \"h-px w-full\", className)}\n      {...props}\n    />\n  );\n}\n"
+      "content": "import { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\";\nimport type { ComponentProps, CSSProperties } from \"react\";\nimport type { SeparatorKnobStyle } from \"@/components/control-ui/knob-contracts/separator-knobs\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\n\n// axis comes straight from prop, never data-attribute, so no skin can break it\nexport function Separator({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: Omit<ComponentProps<typeof SeparatorPrimitive>, \"style\"> & { style?: CSSProperties & SeparatorKnobStyle }) {\n  return (\n    <SeparatorPrimitive\n      data-control-ui=\"separator\"\n      data-control-family=\"separator\"\n      data-slot=\"root\"\n      orientation={orientation}\n      className={cn(\"shrink-0\", orientation === \"vertical\" ? \"h-full w-px\" : \"h-px w-full\", className)}\n      {...props}\n    />\n  );\n}\n"
     }
   ],
   "css": {

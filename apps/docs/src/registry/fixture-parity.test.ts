@@ -20,10 +20,7 @@ describe("installed fixtures mirror their src/registry sources", () => {
     expect(result.status).toBe(0);
   });
 
-  const BYTE_PAIRS: [fixture: string, source: string][] = [
-    ["components/control-ui/skin.ts", "src/registry/skin.ts"],
-    ["components/control-ui/contracts.ts", "src/registry/contracts.ts"],
-  ];
+  const BYTE_PAIRS: [fixture: string, source: string][] = [["components/control-ui/skin.ts", "src/registry/skin.ts"]];
 
   for (const [fixture, source] of BYTE_PAIRS) {
     test(`${fixture} is byte-identical to ${source}`, () => {

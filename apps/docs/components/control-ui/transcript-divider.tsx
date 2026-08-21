@@ -1,8 +1,13 @@
 import type { ComponentProps, CSSProperties } from "react";
-
-import type { TranscriptDividerProps } from "@/components/control-ui/contracts";
-import type { TranscriptDividerKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { TranscriptDividerKnobStyle } from "@/components/control-ui/knob-contracts/transcript-divider-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type ChatTone = "neutral" | "success" | "warning" | "danger";
+
+export type TranscriptDividerProps = Omit<ComponentProps<"div">, "style"> & {
+  tone?: ChatTone;
+  style?: CSSProperties & TranscriptDividerKnobStyle;
+};
 
 export function TranscriptDivider({ tone = "neutral", className, children, ...props }: TranscriptDividerProps) {
   return (

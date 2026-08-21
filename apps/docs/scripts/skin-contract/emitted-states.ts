@@ -1,61 +1,43 @@
+import type { ChatDensity, ChatRole, ChatState } from "../../src/registry/hooks/use-chat-message";
+import type { DropzoneVisualState } from "../../src/registry/hooks/use-dropzone";
+import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dynamic-notification";
+import type { CodeDiffLineType } from "../../src/registry/lib/diff";
+import type { ActivityDetailFormat, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
+import type { ContextSegmentKind, ContextStatus } from "../../src/registry/sources/control-ui/context-model";
+import type { ControlSize } from "../../src/registry/sources/control-ui/control-variants";
+import type { DynamicNotificationState } from "../../src/registry/sources/control-ui/dynamic-notification";
+import type { InlineAttachmentState } from "../../src/registry/sources/control-ui/inline-attachment";
+import type { TaskStatus } from "../../src/registry/sources/control-ui/task-list";
+import type { ChatTone } from "../../src/registry/sources/control-ui/transcript-divider";
+import type { AlertVariant } from "../../src/registry/sources/control-ui/ui/alert";
+import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
+import type { ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
+import type { CardVariant } from "../../src/registry/sources/control-ui/ui/card";
+import type { CodeChrome, CodeDensity } from "../../src/registry/sources/control-ui/ui/code";
+import type { DiffIndicators, DiffStyle } from "../../src/registry/sources/control-ui/ui/code-diff";
+import type { DockablePanelContentPadding, DockablePanelPlacement } from "../../src/registry/sources/control-ui/ui/dockable-panel";
 import type {
-  ActivityDetailFormat,
-  ActivityKind,
-  ActivityState,
-  AlertVariant,
-  BadgeColor,
-  BadgeSize,
-  BadgeVariant,
-  ButtonShape,
-  ButtonTone,
-  ButtonVariant,
-  CardVariant,
-  ChatDensity,
-  ChatRole,
-  ChatState,
-  ChatTone,
-  CodeChrome,
-  CodeDensity,
-  CodeDiffLineType,
-  ContextSegmentKind,
-  ContextStatus,
-  ControlSize,
-  DiffIndicators,
-  DiffStyle,
-  DockablePanelContentPadding,
-  DockablePanelPlacement,
   DrawerContentPadding,
   DrawerContentSurface,
   DrawerContentVariant,
   DrawerSide,
-  DropdownMenuTriggerVariant,
-  DropzoneOverlayScope,
-  DropzoneVisualState,
-  DynamicNotificationState,
-  DynamicNotificationVariant,
-  InlineAttachmentState,
-  NavigationMenuLinkVariant,
-  PopoverContentPadding,
-  ResizableHandleVariant,
-  ResizablePanelGroupVariant,
-  RichTooltipProgressVariant,
-  RichTooltipTone,
-  ScrollAreaScrollbarVisibility,
-  SelectTriggerVariant,
-  SidebarMenuButtonSize,
-  SidebarMenuButtonVariant,
-  SliderVariant,
-  StepperContentMode,
-  StepperOrientation,
-  StepperState,
-  TableOfContentsVariant,
-  TabsListVariant,
-  TaskStatus,
-  TimelineState,
-  ToolbarLinkVariant,
-  ToolbarVariant,
-  TreeSelectionIndicator,
-} from "../../src/registry/contracts";
+} from "../../src/registry/sources/control-ui/ui/drawer";
+import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
+import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
+import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
+import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
+import type { ResizableHandleVariant, ResizablePanelGroupVariant } from "../../src/registry/sources/control-ui/ui/resizable";
+import type { RichTooltipProgressVariant, RichTooltipTone } from "../../src/registry/sources/control-ui/ui/rich-tooltip";
+import type { ScrollAreaScrollbarVisibility } from "../../src/registry/sources/control-ui/ui/scroll-area";
+import type { SelectTriggerVariant } from "../../src/registry/sources/control-ui/ui/select";
+import type { SidebarMenuButtonSize, SidebarMenuButtonVariant } from "../../src/registry/sources/control-ui/ui/sidebar";
+import type { SliderVariant } from "../../src/registry/sources/control-ui/ui/slider";
+import type { StepperContentMode, StepperOrientation, StepperState } from "../../src/registry/sources/control-ui/ui/stepper";
+import type { TableOfContentsVariant } from "../../src/registry/sources/control-ui/ui/table-of-contents";
+import type { TabsListVariant } from "../../src/registry/sources/control-ui/ui/tabs";
+import type { TimelineState } from "../../src/registry/sources/control-ui/ui/timeline";
+import type { ToolbarLinkVariant, ToolbarVariant } from "../../src/registry/sources/control-ui/ui/toolbar";
+import type { TreeSelectionIndicator } from "../../src/registry/sources/control-ui/ui/tree";
 
 export type EmittedStateContract = {
   "activity:root:data-activity-kind": ActivityKind;
@@ -107,9 +89,8 @@ export type EmittedStateContract = {
   "chat-message:root:data-density": ChatDensity;
   "chat-message:root:data-role": ChatRole;
   "chat-message:root:data-state": ChatState;
-  "chat-message:root:data-tone": ChatTone;
   "chat-message:content:data-role": ChatRole;
-  "chat-turn:root:data-from": "user" | "assistant";
+  "chat-turn:turn:data-from": "user" | "assistant";
   "checkbox-group:root:data-orientation": "horizontal" | "vertical";
   "code:root:data-chrome": CodeChrome;
   "code:root:data-density": CodeDensity;

@@ -3,20 +3,61 @@
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { useRender } from "@base-ui/react/use-render";
 import { ChevronRightIcon } from "lucide-react";
-import type { CSSProperties, KeyboardEvent, MouseEvent, Ref } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode, Ref } from "react";
 import { Children, createContext, isValidElement, lazy, Suspense, useContext, useRef, useState } from "react";
-import type {
-  TreeItemContentProps,
-  TreeItemIndicatorProps,
-  TreeItemLabelProps,
-  TreeItemProps,
-  TreeItemTriggerProps,
-  TreeProps,
-  TreeSelectionIndicator,
-  TreeSelectionMode,
-} from "@/components/control-ui/contracts";
+import type { RenderProp, SelectionIndicator } from "@/components/control-ui/control-props";
+import type { TreeKnobStyle } from "@/components/control-ui/knob-contracts/tree-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinIndicator } from "@/components/control-ui/skin";
+
+export type TreeSelectionMode = "none" | "single" | "multiple";
+
+export type TreeInteractionReason = "pointer" | "keyboard" | "imperative";
+
+export type TreeSelectionChangeDetails = {
+  value: string;
+  reason: TreeInteractionReason;
+};
+
+export type TreeExpandedChangeDetails = {
+  value: string;
+  expanded: boolean;
+  reason: TreeInteractionReason;
+};
+
+export type TreeSelectionIndicator = SelectionIndicator;
+
+export type TreeProps = Omit<Omit<ComponentProps<"ul">, "onChange" | "defaultValue">, "style"> & {
+  style?: CSSProperties & TreeKnobStyle;
+} & {
+  selectionMode?: TreeSelectionMode;
+  value?: string[];
+  defaultValue?: string[];
+  onValueChange?: (value: string[], details: TreeSelectionChangeDetails) => void;
+  expandedValue?: string[];
+  defaultExpandedValue?: string[];
+  onExpandedChange?: (expanded: string[], details: TreeExpandedChangeDetails) => void;
+  indicator?: TreeSelectionIndicator;
+};
+
+export type TreeItemProps = Omit<ComponentProps<"li">, "value"> & {
+  value: string;
+  disabled?: boolean;
+  label?: string;
+  children?: ReactNode;
+};
+
+export type TreeItemTriggerProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TreeKnobStyle } & {
+  render?: RenderProp<ComponentProps<"div">>;
+};
+
+export type TreeItemIndicatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & TreeKnobStyle };
+
+export type TreeItemLabelProps = ComponentProps<"span"> & {
+  render?: RenderProp<ComponentProps<"span">>;
+};
+
+export type TreeItemContentProps = ComponentProps<"div"> & { style?: CSSProperties & TreeKnobStyle };
 
 // lazy because highlight drags in JS geometry engine; it is decorative, so null fallback is fine
 const TrackHighlight = lazy(() =>

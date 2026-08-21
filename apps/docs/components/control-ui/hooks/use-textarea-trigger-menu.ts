@@ -2,9 +2,8 @@
 
 import type { RefObject } from "react";
 import { useEffect, useEffectEvent } from "react";
-
-import type { TriggerConfig, TriggerMenuItemData } from "../contracts";
 import { caretRectInTextarea, detectTrigger } from "../lib/trigger-detect";
+import type { TriggerConfig, TriggerMenuItemData } from "./use-trigger-menu";
 import { useTriggerMenu } from "./use-trigger-menu";
 
 // Same `triggers` config as ProseMirror path, so primitive works with no editor installed.

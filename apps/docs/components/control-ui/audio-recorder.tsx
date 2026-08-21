@@ -7,7 +7,9 @@ import { createContext, use } from "react";
 import { AudioVisualizer } from "@/components/control-ui/audio-visualizer";
 import type { UseAudioRecorderOptions, UseAudioRecorderResult } from "@/components/control-ui/hooks/use-audio-recorder";
 import { useAudioRecorder } from "@/components/control-ui/hooks/use-audio-recorder";
-import type { AudioRecorderKnobStyle, AudioVisualizerKnobStyle, ButtonKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { AudioRecorderKnobStyle } from "@/components/control-ui/knob-contracts/audio-recorder-knobs";
+import type { AudioVisualizerKnobStyle } from "@/components/control-ui/knob-contracts/audio-visualizer-knobs";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatAudioRecorderDuration } from "@/components/control-ui/lib/format-audio-recorder-duration";
 import { Button } from "@/components/control-ui/ui/button";
@@ -119,7 +121,6 @@ export function AudioRecorderTrigger({ className, children, disabled, onClick, .
   return (
     <Button
       data-control-ui="audio-recorder"
-      data-control-family="audio-recorder"
       data-slot="trigger"
       data-recorder-state={recorder.state}
       data-status-only={isStatusOnly ? "true" : undefined}
@@ -183,7 +184,6 @@ export function AudioRecorderVisualizer({ points, className, ...props }: AudioRe
   return (
     <AudioVisualizer
       data-control-ui="audio-recorder"
-      data-control-family="audio-recorder"
       data-slot="visualizer"
       data-visible={isVisible ? "true" : undefined}
       active={recorder.state === "recording"}
@@ -262,7 +262,6 @@ export function AudioRecorderCancel({ className, children, disabled, onClick, ta
   return (
     <Button
       data-control-ui="audio-recorder"
-      data-control-family="audio-recorder"
       data-slot="cancel"
       data-visible={isVisible ? "true" : undefined}
       type="button"
@@ -298,7 +297,6 @@ export function AudioRecorderSubmit({ className, children, disabled, onClick, ta
   return (
     <Button
       data-control-ui="audio-recorder"
-      data-control-family="audio-recorder"
       data-slot="submit"
       data-visible={isVisible ? "true" : undefined}
       type="button"

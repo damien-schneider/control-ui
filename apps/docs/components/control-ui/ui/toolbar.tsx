@@ -1,17 +1,41 @@
 "use client";
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
-import type { ComponentProps } from "react";
-import type {
-  ToolbarButtonProps,
-  ToolbarGroupProps,
-  ToolbarInputProps,
-  ToolbarLinkProps,
-  ToolbarProps,
-  ToolbarSeparatorProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { ToolbarKnobStyle } from "@/components/control-ui/knob-contracts/toolbar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type ToolbarVariant = "default" | "inverse";
+
+export type ToolbarLinkVariant = "default" | "track";
+
+export type ToolbarProps = Omit<ComponentProps<"div">, "style"> & {
+  orientation?: "horizontal" | "vertical";
+  variant?: ToolbarVariant;
+  style?: CSSProperties & ToolbarKnobStyle;
+};
+
+export type ToolbarButtonProps = Omit<ComponentProps<"button">, "style"> & {
+  iconOnly?: boolean;
+  style?: CSSProperties & ToolbarKnobStyle;
+};
+
+export type ToolbarLinkProps = Omit<ComponentProps<"a">, "style"> & {
+  variant?: ToolbarLinkVariant;
+  style?: CSSProperties & ToolbarKnobStyle;
+};
+
+export type ToolbarGroupProps = ComponentProps<"div"> & { style?: CSSProperties & ToolbarKnobStyle };
+
+export type ToolbarSeparatorProps = Omit<ComponentProps<"div">, "style"> & {
+  orientation?: "horizontal" | "vertical";
+  style?: CSSProperties & ToolbarKnobStyle;
+};
+
+export type ToolbarInputProps = Omit<ComponentProps<"input">, "style"> & {
+  style?: CSSProperties & ToolbarKnobStyle;
+};
 
 // Button and Link forward Base UI's `render` prop, so composed trigger still receives roving-focus wiring.
 

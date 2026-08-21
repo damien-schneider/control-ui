@@ -1,4 +1,4 @@
-import { BADGE_COLORS } from "../contracts";
+import { BADGE_COLORS } from "../sources/control-ui/ui/badge";
 
 // Names only — values live in each pack's theme.css. name absent here is not in the contract: packs must not declare it in theme.css, and skin.css must never redeclare one that is here.
 export type ThemeContractGroup = "color" | "typography" | "radius" | "shadow" | "motion" | "surface" | "layout";
@@ -48,6 +48,12 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--border", "color", "core", "Hairline border color (carries --ring-opacity)."),
   token("--input", "color", "core", "Form field border color."),
   token("--ring", "color", "core", "Focus ring color."),
+  token(
+    "--focus-ring",
+    "color",
+    "derived",
+    "Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).",
+  ),
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),
   // color knobs
   token("--ring-opacity", "color", "derived", "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."),
@@ -125,6 +131,19 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--control-h-xs", "layout", "derived", "Derived control height: xs (×0.78, px-snapped)."),
   token("--control-h-sm", "layout", "derived", "Derived control height: sm (×0.89, px-snapped)."),
   token("--control-h-lg", "layout", "derived", "Derived control height: lg (×1.11, px-snapped)."),
+  token("--focus-ring-width", "layout", "derived", "Thickness of the keyboard focus indicator; 0 removes it and fails WCAG 2.4.7."),
+  token(
+    "--focus-ring-style",
+    "layout",
+    "derived",
+    "Line style of the keyboard focus indicator (solid, dotted, dashed); none removes it and fails WCAG 2.4.7.",
+  ),
+  token(
+    "--focus-ring-offset",
+    "layout",
+    "derived",
+    "Gap between a control edge and its focus indicator; negative draws the indicator inside.",
+  ),
 ];
 
 export const THEME_CONTRACT_NAMES: ReadonlySet<string> = new Set(THEME_CONTRACT.map((entry) => entry.name));

@@ -4,7 +4,8 @@ import type { DOMOutputSpec, NodeSpec, Node as ProseMirrorNode } from "prosemirr
 import type { Command } from "prosemirror-state";
 import type { EditorView } from "prosemirror-view";
 import { useEffect } from "react";
-import type { MentionItem, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
+import type { MentionItem } from "@/components/control-ui/hooks/use-chat-composer";
+import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
 import { useTriggerMenu } from "@/components/control-ui/hooks/use-trigger-menu";
 import { detectTrigger } from "@/components/control-ui/lib/trigger-detect";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";

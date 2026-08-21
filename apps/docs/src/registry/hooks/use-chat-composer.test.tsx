@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import type { ChatComposerProps } from "../contracts";
+import type { ChatComposerProps } from "./use-chat-composer";
 import { useChatComposer } from "./use-chat-composer";
 
 type ComposerOptions = Pick<ChatComposerProps, "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled">;

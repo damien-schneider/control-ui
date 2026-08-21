@@ -1,4 +1,4 @@
-import type { UserAskAnswers } from "@/components/control-ui/contracts";
+import type { UserAskAnswers } from "@/components/control-ui/hooks/use-user-ask";
 import {
   UserAsk,
   UserAskDismiss,

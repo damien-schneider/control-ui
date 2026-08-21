@@ -12,9 +12,25 @@
     "code",
     "core",
     "scroll-area",
-    "tooltip"
+    "tooltip",
+    "use-copy-to-clipboard"
   ],
   "files": [
+    {
+      "path": "src/registry/knob-contracts/button-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/knob-contracts/code-block-editor-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/code-block-editor-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/knob-contracts/code-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/code-knobs.ts",
+      "type": "registry:component"
+    },
     {
       "path": "src/registry/lib/code-block-shiki.ts",
       "target": "@components/control-ui/lib/code-block-shiki.ts",

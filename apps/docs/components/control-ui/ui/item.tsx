@@ -2,18 +2,34 @@
 
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties } from "react";
-import type {
-  ItemDescriptionProps,
-  ItemFooterProps,
-  ItemGroupProps,
-  ItemMediaProps,
-  ItemProps,
-  ItemSeparatorProps,
-  ItemTitleProps,
-} from "@/components/control-ui/contracts";
-import type { ItemKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { RenderProp } from "@/components/control-ui/control-props";
+import type { ItemKnobStyle } from "@/components/control-ui/knob-contracts/item-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Separator } from "@/components/control-ui/ui/separator";
+
+export const itemVariants = ["default", "outline", "muted"] as const;
+
+export type ItemVariant = (typeof itemVariants)[number];
+
+export type ItemProps = Omit<
+  ComponentProps<"div"> & {
+    variant?: ItemVariant;
+    render?: RenderProp<ComponentProps<"div">>;
+  },
+  "style"
+> & { style?: CSSProperties & ItemKnobStyle };
+
+export type ItemDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+
+export type ItemFooterProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+
+export type ItemMediaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+
+export type ItemTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ItemKnobStyle };
+
+export type ItemGroupProps = ComponentProps<"div"> & { style?: CSSProperties & ItemKnobStyle };
+
+export type ItemSeparatorProps = ComponentProps<"div">;
 
 export function ItemGroup({ className, ...props }: ItemGroupProps) {
   return (

@@ -4,7 +4,8 @@ import { XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import { createContext, useContext } from "react";
 
-import type { ButtonKnobStyle, ChatComposerAttachmentKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { ChatComposerAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-attachment-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";

@@ -1,5 +1,16 @@
-import type { AlertDescriptionProps, AlertProps, AlertTitleProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { AlertKnobStyle } from "@/components/control-ui/knob-contracts/alert-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export const alertVariants = ["default", "destructive"] as const;
+
+export type AlertVariant = (typeof alertVariants)[number];
+
+export type AlertProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle } & { variant?: AlertVariant };
+
+export type AlertTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
+
+export type AlertDescriptionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AlertKnobStyle };
 
 export function Alert({ variant = "default", className, ...props }: AlertProps) {
   return (

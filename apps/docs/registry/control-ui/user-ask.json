@@ -19,6 +19,11 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/knob-contracts/user-ask-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/user-ask-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/user-ask-details.css",
       "target": "@components/control-ui/styles/recipes/user-ask-details.css",
       "type": "registry:file"

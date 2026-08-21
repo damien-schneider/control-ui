@@ -1,13 +1,13 @@
 @layer components {
-  :where([data-control-family="context"][data-slot="root"]) {
-    --context-graph-radius: 9999px;
-    --context-limit-marker-color: var(--destructive-text);
-    --context-overage-fill: oklch(from var(--destructive-text) l c h / 0.22);
-    --context-track-fill: var(--muted);
-    --context-segment-message-fill: oklch(from var(--primary) l c h / 0.65);
-    --context-segment-reasoning-fill: oklch(from var(--foreground) l c h / 0.5);
-    --context-segment-source-fill: oklch(from var(--accent-foreground) l c h / 0.65);
-    --context-segment-tool-fill: var(--primary);
+  :where([data-control-family="context"][data-slot="root"], [data-control-family="context"][data-slot="content"]) {
+    --cui-context-graph-radius: 9999px;
+    --cui-context-limit-marker-color: var(--destructive-text);
+    --cui-context-overage-fill: oklch(from var(--destructive-text) l c h / 0.22);
+    --cui-context-track-fill: var(--muted);
+    --cui-context-segment-message-fill: oklch(from var(--primary) l c h / 0.65);
+    --cui-context-segment-reasoning-fill: oklch(from var(--foreground) l c h / 0.5);
+    --cui-context-segment-source-fill: oklch(from var(--accent-foreground) l c h / 0.65);
+    --cui-context-segment-tool-fill: var(--primary);
   }
 
   :where([data-control-family="context"][data-slot="trigger-indicator"]) {
@@ -37,7 +37,10 @@
     transition-timing-function: var(--ease-standard);
   }
 
-  :where([data-context-trigger-button="true"]:is(:hover, :focus-visible, [data-popup-open]) [data-control-family="context"][data-slot="trigger-label"]) {
+  :where(
+    [data-context-trigger-button="true"]:is(:hover, :focus-visible, [data-popup-open])
+      [data-control-family="context"][data-slot="trigger-label"]
+  ) {
     opacity: 1;
   }
 
@@ -57,14 +60,15 @@
 
   :where([data-control-family="context"][data-slot="summary-value"]) {
     color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="context"][data-slot="graph"]) {
-    border-radius: var(--context-graph-radius);
+    border-radius: var(--cui-context-graph-radius);
   }
 
   :where([data-control-family="context"][data-slot="track"]) {
-    fill: var(--context-track-fill);
+    fill: var(--cui-context-track-fill);
   }
 
   :where([data-control-family="context"][data-slot="segment"]) {
@@ -76,19 +80,19 @@
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="tool"]) {
-    fill: var(--context-segment-tool-fill);
+    fill: var(--cui-context-segment-tool-fill);
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="message"]) {
-    fill: var(--context-segment-message-fill);
+    fill: var(--cui-context-segment-message-fill);
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="source"]) {
-    fill: var(--context-segment-source-fill);
+    fill: var(--cui-context-segment-source-fill);
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="reasoning"]) {
-    fill: var(--context-segment-reasoning-fill);
+    fill: var(--cui-context-segment-reasoning-fill);
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="cache"]) {
@@ -96,11 +100,11 @@
   }
 
   :where([data-control-family="context"][data-slot="overage"]) {
-    fill: var(--context-overage-fill);
+    fill: var(--cui-context-overage-fill);
   }
 
   :where([data-control-family="context"][data-slot="limit-marker"]) {
-    stroke: var(--context-limit-marker-color);
+    stroke: var(--cui-context-limit-marker-color);
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"]) {
@@ -113,19 +117,19 @@
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="tool"]) {
-    background: var(--context-segment-tool-fill);
+    background: var(--cui-context-segment-tool-fill);
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="message"]) {
-    background: var(--context-segment-message-fill);
+    background: var(--cui-context-segment-message-fill);
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="source"]) {
-    background: var(--context-segment-source-fill);
+    background: var(--cui-context-segment-source-fill);
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="reasoning"]) {
-    background: var(--context-segment-reasoning-fill);
+    background: var(--cui-context-segment-reasoning-fill);
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="cache"]) {
@@ -150,59 +154,53 @@
   }
 
   :where([data-control-family="context"][data-slot="legend-value"]) {
-    --_context-legend-value-number-style: tabular-nums;
-    font-variant-numeric: var(--_context-legend-value-number-style);
-  }
-
-  :where([data-control-family="context"][data-slot="summary-value"]) {
-    --_context-summary-value-number-style: tabular-nums;
-    font-variant-numeric: var(--_context-summary-value-number-style);
+    font-variant-numeric: tabular-nums;
   }
 }
 
-@property --context-graph-radius {
+@property --cui-context-graph-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --context-track-fill {
+@property --cui-context-track-fill {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --context-segment-tool-fill {
+@property --cui-context-segment-tool-fill {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --context-segment-message-fill {
+@property --cui-context-segment-message-fill {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --context-segment-source-fill {
+@property --cui-context-segment-source-fill {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --context-segment-reasoning-fill {
+@property --cui-context-segment-reasoning-fill {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --context-overage-fill {
+@property --cui-context-overage-fill {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --context-limit-marker-color {
+@property --cui-context-limit-marker-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

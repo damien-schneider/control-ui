@@ -3,12 +3,27 @@
 import { Check, ChevronRight, CircleAlert, CircleDashed, LoaderCircle } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext } from "react";
-
-import type { ActivityDetailFormat, ActivityKind, ActivityProps, ActivityState, ScrollAreaProps } from "@/components/control-ui/contracts";
-import type { ActivityKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ActivityKnobStyle } from "@/components/control-ui/knob-contracts/activity-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { CollapsibleProps } from "@/components/control-ui/ui/collapsible";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import type { ScrollAreaProps } from "@/components/control-ui/ui/scroll-area";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+
+export type ActivityState = "pending" | "running" | "success" | "error";
+
+export type ActivityKind = "default" | "tool" | "reasoning" | "signal";
+
+export type ActivityDetailFormat = "text" | "code";
+
+export type ActivityProps = Omit<CollapsibleProps, "children" | "style"> & {
+  children?: ReactNode;
+  kind?: ActivityKind;
+  name?: string;
+  state?: ActivityState;
+  statusLabel?: ReactNode;
+  style?: CSSProperties & ActivityKnobStyle;
+};
 
 type ActivityStyleProps<Props, Style> = Omit<Props, "style"> & {
   style?: CSSProperties & Style;

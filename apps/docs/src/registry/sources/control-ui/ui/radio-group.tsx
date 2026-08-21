@@ -2,8 +2,33 @@
 
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
-import type { RadioGroupProps, RadioProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { ControlledChoice } from "@/components/control-ui/control-props";
+import type { ChoiceKnobStyle } from "@/components/control-ui/knob-contracts/choice-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type RadioGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledChoice<TValue> & {
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    name?: string;
+    orientation?: "horizontal" | "vertical";
+  } & { style?: CSSProperties & ChoiceKnobStyle };
+
+export type RadioProps = Omit<
+  {
+    value: string;
+    disabled?: boolean;
+    readOnly?: boolean;
+    required?: boolean;
+    id?: string;
+    className?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & ChoiceKnobStyle };
 
 // `orientation` is visual only — Base UI owns roving focus on both axes and exposes no such prop.
 export function RadioGroup<TValue extends string = string>({ className, orientation = "vertical", ...props }: RadioGroupProps<TValue>) {

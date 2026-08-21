@@ -8,8 +8,8 @@ import { EditorView } from "prosemirror-view";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 
 import { useChatComposerContext } from "@/components/control-ui/chat-composer";
-import type { ChatComposerSubmitPayload } from "@/components/control-ui/contracts";
-import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
+import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { MESSAGE_GHOST_INHERIT, spawnExitGhost } from "./chat-composer-editor/ghost";
 import { createEditorSchema } from "./chat-composer-editor/schema";

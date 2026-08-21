@@ -12,10 +12,10 @@ const knobCascadeExample = `/* app-wide: a token, on :root */
 :root { --radius-field: 0.75rem; }
 
 /* one family, everywhere: a knob, on the family root */
-[data-control-ui="chat-composer"] { --chat-composer-shell-radius: 0; }
+[data-control-family="chat-composer"] { --cui-chat-composer-shell-radius: 0; }
 
 /* one instance, on the root element:
-   className="[--chat-composer-shell-radius:0]"  or  style={{ "--chat-composer-shell-radius": "0" }} */`;
+   className="[--cui-chat-composer-shell-radius:0]"  or  style={{ "--cui-chat-composer-shell-radius": "0" }} */`;
 
 export function SkinPage({ skin }: { skin: DocsSkinPage }) {
   const install = packInstallCommand(skin.id);
@@ -105,7 +105,7 @@ const SKIN_REQUIREMENTS = [
   },
   {
     label: "scope anatomy, never host elements",
-    body: 'Component selectors in skin.css use the generated [data-control-ui="scope"][data-slot="part"] pair; never skin bare host elements (code, button, input) under [data-skin]. Enforced per pack.',
+    body: 'Component selectors in skin.css key the generated [data-slot="part"][data-control-family="family"] pair, narrowed by [data-<family>-kind] when several components share a family; never skin bare host elements (code, button, input) under [data-skin]. Enforced per pack.',
   },
   {
     label: "declared intents, mirrored",
@@ -160,12 +160,12 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
         <section id="anatomy" className="min-w-0 scroll-mt-20">
           <SectionTitle
             title="The anatomy contract"
-            description="Generated from canonical component DOM. Scope identifies the component; slot is local to that scope."
+            description="Generated from canonical component DOM. Family is the selector key; slot names the part; scope identifies the component."
           />
           <p className="mb-4 max-w-2xl text-body leading-6 text-muted-foreground">
             Copy a selector as{" "}
-            <code>[data-skin=&quot;brand&quot;] [data-control-ui=&quot;chat-composer&quot;][data-slot=&quot;shell&quot;]</code>. Optional
-            adornment anchors are listed separately in the{" "}
+            <code>[data-skin=&quot;brand&quot;] [data-slot=&quot;shell&quot;][data-control-family=&quot;chat-composer&quot;]</code>.
+            Optional adornment anchors are listed separately in the{" "}
             <Link href="/r/skin-contract.json" className="font-medium text-foreground underline underline-offset-4">
               full machine-readable contract
             </Link>

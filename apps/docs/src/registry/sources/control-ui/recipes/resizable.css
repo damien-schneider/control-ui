@@ -1,29 +1,35 @@
 @layer components {
   :where([data-control-family="resizable"][data-slot="panel-group"]) {
-    --resizable-group-background: var(--card);
-    --resizable-group-radius: var(--radius-panel);
-    --resizable-group-border-color: var(--border);
-    --resizable-handle-color: var(--foreground);
-    --resizable-handle-hover-background: oklch(from var(--foreground) l c h / 0.25);
-    --resizable-handle-active-background: oklch(from var(--foreground) l c h / 0.4);
-    --resizable-grip-radius: var(--radius-control);
-    --resizable-grip-background: var(--card);
-    --resizable-grip-foreground: var(--muted-foreground);
-    background-color: var(--resizable-group-background);
+    --cui-resizable-group-background: var(--card);
+    --cui-resizable-group-radius: var(--radius-panel);
+    --cui-resizable-group-border-color: var(--border);
+    --cui-resizable-handle-color: var(--foreground);
+    --cui-resizable-handle-hover-background: oklch(from var(--foreground) l c h / 0.25);
+    --cui-resizable-handle-active-background: oklch(from var(--foreground) l c h / 0.4);
+    --cui-resizable-grip-radius: var(--radius-control);
+    --cui-resizable-grip-background: var(--card);
+    --cui-resizable-grip-foreground: var(--muted-foreground);
+    background-color: var(--cui-resizable-group-background);
     color: var(--card-foreground);
   }
 
   :where([data-control-family="resizable"][data-slot="panel-group"][data-variant="framed"]) {
-    border: 1px solid var(--resizable-group-border-color);
-    border-radius: var(--resizable-group-radius);
+    border: 1px solid var(--cui-resizable-group-border-color);
+    border-radius: var(--cui-resizable-group-radius);
     box-shadow: var(--shadow-sm);
   }
 
+  :where([data-control-family="resizable"][data-slot="panel-group"][data-variant="nested"]) {
+    --cui-resizable-group-background: transparent;
+    --cui-resizable-group-radius: 0px;
+  }
+
   :where([data-control-family="resizable"][data-slot="handle"]) {
-    --_resizable-gradient-color: var(--resizable-handle-color);
+    --_resizable-gradient-color: var(--cui-resizable-handle-color);
     transition-property: background-color, box-shadow, opacity;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+    outline-style: none;
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"]) {
@@ -34,11 +40,11 @@
     [data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="hover"],
     [data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="focus"]
   ) {
-    background-color: var(--resizable-handle-hover-background);
+    background-color: var(--cui-resizable-handle-hover-background);
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="active"]) {
-    background-color: var(--resizable-handle-active-background);
+    background-color: var(--cui-resizable-handle-active-background);
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-separator="focus"]) {
@@ -60,19 +66,11 @@
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-variant="hover"][data-axis="vertical"])::before {
-    background-image: linear-gradient(
-      to bottom,
-      var(--_resizable-gradient-color),
-      oklch(from var(--_resizable-gradient-color) l c h / 0)
-    );
+    background-image: linear-gradient(to bottom, var(--_resizable-gradient-color), oklch(from var(--_resizable-gradient-color) l c h / 0));
   }
 
   :where([data-control-family="resizable"][data-slot="handle"][data-variant="hover"][data-axis="horizontal"])::before {
-    background-image: linear-gradient(
-      to right,
-      var(--_resizable-gradient-color),
-      oklch(from var(--_resizable-gradient-color) l c h / 0)
-    );
+    background-image: linear-gradient(to right, var(--_resizable-gradient-color), oklch(from var(--_resizable-gradient-color) l c h / 0));
   }
 
   :where(
@@ -87,9 +85,9 @@
 
   :where([data-control-family="resizable"][data-slot="handle-grip"]) {
     border: 1px solid var(--border);
-    border-radius: var(--resizable-grip-radius);
-    background-color: var(--resizable-grip-background);
-    color: var(--resizable-grip-foreground);
+    border-radius: var(--cui-resizable-grip-radius);
+    background-color: var(--cui-resizable-grip-background);
+    color: var(--cui-resizable-grip-foreground);
     box-shadow: var(--shadow-sm);
     opacity: 1;
     transition-property: opacity;
@@ -102,70 +100,62 @@
   }
 
   :where(
-    [data-control-family="resizable"][data-slot="handle"]:is(
-      [data-separator="hover"],
-      [data-separator="focus"],
-      [data-separator="active"]
-    ) > [data-slot="handle-grip"][data-variant="hover"]
+    [data-control-family="resizable"][data-slot="handle"]:is([data-separator="hover"], [data-separator="focus"], [data-separator="active"])
+      > [data-slot="handle-grip"][data-variant="hover"]
   ) {
     opacity: 1;
   }
-
-  :where([data-control-family="resizable"][data-slot="handle"]) {
-    --_resizable-handle-outline: none;
-    outline-style: var(--_resizable-handle-outline);
-  }
 }
 
-@property --resizable-group-background {
+@property --cui-resizable-group-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --resizable-group-radius {
+@property --cui-resizable-group-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --resizable-group-border-color {
+@property --cui-resizable-group-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --resizable-handle-color {
+@property --cui-resizable-handle-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --resizable-handle-hover-background {
+@property --cui-resizable-handle-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --resizable-handle-active-background {
+@property --cui-resizable-handle-active-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --resizable-grip-radius {
+@property --cui-resizable-grip-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --resizable-grip-background {
+@property --cui-resizable-grip-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --resizable-grip-foreground {
+@property --cui-resizable-grip-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

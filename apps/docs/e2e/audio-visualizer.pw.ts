@@ -9,13 +9,13 @@ test("audio visualizer knobs reach computed paint from the family root and from 
 
   const rootOverride = await page.addStyleTag({
     content:
-      '[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="bars"] { --audio-visualizer-bar-background: rgb(1 2 3); }',
+      '[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="bars"] { --cui-audio-visualizer-bar-background: rgb(1 2 3); }',
   });
   await expect.poll(() => bar.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe("rgb(1, 2, 3)");
   await rootOverride.evaluate((element) => element.parentNode?.removeChild(element));
 
   await page.addStyleTag({
-    content: '[data-control-ui="audio-visualizer"][data-slot="bar"] { --audio-visualizer-bar-background: rgb(4 5 6); }',
+    content: '[data-control-ui="audio-visualizer"][data-slot="bar"] { --cui-audio-visualizer-bar-background: rgb(4 5 6); }',
   });
   await expect.poll(() => bar.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe("rgb(4, 5, 6)");
 
@@ -25,7 +25,8 @@ test("audio visualizer knobs reach computed paint from the family root and from 
   await expect(waveform).toBeVisible();
 
   await page.addStyleTag({
-    content: '[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="line"] { --audio-visualizer-line-stroke: rgb(7 8 9); }',
+    content:
+      '[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="line"] { --cui-audio-visualizer-line-stroke: rgb(7 8 9); }',
   });
   await expect.poll(() => waveform.evaluate((element) => getComputedStyle(element).stroke)).toBe("rgb(7, 8, 9)");
 });

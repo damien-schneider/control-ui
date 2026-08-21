@@ -46,19 +46,20 @@ describe("environment variables registry contract", () => {
   });
   test("forwards retained knob styles to painted public parts", () => {
     const message = renderToString(
-      <EnvironmentVariables.Message error="Invalid value" style={{ "--environment-variables-message-border-color": "red" }} />,
+      <EnvironmentVariables.Message error="Invalid value" style={{ "--cui-environment-variables-message-border-color": "red" }} />,
     );
     const item = renderToString(
-      <EnvironmentVariables.ReadOnlyItem name="API_KEY" style={{ "--environment-variables-meta-foreground": "gray" }} />,
+      <EnvironmentVariables.ReadOnlyItem name="API_KEY" style={{ "--cui-environment-variables-meta-foreground": "gray" }} />,
     );
 
-    expect(message).toContain("--environment-variables-message-border-color:red");
-    expect(item).toContain("--environment-variables-meta-foreground:gray");
+    expect(message).toContain("--cui-environment-variables-message-border-color:red");
+    expect(item).toContain("--cui-environment-variables-meta-foreground:gray");
   });
 
   test("standalone manifest owns domain files and references shared primitives", () => {
     expect(MANIFEST.files.map((file) => file.path).sort()).toEqual([
       "src/registry/hooks/use-environment-variables.ts",
+      "src/registry/knob-contracts/environment-variables-knobs.ts",
       "src/registry/lib/env-file.ts",
       "src/registry/sources/control-ui/environment-variables.tsx",
       "src/registry/sources/control-ui/recipes/environment-variables.css",

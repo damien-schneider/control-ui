@@ -13,7 +13,7 @@
       "path": "src/registry/sources/control-ui/ui/aspect-ratio.tsx",
       "target": "@components/control-ui/ui/aspect-ratio.tsx",
       "type": "registry:ui",
-      "content": "import type { AspectRatioProps } from \"@/components/control-ui/contracts\";\n\nconst DEFAULT_ASPECT_RATIO = 16 / 9;\n\n// native CSS aspect-ratio, no Radix; rounding and clipping stay caller's to add\nexport function AspectRatio({ ratio = DEFAULT_ASPECT_RATIO, className, style, ...props }: AspectRatioProps) {\n  return <div data-control-ui=\"aspect-ratio\" data-slot=\"root\" style={{ aspectRatio: ratio, ...style }} className={className} {...props} />;\n}\n"
+      "content": "import type { ComponentProps } from \"react\";\n\nexport type AspectRatioProps = ComponentProps<\"div\"> & { ratio?: number };\n\nconst DEFAULT_ASPECT_RATIO = 16 / 9;\n\n// native CSS aspect-ratio, no Radix; rounding and clipping stay caller's to add\nexport function AspectRatio({ ratio = DEFAULT_ASPECT_RATIO, className, style, ...props }: AspectRatioProps) {\n  return <div data-control-ui=\"aspect-ratio\" data-slot=\"root\" style={{ aspectRatio: ratio, ...style }} className={className} {...props} />;\n}\n"
     }
   ],
   "meta": {}

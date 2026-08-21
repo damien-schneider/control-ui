@@ -1,10 +1,22 @@
-import type { ChatDensity, ChatMessageProps, ChatRole, ChatState, ChatTone } from "../contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { ChatMessageKnobStyle } from "@/components/control-ui/knob-contracts/chat-message-knobs";
+
+export type ChatRole = "user" | "assistant" | "system" | "tool";
+
+export type ChatDensity = "compact" | "comfortable";
+
+export type ChatState = "idle" | "streaming" | "pending" | "error";
+
+export type ChatMessageProps = ComponentProps<"article"> & {
+  from: ChatRole;
+  state?: ChatState;
+  density?: ChatDensity;
+} & { style?: CSSProperties & ChatMessageKnobStyle };
 
 export type ChatMessageContext = {
   from: ChatRole;
   state: ChatState;
   density: ChatDensity;
-  tone: ChatTone;
   isUser: boolean;
   isAssistant: boolean;
   isSystem: boolean;
@@ -18,13 +30,11 @@ function getChatMessageContext({
   from,
   state,
   density,
-  tone,
-}: Required<Pick<ChatMessageProps, "from" | "state" | "density" | "tone">>): ChatMessageContext {
+}: Required<Pick<ChatMessageProps, "from" | "state" | "density">>): ChatMessageContext {
   return {
     from,
     state,
     density,
-    tone,
     isUser: from === "user",
     isAssistant: from === "assistant",
     isSystem: from === "system",
@@ -35,11 +45,6 @@ function getChatMessageContext({
   };
 }
 
-export function useChatMessage({
-  from,
-  state = "idle",
-  density = "comfortable",
-  tone = "neutral",
-}: Pick<ChatMessageProps, "from" | "state" | "density" | "tone">) {
-  return getChatMessageContext({ from, state, density, tone });
+export function useChatMessage({ from, state = "idle", density = "comfortable" }: Pick<ChatMessageProps, "from" | "state" | "density">) {
+  return getChatMessageContext({ from, state, density });
 }

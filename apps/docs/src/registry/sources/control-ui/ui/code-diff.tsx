@@ -3,14 +3,19 @@
 import { useVirtualizer } from "@tanstack/react-virtual";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-import type { CodeOverflow, DiffIndicators, DiffLineKind, DiffStyle } from "@/components/control-ui/contracts";
-import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts/code-diff-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
 import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine } from "@/components/control-ui/lib/diff";
+import type { CodeOverflow } from "@/components/control-ui/ui/code";
 import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+
+export type DiffStyle = "unified" | "split";
+
+export type DiffIndicators = "classic" | "bars" | "none";
+
+export type DiffLineKind = "word" | "char" | "none";
 
 /*
  * Split mode virtualizes one aligned-row list rather than two synced panes, so there is no scroll-sync to drift.

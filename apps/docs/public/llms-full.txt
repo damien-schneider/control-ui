@@ -16,7 +16,7 @@
 
 ### Agents (installable components)
 - `ai` (AI components) — Explore composable surfaces for messages, input, activity, media, and agent workflows.
-- `chat-message` (ChatMessage) — Composable chat message with typed role, density, and tone state. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
+- `chat-message` (ChatMessage) — Composable chat message with typed role, density, and lifecycle state. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
 - `chat-composer` (ChatComposer) — Prompt composer with controlled text, submit state, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
 - `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json`
 - `user-ask` (UserAsk) — Keyboard-first agent question panel that temporarily replaces the chat composer inside its container. — `npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json`
@@ -126,17 +126,17 @@
 
 ### Skins
 - `skins` (Skinning Control UI) — Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
-- `refined` (Refined) — Compact, calm starting skin with a complete Control UI token contract. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json`
-- `xp` (Windows XP) — Windows XP-inspired Luna tokens, bevels, and titlebar details. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json`
-- `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json`
-- `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json`
-- `flat` (Flat) — Neutral reset skin with square corners, no shadows, and instant motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json`
-- `modern-apple` (Modern Apple) — Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json`
-- `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json`
-- `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json`
+- `refined` (Refined) — Compact, calm starting skin with a complete Control UI token contract. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite`
+- `xp` (Windows XP) — Windows XP-inspired Luna tokens, bevels, and titlebar details. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite`
+- `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite`
+- `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite`
+- `flat` (Flat) — Neutral reset skin with square corners, no shadows, and instant motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite`
+- `modern-apple` (Modern Apple) — Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite`
+- `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite`
+- `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite`
 
 ### Hooks
-- `use-chat-message` (useChatMessage) — Typed role, density, and tone state for ChatMessage.
+- `use-chat-message` (useChatMessage) — Typed role, density, and lifecycle state for ChatMessage.
 - `use-chat-composer` (useChatComposer) — Controlled composer text and submit state.
 - `use-user-ask` (useUserAsk) — Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
 - `use-audio-recorder` (useAudioRecorder) — Browser microphone recording state, waveform levels, and Blob completion.
@@ -146,7 +146,6 @@
 ### Utils
 - `cn` (cn) — Tailwind class-name merge helper.
 - `skin` (skin) — Skin slot and adornment resolvers for the Control UI library.
-- `contracts` (contracts) — Shared prop and slot contracts for swappable skins.
 - `serialize` (serialize) — Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
 
 ### Guides

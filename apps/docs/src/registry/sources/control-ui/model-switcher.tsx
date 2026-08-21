@@ -1,8 +1,27 @@
 "use client";
 
-import type { ModelSwitcherProps } from "@/components/control-ui/contracts";
+import type { CSSProperties, ReactNode } from "react";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SelectTriggerVariant } from "@/components/control-ui/ui/select";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
+
+export type ModelOption = {
+  value: string;
+  label: string;
+  hint?: ReactNode;
+};
+
+export type ModelSwitcherProps = {
+  models: ModelOption[];
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  size?: "xs" | "sm";
+  variant?: SelectTriggerVariant;
+  className?: string;
+  style?: CSSProperties & ButtonKnobStyle;
+};
 
 export function ModelSwitcher({
   models,
@@ -56,8 +75,8 @@ export function ModelSwitcher({
             {model.hint ? (
               <span
                 data-control-ui="model-switcher"
-                data-control-family="button"
-                data-button-kind="model-switcher"
+                data-control-family="popup"
+                data-popup-kind="model-switcher"
                 data-slot="hint"
                 className="ml-auto pl-4"
               >

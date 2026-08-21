@@ -1,69 +1,66 @@
 @layer components {
   :where([data-control-family="badge"][data-source-badge][data-slot="root"]) {
-    --source-badge-background: var(--background);
-    --source-badge-foreground: var(--muted-foreground);
-    --source-badge-hover-background: oklch(from var(--muted) l c h / 0.6);
-    --source-badge-hover-foreground: var(--foreground);
-    --source-badge-favicon-background: var(--muted);
-    --source-badge-favicon-radius: var(--radius-sm);
-    background: var(--source-badge-background);
-    color: var(--source-badge-foreground);
+    --cui-source-badge-background: var(--background);
+    --cui-source-badge-foreground: var(--muted-foreground);
+    --cui-source-badge-hover-background: oklch(from var(--muted) l c h / 0.6);
+    --cui-source-badge-hover-foreground: var(--foreground);
+    --cui-source-badge-favicon-background: var(--muted);
+    --cui-source-badge-favicon-radius: var(--radius-sm);
+    background: var(--cui-source-badge-background);
+    color: var(--cui-source-badge-foreground);
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+    font-weight: var(--font-weight-normal);
   }
 
   @media (hover: hover) {
     :where([data-control-family="badge"][data-source-badge][data-slot="root"]:hover) {
-      background: var(--source-badge-hover-background);
-      color: var(--source-badge-hover-foreground);
+      background: var(--cui-source-badge-hover-background);
+      color: var(--cui-source-badge-hover-foreground);
     }
   }
 
   :where([data-control-family="avatar"][data-source-badge-favicon][data-slot="root"]) {
-    --avatar-radius: var(--source-badge-favicon-radius);
-    --avatar-fallback-background: var(--source-badge-favicon-background);
-    --avatar-fallback-foreground: var(--source-badge-foreground);
-    background: var(--source-badge-favicon-background);
-    border-radius: var(--source-badge-favicon-radius);
-  }
-
-  :where([data-control-family="badge"][data-source-badge][data-slot="root"]) {
-    font-weight: var(--font-weight-normal);
+    --cui-avatar-radius: var(--cui-source-badge-favicon-radius);
+    --cui-avatar-fallback-background: var(--cui-source-badge-favicon-background);
+    --cui-avatar-fallback-foreground: var(--cui-source-badge-foreground);
+    background: var(--cui-source-badge-favicon-background);
+    border-radius: var(--cui-source-badge-favicon-radius);
   }
 }
 
-@property --source-badge-background {
+@property --cui-source-badge-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --source-badge-foreground {
+@property --cui-source-badge-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --source-badge-hover-background {
+@property --cui-source-badge-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --source-badge-hover-foreground {
+@property --cui-source-badge-hover-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --source-badge-favicon-background {
+@property --cui-source-badge-favicon-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --source-badge-favicon-radius {
+@property --cui-source-badge-favicon-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;

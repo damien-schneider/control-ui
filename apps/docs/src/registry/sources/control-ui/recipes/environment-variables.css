@@ -1,24 +1,33 @@
 @layer components {
   :where([data-control-family="environment-variables"][data-slot="root"]) {
-    --environment-variables-error-foreground: var(--destructive-text);
-    --environment-variables-message-background: oklch(from var(--destructive) l c h / 0.05);
-    --environment-variables-message-border-color: oklch(from var(--destructive) l c h / 0.4);
-    --environment-variables-message-foreground: var(--destructive-text);
-    --environment-variables-meta-foreground: var(--muted-foreground);
-    --environment-variables-title-foreground: var(--foreground);
+    --cui-environment-variables-error-foreground: var(--destructive-text);
+    --cui-environment-variables-message-background: oklch(from var(--destructive) l c h / 0.05);
+    --cui-environment-variables-message-border-color: oklch(from var(--destructive) l c h / 0.4);
+    --cui-environment-variables-message-foreground: var(--destructive-text);
+    --cui-environment-variables-meta-foreground: var(--muted-foreground);
+    --cui-environment-variables-title-foreground: var(--foreground);
   }
   :where([data-control-family="environment-variables"][data-slot="title"]) {
-    color: var(--environment-variables-title-foreground);
+    color: var(--cui-environment-variables-title-foreground);
     font-size: var(--text-label);
+    font-weight: var(--font-weight-semibold);
   }
 
-  :where([data-control-family="environment-variables"]:is([data-slot="description"], [data-slot="hint"], [data-slot="column-labels"], [data-slot="field-label"], [data-slot="empty"], [data-slot="readonly-item"])) {
-    color: var(--environment-variables-meta-foreground);
+  :where(
+    [data-control-family="environment-variables"]:is(
+      [data-slot="description"],
+      [data-slot="hint"],
+      [data-slot="column-labels"],
+      [data-slot="field-label"],
+      [data-slot="empty"],
+      [data-slot="readonly-item"]
+    )
+  ) {
+    color: var(--cui-environment-variables-meta-foreground);
     font-size: var(--text-caption);
   }
 
   :where([data-control-family="environment-variables"][data-slot="hint-code"]),
-
   :where([data-control-family="environment-variables"][data-slot="readonly-key"]) {
     color: var(--foreground);
   }
@@ -32,22 +41,19 @@
   }
 
   :where([data-control-family="environment-variables"][data-slot="field-error"]) {
-    color: var(--environment-variables-error-foreground);
+    color: var(--cui-environment-variables-error-foreground);
     font-size: var(--text-caption);
   }
 
   :where([data-control-family="environment-variables"][data-slot="message"]) {
-    background: var(--environment-variables-message-background);
-    border-block: 1px solid var(--environment-variables-message-border-color);
-    color: var(--environment-variables-message-foreground);
+    background: var(--cui-environment-variables-message-background);
+    border-block: 1px solid var(--cui-environment-variables-message-border-color);
+    color: var(--cui-environment-variables-message-foreground);
     font-size: var(--text-caption);
   }
 
   :where([data-control-family="environment-variables"][data-slot="readonly-value"]) {
     color: var(--muted-foreground);
-  }
-
-  :where([data-control-family="environment-variables"][data-slot="readonly-value"]) {
     font-family: var(--font-mono);
   }
 
@@ -57,8 +63,7 @@
   }
 
   :where([data-control-family="environment-variables"][data-slot="empty"]) {
-    --_environment-variables-empty-text-align: center;
-    text-align: var(--_environment-variables-empty-text-align);
+    text-align: center;
   }
 
   :where([data-control-family="environment-variables"][data-slot="value-input"]) {
@@ -80,43 +85,39 @@
   :where([data-control-family="environment-variables"][data-slot="hint-code"]) {
     font-family: var(--font-mono);
   }
-
-  :where([data-control-family="environment-variables"][data-slot="title"]) {
-    font-weight: var(--font-weight-semibold);
-  }
 }
 
-@property --environment-variables-title-foreground {
+@property --cui-environment-variables-title-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --environment-variables-meta-foreground {
+@property --cui-environment-variables-meta-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --environment-variables-error-foreground {
+@property --cui-environment-variables-error-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --environment-variables-message-background {
+@property --cui-environment-variables-message-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --environment-variables-message-foreground {
+@property --cui-environment-variables-message-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --environment-variables-message-border-color {
+@property --cui-environment-variables-message-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

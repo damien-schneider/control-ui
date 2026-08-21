@@ -8,32 +8,26 @@
     [data-control-family="color-picker"][data-slot="swatch"],
     [data-control-family="color-picker"][data-slot="output"]
   ) {
-    --color-picker-area-radius: var(--radius-field);
-    --color-picker-output-swatch-radius: var(--radius-md);
-    --color-picker-slider-thumb-background: transparent;
-    --color-picker-slider-thumb-radius: calc(infinity * 1px);
-    --color-picker-swatch-radius: var(--radius-md);
-    --color-picker-trigger-radius: var(--radius-control);
-    --color-picker-trigger-shadow: inset 0 0 0 1px var(--border);
+    --cui-color-picker-area-radius: var(--radius-field);
+    --cui-color-picker-output-swatch-radius: var(--radius-md);
+    --cui-color-picker-slider-thumb-background: transparent;
+    --cui-color-picker-slider-thumb-radius: calc(infinity * 1px);
+    --cui-color-picker-swatch-radius: var(--radius-md);
+    --cui-color-picker-trigger-radius: var(--radius-control);
+    --cui-color-picker-trigger-shadow: inset 0 0 0 1px var(--border);
   }
-  :where(
-  [data-control-family="color-picker"][data-slot="hue"],
-  [data-control-family="color-picker"][data-slot="alpha"]
-) {
+  :where([data-control-family="color-picker"][data-slot="hue"], [data-control-family="color-picker"][data-slot="alpha"]) {
     --_color-picker-slider-thumb-outline: none;
     --_color-picker-slider-thumb-scale: 1;
     --_color-picker-slider-thumb-transition-property: scale;
   }
 
-  :where(
-  [data-control-family="color-picker"][data-slot="hue-thumb"],
-  [data-control-family="color-picker"][data-slot="alpha-thumb"]
-) {
-    border-radius: var(--color-picker-slider-thumb-radius);
+  :where([data-control-family="color-picker"][data-slot="hue-thumb"], [data-control-family="color-picker"][data-slot="alpha-thumb"]) {
+    border-radius: var(--cui-color-picker-slider-thumb-radius);
     border-width: 2px;
     border-style: solid;
     border-color: var(--color-white);
-    background: var(--color-picker-slider-thumb-background);
+    background: var(--cui-color-picker-slider-thumb-background);
     box-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.35);
     outline-style: var(--_color-picker-slider-thumb-outline);
     transition-property: var(--_color-picker-slider-thumb-transition-property);
@@ -43,17 +37,10 @@
   }
 
   :where(
-  [data-control-family="color-picker"][data-slot="hue-thumb"][data-dragging],
-  [data-control-family="color-picker"][data-slot="alpha-thumb"][data-dragging]
-) {
+    [data-control-family="color-picker"][data-slot="hue-thumb"][data-dragging],
+    [data-control-family="color-picker"][data-slot="alpha-thumb"][data-dragging]
+  ) {
     --_color-picker-slider-thumb-scale: 110% 110%;
-  }
-
-  :where(
-  [data-control-family="color-picker"][data-slot="hue-thumb"]:focus-visible,
-  [data-control-family="color-picker"][data-slot="alpha-thumb"]:focus-visible
-) {
-    box-shadow: 0 0 0 2px oklch(from var(--foreground) l c h / 0.4), 0 0 0 1px oklch(from var(--foreground) l c h / 0.35);
   }
 
   :where([data-control-family="color-picker"][data-slot="wheel-thumb"]) {
@@ -61,11 +48,6 @@
     border-style: solid;
     border-width: 2px;
     border-color: var(--color-white);
-    box-shadow: var(--_color-picker-wheel-thumb-shadow);
-  }
-
-  :where([data-control-family="color-picker"][data-slot="wheel-thumb"]:is(:where(.group):has(:is(input:focus-visible)) *)) {
-    --_color-picker-wheel-thumb-shadow: 0 0 0 2px color-mix(in oklab, var(--foreground) 50%, transparent), 0 0 0 1px oklch(from var(--foreground) l c h / 0.4);
     box-shadow: var(--_color-picker-wheel-thumb-shadow);
   }
 
@@ -90,50 +72,43 @@
     border-style: solid;
     border-width: 2px;
     border-color: var(--color-white);
-    --_color-picker-area-thumb-transition-property: box-shadow;
-    transition-property: var(--_color-picker-area-thumb-transition-property);
+    transition-property: box-shadow;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
     box-shadow: var(--_color-picker-area-thumb-shadow);
   }
 
-  :where([data-control-family="color-picker"][data-slot="area-thumb"]:is(:where(.group):has(:is(input:focus-visible)) *)) {
-    --_color-picker-area-thumb-shadow: 0 0 0 2px color-mix(in oklab, var(--foreground) 50%, transparent), 0 0 0 1px oklch(from var(--foreground) l c h / 0.4);
-    box-shadow: var(--_color-picker-area-thumb-shadow);
-  }
-
   :where([data-control-family="color-picker"][data-slot="area"]) {
-    border-radius: var(--color-picker-area-radius);
+    border-radius: var(--cui-color-picker-area-radius);
     box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--border) 60%, transparent);
     --_color-picker-area-thumb-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.4);
   }
-
 }
 
-@property --color-picker-area-radius {
+@property --cui-color-picker-area-radius {
   syntax: "<length-percentage>+";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --color-picker-trigger-radius {
+@property --cui-color-picker-trigger-radius {
   syntax: "<length-percentage>+";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --color-picker-trigger-shadow {
+@property --cui-color-picker-trigger-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --color-picker-slider-thumb-radius {
+@property --cui-color-picker-slider-thumb-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --color-picker-slider-thumb-background {
+@property --cui-color-picker-slider-thumb-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -4,30 +4,24 @@
   }
 
   :where([data-control-family="color-picker"][data-slot="trigger"]) {
-    border-radius: var(--color-picker-trigger-radius);
-    --_color-picker-trigger-outline: none;
-    outline-style: var(--_color-picker-trigger-outline);
-    --_color-picker-trigger-transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
-    transition-property: var(--_color-picker-trigger-transition-property);
+    border-radius: var(--cui-color-picker-trigger-radius);
+    outline-style: none;
+    transition-property:
+      color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
-    box-shadow: var(--color-picker-trigger-shadow);
+    box-shadow: var(--cui-color-picker-trigger-shadow);
   }
 
   :where([data-control-family="color-picker"][data-slot="trigger"]:disabled) {
     opacity: 50%;
   }
 
-  :where([data-control-family="color-picker"][data-slot="trigger"]:focus-visible) {
-    --color-picker-trigger-shadow: inset 0 0 0 2px color-mix(in oklab, var(--foreground) 40%, transparent);
-    box-shadow: var(--color-picker-trigger-shadow);
-  }
-
   :where([data-control-family="color-picker"][data-slot="area"][data-disabled="true"]) {
     opacity: 50%;
   }
 
-  :where( [data-control-family="color-picker"][data-slot="wheel"][data-disabled="true"]) {
+  :where([data-control-family="color-picker"][data-slot="wheel"][data-disabled="true"]) {
     opacity: 50%;
   }
 
@@ -48,23 +42,18 @@
   :where([data-control-family="color-picker"][data-slot="contrast-level"]:not([data-passing="true"])) {
     --_color-picker-contrast-level-foreground: var(--muted-foreground);
     color: var(--_color-picker-contrast-level-foreground);
-    --_color-picker-contrast-level-decoration: line-through;
-    text-decoration-line: var(--_color-picker-contrast-level-decoration);
+    text-decoration-line: line-through;
     text-decoration-thickness: 1px;
   }
 
   :where([data-control-family="color-picker"][data-slot="contrast-ratio"]) {
-    --_color-picker-contrast-ratio-number-style: tabular-nums;
-    font-variant-numeric: var(--_color-picker-contrast-ratio-number-style);
+    font-variant-numeric: tabular-nums;
   }
 
-  :where([data-control-family="color-picker"][data-slot="wheel-thumb"]:is(:where(.group)[data-dragging] *)) {
-    --_color-picker-wheel-thumb-scale: 110% 110%;
-    scale: var(--_color-picker-wheel-thumb-scale);
-  }
-
-  :where([data-control-family="color-picker"][data-slot="area-thumb"]:is(:where(.group)[data-dragging] *)) {
-    --_color-picker-area-thumb-scale: 110% 110%;
-    scale: var(--_color-picker-area-thumb-scale);
+  :where(
+    [data-control-family="color-picker"][data-slot="wheel"][data-dragging] [data-control-family="color-picker"][data-slot="wheel-thumb"],
+    [data-control-family="color-picker"][data-slot="area"][data-dragging] [data-control-family="color-picker"][data-slot="area-thumb"]
+  ) {
+    scale: 110% 110%;
   }
 }

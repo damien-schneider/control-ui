@@ -29,13 +29,13 @@
 
 /* ripple — click feedback via control's own background-image; ControlEffectsRoot sets --aui-ripple-x/y/r from pointer + toggles data-ripple, keyframes animate the two registered properties the radial-gradient reads.
  * Registration required for interpolation — browsers without @property degrade to a brief static flash, never broken layout. */
-@property --aui-ripple-scale {
+@property --cui-ripple-scale {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --aui-ripple-alpha {
+@property --cui-ripple-alpha {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -43,9 +43,9 @@
 
 [data-effects~="ripple"] :where([data-control-ui][data-control="true"][data-ripple]) {
   background-image: radial-gradient(
-    circle calc(var(--aui-ripple-r, 0px) * var(--aui-ripple-scale)) at var(--aui-ripple-x, 50%) var(--aui-ripple-y, 50%),
-    oklch(from var(--foreground) l c h / calc(0.24 * var(--aui-ripple-alpha))) 0%,
-    oklch(from var(--foreground) l c h / calc(0.14 * var(--aui-ripple-alpha))) 42%,
+    circle calc(var(--aui-ripple-r, 0px) * var(--cui-ripple-scale)) at var(--aui-ripple-x, 50%) var(--aui-ripple-y, 50%),
+    oklch(from var(--foreground) l c h / calc(0.24 * var(--cui-ripple-alpha))) 0%,
+    oklch(from var(--foreground) l c h / calc(0.14 * var(--cui-ripple-alpha))) 42%,
     transparent 70%
   );
   animation: aui-ripple-pulse calc(var(--duration-slow) * 2.2) var(--ease-emphasized) forwards;
@@ -61,15 +61,15 @@
 
 @keyframes aui-ripple-pulse {
   0% {
-    --aui-ripple-scale: 0;
-    --aui-ripple-alpha: 0.45;
+    --cui-ripple-scale: 0;
+    --cui-ripple-alpha: 0.45;
   }
   70% {
-    --aui-ripple-alpha: 0.18;
+    --cui-ripple-alpha: 0.18;
   }
   100% {
-    --aui-ripple-scale: 1;
-    --aui-ripple-alpha: 0;
+    --cui-ripple-scale: 1;
+    --cui-ripple-alpha: 0;
   }
 }
 
@@ -80,7 +80,7 @@
  * The disc is the ::after's own background — clipped by border-radius:inherit, no injected DOM.
  * Tokens: --aui-hover-circle-color (disc paint), radius fed per-control by the runtime.
  * Registration required for interpolation — without @property the disc still appears/disappears, it just skips the growth. */
-@property --aui-hover-circle-scale {
+@property --cui-hover-circle-scale {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -96,18 +96,18 @@
     inset: 0;
     border-radius: inherit;
     background-image: radial-gradient(
-      circle calc(var(--aui-hover-circle-r, 6rem) * var(--aui-hover-circle-scale)) at var(--aui-hover-circle-x, 50%)
+      circle calc(var(--aui-hover-circle-r, 6rem) * var(--cui-hover-circle-scale)) at var(--aui-hover-circle-x, 50%)
         var(--aui-hover-circle-y, 50%),
       var(--aui-hover-circle-color, oklch(1 0 0 / 0.24)) calc(100% - 1px),
       transparent 100%
     );
     mix-blend-mode: difference;
-    transition: --aui-hover-circle-scale calc(var(--duration-slow) * 1.6) var(--ease-emphasized);
+    transition: --cui-hover-circle-scale calc(var(--duration-slow) * 1.6) var(--ease-emphasized);
   }
 
   /* Same disabled guard as the ripple's JS check — a dead control never lights up. */
   [data-effects~="hover-circle"]
-    :where([data-control-ui][data-control="true"]:hover:not(:disabled, [aria-disabled="true"], [data-disabled="true"]))::after {
-    --aui-hover-circle-scale: 1;
+  :where([data-control-ui][data-control="true"]:hover:not(:disabled, [aria-disabled="true"], [data-disabled="true"]))::after {
+    --cui-hover-circle-scale: 1;
   }
 }

@@ -1,48 +1,48 @@
 @layer components {
-  :where([data-control-family="avatar"][data-slot="root"]) {
-    --avatar-radius: 9999px;
-    --avatar-group-ring-color: var(--background);
-    --avatar-fallback-background: var(--muted);
-    --avatar-fallback-foreground: var(--muted-foreground);
-    border-radius: var(--avatar-radius);
+  :where(
+    [data-control-family="avatar"][data-slot="root"],
+    [data-control-family="avatar"][data-slot="favicon"],
+    [data-control-family="avatar"][data-slot="source-favicon"]
+  ) {
+    --cui-avatar-radius: 9999px;
+    --cui-avatar-group-ring-color: var(--background);
+    --cui-avatar-fallback-background: var(--muted);
+    --cui-avatar-fallback-foreground: var(--muted-foreground);
+    border-radius: var(--cui-avatar-radius);
   }
 
-
   :where([data-control-family="avatar"][data-slot="group"] > [data-control-family="avatar"]) {
-    box-shadow: 0 0 0 2px var(--avatar-group-ring-color);
+    box-shadow: 0 0 0 2px var(--cui-avatar-group-ring-color);
   }
 
   :where([data-control-family="avatar"][data-slot="fallback"]) {
     border-radius: 9999px;
-    background: var(--avatar-fallback-background);
-    color: var(--avatar-fallback-foreground);
+    background: var(--cui-avatar-fallback-background);
+    color: var(--cui-avatar-fallback-foreground);
     font-size: var(--text-caption);
-  }
-
-  :where([data-control-family="avatar"][data-slot="fallback"]) {
     font-weight: var(--font-weight-medium);
   }
 }
 
-@property --avatar-radius {
+@property --cui-avatar-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --avatar-group-ring-color {
+@property --cui-avatar-group-ring-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --avatar-fallback-background {
+@property --cui-avatar-fallback-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --avatar-fallback-foreground {
+@property --cui-avatar-fallback-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

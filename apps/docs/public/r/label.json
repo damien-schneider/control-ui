@@ -10,16 +10,22 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/label-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/label-knobs.ts",
+      "type": "registry:component",
+      "content": "// Generated from src/registry/sources/control-ui/recipes/label.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const labelKnobs = [\"--cui-label-root-foreground\"] as const;\nexport type LabelKnobStyle = Partial<Record<(typeof labelKnobs)[number], string>>;\n"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/label.css",
       "target": "@components/control-ui/styles/recipes/label.css",
       "type": "registry:file",
-      "content": "@layer components {\n  :where([data-control-family=\"label\"][data-slot=\"root\"]) {\n    --label-root-foreground: var(--muted-foreground);\n    font-size: var(--text-caption);\n  }\n\n  :where([data-control-family=\"label\"][data-slot=\"root\"]) {\n    font-weight: var(--font-weight-medium);\n  }\n\n  :where([data-control-family=\"label\"][data-slot=\"root\"]) {\n    color: var(--label-root-foreground);\n  }\n\n  :where([data-control-family=\"label\"][data-slot=\"root\"]:is(:where(.peer):disabled ~ *)) {\n    opacity: 70%;\n  }\n}\n\n@property --label-root-foreground {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
+      "content": "@layer components {\n  :where([data-control-family=\"label\"][data-slot=\"root\"]) {\n    --cui-label-root-foreground: var(--muted-foreground);\n    color: var(--cui-label-root-foreground);\n    font-size: var(--text-caption);\n    font-weight: var(--font-weight-medium);\n  }\n\n  :where([data-control-family=\"field\"][data-control=\"true\"]:disabled ~ [data-control-family=\"label\"][data-slot=\"root\"]) {\n    opacity: 70%;\n  }\n}\n\n@property --cui-label-root-foreground {\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: transparent;\n}\n"
     },
     {
       "path": "src/registry/sources/control-ui/ui/label.tsx",
       "target": "@components/control-ui/ui/label.tsx",
       "type": "registry:ui",
-      "content": "import type { LabelProps } from \"@/components/control-ui/contracts\";\n\n// renders real <label> when htmlFor is set, else a <span> for group captions\nexport function Label({ className, htmlFor, children, ...props }: LabelProps) {\n  const classes = className;\n\n  if (htmlFor) {\n    return (\n      <label data-control-ui=\"label\" data-control-family=\"label\" data-slot=\"root\" htmlFor={htmlFor} className={classes} {...props}>\n        {children}\n      </label>\n    );\n  }\n\n  return (\n    <span data-control-ui=\"label\" data-control-family=\"label\" data-slot=\"root\" className={classes} {...props}>\n      {children}\n    </span>\n  );\n}\n"
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport type { LabelKnobStyle } from \"@/components/control-ui/knob-contracts/label-knobs\";\n\nexport type LabelProps = Omit<ComponentProps<\"label\">, \"style\"> & { style?: CSSProperties & LabelKnobStyle };\n\n// renders real <label> when htmlFor is set, else a <span> for group captions\nexport function Label({ className, htmlFor, children, ...props }: LabelProps) {\n  const classes = className;\n\n  if (htmlFor) {\n    return (\n      <label data-control-ui=\"label\" data-control-family=\"label\" data-slot=\"root\" htmlFor={htmlFor} className={classes} {...props}>\n        {children}\n      </label>\n    );\n  }\n\n  return (\n    <span data-control-ui=\"label\" data-control-family=\"label\" data-slot=\"root\" className={classes} {...props}>\n      {children}\n    </span>\n  );\n}\n"
     }
   ],
   "css": {

@@ -1,6 +1,6 @@
 "use client";
 
-import type { TocItem } from "@/components/control-ui/contracts";
+import type { TocItem } from "@/components/control-ui/ui/table-of-contents";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 
 type ExampleSection = Omit<TocItem, "children" | "level"> & {

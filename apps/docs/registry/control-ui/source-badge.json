@@ -14,6 +14,16 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/badge-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/badge-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/knob-contracts/source-badge-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/source-badge-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/source-badge.css",
       "target": "@components/control-ui/styles/recipes/source-badge.css",
       "type": "registry:file"

@@ -1,7 +1,9 @@
 import type { ComponentProps, CSSProperties } from "react";
-import type { KbdProps } from "@/components/control-ui/contracts";
-import type { KbdKnobStyle } from "@/components/control-ui/knob-contracts";
+
+import type { KbdKnobStyle } from "@/components/control-ui/knob-contracts/kbd-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type KbdProps = Omit<ComponentProps<"kbd">, "style"> & { style?: CSSProperties & KbdKnobStyle };
 
 export function Kbd({ className, ...props }: KbdProps) {
   return (

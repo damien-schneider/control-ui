@@ -2,10 +2,26 @@
 
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 import type { ComponentProps, CSSProperties } from "react";
-import type { DrawerContentPadding, DrawerContentSurface, DrawerContentVariant, DrawerSide } from "@/components/control-ui/contracts";
-import type { DrawerKnobStyle } from "@/components/control-ui/knob-contracts";
+
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
+
+export const drawerSides = ["bottom", "top", "right", "left"] as const;
+
+export type DrawerSide = (typeof drawerSides)[number];
+
+export const drawerContentPaddings = ["default", "none"] as const;
+
+export type DrawerContentPadding = (typeof drawerContentPaddings)[number];
+
+export const drawerContentSurfaces = ["background", "card"] as const;
+
+export type DrawerContentSurface = (typeof drawerContentSurfaces)[number];
+
+export const drawerContentVariants = ["edge", "floating"] as const;
+
+export type DrawerContentVariant = (typeof drawerContentVariants)[number];
 
 // Base UI Drawer throughout — native swipe gestures and snap points, no vaul.
 
@@ -82,17 +98,24 @@ export function Drawer(props: ComponentProps<typeof DrawerPrimitive.Root> & { si
 export function DrawerTrigger({
   className,
   ...props
-}: ComponentProps<typeof DrawerPrimitive.Trigger> & { style?: CSSProperties & DrawerKnobStyle }) {
-  return (
-    <DrawerPrimitive.Trigger data-control-ui="drawer" data-control-family="drawer" data-slot="trigger" className={className} {...props} />
-  );
+}: ComponentProps<typeof DrawerPrimitive.Trigger> & { style?: CSSProperties & PopupKnobStyle }) {
+  return <DrawerPrimitive.Trigger data-control-ui="drawer" data-popup-kind="drawer" data-slot="trigger" className={className} {...props} />;
 }
 
 export function DrawerClose({
   className,
   ...props
-}: ComponentProps<typeof DrawerPrimitive.Close> & { style?: CSSProperties & DrawerKnobStyle }) {
-  return <DrawerPrimitive.Close data-control-ui="drawer" data-control-family="drawer" data-slot="close" className={className} {...props} />;
+}: ComponentProps<typeof DrawerPrimitive.Close> & { style?: CSSProperties & PopupKnobStyle }) {
+  return (
+    <DrawerPrimitive.Close
+      data-control-ui="drawer"
+      data-control-family="popup"
+      data-popup-kind="drawer"
+      data-slot="close"
+      className={className}
+      {...props}
+    />
+  );
 }
 
 export function DrawerContent({
@@ -109,13 +132,13 @@ export function DrawerContent({
   padding?: DrawerContentPadding;
   surface?: DrawerContentSurface;
   variant?: DrawerContentVariant;
-  style?: CSSProperties & DrawerKnobStyle;
+  style?: CSSProperties & PopupKnobStyle;
 }) {
   const place = placement[variant][side];
   const grabbable = side === "bottom" || side === "top";
-  const backdropStyle: (CSSProperties & DrawerKnobStyle) | undefined = style
+  const backdropStyle: (CSSProperties & PopupKnobStyle) | undefined = style
     ? {
-        "--drawer-backdrop-background": style["--drawer-backdrop-background"],
+        "--cui-popup-backdrop-background": style["--cui-popup-backdrop-background"],
       }
     : undefined;
   return (
@@ -123,7 +146,9 @@ export function DrawerContent({
       {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <DrawerPrimitive.Backdrop
         data-control-ui="drawer"
-        data-control-family="drawer"
+        data-control-family="popup"
+        data-popup-kind="drawer"
+        data-popup-part="backdrop"
         data-slot="backdrop"
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -132,7 +157,8 @@ export function DrawerContent({
       />
       <DrawerPrimitive.Viewport
         data-control-ui="drawer"
-        data-control-family="drawer"
+        data-control-family="popup"
+        data-popup-kind="drawer"
         data-slot="viewport"
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -140,7 +166,9 @@ export function DrawerContent({
       >
         <DrawerPrimitive.Popup
           data-control-ui="drawer"
-          data-control-family="drawer"
+          data-control-family="popup"
+          data-popup-kind="drawer"
+          data-popup-part="surface"
           data-slot="content"
           data-side={side}
           data-surface="modal"
@@ -154,7 +182,8 @@ export function DrawerContent({
           {grabbable ? (
             <div
               data-control-ui="drawer"
-              data-control-family="drawer"
+              data-control-family="popup"
+              data-popup-kind="drawer"
               data-slot="handle"
               className={cn("mx-auto h-1.5 w-12 shrink-0", handleGap[side])}
             />
@@ -166,11 +195,12 @@ export function DrawerContent({
   );
 }
 
-export function DrawerHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & DrawerKnobStyle }) {
+export function DrawerHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="drawer"
-      data-control-family="drawer"
+      data-control-family="popup"
+      data-popup-kind="drawer"
       data-slot="header"
       className={cn("flex flex-col gap-1.5 px-4", className)}
       {...props}
@@ -178,11 +208,12 @@ export function DrawerHeader({ className, ...props }: ComponentProps<"div"> & { 
   );
 }
 
-export function DrawerFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & DrawerKnobStyle }) {
+export function DrawerFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div
       data-control-ui="drawer"
-      data-control-family="drawer"
+      data-control-family="popup"
+      data-popup-kind="drawer"
       data-slot="footer"
       className={cn("mt-auto flex flex-col gap-2 px-4", className)}
       {...props}
@@ -194,21 +225,31 @@ export function DrawerTitle({
   className,
   ...props
 }: Omit<ComponentProps<typeof DrawerPrimitive.Title>, "style"> & {
-  style?: CSSProperties & DrawerKnobStyle;
+  style?: CSSProperties & PopupKnobStyle;
 }) {
-  return <DrawerPrimitive.Title data-control-ui="drawer" data-control-family="drawer" data-slot="title" className={className} {...props} />;
+  return (
+    <DrawerPrimitive.Title
+      data-control-ui="drawer"
+      data-control-family="popup"
+      data-popup-kind="drawer"
+      data-slot="title"
+      className={className}
+      {...props}
+    />
+  );
 }
 
 export function DrawerDescription({
   className,
   ...props
 }: Omit<ComponentProps<typeof DrawerPrimitive.Description>, "style"> & {
-  style?: CSSProperties & DrawerKnobStyle;
+  style?: CSSProperties & PopupKnobStyle;
 }) {
   return (
     <DrawerPrimitive.Description
       data-control-ui="drawer"
-      data-control-family="drawer"
+      data-control-family="popup"
+      data-popup-kind="drawer"
       data-slot="description"
       className={className}
       {...props}

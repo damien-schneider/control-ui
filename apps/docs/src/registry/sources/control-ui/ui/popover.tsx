@@ -2,10 +2,14 @@
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import type { ComponentProps, CSSProperties } from "react";
-import type { PopoverContentPadding } from "@/components/control-ui/contracts";
-import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
+
+export const popoverContentPaddings = ["default", "none"] as const;
+
+export type PopoverContentPadding = (typeof popoverContentPaddings)[number];
 
 type PopoverPopupProps = Omit<ComponentProps<typeof PopoverPrimitive.Popup>, "style"> & {
   side?: ComponentProps<typeof PopoverPrimitive.Positioner>["side"];
@@ -25,14 +29,7 @@ export function PopoverTrigger({
   ...props
 }: ComponentProps<typeof PopoverPrimitive.Trigger> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
-    <PopoverPrimitive.Trigger
-      data-control-ui="popover"
-      data-control-family="popup"
-      data-popup-kind="popover"
-      data-slot="trigger"
-      className={className}
-      {...props}
-    />
+    <PopoverPrimitive.Trigger data-control-ui="popover" data-popup-kind="popover" data-slot="trigger" className={className} {...props} />
   );
 }
 

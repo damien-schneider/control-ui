@@ -5,7 +5,8 @@ import { useState } from "react";
 import { ChatComposer, ChatComposerShell, ChatComposerSubmit, ChatComposerToolbar } from "@/components/control-ui/chat-composer";
 import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor";
 import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
-import type { ChatComposerSubmitPayload, MentionItem, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
+import type { ChatComposerSubmitPayload, MentionItem } from "@/components/control-ui/hooks/use-chat-composer";
+import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
 
 // Preview for `serializeDoc`: editor pushes serialized plain-text to ChatComposer value live; pressing
 // Send surfaces full payload (text + structured `mentions[]` from mention extension).

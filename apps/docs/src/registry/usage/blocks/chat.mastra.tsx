@@ -9,7 +9,7 @@ import {
   useChat,
 } from "@mastra/react";
 import type { ReactNode } from "react";
-
+import type { ActivityState } from "@/components/control-ui/activity";
 import {
   Activity,
   ActivityContent,
@@ -32,7 +32,6 @@ import {
 } from "@/components/control-ui/chat-composer";
 import { ChatThought, ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import type { ActivityState } from "@/components/control-ui/contracts";
 import { SourceBadge } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
 

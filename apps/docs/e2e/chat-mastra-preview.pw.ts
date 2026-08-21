@@ -9,8 +9,8 @@ test("chat preview sends through Mastra and renders the mock reply", async ({ pa
     .locator('[data-control-ui="chat-layout"][data-slot="root"]')
     .filter({ has: page.locator('[data-control-ui="chat-composer"][data-slot="root"]') });
   const thread = preview.locator('[data-control-ui="chat-thread"][data-slot="root"]');
-  const userTurns = thread.locator('[data-control-ui="chat-turn"][data-slot="root"][data-from="user"]');
-  const assistantTurns = thread.locator('[data-control-ui="chat-turn"][data-slot="root"][data-from="assistant"]');
+  const userTurns = thread.locator('[data-control-ui="chat-turn"][data-slot="turn"][data-from="user"]');
+  const assistantTurns = thread.locator('[data-control-ui="chat-turn"][data-slot="turn"][data-from="assistant"]');
   const initialUserTurnCount = await userTurns.count();
   const initialAssistantTurnCount = await assistantTurns.count();
 

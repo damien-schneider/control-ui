@@ -8,7 +8,7 @@ import { getDocsShellData } from "@/app/(features)/model/data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
 import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
-import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/contracts";
+import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
 import { DEFAULT_SKIN_ID, THEME_INIT_SCRIPT } from "@/components/theme";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";

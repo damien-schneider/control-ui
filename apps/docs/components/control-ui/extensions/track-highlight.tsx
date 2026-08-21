@@ -3,7 +3,7 @@
 import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react";
 import { useEffect, useRef } from "react";
 import { createTrackHighlight } from "@/components/control-ui/extensions/create-track-highlight";
-import type { TrackHighlightKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { TrackHighlightKnobStyle } from "@/components/control-ui/knob-contracts/track-highlight-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
 // Always-on tracks import this directly; skin-driven indicators lazy() it so geometry engine ships only when asked.

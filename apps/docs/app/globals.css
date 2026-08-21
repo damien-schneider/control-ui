@@ -20,7 +20,7 @@
 @import "../src/registry/sources/control-ui/recipes/table.css";
 @import "../src/registry/sources/control-ui/recipes/chat-message.css";
 @import "../src/registry/sources/control-ui/recipes/skeleton.css";
-@import "../src/registry/sources/control-ui/recipes/toast.css";
+@import "../src/registry/sources/control-ui/recipes/popup-toast.css";
 @import "../src/registry/sources/control-ui/recipes/thread-rail.css";
 @import "../src/registry/sources/control-ui/recipes/avatar.css";
 @import "../src/registry/sources/control-ui/recipes/button-group.css";
@@ -36,7 +36,7 @@
 @import "../src/registry/sources/control-ui/recipes/tree.css";
 @import "../src/registry/sources/control-ui/recipes/sidebar.css";
 @import "../src/registry/sources/control-ui/recipes/table-of-contents.css";
-@import "../src/registry/sources/control-ui/recipes/drawer.css";
+@import "../src/registry/sources/control-ui/recipes/popup-drawer.css";
 @import "../src/registry/sources/control-ui/recipes/phone-input.css";
 @import "../src/registry/sources/control-ui/recipes/dropzone.css";
 @import "../src/registry/sources/control-ui/recipes/toolbar.css";
@@ -106,10 +106,10 @@
 @source "../examples";
 
 [data-control-ui="button"][data-flavor="neon"] {
-  --button-bg: oklch(0.55 0.24 330);
-  --button-hover-bg: oklch(0.5 0.26 330);
-  --button-foreground: oklch(0.98 0.02 330);
-  --button-shadow: 0 0 14px oklch(0.62 0.24 330 / 0.55);
+  --cui-button-bg: oklch(0.55 0.24 330);
+  --cui-button-hover-bg: oklch(0.5 0.26 330);
+  --cui-button-foreground: oklch(0.98 0.02 330);
+  --cui-button-shadow: 0 0 14px oklch(0.62 0.24 330 / 0.55);
 }
 
 /*

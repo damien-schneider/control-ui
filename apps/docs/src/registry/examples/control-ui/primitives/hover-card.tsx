@@ -9,7 +9,7 @@ export function PrimitiveHoverCardExample() {
       <HoverCard>
         <HoverCardTrigger
           href="#"
-          className="cursor-pointer font-medium text-foreground underline decoration-border decoration-1 underline-offset-2 outline-none transition-colors hover:decoration-foreground data-[popup-open]:decoration-foreground focus-visible:rounded-[var(--radius-sm)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring,oklch(from_var(--foreground)_l_c_h_/_0.2))]"
+          className="cursor-pointer font-medium text-foreground underline decoration-border decoration-1 underline-offset-2 transition-colors hover:decoration-foreground data-[popup-open]:decoration-foreground focus-visible:rounded-[var(--radius-sm)] focus-visible:outline-(--focus-ring) focus-visible:outline-offset-(--focus-ring-offset) focus-visible:outline-(length:--focus-ring-width)"
         >
           @ada
         </HoverCardTrigger>{" "}

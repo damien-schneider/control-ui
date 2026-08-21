@@ -21,8 +21,7 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="trigger-menu"][data-slot="positioner"]) {
-    --_popup-trigger-menu-positioner-outline: none;
-    outline-style: var(--_popup-trigger-menu-positioner-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="combobox"][data-slot="group-label"]) {
@@ -36,15 +35,13 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="combobox"][data-slot="empty"]) {
-    --_popup-combobox-empty-text-align: center;
-    text-align: var(--_popup-combobox-empty-text-align);
+    text-align: center;
     font-size: var(--text-body);
     color: var(--muted-foreground);
   }
 
   :where([data-control-family="popup"][data-popup-kind="combobox"][data-slot="positioner"]) {
-    --_popup-combobox-positioner-outline: none;
-    outline-style: var(--_popup-combobox-positioner-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="group"] [cmdk-group-heading]) {
@@ -54,14 +51,12 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="empty"]) {
-    --_popup-command-empty-text-align: center;
-    text-align: var(--_popup-command-empty-text-align);
+    text-align: center;
     font-size: var(--text-body);
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"]) {
-    --_popup-command-input-outline: none;
-    outline-style: var(--_popup-command-input-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input-icon"]) {
@@ -69,8 +64,7 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="dialog-root"]) {
-    --_popup-command-dialog-root-transition-property: grid-template-rows;
-    transition-property: var(--_popup-command-dialog-root-transition-property);
+    transition-property: grid-template-rows;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-emphasized);
     transition-delay: var(--duration-fast);
@@ -83,14 +77,12 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="autocomplete"][data-slot="empty"]) {
-    --_popup-autocomplete-empty-text-align: center;
-    text-align: var(--_popup-autocomplete-empty-text-align);
+    text-align: center;
     font-size: var(--text-body);
     color: var(--muted-foreground);
   }
 
   :where([data-control-family="popup"][data-popup-kind="autocomplete"][data-slot="positioner"]) {
-    --_popup-autocomplete-positioner-outline: none;
-    outline-style: var(--_popup-autocomplete-positioner-outline);
+    outline-style: none;
   }
 }

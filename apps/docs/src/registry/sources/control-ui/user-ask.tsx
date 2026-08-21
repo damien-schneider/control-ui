@@ -4,9 +4,9 @@ import { Check, ChevronLeft, ChevronRight, PencilLine } from "lucide-react";
 import type { ChangeEvent, ComponentProps, CSSProperties, MouseEvent } from "react";
 import { createContext, useContext, useEffect, useId, useRef } from "react";
 
-import type { UserAskProps } from "@/components/control-ui/contracts";
+import type { UserAskProps } from "@/components/control-ui/hooks/use-user-ask";
 import { useUserAsk } from "@/components/control-ui/hooks/use-user-ask";
-import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts/user-ask-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd } from "@/components/control-ui/ui/kbd";

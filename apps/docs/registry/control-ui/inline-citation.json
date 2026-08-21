@@ -15,6 +15,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/inline-citation-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/inline-citation-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/inline-citation.tsx",
       "target": "@components/control-ui/inline-citation.tsx",
       "type": "registry:component"

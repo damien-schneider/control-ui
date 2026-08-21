@@ -1,8 +1,8 @@
 import type { ComponentProps, CSSProperties, ElementType, ReactNode } from "react";
 import { Activity, ActivityContent, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
-import { skinAdornment } from "@/components/control-ui/adornments";
-import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts/chat-layout-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { skinAdornment } from "@/components/control-ui/skin";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 type ChatThoughtCollapsible = {
@@ -37,6 +37,7 @@ export function ChatThread({ children, className, ...props }: ChatThreadProps) {
   return (
     <div
       data-control-ui="chat-thread"
+      data-control-family="chat-layout"
       data-slot="root"
       className={cn("flex min-h-0 flex-1 flex-col gap-8 overflow-y-auto px-4 py-6 sm:px-8", className)}
       {...props}
@@ -54,9 +55,10 @@ export function ChatTurn({ from, children, className, ...props }: ChatTurnProps)
   return (
     <section
       data-control-ui="chat-turn"
-      data-slot="root"
+      data-control-family="chat-layout"
+      data-slot="turn"
       data-from={from}
-      className={cn("group/turn flex w-full flex-col", from === "user" && "items-end", className)}
+      className={cn("flex w-full flex-col", from === "user" && "items-end", className)}
       {...props}
     >
       {children}

@@ -6,9 +6,15 @@
   "description": "Inline file and media previews for chat turns.",
   "dependencies": [],
   "registryDependencies": [
-    "core"
+    "core",
+    "effects"
   ],
   "files": [
+    {
+      "path": "src/registry/knob-contracts/inline-attachment-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/inline-attachment-knobs.ts",
+      "type": "registry:component"
+    },
     {
       "path": "src/registry/sources/control-ui/inline-attachment.tsx",
       "target": "@components/control-ui/inline-attachment.tsx",

@@ -1,6 +1,15 @@
 import { Loader2 } from "lucide-react";
-import type { SpinnerProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { ControlSize } from "@/components/control-ui/control-variants";
+import type { SpinnerKnobStyle } from "@/components/control-ui/knob-contracts/spinner-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type SpinnerProps = Omit<
+  ComponentProps<"span"> & {
+    size?: ControlSize;
+  },
+  "style"
+> & { style?: CSSProperties & SpinnerKnobStyle };
 
 // Deliberately outside motion kill-switch — loader must keep turning under reduced motion.
 const spinnerSize = {

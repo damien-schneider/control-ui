@@ -1,7 +1,27 @@
-import type { SubmitEvent } from "react";
+import type { ComponentProps, CSSProperties, ReactNode, SubmitEvent } from "react";
 import { useState } from "react";
+import type { ChatDensity } from "@/components/control-ui/hooks/use-chat-message";
+import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 
-import type { ChatComposerProps, ChatComposerSubmitPayload } from "../contracts";
+export type ChatComposerSubmitPayload = {
+  value: string;
+  clear: () => void;
+  mentions?: MentionItem[];
+};
+
+export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit" | "style"> & {
+  children?: ReactNode;
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  onSubmit?: (payload: ChatComposerSubmitPayload) => void | Promise<void>;
+  state?: "idle" | "submitting" | "disabled";
+  density?: ChatDensity;
+  disabled?: boolean;
+  style?: CSSProperties & ChatComposerKnobStyle;
+};
+
+export type MentionItem = { id: string; label: string; kind: string };
 
 function useControllableText({
   value,

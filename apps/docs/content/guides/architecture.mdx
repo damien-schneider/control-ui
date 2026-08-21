@@ -25,16 +25,21 @@
 </GuideSection>
 
 <GuideSection id="anatomy" title="Stable anatomy without runtime metadata">
-  Every public part emits the same two attributes. `data-control-ui` marks Control UI ownership and names the component
-  scope; `data-slot` names a part local to that scope. `data-skin` belongs on the skin boundary, including portal
-  positioners. It is not repeated on every component.
+  Every public part emits three attributes, and only one of them is the selector key. `data-control-family` names the
+  family whose knobs paint the part — key on it. `data-slot` names the part inside its component. `data-control-ui`
+  names the component itself, for devtools, adornments and root extensions. Families that several components share add
+  `data-<family>-kind` to say which member a rule means, and `data-<family>-part` to name the part's role in the family.
+  `data-skin` belongs on the skin boundary, including portal positioners. It is not repeated on every component.
 
 ```css
 /* One exact part in one skin. */
-[data-skin="rig"] :where([data-control-ui="chat-composer"][data-slot="root"]) { ... }
+[data-skin="rig"] :where([data-slot="root"][data-control-family="chat-composer"]) { ... }
+
+/* One member of a shared family: toasts, not every popup. */
+[data-skin="rig"] :where([data-slot="root"][data-popup-kind="toast"][data-control-family="popup"]) { ... }
 
 /* Every interactive Control UI root, without touching host application controls. */
-[data-skin="rig"] [data-control-ui][data-control="true"] { ... }
+[data-skin="rig"] [data-control="true"][data-control-family] { ... }
 ```
 
   The generated `skin-contract.json` is the equivalent of a `defineAnatomy` catalog, but it is built from the component
@@ -65,6 +70,20 @@
     <GuidePoint>Use component knobs, scoped skin CSS, utilities, or an optional extension only when the shallower surfaces cannot express the result.</GuidePoint>
     <GuidePoint>Edit the installed component source when the anatomy itself must change.</GuidePoint>
   </GuidePoints>
+
+  Typed vocabularies stay closed. `variant`, `tone`, and every other union name what the library paints, not what one brand
+  needs. A look the vocabulary does not name is stamped at the call site as a free `data-*` attribute — every part forwards
+  unknown props to the DOM — and painted by re-valuing knobs under it, without a new union member or a forked component
+  source. Shipped skin packs key only on emitted anatomy, so the free attribute belongs in the application's own CSS, which
+  already outranks both the zero-specificity recipe and the skin.
+
+```css
+/* Application CSS. The call site renders <Button data-campaign="launch" />. */
+[data-slot="root"][data-control-family="button"][data-campaign="launch"] {
+  --cui-button-bg: var(--brand-launch);
+  --cui-button-hover-bg: var(--brand-launch-hover);
+}
+```
 </GuideSection>
 
 <GuideSection id="registry" title="Registry source of truth">

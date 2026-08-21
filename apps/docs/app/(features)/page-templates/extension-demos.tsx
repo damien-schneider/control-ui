@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { PrimitivePreview } from "@/app/(features)/components/previews";
 import type { ExtensionId } from "@/app/(features)/model/types";
-import type { ControlEffect } from "@/components/control-ui/extensions/control-effects";
 import { ControlEffectsRoot } from "@/components/control-ui/extensions/control-effects-root";
+import type { ControlEffect } from "@/components/control-ui/skin";
 import { Button } from "@/components/control-ui/ui/button";
 
 export function ExtensionDemo({ extensionId }: { extensionId: ExtensionId }) {

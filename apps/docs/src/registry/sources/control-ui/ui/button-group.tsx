@@ -1,7 +1,27 @@
 import { cva } from "class-variance-authority";
-import type { ButtonGroupProps, ButtonGroupSeparatorProps, ButtonGroupTextProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { ButtonGroupKnobStyle } from "@/components/control-ui/knob-contracts/button-group-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type ButtonGroupTextProps = Omit<
+  ComponentProps<"div"> & {
+    size?: ControlSize;
+  },
+  "style"
+> & { style?: CSSProperties & ButtonGroupKnobStyle };
+
+export type ButtonGroupProps = ComponentProps<"div"> & {
+  orientation?: "horizontal" | "vertical";
+} & { style?: CSSProperties & ButtonGroupKnobStyle };
+
+export type ButtonGroupSeparatorProps = Omit<
+  ComponentProps<"div"> & {
+    orientation?: "horizontal" | "vertical";
+  },
+  "style"
+> & { style?: CSSProperties & ButtonGroupKnobStyle };
 
 // selected controls sit above adjacent focus rings, keeping their shared seams visible
 const buttonGroupVariant = cva(

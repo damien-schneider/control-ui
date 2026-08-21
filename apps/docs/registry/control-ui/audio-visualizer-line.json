@@ -6,6 +6,7 @@
   "description": "Line rendering of the shared realtime audio visualizer contract.",
   "dependencies": [],
   "registryDependencies": [
+    "audio-visualizer",
     "core"
   ],
   "files": [

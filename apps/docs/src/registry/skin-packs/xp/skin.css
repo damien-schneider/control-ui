@@ -21,6 +21,7 @@
   --xp-tab-face-top: oklch(1 0 0);
   --xp-tab-face-bottom: oklch(0.9318 0.0228 98.65);
   --xp-tab-accent: oklch(0.7182 0.1505 61.354);
+  --xp-tab-accent-ink: oklch(0.2178 0 0);
   --xp-groupbox-border: oklch(0.8463 0.022 98.164);
   --xp-task-pane-top: oklch(0.9646 0.0166 271.243);
   --xp-task-pane-bottom: oklch(0.8693 0.0516 270.761);
@@ -57,6 +58,7 @@
   --xp-tab-face-top: oklch(0.3349 0.0104 253.978);
   --xp-tab-face-bottom: oklch(0.2795 0.0085 255.574);
   --xp-tab-accent: oklch(0.7002 0.1411 65.624);
+  --xp-tab-accent-ink: oklch(0.2178 0 0);
   --xp-groupbox-border: oklch(0.3624 0.0117 258.367);
   --xp-task-pane-top: oklch(0.2831 0.0326 269.245);
   --xp-task-pane-bottom: oklch(0.2405 0.0261 268.121);
@@ -76,83 +78,91 @@
 }
 
 @layer components {
-  /* skin-root ergonomics: Tahoma @ 12px inherited; explicit text utilities on components still win. */
-  [data-skin="xp"] [data-control-ui] {
+  /* Inherited skin typography; component text utilities stay authoritative. */
+  [data-skin="xp"] body {
     font-family: var(--font-sans);
     font-size: 0.75rem;
   }
 
-  [data-skin="xp"] :where([data-control-ui="button"][data-control-family="button"][data-slot="root"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"]) {
-    --button-radius: max(3px, var(--radius-control));
-    --button-foreground: var(--foreground);
-    --button-hover-bg: transparent;
-    --button-hover-foreground: var(--foreground);
-    --button-press-bg: transparent;
-    --button-shadow: 0 0 transparent;
-    --button-active-bg: transparent;
-    --button-active-foreground: var(--foreground);
-    --button-active-hover-bg: transparent;
-    --button-focus-shadow: 0 0 transparent;
+  [data-skin="xp"]
+    :where(
+      [data-control-ui="button"][data-slot="root"][data-control-family="button"],
+      [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
+    ) {
+    --cui-button-radius: max(3px, var(--radius-control));
+    --cui-button-foreground: var(--foreground);
+    --cui-button-hover-bg: transparent;
+    --cui-button-hover-foreground: var(--foreground);
+    --cui-button-press-bg: transparent;
+    --cui-button-shadow: 0 0 transparent;
+    --cui-button-active-bg: transparent;
+    --cui-button-active-foreground: var(--foreground);
+    --cui-button-active-hover-bg: transparent;
+    /* Luna reads the raised bevel on hover and inverts it on press. */
+    --cui-button-hover-shadow: inset 1px 1px 0 var(--xp-bevel-light), inset -1px -1px 0 var(--xp-bevel-dark);
+    --cui-button-press-shadow: inset 1px 1px 0 var(--xp-bevel-dark), inset -1px -1px 0 var(--xp-bevel-light);
     border: 1px solid transparent;
   }
 
-  [data-skin="xp"] :where([data-control-ui="button"][data-slot="root"]:focus-visible, [data-control-ui="toggle"][data-slot="root"]:focus-visible),
-  [data-skin="xp"] :where(label[data-control-ui="button"][data-slot="root"]:has(:focus-visible)) {
-    outline: 1px dotted var(--foreground);
-    outline-offset: -3px;
-  }
-
-  @media (hover: hover) {
-    [data-skin="xp"] :where([data-control-ui="button"][data-slot="root"]:hover, [data-control-ui="toggle"][data-slot="root"]:hover) {
-      border-color: var(--xp-bevel-dark);
-      box-shadow:
-        inset 1px 1px 0 var(--xp-bevel-light),
-        inset -1px -1px 0 var(--xp-bevel-dark);
-    }
-  }
-
-  [data-skin="xp"] :where([data-control-ui="button"][data-slot="root"]:active, [data-control-ui="toggle"][data-slot="root"]:active) {
-    box-shadow:
-      inset 1px 1px 0 var(--xp-bevel-dark),
-      inset -1px -1px 0 var(--xp-bevel-light);
-  }
-
-  [data-skin="xp"] :where([data-control-ui="button"][data-control-family="button"][data-slot="root"][data-variant="surface"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"][data-variant="surface"]) {
-    --button-press-scale: 1;
-    --button-shadow: inset 0 1px 0 var(--xp-bevel-light);
-    --button-active-shadow: inset 0 1px 0 var(--xp-bevel-light);
-    background-image: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
-    border-color: var(--xp-control-border);
-  }
-
-
   @media (hover: hover) {
     [data-skin="xp"]
-      :where([data-control-ui="button"][data-slot="root"][data-variant="surface"]:hover, [data-control-ui="toggle"][data-slot="root"][data-variant="surface"]:hover) {
-      border-color: var(--xp-control-border);
-      box-shadow:
-        inset 0 0 0 1px var(--ring),
-        inset 0 1px 0 var(--xp-bevel-light);
+      :where(
+        [data-control-ui="button"][data-slot="root"][data-control-family="button"]:hover,
+        [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]:hover
+      ) {
+      border-color: var(--xp-bevel-dark);
     }
   }
 
   [data-skin="xp"]
-    :where([data-control-ui="button"][data-slot="root"][data-variant="surface"]:active, [data-control-ui="toggle"][data-slot="root"][data-variant="surface"]:active) {
-    background-image: linear-gradient(to bottom, var(--xp-control-bottom), var(--xp-control-top));
-    box-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    :where(
+      [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"],
+      [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]
+    ) {
+    --cui-button-press-scale: 1;
+    --cui-button-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    --cui-button-active-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    --cui-button-hover-shadow: inset 0 0 0 1px var(--ring), inset 0 1px 0 var(--xp-bevel-light);
+    --cui-button-press-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    --cui-button-bg-image: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
+    border-color: var(--xp-control-border);
   }
 
-  [data-skin="xp"] :where([data-control-ui="button"][data-control-family="button"][data-slot="root"][data-variant="solid"], [data-control-ui="toggle"][data-control-family="button"][data-slot="root"][data-variant="solid"]) {
-    --button-press-scale: 1;
-    --button-shadow:
-      inset 0 0 0 1px var(--xp-solid-ring),
-      inset 0 1px 0 var(--xp-bevel-light);
-    background-image: linear-gradient(to bottom, var(--xp-solid-top), var(--xp-solid-bottom));
+  @media (hover: hover) {
+    [data-skin="xp"]
+      :where(
+        [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"]:hover,
+        [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]:hover
+      ) {
+      border-color: var(--xp-control-border);
+    }
+  }
+
+  [data-skin="xp"]
+    :where(
+      [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"]:active,
+      [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]:active
+    ) {
+    --cui-button-bg-image: linear-gradient(to bottom, var(--xp-control-bottom), var(--xp-control-top));
+  }
+
+  [data-skin="xp"]
+    :where(
+      [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
+      [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
+    ) {
+    --cui-button-press-scale: 1;
+    --cui-button-shadow: inset 0 0 0 1px var(--xp-solid-ring), inset 0 1px 0 var(--xp-bevel-light);
+    --cui-button-bg-image: linear-gradient(to bottom, var(--xp-solid-top), var(--xp-solid-bottom));
     border-color: var(--xp-control-border);
     font-weight: 700;
   }
 
-  [data-skin="xp"] :where([data-control-ui="button"][data-slot="content"], [data-control-ui="toggle"][data-slot="content"]) {
+  [data-skin="xp"]
+    :where(
+      [data-control-ui="button"][data-slot="content"][data-control-family="button"],
+      [data-control-ui="toggle"][data-slot="content"][data-control-family="button"]
+    ) {
     gap: 0.25rem;
     line-height: 1;
   }
@@ -160,62 +170,59 @@
   /* classic XP tab strip: baseline recipe keeps geometry/states; knobs re-value component-local vars.
      un-tokenizable Luna reading stays as rules: raised gradient boxes on the Luna desktop gray; active tab white,
      1px taller, cuts baseline, wears orange top stripe (tabs-indicator slides via Base UI --active-tab-* vars). */
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="list"]) {
+  [data-skin="xp"] :where([data-slot="list"][data-control-family="tabs"]) {
     --_tabs-list-h: calc(var(--_tabs-trigger-h) + 3px); /* squares the strip; the tab/indicator keep their own 3px tops */
     align-items: flex-end;
-    /* real declarations (not gap knob) on purpose: must also hold in line variant, whose baseline resets gap/padding/min-height. */
-    min-height: var(--_tabs-list-h);
+    /* gap stays a real declaration: the line variant resets it to 0 and the Luna strip must hold either way. */
     gap: 2px;
     border-bottom: 1px solid var(--border);
-    padding: 0;
   }
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-control-family="tabs"][data-slot="root"]) {
-    --tabs-trigger-radius: 0px;
-    --tabs-list-background: transparent;
-    --tabs-indicator-background: var(--xp-tab-accent);
-    --tabs-indicator-shadow: none;
-    --tabs-line-indicator-background: var(--xp-tab-accent);
-  }
-
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-control-family="tabs"][data-slot="list"][data-variant="browser"]) {
-    --tabs-indicator-background: var(--background);
+  [data-skin="xp"] :where([data-slot="root"][data-control-family="tabs"]) {
+    --cui-tabs-trigger-radius: 3px;
+    --cui-tabs-list-padding: 0px;
+    --cui-tabs-list-background: transparent;
+    --cui-tabs-foreground: var(--foreground);
+    --cui-tabs-active-foreground: var(--xp-tab-accent-ink);
+    --cui-tabs-indicator-background: var(--xp-tab-accent);
+    --cui-tabs-indicator-shadow: none;
   }
 
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"]) {
+  /* The browser variant drops the accent for the page surface, so the ink follows it back. */
+  [data-skin="xp"] :where([data-slot="list"][data-variant="browser"][data-control-family="tabs"]) {
+    --cui-tabs-active-foreground: var(--foreground);
+    --cui-tabs-indicator-background: var(--background);
+  }
+
+  [data-skin="xp"] :where([data-slot="tab"][data-control-family="tabs"]) {
     /* height/cursor restated (baseline values) so the single-tab reset keeps the full Luna box */
     height: var(--_tabs-trigger-h);
     cursor: pointer;
     border: 1px solid var(--border);
     border-bottom: none;
-    border-radius: 3px 3px 0 0;
+    /* the tab radius stays the knob's; only the bottom is squared off, where the tab meets the baseline. */
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
     background: linear-gradient(180deg, var(--xp-tab-face-top) 0%, var(--xp-tab-face-bottom) 100%);
     padding-inline: 0.75rem;
     font-weight: 400;
-    color: var(--foreground);
     transition: color var(--duration-fast) var(--ease-standard);
   }
 
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"][aria-selected="true"]),
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"][data-active]) {
+  [data-skin="xp"] :where([data-slot="tab"][aria-selected="true"][data-control-family="tabs"]),
+  [data-skin="xp"] :where([data-slot="tab"][data-active][data-control-family="tabs"]) {
     height: calc(var(--_tabs-trigger-h) + 2px);
     margin-bottom: -1px;
     background: var(--background);
-    color: var(--foreground);
   }
 
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="tab"]:focus-visible) {
-    box-shadow: none;
-    outline: 1px dotted var(--foreground);
-    outline-offset: -3px;
-  }
-
-  [data-skin="xp"] :where([data-control-ui="tabs"][data-slot="indicator"]) {
+  [data-skin="xp"] :where([data-slot="indicator"][data-control-family="tabs"]) {
     top: 1px;
     bottom: auto;
     z-index: 2;
     height: 3px;
     transform: translateX(var(--active-tab-left));
-    border-radius: 3px 3px 0 0; /* also caps the line variant's pill indicator, as before */
+    border-end-start-radius: 0; /* also caps the line variant's pill indicator, as before */
+    border-end-end-radius: 0;
   }
 }
 
@@ -249,58 +256,7 @@
 
 /* xp-pinstripes — the faint vertical Luna watermark texture for wide surfaces. */
 @utility xp-pinstripes {
-  background-image: repeating-linear-gradient(
-    90deg,
-    oklch(from var(--foreground) l c h / 0.03) 0 1px,
-    transparent 1px 4px
-  );
-}
-
-/* xp-scroll-track: XP scrollbar channel; used by ScrollArea slot, pair with xp-scroll-thumb. */
-@utility xp-scroll-track {
-  border-radius: 0;
-  background: var(--xp-scroll-track);
-  box-shadow: inset 0 0 0 1px oklch(from var(--xp-separator) l c h / 0.55);
-}
-
-/* xp-scroll-thumb: light-blue thumb w/ horizontal gradient + centered repeating-gradient grip lines. */
-@utility xp-scroll-thumb {
-  border-radius: 0;
-  border: 1px solid var(--xp-scroll-thumb-border);
-  background-image:
-    repeating-linear-gradient(180deg, oklch(from var(--xp-bevel-light) l c h / 0.9) 0 1px, transparent 1px 3px),
-    linear-gradient(90deg, var(--xp-scroll-thumb-top) 0%, var(--xp-scroll-thumb-bottom) 100%);
-  background-position:
-    center,
-    0 0;
-  background-size:
-    6px 10px,
-    100% 100%;
-  background-repeat: no-repeat;
-}
-
-/* xp-scrollbar: native-scrollbar styling for plain overflow scrollers; ScrollArea slot draws its own bars separately. */
-@utility xp-scrollbar {
-  scrollbar-color: var(--xp-scroll-thumb-bottom) var(--xp-scroll-track);
-
-  &::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: var(--xp-scroll-track);
-    box-shadow: inset 0 0 0 1px oklch(from var(--xp-separator) l c h / 0.55);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border: 1px solid var(--xp-scroll-thumb-border);
-    background: linear-gradient(90deg, var(--xp-scroll-thumb-top) 0%, var(--xp-scroll-thumb-bottom) 100%);
-  }
-
-  &::-webkit-scrollbar-corner {
-    background: var(--xp-scroll-track);
-  }
+  background-image: repeating-linear-gradient(90deg, oklch(from var(--foreground) l c h / 0.03) 0 1px, transparent 1px 4px);
 }
 
 /* "generating" treatment = library progress-sweep effect (effects.css); defaults already match XP sweep, pack re-values nothing. */
@@ -313,14 +269,15 @@
 }
 
 @layer components {
-  [data-skin="xp"] :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
-    --popup-radius: 0px;
-    --popup-background: var(--popover);
-    --popup-foreground: var(--foreground);
-    --popup-border-color: var(--xp-field-border);
-    --popup-border-width: 1px;
-    --popup-shadow: 3px 3px 4px oklch(0 0 0 / 0.35);
-    --popup-backdrop-blur: 0px;
+  [data-skin="xp"]
+    :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
+    --cui-popup-radius: 0px;
+    --cui-popup-background: var(--popover);
+    --cui-popup-foreground: var(--foreground);
+    --cui-popup-border-color: var(--xp-field-border);
+    --cui-popup-border-width: 1px;
+    --cui-popup-shadow: 3px 3px 4px oklch(0 0 0 / 0.35);
+    --cui-popup-backdrop-filter: none;
   }
 
   [data-skin="xp"] :where([data-popup-part="list-surface"]) {
@@ -343,11 +300,17 @@
     text-transform: none;
   }
 
-  [data-skin="xp"] :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"], [data-control-family="popup"][data-popup-part="bar"]) {
-    --popup-item-radius: 0px;
-    --popup-item-highlight-background: var(--primary);
-    --popup-item-disabled-opacity: 0.4;
-    --popup-separator-color: var(--xp-separator);
+  [data-skin="xp"]
+    :where(
+      [data-control-family="popup"][data-popup-part="surface"],
+      [data-control-family="popup"][data-popup-part="list-surface"],
+      [data-control-family="popup"][data-popup-part="bar"]
+    ) {
+    --cui-popup-item-radius: 0px;
+    --cui-popup-item-highlight-background: var(--primary);
+    --cui-popup-item-highlight-foreground: var(--primary-foreground);
+    --cui-popup-item-disabled-opacity: 0.4;
+    --cui-popup-separator-color: var(--xp-separator);
   }
 
   [data-skin="xp"] :where([data-popup-part="separator"]) {
@@ -359,194 +322,216 @@
   }
 
   [data-skin="xp"]
-    :where([data-control-ui="select"][data-control-family="button"][data-slot="trigger"], [data-control-ui="dropdown-menu"][data-control-family="button"][data-slot="trigger"]) {
-    --button-radius: max(3px, var(--radius-control));
-    --button-bg: var(--xp-control-bottom);
-    --button-foreground: var(--foreground);
-    --button-hover-bg: var(--xp-control-top);
-    --button-hover-foreground: var(--foreground);
-    --button-press-bg: var(--xp-control-bottom);
-    --button-press-scale: 1;
-    --button-shadow: inset 0 1px 0 var(--xp-bevel-light);
-    --button-focus-shadow: none;
+    :where(
+      [data-control-ui="select"][data-slot="trigger"][data-control-family="button"],
+      [data-control-ui="dropdown-menu"][data-slot="trigger"][data-control-family="button"]
+    ) {
+    --cui-button-radius: max(3px, var(--radius-control));
+    --cui-button-bg: var(--xp-control-bottom);
+    --cui-button-foreground: var(--foreground);
+    --cui-button-hover-bg: var(--xp-control-top);
+    --cui-button-hover-foreground: var(--foreground);
+    --cui-button-press-bg: var(--xp-control-bottom);
+    --cui-button-press-scale: 1;
+    --cui-button-shadow: inset 0 1px 0 var(--xp-bevel-light);
     border: 1px solid var(--xp-control-border);
     background-image: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
   }
 
   [data-skin="xp"]
-    :where([data-control-ui="select"][data-slot="trigger"], [data-control-ui="dropdown-menu"][data-slot="trigger"]):focus-visible {
-    outline: 1px dotted var(--foreground);
-    outline-offset: -3px;
-  }
-
-  [data-skin="xp"]
-    :where([data-control-ui="select"][data-slot="trigger"], [data-control-ui="dropdown-menu"][data-slot="trigger"]):active {
+    :where(
+      [data-control-ui="select"][data-slot="trigger"][data-control-family="button"],
+      [data-control-ui="dropdown-menu"][data-slot="trigger"][data-control-family="button"]
+    ):active {
     background-image: linear-gradient(to bottom, var(--xp-control-bottom), var(--xp-control-top));
   }
 
-  [data-skin="xp"] :where([data-control-ui="select"][data-slot="icon"]) {
+  [data-skin="xp"] :where([data-control-ui="select"][data-slot="icon"][data-control-family="popup"]) {
     rotate: 0deg;
     color: var(--xp-control-border);
   }
-  [data-skin="xp"] :where([data-control-ui="dialog"][data-control-family="popup"][data-popup-part="surface"]) {
-    --popup-radius: 5px 5px 0 0;
-    --popup-background: var(--background);
-    --popup-border-color: var(--xp-frame);
-    --popup-border-width: 3px;
-    --popup-shadow: 3px 3px 8px oklch(0 0 0 / 0.35);
-    --popup-backdrop-blur: 0px;
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"]) {
+    --cui-popup-radius: 5px 5px 0 0;
+    --cui-popup-background: var(--background);
+    --cui-popup-border-color: var(--xp-frame);
+    --cui-popup-border-width: 3px;
+    --cui-popup-shadow: 3px 3px 8px oklch(0 0 0 / 0.35);
+    --cui-popup-backdrop-filter: none;
   }
 
-  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="header"]) {
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="header"][data-control-family="popup"]) {
     padding: 0.5rem 0.75rem 0;
   }
 
-  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="title"]) {
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="title"][data-control-family="popup"]) {
     font-size: 0.8125rem;
     font-weight: 700;
   }
 
-  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="description"]) {
+  [data-skin="xp"] :where([data-control-ui="dialog"][data-slot="description"][data-control-family="popup"]) {
     color: var(--muted-foreground);
     font-size: 0.75rem;
   }
 
-  [data-skin="xp"] :where([data-control-family="button"][data-dialog-part="close"]) {
-    --button-radius: 3px;
-    --button-bg: var(--xp-close-bottom);
-    --button-foreground: white;
-    --button-hover-bg: var(--xp-close-top);
-    --button-hover-foreground: white;
-    --button-press-bg: var(--xp-close-bottom);
-    --button-shadow: inset 0 1px 0 oklch(1 0 0 / 0.45);
+  [data-skin="xp"] :where([data-control-family="button"][data-popup-part="close"]) {
+    --cui-button-radius: 3px;
+    --cui-button-bg: var(--xp-close-bottom);
+    --cui-button-foreground: white;
+    --cui-button-hover-bg: var(--xp-close-top);
+    --cui-button-hover-foreground: white;
+    --cui-button-press-bg: var(--xp-close-bottom);
+    --cui-button-shadow: inset 0 1px 0 oklch(1 0 0 / 0.45);
     border: 1px solid oklch(1 0 0 / 0.7);
     background-image: linear-gradient(to bottom, var(--xp-close-top), var(--xp-close-bottom));
   }
-
 }
 
 @layer components {
   [data-skin="xp"] :where([data-control-family="field"][data-control="true"]) {
-    --field-radius: var(--radius-control);
-    --field-background: var(--background);
-    --field-foreground: var(--foreground);
-    --field-border-color: var(--xp-field-border);
-    --field-border-width: 1px;
-    --field-shadow: inset 1px 1px 0 var(--xp-bevel-dark);
-    --field-focus-border-color: var(--primary);
-    --field-focus-ring-width: 0px;
-  }
-
-  [data-skin="xp"] :where(:is([data-control-ui="field"], [data-control-family="field"])):focus-visible,
-  [data-skin="xp"] :where(:is([data-control-ui="field"], [data-control-family="field"])):focus-within {
-    outline: 1px dotted var(--foreground);
-    outline-offset: -3px;
+    --cui-field-radius: var(--radius-control);
+    --cui-field-background: var(--background);
+    --cui-field-foreground: var(--foreground);
+    --cui-field-border-color: var(--xp-field-border);
+    --cui-field-border-width: 1px;
+    --cui-field-shadow: inset 1px 1px 0 var(--xp-bevel-dark);
+    --cui-field-focus-border-color: var(--primary);
   }
 }
 @layer components {
-
-  [data-skin="xp"] :where([data-control-ui="sidebar"][data-control-family="sidebar"][data-slot="root"]) {
-    --sidebar-inner-background: var(--xp-task-pane-top);
-    --sidebar-inner-background-image: linear-gradient(to bottom, var(--xp-task-pane-top), var(--xp-task-pane-bottom));
-    --sidebar-inner-border-color: var(--xp-field-border);
-    --sidebar-inner-border-width: 1px;
-    --sidebar-inner-radius: 0px;
-    --sidebar-inner-shadow: none;
-    --sidebar-menu-button-radius: 0px;
-    --sidebar-menu-button-foreground: var(--xp-link);
-    --sidebar-menu-button-hover-background: oklch(from var(--primary) l c h / 0.1);
-    --sidebar-menu-button-active-background: var(--primary);
-    --sidebar-menu-button-active-foreground: var(--primary-foreground);
-    --sidebar-group-label-foreground: var(--xp-link);
+  [data-skin="xp"] :where([data-slot="root"][data-control-family="sidebar"]) {
+    --cui-sidebar-inner-background: var(--xp-task-pane-top);
+    --cui-sidebar-inner-background-image: linear-gradient(to bottom, var(--xp-task-pane-top), var(--xp-task-pane-bottom));
+    --cui-sidebar-inner-border-color: var(--xp-field-border);
+    --cui-sidebar-inner-border-width: 1px;
+    --cui-sidebar-inner-radius: 0px;
+    --cui-sidebar-inner-shadow: none;
+    --cui-sidebar-menu-button-radius: 0px;
+    --cui-sidebar-menu-button-foreground: var(--xp-link);
+    --cui-sidebar-menu-button-hover-background: oklch(from var(--primary) l c h / 0.1);
+    --cui-sidebar-menu-button-active-background: var(--primary);
+    --cui-sidebar-menu-button-active-foreground: var(--primary-foreground);
+    --cui-sidebar-group-label-foreground: var(--xp-link);
   }
 
-  [data-skin="xp"] :where([data-control-ui="sidebar"][data-slot="group-label"]) {
-    @apply normal-case;
+  [data-skin="xp"] :where([data-slot="group-label"][data-control-family="sidebar"]) {
+    text-transform: none;
   }
 
-  [data-skin="xp"] :where([data-control-ui="slider"][data-control-family="range"][data-slot="root"]) {
-    --range-track-radius: var(--radius-control);
-    --range-track-background: var(--xp-scroll-track);
-    --range-indicator-radius: var(--radius-control);
-    --range-indicator-background: var(--primary);
-    --range-thumb-radius: var(--radius-control);
-    --range-thumb-background: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
-    --range-thumb-border-color: var(--xp-control-border);
-    --range-thumb-shadow: inset 0 1px 0 var(--xp-bevel-light);
+  [data-skin="xp"] :where([data-control-ui="slider"][data-slot="root"][data-control-family="range"]) {
+    --cui-range-track-radius: var(--radius-control);
+    --cui-range-track-background: var(--xp-scroll-track);
+    --cui-range-indicator-radius: var(--radius-control);
+    --cui-range-indicator-background: var(--primary);
+    --cui-range-thumb-radius: var(--radius-control);
+    --cui-range-thumb-background: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
+    --cui-range-thumb-border-color: var(--xp-control-border);
+    --cui-range-thumb-shadow: inset 0 1px 0 var(--xp-bevel-light);
   }
 
-  [data-skin="xp"] :where([data-control-ui="scroll-area"][data-slot="root"]) {
-    @apply xp-scrollbar;
+  [data-skin="xp"] :where([data-slot="scrollbar"][data-control-family="scroll-area"]) {
+    border-radius: 0;
+    background: var(--xp-scroll-track);
+    box-shadow: inset 0 0 0 1px oklch(from var(--xp-separator) l c h / 0.55);
   }
 
-  [data-skin="xp"] :where([data-control-ui="scroll-area"][data-slot="scrollbar"]) {
-    @apply xp-scroll-track;
+  [data-skin="xp"] :where([data-slot="root"][data-control-family="scroll-area"]) {
+    --cui-scroll-area-thumb-radius: 0px;
+    --cui-scroll-area-thumb-background:
+      repeating-linear-gradient(180deg, oklch(from var(--xp-bevel-light) l c h / 0.9) 0 1px, transparent 1px 3px),
+      linear-gradient(90deg, var(--xp-scroll-thumb-top) 0%, var(--xp-scroll-thumb-bottom) 100%);
   }
 
-  [data-skin="xp"] :where([data-control-ui="scroll-area"][data-slot="thumb"]) {
-    @apply xp-scroll-thumb;
+  [data-skin="xp"] :where([data-slot="thumb"][data-control-family="scroll-area"]) {
+    border: 1px solid var(--xp-scroll-thumb-border);
+    background-position:
+      center,
+      0 0;
+    background-size:
+      6px 10px,
+      100% 100%;
+    background-repeat: no-repeat;
   }
 
-  [data-skin="xp"] :where([data-control-ui="chat-composer"][data-control-family="chat-composer"][data-slot="root"]) {
-    --chat-composer-shell-background: var(--background);
-    --chat-composer-shell-border-color: var(--xp-field-border);
-    --chat-composer-shell-radius: var(--radius-control);
-    --chat-composer-shell-shadow: inset 1px 1px 0 var(--xp-bevel-dark);
-    --chat-composer-input-foreground: var(--foreground);
+  [data-skin="xp"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
+    --cui-chat-composer-shell-background: var(--background);
+    --cui-chat-composer-shell-border-color: var(--xp-field-border);
+    --cui-chat-composer-shell-radius: var(--radius-control);
+    --cui-chat-composer-shell-shadow: inset 1px 1px 0 var(--xp-bevel-dark);
+    --cui-chat-composer-input-foreground: var(--foreground);
   }
 
-  [data-skin="xp"] :where([data-control-ui="chat-composer"][data-slot="shell"]) {
-    @apply focus-within:ring-0 focus-visible:border-[var(--primary)] focus-visible:ring-0 focus-visible:outline-1 focus-visible:outline-dotted focus-visible:outline-[var(--foreground)] focus-visible:outline-offset-[-3px];
+  [data-skin="xp"] :where([data-slot="root"][data-control-family="markdown-block"]) {
+    --cui-markdown-block-radius: 0px;
+    --cui-markdown-block-border-color: var(--xp-groupbox-border);
+    --cui-markdown-block-header-border-color: var(--xp-groupbox-border);
   }
 
-  [data-skin="xp"] :where([data-control-ui="chat-composer"][data-slot="submit"]) {
-    @apply rounded-[max(3px,var(--radius-control))] border border-[var(--xp-control-border)] bg-linear-to-b from-(--xp-solid-top) to-(--xp-solid-bottom) font-bold text-foreground shadow-[inset_0_0_0_1px_var(--xp-solid-ring),inset_0_1px_0_var(--xp-bevel-light)] active:scale-100 focus-visible:ring-0 focus-visible:outline-1 focus-visible:outline-dotted focus-visible:outline-[var(--foreground)] focus-visible:outline-offset-[-3px];
+  [data-skin="xp"] :where([data-slot="header"][data-control-family="markdown-block"]) {
+    background-color: var(--secondary);
   }
 
-  [data-skin="xp"] :where([data-control-ui="markdown-block"][data-slot="root"]) {
-    @apply rounded-none border border-[var(--xp-groupbox-border)] xp-scrollbar;
+  [data-skin="xp"] :where([data-slot="root"][data-control-family="thread-rail"]) {
+    --cui-thread-rail-item-radius: 0px;
+    --cui-thread-rail-line-radius: 0px;
   }
 
-  [data-skin="xp"] :where([data-control-ui="markdown-block"][data-slot="header"]) {
-    @apply rounded-none border-b border-[var(--xp-groupbox-border)] bg-[var(--secondary)];
+  [data-skin="xp"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]) {
+    --cui-chat-layout-radius: 8px;
+    --cui-chat-layout-border-color: var(--xp-frame);
+    --cui-chat-layout-shadow: 3px 3px 8px oklch(0 0 0 / 0.35);
+    border-width: 3px;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
   }
 
-  [data-skin="xp"] :where([data-control-ui="thread-rail"][data-control-family="thread-rail"][data-slot="root"]) {
-    --thread-rail-item-radius: 0px;
-    --thread-rail-line-radius: 0px;
-  }
+  /* The Luna scrollbar rides the native bars, so it lands on whatever part owns the overflow. */
+  [data-skin="xp"]
+  :where(
+    [data-slot="root"][data-control-family="scroll-area"],
+    [data-slot="root"][data-control-family="markdown-block"],
+    [data-control-ui="chat-thread"][data-slot="root"][data-control-family="chat-layout"]
+  ) {
+    scrollbar-color: var(--xp-scroll-thumb-bottom) var(--xp-scroll-track);
 
-  [data-skin="xp"] :where([data-control-ui="chat-layout"][data-slot="root"]) {
-    @apply rounded-none rounded-t-[8px] border-[3px] border-[var(--xp-frame)] shadow-[3px_3px_8px_rgba(0,0,0,0.35)];
-  }
+    &::-webkit-scrollbar {
+      width: 14px;
+      height: 14px;
+    }
 
-  [data-skin="xp"] :where([data-control-ui="chat-thread"][data-slot="root"]) {
-    @apply xp-scrollbar;
-  }
+    &::-webkit-scrollbar-track {
+      background: var(--xp-scroll-track);
+      box-shadow: inset 0 0 0 1px oklch(from var(--xp-separator) l c h / 0.55);
+    }
 
+    &::-webkit-scrollbar-thumb {
+      border: 1px solid var(--xp-scroll-thumb-border);
+      background: linear-gradient(90deg, var(--xp-scroll-thumb-top) 0%, var(--xp-scroll-thumb-bottom) 100%);
+    }
+
+    &::-webkit-scrollbar-corner {
+      background: var(--xp-scroll-track);
+    }
+  }
 }
 
 @layer components {
-  [data-skin="xp"] :where([data-control-ui="chat-message"][data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
-    --chat-message-radius: 3px;
-    --chat-message-corner-radius: 3px;
-    --chat-message-background: var(--background);
-    --chat-message-background-image: linear-gradient(to bottom, var(--xp-bubble-user-top), var(--xp-bubble-user-bottom));
-    --chat-message-border-color: var(--xp-field-border);
-    --chat-message-border-width: 1px;
-    --chat-message-shadow: inset 0 1px 0 var(--xp-bevel-light);
-    --chat-message-foreground: var(--foreground);
+  [data-skin="xp"] :where([data-slot="root"][data-role="user"][data-control-family="chat-message"]) {
+    --cui-chat-message-radius: 3px;
+    --cui-chat-message-corner-radius: 3px;
+    --cui-chat-message-background: var(--background);
+    --cui-chat-message-background-image: linear-gradient(to bottom, var(--xp-bubble-user-top), var(--xp-bubble-user-bottom));
+    --cui-chat-message-border-color: var(--xp-field-border);
+    --cui-chat-message-border-width: 1px;
+    --cui-chat-message-shadow: inset 0 1px 0 var(--xp-bevel-light);
+    --cui-chat-message-foreground: var(--foreground);
   }
 
-  [data-skin="xp"] :where([data-control-ui="chat-message"][data-slot="content"][data-streaming]) {
+  [data-skin="xp"] :where([data-slot="content"][data-streaming][data-control-family="chat-message"]) {
     @apply progress-sweep;
   }
 
-  [data-skin="xp"] :where([data-control-ui="skeleton"][data-control-family="skeleton"][data-slot="root"]) {
-    --skeleton-background: var(--xp-skeleton);
-  }
-
-  [data-skin="xp"] :where([data-control-ui="skeleton"][data-slot="root"]) {
+  [data-skin="xp"] :where([data-slot="root"][data-control-family="skeleton"]) {
+    --cui-skeleton-background: var(--xp-skeleton);
     background-image: none;
   }
 }

@@ -2,8 +2,31 @@
 
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { ChevronDown } from "lucide-react";
-import type { AccordionItemProps, AccordionPanelProps, AccordionProps, AccordionTriggerProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { AccordionKnobStyle } from "@/components/control-ui/knob-contracts/accordion-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type AccordionValue = (string | number)[];
+
+export type AccordionProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
+  value?: AccordionValue;
+  defaultValue?: AccordionValue;
+  onValueChange?: (value: AccordionValue) => void;
+  multiple?: boolean;
+  disabled?: boolean;
+} & { style?: CSSProperties & AccordionKnobStyle };
+
+export type AccordionItemProps = Omit<
+  ComponentProps<"div"> & {
+    value?: string | number;
+    disabled?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & AccordionKnobStyle };
+
+export type AccordionTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & AccordionKnobStyle };
+
+export type AccordionPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & AccordionKnobStyle };
 
 // Panel height animates from Base UI's --accordion-panel-height, with no JS measuring.
 export function Accordion({ className, ...props }: AccordionProps) {

@@ -3,7 +3,7 @@
 import type { TooltipPopupProps, TooltipPositionerProps } from "@base-ui/react/tooltip";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import type { ComponentProps, CSSProperties, Ref } from "react";
-import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 

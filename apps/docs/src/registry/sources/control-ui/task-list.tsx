@@ -4,10 +4,14 @@ import { ChevronRight, CircleCheck, CircleDashed, Loader2 } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext, useEffect, useId, useState } from "react";
 
-import type { TaskListProps, TaskStatus } from "@/components/control-ui/contracts";
-import type { TaskListKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { TaskListKnobStyle } from "@/components/control-ui/knob-contracts/task-list-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { CollapsibleProps } from "@/components/control-ui/ui/collapsible";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+
+export type TaskStatus = "pending" | "active" | "completed";
+
+export type TaskListProps = Omit<CollapsibleProps, "style"> & { style?: CSSProperties & TaskListKnobStyle };
 
 type TaskListStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 

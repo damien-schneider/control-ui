@@ -2,14 +2,15 @@
 
 import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, SubmitEvent } from "react";
 import { createContext, useContext, useEffect, useId, useMemo, useRef } from "react";
-
-import type { DynamicNotificationProps, DynamicNotificationState, DynamicNotificationVariant } from "@/components/control-ui/contracts";
 import { createDynamicNotificationGlass } from "@/components/control-ui/dynamic-notification-glass";
 import { createDynamicNotificationLiquid } from "@/components/control-ui/dynamic-notification-liquid";
+import type { DynamicNotificationProps, DynamicNotificationVariant } from "@/components/control-ui/hooks/use-dynamic-notification";
 import { type DynamicNotificationController, useDynamicNotification } from "@/components/control-ui/hooks/use-dynamic-notification";
-import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts/dynamic-notification-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+
+export type DynamicNotificationState = "collapsed" | "thinking" | "expanded";
 
 type DynamicNotificationWordStyle = CSSProperties & { "--_dynamic-notification-word-index"?: string };
 

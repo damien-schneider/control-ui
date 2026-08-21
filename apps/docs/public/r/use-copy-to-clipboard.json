@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-copy-to-clipboard",
+  "type": "registry:item",
+  "title": "useCopyToClipboard",
+  "description": "Clipboard write with a self-resetting copied flag.",
+  "dependencies": [],
+  "registryDependencies": [
+    "http://127.0.0.1:3000/r/core.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/hooks/use-copy-to-clipboard.ts",
+      "target": "@components/control-ui/hooks/use-copy-to-clipboard.ts",
+      "type": "registry:hook",
+      "content": "import { useEffect, useRef, useState } from \"react\";\n\nexport type UseCopyToClipboardOptions = {\n  text?: string;\n  copiedDuration?: number;\n  onCopy?: (value: string) => void;\n  onCopyError?: (error: unknown) => void;\n};\n\nexport type UseCopyToClipboardResult = {\n  isCopied: boolean;\n  copyToClipboard: (value: string) => Promise<boolean>;\n  resetCopied: () => void;\n};\n\nexport type UseCopyToClipboardConfiguredResult = UseCopyToClipboardResult & {\n  handleCopy: () => Promise<boolean>;\n};\n\nasync function copyViaClipboardApi(value: string) {\n  if (typeof navigator === \"undefined\" || !navigator.clipboard?.writeText) return false;\n\n  try {\n    await navigator.clipboard.writeText(value);\n    return true;\n  } catch {\n    return false;\n  }\n}\n\nfunction copyViaSelection(value: string) {\n  if (typeof document === \"undefined\" || typeof document.execCommand !== \"function\" || !document.body) return false;\n\n  const activeElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;\n  const textarea = document.createElement(\"textarea\");\n\n  textarea.value = value;\n  textarea.setAttribute(\"readonly\", \"\");\n  textarea.setAttribute(\"aria-hidden\", \"true\");\n  textarea.style.position = \"fixed\";\n  textarea.style.top = \"0\";\n  textarea.style.left = \"0\";\n  textarea.style.width = \"1px\";\n  textarea.style.height = \"1px\";\n  textarea.style.opacity = \"0\";\n  textarea.style.pointerEvents = \"none\";\n\n  document.body.appendChild(textarea);\n\n  try {\n    textarea.focus();\n    textarea.select();\n    textarea.setSelectionRange(0, value.length);\n    return document.execCommand(\"copy\");\n  } catch {\n    return false;\n  } finally {\n    textarea.remove();\n    activeElement?.focus({ preventScroll: true });\n  }\n}\n\nexport async function copyTextToClipboard(value: string) {\n  if (await copyViaClipboardApi(value)) return true;\n  return copyViaSelection(value);\n}\n\nexport function useCopyToClipboard(options: UseCopyToClipboardOptions & { text: string }): UseCopyToClipboardConfiguredResult;\nexport function useCopyToClipboard(options?: UseCopyToClipboardOptions): UseCopyToClipboardResult;\nexport function useCopyToClipboard({ text, copiedDuration = 1200, onCopy, onCopyError }: UseCopyToClipboardOptions = {}) {\n  const [isCopied, setIsCopied] = useState(false);\n  const resetTimeout = useRef<number | null>(null);\n\n  useEffect(() => {\n    const timeoutRef = resetTimeout;\n\n    return () => {\n      if (timeoutRef.current) window.clearTimeout(timeoutRef.current);\n    };\n  }, []);\n\n  function resetCopied() {\n    if (resetTimeout.current) window.clearTimeout(resetTimeout.current);\n    resetTimeout.current = null;\n    setIsCopied(false);\n  }\n\n  async function copyToClipboard(value: string) {\n    const copied = await copyTextToClipboard(value);\n    if (!copied) {\n      const error = new Error(\"Unable to copy text\");\n      onCopyError?.(error);\n      setIsCopied(false);\n      return false;\n    }\n\n    try {\n      onCopy?.(value);\n    } catch (error) {\n      onCopyError?.(error);\n      setIsCopied(false);\n      return false;\n    }\n\n    setIsCopied(true);\n    if (resetTimeout.current) window.clearTimeout(resetTimeout.current);\n    resetTimeout.current = window.setTimeout(() => setIsCopied(false), copiedDuration);\n    return true;\n  }\n\n  function handleCopy() {\n    return text !== undefined ? copyToClipboard(text) : Promise.resolve(false);\n  }\n\n  return text === undefined ? { isCopied, copyToClipboard, resetCopied } : { isCopied, copyToClipboard, handleCopy, resetCopied };\n}\n"
+    }
+  ],
+  "meta": {
+    "internal": true
+  }
+}

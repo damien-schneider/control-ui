@@ -3,23 +3,48 @@
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
 import { cva } from "class-variance-authority";
-import type { ComponentProps } from "react";
-import type {
-  FieldContentProps,
-  FieldControlProps,
-  FieldDescriptionProps,
-  FieldErrorProps,
-  FieldGroupProps,
-  FieldItemProps,
-  FieldLabelProps,
-  FieldLegendProps,
-  FieldProps,
-  FieldSeparatorProps,
-  FieldSetProps,
-  FieldTitleProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Separator } from "@/components/control-ui/ui/separator";
+
+export type FieldProps = ComponentProps<"div"> & {
+  orientation?: "vertical" | "horizontal" | "responsive";
+  name?: string;
+  disabled?: boolean;
+  invalid?: boolean;
+  validationMode?: "onSubmit" | "onBlur" | "onChange";
+} & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldLabelProps = Omit<ComponentProps<"label">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldContentProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldControlProps = Omit<ComponentProps<"input">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldDescriptionProps = Omit<ComponentProps<"p">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldErrorMatch = boolean | keyof ValidityState;
+
+export type FieldErrorProps = Omit<ComponentProps<"div">, "style"> & {
+  match?: FieldErrorMatch;
+  style?: CSSProperties & FieldKnobStyle;
+};
+
+export type FieldGroupProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldSeparatorProps = Omit<ComponentProps<"div">, "style"> & {
+  children?: ReactNode;
+  style?: CSSProperties & FieldKnobStyle;
+};
+
+export type FieldItemProps = ComponentProps<"div"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldSetProps = Omit<ComponentProps<"fieldset">, "style"> & { style?: CSSProperties & FieldKnobStyle };
+
+export type FieldLegendProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 
 const fieldVariants = cva("group/field flex w-full gap-3", {
   variants: {

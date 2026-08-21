@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="spinner"][data-slot="root"]) {
-    --spinner-foreground: var(--muted-foreground);
-    color: var(--spinner-foreground);
+    --cui-spinner-foreground: var(--muted-foreground);
+    color: var(--cui-spinner-foreground);
   }
 
   :where([data-control-family="spinner"][data-slot="indicator"]) {
@@ -9,7 +9,7 @@
   }
 }
 
-@property --spinner-foreground {
+@property --cui-spinner-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

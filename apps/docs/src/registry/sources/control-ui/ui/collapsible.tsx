@@ -2,9 +2,29 @@
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { useRender } from "@base-ui/react/use-render";
-import type { ComponentProps, ReactNode } from "react";
-import type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { OpenChangeEventDetails, RenderProp } from "@/components/control-ui/control-props";
+import type { CollapsibleKnobStyle } from "@/components/control-ui/knob-contracts/collapsible-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type CollapsibleProps = Omit<ComponentProps<"div">, "onChange"> & {
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  children?: ReactNode;
+} & { style?: CSSProperties & CollapsibleKnobStyle };
+
+export type CollapsibleTriggerProps = Omit<ComponentProps<"button">, "style"> & {
+  "data-slot"?: string;
+  render?: RenderProp<ComponentProps<"button">, { open: boolean }>;
+  nativeButton?: boolean;
+  style?: CSSProperties & CollapsibleKnobStyle;
+};
+
+export type CollapsibleContentProps = ComponentProps<"div"> & {
+  "data-slot"?: string;
+  keepMounted?: boolean;
+} & { style?: CSSProperties & CollapsibleKnobStyle };
 
 function CollapsibleTriggerElement({
   triggerProps,
@@ -31,7 +51,6 @@ function CollapsibleTriggerElement({
       "data-control-family": triggerProps["data-control-family"] ?? "collapsible",
       "data-slot": triggerProps["data-slot"] ?? "trigger",
       "data-state": open ? "open" : "closed",
-      "data-collapsible-part": "trigger",
       className: cn(triggerProps.className, className),
       children,
     },
@@ -66,7 +85,6 @@ export function CollapsibleTrigger({ render, className, children, ...props }: Co
       data-slot="trigger"
       className="cursor-pointer"
       {...props}
-      data-collapsible-part="trigger"
       render={(triggerProps, state) => (
         <CollapsibleTriggerElement triggerProps={triggerProps} open={state.open} render={render} className={className}>
           {children}
@@ -87,7 +105,6 @@ export function CollapsibleContent({ className, children, ...props }: Collapsibl
           data-control-family="collapsible"
           data-slot="content"
           {...renderProps}
-          data-collapsible-part="content"
           data-state={state.open ? "open" : "closed"}
           className={renderProps.className}
         />

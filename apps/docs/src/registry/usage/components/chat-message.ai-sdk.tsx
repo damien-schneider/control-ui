@@ -1,5 +1,5 @@
 import { type DynamicToolUIPart, getToolName, isDataUIPart, isDynamicToolUIPart, isToolUIPart, type ToolUIPart, type UIMessage } from "ai";
-
+import type { ActivityState } from "@/components/control-ui/activity";
 import {
   Activity,
   ActivityContent,
@@ -13,7 +13,6 @@ import {
 } from "@/components/control-ui/activity";
 import { ChatThought } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import type { ActivityState } from "@/components/control-ui/contracts";
 import {
   InlineAttachment,
   InlineAttachmentContent,

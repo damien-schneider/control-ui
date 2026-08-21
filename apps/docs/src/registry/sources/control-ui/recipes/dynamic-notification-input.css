@@ -1,5 +1,4 @@
 @layer components {
-
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"]) {
     --_dynamic-notification-input-placeholder-paint: oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.45);
     border: 0;
@@ -14,10 +13,6 @@
 
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"])::placeholder {
     color: var(--_dynamic-notification-input-placeholder-paint);
-  }
-
-  :where([data-control-family="dynamic-notification"][data-slot="reply-input"]:focus-visible) {
-    box-shadow: inset 0 0 0 2px oklch(from var(--_dynamic-notification-active-foreground) l c h / 0.3);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="reply-input"]:disabled) {

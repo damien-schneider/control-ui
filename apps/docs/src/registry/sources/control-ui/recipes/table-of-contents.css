@@ -1,8 +1,9 @@
 @layer components {
   :where([data-control-family="table-of-contents"][data-slot="root"]) {
-    --table-of-contents-rail-background: oklch(from var(--border) l c h / 0.6);
-    --table-of-contents-highlight-radius: var(--radius-md);
-    --table-of-contents-highlight-background: oklch(from var(--foreground) l c h / 0.04);
+    --cui-track-highlight-transition-duration: var(--duration-base);
+    --cui-table-of-contents-rail-background: oklch(from var(--border) l c h / 0.6);
+    --cui-table-of-contents-highlight-radius: var(--radius-md);
+    --cui-table-of-contents-highlight-background: oklch(from var(--foreground) l c h / 0.04);
     border: 1px solid oklch(from var(--border) l c h / 0.7);
     border-radius: var(--radius-panel);
     background-color: oklch(from var(--card) l c h / 0.8);
@@ -18,7 +19,7 @@
   }
 
   :where([data-control-family="table-of-contents"][data-slot="rail"]) {
-    background-color: var(--table-of-contents-rail-background);
+    background-color: var(--cui-table-of-contents-rail-background);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"]) {
@@ -48,19 +49,16 @@
     color: var(--foreground);
   }
 
-  :where(
-    [data-control-family="table-of-contents"][data-slot="root"]
-      [data-control-family="track-highlight"][data-slot="root"]
-  ) {
-    --track-highlight-radius: var(--table-of-contents-highlight-radius);
-    --track-highlight-background: var(--table-of-contents-highlight-background);
-    --track-highlight-ring-color: transparent;
-    --track-highlight-shadow: none;
+  :where([data-control-family="table-of-contents"][data-slot="root"] [data-control-family="track-highlight"][data-slot="root"]) {
+    --cui-track-highlight-radius: var(--cui-table-of-contents-highlight-radius);
+    --cui-track-highlight-background: var(--cui-table-of-contents-highlight-background);
+    --cui-track-highlight-ring-color: transparent;
+    --cui-track-highlight-shadow: none;
   }
 
   :where([data-control-family="table-of-contents"][data-slot="root"][data-variant="trail"]) {
-    --table-of-contents-highlight-radius: 0px;
-    --table-of-contents-highlight-background: transparent;
+    --cui-table-of-contents-highlight-radius: 0px;
+    --cui-table-of-contents-highlight-background: transparent;
   }
 
   :where([data-control-family="table-of-contents"][data-slot="trail"]) {
@@ -69,19 +67,19 @@
   }
 }
 
-@property --table-of-contents-rail-background {
+@property --cui-table-of-contents-rail-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --table-of-contents-highlight-radius {
+@property --cui-table-of-contents-highlight-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --table-of-contents-highlight-background {
+@property --cui-table-of-contents-highlight-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -1,5 +1,7 @@
 import { cva } from "class-variance-authority";
 
+export type ControlSize = "xs" | "sm" | "md" | "lg";
+
 export const controlSize = cva("", {
   variants: {
     size: {
@@ -13,3 +15,11 @@ export const controlSize = cva("", {
     size: "md",
   },
 });
+
+export const controlVariants = ["solid", "surface", "ghost", "quiet"] as const;
+
+export type ControlVariant = (typeof controlVariants)[number];
+
+export const controlTones = ["neutral", "primary", "danger"] as const;
+
+export type ControlTone = (typeof controlTones)[number];

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
-import type { ContextSegment } from "@/components/control-ui/contracts";
+import type { ContextSegment } from "@/components/control-ui/context-model";
 import { deriveContextModel } from "./context-model";
 
 describe("deriveContextModel", () => {

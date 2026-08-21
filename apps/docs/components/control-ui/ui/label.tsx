@@ -1,4 +1,7 @@
-import type { LabelProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { LabelKnobStyle } from "@/components/control-ui/knob-contracts/label-knobs";
+
+export type LabelProps = Omit<ComponentProps<"label">, "style"> & { style?: CSSProperties & LabelKnobStyle };
 
 // renders real <label> when htmlFor is set, else a <span> for group captions
 export function Label({ className, htmlFor, children, ...props }: LabelProps) {

@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { createContext, Fragment, use, useState } from "react";
-import type { DockablePanelPlacement } from "./control-ui/contracts";
+import type { DockablePanelPlacement } from "./control-ui/ui/dockable-panel";
 import type { SkinId } from "./theme-drawer/types";
 
 type ThemeDrawerContextValue = {

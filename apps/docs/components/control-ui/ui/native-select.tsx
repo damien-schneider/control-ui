@@ -1,6 +1,12 @@
-import type { NativeSelectProps } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type NativeSelectProps = Omit<Omit<ComponentProps<"select">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
+  size?: ControlSize;
+};
 
 // real native <select>, not floating Base UI Select — its options open OS menu, so nothing portals and no scope is re-asserted.
 export function NativeSelect({ size = "md", className, children, ...props }: NativeSelectProps) {

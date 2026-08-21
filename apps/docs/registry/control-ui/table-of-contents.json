@@ -11,6 +11,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/table-of-contents-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/table-of-contents-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/table-of-contents.css",
       "target": "@components/control-ui/styles/recipes/table-of-contents.css",
       "type": "registry:file"

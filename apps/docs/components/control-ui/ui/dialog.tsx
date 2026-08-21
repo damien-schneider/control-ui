@@ -1,13 +1,24 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import type { ComponentProps, CSSProperties } from "react";
-import { skinAdornment } from "@/components/control-ui/adornments";
-import type { ButtonProps, DialogContentProps, DialogProps } from "@/components/control-ui/contracts";
-import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { skinAdornment, skinEffects, skinId } from "@/components/control-ui/skin";
+import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { Button } from "@/components/control-ui/ui/button";
+
+export type DialogProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export type DialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  showCloseButton?: boolean;
+};
 
 export function Dialog(props: DialogProps) {
   return <DialogPrimitive.Root {...props} />;
@@ -17,16 +28,7 @@ export function DialogTrigger({
   className,
   ...props
 }: ComponentProps<typeof DialogPrimitive.Trigger> & { style?: CSSProperties & PopupKnobStyle }) {
-  return (
-    <DialogPrimitive.Trigger
-      data-control-ui="dialog"
-      data-control-family="popup"
-      data-popup-kind="dialog"
-      data-slot="trigger"
-      className={className}
-      {...props}
-    />
-  );
+  return <DialogPrimitive.Trigger data-control-ui="dialog" data-popup-kind="dialog" data-slot="trigger" className={className} {...props} />;
 }
 
 export type DialogCloseProps = Omit<ComponentProps<typeof DialogPrimitive.Close>, "render"> &
@@ -39,7 +41,7 @@ export function DialogClose({ className, children, variant = "surface", size = "
       render={(renderProps) => (
         <Button
           {...renderProps}
-          data-dialog-part="close"
+          data-popup-part="close"
           variant={variant}
           size={size}
           tone={tone}

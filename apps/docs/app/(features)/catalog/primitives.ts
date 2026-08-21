@@ -94,8 +94,8 @@ const skeletonRecipeFile = sourceFile(
   "recipe-css",
 );
 const toastRecipeFile = sourceFile(
-  "Toast recipe — paint + @property knobs",
-  "src/registry/sources/control-ui/recipes/toast.css",
+  "Toast recipe — popup-family paint",
+  "src/registry/sources/control-ui/recipes/popup-toast.css",
   "recipe-css",
 );
 const avatarRecipeFile = sourceFile(
@@ -160,8 +160,8 @@ const tableOfContentsRecipeFile = sourceFile(
   "recipe-css",
 );
 const drawerRecipeFile = sourceFile(
-  "Drawer recipe — paint + @property knobs",
-  "src/registry/sources/control-ui/recipes/drawer.css",
+  "Drawer recipe — popup-family paint",
+  "src/registry/sources/control-ui/recipes/popup-drawer.css",
   "recipe-css",
 );
 const phoneInputRecipeFile = sourceFile(
@@ -675,7 +675,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/drawer.tsx",
         example: sourceFile("Drawer preview", "src/registry/examples/control-ui/primitives/drawer.tsx", "example"),
         source: sourceFile("Base UI Drawer slot", "src/registry/sources/control-ui/ui/drawer.tsx", "component"),
-        supportFiles: [drawerRecipeFile],
+        supportFiles: [...popupRecipeFiles, drawerRecipeFile],
         registryKind: "drawer",
       },
     },
@@ -765,7 +765,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/toast.tsx",
         example: sourceFile("Toast preview", "src/registry/examples/control-ui/primitives/toast.tsx", "example"),
         source: sourceFile("Base UI Toast slot", "src/registry/sources/control-ui/ui/toast.tsx", "component"),
-        supportFiles: [toastRecipeFile],
+        supportFiles: [...popupRecipeFiles, toastRecipeFile],
         registryKind: "toast",
       },
     },
@@ -1898,7 +1898,7 @@ export const primitiveEntries = [
         id: "hover-handle",
         title: "Hover handle",
         description:
-          'variant="hover" leaves the track transparent until the separator is hovered, focused, or dragged, then fades in a gradient line from --resizable-handle-color to alpha 0.',
+          'variant="hover" leaves the track transparent until the separator is hovered, focused, or dragged, then fades in a gradient line from --cui-resizable-handle-color to alpha 0.',
         previewClassName: "flex min-h-[320px] items-center justify-center p-6",
         source: sourceFile("Hover handle example", "src/registry/examples/control-ui/primitives/resizable-hover-handle.tsx", "example"),
         preview: preview(() =>

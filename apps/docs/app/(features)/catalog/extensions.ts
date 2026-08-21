@@ -12,7 +12,7 @@ export const extensionEntries = [
     summary:
       "CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.",
     attach: "root",
-    target: "components/control-ui/extensions/control-effects.ts",
+    target: "components/control-ui/extensions/control-effects-root.tsx",
     registryKind: "control-effects",
     appliesTo: ["button"],
     activation: {
@@ -32,11 +32,8 @@ export const skin: ControlUiSkin = {
   <Toolbar />
 </ControlEffectsRoot>`,
     },
-    source: sourceFile("Effects contract", "src/registry/sources/control-ui/extensions/control-effects.ts", "extension"),
-    supportFiles: [
-      sourceFile("Runtime + subtree root", "src/registry/sources/control-ui/extensions/control-effects-root.tsx", "extension"),
-      sourceFile("Effect styles", "src/registry/sources/control-ui/extensions/control-effects.css", "effect-css"),
-    ],
+    source: sourceFile("Runtime + subtree root", "src/registry/sources/control-ui/extensions/control-effects-root.tsx", "extension"),
+    supportFiles: [sourceFile("Effect styles", "src/registry/sources/control-ui/extensions/control-effects.css", "effect-css")],
   },
   {
     id: "view-transition",

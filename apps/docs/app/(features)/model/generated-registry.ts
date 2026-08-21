@@ -6,6 +6,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/accordion.json",
     files: [
       {
+        path: "src/registry/knob-contracts/accordion-knobs.ts",
+        target: "@components/control-ui/knob-contracts/accordion-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/accordion.css",
         target: "@components/control-ui/styles/recipes/accordion.css",
         type: "registry:file",
@@ -19,9 +24,14 @@ export const registryMetadata = {
   },
   "action-bar": {
     dependencies: [],
-    registryDependencies: ["button", "core"],
+    registryDependencies: ["button", "core", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/action-bar.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/action-bar-knobs.ts",
+        target: "@components/control-ui/knob-contracts/action-bar-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/action-bar.tsx",
         target: "@components/control-ui/action-bar.tsx",
@@ -40,6 +50,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/activity.json",
     files: [
       {
+        path: "src/registry/knob-contracts/activity-knobs.ts",
+        target: "@components/control-ui/knob-contracts/activity-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/activity.tsx",
         target: "@components/control-ui/activity.tsx",
         type: "registry:component",
@@ -57,6 +72,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/alert.json",
     files: [
       {
+        path: "src/registry/knob-contracts/alert-knobs.ts",
+        target: "@components/control-ui/knob-contracts/alert-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/alert.css",
         target: "@components/control-ui/styles/recipes/alert.css",
         type: "registry:file",
@@ -70,9 +90,14 @@ export const registryMetadata = {
   },
   "alert-dialog": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["button", "core"],
+    registryDependencies: ["button", "core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/alert-dialog.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -969,6 +994,21 @@ export const registryMetadata = {
         type: "registry:hook",
       },
       {
+        path: "src/registry/knob-contracts/audio-recorder-knobs.ts",
+        target: "@components/control-ui/knob-contracts/audio-recorder-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/audio-visualizer-knobs.ts",
+        target: "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/lib/format-audio-recorder-duration.ts",
         target: "@components/control-ui/lib/format-audio-recorder-duration.ts",
         type: "registry:lib",
@@ -991,6 +1031,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/audio-visualizer.json",
     files: [
       {
+        path: "src/registry/knob-contracts/audio-visualizer-knobs.ts",
+        target: "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/audio-visualizer.tsx",
         target: "@components/control-ui/audio-visualizer.tsx",
         type: "registry:component",
@@ -1004,7 +1049,7 @@ export const registryMetadata = {
   },
   "audio-visualizer-line": {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["audio-visualizer", "core"],
     sourceManifestPath: "registry/control-ui/audio-visualizer-line.json",
     files: [
       {
@@ -1016,9 +1061,19 @@ export const registryMetadata = {
   },
   autocomplete: {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core", "scroll-area"],
+    registryDependencies: ["core", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/autocomplete.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
@@ -1062,6 +1117,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/avatar.json",
     files: [
       {
+        path: "src/registry/knob-contracts/avatar-knobs.ts",
+        target: "@components/control-ui/knob-contracts/avatar-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/avatar.css",
         target: "@components/control-ui/styles/recipes/avatar.css",
         type: "registry:file",
@@ -1078,6 +1138,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/badge.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/badge-knobs.ts",
+        target: "@components/control-ui/knob-contracts/badge-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/badge.css",
         target: "@components/control-ui/styles/recipes/badge.css",
@@ -1096,6 +1161,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/breadcrumb.json",
     files: [
       {
+        path: "src/registry/knob-contracts/breadcrumb-knobs.ts",
+        target: "@components/control-ui/knob-contracts/breadcrumb-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/breadcrumb.css",
         target: "@components/control-ui/styles/recipes/breadcrumb.css",
         type: "registry:file",
@@ -1112,6 +1182,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/button.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
@@ -1130,6 +1205,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/button-group.json",
     files: [
       {
+        path: "src/registry/knob-contracts/button-group-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-group-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/button-group.css",
         target: "@components/control-ui/styles/recipes/button-group.css",
         type: "registry:file",
@@ -1147,6 +1227,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/calendar.json",
     files: [
       {
+        path: "src/registry/knob-contracts/calendar-knobs.ts",
+        target: "@components/control-ui/knob-contracts/calendar-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/calendar.css",
         target: "@components/control-ui/styles/recipes/calendar.css",
         type: "registry:file",
@@ -1163,6 +1248,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/card.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/card-knobs.ts",
+        target: "@components/control-ui/knob-contracts/card-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/card.css",
         target: "@components/control-ui/styles/recipes/card.css",
@@ -1218,13 +1308,18 @@ export const registryMetadata = {
       "prosemirror-state@^1.4.4",
       "prosemirror-view@^1.42.2",
     ],
-    registryDependencies: ["button", "core", "trigger-menu"],
+    registryDependencies: ["button", "chat-message", "core", "trigger-menu"],
     sourceManifestPath: "registry/control-ui/chat-composer.json",
     files: [
       {
         path: "src/registry/hooks/use-chat-composer.ts",
         target: "@components/control-ui/hooks/use-chat-composer.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts/chat-composer-knobs.ts",
+        target: "@components/control-ui/knob-contracts/chat-composer-knobs.ts",
+        type: "registry:component",
       },
       {
         path: "src/registry/sources/control-ui/chat-composer-editor.css",
@@ -1279,6 +1374,16 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/chat-composer-attachment.json",
     files: [
       {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/chat-composer-attachment-knobs.ts",
+        target: "@components/control-ui/knob-contracts/chat-composer-attachment-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/chat-composer-attachment.tsx",
         target: "@components/control-ui/chat-composer-attachment.tsx",
         type: "registry:component",
@@ -1296,6 +1401,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/chat-layout.json",
     files: [
       {
+        path: "src/registry/knob-contracts/chat-layout-knobs.ts",
+        target: "@components/control-ui/knob-contracts/chat-layout-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/chat-layout.tsx",
         target: "@components/control-ui/chat-layout.tsx",
         type: "registry:component",
@@ -1309,13 +1419,18 @@ export const registryMetadata = {
   },
   "chat-message": {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "effects"],
     sourceManifestPath: "registry/control-ui/chat-message.json",
     files: [
       {
         path: "src/registry/hooks/use-chat-message.ts",
         target: "@components/control-ui/hooks/use-chat-message.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts/chat-message-knobs.ts",
+        target: "@components/control-ui/knob-contracts/chat-message-knobs.ts",
+        type: "registry:component",
       },
       {
         path: "src/registry/sources/control-ui/chat-message.tsx",
@@ -1334,6 +1449,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/checkbox.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/choice-knobs.ts",
+        target: "@components/control-ui/knob-contracts/choice-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/choice.css",
         target: "@components/control-ui/styles/recipes/choice.css",
@@ -1360,9 +1480,14 @@ export const registryMetadata = {
   },
   code: {
     dependencies: ["@tanstack/react-virtual@^3.14.9", "lucide-react@^1.31.0", "shiki@^4.4.3"],
-    registryDependencies: ["button", "core", "scroll-area", "tooltip"],
+    registryDependencies: ["button", "core", "scroll-area", "tooltip", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/code.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/code-knobs.ts",
+        target: "@components/control-ui/knob-contracts/code-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/lib/code-tokens.ts",
         target: "@components/control-ui/lib/code-tokens.ts",
@@ -1387,9 +1512,24 @@ export const registryMetadata = {
   },
   "code-block-editor": {
     dependencies: ["lucide-react@^1.31.0"],
-    registryDependencies: ["button", "code", "core", "scroll-area", "tooltip"],
+    registryDependencies: ["button", "code", "core", "scroll-area", "tooltip", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/code-block-editor.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/code-block-editor-knobs.ts",
+        target: "@components/control-ui/knob-contracts/code-block-editor-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/code-knobs.ts",
+        target: "@components/control-ui/knob-contracts/code-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/lib/code-block-shiki.ts",
         target: "@components/control-ui/lib/code-block-shiki.ts",
@@ -1412,6 +1552,11 @@ export const registryMetadata = {
     registryDependencies: ["button", "code", "core", "scroll-area", "tooltip"],
     sourceManifestPath: "registry/control-ui/code-diff.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/code-diff-knobs.ts",
+        target: "@components/control-ui/knob-contracts/code-diff-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/lib/diff.ts",
         target: "@components/control-ui/lib/diff.ts",
@@ -1447,6 +1592,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/collapsible.json",
     files: [
       {
+        path: "src/registry/knob-contracts/collapsible-knobs.ts",
+        target: "@components/control-ui/knob-contracts/collapsible-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/collapsible.css",
         target: "@components/control-ui/styles/recipes/collapsible.css",
         type: "registry:file",
@@ -1460,13 +1610,28 @@ export const registryMetadata = {
   },
   "color-picker": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["button", "core", "input", "number-field", "select"],
+    registryDependencies: ["button", "core", "input", "number-field", "select", "surface-variants"],
     sourceManifestPath: "registry/control-ui/color-picker.json",
     files: [
       {
         path: "src/registry/hooks/use-color-area.ts",
         target: "@components/control-ui/hooks/use-color-area.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/color-picker-knobs.ts",
+        target: "@components/control-ui/knob-contracts/color-picker-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
       },
       {
         path: "src/registry/lib/color.ts",
@@ -1522,9 +1687,19 @@ export const registryMetadata = {
   },
   combobox: {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/combobox.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
@@ -1569,9 +1744,14 @@ export const registryMetadata = {
   },
   command: {
     dependencies: ["cmdk@^1.1.1"],
-    registryDependencies: ["button", "core", "dialog", "scroll-area"],
+    registryDependencies: ["button", "core", "dialog", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/command.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -1605,6 +1785,21 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/context.json",
     files: [
       {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/context-knobs.ts",
+        target: "@components/control-ui/knob-contracts/context-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/context-model.ts",
         target: "@components/control-ui/context-model.ts",
         type: "registry:component",
@@ -1623,9 +1818,14 @@ export const registryMetadata = {
   },
   "context-menu": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/context-menu.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -1668,11 +1868,6 @@ export const registryMetadata = {
         target: "@components/control-ui/styles/control-effects.css",
         type: "registry:file",
       },
-      {
-        path: "src/registry/sources/control-ui/extensions/control-effects.ts",
-        target: "@components/control-ui/extensions/control-effects.ts",
-        type: "registry:component",
-      },
     ],
   },
   core: {
@@ -1680,26 +1875,6 @@ export const registryMetadata = {
     registryDependencies: [],
     sourceManifestPath: "registry/control-ui/core.json",
     files: [
-      {
-        path: "src/registry/adornments.ts",
-        target: "@components/control-ui/adornments.ts",
-        type: "registry:component",
-      },
-      {
-        path: "src/registry/contracts.ts",
-        target: "@components/control-ui/contracts.ts",
-        type: "registry:lib",
-      },
-      {
-        path: "src/registry/hooks/use-copy-to-clipboard.ts",
-        target: "@components/control-ui/hooks/use-copy-to-clipboard.ts",
-        type: "registry:hook",
-      },
-      {
-        path: "src/registry/knob-contracts.ts",
-        target: "@components/control-ui/knob-contracts.ts",
-        type: "registry:lib",
-      },
       {
         path: "src/registry/lib/cn.ts",
         target: "@components/control-ui/lib/cn.ts",
@@ -1711,18 +1886,13 @@ export const registryMetadata = {
         type: "registry:lib",
       },
       {
-        path: "src/registry/sources/control-ui/control-variants.ts",
-        target: "@components/control-ui/control-variants.ts",
+        path: "src/registry/sources/control-ui/control-props.ts",
+        target: "@components/control-ui/control-props.ts",
         type: "registry:component",
       },
       {
-        path: "src/registry/sources/control-ui/effects.css",
-        target: "@components/control-ui/styles/effects.css",
-        type: "registry:file",
-      },
-      {
-        path: "src/registry/sources/control-ui/surface-variants.ts",
-        target: "@components/control-ui/surface-variants.ts",
+        path: "src/registry/sources/control-ui/control-variants.ts",
+        target: "@components/control-ui/control-variants.ts",
         type: "registry:component",
       },
       {
@@ -1737,6 +1907,11 @@ export const registryMetadata = {
     registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/dialog.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -1770,6 +1945,16 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/dockable-panel.json",
     files: [
       {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/dockable-panel-knobs.ts",
+        target: "@components/control-ui/knob-contracts/dockable-panel-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/dockable-panel.css",
         target: "@components/control-ui/styles/recipes/dockable-panel.css",
         type: "registry:file",
@@ -1792,8 +1977,33 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/drawer.json",
     files: [
       {
-        path: "src/registry/sources/control-ui/recipes/drawer.css",
-        target: "@components/control-ui/styles/recipes/drawer.css",
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-drawer.css",
+        target: "@components/control-ui/styles/recipes/popup-drawer.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
         type: "registry:file",
       },
       {
@@ -1805,9 +2015,19 @@ export const registryMetadata = {
   },
   "dropdown-menu": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/dropdown-menu.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
@@ -1851,6 +2071,11 @@ export const registryMetadata = {
         type: "registry:hook",
       },
       {
+        path: "src/registry/knob-contracts/dropzone-knobs.ts",
+        target: "@components/control-ui/knob-contracts/dropzone-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/lib/dropzone-validation.ts",
         target: "@components/control-ui/lib/dropzone-validation.ts",
         type: "registry:lib",
@@ -1876,6 +2101,11 @@ export const registryMetadata = {
         path: "src/registry/hooks/use-dynamic-notification.ts",
         target: "@components/control-ui/hooks/use-dynamic-notification.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts/dynamic-notification-knobs.ts",
+        target: "@components/control-ui/knob-contracts/dynamic-notification-knobs.ts",
+        type: "registry:component",
       },
       {
         path: "src/registry/sources/control-ui/dynamic-notification-glass.ts",
@@ -1914,11 +2144,28 @@ export const registryMetadata = {
       },
     ],
   },
+  effects: {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/effects.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/effects.css",
+        target: "@components/control-ui/styles/effects.css",
+        type: "registry:file",
+      },
+    ],
+  },
   empty: {
     dependencies: [],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/empty.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/empty-knobs.ts",
+        target: "@components/control-ui/knob-contracts/empty-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/empty.css",
         target: "@components/control-ui/styles/recipes/empty.css",
@@ -1942,6 +2189,11 @@ export const registryMetadata = {
         type: "registry:hook",
       },
       {
+        path: "src/registry/knob-contracts/environment-variables-knobs.ts",
+        target: "@components/control-ui/knob-contracts/environment-variables-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/lib/env-file.ts",
         target: "@components/control-ui/lib/env-file.ts",
         type: "registry:lib",
@@ -1963,6 +2215,11 @@ export const registryMetadata = {
     registryDependencies: ["core", "separator"],
     sourceManifestPath: "registry/control-ui/field.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
@@ -2011,9 +2268,14 @@ export const registryMetadata = {
   },
   "gradient-editor": {
     dependencies: [],
-    registryDependencies: ["color-picker", "core", "select"],
+    registryDependencies: ["color-picker", "core", "select", "surface-variants"],
     sourceManifestPath: "registry/control-ui/gradient-editor.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/gradient-editor-knobs.ts",
+        target: "@components/control-ui/knob-contracts/gradient-editor-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/gradient-editor.css",
         target: "@components/control-ui/styles/recipes/gradient-editor.css",
@@ -2028,9 +2290,14 @@ export const registryMetadata = {
   },
   "hover-card": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/hover-card.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -2064,6 +2331,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/infinite-canvas.json",
     files: [
       {
+        path: "src/registry/knob-contracts/infinite-canvas-knobs.ts",
+        target: "@components/control-ui/knob-contracts/infinite-canvas-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/infinite-canvas.css",
         target: "@components/control-ui/styles/recipes/infinite-canvas.css",
         type: "registry:file",
@@ -2077,9 +2349,14 @@ export const registryMetadata = {
   },
   "inline-attachment": {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "effects"],
     sourceManifestPath: "registry/control-ui/inline-attachment.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/inline-attachment-knobs.ts",
+        target: "@components/control-ui/knob-contracts/inline-attachment-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/inline-attachment.tsx",
         target: "@components/control-ui/inline-attachment.tsx",
@@ -2098,6 +2375,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/inline-citation.json",
     files: [
       {
+        path: "src/registry/knob-contracts/inline-citation-knobs.ts",
+        target: "@components/control-ui/knob-contracts/inline-citation-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/inline-citation.tsx",
         target: "@components/control-ui/inline-citation.tsx",
         type: "registry:component",
@@ -2114,6 +2396,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/input.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
@@ -2137,6 +2424,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/input-group.json",
     files: [
       {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
         type: "registry:file",
@@ -2158,6 +2450,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/input-otp.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
@@ -2181,6 +2478,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/item.json",
     files: [
       {
+        path: "src/registry/knob-contracts/item-knobs.ts",
+        target: "@components/control-ui/knob-contracts/item-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/item.css",
         target: "@components/control-ui/styles/recipes/item.css",
         type: "registry:file",
@@ -2198,6 +2500,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/kbd.json",
     files: [
       {
+        path: "src/registry/knob-contracts/kbd-knobs.ts",
+        target: "@components/control-ui/knob-contracts/kbd-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/kbd.css",
         target: "@components/control-ui/styles/recipes/kbd.css",
         type: "registry:file",
@@ -2214,6 +2521,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/label.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/label-knobs.ts",
+        target: "@components/control-ui/knob-contracts/label-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/label.css",
         target: "@components/control-ui/styles/recipes/label.css",
@@ -2244,6 +2556,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/markdown.json",
     files: [
       {
+        path: "src/registry/knob-contracts/markdown-knobs.ts",
+        target: "@components/control-ui/knob-contracts/markdown-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/markdown.css",
         target: "@components/control-ui/styles/recipes/markdown.css",
         type: "registry:file",
@@ -2262,9 +2579,14 @@ export const registryMetadata = {
   },
   "markdown-block": {
     dependencies: [],
-    registryDependencies: ["code", "core", "markdown"],
+    registryDependencies: ["code", "core", "markdown", "use-copy-to-clipboard"],
     sourceManifestPath: "registry/control-ui/markdown-block.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/markdown-block-knobs.ts",
+        target: "@components/control-ui/knob-contracts/markdown-block-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/markdown-block.tsx",
         target: "@components/control-ui/markdown-block.tsx",
@@ -2279,9 +2601,19 @@ export const registryMetadata = {
   },
   menubar: {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/menubar.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
@@ -2320,6 +2652,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/meter.json",
     files: [
       {
+        path: "src/registry/knob-contracts/range-knobs.ts",
+        target: "@components/control-ui/knob-contracts/range-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/range.css",
         target: "@components/control-ui/styles/recipes/range.css",
         type: "registry:file",
@@ -2337,6 +2674,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/model-switcher.json",
     files: [
       {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/model-switcher.tsx",
         target: "@components/control-ui/model-switcher.tsx",
         type: "registry:component",
@@ -2345,9 +2687,14 @@ export const registryMetadata = {
   },
   "morphing-panel": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["collapsible", "core"],
     sourceManifestPath: "registry/control-ui/morphing-panel.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/morphing-panel-knobs.ts",
+        target: "@components/control-ui/knob-contracts/morphing-panel-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/morphing-panel.css",
         target: "@components/control-ui/styles/recipes/morphing-panel.css",
@@ -2365,6 +2712,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/native-select.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
@@ -2387,6 +2739,16 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/navigation-menu.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
@@ -2442,6 +2804,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/number-field.json",
     files: [
       {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
         type: "registry:file",
@@ -2464,6 +2831,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/pagination.json",
     files: [
       {
+        path: "src/registry/knob-contracts/pagination-knobs.ts",
+        target: "@components/control-ui/knob-contracts/pagination-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/pagination.css",
         target: "@components/control-ui/styles/recipes/pagination.css",
         type: "registry:file",
@@ -2480,6 +2852,11 @@ export const registryMetadata = {
     registryDependencies: ["command", "core", "input-group", "popover"],
     sourceManifestPath: "registry/control-ui/phone-input.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/phone-input-knobs.ts",
+        target: "@components/control-ui/knob-contracts/phone-input-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/lib/phone-input-format.ts",
         target: "@components/control-ui/lib/phone-input-format.ts",
@@ -2507,6 +2884,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/popover.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -2540,6 +2922,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/progress.json",
     files: [
       {
+        path: "src/registry/knob-contracts/range-knobs.ts",
+        target: "@components/control-ui/knob-contracts/range-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/range.css",
         target: "@components/control-ui/styles/recipes/range.css",
         type: "registry:file",
@@ -2557,6 +2944,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/radio-group.json",
     files: [
       {
+        path: "src/registry/knob-contracts/choice-knobs.ts",
+        target: "@components/control-ui/knob-contracts/choice-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/choice.css",
         target: "@components/control-ui/styles/recipes/choice.css",
         type: "registry:file",
@@ -2573,6 +2965,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/resizable.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/resizable-knobs.ts",
+        target: "@components/control-ui/knob-contracts/resizable-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/resizable.css",
         target: "@components/control-ui/styles/recipes/resizable.css",
@@ -2599,9 +2996,19 @@ export const registryMetadata = {
   },
   "rich-tooltip": {
     dependencies: ["@base-ui/react@^1.7.0", "lucide-react@^1.31.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/rich-tooltip.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/rich-tooltip-knobs.ts",
+        target: "@components/control-ui/knob-contracts/rich-tooltip-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -2645,6 +3052,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/scroll-area.json",
     files: [
       {
+        path: "src/registry/knob-contracts/scroll-area-knobs.ts",
+        target: "@components/control-ui/knob-contracts/scroll-area-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/scroll-area.css",
         target: "@components/control-ui/styles/recipes/scroll-area.css",
         type: "registry:file",
@@ -2658,9 +3070,19 @@ export const registryMetadata = {
   },
   select: {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/select.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/button-knobs.ts",
+        target: "@components/control-ui/knob-contracts/button-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/button.css",
         target: "@components/control-ui/styles/recipes/button.css",
@@ -2716,6 +3138,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/separator.json",
     files: [
       {
+        path: "src/registry/knob-contracts/separator-knobs.ts",
+        target: "@components/control-ui/knob-contracts/separator-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/separator.css",
         target: "@components/control-ui/styles/recipes/separator.css",
         type: "registry:file",
@@ -2750,6 +3177,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/sheet.json",
     files: [
       {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/sheet.tsx",
         target: "@components/control-ui/ui/sheet.tsx",
         type: "registry:ui",
@@ -2765,6 +3197,11 @@ export const registryMetadata = {
         path: "src/registry/hooks/use-mobile.ts",
         target: "@components/control-ui/hooks/use-mobile.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts/sidebar-knobs.ts",
+        target: "@components/control-ui/knob-contracts/sidebar-knobs.ts",
+        type: "registry:component",
       },
       {
         path: "src/registry/sources/control-ui/recipes/sidebar.css",
@@ -2792,9 +3229,14 @@ export const registryMetadata = {
   },
   skeleton: {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "effects"],
     sourceManifestPath: "registry/control-ui/skeleton.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/skeleton-knobs.ts",
+        target: "@components/control-ui/knob-contracts/skeleton-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/skeleton.css",
         target: "@components/control-ui/styles/recipes/skeleton.css",
@@ -2978,7 +3420,7 @@ export const registryMetadata = {
   },
   "skin-xp": {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "effects"],
     sourceManifestPath: "registry/xp/skin.json",
     files: [
       {
@@ -3004,6 +3446,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/slider.json",
     files: [
       {
+        path: "src/registry/knob-contracts/range-knobs.ts",
+        target: "@components/control-ui/knob-contracts/range-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/range.css",
         target: "@components/control-ui/styles/recipes/range.css",
         type: "registry:file",
@@ -3020,6 +3467,16 @@ export const registryMetadata = {
     registryDependencies: ["avatar", "badge", "core"],
     sourceManifestPath: "registry/control-ui/source-badge.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/badge-knobs.ts",
+        target: "@components/control-ui/knob-contracts/badge-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/knob-contracts/source-badge-knobs.ts",
+        target: "@components/control-ui/knob-contracts/source-badge-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/source-badge.css",
         target: "@components/control-ui/styles/recipes/source-badge.css",
@@ -3038,6 +3495,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/spinner.json",
     files: [
       {
+        path: "src/registry/knob-contracts/spinner-knobs.ts",
+        target: "@components/control-ui/knob-contracts/spinner-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/spinner.css",
         target: "@components/control-ui/styles/recipes/spinner.css",
         type: "registry:file",
@@ -3055,6 +3517,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/stepper.json",
     files: [
       {
+        path: "src/registry/knob-contracts/stepper-knobs.ts",
+        target: "@components/control-ui/knob-contracts/stepper-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/stepper.css",
         target: "@components/control-ui/styles/recipes/stepper.css",
         type: "registry:file",
@@ -3066,11 +3533,28 @@ export const registryMetadata = {
       },
     ],
   },
+  "surface-variants": {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/surface-variants.json",
+    files: [
+      {
+        path: "src/registry/sources/control-ui/surface-variants.ts",
+        target: "@components/control-ui/surface-variants.ts",
+        type: "registry:component",
+      },
+    ],
+  },
   switch: {
     dependencies: ["@base-ui/react@^1.7.0"],
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/switch.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/switch-knobs.ts",
+        target: "@components/control-ui/knob-contracts/switch-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/switch.css",
         target: "@components/control-ui/styles/recipes/switch.css",
@@ -3089,6 +3573,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/table.json",
     files: [
       {
+        path: "src/registry/knob-contracts/table-knobs.ts",
+        target: "@components/control-ui/knob-contracts/table-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/table.css",
         target: "@components/control-ui/styles/recipes/table.css",
         type: "registry:file",
@@ -3105,6 +3594,11 @@ export const registryMetadata = {
     registryDependencies: ["core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/table-of-contents.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/table-of-contents-knobs.ts",
+        target: "@components/control-ui/knob-contracts/table-of-contents-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/table-of-contents.css",
         target: "@components/control-ui/styles/recipes/table-of-contents.css",
@@ -3123,6 +3617,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/tabs.json",
     files: [
       {
+        path: "src/registry/knob-contracts/tabs-knobs.ts",
+        target: "@components/control-ui/knob-contracts/tabs-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/tabs.css",
         target: "@components/control-ui/styles/recipes/tabs.css",
         type: "registry:file",
@@ -3140,6 +3639,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/task-list.json",
     files: [
       {
+        path: "src/registry/knob-contracts/task-list-knobs.ts",
+        target: "@components/control-ui/knob-contracts/task-list-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/task-list.css",
         target: "@components/control-ui/styles/recipes/task-list.css",
         type: "registry:file",
@@ -3156,6 +3660,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/textarea.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/field-knobs.ts",
+        target: "@components/control-ui/knob-contracts/field-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/field-parts.css",
         target: "@components/control-ui/styles/recipes/field-parts.css",
@@ -3187,9 +3696,14 @@ export const registryMetadata = {
   },
   "thread-rail": {
     dependencies: [],
-    registryDependencies: ["core"],
+    registryDependencies: ["chat-message", "core"],
     sourceManifestPath: "registry/control-ui/thread-rail.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/thread-rail-knobs.ts",
+        target: "@components/control-ui/knob-contracts/thread-rail-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/thread-rail.css",
         target: "@components/control-ui/styles/recipes/thread-rail.css",
@@ -3208,6 +3722,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/timeline.json",
     files: [
       {
+        path: "src/registry/knob-contracts/timeline-knobs.ts",
+        target: "@components/control-ui/knob-contracts/timeline-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/timeline.css",
         target: "@components/control-ui/styles/recipes/timeline.css",
         type: "registry:file",
@@ -3225,8 +3744,33 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/toast.json",
     files: [
       {
-        path: "src/registry/sources/control-ui/recipes/toast.css",
-        target: "@components/control-ui/styles/recipes/toast.css",
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-toast.css",
+        target: "@components/control-ui/styles/recipes/popup-toast.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
         type: "registry:file",
       },
       {
@@ -3259,6 +3803,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/toolbar.json",
     files: [
       {
+        path: "src/registry/knob-contracts/toolbar-knobs.ts",
+        target: "@components/control-ui/knob-contracts/toolbar-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/toolbar.css",
         target: "@components/control-ui/styles/recipes/toolbar.css",
         type: "registry:file",
@@ -3275,6 +3824,11 @@ export const registryMetadata = {
     registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/tooltip.json",
     files: [
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
+      },
       {
         path: "src/registry/sources/control-ui/recipes/popup-controls.css",
         target: "@components/control-ui/styles/recipes/popup-controls.css",
@@ -3308,6 +3862,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/track-highlight.json",
     files: [
       {
+        path: "src/registry/knob-contracts/track-highlight-knobs.ts",
+        target: "@components/control-ui/knob-contracts/track-highlight-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/extensions/create-track-highlight.ts",
         target: "@components/control-ui/extensions/create-track-highlight.ts",
         type: "registry:component",
@@ -3330,6 +3889,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/transcript-divider.json",
     files: [
       {
+        path: "src/registry/knob-contracts/transcript-divider-knobs.ts",
+        target: "@components/control-ui/knob-contracts/transcript-divider-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/transcript-divider.css",
         target: "@components/control-ui/styles/recipes/transcript-divider.css",
         type: "registry:file",
@@ -3347,6 +3911,11 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/tree.json",
     files: [
       {
+        path: "src/registry/knob-contracts/tree-knobs.ts",
+        target: "@components/control-ui/knob-contracts/tree-knobs.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/tree.css",
         target: "@components/control-ui/styles/recipes/tree.css",
         type: "registry:file",
@@ -3360,7 +3929,7 @@ export const registryMetadata = {
   },
   "trigger-menu": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "surface-variants"],
     sourceManifestPath: "registry/control-ui/trigger-menu.json",
     files: [
       {
@@ -3372,6 +3941,11 @@ export const registryMetadata = {
         path: "src/registry/hooks/use-trigger-menu.ts",
         target: "@components/control-ui/hooks/use-trigger-menu.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts/popup-knobs.ts",
+        target: "@components/control-ui/knob-contracts/popup-knobs.ts",
+        type: "registry:component",
       },
       {
         path: "src/registry/lib/trigger-detect.ts",
@@ -3521,6 +4095,18 @@ export const registryMetadata = {
     sourceManifestPath: "registry/control-ui/update.json",
     files: [],
   },
+  "use-copy-to-clipboard": {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/use-copy-to-clipboard.json",
+    files: [
+      {
+        path: "src/registry/hooks/use-copy-to-clipboard.ts",
+        target: "@components/control-ui/hooks/use-copy-to-clipboard.ts",
+        type: "registry:hook",
+      },
+    ],
+  },
   "user-ask": {
     dependencies: ["lucide-react@^1.31.0"],
     registryDependencies: ["button", "core", "kbd"],
@@ -3530,6 +4116,11 @@ export const registryMetadata = {
         path: "src/registry/hooks/use-user-ask.ts",
         target: "@components/control-ui/hooks/use-user-ask.ts",
         type: "registry:hook",
+      },
+      {
+        path: "src/registry/knob-contracts/user-ask-knobs.ts",
+        target: "@components/control-ui/knob-contracts/user-ask-knobs.ts",
+        type: "registry:component",
       },
       {
         path: "src/registry/sources/control-ui/recipes/user-ask-details.css",

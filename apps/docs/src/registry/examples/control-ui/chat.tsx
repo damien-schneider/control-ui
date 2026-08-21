@@ -17,7 +17,9 @@ import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor
 import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
 import { ChatThought, ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import type { ChatComposerSubmitPayload, ChatState, TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
+import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
+import type { ChatState } from "@/components/control-ui/hooks/use-chat-message";
+import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
 import {
   InlineAttachment,
   InlineAttachmentContent,

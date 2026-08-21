@@ -1,6 +1,6 @@
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 import type { ComponentProps, CSSProperties } from "react";
-import type { SeparatorKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { SeparatorKnobStyle } from "@/components/control-ui/knob-contracts/separator-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
 // axis comes straight from prop, never data-attribute, so no skin can break it

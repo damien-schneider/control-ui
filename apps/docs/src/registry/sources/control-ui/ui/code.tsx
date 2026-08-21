@@ -5,14 +5,21 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { Children, createContext, isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
 
-import type { CodeChrome, CodeDensity, CodeHighlight, CodeOverflow } from "@/components/control-ui/contracts";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
-import type { CodeKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { CodeKnobStyle } from "@/components/control-ui/knob-contracts/code-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens } from "@/components/control-ui/lib/code-tokens";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+
+export type CodeOverflow = "wrap" | "scroll";
+
+export type CodeHighlight = "auto" | "none";
+
+export type CodeDensity = "default" | "compact";
+
+export type CodeChrome = "standalone" | "embedded";
 
 /* Line numbers sit in select-none cells so a text selection copies clean source. CodeDiff and the
  * markdown fence renderer build on this same token renderer and row shape. */

@@ -34,15 +34,18 @@ describe("SourceBadge", () => {
   });
   test("keeps source and badge knob styles on the painted root without child transport", () => {
     const badge = renderToString(
-      <SourceBadge href="https://example.com" style={{ "--source-badge-background": "oklch(0.8 0.1 150)", "--badge-radius": "2px" }} />,
+      <SourceBadge
+        href="https://example.com"
+        style={{ "--cui-source-badge-background": "oklch(0.8 0.1 150)", "--cui-badge-radius": "2px" }}
+      />,
     );
     const favicon = renderToString(
-      <SourceFavicon href="https://example.com" faviconSrc={false} style={{ "--source-badge-favicon-radius": "2px" }} />,
+      <SourceFavicon href="https://example.com" faviconSrc={false} style={{ "--cui-source-badge-favicon-radius": "2px" }} />,
     );
 
-    expect(badge).toContain("--source-badge-background:oklch(0.8 0.1 150)");
-    expect(badge).toContain("--badge-radius:2px");
-    expect(badge.match(/--source-badge-background/g)).toHaveLength(1);
-    expect(favicon).toContain("--source-badge-favicon-radius:2px");
+    expect(badge).toContain("--cui-source-badge-background:oklch(0.8 0.1 150)");
+    expect(badge).toContain("--cui-badge-radius:2px");
+    expect(badge.match(/--cui-source-badge-background/g)).toHaveLength(1);
+    expect(favicon).toContain("--cui-source-badge-favicon-radius:2px");
   });
 });

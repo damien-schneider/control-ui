@@ -9,11 +9,12 @@
     --_rich-tooltip-progress-foreground: var(--_rich-tooltip-content-progress-foreground);
     font-size: var(--_rich-tooltip-progress-font-size);
     color: var(--_rich-tooltip-progress-foreground);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="dot"]) {
     border-radius: var(--_rich-tooltip-dot-radius);
-    background-color: var(--rich-tooltip-dot-background);
+    background-color: var(--cui-rich-tooltip-dot-background);
     opacity: var(--_rich-tooltip-dot-opacity);
     transition-property: var(--_rich-tooltip-dot-transition-property);
     transition-timing-function: var(--_rich-tooltip-dot-transition-easing);
@@ -31,8 +32,7 @@
     line-height: var(--_rich-tooltip-description-line-height);
     --_rich-tooltip-description-foreground: var(--_rich-tooltip-content-description-foreground);
     color: var(--_rich-tooltip-description-foreground);
-    --_rich-tooltip-description-text-wrap: pretty;
-    text-wrap: var(--_rich-tooltip-description-text-wrap);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="title"]) {
@@ -47,27 +47,48 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"]) {
-    --rich-tooltip-action-background: transparent;
-    --rich-tooltip-action-foreground: currentColor;
-    --rich-tooltip-action-radius: var(--radius-control);
-    --rich-tooltip-content-background: var(--primary);
-    --rich-tooltip-content-foreground: var(--primary-foreground);
-    --rich-tooltip-content-radius: var(--radius-popover);
-    --rich-tooltip-content-shadow: inset 0 1px 0
-      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))), 0 calc(0.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+    --cui-rich-tooltip-action-background: transparent;
+    --cui-rich-tooltip-action-foreground: currentColor;
+    --cui-rich-tooltip-action-radius: var(--radius-control);
+    --cui-rich-tooltip-content-background: var(--primary);
+    --cui-rich-tooltip-content-foreground: var(--primary-foreground);
+    --cui-rich-tooltip-content-radius: var(--radius-popover);
+    --cui-rich-tooltip-content-shadow:
+      inset 0 1px 0
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))), 0 calc(
+        0.5px *
+        var(--shadow-size) *
+        var(--shadow-popover-multiplier) *
+        var(--shadow-y)
+      )
       calc(0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
       calc(-0.25px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity))), 0 calc(1.5px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity))), 0 calc(
+        1.5px *
+        var(--shadow-size) *
+        var(--shadow-popover-multiplier) *
+        var(--shadow-y)
+      )
       calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier))
       calc(-0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))), 0 calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))), 0 calc(
+        3px *
+        var(--shadow-size) *
+        var(--shadow-popover-multiplier) *
+        var(--shadow-y)
+      )
       calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier))
       calc(-1.5px * var(--shadow-size) * var(--shadow-popover-multiplier))
-      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))), 0 calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier) * var(--shadow-y))
+      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))), 0 calc(
+        6px *
+        var(--shadow-size) *
+        var(--shadow-popover-multiplier) *
+        var(--shadow-y)
+      )
       calc(14px * var(--shadow-size) * var(--shadow-popover-multiplier))
       calc(-3px * var(--shadow-size) * var(--shadow-popover-multiplier))
       oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity)));
-    --rich-tooltip-dot-background: currentcolor;
+    --cui-rich-tooltip-dot-background: currentcolor;
     --_rich-tooltip-description-font-size: var(--text-body);
     --_rich-tooltip-content-description-font-size: var(--_rich-tooltip-description-font-size);
     --_rich-tooltip-description-foreground: var(--muted-foreground);
@@ -103,16 +124,14 @@
     --_rich-tooltip-arrow-path-fill: var(--primary);
     --_rich-tooltip-description-foreground: color-mix(in oklab, var(--primary-foreground) 85%, transparent);
     --_rich-tooltip-progress-foreground: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
-    border-radius: var(--rich-tooltip-content-radius);
-    background-color: var(--rich-tooltip-content-background);
-    color: var(--rich-tooltip-content-foreground);
-    --_rich-tooltip-content-outline: none;
-    outline-style: var(--_rich-tooltip-content-outline);
-    --_rich-tooltip-content-transition-property: opacity,scale;
-    transition-property: var(--_rich-tooltip-content-transition-property);
+    border-radius: var(--cui-rich-tooltip-content-radius);
+    background-color: var(--cui-rich-tooltip-content-background);
+    color: var(--cui-rich-tooltip-content-foreground);
+    outline-style: none;
+    transition-property: opacity, scale;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
-    box-shadow: var(--rich-tooltip-content-shadow);
+    box-shadow: var(--cui-rich-tooltip-content-shadow);
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="surface"]) {
@@ -125,11 +144,6 @@
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="arrow"] path) {
     fill: var(--_rich-tooltip-arrow-path-fill);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="progress"]) {
-    --_rich-tooltip-progress-number-style: tabular-nums;
-    font-variant-numeric: var(--_rich-tooltip-progress-number-style);
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="media"]) {
@@ -160,13 +174,13 @@
   }
 
   :where(
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"],
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"],
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]
-) {
-    border-radius: var(--rich-tooltip-action-radius);
-    background: var(--rich-tooltip-action-background);
-    color: var(--rich-tooltip-action-foreground);
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"],
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"],
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]
+  ) {
+    border-radius: var(--cui-rich-tooltip-action-radius);
+    background: var(--cui-rich-tooltip-action-background);
+    color: var(--cui-rich-tooltip-action-foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
     transition-property: var(--_rich-tooltip-action-transition-property);
@@ -177,73 +191,65 @@
 
   @media (hover: hover) {
     :where(
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:hover,
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:hover,
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:hover
-  ) {
+        [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:hover,
+        [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:hover,
+        [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:hover
+      ) {
       background: oklch(from currentColor l c h / 0.15);
     }
   }
 
   :where(
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:focus-visible,
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:focus-visible,
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:focus-visible
-) {
-    box-shadow: 0 0 0 2px oklch(from currentColor l c h / 0.5);
-  }
-
-  :where(
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:disabled,
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:disabled,
-  [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:disabled
-) {
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:disabled,
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:disabled,
+    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:disabled
+  ) {
     opacity: 0.4;
   }
 }
 
-@property --rich-tooltip-content-background {
+@property --cui-rich-tooltip-content-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --rich-tooltip-content-foreground {
+@property --cui-rich-tooltip-content-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --rich-tooltip-content-radius {
+@property --cui-rich-tooltip-content-radius {
   syntax: "<length-percentage>+";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --rich-tooltip-content-shadow {
+@property --cui-rich-tooltip-content-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --rich-tooltip-dot-background {
+@property --cui-rich-tooltip-dot-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --rich-tooltip-action-radius {
+@property --cui-rich-tooltip-action-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --rich-tooltip-action-background {
+@property --cui-rich-tooltip-action-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --rich-tooltip-action-foreground {
+@property --cui-rich-tooltip-action-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

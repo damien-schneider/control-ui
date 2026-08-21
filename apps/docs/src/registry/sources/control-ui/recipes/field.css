@@ -1,27 +1,26 @@
 @layer components {
   :where([data-control-family="field"][data-control="true"]) {
-    --field-radius: var(--radius-control);
-    --field-background: oklch(from var(--card) l c h / 0.72);
-    --field-foreground: var(--foreground);
-    --field-border-color: var(--border);
-    --field-border-width: 1px;
-    --field-shadow: var(--shadow-sm);
-    --field-backdrop-filter: blur(0px);
-    --field-focus-border-color: var(--border);
-    --field-focus-ring-color: var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-    --field-focus-ring-width: 2px;
-    border: var(--field-border-width) solid var(--field-border-color);
-    border-radius: var(--field-radius);
+    --cui-field-radius: var(--radius-control);
+    --cui-field-background: oklch(from var(--card) l c h / 0.72);
+    --cui-field-foreground: var(--foreground);
+    --cui-field-border-color: var(--border);
+    --cui-field-border-width: 1px;
+    --cui-field-shadow: var(--shadow-sm);
+    --cui-field-backdrop-filter: blur(0px);
+    --cui-field-focus-border-color: var(--border);
+    border: var(--cui-field-border-width) solid var(--cui-field-border-color);
+    border-radius: var(--cui-field-radius);
     outline: none;
-    background: var(--field-background);
-    box-shadow: var(--field-shadow);
-    color: var(--field-foreground);
-    backdrop-filter: var(--field-backdrop-filter);
+    background: var(--cui-field-background);
+    box-shadow: var(--cui-field-shadow);
+    color: var(--cui-field-foreground);
+    backdrop-filter: var(--cui-field-backdrop-filter);
   }
 
-  :where([data-control-family="field"][data-control="true"]:not([data-control-family="field"][data-field-kind="autocomplete"]):not(
-        [data-control-family="field"][data-field-kind="combobox"]
-      )
+  :where(
+    [data-control-family="field"][data-control="true"]:not([data-control-family="field"][data-field-kind="autocomplete"]):not(
+      [data-control-family="field"][data-field-kind="combobox"]
+    )
   ) {
     transition-property: color, background-color, border-color, box-shadow, opacity, backdrop-filter;
     transition-duration: var(--duration-fast);
@@ -34,39 +33,37 @@
 
   @media (hover: hover) {
     :where(
-      [data-control-family="field"][data-field-kind="autocomplete"]:hover,
-      [data-control-family="field"][data-field-kind="combobox"]:hover,
-      [data-control-family="field"][data-field-kind="native-select"]:hover,
-      [data-control-family="field"][data-field-kind="number-field"]:hover
-    ) {
+        [data-control-family="field"][data-field-kind="autocomplete"]:hover,
+        [data-control-family="field"][data-field-kind="combobox"]:hover,
+        [data-control-family="field"][data-field-kind="native-select"]:hover,
+        [data-control-family="field"][data-field-kind="number-field"]:hover
+      ) {
       background: oklch(from var(--foreground) l c h / 0.05);
     }
   }
 
   :where([data-control-family="field"][data-control="true"]:is(:focus-visible, :focus-within)) {
-    border-color: var(--field-focus-border-color);
-    box-shadow: 0 0 0 var(--field-focus-ring-width) var(--field-focus-ring-color), var(--field-shadow);
+    border-color: var(--cui-field-focus-border-color);
   }
 
   :where([data-control-family="field"][data-control="true"][data-invalid]),
-
   :where([data-control-family="field"][data-control="true"][aria-invalid="true"]) {
-    box-shadow: 0 0 0 2px var(--destructive), var(--field-shadow);
+    box-shadow:
+      0 0 0 2px var(--destructive),
+      var(--cui-field-shadow);
   }
 
   :where([data-control-family="field"][data-control="true"]:disabled),
-
   :where([data-control-family="field"][data-control="true"][data-disabled]) {
     cursor: not-allowed;
     opacity: 0.5;
   }
 
-
   :where([data-control-family="field"][data-field-kind="input-otp"][data-slot="slot"]) {
-    --_field-input-otp-slot-text-align: center;
-    text-align: var(--_field-input-otp-slot-text-align);
+    text-align: center;
     font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="field"][data-field-kind="combobox"][data-slot="input"]) {
@@ -75,6 +72,7 @@
 
   :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
     font-weight: var(--font-weight-medium);
+    appearance: none;
   }
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="drag-icon"]) {
@@ -82,9 +80,9 @@
   }
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"]) {
-    --_field-number-field-input-text-align: center;
-    text-align: var(--_field-number-field-input-text-align);
+    text-align: center;
     font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="group"]) {
@@ -98,75 +96,49 @@
   :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="input"]) {
     font-weight: var(--font-weight-medium);
   }
-
-  :where([data-control-family="field"][data-field-kind="input-otp"][data-slot="slot"]) {
-    --_field-input-otp-slot-number-style: tabular-nums;
-    font-variant-numeric: var(--_field-input-otp-slot-number-style);
-  }
-
-  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
-    appearance: none;
-  }
-
-  :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"]) {
-    --_field-number-field-input-number-style: tabular-nums;
-    font-variant-numeric: var(--_field-number-field-input-number-style);
-  }
 }
 
-@property --field-radius {
+@property --cui-field-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --field-background {
+@property --cui-field-background {
   syntax: "*";
   inherits: true;
 }
 
-@property --field-foreground {
+@property --cui-field-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --field-border-color {
+@property --cui-field-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --field-border-width {
+@property --cui-field-border-width {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --field-shadow {
+@property --cui-field-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --field-backdrop-filter {
+@property --cui-field-backdrop-filter {
   syntax: "*";
   inherits: true;
 }
 
-@property --field-focus-border-color {
+@property --cui-field-focus-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
-}
-
-@property --field-focus-ring-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --field-focus-ring-width {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 0px;
 }

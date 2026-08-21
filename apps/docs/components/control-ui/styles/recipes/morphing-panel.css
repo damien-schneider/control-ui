@@ -1,28 +1,28 @@
 @layer components {
   :where([data-control-family="morphing-panel"][data-slot="root"]) {
-    --morphing-panel-radius: var(--radius-control);
-    --morphing-panel-background: var(--card);
-    --morphing-panel-foreground: var(--card-foreground);
-    --morphing-panel-border-color: oklch(from var(--border) l c h / 0.8);
-    --morphing-panel-shadow: var(--shadow-md);
-    --morphing-panel-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
-    border-radius: var(--morphing-panel-radius);
-    background-color: var(--morphing-panel-background);
-    color: var(--morphing-panel-foreground);
+    --cui-morphing-panel-radius: var(--radius-control);
+    --cui-morphing-panel-background: var(--card);
+    --cui-morphing-panel-foreground: var(--card-foreground);
+    --cui-morphing-panel-border-color: oklch(from var(--border) l c h / 0.8);
+    --cui-morphing-panel-shadow: var(--shadow-md);
+    --cui-morphing-panel-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    border-radius: var(--cui-morphing-panel-radius);
+    background-color: var(--cui-morphing-panel-background);
+    color: var(--cui-morphing-panel-foreground);
     box-shadow:
-      var(--morphing-panel-shadow),
-      0 0 0 1px var(--morphing-panel-border-color);
+      var(--cui-morphing-panel-shadow),
+      0 0 0 1px var(--cui-morphing-panel-border-color);
     transition-property: width, height, border-radius, box-shadow;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-emphasized);
   }
 
   :where([data-control-family="morphing-panel"][data-slot="root"][data-state="open"]) {
-    --morphing-panel-radius: var(--radius-panel);
-    --morphing-panel-shadow: var(--shadow-pop);
+    --cui-morphing-panel-radius: var(--radius-panel);
+    --cui-morphing-panel-shadow: var(--shadow-pop);
   }
 
-  :where([data-control-family="morphing-panel"][data-slot="trigger"]) {
+  :where([data-control-ui="morphing-panel"][data-slot="trigger"]) {
     border-radius: inherit;
     outline: none;
     color: currentColor;
@@ -33,27 +33,23 @@
     transition-timing-function: var(--ease-emphasized);
   }
 
-  :where([data-control-family="morphing-panel"][data-slot="trigger"][data-state="open"]) {
+  :where([data-control-ui="morphing-panel"][data-slot="trigger"][data-state="open"]) {
     border-radius: var(--radius-control);
   }
 
   @media (hover: hover) {
-    :where([data-control-family="morphing-panel"][data-slot="trigger"]:hover) {
-      background-color: var(--morphing-panel-trigger-hover-background);
+    :where([data-control-ui="morphing-panel"][data-slot="trigger"]:hover) {
+      background-color: var(--cui-morphing-panel-trigger-hover-background);
     }
   }
 
-  :where([data-control-family="morphing-panel"][data-slot="trigger"]:focus-visible) {
-    box-shadow: inset 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-  }
-
-  :where([data-control-family="morphing-panel"][data-slot="trigger"] > svg) {
+  :where([data-control-ui="morphing-panel"][data-slot="trigger"] > svg) {
     transition-property: rotate;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
   }
 
-  :where([data-control-family="morphing-panel"][data-slot="trigger"][data-state="open"] > svg) {
+  :where([data-control-ui="morphing-panel"][data-slot="trigger"][data-state="open"] > svg) {
     rotate: 45deg;
   }
 
@@ -79,36 +75,36 @@
   }
 }
 
-@property --morphing-panel-radius {
+@property --cui-morphing-panel-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --morphing-panel-background {
+@property --cui-morphing-panel-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --morphing-panel-foreground {
+@property --cui-morphing-panel-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --morphing-panel-border-color {
+@property --cui-morphing-panel-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --morphing-panel-shadow {
+@property --cui-morphing-panel-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --morphing-panel-trigger-hover-background {
+@property --cui-morphing-panel-trigger-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -2,11 +2,46 @@
 
 import { Button as BaseButton } from "@base-ui/react/button";
 import { useRender } from "@base-ui/react/use-render";
-import type { ReactNode } from "react";
-import { skinAdornment } from "@/components/control-ui/adornments";
-import type { ButtonLabelProps, ButtonLinkProps, ButtonProps, ControlSize } from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { RenderProp } from "@/components/control-ui/control-props";
+import type { ControlSize, ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
 import { controlSize } from "@/components/control-ui/control-variants";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { skinAdornment } from "@/components/control-ui/skin";
+
+export type ButtonVariant = ControlVariant;
+
+export type ButtonSize = ControlSize;
+
+export type ButtonTone = ControlTone;
+
+export const buttonShapes = ["default", "circle"] as const;
+
+export type ButtonShape = (typeof buttonShapes)[number];
+
+export type ButtonAppearanceProps = {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  tone?: ButtonTone;
+  active?: boolean;
+  iconOnly?: boolean;
+  shape?: ButtonShape;
+  style?: CSSProperties & ButtonKnobStyle;
+};
+
+export type ButtonProps = ComponentProps<"button"> &
+  ButtonAppearanceProps & {
+    render?: RenderProp<ComponentProps<"button">, { disabled: boolean }>;
+    nativeButton?: boolean;
+  };
+
+export type ButtonLinkProps = ComponentProps<"a"> &
+  ButtonAppearanceProps & {
+    render?: RenderProp<ComponentProps<"a">>;
+  };
+
+export type ButtonLabelProps = ComponentProps<"label"> & ButtonAppearanceProps;
 
 const buttonStructureClasses = "relative isolate inline-flex shrink-0 items-center justify-center overflow-visible whitespace-nowrap";
 

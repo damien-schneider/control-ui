@@ -85,10 +85,10 @@ function packManifestPathFor(id: SkinMetaId): string | undefined {
   return meta && "packManifestPath" in meta ? meta.packManifestPath : undefined;
 }
 
-// Public `npx shadcn add` command for skin pack (ships skin.json); lives here (not theme drawer) so both read one source.
+// A pack asserts its three files: without --overwrite the CLI prompts per file, and a non-TTY run silently keeps the old skin.
 export function packInstallCommand(id: SkinMetaId): string | undefined {
   if (!packManifestPathFor(id)) return undefined;
-  return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/skin-${id}.json`;
+  return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/skin-${id}.json --overwrite`;
 }
 
 // Flat `/r/skin-<id>.json` docs URL for pack's published manifest (undefined for docsOnly).
@@ -168,7 +168,6 @@ export function Message({ message }: { message: MastraDBMessage }) {
   );
 }`
       : `import type { UIMessage } from "ai";
-import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 
 export function Message({ message }: { message: UIMessage }) {
   return (

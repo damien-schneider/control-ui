@@ -1,17 +1,14 @@
 @layer components {
   :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="content"]) {
-    --_popup-alert-dialog-content-outline: none;
-    outline-style: var(--_popup-alert-dialog-content-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="positioner"]) {
-    --_popup-hover-card-positioner-outline: none;
-    outline-style: var(--_popup-hover-card-positioner-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="link"]) {
-    --_popup-navigation-menu-link-decoration: none;
-    text-decoration-line: var(--_popup-navigation-menu-link-decoration);
+    text-decoration-line: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="menubar"][data-slot="sub-trigger-indicator"]) {
@@ -19,8 +16,7 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"]) {
-    --_popup-rich-tooltip-content-text-align: left;
-    text-align: var(--_popup-rich-tooltip-content-text-align);
+    text-align: left;
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-starting-style]) {
@@ -34,31 +30,28 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="positioner"]) {
-    --_popup-rich-tooltip-positioner-outline: none;
-    outline-style: var(--_popup-rich-tooltip-positioner-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="content"]) {
-    --_popup-dialog-content-outline: none;
-    outline-style: var(--_popup-dialog-content-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="color-picker"][data-slot="positioner"]) {
-    --_popup-color-picker-positioner-outline: none;
-    outline-style: var(--_popup-color-picker-positioner-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="popup"][data-popup-kind="context-menu"][data-slot="sub-trigger-indicator"]) {
     line-height: 1;
   }
 
-  :where([data-control-family="button"][data-slot="root"][data-dialog-part="close"]) {
+  :where([data-control-family="button"][data-slot="root"][data-popup-part="close"]) {
     --_popup-button-root-close-opacity: 70%;
     opacity: var(--_popup-button-root-close-opacity);
   }
 
   @media (hover: hover) {
-    :where([data-control-family="button"][data-slot="root"][data-dialog-part="close"]:hover) {
+    :where([data-control-family="button"][data-slot="root"][data-popup-part="close"]:hover) {
       --_popup-button-root-close-opacity: 100%;
       opacity: var(--_popup-button-root-close-opacity);
     }

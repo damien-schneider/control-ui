@@ -1,12 +1,12 @@
 @layer components {
   :where([data-control-family="accordion"][data-slot="root"]) {
-    --accordion-item-border-color: var(--border);
-    --accordion-trigger-foreground: var(--foreground);
-    --accordion-trigger-hover-foreground: oklch(from var(--foreground) l c h / 0.8);
-    --accordion-icon-foreground: var(--muted-foreground);
+    --cui-accordion-item-border-color: var(--border);
+    --cui-accordion-trigger-foreground: var(--foreground);
+    --cui-accordion-trigger-hover-foreground: oklch(from var(--foreground) l c h / 0.8);
+    --cui-accordion-icon-foreground: var(--muted-foreground);
   }
   :where([data-control-family="accordion"][data-slot="item"]) {
-    border-block-end: 1px solid var(--accordion-item-border-color);
+    border-block-end: 1px solid var(--cui-accordion-item-border-color);
   }
 
   :where([data-control-family="accordion"][data-slot="item"]:last-child) {
@@ -14,18 +14,16 @@
   }
 
   :where([data-control-family="accordion"][data-slot="trigger"]) {
-    color: var(--accordion-trigger-foreground);
+    color: var(--cui-accordion-trigger-foreground);
     font-size: var(--text-body);
     outline: none;
     transition: color var(--duration-fast) var(--ease-standard);
+    text-align: left;
+    font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="accordion"][data-slot="trigger"]:hover) {
-    color: var(--accordion-trigger-hover-foreground);
-  }
-
-  :where([data-control-family="accordion"][data-slot="trigger"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
+    color: var(--cui-accordion-trigger-hover-foreground);
   }
 
   :where([data-control-family="accordion"][data-slot="trigger"][data-disabled]) {
@@ -34,7 +32,7 @@
   }
 
   :where([data-control-family="accordion"][data-slot="icon"]) {
-    color: var(--accordion-icon-foreground);
+    color: var(--cui-accordion-icon-foreground);
     transition: rotate var(--duration-base) var(--ease-standard);
   }
 
@@ -56,33 +54,27 @@
   ) {
     height: 0;
   }
-
-  :where([data-control-family="accordion"][data-slot="trigger"]) {
-    --_accordion-trigger-text-align: left;
-    text-align: var(--_accordion-trigger-text-align);
-    font-weight: var(--font-weight-medium);
-  }
 }
 
-@property --accordion-item-border-color {
+@property --cui-accordion-item-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --accordion-trigger-foreground {
+@property --cui-accordion-trigger-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --accordion-trigger-hover-foreground {
+@property --cui-accordion-trigger-hover-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --accordion-icon-foreground {
+@property --cui-accordion-icon-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

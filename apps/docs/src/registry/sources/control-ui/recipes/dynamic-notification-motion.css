@@ -33,21 +33,21 @@
     translate: 0 0;
     filter: blur(0);
     transition:
-      width calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
-      height calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
-      border-radius calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
+      width calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
+      height calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
+      border-radius calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
       box-shadow calc(var(--duration-slow) * 2) var(--ease-standard),
       opacity var(--duration-slow) var(--ease-emphasized),
-      scale calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
-      translate calc(var(--duration-slow) * 2) var(--dynamic-notification-morph-easing),
+      scale calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
+      translate calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-morph-easing),
       filter var(--duration-slow) var(--ease-emphasized),
-      --_dynamic-notification-ink-mid calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
-      --_dynamic-notification-ink-low calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
-      --_dynamic-notification-ink-tail calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
-      --_dynamic-notification-ink-plateau calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
-      --_dynamic-notification-ink-mid-stop calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
-      --_dynamic-notification-ink-low-stop calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing),
-      --_dynamic-notification-ink-tail-stop calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing);
+      --_dynamic-notification-ink-mid calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing),
+      --_dynamic-notification-ink-low calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing),
+      --_dynamic-notification-ink-tail calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing),
+      --_dynamic-notification-ink-plateau calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing),
+      --_dynamic-notification-ink-mid-stop calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing),
+      --_dynamic-notification-ink-low-stop calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing),
+      --_dynamic-notification-ink-tail-stop calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing);
   }
 
   @starting-style {
@@ -68,17 +68,23 @@
   :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="expanded"]) {
     width: min(22.5rem, 100%);
     height: auto;
-    border-radius: var(--dynamic-notification-expanded-radius);
+    border-radius: var(--cui-dynamic-notification-expanded-radius);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="pill"]) {
     opacity: 1;
     filter: blur(0);
     scale: 1;
-    transition: opacity var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55), filter var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55), scale var(--duration-base) var(--ease-emphasized) calc(var(--duration-slow) * 0.55);
+    transition:
+      opacity var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55),
+      filter var(--duration-base) var(--ease-standard) calc(var(--duration-slow) * 0.55),
+      scale var(--duration-base) var(--ease-emphasized) calc(var(--duration-slow) * 0.55);
   }
 
-  :where([data-control-family="dynamic-notification"][data-slot="island"]:not([data-state="collapsed"]) :where([data-control-family="dynamic-notification"][data-slot="pill"])) {
+  :where(
+    [data-control-family="dynamic-notification"][data-slot="island"]:not([data-state="collapsed"])
+      :where([data-control-family="dynamic-notification"][data-slot="pill"])
+  ) {
     opacity: 0;
     filter: blur(6px);
     scale: 0.8;
@@ -97,35 +103,52 @@
     transition:
       opacity calc(var(--duration-slow) * 1.4) var(--ease-emphasized) calc(var(--duration-fast) * 0.6),
       filter calc(var(--duration-slow) * 1.4) var(--ease-emphasized) calc(var(--duration-fast) * 0.6),
-      translate calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing) calc(var(--duration-fast) * 0.6),
-      scale calc(var(--duration-slow) * 2) var(--dynamic-notification-content-easing) calc(var(--duration-fast) * 0.6);
+      translate calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing) calc(var(--duration-fast) * 0.6),
+      scale calc(var(--duration-slow) * 2) var(--cui-dynamic-notification-content-easing) calc(var(--duration-fast) * 0.6);
   }
 
-  :where([data-control-family="dynamic-notification"][data-slot="island"]:not([data-state="expanded"]) :where([data-control-family="dynamic-notification"][data-slot="content"])) {
+  :where(
+    [data-control-family="dynamic-notification"][data-slot="island"]:not([data-state="expanded"])
+      :where([data-control-family="dynamic-notification"][data-slot="content"])
+  ) {
     opacity: 0;
     filter: blur(10px);
     translate: 0 -0.5rem;
     scale: 0.94;
-    transition: opacity var(--duration-base) var(--ease-standard), filter var(--duration-base) var(--ease-standard), translate var(--duration-base) var(--ease-standard), scale var(--duration-base) var(--ease-standard);
+    transition:
+      opacity var(--duration-base) var(--ease-standard),
+      filter var(--duration-base) var(--ease-standard),
+      translate var(--duration-base) var(--ease-standard),
+      scale var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="message"] [data-control-family="dynamic-notification"][data-slot="word"]) {
     display: inline-block;
   }
 
-  :where([data-control-family="dynamic-notification"][data-slot="island"][data-state="expanded"] :where([data-control-family="dynamic-notification"][data-slot="message"]) [data-control-family="dynamic-notification"][data-slot="word"]) {
-    animation: dn-word-in calc(var(--duration-slow) * 1.8) var(--dynamic-notification-content-easing) both;
-    animation-delay: calc(var(--duration-base) * 0.8 + var(--_dynamic-notification-word-index, 0) * var(--_dynamic-notification-word-stagger));
+  :where(
+    [data-control-family="dynamic-notification"][data-slot="island"][data-state="expanded"]
+      :where([data-control-family="dynamic-notification"][data-slot="message"])
+      [data-control-family="dynamic-notification"][data-slot="word"]
+  ) {
+    animation: dn-word-in calc(var(--duration-slow) * 1.8) var(--cui-dynamic-notification-content-easing) both;
+    animation-delay: calc(
+      var(--duration-base) *
+      0.8 +
+      var(--_dynamic-notification-word-index, 0) *
+      var(--_dynamic-notification-word-stagger)
+    );
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="indicator"]) {
-    background: radial-gradient(circle at 30% 30%, oklch(0.85 0.1 210 / 0.9), transparent 60%),
+    background:
+      radial-gradient(circle at 30% 30%, oklch(0.85 0.1 210 / 0.9), transparent 60%),
       conic-gradient(
         from 210deg,
-        var(--dynamic-notification-indicator-start),
-        var(--dynamic-notification-indicator-middle),
-        var(--dynamic-notification-indicator-end),
-        var(--dynamic-notification-indicator-start)
+        var(--cui-dynamic-notification-indicator-start),
+        var(--cui-dynamic-notification-indicator-middle),
+        var(--cui-dynamic-notification-indicator-end),
+        var(--cui-dynamic-notification-indicator-start)
       );
     box-shadow: 0 0 8px oklch(0.7 0.17 250 / 0.55);
     animation: dn-indicator-breathe calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
@@ -135,13 +158,11 @@
     :where([data-control-family="dynamic-notification"][data-slot="island"]) {
       --_dynamic-notification-word-stagger: 0ms;
     }
-
   }
 
   :where([data-motion="reduced"] :where([data-control-family="dynamic-notification"][data-slot="island"])) {
     --_dynamic-notification-word-stagger: 0ms;
   }
-
 }
 
 @keyframes dn-word-in {
@@ -153,7 +174,8 @@
 }
 
 @keyframes dn-indicator-breathe {
-  0%, 100% {
+  0%,
+  100% {
     scale: 1;
     opacity: 0.85;
   }
@@ -206,7 +228,7 @@
   initial-value: 100%;
 }
 
-@property --dynamic-notification-content-easing {
+@property --cui-dynamic-notification-content-easing {
   syntax: "*";
   inherits: true;
   initial-value: linear(
@@ -236,12 +258,12 @@
   );
 }
 
-@property --dynamic-notification-expanded-radius {
+@property --cui-dynamic-notification-expanded-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
-@property --dynamic-notification-morph-easing {
+@property --cui-dynamic-notification-morph-easing {
   syntax: "*";
   inherits: true;
   initial-value: linear(

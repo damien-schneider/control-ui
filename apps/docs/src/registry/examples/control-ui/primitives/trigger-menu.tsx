@@ -1,9 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-
-import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/contracts";
 import { useTextareaTriggerMenu } from "@/components/control-ui/hooks/use-textarea-trigger-menu";
+import type { TriggerConfig, TriggerMenuItemData } from "@/components/control-ui/hooks/use-trigger-menu";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 
 // Standalone: trigger-menu driving plain <textarea>, no editor/chat-composer; one `triggers` config

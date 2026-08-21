@@ -2,7 +2,7 @@
 
 import { CircleAlert, CloudUpload, FileIcon, LoaderCircle, Search, XIcon } from "lucide-react";
 import { type ComponentProps, type CSSProperties, createContext, type ReactNode, useContext, useEffect, useState } from "react";
-import type { DropzoneOverlayScope, DropzoneVisualState } from "@/components/control-ui/contracts";
+import type { DropzoneVisualState } from "@/components/control-ui/hooks/use-dropzone";
 import {
   type DropzoneDropDetails,
   type DropzoneGetFilesFromEvent,
@@ -10,11 +10,13 @@ import {
   type UseDropzoneReturn,
   useDropzone,
 } from "@/components/control-ui/hooks/use-dropzone";
-import type { DropzoneKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { DropzoneKnobStyle } from "@/components/control-ui/knob-contracts/dropzone-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type DropzoneFileRejection, type DropzonePolicy, formatDropzoneFileSize } from "@/components/control-ui/lib/dropzone-validation";
 import { Button } from "@/components/control-ui/ui/button";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
+
+export type DropzoneOverlayScope = "local" | "global";
 
 export type DropzoneProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange" | "onDrop" | "onError"> & {
   value?: readonly File[];
@@ -378,9 +380,7 @@ function DefaultFile({ file }: { file: File }) {
         <FileIcon aria-hidden="true" />
       </ItemMedia>
       <ItemContent>
-        <ItemTitle data-dropzone-part="file-title" className="wrap-anywhere">
-          {file.name}
-        </ItemTitle>
+        <ItemTitle className="wrap-anywhere">{file.name}</ItemTitle>
         <ItemDescription>{formatDropzoneFileSize(file.size)}</ItemDescription>
       </ItemContent>
       <ItemActions>
@@ -397,9 +397,7 @@ function DefaultRejection({ rejection }: { rejection: DropzoneFileRejection }) {
         <CircleAlert aria-hidden="true" />
       </ItemMedia>
       <ItemContent>
-        <ItemTitle data-dropzone-part="file-title" className="wrap-anywhere">
-          {rejection.file.name}
-        </ItemTitle>
+        <ItemTitle className="wrap-anywhere">{rejection.file.name}</ItemTitle>
         {rejection.errors.map((error) => (
           <ItemDescription key={`${error.code}-${error.message}`} data-dropzone-invalid="">
             {error.message}
@@ -427,16 +425,12 @@ function getDropzoneStatusMessage(context: DropzoneContextValue) {
 }
 
 export type {
-  DropzoneOverlayScope,
-  DropzoneSelectionMode,
-  DropzoneValueChangeReason,
-  DropzoneVisualState,
-} from "@/components/control-ui/contracts";
-export type {
   DropzoneDropDetails,
   DropzoneEvent,
   DropzoneGetFilesFromEvent,
   DropzoneValueChangeDetails,
+  DropzoneValueChangeReason,
+  DropzoneVisualState,
   UseDropzoneOptions,
   UseDropzoneReturn,
 } from "@/components/control-ui/hooks/use-dropzone";
@@ -448,6 +442,7 @@ export type {
   DropzoneFileError,
   DropzoneFileRejection,
   DropzonePolicy,
+  DropzoneSelectionMode,
   DropzoneValidator,
   DropzoneValidatorResult,
 } from "@/components/control-ui/lib/dropzone-validation";

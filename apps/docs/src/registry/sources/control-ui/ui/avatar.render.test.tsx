@@ -23,12 +23,12 @@ describe("AvatarGroup", () => {
 
   test("forwards family knob styles to each public root", () => {
     const html = renderToString(
-      <Avatar style={{ "--avatar-fallback-background": "rgb(1 2 3)" }}>
-        <AvatarFallback style={{ "--avatar-fallback-background": "rgb(4 5 6)" }}>AL</AvatarFallback>
+      <Avatar style={{ "--cui-avatar-fallback-background": "rgb(1 2 3)" }}>
+        <AvatarFallback style={{ "--cui-avatar-fallback-background": "rgb(4 5 6)" }}>AL</AvatarFallback>
       </Avatar>,
     );
 
-    expect(html).toContain("--avatar-fallback-background:rgb(1 2 3)");
-    expect(html).toContain("--avatar-fallback-background:rgb(4 5 6)");
+    expect(html).toContain("--cui-avatar-fallback-background:rgb(1 2 3)");
+    expect(html).toContain("--cui-avatar-fallback-background:rgb(4 5 6)");
   });
 });

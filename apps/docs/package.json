@@ -20,7 +20,7 @@
     "skin:validate": "bun scripts/validate-skins.ts",
     "doctor": "bun scripts/validate-skins.ts",
     "theme:a11y": "bun scripts/check-theme-accessibility.ts",
-    "validate": "bun run validate:theme-contract && bun scripts/gen-knob-contracts.ts --check && bun scripts/gen-skin-contract.ts --check && bun run skin:validate && bun scripts/gen-registry-manifests.ts --check && bun scripts/validate-docs-catalog.ts && node scripts/sync-installed-fixture.mjs --check && bun scripts/build-public-registry.ts --check && bun scripts/gen-registry-index.ts --check && bun scripts/gen-agent-docs.ts --check && bun scripts/validate-seo.ts && bun scripts/validate-registry.ts",
+    "validate": "bun run validate:theme-contract && bun scripts/gen-knob-contracts.ts --check && bun scripts/gen-skin-contract.ts --check && bun run skin:validate && bun scripts/gen-registry-manifests.ts --check && bun scripts/validate-docs-catalog.ts && node scripts/sync-installed-fixture.mjs --check && bun scripts/build-public-registry.ts --check && bun scripts/gen-registry-index.ts --check && bun scripts/gen-agent-docs.ts --check && bun scripts/validate-seo.ts && bun scripts/validate-registry.ts && bun scripts/check-theme-accessibility.ts",
     "typecheck": "node scripts/ensure-next-types.mjs && tsc --noEmit",
     "lint": "biome lint .",
     "test": "bun test",

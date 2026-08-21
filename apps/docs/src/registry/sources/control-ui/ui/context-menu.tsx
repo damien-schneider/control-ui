@@ -1,26 +1,73 @@
 "use client";
 
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
-import type { ComponentProps } from "react";
-import type {
-  ContextMenuCheckboxItemProps,
-  ContextMenuContentProps,
-  ContextMenuGroupProps,
-  ContextMenuItemProps,
-  ContextMenuLabelProps,
-  ContextMenuProps,
-  ContextMenuRadioGroupProps,
-  ContextMenuRadioItemProps,
-  ContextMenuSeparatorProps,
-  ContextMenuShortcutProps,
-  ContextMenuSubContentProps,
-  ContextMenuSubProps,
-  ContextMenuSubTriggerProps,
-  ContextMenuTriggerProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
+import type { ControlledChoice, OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+
+export type ContextMenuProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export type ContextMenuTriggerProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ContextMenuGroupProps = ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ContextMenuContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ContextMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  disabled?: boolean;
+  inset?: boolean;
+  onClick?: (event: MouseEvent) => void;
+};
+
+export type ContextMenuCheckboxItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+} & {
+  checked?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+  disabled?: boolean;
+};
+
+export type ContextMenuRadioGroupProps<TValue extends string = string> = ComponentProps<"div"> &
+  Omit<ControlledChoice<TValue>, "defaultValue"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ContextMenuRadioItemProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+} & {
+  value: string;
+  disabled?: boolean;
+};
+
+export type ContextMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  inset?: boolean;
+};
+
+export type ContextMenuSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ContextMenuShortcutProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ContextMenuSubProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export type ContextMenuSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onClick">, "style"> & {
+  style?: CSSProperties & PopupKnobStyle;
+} & {
+  disabled?: boolean;
+  inset?: boolean;
+};
+
+export type ContextMenuSubContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 // Composes like DropdownMenu behind right-click trigger; API stays shadcn/ui context-menu compatible.
 

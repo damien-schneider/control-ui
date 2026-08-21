@@ -1,137 +1,116 @@
 @layer components {
   :where([data-control-family="table"][data-slot="root"]) {
-    --table-background: transparent;
-    --table-foreground: var(--foreground);
-    --table-border-color: var(--border);
-    --table-footer-background: oklch(from var(--foreground) l c h / 0.03);
-    --table-header-foreground: var(--muted-foreground);
-    --table-row-hover-background: oklch(from var(--foreground) l c h / 0.03);
-    --table-row-selected-background: oklch(from var(--foreground) l c h / 0.05);
-    background: var(--table-background);
-    color: var(--table-foreground);
-  }
-
-  :where([data-control-family="table"][data-slot="header"] [data-slot="row"]) {
-    border-bottom-color: var(--table-border-color);
-  }
-
-  :where([data-control-family="table"][data-slot="footer"]) {
-    border-top-color: var(--table-border-color);
-    background: var(--table-footer-background);
-  }
-
-  :where([data-control-family="table"][data-slot="row"]) {
-    border-bottom-color: var(--table-border-color);
-    transition: background-color var(--duration-fast) var(--ease-standard);
-  }
-
-  :where([data-control-family="table"][data-slot="row"]:is([data-interactive], [tabindex], [role="button"], :has(a, button, [role="checkbox"])):hover) {
-    background: var(--table-row-hover-background);
-  }
-
-  :where([data-control-family="table"][data-slot="row"][data-state="selected"]) {
-    background: var(--table-row-selected-background);
-  }
-
-  :where([data-control-family="table"][data-slot="head"]) {
-    color: var(--table-header-foreground);
-  }
-
-  :where([data-control-family="table"][data-slot="caption"]) {
-    color: var(--muted-foreground);
-  }
-
-  :where([data-control-family="table"][data-slot="caption"]) {
+    --cui-table-background: transparent;
+    --cui-table-foreground: var(--foreground);
+    --cui-table-border-color: var(--border);
+    --cui-table-footer-background: oklch(from var(--foreground) l c h / 0.03);
+    --cui-table-header-foreground: var(--muted-foreground);
+    --cui-table-row-hover-background: oklch(from var(--foreground) l c h / 0.03);
+    --cui-table-row-selected-background: oklch(from var(--foreground) l c h / 0.05);
+    background: var(--cui-table-background);
+    color: var(--cui-table-foreground);
+    border-collapse: collapse;
     font-size: var(--text-body);
   }
 
-  :where([data-control-family="table"][data-slot="head"]) {
-    --_table-head-text-align: left;
-    text-align: var(--_table-head-text-align);
+  :where([data-control-family="table"][data-slot="header"] [data-slot="row"]) {
+    border-bottom-color: var(--cui-table-border-color);
+  }
+
+  :where([data-control-family="table"][data-slot="footer"]) {
+    border-top-color: var(--cui-table-border-color);
+    background: var(--cui-table-footer-background);
+    border-top-style: solid;
+    border-top-width: 1px;
     font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="table"][data-slot="row"]) {
+    border-bottom-color: var(--cui-table-border-color);
+    transition: background-color var(--duration-fast) var(--ease-standard);
     border-bottom-style: solid;
     border-bottom-width: 1px;
   }
 
-  :where([data-control-family="table"][data-slot="footer"]) {
-    border-top-style: solid;
-    border-top-width: 1px;
+  :where(
+    [data-control-family="table"][data-slot="row"]:is(
+      [data-interactive],
+      [tabindex],
+      [role="button"],
+      :has(a, button, [role="checkbox"])
+    ):hover
+  ) {
+    background: var(--cui-table-row-hover-background);
+  }
+
+  :where([data-control-family="table"][data-slot="row"][data-state="selected"]) {
+    background: var(--cui-table-row-selected-background);
+  }
+
+  :where([data-control-family="table"][data-slot="head"]) {
+    color: var(--cui-table-header-foreground);
+    text-align: left;
     font-weight: var(--font-weight-medium);
-    --__table-footer-tr-bottom-border-style: solid;
-    --__table-footer-tr-bottom-border-width: 0px;
+  }
+
+  :where([data-control-family="table"][data-slot="caption"]) {
+    color: var(--muted-foreground);
+    font-size: var(--text-body);
   }
 
   :where([data-control-family="table"][data-slot="footer"] > tr:last-child) {
-    border-bottom-style: var(--__table-footer-tr-bottom-border-style);
-    border-bottom-width: var(--__table-footer-tr-bottom-border-width);
-  }
-
-  :where([data-control-family="table"][data-slot="body"]) {
-    --__table-body-tr-border-style: solid;
-    --__table-body-tr-border-width: 0px;
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
   }
 
   :where([data-control-family="table"][data-slot="body"] tr:last-child) {
-    border-style: var(--__table-body-tr-border-style);
-    border-width: var(--__table-body-tr-border-width);
-  }
-
-  :where([data-control-family="table"][data-slot="header"]) {
-    --__table-header-tr-bottom-border-style: solid;
-    --__table-header-tr-bottom-border-width: 1px;
+    border-style: solid;
+    border-width: 0px;
   }
 
   :where([data-control-family="table"][data-slot="header"] tr) {
-    border-bottom-style: var(--__table-header-tr-bottom-border-style);
-    border-bottom-width: var(--__table-header-tr-bottom-border-width);
-  }
-
-  :where([data-control-family="table"][data-slot="root"]) {
-    border-collapse: collapse;
-    font-size: var(--text-body);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
   }
 }
 
-@property --table-background {
+@property --cui-table-background {
   syntax: "*";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --table-foreground {
+@property --cui-table-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --table-border-color {
+@property --cui-table-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --table-row-hover-background {
+@property --cui-table-row-hover-background {
   syntax: "*";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --table-row-selected-background {
+@property --cui-table-row-selected-background {
   syntax: "*";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --table-header-foreground {
+@property --cui-table-header-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --table-footer-background {
+@property --cui-table-footer-background {
   syntax: "*";
   inherits: true;
   initial-value: transparent;

@@ -1,20 +1,18 @@
 @layer components {
   :where([data-control-family="stepper"][data-slot="root"]) {
-    --stepper-indicator-radius: 9999px;
-    --stepper-indicator-background: var(--background);
-    --stepper-indicator-foreground: var(--muted-foreground);
-    --stepper-indicator-border-color: var(--border);
-    --stepper-separator-background: var(--border);
-    --stepper-title-foreground: var(--foreground);
+    --cui-stepper-indicator-radius: 9999px;
+    --cui-stepper-indicator-background: var(--background);
+    --cui-stepper-indicator-foreground: var(--muted-foreground);
+    --cui-stepper-indicator-border-color: var(--border);
+    --cui-stepper-separator-background: var(--border);
+    --cui-stepper-title-foreground: var(--foreground);
   }
   :where([data-control-family="stepper"][data-slot="trigger"]) {
     border-radius: var(--radius-control);
     outline: none;
     transition: color var(--duration-fast) var(--ease-standard);
-  }
-
-  :where([data-control-family="stepper"][data-slot="trigger"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    --_stepper-trigger-text-align: left;
+    text-align: var(--_stepper-trigger-text-align);
   }
 
   :where([data-control-family="stepper"][data-slot="trigger"]:disabled) {
@@ -23,76 +21,63 @@
 
   :where([data-control-family="stepper"][data-slot="indicator"]) {
     --_stepper-indicator-shadow: 0 0 transparent;
-    border: 1px solid var(--stepper-indicator-border-color);
-    border-radius: var(--stepper-indicator-radius);
-    background: var(--stepper-indicator-background);
-    color: var(--stepper-indicator-foreground);
+    border: 1px solid var(--cui-stepper-indicator-border-color);
+    border-radius: var(--cui-stepper-indicator-radius);
+    background: var(--cui-stepper-indicator-background);
+    color: var(--cui-stepper-indicator-foreground);
     box-shadow: var(--_stepper-indicator-shadow);
     font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
     transition-property: color, background-color, border-color, box-shadow;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"][data-state="complete"]:not([data-invalid])) {
-    --stepper-indicator-background: var(--primary);
-    --stepper-indicator-foreground: var(--primary-foreground);
-    --stepper-indicator-border-color: var(--primary);
+    --cui-stepper-indicator-background: var(--primary);
+    --cui-stepper-indicator-foreground: var(--primary-foreground);
+    --cui-stepper-indicator-border-color: var(--primary);
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"][data-state="current"]:not([data-invalid])) {
-    --stepper-indicator-foreground: var(--primary-text);
-    --stepper-indicator-border-color: var(--primary);
+    --cui-stepper-indicator-foreground: var(--primary-text);
+    --cui-stepper-indicator-border-color: var(--primary);
     --_stepper-indicator-shadow: 0 0 0 4px oklch(from var(--primary) l c h / 0.1);
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"][data-invalid]) {
-    --stepper-indicator-background: oklch(from var(--destructive) l c h / 0.1);
-    --stepper-indicator-foreground: var(--destructive-text);
-    --stepper-indicator-border-color: var(--destructive);
+    --cui-stepper-indicator-background: oklch(from var(--destructive) l c h / 0.1);
+    --cui-stepper-indicator-foreground: var(--destructive-text);
+    --cui-stepper-indicator-border-color: var(--destructive);
     --_stepper-indicator-shadow: 0 0 transparent;
     border-style: dashed;
   }
 
   :where([data-control-family="stepper"][data-slot="separator"]) {
-    background: var(--stepper-separator-background);
+    background: var(--cui-stepper-separator-background);
     transition: background-color var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="stepper"][data-slot="separator"][data-state="complete"]:not([data-invalid])) {
-    --stepper-separator-background: var(--primary);
+    --cui-stepper-separator-background: var(--primary);
   }
 
   :where([data-control-family="stepper"][data-slot="title"]) {
-    color: var(--stepper-title-foreground);
+    color: var(--cui-stepper-title-foreground);
     font-size: var(--text-body);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-tight);
   }
 
   :where([data-control-family="stepper"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-body);
+    line-height: var(--leading-relaxed);
   }
 
   :where([data-control-family="stepper"][data-slot="content"]) {
     outline: none;
-  }
-
-  :where([data-control-family="stepper"][data-slot="description"]) {
-    line-height: var(--leading-relaxed);
-  }
-
-  :where([data-control-family="stepper"][data-slot="title"]) {
-    font-weight: var(--font-weight-medium);
-    line-height: var(--leading-tight);
-  }
-
-  :where([data-control-family="stepper"][data-slot="indicator"]) {
-    font-weight: var(--font-weight-semibold);
-  }
-
-  :where([data-control-family="stepper"][data-slot="trigger"]) {
-    --_stepper-trigger-text-align: left;
-    text-align: var(--_stepper-trigger-text-align);
   }
 
   @container stepper (width < 28rem) {
@@ -101,44 +86,39 @@
       text-align: var(--_stepper-trigger-text-align);
     }
   }
-
-  :where([data-control-family="stepper"][data-slot="indicator"]) {
-    --_stepper-indicator-number-style: tabular-nums;
-    font-variant-numeric: var(--_stepper-indicator-number-style);
-  }
 }
 
-@property --stepper-indicator-radius {
+@property --cui-stepper-indicator-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --stepper-indicator-background {
+@property --cui-stepper-indicator-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --stepper-indicator-foreground {
+@property --cui-stepper-indicator-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --stepper-indicator-border-color {
+@property --cui-stepper-indicator-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --stepper-separator-background {
+@property --cui-stepper-separator-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --stepper-title-foreground {
+@property --cui-stepper-title-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

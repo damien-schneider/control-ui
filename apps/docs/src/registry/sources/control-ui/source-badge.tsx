@@ -2,7 +2,8 @@
 
 import { Globe } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
-import type { BadgeKnobStyle, SourceBadgeKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { BadgeKnobStyle } from "@/components/control-ui/knob-contracts/badge-knobs";
+import type { SourceBadgeKnobStyle } from "@/components/control-ui/knob-contracts/source-badge-knobs";
 
 import { cn } from "@/components/control-ui/lib/cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/control-ui/ui/avatar";

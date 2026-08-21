@@ -13,9 +13,15 @@
     "button",
     "core",
     "scroll-area",
-    "tooltip"
+    "tooltip",
+    "use-copy-to-clipboard"
   ],
   "files": [
+    {
+      "path": "src/registry/knob-contracts/code-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/code-knobs.ts",
+      "type": "registry:component"
+    },
     {
       "path": "src/registry/lib/code-tokens.ts",
       "target": "@components/control-ui/lib/code-tokens.ts",

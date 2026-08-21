@@ -1,8 +1,16 @@
 "use client";
 
 import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox-group";
-import type { CheckboxGroupProps } from "@/components/control-ui/contracts";
+import type { ComponentProps } from "react";
+import type { ControlledMultiChoice } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type CheckboxGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledMultiChoice & {
+    allValues?: string[];
+    disabled?: boolean;
+    orientation?: "horizontal" | "vertical";
+  };
 
 // `orientation` is visual only — each Checkbox owns its own focus. Pair `allValues` with select-all Checkbox for indeterminate state.
 export function CheckboxGroup({ className, orientation = "vertical", ...props }: CheckboxGroupProps) {

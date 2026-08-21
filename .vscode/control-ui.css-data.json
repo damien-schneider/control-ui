@@ -37,2134 +37,2139 @@
       "syntax": "<percentage>"
     },
     {
-      "name": "--accordion-icon-foreground",
+      "name": "--cui-accordion-icon-foreground",
       "description": "Control UI accordion knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--accordion-item-border-color",
+      "name": "--cui-accordion-item-border-color",
       "description": "Control UI accordion knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--accordion-trigger-foreground",
+      "name": "--cui-accordion-trigger-foreground",
       "description": "Control UI accordion knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--accordion-trigger-hover-foreground",
+      "name": "--cui-accordion-trigger-hover-foreground",
       "description": "Control UI accordion knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--activity-code-background",
+      "name": "--cui-activity-code-background",
       "description": "Control UI activity knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--activity-row-foreground",
+      "name": "--cui-activity-row-foreground",
       "description": "Control UI activity knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--activity-trigger-hover-background",
+      "name": "--cui-activity-trigger-hover-background",
       "description": "Control UI activity knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--activity-trigger-radius",
+      "name": "--cui-activity-trigger-radius",
       "description": "Control UI activity knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--alert-background",
+      "name": "--cui-alert-background",
       "description": "Control UI alert knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--alert-border-color",
+      "name": "--cui-alert-border-color",
       "description": "Control UI alert knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--alert-radius",
+      "name": "--cui-alert-radius",
       "description": "Control UI alert knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--alert-shadow",
+      "name": "--cui-alert-shadow",
       "description": "Control UI alert knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--audio-recorder-active-foreground",
+      "name": "--cui-audio-recorder-active-foreground",
       "description": "Control UI audio-recorder knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--audio-recorder-error-foreground",
+      "name": "--cui-audio-recorder-error-foreground",
       "description": "Control UI audio-recorder knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--audio-recorder-foreground",
+      "name": "--cui-audio-recorder-foreground",
       "description": "Control UI audio-recorder knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--audio-recorder-recording-ring-color",
+      "name": "--cui-audio-recorder-recording-ring-color",
       "description": "Control UI audio-recorder knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--audio-visualizer-bar-background",
+      "name": "--cui-audio-visualizer-bar-background",
       "description": "Control UI audio-visualizer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--audio-visualizer-line-fill",
+      "name": "--cui-audio-visualizer-line-fill",
       "description": "Control UI audio-visualizer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--audio-visualizer-line-stroke",
+      "name": "--cui-audio-visualizer-line-stroke",
       "description": "Control UI audio-visualizer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--audio-visualizer-radius",
+      "name": "--cui-audio-visualizer-radius",
       "description": "Control UI audio-visualizer knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--avatar-fallback-background",
+      "name": "--cui-avatar-fallback-background",
       "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--avatar-fallback-foreground",
+      "name": "--cui-avatar-fallback-foreground",
       "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--avatar-group-ring-color",
+      "name": "--cui-avatar-group-ring-color",
       "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--avatar-radius",
+      "name": "--cui-avatar-radius",
       "description": "Control UI avatar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--badge-background",
+      "name": "--cui-badge-background",
       "description": "Control UI badge knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--badge-border-color",
+      "name": "--cui-badge-border-color",
       "description": "Control UI badge knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--badge-foreground",
+      "name": "--cui-badge-foreground",
       "description": "Control UI badge knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--badge-radius",
+      "name": "--cui-badge-radius",
       "description": "Control UI badge knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--breadcrumb-list-foreground",
+      "name": "--cui-breadcrumb-list-foreground",
       "description": "Control UI breadcrumb knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--breadcrumb-page-foreground",
+      "name": "--cui-breadcrumb-page-foreground",
       "description": "Control UI breadcrumb knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-active-bg",
+      "name": "--cui-button-active-bg",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-active-foreground",
+      "name": "--cui-button-active-foreground",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-active-hover-bg",
+      "name": "--cui-button-active-hover-bg",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-active-shadow",
+      "name": "--cui-button-active-shadow",
       "description": "Control UI button knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--button-bg",
+      "name": "--cui-button-bg",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-focus-shadow",
+      "name": "--cui-button-bg-image",
       "description": "Control UI button knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--button-foreground",
+      "name": "--cui-button-foreground",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-group-separator-background",
+      "name": "--cui-button-group-separator-background",
       "description": "Control UI button-group knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-group-text-background",
+      "name": "--cui-button-group-text-background",
       "description": "Control UI button-group knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-group-text-foreground",
+      "name": "--cui-button-group-text-foreground",
       "description": "Control UI button-group knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-group-text-radius",
+      "name": "--cui-button-group-text-radius",
       "description": "Control UI button-group knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--button-hover-bg",
+      "name": "--cui-button-hover-bg",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-hover-foreground",
+      "name": "--cui-button-hover-foreground",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-press-bg",
+      "name": "--cui-button-hover-shadow",
+      "description": "Control UI button knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-button-press-bg",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--button-press-scale",
+      "name": "--cui-button-press-scale",
       "description": "Control UI button knob — registered syntax <number>, fallback 1. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<number>"
     },
     {
-      "name": "--button-radius",
+      "name": "--cui-button-press-shadow",
+      "description": "Control UI button knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-button-radius",
       "description": "Control UI button knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--button-shadow",
+      "name": "--cui-button-shadow",
       "description": "Control UI button knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--calendar-day-radius",
+      "name": "--cui-calendar-day-radius",
       "description": "Control UI calendar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--calendar-range-background",
+      "name": "--cui-calendar-range-background",
       "description": "Control UI calendar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--calendar-selected-background",
+      "name": "--cui-calendar-selected-background",
       "description": "Control UI calendar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--calendar-selected-foreground",
+      "name": "--cui-calendar-selected-foreground",
       "description": "Control UI calendar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--calendar-today-background",
+      "name": "--cui-calendar-today-background",
       "description": "Control UI calendar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--card-backdrop-filter",
+      "name": "--cui-card-backdrop-filter",
       "description": "Control UI card knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--card-background",
+      "name": "--cui-card-background",
       "description": "Control UI card knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--card-border-color",
+      "name": "--cui-card-border-color",
       "description": "Control UI card knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--card-border-width",
+      "name": "--cui-card-border-width",
       "description": "Control UI card knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--card-radius",
+      "name": "--cui-card-radius",
       "description": "Control UI card knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--card-shadow",
+      "name": "--cui-card-shadow",
       "description": "Control UI card knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--chat-composer-attachment-background",
+      "name": "--cui-chat-composer-attachment-background",
       "description": "Control UI chat-composer-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-attachment-border-color",
+      "name": "--cui-chat-composer-attachment-border-color",
       "description": "Control UI chat-composer-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-attachment-progress-background",
+      "name": "--cui-chat-composer-attachment-progress-background",
       "description": "Control UI chat-composer-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-attachment-progress-foreground",
+      "name": "--cui-chat-composer-attachment-progress-foreground",
       "description": "Control UI chat-composer-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-attachment-radius",
+      "name": "--cui-chat-composer-attachment-radius",
       "description": "Control UI chat-composer-attachment knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--chat-composer-attachment-shadow",
+      "name": "--cui-chat-composer-attachment-shadow",
       "description": "Control UI chat-composer-attachment knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--chat-composer-input-foreground",
+      "name": "--cui-chat-composer-input-foreground",
       "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-input-placeholder-foreground",
+      "name": "--cui-chat-composer-input-placeholder-foreground",
       "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-mention-background",
+      "name": "--cui-chat-composer-mention-background",
       "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-mention-border-color",
+      "name": "--cui-chat-composer-mention-border-color",
       "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-mention-border-width",
+      "name": "--cui-chat-composer-mention-border-width",
       "description": "Control UI chat-composer knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--chat-composer-mention-radius",
+      "name": "--cui-chat-composer-mention-radius",
       "description": "Control UI chat-composer knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--chat-composer-root-background",
+      "name": "--cui-chat-composer-root-background",
       "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-shell-backdrop-filter",
+      "name": "--cui-chat-composer-shell-backdrop-filter",
       "description": "Control UI chat-composer knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--chat-composer-shell-background",
+      "name": "--cui-chat-composer-shell-background",
       "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-shell-background-image",
+      "name": "--cui-chat-composer-shell-background-image",
       "description": "Control UI chat-composer knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--chat-composer-shell-border-color",
+      "name": "--cui-chat-composer-shell-border-color",
       "description": "Control UI chat-composer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-composer-shell-radius",
+      "name": "--cui-chat-composer-shell-radius",
       "description": "Control UI chat-composer knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--chat-composer-shell-shadow",
+      "name": "--cui-chat-composer-shell-shadow",
       "description": "Control UI chat-composer knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--chat-layout-background",
+      "name": "--cui-chat-layout-background",
       "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-layout-border-color",
+      "name": "--cui-chat-layout-border-color",
       "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-layout-radius",
+      "name": "--cui-chat-layout-radius",
       "description": "Control UI chat-layout knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--chat-layout-shadow",
+      "name": "--cui-chat-layout-shadow",
       "description": "Control UI chat-layout knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--chat-layout-thought-foreground",
+      "name": "--cui-chat-layout-thought-foreground",
       "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-layout-thought-hover-background",
+      "name": "--cui-chat-layout-thought-hover-background",
       "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-message-avatar-background",
+      "name": "--cui-chat-message-avatar-background",
       "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-message-avatar-border-color",
+      "name": "--cui-chat-message-avatar-border-color",
       "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-message-avatar-border-width",
+      "name": "--cui-chat-message-avatar-border-width",
       "description": "Control UI chat-message knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--chat-message-avatar-radius",
+      "name": "--cui-chat-message-avatar-radius",
       "description": "Control UI chat-message knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--chat-message-background",
+      "name": "--cui-chat-message-background",
       "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-message-background-image",
+      "name": "--cui-chat-message-background-image",
       "description": "Control UI chat-message knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--chat-message-border-color",
+      "name": "--cui-chat-message-border-color",
       "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-message-border-width",
+      "name": "--cui-chat-message-border-width",
       "description": "Control UI chat-message knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--chat-message-corner-radius",
+      "name": "--cui-chat-message-corner-radius",
       "description": "Control UI chat-message knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--chat-message-foreground",
+      "name": "--cui-chat-message-foreground",
       "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--chat-message-radius",
+      "name": "--cui-chat-message-radius",
       "description": "Control UI chat-message knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--chat-message-shadow",
+      "name": "--cui-chat-message-shadow",
       "description": "Control UI chat-message knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--choice-border-color",
+      "name": "--cui-choice-border-color",
       "description": "Control UI choice knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--choice-checked-background",
+      "name": "--cui-choice-checked-background",
       "description": "Control UI choice knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--choice-checked-border-color",
+      "name": "--cui-choice-checked-border-color",
       "description": "Control UI choice knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--choice-radius",
+      "name": "--cui-choice-radius",
       "description": "Control UI choice knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--code-background",
+      "name": "--cui-code-background",
       "description": "Control UI code knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-block-editor-background",
+      "name": "--cui-code-block-editor-background",
       "description": "Control UI code-block-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-block-editor-border-color",
+      "name": "--cui-code-block-editor-border-color",
       "description": "Control UI code-block-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-block-editor-code-background",
+      "name": "--cui-code-block-editor-code-background",
       "description": "Control UI code-block-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-block-editor-radius",
+      "name": "--cui-code-block-editor-radius",
       "description": "Control UI code-block-editor knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--code-block-editor-shadow",
+      "name": "--cui-code-block-editor-shadow",
       "description": "Control UI code-block-editor knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--code-block-editor-title-foreground",
+      "name": "--cui-code-block-editor-title-foreground",
       "description": "Control UI code-block-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-border-color",
+      "name": "--cui-code-border-color",
       "description": "Control UI code knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-diff-add-background",
+      "name": "--cui-code-diff-add-background",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-diff-background",
+      "name": "--cui-code-diff-background",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-diff-border-color",
+      "name": "--cui-code-diff-border-color",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-diff-del-background",
+      "name": "--cui-code-diff-del-background",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-diff-foreground",
+      "name": "--cui-code-diff-expand-button-background",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-diff-radius",
+      "name": "--cui-code-diff-expand-button-foreground",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-hover-background",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-hover-foreground",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-radius",
+      "description": "Control UI code-diff knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-shadow",
+      "description": "Control UI code-diff knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-code-diff-foreground",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-code-diff-radius",
       "description": "Control UI code-diff knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--code-radius",
+      "name": "--cui-code-diff-shadow",
+      "description": "Control UI code-diff knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-code-radius",
       "description": "Control UI code knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--code-shadow",
+      "name": "--cui-code-shadow",
       "description": "Control UI code knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--code-text-foreground",
+      "name": "--cui-code-text-foreground",
       "description": "Control UI code knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--code-title-foreground",
+      "name": "--cui-code-title-foreground",
       "description": "Control UI code knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--color-picker-area-radius",
+      "name": "--cui-color-picker-area-radius",
       "description": "Control UI color-picker knob — registered syntax <length-percentage>+, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>+"
     },
     {
-      "name": "--color-picker-output-swatch-radius",
+      "name": "--cui-color-picker-output-swatch-radius",
       "description": "Control UI color-picker-values knob — registered syntax <length-percentage>+, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>+"
     },
     {
-      "name": "--color-picker-slider-thumb-background",
+      "name": "--cui-color-picker-slider-thumb-background",
       "description": "Control UI color-picker knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--color-picker-slider-thumb-radius",
+      "name": "--cui-color-picker-slider-thumb-radius",
       "description": "Control UI color-picker knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--color-picker-swatch-radius",
+      "name": "--cui-color-picker-swatch-radius",
       "description": "Control UI color-picker-values knob — registered syntax <length-percentage>+, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>+"
     },
     {
-      "name": "--color-picker-trigger-radius",
+      "name": "--cui-color-picker-trigger-radius",
       "description": "Control UI color-picker knob — registered syntax <length-percentage>+, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>+"
     },
     {
-      "name": "--color-picker-trigger-shadow",
+      "name": "--cui-color-picker-trigger-shadow",
       "description": "Control UI color-picker knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--context-graph-radius",
+      "name": "--cui-context-graph-radius",
       "description": "Control UI context knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--context-limit-marker-color",
+      "name": "--cui-context-limit-marker-color",
       "description": "Control UI context knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--context-overage-fill",
+      "name": "--cui-context-overage-fill",
       "description": "Control UI context knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--context-segment-message-fill",
+      "name": "--cui-context-segment-message-fill",
       "description": "Control UI context knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--context-segment-reasoning-fill",
+      "name": "--cui-context-segment-reasoning-fill",
       "description": "Control UI context knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--context-segment-source-fill",
+      "name": "--cui-context-segment-source-fill",
       "description": "Control UI context knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--context-segment-tool-fill",
+      "name": "--cui-context-segment-tool-fill",
       "description": "Control UI context knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--context-track-fill",
+      "name": "--cui-context-track-fill",
       "description": "Control UI context knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dockable-panel-background",
+      "name": "--cui-dockable-panel-background",
       "description": "Control UI dockable-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dockable-panel-border-color",
+      "name": "--cui-dockable-panel-border-color",
       "description": "Control UI dockable-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dockable-panel-drop-zone-active-background",
+      "name": "--cui-dockable-panel-drop-zone-active-background",
       "description": "Control UI dockable-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dockable-panel-drop-zone-active-border-color",
+      "name": "--cui-dockable-panel-drop-zone-active-border-color",
       "description": "Control UI dockable-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dockable-panel-foreground",
+      "name": "--cui-dockable-panel-foreground",
       "description": "Control UI dockable-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dockable-panel-radius",
+      "name": "--cui-dockable-panel-radius",
       "description": "Control UI dockable-panel knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--dockable-panel-shadow",
+      "name": "--cui-dockable-panel-shadow",
       "description": "Control UI dockable-panel knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--drawer-backdrop-background",
-      "description": "Control UI drawer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--drawer-content-background",
-      "description": "Control UI drawer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--drawer-content-border-color",
-      "description": "Control UI drawer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--drawer-content-foreground",
-      "description": "Control UI drawer knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--drawer-content-radius",
-      "description": "Control UI drawer knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length-percentage>"
-    },
-    {
-      "name": "--drawer-content-shadow",
-      "description": "Control UI drawer knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
-    },
-    {
-      "name": "--dropzone-accept-border-color",
+      "name": "--cui-dropzone-accept-border-color",
       "description": "Control UI dropzone knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dropzone-overlay-background",
+      "name": "--cui-dropzone-overlay-background",
       "description": "Control UI dropzone knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dropzone-reject-border-color",
+      "name": "--cui-dropzone-reject-border-color",
       "description": "Control UI dropzone knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dropzone-surface-border-color",
+      "name": "--cui-dropzone-surface-border-color",
       "description": "Control UI dropzone knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dropzone-surface-foreground",
+      "name": "--cui-dropzone-surface-foreground",
       "description": "Control UI dropzone knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dropzone-surface-radius",
+      "name": "--cui-dropzone-surface-radius",
       "description": "Control UI dropzone knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--dynamic-notification-content-easing",
+      "name": "--cui-dynamic-notification-content-easing",
       "description": "Control UI dynamic-notification-motion knob — registered syntax *, fallback linear(\n    0,\n    0.0553 4.55%,\n    0.1795 9.09%,\n    0.328 13.64%,\n    0.4745 18.18%,\n    0.6054 22.73%,\n    0.7148 27.27%,\n    0.8017 31.82%,\n    0.868 36.36%,\n    0.9166 40.91%,\n    0.9509 45.45%,\n    0.9741 50%,\n    0.9891 54.55%,\n    0.9982 59.09%,\n    1.0032 63.64%,\n    1.0056 68.18%,\n    1.0063 72.73%,\n    1.006 77.27%,\n    1.0053 81.82%,\n    1.0044 86.36%,\n    1.0034 90.91%,\n    1.0026 95.45%,\n    1\n  ). Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--dynamic-notification-expanded-radius",
+      "name": "--cui-dynamic-notification-expanded-radius",
       "description": "Control UI dynamic-notification-motion knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--dynamic-notification-glass-foreground",
+      "name": "--cui-dynamic-notification-glass-foreground",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-glass-ring-color",
+      "name": "--cui-dynamic-notification-glass-ring-color",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-indicator-end",
+      "name": "--cui-dynamic-notification-indicator-end",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-indicator-middle",
+      "name": "--cui-dynamic-notification-indicator-middle",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-indicator-start",
+      "name": "--cui-dynamic-notification-indicator-start",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-liquid-foreground",
+      "name": "--cui-dynamic-notification-liquid-foreground",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-morph-easing",
+      "name": "--cui-dynamic-notification-morph-easing",
       "description": "Control UI dynamic-notification-motion knob — registered syntax *, fallback linear(\n    0,\n    0.0568 3.85%,\n    0.1888 7.69%,\n    0.351 11.54%,\n    0.5142 15.38%,\n    0.6608 19.23%,\n    0.7824 23.08%,\n    0.8767 26.92%,\n    0.9449 30.77%,\n    0.9908 34.62%,\n    1.0187 38.46%,\n    1.0332 42.31%,\n    1.0382 46.15%,\n    1.0372 50%,\n    1.0327 53.85%,\n    1.0266 57.69%,\n    1.0203 61.54%,\n    1.0145 65.38%,\n    1.0095 69.23%,\n    1.0056 73.08%,\n    1.0027 76.92%,\n    1.0008 80.77%,\n    0.9995 84.62%,\n    0.9988 88.46%,\n    0.9986 92.31%,\n    0.9985 96.15%,\n    1\n  ). Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--dynamic-notification-surface-background",
+      "name": "--cui-dynamic-notification-surface-background",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-surface-foreground",
+      "name": "--cui-dynamic-notification-surface-foreground",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-surface-ring-color",
+      "name": "--cui-dynamic-notification-surface-ring-color",
       "description": "Control UI dynamic-notification knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--dynamic-notification-surface-shadow",
+      "name": "--cui-dynamic-notification-surface-shadow",
       "description": "Control UI dynamic-notification knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--empty-background",
+      "name": "--cui-empty-background",
       "description": "Control UI empty knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--empty-border-color",
+      "name": "--cui-empty-border-color",
       "description": "Control UI empty knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--empty-border-style",
+      "name": "--cui-empty-border-style",
       "description": "Control UI empty knob — registered syntax *, fallback solid. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--empty-border-width",
+      "name": "--cui-empty-border-width",
       "description": "Control UI empty knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--empty-media-background",
+      "name": "--cui-empty-media-background",
       "description": "Control UI empty knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--empty-media-radius",
+      "name": "--cui-empty-media-radius",
       "description": "Control UI empty knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--empty-radius",
+      "name": "--cui-empty-radius",
       "description": "Control UI empty knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--environment-variables-error-foreground",
+      "name": "--cui-environment-variables-error-foreground",
       "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--environment-variables-message-background",
+      "name": "--cui-environment-variables-message-background",
       "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--environment-variables-message-border-color",
+      "name": "--cui-environment-variables-message-border-color",
       "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--environment-variables-message-foreground",
+      "name": "--cui-environment-variables-message-foreground",
       "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--environment-variables-meta-foreground",
+      "name": "--cui-environment-variables-meta-foreground",
       "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--environment-variables-title-foreground",
+      "name": "--cui-environment-variables-title-foreground",
       "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--field-backdrop-filter",
+      "name": "--cui-field-backdrop-filter",
       "description": "Control UI field knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--field-background",
+      "name": "--cui-field-background",
       "description": "Control UI field knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--field-border-color",
+      "name": "--cui-field-border-color",
       "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--field-border-width",
+      "name": "--cui-field-border-width",
       "description": "Control UI field knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--field-focus-border-color",
+      "name": "--cui-field-focus-border-color",
       "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--field-focus-ring-color",
+      "name": "--cui-field-foreground",
       "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--field-focus-ring-width",
-      "description": "Control UI field knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length>"
-    },
-    {
-      "name": "--field-foreground",
-      "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--field-radius",
+      "name": "--cui-field-radius",
       "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--field-shadow",
+      "name": "--cui-field-shadow",
       "description": "Control UI field knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--gradient-editor-add-border-color",
+      "name": "--cui-gradient-editor-add-border-color",
       "description": "Control UI gradient-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--gradient-editor-add-radius",
+      "name": "--cui-gradient-editor-add-radius",
       "description": "Control UI gradient-editor knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--gradient-editor-preview-radius",
+      "name": "--cui-gradient-editor-preview-radius",
       "description": "Control UI gradient-editor knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--gradient-editor-preview-ring-color",
+      "name": "--cui-gradient-editor-preview-ring-color",
       "description": "Control UI gradient-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--gradient-editor-stop-border-color",
+      "name": "--cui-gradient-editor-stop-border-color",
       "description": "Control UI gradient-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--gradient-editor-stop-radius",
+      "name": "--cui-gradient-editor-stop-radius",
       "description": "Control UI gradient-editor knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--gradient-editor-stop-shadow",
+      "name": "--cui-gradient-editor-stop-shadow",
       "description": "Control UI gradient-editor knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--gradient-editor-track-radius",
+      "name": "--cui-gradient-editor-track-radius",
       "description": "Control UI gradient-editor knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--infinite-canvas-background",
+      "name": "--cui-infinite-canvas-background",
       "description": "Control UI infinite-canvas knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--infinite-canvas-border-color",
+      "name": "--cui-infinite-canvas-border-color",
       "description": "Control UI infinite-canvas knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--infinite-canvas-controls-background",
+      "name": "--cui-infinite-canvas-controls-background",
       "description": "Control UI infinite-canvas knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--infinite-canvas-controls-border-color",
+      "name": "--cui-infinite-canvas-controls-border-color",
       "description": "Control UI infinite-canvas knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--infinite-canvas-controls-radius",
+      "name": "--cui-infinite-canvas-controls-radius",
       "description": "Control UI infinite-canvas knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--infinite-canvas-controls-shadow",
+      "name": "--cui-infinite-canvas-controls-shadow",
       "description": "Control UI infinite-canvas knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--infinite-canvas-grid-dot-color",
+      "name": "--cui-infinite-canvas-grid-dot-color",
       "description": "Control UI infinite-canvas knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--infinite-canvas-radius",
+      "name": "--cui-infinite-canvas-radius",
       "description": "Control UI infinite-canvas knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--inline-attachment-background",
+      "name": "--cui-inline-attachment-background",
       "description": "Control UI inline-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-attachment-content-background",
+      "name": "--cui-inline-attachment-content-background",
       "description": "Control UI inline-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-attachment-content-foreground",
+      "name": "--cui-inline-attachment-content-foreground",
       "description": "Control UI inline-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-attachment-content-radius",
+      "name": "--cui-inline-attachment-content-radius",
       "description": "Control UI inline-attachment knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--inline-attachment-content-shadow",
+      "name": "--cui-inline-attachment-content-shadow",
       "description": "Control UI inline-attachment knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--inline-attachment-hover-shadow",
+      "name": "--cui-inline-attachment-hover-shadow",
       "description": "Control UI inline-attachment knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--inline-attachment-radius",
+      "name": "--cui-inline-attachment-radius",
       "description": "Control UI inline-attachment knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--inline-attachment-ring-color",
+      "name": "--cui-inline-attachment-ring-color",
       "description": "Control UI inline-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-attachment-shadow",
+      "name": "--cui-inline-attachment-shadow",
       "description": "Control UI inline-attachment knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--inline-citation-navigation-background",
+      "name": "--cui-inline-citation-navigation-background",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-citation-quote-background",
+      "name": "--cui-inline-citation-quote-background",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-citation-quote-radius",
+      "name": "--cui-inline-citation-quote-radius",
       "description": "Control UI inline-citation knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--inline-citation-trigger-background",
+      "name": "--cui-inline-citation-trigger-background",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-citation-trigger-border-color",
+      "name": "--cui-inline-citation-trigger-border-color",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-citation-trigger-foreground",
+      "name": "--cui-inline-citation-trigger-foreground",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-citation-trigger-hover-background",
+      "name": "--cui-inline-citation-trigger-hover-background",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-citation-trigger-hover-foreground",
+      "name": "--cui-inline-citation-trigger-hover-foreground",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--inline-citation-trigger-radius",
+      "name": "--cui-inline-citation-trigger-radius",
       "description": "Control UI inline-citation knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--item-active-scale",
+      "name": "--cui-item-active-scale",
       "description": "Control UI item knob — registered syntax <number>, fallback 1. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<number>"
     },
     {
-      "name": "--item-border-width",
+      "name": "--cui-item-border-width",
       "description": "Control UI item knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--item-hover-background",
+      "name": "--cui-item-hover-background",
       "description": "Control UI item knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--item-hover-border-color",
+      "name": "--cui-item-hover-border-color",
       "description": "Control UI item knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--item-radius",
+      "name": "--cui-item-radius",
       "description": "Control UI item knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--kbd-background",
+      "name": "--cui-kbd-background",
       "description": "Control UI kbd knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--kbd-border-color",
+      "name": "--cui-kbd-border-color",
       "description": "Control UI kbd knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--kbd-foreground",
+      "name": "--cui-kbd-foreground",
       "description": "Control UI kbd knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--kbd-radius",
+      "name": "--cui-kbd-radius",
       "description": "Control UI kbd knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--kbd-shadow",
+      "name": "--cui-kbd-shadow",
       "description": "Control UI kbd knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--label-root-foreground",
+      "name": "--cui-label-root-foreground",
       "description": "Control UI label knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-block-background",
+      "name": "--cui-markdown-block-background",
       "description": "Control UI markdown-block knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-block-border-color",
+      "name": "--cui-markdown-block-border-color",
       "description": "Control UI markdown-block knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-block-header-border-color",
+      "name": "--cui-markdown-block-header-border-color",
       "description": "Control UI markdown-block knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-block-icon-background",
+      "name": "--cui-markdown-block-icon-background",
       "description": "Control UI markdown-block knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-block-radius",
+      "name": "--cui-markdown-block-radius",
       "description": "Control UI markdown-block knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--markdown-block-shadow",
+      "name": "--cui-markdown-block-shadow",
       "description": "Control UI markdown-block knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--markdown-blockquote-border-color",
+      "name": "--cui-markdown-blockquote-border-color",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-blockquote-foreground",
+      "name": "--cui-markdown-blockquote-foreground",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-foreground",
+      "name": "--cui-markdown-foreground",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-inline-code-background",
+      "name": "--cui-markdown-inline-code-background",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-inline-code-foreground",
+      "name": "--cui-markdown-inline-code-foreground",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-inline-code-radius",
+      "name": "--cui-markdown-inline-code-radius",
       "description": "Control UI markdown knob — registered syntax <length-percentage>+, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>+"
     },
     {
-      "name": "--markdown-link-foreground",
+      "name": "--cui-markdown-link-foreground",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-table-cell-border-color",
+      "name": "--cui-markdown-table-cell-border-color",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--markdown-table-header-background",
+      "name": "--cui-markdown-table-header-background",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--morphing-panel-background",
+      "name": "--cui-morphing-panel-background",
       "description": "Control UI morphing-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--morphing-panel-border-color",
+      "name": "--cui-morphing-panel-border-color",
       "description": "Control UI morphing-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--morphing-panel-foreground",
+      "name": "--cui-morphing-panel-foreground",
       "description": "Control UI morphing-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--morphing-panel-radius",
+      "name": "--cui-morphing-panel-radius",
       "description": "Control UI morphing-panel knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--morphing-panel-shadow",
+      "name": "--cui-morphing-panel-shadow",
       "description": "Control UI morphing-panel knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--morphing-panel-trigger-hover-background",
+      "name": "--cui-morphing-panel-trigger-hover-background",
       "description": "Control UI morphing-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--pagination-link-background",
+      "name": "--cui-pagination-link-background",
       "description": "Control UI pagination knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--pagination-link-foreground",
+      "name": "--cui-pagination-link-foreground",
       "description": "Control UI pagination knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--pagination-link-hover-background",
+      "name": "--cui-pagination-link-hover-background",
       "description": "Control UI pagination knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--pagination-link-radius",
+      "name": "--cui-pagination-link-radius",
       "description": "Control UI pagination knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--pagination-link-shadow",
+      "name": "--cui-pagination-link-shadow",
       "description": "Control UI pagination knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--phone-input-chevron-foreground",
+      "name": "--cui-phone-input-chevron-foreground",
       "description": "Control UI phone-input knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--phone-input-country-border-color",
+      "name": "--cui-phone-input-country-border-color",
       "description": "Control UI phone-input knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--phone-input-metadata-foreground",
+      "name": "--cui-phone-input-metadata-foreground",
       "description": "Control UI phone-input knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--phone-input-trigger-focus-background",
+      "name": "--cui-phone-input-trigger-focus-background",
       "description": "Control UI phone-input knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--phone-input-trigger-hover-background",
+      "name": "--cui-phone-input-trigger-hover-background",
       "description": "Control UI phone-input knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--popup-backdrop-blur",
+      "name": "--cui-popup-backdrop-background",
+      "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-popup-backdrop-filter",
+      "description": "Control UI popup knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-popup-background",
+      "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-popup-border-color",
+      "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-popup-border-width",
       "description": "Control UI popup knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--popup-background",
+      "name": "--cui-popup-foreground",
       "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--popup-border-color",
-      "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--popup-border-width",
-      "description": "Control UI popup knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length>"
-    },
-    {
-      "name": "--popup-foreground",
-      "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--popup-item-disabled-opacity",
+      "name": "--cui-popup-item-disabled-opacity",
       "description": "Control UI popup knob — registered syntax <number>, fallback 1. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<number>"
     },
     {
-      "name": "--popup-item-foreground",
+      "name": "--cui-popup-item-foreground",
       "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--popup-item-highlight-background",
+      "name": "--cui-popup-item-highlight-background",
       "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--popup-item-radius",
+      "name": "--cui-popup-item-highlight-foreground",
+      "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-popup-item-radius",
       "description": "Control UI popup knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--popup-radius",
+      "name": "--cui-popup-radius",
       "description": "Control UI popup knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--popup-separator-color",
+      "name": "--cui-popup-separator-color",
       "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--popup-shadow",
+      "name": "--cui-popup-shadow",
       "description": "Control UI popup knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--popup-shortcut-foreground",
+      "name": "--cui-popup-shortcut-foreground",
       "description": "Control UI popup knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--range-indicator-background",
+      "name": "--cui-range-indicator-background",
       "description": "Control UI range knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--range-indicator-radius",
+      "name": "--cui-range-indicator-radius",
       "description": "Control UI range knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--range-thumb-background",
+      "name": "--cui-range-thumb-background",
       "description": "Control UI range knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--range-thumb-border-color",
+      "name": "--cui-range-thumb-border-color",
       "description": "Control UI range knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--range-thumb-radius",
+      "name": "--cui-range-thumb-radius",
       "description": "Control UI range knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--range-thumb-shadow",
+      "name": "--cui-range-thumb-shadow",
       "description": "Control UI range knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--range-track-background",
+      "name": "--cui-range-track-background",
       "description": "Control UI range knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--range-track-radius",
+      "name": "--cui-range-track-radius",
       "description": "Control UI range knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--resizable-grip-background",
+      "name": "--cui-resizable-grip-background",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--resizable-grip-foreground",
+      "name": "--cui-resizable-grip-foreground",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--resizable-grip-radius",
+      "name": "--cui-resizable-grip-radius",
       "description": "Control UI resizable knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--resizable-group-background",
+      "name": "--cui-resizable-group-background",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--resizable-group-border-color",
+      "name": "--cui-resizable-group-border-color",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--resizable-group-radius",
+      "name": "--cui-resizable-group-radius",
       "description": "Control UI resizable knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--resizable-handle-active-background",
+      "name": "--cui-resizable-handle-active-background",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--resizable-handle-color",
+      "name": "--cui-resizable-handle-color",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--resizable-handle-hover-background",
+      "name": "--cui-resizable-handle-hover-background",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--rich-tooltip-action-background",
+      "name": "--cui-rich-tooltip-action-background",
       "description": "Control UI rich-tooltip knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--rich-tooltip-action-foreground",
+      "name": "--cui-rich-tooltip-action-foreground",
       "description": "Control UI rich-tooltip knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--rich-tooltip-action-radius",
+      "name": "--cui-rich-tooltip-action-radius",
       "description": "Control UI rich-tooltip knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--rich-tooltip-content-background",
+      "name": "--cui-rich-tooltip-content-background",
       "description": "Control UI rich-tooltip knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--rich-tooltip-content-foreground",
+      "name": "--cui-rich-tooltip-content-foreground",
       "description": "Control UI rich-tooltip knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--rich-tooltip-content-radius",
+      "name": "--cui-rich-tooltip-content-radius",
       "description": "Control UI rich-tooltip knob — registered syntax <length-percentage>+, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>+"
     },
     {
-      "name": "--rich-tooltip-content-shadow",
+      "name": "--cui-rich-tooltip-content-shadow",
       "description": "Control UI rich-tooltip knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--rich-tooltip-dot-background",
+      "name": "--cui-rich-tooltip-dot-background",
       "description": "Control UI rich-tooltip knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--scroll-area-corner-background",
+      "name": "--cui-scroll-area-corner-background",
       "description": "Control UI scroll-area knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--scroll-area-thumb-background",
-      "description": "Control UI scroll-area knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
+      "name": "--cui-scroll-area-thumb-background",
+      "description": "Control UI scroll-area knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--scroll-area-thumb-radius",
+      "name": "--cui-scroll-area-thumb-radius",
       "description": "Control UI scroll-area knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--separator-root-background",
+      "name": "--cui-separator-root-background",
       "description": "Control UI separator knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-group-label-foreground",
+      "name": "--cui-sidebar-group-label-foreground",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-inner-background",
+      "name": "--cui-sidebar-inner-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-inner-background-image",
+      "name": "--cui-sidebar-inner-background-image",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--sidebar-inner-border-color",
+      "name": "--cui-sidebar-inner-border-color",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-inner-border-width",
+      "name": "--cui-sidebar-inner-border-width",
       "description": "Control UI sidebar knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--sidebar-inner-radius",
+      "name": "--cui-sidebar-inner-radius",
       "description": "Control UI sidebar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--sidebar-inner-shadow",
+      "name": "--cui-sidebar-inner-shadow",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--sidebar-inset-background",
+      "name": "--cui-sidebar-inset-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-inset-background-image",
+      "name": "--cui-sidebar-inset-background-image",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--sidebar-inset-shadow",
+      "name": "--cui-sidebar-inset-shadow",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--sidebar-menu-button-active-background",
+      "name": "--cui-sidebar-menu-button-active-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-menu-button-active-foreground",
+      "name": "--cui-sidebar-menu-button-active-foreground",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-menu-button-active-shadow",
+      "name": "--cui-sidebar-menu-button-active-shadow",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--sidebar-menu-button-foreground",
+      "name": "--cui-sidebar-menu-button-foreground",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-menu-button-hover-background",
+      "name": "--cui-sidebar-menu-button-hover-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-menu-button-hover-foreground",
+      "name": "--cui-sidebar-menu-button-hover-foreground",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-menu-button-hover-shadow",
+      "name": "--cui-sidebar-menu-button-hover-shadow",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--sidebar-menu-button-radius",
+      "name": "--cui-sidebar-menu-button-radius",
       "description": "Control UI sidebar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--sidebar-rail-divider-background",
+      "name": "--cui-sidebar-rail-divider-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-wrapper-background",
+      "name": "--cui-sidebar-wrapper-background",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--sidebar-wrapper-background-image",
+      "name": "--cui-sidebar-wrapper-background-image",
       "description": "Control UI sidebar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--skeleton-background",
+      "name": "--cui-skeleton-background",
       "description": "Control UI skeleton knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--skeleton-radius",
+      "name": "--cui-skeleton-radius",
       "description": "Control UI skeleton knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--source-badge-background",
+      "name": "--cui-source-badge-background",
       "description": "Control UI source-badge knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--source-badge-favicon-background",
+      "name": "--cui-source-badge-favicon-background",
       "description": "Control UI source-badge knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--source-badge-favicon-radius",
+      "name": "--cui-source-badge-favicon-radius",
       "description": "Control UI source-badge knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--source-badge-foreground",
+      "name": "--cui-source-badge-foreground",
       "description": "Control UI source-badge knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--source-badge-hover-background",
+      "name": "--cui-source-badge-hover-background",
       "description": "Control UI source-badge knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--source-badge-hover-foreground",
+      "name": "--cui-source-badge-hover-foreground",
       "description": "Control UI source-badge knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--spinner-foreground",
+      "name": "--cui-spinner-foreground",
       "description": "Control UI spinner knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--stepper-indicator-background",
+      "name": "--cui-stepper-indicator-background",
       "description": "Control UI stepper knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--stepper-indicator-border-color",
+      "name": "--cui-stepper-indicator-border-color",
       "description": "Control UI stepper knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--stepper-indicator-foreground",
+      "name": "--cui-stepper-indicator-foreground",
       "description": "Control UI stepper knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--stepper-indicator-radius",
+      "name": "--cui-stepper-indicator-radius",
       "description": "Control UI stepper knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--stepper-separator-background",
+      "name": "--cui-stepper-separator-background",
       "description": "Control UI stepper knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--stepper-title-foreground",
+      "name": "--cui-stepper-title-foreground",
       "description": "Control UI stepper knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--switch-background",
+      "name": "--cui-switch-background",
       "description": "Control UI switch knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--switch-checked-background",
+      "name": "--cui-switch-checked-background",
       "description": "Control UI switch knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--switch-checked-hover-background",
+      "name": "--cui-switch-checked-hover-background",
       "description": "Control UI switch knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--switch-hover-background",
+      "name": "--cui-switch-hover-background",
       "description": "Control UI switch knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--switch-thumb-background",
+      "name": "--cui-switch-thumb-background",
       "description": "Control UI switch knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--switch-thumb-radius",
+      "name": "--cui-switch-thumb-radius",
       "description": "Control UI switch knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--table-background",
+      "name": "--cui-table-background",
       "description": "Control UI table knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--table-border-color",
+      "name": "--cui-table-border-color",
       "description": "Control UI table knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--table-footer-background",
+      "name": "--cui-table-footer-background",
       "description": "Control UI table knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--table-foreground",
+      "name": "--cui-table-foreground",
       "description": "Control UI table knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--table-header-foreground",
+      "name": "--cui-table-header-foreground",
       "description": "Control UI table knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--table-of-contents-highlight-background",
+      "name": "--cui-table-of-contents-highlight-background",
       "description": "Control UI table-of-contents knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--table-of-contents-highlight-radius",
+      "name": "--cui-table-of-contents-highlight-radius",
       "description": "Control UI table-of-contents knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--table-of-contents-rail-background",
+      "name": "--cui-table-of-contents-rail-background",
       "description": "Control UI table-of-contents knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--table-row-hover-background",
+      "name": "--cui-table-row-hover-background",
       "description": "Control UI table knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--table-row-selected-background",
+      "name": "--cui-table-row-selected-background",
       "description": "Control UI table knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--tabs-active-foreground",
+      "name": "--cui-tabs-active-foreground",
       "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tabs-indicator-background",
+      "name": "--cui-tabs-border-color",
       "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tabs-indicator-shadow",
+      "name": "--cui-tabs-foreground",
+      "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-tabs-indicator-background",
+      "description": "Control UI tabs knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-tabs-indicator-shadow",
       "description": "Control UI tabs knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--tabs-line-border-color",
-      "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--tabs-line-indicator-background",
-      "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--tabs-list-backdrop-filter",
+      "name": "--cui-tabs-list-backdrop-filter",
       "description": "Control UI tabs knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--tabs-list-background",
+      "name": "--cui-tabs-list-background",
       "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tabs-list-padding",
+      "name": "--cui-tabs-list-padding",
       "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--tabs-list-radius",
+      "name": "--cui-tabs-list-radius",
       "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--tabs-trigger-focus-shadow",
-      "description": "Control UI tabs knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
-    },
-    {
-      "name": "--tabs-trigger-radius",
+      "name": "--cui-tabs-trigger-radius",
       "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--task-list-background",
+      "name": "--cui-task-list-background",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--task-list-border-color",
+      "name": "--cui-task-list-border-color",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--task-list-foreground",
+      "name": "--cui-task-list-foreground",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--task-list-indicator-active-foreground",
+      "name": "--cui-task-list-indicator-active-foreground",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--task-list-indicator-foreground",
+      "name": "--cui-task-list-indicator-foreground",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--task-list-item-foreground",
+      "name": "--cui-task-list-item-foreground",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--task-list-item-pending-foreground",
+      "name": "--cui-task-list-item-pending-foreground",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--task-list-radius",
+      "name": "--cui-task-list-radius",
       "description": "Control UI task-list knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--task-list-shadow",
+      "name": "--cui-task-list-shadow",
       "description": "Control UI task-list knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--thread-rail-item-background",
+      "name": "--cui-thread-rail-item-background",
       "description": "Control UI thread-rail knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--thread-rail-item-radius",
+      "name": "--cui-thread-rail-item-radius",
       "description": "Control UI thread-rail knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--thread-rail-line-radius",
+      "name": "--cui-thread-rail-line-radius",
       "description": "Control UI thread-rail knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--thread-rail-popover-backdrop-blur",
+      "name": "--cui-thread-rail-popover-backdrop-blur",
       "description": "Control UI thread-rail knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--thread-rail-popover-background",
+      "name": "--cui-thread-rail-popover-background",
       "description": "Control UI thread-rail knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--thread-rail-popover-border-color",
+      "name": "--cui-thread-rail-popover-border-color",
       "description": "Control UI thread-rail knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--thread-rail-popover-border-width",
+      "name": "--cui-thread-rail-popover-border-width",
       "description": "Control UI thread-rail knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--thread-rail-popover-radius",
+      "name": "--cui-thread-rail-popover-radius",
       "description": "Control UI thread-rail knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--thread-rail-popover-shadow",
+      "name": "--cui-thread-rail-popover-shadow",
       "description": "Control UI thread-rail knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--timeline-error-foreground",
+      "name": "--cui-timeline-error-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--timeline-indicator-background",
+      "name": "--cui-timeline-indicator-background",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--timeline-indicator-foreground",
+      "name": "--cui-timeline-indicator-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--timeline-running-foreground",
+      "name": "--cui-timeline-running-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--timeline-separator-background",
+      "name": "--cui-timeline-separator-background",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--timeline-success-foreground",
+      "name": "--cui-timeline-success-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--timeline-title-foreground",
+      "name": "--cui-timeline-title-foreground",
       "description": "Control UI timeline knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toast-background",
-      "description": "Control UI toast knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--toast-border-color",
-      "description": "Control UI toast knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--toast-border-width",
-      "description": "Control UI toast knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length>"
-    },
-    {
-      "name": "--toast-radius",
-      "description": "Control UI toast knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length-percentage>"
-    },
-    {
-      "name": "--toast-shadow",
-      "description": "Control UI toast knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
-    },
-    {
-      "name": "--toolbar-background",
+      "name": "--cui-toolbar-background",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-border-color",
+      "name": "--cui-toolbar-border-color",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-foreground",
+      "name": "--cui-toolbar-foreground",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-item-active-background",
+      "name": "--cui-toolbar-item-active-background",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-item-active-foreground",
+      "name": "--cui-toolbar-item-active-foreground",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-item-foreground",
+      "name": "--cui-toolbar-item-background",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-item-hover-background",
+      "name": "--cui-toolbar-item-foreground",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-item-hover-foreground",
+      "name": "--cui-toolbar-item-hover-background",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--toolbar-padding",
+      "name": "--cui-toolbar-item-hover-foreground",
+      "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-toolbar-item-radius",
       "description": "Control UI toolbar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--toolbar-radius",
-      "description": "Control UI toolbar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length-percentage>"
-    },
-    {
-      "name": "--toolbar-separator-background",
-      "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--toolbar-shadow",
+      "name": "--cui-toolbar-item-shadow",
       "description": "Control UI toolbar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--track-highlight-background",
+      "name": "--cui-toolbar-padding",
+      "description": "Control UI toolbar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-toolbar-radius",
+      "description": "Control UI toolbar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-toolbar-separator-background",
+      "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-toolbar-shadow",
+      "description": "Control UI toolbar knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-track-highlight-background",
       "description": "Control UI track-highlight knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--track-highlight-hover-background",
+      "name": "--cui-track-highlight-hover-background",
       "description": "Control UI track-highlight knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--track-highlight-radius",
+      "name": "--cui-track-highlight-radius",
       "description": "Control UI track-highlight knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--track-highlight-ring-color",
+      "name": "--cui-track-highlight-ring-color",
       "description": "Control UI track-highlight knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--track-highlight-shadow",
+      "name": "--cui-track-highlight-shadow",
       "description": "Control UI track-highlight knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--track-highlight-transition-duration",
+      "name": "--cui-track-highlight-transition-duration",
       "description": "Control UI track-highlight knob — registered syntax <time>, fallback 0s. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<time>"
     },
     {
-      "name": "--transcript-divider-danger-foreground",
+      "name": "--cui-transcript-divider-danger-foreground",
       "description": "Control UI transcript-divider knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--transcript-divider-foreground",
+      "name": "--cui-transcript-divider-foreground",
       "description": "Control UI transcript-divider knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--transcript-divider-line-color",
+      "name": "--cui-transcript-divider-line-color",
       "description": "Control UI transcript-divider knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tree-item-trigger-font-size",
+      "name": "--cui-transcript-divider-success-foreground",
+      "description": "Control UI transcript-divider knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-transcript-divider-warning-foreground",
+      "description": "Control UI transcript-divider knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-tree-item-trigger-font-size",
       "description": "Control UI tree knob — registered syntax <length-percentage>, fallback 1rem. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--tree-item-trigger-foreground",
+      "name": "--cui-tree-item-trigger-foreground",
       "description": "Control UI tree knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tree-item-trigger-hover-background",
+      "name": "--cui-tree-item-trigger-hover-background",
       "description": "Control UI tree knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tree-item-trigger-hover-foreground",
+      "name": "--cui-tree-item-trigger-hover-foreground",
       "description": "Control UI tree knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tree-item-trigger-radius",
+      "name": "--cui-tree-item-trigger-radius",
       "description": "Control UI tree knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--tree-item-trigger-selected-background",
+      "name": "--cui-tree-item-trigger-selected-background",
       "description": "Control UI tree knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--tree-item-trigger-selected-font-weight",
+      "name": "--cui-tree-item-trigger-selected-font-weight",
       "description": "Control UI tree knob — registered syntax <number>, fallback 400. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<number>"
     },
     {
-      "name": "--tree-item-trigger-selected-foreground",
+      "name": "--cui-tree-item-trigger-selected-foreground",
       "description": "Control UI tree knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-background",
+      "name": "--cui-user-ask-background",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-border-color",
+      "name": "--cui-user-ask-border-color",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-foreground",
+      "name": "--cui-user-ask-foreground",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-indicator-background",
+      "name": "--cui-user-ask-indicator-background",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-indicator-foreground",
+      "name": "--cui-user-ask-indicator-foreground",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-input-background",
+      "name": "--cui-user-ask-input-background",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-input-foreground",
+      "name": "--cui-user-ask-input-foreground",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-option-hover-background",
+      "name": "--cui-user-ask-option-hover-background",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-option-radius",
+      "name": "--cui-user-ask-option-radius",
       "description": "Control UI user-ask knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--user-ask-option-selected-background",
+      "name": "--cui-user-ask-option-selected-background",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--user-ask-radius",
+      "name": "--cui-user-ask-radius",
       "description": "Control UI user-ask knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
     {
-      "name": "--user-ask-shadow",
+      "name": "--cui-user-ask-shadow",
       "description": "Control UI user-ask knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     }
   ]

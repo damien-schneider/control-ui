@@ -1,19 +1,43 @@
 "use client";
 
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import type { ComponentProps, CSSProperties } from "react";
-import type {
-  SelectContentProps,
-  SelectItemProps,
-  SelectProps,
-  SelectTriggerProps,
-  SelectValueProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { ControlledChoice } from "@/components/control-ui/control-props";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import { controlSize } from "@/components/control-ui/control-variants";
-import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
+
+export type SelectProps<TValue extends string = string> = ControlledChoice<TValue> & {
+  disabled?: boolean;
+  name?: string;
+  children?: ReactNode;
+};
+
+export const selectTriggerVariants = ["surface", "ghost"] as const;
+
+export type SelectTriggerVariant = (typeof selectTriggerVariants)[number];
+
+export type SelectTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle } & {
+  size?: ControlSize;
+  variant?: SelectTriggerVariant;
+};
+
+export type SelectValueProps = {
+  placeholder?: ReactNode;
+  children?: ReactNode | ((value: string) => ReactNode);
+};
+
+export type SelectContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type SelectItemProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  value: string;
+  label?: string;
+  disabled?: boolean;
+};
 
 type RefinedSelectTriggerProps = SelectTriggerProps &
   Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render"> & { style?: CSSProperties & PopupKnobStyle };
@@ -38,6 +62,7 @@ export function SelectTrigger({ size = "sm", variant = "surface", className, chi
     <SelectPrimitive.Trigger
       data-control-ui="select"
       data-control-family="button"
+      data-popup-kind="select"
       data-slot="trigger"
       data-control="true"
       data-size={size}
@@ -51,7 +76,6 @@ export function SelectTrigger({ size = "sm", variant = "surface", className, chi
       )}
       disabled={disabled}
       {...props}
-      data-select-part="trigger"
     >
       <span
         data-control-ui="button"
@@ -66,7 +90,6 @@ export function SelectTrigger({ size = "sm", variant = "surface", className, chi
         data-control-family="popup"
         data-popup-kind="select"
         data-slot="icon"
-        data-select-part="icon"
         className="relative z-[1]"
       >
         <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">

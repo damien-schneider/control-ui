@@ -1,10 +1,29 @@
 "use client";
 
+import type { ComponentProps, CSSProperties } from "react";
 import { useEffect, useState } from "react";
-
-import type { TableOfContentsProps, TableOfContentsVariant } from "@/components/control-ui/contracts";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
+import type { TableOfContentsKnobStyle } from "@/components/control-ui/knob-contracts/table-of-contents-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type TocItem = {
+  href: string;
+  label: string;
+  level?: number;
+  children?: TocItem[];
+};
+
+export const tableOfContentsVariants = ["background", "trail", "both"] as const;
+
+export type TableOfContentsVariant = (typeof tableOfContentsVariants)[number];
+
+export type TableOfContentsProps = Omit<Omit<ComponentProps<"nav">, "children">, "style"> & {
+  style?: CSSProperties & TableOfContentsKnobStyle;
+} & {
+  items: TocItem[];
+  label?: string;
+  variant?: TableOfContentsVariant;
+};
 
 const DETECTION_MARGIN = "-80px 0px -20% 0px";
 const indentByDepth = ["pl-3", "pl-5", "pl-7", "pl-9", "pl-11", "pl-14"] as const;
@@ -152,7 +171,7 @@ export function TableOfContents({ items, label = "On this page", variant = "both
           activeSelector={TOC_ACTIVE_SELECTOR}
           range
           followHover={false}
-          style={{ ...highlightStyle, "--track-highlight-transition-duration": "var(--duration-base)" }}
+          style={highlightStyle}
           className={tableOfContentsHighlightClass}
         >
           {variant !== "background" && (

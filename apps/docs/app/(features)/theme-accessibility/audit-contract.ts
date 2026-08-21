@@ -1,8 +1,21 @@
-import { BADGE_COLORS } from "@/components/control-ui/contracts";
+import { BADGE_COLORS } from "@/components/control-ui/ui/badge";
 
 export type ThemeAuditSeverity = "error" | "warning";
 export type ThemeAuditCategory = "Text surfaces" | "Controls" | "Component states" | "Badges" | "Focus and boundaries";
-export type ThemeAuditProbe = "tabs-active";
+
+export type ThemeAuditNode = {
+  attributes: Readonly<Record<string, string>>;
+  /** Geometry a recipe needs to render the part — an indicator has no intrinsic size. */
+  style?: string;
+};
+
+/**
+ * Ancestor chain ending at the painted part. Earlier nodes carry the knob declarations the recipe
+ * hangs off a family root; the last node is the part whose RENDERED paint the audit samples. Without
+ * it a probe sits outside every family, so recipe-owned knobs fall back to their inert initial value
+ * and the measurement describes no shipped pixel.
+ */
+export type ThemeAuditAnatomy = readonly ThemeAuditNode[];
 
 export type ThemeAuditPair = {
   id: string;
@@ -15,7 +28,11 @@ export type ThemeAuditPair = {
   surfacePaint?: string;
   underlays?: readonly string[];
   dependencies?: readonly string[];
-  probe?: ThemeAuditProbe;
+  foregroundAnatomy?: ThemeAuditAnatomy;
+  backgroundAnatomy?: ThemeAuditAnatomy;
+  surfaceAnatomy?: ThemeAuditAnatomy;
+  /** Sample the part's outline instead of its text color (focus indicators paint no glyph). */
+  measure?: "text" | "outline";
   threshold: 3 | 4.5;
   severity: ThemeAuditSeverity;
 };
@@ -102,14 +119,21 @@ const badgeOutlinePairs = BADGE_COLORS.flatMap((color) =>
 
 const popoverPaint = "oklch(from var(--popover) l c h / var(--popover-opacity))";
 
+const popupSurface: ThemeAuditAnatomy = [{ attributes: { "data-control-family": "popup", "data-popup-part": "surface" } }];
+const popupItem: ThemeAuditAnatomy = [{ attributes: { "data-control-family": "popup", "data-popup-part": "item" } }];
+const highlightedPopupItem: ThemeAuditAnatomy = [
+  { attributes: { "data-control-family": "popup", "data-popup-part": "item", "data-highlighted": "" } },
+];
+
 const popupPairs = ["background", "card"].flatMap((surface): ThemeAuditPair[] => [
   {
     id: `popup-item-on-${surface}`,
     category: "Component states",
     label: `Popup item on ${surface}`,
-    foreground: "--popup-item-foreground",
+    foreground: "--cui-popup-item-foreground",
+    foregroundAnatomy: popupItem,
     background: "--popover",
-    backgroundPaint: popoverPaint,
+    backgroundAnatomy: popupSurface,
     surface: `--${surface}`,
     dependencies: ["--popover-opacity"],
     threshold: 4.5,
@@ -119,10 +143,11 @@ const popupPairs = ["background", "card"].flatMap((surface): ThemeAuditPair[] =>
     id: `popup-item-highlighted-on-${surface}`,
     category: "Component states",
     label: `Highlighted popup item on ${surface}`,
-    foreground: "--popup-item-foreground",
-    background: "--popup-item-highlight-background",
+    foreground: "--cui-popup-item-foreground",
+    background: "--cui-popup-item-highlight-background",
+    backgroundAnatomy: highlightedPopupItem,
     surface: "--popover",
-    surfacePaint: popoverPaint,
+    surfaceAnatomy: popupSurface,
     underlays: [`--${surface}`],
     dependencies: ["--popover-opacity"],
     threshold: 4.5,
@@ -130,16 +155,63 @@ const popupPairs = ["background", "card"].flatMap((surface): ThemeAuditPair[] =>
   },
 ]);
 
+// The indicator is a sibling painted BEHIND the tab; nesting the glyph inside it reproduces the stack.
+const tabsList: ThemeAuditAnatomy = [
+  { attributes: { "data-control-family": "tabs", "data-slot": "root" } },
+  { attributes: { "data-control-family": "tabs", "data-slot": "list", "data-size": "sm" }, style: "--_tabs-trigger-h:32px" },
+];
+const tabsIndicator: ThemeAuditAnatomy = [
+  { attributes: { "data-control-family": "tabs", "data-slot": "indicator" }, style: "position:static;width:96px;transform:none" },
+];
+const activeTab: ThemeAuditAnatomy = [
+  { attributes: { "data-control-family": "tabs", "data-slot": "tab", "aria-selected": "true", "data-active": "" } },
+];
+
 const activeTabPairs = ["background", "card"].map(
   (surface): ThemeAuditPair => ({
     id: `active-tab-on-${surface}`,
     category: "Component states",
     label: `Active tab on ${surface}`,
-    foreground: "--tabs-active-foreground",
-    background: "--tabs-indicator-background",
-    surface: `--${surface}`,
-    probe: "tabs-active",
+    foreground: "--cui-tabs-active-foreground",
+    foregroundAnatomy: activeTab,
+    background: "--cui-tabs-indicator-background",
+    backgroundAnatomy: tabsIndicator,
+    surface: "--cui-tabs-list-background",
+    surfaceAnatomy: tabsList,
+    underlays: [`--${surface}`],
     threshold: 4.5,
+    severity: "error",
+  }),
+);
+
+// WCAG 1.4.11: the focus indicator is non-text content and owes 3:1 against what it lands on. It is
+// measured on a really focused control, so a skin that blanks --focus-ring-width shows up here.
+const focusedButton: ThemeAuditAnatomy = [
+  {
+    attributes: {
+      "data-control-ui": "button",
+      "data-control-family": "button",
+      "data-slot": "root",
+      "data-control": "true",
+      "data-variant": "solid",
+      "data-tone": "primary",
+    },
+    style: "width:48px;height:24px",
+  },
+];
+
+const focusRingPairs = ["background", "card"].map(
+  (surface): ThemeAuditPair => ({
+    id: `focus-ring-on-${surface}`,
+    category: "Focus and boundaries",
+    label: `Focus indicator on ${surface}`,
+    foreground: "--focus-ring",
+    foregroundAnatomy: focusedButton,
+    measure: "outline",
+    background: `--${surface}`,
+    surface: `--${surface}`,
+    dependencies: ["--focus-ring-width", "--focus-ring-style", "--focus-ring-offset"],
+    threshold: 3,
     severity: "error",
   }),
 );
@@ -186,6 +258,7 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   ...controlPairs,
   ...popupPairs,
   ...activeTabPairs,
+  ...focusRingPairs,
   ...badgeFilledPairs,
   ...badgeOutlinePairs,
   boundaryPair("border-on-background", "Border on background", "--border", "--background"),

@@ -1,8 +1,30 @@
 "use client";
 
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
-import type { SliderProps } from "@/components/control-ui/contracts";
+import type { CSSProperties } from "react";
+import type { RangeKnobStyle } from "@/components/control-ui/knob-contracts/range-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type SliderVariant = "default" | "plain";
+
+export type SliderProps = Omit<
+  {
+    variant?: SliderVariant;
+    value?: number;
+    defaultValue?: number;
+    onValueChange?: (value: number) => void;
+    min?: number;
+    max?: number;
+    step?: number;
+    disabled?: boolean;
+    label?: string;
+    showValue?: boolean;
+    formatValue?: (value: number) => string;
+    className?: string;
+    "aria-label"?: string;
+  },
+  "style"
+> & { style?: CSSProperties & RangeKnobStyle };
 
 const MAX_VISIBLE_STEP_TICKS = 50;
 

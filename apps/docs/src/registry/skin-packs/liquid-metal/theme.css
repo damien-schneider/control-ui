@@ -24,6 +24,7 @@
   --border: oklch(0.8851 0.0135 76 / var(--ring-opacity));
   --input: oklch(0.8851 0.0135 76);
   --ring: oklch(0.6903 0.0198 74);
+  --focus-ring: oklch(0.5 0.0198 74);
   --text-label: 0.75rem;
   --radius-control: calc(var(--radius) * 2);
   --radius-field: calc(var(--radius) * 2.2);
@@ -76,5 +77,8 @@
   --border: oklch(0.3082 0.0147 67 / var(--ring-opacity));
   --input: oklch(0.3082 0.0147 67);
   --ring: oklch(0.5521 0.0181 70);
+  /* Bright enough to clear 3:1 on the near-black page AND on the metal control the shader paints,
+     which sits well above --background and is invisible to the theme audit. */
+  --focus-ring: oklch(0.72 0.0181 70);
   --shadow-color: oklch(0 0 0);
 }

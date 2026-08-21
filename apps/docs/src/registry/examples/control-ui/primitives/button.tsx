@@ -83,13 +83,13 @@ export function PrimitiveButtonExample() {
         </ButtonLink>
       </Row>
       <Row label="Knobs">
-        <Button variant="solid" style={{ "--button-radius": "2px" }}>
+        <Button variant="solid" style={{ "--cui-button-radius": "2px" }}>
           Sharp instance
         </Button>
-        <Button variant="solid" style={{ "--button-press-scale": "0.85" }}>
+        <Button variant="solid" style={{ "--cui-button-press-scale": "0.85" }}>
           Deep press
         </Button>
-        <Button variant="surface" className="[--button-radius:2px] md:[--button-radius:9999px]">
+        <Button variant="surface" className="[--cui-button-radius:2px] md:[--cui-button-radius:9999px]">
           Responsive radius
         </Button>
         <Button variant="solid" data-flavor="neon">

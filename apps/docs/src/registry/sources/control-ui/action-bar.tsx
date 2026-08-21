@@ -3,7 +3,7 @@
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
-import type { ActionBarKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ActionBarKnobStyle } from "@/components/control-ui/knob-contracts/action-bar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 

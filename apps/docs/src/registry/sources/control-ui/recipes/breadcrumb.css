@@ -1,28 +1,28 @@
 @layer components {
   :where([data-control-family="breadcrumb"][data-slot="root"]) {
-    --breadcrumb-list-foreground: var(--muted-foreground);
-    --breadcrumb-page-foreground: var(--foreground);
+    --cui-breadcrumb-list-foreground: var(--muted-foreground);
+    --cui-breadcrumb-page-foreground: var(--foreground);
   }
 
   :where([data-control-family="breadcrumb"][data-slot="page"]) {
     font-weight: var(--font-weight-normal);
-    color: var(--breadcrumb-page-foreground);
+    color: var(--cui-breadcrumb-page-foreground);
   }
 
   :where([data-control-family="breadcrumb"][data-slot="list"]) {
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
-    color: var(--breadcrumb-list-foreground);
+    color: var(--cui-breadcrumb-list-foreground);
   }
 }
 
-@property --breadcrumb-list-foreground {
+@property --cui-breadcrumb-list-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --breadcrumb-page-foreground {
+@property --cui-breadcrumb-page-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

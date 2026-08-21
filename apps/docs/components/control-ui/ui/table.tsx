@@ -1,14 +1,22 @@
-import type {
-  TableBodyProps,
-  TableCaptionProps,
-  TableCellProps,
-  TableFooterProps,
-  TableHeaderProps,
-  TableHeadProps,
-  TableProps,
-  TableRowProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { TableKnobStyle } from "@/components/control-ui/knob-contracts/table-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type TableProps = Omit<ComponentProps<"table">, "style"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableHeaderProps = Omit<ComponentProps<"thead">, "style"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableBodyProps = Omit<ComponentProps<"tbody">, "style"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableFooterProps = Omit<ComponentProps<"tfoot">, "style"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableRowProps = Omit<ComponentProps<"tr">, "style"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableHeadProps = Omit<ComponentProps<"th">, "style"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableCellProps = ComponentProps<"td"> & { style?: CSSProperties & TableKnobStyle };
+
+export type TableCaptionProps = Omit<ComponentProps<"caption">, "style"> & { style?: CSSProperties & TableKnobStyle };
 
 // wrapped in overflow-x-auto so wide tables scroll instead of blowing out layout
 export function Table({ className, ...props }: TableProps) {

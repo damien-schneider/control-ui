@@ -1,12 +1,18 @@
 @layer components {
   :where([data-slot="root"][data-control-family="chat-composer-attachment"]) {
-    border: 1px solid
-      var(--chat-composer-attachment-border-color);
-    border-radius: var(--chat-composer-attachment-radius);
-    background: var(--chat-composer-attachment-background);
+    --cui-chat-composer-attachment-background: oklch(from var(--card) l c h / 0.92);
+    --cui-chat-composer-attachment-border-color: oklch(from var(--border) l c h / 0.8);
+    --cui-chat-composer-attachment-radius: var(--radius-field);
+    --cui-chat-composer-attachment-shadow: var(--shadow-sm);
+    --cui-chat-composer-attachment-progress-background: oklch(from var(--foreground) l c h / 0.1);
+    --cui-chat-composer-attachment-progress-foreground: var(--primary);
+    text-align: left;
+    border: 1px solid var(--cui-chat-composer-attachment-border-color);
+    border-radius: var(--cui-chat-composer-attachment-radius);
+    background: var(--cui-chat-composer-attachment-background);
     box-shadow:
       inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
-      var(--chat-composer-attachment-shadow);
+      var(--cui-chat-composer-attachment-shadow);
     transition-property: background-color, border-color, box-shadow;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-standard);
@@ -16,14 +22,14 @@
     border-color: oklch(from var(--primary) l c h / 0.35);
     box-shadow:
       inset 0 0 0 1px oklch(from var(--primary) l c h / 0.15),
-      var(--chat-composer-attachment-shadow);
+      var(--cui-chat-composer-attachment-shadow);
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-state="error"]) {
     border-color: oklch(from var(--destructive) l c h / 0.45);
     box-shadow:
       inset 0 0 0 1px oklch(from var(--destructive) l c h / 0.2),
-      var(--chat-composer-attachment-shadow);
+      var(--cui-chat-composer-attachment-shadow);
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="preview"]) {
@@ -44,6 +50,7 @@
 
   :where([data-control-family="chat-composer-attachment"][data-slot="preview-label"]) {
     font-size: var(--text-micro);
+    font-weight: var(--font-weight-semibold);
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="status"]) {
@@ -51,11 +58,13 @@
     border-top-color: var(--primary);
     border-radius: 9999px;
     background: transparent;
+    animation: var(--animate-spin);
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="title"]) {
     color: var(--foreground);
     font-size: var(--text-label);
+    font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="description"]) {
@@ -81,71 +90,48 @@
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="progress"]) {
-    background: var(--chat-composer-attachment-progress-background);
+    background: var(--cui-chat-composer-attachment-progress-background);
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="progress-indicator"]) {
     border-radius: 9999px;
-    background: var(--chat-composer-attachment-progress-foreground);
+    background: var(--cui-chat-composer-attachment-progress-foreground);
     transition-property: width;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-emphasized);
   }
-
-  :where([data-control-family="chat-composer-attachment"][data-slot="title"]) {
-    font-weight: var(--font-weight-medium);
-  }
-
-  :where([data-control-family="chat-composer-attachment"][data-slot="status"]) {
-    animation: var(--animate-spin);
-  }
-
-  :where([data-control-family="chat-composer-attachment"][data-slot="preview-label"]) {
-    font-weight: var(--font-weight-semibold);
-  }
-
-  :where([data-control-family="chat-composer-attachment"][data-slot="root"]) {
-    --chat-composer-attachment-background: oklch(from var(--card) l c h / 0.92);
-    --chat-composer-attachment-border-color: oklch(from var(--border) l c h / 0.8);
-    --chat-composer-attachment-radius: var(--radius-field);
-    --chat-composer-attachment-shadow: var(--shadow-sm);
-    --chat-composer-attachment-progress-background: oklch(from var(--foreground) l c h / 0.1);
-    --chat-composer-attachment-progress-foreground: var(--primary);
-    --_chat-composer-attachment-root-text-align: left;
-    text-align: var(--_chat-composer-attachment-root-text-align);
-  }
 }
 
-@property --chat-composer-attachment-radius {
+@property --cui-chat-composer-attachment-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --chat-composer-attachment-background {
+@property --cui-chat-composer-attachment-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --chat-composer-attachment-border-color {
+@property --cui-chat-composer-attachment-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --chat-composer-attachment-shadow {
+@property --cui-chat-composer-attachment-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --chat-composer-attachment-progress-background {
+@property --cui-chat-composer-attachment-progress-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --chat-composer-attachment-progress-foreground {
+@property --cui-chat-composer-attachment-progress-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

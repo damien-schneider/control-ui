@@ -1,7 +1,15 @@
-import type { KeyboardEvent } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent, ReactNode } from "react";
 import { useState } from "react";
+import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts/user-ask-knobs";
 
-import type { UserAskAnswers, UserAskProps } from "../contracts";
+export type UserAskAnswers = Record<string, string>;
+
+export type UserAskProps = Omit<ComponentProps<"section">, "style"> & {
+  children?: ReactNode;
+  onComplete?: (answers: UserAskAnswers) => void;
+  onDismiss?: () => void;
+  style?: CSSProperties & UserAskKnobStyle;
+};
 
 export type UserAskQuestionEntry = {
   key: string;

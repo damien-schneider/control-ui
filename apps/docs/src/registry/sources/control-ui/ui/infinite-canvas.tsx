@@ -2,17 +2,33 @@
 "use client";
 
 import { MinusIcon, PlusIcon } from "lucide-react";
-import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { createContext, use, useEffect, useEffectEvent, useRef, useState } from "react";
-import type {
-  InfiniteCanvasContentProps,
-  InfiniteCanvasControlsProps,
-  InfiniteCanvasMoveReason,
-  InfiniteCanvasProps,
-  InfiniteCanvasTransform,
-} from "@/components/control-ui/contracts";
+import type { InfiniteCanvasKnobStyle } from "@/components/control-ui/knob-contracts/infinite-canvas-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
+
+export type InfiniteCanvasTransform = { x: number; y: number; scale: number };
+
+export type InfiniteCanvasMoveReason = "pointer" | "wheel" | "keyboard" | "control";
+
+export type InfiniteCanvasMoveDetails = { reason: InfiniteCanvasMoveReason };
+
+export type InfiniteCanvasProps = Omit<ComponentProps<"section">, "onChange" | "onWheel" | "ref" | "style"> & {
+  transform?: InfiniteCanvasTransform;
+  defaultTransform?: InfiniteCanvasTransform;
+  onTransformChange?: (transform: InfiniteCanvasTransform, details: InfiniteCanvasMoveDetails) => void;
+  minScale?: number;
+  maxScale?: number;
+  onWheel?: (event: WheelEvent) => void;
+  style?: CSSProperties & InfiniteCanvasKnobStyle;
+};
+
+export type InfiniteCanvasContentProps = ComponentProps<"div"> & { style?: CSSProperties & InfiniteCanvasKnobStyle };
+
+export type InfiniteCanvasControlsProps = Omit<ComponentProps<"div">, "children" | "style"> & {
+  style?: CSSProperties & InfiniteCanvasKnobStyle;
+};
 
 const DEFAULT_TRANSFORM: InfiniteCanvasTransform = { x: 0, y: 0, scale: 1 };
 const DEFAULT_MIN_SCALE = 0.35;

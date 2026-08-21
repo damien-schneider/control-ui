@@ -18,11 +18,6 @@
       "path": "src/registry/sources/control-ui/extensions/control-effects.css",
       "target": "@components/control-ui/styles/control-effects.css",
       "type": "registry:file"
-    },
-    {
-      "path": "src/registry/sources/control-ui/extensions/control-effects.ts",
-      "target": "@components/control-ui/extensions/control-effects.ts",
-      "type": "registry:component"
     }
   ],
   "css": {

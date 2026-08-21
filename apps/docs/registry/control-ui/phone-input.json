@@ -17,6 +17,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/phone-input-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/phone-input-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/lib/phone-input-format.ts",
       "target": "@components/control-ui/lib/phone-input-format.ts",
       "type": "registry:lib"

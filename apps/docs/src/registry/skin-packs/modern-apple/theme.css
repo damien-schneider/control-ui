@@ -32,6 +32,9 @@
   --border: oklch(from oklch(1 0 0) l c h / var(--ring-opacity)); /* white hairline rim */
   --input: oklch(1 0 0 / 0.45); /* transparent-glass field border, white */
   --ring: oklch(1 0 0 / 0.9); /* white focus halo */
+  --focus-ring: var(--primary);
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 0px;
 
   /* page canvas — the light neutral desktop the glass floats on */
   --canvas: oklch(0.9466 0 0); /* #ECECEC */
@@ -80,9 +83,27 @@
      --ease-standard stays smooth easeOut for color/text (bounce reads as jitter); tempo runs longer. */
   --ease-standard: cubic-bezier(0.33, 1, 0.68, 1);
   --ease-emphasized: linear(
-    0, 0.006, 0.025 3.1%, 0.101 7.3%, 0.276 12.5%, 0.578 19.8%, 0.73 24%, 0.853, 0.949 31.9%, 1.008,
-    1.062 39.5%, 1.079, 1.085, 1.08 46.9%, 1.055 52.2%, 1.014 60.4%, 0.995 66.6%, 0.985 72.9%,
-    0.987 80.2%, 0.997 91.7%, 1
+    0,
+    0.006,
+    0.025 3.1%,
+    0.101 7.3%,
+    0.276 12.5%,
+    0.578 19.8%,
+    0.73 24%,
+    0.853,
+    0.949 31.9%,
+    1.008,
+    1.062 39.5%,
+    1.079,
+    1.085,
+    1.08 46.9%,
+    1.055 52.2%,
+    1.014 60.4%,
+    0.995 66.6%,
+    0.985 72.9%,
+    0.987 80.2%,
+    0.997 91.7%,
+    1
   );
   --duration-fast: 200ms;
   --duration-base: 340ms;

@@ -3,9 +3,9 @@
 import type { ComponentProps, CSSProperties } from "react";
 import { createContext, useContext } from "react";
 
-import type { ChatMessageProps } from "@/components/control-ui/contracts";
+import type { ChatMessageProps } from "@/components/control-ui/hooks/use-chat-message";
 import { useChatMessage } from "@/components/control-ui/hooks/use-chat-message";
-import type { ChatMessageKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ChatMessageKnobStyle } from "@/components/control-ui/knob-contracts/chat-message-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
 type ChatMessageContextValue = ReturnType<typeof useChatMessage>;
@@ -18,16 +18,8 @@ function useChatMessageContext() {
   return context;
 }
 
-export function ChatMessage({
-  from,
-  state = "idle",
-  density = "comfortable",
-  tone = "neutral",
-  className,
-  children,
-  ...props
-}: ChatMessageProps) {
-  const message = useChatMessage({ from, state, density, tone });
+export function ChatMessage({ from, state = "idle", density = "comfortable", className, children, ...props }: ChatMessageProps) {
+  const message = useChatMessage({ from, state, density });
 
   return (
     <ChatMessageContext.Provider value={message}>
@@ -38,7 +30,6 @@ export function ChatMessage({
         data-role={from}
         data-state={state}
         data-density={density}
-        data-tone={tone}
         className={cn("w-full", className)}
         {...props}
       >
@@ -58,12 +49,7 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="row"
-      className={cn(
-        "group flex w-full gap-2",
-        message.isUser ? "justify-end" : "justify-start",
-        message.isCompact ? "py-1" : "py-2",
-        className,
-      )}
+      className={cn("flex w-full gap-2", message.isUser ? "justify-end" : "justify-start", message.isCompact ? "py-1" : "py-2", className)}
       {...props}
     >
       {children}

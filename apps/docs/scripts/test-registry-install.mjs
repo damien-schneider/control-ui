@@ -7,6 +7,7 @@ const root = process.cwd();
 const temporaryRoot = mkdtempSync(path.join(tmpdir(), "control-ui-registry-install-"));
 const registryBase = "http://127.0.0.1:3000";
 const activeSkinFiles = ["skin.config.tsx", "styles/skin-theme.css", "styles/skin.css"];
+const buttonInstallBudget = { files: 8, bytes: 55_000 };
 const server = spawn(process.execPath, [path.join(root, "scripts/serve-public-registry.mjs"), path.join(root, "public"), "3000"], {
   stdio: "ignore",
 });
@@ -72,10 +73,8 @@ function install(directory, item) {
   run("bunx", ["shadcn", "add", `${registryBase}/r/${item}.json`, "--yes"], directory);
 }
 
-function replaceInstalledSkin(directory, item, sourceLayout) {
-  const controlUiRoot = path.join(directory, sourceLayout ? "src/components/control-ui" : "components/control-ui");
-  for (const file of activeSkinFiles) rmSync(path.join(controlUiRoot, file), { force: true });
-  install(directory, item);
+function installSkin(directory, item) {
+  run("bunx", ["shadcn", "add", `${registryBase}/r/${item}.json`, "--yes", "--overwrite"], directory);
 }
 
 function walk(directory) {
@@ -117,29 +116,57 @@ try {
   install(rootFixture, "chat-message");
   install(rootFixture, "activity");
   install(rootFixture, "stepper");
+  if (!readFileSync(path.join(rootFixture, "components/control-ui/skin.config.tsx"), "utf8").includes('id: "cuicui"')) {
+    throw new Error("Adding components after a skin replaced the active skin config");
+  }
 
   const rootComponents = path.join(rootFixture, "components/control-ui");
-  const coreContractPath = path.join(rootComponents, "contracts.ts");
-  const coreContractBeforeSkinReplacement = readFileSync(coreContractPath, "utf8");
-  replaceInstalledSkin(rootFixture, "skin-modern-apple", false);
-  if (readFileSync(coreContractPath, "utf8") !== coreContractBeforeSkinReplacement) {
+  const coreSkinResolverPath = path.join(rootComponents, "skin.ts");
+  const coreSkinResolverBeforeReplacement = readFileSync(coreSkinResolverPath, "utf8");
+  installSkin(rootFixture, "skin-modern-apple");
+  if (readFileSync(coreSkinResolverPath, "utf8") !== coreSkinResolverBeforeReplacement) {
     throw new Error("Replacing a skin changed a core-owned file");
   }
-  if (!readFileSync(path.join(rootComponents, "skin.config.tsx"), "utf8").includes('id: "modern-apple"')) {
-    throw new Error("The replacement skin did not install its active config");
+  for (const file of activeSkinFiles) {
+    if (!readFileSync(path.join(rootComponents, file), "utf8").includes("modern-apple")) {
+      throw new Error(`Replacing a skin left the previous pack in ${file}`);
+    }
   }
 
   const driftedComponentPath = path.join(rootComponents, "chat-message.tsx");
   const skinCssPath = path.join(rootComponents, "styles/skin.css");
   writeFileSync(driftedComponentPath, `${readFileSync(driftedComponentPath, "utf8")}\n// local drift\n`);
-  const customSkinCss = `${readFileSync(skinCssPath, "utf8")}\n/* custom skin */\n`;
-  writeFileSync(skinCssPath, customSkinCss);
+  writeFileSync(skinCssPath, `${readFileSync(skinCssPath, "utf8")}\n/* custom skin */\n`);
+  const activeSkinBeforeUpdate = activeSkinFiles.map((file) => readFileSync(path.join(rootComponents, file), "utf8"));
   run("bunx", ["shadcn", "add", `${registryBase}/r/update.json`, "--yes", "--overwrite"], rootFixture);
   if (readFileSync(driftedComponentPath, "utf8").includes("// local drift")) {
     throw new Error("The update manifest did not refresh drifted component source");
   }
-  if (readFileSync(skinCssPath, "utf8") !== customSkinCss) {
-    throw new Error("The update manifest touched the active skin");
+  activeSkinFiles.forEach((file, index) => {
+    if (readFileSync(path.join(rootComponents, file), "utf8") !== activeSkinBeforeUpdate[index]) {
+      throw new Error(`The update manifest overwrote ${file}, which the active skin owns`);
+    }
+  });
+
+  const componentFirstFixture = fixture("component-first", false);
+  install(componentFirstFixture, "button");
+  const componentFirstComponents = path.join(componentFirstFixture, "components/control-ui");
+  const buttonPayload = walk(componentFirstComponents);
+  const buttonBytes = buttonPayload.reduce((total, file) => total + statSync(file).size, 0);
+  console.log(`add button installs ${buttonPayload.length} files / ${buttonBytes} B`);
+  if (buttonPayload.length > buttonInstallBudget.files || buttonBytes > buttonInstallBudget.bytes) {
+    throw new Error(
+      `add button exceeds its payload budget (${buttonInstallBudget.files} files / ${buttonInstallBudget.bytes} B): ${buttonPayload
+        .map((file) => path.relative(componentFirstComponents, file))
+        .join(", ")}`,
+    );
+  }
+
+  installSkin(componentFirstFixture, "skin-cuicui");
+  for (const file of activeSkinFiles) {
+    if (!readFileSync(path.join(componentFirstComponents, file), "utf8").includes("cuicui")) {
+      throw new Error(`Installing a skin after a component did not activate the pack in ${file}`);
+    }
   }
 
   const sourceFixture = fixture("source-layout", true);
@@ -252,7 +279,7 @@ try {
   if (shikiVersion !== "^4.4.3") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);
 
   console.log(
-    `Registry install smoke test passed (root layout, src layout, all alias, update overwrite, ${fullInstallFixtures.length} per-skin full installs, source invariance, and TypeScript).`,
+    `Registry install smoke test passed (root layout, src layout, component-first skin install, all alias, update overwrite, ${fullInstallFixtures.length} per-skin full installs, source invariance, and TypeScript).`,
   );
 } finally {
   if (server.exitCode === null) server.kill();

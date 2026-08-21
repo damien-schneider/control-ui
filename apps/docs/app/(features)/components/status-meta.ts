@@ -1,5 +1,5 @@
 import type { DocsStatus } from "@/app/(features)/model/types";
-import type { BadgeColor } from "@/components/control-ui/contracts";
+import type { BadgeColor } from "@/components/control-ui/ui/badge";
 
 export const statusMeta = {
   beta: {

@@ -1,35 +1,35 @@
 @layer components {
   :where([data-control-family="sidebar"][data-slot="wrapper"]) {
-    background-color: var(--sidebar-wrapper-background);
-    background-image: var(--sidebar-wrapper-background-image);
+    --cui-sidebar-wrapper-background: transparent;
+    --cui-sidebar-wrapper-background-image: none;
+    --cui-sidebar-inset-background: var(--background);
+    --cui-sidebar-inset-background-image: none;
+    --cui-sidebar-inset-shadow: var(--shadow-sm);
+    background-color: var(--cui-sidebar-wrapper-background);
+    background-image: var(--cui-sidebar-wrapper-background-image);
   }
 
   :where([data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-variant="inset"])) {
-    --sidebar-wrapper-background: var(--sidebar);
+    --cui-sidebar-wrapper-background: var(--sidebar);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"]) {
-    --sidebar-wrapper-background: transparent;
-    --sidebar-wrapper-background-image: none;
-    --sidebar-inner-background: var(--sidebar);
-    --sidebar-inner-background-image: none;
-    --sidebar-inner-border-color: var(--sidebar-border);
-    --sidebar-inner-border-width: 0px;
-    --sidebar-inner-radius: 0px;
-    --sidebar-inner-shadow: none;
-    --sidebar-rail-divider-background: transparent;
-    --sidebar-inset-background: var(--background);
-    --sidebar-inset-background-image: none;
-    --sidebar-inset-shadow: var(--shadow-sm);
-    --sidebar-group-label-foreground: oklch(from var(--sidebar-foreground) l c h / 0.7);
-    --sidebar-menu-button-radius: var(--radius-popup-item);
-    --sidebar-menu-button-foreground: var(--sidebar-foreground);
-    --sidebar-menu-button-hover-background: oklch(from var(--foreground) l c h / 0.06);
-    --sidebar-menu-button-hover-foreground: var(--foreground);
-    --sidebar-menu-button-hover-shadow: 0 0 transparent;
-    --sidebar-menu-button-active-background: oklch(from var(--foreground) l c h / 0.08);
-    --sidebar-menu-button-active-shadow: 0 0 transparent;
-    --sidebar-menu-button-active-foreground: var(--foreground);
+    --cui-sidebar-inner-background: var(--sidebar);
+    --cui-sidebar-inner-background-image: none;
+    --cui-sidebar-inner-border-color: var(--sidebar-border);
+    --cui-sidebar-inner-border-width: 0px;
+    --cui-sidebar-inner-radius: 0px;
+    --cui-sidebar-inner-shadow: none;
+    --cui-sidebar-rail-divider-background: transparent;
+    --cui-sidebar-group-label-foreground: oklch(from var(--sidebar-foreground) l c h / 0.7);
+    --cui-sidebar-menu-button-radius: var(--radius-popup-item);
+    --cui-sidebar-menu-button-foreground: var(--sidebar-foreground);
+    --cui-sidebar-menu-button-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-sidebar-menu-button-hover-foreground: var(--foreground);
+    --cui-sidebar-menu-button-hover-shadow: 0 0 transparent;
+    --cui-sidebar-menu-button-active-background: oklch(from var(--foreground) l c h / 0.08);
+    --cui-sidebar-menu-button-active-shadow: 0 0 transparent;
+    --cui-sidebar-menu-button-active-foreground: var(--foreground);
     background-color: var(--sidebar);
     color: var(--sidebar-foreground);
   }
@@ -54,25 +54,25 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="inner"]) {
-    border: var(--sidebar-inner-border-width) solid var(--sidebar-inner-border-color);
-    border-radius: var(--sidebar-inner-radius);
-    background-color: var(--sidebar-inner-background);
-    background-image: var(--sidebar-inner-background-image);
-    box-shadow: var(--sidebar-inner-shadow);
+    border: var(--cui-sidebar-inner-border-width) solid var(--cui-sidebar-inner-border-color);
+    border-radius: var(--cui-sidebar-inner-radius);
+    background-color: var(--cui-sidebar-inner-background);
+    background-image: var(--cui-sidebar-inner-background-image);
+    box-shadow: var(--cui-sidebar-inner-shadow);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="floating"]) {
-    --sidebar-inner-border-width: 1px;
-    --sidebar-inner-radius: var(--radius-panel);
-    --sidebar-inner-shadow: var(--shadow-md);
+    --cui-sidebar-inner-border-width: 1px;
+    --cui-sidebar-inner-radius: var(--radius-panel);
+    --cui-sidebar-inner-shadow: var(--shadow-md);
   }
 
   :where([data-control-family="sidebar"][data-slot="rail"]) {
-    background-image: linear-gradient(var(--sidebar-rail-divider-background), var(--sidebar-rail-divider-background));
+    background-image: linear-gradient(var(--cui-sidebar-rail-divider-background), var(--cui-sidebar-rail-divider-background));
     background-position: center;
     background-repeat: no-repeat;
     background-size: 2px 100%;
-    transition-property: --sidebar-rail-divider-background, background-color, translate;
+    transition-property: --cui-sidebar-rail-divider-background, background-color, translate;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-standard);
   }
@@ -83,7 +83,7 @@
 
   @media (hover: hover) {
     :where([data-control-family="sidebar"][data-slot="rail"]:hover) {
-      --sidebar-rail-divider-background: var(--sidebar-border);
+      --cui-sidebar-rail-divider-background: var(--sidebar-border);
     }
 
     :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]:hover) {
@@ -92,35 +92,32 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="inset"]) {
-    background-color: var(--sidebar-inset-background);
-    background-image: var(--sidebar-inset-background-image);
+    background-color: var(--cui-sidebar-inset-background);
+    background-image: var(--cui-sidebar-inset-background-image);
     transition-property: margin, border-radius, box-shadow;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-standard);
   }
 
   @media (width >= 64rem) {
-    :where(
-      [data-control-family="sidebar"][data-slot="root"][data-variant="inset"]
-        ~ [data-control-family="sidebar"][data-slot="inset"]
-    ) {
+    :where([data-control-family="sidebar"][data-slot="root"][data-variant="inset"] ~ [data-control-family="sidebar"][data-slot="inset"]) {
       margin: 0.5rem;
       margin-inline-start: 0;
       border-radius: var(--radius-xl);
-      box-shadow: var(--sidebar-inset-shadow);
+      box-shadow: var(--cui-sidebar-inset-shadow);
     }
 
     :where(
-      [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="collapsed"]
-        ~ [data-control-family="sidebar"][data-slot="inset"]
-    ) {
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state="collapsed"]
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
       margin-inline-start: 0.5rem;
     }
   }
 
   :where([data-control-family="sidebar"][data-slot="group-label"]) {
     border-radius: var(--radius-md);
-    color: var(--sidebar-group-label-foreground);
+    color: var(--cui-sidebar-group-label-foreground);
     font-size: var(--text-caption);
     font-weight: 500;
     outline: none;
@@ -129,14 +126,10 @@
     transition-timing-function: var(--ease-standard);
   }
 
-  :where([data-control-family="sidebar"][data-slot="group-label"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-  }
-
   :where([data-control-family="sidebar"][data-slot="menu-button"]) {
-    border-radius: var(--sidebar-menu-button-radius);
+    border-radius: var(--cui-sidebar-menu-button-radius);
     background-color: transparent;
-    color: var(--sidebar-menu-button-foreground);
+    color: var(--cui-sidebar-menu-button-foreground);
     outline: none;
     transition-property: width, height, padding, color, background-color, box-shadow;
     transition-duration: var(--duration-base);
@@ -145,23 +138,22 @@
 
   @media (hover: hover) {
     :where([data-control-family="sidebar"][data-slot="menu-button"]:hover) {
-      background-color: var(--sidebar-menu-button-hover-background);
-      color: var(--sidebar-menu-button-hover-foreground);
-      box-shadow: var(--sidebar-menu-button-hover-shadow);
+      background-color: var(--cui-sidebar-menu-button-hover-background);
+      color: var(--cui-sidebar-menu-button-hover-foreground);
+      box-shadow: var(--cui-sidebar-menu-button-hover-shadow);
     }
 
     :where([data-control-family="sidebar"][data-slot="menu-button"][data-state="open"]:hover) {
-      background-color: var(--sidebar-menu-button-active-background);
-      color: var(--sidebar-menu-button-active-foreground);
+      background-color: var(--cui-sidebar-menu-button-active-background);
+      color: var(--cui-sidebar-menu-button-active-foreground);
     }
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"]:active),
-
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-active]) {
-    background-color: var(--sidebar-menu-button-active-background);
-    color: var(--sidebar-menu-button-active-foreground);
-    box-shadow: var(--sidebar-menu-button-active-shadow);
+    background-color: var(--cui-sidebar-menu-button-active-background);
+    color: var(--cui-sidebar-menu-button-active-foreground);
+    box-shadow: var(--cui-sidebar-menu-button-active-shadow);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-active]) {
@@ -179,148 +171,138 @@
     }
   }
 
-  :where([data-control-family="sidebar"][data-slot="menu-button"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-  }
-
   :where(
-    [data-control-family="sidebar"][data-indicator="slide"] [data-control-family="sidebar"][data-slot="menu-button"]:is(
-      :hover,
-      :active,
-      [data-active],
-      [data-popup-open]
-    )
+    [data-control-family="sidebar"][data-indicator="slide"]
+      [data-control-family="sidebar"][data-slot="menu-button"]:is(:hover, :active, [data-active], [data-popup-open])
   ) {
     background-color: transparent;
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"]:disabled),
-
   :where([data-control-family="sidebar"][data-slot="menu-button"][aria-disabled="true"]) {
     opacity: 0.5;
   }
 
-  :where([data-control-family="sidebar"][data-slot="gap"]:is(:where(.group)[data-side="right"] *)) {
-    --_sidebar-gap-rotate: 180deg;
-    rotate: var(--_sidebar-gap-rotate);
+  :where([data-control-family="sidebar"][data-slot="root"][data-side="right"] [data-control-family="sidebar"][data-slot="gap"]) {
+    rotate: 180deg;
   }
 }
 
-@property --sidebar-rail-divider-background {
+@property --cui-sidebar-rail-divider-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-wrapper-background {
+@property --cui-sidebar-wrapper-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-wrapper-background-image {
+@property --cui-sidebar-wrapper-background-image {
   syntax: "*";
   inherits: true;
 }
 
-@property --sidebar-menu-button-radius {
+@property --cui-sidebar-menu-button-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --sidebar-inner-background {
+@property --cui-sidebar-inner-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-inner-border-color {
+@property --cui-sidebar-inner-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-inner-background-image {
+@property --cui-sidebar-inner-background-image {
   syntax: "*";
   inherits: true;
 }
 
-@property --sidebar-inner-border-width {
+@property --cui-sidebar-inner-border-width {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --sidebar-inner-radius {
+@property --cui-sidebar-inner-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --sidebar-inner-shadow {
+@property --cui-sidebar-inner-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --sidebar-inset-background {
+@property --cui-sidebar-inset-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-inset-background-image {
+@property --cui-sidebar-inset-background-image {
   syntax: "*";
   inherits: true;
 }
 
-@property --sidebar-inset-shadow {
+@property --cui-sidebar-inset-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --sidebar-group-label-foreground {
+@property --cui-sidebar-group-label-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-menu-button-foreground {
+@property --cui-sidebar-menu-button-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-menu-button-hover-background {
+@property --cui-sidebar-menu-button-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-menu-button-hover-foreground {
+@property --cui-sidebar-menu-button-hover-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-menu-button-hover-shadow {
+@property --cui-sidebar-menu-button-hover-shadow {
   syntax: "*";
   inherits: true;
 }
 
-@property --sidebar-menu-button-active-background {
+@property --cui-sidebar-menu-button-active-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-menu-button-active-foreground {
+@property --cui-sidebar-menu-button-active-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --sidebar-menu-button-active-shadow {
+@property --cui-sidebar-menu-button-active-shadow {
   syntax: "*";
   inherits: true;
 }

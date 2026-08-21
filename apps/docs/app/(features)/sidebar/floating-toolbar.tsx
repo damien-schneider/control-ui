@@ -72,7 +72,7 @@ export function DocsFloatingToolbar({ active, searchItems, skills, lastSectionMo
         data-docs-floating-toolbar=""
         variant="inverse"
         inert={themeEditorOpen || undefined}
-        className="relative h-full w-max max-w-[calc(100vw-1rem)] [--toolbar-padding:var(--floating-toolbar-padding)] transition-[opacity,filter,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:gap-0 group-data-[state=open]/floating-panel:pointer-events-none group-data-[state=open]/floating-panel:opacity-0 group-data-[state=open]/floating-panel:blur-sm"
+        className="relative h-full w-max max-w-[calc(100vw-1rem)] [--cui-toolbar-padding:var(--floating-toolbar-padding)] transition-[opacity,filter,gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:gap-0 group-data-[state=open]/floating-panel:pointer-events-none group-data-[state=open]/floating-panel:opacity-0 group-data-[state=open]/floating-panel:blur-sm"
       >
         <SidebarSearch items={searchItems} onNavigate={onNavigate} />
         <ToolbarGroup

@@ -2,31 +2,14 @@
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
-import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
 import { createContext, useContext, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import type {
-  ColorFormat,
-  ColorPickerAlphaProps,
-  ColorPickerAreaProps,
-  ColorPickerAreaThumbProps,
-  ColorPickerChannelProps,
-  ColorPickerChannelsProps,
-  ColorPickerContentProps,
-  ColorPickerContrastProps,
-  ColorPickerEyeDropperProps,
-  ColorPickerFormatSelectProps,
-  ColorPickerHueProps,
-  ColorPickerInputProps,
-  ColorPickerOutputProps,
-  ColorPickerPanelProps,
-  ColorPickerProps,
-  ColorPickerSwatchAddProps,
-  ColorPickerSwatchesProps,
-  ColorPickerSwatchProps,
-  ColorPickerTriggerProps,
-  ColorPickerWheelProps,
-} from "@/components/control-ui/contracts";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { ControlSize } from "@/components/control-ui/control-variants";
 import { useColorArea } from "@/components/control-ui/hooks/use-color-area";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import {
   type ChannelId,
@@ -45,6 +28,106 @@ import { Button } from "@/components/control-ui/ui/button";
 import { Input } from "@/components/control-ui/ui/input";
 import { NumberField, NumberFieldGroup, NumberFieldInput } from "@/components/control-ui/ui/number-field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
+
+export type ColorFormat = "hex" | "rgb" | "hsl" | "oklch";
+
+export type ColorPickerProps = {
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  format?: ColorFormat;
+  defaultFormat?: ColorFormat;
+  onFormatChange?: (format: ColorFormat) => void;
+  alpha?: boolean;
+  disabled?: boolean;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+  children?: ReactNode;
+};
+
+export type ColorPickerTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+
+export type ColorPickerContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
+  side?: "top" | "right" | "bottom" | "left";
+  align?: "start" | "center" | "end";
+  sideOffset?: number;
+};
+
+export type ColorPickerPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+
+export type ColorPickerAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+
+export type ColorPickerAreaThumbProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+
+export type ColorPickerHueProps = Omit<Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby" | "style">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+};
+
+export type ColorPickerAlphaProps = Omit<Pick<ComponentProps<"div">, "className" | "aria-label" | "aria-labelledby" | "style">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+};
+
+export type ColorPickerWheelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ColorPickerKnobStyle };
+
+export type ColorPickerEyeDropperProps = Omit<Omit<ComponentProps<"button">, "onError">, "style"> & {
+  style?: CSSProperties & ButtonKnobStyle;
+};
+
+export type ColorPickerInputProps = Omit<Omit<ComponentProps<"input">, "value" | "defaultValue" | "onChange" | "size">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  size?: ControlSize;
+};
+
+export type ColorPickerFormatSelectProps = {
+  formats?: ColorFormat[];
+  size?: ControlSize;
+  className?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+  style?: CSSProperties & ButtonKnobStyle;
+};
+
+export type ColorPickerChannelsProps = ComponentProps<"div"> & { style?: CSSProperties & ColorPickerKnobStyle };
+
+export type ColorPickerChannelProps = Omit<Omit<ComponentProps<"div">, "children" | "aria-label">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  channel: "r" | "g" | "b" | "h" | "s" | "l" | "okl" | "okc" | "okh" | "a";
+  label?: ReactNode;
+  "aria-label"?: string;
+};
+
+export type ColorPickerSwatchesProps = ComponentProps<"div"> & {
+  colors?: string[];
+  label?: ReactNode;
+} & { style?: CSSProperties & ColorPickerKnobStyle };
+
+export type ColorPickerSwatchProps = Omit<Omit<ComponentProps<"button">, "color">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  color: string;
+};
+
+export type ColorPickerSwatchAddProps = Omit<Omit<ComponentProps<"button">, "onClick">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  onAdd?: (value: string) => void;
+};
+
+export type ColorPickerContrastProps = Omit<Omit<ComponentProps<"div">, "children">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  background?: string;
+};
+
+export type ColorPickerOutputProps = Omit<Omit<ComponentProps<"div">, "children">, "style"> & {
+  style?: CSSProperties & ColorPickerKnobStyle;
+} & {
+  children?: ReactNode;
+  renderValue?: (state: { value: string }) => ReactNode;
+};
 
 // gradient data, deliberately not tokens
 const HUE_GRADIENT =

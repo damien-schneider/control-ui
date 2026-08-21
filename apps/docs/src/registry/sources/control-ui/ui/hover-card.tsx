@@ -1,11 +1,27 @@
 "use client";
 
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card";
-import type { ComponentProps, CSSProperties } from "react";
-import type { HoverCardContentProps, HoverCardProps } from "@/components/control-ui/contracts";
-import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
+import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinEffects, skinId } from "@/components/control-ui/skin";
+
+export type HoverCardProps = {
+  children?: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean, eventDetails: OpenChangeEventDetails) => void;
+};
+
+export type HoverCardContentProps = Omit<
+  ComponentProps<"div"> & {
+    side?: "top" | "bottom" | "left" | "right";
+    align?: "start" | "center" | "end";
+    sideOffset?: number;
+  },
+  "style"
+> & { style?: CSSProperties & PopupKnobStyle };
 
 // Base UI PreviewCard behind shadcn-shaped facade, so shadcn HoverCard snippets compose verbatim.
 export function HoverCard(props: HoverCardProps) {

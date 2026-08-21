@@ -4,7 +4,9 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import type { ChangeEvent, ComponentProps, CSSProperties, ReactNode } from "react";
 import { Children, createContext, Fragment, isValidElement, use, useEffect, useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
-import type { ButtonKnobStyle, CodeBlockEditorKnobStyle, CodeKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
+import type { CodeBlockEditorKnobStyle } from "@/components/control-ui/knob-contracts/code-block-editor-knobs";
+import type { CodeKnobStyle } from "@/components/control-ui/knob-contracts/code-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import {
   type CodeBlockEditorTokenLines,

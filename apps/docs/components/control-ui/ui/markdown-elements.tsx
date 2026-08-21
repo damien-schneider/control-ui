@@ -1,5 +1,5 @@
 import type { ComponentProps, CSSProperties, JSX, ReactNode } from "react";
-import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { MarkdownKnobStyle } from "@/components/control-ui/knob-contracts/markdown-knobs";
 
 import { cn } from "@/components/control-ui/lib/cn";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";

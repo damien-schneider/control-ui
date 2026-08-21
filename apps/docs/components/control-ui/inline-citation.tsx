@@ -4,12 +4,19 @@ import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react";
 import { createContext, useContext, useRef, useState } from "react";
 
-import type { SourceReference } from "@/components/control-ui/contracts";
-import type { InlineCitationKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { InlineCitationKnobStyle } from "@/components/control-ui/knob-contracts/inline-citation-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { SourceFavicon, sourceHostname } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/control-ui/ui/popover";
+
+export type SourceReference = {
+  href: string;
+  title?: string;
+  description?: string;
+  quote?: string;
+  faviconSrc?: string | false;
+};
 
 type InlineCitationStyleProps<Props, Style> = Omit<Props, "style"> & {
   style?: CSSProperties & Style;
@@ -192,7 +199,6 @@ export function InlineCitationFavicons({ limit = 3, className, ...props }: Inlin
         <SourceFavicon
           key={source.href}
           data-control-ui="inline-citation"
-          data-control-family="inline-citation"
           data-slot="favicon"
           href={source.href}
           faviconSrc={source.faviconSrc}
@@ -366,7 +372,6 @@ function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
       >
         <SourceFavicon
           data-control-ui="inline-citation"
-          data-control-family="inline-citation"
           data-slot="source-favicon"
           href={source.href}
           faviconSrc={source.faviconSrc}

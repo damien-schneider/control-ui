@@ -11,12 +11,12 @@
 
   :where([data-control-family="user-ask"][data-slot="option-input"]) {
     font-weight: var(--font-weight-medium);
-    --_user-ask-option-input-outline: none;
-    outline-style: var(--_user-ask-option-input-outline);
+    outline-style: none;
   }
 
   :where([data-control-family="user-ask"][data-slot="option-indicator"]) {
     font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="user-ask"][data-slot="option-description"]) {
@@ -36,18 +36,10 @@
   }
 
   :where([data-control-family="user-ask"][data-slot="root"]) {
-    --_user-ask-root-outline: none;
-    outline-style: var(--_user-ask-root-outline);
+    outline-style: none;
   }
-
-  :where([data-control-family="user-ask"][data-slot="option-indicator"]) {
-    --_user-ask-option-indicator-number-style: tabular-nums;
-    font-variant-numeric: var(--_user-ask-option-indicator-number-style);
-  }
-
 
   :where([data-control-family="user-ask"][data-slot="pagination-count"]) {
-    --_user-ask-pagination-count-number-style: tabular-nums;
-    font-variant-numeric: var(--_user-ask-pagination-count-number-style);
+    font-variant-numeric: tabular-nums;
   }
 }

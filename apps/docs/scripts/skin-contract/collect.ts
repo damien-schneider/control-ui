@@ -2,8 +2,17 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { parse } from "@babel/parser";
 import { THEME_CONTRACT } from "../../src/registry/lib/theme-contract";
+import {
+  familyAttribute,
+  familyPartAttribute,
+  identityAttribute,
+  isAnatomyMetadataAttribute,
+  skinSelector,
+  slotAttribute,
+} from "../control-anatomy";
 import { createRegistryItems } from "../registry-model";
 import {
   type AnatomyReference,
@@ -17,16 +26,6 @@ import {
 
 const appRoot = process.cwd();
 const registryRoot = path.join(appRoot, "src/registry");
-const anatomyMetadataAttributes: Record<string, true> = {
-  "data-control-ui": true,
-  "data-slot": true,
-  "data-control": true,
-  "data-surface": true,
-  "data-popup-part": true,
-  "data-skin": true,
-  "data-effects": true,
-};
-
 type MutablePart = Omit<ContractPart, "registryItems"> & {
   controls: boolean;
   registryItems: Set<string>;
@@ -36,13 +35,13 @@ type MutablePart = Omit<ContractPart, "registryItems"> & {
 
 type BaseUiImport = { importedName: string; modulePath: string };
 
-function filesUnder(directory: string): string[] {
+function filesUnder(directory: string, extensions: string[] = [".tsx"]): string[] {
   return readdirSync(directory)
     .flatMap((entry) => {
       const candidate = path.join(directory, entry);
-      return statSync(candidate).isDirectory() ? filesUnder(candidate) : [candidate];
+      return statSync(candidate).isDirectory() ? filesUnder(candidate, extensions) : [candidate];
     })
-    .filter((candidate) => candidate.endsWith(".tsx") && !candidate.endsWith(".test.tsx"));
+    .filter((candidate) => extensions.some((extension) => candidate.endsWith(extension)) && !/\.test\.tsx?$/.test(candidate));
 }
 
 function visit(node: any, callback: (node: any) => void): void {
@@ -148,7 +147,7 @@ function jsxElementName(name: any): string {
 function stateFromAttribute(attribute: any): ContractState | undefined {
   const name = attribute.name.name;
   if (typeof name !== "string" || !name.startsWith("data-")) return undefined;
-  if (anatomyMetadataAttributes[name]) return undefined;
+  if (isAnatomyMetadataAttribute(name)) return undefined;
   const expression = attribute.value?.type === "JSXExpressionContainer" ? attribute.value.expression : attribute.value;
   const staticValues = staticStateValues(expression);
   return staticValues.known
@@ -159,7 +158,7 @@ function stateFromAttribute(attribute: any): ContractState | undefined {
 function stateFromObjectProperty(property: any): ContractState | undefined {
   if (property.type !== "ObjectProperty") return undefined;
   const name = propertyName(property);
-  if (!name.startsWith("data-") || anatomyMetadataAttributes[name]) return undefined;
+  if (!name.startsWith("data-") || isAnatomyMetadataAttribute(name)) return undefined;
   const staticValues = staticStateValues(property.value);
   return staticValues.known
     ? contractState(name, "control-ui", staticValues.values)
@@ -286,25 +285,61 @@ function sortRecord<Value>(record: Record<string, Value>, rootFirst = false): Re
   );
 }
 
+function recordAlias(aliases: Map<string, string>, name: string, text: string, file: string) {
+  const existing = aliases.get(name);
+  if (existing !== undefined && existing !== text) {
+    throw new Error(`Two registry sources export a different ${name}; the last one seen is in ${file}`);
+  }
+  aliases.set(name, text);
+}
+
+function nodeText(source: string, node: { start?: number | null; end?: number | null }) {
+  const { start, end } = node;
+  if (start === null || start === undefined || end === null || end === undefined) {
+    throw new Error("Parsed node is missing its source range");
+  }
+  return source.slice(start, end);
+}
+
+type ExportedDeclaration = NonNullable<
+  Extract<ReturnType<typeof parse>["program"]["body"][number], { type: "ExportNamedDeclaration" }>["declaration"]
+>;
+
+function recordConstArrayAliases(aliases: Map<string, string>, declaration: ExportedDeclaration, source: string, file: string) {
+  if (declaration.type !== "VariableDeclaration") return;
+  for (const declarator of declaration.declarations) {
+    const init = declarator.init;
+    if (declarator.id.type !== "Identifier" || init?.type !== "TSAsExpression") continue;
+    if (init.expression.type !== "ArrayExpression" || init.typeAnnotation.type !== "TSTypeReference") continue;
+    const { typeName } = init.typeAnnotation;
+    if (typeName.type !== "Identifier" || typeName.name !== "const") continue;
+    recordAlias(aliases, declarator.id.name, nodeText(source, init.expression), file);
+  }
+}
+
+function recordFileAliases(aliases: Map<string, string>, file: string) {
+  const source = readFileSync(file, "utf8");
+  const ast = parse(source, { sourceType: "module", plugins: ["typescript", "jsx"] });
+  for (const statement of ast.program.body) {
+    const declaration = statement.type === "ExportNamedDeclaration" ? statement.declaration : undefined;
+    if (!declaration) continue;
+    if (declaration.type === "TSTypeAliasDeclaration") {
+      recordAlias(aliases, declaration.id.name, nodeText(source, declaration.typeAnnotation), file);
+      continue;
+    }
+    recordConstArrayAliases(aliases, declaration, source, file);
+  }
+}
+
 function typeAliases(): Map<string, string> {
   const aliases = new Map<string, string>();
-  for (const file of [path.join(registryRoot, "skin.ts"), path.join(registryRoot, "contracts.ts")]) {
-    const source = readFileSync(file, "utf8");
-    const ast = parse(source, { sourceType: "module", plugins: ["typescript"] });
-    visit(ast, (node) => {
-      if (node.type === "TSTypeAliasDeclaration") {
-        aliases.set(node.id.name, source.slice(node.typeAnnotation.start, node.typeAnnotation.end));
-        return;
-      }
-      const isConstArray =
-        node.type === "VariableDeclarator" &&
-        node.id.type === "Identifier" &&
-        node.init?.type === "TSAsExpression" &&
-        node.init.expression.type === "ArrayExpression" &&
-        node.init.typeAnnotation?.typeName?.name === "const";
-      if (isConstArray) aliases.set(node.id.name, source.slice(node.init.expression.start, node.init.expression.end));
-    });
-  }
+  const files = [
+    path.join(registryRoot, "skin.ts"),
+    ...filesUnder(path.join(registryRoot, "sources/control-ui"), [".ts", ".tsx"]),
+    ...filesUnder(path.join(registryRoot, "hooks"), [".ts"]),
+    ...filesUnder(path.join(registryRoot, "lib"), [".ts"]),
+  ];
+  for (const file of files) recordFileAliases(aliases, file);
   return aliases;
 }
 
@@ -331,7 +366,7 @@ function stateShapeFromType(
 }
 
 function emittedStateTypes(aliases: Map<string, string>): Map<string, Pick<ContractState, "valueKind" | "values">> {
-  const file = path.join(import.meta.dir, "emitted-states.ts");
+  const file = fileURLToPath(new URL("emitted-states.ts", import.meta.url));
   const source = readFileSync(file, "utf8");
   const ast = parse(source, { sourceType: "module", plugins: ["typescript"] });
   const result = new Map<string, Pick<ContractState, "valueKind" | "values">>();
@@ -362,17 +397,23 @@ function mergeContractState(states: ContractState[], state: ContractState): void
   else if (state.valueKind !== "open") existing.valueKind = state.valueKind;
 }
 
-function mergePart(
-  current: MutablePart,
-  states: ContractState[],
-  control: boolean,
-  surfaces: SkinSurfaceFamily[],
-  parts: string[],
-): MutablePart {
-  current.controls ||= control;
-  for (const surface of surfaces) current.surfaces.add(surface);
-  for (const part of parts) current.popupParts.add(part);
-  for (const state of states) mergeContractState(current.states, state);
+type PartAnatomy = {
+  states: ContractState[];
+  control: boolean;
+  family: string | undefined;
+  surfaces: SkinSurfaceFamily[];
+  popupParts: string[];
+};
+
+function mergePart(key: string, current: MutablePart, anatomy: PartAnatomy): MutablePart {
+  if (anatomy.family && current.family && current.family !== anatomy.family) {
+    throw new Error(`${key} is stamped with two families: ${current.family} and ${anatomy.family}`);
+  }
+  current.family ??= anatomy.family;
+  current.controls ||= anatomy.control;
+  for (const surface of anatomy.surfaces) current.surfaces.add(surface);
+  for (const part of anatomy.popupParts) current.popupParts.add(part);
+  for (const state of anatomy.states) mergeContractState(current.states, state);
   return current;
 }
 
@@ -389,22 +430,12 @@ export function collectSkinContract(): SkinContract {
     ...filesUnder(path.join(registryRoot, "blocks", "control-ui")),
   ];
 
-  const recordPart = (
-    scope: string,
-    part: string,
-    sourceFile: string,
-    states: ContractState[],
-    control: boolean,
-    emittedSurfaces: SkinSurfaceFamily[],
-    emittedPopupParts: string[],
-  ) => {
+  const recordPart = (scope: string, part: string, sourceFile: string, anatomy: PartAnatomy) => {
     const key = `${scope}:${part}`;
     const current = mergePart(
+      key,
       parts.get(key) ?? { states: [], controls: false, registryItems: new Set(), surfaces: new Set(), popupParts: new Set() },
-      states,
-      control,
-      emittedSurfaces,
-      emittedPopupParts,
+      anatomy,
     );
     const relativeSource = path.relative(appRoot, sourceFile);
     const owners = registryItemMapping.get(scope) ?? new Set<string>();
@@ -423,39 +454,35 @@ export function collectSkinContract(): SkinContract {
     // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: The visitor classifies the two supported literal anatomy shapes in one pass.
     visit(ast, (node) => {
       if (node.type === "JSXOpeningElement") {
-        const scope = literalAttribute(node.attributes, "data-control-ui");
-        const part = literalAttribute(node.attributes, "data-slot");
+        const scope = literalAttribute(node.attributes, identityAttribute);
+        const part = literalAttribute(node.attributes, slotAttribute);
         if (scope && part) {
-          recordPart(
-            scope,
-            part,
-            file,
-            [
+          recordPart(scope, part, file, {
+            states: [
               ...node.attributes.flatMap((attribute: any) =>
                 attribute.type === "JSXAttribute" ? [stateFromAttribute(attribute)].filter(Boolean) : [],
               ),
               ...baseUiExternalStates(node.name, baseUi),
               ...(externalStateAdditions[`${scope}:${part}`] ?? []),
             ],
-            Boolean(jsxAttribute(node.attributes, "data-control")),
-            surfaceFamilies(jsxAttribute(node.attributes, "data-surface")?.value),
-            popupPartValues(jsxAttribute(node.attributes, "data-popup-part")?.value, popupParts, `${scope}:${part}`),
-          );
+            control: Boolean(jsxAttribute(node.attributes, "data-control")),
+            family: literalAttribute(node.attributes, familyAttribute),
+            surfaces: surfaceFamilies(jsxAttribute(node.attributes, "data-surface")?.value),
+            popupParts: popupPartValues(jsxAttribute(node.attributes, familyPartAttribute("popup"))?.value, popupParts, `${scope}:${part}`),
+          });
         }
       }
       if (node.type === "ObjectExpression") {
-        const scope = literalObjectProperty(node, "data-control-ui");
-        const part = literalObjectProperty(node, "data-slot");
+        const scope = literalObjectProperty(node, identityAttribute);
+        const part = literalObjectProperty(node, slotAttribute);
         if (scope && part) {
-          recordPart(
-            scope,
-            part,
-            file,
-            node.properties.flatMap((property: any) => [stateFromObjectProperty(property)].filter(Boolean)),
-            Boolean(objectProperty(node, "data-control")),
-            surfaceFamilies(objectProperty(node, "data-surface")?.value),
-            popupPartValues(objectProperty(node, "data-popup-part")?.value, popupParts, `${scope}:${part}`),
-          );
+          recordPart(scope, part, file, {
+            states: node.properties.flatMap((property: any) => [stateFromObjectProperty(property)].filter(Boolean)),
+            control: Boolean(objectProperty(node, "data-control")),
+            family: literalObjectProperty(node, familyAttribute),
+            surfaces: surfaceFamilies(objectProperty(node, "data-surface")?.value),
+            popupParts: popupPartValues(objectProperty(node, familyPartAttribute("popup"))?.value, popupParts, `${scope}:${part}`),
+          });
         }
       }
     });
@@ -493,6 +520,7 @@ export function collectSkinContract(): SkinContract {
     const scopeContract = scopes[scope] ?? { parts: {}, registryItems: [...(registryItemMapping.get(scope) ?? [scope])].sort() };
     scopeContract.parts[part] = {
       ...(value.context && Object.keys(value.context).length > 0 ? { context: sortRecord(value.context) } : {}),
+      ...(value.family ? { family: value.family } : {}),
       registryItems: [...value.registryItems].sort(),
       states: value.states.sort((left, right) => left.attribute.localeCompare(right.attribute)),
     };
@@ -524,7 +552,7 @@ export function collectSkinContract(): SkinContract {
 
   return {
     version: 6,
-    selectorPattern: '[data-skin="{skin}"] :where([data-control-ui="{scope}"][data-slot="{part}"])',
+    selectorPattern: skinSelector({ skin: "{skin}", family: "{family}", part: "{part}" }),
     registryItemMapping: sortRecord(Object.fromEntries([...registryItemMapping].map(([scope, items]) => [scope, [...items].sort()]))),
     scopes: sortRecord(scopes),
     adornments: contextHooks("SkinAdornmentContexts"),

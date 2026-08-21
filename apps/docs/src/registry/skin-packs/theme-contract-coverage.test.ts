@@ -17,7 +17,7 @@ const packIds = readdirSync(SKIN_PACKS_DIR)
   .sort();
 
 const ANATOMY_SELECTOR_PATTERN = /\[data-slot=/;
-const CONTROL_UI_SCOPE_PATTERN = /\[data-control-ui=(?:"[^"]+"|'[^']+'|[a-z0-9-]+)\]/;
+const CONTROL_UI_SCOPE_PATTERN = /\[data-control-(?:ui|family)=(?:"[^"]+"|'[^']+'|[a-z0-9-]+)\]/;
 const HOST_TEXT_SELECTOR_PATTERN =
   /\[data-skin[^\n{]*\][^\n{]*(?:^|[\s>+~,(])(?:pre|code|kbd|button|input|textarea|select)(?=$|[\s.#:[>+~),{])/;
 const ANY_SKIN_SELECTOR_PATTERN = /\[data-skin\s*=\s*(?:"[^"]+"|'[^']+'|[a-z0-9-]+)\]/g;

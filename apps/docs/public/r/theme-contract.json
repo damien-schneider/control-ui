@@ -128,6 +128,12 @@
       "description": "Focus ring color."
     },
     {
+      "name": "--focus-ring",
+      "group": "color",
+      "tier": "derived",
+      "description": "Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11)."
+    },
+    {
       "name": "--canvas",
       "group": "color",
       "tier": "core",
@@ -732,6 +738,24 @@
       "group": "layout",
       "tier": "derived",
       "description": "Derived control height: lg (×1.11, px-snapped)."
+    },
+    {
+      "name": "--focus-ring-width",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Thickness of the keyboard focus indicator; 0 removes it and fails WCAG 2.4.7."
+    },
+    {
+      "name": "--focus-ring-style",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Line style of the keyboard focus indicator (solid, dotted, dashed); none removes it and fails WCAG 2.4.7."
+    },
+    {
+      "name": "--focus-ring-offset",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Gap between a control edge and its focus indicator; negative draws the indicator inside."
     }
   ]
 }

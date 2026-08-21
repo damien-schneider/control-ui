@@ -1,4 +1,6 @@
-import type { AspectRatioProps } from "@/components/control-ui/contracts";
+import type { ComponentProps } from "react";
+
+export type AspectRatioProps = ComponentProps<"div"> & { ratio?: number };
 
 const DEFAULT_ASPECT_RATIO = 16 / 9;
 

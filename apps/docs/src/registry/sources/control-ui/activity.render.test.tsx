@@ -144,15 +144,15 @@ describe("Activity", () => {
       <Activity defaultOpen>
         <ActivityTrigger
           style={{
-            "--activity-row-foreground": "oklch(0.4 0.1 250)",
-            "--activity-trigger-radius": "3px",
+            "--cui-activity-row-foreground": "oklch(0.4 0.1 250)",
+            "--cui-activity-trigger-radius": "3px",
           }}
         >
           <ActivityTitle>Thinking</ActivityTitle>
         </ActivityTrigger>
         <ActivityContent>
           <ActivityDetail>
-            <ActivityDetailContent style={{ "--activity-code-background": "oklch(0.2 0.02 250)" }} format="code">
+            <ActivityDetailContent style={{ "--cui-activity-code-background": "oklch(0.2 0.02 250)" }} format="code">
               src/app.tsx
             </ActivityDetailContent>
           </ActivityDetail>
@@ -160,8 +160,8 @@ describe("Activity", () => {
       </Activity>,
     );
 
-    expect(html).toContain("--activity-row-foreground:oklch(0.4 0.1 250)");
-    expect(html).toContain("--activity-trigger-radius:3px");
-    expect(html).toContain("--activity-code-background:oklch(0.2 0.02 250)");
+    expect(html).toContain("--cui-activity-row-foreground:oklch(0.4 0.1 250)");
+    expect(html).toContain("--cui-activity-trigger-radius:3px");
+    expect(html).toContain("--cui-activity-code-background:oklch(0.2 0.02 250)");
   });
 });

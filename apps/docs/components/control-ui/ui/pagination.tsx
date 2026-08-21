@@ -1,8 +1,17 @@
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
-import type { PaginationEllipsisProps, PaginationLinkProps } from "@/components/control-ui/contracts";
-import type { PaginationKnobStyle } from "@/components/control-ui/knob-contracts";
+
+import type { PaginationKnobStyle } from "@/components/control-ui/knob-contracts/pagination-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type PaginationEllipsisProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PaginationKnobStyle };
+
+export type PaginationLinkProps = Omit<
+  ComponentProps<"a"> & {
+    isActive?: boolean;
+  },
+  "style"
+> & { style?: CSSProperties & PaginationKnobStyle };
 
 // Links are control-shaped by hand rather than importing Button, so pagination installs alone.
 export function Pagination({ className, ...props }: ComponentProps<"nav"> & { style?: CSSProperties & PaginationKnobStyle }) {

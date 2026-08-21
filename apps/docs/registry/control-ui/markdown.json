@@ -14,6 +14,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/markdown-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/markdown-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/markdown.css",
       "target": "@components/control-ui/styles/recipes/markdown.css",
       "type": "registry:file"

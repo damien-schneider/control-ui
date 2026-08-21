@@ -1,10 +1,10 @@
 @layer components {
   :where([data-control-family="calendar"][data-slot="root"]) {
-    --calendar-day-radius: var(--radius-control);
-    --calendar-today-background: var(--accent);
-    --calendar-selected-background: var(--primary);
-    --calendar-selected-foreground: var(--primary-foreground);
-    --calendar-range-background: var(--accent);
+    --cui-calendar-day-radius: var(--radius-control);
+    --cui-calendar-today-background: var(--accent);
+    --cui-calendar-selected-background: var(--primary);
+    --cui-calendar-selected-foreground: var(--primary-foreground);
+    --cui-calendar-range-background: var(--accent);
   }
 
   :where([data-control-family="calendar"][data-slot="caption-label"]) {
@@ -36,16 +36,12 @@
     }
   }
 
-  :where([data-control-family="calendar"][data-slot="nav-button"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-  }
-
   :where([data-control-family="calendar"][data-slot="nav-button"]:disabled) {
     opacity: 0.4;
   }
 
   :where([data-control-family="calendar"][data-slot="day"]) {
-    border-radius: var(--calendar-day-radius);
+    border-radius: var(--cui-calendar-day-radius);
     outline: none;
     color: var(--foreground);
     font-size: var(--text-sm);
@@ -63,16 +59,12 @@
     }
   }
 
-  :where([data-control-family="calendar"][data-slot="day"]:focus-visible) {
-    box-shadow: 0 0 0 2px var(--focus-ring, oklch(from var(--foreground) l c h / 0.2));
-  }
-
   :where([data-control-family="calendar"][data-slot="day"]:disabled) {
     opacity: 0.4;
   }
 
   :where([data-control-family="calendar"][data-slot="day"][data-today]) {
-    background-color: var(--calendar-today-background);
+    background-color: var(--cui-calendar-today-background);
     color: var(--accent-foreground);
     font-weight: 500;
   }
@@ -82,13 +74,13 @@
     [data-control-family="calendar"][data-slot="day"][data-range-start],
     [data-control-family="calendar"][data-slot="day"][data-range-end]
   ) {
-    background-color: var(--calendar-selected-background);
-    color: var(--calendar-selected-foreground);
+    background-color: var(--cui-calendar-selected-background);
+    color: var(--cui-calendar-selected-foreground);
   }
 
   :where([data-control-family="calendar"][data-slot="day"][data-range-middle]) {
     border-radius: 0;
-    background-color: var(--calendar-range-background);
+    background-color: var(--cui-calendar-range-background);
     color: var(--accent-foreground);
   }
 
@@ -103,8 +95,7 @@
   }
 
   :where([data-control-family="calendar"][data-slot="day-cell"]) {
-    --_calendar-day-cell-text-align: center;
-    text-align: var(--_calendar-day-cell-text-align);
+    text-align: center;
   }
 
   :where([data-control-family="calendar"][data-slot="month-grid"]) {
@@ -112,31 +103,31 @@
   }
 }
 
-@property --calendar-day-radius {
+@property --cui-calendar-day-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
 
-@property --calendar-today-background {
+@property --cui-calendar-today-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --calendar-selected-background {
+@property --cui-calendar-selected-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --calendar-selected-foreground {
+@property --cui-calendar-selected-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --calendar-range-background {
+@property --cui-calendar-range-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

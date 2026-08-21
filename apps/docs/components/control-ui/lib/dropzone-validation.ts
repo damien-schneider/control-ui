@@ -1,4 +1,6 @@
-import type { DropzoneSelectionMode, DropzoneVisualState } from "../contracts";
+import type { DropzoneVisualState } from "../hooks/use-dropzone";
+
+export type DropzoneSelectionMode = "append" | "replace";
 
 export const DropzoneErrorCode = {
   FileInvalidType: "file-invalid-type",

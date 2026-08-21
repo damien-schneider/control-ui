@@ -3,9 +3,8 @@
 import type { ComponentProps } from "react";
 import { useEffect } from "react";
 
-import { type ControlEffect, controlEffectsAttribute } from "@/components/control-ui/extensions/control-effects";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects } from "@/components/control-ui/skin";
+import { type ControlEffect, controlEffectsAttribute, skinEffects } from "@/components/control-ui/skin";
 
 type ControlEffectsRootProps = ComponentProps<"div"> & {
   effects?: ControlEffect[];

@@ -1,10 +1,31 @@
 "use client";
 
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
-import type { CSSProperties } from "react";
-import type { ScrollAreaProps } from "@/components/control-ui/contracts";
-import type { ScrollAreaKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ComponentProps, CSSProperties, Ref } from "react";
+import type { ScrollAreaKnobStyle } from "@/components/control-ui/knob-contracts/scroll-area-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export const scrollAreaScrollbarVisibilities = ["scroll", "hover", "always"] as const;
+
+export type ScrollAreaScrollbarVisibility = (typeof scrollAreaScrollbarVisibilities)[number];
+
+export type ScrollAreaLockAxis = "x" | "y" | "both";
+
+export type ScrollAreaViewportProps = Omit<ComponentProps<"div">, "children" | "className" | "ref"> & {
+  "data-control-ui"?: string;
+  "data-control-family"?: string;
+  "data-slot"?: string;
+};
+
+export type ScrollAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & ScrollAreaKnobStyle } & {
+  viewportClassName?: string;
+  viewportProps?: ScrollAreaViewportProps;
+  viewportRef?: Ref<HTMLDivElement>;
+  maxHeight?: string;
+  mask?: boolean;
+  lockAxis?: ScrollAreaLockAxis;
+  scrollbarVisibility?: ScrollAreaScrollbarVisibility;
+};
 
 const maskXOverflowClasses = cn(
   "data-[overflow-x-start]:mask-l-from-[calc(100%_-_var(--scroll-fade-size))]",
@@ -90,7 +111,6 @@ export function ScrollArea({
         data-control-family="scroll-area"
         data-slot="viewport"
         {...resolvedViewportProps}
-        data-scroll-area-part="viewport"
         ref={viewportRef}
         className={cn("h-full w-full", mask && !lockX && maskXOverflowClasses, mask && !lockY && maskYOverflowClasses, viewportClassName)}
         style={mergedViewportStyle}

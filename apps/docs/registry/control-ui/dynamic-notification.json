@@ -17,6 +17,11 @@
       "type": "registry:hook"
     },
     {
+      "path": "src/registry/knob-contracts/dynamic-notification-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/dynamic-notification-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/dynamic-notification-glass.ts",
       "target": "@components/control-ui/dynamic-notification-glass.ts",
       "type": "registry:component"

@@ -18,6 +18,8 @@ jobs:
         with:
           bun-version: 1.3.5
       - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium
+        working-directory: apps/docs
       - run: bun run validate
       - run: bun run typecheck
       - run: bun run lint

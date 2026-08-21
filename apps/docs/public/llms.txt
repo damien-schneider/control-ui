@@ -18,7 +18,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 ## AI components
 
 - [AI components](http://127.0.0.1:3000/ai): Explore composable surfaces for messages, input, activity, media, and agent workflows.
-- [ChatMessage](http://127.0.0.1:3000/ai/chat-message): Composable chat message with typed role, density, and tone state.
+- [ChatMessage](http://127.0.0.1:3000/ai/chat-message): Composable chat message with typed role, density, and lifecycle state.
 - [ChatComposer](http://127.0.0.1:3000/ai/chat-composer): Prompt composer with controlled text, submit state, and trigger-menu support.
 - [ChatComposerAttachment](http://127.0.0.1:3000/ai/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
 - [UserAsk](http://127.0.0.1:3000/ai/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
@@ -143,7 +143,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 ## Hooks
 
-- [useChatMessage](http://127.0.0.1:3000/hooks/use-chat-message): Typed role, density, and tone state for ChatMessage.
+- [useChatMessage](http://127.0.0.1:3000/hooks/use-chat-message): Typed role, density, and lifecycle state for ChatMessage.
 - [useChatComposer](http://127.0.0.1:3000/hooks/use-chat-composer): Controlled composer text and submit state.
 - [useUserAsk](http://127.0.0.1:3000/hooks/use-user-ask): Question/option registration, selection, freeform text, and keyboard flow for UserAsk.
 - [useAudioRecorder](http://127.0.0.1:3000/hooks/use-audio-recorder): Browser microphone recording state, waveform levels, and Blob completion.
@@ -154,7 +154,6 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 - [cn](http://127.0.0.1:3000/utils/cn): Tailwind class-name merge helper.
 - [skin](http://127.0.0.1:3000/utils/skin): Skin slot and adornment resolvers for the Control UI library.
-- [contracts](http://127.0.0.1:3000/utils/contracts): Shared prop and slot contracts for swappable skins.
 - [serialize](http://127.0.0.1:3000/utils/serialize): Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
 
 ## Practice guides

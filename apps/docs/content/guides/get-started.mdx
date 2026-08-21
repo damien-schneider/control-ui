@@ -12,7 +12,8 @@
 
 <GuideSection id="install-skin" title="Install a skin">
   Start with Refined or choose another pack from the Skins catalog. Exactly one active pack owns `skin.config.tsx`,
-  `skin-theme.css`, and `skin.css`; installing another pack replaces those three files.
+  `skin-theme.css`, and `skin.css`, and the command claims all three with `--overwrite`. The CLI never replaces a file
+  that already exists, so switching packs without it leaves the previous one in place.
 
   The current skin anatomy contract is version 6. Version 6 removes runtime class and paint maps in favor of registered
   component CSS knobs; skin config now contains only behavior choices and optional adornments. Reinstall core, affected
@@ -47,15 +48,15 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
 </GuideSection>
 
 <GuideSection id="wire-css" title="Wire the CSS">
-  The registry writes required CSS files beside the installed components, but it cannot add imports to your application.
-  Add these imports once. Core `theme.css` exposes Tailwind bindings and invariant mechanics; the selected pack's
-  `skin-theme.css` supplies the complete token contract and `skin.css` supplies its structural details.
+  Each item adds its own stylesheets to the CSS entry named in `components.json`, so a core install plus a skin leaves
+  you with this. Core `theme.css` exposes Tailwind bindings and invariant mechanics; the selected pack's
+  `skin-theme.css` supplies the complete token contract and `skin.css` supplies its structural details. Every component
+  adds one recipe import of its own, and the shared effect utilities arrive with the first component that paints with them.
 
 ```css
 /* app/globals.css */
 @import "tailwindcss";
 @import "../components/control-ui/styles/theme.css";
-@import "../components/control-ui/styles/effects.css";
 
 @import "../components/control-ui/styles/skin-theme.css";
 @import "../components/control-ui/styles/skin.css";
@@ -89,7 +90,7 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
 
   <GuidePoints>
     <GuidePoint>`--diff` prints a per-file unified diff between the registry and your install; identical files are skipped.</GuidePoint>
-    <GuidePoint>To refresh a stock skin too, reinstall its pack afterwards: `npx shadcn@latest add …/r/skin-<id>.json`.</GuidePoint>
+    <GuidePoint>To refresh a stock skin too, reinstall its pack afterwards: `npx shadcn@latest add …/r/skin-<id>.json --overwrite`.</GuidePoint>
     <GuidePoint>`all-<skin>` manifests with `--overwrite` also update everything, but reset the three skin files to that pack.</GuidePoint>
   </GuidePoints>
 </GuideSection>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import type { BadgeColor } from "@/components/control-ui/contracts";
+import type { BadgeColor } from "@/components/control-ui/ui/badge";
 import { Badge } from "@/components/control-ui/ui/badge";
 
 const badgeColors: BadgeColor[] = ["neutral", "red", "orange", "yellow", "green", "blue", "purple", "pink"];

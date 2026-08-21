@@ -8,7 +8,8 @@
     "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
-    "core"
+    "core",
+    "surface-variants"
   ],
   "files": [
     {
@@ -20,6 +21,11 @@
       "path": "src/registry/hooks/use-trigger-menu.ts",
       "target": "@components/control-ui/hooks/use-trigger-menu.ts",
       "type": "registry:hook"
+    },
+    {
+      "path": "src/registry/knob-contracts/popup-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+      "type": "registry:component"
     },
     {
       "path": "src/registry/lib/trigger-detect.ts",

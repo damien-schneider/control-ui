@@ -1,4 +1,4 @@
-import type { TaskStatus } from "@/components/control-ui/contracts";
+import type { TaskStatus } from "@/components/control-ui/task-list";
 import { TaskList, TaskListContent, TaskListItem, TaskListTrigger } from "@/components/control-ui/task-list";
 
 // Map your agent's plan/todo state (e.g. a todo tool's items) onto TaskListItem rows;

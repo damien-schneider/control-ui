@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
-import type { ButtonTone, ButtonVariant, ControlEffect, SelectionIndicator } from "./contracts";
+import type { SelectionIndicator } from "@/components/control-ui/control-props";
+import type { ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
+// Missing module = no skin installed yet; any skin pack creates it: npx shadcn add <registry>/r/skin-<id>.json
 import { skin } from "./skin.config";
 
 type StatelessPart = Record<never, never>;
 export type SkinAdornmentContexts = {
-  button: { layer: { variant: ButtonVariant; tone: ButtonTone } };
+  button: { layer: { variant: ControlVariant; tone: ControlTone } };
   "chat-layout": { titlebar: StatelessPart };
   "chat-thought": { details: StatelessPart };
   dialog: { titlebar: StatelessPart };
@@ -40,6 +42,16 @@ export type ControlUiSkin = {
 
 export type SidebarLayout = "sidebar" | "floating" | "inset";
 
+export type ControlEffect = "top-shine" | "ripple" | "hover-circle";
+
+export type ControlEffectValue = ControlEffect | ControlEffect[];
+
+export function controlEffectsAttribute(effects?: ControlEffectValue): string | undefined {
+  if (!effects) return undefined;
+  const value = (Array.isArray(effects) ? effects : [effects]).join(" ");
+  return value.length > 0 ? value : undefined;
+}
+
 /** Read at render time so getter-based configs stay live. Portals stamp it on their positioner, which lands outside any token-scoped ancestor. */
 export function activeSkin(): ControlUiSkin {
   return skin;
@@ -66,6 +78,25 @@ export function skinSidebarWidth(): string | undefined {
 
 /** Portals stamp result next to data-skin; ControlEffectsRuntime mirrors it on <html>. */
 export function skinEffects(): string | undefined {
-  const effects = skin.effects;
-  return effects && effects.length > 0 ? effects.join(" ") : undefined;
+  return controlEffectsAttribute(skin.effects);
+}
+
+function resolveAdornment<Ctx>(entry: AdornmentEntry<Ctx> | undefined, ctx: Ctx): ReactNode | undefined {
+  if (entry === undefined) return undefined;
+  return typeof entry === "function" ? entry(ctx) : entry;
+}
+
+export function skinAdornment<Scope extends SkinAdornmentScope, Part extends SkinAdornmentPart<Scope>>(
+  scope: Scope,
+  part: Part,
+  ctx: SkinAdornmentContexts[Scope][Part],
+): ReactNode | undefined {
+  return resolveAdornment(skin.adornments?.[scope]?.[part], ctx);
+}
+
+export function hasSkinAdornment<Scope extends SkinAdornmentScope, Part extends SkinAdornmentPart<Scope>>(
+  scope: Scope,
+  part: Part,
+): boolean {
+  return skin.adornments?.[scope]?.[part] !== undefined;
 }

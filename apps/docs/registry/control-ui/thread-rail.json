@@ -6,9 +6,15 @@
   "description": "Conversation minimap for scanning and jumping between chat turns.",
   "dependencies": [],
   "registryDependencies": [
+    "chat-message",
     "core"
   ],
   "files": [
+    {
+      "path": "src/registry/knob-contracts/thread-rail-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/thread-rail-knobs.ts",
+      "type": "registry:component"
+    },
     {
       "path": "src/registry/sources/control-ui/recipes/thread-rail.css",
       "target": "@components/control-ui/styles/recipes/thread-rail.css",

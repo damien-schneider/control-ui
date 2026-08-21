@@ -12,6 +12,11 @@
   ],
   "files": [
     {
+      "path": "src/registry/knob-contracts/scroll-area-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/scroll-area-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/scroll-area.css",
       "target": "@components/control-ui/styles/recipes/scroll-area.css",
       "type": "registry:file"

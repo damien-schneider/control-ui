@@ -1,0 +1,25 @@
+// Generated from src/registry/sources/control-ui/recipes/sidebar.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
+export const sidebarKnobs = [
+  "--cui-sidebar-rail-divider-background",
+  "--cui-sidebar-wrapper-background",
+  "--cui-sidebar-wrapper-background-image",
+  "--cui-sidebar-menu-button-radius",
+  "--cui-sidebar-inner-background",
+  "--cui-sidebar-inner-border-color",
+  "--cui-sidebar-inner-background-image",
+  "--cui-sidebar-inner-border-width",
+  "--cui-sidebar-inner-radius",
+  "--cui-sidebar-inner-shadow",
+  "--cui-sidebar-inset-background",
+  "--cui-sidebar-inset-background-image",
+  "--cui-sidebar-inset-shadow",
+  "--cui-sidebar-group-label-foreground",
+  "--cui-sidebar-menu-button-foreground",
+  "--cui-sidebar-menu-button-hover-background",
+  "--cui-sidebar-menu-button-hover-foreground",
+  "--cui-sidebar-menu-button-hover-shadow",
+  "--cui-sidebar-menu-button-active-background",
+  "--cui-sidebar-menu-button-active-foreground",
+  "--cui-sidebar-menu-button-active-shadow",
+] as const;
+export type SidebarKnobStyle = Partial<Record<(typeof sidebarKnobs)[number], string>>;

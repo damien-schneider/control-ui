@@ -11,7 +11,7 @@ import {
   ChatComposerToolbar,
   ChatComposerTools,
 } from "@/components/control-ui/chat-composer";
-import type { UserAskAnswers } from "@/components/control-ui/contracts";
+import type { UserAskAnswers } from "@/components/control-ui/hooks/use-user-ask";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   UserAsk,

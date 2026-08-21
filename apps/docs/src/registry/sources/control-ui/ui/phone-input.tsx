@@ -6,8 +6,8 @@ import type { EmbeddedFlagProps, Labels } from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 import PhoneNumberInput, { type Country, getCountryCallingCode, parsePhoneNumber, type Value } from "react-phone-number-input/max";
 
-import type { ControlSize } from "@/components/control-ui/contracts";
-import type { PhoneInputKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { ControlSize } from "@/components/control-ui/control-variants";
+import type { PhoneInputKnobStyle } from "@/components/control-ui/knob-contracts/phone-input-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { normalizePhoneInputText, normalizePhoneInputValue } from "@/components/control-ui/lib/phone-input-format";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/control-ui/ui/command";
@@ -70,13 +70,13 @@ const PhoneNumberInputWithRef: ComponentType<ComponentProps<typeof PhoneNumberIn
   PhoneNumberInput;
 
 function PhoneInputContainer({ className, ...props }: ComponentProps<typeof InputGroup>) {
-  return <InputGroup data-phone-input="" data-field-kind="phone-input" className={cn("gap-0 p-0", className)} {...props} />;
+  return <InputGroup data-field-kind="phone-input" className={cn("gap-0 p-0", className)} {...props} />;
 }
 
 function PhoneInputControl({ className, normalizationCountry, onChange, onNativeChange, ...props }: PhoneInputControlProps) {
   return (
     <InputGroupInput
-      data-phone-input-control=""
+      data-field-kind="phone-input"
       dir="ltr"
       className={cn("px-3", className)}
       onChange={(event) => {

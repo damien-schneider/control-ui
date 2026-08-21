@@ -1,14 +1,26 @@
-import type {
-  TimelineContentProps,
-  TimelineDescriptionProps,
-  TimelineIndicatorProps,
-  TimelineItemProps,
-  TimelineMetaProps,
-  TimelineProps,
-  TimelineSeparatorProps,
-  TimelineTitleProps,
-} from "@/components/control-ui/contracts";
+import type { ComponentProps, CSSProperties } from "react";
+import type { TimelineKnobStyle } from "@/components/control-ui/knob-contracts/timeline-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type TimelineState = "neutral" | "pending" | "running" | "success" | "error";
+
+export type TimelineProps = ComponentProps<"ol"> & { style?: CSSProperties & TimelineKnobStyle };
+
+export type TimelineItemProps = ComponentProps<"li"> & {
+  state?: TimelineState;
+} & { style?: CSSProperties & TimelineKnobStyle };
+
+export type TimelineIndicatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+
+export type TimelineSeparatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+
+export type TimelineContentProps = ComponentProps<"div"> & { style?: CSSProperties & TimelineKnobStyle };
+
+export type TimelineTitleProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+
+export type TimelineDescriptionProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TimelineKnobStyle };
+
+export type TimelineMetaProps = ComponentProps<"div"> & { style?: CSSProperties & TimelineKnobStyle };
 
 export function Timeline({ className, ...props }: TimelineProps) {
   return (

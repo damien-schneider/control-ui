@@ -18,6 +18,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/accordion-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/accordion-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/accordion.css",
           "target": "@components/control-ui/styles/recipes/accordion.css",
           "type": "registry:file"
@@ -44,9 +49,15 @@
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/action-bar-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/action-bar-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/action-bar.tsx",
           "target": "@components/control-ui/action-bar.tsx",
@@ -81,6 +92,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/activity-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/activity-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/activity.tsx",
           "target": "@components/control-ui/activity.tsx",
           "type": "registry:component"
@@ -110,6 +126,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/alert-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/alert-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/alert.css",
           "target": "@components/control-ui/styles/recipes/alert.css",
           "type": "registry:file"
@@ -138,9 +159,15 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -1179,6 +1206,21 @@
           "type": "registry:hook"
         },
         {
+          "path": "src/registry/knob-contracts/audio-recorder-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/audio-recorder-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/lib/format-audio-recorder-duration.ts",
           "target": "@components/control-ui/lib/format-audio-recorder-duration.ts",
           "type": "registry:lib"
@@ -1213,6 +1255,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/audio-visualizer.tsx",
           "target": "@components/control-ui/audio-visualizer.tsx",
           "type": "registry:component"
@@ -1238,6 +1285,7 @@
       "description": "Line rendering of the shared realtime audio visualizer contract.",
       "dependencies": [],
       "registryDependencies": [
+        "http://127.0.0.1:3000/r/audio-visualizer.json",
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
@@ -1262,9 +1310,20 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/scroll-area.json"
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
@@ -1327,6 +1386,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/avatar-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/avatar-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/avatar.css",
           "target": "@components/control-ui/styles/recipes/avatar.css",
           "type": "registry:file"
@@ -1357,6 +1421,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/badge-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/badge-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/badge.css",
           "target": "@components/control-ui/styles/recipes/badge.css",
@@ -1389,6 +1458,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
           "type": "registry:file"
@@ -1419,6 +1493,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/button-group-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-group-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/button-group.css",
           "target": "@components/control-ui/styles/recipes/button-group.css",
@@ -1451,6 +1530,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/calendar-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/calendar-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/calendar.css",
           "target": "@components/control-ui/styles/recipes/calendar.css",
           "type": "registry:file"
@@ -1479,6 +1563,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/card-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/card-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/card.css",
           "target": "@components/control-ui/styles/recipes/card.css",
@@ -1564,6 +1653,7 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/chat-message.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/trigger-menu.json"
       ],
@@ -1572,6 +1662,11 @@
           "path": "src/registry/hooks/use-chat-composer.ts",
           "target": "@components/control-ui/hooks/use-chat-composer.ts",
           "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/knob-contracts/chat-composer-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/chat-composer-knobs.ts",
+          "type": "registry:component"
         },
         {
           "path": "src/registry/sources/control-ui/chat-composer-editor.css",
@@ -1643,6 +1738,16 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/chat-composer-attachment-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/chat-composer-attachment-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/chat-composer-attachment.tsx",
           "target": "@components/control-ui/chat-composer-attachment.tsx",
           "type": "registry:component"
@@ -1674,6 +1779,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/chat-layout-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/chat-layout-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/chat-layout.tsx",
           "target": "@components/control-ui/chat-layout.tsx",
           "type": "registry:component"
@@ -1696,16 +1806,22 @@
       "name": "chat-message",
       "type": "registry:component",
       "title": "ChatMessage",
-      "description": "Composable chat message with typed role, density, and tone state.",
+      "description": "Composable chat message with typed role, density, and lifecycle state.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json"
       ],
       "files": [
         {
           "path": "src/registry/hooks/use-chat-message.ts",
           "target": "@components/control-ui/hooks/use-chat-message.ts",
           "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/knob-contracts/chat-message-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/chat-message-knobs.ts",
+          "type": "registry:component"
         },
         {
           "path": "src/registry/sources/control-ui/chat-message.tsx",
@@ -1738,6 +1854,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/choice-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/choice-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/choice.css",
           "target": "@components/control-ui/styles/recipes/choice.css",
@@ -1794,9 +1915,15 @@
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
-        "http://127.0.0.1:3000/r/tooltip.json"
+        "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/code-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/code-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/lib/code-tokens.ts",
           "target": "@components/control-ui/lib/code-tokens.ts",
@@ -1840,9 +1967,25 @@
         "http://127.0.0.1:3000/r/code.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/scroll-area.json",
-        "http://127.0.0.1:3000/r/tooltip.json"
+        "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/code-block-editor-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/code-block-editor-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/code-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/code-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/lib/code-block-shiki.ts",
           "target": "@components/control-ui/lib/code-block-shiki.ts",
@@ -1884,6 +2027,11 @@
         "http://127.0.0.1:3000/r/tooltip.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/code-diff-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/code-diff-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/lib/diff.ts",
           "target": "@components/control-ui/lib/diff.ts",
@@ -1948,6 +2096,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/collapsible-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/collapsible-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/collapsible.css",
           "target": "@components/control-ui/styles/recipes/collapsible.css",
           "type": "registry:file"
@@ -1979,13 +2132,29 @@
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/input.json",
         "http://127.0.0.1:3000/r/number-field.json",
-        "http://127.0.0.1:3000/r/select.json"
+        "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
         {
           "path": "src/registry/hooks/use-color-area.ts",
           "target": "@components/control-ui/hooks/use-color-area.ts",
           "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/color-picker-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/color-picker-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
         },
         {
           "path": "src/registry/lib/color.ts",
@@ -2061,9 +2230,20 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
@@ -2130,9 +2310,15 @@
         "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
-        "http://127.0.0.1:3000/r/scroll-area.json"
+        "http://127.0.0.1:3000/r/scroll-area.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -2186,6 +2372,21 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/context-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/context-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/context-model.ts",
           "target": "@components/control-ui/context-model.ts",
           "type": "registry:component"
@@ -2218,9 +2419,15 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -2277,11 +2484,6 @@
           "path": "src/registry/sources/control-ui/extensions/control-effects.css",
           "target": "@components/control-ui/styles/control-effects.css",
           "type": "registry:file"
-        },
-        {
-          "path": "src/registry/sources/control-ui/extensions/control-effects.ts",
-          "target": "@components/control-ui/extensions/control-effects.ts",
-          "type": "registry:component"
         }
       ],
       "css": {
@@ -2305,6 +2507,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -2356,6 +2563,16 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/dockable-panel-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/dockable-panel-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/dockable-panel.css",
           "target": "@components/control-ui/styles/recipes/dockable-panel.css",
           "type": "registry:file"
@@ -2392,8 +2609,33 @@
       ],
       "files": [
         {
-          "path": "src/registry/sources/control-ui/recipes/drawer.css",
-          "target": "@components/control-ui/styles/recipes/drawer.css",
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
+          "target": "@components/control-ui/styles/recipes/popup-controls.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-drawer.css",
+          "target": "@components/control-ui/styles/recipes/popup-drawer.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-lists.css",
+          "target": "@components/control-ui/styles/recipes/popup-lists.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-motion.css",
+          "target": "@components/control-ui/styles/recipes/popup-motion.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup.css",
+          "target": "@components/control-ui/styles/recipes/popup.css",
           "type": "registry:file"
         },
         {
@@ -2403,7 +2645,11 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/drawer.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-drawer.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/drawer.json"
@@ -2419,9 +2665,20 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
@@ -2485,6 +2742,11 @@
           "type": "registry:hook"
         },
         {
+          "path": "src/registry/knob-contracts/dropzone-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/dropzone-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/lib/dropzone-validation.ts",
           "target": "@components/control-ui/lib/dropzone-validation.ts",
           "type": "registry:lib"
@@ -2524,6 +2786,11 @@
           "path": "src/registry/hooks/use-dynamic-notification.ts",
           "target": "@components/control-ui/hooks/use-dynamic-notification.ts",
           "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/knob-contracts/dynamic-notification-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/dynamic-notification-knobs.ts",
+          "type": "registry:component"
         },
         {
           "path": "src/registry/sources/control-ui/dynamic-notification-glass.ts",
@@ -2582,6 +2849,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/empty-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/empty-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/empty.css",
           "target": "@components/control-ui/styles/recipes/empty.css",
           "type": "registry:file"
@@ -2621,6 +2893,11 @@
           "type": "registry:hook"
         },
         {
+          "path": "src/registry/knob-contracts/environment-variables-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/environment-variables-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/lib/env-file.ts",
           "target": "@components/control-ui/lib/env-file.ts",
           "type": "registry:lib"
@@ -2658,6 +2935,11 @@
         "http://127.0.0.1:3000/r/separator.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
@@ -2749,9 +3031,15 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/color-picker.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/select.json"
+        "http://127.0.0.1:3000/r/select.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/gradient-editor-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/gradient-editor-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/gradient-editor.css",
           "target": "@components/control-ui/styles/recipes/gradient-editor.css",
@@ -2780,9 +3068,15 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -2834,6 +3128,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/infinite-canvas-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/infinite-canvas-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/infinite-canvas.css",
           "target": "@components/control-ui/styles/recipes/infinite-canvas.css",
           "type": "registry:file"
@@ -2859,9 +3158,15 @@
       "description": "Inline file and media previews for chat turns.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/inline-attachment-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/inline-attachment-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/inline-attachment.tsx",
           "target": "@components/control-ui/inline-attachment.tsx",
@@ -2897,6 +3202,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/inline-citation-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/inline-citation-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/inline-citation.tsx",
           "target": "@components/control-ui/inline-citation.tsx",
           "type": "registry:component"
@@ -2927,6 +3237,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
@@ -2965,6 +3280,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
           "type": "registry:file"
@@ -3001,6 +3321,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
@@ -3040,6 +3365,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/item-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/item-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/item.css",
           "target": "@components/control-ui/styles/recipes/item.css",
           "type": "registry:file"
@@ -3068,6 +3398,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/kbd-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/kbd-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/kbd.css",
           "target": "@components/control-ui/styles/recipes/kbd.css",
@@ -3102,6 +3437,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/markdown-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/markdown-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/markdown.css",
           "target": "@components/control-ui/styles/recipes/markdown.css",
           "type": "registry:file"
@@ -3134,9 +3474,15 @@
       "registryDependencies": [
         "http://127.0.0.1:3000/r/code.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/markdown.json"
+        "http://127.0.0.1:3000/r/markdown.json",
+        "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/markdown-block-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/markdown-block-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/markdown-block.tsx",
           "target": "@components/control-ui/markdown-block.tsx",
@@ -3165,9 +3511,20 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
@@ -3224,6 +3581,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/range-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/range-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/range.css",
           "target": "@components/control-ui/styles/recipes/range.css",
           "type": "registry:file"
@@ -3251,9 +3613,15 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
+        "http://127.0.0.1:3000/r/collapsible.json",
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/morphing-panel-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/morphing-panel-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/morphing-panel.css",
           "target": "@components/control-ui/styles/recipes/morphing-panel.css",
@@ -3283,6 +3651,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
@@ -3320,6 +3693,16 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
@@ -3404,6 +3787,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
           "type": "registry:file"
@@ -3441,6 +3829,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/pagination-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/pagination-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/pagination.css",
           "target": "@components/control-ui/styles/recipes/pagination.css",
           "type": "registry:file"
@@ -3476,6 +3869,11 @@
         "http://127.0.0.1:3000/r/popover.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/phone-input-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/phone-input-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/lib/phone-input-format.ts",
           "target": "@components/control-ui/lib/phone-input-format.ts",
@@ -3517,6 +3915,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -3567,6 +3970,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/range-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/range-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/range.css",
           "target": "@components/control-ui/styles/recipes/range.css",
           "type": "registry:file"
@@ -3598,6 +4006,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/choice-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/choice-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/choice.css",
           "target": "@components/control-ui/styles/recipes/choice.css",
           "type": "registry:file"
@@ -3628,6 +4041,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/resizable-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/resizable-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/resizable.css",
           "target": "@components/control-ui/styles/recipes/resizable.css",
@@ -3681,9 +4099,20 @@
         "lucide-react@^1.31.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/rich-tooltip-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/rich-tooltip-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -3745,6 +4174,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/scroll-area-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/scroll-area-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/scroll-area.css",
           "target": "@components/control-ui/styles/recipes/scroll-area.css",
           "type": "registry:file"
@@ -3772,9 +4206,20 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/button-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/button.css",
           "target": "@components/control-ui/styles/recipes/button.css",
@@ -3906,6 +4351,11 @@
           "type": "registry:hook"
         },
         {
+          "path": "src/registry/knob-contracts/sidebar-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/sidebar-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/sidebar.css",
           "target": "@components/control-ui/styles/recipes/sidebar.css",
           "type": "registry:file"
@@ -3931,9 +4381,15 @@
       "description": "Loading placeholder with a token-driven shimmer.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/skeleton-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/skeleton-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/skeleton.css",
           "target": "@components/control-ui/styles/recipes/skeleton.css",
@@ -4225,7 +4681,8 @@
       "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/effects.json"
       ],
       "files": [
         {
@@ -4266,6 +4723,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/range-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/range-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/range.css",
           "target": "@components/control-ui/styles/recipes/range.css",
           "type": "registry:file"
@@ -4299,6 +4761,16 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/badge-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/badge-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/knob-contracts/source-badge-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/source-badge-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/source-badge.css",
           "target": "@components/control-ui/styles/recipes/source-badge.css",
           "type": "registry:file"
@@ -4329,6 +4801,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/spinner-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/spinner-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/spinner.css",
           "target": "@components/control-ui/styles/recipes/spinner.css",
@@ -4361,6 +4838,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/stepper-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/stepper-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/stepper.css",
           "target": "@components/control-ui/styles/recipes/stepper.css",
           "type": "registry:file"
@@ -4392,6 +4874,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/switch-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/switch-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/switch.css",
           "target": "@components/control-ui/styles/recipes/switch.css",
           "type": "registry:file"
@@ -4420,6 +4907,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/table-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/table-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/table.css",
           "target": "@components/control-ui/styles/recipes/table.css",
@@ -4451,6 +4943,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/table-of-contents-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/table-of-contents-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/table-of-contents.css",
           "target": "@components/control-ui/styles/recipes/table-of-contents.css",
           "type": "registry:file"
@@ -4481,6 +4978,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/tabs-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/tabs-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/tabs.css",
           "target": "@components/control-ui/styles/recipes/tabs.css",
@@ -4514,6 +5016,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/task-list-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/task-list-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/task-list.css",
           "target": "@components/control-ui/styles/recipes/task-list.css",
           "type": "registry:file"
@@ -4542,6 +5049,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/field-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/field-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/field-parts.css",
           "target": "@components/control-ui/styles/recipes/field-parts.css",
@@ -4600,9 +5112,15 @@
       "description": "Conversation minimap for scanning and jumping between chat turns.",
       "dependencies": [],
       "registryDependencies": [
+        "http://127.0.0.1:3000/r/chat-message.json",
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/thread-rail-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/thread-rail-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/thread-rail.css",
           "target": "@components/control-ui/styles/recipes/thread-rail.css",
@@ -4632,6 +5150,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/timeline-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/timeline-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/timeline.css",
           "target": "@components/control-ui/styles/recipes/timeline.css",
@@ -4664,8 +5187,33 @@
       ],
       "files": [
         {
-          "path": "src/registry/sources/control-ui/recipes/toast.css",
-          "target": "@components/control-ui/styles/recipes/toast.css",
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
+          "target": "@components/control-ui/styles/recipes/popup-controls.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-lists.css",
+          "target": "@components/control-ui/styles/recipes/popup-lists.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-motion.css",
+          "target": "@components/control-ui/styles/recipes/popup-motion.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-toast.css",
+          "target": "@components/control-ui/styles/recipes/popup-toast.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup.css",
+          "target": "@components/control-ui/styles/recipes/popup.css",
           "type": "registry:file"
         },
         {
@@ -4675,7 +5223,11 @@
         }
       ],
       "css": {
-        "@import \"../components/control-ui/styles/recipes/toast.css\"": {}
+        "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-toast.css\"": {}
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/toast.json"
@@ -4727,6 +5279,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/toolbar-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/toolbar-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/toolbar.css",
           "target": "@components/control-ui/styles/recipes/toolbar.css",
           "type": "registry:file"
@@ -4757,6 +5314,11 @@
         "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
           "target": "@components/control-ui/styles/recipes/popup-controls.css",
@@ -4805,6 +5367,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/transcript-divider-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/transcript-divider-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/transcript-divider.css",
           "target": "@components/control-ui/styles/recipes/transcript-divider.css",
           "type": "registry:file"
@@ -4838,6 +5405,11 @@
       ],
       "files": [
         {
+          "path": "src/registry/knob-contracts/tree-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/tree-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/tree.css",
           "target": "@components/control-ui/styles/recipes/tree.css",
           "type": "registry:file"
@@ -4865,7 +5437,8 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/surface-variants.json"
       ],
       "files": [
         {
@@ -4877,6 +5450,11 @@
           "path": "src/registry/hooks/use-trigger-menu.ts",
           "target": "@components/control-ui/hooks/use-trigger-menu.ts",
           "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/knob-contracts/popup-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/popup-knobs.ts",
+          "type": "registry:component"
         },
         {
           "path": "src/registry/lib/trigger-detect.ts",
@@ -5073,6 +5651,11 @@
           "path": "src/registry/hooks/use-user-ask.ts",
           "target": "@components/control-ui/hooks/use-user-ask.ts",
           "type": "registry:hook"
+        },
+        {
+          "path": "src/registry/knob-contracts/user-ask-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/user-ask-knobs.ts",
+          "type": "registry:component"
         },
         {
           "path": "src/registry/sources/control-ui/recipes/user-ask-details.css",

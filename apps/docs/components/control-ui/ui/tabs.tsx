@@ -1,10 +1,32 @@
 "use client";
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
-import type { CSSProperties, ReactNode, Ref } from "react";
+import type { ComponentProps, CSSProperties, ReactNode, Ref } from "react";
 import { Children, createContext, Fragment, isValidElement, useContext, useRef, useState } from "react";
-import type { ControlSize, TabsListProps, TabsPanelProps, TabsProps, TabsTabProps } from "@/components/control-ui/contracts";
+import type { ControlledChoice, RenderProp } from "@/components/control-ui/control-props";
+import type { ControlSize } from "@/components/control-ui/control-variants";
+import type { TabsKnobStyle } from "@/components/control-ui/knob-contracts/tabs-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledChoice<TValue> & { style?: CSSProperties & TabsKnobStyle };
+
+export type TabsListVariant = "default" | "browser";
+
+export type TabsListProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
+  size?: ControlSize;
+  variant?: TabsListVariant;
+};
+
+export type TabsTabProps = Omit<Omit<ComponentProps<"button">, "value">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
+  value: string;
+  render?: RenderProp<ComponentProps<"button">, { active: boolean; disabled: boolean }>;
+  nativeButton?: boolean;
+};
+
+export type TabsPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
+  value: string;
+};
 
 type RegisterTabsPanel = (value: string, node: HTMLDivElement | null) => (() => void) | undefined;
 
@@ -104,11 +126,7 @@ export function TabsList({ size = "sm", variant = "default", className, children
       data-size={size}
       data-variant={variant}
       data-single={isSingle ? "true" : undefined}
-      className={cn(
-        "group/tabs-list",
-        variant === "browser" && "gap-0 p-0 px-(--_tabs-trigger-radius-fit) pt-(--tabs-list-padding)",
-        className,
-      )}
+      className={cn(variant === "browser" && "gap-0 p-0 px-(--_tabs-trigger-radius-fit) pt-(--cui-tabs-list-padding)", className)}
       style={controlStyle}
       {...props}
     >

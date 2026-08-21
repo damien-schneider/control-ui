@@ -2,9 +2,26 @@
 
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
-import type { ToggleGroupProps, ToggleProps } from "@/components/control-ui/contracts";
+import type { ComponentProps } from "react";
+import type { ControlledMultiChoice } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { buttonContentClasses, buttonRecipeClasses } from "@/components/control-ui/ui/button";
+
+export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value"> & {
+  pressed?: boolean;
+  defaultPressed?: boolean;
+  onPressedChange?: (pressed: boolean) => void;
+  value?: string;
+  showCheck?: boolean;
+};
+
+export type ToggleGroupProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
+  ControlledMultiChoice<TValue> & {
+    multiple?: boolean;
+    disabled?: boolean;
+    orientation?: "horizontal" | "vertical";
+  };
 
 // keeps its own anatomy while sharing Button's visual recipe
 export function Toggle({
@@ -45,7 +62,7 @@ export function Toggle({
             data-size={size}
             className={cn(buttonRecipeClasses(size), renderProps.className, className)}
           >
-            <span data-control-ui="toggle" data-slot="content" className={buttonContentClasses}>
+            <span data-control-ui="toggle" data-control-family="button" data-slot="content" className={buttonContentClasses}>
               {showCheck ? (
                 <span data-control-ui="toggle" data-slot="check" className="flex size-3.5 shrink-0 items-center justify-center">
                   {isActive ? (

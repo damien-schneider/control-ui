@@ -3,9 +3,10 @@
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext } from "react";
 
-import type { InlineAttachmentState } from "@/components/control-ui/contracts";
-import type { InlineAttachmentKnobStyle } from "@/components/control-ui/knob-contracts";
+import type { InlineAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/inline-attachment-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type InlineAttachmentState = "ready" | "pending" | "error";
 
 type InlineAttachmentContextValue = { name: string; state: InlineAttachmentState };
 

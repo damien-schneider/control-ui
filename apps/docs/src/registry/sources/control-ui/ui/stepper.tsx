@@ -1,22 +1,48 @@
 "use client";
 
 import { CheckIcon, CircleAlertIcon } from "lucide-react";
+import type { ComponentProps, CSSProperties } from "react";
 import { createContext, useContext, useId, useState } from "react";
-import type {
-  StepperContentMode,
-  StepperContentProps,
-  StepperDescriptionProps,
-  StepperIndicatorProps,
-  StepperItemProps,
-  StepperListProps,
-  StepperOrientation,
-  StepperProps,
-  StepperSeparatorProps,
-  StepperState,
-  StepperTitleProps,
-  StepperTriggerProps,
-} from "@/components/control-ui/contracts";
+import type { StepperKnobStyle } from "@/components/control-ui/knob-contracts/stepper-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+
+export type StepperOrientation = "horizontal" | "vertical";
+
+export type StepperContentMode = "current" | "all";
+
+export type StepperState = "neutral" | "complete" | "current" | "upcoming";
+
+export type StepperProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> & {
+  value?: number | null;
+  defaultValue?: number | null;
+  onValueChange?: (value: number) => void;
+  orientation?: StepperOrientation;
+  contentMode?: StepperContentMode;
+  responsive?: boolean;
+} & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperListProps = ComponentProps<"ol"> & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperItemProps = Omit<ComponentProps<"li">, "value"> & {
+  step: number;
+  disabled?: boolean;
+  invalid?: boolean;
+} & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperIndicatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperSeparatorProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperTitleProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperDescriptionProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & StepperKnobStyle };
+
+export type StepperContentProps = ComponentProps<"section"> & {
+  step: number;
+  keepMounted?: boolean;
+} & { style?: CSSProperties & StepperKnobStyle };
 
 type StepperContextValue = {
   value: number | null;
