@@ -199,8 +199,8 @@ export function ComboboxEmpty({ className, children, ...props }: ComboboxEmptyPr
   return (
     <ComboboxPrimitive.Empty
       data-control-ui="combobox"
-      data-control-family="field"
-      data-field-kind="combobox"
+      data-control-family="popup"
+      data-popup-kind="combobox"
       data-slot="empty"
       className={cn("px-[calc(var(--padding-x)*0.5)] py-6 empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}

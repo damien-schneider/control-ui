@@ -168,8 +168,8 @@ export function AutocompleteEmpty({ className, children, ...props }: Autocomplet
   return (
     <AutocompletePrimitive.Empty
       data-control-ui="autocomplete"
-      data-control-family="field"
-      data-field-kind="autocomplete"
+      data-control-family="popup"
+      data-popup-kind="autocomplete"
       data-slot="empty"
       className={cn("px-[calc(var(--padding-x)*0.5)] py-6 empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}

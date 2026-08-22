@@ -4,9 +4,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
-import { familyAttribute, identityAttribute, isFamilyQualifierAttribute } from "../../../scripts/control-anatomy";
+import { familyAttribute, identityAttribute, isFamilyQualifierAttribute, slotAttribute } from "../../../scripts/control-anatomy";
 import { knobsByFamily } from "../../../scripts/knob-contracts/collect";
-import { bucketingOffenders } from "../../../scripts/selector-bucketing";
+import { bucketingOffenders, flattenCompound } from "../../../scripts/selector-bucketing";
+import { type AnatomyPair, pairSetKey, stampedAnatomyKeys } from "../../../scripts/stamped-anatomy";
 
 const controlKnobContracts = knobsByFamily();
 
@@ -16,10 +17,10 @@ const recipePaths = readdirSync(RECIPES_DIR)
   .filter((name) => name.endsWith(".css"))
   .sort()
   .map((name) => path.join(RECIPES_DIR, name));
-const sourceText = readdirSync(SOURCES_DIR, { encoding: "utf8", recursive: true })
+const componentSources = readdirSync(SOURCES_DIR, { encoding: "utf8", recursive: true })
   .filter((name) => /\.(?:ts|tsx)$/.test(name) && !name.includes(".test."))
-  .map((name) => readFileSync(path.join(SOURCES_DIR, name), "utf8"))
-  .join("\n");
+  .map((name) => ({ name, source: readFileSync(path.join(SOURCES_DIR, name), "utf8") }));
+const sourceText = componentSources.map(({ source }) => source).join("\n");
 const recipes = postcss.root();
 for (const recipePath of recipePaths) {
   recipes.append(postcss.parse(readFileSync(recipePath, "utf8"), { from: recipePath }).nodes);
@@ -69,42 +70,35 @@ function deadKnobs(root: Root, knobs: readonly string[], renderedSource: string)
 }
 
 const isIdentityAttribute = (attribute: string) =>
-  attribute === identityAttribute || attribute === familyAttribute || isFamilyQualifierAttribute(attribute);
-const escapedPattern = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const sourceStampsIdentity = (attribute: string, value: string) =>
-  new RegExp(`(?:${escapedPattern(attribute)}|["']${escapedPattern(attribute)}["'])\\s*(?:=|:)\\s*["']${escapedPattern(value)}["']`).test(
-    sourceText,
-  );
+  attribute === identityAttribute || attribute === familyAttribute || attribute === slotAttribute || isFamilyQualifierAttribute(attribute);
 
-type SelectorIdentity = { attribute: string; value: string };
-
-function selectorIdentities(selector: selectorParser.Selector): SelectorIdentity[] {
-  const identities: SelectorIdentity[] = [];
-  selector.walkAttributes((node) => {
-    if (!isIdentityAttribute(node.attribute) || !node.value) return;
-    identities.push({ attribute: node.attribute, value: node.value });
+function compoundOffenders(compound: selectorParser.Node[], stamped: Set<string>): string[] {
+  return flattenCompound(compound).flatMap((flat) => {
+    const identities = flat
+      .filter((node): node is selectorParser.Attribute => node.type === "attribute")
+      .flatMap((node) => (isIdentityAttribute(node.attribute) && node.value ? [[node.attribute, node.value] as AnatomyPair] : []));
+    if (identities.length === 0 || stamped.has(pairSetKey(identities))) return [];
+    return [`${pairSetKey(identities)} is not stamped by any element`];
   });
-  return identities;
 }
 
-function selectorIdentityOffenders(selector: selectorParser.Selector, file: string, line: number | string): string[] {
-  const identities = selectorIdentities(selector);
-  if (identities.length === 0) return [`${file}:${line} ${selector.toString()}`];
-  return identities
-    .filter((identity) => !sourceStampsIdentity(identity.attribute, identity.value))
-    .map((identity) => `${file}:${line} [${identity.attribute}="${identity.value}"]`);
-}
-
-function deadSelectors(root: Root): string[] {
+function deadSelectors(root: Root, stamped: Set<string>): string[] {
   const offenders: string[] = [];
   root.walkRules((rule) => {
     if (rule.parent?.type === "atrule" && rule.parent.name.endsWith("keyframes")) return;
     const line = rule.source?.start?.line ?? "?";
     const file = rule.source?.input.file ? path.basename(rule.source.input.file) : "recipe.css";
     selectorParser((selectors) => {
-      for (const selector of selectors.nodes) {
-        offenders.push(...selectorIdentityOffenders(selector, file, line));
-      }
+      selectors.each((selector) => {
+        const compounds: selectorParser.Node[][] = [[]];
+        for (const node of selector.nodes) {
+          if (node.type === "combinator") compounds.push([]);
+          else compounds.at(-1)?.push(node);
+        }
+        for (const compound of compounds.filter((nodes) => nodes.length > 0)) {
+          offenders.push(...compoundOffenders(compound, stamped).map((offender) => `${file}:${line} ${offender}`));
+        }
+      });
     }).processSync(rule.selector);
   });
   return offenders;
@@ -268,6 +262,8 @@ const recipeSources = recipePaths.map((recipePath) => ({
   source: readFileSync(recipePath, "utf8"),
 }));
 
+const stampedAnatomiesInComponents = stampedAnatomyKeys(componentSources);
+
 describe("recipe hygiene", () => {
   test("private variables earn reuse or state indirection", () => {
     expect(recipeSources.flatMap(oneUsePrivateVariableOffenders)).toEqual([]);
@@ -340,13 +336,13 @@ describe("recipe reachability", () => {
     expect(deadKnobs(invalid, ["--example-dead"], "")).toEqual(["--example-dead"]);
   });
 
-  test("every selector targets identity stamped by component source", () => {
-    expect(deadSelectors(recipes)).toEqual([]);
+  test("every selector targets a compound of identity attributes one element stamps together", () => {
+    expect(deadSelectors(recipes, stampedAnatomiesInComponents)).toEqual([]);
   });
 
-  test("rejects an unstamped selector identity", () => {
+  test("rejects an unstamped selector compound", () => {
     const invalid = postcss.parse(':where([data-control-ui="missing-control"]) { color: red; }', { from: "invalid.css" });
-    expect(deadSelectors(invalid)).toEqual(['invalid.css:1 [data-control-ui="missing-control"]']);
+    expect(deadSelectors(invalid, new Set())).toEqual(['invalid.css:1 [data-control-ui="missing-control"] is not stamped by any element']);
   });
 
   test("every recipe keeps one bounded component layer", () => {

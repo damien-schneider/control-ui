@@ -3,6 +3,7 @@ import path from "node:path";
 import postcss from "postcss";
 
 export const recipesDir = "src/registry/sources/control-ui/recipes";
+export const knobContractsDir = "src/registry/knob-contracts";
 export const knobPrefix = "--cui-";
 
 export type KnobDoc = { name: string; syntax: string; initialValue: string; defaultValue: string };

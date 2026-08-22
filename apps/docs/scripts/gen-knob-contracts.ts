@@ -1,10 +1,9 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { formatGeneratedTypeScript } from "./format-generated-typescript";
-import { collectKnobFamilies, recipesDir } from "./knob-contracts/collect";
+import { collectKnobFamilies, knobContractsDir, recipesDir } from "./knob-contracts/collect";
 
 const checkOnly = process.argv.includes("--check");
-const outputDir = "src/registry/knob-contracts";
 
 function camelCase(family: string): string {
   return family.replace(/-([a-z0-9])/g, (_, letter: string) => letter.toUpperCase());
@@ -17,7 +16,7 @@ function pascalCase(family: string): string {
 const families = collectKnobFamilies();
 const generated = new Map(
   families.map(({ id, knobs }) => {
-    const outputPath = path.join(outputDir, `${id}-knobs.ts`);
+    const outputPath = path.join(knobContractsDir, `${id}-knobs.ts`);
     const source = [
       `// Generated from ${recipesDir}/${id}.css by scripts/gen-knob-contracts.ts — run \`bun run sync:knobs\`.`,
       `export const ${camelCase(id)}Knobs = [${knobs.map((knob) => `"${knob.name}"`).join(", ")}] as const;`,
@@ -28,8 +27,8 @@ const generated = new Map(
   }),
 );
 
-mkdirSync(outputDir, { recursive: true });
-const existing = existsSync(outputDir) ? readdirSync(outputDir).map((entry) => path.join(outputDir, entry)) : [];
+mkdirSync(knobContractsDir, { recursive: true });
+const existing = existsSync(knobContractsDir) ? readdirSync(knobContractsDir).map((entry) => path.join(knobContractsDir, entry)) : [];
 const stale = existing.filter((filePath) => !generated.has(filePath));
 const drifted = [...generated].filter(([filePath, content]) => !existsSync(filePath) || readFileSync(filePath, "utf8") !== content);
 
@@ -45,6 +44,6 @@ if (checkOnly) {
   for (const filePath of stale) rmSync(filePath);
   for (const [filePath, content] of drifted) writeFileSync(filePath, content);
   console.log(
-    `Synced ${outputDir} (${families.length} families, ${families.reduce((total, family) => total + family.knobs.length, 0)} knobs)`,
+    `Synced ${knobContractsDir} (${families.length} families, ${families.reduce((total, family) => total + family.knobs.length, 0)} knobs)`,
   );
 }
