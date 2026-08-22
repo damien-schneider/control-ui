@@ -69,11 +69,9 @@
     font-weight: 500;
   }
 
-  :where(
-    [data-control-family="calendar"][data-slot="day"][data-selected-single],
-    [data-control-family="calendar"][data-slot="day"][data-range-start],
-    [data-control-family="calendar"][data-slot="day"][data-range-end]
-  ) {
+  :where([data-control-family="calendar"][data-slot="day"][data-selected-single]),
+  :where([data-control-family="calendar"][data-slot="day"][data-range-start]),
+  :where([data-control-family="calendar"][data-slot="day"][data-range-end]) {
     background-color: var(--cui-calendar-selected-background);
     color: var(--cui-calendar-selected-foreground);
   }

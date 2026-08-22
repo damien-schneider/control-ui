@@ -343,7 +343,11 @@ function typeAliases(): Map<string, string> {
   return aliases;
 }
 
-function stateShapeFromType(
+const STRING_LITERAL = `(?:"[^"]+"|'[^']+')`;
+const STRING_LITERAL_UNION = new RegExp(`^${STRING_LITERAL}(?:\\s*\\|\\s*${STRING_LITERAL})*$`);
+const STRING_LITERAL_ARRAY = new RegExp(`^\\[\\s*${STRING_LITERAL}(?:\\s*,\\s*${STRING_LITERAL})*\\s*,?\\s*\\]$`);
+
+export function stateShapeFromType(
   type: string,
   aliases: Map<string, string>,
   seen = new Set<string>(),
@@ -351,8 +355,6 @@ function stateShapeFromType(
   const normalized = type.trim();
   if (normalized === "true") return { valueKind: "presence", values: [] };
   if (normalized === "boolean") return { valueKind: "enum", values: ["false", "true"] };
-  const unionValues = [...normalized.matchAll(/["']([^"']+)["']/g)].map((match) => match[1]);
-  if (unionValues.length > 0) return { valueKind: "enum", values: [...new Set(unionValues)].sort() };
   if (/^[A-Za-z_$][\w$]*$/.test(normalized) && !seen.has(normalized)) {
     const alias = aliases.get(normalized);
     if (alias) return stateShapeFromType(alias, aliases, new Set([...seen, normalized]));
@@ -361,6 +363,10 @@ function stateShapeFromType(
   if (constIndexed && !seen.has(constIndexed[1])) {
     const alias = aliases.get(constIndexed[1]);
     if (alias) return stateShapeFromType(alias, aliases, new Set([...seen, constIndexed[1]]));
+  }
+  if (STRING_LITERAL_UNION.test(normalized) || STRING_LITERAL_ARRAY.test(normalized)) {
+    const values = [...normalized.matchAll(/["']([^"']+)["']/g)].map((match) => match[1]);
+    return { valueKind: "enum", values: [...new Set(values)].sort() };
   }
   return { valueKind: "open", values: [] };
 }

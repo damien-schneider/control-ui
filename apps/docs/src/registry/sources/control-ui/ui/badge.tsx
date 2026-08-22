@@ -6,7 +6,7 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { BadgeKnobStyle } from "@/components/control-ui/knob-contracts/badge-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export const badgeVariants = ["default", "secondary", "destructive", "outline"] as const;
+export const badgeVariants = ["default", "outline"] as const;
 
 export type BadgeVariant = (typeof badgeVariants)[number];
 
@@ -26,15 +26,8 @@ export type BadgeProps = Omit<ComponentProps<"span">, "style"> & {
   style?: CSSProperties & BadgeKnobStyle;
 };
 
-const defaultColorByVariant: Record<BadgeVariant, BadgeColor> = {
-  default: "neutral",
-  secondary: "neutral",
-  destructive: "red",
-  outline: "neutral",
-};
-
 export function Badge({ variant = "default", size = "md", color, render, className, children, ...props }: BadgeProps) {
-  const resolvedColor = color ?? defaultColorByVariant[variant];
+  const resolvedColor = color ?? "neutral";
 
   return useRender({
     defaultTagName: "span",

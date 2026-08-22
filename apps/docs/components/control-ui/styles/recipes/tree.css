@@ -10,7 +10,8 @@
     --cui-tree-item-trigger-selected-font-weight: 400;
   }
 
-  :where([data-control-family="tree"][data-slot="root"], [data-control-family="tree"][data-slot="item"]) {
+  :where([data-control-family="tree"][data-slot="root"]),
+  :where([data-control-family="tree"][data-slot="item"]) {
     outline: none;
   }
 

@@ -32,12 +32,10 @@
   }
 
   @media (hover: hover) {
-    :where(
-        [data-control-family="field"][data-field-kind="autocomplete"]:hover,
-        [data-control-family="field"][data-field-kind="combobox"]:hover,
-        [data-control-family="field"][data-field-kind="native-select"]:hover,
-        [data-control-family="field"][data-field-kind="number-field"]:hover
-      ) {
+    :where([data-control-family="field"][data-field-kind="autocomplete"]:hover),
+    :where([data-control-family="field"][data-field-kind="combobox"]:hover),
+    :where([data-control-family="field"][data-field-kind="native-select"]:hover),
+    :where([data-control-family="field"][data-field-kind="number-field"]:hover) {
       background: oklch(from var(--foreground) l c h / 0.05);
     }
   }

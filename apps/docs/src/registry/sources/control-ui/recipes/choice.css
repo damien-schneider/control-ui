@@ -1,8 +1,6 @@
 @layer components {
-  :where(
-    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"],
-    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]
-  ) {
+  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]) {
     --cui-choice-radius: var(--radius-sm);
     --cui-choice-border-color: var(--border);
     --cui-choice-checked-background: var(--primary);
@@ -25,33 +23,25 @@
     outline-style: none;
   }
 
-  :where(
-    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:hover,
-    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:hover
-  ) {
+  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:hover),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:hover) {
     --cui-choice-border-color: oklch(from var(--foreground) l c h / 0.25);
   }
 
-  :where(
-    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:is([data-checked], [data-indeterminate]),
-    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:is([data-checked], [data-indeterminate])
-  ) {
+  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]:is([data-checked], [data-indeterminate])),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]:is([data-checked], [data-indeterminate])) {
     --_choice-background: var(--cui-choice-checked-background);
     --cui-choice-border-color: var(--cui-choice-checked-border-color);
     color: var(--primary-foreground);
   }
 
-  :where(
-    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-disabled],
-    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-disabled]
-  ) {
+  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-disabled]),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-disabled]) {
     opacity: 0.5;
   }
 
-  :where(
-    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-invalid],
-    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-invalid]
-  ) {
+  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"][data-invalid]),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"][data-invalid]) {
     --cui-choice-border-color: var(--destructive);
     box-shadow:
       inset 0 0 0 1px var(--cui-choice-border-color),
@@ -59,10 +49,8 @@
       0 0 0 1px var(--destructive);
   }
 
-  :where(
-    [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"] [data-slot="indicator"],
-    [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"] [data-slot="indicator"]
-  ) {
+  :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"] [data-slot="indicator"]),
+  :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"] [data-slot="indicator"]) {
     color: currentColor;
   }
 

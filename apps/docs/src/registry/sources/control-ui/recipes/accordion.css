@@ -48,10 +48,8 @@
     transition: height var(--duration-base) var(--ease-emphasized);
   }
 
-  :where(
-    [data-control-family="accordion"][data-slot="panel"][data-starting-style],
-    [data-control-family="accordion"][data-slot="panel"][data-ending-style]
-  ) {
+  :where([data-control-family="accordion"][data-slot="panel"][data-starting-style]),
+  :where([data-control-family="accordion"][data-slot="panel"][data-ending-style]) {
     height: 0;
   }
 }

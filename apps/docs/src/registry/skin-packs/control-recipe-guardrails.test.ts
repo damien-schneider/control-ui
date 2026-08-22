@@ -6,6 +6,7 @@ import postcss, { type Root } from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { familyAttribute, identityAttribute, isFamilyQualifierAttribute } from "../../../scripts/control-anatomy";
 import { knobsByFamily } from "../../../scripts/knob-contracts/collect";
+import { bucketingOffenders } from "../../../scripts/selector-bucketing";
 
 const controlKnobContracts = knobsByFamily();
 
@@ -165,6 +166,27 @@ function oneUsePrivateVariableOffenders({ file, source }: RecipeSource): string[
     });
 }
 
+function unusedPrivateVariableOffenders(root: Root, renderedSource: string): string[] {
+  const declarations = new Map<string, postcss.Declaration[]>();
+  const references = new Set<string>();
+  root.walkDecls((declaration) => {
+    if (declaration.prop.startsWith("--_")) {
+      const entries = declarations.get(declaration.prop) ?? [];
+      entries.push(declaration);
+      declarations.set(declaration.prop, entries);
+    }
+    for (const match of declaration.value.matchAll(/--_[\w-]+/g)) references.add(match[0]);
+  });
+  return [...declarations]
+    .filter(([name]) => !references.has(name) && !renderedSource.includes(name))
+    .flatMap(([name, entries]) =>
+      entries.map(
+        (declaration) =>
+          `${path.basename(declaration.source?.input.file ?? "recipe.css")}:${declaration.source?.start?.line ?? "?"} ${name}`,
+      ),
+    );
+}
+
 function selectorContext(rule: postcss.Rule): string {
   const ancestors: string[] = [];
   for (let node: postcss.Container | postcss.Document | undefined = rule.parent; node; node = node.parent) {
@@ -192,6 +214,17 @@ function duplicateSelectorOffenders({ file, source }: RecipeSource): string[] {
     const firstLine = firstLineBySelector.get(key);
     if (firstLine === undefined) firstLineBySelector.set(key, line);
     else offenders.push(`${file}:${line} duplicates line ${firstLine}: ${selector}`);
+  });
+  return offenders;
+}
+
+function selectorBucketSplitOffenders({ file, source }: RecipeSource): string[] {
+  const root = postcss.parse(source, { from: file });
+  const offenders: string[] = [];
+  root.walkRules((rule) => {
+    for (const offender of bucketingOffenders(rule.selector)) {
+      if (offender.includes("split the subject")) offenders.push(`${file}:${rule.source?.start?.line ?? "?"} ${offender}`);
+    }
   });
   return offenders;
 }
@@ -245,6 +278,15 @@ describe("recipe hygiene", () => {
     expect(oneUsePrivateVariableOffenders(invalid)).toEqual(["invalid.css:1 --_paint"]);
   });
 
+  test("private variables reach rendered CSS or component source", () => {
+    expect(unusedPrivateVariableOffenders(recipes, sourceText)).toEqual([]);
+  });
+
+  test("rejects unused private variables", () => {
+    const invalid = postcss.parse("a { --_unused: red; }", { from: "invalid.css" });
+    expect(unusedPrivateVariableOffenders(invalid, "")).toEqual(["invalid.css:1 --_unused"]);
+  });
+
   test("selectors open once per at-rule context", () => {
     expect(recipeSources.flatMap(duplicateSelectorOffenders)).toEqual([]);
   });
@@ -252,6 +294,17 @@ describe("recipe hygiene", () => {
   test("rejects duplicate selectors in one context", () => {
     const invalid = { file: "invalid.css", source: "a { color: red; }\na { background: blue; }" };
     expect(duplicateSelectorOffenders(invalid)).toEqual(["invalid.css:2 duplicates line 1: a"]);
+  });
+
+  test("subject selectors stay bucketable", () => {
+    expect(recipeSources.flatMap(selectorBucketSplitOffenders)).toEqual([]);
+  });
+
+  test("rejects multi-argument subject where selectors", () => {
+    const invalid = { file: "invalid.css", source: ":where([data-a], [data-b]) {}" };
+    expect(selectorBucketSplitOffenders(invalid)).toEqual([
+      "invalid.css:1 :where([data-a], [data-b]) — split the subject's :where() into one selector per argument",
+    ]);
   });
 
   test("recipes key relationships on emitted anatomy, never consumer classes", () => {

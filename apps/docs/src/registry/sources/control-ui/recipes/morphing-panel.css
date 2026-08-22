@@ -65,10 +65,8 @@
     transition-timing-function: var(--ease-standard);
   }
 
-  :where(
-    [data-control-family="morphing-panel"][data-slot="content"][data-starting-style],
-    [data-control-family="morphing-panel"][data-slot="content"][data-ending-style]
-  ) {
+  :where([data-control-family="morphing-panel"][data-slot="content"][data-starting-style]),
+  :where([data-control-family="morphing-panel"][data-slot="content"][data-ending-style]) {
     opacity: 0;
     filter: blur(var(--blur-sm));
     translate: 0 calc(var(--_morphing-panel-content-hidden-translate) * -1);

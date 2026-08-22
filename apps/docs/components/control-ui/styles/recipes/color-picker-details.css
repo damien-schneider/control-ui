@@ -51,7 +51,9 @@
   }
 
   :where(
-    [data-control-family="color-picker"][data-slot="wheel"][data-dragging] [data-control-family="color-picker"][data-slot="wheel-thumb"],
+    [data-control-family="color-picker"][data-slot="wheel"][data-dragging] [data-control-family="color-picker"][data-slot="wheel-thumb"]
+  ),
+  :where(
     [data-control-family="color-picker"][data-slot="area"][data-dragging] [data-control-family="color-picker"][data-slot="area-thumb"]
   ) {
     scale: 110% 110%;

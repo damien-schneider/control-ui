@@ -496,6 +496,7 @@ const FAMILY_ROOT_MARKERS: Record<string, readonly string[]> = {
   "audio-recorder": ['[data-control-ui="audio-recorder"][data-slot="root"]'],
   avatar: ['[data-control-family="avatar"][data-slot="favicon"]', '[data-control-family="avatar"][data-slot="source-favicon"]'],
   context: ['[data-control-family="context"][data-slot="content"]'],
+  "dockable-panel": ['[data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-dockable-panel-root]'],
   "inline-citation": ['[data-control-ui="inline-citation"][data-slot="content"]'],
   button: ['[data-control-family="button"][data-slot="trigger"]', '[data-control-family="button"][data-popup-part="close"]'],
   choice: [

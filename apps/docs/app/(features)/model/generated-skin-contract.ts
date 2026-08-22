@@ -1195,7 +1195,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["default", "destructive", "outline", "secondary"],
+              values: ["default", "outline"],
             },
           ],
         },
@@ -4484,11 +4484,6 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["dockable-panel"],
           states: [],
         },
-        close: {
-          family: "button",
-          registryItems: ["dockable-panel"],
-          states: [],
-        },
         content: {
           family: "dockable-panel",
           registryItems: ["dockable-panel"],
@@ -4500,11 +4495,6 @@ export const generatedSkinContract: SkinContract = {
               values: ["default", "none"],
             },
           ],
-        },
-        dock: {
-          family: "button",
-          registryItems: ["dockable-panel"],
-          states: [],
         },
         "drag-handle": {
           family: "dockable-panel",
@@ -4536,11 +4526,6 @@ export const generatedSkinContract: SkinContract = {
         },
         title: {
           family: "dockable-panel",
-          registryItems: ["dockable-panel"],
-          states: [],
-        },
-        toggle: {
-          family: "button",
           registryItems: ["dockable-panel"],
           states: [],
         },
@@ -9641,13 +9626,13 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-size",
               source: "control-ui",
               valueKind: "enum",
-              values: ["size"],
+              values: ["default", "lg", "sm"],
             },
             {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["variant"],
+              values: ["default", "outline"],
             },
           ],
         },

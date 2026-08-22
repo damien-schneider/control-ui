@@ -369,9 +369,6 @@ export function DockablePanelToggle({ className, children, "aria-label": ariaLab
       iconOnly
       aria-label={ariaLabel ?? label}
       title={label}
-      data-control-ui="dockable-panel"
-      data-control-family="button"
-      data-slot="toggle"
       className={className}
       onClick={(event) => {
         onClick?.(event);
@@ -405,9 +402,6 @@ export function DockablePanelDock({
       aria-pressed={placement === nextPlacement}
       aria-label={ariaLabel ?? label}
       title={label}
-      data-control-ui="dockable-panel"
-      data-control-family="button"
-      data-slot="dock"
       className={className}
       onClick={(event) => {
         onClick?.(event);
@@ -436,9 +430,6 @@ export function DockablePanelClose({
       iconOnly
       aria-label={ariaLabel}
       title={ariaLabel}
-      data-control-ui="dockable-panel"
-      data-control-family="button"
-      data-slot="close"
       className={className}
       onClick={(event) => {
         onClick?.(event);

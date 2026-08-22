@@ -1,7 +1,7 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, lazy, Suspense, useContext, useEffect, useRef, useState } from "react";
@@ -16,9 +16,13 @@ import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/control-ui/ui/sheet";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
-export type SidebarMenuButtonVariant = NonNullable<VariantProps<typeof sidebarMenuButtonVariants>["variant"]>;
+export const sidebarMenuButtonVariants = ["default", "outline"] as const;
 
-export type SidebarMenuButtonSize = NonNullable<VariantProps<typeof sidebarMenuButtonVariants>["size"]>;
+export type SidebarMenuButtonVariant = (typeof sidebarMenuButtonVariants)[number];
+
+export const sidebarMenuButtonSizes = ["default", "sm", "lg"] as const;
+
+export type SidebarMenuButtonSize = (typeof sidebarMenuButtonSizes)[number];
 
 export type SidebarRailProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
 
@@ -489,19 +493,23 @@ export function SidebarMenuItem({ className, ...props }: ComponentProps<"li"> & 
   );
 }
 
-const sidebarMenuButtonVariants = cva(
+const sidebarMenuButtonVariantClasses = {
+  default: null,
+  outline: null,
+} satisfies Record<SidebarMenuButtonVariant, null>;
+
+const sidebarMenuButtonSizeClasses = {
+  default: `${controlSize({ size: "md" })} group-data-[collapsible=icon]:size-[var(--control-h-md)]!`,
+  sm: `${controlSize({ size: "sm" })} group-data-[collapsible=icon]:size-[var(--control-h-sm)]!`,
+  lg: `${controlSize({ size: "lg" })} group-data-[collapsible=icon]:size-[var(--control-h-lg)]!`,
+} satisfies Record<SidebarMenuButtonSize, string>;
+
+const sidebarMenuButtonClasses = cva(
   "peer/menu-button flex w-full items-center overflow-hidden group-data-[collapsible=icon]:px-0! disabled:pointer-events-none aria-disabled:pointer-events-none [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
   {
     variants: {
-      variant: {
-        default: null,
-        outline: null,
-      },
-      size: {
-        default: `${controlSize({ size: "md" })} group-data-[collapsible=icon]:size-[var(--control-h-md)]!`,
-        sm: `${controlSize({ size: "sm" })} group-data-[collapsible=icon]:size-[var(--control-h-sm)]!`,
-        lg: `${controlSize({ size: "lg" })} group-data-[collapsible=icon]:size-[var(--control-h-lg)]!`,
-      },
+      variant: sidebarMenuButtonVariantClasses,
+      size: sidebarMenuButtonSizeClasses,
     },
     defaultVariants: { variant: "default", size: "default" },
   },
@@ -530,7 +538,7 @@ export function SidebarMenuButton({
       "data-size": size,
       "data-variant": variant,
       "data-active": isActive || undefined,
-      className: cn(sidebarMenuButtonVariants({ variant, size }), className),
+      className: cn(sidebarMenuButtonClasses({ variant, size }), className),
       children,
     },
   });

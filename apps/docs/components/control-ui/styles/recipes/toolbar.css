@@ -39,11 +39,9 @@
     --cui-toolbar-separator-background: oklch(from var(--background) l c h / 0.2);
   }
 
-  :where(
-    [data-control-family="toolbar"][data-slot="button"],
-    [data-control-family="toolbar"][data-slot="link"],
-    [data-control-family="toolbar"][data-slot="input"]
-  ) {
+  :where([data-control-family="toolbar"][data-slot="button"]),
+  :where([data-control-family="toolbar"][data-slot="link"]),
+  :where([data-control-family="toolbar"][data-slot="input"]) {
     border-radius: var(--cui-toolbar-item-radius);
     background-color: var(--cui-toolbar-item-background);
     box-shadow: var(--cui-toolbar-item-shadow);
@@ -55,24 +53,21 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="toolbar"][data-slot="button"]:hover, [data-control-family="toolbar"][data-slot="link"]:hover) {
+    :where([data-control-family="toolbar"][data-slot="button"]:hover),
+    :where([data-control-family="toolbar"][data-slot="link"]:hover) {
       background-color: var(--cui-toolbar-item-hover-background);
       color: var(--cui-toolbar-item-hover-foreground);
     }
   }
 
-  :where(
-    [data-control-family="toolbar"][data-slot="button"]:is([data-pressed], [data-active]),
-    [data-control-family="toolbar"][data-slot="link"]:is([data-pressed], [data-active])
-  ) {
+  :where([data-control-family="toolbar"][data-slot="button"]:is([data-pressed], [data-active])),
+  :where([data-control-family="toolbar"][data-slot="link"]:is([data-pressed], [data-active])) {
     background-color: var(--cui-toolbar-item-active-background);
     color: var(--cui-toolbar-item-active-foreground);
   }
 
-  :where(
-    [data-control-family="toolbar"][data-slot="button"][data-disabled],
-    [data-control-family="toolbar"][data-slot="input"][data-disabled]
-  ) {
+  :where([data-control-family="toolbar"][data-slot="button"][data-disabled]),
+  :where([data-control-family="toolbar"][data-slot="input"][data-disabled]) {
     opacity: 0.5;
   }
 

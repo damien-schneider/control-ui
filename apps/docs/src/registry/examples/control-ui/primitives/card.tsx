@@ -10,7 +10,7 @@ export function PrimitiveCardExample() {
         <CardTitle>Pro plan</CardTitle>
         <CardDescription>Everything you need to ship agents.</CardDescription>
         <CardAction>
-          <Badge variant="secondary">Popular</Badge>
+          <Badge>Popular</Badge>
         </CardAction>
       </CardHeader>
       <CardContent>

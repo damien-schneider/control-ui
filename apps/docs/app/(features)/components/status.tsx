@@ -8,7 +8,7 @@ export function StatusBadge({ status, compact = false, className }: { status: Do
   const meta = statusMeta[status];
 
   return (
-    <Badge variant="secondary" size={compact ? "sm" : "md"} color={meta.color} title={meta.description} className={className}>
+    <Badge size={compact ? "sm" : "md"} color={meta.color} title={meta.description} className={className}>
       {compact ? meta.shortLabel : meta.label}
       <span className="sr-only">{meta.description}</span>
     </Badge>

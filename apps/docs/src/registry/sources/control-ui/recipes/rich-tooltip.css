@@ -173,11 +173,9 @@
     scale: var(--_rich-tooltip-content-scale);
   }
 
-  :where(
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"],
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"],
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]
-  ) {
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]),
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]),
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]) {
     border-radius: var(--cui-rich-tooltip-action-radius);
     background: var(--cui-rich-tooltip-action-background);
     color: var(--cui-rich-tooltip-action-foreground);
@@ -190,20 +188,16 @@
   }
 
   @media (hover: hover) {
-    :where(
-        [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:hover,
-        [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:hover,
-        [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:hover
-      ) {
+    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:hover),
+    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:hover),
+    :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:hover) {
       background: oklch(from currentColor l c h / 0.15);
     }
   }
 
-  :where(
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:disabled,
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:disabled,
-    [data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:disabled
-  ) {
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]:disabled),
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]:disabled),
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]:disabled) {
     opacity: 0.4;
   }
 }

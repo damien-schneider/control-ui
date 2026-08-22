@@ -135,9 +135,7 @@ export function DocsSidebarContent({
               <span className="block truncate font-display text-body-lg font-medium leading-none tracking-tight text-sidebar-foreground">
                 control/ui
               </span>
-              <Badge variant="secondary" size="sm">
-                alpha
-              </Badge>
+              <Badge size="sm">alpha</Badge>
             </div>
             <p className="text-balance text-caption leading-relaxed text-muted-foreground">
               An opinionated, customizable superset of shadcn/ui

@@ -218,9 +218,7 @@ function ThemePreviewPanel({
         <header className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 px-4 py-3">
           <div className="flex min-w-0 items-center gap-2">
             <span className="text-label font-semibold text-foreground">Live preview</span>
-            <Badge variant="secondary" size="sm">
-              {draftReady ? "Draft" : SKIN_META_BY_ID[activeBaseSkin].label}
-            </Badge>
+            <Badge size="sm">{draftReady ? "Draft" : SKIN_META_BY_ID[activeBaseSkin].label}</Badge>
           </div>
           <div className="flex items-center gap-1">
             <Button

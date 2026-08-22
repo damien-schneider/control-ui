@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { collectSkinContract, collectThemeContract } from "./collect";
+import { collectSkinContract, collectThemeContract, stateShapeFromType } from "./collect";
 
 function stateAt(contract: ReturnType<typeof collectSkinContract>, scope: string, part: string, attribute: string) {
   return contract.scopes[scope]?.parts[part]?.states.find((state) => state.attribute === attribute);
@@ -47,6 +47,7 @@ describe("skin contract generation", () => {
     expect(contract.semanticFamilies.popup.label).toContainEqual({ scope: "autocomplete", part: "group-label" });
     expect(contract.semanticFamilies.surfaces.modal).toContainEqual({ scope: "dialog", part: "content" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "code-diff", part: "root" });
+    expect(["toggle", "dock", "close"].filter((part) => contract.scopes["dockable-panel"].parts[part])).toEqual([]);
   });
 
   test("derives only emitted external states and preserves finite Control UI state values", () => {
@@ -129,12 +130,25 @@ describe("skin contract generation", () => {
       valueKind: "enum",
       values: ["icon", "none", "offcanvas"],
     });
+    expect(stateAt(contract, "sidebar", "menu-button", "data-size")).toEqual({
+      attribute: "data-size",
+      source: "control-ui",
+      valueKind: "enum",
+      values: ["default", "lg", "sm"],
+    });
+    expect(stateAt(contract, "sidebar", "menu-button", "data-variant")).toEqual({
+      attribute: "data-variant",
+      source: "control-ui",
+      valueKind: "enum",
+      values: ["default", "outline"],
+    });
     expect(stateAt(contract, "audio-recorder", "root", "data-disabled")).toEqual({
       attribute: "data-disabled",
       source: "control-ui",
       valueKind: "presence",
       values: [],
     });
+
     expect(stateAt(contract, "environment-variables", "root", "data-readonly")).toEqual({
       attribute: "data-readonly",
       source: "control-ui",
@@ -146,6 +160,12 @@ describe("skin contract generation", () => {
     expect(stateAt(contract, "tree", "item", "data-selected")).toEqual(presenceState("data-selected"));
     expect(stateAt(contract, "tree", "item-trigger", "data-selected")).toEqual(presenceState("data-selected"));
     expect(stateAt(contract, "sidebar", "menu-button", "data-active")).toEqual(presenceState("data-active"));
+  });
+  test("does not infer enums from quoted utility keys", () => {
+    const aliases = new Map<string, string>();
+    expect(stateShapeFromType('Pick<Foo, "variant">', aliases)).toEqual({ valueKind: "open", values: [] });
+    expect(stateShapeFromType('"solid" | "quiet"', aliases)).toEqual({ valueKind: "enum", values: ["quiet", "solid"] });
+    expect(stateShapeFromType('["default", "outline"]', aliases)).toEqual({ valueKind: "enum", values: ["default", "outline"] });
   });
 
   test("keeps guide copy synchronized with the generated contract version", () => {

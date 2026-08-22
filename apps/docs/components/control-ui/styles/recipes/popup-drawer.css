@@ -93,10 +93,8 @@
     transition-timing-function: var(--ease-emphasized);
   }
 
-  :where(
-    [data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-starting-style],
-    [data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-ending-style]
-  ) {
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-starting-style]),
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-ending-style]) {
     translate: var(--_drawer-content-closed-translate);
   }
 

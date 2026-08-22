@@ -10,4 +10,14 @@ describe("Badge", () => {
     expect(small).toContain('data-size="sm"');
     expect(defaultSize).toContain('data-size="md"');
   });
+
+  test("keeps treatment and semantic color independent", () => {
+    const red = renderToString(<Badge color="red">Denied</Badge>);
+    const outline = renderToString(<Badge variant="outline">Outline</Badge>);
+
+    expect(red).toContain('data-variant="default"');
+    expect(red).toContain('data-color="red"');
+    expect(outline).toContain('data-variant="outline"');
+    expect(outline).toContain('data-color="neutral"');
+  });
 });

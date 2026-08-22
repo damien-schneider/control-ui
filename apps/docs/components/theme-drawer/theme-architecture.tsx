@@ -118,7 +118,7 @@ function ComponentAnatomyPreview() {
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <VarTag>badge / root</VarTag>
-              <Badge variant="secondary">Active</Badge>
+              <Badge>Active</Badge>
               <Badge variant="outline">Neutral</Badge>
             </div>
           </div>
@@ -170,9 +170,7 @@ export function ThemeArchitecture({ skin }: { skin: SkinId }) {
           />
           <div className="mt-5 pl-0 sm:pl-10">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary" size="sm">
-                {meta.kind === "theme" ? "Theme pack" : "Advanced pack"}
-              </Badge>
+              <Badge size="sm">{meta.kind === "theme" ? "Theme pack" : "Advanced pack"}</Badge>
               <span className="text-[10px] text-muted-foreground">
                 {configuredCount === 0 ? "CSS and tokens only" : `${configuredCount} configured skin hooks`}
               </span>

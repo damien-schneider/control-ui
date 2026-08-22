@@ -23,7 +23,8 @@
     --_badge-hover-background: var(--_badge-color-background);
   }
 
-  :where(a[data-control-family="badge"][data-slot="root"]:hover, button[data-control-family="badge"][data-slot="root"]:hover) {
+  :where(a[data-control-family="badge"][data-slot="root"]:hover),
+  :where(button[data-control-family="badge"][data-slot="root"]:hover) {
     background: var(--_badge-hover-background);
   }
 

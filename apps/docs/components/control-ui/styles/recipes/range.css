@@ -11,11 +11,9 @@
     --_range-thumb-border-width: 1px;
   }
 
-  :where(
-    [data-control-family="range"][data-range-kind="slider"][data-slot="track"],
-    [data-control-family="range"][data-range-kind="progress"][data-slot="track"],
-    [data-control-family="range"][data-range-kind="meter"][data-slot="track"]
-  ) {
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]),
+  :where([data-control-family="range"][data-range-kind="progress"][data-slot="track"]),
+  :where([data-control-family="range"][data-range-kind="meter"][data-slot="track"]) {
     border-radius: var(--cui-range-track-radius);
     background: var(--cui-range-track-background);
   }
@@ -39,11 +37,9 @@
     background: oklch(from var(--foreground) l c h / 0.1);
   }
 
-  :where(
-    [data-control-family="range"][data-range-kind="slider"][data-slot="indicator"],
-    [data-control-family="range"][data-range-kind="progress"][data-slot="indicator"],
-    [data-control-family="range"][data-range-kind="meter"][data-slot="indicator"]
-  ) {
+  :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"]),
+  :where([data-control-family="range"][data-range-kind="progress"][data-slot="indicator"]),
+  :where([data-control-family="range"][data-range-kind="meter"][data-slot="indicator"]) {
     height: 100%;
     border-radius: var(--cui-range-indicator-radius);
     background: var(--cui-range-indicator-background);

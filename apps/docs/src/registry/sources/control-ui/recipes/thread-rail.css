@@ -36,12 +36,18 @@
 
   :where(
     [data-control-family="thread-rail"][data-slot="item"]:has(+ [data-control-family="thread-rail"][data-slot="item"]:hover)
-      [data-control-family="thread-rail"][data-slot="line"],
+      [data-control-family="thread-rail"][data-slot="line"]
+  ),
+  :where(
     [data-control-family="thread-rail"][data-slot="item"]:hover
       + [data-control-family="thread-rail"][data-slot="item"]
-      [data-control-family="thread-rail"][data-slot="line"],
+      [data-control-family="thread-rail"][data-slot="line"]
+  ),
+  :where(
     [data-control-family="thread-rail"][data-slot="item"]:has(+ [data-control-family="thread-rail"][data-slot="item"]:focus-within)
-      [data-control-family="thread-rail"][data-slot="line"],
+      [data-control-family="thread-rail"][data-slot="line"]
+  ),
+  :where(
     [data-control-family="thread-rail"][data-slot="item"]:focus-within
       + [data-control-family="thread-rail"][data-slot="item"]
       [data-control-family="thread-rail"][data-slot="line"]
@@ -89,9 +95,9 @@
 
   :where(
     [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
-      [data-control-family="thread-rail"][data-slot="popover"],
-    [data-control-family="thread-rail"][data-slot="root"]:focus-within [data-control-family="thread-rail"][data-slot="popover"]
-  ) {
+      [data-control-family="thread-rail"][data-slot="popover"]
+  ),
+  :where([data-control-family="thread-rail"][data-slot="root"]:focus-within [data-control-family="thread-rail"][data-slot="popover"]) {
     scale: 1;
     opacity: 1;
   }
@@ -99,9 +105,9 @@
   @starting-style {
     :where(
         [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
-          [data-control-family="thread-rail"][data-slot="popover"],
-        [data-control-family="thread-rail"][data-slot="root"]:focus-within [data-control-family="thread-rail"][data-slot="popover"]
-      ) {
+          [data-control-family="thread-rail"][data-slot="popover"]
+      ),
+    :where([data-control-family="thread-rail"][data-slot="root"]:focus-within [data-control-family="thread-rail"][data-slot="popover"]) {
       scale: 0.98;
       opacity: 0;
     }
@@ -146,12 +152,10 @@
     font-weight: 500;
   }
 
-  :where(
-    [data-control-family="thread-rail"][data-slot="summary"],
-    [data-control-family="thread-rail"][data-slot="file"],
-    [data-control-family="thread-rail"][data-slot="file-icon"],
-    [data-control-family="thread-rail"][data-slot="more"]
-  ) {
+  :where([data-control-family="thread-rail"][data-slot="summary"]),
+  :where([data-control-family="thread-rail"][data-slot="file"]),
+  :where([data-control-family="thread-rail"][data-slot="file-icon"]),
+  :where([data-control-family="thread-rail"][data-slot="more"]) {
     color: var(--muted-foreground);
     font-size: var(--text-label);
   }

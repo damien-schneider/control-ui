@@ -1,9 +1,7 @@
 @layer components {
-  :where(
-    [data-control-family="avatar"][data-slot="root"],
-    [data-control-family="avatar"][data-slot="favicon"],
-    [data-control-family="avatar"][data-slot="source-favicon"]
-  ) {
+  :where([data-control-family="avatar"][data-slot="root"]),
+  :where([data-control-family="avatar"][data-slot="favicon"]),
+  :where([data-control-family="avatar"][data-slot="source-favicon"]) {
     --cui-avatar-radius: 9999px;
     --cui-avatar-group-ring-color: var(--background);
     --cui-avatar-fallback-background: var(--muted);

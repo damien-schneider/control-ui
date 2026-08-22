@@ -19,8 +19,8 @@
     transform: translateX(var(--_toast-swipe-x)) translateY(var(--offset-y));
   }
 
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-starting-style]),
   :where(
-    [data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-starting-style],
     [data-control-family="popup"][data-popup-kind="toast"][data-slot="root"][data-ending-style]:not([data-limited]):not(
       [data-swipe-direction]
     )

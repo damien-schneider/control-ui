@@ -1,5 +1,6 @@
 @layer components {
-  :where([data-control-family="dockable-panel"][data-slot="root"]) {
+  :where([data-control-family="dockable-panel"][data-slot="root"]),
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-dockable-panel-root]) {
     --cui-dockable-panel-radius: var(--radius-panel);
     --cui-dockable-panel-background: var(--card);
     --cui-dockable-panel-foreground: var(--card-foreground);
@@ -7,8 +8,6 @@
     --cui-dockable-panel-shadow: var(--shadow-pop);
     --cui-dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
     --cui-dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
-  }
-  :where([data-control-family="dockable-panel"][data-slot="root"], [data-dockable-panel-root]) {
     border: 1px solid var(--cui-dockable-panel-border-color);
     border-radius: var(--cui-dockable-panel-radius);
     outline: none;

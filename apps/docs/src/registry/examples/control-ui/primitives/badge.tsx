@@ -13,7 +13,7 @@ export function PrimitiveBadgeExample() {
       <Badge size="sm">Small</Badge>
       <Badge color="blue">Beta</Badge>
       <Badge color="yellow">15</Badge>
-      <Badge variant="destructive">Denied</Badge>
+      <Badge color="red">Denied</Badge>
       <Badge variant="outline">Outline</Badge>
       <Badge color="green">
         <Check />

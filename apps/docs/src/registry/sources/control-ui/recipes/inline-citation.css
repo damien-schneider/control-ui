@@ -1,5 +1,6 @@
 @layer components {
-  :where([data-control-family="inline-citation"][data-slot="root"], [data-control-ui="inline-citation"][data-slot="content"]) {
+  :where([data-control-family="inline-citation"][data-slot="root"]),
+  :where([data-control-ui="inline-citation"][data-slot="content"]) {
     --cui-inline-citation-navigation-background: oklch(from var(--muted) l c h / 0.45);
     --cui-inline-citation-quote-background: oklch(from var(--muted) l c h / 0.55);
     --cui-inline-citation-quote-radius: var(--radius-control);
@@ -39,11 +40,6 @@
   :where([data-control-family="inline-citation"][data-slot="navigation"]) {
     border-bottom: 1px solid var(--border);
     background: var(--cui-inline-citation-navigation-background);
-  }
-
-  :where([data-control-family="inline-citation"][data-slot="source"]) {
-    --_inline-citation-meta-font-size: var(--text-caption);
-    --_inline-citation-meta-foreground: var(--muted-foreground);
   }
 
   :where(

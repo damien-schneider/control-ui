@@ -36,10 +36,8 @@
     background-color: var(--border);
   }
 
-  :where(
-    [data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="hover"],
-    [data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="focus"]
-  ) {
+  :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="hover"]),
+  :where([data-control-family="resizable"][data-slot="handle"][data-variant="solid"][data-separator="focus"]) {
     background-color: var(--cui-resizable-handle-hover-background);
   }
 

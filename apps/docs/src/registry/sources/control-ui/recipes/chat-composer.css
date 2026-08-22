@@ -49,18 +49,14 @@
     background-image: linear-gradient(to right, transparent, oklch(from var(--foreground) l c h / 0.2), transparent);
   }
 
-  :where(
-    [data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"], [data-slot="placeholder"]),
-    [data-control-family="chat-composer"][data-slot="editor"] .ProseMirror
-  ) {
+  :where([data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"], [data-slot="placeholder"])),
+  :where([data-control-family="chat-composer"][data-slot="editor"] .ProseMirror) {
     font-size: var(--text-sm);
     line-height: calc(var(--spacing) * 6);
   }
 
-  :where(
-    [data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"]),
-    [data-control-family="chat-composer"][data-slot="editor"] .ProseMirror
-  ) {
+  :where([data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"])),
+  :where([data-control-family="chat-composer"][data-slot="editor"] .ProseMirror) {
     border: 0;
     background: transparent;
     color: var(--cui-chat-composer-input-foreground);

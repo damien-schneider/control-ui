@@ -1688,9 +1688,7 @@
               "valueKind": "enum",
               "values": [
                 "default",
-                "destructive",
-                "outline",
-                "secondary"
+                "outline"
               ]
             }
           ]
@@ -5921,13 +5919,6 @@
           ],
           "states": []
         },
-        "close": {
-          "family": "button",
-          "registryItems": [
-            "dockable-panel"
-          ],
-          "states": []
-        },
         "content": {
           "family": "dockable-panel",
           "registryItems": [
@@ -5944,13 +5935,6 @@
               ]
             }
           ]
-        },
-        "dock": {
-          "family": "button",
-          "registryItems": [
-            "dockable-panel"
-          ],
-          "states": []
         },
         "drag-handle": {
           "family": "dockable-panel",
@@ -5991,13 +5975,6 @@
         },
         "title": {
           "family": "dockable-panel",
-          "registryItems": [
-            "dockable-panel"
-          ],
-          "states": []
-        },
-        "toggle": {
-          "family": "button",
           "registryItems": [
             "dockable-panel"
           ],
@@ -12385,7 +12362,9 @@
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
-                "size"
+                "default",
+                "lg",
+                "sm"
               ]
             },
             {
@@ -12393,7 +12372,8 @@
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
-                "variant"
+                "default",
+                "outline"
               ]
             }
           ]

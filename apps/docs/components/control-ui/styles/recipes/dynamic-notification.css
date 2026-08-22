@@ -107,25 +107,19 @@
     text-shadow: 0 1px 2px oklch(0 0 0 / 0.25);
   }
 
-  :where(
-    [data-control-family="dynamic-notification"][data-slot="island"][data-variant="glass"]:has([data-glass-ready="true"]),
-    [data-control-family="dynamic-notification"][data-slot="island"][data-variant="liquid"]:has([data-glass-ready="true"])
-  ) {
+  :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="glass"]:has([data-glass-ready="true"])),
+  :where([data-control-family="dynamic-notification"][data-slot="island"][data-variant="liquid"]:has([data-glass-ready="true"])) {
     background: transparent;
   }
 
-  :where(
-    [data-control-family="dynamic-notification"][data-slot="glass"],
-    [data-control-family="dynamic-notification"][data-slot="liquid"]
-  ) {
+  :where([data-control-family="dynamic-notification"][data-slot="glass"]),
+  :where([data-control-family="dynamic-notification"][data-slot="liquid"]) {
     opacity: 0;
     transition: opacity var(--duration-base) var(--ease-standard);
   }
 
-  :where(
-    [data-control-family="dynamic-notification"][data-slot="glass"][data-glass-ready="true"],
-    [data-control-family="dynamic-notification"][data-slot="liquid"][data-glass-ready="true"]
-  ) {
+  :where([data-control-family="dynamic-notification"][data-slot="glass"][data-glass-ready="true"]),
+  :where([data-control-family="dynamic-notification"][data-slot="liquid"][data-glass-ready="true"]) {
     opacity: 1;
   }
 

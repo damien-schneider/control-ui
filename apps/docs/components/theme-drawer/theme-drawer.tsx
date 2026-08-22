@@ -247,11 +247,7 @@ function CategorySection({
             {category.title}
           </h4>
           <span className="text-[9px] tabular-nums text-muted-foreground">{allNames.length} tokens</span>
-          {touched > 0 ? (
-            <Badge variant="secondary" size="sm">
-              {touched} edited
-            </Badge>
-          ) : null}
+          {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}
         </div>
         <p className="mt-1.5 text-[10px] leading-4 text-muted-foreground">{category.description}</p>
         {preview ? <div className="mt-4">{preview}</div> : null}

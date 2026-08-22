@@ -1,5 +1,6 @@
 @layer components {
-  :where([data-control-family="context"][data-slot="root"], [data-control-family="context"][data-slot="content"]) {
+  :where([data-control-family="context"][data-slot="root"]),
+  :where([data-control-family="context"][data-slot="content"]) {
     --cui-context-graph-radius: 9999px;
     --cui-context-limit-marker-color: var(--destructive-text);
     --cui-context-overage-fill: oklch(from var(--destructive-text) l c h / 0.22);
