@@ -95,13 +95,14 @@ export function ResponsiveDialogClose({
   variant = "surface",
   size = "sm",
   tone = "neutral",
+  iconOnly,
   ...props
 }: DialogCloseProps) {
   const isMobile = useResponsiveDialogContext();
 
   if (!isMobile) {
     return (
-      <DialogClose className={className} variant={variant} size={size} tone={tone} {...props}>
+      <DialogClose className={className} variant={variant} size={size} tone={tone} iconOnly={iconOnly} {...props}>
         {children}
       </DialogClose>
     );
@@ -117,6 +118,7 @@ export function ResponsiveDialogClose({
           variant={variant}
           size={size}
           tone={tone}
+          iconOnly={iconOnly}
           className={cn(renderProps.className, className)}
         >
           {children}

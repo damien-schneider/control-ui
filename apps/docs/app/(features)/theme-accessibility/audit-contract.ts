@@ -5,7 +5,7 @@ export type ThemeAuditCategory = "Text surfaces" | "Controls" | "Component state
 
 export type ThemeAuditNode = {
   attributes: Readonly<Record<string, string>>;
-  /** Geometry a recipe needs to render the part — an indicator has no intrinsic size. */
+  /** Inline style the probe needs: geometry for a sizeless part, or the paint a consumer utility applies. */
   style?: string;
 };
 
@@ -119,7 +119,9 @@ const badgeOutlinePairs = BADGE_COLORS.flatMap((color) =>
 
 const popoverPaint = "oklch(from var(--popover) l c h / var(--popover-opacity))";
 
-const popupSurface: ThemeAuditAnatomy = [{ attributes: { "data-control-family": "popup", "data-popup-part": "surface" } }];
+const popupSurface: ThemeAuditAnatomy = [
+  { attributes: { "data-control-family": "popup", "data-popup-part": "surface", "data-slot": "content", "data-surface": "floating" } },
+];
 const popupItem: ThemeAuditAnatomy = [{ attributes: { "data-control-family": "popup", "data-popup-part": "item" } }];
 const highlightedPopupItem: ThemeAuditAnatomy = [
   { attributes: { "data-control-family": "popup", "data-popup-part": "item", "data-highlighted": "" } },
@@ -144,6 +146,21 @@ const popupPairs = ["background", "card"].flatMap((surface): ThemeAuditPair[] =>
     category: "Component states",
     label: `Highlighted popup item on ${surface}`,
     foreground: "--cui-popup-item-foreground",
+    background: "--cui-popup-item-highlight-background",
+    backgroundAnatomy: highlightedPopupItem,
+    surface: "--popover",
+    surfaceAnatomy: popupSurface,
+    underlays: [`--${surface}`],
+    dependencies: ["--popover-opacity"],
+    threshold: 4.5,
+    severity: "error",
+  },
+  {
+    id: `popup-item-highlighted-secondary-on-${surface}`,
+    category: "Component states",
+    label: `Highlighted popup item secondary text on ${surface}`,
+    foreground: "--muted-foreground",
+    foregroundAnatomy: [{ attributes: {}, style: "color: var(--muted-foreground)" }],
     background: "--cui-popup-item-highlight-background",
     backgroundAnatomy: highlightedPopupItem,
     surface: "--popover",
@@ -243,6 +260,18 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   },
   textPair("muted-on-background", "Muted text on background", "--muted-foreground", "--background"),
   textPair("muted-on-card", "Muted text on card", "--muted-foreground", "--card"),
+  ...["background", "card", "canvas"].map((surface) => ({
+    ...textPair(
+      `muted-on-popover-over-${surface}`,
+      `Muted text on popover over ${surface}`,
+      "--muted-foreground",
+      "--cui-popup-background",
+      `--${surface}`,
+    ),
+    foregroundAnatomy: [{ attributes: {}, style: "color: var(--muted-foreground)" }],
+    backgroundAnatomy: popupSurface,
+    dependencies: ["--popover-opacity"],
+  })),
   {
     ...textPair("muted-on-muted-over-background", "Muted text on muted fill over background", "--muted-foreground", "--muted"),
     surface: "--background",

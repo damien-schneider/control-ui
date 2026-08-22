@@ -32,9 +32,17 @@ export function DialogTrigger({
 }
 
 export type DialogCloseProps = Omit<ComponentProps<typeof DialogPrimitive.Close>, "render"> &
-  Pick<ButtonProps, "variant" | "size" | "tone">;
+  Pick<ButtonProps, "variant" | "size" | "tone" | "iconOnly">;
 
-export function DialogClose({ className, children, variant = "surface", size = "sm", tone = "neutral", ...props }: DialogCloseProps) {
+export function DialogClose({
+  className,
+  children,
+  variant = "surface",
+  size = "sm",
+  tone = "neutral",
+  iconOnly,
+  ...props
+}: DialogCloseProps) {
   return (
     <DialogPrimitive.Close
       {...props}
@@ -45,6 +53,7 @@ export function DialogClose({ className, children, variant = "surface", size = "
           variant={variant}
           size={size}
           tone={tone}
+          iconOnly={iconOnly}
           className={cn(renderProps.className, className)}
         >
           {children}
@@ -83,7 +92,7 @@ export function DialogContent({ className, children, showCloseButton = true, ...
         {skinAdornment("dialog", "titlebar", {})}
         {children}
         {showCloseButton ? (
-          <DialogClose variant="ghost" size="xs" className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0">
+          <DialogClose variant="ghost" size="xs" iconOnly className="absolute right-3 top-3">
             <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
               <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
             </svg>

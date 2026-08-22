@@ -8,7 +8,6 @@
     "cmdk@^1.1.1"
   ],
   "registryDependencies": [
-    "button",
     "core",
     "dialog",
     "scroll-area",

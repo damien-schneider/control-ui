@@ -1331,13 +1331,13 @@
           ]
         },
         "empty": {
-          "family": "field",
+          "family": "popup",
           "registryItems": [
             "autocomplete"
           ],
           "states": [
             {
-              "attribute": "data-field-kind",
+              "attribute": "data-popup-kind",
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
@@ -4324,13 +4324,13 @@
           ]
         },
         "empty": {
-          "family": "field",
+          "family": "popup",
           "registryItems": [
             "combobox"
           ],
           "states": [
             {
-              "attribute": "data-field-kind",
+              "attribute": "data-popup-kind",
               "source": "control-ui",
               "valueKind": "enum",
               "values": [
@@ -17170,6 +17170,12 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--cui-popup-item-foreground)"
+      },
+      {
+        "name": "--cui-popup-item-highlight-muted-foreground",
+        "syntax": "<color>",
+        "initialValue": "transparent",
+        "defaultValue": "var(--muted-foreground)"
       },
       {
         "name": "--cui-popup-item-disabled-opacity",

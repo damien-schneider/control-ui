@@ -311,6 +311,7 @@
     --cui-popup-item-radius: var(--radius-popup-item);
     --cui-popup-item-highlight-background: var(--menu-selection);
     --cui-popup-item-highlight-foreground: var(--primary-foreground);
+    --cui-popup-item-highlight-muted-foreground: var(--primary-foreground);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-separator-color: var(--hairline);
   }

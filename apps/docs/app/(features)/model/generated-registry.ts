@@ -1549,7 +1549,7 @@ export const registryMetadata = {
   },
   "code-diff": {
     dependencies: ["@tanstack/react-virtual@^3.14.9", "diff@^9.0.0"],
-    registryDependencies: ["button", "code", "core", "scroll-area", "tooltip"],
+    registryDependencies: ["code", "core", "scroll-area"],
     sourceManifestPath: "registry/control-ui/code-diff.json",
     files: [
       {
@@ -1744,7 +1744,7 @@ export const registryMetadata = {
   },
   command: {
     dependencies: ["cmdk@^1.1.1"],
-    registryDependencies: ["button", "core", "dialog", "scroll-area", "surface-variants"],
+    registryDependencies: ["core", "dialog", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/command.json",
     files: [
       {

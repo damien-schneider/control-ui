@@ -13,6 +13,7 @@
     --cui-popup-item-foreground: var(--foreground);
     --cui-popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
     --cui-popup-item-highlight-foreground: var(--cui-popup-item-foreground);
+    --cui-popup-item-highlight-muted-foreground: var(--muted-foreground);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-separator-color: var(--border);
     --cui-popup-shortcut-foreground: var(--muted-foreground);
@@ -144,16 +145,20 @@
   }
 
   :where([data-control-family="popup"][data-popup-part="navigation-link"]:where(:hover, :focus-visible, [data-active])) {
+    background-color: var(--cui-popup-item-highlight-background);
     color: var(--foreground);
   }
 
-  :where([data-control-family="popup"][data-popup-part="item"]:where([data-highlighted], [data-selected], [data-popup-open])),
-  :where([data-control-family="popup"][data-popup-part="navigation-link"]:where(:hover, :focus-visible, [data-active])) {
-    background-color: var(--cui-popup-item-highlight-background);
-  }
-
-  :where([data-control-family="popup"][data-popup-part="item"]:where([data-highlighted], [data-selected], [data-popup-open])) {
+  :where(
+    [data-control-family="popup"][data-popup-part="item"]:where(
+      [data-highlighted],
+      [data-selected]:not([data-selected="false"]),
+      [data-popup-open]
+    )
+  ) {
     --cui-popup-shortcut-foreground: var(--cui-popup-item-highlight-foreground);
+    --muted-foreground: var(--cui-popup-item-highlight-muted-foreground);
+    background-color: var(--cui-popup-item-highlight-background);
     color: var(--cui-popup-item-highlight-foreground);
   }
 
@@ -179,29 +184,6 @@
     color: var(--cui-popup-shortcut-foreground);
     font-size: var(--_popup-shortcut-font-size);
     letter-spacing: 0.02em;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input-wrapper"]) {
-    border-block-end: 1px solid var(--cui-popup-separator-color);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"]) {
-    background: transparent;
-    color: var(--foreground);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"])::placeholder,
-  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="empty"]),
-  :where([data-control-family="popup"][data-popup-kind="command"] [cmdk-group-heading]) {
-    color: var(--muted-foreground);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"]:disabled) {
-    opacity: 0.5;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="group"]) {
-    color: var(--foreground);
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="shortcut"]) {
@@ -365,6 +347,12 @@
 }
 
 @property --cui-popup-item-highlight-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-popup-item-highlight-muted-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -917,11 +917,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         empty: {
-          family: "field",
+          family: "popup",
           registryItems: ["autocomplete"],
           states: [
             {
-              attribute: "data-field-kind",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["autocomplete"],
@@ -3245,11 +3245,11 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         empty: {
-          family: "field",
+          family: "popup",
           registryItems: ["combobox"],
           states: [
             {
-              attribute: "data-field-kind",
+              attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
               values: ["combobox"],
@@ -13755,6 +13755,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--cui-popup-item-foreground)",
+      },
+      {
+        name: "--cui-popup-item-highlight-muted-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
       },
       {
         name: "--cui-popup-item-disabled-opacity",

@@ -9,11 +9,9 @@
     "diff@^9.0.0"
   ],
   "registryDependencies": [
-    "button",
     "code",
     "core",
-    "scroll-area",
-    "tooltip"
+    "scroll-area"
   ],
   "files": [
     {

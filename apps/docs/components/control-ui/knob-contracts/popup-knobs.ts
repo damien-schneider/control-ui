@@ -12,6 +12,7 @@ export const popupKnobs = [
   "--cui-popup-item-foreground",
   "--cui-popup-item-highlight-background",
   "--cui-popup-item-highlight-foreground",
+  "--cui-popup-item-highlight-muted-foreground",
   "--cui-popup-item-disabled-opacity",
   "--cui-popup-separator-color",
   "--cui-popup-shortcut-foreground",

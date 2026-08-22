@@ -53,10 +53,30 @@
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="empty"]) {
     text-align: center;
     font-size: var(--text-body);
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input-wrapper"]) {
+    border-block-end: 1px solid var(--cui-popup-separator-color);
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"]) {
+    background: transparent;
+    color: var(--foreground);
     outline-style: none;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"])::placeholder,
+  :where([data-control-family="popup"][data-popup-kind="command"] [cmdk-group-heading]) {
+    color: var(--muted-foreground);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"]:disabled) {
+    opacity: 0.5;
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="group"]) {
+    color: var(--foreground);
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input-icon"]) {

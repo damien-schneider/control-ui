@@ -1950,11 +1950,9 @@
         "diff@^9.0.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/code.json",
         "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/scroll-area.json",
-        "http://127.0.0.1:3000/r/tooltip.json"
+        "http://127.0.0.1:3000/r/scroll-area.json"
       ],
       "files": [
         {
@@ -2227,7 +2225,6 @@
         "cmdk@^1.1.1"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/button.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/dialog.json",
         "http://127.0.0.1:3000/r/scroll-area.json",

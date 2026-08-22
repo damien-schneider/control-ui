@@ -39,7 +39,7 @@ export function AlertDialogTrigger({
 }
 
 type AlertDialogCloseProps = Omit<ComponentProps<typeof AlertDialogPrimitive.Close>, "render"> &
-  Pick<ButtonProps, "variant" | "size" | "tone">;
+  Pick<ButtonProps, "variant" | "size" | "tone" | "iconOnly">;
 
 export function AlertDialogClose({
   className,
@@ -47,6 +47,7 @@ export function AlertDialogClose({
   variant = "surface",
   size = "sm",
   tone = "neutral",
+  iconOnly,
   ...props
 }: AlertDialogCloseProps) {
   return (
@@ -59,6 +60,7 @@ export function AlertDialogClose({
           variant={variant}
           size={size}
           tone={tone}
+          iconOnly={iconOnly}
           className={cn(renderProps.className, className)}
         >
           {children}
