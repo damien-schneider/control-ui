@@ -3,6 +3,7 @@ type GuideSectionCatalogEntry = {
   title: string;
   code?:
     | "skin-install"
+    | "skin-scaffold-install"
     | "component-install"
     | "block-install"
     | "component-usage"
@@ -17,7 +18,7 @@ export const guideEntries = [
     id: "create",
     kind: "Guide",
     name: "Create app",
-    summary: "Scaffold a Next.js app with every Control UI component installed as editable source on the Refined skin.",
+    summary: "Scaffold a Next.js app with every Control UI component installed as source you own on the Refined skin.",
     cta: true,
     sections: [
       { id: "command", title: "Create your app" },
@@ -51,6 +52,19 @@ export const guideEntries = [
     ],
   },
   {
+    id: "create-a-skin",
+    kind: "Guide",
+    name: "Create a skin",
+    summary:
+      "Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.",
+    sections: [
+      { id: "lanes", title: "Two lanes" },
+      { id: "override", title: "Re-value tokens over a pack" },
+      { id: "pack", title: "Own a full pack", code: "skin-scaffold-install" },
+      { id: "knobs", title: "Go deeper with component knobs" },
+    ],
+  },
+  {
     id: "shadcn-compatibility",
     kind: "Guide",
     name: "shadcn compatibility",
@@ -68,6 +82,7 @@ export const guideEntries = [
     sections: [
       { id: "layers", title: "Runtime and source ownership", code: "runtime-agnostic-message" },
       { id: "skins", title: "Skins over one component tree" },
+      { id: "cascade", title: "The knob cascade" },
       { id: "anatomy", title: "Stable anatomy without runtime metadata" },
       { id: "skin-cost", title: "Keep the active skin sparse" },
       { id: "customization-ladder", title: "Choose the smallest customization surface" },
@@ -83,6 +98,17 @@ export const guideEntries = [
       { id: "envelope", title: "One registry, multiple interfaces" },
       { id: "endpoints", title: "HTTP API", code: "agent-endpoints" },
       { id: "agent-docs", title: "Machine-readable docs", code: "agent-llms" },
+    ],
+  },
+  {
+    id: "lock-in",
+    kind: "Guide",
+    name: "Lock-in",
+    summary: "What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.",
+    sections: [
+      { id: "layers", title: "Five layers, measured" },
+      { id: "exit", title: "What leaving costs" },
+      { id: "continuity", title: "Continuity" },
     ],
   },
   {

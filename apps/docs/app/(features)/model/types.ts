@@ -154,6 +154,7 @@ export type GuideSection = {
   points?: string[];
   code?:
     | "skin-install"
+    | "skin-scaffold-install"
     | "component-install"
     | "block-install"
     | "component-usage"

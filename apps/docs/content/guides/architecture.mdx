@@ -24,6 +24,29 @@
   <SkinResolutionMap />
 </GuideSection>
 
+<GuideSection id="cascade" title="The knob cascade">
+  The whole styling system rests on four CSS rules, each verifiable in the shipped files.
+
+  <GuidePoints>
+    <GuidePoint>Recipes paint at zero specificity: every rule lives in `@layer components` behind `:where()`, so any
+    selector you write anywhere outranks the library's paint.</GuidePoint>
+    <GuidePoint>Every knob is registered with `@property { inherits: true }`, and each family declares its defaults only
+    at its root parts. Re-value a knob on any ancestor — the skin root, a `data-skin` boundary, a free `data-*`
+    attribute, an inline style — and every part beneath inherits it.</GuidePoint>
+    <GuidePoint>The trade: a knob declared directly on a part beats every inherited re-value, whatever its specificity.
+    Shipped skins therefore re-value at family roots; the moment a rule targets an inner part, callers can no longer
+    override that knob from above.</GuidePoint>
+    <GuidePoint>The trap: because recipes sit in `@layer components`, any unlayered stylesheet wins against them even at
+    zero specificity. That is the deliberate exit for overrides — and it means a broad unlayered reset in your app
+    silently repaints Control UI parts too. Keep global resets in a layer.</GuidePoint>
+  </GuidePoints>
+
+  The compiled styles set the browser floor: registered custom properties and relative color syntax — 274
+  `oklch(from …)` declarations across the recipes — require Safari 16.4, Chrome 119, and Firefox 128. One rich-tooltip
+  highlight uses `currentColor` inside relative color, which resolves only from Chrome 131, Safari 18, and Firefox 133;
+  below that the highlight declaration drops and the tooltip renders without it.
+</GuideSection>
+
 <GuideSection id="anatomy" title="Stable anatomy without runtime metadata">
   Every public part emits three attributes, and only one of them is the selector key. `data-control-family` names the
   family whose knobs paint the part — key on it. `data-slot` names the part inside its component. `data-control-ui`
@@ -93,7 +116,8 @@
 
   <RegistryPipeline />
 
-  The current anatomy contract is version 6. It removes runtime class and paint maps: component visuals now flow through
-  registered CSS knob contracts, while skin config retains only behavior and adornments. This pre-release registry uses a
+  The current anatomy contract is version 7. Version 6 removed runtime class and paint maps: component visuals now flow through
+  registered CSS knob contracts, while skin config retains only behavior and adornments. Version 7 publishes every registered
+  `--cui-*` knob (syntax and recipe default included) in the generated contract. This pre-release registry uses a
   clean contract cutover: reinstall core, affected components or blocks, and the selected skin together.
 </GuideSection>

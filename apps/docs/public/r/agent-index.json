@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 162,
+    "count": 164,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -101,7 +101,7 @@
         "id": "create",
         "name": "Create app",
         "kind": "Guide",
-        "summary": "Scaffold a Next.js app with every Control UI component installed as editable source on the Refined skin.",
+        "summary": "Scaffold a Next.js app with every Control UI component installed as source you own on the Refined skin.",
         "href": "/create"
       },
       {
@@ -117,6 +117,13 @@
         "kind": "Guide",
         "summary": "Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.",
         "href": "/get-started"
+      },
+      {
+        "id": "create-a-skin",
+        "name": "Create a skin",
+        "kind": "Guide",
+        "summary": "Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.",
+        "href": "/create-a-skin"
       },
       {
         "id": "shadcn-compatibility",
@@ -138,6 +145,13 @@
         "kind": "Guide",
         "summary": "Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.",
         "href": "/agent-surface"
+      },
+      {
+        "id": "lock-in",
+        "name": "Lock-in",
+        "kind": "Guide",
+        "summary": "What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.",
+        "href": "/lock-in"
       },
       {
         "id": "theme-accessibility",

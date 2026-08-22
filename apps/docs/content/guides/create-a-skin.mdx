@@ -1,0 +1,78 @@
+<GuideSection id="lanes" title="Two lanes">
+  A skin is the token contract resolved twice — light and dark — plus optional component-level CSS. There are exactly two
+  ways to make one yours, and the first is usually enough. Re-value tokens over an installed pack when you want your
+  colors, type, radius, and motion on top of a maintained look. Own a full pack when the design system is yours end to
+  end and no stock pack should survive underneath.
+
+  The theme editor in these docs drives the first lane visually: edit any token live, audit contrast, then copy the
+  generated override. The AI builder produces the same shape from a prompt.
+</GuideSection>
+
+<GuideSection id="override" title="Re-value tokens over a pack">
+  Keep the installed pack and re-value tokens in your own CSS, after the skin imports. Scope the override to the pack's
+  `data-skin` root — portalled surfaces re-assert `data-skin` on their positioner and receive the pack's values directly,
+  so a `:root` override never reaches them. An equally scoped rule that comes later in the source wins.
+
+```css
+/* app/globals.css, after the skin imports */
+[data-skin="refined"] {
+  --primary: oklch(0.55 0.2 260);
+  --radius: 10px;
+}
+
+:where(.dark) [data-skin="refined"],
+.dark[data-skin="refined"] {
+  --primary: oklch(0.72 0.17 260);
+}
+```
+
+  This lane survives every update: the `update` manifest never touches your CSS entry, and reinstalling the pack
+  refreshes the pack's files without reclaiming your overrides. It is also the whole mechanism behind the docs theme
+  editor's copy button, which emits exactly this `[data-skin]`-scoped block.
+</GuideSection>
+
+<GuideSection id="pack" title="Own a full pack">
+  A pack is three files, already in your project: `skin-theme.css`, `skin.css`, and `skin.config.tsx`. Start from Flat —
+  the smallest complete pack, 83 lines of tokens over an intentionally empty `skin.css` — then make it yours.
+
+  <GuideCode kind="skin-scaffold-install" />
+
+  Give the pack its own id. The id appears in three places and all three must agree: the `[data-skin="…"]` selectors in
+  `skin-theme.css` (light and dark blocks), the `id` field in `skin.config.tsx`, and the `data-skin` attribute on your
+  root element. Components stamp the config `id` on every portal positioner, so a mismatch does not fail loudly — the
+  page keeps its tokens while every popover, dialog, and menu renders with no tokens at all.
+
+  Then resolve the contract. 46 tokens are required, in both modes: the 26 core roles plus the 20 the theme editor
+  groups under advanced — shadows, motion durations, overlay opacity, control geometry. Advanced placement in the editor
+  means edited less often, not optional; a pack that skips one ships components with no value for it. The remaining 80
+  contract tokens are derived: core ships their defaults and a pack re-values them only when the look calls for it.
+  These boundaries are test-enforced on every shipped pack: `skin-theme.css` declares only contract tokens, scoped to
+  its exact skin root, covering every required token in light and dark.
+
+  <GuidePoints>
+    <GuidePoint>`skin-theme.css` — the full token contract, both modes, nothing else.</GuidePoint>
+    <GuidePoint>`skin.css` — component-level CSS under your `data-skin` root; it never redeclares a contract token.</GuidePoint>
+    <GuidePoint>`skin.config.tsx` — the id plus typed behavior choices and optional adornments; Flat needs only the id.</GuidePoint>
+  </GuidePoints>
+</GuideSection>
+
+<GuideSection id="knobs" title="Go deeper with component knobs">
+  When tokens cannot express the look — a button whose hover is a gradient, a popup family with its own border treatment —
+  re-value the registered `--cui-*` knobs in `skin.css`. Every visual decision in a component recipe reads one, and the
+  441 registered knobs inherit, so a value set at the skin root reaches every part beneath it. Key rules on
+  `data-control-family` and re-value at the family root.
+
+```css
+/* skin.css — one family, restyled at its root. */
+[data-skin="acme"] :where([data-control-family="button"][data-control="true"]) {
+  --cui-button-radius: 999px;
+  --cui-button-hover-bg: oklch(from var(--primary) l c h / 0.12);
+}
+```
+
+  Every registered knob — name, syntax, initial value, and the default its recipe declares — is published per family in
+  the generated `skin-contract.json`, so a skin can be written, or generated, against the machine-readable catalog
+  instead of the recipe sources. A knob set on an inner part instead of the root is final: the part's own declaration
+  beats every inherited re-value, including a caller's inline style. That is the reason shipped packs stay at family
+  roots, and the full resolution story lives in the architecture guide's cascade contract.
+</GuideSection>

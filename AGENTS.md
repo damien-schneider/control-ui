@@ -30,6 +30,7 @@
 - Read one item: `GET http://127.0.0.1:3000/api/registry/<id>` → source files, install command, and deps.
 - Search: `GET http://127.0.0.1:3000/api/registry/search?q=<query>`.
 - Skin anatomy: `http://127.0.0.1:3000/r/skin-contract.json` is the complete generated scope, part, state, paint, adornment, and semantic-family contract; do not guess selectors.
+- Component knobs: every component paints through registered `--cui-<family>-*` CSS custom properties (e.g. `--cui-button-radius`). The full list with syntax and recipe defaults lives in skin-contract.json (`knobs`); restyle per instance via the typed `style` prop or from a skin, never by overriding Tailwind classes.
 - Install: run the item's `install` command (`npx shadcn@latest add <url>`). Installed files are yours to own and edit.
 - Skinning: a skin is additive CSS + a `skin.config`; install a skin pack to restyle every component at once.
 
@@ -170,12 +171,14 @@
 - `serialize` (serialize) — Bridge a rich editor doc to plain text (and structured mentions) and back — independent of any one component.
 
 ### Guides
-- `create` (Create app) — Scaffold a Next.js app with every Control UI component installed as editable source on the Refined skin.
+- `create` (Create app) — Scaffold a Next.js app with every Control UI component installed as source you own on the Refined skin.
 - `overview` (Overview) — An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
 - `get-started` (Get started) — Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.
+- `create-a-skin` (Create a skin) — Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
 - `shadcn-compatibility` (shadcn compatibility) — shadcn registry, token, and ownership conventions without writing to components/ui.
 - `architecture` (Architecture) — Runtime ownership, skin layering, customization paths, and registry derivation.
 - `agent-surface` (Agent surface) — Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
+- `lock-in` (Lock-in) — What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - `theme-accessibility` (Theme accessibility) — Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - `theme-ai-builder` (Theme AI builder) — Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 

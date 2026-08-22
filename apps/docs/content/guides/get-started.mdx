@@ -15,21 +15,9 @@
   `skin-theme.css`, and `skin.css`, and the command claims all three with `--overwrite`. The CLI never replaces a file
   that already exists, so switching packs without it leaves the previous one in place.
 
-  The current skin anatomy contract is version 6. Version 6 removes runtime class and paint maps in favor of registered
-  component CSS knobs; skin config now contains only behavior choices and optional adornments. Reinstall core, affected
-  components or their containing blocks, and the selected skin together so source, recipes, and skin configuration remain in sync.
-
-  Version 4 replaced ToolCall with Activity's typed tool variant. If upgrading from version 3 or earlier, remove both old
-  install layouts before reinstalling:
-
-```bash
-rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
-rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
-```
-
-  Replace `ToolCall` with `<Activity kind="tool" name="…">`, use the matching `Activity*` parts, replace input and output
-  wrappers with `ActivityDetail`, `ActivityDetailLabel`, and `ActivityDetailContent`, and remove `useToolCall` in favor of
-  mapping provider status directly to `ActivityState`. This pre-release contract intentionally ships no legacy selectors.
+  The current skin anatomy contract is version 7: registered component CSS knobs carry every visual decision, skin config
+  contains only behavior choices and optional adornments, and every registered knob is published in `skin-contract.json`.
+  Upgrade notes for earlier contract versions are in the update section below.
 
   <GuideCode kind="skin-install" />
 </GuideSection>
@@ -71,6 +59,9 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
 ```tsx
 <html data-skin="refined">…</html>
 ```
+
+  The compiled styles assume Safari 16.4+, Chrome 119+, and Firefox 128+; the architecture guide's cascade section
+  derives the floor and its one exception.
 </GuideSection>
 
 <GuideSection id="use" title="Compose your runtime">
@@ -93,4 +84,17 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
     <GuidePoint>To refresh a stock skin too, reinstall its pack afterwards: `npx shadcn@latest add …/r/skin-<id>.json --overwrite`.</GuidePoint>
     <GuidePoint>`all-<skin>` manifests with `--overwrite` also update everything, but reset the three skin files to that pack.</GuidePoint>
   </GuidePoints>
+
+  Crossing skin contract versions is a reinstall of core, affected components or their containing blocks, and the selected
+  skin together, so source, recipes, and skin configuration stay in sync. Version 4 replaced ToolCall with Activity's typed
+  tool variant; if upgrading from version 3 or earlier, remove both old install layouts before reinstalling:
+
+```bash
+rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
+rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
+```
+
+  Replace `ToolCall` with `<Activity kind="tool" name="…">`, use the matching `Activity*` parts, replace input and output
+  wrappers with `ActivityDetail`, `ActivityDetailLabel`, and `ActivityDetailContent`, and remove `useToolCall` in favor of
+  mapping provider status directly to `ActivityState`. This pre-release contract intentionally ships no legacy selectors.
 </GuideSection>

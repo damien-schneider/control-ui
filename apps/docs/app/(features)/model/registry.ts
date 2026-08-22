@@ -128,6 +128,7 @@ export function registryInstallCommands(kind: RegistryKind): InstallCommand[] {
 
 export function guideCodeForKind(code: GuideSection["code"], integration: "mastra" | "ai-sdk") {
   if (code === "skin-install") return packInstallCommand("refined");
+  if (code === "skin-scaffold-install") return packInstallCommand("flat");
   if (code === "component-install") return registryInstallCommand("chat-message");
   if (code === "block-install") return registryInstallCommand("chat-block");
   if (code === "update-install") return updateInstallCode();

@@ -1,6 +1,6 @@
 # Control UI
 
-Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as editable source.
+Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as source you own.
 
 [![CI](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/damien-schneider/control-ui/actions/workflows/ci.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
@@ -25,7 +25,7 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
 
 ## Why Control UI
 
-- **Own the source.** Components are copied into your repository and remain fully editable.
+- **Own the source.** Components are copied into your repository; customization lives in the skin layer, so updating never overwrites your changes.
 - **Bring any runtime.** Plain props and children keep model calls, streaming, persistence, and transport in your application.
 - **Skin the whole system.** One component implementation supports complete token-driven skins without forking behavior or markup.
 - **Install at the right level.** Choose a primitive, an agent surface, a complete block, or a dependency bundle.

@@ -12,7 +12,9 @@ import { cn } from "@/components/control-ui/lib/cn";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
 import ArchitectureContent from "@/content/guides/architecture.mdx";
 import CreateContent from "@/content/guides/create.mdx";
+import CreateASkinContent from "@/content/guides/create-a-skin.mdx";
 import GetStartedContent from "@/content/guides/get-started.mdx";
+import LockInContent from "@/content/guides/lock-in.mdx";
 import OverviewContent from "@/content/guides/overview.mdx";
 import ShadcnCompatibilityContent from "@/content/guides/shadcn-compatibility.mdx";
 import { ArchitectureLayers, CustomizationLadder, RegistryPipeline, SkinFileStack, SkinResolutionMap } from "./architecture-visuals";
@@ -25,8 +27,10 @@ const guideContent: Partial<Record<GuideId, GuideContent>> = {
   create: CreateContent,
   overview: OverviewContent,
   "get-started": GetStartedContent,
+  "create-a-skin": CreateASkinContent,
   "shadcn-compatibility": ShadcnCompatibilityContent,
   architecture: ArchitectureContent,
+  "lock-in": LockInContent,
   "agent-surface": AgentSurfaceContent,
 };
 

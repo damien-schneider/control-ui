@@ -13,6 +13,7 @@ import {
   skinSelector,
   slotAttribute,
 } from "../control-anatomy";
+import { collectKnobFamilies } from "../knob-contracts/collect";
 import { createRegistryItems } from "../registry-model";
 import {
   type AnatomyReference,
@@ -557,10 +558,16 @@ export function collectSkinContract(): SkinContract {
     );
 
   return {
-    version: 6,
+    version: 7,
     selectorPattern: skinSelector({ skin: "{skin}", family: "{family}", part: "{part}" }),
     registryItemMapping: sortRecord(Object.fromEntries([...registryItemMapping].map(([scope, items]) => [scope, [...items].sort()]))),
     scopes: sortRecord(scopes),
+    knobs: Object.fromEntries(
+      collectKnobFamilies().map((family) => [
+        family.id,
+        family.knobs.map(({ name, syntax, initialValue, defaultValue }) => ({ name, syntax, initialValue, defaultValue })),
+      ]),
+    ),
     adornments: contextHooks("SkinAdornmentContexts"),
     semanticFamilies: {
       popup: sortRecord(Object.fromEntries(Object.entries(popup).map(([part, references]) => [part, sortReferences(references)]))),

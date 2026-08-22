@@ -1,17 +1,19 @@
 # Control UI
 
-> Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as editable source.
+> Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as source you own.
 
 Control UI installs editable React source through the shadcn CLI. The catalog below is generated from the same page manifest used by the website, sitemap, search, and registry API.
 
 ## Documentation
 
-- [Create app](http://127.0.0.1:3000/create): Scaffold a Next.js app with every Control UI component installed as editable source on the Refined skin.
+- [Create app](http://127.0.0.1:3000/create): Scaffold a Next.js app with every Control UI component installed as source you own on the Refined skin.
 - [Overview](http://127.0.0.1:3000/overview): An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
 - [Get started](http://127.0.0.1:3000/get-started): Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.
+- [Create a skin](http://127.0.0.1:3000/create-a-skin): Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
 - [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
 - [Architecture](http://127.0.0.1:3000/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
 - [Agent surface](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
+- [Lock-in](http://127.0.0.1:3000/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - [Theme accessibility](http://127.0.0.1:3000/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 
@@ -198,7 +200,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Registry API](http://127.0.0.1:3000/api/registry): JSON index of every public catalog item.
 - [Agent index](http://127.0.0.1:3000/r/agent-index.json): Static agent-friendly registry metadata.
 - [shadcn registry](http://127.0.0.1:3000/r/registry.json): Registry schema consumed by shadcn tooling.
-- [Skin anatomy contract](http://127.0.0.1:3000/r/skin-contract.json): Generated scopes, parts, states, paints, adornments, and semantic families.
+- [Skin anatomy contract](http://127.0.0.1:3000/r/skin-contract.json): Generated scopes, parts, states, knobs (the `--cui-*` CSS custom properties every component paints through), adornments, and semantic families.
 - [Theme token contract](http://127.0.0.1:3000/r/theme-contract.json): Generated skin token reference.
 
 ## Optional

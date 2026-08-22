@@ -1,0 +1,44 @@
+<GuideSection id="layers" title="Five layers, measured">
+  Every component library locks you in somewhere. The honest question is where, and how much. Measured on the current
+  registry of 132 items, from the bottom up:
+
+  <GuidePoints>
+    <GuidePoint>**Runtime: zero.** Installed code makes no network call to any Control UI host — the single `fetch` in the
+    codebase inlines already-rendered notification images from your own origin and falls back to nothing. MIT licensed.
+    If this project disappears, your app keeps running unchanged.</GuidePoint>
+    <GuidePoint>**npm: low.** 55 items carry zero npm dependencies; 40 more need only Base UI or lucide. Heavy
+    dependencies stay isolated in the item that uses them — Shiki in `code`, Streamdown (Vercel's streaming Markdown
+    renderer) in `markdown`, six ProseMirror packages in `chat-composer` even when it renders as a plain
+    textarea.</GuidePoint>
+    <GuidePoint>**Conventions: medium.** The anatomy attributes, 441 knob names, `data-skin`, and `ControlUiSkin` are
+    proprietary vocabulary, like any library's. They live in files you own, so they cannot be revoked — but they are
+    ours, not a standard.</GuidePoint>
+    <GuidePoint>**Skins: high.** 22 of the 46 required tokens carry shadcn's names and port directly to any shadcn
+    theme tool. Everything past tokens — `skin.css`, knob re-values, adornments — is expressive precisely because it is
+    not portable. A shadcn theme is strictly more portable; a skin is strictly more expressive. Pick per
+    project.</GuidePoint>
+    <GuidePoint>**Governance: high, today.** The contract tests, generators, and validation tooling run in this
+    repository, not in your install. A versioned contract artifact and a consumer-side doctor are planned, not
+    shipped.</GuidePoint>
+  </GuidePoints>
+</GuideSection>
+
+<GuideSection id="exit" title="What leaving costs">
+  Leaving is mechanical, not catastrophic. The component source, hooks, and utilities are plain React in your tree and
+  need nothing to keep working. What you would rewrite is the paint: recipes and skins express the entire visual layer
+  through the knob contract, so exiting the system means re-inlining that CSS into whatever you move to — utilities,
+  CSS modules, another library's conventions. No tool exists for that migration today.
+
+  The half-exit is cheaper and often enough: stop updating. Owned source has no license server and no peer dependency
+  on a runtime package, so a frozen install is a complete, working snapshot.
+</GuideSection>
+
+<GuideSection id="continuity" title="Continuity">
+  Everything needed to rebuild the system is public: the full registry source, the generators that derive every payload,
+  and the generated payloads themselves are committed to the GitHub repository under MIT. A fork can regenerate and
+  serve the registry without any private piece.
+
+  What a fork does not get yet is governance — semver on the anatomy contract, a changelog, rename aliases, and a
+  doctor that runs against your install rather than this repo. Until those ship, the honest summary is: the code
+  survives anything; the system that maintains the code survives through this repository.
+</GuideSection>

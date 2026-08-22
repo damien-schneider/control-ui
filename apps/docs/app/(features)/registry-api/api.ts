@@ -6,7 +6,7 @@ import { generatedSkinContract } from "@/app/(features)/model/generated-skin-con
 import { filesFor, type InstallCommand } from "@/app/(features)/model/registry";
 import type { SearchItem, SourceFile } from "@/app/(features)/model/types";
 // Type-only: skin contract's shape is declared where it is generated, so agent API cannot describe it differently.
-import type { ContractPart, ContractScope, SkinContract } from "@/scripts/skin-contract/model";
+import type { ContractKnob, ContractPart, ContractScope, SkinContract } from "@/scripts/skin-contract/model";
 import {
   allSearchItems,
   contractLinks,
@@ -36,6 +36,7 @@ export type RegistryAnatomySlice = {
   selectorPattern: string;
   ownScopes: Record<string, ContractScope>;
   installedScopes: Record<string, ContractScope>;
+  knobs: Record<string, ContractKnob[]>;
 };
 export type RegistryItemData = {
   id: string;
@@ -114,6 +115,22 @@ function scopesOwnedBy(itemIds: Set<string>): Record<string, ContractScope> {
   );
 }
 
+function knobFamiliesOwnedBy(itemIds: Set<string>): Record<string, ContractKnob[]> {
+  const families = new Set<string>();
+  for (const [scopeName, scope] of Object.entries(generatedSkinContract.scopes)) {
+    for (const part of Object.values(scope.parts)) {
+      if (!part.registryItems.some((itemId) => itemIds.has(itemId))) continue;
+      families.add(part.family ?? scopeName);
+    }
+  }
+  return Object.fromEntries(
+    [...families]
+      .filter((family) => family in generatedSkinContract.knobs)
+      .sort()
+      .map((family) => [family, generatedSkinContract.knobs[family]]),
+  );
+}
+
 function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
   const ownScopes = scopesOwnedBy(new Set([itemId]));
   const installedScopes = scopesOwnedBy(installedRegistryItems(itemId));
@@ -124,6 +141,7 @@ function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
     selectorPattern: generatedSkinContract.selectorPattern,
     ownScopes,
     installedScopes,
+    knobs: knobFamiliesOwnedBy(new Set(Object.keys(installedScopes))),
   };
 }
 

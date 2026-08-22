@@ -7,6 +7,13 @@ export type ContractState = {
   values: string[];
 };
 
+export type ContractKnob = {
+  name: string;
+  syntax: string;
+  initialValue: string;
+  defaultValue: string;
+};
+
 export type ContractPart = {
   context?: Record<string, string>;
   family?: string;
@@ -27,10 +34,11 @@ export const skinSurfaceFamilies = ["floating", "modal", "panel"] as const;
 export type SkinSurfaceFamily = (typeof skinSurfaceFamilies)[number];
 
 export type SkinContract = {
-  version: 6;
+  version: 7;
   selectorPattern: string;
   registryItemMapping: Record<string, string[]>;
   scopes: Record<string, ContractScope>;
+  knobs: Record<string, ContractKnob[]>;
   adornments: Record<string, Record<string, { context: Record<string, string> }>>;
   semanticFamilies: {
     popup: Record<PopupPart, AnatomyReference[]>;

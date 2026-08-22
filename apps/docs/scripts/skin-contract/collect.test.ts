@@ -18,7 +18,7 @@ describe("skin contract generation", () => {
 
   test("resolves ownership, adornments, and semantic families", () => {
     const contract = collectSkinContract();
-    expect(contract.version).toBe(6);
+    expect(contract.version).toBe(7);
     expect(contract.selectorPattern).toBe('[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])');
     expect(contract.scopes.button.parts.root.family).toBe("button");
     expect(contract.scopes["code-diff"].registryItems).toContain("code-diff");
@@ -48,6 +48,24 @@ describe("skin contract generation", () => {
     expect(contract.semanticFamilies.surfaces.modal).toContainEqual({ scope: "dialog", part: "content" });
     expect(contract.semanticFamilies.surfaces.panel).toContainEqual({ scope: "code-diff", part: "root" });
     expect(["toggle", "dock", "close"].filter((part) => contract.scopes["dockable-panel"].parts[part])).toEqual([]);
+  });
+
+  test("publishes every registered knob with its recipe default", () => {
+    const contract = collectSkinContract();
+    expect(Object.keys(contract.knobs)).toEqual([...Object.keys(contract.knobs)].sort());
+    expect(contract.knobs.button).toContainEqual({
+      name: "--cui-button-radius",
+      syntax: expect.any(String),
+      initialValue: expect.any(String),
+      defaultValue: expect.any(String),
+    });
+    expect(contract.knobs.popup?.length).toBeGreaterThan(0);
+    for (const knobs of Object.values(contract.knobs)) {
+      for (const knob of knobs) {
+        expect(knob.name).toStartWith("--cui-");
+        expect(knob.defaultValue).not.toBe("");
+      }
+    }
   });
 
   test("derives only emitted external states and preserves finite Control UI state values", () => {
