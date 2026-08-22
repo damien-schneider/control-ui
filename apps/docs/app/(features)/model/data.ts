@@ -8,7 +8,7 @@ import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { type CatalogSourceFile, catalogStatus, integrationIds } from "@/app/(features)/catalog/shared";
 import { type CatalogSkinMeta, skinMetas } from "@/app/(features)/catalog/skins";
 import { source } from "@/app/(features)/model/data-source";
-import { knobFamiliesFor } from "@/app/(features)/model/knob-docs";
+import { knobFamiliesFor, knobFamilyIdOf } from "@/app/(features)/model/knob-docs";
 import { publicRegistryDependencies, registryDocumentedSourceFiles } from "@/app/(features)/model/registry-source-files";
 import type {
   CompositionExample,
@@ -17,6 +17,7 @@ import type {
   DocsComponentVersion,
   DocsExtension,
   DocsHook,
+  DocsKnobFamily,
   DocsPrimitive,
   DocsRegistryDependency,
   DocsShellData,
@@ -37,32 +38,74 @@ function sourceFrom(file: CatalogSourceFile): SourceFile {
   return source(file.label, file.path, file.slot);
 }
 
+const documentedSourceOwners = new Map<string, string>([
+  ...primitiveEntries.map((entry) => [entry.paths.registry.source.path, entry.paths.registry.registryKind] as const),
+  ...componentEntries.map((entry) => [entry.paths.source.path, entry.registryKind] as const),
+]);
+
 function documentedSourceSet(registryKind: string, primary: CatalogSourceFile, declaredFiles: readonly CatalogSourceFile[]) {
+  for (const declared of declaredFiles) {
+    const owner = documentedSourceOwners.get(declared.path);
+    if (owner && owner !== registryKind)
+      throw new Error(`${registryKind}: ${declared.path} belongs to ${owner} — depend on it instead of declaring its source here`);
+  }
+
   const files = registryDocumentedSourceFiles(registryKind, [primary, ...declaredFiles]);
   const primarySource = files.find((file) => file.path === primary.path);
   if (!primarySource) throw new Error(`${registryKind}: missing primary source ${primary.path}`);
+  const supportFiles = files.filter((file) => file.path !== primary.path);
 
   return {
     source: primarySource,
-    supportFiles: files.filter((file) => file.path !== primary.path),
+    supportFiles: ownSourceFiles(supportFiles, registryKind),
+    knobs: knobFamilies(files, registryKind),
   };
+}
+
+// Family-named item documents the recipe CSS; every other consumer gets the knob list instead.
+function ownSourceFiles(files: SourceFile[], registryKind: string) {
+  return files.filter((file) => {
+    if (file.slot === "knob-contract") return false;
+    const family = knobFamilyIdOf(file);
+    return family === undefined || family === registryKind;
+  });
+}
+
+function docsPageFor(kind: string): DocsRegistryDependency | undefined {
+  const component = componentEntries.find((entry) => entry.registryKind === kind);
+  if (component) return { registryKind: component.registryKind, name: component.name, kind: "Agent", href: `/ai/${component.id}` };
+
+  const primitive = primitiveEntries.find((entry) => entry.paths.registry.registryKind === kind);
+  if (primitive)
+    return {
+      registryKind: primitive.paths.registry.registryKind,
+      name: primitive.name,
+      kind: "Primitive",
+      href: `/primitives/${primitive.id}`,
+    };
+
+  const block = blockEntries.find((entry) => entry.registryKind === kind);
+  if (block) return { registryKind: block.registryKind, name: block.name, kind: "Block", href: `/use-cases/${block.id}` };
+
+  const extension = extensionEntries.find((entry) => entry.registryKind === kind);
+  if (extension)
+    return { registryKind: extension.registryKind, name: extension.name, kind: "Extension", href: `/extensions/${extension.id}` };
+
+  return undefined;
 }
 
 function registryDependencyReferences(registryKind: string): DocsRegistryDependency[] {
   return publicRegistryDependencies(registryKind).map((dependency) => {
-    const component = componentEntries.find((entry) => entry.registryKind === dependency);
-    if (component) return { registryKind: dependency, name: component.name, kind: "Agent", href: `/ai/${component.id}` };
+    const page = docsPageFor(dependency);
+    if (!page) throw new Error(`${registryKind}: public dependency ${dependency} has no docs page`);
+    return page;
+  });
+}
 
-    const primitive = primitiveEntries.find((entry) => entry.paths.registry.registryKind === dependency);
-    if (primitive) return { registryKind: dependency, name: primitive.name, kind: "Primitive", href: `/primitives/${primitive.id}` };
-
-    const block = blockEntries.find((entry) => entry.registryKind === dependency);
-    if (block) return { registryKind: dependency, name: block.name, kind: "Block", href: `/use-cases/${block.id}` };
-
-    const extension = extensionEntries.find((entry) => entry.registryKind === dependency);
-    if (extension) return { registryKind: dependency, name: extension.name, kind: "Extension", href: `/extensions/${extension.id}` };
-
-    throw new Error(`${registryKind}: public dependency ${dependency} has no docs page`);
+function knobFamilies(files: SourceFile[], registryKind: string): DocsKnobFamily[] {
+  return knobFamiliesFor(files).map((family) => {
+    const page = family.id === registryKind ? undefined : docsPageFor(family.id);
+    return page ? { ...family, href: page.href } : family;
   });
 }
 
@@ -164,7 +207,7 @@ function getComponents(): DocsComponent[] {
       registryDependencies: registryDependencyReferences(entry.registryKind),
       registryKind: entry.registryKind,
       versions: getComponentVersions(entry, declaredSupport),
-      knobs: knobFamiliesFor([installed.source, ...installed.supportFiles]),
+      knobs: installed.knobs,
     };
   });
 }
@@ -221,7 +264,7 @@ function getPrimitives(): DocsPrimitive[] {
         composition: hasCompositionArray(entry.paths.registry) ? compositionArray(entry.paths.registry.composition) : undefined,
         registryDependencies: registryDependencyReferences(entry.paths.registry.registryKind),
         registryKind: entry.paths.registry.registryKind,
-        knobs: knobFamiliesFor([installed.source, ...installed.supportFiles]),
+        knobs: installed.knobs,
       },
     };
   });

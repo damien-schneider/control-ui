@@ -84,7 +84,7 @@ export type CompositionExample = {
 };
 
 export type DocsKnob = { name: string; syntax: string; defaultValue: string };
-export type DocsKnobFamily = { id: string; knobs: DocsKnob[] };
+export type DocsKnobFamily = { id: string; href?: string; knobs: DocsKnob[] };
 
 export type DocsPrimitive = {
   id: PrimitiveId;

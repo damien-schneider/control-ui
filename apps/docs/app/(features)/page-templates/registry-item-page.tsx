@@ -146,6 +146,17 @@ function RegistryItemSource({ files, title = "Raw code", description = "Primary 
   );
 }
 
+function KnobFamilyName({ id, href }: { id: string; href?: string }) {
+  const name = <code className="font-medium text-foreground">--cui-{id}-*</code>;
+  if (!href) return name;
+
+  return (
+    <Link href={href} className="underline underline-offset-4 hover:text-foreground">
+      {name}
+    </Link>
+  );
+}
+
 function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
   if (families.length === 0) return null;
 
@@ -160,7 +171,7 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
           <div key={family.id} className="min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
             <div className="flex items-baseline justify-between gap-3 border-b border-border/70 bg-muted/30 px-4 py-2 text-caption text-muted-foreground">
               <span>
-                <code className="font-medium text-foreground">--{family.id}-*</code> · {family.knobs.length} knobs
+                <KnobFamilyName id={family.id} href={family.href} /> · {family.knobs.length} knobs
               </span>
               <Link href="/skins#component-knobs" className="shrink-0 underline underline-offset-4 hover:text-foreground">
                 How the cascade resolves

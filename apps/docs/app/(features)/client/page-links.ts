@@ -1,6 +1,6 @@
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { primitiveCategories } from "@/app/(features)/catalog/primitives";
-import { componentComposition, primitiveComposition } from "@/app/(features)/model/registry";
+import { componentComposition, installedDependencyFiles, primitiveComposition, supportFilesFor } from "@/app/(features)/model/registry";
 import type {
   DocsBlock,
   DocsComponent,
@@ -22,7 +22,9 @@ function primitivePageLinks(activePrimitive: DocsPrimitive, extensions: DocsExte
     ...((activePrimitive.registry.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
     ...(primitiveComposition(activePrimitive).length > 0 ? [{ href: "#composition", label: "Composition" }] : []),
     { href: "#install", label: "Installation" },
-    ...((activePrimitive.registry.supportFiles?.length ?? 0) > 0 ? [{ href: "#dependencies", label: "Dependencies" }] : []),
+    ...(installedDependencyFiles(activePrimitive.registry.supportFiles ?? []).length > 0
+      ? [{ href: "#dependencies", label: "Dependencies" }]
+      : []),
     ...(activePrimitive.registry.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),
     { href: "#source", label: "Source" },
     ...(extensions.some((extension) => extension.appliesTo?.some((id) => id === activePrimitive.id))
@@ -33,7 +35,7 @@ function primitivePageLinks(activePrimitive: DocsPrimitive, extensions: DocsExte
 
 function componentPageLinks(component: DocsComponent, extensions: DocsExtension[]) {
   const hasComposition = componentComposition(component).length > 0;
-  const hasDependencies = Boolean(component.hook) || (component.supportFiles?.length ?? 0) > 0;
+  const hasDependencies = installedDependencyFiles(supportFilesFor(component)).length > 0;
   const hasExtensions = extensions.some((extension) => extension.appliesTo?.some((id) => id === component.id));
 
   return [

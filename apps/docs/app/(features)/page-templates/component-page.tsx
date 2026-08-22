@@ -2,8 +2,22 @@
 
 import { useState } from "react";
 import { ComponentExamplePreview, ComponentVersionPreview, Preview } from "@/app/(features)/components/previews";
-import { componentComposition, filesFor, publicRegistryHref, registryInstallCommands } from "@/app/(features)/model/registry";
-import type { DocsComponent, DocsComponentVersion, DocsExtension, IntegrationId, RegistryKindId } from "@/app/(features)/model/types";
+import {
+  componentComposition,
+  filesFor,
+  installedDependencyFiles,
+  publicRegistryHref,
+  registryInstallCommands,
+  supportFilesFor,
+} from "@/app/(features)/model/registry";
+import type {
+  DocsComponent,
+  DocsComponentVersion,
+  DocsExtension,
+  IntegrationId,
+  RegistryKindId,
+  SourceFile,
+} from "@/app/(features)/model/types";
 import { Button } from "@/components/control-ui/ui/button";
 import { AvailableExtensions } from "./available-extensions";
 import { RegistryItemPage } from "./registry-item-page";
@@ -46,8 +60,8 @@ function versionCopy(version: DocsComponentVersion | undefined, versionsShareIte
   };
 }
 
-function dependencyDetails(files: ReturnType<typeof filesFor>) {
-  const dependencyFiles = files.filter((file) => file.slot !== "component");
+function dependencyDetails(supportFiles: SourceFile[]) {
+  const dependencyFiles = installedDependencyFiles(supportFiles);
   if (dependencyFiles.length === 0) return undefined;
   return {
     files: dependencyFiles,
@@ -124,7 +138,7 @@ export function ComponentPage({
       }}
       usageCode={usageCode}
       knobs={component.knobs}
-      dependencies={dependencyDetails(files)}
+      dependencies={dependencyDetails(supportFilesFor(component, version))}
       libraryDependencies={component.registryDependencies}
       source={{
         files,

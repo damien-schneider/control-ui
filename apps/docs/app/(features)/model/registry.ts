@@ -1,4 +1,3 @@
-import { componentEntries } from "@/app/(features)/catalog/components";
 import { skinMetas } from "@/app/(features)/catalog/skins";
 import type {
   CompositionExample,
@@ -19,9 +18,17 @@ export type InstallCommand = {
   value: string;
 };
 
+export function supportFilesFor(component: DocsComponent, version?: DocsComponentVersion): SourceFile[] {
+  if (version) return version.supportFiles;
+  return [...(component.hook ? [component.hook] : []), ...(component.supportFiles ?? [])];
+}
+
 export function filesFor(component: DocsComponent, version?: DocsComponentVersion) {
-  if (version) return [version.source, ...version.supportFiles];
-  return [component.source, ...(component.hook ? [component.hook] : []), ...(component.supportFiles ?? [])];
+  return [version ? version.source : component.source, ...supportFilesFor(component, version)];
+}
+
+export function installedDependencyFiles(files: SourceFile[]): SourceFile[] {
+  return files.filter((file) => file.slot !== "recipe-css");
 }
 
 function exportedComponentNames(source: string) {
@@ -68,11 +75,6 @@ export function primitiveComposition(primitive: DocsPrimitive): CompositionExamp
 
 export function componentComposition(component: DocsComponent): CompositionExample[] {
   return compositionForSource(component.source);
-}
-
-export function componentHrefForFile(file: SourceFile) {
-  const componentId = componentEntries.find((entry) => file.path.endsWith(`/${entry.id}.tsx`))?.id;
-  return componentId ? `/ai/${componentId}` : undefined;
 }
 
 export function publicRegistryHref(kind: string) {

@@ -1,7 +1,12 @@
 "use client";
 
 import { PrimitiveExamplePreview, PrimitivePreview } from "@/app/(features)/components/previews";
-import { primitiveComposition, publicRegistryHref, registryInstallCommand } from "@/app/(features)/model/registry";
+import {
+  installedDependencyFiles,
+  primitiveComposition,
+  publicRegistryHref,
+  registryInstallCommand,
+} from "@/app/(features)/model/registry";
 import type { DocsExtension, DocsPrimitive, DocsPrimitiveExample } from "@/app/(features)/model/types";
 import { AvailableExtensions } from "./available-extensions";
 import { type RegistryItemExample, RegistryItemPage } from "./registry-item-page";
@@ -12,6 +17,7 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
   const manifestHref = publicRegistryHref(registryKind);
   const exampleCode = primitive.registry.example.code;
   const supportFiles = primitive.registry.supportFiles ?? [];
+  const dependencyFiles = installedDependencyFiles(supportFiles);
   const composition = primitiveComposition(primitive);
 
   return (
@@ -44,9 +50,9 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
       }}
       knobs={primitive.registry.knobs}
       dependencies={
-        supportFiles.length > 0
+        dependencyFiles.length > 0
           ? {
-              files: supportFiles,
+              files: dependencyFiles,
               description:
                 "Support files installed with this primitive — shared ones arrive once with your first Control UI component. Public dependencies stay linked to their own pages.",
             }
@@ -56,7 +62,7 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
       source={{
         files: [primitive.registry.source, ...supportFiles],
         title: "Raw code",
-        description: "This primitive's source, plus the shared foundation it rides on",
+        description: "This primitive's source and the support files it installs with",
       }}
     >
       <AvailableExtensions hostId={primitive.id} extensions={extensions} />

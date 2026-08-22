@@ -305,7 +305,6 @@ export const primitiveEntries = [
         supportFiles: [
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
-          sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
           sidebarRecipeFile,
         ],
         composition: [
@@ -548,7 +547,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/toggle.tsx",
         example: sourceFile("Toggle preview", "src/registry/examples/control-ui/primitives/toggle.tsx", "example"),
         source: sourceFile("Base UI Toggle slot", "src/registry/sources/control-ui/ui/toggle.tsx", "component"),
-        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"), buttonRecipeFile],
+        supportFiles: [buttonRecipeFile],
         registryKind: "toggle",
       },
     },
@@ -588,7 +587,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/dialog.tsx",
         example: sourceFile("Dialog preview", "src/registry/examples/control-ui/primitives/dialog.tsx", "example"),
         source: sourceFile("Base UI Dialog slot", "src/registry/sources/control-ui/ui/dialog.tsx", "component"),
-        supportFiles: [sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"), ...popupRecipeFiles],
+        supportFiles: [...popupRecipeFiles],
         registryKind: "dialog",
       },
     },
@@ -917,12 +916,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/command.tsx",
         example: sourceFile("Command preview", "src/registry/examples/control-ui/primitives/command.tsx", "example"),
         source: sourceFile("cmdk Command slot", "src/registry/sources/control-ui/ui/command.tsx", "component"),
-        supportFiles: [
-          sourceFile("Dialog slot", "src/registry/sources/control-ui/ui/dialog.tsx", "skin-control"),
-          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
-          surfaceVariantsFile,
-          ...popupRecipeFiles,
-        ],
+        supportFiles: [surfaceVariantsFile, ...popupRecipeFiles],
         registryKind: "command",
       },
     },
@@ -1082,11 +1076,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/alert-dialog.tsx",
         example: sourceFile("Alert dialog preview", "src/registry/examples/control-ui/primitives/alert-dialog.tsx", "example"),
         source: sourceFile("Base UI Alert dialog slot", "src/registry/sources/control-ui/ui/alert-dialog.tsx", "component"),
-        supportFiles: [
-          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
-          surfaceVariantsFile,
-          ...popupRecipeFiles,
-        ],
+        supportFiles: [surfaceVariantsFile, ...popupRecipeFiles],
         registryKind: "alert-dialog",
       },
     },
@@ -1609,7 +1599,6 @@ export const primitiveEntries = [
           ...fieldRecipeFiles,
           surfaceVariantsFile,
           ...popupRecipeFiles,
-          sourceFile("Scroll area", "src/registry/sources/control-ui/ui/scroll-area.tsx", "component"),
         ],
         composition: [
           {
@@ -1732,8 +1721,6 @@ export const primitiveEntries = [
         supportFiles: [
           sourceFile("Docking geometry", "src/registry/sources/control-ui/ui/dockable-panel-geometry.ts", "geometry"),
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
-          sourceFile("Drawer slot", "src/registry/sources/control-ui/ui/drawer.tsx", "skin-control"),
-          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
           dockablePanelRecipeFile,
         ],
         composition: [
@@ -1772,10 +1759,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/infinite-canvas.tsx",
         example: sourceFile("Infinite canvas preview", "src/registry/examples/control-ui/primitives/infinite-canvas.tsx", "example"),
         source: sourceFile("Infinite canvas", "src/registry/sources/control-ui/ui/infinite-canvas.tsx", "component"),
-        supportFiles: [
-          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
-          infiniteCanvasRecipeFile,
-        ],
+        supportFiles: [infiniteCanvasRecipeFile],
         composition: [
           {
             title: "Unbounded spatial workspace",
@@ -1860,7 +1844,6 @@ export const primitiveEntries = [
         example: sourceFile("Gradient editor preview", "src/registry/examples/control-ui/primitives/gradient-editor.tsx", "example"),
         source: sourceFile("Gradient editor slot", "src/registry/sources/control-ui/ui/gradient-editor.tsx", "component"),
         supportFiles: [
-          sourceFile("Color picker slot", "src/registry/sources/control-ui/ui/color-picker.tsx", "color-picker"),
           sourceFile("Color engine", "src/registry/lib/color.ts", "color-engine"),
           surfaceVariantsFile,
           gradientEditorRecipeFile,
@@ -1974,9 +1957,6 @@ export const primitiveEntries = [
         example: sourceFile("Code preview", "src/registry/examples/control-ui/primitives/code.tsx", "example"),
         source: sourceFile("Code slot", "src/registry/sources/control-ui/ui/code.tsx", "component"),
         supportFiles: [
-          sourceFile("Scroll area slot", "src/registry/sources/control-ui/ui/scroll-area.tsx", "component"),
-          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
-          sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
           sourceFile("Shiki tokenizer", "src/registry/lib/code-tokens.ts", "tokenizer"),
           sourceFile("Code + diff tokens", "src/registry/sources/control-ui/code.css", "code-css"),
           codeRecipeFile,
@@ -2014,10 +1994,6 @@ export const primitiveEntries = [
         example: sourceFile("Code diff preview", "src/registry/examples/control-ui/primitives/code-diff.tsx", "example"),
         source: sourceFile("Code diff slot", "src/registry/sources/control-ui/ui/code-diff.tsx", "component"),
         supportFiles: [
-          sourceFile("Code slot", "src/registry/sources/control-ui/ui/code.tsx", "component"),
-          sourceFile("Scroll area slot", "src/registry/sources/control-ui/ui/scroll-area.tsx", "component"),
-          sourceFile("Button slot", "src/registry/sources/control-ui/ui/button.tsx", "skin-control"),
-          sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
           sourceFile("Diff engine", "src/registry/lib/diff.ts", "diff-engine"),
           sourceFile("Shiki tokenizer", "src/registry/lib/code-tokens.ts", "tokenizer"),
           sourceFile("Code + diff tokens", "src/registry/sources/control-ui/code.css", "code-css"),
@@ -2060,8 +2036,6 @@ export const primitiveEntries = [
         example: sourceFile("Markdown preview", "src/registry/examples/control-ui/primitives/markdown.tsx", "example"),
         source: sourceFile("Markdown slot", "src/registry/sources/control-ui/ui/markdown.tsx", "component"),
         supportFiles: [
-          sourceFile("Code slot", "src/registry/sources/control-ui/ui/code.tsx", "component"),
-          sourceFile("Code diff slot", "src/registry/sources/control-ui/ui/code-diff.tsx", "component"),
           sourceFile("Diff engine", "src/registry/lib/diff.ts", "diff-engine"),
           sourceFile("Shiki tokenizer", "src/registry/lib/code-tokens.ts", "tokenizer"),
           sourceFile("Code + diff tokens", "src/registry/sources/control-ui/code.css", "code-css"),

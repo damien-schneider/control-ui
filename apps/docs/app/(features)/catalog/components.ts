@@ -212,9 +212,6 @@ export const componentEntries = [
       hook: sourceFile("Behavior hook", "src/registry/hooks/use-audio-recorder.ts", "hook"),
       supportFiles: [
         sourceFile("Duration formatter", "src/registry/lib/format-audio-recorder-duration.ts", "support"),
-        // Waveform rendering is delegated to AudioVisualizer usage family (bars ships by default;
-        // swap to line version by repointing one import in your owned audio-recorder.tsx).
-        sourceFile("Waveform (AudioVisualizer, bars version)", "src/registry/sources/control-ui/audio-visualizer.tsx", "audio-visualizer"),
         audioRecorderRecipeFile,
       ],
       source: sourceFile("Component", "src/registry/sources/control-ui/audio-recorder.tsx", "component"),
@@ -551,7 +548,6 @@ export const componentEntries = [
       supportFiles: [
         sourceFile("Shiki helper", "src/registry/lib/code-block-shiki.ts", "shiki-helper"),
         sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"),
-        sourceFile("Tooltip slot", "src/registry/sources/control-ui/ui/tooltip.tsx", "skin-control"),
         codeBlockEditorRecipeFile,
       ],
     },

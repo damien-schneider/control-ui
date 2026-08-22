@@ -2,6 +2,7 @@ import { type CatalogRegistryKind, type CatalogSourceFile, includesString, regis
 import { source } from "@/app/(features)/model/data-source";
 import { registryMetadata } from "@/app/(features)/model/generated-registry";
 import type { SourceFile } from "@/app/(features)/model/types";
+import { knobContractsDir, recipesDir } from "@/scripts/knob-contracts/collect";
 
 type RegistryMetadataFile = {
   readonly path: string;
@@ -33,7 +34,9 @@ function sourceLabel(filePath: string) {
   return label ? `${label[0]?.toUpperCase() ?? ""}${label.slice(1)}` : filePath;
 }
 
-function sourceSlot(type: string) {
+function sourceSlot(path: string, type: string) {
+  if (path.startsWith(`${recipesDir}/`)) return "recipe-css";
+  if (path.startsWith(`${knobContractsDir}/`)) return "knob-contract";
   if (type === "registry:hook") return "hook";
   if (type === "registry:lib") return "util";
   return "support";
@@ -97,7 +100,7 @@ export function registryDocumentedSourceFiles(registryKind: string, declaredFile
   const documentedPaths = new Set(documentedFiles.map((file) => file.path));
   const files: SourceFile[] = documentedFiles.map((file) => {
     const declaredFile = declaredByPath.get(file.path);
-    return source(declaredFile?.label ?? sourceLabel(file.path), file.path, declaredFile?.slot ?? sourceSlot(file.type));
+    return source(declaredFile?.label ?? sourceLabel(file.path), file.path, declaredFile?.slot ?? sourceSlot(file.path, file.type));
   });
   for (const declaredFile of declaredFiles) {
     if (!documentedPaths.has(declaredFile.path)) {
