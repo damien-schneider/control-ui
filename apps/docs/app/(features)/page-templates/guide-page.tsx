@@ -9,6 +9,7 @@ import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { ThemeAiBuilder } from "@/app/(features)/theme-ai-builder/theme-ai-builder";
 import { cn } from "@/components/control-ui/lib/cn";
+import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
 import ArchitectureContent from "@/content/guides/architecture.mdx";
 import CreateContent from "@/content/guides/create.mdx";
@@ -65,7 +66,9 @@ function GuidePageContent({ page, integration, Content }: { page: GuidePageData;
   if (Content) {
     return (
       <GuideIntegrationContext value={integration}>
-        <Content components={guideComponents} />
+        <MarkdownRoot className="grid min-w-0 gap-12 text-body">
+          <Content components={guideComponents} />
+        </MarkdownRoot>
       </GuideIntegrationContext>
     );
   }

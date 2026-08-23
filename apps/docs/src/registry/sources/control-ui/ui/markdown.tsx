@@ -13,7 +13,11 @@ export type MarkdownProps = Omit<ComponentProps<"div">, "children" | "style"> & 
 
 // Chrome-less on purpose so it drops straight into chat message; MarkdownBlock composes it for headered, copyable block.
 
-export function Markdown({ content, className, ...props }: MarkdownProps) {
+// Markdown parts read their paint from knobs this root declares, so prose assembled elsewhere (MDX) needs it too.
+export function MarkdownRoot({
+  className,
+  ...props
+}: Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & MarkdownKnobStyle }) {
   return (
     <div
       data-control-ui="markdown"
@@ -21,7 +25,13 @@ export function Markdown({ content, className, ...props }: MarkdownProps) {
       data-slot="root"
       className={cn("[&>*:first-child]:mt-0 [&>*:last-child]:mb-0", className)}
       {...props}
-    >
+    />
+  );
+}
+
+export function Markdown({ content, className, ...props }: MarkdownProps) {
+  return (
+    <MarkdownRoot className={className} {...props}>
       <Streamdown
         mode="streaming"
         parseIncompleteMarkdown
@@ -31,7 +41,7 @@ export function Markdown({ content, className, ...props }: MarkdownProps) {
       >
         {content}
       </Streamdown>
-    </div>
+    </MarkdownRoot>
   );
 }
 
