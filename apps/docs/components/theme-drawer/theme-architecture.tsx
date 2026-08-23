@@ -14,7 +14,7 @@ function nestedEntryCount(value: object | undefined): number {
 function SectionHeading({ id, number, title, description }: { id: string; number: string; title: string; description: string }) {
   return (
     <div className="grid gap-2 sm:grid-cols-[2rem_minmax(0,1fr)]">
-      <span className="font-mono text-[10px] text-primary">{number}</span>
+      <span className="font-mono text-[10px] text-primary-text">{number}</span>
       <div className="min-w-0">
         <h3 id={id} className="text-[14px] font-semibold text-foreground">
           {title}

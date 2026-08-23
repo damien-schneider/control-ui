@@ -19,7 +19,7 @@ export function CssFirstDecisionMap() {
             <div className="mt-2 text-caption text-muted-foreground">stateful or async logic · measured fallback behind @supports</div>
           </div>
         </div>
-        <div className="text-center font-mono text-micro text-primary">
+        <div className="text-center font-mono text-micro text-primary-text">
           token-driven transitions + expressive motion → reduced-motion kill switch
         </div>
       </div>
@@ -45,7 +45,7 @@ export function GettingStartedMap() {
             key={step.title}
             className="group relative rounded-lg border border-border/80 bg-background/70 p-3 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-primary/40"
           >
-            <div className="font-mono text-micro text-primary">{index + 1}</div>
+            <div className="font-mono text-micro text-primary-text">{index + 1}</div>
             <div className="mt-2 font-medium text-label">{step.title}</div>
             <div className="mt-0.5 text-caption text-muted-foreground">{step.note}</div>
             {index < steps.length - 1 ? (
@@ -84,7 +84,7 @@ export function CompatibilityBridge() {
           <div className="mt-1 text-caption text-muted-foreground">installed Control UI source</div>
         </div>
       </div>
-      <div className="mt-3 text-center font-mono text-micro text-primary">Control UI never writes to components/ui/*</div>
+      <div className="mt-3 text-center font-mono text-micro text-primary-text">Control UI never writes to components/ui/*</div>
     </GuideVisual>
   );
 }

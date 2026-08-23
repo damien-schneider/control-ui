@@ -31,9 +31,9 @@ export function ArchitectureLayers() {
         <FlowArrow direction="down" className="md:hidden" />
 
         <div className="min-w-0 border-primary/20 border-l-2 pl-3">
-          <div className="mb-2 font-mono text-micro text-primary">installed source</div>
+          <div className="mb-2 font-mono text-micro text-primary-text">installed source</div>
           <div className="grid gap-2">
-            <DiagramNode className="bg-primary/8">
+            <DiagramNode className="border-primary/30">
               <div className="font-medium">Blocks</div>
               <div className="text-caption text-muted-foreground">complete recipes composed from public surfaces</div>
             </DiagramNode>
@@ -50,7 +50,7 @@ export function ArchitectureLayers() {
             <DiagramNode className="border-primary/30 bg-primary/5">
               <div className="flex flex-wrap items-baseline justify-between gap-1">
                 <span className="font-medium">Skin data</span>
-                <span className="font-mono text-micro text-primary">theme.css · skin.css · skin.config.tsx</span>
+                <span className="font-mono text-micro text-primary-text">theme.css · skin.css · skin.config.tsx</span>
               </div>
             </DiagramNode>
           </div>
@@ -141,7 +141,7 @@ export function CustomizationLadder() {
               </span>
               <span className="min-w-0">
                 <span className="block font-medium text-label">{rung.name}</span>
-                <span className="block truncate font-mono text-micro text-primary">{rung.file}</span>
+                <span className="block truncate font-mono text-micro text-primary-text">{rung.file}</span>
               </span>
               <span className="text-caption text-muted-foreground">{rung.note}</span>
             </li>
