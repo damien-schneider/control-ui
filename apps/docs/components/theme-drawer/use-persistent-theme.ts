@@ -64,6 +64,8 @@ export function usePersistentTheme() {
   const { bumpSkinEpoch } = useThemeDrawer();
   const [runtime, setRuntime] = useState<ThemeRuntimeState>({ theme: null, customThemes: [], undo: null, hydrated: false });
   const [values, setValues] = useState<TokenValues>({});
+  // mirrors html.dark so render-time consumers (skin diff) track mode without their own observers
+  const [isDark, setIsDark] = useState(false);
   const storageError = useSyncExternalStore(subscribeToStorageStatus, currentStorageError, () => null);
   const t = runtime.theme ?? DEFAULT_THEME;
 
@@ -80,7 +82,7 @@ export function usePersistentTheme() {
 
   function setTokens(tokenPatch: TokenValues) {
     updateTheme((previous) => {
-      const isDark = document.documentElement.classList.contains("dark");
+      const darkActive = document.documentElement.classList.contains("dark");
       const next: ThemeState = {
         ...previous,
         overrides: { ...previous.overrides },
@@ -88,7 +90,7 @@ export function usePersistentTheme() {
         dark: { ...previous.dark },
       };
       for (const [name, value] of Object.entries(tokenPatch)) {
-        if (isColorValuedToken(name)) (isDark ? next.dark : next.light)[name] = value;
+        if (isColorValuedToken(name)) (darkActive ? next.dark : next.light)[name] = value;
         else next.overrides[name] = value;
       }
       writeVars(next);
@@ -212,6 +214,7 @@ export function usePersistentTheme() {
 
   useEffect(() => {
     queueMicrotask(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
       const customThemes = loadCustomThemes();
       const restored = loadStored() ?? DEFAULT_THEME;
       const activeProfileExists = customThemes.some((profile) => profile.id === restored.customThemeId);
@@ -251,6 +254,7 @@ export function usePersistentTheme() {
   useEffect(() => {
     const observer = new MutationObserver(() => {
       writeVars(themeRef.current);
+      setIsDark(document.documentElement.classList.contains("dark"));
       setValues(readContractTokens());
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
@@ -260,6 +264,7 @@ export function usePersistentTheme() {
   return {
     t,
     values,
+    isDark,
     customThemes: runtime.customThemes,
     storageError,
     canUndo: runtime.undo !== null,

@@ -28,8 +28,6 @@ import {
   useIsHydrated,
 } from "./setup-preference";
 
-import { SkinSourcePanel } from "./skin-source-panel";
-
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 type DocsShellViewProps = DocsShellData & {
@@ -256,7 +254,6 @@ function DocsShellContent({
               </aside>
             </div>
           </ScrollArea>
-          <SkinSourcePanel skins={skinPages} />
         </div>
         <DocsFloatingToolbar
           active={activePage}

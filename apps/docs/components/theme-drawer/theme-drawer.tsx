@@ -5,21 +5,24 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ShieldCheckIcon, SparklesIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
-import { useId, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, buttonContentClasses, buttonRecipeClasses } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
+import { DEFAULT_SKIN_ID } from "@/components/theme";
 import { useThemeDrawer } from "@/components/theme-drawer-context";
 import { useThemeModePreference } from "@/components/theme-toggle";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { ContrastPanel } from "./contrast-panel";
-import { MiniColorSwatch, TokenControl, VarTag } from "./controls";
+import { ChangeDot, MiniColorSwatch, TokenControl, VarTag } from "./controls";
 import { downloadThemeArtifact } from "./custom-themes";
 import { SKIN_META_BY_ID } from "./presets";
 import { SkinSelector } from "./skin-selector";
+import { parseSkinTheme, skinChangedTokenNames, themeFile, useSkinSource } from "./skin-source";
+import { SkinSourceView } from "./skin-source-view";
 import { ThemeArchitecture } from "./theme-architecture";
 import { useThemeRuntime } from "./theme-runtime-context";
 import { BADGE_TOKEN_ROWS, TOKEN_CATEGORIES, type TokenCategory, tokenControlSpec } from "./token-metadata";
@@ -133,11 +136,21 @@ type TokenEditorProps = {
   values: TokenValues;
   labelMode: LabelMode;
   overridden: Set<string>;
+  /** Contract tokens the active skin authors differently than the base theme — hollow-dot provenance marker. */
+  changedBySkin: ReadonlySet<string>;
   onChange: (name: string, value: string) => void;
   onReset: (name: string) => void;
 };
 
-function TokenList({ tokens, values, labelMode, overridden, onChange, onReset }: TokenEditorProps & { tokens: ThemeContractToken[] }) {
+function TokenList({
+  tokens,
+  values,
+  labelMode,
+  overridden,
+  changedBySkin,
+  onChange,
+  onReset,
+}: TokenEditorProps & { tokens: ThemeContractToken[] }) {
   const control = (token: ThemeContractToken) => (
     <TokenControl
       key={token.name}
@@ -145,6 +158,7 @@ function TokenList({ tokens, values, labelMode, overridden, onChange, onReset }:
       value={values[token.name]}
       labelMode={labelMode}
       overridden={overridden.has(token.name)}
+      changedBySkin={changedBySkin.has(token.name)}
       onChange={(value) => onChange(token.name, value)}
       onReset={() => onReset(token.name)}
     />
@@ -172,7 +186,7 @@ function TokenList({ tokens, values, labelMode, overridden, onChange, onReset }:
   return <div className="flex flex-col gap-3">{nodes}</div>;
 }
 
-function BadgePaletteRows({ values, overridden, onChange, onReset }: Omit<TokenEditorProps, "labelMode">) {
+function BadgePaletteRows({ values, overridden, changedBySkin, onChange, onReset }: Omit<TokenEditorProps, "labelMode">) {
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center gap-2 px-0.5 text-[9px] font-medium text-muted-foreground">
@@ -206,6 +220,7 @@ function BadgePaletteRows({ values, overridden, onChange, onReset }: Omit<TokenE
                 token={token}
                 value={values[token.name]}
                 overridden={overridden.has(token.name)}
+                changedBySkin={changedBySkin.has(token.name)}
                 onChange={(value) => onChange(token.name, value)}
               />
             ))}
@@ -233,6 +248,7 @@ function CategorySection({
   const badgeTokens = isColor ? BADGE_TOKEN_ROWS.flatMap((row) => row.tokens) : [];
   const allNames = [...category.core, ...category.advanced, ...badgeTokens].map((token) => token.name);
   const touched = allNames.filter((name) => editor.overridden.has(name)).length;
+  const skinTouched = allNames.filter((name) => editor.changedBySkin.has(name)).length;
   const advancedTotal = category.advanced.length + badgeTokens.length;
 
   return (
@@ -246,7 +262,10 @@ function CategorySection({
           <h4 id={`theme-tokens-${category.group}-title`} className="text-[12px] font-semibold text-foreground">
             {category.title}
           </h4>
-          <span className="text-[9px] tabular-nums text-muted-foreground">{allNames.length} tokens</span>
+          <span className="text-[9px] tabular-nums text-muted-foreground">
+            {allNames.length} tokens
+            {skinTouched > 0 ? ` · ${skinTouched} by skin` : ""}
+          </span>
           {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}
         </div>
         <p className="mt-1.5 text-[10px] leading-4 text-muted-foreground">{category.description}</p>
@@ -273,6 +292,7 @@ function CategorySection({
                   <BadgePaletteRows
                     values={editor.values}
                     overridden={editor.overridden}
+                    changedBySkin={editor.changedBySkin}
                     onChange={editor.onChange}
                     onReset={editor.onReset}
                   />
@@ -288,11 +308,12 @@ function CategorySection({
 
 // Editor body only: floating toolbar owns chrome (MorphingPanel morphs toolbar pill into this near-fullscreen surface).
 export function ThemeEditorContent({ labelledById, describedById }: { labelledById?: string; describedById?: string }) {
-  const { setOpen, skinSource, openSkinSource } = useThemeDrawer();
+  const { setOpen } = useThemeDrawer();
   const [copied, setCopied] = useState(false);
   const {
     t,
     values,
+    isDark,
     customThemes,
     storageError,
     setTokens,
@@ -310,17 +331,9 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
   const fallbackDescriptionId = useId();
   const titleId = labelledById ?? fallbackTitleId;
   const descriptionId = describedById ?? fallbackDescriptionId;
-
-  function selectSkinAndSource(skin: ThemeState["skin"]) {
-    selectSkin(skin);
-    if (skinSource) openSkinSource(skin);
-  }
-
-  // Source docks against viewport edge; editor covers it, so hand screen over.
-  function viewSkinSource() {
-    openSkinSource(t.skin);
-    setOpen(false);
-  }
+  const activeMeta = SKIN_META_BY_ID[t.skin];
+  const { source: skinSource, retry: retrySource } = useSkinSource(t.skin);
+  const { source: baseSkinSource } = useSkinSource(DEFAULT_SKIN_ID);
 
   async function copyCss() {
     try {
@@ -333,10 +346,18 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
   }
 
   const overridden = overriddenTokenNames(t);
+  const changedBySkin = useMemo(() => {
+    if (skinSource.status !== "ready" || baseSkinSource.status !== "ready") return null;
+    const activeTheme = themeFile(skinSource.files);
+    const baseTheme = themeFile(baseSkinSource.files);
+    if (!activeTheme || !baseTheme) return null;
+    return skinChangedTokenNames(parseSkinTheme(activeTheme.code), parseSkinTheme(baseTheme.code), isDark);
+  }, [skinSource, baseSkinSource, isDark]);
   const editor: TokenEditorProps = {
     values,
     labelMode: t.labelMode,
     overridden,
+    changedBySkin: changedBySkin ?? new Set(),
     onChange: (name, value) => setTokens({ [name]: value }),
     onReset: resetToken,
   };
@@ -357,6 +378,19 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
       >
         {t.reduceMotion ? "On" : "Off"}
       </Toggle>
+    </div>
+  );
+
+  const tokenLegend = (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] text-muted-foreground">
+      <span className="inline-flex items-center gap-1.5">
+        <ChangeDot tone="edit" />
+        edited here
+      </span>
+      <span className="inline-flex items-center gap-1.5">
+        <ChangeDot tone="skin" />
+        changed by {activeMeta.label}
+      </span>
     </div>
   );
 
@@ -387,13 +421,12 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
               title="Choose a skin"
               description="The selected pack is live across the docs. Start with a token-led theme or an advanced pack that also targets component anatomy."
             />
-            <div className="mt-5 sm:pl-10">
+            <div className="mt-5 flex flex-col gap-4 sm:pl-10">
               <SkinSelector
                 skin={t.skin}
                 customThemeId={t.customThemeId}
                 customThemes={customThemes}
-                sourceOpen={skinSource !== null}
-                onSelect={selectSkinAndSource}
+                onSelect={selectSkin}
                 onSelectCustom={selectCustomTheme}
                 onRenameCustom={renameCustomTheme}
                 onDuplicateCustom={duplicateCustomTheme}
@@ -402,8 +435,8 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
                   const artifact = exportCustomTheme(id);
                   if (artifact) downloadThemeArtifact(artifact);
                 }}
-                onViewSource={viewSkinSource}
               />
+              <SkinSourceView label={activeMeta.label} source={skinSource} onRetry={retrySource} />
             </div>
           </section>
 
@@ -430,6 +463,8 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
                 />
               </div>
             </div>
+
+            <div className="mt-3 sm:pl-10">{tokenLegend}</div>
 
             <div className="mt-3">
               {TOKEN_CATEGORIES.map((category) => {

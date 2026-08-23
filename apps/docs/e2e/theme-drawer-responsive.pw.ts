@@ -63,7 +63,7 @@ test("Escape closes the theme editor", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Edit theme" })).toBeFocused();
 });
 
-test("skin source retry replaces the error with loading state", async ({ page }) => {
+test("skin source tab recovers from a failed request", async ({ page }) => {
   let shouldFail = true;
   let releaseRetry: (() => void) | undefined;
   let markRetryStarted: (() => void) | undefined;
@@ -102,14 +102,14 @@ test("skin source retry replaces the error with loading state", async ({ page })
 
   await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Edit theme" }).click();
-  await page.getByRole("button", { name: "View Refined source" }).click();
 
-  await expect(page.getByText("The skin source could not be loaded.")).toBeVisible();
+  await expect(page.getByText("The Refined source could not be loaded.")).toBeVisible();
   shouldFail = false;
   await page.getByRole("button", { name: "Try again" }).click();
-  await expect(page.getByText("Loading source")).toBeVisible();
+  await expect(page.getByText("Loading Refined source")).toBeVisible();
 
   await retryStarted;
   releaseRetry?.();
-  await expect(page.getByLabel("Refined source").getByText("theme.css", { exact: true })).toBeVisible();
+  const panel = page.locator("[data-docs-floating-panel]");
+  await expect(panel.getByText("oklch(1 0 0)")).toBeVisible();
 });

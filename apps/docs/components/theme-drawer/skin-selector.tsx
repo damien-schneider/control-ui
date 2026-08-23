@@ -1,6 +1,6 @@
 "use client";
 
-import { CopyIcon, DownloadIcon, FileCode2Icon, MoreHorizontalIcon, PaletteIcon, PencilIcon, Trash2Icon } from "lucide-react";
+import { CopyIcon, DownloadIcon, MoreHorizontalIcon, PaletteIcon, PencilIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 
 import { packInstallCommand } from "@/app/(features)/model/registry";
@@ -245,29 +245,24 @@ export function SkinSelector({
   skin,
   customThemeId,
   customThemes,
-  sourceOpen,
   onSelect,
   onSelectCustom,
   onRenameCustom,
   onDuplicateCustom,
   onExportCustom,
   onDeleteCustom,
-  onViewSource,
 }: {
   skin: SkinId;
   customThemeId: string | null;
   customThemes: CustomThemeProfile[];
-  sourceOpen: boolean;
   onSelect: (skin: SkinId) => void;
   onSelectCustom: (id: string) => void;
   onRenameCustom: (id: string, name: string) => void;
   onDuplicateCustom: (id: string) => void;
   onExportCustom: (id: string) => void;
   onDeleteCustom: (id: string) => void;
-  onViewSource: () => void;
 }) {
   const installCommand = packInstallCommand(skin);
-  const activeMeta = SKIN_META_BY_ID[skin];
 
   return (
     <div className="flex flex-col gap-3">
@@ -283,16 +278,10 @@ export function SkinSelector({
         onDelete={onDeleteCustom}
       />
       {installCommand ? (
-        <div className="grid gap-2 md:grid-cols-[minmax(12rem,0.45fr)_minmax(0,1fr)]">
-          <Button type="button" variant="surface" size="sm" active={sourceOpen} className="w-full" onClick={onViewSource}>
-            <FileCode2Icon aria-hidden className="size-3.5" />
-            View {activeMeta.label} source
-          </Button>
-          <div className="flex min-w-0 items-center gap-2 rounded-[var(--radius-control)] border border-border bg-muted/35 px-3 py-2">
-            <span className="shrink-0 text-[10px] font-medium text-muted-foreground">Install</span>
-            <code className="min-w-0 flex-1 truncate font-mono text-[10px] text-foreground">{installCommand}</code>
-            <CommandCopyButton value={installCommand} />
-          </div>
+        <div className="flex min-w-0 items-center gap-2 rounded-[var(--radius-control)] border border-border bg-muted/35 px-3 py-2">
+          <span className="shrink-0 text-[10px] font-medium text-muted-foreground">Install</span>
+          <code className="min-w-0 flex-1 truncate font-mono text-[10px] text-foreground">{installCommand}</code>
+          <CommandCopyButton value={installCommand} />
         </div>
       ) : null}
     </div>

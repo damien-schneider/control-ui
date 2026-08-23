@@ -28,6 +28,8 @@ type TokenFieldProps = {
   labelMode: LabelMode;
   /** True when user authored this token (any bucket) — shows dot + reset affordance. */
   overridden: boolean;
+  /** True when active skin authors this token differently than the base theme — hollow provenance dot. */
+  changedBySkin: boolean;
   onChange: (value: string) => void;
   onReset: () => void;
 };
@@ -36,11 +38,18 @@ function displayLabel(token: ThemeContractToken, labelMode: LabelMode): string {
   return labelMode === "css" ? token.name : tokenLabel(token);
 }
 
-function TokenHead({ token, labelMode, overridden, onReset }: Omit<TokenFieldProps, "value" | "onChange">) {
+/** Provenance dot: filled = edited here, hollow = active skin differs from base theme. */
+export function ChangeDot({ tone, className }: { tone: "edit" | "skin"; className?: string }) {
+  const paint = tone === "edit" ? "bg-primary" : "ring-1 ring-inset ring-primary/70";
+  return <span aria-hidden className={cn("size-1.5 rounded-full", paint, className)} />;
+}
+
+function TokenHead({ token, labelMode, overridden, changedBySkin, onReset }: Omit<TokenFieldProps, "value" | "onChange">) {
   const label = displayLabel(token, labelMode);
+  const hint = changedBySkin && !overridden ? " — differs from the base theme" : "";
   return (
-    <span className="flex min-w-0 items-center gap-1.5" title={`${token.name} — ${token.description}`}>
-      {overridden ? <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-primary" /> : null}
+    <span className="flex min-w-0 items-center gap-1.5" title={`${token.name} — ${token.description}${hint}`}>
+      {(overridden || changedBySkin) && <ChangeDot tone={overridden ? "edit" : "skin"} />}
       <span
         className={cn(
           "min-w-0 truncate",
@@ -203,7 +212,7 @@ export function TokenControl(props: TokenFieldProps) {
   return <TextTokenField {...props} />;
 }
 
-export function MiniColorSwatch({ token, value, overridden, onChange }: Omit<TokenFieldProps, "labelMode" | "onReset">) {
+export function MiniColorSwatch({ token, value, overridden, changedBySkin, onChange }: Omit<TokenFieldProps, "labelMode" | "onReset">) {
   const hex = value ? cssColorToHexDom(value) : null;
   return (
     <span className="relative inline-flex" title={`${token.name} — ${token.description}`}>
@@ -212,7 +221,7 @@ export function MiniColorSwatch({ token, value, overridden, onChange }: Omit<Tok
         className="size-6 rounded-[var(--radius-sm)] shadow-[inset_0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.16)]"
         style={{ backgroundColor: hex ?? "transparent" }}
       />
-      {overridden ? <span aria-hidden className="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-primary" /> : null}
+      {(overridden || changedBySkin) && <ChangeDot tone={overridden ? "edit" : "skin"} className="absolute -top-0.5 -right-0.5" />}
       <input
         type="color"
         aria-label={token.name}
