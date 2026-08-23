@@ -5,6 +5,7 @@ import { componentEntries } from "../app/(features)/catalog/components";
 import { primitiveEntries } from "../app/(features)/catalog/primitives";
 import { type CatalogSkinMeta, skinMetas } from "../app/(features)/catalog/skins";
 import { importSpecifiers } from "./module-imports";
+import { publicPayloads } from "./public-payloads";
 
 type RegistryFile = {
   path: string;
@@ -366,7 +367,7 @@ for (const [id, manifest] of manifests) {
   }
 }
 
-const expectedPublicFiles = new Set(["registry.json", "agent-index.json", "skin-contract.json", "theme-contract.json"]);
+const expectedPublicFiles = new Set(["registry.json", ...Object.values(publicPayloads)]);
 
 for (const [id, manifest] of manifests) {
   const publicPath = path.join(publicRegistryRoot, `${id}.json`);

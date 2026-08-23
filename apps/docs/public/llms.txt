@@ -202,6 +202,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [shadcn registry](http://127.0.0.1:3000/r/registry.json): Registry schema consumed by shadcn tooling.
 - [Skin anatomy contract](http://127.0.0.1:3000/r/skin-contract.json): Generated scopes, parts, states, knobs (the `--cui-*` CSS custom properties every component paints through), adornments, and semantic families.
 - [Theme token contract](http://127.0.0.1:3000/r/theme-contract.json): Generated skin token reference.
+- [Contrast anatomy](http://127.0.0.1:3000/r/contrast-anatomy.json): Every text knob with the rendered ancestor chain that paints behind it, for checking a skin's contrast without guessing selectors.
 
 ## Optional
 

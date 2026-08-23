@@ -98,7 +98,7 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
                 <th scope="row" className="py-2.5 pr-4 font-medium text-foreground">
                   {result.label}
                   <span className="mt-0.5 block font-normal text-muted-foreground">
-                    {result.severity === "warning" ? "Advisory non-text contrast" : "Required normal-text contrast"}
+                    {result.severity === "warning" ? "Advisory" : "Required"} {result.threshold >= 4.5 ? "text" : "non-text"} contrast
                   </span>
                 </th>
                 <td className="py-2.5 pr-4 font-mono text-[10px] leading-5 text-muted-foreground">
@@ -157,8 +157,8 @@ export function ThemeAccessibility() {
   const warningNoun = advisoryWarnings.length === 1 ? "warning" : "warnings";
   const advisorySummary =
     advisoryWarnings.length > 0
-      ? `${advisoryWarnings.length} focus or boundary ${warningNoun}. These are advisory because WCAG 1.4.11 depends on whether that boundary is needed to identify the control.`
-      : "Focus indicators and required control boundaries also clear 3:1.";
+      ? `${advisoryWarnings.length} advisory ${warningNoun} on boundaries, indicators and parts harvested from these pages. Each depends on context WCAG leaves to the design.`
+      : "Boundaries, indicators and every harvested part clear their ratio too.";
 
   return (
     <div className="grid gap-10" data-testid="theme-accessibility-audit">

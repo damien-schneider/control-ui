@@ -1,7 +1,8 @@
 import { BADGE_COLORS } from "@/components/control-ui/ui/badge";
+import { anatomyPairs } from "./anatomy-pairs";
 
 export type ThemeAuditSeverity = "error" | "warning";
-export type ThemeAuditCategory = "Text surfaces" | "Controls" | "Component states" | "Badges" | "Focus and boundaries";
+export type ThemeAuditCategory = "Text surfaces" | "Controls" | "Component states" | "Badges" | "Focus and boundaries" | "Rendered anatomy";
 
 export type ThemeAuditNode = {
   attributes: Readonly<Record<string, string>>;
@@ -15,7 +16,7 @@ export type ThemeAuditNode = {
  * it a probe sits outside every family, so recipe-owned knobs fall back to their inert initial value
  * and the measurement describes no shipped pixel.
  */
-export type ThemeAuditAnatomy = readonly ThemeAuditNode[];
+export type ThemeAuditAnatomy = readonly [ThemeAuditNode, ...ThemeAuditNode[]];
 
 export type ThemeAuditPair = {
   id: string;
@@ -72,21 +73,36 @@ const controlPairs = ["primary", "secondary", "accent", "destructive"].flatMap((
   ),
 );
 
+// Skins re-value the badge knobs wholesale, so the resting badge is measured on a rendered one rather than on its tokens.
+const filledBadge = (color: string): ThemeAuditAnatomy => [
+  { attributes: { "data-control-family": "badge", "data-slot": "root", "data-variant": "default", "data-color": color } },
+];
+
 const badgeFilledPairs = BADGE_COLORS.flatMap((color) =>
-  ["base", "hover"].flatMap((state) =>
-    ["background", "card"].map(
-      (surface): ThemeAuditPair => ({
-        id: `badge-${color}-filled-${state}-on-${surface}`,
-        category: "Badges",
-        label: `${color[0].toUpperCase()}${color.slice(1)} filled badge ${state} on ${surface}`,
-        foreground: `--badge-${color}-foreground`,
-        background: state === "hover" ? `--badge-${color}-hover` : `--badge-${color}`,
-        surface: `--${surface}`,
-        threshold: 4.5,
-        severity: "error",
-      }),
-    ),
-  ),
+  ["background", "card"].flatMap((surface): ThemeAuditPair[] => [
+    {
+      id: `badge-${color}-filled-base-on-${surface}`,
+      category: "Badges",
+      label: `${color[0].toUpperCase()}${color.slice(1)} filled badge base on ${surface}`,
+      foreground: "--cui-badge-foreground",
+      background: "--cui-badge-background",
+      backgroundAnatomy: filledBadge(color),
+      surface: `--${surface}`,
+      dependencies: [`--badge-${color}`, `--badge-${color}-foreground`],
+      threshold: 4.5,
+      severity: "error",
+    },
+    {
+      id: `badge-${color}-filled-hover-on-${surface}`,
+      category: "Badges",
+      label: `${color[0].toUpperCase()}${color.slice(1)} filled badge hover on ${surface}`,
+      foreground: `--badge-${color}-foreground`,
+      background: `--badge-${color}-hover`,
+      surface: `--${surface}`,
+      threshold: 4.5,
+      severity: "error",
+    },
+  ]),
 );
 
 const badgeOutlinePairs = BADGE_COLORS.flatMap((color) =>
@@ -119,8 +135,39 @@ const badgeOutlinePairs = BADGE_COLORS.flatMap((color) =>
 
 const popoverPaint = "oklch(from var(--popover) l c h / var(--popover-opacity))";
 
+/** A consumer utility paints this text, so the probe carries the utility's own declaration. */
+const mutedText: ThemeAuditAnatomy = [{ attributes: {}, style: "color: var(--muted-foreground)" }];
+
 const popupSurface: ThemeAuditAnatomy = [
   { attributes: { "data-control-family": "popup", "data-popup-part": "surface", "data-slot": "content", "data-surface": "floating" } },
+];
+// A skin may paint a solid button with a gradient, so the label is measured against the button's own paint.
+const solidButton = (tone: string): ThemeAuditAnatomy => [
+  {
+    attributes: {
+      "data-control-ui": "button",
+      "data-control-family": "button",
+      "data-slot": "root",
+      "data-control": "true",
+      "data-variant": "solid",
+      "data-tone": tone,
+      "data-size": "md",
+    },
+  },
+];
+
+// A tooltip inverts the popup pair, so a skin that re-paints every popup surface has to re-paint this text with it.
+const tooltipSurface: ThemeAuditAnatomy = [
+  {
+    attributes: {
+      "data-control-ui": "tooltip",
+      "data-control-family": "popup",
+      "data-popup-kind": "tooltip",
+      "data-popup-part": "surface",
+      "data-slot": "content",
+      "data-surface": "floating",
+    },
+  },
 ];
 const popupItem: ThemeAuditAnatomy = [{ attributes: { "data-control-family": "popup", "data-popup-part": "item" } }];
 const highlightedPopupItem: ThemeAuditAnatomy = [
@@ -145,7 +192,7 @@ const popupPairs = ["background", "card"].flatMap((surface): ThemeAuditPair[] =>
     id: `popup-item-highlighted-on-${surface}`,
     category: "Component states",
     label: `Highlighted popup item on ${surface}`,
-    foreground: "--cui-popup-item-foreground",
+    foreground: "--cui-popup-item-highlight-foreground",
     background: "--cui-popup-item-highlight-background",
     backgroundAnatomy: highlightedPopupItem,
     surface: "--popover",
@@ -160,7 +207,7 @@ const popupPairs = ["background", "card"].flatMap((surface): ThemeAuditPair[] =>
     category: "Component states",
     label: `Highlighted popup item secondary text on ${surface}`,
     foreground: "--muted-foreground",
-    foregroundAnatomy: [{ attributes: {}, style: "color: var(--muted-foreground)" }],
+    foregroundAnatomy: mutedText,
     background: "--cui-popup-item-highlight-background",
     backgroundAnatomy: highlightedPopupItem,
     surface: "--popover",
@@ -200,6 +247,99 @@ const activeTabPairs = ["background", "card"].map(
     severity: "error",
   }),
 );
+
+// A skin may paint the sidebar backdrop on the wrapper and leave the inner transparent, so both layers show up here.
+const sidebarSurface: ThemeAuditAnatomy = [
+  { attributes: { "data-control-family": "sidebar", "data-slot": "wrapper" } },
+  { attributes: { "data-control-family": "sidebar", "data-slot": "root" } },
+  { attributes: { "data-control-family": "sidebar", "data-slot": "inner" } },
+];
+const slidingIndicator: ThemeAuditAnatomy = [{ attributes: { "data-control-family": "track-highlight", "data-slot": "root" } }];
+const menuButton = (state: Readonly<Record<string, string>>): ThemeAuditAnatomy => [
+  { attributes: { "data-control-family": "sidebar", "data-slot": "menu-button", ...state } },
+];
+
+// The indicator slides to the hovered row, so active text owes contrast on the bare sidebar too.
+const sidebarPairs: readonly ThemeAuditPair[] = [
+  {
+    id: "sidebar-menu-button",
+    category: "Component states",
+    label: "Sidebar menu button on the sidebar surface",
+    foreground: "--cui-sidebar-menu-button-foreground",
+    foregroundAnatomy: menuButton({}),
+    background: "--cui-sidebar-inner-background",
+    backgroundAnatomy: sidebarSurface,
+    surface: "--background",
+    threshold: 4.5,
+    severity: "error",
+  },
+  {
+    id: "sidebar-menu-button-active",
+    category: "Component states",
+    label: "Active sidebar menu button on the sidebar surface",
+    foreground: "--cui-sidebar-menu-button-active-foreground",
+    foregroundAnatomy: menuButton({ "data-active": "" }),
+    background: "--cui-sidebar-inner-background",
+    backgroundAnatomy: sidebarSurface,
+    surface: "--background",
+    threshold: 4.5,
+    severity: "error",
+  },
+  {
+    id: "sidebar-muted-text",
+    category: "Component states",
+    label: "Muted text on the sidebar surface",
+    foreground: "--muted-foreground",
+    foregroundAnatomy: mutedText,
+    background: "--cui-sidebar-inner-background",
+    backgroundAnatomy: sidebarSurface,
+    surface: "--background",
+    threshold: 4.5,
+    severity: "error",
+  },
+  {
+    id: "sidebar-menu-button-active-on-indicator",
+    category: "Component states",
+    label: "Active sidebar menu button on the sliding indicator",
+    foreground: "--cui-sidebar-menu-button-active-foreground",
+    foregroundAnatomy: menuButton({ "data-active": "" }),
+    background: "--cui-track-highlight-background",
+    backgroundAnatomy: slidingIndicator,
+    surface: "--cui-sidebar-inner-background",
+    surfaceAnatomy: sidebarSurface,
+    underlays: ["--background"],
+    threshold: 4.5,
+    severity: "error",
+  },
+];
+
+const solidButtonPairs = ["primary", "danger"].flatMap((tone) =>
+  ["background", "card"].map(
+    (surface): ThemeAuditPair => ({
+      id: `solid-${tone}-button-on-${surface}`,
+      category: "Controls",
+      label: `Solid ${tone} button label on ${surface}`,
+      foreground: "--cui-button-foreground",
+      background: "--cui-button-bg",
+      backgroundAnatomy: solidButton(tone),
+      surface: `--${surface}`,
+      threshold: 4.5,
+      severity: "error",
+    }),
+  ),
+);
+
+const tooltipPair: ThemeAuditPair = {
+  id: "tooltip-text",
+  category: "Component states",
+  label: "Tooltip text on the tooltip surface",
+  foreground: "--cui-popup-foreground",
+  background: "--cui-popup-background",
+  backgroundAnatomy: tooltipSurface,
+  surface: "--background",
+  threshold: 4.5,
+  severity: "error",
+};
 
 // WCAG 1.4.11: the focus indicator is non-text content and owes 3:1 against what it lands on. It is
 // measured on a really focused control, so a skin that blanks --focus-ring-width shows up here.
@@ -268,7 +408,7 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
       "--cui-popup-background",
       `--${surface}`,
     ),
-    foregroundAnatomy: [{ attributes: {}, style: "color: var(--muted-foreground)" }],
+    foregroundAnatomy: mutedText,
     backgroundAnatomy: popupSurface,
     dependencies: ["--popover-opacity"],
   })),
@@ -287,6 +427,9 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   ...controlPairs,
   ...popupPairs,
   ...activeTabPairs,
+  ...sidebarPairs,
+  ...solidButtonPairs,
+  tooltipPair,
   ...focusRingPairs,
   ...badgeFilledPairs,
   ...badgeOutlinePairs,
@@ -296,6 +439,7 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   boundaryPair("input-on-card", "Input boundary on card", "--input", "--card"),
   boundaryPair("ring-on-background", "Focus ring on background", "--ring", "--background"),
   boundaryPair("ring-on-card", "Focus ring on card", "--ring", "--card"),
+  ...anatomyPairs,
 ];
 
 export const THEME_AUDIT_CATEGORIES: readonly ThemeAuditCategory[] = [
@@ -304,4 +448,5 @@ export const THEME_AUDIT_CATEGORIES: readonly ThemeAuditCategory[] = [
   "Component states",
   "Badges",
   "Focus and boundaries",
+  "Rendered anatomy",
 ];

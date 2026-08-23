@@ -1,0 +1,14 @@
+import path from "node:path";
+
+/**
+ * The contract payloads public/r holds that the shadcn item build does not produce. Each is written by its own
+ * generator, so the build's prune step and the validator both read this list rather than restating the names.
+ */
+export const publicPayloads = {
+  agentIndex: "agent-index.json",
+  skinContract: "skin-contract.json",
+  themeContract: "theme-contract.json",
+  contrastAnatomy: "contrast-anatomy.json",
+} as const;
+
+export const publicPayloadPath = (payload: string) => path.join("public/r", payload);

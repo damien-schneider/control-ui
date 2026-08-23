@@ -1,4 +1,10 @@
-import { THEME_AUDIT_PAIRS, type ThemeAuditAnatomy, type ThemeAuditPair, type ThemeAuditResult } from "./audit-contract";
+import {
+  THEME_AUDIT_PAIRS,
+  type ThemeAuditAnatomy,
+  type ThemeAuditNode,
+  type ThemeAuditPair,
+  type ThemeAuditResult,
+} from "./audit-contract";
 
 type Rgb = [number, number, number];
 
@@ -137,16 +143,22 @@ function unresolvedResult(pair: ThemeAuditPair, resolvedForeground: string | nul
   return { ...pair, ratio: null, status: "unresolved", resolvedForeground, resolvedBackground };
 }
 
-function buildAnatomy(parent: HTMLElement, anatomy: ThemeAuditAnatomy, tag: string): HTMLElement {
-  let current = parent;
-  for (const node of anatomy) {
-    const element = document.createElement(node === anatomy.at(-1) ? tag : "div");
+function buildAnatomy(parent: HTMLElement, anatomy: ThemeAuditAnatomy, tag: string): [HTMLElement, ...HTMLElement[]] {
+  const build = (node: ThemeAuditNode, host: HTMLElement, last: boolean) => {
+    const element = document.createElement(last ? tag : "div");
     for (const [name, value] of Object.entries(node.attributes)) element.setAttribute(name, value);
     if (node.style) element.style.cssText = node.style;
-    current.append(element);
-    current = element;
-  }
-  return current;
+    host.append(element);
+    return element;
+  };
+  const [root, ...rest] = anatomy;
+  const chain: [HTMLElement, ...HTMLElement[]] = [build(root, parent, rest.length === 0)];
+  for (const [index, node] of rest.entries()) chain.push(build(node, painted(chain), index === rest.length - 1));
+  return chain;
+}
+
+function painted(chain: [HTMLElement, ...HTMLElement[]]) {
+  return chain[chain.length - 1];
 }
 
 function buildPaintLayer(parent: HTMLElement, paint: string): HTMLElement {
@@ -156,7 +168,8 @@ function buildPaintLayer(parent: HTMLElement, paint: string): HTMLElement {
   return element;
 }
 
-type PaintElement = { element: HTMLElement; token: string };
+/** Ancestors in an anatomy chain paint too, so each one is sampled; only its last node owns the pair's token. */
+type PaintElement = { element: HTMLElement; token?: string };
 
 function buildPaintElements(container: HTMLElement, pair: ThemeAuditPair): { parent: HTMLElement; elements: PaintElement[] } {
   const definitions = [
@@ -167,19 +180,26 @@ function buildPaintElements(container: HTMLElement, pair: ThemeAuditPair): { par
   const elements: PaintElement[] = [];
   let parent = container;
   for (const { token, paint, anatomy } of definitions) {
-    parent = anatomy ? buildAnatomy(parent, anatomy, "div") : buildPaintLayer(parent, paint ?? `var(${token})`);
-    elements.push({ element: parent, token });
+    if (!anatomy) {
+      parent = buildPaintLayer(parent, paint ?? `var(${token})`);
+      elements.push({ element: parent, token });
+      continue;
+    }
+    const chain = buildAnatomy(parent, anatomy, "div");
+    parent = painted(chain);
+    // A state fill paints only under a pointer the audit cannot hold, so its knob is forced onto the part —
+    // as a color, since the part keeps painting the gradient its own rules give it while hovered.
+    if (paint) parent.style.backgroundColor = paint;
+    elements.push(...chain.map((element) => ({ element, token: element === parent ? token : undefined })));
   }
   return { parent, elements };
 }
 
 function buildForeground(parent: HTMLElement, pair: ThemeAuditPair, measuresOutline: boolean): HTMLElement {
   const foreground = pair.foregroundAnatomy
-    ? buildAnatomy(parent, pair.foregroundAnatomy, measuresOutline ? "button" : "span")
+    ? painted(buildAnatomy(parent, pair.foregroundAnatomy, measuresOutline ? "button" : "span"))
     : parent.appendChild(document.createElement("span"));
-  if (!(pair.foregroundAnatomy ?? pair.backgroundAnatomy ?? pair.surfaceAnatomy)) {
-    foreground.style.color = `var(${pair.foreground})`;
-  }
+  if (!pair.foregroundAnatomy) foreground.style.color = `var(${pair.foreground})`;
   foreground.textContent = "Ag";
   return foreground;
 }
@@ -205,13 +225,27 @@ function resolveBackground(elements: readonly PaintElement[], context: CanvasRen
   let pixels = [WHITE];
   let css: string | null = null;
   for (const { element, token } of elements) {
-    if (getComputedStyle(element).getPropertyValue(token).trim().length === 0) return null;
+    if (token && getComputedStyle(element).getPropertyValue(token).trim().length === 0) return null;
     const paint = sampleBackground(element, pixels, context);
     if (!paint) return null;
     pixels = paint.pixels;
     css = paint.css;
   }
   return css ? { css, pixels } : null;
+}
+
+const samePixels = (left: Rgb[], right: Rgb[]) =>
+  left.length === right.length && left.every((pixel, index) => pixel.join() === right[index].join());
+
+/**
+ * A glyph reads against whatever its own part fills, which hides the chain behind it: a skin whose active
+ * tab paints its own face is read on that face, not on the indicator the core geometry puts underneath.
+ * A part that fills nothing keeps the chain, css label included, so the report still names the paint it sees.
+ */
+function backdropUnder(element: HTMLElement, chain: ResolvedPaint, context: CanvasRenderingContext2D): ResolvedPaint | null {
+  const own = sampleBackground(element, chain.pixels, context);
+  if (!own) return null;
+  return samePixels(own.pixels, chain.pixels) ? chain : own;
 }
 
 function auditTokenPair(root: HTMLElement, pair: ThemeAuditPair, context: CanvasRenderingContext2D): ThemeAuditResult {
@@ -226,10 +260,9 @@ function auditTokenPair(root: HTMLElement, pair: ThemeAuditPair, context: Canvas
 
   const resolvedForeground = resolveForeground(pair, foreground, measuresOutline);
   const resolvedBackground = resolveBackground(elements, context);
+  const paintsOverChain = !measuresOutline || resolvedForeground.insideOutline;
   const comparisonBackground =
-    resolvedBackground && resolvedForeground.insideOutline
-      ? sampleBackground(foreground, resolvedBackground.pixels, context)
-      : resolvedBackground;
+    resolvedBackground && paintsOverChain ? backdropUnder(foreground, resolvedBackground, context) : resolvedBackground;
   container.remove();
   if (!resolvedForeground.paint || !resolvedForeground.dependenciesResolve || !comparisonBackground) {
     return unresolvedResult(pair, resolvedForeground.paint, comparisonBackground?.css ?? null);

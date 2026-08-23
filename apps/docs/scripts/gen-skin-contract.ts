@@ -1,12 +1,13 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { formatGeneratedTypeScript } from "./format-generated-typescript";
+import { publicPayloadPath, publicPayloads } from "./public-payloads";
 import { collectSkinContract, collectThemeContract } from "./skin-contract/collect";
 
 const checkOnly = process.argv.includes("--check");
 const targets = [
-  { path: "public/r/skin-contract.json", content: `${JSON.stringify(collectSkinContract(), null, 2)}\n` },
-  { path: "public/r/theme-contract.json", content: `${JSON.stringify(collectThemeContract(), null, 2)}\n` },
+  { path: publicPayloadPath(publicPayloads.skinContract), content: `${JSON.stringify(collectSkinContract(), null, 2)}\n` },
+  { path: publicPayloadPath(publicPayloads.themeContract), content: `${JSON.stringify(collectThemeContract(), null, 2)}\n` },
 ];
 const contract = targets[0].content.trim();
 // Annotated with SkinContract instead of frozen with `as const`: emitted data is checked against model

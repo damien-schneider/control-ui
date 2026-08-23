@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import path from "node:path";
 import { registryItemSchema, registrySchema } from "shadcn/schema";
 import { siteConfig } from "@/lib/site-config";
+import { publicPayloads } from "./public-payloads";
 import { createRegistryItems, publicRegistryDependency } from "./registry-model";
 
 const checkOnly = process.argv.includes("--check");
@@ -56,10 +57,7 @@ for (const [fileName, content] of expected) {
 }
 
 if (!checkOnly && existsSync(publicRoot)) {
-  const expectedNames = new Set(expected.keys());
-  expectedNames.add("agent-index.json");
-  expectedNames.add("skin-contract.json");
-  expectedNames.add("theme-contract.json");
+  const expectedNames = new Set([...expected.keys(), ...Object.values(publicPayloads)]);
   for (const filePath of new Bun.Glob("**/*.json").scanSync({ cwd: publicRoot })) {
     if (!expectedNames.has(filePath)) rmSync(path.join(publicRoot, filePath));
   }

@@ -5,9 +5,10 @@ import path from "node:path";
 import { listRegistry } from "@/app/(features)/registry-api/registry-index";
 import { env } from "@/env";
 import { siteConfig } from "@/lib/site-config";
+import { publicPayloadPath, publicPayloads } from "./public-payloads";
 
 const checkOnly = process.argv.includes("--check");
-const target = path.join(process.cwd(), "public/r/agent-index.json");
+const target = path.join(process.cwd(), publicPayloadPath(publicPayloads.agentIndex));
 const content = `${JSON.stringify(listRegistry(), null, 2).replaceAll(env.NEXT_PUBLIC_REGISTRY_URL, siteConfig.url.origin)}\n`;
 const current = existsSync(target) ? readFileSync(target, "utf8") : undefined;
 

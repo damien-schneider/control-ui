@@ -13,6 +13,7 @@
     "sync:fixture": "node scripts/sync-installed-fixture.mjs",
     "sync:registry": "bun scripts/build-public-registry.ts",
     "sync:index": "bun scripts/gen-registry-index.ts",
+    "sync:anatomy": "bun scripts/harvest-contrast-anatomy.ts",
     "sync:cssdata": "bun scripts/gen-css-custom-data.ts",
     "sync": "bun run sync:knobs && bun run sync:contracts && bun run sync:manifests && bun run sync:fixture && bun run sync:registry && bun run docs:agents && bun run sync:index && bun run sync:cssdata",
     "docs:agents": "bun scripts/gen-agent-docs.ts",
