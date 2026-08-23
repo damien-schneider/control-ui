@@ -4,7 +4,7 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
+import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -69,6 +69,7 @@ export function DropdownMenuTrigger({
       className={cn(
         "relative isolate inline-flex shrink-0 items-center justify-center overflow-visible",
         controlSize({ size }),
+        buttonGapClass,
         iconOnly && "aspect-square px-0",
         className,
       )}

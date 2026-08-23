@@ -12218,6 +12218,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--radius-control)",
       },
       {
+        name: "--cui-button-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0.375rem",
+      },
+      {
         name: "--cui-button-bg",
         syntax: "<color>",
         initialValue: "transparent",

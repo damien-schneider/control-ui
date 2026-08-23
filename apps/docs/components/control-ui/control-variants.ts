@@ -16,6 +16,9 @@ export const controlSize = cva("", {
   },
 });
 
+/** Re-points the size gap at the button knob, which a skin can re-value; the raw utility sits in a layer no skin rule can outrank. */
+export const buttonGapClass = "gap-[var(--cui-button-gap)]";
+
 export const controlVariants = ["solid", "surface", "ghost", "quiet"] as const;
 
 export type ControlVariant = (typeof controlVariants)[number];

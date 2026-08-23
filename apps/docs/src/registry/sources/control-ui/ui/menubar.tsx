@@ -4,7 +4,7 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Menubar as MenubarPrimitive } from "@base-ui/react/menubar";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
-import { controlSize } from "@/components/control-ui/control-variants";
+import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -94,7 +94,7 @@ export function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
       data-variant="ghost"
       data-tone="neutral"
       data-shape="default"
-      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), className)}
+      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), buttonGapClass, className)}
       {...props}
     />
   );

@@ -4,7 +4,7 @@ import { Select as SelectPrimitive } from "@base-ui/react/select";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { ControlledChoice } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
+import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -72,6 +72,7 @@ export function SelectTrigger({ size = "sm", variant = "surface", className, chi
       className={cn(
         "group relative isolate inline-flex shrink-0 items-center justify-between overflow-visible",
         controlSize({ size }),
+        buttonGapClass,
         className,
       )}
       disabled={disabled}

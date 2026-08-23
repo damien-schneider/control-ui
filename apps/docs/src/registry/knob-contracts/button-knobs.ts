@@ -1,6 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/button.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const buttonKnobs = [
   "--cui-button-radius",
+  "--cui-button-gap",
   "--cui-button-bg",
   "--cui-button-bg-image",
   "--cui-button-foreground",

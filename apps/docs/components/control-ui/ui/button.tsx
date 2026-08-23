@@ -5,7 +5,7 @@ import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize, ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
+import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinAdornment } from "@/components/control-ui/skin";
@@ -47,8 +47,8 @@ const buttonStructureClasses = "relative isolate inline-flex shrink-0 items-cent
 
 export const buttonContentClasses = "relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]";
 
-export function buttonRecipeClasses(size: ControlSize): string {
-  return cn(buttonStructureClasses, controlSize({ size }));
+export function buttonRecipeClasses(size: ControlSize, iconOnly = false): string {
+  return cn(buttonStructureClasses, controlSize({ size }), buttonGapClass, iconOnly && "aspect-square px-0");
 }
 
 function ButtonContent({ children }: { children: ReactNode }) {
@@ -56,6 +56,16 @@ function ButtonContent({ children }: { children: ReactNode }) {
     <span data-control-ui="button" data-control-family="button" data-slot="content" className={buttonContentClasses}>
       {children}
     </span>
+  );
+}
+
+/** The content wrapper only earns its node when a skin layer sits behind it and needs stacking above it. */
+function ButtonBody({ layer, wrap = true, children }: { layer: ReactNode; wrap?: boolean; children: ReactNode }) {
+  return (
+    <>
+      {layer}
+      {wrap && layer ? <ButtonContent>{children}</ButtonContent> : children}
+    </>
   );
 }
 
@@ -73,17 +83,13 @@ export function Button({
   nativeButton,
   className,
   children,
-  color: _color,
   ...props
 }: ButtonProps) {
-  const classes = cn(buttonRecipeClasses(size), iconOnly && "aspect-square px-0", className);
-  const isNativeButton = nativeButton !== false;
   const layer = skinAdornment("button", "layer", { variant, tone });
-  const content = render ? children : <ButtonContent>{children}</ButtonContent>;
 
   return (
     <BaseButton
-      {...(isNativeButton ? { type } : {})}
+      type={nativeButton === false ? undefined : type}
       disabled={disabled}
       data-control-ui="button"
       data-control-family="button"
@@ -95,13 +101,14 @@ export function Button({
       data-variant={variant}
       data-tone={tone}
       data-size={size}
-      className={classes}
+      className={cn(buttonRecipeClasses(size, iconOnly), className)}
       render={render}
       nativeButton={nativeButton}
       {...props}
     >
-      {layer}
-      {content}
+      <ButtonBody layer={layer} wrap={!render}>
+        {children}
+      </ButtonBody>
     </BaseButton>
   );
 }
@@ -116,7 +123,6 @@ export function ButtonLink({
   render,
   className,
   children,
-  color: _color,
   ...props
 }: ButtonLinkProps) {
   return useRender({
@@ -134,13 +140,8 @@ export function ButtonLink({
       "data-variant": variant,
       "data-tone": tone,
       "data-size": size,
-      className: cn(buttonRecipeClasses(size), iconOnly && "aspect-square px-0", className),
-      children: (
-        <>
-          {skinAdornment("button", "layer", { variant, tone })}
-          <ButtonContent>{children}</ButtonContent>
-        </>
-      ),
+      className: cn(buttonRecipeClasses(size, iconOnly), className),
+      children: <ButtonBody layer={skinAdornment("button", "layer", { variant, tone })}>{children}</ButtonBody>,
     },
   });
 }
@@ -154,7 +155,6 @@ export function ButtonLabel({
   shape = "default",
   className,
   children,
-  color: _color,
   ...props
 }: ButtonLabelProps) {
   return (
@@ -171,10 +171,9 @@ export function ButtonLabel({
       data-variant={variant}
       data-tone={tone}
       data-size={size}
-      className={cn(buttonRecipeClasses(size), iconOnly && "aspect-square px-0", className)}
+      className={cn(buttonRecipeClasses(size, iconOnly), className)}
     >
-      {skinAdornment("button", "layer", { variant, tone })}
-      <ButtonContent>{children}</ButtonContent>
+      <ButtonBody layer={skinAdornment("button", "layer", { variant, tone })}>{children}</ButtonBody>
     </label>
   );
 }
