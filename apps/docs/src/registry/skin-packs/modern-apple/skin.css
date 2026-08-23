@@ -252,7 +252,7 @@
 
   [data-skin="modern-apple"]
     :where(
-      [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="floating"],
+      [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="floating"]:not([data-popup-kind="tooltip"]),
       [data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"],
       [data-control-family="popup"][data-slot][data-popup-part="list-surface"][data-surface="floating"]
     ) {

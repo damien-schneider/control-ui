@@ -119,7 +119,7 @@
   --badge-orange-border: oklch(from var(--color-orange-500) l c h / 0.2);
   --badge-orange-hover: oklch(from var(--color-orange-500) l c h / 0.24);
   --badge-yellow: oklch(from var(--color-yellow-400) l c h / 0.2);
-  --badge-yellow-foreground: var(--color-yellow-800);
+  --badge-yellow-foreground: var(--color-yellow-900);
   --badge-yellow-border: oklch(from var(--color-yellow-400) l c h / 0.24);
   --badge-yellow-hover: oklch(from var(--color-yellow-400) l c h / 0.28);
   --badge-green: oklch(from var(--color-green-500) l c h / 0.16);

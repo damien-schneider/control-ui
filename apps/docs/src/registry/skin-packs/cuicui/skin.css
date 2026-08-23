@@ -8,6 +8,10 @@
   --cuicui-blue: oklch(0.6871 0.1707 250.704);
   --cuicui-mint: oklch(0.8983 0.0973 174.414);
   --cuicui-gradient: linear-gradient(135deg, var(--cuicui-sky), var(--cuicui-violet), var(--cuicui-rose), var(--cuicui-orange));
+  /* Same hues held at one lightness, so a white label clears AA wherever it lands on the sweep. */
+  --cuicui-stops-legible:
+    oklch(from var(--cuicui-sky) 0.46 c h), oklch(from var(--cuicui-violet) 0.46 c h), oklch(from var(--cuicui-rose) 0.46 c h),
+    oklch(from var(--cuicui-orange) 0.46 c h);
   --cuicui-gradient-text: linear-gradient(to right, var(--cuicui-sky), var(--cuicui-violet), var(--cuicui-rose), var(--cuicui-orange));
   --cuicui-gradient-top: linear-gradient(-45deg, var(--cuicui-yellow), var(--cuicui-pink), var(--cuicui-blue), var(--cuicui-mint));
   --cuicui-gradient-soft: linear-gradient(
@@ -75,6 +79,7 @@
       [data-control-ui="button"][data-slot="root"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
     ) {
+    --cui-button-gap: 0.375rem;
     --cui-button-bg: var(--cuicui-control-bg);
     --cui-button-foreground: var(--foreground);
     --cui-button-hover-bg: var(--cuicui-control-hover);
@@ -95,7 +100,7 @@
     --cui-button-hover-foreground: oklch(1 0 0);
     --cui-button-press-bg: var(--primary);
     --cui-button-shadow: var(--cuicui-solid-shadow);
-    --cui-button-bg-image: var(--cuicui-gradient);
+    --cui-button-bg-image: linear-gradient(135deg, var(--cuicui-stops-legible));
     border-color: transparent;
   }
 
@@ -141,14 +146,6 @@
     --cui-button-active-shadow: 0 0 transparent;
   }
 
-  [data-skin="cuicui"]
-    :where(
-      [data-control-ui="button"][data-slot="content"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="content"][data-control-family="button"]
-    ) {
-    gap: 0.375rem;
-  }
-
   [data-skin="cuicui"] .cuicui-gradient-fill {
     background-color: var(--primary);
     background-image: var(--cuicui-gradient);
@@ -174,13 +171,7 @@
     --cui-tabs-list-padding: 0.25rem;
     --cui-tabs-list-background: var(--cuicui-control-bg);
     --cui-tabs-active-foreground: var(--primary-foreground);
-    --cui-tabs-indicator-background: linear-gradient(
-      to right,
-      oklch(from var(--cuicui-sky) 0.46 c h),
-      oklch(from var(--cuicui-violet) 0.46 c h),
-      oklch(from var(--cuicui-rose) 0.46 c h),
-      oklch(from var(--cuicui-orange) 0.46 c h)
-    );
+    --cui-tabs-indicator-background: linear-gradient(to right, var(--cuicui-stops-legible));
     --cui-tabs-indicator-shadow: 0 0 20px oklch(from var(--primary) l c h / 0.22);
   }
 
@@ -396,7 +387,7 @@
     --cui-sidebar-inner-radius: 0px;
     --cui-sidebar-inner-shadow: none;
     --cui-sidebar-menu-button-radius: var(--radius);
-    --cui-sidebar-menu-button-foreground: oklch(0 0 0 / 0.4);
+    --cui-sidebar-menu-button-foreground: oklch(0 0 0 / 0.55);
     --cui-sidebar-menu-button-hover-background: oklch(0 0 0 / 0.05);
     --cui-sidebar-menu-button-hover-foreground: oklch(0 0 0 / 0.7);
     --cui-sidebar-menu-button-active-background: oklch(0 0 0 / 0.05);
@@ -413,8 +404,9 @@
     letter-spacing: var(--tracking-tight);
   }
 
-  .dark [data-skin="cuicui"] :where([data-slot="root"][data-control-family="sidebar"]) {
-    --cui-sidebar-menu-button-foreground: oklch(1 0 0 / 0.4);
+  .dark[data-skin="cuicui"] :where([data-slot="root"][data-control-family="sidebar"]),
+  :where(.dark) [data-skin="cuicui"] :where([data-slot="root"][data-control-family="sidebar"]) {
+    --cui-sidebar-menu-button-foreground: oklch(1 0 0 / 0.55);
     --cui-sidebar-menu-button-hover-background: oklch(1 0 0 / 0.1);
     --cui-sidebar-menu-button-hover-foreground: oklch(1 0 0 / 0.7);
     --cui-sidebar-menu-button-active-background: oklch(1 0 0 / 0.1);
@@ -438,7 +430,7 @@
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="badge"]) {
     --cui-badge-radius: 9999px;
     --cui-badge-background: var(--cuicui-control-bg);
-    --cui-badge-foreground: var(--muted-foreground);
+    --cui-badge-foreground: var(--foreground);
     --cui-badge-border-color: var(--cuicui-border);
   }
 
@@ -609,7 +601,7 @@
     --cui-chat-message-radius: var(--radius-field);
     --cui-chat-message-corner-radius: var(--radius-field);
     --cui-chat-message-background: var(--primary);
-    --cui-chat-message-background-image: var(--cuicui-gradient);
+    --cui-chat-message-background-image: linear-gradient(135deg, var(--cuicui-stops-legible));
     --cui-chat-message-shadow: var(--shadow-sm);
     --cui-chat-message-foreground: white;
   }

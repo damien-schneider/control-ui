@@ -18,7 +18,7 @@
   --primary: oklch(0.5354 0.1543 259.46); /* XP selection blue */
   --primary-foreground: oklch(1 0 0);
   --muted: oklch(0.9501 0.0174 99.605);
-  --muted-foreground: oklch(0.5292 0.0245 98.401);
+  --muted-foreground: oklch(0.47 0.0245 98.401);
   --secondary: oklch(0.9318 0.0228 98.65);
   --secondary-foreground: oklch(0.2178 0 0);
   --accent: oklch(0.5354 0.1543 259.46); /* XP highlight = solid selection blue with white text */

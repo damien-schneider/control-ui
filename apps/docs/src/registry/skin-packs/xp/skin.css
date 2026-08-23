@@ -21,11 +21,10 @@
   --xp-tab-face-top: oklch(1 0 0);
   --xp-tab-face-bottom: oklch(0.9318 0.0228 98.65);
   --xp-tab-accent: oklch(0.7182 0.1505 61.354);
-  --xp-tab-accent-ink: oklch(0.2178 0 0);
   --xp-groupbox-border: oklch(0.8463 0.022 98.164);
   --xp-task-pane-top: oklch(0.9646 0.0166 271.243);
   --xp-task-pane-bottom: oklch(0.8693 0.0516 270.761);
-  --xp-link: oklch(0.5032 0.1754 260.787);
+  --xp-link: oklch(0.47 0.1754 260.787);
   --xp-bubble-user-top: oklch(0.9159 0.0302 260.711);
   --xp-bubble-user-bottom: oklch(0.8626 0.0449 259.947);
   --xp-scroll-track: oklch(0.9535 0.008 106.55);
@@ -58,7 +57,6 @@
   --xp-tab-face-top: oklch(0.3349 0.0104 253.978);
   --xp-tab-face-bottom: oklch(0.2795 0.0085 255.574);
   --xp-tab-accent: oklch(0.7002 0.1411 65.624);
-  --xp-tab-accent-ink: oklch(0.2178 0 0);
   --xp-groupbox-border: oklch(0.3624 0.0117 258.367);
   --xp-task-pane-top: oklch(0.2831 0.0326 269.245);
   --xp-task-pane-bottom: oklch(0.2405 0.0261 268.121);
@@ -90,9 +88,11 @@
       [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
     ) {
     --cui-button-radius: max(3px, var(--radius-control));
+    --cui-button-gap: 0.25rem;
     --cui-button-foreground: var(--foreground);
     --cui-button-hover-bg: transparent;
     --cui-button-hover-foreground: var(--foreground);
+    line-height: 1;
     --cui-button-press-bg: transparent;
     --cui-button-shadow: 0 0 transparent;
     --cui-button-active-bg: transparent;
@@ -158,15 +158,6 @@
     font-weight: 700;
   }
 
-  [data-skin="xp"]
-    :where(
-      [data-control-ui="button"][data-slot="content"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="content"][data-control-family="button"]
-    ) {
-    gap: 0.25rem;
-    line-height: 1;
-  }
-
   /* classic XP tab strip: baseline recipe keeps geometry/states; knobs re-value component-local vars.
      un-tokenizable Luna reading stays as rules: raised gradient boxes on the Luna desktop gray; active tab white,
      1px taller, cuts baseline, wears orange top stripe (tabs-indicator slides via Base UI --active-tab-* vars). */
@@ -182,14 +173,13 @@
     --cui-tabs-list-padding: 0px;
     --cui-tabs-list-background: transparent;
     --cui-tabs-foreground: var(--foreground);
-    --cui-tabs-active-foreground: var(--xp-tab-accent-ink);
+    --cui-tabs-active-foreground: var(--foreground);
     --cui-tabs-indicator-background: var(--xp-tab-accent);
     --cui-tabs-indicator-shadow: none;
   }
 
-  /* The browser variant drops the accent for the page surface, so the ink follows it back. */
+  /* The browser variant drops the accent stripe for the page surface it continues. */
   [data-skin="xp"] :where([data-slot="list"][data-variant="browser"][data-control-family="tabs"]) {
-    --cui-tabs-active-foreground: var(--foreground);
     --cui-tabs-indicator-background: var(--background);
   }
 
@@ -409,8 +399,8 @@
     --cui-sidebar-menu-button-radius: 0px;
     --cui-sidebar-menu-button-foreground: var(--xp-link);
     --cui-sidebar-menu-button-hover-background: oklch(from var(--primary) l c h / 0.1);
-    --cui-sidebar-menu-button-active-background: var(--primary);
-    --cui-sidebar-menu-button-active-foreground: var(--primary-foreground);
+    --cui-sidebar-menu-button-active-background: var(--card);
+    --cui-sidebar-menu-button-active-foreground: var(--xp-link);
     --cui-sidebar-group-label-foreground: var(--xp-link);
   }
 

@@ -60,6 +60,7 @@
       [data-control-ui="button"][data-slot="root"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
     ) {
+    --cui-button-gap: 0.375rem;
     --cui-button-press-scale: 1;
     --cui-button-hover-bg: var(--linear-row-hover);
     --cui-button-active-bg: var(--linear-row-active);
@@ -137,14 +138,6 @@
     --cui-button-active-shadow: 0 0 transparent;
   }
 
-  [data-skin="linear"]
-    :where(
-      [data-control-ui="button"][data-slot="content"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="content"][data-control-family="button"]
-    ) {
-    gap: 0.375rem;
-  }
-
   /* Re-values the library's pill knobs: a flat ink wash, never a raised card. */
   [data-skin="linear"] :where([data-slot="root"][data-control-family="track-highlight"]) {
     --cui-track-highlight-background: var(--linear-row-active);
@@ -165,7 +158,10 @@
 
 @layer components {
   [data-skin="linear"]
-    :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
+    :where(
+      [data-control-family="popup"][data-popup-part="surface"]:not([data-popup-kind="tooltip"]),
+      [data-control-family="popup"][data-popup-part="list-surface"]
+    ) {
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: var(--border);
     --cui-popup-shadow: var(--linear-menu-shadow);
@@ -236,7 +232,12 @@
     --cui-popup-shadow: var(--linear-modal-shadow);
   }
 
-  .dark
+  .dark[data-skin="linear"]
+    :where(
+      [data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"],
+      [data-control-ui="alert-dialog"][data-popup-part="surface"][data-control-family="popup"]
+    ),
+  :where(.dark)
     [data-skin="linear"]
     :where(
       [data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"],

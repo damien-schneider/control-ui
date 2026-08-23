@@ -269,12 +269,34 @@ function validateKnobBypass(file: string, rule: postcss.Rule, anatomies: readonl
   }
 }
 
+/**
+ * `.dark` lands on the same element as data-skin in an app that themes the whole page, and on an
+ * ancestor when a preview scopes a skin inside one. A rule written only as a descendant of `.dark`
+ * never matches the first shape, so its dark values silently vanish from the app: cover both.
+ */
+function validateModeScope(file: string, rule: postcss.Rule, selectors: any[]): void {
+  const isMode = (node: any) => node.type === "class" && (node.value === "dark" || node.value === "light");
+  const shapes = selectors.map((selector) => {
+    const compounds = directCompounds(selector);
+    const scopeIndex = compounds.findIndex((compound) => attributesIn(compound).some((a) => a.attribute === skinScopeAttribute));
+    if (scopeIndex < 0) return "unscoped";
+    if (compounds[scopeIndex].some(isMode)) return "self";
+    return compounds.slice(0, scopeIndex).some((compound) => compound.some(isMode)) ? "ancestor" : "unscoped";
+  });
+  if (shapes.includes("ancestor") && !shapes.includes("self")) {
+    failures.push(
+      `${file}:${rule.source?.start?.line ?? "?"} mode class only matches as an ancestor of ${skinScopeAttribute}, so it drops out when both sit on the same element: ${rule.selector}`,
+    );
+  }
+}
+
 function validateCss(file: string, source: string): void {
   try {
     const root = postcss.parse(source, { from: file });
     root.walkRules((rule) => {
       selectorParser((selectorRoot) => {
         selectorRoot.each((selector) => validateSelectorStructure(file, rule.selector.replace(/\s+/g, " "), selector));
+        validateModeScope(file, rule, [...selectorRoot.nodes]);
       }).processSync(rule.selector);
       const anatomies = resolveAnatomy(rule.selector);
       validateLayer(file, rule, anatomies.length > 0);

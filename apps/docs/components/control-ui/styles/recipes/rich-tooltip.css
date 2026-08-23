@@ -122,8 +122,8 @@
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="accent"]) {
     --_rich-tooltip-arrow-path-fill: var(--primary);
-    --_rich-tooltip-description-foreground: color-mix(in oklab, var(--primary-foreground) 85%, transparent);
-    --_rich-tooltip-progress-foreground: color-mix(in oklab, var(--primary-foreground) 75%, transparent);
+    --_rich-tooltip-description-foreground: var(--primary-foreground);
+    --_rich-tooltip-progress-foreground: var(--primary-foreground);
     border-radius: var(--cui-rich-tooltip-content-radius);
     background-color: var(--cui-rich-tooltip-content-background);
     color: var(--cui-rich-tooltip-content-foreground);
