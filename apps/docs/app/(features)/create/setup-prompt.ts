@@ -1,12 +1,13 @@
 import { themeArtifactBrief } from "@/components/theme-drawer/theme-artifact";
-import { createAppCommand } from "./command";
+import { createAppCommand, packageRunnerHints } from "./command";
 
 const PLACEHOLDER_PROJECT_NAME = "my-app";
 
 export function buildSetupPrompt({ origin }: { origin: string }) {
   const normalizedOrigin = origin.replace(/\/+$/, "");
+  const writtenPackageManager = "npm";
   const scaffold = createAppCommand({
-    packageManager: "npm",
+    packageManager: writtenPackageManager,
     projectName: PLACEHOLDER_PROJECT_NAME,
     registryBaseUrl: normalizedOrigin,
   });
@@ -14,7 +15,8 @@ export function buildSetupPrompt({ origin }: { origin: string }) {
   return `You are setting up Control UI in this repository, then designing its skin with me.
 
 Read the project first
-- If this directory has no package.json, scaffold a new app instead: \`${scaffold}\` — replace ${PLACEHOLDER_PROJECT_NAME} with the name I give you, and npx shadcn@latest with the runner for my package manager.
+- Every command here and in the catalog is written for npm. Read the lockfile and run mine instead — ${packageRunnerHints(writtenPackageManager)} — and the same for npm run: the scripts you add later are written with my runner too.
+- If this directory has no package.json, scaffold a new app instead: \`${scaffold}\` — replace ${PLACEHOLDER_PROJECT_NAME} with the name I give you.
 - Otherwise read package.json, the framework and its version, the Tailwind version, the CSS entry, and components.json if one already exists.
 - Tell me what you found and what you will install, then continue directly to Install. This is a status update, not an approval checkpoint; pause only if a required choice or destructive conflict blocks safe installation.
 

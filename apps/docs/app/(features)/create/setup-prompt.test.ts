@@ -4,6 +4,12 @@ import { buildSetupPrompt } from "./setup-prompt";
 describe("agent setup prompt", () => {
   const prompt = buildSetupPrompt({ origin: "https://control-ui.example/" });
 
+  test("hands over the runner for a package manager that is not npm", () => {
+    expect(prompt).toContain("pnpm → pnpm dlx shadcn@latest");
+    expect(prompt).toContain("bun → bunx --bun shadcn@latest");
+    expect(prompt).toContain("Read the lockfile and run mine instead");
+  });
+
   test("carries the scaffold command and the catalog the agent installs from", () => {
     expect(prompt).toContain("https://control-ui.example/r/next-app.json");
     expect(prompt).toContain("https://control-ui.example/r/agent-index.json");

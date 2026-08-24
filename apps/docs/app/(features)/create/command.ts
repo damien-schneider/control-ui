@@ -2,7 +2,7 @@ export const packageManagerIds = ["npm", "pnpm", "yarn", "bun"] as const;
 
 export type PackageManagerId = (typeof packageManagerIds)[number];
 
-const packageRunners: Record<PackageManagerId, string> = {
+export const packageRunners: Record<PackageManagerId, string> = {
   npm: "npx shadcn@latest",
   pnpm: "pnpm dlx shadcn@latest",
   yarn: "yarn dlx shadcn@latest",
@@ -15,6 +15,14 @@ const packageDevCommands: Record<PackageManagerId, string> = {
   yarn: "yarn dev",
   bun: "bun dev",
 };
+
+/** Written commands can only carry one runner, so agents reading them need the rest of the map spelled out. */
+export function packageRunnerHints(written: PackageManagerId) {
+  return packageManagerIds
+    .filter((id) => id !== written)
+    .map((id) => `${id} → ${packageRunners[id]}`)
+    .join(", ");
+}
 
 function isLocalRegistry(registryBaseUrl: string) {
   const hostname = new URL(registryBaseUrl).hostname;
