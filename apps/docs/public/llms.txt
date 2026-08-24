@@ -16,7 +16,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Lock-in](http://127.0.0.1:3000/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - [Theme accessibility](http://127.0.0.1:3000/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
-- [Control UI vs shadcn/ui](http://127.0.0.1:3000/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: skins, a typed token contract, and agent surfaces.
+- [Control UI vs shadcn/ui](http://127.0.0.1:3000/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.
 - [Best React component libraries for AI interfaces](http://127.0.0.1:3000/best-react-component-libraries-for-ai-interfaces): Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.
 
 ## AI components

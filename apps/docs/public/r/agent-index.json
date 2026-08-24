@@ -171,7 +171,7 @@
         "id": "control-ui-vs-shadcn-ui",
         "name": "Control UI vs shadcn/ui",
         "kind": "Guide",
-        "summary": "Both ship open-source React source through the shadcn CLI. The difference starts after install: skins, a typed token contract, and agent surfaces.",
+        "summary": "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.",
         "href": "/control-ui-vs-shadcn-ui"
       },
       {

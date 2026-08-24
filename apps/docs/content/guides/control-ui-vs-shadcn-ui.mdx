@@ -1,8 +1,10 @@
 <GuideSection id="short-answer" title="The short answer">
-  shadcn/ui is the general-purpose standard: a huge community assembling classic app UI from Radix primitives and
-  Tailwind classes. Control UI keeps the same install model and token vocabulary, then adds what agent products need on
-  top — a typed skin system, a stable component anatomy, and ready-made chat, composer, activity, and context surfaces.
-  Choose by product type, not by quality; both are MIT and both leave the source in your repository.
+  Both install through the shadcn CLI, keep the same core token names, and leave MIT source in your repository. The
+  difference starts one layer up. Control UI paints through typed CSS custom properties, so a single skin re-values the
+  whole system at once, and CI re-checks all 16 skin modes against WCAG AA on every commit. shadcn/ui leaves
+  paint and contrast to your team, and hands you a far larger pool of community recipes in return.
+
+  Both cover classic app UI. Choose on what you want to stop maintaining by hand, not on product type.
 </GuideSection>
 
 <GuideSection id="side-by-side" title="Side by side">
@@ -10,11 +12,14 @@
   | --- | --- | --- |
   | License | MIT, open source | MIT, open source |
   | Install model | Registry manifests copy editable source into `components/control-ui/*` | CLI copies editable source into `components/ui/*` |
-  | Primary scope | Primitives plus agent surfaces: chat, composers, activity, context, tasks | General application UI: forms, overlays, navigation, data display |
-  | Theming | Token contract resolved by skin packs; typed per-component `--cui-*` knobs | Theme file with CSS variables consumed by Tailwind utilities |
+  | Classic app UI | Forms, overlays, navigation, tables, sidebars — no chart, no carousel | Complete, chart and carousel included |
+  | Agent surfaces | Chat, composers, activity, context, tasks, citations | Not covered |
+  | Theming | Typed `--cui-*` knobs registered with `@property`, re-valued wholesale by a skin pack | Theme file with CSS variables consumed by Tailwind utilities |
   | Visual restyling | Swap or layer a whole skin without touching component source | Edit tokens and component classes per component |
   | Component anatomy | Stable `data-control-*` attributes that effects and extensions target | Not a stable public contract |
+  | Contrast | 16 skin modes re-checked against WCAG AA on every commit | No gate shipped |
   | Motion | Duration/easing tokens with a reduced-motion kill switch | Per-component transitions |
+  | Community | Younger and smaller | The largest in the React ecosystem |
   | Runtime coupling | None — components take plain props and children | None |
 
   Numbers change monthly; architecture does not. The rows above describe structure, so they age slower than star counts
@@ -36,10 +41,11 @@
 
 <GuideSection id="differences" title="Where they differ">
 
-  **Scope.** shadcn/ui covers the surfaces every product needs — dialogs, dropdowns, forms, tables. Control UI ships
-  those too, then extends into territory shadcn/ui does not address: streaming chat turns, prompt composers with
-  attachment rails, collapsible agent activity, context-window graphs, task progress, and citation previews. Building
-  those from base primitives is exactly the work agent teams repeat before writing their first feature.
+  **Scope.** Both ship the surfaces every product needs — dialogs, dropdowns, forms, tables, sidebars. Control UI then
+  extends into territory shadcn/ui does not address: streaming chat turns, prompt composers with attachment rails,
+  collapsible agent activity, context-window graphs, task progress, and citation previews. Building those from base
+  primitives is exactly the work agent teams repeat before writing their first feature. The trade runs the other way on
+  charts and carousels, which shadcn/ui has and Control UI does not.
 
   **Restyling depth.** With shadcn/ui, a redesign means editing class lists across installed components. Control UI
   separates paint from structure: components render through registered CSS custom properties, and a
@@ -51,18 +57,53 @@
   markup is an implementation detail that changes with updates.
 
   **Ecosystem gravity.** shadcn/ui wins this one outright: more contributors, more third-party examples, more Stack
-  Overflow answers. Control UI's community is younger and smaller. If your team relies on copying community recipes,
-  weight that honestly.
+  Overflow answers. Control UI's registry is younger and its community smaller. If your team relies on copying
+  community recipes, weight that honestly.
+</GuideSection>
+
+<GuideSection id="consistency" title="Consistency that is checked, not assumed">
+  Every component library claims a consistent design system. The question is what happens when someone re-values a
+  color six months in. Control UI answers it with a gate instead of a guideline.
+
+  <GuidePoints>
+    <GuidePoint>**Knobs are typed.** Every `--cui-*` knob is registered with `@property`: declared syntax, initial
+    value, inheritance. A bad value falls back to the declared initial instead of silently killing the paint, and
+    animatable knobs interpolate rather than snap.</GuidePoint>
+    <GuidePoint>**16 skin modes, audited on every commit.** `bun run validate` walks all eight skin packs in light and
+    dark, resolving canonical theme colors and rendered anatomy alike — popup surfaces, badge borders, active tabs —
+    and fails the build if any of the 91 required checks drops below WCAG AA.</GuidePoint>
+    <GuidePoint>**Focus survives the skin.** Forced-colors focus indicators pass on all 8 skins, and label-wrapped
+    controls keep a visible ring in all 16 modes. Both run in the same pass.</GuidePoint>
+    <GuidePoint>**The contract is published.** The audited pairs ship as `/r/contrast-anatomy.json` and the full knob
+    surface as `/r/skin-contract.json`, so a coding agent can read what it is allowed to re-value before it edits
+    anything. See [agent surface](/agent-surface).</GuidePoint>
+  </GuidePoints>
+
+  One honest limit: the runner lives in this repository, not in your install, so a skin you write yourself is not
+  audited automatically today. What you inherit is the shipped skins already clearing the bar and the published anatomy
+  list to point your own checks at. [Lock-in](/lock-in) covers where that governance sits.
 </GuideSection>
 
 <GuideSection id="choose" title="Which one to choose">
-  Build a dashboard, marketing site, or SaaS console? Use shadcn/ui — its breadth and community are unmatched for
-  classic app UI, and nothing here argues otherwise.
+  Not by product type. A dashboard built on Control UI gets the same primitives plus the skin system and the contrast
+  gate. Choose on these instead:
 
-  Shipping an AI product — chat assistants, coding agents, voice surfaces? Control UI starts where shadcn/ui stops: the
-  agent surfaces already exist, the [runtime boundary](/architecture) stays clean so no model provider leaks into
-  components, and a skin gives the product a complete visual identity on day one.
+  <GuidePoints>
+    <GuidePoint>**You want a brand that survives a redesign.** Control UI. Paint lives in the skin, not in class lists
+    spread across installed components, so a rebrand is a pack swap rather than a sweep.
+    [Create a skin](/create-a-skin) is the entry point.</GuidePoint>
+    <GuidePoint>**You are shipping an AI product.** Control UI. Chat turns, composers, agent activity, context graphs,
+    task progress and citations already exist, and the [runtime boundary](/architecture) keeps model providers out of
+    components.</GuidePoint>
+    <GuidePoint>**Accessibility is somebody's job on your team.** Control UI. Sixteen audited skin modes and a
+    published anatomy list beat a per-component contrast review that nobody repeats after launch.</GuidePoint>
+    <GuidePoint>**Your team moves by copying community recipes.** shadcn/ui. More contributors, more third-party
+    blocks, more answers when something breaks at 2am. That is the one thing a younger registry cannot hand
+    you.</GuidePoint>
+    <GuidePoint>**You need charts or a carousel today.** shadcn/ui ships both and Control UI does not. Installing
+    shadcn's alongside costs nothing: they write to different directories.</GuidePoint>
+  </GuidePoints>
 
-  Mixed product? They coexist cleanly. Many teams keep their existing `components/ui/*`, install Control UI alongside,
-  and adopt its agent surfaces first. The [getting started guide](/get-started) covers both paths.
+  Running both is the common case, not a compromise. Many teams keep their existing `components/ui/*`, install Control
+  UI beside it, and adopt the agent surfaces first. [Getting started](/get-started) covers both paths.
 </GuideSection>

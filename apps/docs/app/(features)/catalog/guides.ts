@@ -134,12 +134,13 @@ export const guideEntries = [
     kind: "Guide",
     name: "Control UI vs shadcn/ui",
     summary:
-      "Both ship open-source React source through the shadcn CLI. The difference starts after install: skins, a typed token contract, and agent surfaces.",
+      "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.",
     sections: [
       { id: "short-answer", title: "The short answer" },
       { id: "side-by-side", title: "Side by side" },
       { id: "alignment", title: "Where they align" },
       { id: "differences", title: "Where they differ" },
+      { id: "consistency", title: "Consistency that is checked, not assumed" },
       { id: "choose", title: "Which one to choose" },
     ],
     comparedApplications: [
@@ -150,7 +151,12 @@ export const guideEntries = [
       {
         question: "Is Control UI a replacement for shadcn/ui?",
         answer:
-          "No. Control UI is a separate registry that follows shadcn conventions — CLI install, owned source, compatible token names. You can run both side by side in one app, and existing shadcn theme values can seed a Control UI skin.",
+          "It can be. Control UI covers the classic app surface — forms, overlays, navigation, tables, sidebars — so most projects could run on it alone; charts and carousels are the notable gaps. It is a separate registry rather than a fork, following shadcn conventions of CLI install, owned source, and compatible token names, so running both side by side stays a first-class option.",
+      },
+      {
+        question: "Should I use shadcn/ui instead of Control UI for a dashboard or SaaS console?",
+        answer:
+          "Not automatically. Both cover the primitives a dashboard needs, and Control UI adds a skin system and a contrast gate that re-checks 16 skin modes against WCAG AA on every commit. Pick shadcn/ui when you rely on its larger pool of community recipes, or when you need its chart and carousel components today.",
       },
       {
         question: "Can I use Control UI and shadcn/ui components in the same project?",

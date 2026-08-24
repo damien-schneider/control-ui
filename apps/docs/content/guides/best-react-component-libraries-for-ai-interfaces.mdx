@@ -14,9 +14,9 @@
 
 <GuideSection id="shadcn-ui" title="shadcn/ui">
   [shadcn/ui](https://ui.shadcn.com) is the default answer for owned-source React UI. Radix primitives, Tailwind
-  styling, source copied into `components/ui/*`, and the largest ecosystem in this list by every community measure. For
-  classic application UI it remains our own baseline — Control UI follows its install conventions for exactly that
-  reason.
+  styling, source copied into `components/ui/*`, and the largest ecosystem in this list by every community measure.
+  Control UI follows its install conventions for exactly that reason, and its community remains the strongest argument
+  for reaching for it first.
 
   For agent products specifically, you get excellent raw material and no opinions: chat turns, composer state,
   attachment handling, and activity feeds are yours to assemble from primitives. Teams regularly do it — which is why
@@ -69,8 +69,9 @@
 
   Architecturally: components take plain props and children with zero model-runner coupling; painting flows entirely
   through registered CSS custom properties, so [skin packs](/skins) re-value a whole visual identity over one component
-  tree; motion rides duration tokens with a reduced-motion kill switch; and a stable anatomy lets extensions follow
-  controls app-wide. Full disclosure, stated plainly: this library is ours, and this page is where we argue its case —
+  tree; motion rides duration tokens with a reduced-motion kill switch; a stable anatomy lets extensions follow
+  controls app-wide; and every skin mode is re-checked against WCAG AA on each commit. Full disclosure, stated
+  plainly: this library is ours, and this page is where we argue its case —
   the criteria above are the counterweight.
 </GuideSection>
 
@@ -82,13 +83,14 @@
   | MUI | npm package | JS theme objects + CSS-in-JS | None | Agnostic | Maximum breadth, enterprise apps |
   | Ant Design | npm package | Own token system | None | Agnostic | Dense internal tools |
   | Chakra UI | npm package | Style props → CSS variables | None | Agnostic | Small teams, general products |
-  | Control UI | Source in repo | Token contract + skin packs | Native, agent-wide | Agnostic by contract | Owned-source AI products |
+  | Control UI | Source in repo | Token contract + skin packs | Native, agent-wide | Agnostic by contract | Owned-source products, agent surfaces included |
 
   All six are MIT-licensed and free for commercial use.
 </GuideSection>
 
 <GuideSection id="recommendation" title="Which one for your product">
-  - **General SaaS, no agent ambitions** — shadcn/ui first, MUI when breadth matters more than ownership.
+  - **General SaaS, no agent ambitions** — shadcn/ui when community recipes carry your team, Control UI when the brand
+    has to hold across a redesign, MUI when breadth matters more than ownership.
   - **One embedded chat panel on an existing AI-SDK stack** — assistant-ui gets you there fastest.
   - **Internal ops console** — Ant Design's density is genuinely unmatched.
   - **An AI product as the product** — chat, tasks, activity, and context as core UX, with a brand that survives
