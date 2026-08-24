@@ -7,8 +7,8 @@ Read the project first
 
 Install
 - The catalog is http://127.0.0.1:3000/r/agent-index.json and every item carries its own install command. http://127.0.0.1:3000/llms.txt indexes the documentation.
-- Install exactly one skin pack. Core owns the mechanics and the skin owns every token value, so with no pack installed there is no fallback to render against.
-- Start from a pack that installs nothing but its own three files, so the direction we choose later is an overwrite rather than a cleanup. Name the pack you started from and tell me it is a starting point, not the answer.
+- Install exactly one skin pack, and unless I ask for a stock pack by name, install `http://127.0.0.1:3000/r/skin-flat.json`. Core owns the mechanics and the skin owns every token value, so with no pack installed there is no fallback to render against.
+- Flat is the neutral reset: an empty skin.css and no adornments, so the theme we write later owns every value. Every other pack re-values component knobs and can install adornments and layout defaults that a theme cannot undo, which is why a pack is a choice I make, not a resemblance you pick for me.
 - Install only the components this application needs. Installed files are source I own, so take them from the registry and never hand-copy them out of the documentation.
 - Installing moves this app's own dependency versions. List every package it added or changed, and revert any change no installed item required.
 
@@ -17,6 +17,18 @@ Wire it
 - The registry writes `../components/…`. When the CSS entry does not sit beside components/ — app/globals.css with the components under src/ — correct the prefix to `../src/components/…` or none of it resolves.
 - Stamp data-skin on the root element with the installed pack's id. A missing or misspelled id fails silently: the page keeps its tokens while every portalled surface — popover, dialog, menu, tooltip — renders with none.
 - Start the dev server and confirm that a control paints and that one portalled surface opens with its tokens. Do not move on until both do.
+
+Leave an update path
+- Add two package.json scripts so refreshing installed source is one command later: control-ui:diff runs the install command again with --diff, control-ui:update runs it with --overwrite.
+- Both list exactly the items you installed. http://127.0.0.1:3000/r/update.json is the complete component set, so it belongs in the scripts only if you installed the complete set.
+- Say that the diff comes first and the overwrite wants a clean tree, because it rewrites source I own. The three skin files are never touched by either.
+
+Where shadcn/ui already sits
+- Only when this app imports its own components/ui/*: ask me whether to move the obvious call sites — button, dropdown, dialog, tooltip — onto Control UI, or leave them where they are. Never migrate without my answer.
+- Both libraries write to different directories and run side by side, so leaving them is a real answer, not a half-measure.
+- The props are not drop-in. Before you rewrite a call site, read the exported prop types of the installed Control UI component and tell me the mapping you derived: shadcn's variant and size collapse onto variant, tone, size and iconOnly, asChild becomes render, and a shadcn variant with no counterpart is a question for me, not a guess.
+- Move one component at a time and confirm the app still paints between each.
+- Leave the shadcn source in place. Tell me when nothing imports it any more; deleting it is my call.
 
 Discovery
 - Do not start discovery until every Install and Wire it step above has completed successfully.
@@ -27,7 +39,8 @@ Discovery
 - If this project had no interface, skip the question, treat it as B, and ask me for the style and any references.
 - On A, read the existing theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
 - On B, work from my description and my reference images, covering color, typography, density, corners, elevation, and motion.
-- The pack you installed owns every token you never override. Once the direction is clear, install the pack whose defaults land closest to it with --overwrite and update data-skin, or say why the one you started from already is the closest.
+- Stay on the neutral reset pack and let the theme carry the direction. Only when I name a stock pack for its own character do you install it with --overwrite and update data-skin.
+- Resemblance is not a reason to switch packs: a pack's knob overrides and adornments outlive any theme written on top of it.
 - Ask one focused question at a time, with at most four questions total.
 - If I have attached no reference images yet, ask for them in this coding-agent conversation. If I have none, continue from the description.
 - Use reference images for their visual language, not their literal content.

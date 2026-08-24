@@ -207,7 +207,8 @@ function themeDiscoveryBrief(mode: ThemeDiscoveryMode) {
 - If this project had no interface, skip the question, treat it as B, and ask me for the style and any references.
 - On A, read the existing theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
 - On B, work from my description and my reference images, covering color, typography, density, corners, elevation, and motion.
-- The pack you installed owns every token you never override. Once the direction is clear, install the pack whose defaults land closest to it with --overwrite and update data-skin, or say why the one you started from already is the closest.`;
+- Stay on the neutral reset pack and let the theme carry the direction. Only when I name a stock pack for its own character do you install it with --overwrite and update data-skin.
+- Resemblance is not a reason to switch packs: a pack's knob overrides and adornments outlive any theme written on top of it.`;
   }
 
   return "- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.";

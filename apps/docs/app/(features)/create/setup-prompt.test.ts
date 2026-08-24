@@ -27,17 +27,32 @@ describe("agent setup prompt", () => {
     expect(prompt).not.toContain("undefined");
   });
 
+  test("starts on the neutral reset pack the theme can fully own", () => {
+    expect(prompt).toContain("install `https://control-ui.example/r/skin-flat.json`");
+    expect(prompt).toContain("an empty skin.css and no adornments");
+    expect(prompt).toContain("Resemblance is not a reason to switch packs");
+  });
+
   test("settles the direction after the install it can overwrite", () => {
-    const startingPack = prompt.indexOf("tell me it is a starting point, not the answer");
     const setupComplete = prompt.indexOf("Do not move on until both do");
     const discoveryGate = prompt.indexOf("Do not start discovery until every Install and Wire it step above has completed successfully");
     const directionChoice = prompt.indexOf("Should Control UI match this app's existing look, or do you want a new direction?");
 
-    expect(startingPack).toBeGreaterThan(-1);
-    expect(setupComplete).toBeGreaterThan(startingPack);
+    expect(setupComplete).toBeGreaterThan(-1);
     expect(discoveryGate).toBeGreaterThan(setupComplete);
     expect(directionChoice).toBeGreaterThan(discoveryGate);
     expect(prompt).toContain("attach reference images if you have any");
-    expect(prompt).toContain("install the pack whose defaults land closest to it with --overwrite and update data-skin");
+  });
+
+  test("leaves an update path that matches what was installed", () => {
+    expect(prompt).toContain("control-ui:diff");
+    expect(prompt).toContain("control-ui:update");
+    expect(prompt).toContain("https://control-ui.example/r/update.json is the complete component set");
+  });
+
+  test("offers the shadcn call sites instead of migrating them silently", () => {
+    expect(prompt).toContain("Never migrate without my answer");
+    expect(prompt).toContain("read the exported prop types of the installed Control UI component");
+    expect(prompt).toContain("Leave the shadcn source in place");
   });
 });
