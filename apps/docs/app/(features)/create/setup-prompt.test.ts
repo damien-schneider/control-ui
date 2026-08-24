@@ -16,21 +16,9 @@ describe("agent setup prompt", () => {
   });
 
   test("continues through installation instead of treating the repository report as an approval checkpoint", () => {
-    expect(prompt).toContain("then continue directly to Choose the direction with me");
+    expect(prompt).toContain("then continue directly to Install");
     expect(prompt).toContain("This is a status update, not an approval checkpoint");
-  });
-
-  test("settles the direction before the skin pack it decides is installed", () => {
-    const directionChoice = prompt.indexOf("Ask me this before you install anything, and wait for my answer");
-    const packChoice = prompt.indexOf("pick the skin pack whose defaults land closest to that direction");
-    const install = prompt.indexOf("Install exactly one skin pack: the one you picked above");
-
-    expect(directionChoice).toBeGreaterThan(-1);
-    expect(packChoice).toBeGreaterThan(directionChoice);
-    expect(install).toBeGreaterThan(packChoice);
-    expect(prompt).toContain("Never pick one silently");
     expect(prompt).toContain("List every package it added or changed");
-    expect(prompt).toContain("attach reference images if you have any");
   });
 
   test("leaves the base skin for the agent to fill, since it installs the pack itself", () => {
@@ -39,16 +27,17 @@ describe("agent setup prompt", () => {
     expect(prompt).not.toContain("undefined");
   });
 
-  test("resumes the chosen direction after setup instead of re-asking for it", () => {
+  test("settles the direction after the install it can overwrite", () => {
+    const startingPack = prompt.indexOf("tell me it is a starting point, not the answer");
     const setupComplete = prompt.indexOf("Do not move on until both do");
     const discoveryGate = prompt.indexOf("Do not start discovery until every Install and Wire it step above has completed successfully");
+    const directionChoice = prompt.indexOf("Should Control UI match this app's existing look, or do you want a new direction?");
 
-    expect(setupComplete).toBeGreaterThan(-1);
+    expect(startingPack).toBeGreaterThan(-1);
+    expect(setupComplete).toBeGreaterThan(startingPack);
     expect(discoveryGate).toBeGreaterThan(setupComplete);
-    expect(prompt).toContain("Continue from the direction I already chose; never ask me to choose it again");
-    expect(prompt).toContain(
-      "If I chose to match the existing look, use its theme tokens, CSS, typography, spacing, components, and representative screens",
-    );
-    expect(prompt).toContain("If I chose a new direction, deepen the brief I already gave you");
+    expect(directionChoice).toBeGreaterThan(discoveryGate);
+    expect(prompt).toContain("attach reference images if you have any");
+    expect(prompt).toContain("install the pack whose defaults land closest to it with --overwrite and update data-skin");
   });
 });

@@ -3,22 +3,12 @@ You are setting up Control UI in this repository, then designing its skin with m
 Read the project first
 - If this directory has no package.json, scaffold a new app instead: `npx shadcn@latest init --template next --defaults --name my-app --no-monorepo --force http://127.0.0.1:3000/r/next-app.json && cd my-app && npm run dev -- --port 3001` — replace my-app with the name I give you, and npx shadcn@latest with the runner for my package manager.
 - Otherwise read package.json, the framework and its version, the Tailwind version, the CSS entry, and components.json if one already exists.
-- Tell me what you found and what you will install, then continue directly to Choose the direction with me. This is a status update, not an approval checkpoint; pause only if a required choice or destructive conflict blocks safe installation.
-
-Choose the direction with me
-- The skin pack you install owns every token value you never override, so which pack you start from is a design decision. Never pick one silently.
-- Ask me this before you install anything, and wait for my answer:
-  "Should Control UI match this app's existing look, or do you want a new direction?
-   A — Match: I read your current styles and build a skin that sits beside them.
-   B — New: tell me the style you want, and attach reference images if you have any."
-- If this directory had no interface, skip the question, treat it as B, and ask me for the style and any references.
-- On A, read the existing theme tokens, CSS, typography, spacing, components, and representative screens before you choose. Do not ask me to describe what the code already shows.
-- On B, get my description and my reference images first. Read references for their visual language, not their literal content.
-- Then pick the skin pack whose defaults land closest to that direction, and tell me which one and why. Every pack is a catalog item installed from /r/skin-<id>.json.
+- Tell me what you found and what you will install, then continue directly to Install. This is a status update, not an approval checkpoint; pause only if a required choice or destructive conflict blocks safe installation.
 
 Install
 - The catalog is http://127.0.0.1:3000/r/agent-index.json and every item carries its own install command. http://127.0.0.1:3000/llms.txt indexes the documentation.
-- Install exactly one skin pack: the one you picked above. Core owns the mechanics and the skin owns every token value, so with no pack installed there is no fallback to render against.
+- Install exactly one skin pack. Core owns the mechanics and the skin owns every token value, so with no pack installed there is no fallback to render against.
+- Start from a pack that installs nothing but its own three files, so the direction we choose later is an overwrite rather than a cleanup. Name the pack you started from and tell me it is a starting point, not the answer.
 - Install only the components this application needs. Installed files are source I own, so take them from the registry and never hand-copy them out of the documentation.
 - Installing moves this app's own dependency versions. List every package it added or changed, and revert any change no installed item required.
 
@@ -30,9 +20,14 @@ Wire it
 
 Discovery
 - Do not start discovery until every Install and Wire it step above has completed successfully.
-- Continue from the direction I already chose; never ask me to choose it again.
-- If I chose to match the existing look, use its theme tokens, CSS, typography, spacing, components, and representative screens as the visual brief. Tell me what you found; do not ask me to describe what the code already shows.
-- If I chose a new direction, deepen the brief I already gave you: color, typography, density, corners, elevation, and motion.
+- Then ask me this, and wait for my answer:
+  "Should Control UI match this app's existing look, or do you want a new direction?
+   A — Match: I read your current styles and build a skin that sits beside them.
+   B — New: tell me the style you want, and attach reference images if you have any."
+- If this project had no interface, skip the question, treat it as B, and ask me for the style and any references.
+- On A, read the existing theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
+- On B, work from my description and my reference images, covering color, typography, density, corners, elevation, and motion.
+- The pack you installed owns every token you never override. Once the direction is clear, install the pack whose defaults land closest to it with --overwrite and update data-skin, or say why the one you started from already is the closest.
 - Ask one focused question at a time, with at most four questions total.
 - If I have attached no reference images yet, ask for them in this coding-agent conversation. If I have none, continue from the description.
 - Use reference images for their visual language, not their literal content.

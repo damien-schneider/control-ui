@@ -200,9 +200,14 @@ function compactContract() {
 function themeDiscoveryBrief(mode: ThemeDiscoveryMode) {
   if (mode === "existing-project") {
     return `- Do not start discovery until every Install and Wire it step above has completed successfully.
-- Continue from the direction I already chose; never ask me to choose it again.
-- If I chose to match the existing look, use its theme tokens, CSS, typography, spacing, components, and representative screens as the visual brief. Tell me what you found; do not ask me to describe what the code already shows.
-- If I chose a new direction, deepen the brief I already gave you: color, typography, density, corners, elevation, and motion.`;
+- Then ask me this, and wait for my answer:
+  "Should Control UI match this app's existing look, or do you want a new direction?
+   A — Match: I read your current styles and build a skin that sits beside them.
+   B — New: tell me the style you want, and attach reference images if you have any."
+- If this project had no interface, skip the question, treat it as B, and ask me for the style and any references.
+- On A, read the existing theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
+- On B, work from my description and my reference images, covering color, typography, density, corners, elevation, and motion.
+- The pack you installed owns every token you never override. Once the direction is clear, install the pack whose defaults land closest to it with --overwrite and update data-skin, or say why the one you started from already is the closest.`;
   }
 
   return "- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.";
