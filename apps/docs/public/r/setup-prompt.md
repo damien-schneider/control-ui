@@ -3,7 +3,7 @@ You are setting up Control UI in this repository, then designing its skin with m
 Read the project first
 - If this directory has no package.json, scaffold a new app instead: `npx shadcn@latest init --template next --defaults --name my-app --no-monorepo --force http://127.0.0.1:3000/r/next-app.json && cd my-app && npm run dev -- --port 3001` — replace my-app with the name I give you, and npx shadcn@latest with the runner for my package manager.
 - Otherwise read package.json, the framework and its version, the Tailwind version, the CSS entry, and components.json if one already exists.
-- Tell me what you found and what you intend to install before you install it.
+- Tell me what you found and what you will install, then continue directly to Install. This is a status update, not an approval checkpoint; pause only if a required choice or destructive conflict blocks safe installation.
 
 Install
 - The catalog is http://127.0.0.1:3000/r/agent-index.json and every item carries its own install command. http://127.0.0.1:3000/llms.txt indexes the documentation.
@@ -17,7 +17,8 @@ Wire it
 - Start the dev server and confirm that a control paints and that one portalled surface opens with its tokens. Do not move on until both do.
 
 Discovery
-- After installation and wiring are verified, if this project already had an interface, ask me: "Should Control UI match this application's existing visual language, or should we create a new direction?"
+- Do not start discovery until every Install and Wire it step above has completed successfully.
+- If this project already had an interface, ask me: "Should Control UI match this application's existing visual language, or should we create a new direction?"
 - If I choose the existing visual language, inspect its theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
 - If I choose a new direction, or this project was newly scaffolded, ask me to describe the style I want, including color, typography, density, corners, elevation, and motion.
 - Ask one focused question at a time, with at most four questions total.

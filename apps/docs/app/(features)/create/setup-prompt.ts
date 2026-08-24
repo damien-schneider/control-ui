@@ -16,7 +16,7 @@ export function buildSetupPrompt({ origin }: { origin: string }) {
 Read the project first
 - If this directory has no package.json, scaffold a new app instead: \`${scaffold}\` — replace ${PLACEHOLDER_PROJECT_NAME} with the name I give you, and npx shadcn@latest with the runner for my package manager.
 - Otherwise read package.json, the framework and its version, the Tailwind version, the CSS entry, and components.json if one already exists.
-- Tell me what you found and what you intend to install before you install it.
+- Tell me what you found and what you will install, then continue directly to Install. This is a status update, not an approval checkpoint; pause only if a required choice or destructive conflict blocks safe installation.
 
 Install
 - The catalog is ${normalizedOrigin}/r/agent-index.json and every item carries its own install command. ${normalizedOrigin}/llms.txt indexes the documentation.

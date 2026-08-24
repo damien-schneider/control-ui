@@ -199,7 +199,8 @@ function compactContract() {
 
 function themeDiscoveryBrief(mode: ThemeDiscoveryMode) {
   if (mode === "existing-project") {
-    return `- After installation and wiring are verified, if this project already had an interface, ask me: "Should Control UI match this application's existing visual language, or should we create a new direction?"
+    return `- Do not start discovery until every Install and Wire it step above has completed successfully.
+- If this project already had an interface, ask me: "Should Control UI match this application's existing visual language, or should we create a new direction?"
 - If I choose the existing visual language, inspect its theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
 - If I choose a new direction, or this project was newly scaffolded, ask me to describe the style I want, including color, typography, density, corners, elevation, and motion.`;
   }
