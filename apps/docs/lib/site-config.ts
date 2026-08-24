@@ -13,9 +13,9 @@ function canonicalSiteUrl() {
 
 export const siteConfig = {
   name: "Control UI",
-  title: "Control UI — React components for AI interfaces",
+  title: "Control UI — React component library for AI interfaces",
   description:
-    "Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as source you own.",
+    "Open-source React component library for AI interfaces. Tailwind CSS styling, a shadcn-compatible registry, and complete blocks installed as source you own.",
   locale: "en_US",
   language: "en",
   url: canonicalSiteUrl(),

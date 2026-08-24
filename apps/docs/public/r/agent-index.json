@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 164,
+    "count": 166,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/skin-contract.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -166,6 +166,20 @@
         "kind": "Guide",
         "summary": "Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.",
         "href": "/theme-ai-builder"
+      },
+      {
+        "id": "control-ui-vs-shadcn-ui",
+        "name": "Control UI vs shadcn/ui",
+        "kind": "Guide",
+        "summary": "Both ship open-source React source through the shadcn CLI. The difference starts after install: skins, a typed token contract, and agent surfaces.",
+        "href": "/control-ui-vs-shadcn-ui"
+      },
+      {
+        "id": "best-react-component-libraries-for-ai-interfaces",
+        "name": "Best React component libraries for AI interfaces",
+        "kind": "Guide",
+        "summary": "Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.",
+        "href": "/best-react-component-libraries-for-ai-interfaces"
       },
       {
         "id": "skins",

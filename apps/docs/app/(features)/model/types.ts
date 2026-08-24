@@ -164,6 +164,10 @@ export type GuideSection = {
     | "update-install";
 };
 
+export type ComparedApplication = { name: string; url: string };
+
+export type GuideFaq = { question: string; answer: string };
+
 export type GuidePage = {
   id: GuideId;
   name: string;
@@ -171,6 +175,8 @@ export type GuidePage = {
   layout?: "default" | "wide";
   cta?: boolean;
   sections: GuideSection[];
+  comparedApplications?: readonly ComparedApplication[];
+  faqs?: readonly GuideFaq[];
 };
 
 export type DocsSkill = {

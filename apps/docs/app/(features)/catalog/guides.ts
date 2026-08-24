@@ -127,6 +127,89 @@ export const guideEntries = [
     layout: "wide",
     sections: [],
   },
+  {
+    id: "control-ui-vs-shadcn-ui",
+    kind: "Guide",
+    name: "Control UI vs shadcn/ui",
+    summary:
+      "Both ship open-source React source through the shadcn CLI. The difference starts after install: skins, a typed token contract, and agent surfaces.",
+    sections: [
+      { id: "short-answer", title: "The short answer" },
+      { id: "side-by-side", title: "Side by side" },
+      { id: "alignment", title: "Where they align" },
+      { id: "differences", title: "Where they differ" },
+      { id: "choose", title: "Which one to choose" },
+    ],
+    comparedApplications: [
+      { name: "shadcn/ui", url: "https://ui.shadcn.com" },
+      { name: "Control UI", url: "https://control-ui.dev" },
+    ],
+    faqs: [
+      {
+        question: "Is Control UI a replacement for shadcn/ui?",
+        answer:
+          "No. Control UI is a separate registry that follows shadcn conventions — CLI install, owned source, compatible token names. You can run both side by side in one app, and existing shadcn theme values can seed a Control UI skin.",
+      },
+      {
+        question: "Can I use Control UI and shadcn/ui components in the same project?",
+        answer:
+          "Yes. Both install as plain source under your own directories and share the core shadcn token vocabulary like --background and --primary. Neither writes into the other's files, so they coexist without coordination.",
+      },
+      {
+        question: "Does Control UI require Tailwind CSS?",
+        answer:
+          "The docs app is built with Tailwind v4 and installed components are styled for it, but painting happens through CSS custom properties (--cui-* knobs and theme tokens). Any setup that serves those variables can host the components.",
+      },
+      {
+        question: "How do licensing and ownership differ?",
+        answer:
+          "Both are MIT-licensed open source. Both copy source into your repository instead of shipping a versioned dependency package, so you own and edit every installed line either way.",
+      },
+    ],
+  },
+  {
+    id: "best-react-component-libraries-for-ai-interfaces",
+    kind: "Guide",
+    name: "Best React component libraries for AI interfaces",
+    summary:
+      "Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.",
+    sections: [
+      { id: "criteria", title: "How we evaluated" },
+      { id: "shadcn-ui", title: "shadcn/ui" },
+      { id: "assistant-ui", title: "assistant-ui" },
+      { id: "material-ui", title: "Material UI (MUI)" },
+      { id: "ant-design", title: "Ant Design" },
+      { id: "chakra-ui", title: "Chakra UI" },
+      { id: "control-ui", title: "Control UI" },
+      { id: "summary-table", title: "Summary table" },
+      { id: "recommendation", title: "Which one for your product" },
+    ],
+    comparedApplications: [
+      { name: "shadcn/ui", url: "https://ui.shadcn.com" },
+      { name: "assistant-ui", url: "https://www.assistant-ui.com" },
+      { name: "Material UI", url: "https://mui.com/material-ui/" },
+      { name: "Ant Design", url: "https://ant.design" },
+      { name: "Chakra UI", url: "https://chakra-ui.com" },
+      { name: "Control UI", url: "https://control-ui.dev" },
+    ],
+    faqs: [
+      {
+        question: "What is the best React component library for AI chat interfaces?",
+        answer:
+          "For owned-source agent interfaces, Control UI ships chat, composer, activity, and context surfaces with swappable skins and no runtime coupling. For general apps adding one chat panel, assistant-ui offers ready-made primitives wired to popular AI SDK runtimes.",
+      },
+      {
+        question: "Are these React component libraries free?",
+        answer:
+          "All six profiled libraries are MIT-licensed open source and free for commercial use. They differ in what ships after install: versioned npm packages (MUI, Ant Design, Chakra) versus source copied into your repository (shadcn/ui, assistant-ui, Control UI).",
+      },
+      {
+        question: "What makes a component library suitable for AI products?",
+        answer:
+          "Streaming-friendly message and activity surfaces, token-level theming so generated UI matches brand constraints, and runtime independence — the UI must not hard-wire one model provider, transport, or store lifecycle.",
+      },
+    ],
+  },
 ] as const satisfies readonly {
   id: string;
   kind: "Guide";
@@ -135,4 +218,6 @@ export const guideEntries = [
   layout?: "default" | "wide";
   cta?: true;
   sections: readonly GuideSectionCatalogEntry[];
+  comparedApplications?: readonly { name: string; url: string }[];
+  faqs?: readonly { question: string; answer: string }[];
 }[];

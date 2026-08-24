@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { guideEntries } from "@/app/(features)/catalog/guides";
 import { catalogOverviews } from "@/app/(features)/catalog/overviews";
 import { docsPageForPath } from "@/app/(features)/catalog/pages";
 import { socialImagePath, socialImageSize } from "@/app/(features)/seo/social-image-config";
@@ -11,7 +12,7 @@ const llmsAlternates = {
 const openGraphImage = {
   url: "/opengraph-image",
   ...socialImageSize,
-  alt: "Control UI — React components for AI interfaces",
+  alt: "Control UI — React component library for AI interfaces",
 };
 
 const twitterImage = {
@@ -113,7 +114,7 @@ export function docsSeoForPath(pathname: string) {
     socialImage: {
       url: socialImagePath(pathname),
       alt: socialTitle,
-      title: isSiteOverview ? "React components for AI interfaces" : page.name,
+      title: isSiteOverview ? "React component library for AI interfaces" : page.name,
       label: socialImageLabel,
       status: page.status,
     },
@@ -176,6 +177,23 @@ export function SiteStructuredData() {
             inLanguage: siteConfig.language,
             publisher: { "@id": `${siteConfig.url.origin}/#organization` },
           },
+          {
+            "@type": "SoftwareApplication",
+            "@id": `${siteConfig.url.origin}/#software`,
+            name: siteConfig.name,
+            url: siteConfig.url.origin,
+            description: siteConfig.description,
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Web",
+            isAccessibleForFree: true,
+            license: "https://opensource.org/licenses/MIT",
+            publisher: { "@id": `${siteConfig.url.origin}/#organization` },
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+          },
         ],
       }}
     />
@@ -185,6 +203,10 @@ export function SiteStructuredData() {
 export function DocsPageStructuredData({ pathname }: { pathname: string }) {
   const seo = docsSeoForPath(pathname);
   if (!seo) return null;
+
+  const guideEntry = seo.page.kind === "Guide" ? guideEntries.find((entry) => entry.id === seo.page.id) : undefined;
+  const comparedApplications = guideEntry && "comparedApplications" in guideEntry ? guideEntry.comparedApplications : undefined;
+  const guideFaqs = guideEntry && "faqs" in guideEntry ? guideEntry.faqs : undefined;
 
   const breadcrumbId = `${seo.url}#breadcrumb`;
   const graph: object[] = [
@@ -196,6 +218,16 @@ export function DocsPageStructuredData({ pathname }: { pathname: string }) {
       description: seo.description,
       isPartOf: { "@id": `${siteConfig.url.origin}/#website` },
       inLanguage: siteConfig.language,
+      ...(comparedApplications
+        ? {
+            about: comparedApplications.map((application) => ({
+              "@type": "SoftwareApplication",
+              name: application.name,
+              url: application.url,
+              applicationCategory: "DeveloperApplication",
+            })),
+          }
+        : {}),
       ...(pathname === "/overview" ? {} : { breadcrumb: { "@id": breadcrumbId } }),
     },
   ];
@@ -218,6 +250,18 @@ export function DocsPageStructuredData({ pathname }: { pathname: string }) {
           item: seo.url,
         },
       ],
+    });
+  }
+
+  if (guideFaqs && guideFaqs.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${seo.url}#faq`,
+      mainEntity: guideFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
     });
   }
 

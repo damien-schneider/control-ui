@@ -31,7 +31,7 @@ function titleFontSize(title: string) {
 
 // next/og's Satori renderer does not support oklch(), so metadata images use equivalent RGB colors.
 export function renderSocialImage({
-  title = "React components for AI interfaces",
+  title = "React component library for AI interfaces",
   description = siteConfig.description,
   label = "Open-source UI registry",
   pathname = "",

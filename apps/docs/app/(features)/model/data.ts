@@ -138,6 +138,8 @@ function getGuides(): GuidePage[] {
     layout: "layout" in entry ? entry.layout : undefined,
     cta: "cta" in entry ? entry.cta : undefined,
     sections: entry.sections.map((section) => ({ ...section })),
+    comparedApplications: "comparedApplications" in entry ? [...entry.comparedApplications] : undefined,
+    faqs: "faqs" in entry ? [...entry.faqs] : undefined,
   }));
 }
 

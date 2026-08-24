@@ -1,6 +1,6 @@
 # Control UI — extended agent reference
 
-> Production-ready, shadcn-compatible React components, blocks, and skins for agent interfaces, distributed as source you own.
+> Open-source React component library for AI interfaces. Tailwind CSS styling, a shadcn-compatible registry, and complete blocks installed as source you own.
 
 ## How to use this registry
 
@@ -170,6 +170,8 @@
 - `lock-in` (Lock-in) — What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - `theme-accessibility` (Theme accessibility) — Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - `theme-ai-builder` (Theme AI builder) — Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
+- `control-ui-vs-shadcn-ui` (Control UI vs shadcn/ui) — Both ship open-source React source through the shadcn CLI. The difference starts after install: skins, a typed token contract, and agent surfaces.
+- `best-react-component-libraries-for-ai-interfaces` (Best React component libraries for AI interfaces) — Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.
 
 ## Practice rules (how to build well)
 

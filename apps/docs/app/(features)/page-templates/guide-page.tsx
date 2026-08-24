@@ -12,6 +12,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
 import ArchitectureContent from "@/content/guides/architecture.mdx";
+import BestReactComponentLibrariesContent from "@/content/guides/best-react-component-libraries-for-ai-interfaces.mdx";
+import ControlUiVsShadcnUiContent from "@/content/guides/control-ui-vs-shadcn-ui.mdx";
 import CreateContent from "@/content/guides/create.mdx";
 import CreateASkinContent from "@/content/guides/create-a-skin.mdx";
 import GetStartedContent from "@/content/guides/get-started.mdx";
@@ -33,6 +35,8 @@ const guideContent: Partial<Record<GuideId, GuideContent>> = {
   architecture: ArchitectureContent,
   "lock-in": LockInContent,
   "agent-surface": AgentSurfaceContent,
+  "control-ui-vs-shadcn-ui": ControlUiVsShadcnUiContent,
+  "best-react-component-libraries-for-ai-interfaces": BestReactComponentLibrariesContent,
 };
 
 const GuideIntegrationContext = createContext<IntegrationId | undefined>(undefined);
@@ -114,6 +118,21 @@ export function GuidePage({ page, integration }: { page: GuidePageData; integrat
 
       <div className="grid min-w-0 gap-12">
         <GuidePageContent page={page} integration={integration} Content={Content} />
+        {page.faqs && page.faqs.length > 0 ? (
+          <section id="faq" className="min-w-0 scroll-mt-20">
+            <div className="max-w-2xl">
+              <h2 className="text-heading-2 font-display">Frequently asked questions</h2>
+            </div>
+            <dl className="mt-4 grid max-w-2xl gap-3">
+              {page.faqs.map((faq) => (
+                <div key={faq.question} className="rounded-xl border border-border/70 bg-card px-4 py-3 shadow-sm">
+                  <dt className="font-medium text-label">{faq.question}</dt>
+                  <dd className="mt-1.5 text-body leading-6 text-muted-foreground">{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
       </div>
     </section>
   );

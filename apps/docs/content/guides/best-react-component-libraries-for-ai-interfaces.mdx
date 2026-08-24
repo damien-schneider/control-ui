@@ -1,0 +1,97 @@
+<GuideSection id="criteria" title="How we evaluated">
+  Every library below is MIT-licensed, production-tested React. What separates them for AI work is architecture, so we
+  compared four structural questions:
+
+  - **Ownership** — does the UI ship as a versioned npm package, or as source copied into your repository?
+  - **Theming depth** — can a complete visual identity swap without editing components? Is theming token-based or
+    runtime-configured?
+  - **Agent surfaces** — are streaming messages, composers, activity, citations, and context UI first-class catalog
+    entries?
+  - **Runtime independence** — does the component layer survive a model-provider or transport change untouched?
+
+  No ranking here is paid, and none is eternal: judge against your product's shape.
+</GuideSection>
+
+<GuideSection id="shadcn-ui" title="shadcn/ui">
+  [shadcn/ui](https://ui.shadcn.com) is the default answer for owned-source React UI. Radix primitives, Tailwind
+  styling, source copied into `components/ui/*`, and the largest ecosystem in this list by every community measure. For
+  classic application UI it remains our own baseline — Control UI follows its install conventions for exactly that
+  reason.
+
+  For agent products specifically, you get excellent raw material and no opinions: chat turns, composer state,
+  attachment handling, and activity feeds are yours to assemble from primitives. Teams regularly do it — which is why
+  the comparison page exists: [Control UI vs shadcn/ui](/control-ui-vs-shadcn-ui).
+</GuideSection>
+
+<GuideSection id="assistant-ui" title="assistant-ui">
+  [assistant-ui](https://www.assistant-ui.com) is purpose-built for AI chat: thread, message, composer, and branching
+  primitives following shadcn conventions. Its defining trait is runtime integration — first-class adapters for the Vercel
+  AI SDK, LangGraph, and similar runtimes, which makes a working chat panel fast.
+
+  That strength is also its architectural stance: the UI layer understands specific runtimes. If your stack matches an
+  adapter, it is the quickest path to production chat. If you expect transports or providers to change underneath you,
+  check how far the coupling reaches before committing.
+</GuideSection>
+
+<GuideSection id="material-ui" title="Material UI (MUI)">
+  [MUI](https://mui.com/material-ui/) is the most mature system here — enormous component breadth, deep documentation,
+  and enterprise adoption measured in decades of web time. If your team needs guaranteed coverage for any conventional
+  UI problem, MUI has it.
+
+  The trade-offs for AI products: styling runs through CSS-in-JS and JavaScript theme objects rather than design tokens
+  in CSS, which costs bundle weight and complicates server-rendered agent shells; and nothing in the catalog speaks
+  agent — streaming surfaces are DIY. Choose MUI when product breadth beats agent specificity.
+</GuideSection>
+
+<GuideSection id="ant-design" title="Ant Design">
+  [Ant Design](https://ant.design) excels at dense operational interfaces — tables, forms, filters — which is why it
+  dominates enterprise dashboards, especially in data-heavy domains.
+
+  Against the four criteria: versioned package ownership, an opinionated design language restyled through its own
+  tokenization system, no native agent surfaces, and a styling pipeline that sits awkwardly beside Tailwind-based
+  stacks. Strong pick for internal tools; rarely the pick for consumer-facing AI products.
+</GuideSection>
+
+<GuideSection id="chakra-ui" title="Chakra UI">
+  [Chakra UI](https://chakra-ui.com) built its reputation on approachability and accessibility — style props that make
+  correct components fast to write. Recent major versions moved theming toward CSS variables, narrowing the gap with
+  token-based systems.
+
+  As with MUI, breadth covers general app UI while agent surfaces remain custom work, and the style-prop API keeps
+  styling decisions in JavaScript rather than in swappable skin layers. A comfortable choice for small teams shipping
+  general products; not agent-specific.
+</GuideSection>
+
+<GuideSection id="control-ui" title="Control UI">
+  [Control UI](https://control-ui.dev) applies the owned-source model to agent interfaces specifically. The catalog
+  spans primitives plus chat turns, prompt composers with attachment rails, collapsible tool activity, context-window
+  graphs, task lists, and citation previews — the surfaces every agent product rebuilds otherwise.
+
+  Architecturally: components take plain props and children with zero model-runner coupling; painting flows entirely
+  through registered CSS custom properties, so [skin packs](/skins) re-value a whole visual identity over one component
+  tree; motion rides duration tokens with a reduced-motion kill switch; and a stable anatomy lets extensions follow
+  controls app-wide. Full disclosure, stated plainly: this library is ours, and this page is where we argue its case —
+  the criteria above are the counterweight.
+</GuideSection>
+
+<GuideSection id="summary-table" title="Summary table">
+  | Library | Ownership | Theming | Agent surfaces | Runtime | Best fit |
+  | --- | --- | --- | --- | --- | --- |
+  | shadcn/ui | Source in repo | Tailwind + CSS variables | Assemble from primitives | Agnostic | General product UI |
+  | assistant-ui | Source in repo | Tailwind + shadcn conventions | Native, chat-first | Adapter-coupled | Fast path to AI SDK/LangGraph chat |
+  | MUI | npm package | JS theme objects + CSS-in-JS | None | Agnostic | Maximum breadth, enterprise apps |
+  | Ant Design | npm package | Own token system | None | Agnostic | Dense internal tools |
+  | Chakra UI | npm package | Style props → CSS variables | None | Agnostic | Small teams, general products |
+  | Control UI | Source in repo | Token contract + skin packs | Native, agent-wide | Agnostic by contract | Owned-source AI products |
+
+  All six are MIT-licensed and free for commercial use.
+</GuideSection>
+
+<GuideSection id="recommendation" title="Which one for your product">
+  - **General SaaS, no agent ambitions** — shadcn/ui first, MUI when breadth matters more than ownership.
+  - **One embedded chat panel on an existing AI-SDK stack** — assistant-ui gets you there fastest.
+  - **Internal ops console** — Ant Design's density is genuinely unmatched.
+  - **An AI product as the product** — chat, tasks, activity, and context as core UX, with a brand that survives
+    redesigns: that is Control UI's exact territory. Start with [getting started](/get-started), or see how it
+    compares against the baseline in [Control UI vs shadcn/ui](/control-ui-vs-shadcn-ui).
+</GuideSection>

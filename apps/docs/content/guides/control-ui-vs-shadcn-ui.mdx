@@ -1,0 +1,68 @@
+<GuideSection id="short-answer" title="The short answer">
+  shadcn/ui is the general-purpose standard: a huge community assembling classic app UI from Radix primitives and
+  Tailwind classes. Control UI keeps the same install model and token vocabulary, then adds what agent products need on
+  top — a typed skin system, a stable component anatomy, and ready-made chat, composer, activity, and context surfaces.
+  Choose by product type, not by quality; both are MIT and both leave the source in your repository.
+</GuideSection>
+
+<GuideSection id="side-by-side" title="Side by side">
+  |  | Control UI | shadcn/ui |
+  | --- | --- | --- |
+  | License | MIT, open source | MIT, open source |
+  | Install model | Registry manifests copy editable source into `components/control-ui/*` | CLI copies editable source into `components/ui/*` |
+  | Primary scope | Primitives plus agent surfaces: chat, composers, activity, context, tasks | General application UI: forms, overlays, navigation, data display |
+  | Theming | Token contract resolved by skin packs; typed per-component `--cui-*` knobs | Theme file with CSS variables consumed by Tailwind utilities |
+  | Visual restyling | Swap or layer a whole skin without touching component source | Edit tokens and component classes per component |
+  | Component anatomy | Stable `data-control-*` attributes that effects and extensions target | Not a stable public contract |
+  | Motion | Duration/easing tokens with a reduced-motion kill switch | Per-component transitions |
+  | Runtime coupling | None — components take plain props and children | None |
+
+  Numbers change monthly; architecture does not. The rows above describe structure, so they age slower than star counts
+  or download charts would.
+</GuideSection>
+
+<GuideSection id="alignment" title="Where they align">
+  The overlap is deliberate. Control UI follows shadcn conventions because they proved the right ownership model for UI
+  source:
+
+  - Source lands in your repository — no versioned component package to fight at upgrade time.
+  - Core color tokens keep shadcn names like `--background`, `--primary`, and `--ring`, so an existing theme seeds a
+    Control UI skin instead of starting from zero.
+  - Installation runs through the same `npx shadcn@latest add` flow pointed at a registry URL.
+
+  A team can run both in one app without coordination: neither writes into the other's directories. See
+  [shadcn compatibility](/shadcn-compatibility) for the exact contract.
+</GuideSection>
+
+<GuideSection id="differences" title="Where they differ">
+
+  **Scope.** shadcn/ui covers the surfaces every product needs — dialogs, dropdowns, forms, tables. Control UI ships
+  those too, then extends into territory shadcn/ui does not address: streaming chat turns, prompt composers with
+  attachment rails, collapsible agent activity, context-window graphs, task progress, and citation previews. Building
+  those from base primitives is exactly the work agent teams repeat before writing their first feature.
+
+  **Restyling depth.** With shadcn/ui, a redesign means editing class lists across installed components. Control UI
+  separates paint from structure: components render through registered CSS custom properties, and a
+  [skin pack](/create-a-skin) re-values the entire token contract — radius, color ramps, typography, bevels, even WebGL
+  surfaces — while the component source stays untouched. One app can compile several skins and switch between them.
+
+  **Anatomy stability.** Control UI emits stable `data-control-family` and `data-slot` attributes, which is what lets
+  extensions like hover effects follow every control app-wide, including portalled surfaces. In shadcn/ui the rendered
+  markup is an implementation detail that changes with updates.
+
+  **Ecosystem gravity.** shadcn/ui wins this one outright: more contributors, more third-party examples, more Stack
+  Overflow answers. Control UI's community is younger and smaller. If your team relies on copying community recipes,
+  weight that honestly.
+</GuideSection>
+
+<GuideSection id="choose" title="Which one to choose">
+  Build a dashboard, marketing site, or SaaS console? Use shadcn/ui — its breadth and community are unmatched for
+  classic app UI, and nothing here argues otherwise.
+
+  Shipping an AI product — chat assistants, coding agents, voice surfaces? Control UI starts where shadcn/ui stops: the
+  agent surfaces already exist, the [runtime boundary](/architecture) stays clean so no model provider leaks into
+  components, and a skin gives the product a complete visual identity on day one.
+
+  Mixed product? They coexist cleanly. Many teams keep their existing `components/ui/*`, install Control UI alongside,
+  and adopt its agent surfaces first. The [getting started guide](/get-started) covers both paths.
+</GuideSection>
