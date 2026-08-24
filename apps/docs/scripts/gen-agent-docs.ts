@@ -5,8 +5,10 @@ import { practiceSkills, skillConcerns } from "@control-ui/skills";
 import { docsPageManifest } from "@/app/(features)/catalog/pages";
 import type { SearchItem } from "@/app/(features)/model/types";
 import { listRegistry } from "@/app/(features)/registry-api/registry-index";
+import { contrastAgentRules } from "@/app/(features)/theme-accessibility/agent-rules";
 import { env } from "@/env";
 import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
+import { publicPayloads } from "./public-payloads";
 
 const MARKER_NAMESPACE = siteConfig.registry.name.toUpperCase();
 const START = `<!-- ${MARKER_NAMESPACE}:START -->`;
@@ -57,17 +59,10 @@ function skillsBlock() {
     .join("\n\n");
 }
 
-function contrastBlock(base: string) {
-  return [
-    `- Every painted knob with what the browser actually paints behind it: \`${base}/r/contrast-anatomy.json\`, harvested from rendered components and verified against the browser.`,
-    "- A probe's `anatomy` is the paint stack under the part, back to front: its ancestors, but also a sibling indicator that slides beneath it. The last node is the part itself.",
-    "- A part's contrast is decided by the knob it paints from **and** by every knob in that stack, never by theme tokens alone: re-valuing a surface knob changes the contrast of text you did not touch.",
-    "- For each probe: rebuild `anatomy` as nested elements, resolve `knobs.text` on the last one, composite the stack's fills behind it, and clear `rendersText ? 4.5 : 3`:1.",
-    "- `state: true` means the paint waits on an interaction, so force `knobs.fill` onto the part instead of expecting it to paint itself.",
-    "- A knob you leave alone still paints — it keeps its recipe default and still has to clear the ratio under your surfaces.",
-    "- `uncovered` names the knobs no documented route renders. Nothing measured them, so treat them as unverified rather than passing.",
-  ].join("\n");
-}
+const contrastBlock = (base: string) =>
+  contrastAgentRules(base)
+    .map((rule) => `- ${rule}`)
+    .join("\n");
 
 function buildCheatSheet() {
   const { items } = listRegistry().data;
@@ -94,6 +89,7 @@ function buildCheatSheet() {
     "- Component knobs: every component paints through registered `--cui-<family>-*` CSS custom properties (e.g. `--cui-button-radius`). The full list with syntax and recipe defaults lives in skin-contract.json (`knobs`); restyle per instance via the typed `style` prop or from a skin, never by overriding Tailwind classes.",
     "- Install: run the item's `install` command (`npx shadcn@latest add <url>`). Installed files are yours to own and edit.",
     "- Skinning: a skin is additive CSS + a `skin.config`; install a skin pack to restyle every component at once.",
+    `- Setting up a repository from scratch: \`${base}/r/${publicPayloads.setupPrompt}\` is the full procedure, including the wiring steps that fail silently when skipped.`,
     "",
     "## Contrast (check this before shipping a skin)",
     "",
@@ -139,6 +135,7 @@ function buildLlmsIndex() {
     `- [Skin anatomy contract](${absoluteSiteUrl("/r/skin-contract.json")}): Generated scopes, parts, states, knobs (the \`--cui-*\` CSS custom properties every component paints through), adornments, and semantic families.`,
     `- [Theme token contract](${absoluteSiteUrl("/r/theme-contract.json")}): Generated skin token reference.`,
     `- [Contrast anatomy](${absoluteSiteUrl("/r/contrast-anatomy.json")}): Every text knob with the rendered ancestor chain that paints behind it, for checking a skin's contrast without guessing selectors.`,
+    `- [Setup prompt](${absoluteSiteUrl(`/r/${publicPayloads.setupPrompt}`)}): Paste-ready instructions for a coding agent: read a repository, install ${siteConfig.name} into it, wire the CSS, then design and contrast-check its skin.`,
     "",
     "## Optional",
     "",

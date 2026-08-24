@@ -1,3 +1,4 @@
+import { contrastAgentRules } from "@/app/(features)/theme-accessibility/agent-rules";
 import { THEME_CONTRACT, THEME_CONTRACT_NAMES, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { isSkinId } from "./presets";
 import { isColorValuedToken } from "./token-metadata";
@@ -8,6 +9,12 @@ export type ThemeArtifactResult = { ok: true; artifact: ControlUiThemeArtifactV1
 type BuildThemePromptInput = {
   origin: string;
   theme: ThemeState;
+};
+
+type ThemeArtifactBriefInput = {
+  origin: string;
+  baseSkin?: string;
+  context?: string;
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -199,30 +206,34 @@ function currentThemeContext(theme: ThemeState) {
   );
 }
 
-export function buildThemePrompt({ origin, theme }: BuildThemePromptInput) {
+/**
+ * Everything a coding agent needs to turn a conversation into one importable theme file. Both the editor's
+ * prompt and the repository setup prompt end with it, so the artifact shape and the accessibility gate are
+ * written once. `baseSkin` is omitted when the agent installs the pack itself and only it knows the id.
+ */
+export function themeArtifactBrief({ origin, baseSkin, context }: ThemeArtifactBriefInput) {
   const normalizedOrigin = origin.replace(/\/+$/, "");
   const contractUrl = `${normalizedOrigin}/r/theme-contract.json`;
   const builderUrl = `${normalizedOrigin}/theme-ai-builder`;
   const accessibilityUrl = `${normalizedOrigin}/theme-accessibility`;
+  const baseSkinRule = baseSkin ? `Keep baseSkin exactly "${baseSkin}".` : "Set baseSkin to the id of the skin pack you installed.";
+  const contrastRules = contrastAgentRules(normalizedOrigin)
+    .map((rule) => `- ${rule}`)
+    .join("\n");
 
-  return `You are my Control UI theme builder. Work conversationally, then create one importable theme file.
-
-Discovery
+  return `Discovery
 - First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.
 - Ask one focused question at a time, with at most four questions total.
 - Ask me to attach one or more reference images in this coding-agent conversation. If I have none, continue from the description.
 - Use reference images for their visual language, not their literal content.
 - Do not ask me to choose individual CSS variables. Infer a coherent system from my answers.
 - Once the direction is clear, create the theme without asking me to restate the brief.
-
-Base theme currently active in the editor
-${currentThemeContext(theme)}
-
+${context ? `\n${context}\n` : ""}
 Implementation
 - Read the canonical contract from ${contractUrl}. If it is unreachable, use the embedded contract below.
 - Write exactly one file named <short-name>.control-ui-theme.json in the current working directory.
 - Do not modify application source files.
-- Keep baseSkin exactly "${theme.skin}".
+- ${baseSkinRule}
 - Use format "control-ui-theme/v1".
 - Choose a concise human name, 60 characters or fewer.
 - Put color-valued tokens in both light and dark. Put every other token in shared.
@@ -238,12 +249,15 @@ Accessibility gate
 - If a saturated fill needs light text, darken the fill until the pair clears 4.5:1; do not swap text color by visual guesswork alone.
 - Do not claim the theme passes without checking the ratios.
 
+What the components actually paint
+${contrastRules}
+
 Artifact shape
 
 {
   "format": "control-ui-theme/v1",
   "name": "Theme name",
-  "baseSkin": "${theme.skin}",
+  "baseSkin": "${baseSkin ?? "<installed skin id>"}",
   "reduceMotion": false,
   "tokens": {
     "shared": {},
@@ -258,6 +272,13 @@ ${compactContract()}
 
 When finished, reply with the file path and tell me to import it at ${builderUrl}, then review the active theme at ${accessibilityUrl}.
 `;
+}
+
+export function buildThemePrompt({ origin, theme }: BuildThemePromptInput) {
+  const context = `Base theme currently active in the editor\n${currentThemeContext(theme)}`;
+  return `You are my Control UI theme builder. Work conversationally, then create one importable theme file.
+
+${themeArtifactBrief({ origin, baseSkin: theme.skin, context })}`;
 }
 
 export function serializeThemeArtifact(artifact: ControlUiThemeArtifactV1) {

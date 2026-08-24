@@ -3,6 +3,7 @@
 import type { MDXComponents } from "mdx/types";
 import { type ComponentType, createContext, use } from "react";
 import { CodeBlock } from "@/app/(features)/components/source";
+import { AgentSetup } from "@/app/(features)/create/agent-setup";
 import { CreateCommand } from "@/app/(features)/create/create-command";
 import { guideCode } from "@/app/(features)/model/registry";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
@@ -48,6 +49,7 @@ function GuideMdxCode(props: GuideCodeMdxProps) {
 }
 
 const guideComponents = {
+  AgentSetup,
   CreateCommand,
   GuideCode: GuideMdxCode,
   GuidePoint,

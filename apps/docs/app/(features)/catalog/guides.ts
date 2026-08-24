@@ -18,10 +18,12 @@ export const guideEntries = [
     id: "create",
     kind: "Guide",
     name: "Create app",
-    summary: "Scaffold a Next.js app with every Control UI component installed as source you own on the Refined skin.",
+    summary:
+      "Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.",
     cta: true,
     sections: [
       { id: "command", title: "Create your app" },
+      { id: "agent", title: "Install in an existing app" },
       { id: "included", title: "What you get" },
     ],
   },

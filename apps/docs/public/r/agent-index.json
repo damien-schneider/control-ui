@@ -101,7 +101,7 @@
         "id": "create",
         "name": "Create app",
         "kind": "Guide",
-        "summary": "Scaffold a Next.js app with every Control UI component installed as source you own on the Refined skin.",
+        "summary": "Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.",
         "href": "/create"
       },
       {
