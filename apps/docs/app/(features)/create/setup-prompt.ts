@@ -20,20 +20,22 @@ Read the project first
 
 Install
 - The catalog is ${normalizedOrigin}/r/agent-index.json and every item carries its own install command. ${normalizedOrigin}/llms.txt indexes the documentation.
-- Install exactly one skin pack, and unless I ask for a stock pack by name, install \`${normalizedOrigin}/r/skin-flat.json\`. Core owns the mechanics and the skin owns every token value, so with no pack installed there is no fallback to render against.
+- Install the complete set and its skin in one command: \`npx shadcn@latest add ${normalizedOrigin}/r/all-flat.json\`. Picking components one by one leaves the skin we write next with almost no surface to be checked against, and forces the update scripts below to track a bespoke list.
 - Flat is the neutral reset: an empty skin.css and no adornments, so the theme we write later owns every value. Every other pack re-values component knobs and can install adornments and layout defaults that a theme cannot undo, which is why a pack is a choice I make, not a resemblance you pick for me.
-- Install only the components this application needs. Installed files are source I own, so take them from the registry and never hand-copy them out of the documentation.
+- Install item by item only if I ask for a lean install, and say that the update scripts then have to name each item.
+- Installed files are source I own, so take them from the registry and never hand-copy them out of the documentation.
 - Installing moves this app's own dependency versions. List every package it added or changed, and revert any change no installed item required.
 
 Wire it
 - Every item appends its own imports to the CSS entry named in components.json. Read that entry afterwards and confirm they landed.
 - The registry writes \`../components/…\`. When the CSS entry does not sit beside components/ — app/globals.css with the components under src/ — correct the prefix to \`../src/components/…\` or none of it resolves.
-- Stamp data-skin on the root element with the installed pack's id. A missing or misspelled id fails silently: the page keeps its tokens while every portalled surface — popover, dialog, menu, tooltip — renders with none.
+- Stamp data-skin on the root element with the installed pack's id. It is the scope every token is declared under, not a multi-skin switch, so one skin still needs it: a missing or misspelled id leaves the whole contract undeclared, and every portalled surface — popover, dialog, menu, tooltip — renders with no tokens at all.
+- The core token names are shadcn's. Where this app already declares --background, --primary, --radius and their siblings at :root, those land on the same element as [data-skin] with equal specificity, so source order alone decides and the palette turns hybrid without saying so. Read the entry after wiring, tell me which set wins, and let me choose.
 - Start the dev server and confirm that a control paints and that one portalled surface opens with its tokens. Do not move on until both do.
 
 Leave an update path
-- Add two package.json scripts so refreshing installed source is one command later: control-ui:diff runs the install command again with --diff, control-ui:update runs it with --overwrite.
-- Both list exactly the items you installed. ${normalizedOrigin}/r/update.json is the complete component set, so it belongs in the scripts only if you installed the complete set.
+- Add two package.json scripts against \`${normalizedOrigin}/r/update.json\`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
+- After a lean install those scripts must name the items I installed instead, since update.json would pull in the rest of the set.
 - Say that the diff comes first and the overwrite wants a clean tree, because it rewrites source I own. The three skin files are never touched by either.
 
 Where shadcn/ui already sits

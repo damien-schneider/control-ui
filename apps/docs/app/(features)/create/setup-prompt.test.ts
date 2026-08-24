@@ -13,6 +13,8 @@ describe("agent setup prompt", () => {
   test("names the wiring steps that fail silently instead of loudly", () => {
     expect(prompt).toContain("../src/components/…");
     expect(prompt).toContain("Stamp data-skin on the root element");
+    expect(prompt).toContain("not a multi-skin switch, so one skin still needs it");
+    expect(prompt).toContain("source order alone decides and the palette turns hybrid");
   });
 
   test("continues through installation instead of treating the repository report as an approval checkpoint", () => {
@@ -28,7 +30,7 @@ describe("agent setup prompt", () => {
   });
 
   test("starts on the neutral reset pack the theme can fully own", () => {
-    expect(prompt).toContain("install `https://control-ui.example/r/skin-flat.json`");
+    expect(prompt).toContain("npx shadcn@latest add https://control-ui.example/r/all-flat.json");
     expect(prompt).toContain("an empty skin.css and no adornments");
     expect(prompt).toContain("Resemblance is not a reason to switch packs");
   });
@@ -47,7 +49,7 @@ describe("agent setup prompt", () => {
   test("leaves an update path that matches what was installed", () => {
     expect(prompt).toContain("control-ui:diff");
     expect(prompt).toContain("control-ui:update");
-    expect(prompt).toContain("https://control-ui.example/r/update.json is the complete component set");
+    expect(prompt).toContain("https://control-ui.example/r/update.json`, the complete component set with no skin");
   });
 
   test("offers the shadcn call sites instead of migrating them silently", () => {
