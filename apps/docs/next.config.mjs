@@ -17,6 +17,9 @@ const nextConfig = {
   reactCompiler: true,
   cacheComponents: true,
   turbopack: {},
+  outputFileTracingIncludes: {
+    "/**/*": ["./src/registry/**/*", "./components/**/*", "./registry/**/*"],
+  },
   webpack(config) {
     config.resolve.alias["@"] = appRoot;
     return config;
