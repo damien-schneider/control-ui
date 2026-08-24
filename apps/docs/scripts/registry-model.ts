@@ -7,7 +7,6 @@ import { extensionEntries } from "@/app/(features)/catalog/extensions";
 import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { includesString } from "@/app/(features)/catalog/shared";
 import { skinMetas } from "@/app/(features)/catalog/skins";
-import { env } from "@/env";
 import { siteConfig } from "@/lib/site-config";
 import { importSpecifiers } from "./module-imports";
 
@@ -885,8 +884,10 @@ export function createRegistryItems(): RegistrySourceItem[] {
   return output.sort((a, b) => a.name.localeCompare(b.name));
 }
 
+// Every generated public artifact — manifests, the agent index, the setup prompt — is published against the site
+// origin, so a checkout serving a different registry URL cannot emit dependencies the published prompt cannot reach.
 export function publicRegistryUrl(id: string) {
-  return `${env.NEXT_PUBLIC_REGISTRY_URL}/r/${id}.json`;
+  return `${siteConfig.url.origin}/r/${id}.json`;
 }
 
 export function publicRegistryDependency(id: string) {
