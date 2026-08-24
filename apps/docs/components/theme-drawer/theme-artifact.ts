@@ -200,9 +200,9 @@ function compactContract() {
 function themeDiscoveryBrief(mode: ThemeDiscoveryMode) {
   if (mode === "existing-project") {
     return `- Do not start discovery until every Install and Wire it step above has completed successfully.
-- If this project already had an interface, ask me: "Should Control UI match this application's existing visual language, or should we create a new direction?"
-- If I choose the existing visual language, inspect its theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
-- If I choose a new direction, or this project was newly scaffolded, ask me to describe the style I want, including color, typography, density, corners, elevation, and motion.`;
+- Continue from the direction I already chose; never ask me to choose it again.
+- If I chose to match the existing look, use its theme tokens, CSS, typography, spacing, components, and representative screens as the visual brief. Tell me what you found; do not ask me to describe what the code already shows.
+- If I chose a new direction, deepen the brief I already gave you: color, typography, density, corners, elevation, and motion.`;
   }
 
   return "- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.";
@@ -233,7 +233,7 @@ export function themeArtifactBrief({ origin, baseSkin, context, discoveryMode }:
   return `Discovery
 ${themeDiscoveryBrief(discoveryMode)}
 - Ask one focused question at a time, with at most four questions total.
-- Ask me to attach one or more reference images in this coding-agent conversation. If I have none, continue from the description.
+- If I have attached no reference images yet, ask for them in this coding-agent conversation. If I have none, continue from the description.
 - Use reference images for their visual language, not their literal content.
 - Do not ask me to choose individual CSS variables. Infer a coherent system from my answers.
 - Once the direction is clear, create the theme without asking me to restate the brief.

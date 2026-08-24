@@ -24,7 +24,7 @@ describe("theme AI prompt", () => {
 
     expect(prompt).toContain("ask me to describe the visual direction");
     expect(prompt).toContain("Ask one focused question at a time");
-    expect(prompt).toContain("attach one or more reference images");
+    expect(prompt).toContain("If I have attached no reference images yet, ask for them");
     expect(prompt).toContain('"baseSkin": "refined"');
     expect(prompt).toContain('"--radius": "12px"');
     expect(prompt).toContain("https://control-ui.example/r/theme-contract.json");
