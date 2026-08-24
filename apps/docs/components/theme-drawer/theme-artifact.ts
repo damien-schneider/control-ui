@@ -11,10 +11,13 @@ type BuildThemePromptInput = {
   theme: ThemeState;
 };
 
+type ThemeDiscoveryMode = "existing-project" | "new-direction";
+
 type ThemeArtifactBriefInput = {
   origin: string;
   baseSkin?: string;
   context?: string;
+  discoveryMode: ThemeDiscoveryMode;
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -194,6 +197,16 @@ function compactContract() {
   }).join("\n");
 }
 
+function themeDiscoveryBrief(mode: ThemeDiscoveryMode) {
+  if (mode === "existing-project") {
+    return `- After installation and wiring are verified, if this project already had an interface, ask me: "Should Control UI match this application's existing visual language, or should we create a new direction?"
+- If I choose the existing visual language, inspect its theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
+- If I choose a new direction, or this project was newly scaffolded, ask me to describe the style I want, including color, typography, density, corners, elevation, and motion.`;
+  }
+
+  return "- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.";
+}
+
 function currentThemeContext(theme: ThemeState) {
   return JSON.stringify(
     {
@@ -206,12 +219,7 @@ function currentThemeContext(theme: ThemeState) {
   );
 }
 
-/**
- * Everything a coding agent needs to turn a conversation into one importable theme file. Both the editor's
- * prompt and the repository setup prompt end with it, so the artifact shape and the accessibility gate are
- * written once. `baseSkin` is omitted when the agent installs the pack itself and only it knows the id.
- */
-export function themeArtifactBrief({ origin, baseSkin, context }: ThemeArtifactBriefInput) {
+export function themeArtifactBrief({ origin, baseSkin, context, discoveryMode }: ThemeArtifactBriefInput) {
   const normalizedOrigin = origin.replace(/\/+$/, "");
   const contractUrl = `${normalizedOrigin}/r/theme-contract.json`;
   const builderUrl = `${normalizedOrigin}/theme-ai-builder`;
@@ -222,7 +230,7 @@ export function themeArtifactBrief({ origin, baseSkin, context }: ThemeArtifactB
     .join("\n");
 
   return `Discovery
-- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.
+${themeDiscoveryBrief(discoveryMode)}
 - Ask one focused question at a time, with at most four questions total.
 - Ask me to attach one or more reference images in this coding-agent conversation. If I have none, continue from the description.
 - Use reference images for their visual language, not their literal content.
@@ -278,7 +286,7 @@ export function buildThemePrompt({ origin, theme }: BuildThemePromptInput) {
   const context = `Base theme currently active in the editor\n${currentThemeContext(theme)}`;
   return `You are my Control UI theme builder. Work conversationally, then create one importable theme file.
 
-${themeArtifactBrief({ origin, baseSkin: theme.skin, context })}`;
+${themeArtifactBrief({ origin, baseSkin: theme.skin, context, discoveryMode: "new-direction" })}`;
 }
 
 export function serializeThemeArtifact(artifact: ControlUiThemeArtifactV1) {

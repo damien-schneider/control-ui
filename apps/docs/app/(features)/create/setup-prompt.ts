@@ -3,11 +3,6 @@ import { createAppCommand } from "./command";
 
 const PLACEHOLDER_PROJECT_NAME = "my-app";
 
-/**
- * Handed to a coding agent instead of the install guide: it reads the repository, installs from the
- * registry, wires the CSS, and only then holds the skin conversation. The traps it is told to avoid are
- * the ones the guide has to warn a human about, because both fail silently rather than loudly.
- */
 export function buildSetupPrompt({ origin }: { origin: string }) {
   const normalizedOrigin = origin.replace(/\/+$/, "");
   const scaffold = createAppCommand({
@@ -34,5 +29,5 @@ Wire it
 - Stamp data-skin on the root element with the installed pack's id. A missing or misspelled id fails silently: the page keeps its tokens while every portalled surface — popover, dialog, menu, tooltip — renders with none.
 - Start the dev server and confirm that a control paints and that one portalled surface opens with its tokens. Do not move on until both do.
 
-${themeArtifactBrief({ origin: normalizedOrigin })}`;
+${themeArtifactBrief({ origin: normalizedOrigin, discoveryMode: "existing-project" })}`;
 }

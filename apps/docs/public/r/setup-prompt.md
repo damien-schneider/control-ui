@@ -17,7 +17,9 @@ Wire it
 - Start the dev server and confirm that a control paints and that one portalled surface opens with its tokens. Do not move on until both do.
 
 Discovery
-- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.
+- After installation and wiring are verified, if this project already had an interface, ask me: "Should Control UI match this application's existing visual language, or should we create a new direction?"
+- If I choose the existing visual language, inspect its theme tokens, CSS, typography, spacing, components, and representative screens. Tell me what you found and use it as the visual brief; do not ask me to describe what the code already shows.
+- If I choose a new direction, or this project was newly scaffolded, ask me to describe the style I want, including color, typography, density, corners, elevation, and motion.
 - Ask one focused question at a time, with at most four questions total.
 - Ask me to attach one or more reference images in this coding-agent conversation. If I have none, continue from the description.
 - Use reference images for their visual language, not their literal content.

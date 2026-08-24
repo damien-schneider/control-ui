@@ -20,4 +20,15 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain('"baseSkin": "<installed skin id>"');
     expect(prompt).not.toContain("undefined");
   });
+
+  test("chooses between the existing visual language and a new direction after setup", () => {
+    const setupComplete = prompt.indexOf("Do not move on until both do");
+    const directionChoice = prompt.indexOf("After installation and wiring are verified, if this project already had an interface, ask me");
+
+    expect(setupComplete).toBeGreaterThan(-1);
+    expect(directionChoice).toBeGreaterThan(setupComplete);
+    expect(prompt).toContain("inspect its theme tokens, CSS, typography, spacing, components, and representative screens");
+    expect(prompt).toContain("If I choose a new direction, or this project was newly scaffolded, ask me to describe the style I want");
+    expect(prompt).toContain("attach one or more reference images");
+  });
 });
