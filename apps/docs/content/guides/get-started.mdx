@@ -75,7 +75,8 @@
   Installed component source is owned but never edited: every customization lives in the skin-owned files. Updating is
   therefore a reinstall. The `update` manifest bundles core and the complete component set with no skin, so overwriting
   from it refreshes every installed source while `skin.config.tsx`, `skin-theme.css`, and `skin.css` — including a fully
-  custom skin — stay untouched.
+  custom skin — stay untouched. It installs the whole set, so on an install limited to a few items, reinstall those
+  items instead of pointing at `update`.
 
   <GuideCode kind="update-install" />
 
