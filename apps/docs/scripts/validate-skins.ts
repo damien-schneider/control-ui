@@ -36,7 +36,7 @@ const files = supplied
   ? [path.resolve(supplied)]
   : readdirSync(skinRoot, { withFileTypes: true }).flatMap((entry) => {
       if (!entry.isDirectory()) return [];
-      return ["skin.css", "skin.config.tsx"].map((name) => path.join(skinRoot, entry.name, name)).filter(existsSync);
+      return ["theme.css", "skin.css", "skin.config.tsx"].map((name) => path.join(skinRoot, entry.name, name)).filter(existsSync);
     });
 const failures: string[] = [];
 
@@ -290,6 +290,25 @@ function validateModeScope(file: string, rule: postcss.Rule, selectors: any[]): 
   }
 }
 
+/**
+ * An app that keeps its own `--background`/`--primary` block declares them at `:root`, which lands on the same
+ * element as the skin scope at equal weight, so source order alone would decide the palette. Every pack token
+ * selector repeats `[data-skin]` to out-specify that block and keep the installed pack authoritative.
+ */
+function validateTokenScopeWeight(file: string, rule: postcss.Rule, selectors: any[]): void {
+  if (!file.includes("/skin-packs/") || !file.endsWith("/theme.css")) return;
+  for (const selector of selectors) {
+    for (const compound of directCompounds(selector)) {
+      const skinAttributes = attributesIn(compound).filter((attribute: any) => attribute.attribute === skinScopeAttribute);
+      if (skinAttributes.length !== 1) continue;
+      if (!attributeValue(skinAttributes[0])) continue;
+      failures.push(
+        `${file}:${rule.source?.start?.line ?? "?"} pack tokens tie with an app's own :root block — repeat [${skinScopeAttribute}] in the compound: ${rule.selector}`,
+      );
+    }
+  }
+}
+
 function validateCss(file: string, source: string): void {
   try {
     const root = postcss.parse(source, { from: file });
@@ -297,6 +316,7 @@ function validateCss(file: string, source: string): void {
       selectorParser((selectorRoot) => {
         selectorRoot.each((selector) => validateSelectorStructure(file, rule.selector.replace(/\s+/g, " "), selector));
         validateModeScope(file, rule, [...selectorRoot.nodes]);
+        validateTokenScopeWeight(file, rule, [...selectorRoot.nodes]);
       }).processSync(rule.selector);
       const anatomies = resolveAnatomy(rule.selector);
       validateLayer(file, rule, anatomies.length > 0);

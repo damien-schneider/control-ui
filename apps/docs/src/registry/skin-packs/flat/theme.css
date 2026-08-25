@@ -1,4 +1,4 @@
-[data-skin="flat"] {
+[data-skin="flat"][data-skin] {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
@@ -55,8 +55,8 @@
   --popover-padding: 0.25rem;
 }
 
-.dark[data-skin="flat"],
-:where(.dark) [data-skin="flat"] {
+.dark[data-skin="flat"][data-skin],
+:where(.dark) [data-skin="flat"][data-skin] {
   --primary: oklch(0.9851 0 0);
   --primary-foreground: oklch(0.2046 0 0);
   --foreground: oklch(0.9851 0 0);

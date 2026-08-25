@@ -1,6 +1,6 @@
 /* Neutral surfaces, DM Sans rhythm, violet-led accent. Texture, gradient, and glass live in skin.css. */
 
-[data-skin="cuicui"] {
+[data-skin="cuicui"][data-skin] {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 
@@ -52,8 +52,8 @@
   --duration-slow: 420ms;
 }
 
-:root:not(.dark)[data-skin="cuicui"],
-:where(:not(.dark)) [data-skin="cuicui"] {
+:root:not(.dark)[data-skin="cuicui"][data-skin],
+:where(:not(.dark)) [data-skin="cuicui"][data-skin] {
   --background: oklch(0.985 0 0);
   --foreground: oklch(0.269 0 0);
   --card: oklch(1 0 0);
@@ -73,8 +73,8 @@
   --canvas: oklch(0.985 0 0);
 }
 
-.dark[data-skin="cuicui"],
-:where(.dark) [data-skin="cuicui"] {
+.dark[data-skin="cuicui"][data-skin],
+:where(.dark) [data-skin="cuicui"][data-skin] {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -98,7 +98,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-skin="cuicui"] {
+  [data-skin="cuicui"][data-skin] {
     --duration-fast: 0ms;
     --duration-base: 0ms;
     --duration-slow: 0ms;

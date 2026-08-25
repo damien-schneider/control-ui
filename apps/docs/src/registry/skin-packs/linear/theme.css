@@ -1,6 +1,6 @@
 /* Hairline borders instead of elevation; floating surfaces are the only things allowed a real shadow. */
 
-[data-skin="linear"] {
+[data-skin="linear"][data-skin] {
   /* Inter, self-hosted by the app shell (next/font fills --font-inter); host without it falls to the system stack. */
   --font-sans: var(--font-inter, "Inter"), "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
@@ -95,8 +95,8 @@
 }
 
 /* Dark tokens: the real Linear night — near-black canvas, panel one step up, popups two. */
-:where(.dark) [data-skin="linear"],
-.dark[data-skin="linear"] {
+:where(.dark) [data-skin="linear"][data-skin],
+.dark[data-skin="linear"][data-skin] {
   --background: oklch(0.1739 0.0041 285.967); /* #101012 */
   --foreground: oklch(0.9784 0.0011 197.139); /* #f7f8f8 */
   --card: oklch(0.1739 0.0041 285.967);
@@ -124,7 +124,7 @@
 
 /* prefers-reduced-motion: token-driven, so every derived tempo flattens together. */
 @media (prefers-reduced-motion: reduce) {
-  [data-skin="linear"] {
+  [data-skin="linear"][data-skin] {
     --duration-fast: 0ms;
     --duration-base: 0ms;
     --duration-slow: 0ms;

@@ -1,6 +1,6 @@
 /* Windows XP "Luna". */
 
-[data-skin="xp"] {
+[data-skin="xp"][data-skin] {
   /* typography — Tahoma first: the Luna system face */
   --font-sans: Tahoma, "Segoe UI", "Trebuchet MS", Verdana, ui-sans-serif, sans-serif;
   --font-mono: "Lucida Console", Consolas, monospace;
@@ -85,8 +85,8 @@
 }
 
 /* Dark tokens — "Royale Noir" homage, re-asserted on/under a dark XP root so the light values never win by proximity. */
-:where(.dark) [data-skin="xp"],
-.dark[data-skin="xp"] {
+:where(.dark) [data-skin="xp"][data-skin],
+.dark[data-skin="xp"][data-skin] {
   --background: oklch(0.2459 0.0072 248.122);
   --foreground: oklch(0.919 0.0071 88.645);
   --card: oklch(0.2795 0.0085 255.574);
@@ -113,7 +113,7 @@
 /* XP collapses motion UNCONDITIONALLY (Luna tempo IS "reduced"; skin.config matches with motion:"reduced" flag).
    always-on, de-gated from prefers-reduced-motion, so standalone installs snap without the docs theme editor.
    declared after token block above on purpose, to override the near-instant Luna values there. */
-[data-skin="xp"] {
+[data-skin="xp"][data-skin] {
   --duration-fast: 0ms;
   --duration-base: 0ms;
   --duration-slow: 0ms;

@@ -32,6 +32,6 @@
   <GuidePoints>
     <GuidePoint>Always install and activate one skin with `data-skin`; a missing or unknown id has no implicit token fallback.</GuidePoint>
     <GuidePoint>Every skin resolves every color, typography, radius, shadow, motion, and surface token in both modes, either through one shared declaration or explicit light and dark declarations.</GuidePoint>
-    <GuidePoint>An app already declaring these names at `:root` declares them on the same element as `[data-skin]`, at equal specificity. Source order alone then decides, and the winner is whichever stylesheet is written last — so an existing theme silently overrides the pack on the names they share. Keep one owner per name: seed the skin from the existing values and drop them from `:root`, or scope the app's own declarations below the root.</GuidePoint>
+    <GuidePoint>An app already declaring these names at `:root` declares them on the same element as the skin scope. A pack writes them under `[data-skin="id"][data-skin]`, which repeats the scope attribute purely for weight: it matches exactly the same elements as `[data-skin="id"]`, but out-specifies a bare `:root` so the installed pack paints and the palette cannot turn hybrid on source order. To override a pack token on purpose, match that weight or beat it — `:root[data-skin]` on the app's own block is enough. Leaving the old `:root` values in place is harmless but dead; deleting them keeps one owner per name.</GuidePoint>
   </GuidePoints>
 </GuideSection>

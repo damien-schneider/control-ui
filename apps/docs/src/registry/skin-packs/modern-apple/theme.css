@@ -1,6 +1,6 @@
 /* A Liquid Glass reading of iOS 26 / macOS Tahoe. */
 
-[data-skin="modern-apple"] {
+[data-skin="modern-apple"][data-skin] {
   /* typography — the SF stack; small chrome runs a rung larger via the type re-values below */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -111,8 +111,8 @@
 }
 
 /* Dark tokens: glass goes graphite, brighter #0A84FF accent, white rims. Scoped like light block. */
-:where(.dark) [data-skin="modern-apple"],
-.dark[data-skin="modern-apple"] {
+:where(.dark) [data-skin="modern-apple"][data-skin],
+.dark[data-skin="modern-apple"][data-skin] {
   --background: oklch(0.235 0 89.876); /* #1E1E1E — DS Window Background */
   --foreground: oklch(0.9673 0.0024 286.354);
   --card: oklch(0.2478 0.0042 286.109);
@@ -142,7 +142,7 @@
 
 /* prefers-reduced-motion: token-driven, so every transition/derived tempo flattens together. */
 @media (prefers-reduced-motion: reduce) {
-  [data-skin="modern-apple"] {
+  [data-skin="modern-apple"][data-skin] {
     --duration-fast: 0ms;
     --duration-base: 0ms;
     --duration-slow: 0ms;

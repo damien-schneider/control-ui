@@ -77,7 +77,7 @@ function exactSkinSelectorPattern(id: string, flags = ""): RegExp {
 }
 
 function selectorOnlyScopesSkin(selector: string, id: string): boolean {
-  const withoutSkin = selector.replace(exactSkinSelectorPattern(id, "g"), "");
+  const withoutSkin = selector.replace(exactSkinSelectorPattern(id, "g"), "").replace(/\[data-skin\]/g, "");
   return (
     withoutSkin
       .replace(/:not\(\s*\.dark\s*\)/g, "")

@@ -1,6 +1,6 @@
 /* Brutalist coral, squared corners, dense type. */
 
-[data-skin="rig"] {
+[data-skin="rig"][data-skin] {
   --font-sans: "Helvetica Neue", "Arial Nova", Arial, "Segoe UI", ui-sans-serif, sans-serif;
   --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
 
@@ -49,8 +49,8 @@
   --popover-padding: 0.25rem;
 }
 
-:root:not(.dark)[data-skin="rig"],
-:where(:not(.dark)) [data-skin="rig"] {
+:root:not(.dark)[data-skin="rig"][data-skin],
+:where(:not(.dark)) [data-skin="rig"][data-skin] {
   /* Coral = ACCENT not page bg; surfaces warm off-white (inverse of dark band's near-black stack).
    * canvas = paper; card/background/popover = near-white surfaces above it.
    * The filled primary is dark enough for white ink to clear WCAG AA. */
@@ -68,8 +68,8 @@
   --popover-foreground: oklch(0.2168 0.0113 55.716);
 }
 
-.dark[data-skin="rig"],
-:where(.dark) [data-skin="rig"] {
+.dark[data-skin="rig"][data-skin],
+:where(.dark) [data-skin="rig"][data-skin] {
   --primary: oklch(0.54 0.1833 32.21);
   --primary-foreground: oklch(0.9852 0.0058 85);
   --foreground: oklch(0.9313 0.0143 81.504);

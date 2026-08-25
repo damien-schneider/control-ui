@@ -1,4 +1,4 @@
-[data-skin="liquid-metal"] {
+[data-skin="liquid-metal"][data-skin] {
   --font-sans: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
   --font-mono: Menlo, Monaco, "Courier New", monospace;
   --radius: 14px;
@@ -38,8 +38,8 @@
   --popover-padding: 0.25rem;
 }
 
-:root:not(.dark)[data-skin="liquid-metal"],
-:where(:not(.dark)) [data-skin="liquid-metal"] {
+:root:not(.dark)[data-skin="liquid-metal"][data-skin],
+:where(:not(.dark)) [data-skin="liquid-metal"][data-skin] {
   --primary: oklch(0.9192 0.0388 261.447);
   --primary-foreground: oklch(0.2102 0.006 285.874);
   --foreground: oklch(0.2107 0.0087 264.371);
@@ -53,8 +53,8 @@
   --popover-foreground: oklch(0.2107 0.0087 264.371);
 }
 
-.dark[data-skin="liquid-metal"],
-:where(.dark) [data-skin="liquid-metal"] {
+.dark[data-skin="liquid-metal"][data-skin],
+:where(.dark) [data-skin="liquid-metal"][data-skin] {
   --primary: oklch(0.9192 0.0388 261.447);
   --primary-foreground: oklch(0.2102 0.006 285.874);
   --foreground: oklch(0.9841 0.0012 264.547);
