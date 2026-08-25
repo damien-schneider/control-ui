@@ -26,6 +26,7 @@ Install
 - The catalog is ${normalizedOrigin}/r/agent-index.json and every item carries its own install command. ${normalizedOrigin}/llms.txt indexes the documentation.
 - Install the complete set and its skin in one command: \`npx shadcn@latest add ${normalizedOrigin}/r/all-flat.json\`. Picking components one by one leaves the skin we write next with almost no surface to be checked against, and forces the update scripts below to track a bespoke list.
 - Flat is the neutral reset: an empty skin.css and no adornments, so the theme we write later owns every value. Every other pack re-values component knobs and can install adornments and layout defaults that a theme cannot undo, which is why a pack is a choice I make, not a resemblance you pick for me.
+- The pack re-themes every existing screen that reads these token names the moment it lands, and flat is deliberately the blank slate: squared corners, hairline borders. Between this install and the theme below, the app looks rougher than before — say so when you report the install, and carry the theme through in this same run. The reset is scaffolding, never the state you leave me in.
 - Install item by item only if I ask for a lean install, and say that the update scripts then have to name each item.
 - Installed files are source I own, so take them from the registry and never hand-copy them out of the documentation.
 - Installing moves this app's own dependency versions. List every package it added or changed, and revert any change no installed item required.
@@ -43,11 +44,13 @@ Leave an update path
 - Add two package.json scripts against \`${normalizedOrigin}/r/update.json\`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
 - After a lean install those scripts must name the items I installed instead, since update.json would pull in the rest of the set.
 - Say that the diff comes first and the overwrite wants a clean tree, because it rewrites source I own. The three skin files are never touched by either.
+- Offer once to install the Control UI skill: fetch ${normalizedOrigin}/r/control-ui-skill.md and write it to .claude/skills/control-ui/SKILL.md. It carries the token contract and the working rules, so later sessions in this repository build with the library without this prompt.
 
 Where shadcn/ui already sits
-- Only when this app imports its own components/ui/*: ask me whether to move the obvious call sites — button, dropdown, dialog, tooltip — onto Control UI, or leave them where they are. Never migrate without my answer.
+- Only when this app imports its own components/ui/*: inventory that directory, look every component up in the catalog index, and show me the mapping — the Control UI counterpart, or none. A tree or a scroll area counts as much as a button or a dialog; the inventory exists so nothing gets skipped for looking unusual. Then ask me once which mapped call sites to move. Never migrate without my answer.
 - Both libraries write to different directories and run side by side, so leaving them is a real answer, not a half-measure.
 - The props are not drop-in. Before you rewrite a call site, read the exported prop types of the installed Control UI component and tell me the mapping you derived: shadcn's variant and size collapse onto variant, tone, size and iconOnly, asChild becomes render, and a shadcn variant with no counterpart is a question for me, not a guess.
+- A migrated call site keeps its layout classes — width, flex, grid, gap — and sheds its styling ones. The border, radius, background and padding utilities the old component needed now fight the recipe underneath, and carrying them over is what reads as a broken install afterwards.
 - Move one component at a time and confirm the app still paints between each.
 - Leave the shadcn source in place. Tell me when nothing imports it any more; deleting it is my call.
 

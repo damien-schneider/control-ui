@@ -190,11 +190,20 @@ export function parseThemeArtifact(input: string, expectedBaseSkin?: string): Th
   return results[0] ?? { ok: false, errors: ["The theme artifact is invalid."] };
 }
 
-function compactContract() {
+export function compactContract() {
   return THEME_CONTRACT.map((token) => {
     const bucket = isColorValuedToken(token.name) ? "light+dark" : "shared";
     return `- ${token.name} [${bucket}] ${token.description}`;
   }).join("\n");
+}
+
+export function themeApplyCssRules(baseSkinRef: string) {
+  const scope = `[data-skin="${baseSkinRef}"][data-skin]`;
+  return [
+    `Write the artifact's tokens as one CSS file beside the app's CSS entry, named after the theme so it collides with nothing already there: tokens.shared and tokens.light in one \`${scope} { }\` block, tokens.dark in \`:where(.dark) ${scope}, .dark${scope} { }\`. The doubled attribute is the pack's own weight — matching it hands the win to source order.`,
+    "Import that file on the last line of the entry's import block, after every Control UI import. Being last is what makes it win.",
+    'If reduceMotion is true, stamp data-motion="reduced" on the root element beside data-skin; remove the attribute when a later theme turns it back off.',
+  ];
 }
 
 function themeDiscoveryBrief(mode: ThemeDiscoveryMode) {
@@ -235,6 +244,27 @@ export function themeArtifactBrief({ origin, baseSkin, context, discoveryMode }:
   const contrastRules = contrastAgentRules(normalizedOrigin)
     .map((rule) => `- ${rule}`)
     .join("\n");
+  const appliesInRepo = discoveryMode === "existing-project";
+  // The setup lane just installed from this registry, so the contract URL is proven reachable and the embed is dead weight; only the copy-paste lane can run without network.
+  const contractRule = appliesInRepo
+    ? `- Read the canonical contract from ${contractUrl}. The registry that served the install serves this list too.`
+    : `- Read the canonical contract from ${contractUrl}. If it is unreachable, use the embedded contract below.`;
+  const sourceFilesRule = appliesInRepo
+    ? "- Application source stays untouched until the artifact is finished; Apply it below names the only writes beyond the artifact itself."
+    : "- Do not modify application source files.";
+  const applySection = appliesInRepo
+    ? `\nApply it
+- The artifact is the source of record; each app consumes it as one derived CSS file.
+${themeApplyCssRules(baseSkin ?? "<baseSkin>")
+  .map((rule) => `- ${rule}`)
+  .join("\n")}
+- Every app this run installed into gets the same theme this same way. One app themed while another rests on the raw reset is the bug, not a smaller scope.
+- Reload and confirm a changed token paints — a radius, the primary — before you call it applied.\n`
+    : "";
+  const embeddedContract = appliesInRepo ? "" : `Embedded canonical contract fallback\n\n${compactContract()}\n\n`;
+  const closing = appliesInRepo
+    ? `When finished, tell me the artifact path and where each app imports its CSS. To review the result myself, I import the artifact at ${builderUrl} and check it at ${accessibilityUrl}.`
+    : `When finished, reply with the file path and tell me to import it at ${builderUrl}, then review the active theme at ${accessibilityUrl}.`;
 
   return `Discovery
 ${themeDiscoveryBrief(discoveryMode)}
@@ -245,9 +275,9 @@ ${themeDiscoveryBrief(discoveryMode)}
 - Once the direction is clear, create the theme without asking me to restate the brief.
 ${context ? `\n${context}\n` : ""}
 Implementation
-- Read the canonical contract from ${contractUrl}. If it is unreachable, use the embedded contract below.
+${contractRule}
 - Write exactly one file named <short-name>.control-ui-theme.json in the current working directory.
-- Do not modify application source files.
+${sourceFilesRule}
 - ${baseSkinRule}
 - Use format "control-ui-theme/v1".
 - Choose a concise human name, 60 characters or fewer.
@@ -280,12 +310,8 @@ Artifact shape
     "dark": {}
   }
 }
-
-Embedded canonical contract fallback
-
-${compactContract()}
-
-When finished, reply with the file path and tell me to import it at ${builderUrl}, then review the active theme at ${accessibilityUrl}.
+${applySection}
+${embeddedContract}${closing}
 `;
 }
 

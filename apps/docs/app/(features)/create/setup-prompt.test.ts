@@ -83,4 +83,30 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("read the exported prop types of the installed Control UI component");
     expect(prompt).toContain("Leave the shadcn source in place");
   });
+
+  test("inventories the app's own components instead of naming four obvious ones", () => {
+    expect(prompt).toContain("inventory that directory, look every component up in the catalog index");
+    // The tree in the first field run stayed unmigrated because the prompt only named button, dropdown, dialog, tooltip.
+    expect(prompt).toContain("A tree or a scroll area counts as much as a button");
+    expect(prompt).toContain("sheds its styling ones");
+  });
+
+  test("carries the theme into every installed app instead of ending at the docs site", () => {
+    expect(prompt).toContain("Apply it");
+    expect(prompt).toContain("Import that file on the last line of the entry's import block");
+    expect(prompt).toContain("Every app this run installed into gets the same theme");
+    expect(prompt).toContain('stamp data-motion="reduced"');
+    // The install already proved the registry reachable, so the embedded contract is dead weight here.
+    expect(prompt).not.toContain("Embedded canonical contract fallback");
+    expect(prompt).toContain("https://control-ui.example/r/theme-contract.json");
+  });
+
+  test("says the reset visibly degrades the app until the theme lands", () => {
+    expect(prompt).toContain("The reset is scaffolding, never the state you leave me in");
+  });
+
+  test("offers the skill that carries the contract into later sessions", () => {
+    expect(prompt).toContain("https://control-ui.example/r/control-ui-skill.md");
+    expect(prompt).toContain(".claude/skills/control-ui/SKILL.md");
+  });
 });
