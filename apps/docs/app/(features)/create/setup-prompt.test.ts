@@ -17,10 +17,21 @@ describe("agent setup prompt", () => {
   });
 
   test("names the wiring steps that fail silently instead of loudly", () => {
-    expect(prompt).toContain("../src/components/…");
     expect(prompt).toContain("Stamp data-skin on the root element");
     expect(prompt).toContain("not a multi-skin switch, so one skin still needs it");
-    expect(prompt).toContain("source order alone decides and the palette turns hybrid");
+    expect(prompt).toContain("the skin out-specifies that block on purpose and wins");
+  });
+
+  test("makes the agent resolve the css imports the registry cannot address", () => {
+    expect(prompt).toContain("The registry cannot know this app's layout");
+    expect(prompt).toContain("Check every line resolves before moving on");
+    expect(prompt).toContain("Never edit or reorder the imported stylesheets themselves");
+  });
+
+  test("keeps the verification out of my app and out of shared files", () => {
+    expect(prompt).toContain("Do that on a throwaway route, then delete the route and its directory");
+    expect(prompt).toContain("Stay inside the app you are installing into");
+    expect(prompt).toContain("propose the edit and wait");
   });
 
   test("continues through installation instead of treating the repository report as an approval checkpoint", () => {

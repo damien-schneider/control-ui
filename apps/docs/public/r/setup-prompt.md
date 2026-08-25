@@ -15,11 +15,13 @@ Install
 - Installing moves this app's own dependency versions. List every package it added or changed, and revert any change no installed item required.
 
 Wire it
-- Every item appends its own imports to the CSS entry named in components.json. Read that entry afterwards and confirm they landed.
-- The registry writes `../components/…`. When the CSS entry does not sit beside components/ — app/globals.css with the components under src/ — correct the prefix to `../src/components/…` or none of it resolves.
+- Every item appends its own imports to the CSS entry named in components.json. The registry cannot know this app's layout, so it writes every one of them as `../components/control-ui/…` — right only when the entry sits one directory under the components alias. Resolve each appended import against the entry's own directory, and where it points at no file, rewrite the whole block to the real relative path from the entry to the directory the install actually wrote to. Check every line resolves before moving on; one wrong prefix silently unstyles everything below it.
+- Never edit or reorder the imported stylesheets themselves. Layering and scope decide precedence, not their position in the entry.
 - Stamp data-skin on the root element with the installed pack's id. It is the scope every token is declared under, not a multi-skin switch, so one skin still needs it: a missing or misspelled id leaves the whole contract undeclared, and every portalled surface — popover, dialog, menu, tooltip — renders with no tokens at all.
-- The core token names are shadcn's. Where this app already declares --background, --primary, --radius and their siblings at :root, those land on the same element as [data-skin] with equal specificity, so source order alone decides and the palette turns hybrid without saying so. Read the entry after wiring, tell me which set wins, and let me choose.
+- The core token names are shadcn's. Where this app already declares --background, --primary, --radius and their siblings at :root, the skin out-specifies that block on purpose and wins, so the pack paints and the palette does not turn hybrid. Those declarations are now dead: tell me they are there and offer to delete them, because a token block that no longer paints anything is what makes the next redesign confusing.
 - Start the dev server and confirm that a control paints and that one portalled surface opens with its tokens. Do not move on until both do.
+- Do that on a throwaway route, then delete the route and its directory. Do not leave a verification page, an empty folder, or a screenshot behind in my app.
+- Stay inside the app you are installing into. A root package.json, a workspace catalog or a lockfile pin shared with other packages is mine to change: propose the edit and wait, however small it looks.
 
 Leave an update path
 - Add two package.json scripts against `http://127.0.0.1:3000/r/update.json`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
