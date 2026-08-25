@@ -10,6 +10,7 @@ export const publicPayloads = {
   themeContract: "theme-contract.json",
   contrastAnatomy: "contrast-anatomy.json",
   setupPrompt: "setup-prompt.md",
+  controlUiSkill: "control-ui-skill.md",
 } as const;
 
 export const publicPayloadPath = (payload: string) => path.join("public/r", payload);

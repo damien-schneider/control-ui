@@ -90,6 +90,7 @@ function buildCheatSheet() {
     "- Install: run the item's `install` command (`npx shadcn@latest add <url>`). Installed files are yours to own and edit.",
     "- Skinning: a skin is additive CSS + a `skin.config`; install a skin pack to restyle every component at once.",
     `- Setting up a repository from scratch: \`${base}/r/${publicPayloads.setupPrompt}\` is the full procedure, including the wiring steps that fail silently when skipped.`,
+    `- Working where Control UI is already installed: \`${base}/r/${publicPayloads.controlUiSkill}\` is the installable skill carrying the token contract and the working rules (mirrored at \`skills/control-ui/SKILL.md\`).`,
     "",
     "## Contrast (check this before shipping a skin)",
     "",
