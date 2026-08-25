@@ -18,6 +18,8 @@ Read the project first
 - Every command here and in the catalog is written for npm. Read the lockfile and run mine instead — ${packageRunnerHints(writtenPackageManager)} — and the same for npm run: the scripts you add later are written with my runner too.
 - If this directory has no package.json, scaffold a new app instead: \`${scaffold}\` — replace ${PLACEHOLDER_PROJECT_NAME} with the name I give you.
 - Otherwise read package.json, the framework and its version, the Tailwind version, the CSS entry, and components.json if one already exists.
+- In a workspace, one app is the target: run every command from that app's directory and read that app's manifest and CSS entry, not the root's. If more than one app could be the target and I did not name one, ask which before touching anything.
+- A second Control UI install in the same workspace is an architecture decision, so ask me once before making it: per app, where each app owns its source and skin and they drift apart on purpose — the layout everything here is tested against — or one shared workspace package, which locks every consumer to the same skin and needs each consumer's CSS entry to @source the package, since Tailwind never scans past its own app. Recommend per app and wait for my answer: moving later means rewriting every call site.
 - Tell me what you found and what you will install, then continue directly to Install. This is a status update, not an approval checkpoint; pause only if a required choice or destructive conflict blocks safe installation.
 
 Install

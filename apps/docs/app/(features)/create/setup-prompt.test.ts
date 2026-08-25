@@ -36,6 +36,13 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("the install writes the shared lockfile itself");
   });
 
+  test("names the workspace target and makes the per-app-versus-shared choice mine", () => {
+    expect(prompt).toContain("run every command from that app's directory");
+    expect(prompt).toContain("A second Control UI install in the same workspace is an architecture decision");
+    // The shared path silently loses every utility class without this line: Tailwind v4 stops at the app boundary.
+    expect(prompt).toContain("@source the package");
+  });
+
   test("continues through installation instead of treating the repository report as an approval checkpoint", () => {
     expect(prompt).toContain("then continue directly to Install");
     expect(prompt).toContain("This is a status update, not an approval checkpoint");
