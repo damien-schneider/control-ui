@@ -16,11 +16,13 @@ function writeJson(filePath, value) {
   writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
-function fixture(name, sourceLayout) {
+function fixture(name, sourceLayout, entryPath) {
   const directory = path.join(temporaryRoot, name);
   const appRoot = sourceLayout ? "src/app" : "app";
   const aliasTarget = sourceLayout ? "./src/*" : "./*";
+  const cssEntryPath = entryPath ?? `${appRoot}/globals.css`;
   mkdirSync(path.join(directory, appRoot), { recursive: true });
+  mkdirSync(path.dirname(path.join(directory, cssEntryPath)), { recursive: true });
   writeJson(path.join(directory, "package.json"), {
     name,
     private: true,
@@ -49,7 +51,7 @@ function fixture(name, sourceLayout) {
     style: "new-york",
     rsc: true,
     tsx: true,
-    tailwind: { css: `${appRoot}/globals.css`, baseColor: "neutral", cssVariables: true },
+    tailwind: { css: cssEntryPath, baseColor: "neutral", cssVariables: true },
     aliases: {
       components: "@/components",
       utils: "@/lib/utils",
@@ -58,7 +60,7 @@ function fixture(name, sourceLayout) {
       hooks: "@/hooks",
     },
   });
-  writeFileSync(path.join(directory, appRoot, "globals.css"), '@import "tailwindcss";\n');
+  writeFileSync(path.join(directory, cssEntryPath), '@import "tailwindcss";\n');
   return directory;
 }
 
@@ -75,6 +77,27 @@ function install(directory, item) {
 
 function installSkin(directory, item) {
   run("bunx", ["shadcn", "add", `${registryBase}/r/${item}.json`, "--yes", "--overwrite"], directory);
+}
+
+function cssEntry(directory) {
+  const components = JSON.parse(readFileSync(path.join(directory, "components.json"), "utf8"));
+  return path.join(directory, components.tailwind.css);
+}
+
+function unresolvedImports(entryPath) {
+  const entryDirectory = path.dirname(entryPath);
+  return [...readFileSync(entryPath, "utf8").matchAll(/@import\s+"([^"]+)"/g)]
+    .map((match) => match[1])
+    .filter((specifier) => specifier.startsWith("."))
+    .filter((specifier) => !existsSync(path.resolve(entryDirectory, specifier)));
+}
+
+function assertImportsResolve(directory) {
+  const entryPath = cssEntry(directory);
+  const unresolved = unresolvedImports(entryPath);
+  if (unresolved.length > 0) {
+    throw new Error(`${path.basename(directory)} wrote imports into ${entryPath} that resolve to no file: ${unresolved.join(", ")}`);
+  }
 }
 
 function walk(directory) {
@@ -275,11 +298,28 @@ try {
     throw new Error("The all item did not install the Refined skin");
   }
 
+  for (const directory of [rootFixture, componentFirstFixture, sourceFixture, aggregateFixture, ...fullInstallFixtures]) {
+    assertImportsResolve(directory);
+  }
+
+  const flatEntryFixture = fixture("flat-entry", true, "src/index.css");
+  install(flatEntryFixture, "all");
+  const flatEntryPath = cssEntry(flatEntryFixture);
+  const flatEntryUnresolved = unresolvedImports(flatEntryPath);
+  if (flatEntryUnresolved.length === 0) {
+    throw new Error(
+      "A CSS entry sitting beside the components alias now resolves the imports the registry writes: drop the rewrite step from the setup prompt",
+    );
+  }
+  const flatEntryPrefix = `./${path.relative(path.dirname(flatEntryPath), path.join(flatEntryFixture, "src/components/control-ui"))}/`;
+  writeFileSync(flatEntryPath, readFileSync(flatEntryPath, "utf8").replaceAll("../components/control-ui/", flatEntryPrefix));
+  assertImportsResolve(flatEntryFixture);
+
   const shikiVersion = JSON.parse(readFileSync(path.join(sourceFixture, "package.json"), "utf8")).dependencies?.shiki;
   if (shikiVersion !== "^4.4.3") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);
 
   console.log(
-    `Registry install smoke test passed (root layout, src layout, component-first skin install, all alias, update overwrite, ${fullInstallFixtures.length} per-skin full installs, source invariance, and TypeScript).`,
+    `Registry install smoke test passed (root layout, src layout, component-first skin install, all alias, update overwrite, ${fullInstallFixtures.length} per-skin full installs, source invariance, import resolution, and TypeScript).`,
   );
 } finally {
   if (server.exitCode === null) server.kill();
