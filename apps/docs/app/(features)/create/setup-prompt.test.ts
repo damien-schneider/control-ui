@@ -32,6 +32,8 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("Do that on a throwaway route, then delete the route and its directory");
     expect(prompt).toContain("Stay inside the app you are installing into");
     expect(prompt).toContain("propose the edit and wait");
+    // The lockfile is written by the install, not chosen: stopping on it turns every workspace install into a checkpoint.
+    expect(prompt).toContain("the install writes the shared lockfile itself");
   });
 
   test("continues through installation instead of treating the repository report as an approval checkpoint", () => {

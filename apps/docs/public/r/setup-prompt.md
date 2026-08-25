@@ -21,7 +21,7 @@ Wire it
 - The core token names are shadcn's. Where this app already declares --background, --primary, --radius and their siblings at :root, the skin out-specifies that block on purpose and wins, so the pack paints and the palette does not turn hybrid. Those declarations are now dead: tell me they are there and offer to delete them, because a token block that no longer paints anything is what makes the next redesign confusing.
 - Start the dev server and confirm that a control paints and that one portalled surface opens with its tokens. Do not move on until both do.
 - Do that on a throwaway route, then delete the route and its directory. Do not leave a verification page, an empty folder, or a screenshot behind in my app.
-- Stay inside the app you are installing into. A root package.json, a workspace catalog or a lockfile pin shared with other packages is mine to change: propose the edit and wait, however small it looks.
+- Stay inside the app you are installing into. In a workspace the install writes the shared lockfile itself — that is the install doing its job, so let it, and report what moved with the rest of the version changes. Hand-editing a shared file is the other thing: a root package.json, a workspace catalog, a pinned override is mine to change, so propose the edit and wait, however small it looks.
 
 Leave an update path
 - Add two package.json scripts against `http://127.0.0.1:3000/r/update.json`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
