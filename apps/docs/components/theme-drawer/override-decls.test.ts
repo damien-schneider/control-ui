@@ -106,13 +106,13 @@ describe("buildOverrideSheetCss — the portal fix: scope the diff to the ACTIVE
       ["--overlay-opacity", "0.5"],
       ["--backdrop-blur-overlay", "8px"],
     ]);
-    expect(css).toBe(`[data-skin="xp"] {\n  --overlay-opacity: 0.5;\n  --backdrop-blur-overlay: 8px;\n}`);
+    expect(css).toBe(`[data-skin="xp"][data-skin] {\n  --overlay-opacity: 0.5;\n  --backdrop-blur-overlay: 8px;\n}`);
   });
 
   test("the selector targets the active skin — so it matches that skin's portalled surfaces", () => {
-    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).toContain(`[data-skin="rig"]`);
-    // NOT unscoped `[data-skin]` — that would leak edits onto every skin on multi-skin page.
-    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).not.toContain("[data-skin] {");
+    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).toStartWith(`[data-skin="rig"]`);
+    // The repeated attribute is weight, not a second scope: it must never widen to every skin on a multi-skin page.
+    expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).not.toContain("[data-skin] [");
   });
 
   test("end-to-end: an overlay-opacity override on XP produces a rule that reaches XP dialogs", () => {

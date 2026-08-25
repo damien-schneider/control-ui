@@ -4,7 +4,7 @@ import { SKIN_CONFIGS } from "@/components/skin-registry";
 import { COLOR_SCHEME_LOCK_ATTR, preferredTheme } from "@/components/theme";
 import { THEME_CONTRACT_NAMES } from "@/src/registry/lib/theme-contract";
 import { hexToOklchColor } from "./color-utils";
-import { buildDarkColorDecls, buildOverrideDecls, buildOverrideSheetCss } from "./override-decls";
+import { buildDarkColorDecls, buildOverrideDecls, buildOverrideSheetCss, skinScopeSelector } from "./override-decls";
 import type { ThemeState } from "./types";
 
 // injected <style> that carries editor's diff to portalled surfaces (see writeOverrideSheet).
@@ -73,9 +73,10 @@ export function toCss(t: ThemeState): string {
   }
   const block = (decls: [string, string][]) => decls.map(([name, value]) => `  ${name}: ${value};`).join("\n");
   const parts: string[] = [
-    `/* Paste after the "${t.skin}" skin's theme.css import — selectors tie on specificity, so source order decides. */`,
+    `/* Paste after the "${t.skin}" skin's theme.css import — the selector matches the pack's own weight, so source order decides. */`,
   ];
-  if (rootDecls.length > 0) parts.push(`[data-skin="${t.skin}"] {\n${block(rootDecls)}\n}`);
-  if (darkDecls.length > 0) parts.push(`:where(.dark) [data-skin="${t.skin}"],\n.dark[data-skin="${t.skin}"] {\n${block(darkDecls)}\n}`);
+  const scope = skinScopeSelector(t.skin);
+  if (rootDecls.length > 0) parts.push(`${scope} {\n${block(rootDecls)}\n}`);
+  if (darkDecls.length > 0) parts.push(`:where(.dark) ${scope},\n.dark${scope} {\n${block(darkDecls)}\n}`);
   return parts.join("\n\n");
 }

@@ -36,10 +36,15 @@ export function buildOverrideDecls(t: ThemeState, isDark: boolean): [string, str
   return Array.from(decls);
 }
 
+// A pack repeats [data-skin] to outweigh an app's own :root block, so an override has to repeat it too or it never lands.
+export function skinScopeSelector(skin: string): string {
+  return `[data-skin="${skin}"][data-skin]`;
+}
+
 // Null on empty diff, so caller removes sheet and pack's own values win.
 // portalled surface re-asserts data-skin, so pack's block sets tokens directly on it — only equally-scoped rule injected last wins them back.
 export function buildOverrideSheetCss(skin: string, decls: [string, string][]): string | null {
   if (decls.length === 0) return null;
   const body = decls.map(([name, value]) => `  ${name}: ${value};`).join("\n");
-  return `[data-skin="${skin}"] {\n${body}\n}`;
+  return `${skinScopeSelector(skin)} {\n${body}\n}`;
 }

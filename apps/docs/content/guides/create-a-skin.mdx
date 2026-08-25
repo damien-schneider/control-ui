@@ -9,19 +9,20 @@
 </GuideSection>
 
 <GuideSection id="override" title="Re-value tokens over a pack">
-  Keep the installed pack and re-value tokens in your own CSS, after the skin imports. Scope the override to the pack's
-  `data-skin` root — portalled surfaces re-assert `data-skin` on their positioner and receive the pack's values directly,
-  so a `:root` override never reaches them. An equally scoped rule that comes later in the source wins.
+  Keep the installed pack and re-value tokens in your own CSS, after the skin imports. Scope the override the way the
+  pack scopes itself, repeating `[data-skin]` — portalled surfaces re-assert `data-skin` on their positioner and receive
+  the pack's values directly, so a `:root` override never reaches them, and a single `[data-skin="…"]` now scores under
+  the pack instead of tying with it. Match the pack's weight and the later rule wins.
 
 ```css
 /* app/globals.css, after the skin imports */
-[data-skin="refined"] {
+[data-skin="refined"][data-skin] {
   --primary: oklch(0.55 0.2 260);
   --radius: 10px;
 }
 
-:where(.dark) [data-skin="refined"],
-.dark[data-skin="refined"] {
+:where(.dark) [data-skin="refined"][data-skin],
+.dark[data-skin="refined"][data-skin] {
   --primary: oklch(0.72 0.17 260);
 }
 ```
