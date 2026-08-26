@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-ui-skill",
+  "type": "registry:item",
+  "title": "Control UI agent skill",
+  "description": "The Control UI working rules and token contract, installed to .claude/skills/control-ui/SKILL.md so agent sessions in the repository build with the library unprompted.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skills/control-ui-skill.md",
+      "target": "~/.claude/skills/control-ui/SKILL.md",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/control-ui-skill.json"
+  }
+}

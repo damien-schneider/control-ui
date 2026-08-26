@@ -115,8 +115,9 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("The reset is scaffolding, never the state you leave me in");
   });
 
-  test("offers the skill that carries the contract into later sessions", () => {
-    expect(prompt).toContain("https://control-ui.example/r/control-ui-skill.md");
-    expect(prompt).toContain(".claude/skills/control-ui/SKILL.md");
+  test("ships the skill with the install instead of offering a manual fetch", () => {
+    expect(prompt).toContain("The install already wrote .claude/skills/control-ui/SKILL.md");
+    expect(prompt).toContain("control-ui:update keeps it current");
+    expect(prompt).toContain("https://control-ui.example/r/control-ui-skill.json");
   });
 });

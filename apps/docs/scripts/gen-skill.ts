@@ -5,8 +5,13 @@ import { siteConfig } from "@/lib/site-config";
 import { publicPayloadPath, publicPayloads } from "./public-payloads";
 
 const checkOnly = process.argv.includes("--check");
-// public/r serves the setup prompt's install step; skills/control-ui is what skill CLIs read from the repository itself.
-const targets = [publicPayloadPath(publicPayloads.controlUiSkill), "../../skills/control-ui/SKILL.md"];
+// public/r serves the setup prompt's install step; skills/control-ui is what skill CLIs read from the repository itself;
+// src/registry/skills is the source the control-ui-skill registry item installs to .claude/skills in consumer apps.
+const targets = [
+  publicPayloadPath(publicPayloads.controlUiSkill),
+  "../../skills/control-ui/SKILL.md",
+  "src/registry/skills/control-ui-skill.md",
+];
 const content = buildControlUiSkill({ origin: siteConfig.url.origin });
 
 let failed = false;

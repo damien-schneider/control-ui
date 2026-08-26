@@ -38,6 +38,7 @@
     "http://127.0.0.1:3000/r/command.json",
     "http://127.0.0.1:3000/r/context.json",
     "http://127.0.0.1:3000/r/context-menu.json",
+    "http://127.0.0.1:3000/r/control-ui-skill.json",
     "http://127.0.0.1:3000/r/core.json",
     "http://127.0.0.1:3000/r/dialog.json",
     "http://127.0.0.1:3000/r/dockable-panel.json",

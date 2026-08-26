@@ -140,6 +140,16 @@ function usesStyleUtilities(sources: Iterable<string>) {
 
 const internalDefinitions: Definition[] = [
   {
+    id: "control-ui-skill",
+    type: "registry:item",
+    title: "Control UI agent skill",
+    description:
+      "The Control UI working rules and token contract, installed to .claude/skills/control-ui/SKILL.md so agent sessions in the repository build with the library unprompted.",
+    seeds: ["src/registry/skills/control-ui-skill.md"],
+    primary: ["src/registry/skills/control-ui-skill.md"],
+    internal: true,
+  },
+  {
     id: "effects",
     type: "registry:style",
     title: "Control UI effects",
@@ -343,6 +353,7 @@ const completeComponentSet = [
     ...componentEntries.map((entry) => entry.registryKind),
     ...blockEntries.map((entry) => entry.registryKind),
     ...primitiveEntries.map((entry) => entry.paths.registry.registryKind),
+    "control-ui-skill",
   ]),
 ].sort();
 
@@ -450,6 +461,7 @@ function sourceManifestPath(item: Definition) {
 const directSourceTargets = new Map([
   ["src/registry/skin.ts", `${componentRoot}/skin.ts`],
   ["src/registry/examples/control-ui/primitives/type-scale.css", `${componentRoot}/styles/type-scale.css`],
+  ["src/registry/skills/control-ui-skill.md", "~/.claude/skills/control-ui/SKILL.md"],
   ["src/registry/starters/next/layout.tsx", "~/app/layout.tsx"],
   ["src/registry/starters/next/page.tsx", "~/app/page.tsx"],
 ]);
@@ -500,7 +512,7 @@ function sourceToTarget(filePath: string): string {
 
 function fileType(filePath: string): RegistryFileType {
   if (filePath.startsWith("src/registry/starters/")) return "registry:page";
-  if (filePath.endsWith(".css") || filePath.endsWith(".mjs")) return "registry:file";
+  if (filePath.endsWith(".css") || filePath.endsWith(".mjs") || filePath.endsWith(".md")) return "registry:file";
   if (filePath.endsWith("skin.config.tsx") || filePath.endsWith("modern-apple-liquid-glass.ts")) return "registry:lib";
   if (filePath.includes("/blocks/")) return "registry:block";
   if (filePath.includes("/hooks/")) return "registry:hook";

@@ -38,6 +38,7 @@
     "command",
     "context",
     "context-menu",
+    "control-ui-skill",
     "core",
     "dialog",
     "dockable-panel",

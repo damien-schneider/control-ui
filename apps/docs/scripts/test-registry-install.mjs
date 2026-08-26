@@ -325,6 +325,10 @@ try {
 
   const flatEntryFixture = fixture("flat-entry", true, "src/index.css");
   install(flatEntryFixture, "all");
+  const skillPath = path.join(flatEntryFixture, ".claude/skills/control-ui/SKILL.md");
+  if (!existsSync(skillPath)) {
+    throw new Error("The all item did not install the Control UI skill to .claude/skills/control-ui/SKILL.md");
+  }
   const flatEntryPath = cssEntry(flatEntryFixture);
   const flatEntryUnresolved = unresolvedImports(flatEntryPath);
   if (flatEntryUnresolved.length === 0) {
@@ -341,7 +345,11 @@ try {
   const flatEntrySeparator = flatEntryBeforeTheme.endsWith("\n") ? "" : "\n";
   writeFileSync(flatEntryPath, `${flatEntryBeforeTheme}${flatEntrySeparator}@import "./probe.control-ui-theme.css";\n`);
   const flatEntryImportsBeforeUpdate = importLines(flatEntryPath);
+  writeFileSync(skillPath, "drifted\n");
   run("bunx", ["shadcn", "add", `${registryBase}/r/update.json`, "--yes", "--overwrite"], flatEntryFixture);
+  if (readFileSync(skillPath, "utf8") === "drifted\n") {
+    throw new Error("The update manifest did not refresh the installed Control UI skill");
+  }
   if (unresolvedImports(flatEntryPath).length === 0) {
     throw new Error(
       "Updating a rewritten layout no longer re-appends the canonical import block: drop the fix-css-imports chain from the setup prompt",

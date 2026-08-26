@@ -17,6 +17,7 @@ describe("Control UI starter registry items", () => {
     const expectedDependencies = new Set([
       "core",
       "skin-refined",
+      "control-ui-skill",
       ...componentEntries.map((entry) => entry.registryKind),
       ...blockEntries.map((entry) => entry.registryKind),
       ...primitiveEntries.map((entry) => entry.paths.registry.registryKind),

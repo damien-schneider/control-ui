@@ -17,7 +17,7 @@
     "sync:cssdata": "bun scripts/gen-css-custom-data.ts",
     "sync:setup-prompt": "bun scripts/gen-setup-prompt.ts",
     "sync:skill": "bun scripts/gen-skill.ts",
-    "sync": "bun run sync:knobs && bun run sync:contracts && bun run sync:manifests && bun run sync:fixture && bun run sync:registry && bun run docs:agents && bun run sync:index && bun run sync:cssdata && bun run sync:setup-prompt && bun run sync:skill",
+    "sync": "bun run sync:knobs && bun run sync:contracts && bun run sync:skill && bun run sync:manifests && bun run sync:fixture && bun run sync:registry && bun run docs:agents && bun run sync:index && bun run sync:cssdata && bun run sync:setup-prompt",
     "docs:agents": "bun scripts/gen-agent-docs.ts",
     "validate:theme-contract": "bun test src/registry/skin-packs/theme-contract-coverage.test.ts src/registry/sources/control-ui/code-theme.test.ts",
     "skin:validate": "bun scripts/validate-skins.ts",

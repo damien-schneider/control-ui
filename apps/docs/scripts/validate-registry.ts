@@ -216,7 +216,8 @@ for (const [id, manifest] of manifests) {
       continue;
     }
     const isNextStarterTarget = id === "next-app" && nextStarterTargets.has(file.target);
-    if (!file.target.startsWith("@components/control-ui/") && !isNextStarterTarget) {
+    const isSkillTarget = id === "control-ui-skill" && file.target === "~/.claude/skills/control-ui/SKILL.md";
+    if (!file.target.startsWith("@components/control-ui/") && !isNextStarterTarget && !isSkillTarget) {
       failures.push(`${id} writes ${file.target}; all install targets must derive from the consumer's components alias`);
     }
     if (file.target.includes("/primitives/") || file.target.includes("/adapters/")) {
