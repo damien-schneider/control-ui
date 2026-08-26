@@ -7,7 +7,7 @@ const root = process.cwd();
 const temporaryRoot = mkdtempSync(path.join(tmpdir(), "control-ui-registry-install-"));
 const registryBase = "http://127.0.0.1:3000";
 const activeSkinFiles = ["skin.config.tsx", "styles/skin-theme.css", "styles/skin.css"];
-const buttonInstallBudget = { files: 8, bytes: 55_000 };
+const buttonInstallBudget = { files: 9, bytes: 58_000 };
 const server = spawn(process.execPath, [path.join(root, "scripts/serve-public-registry.mjs"), path.join(root, "public"), "3000"], {
   stdio: "ignore",
 });
@@ -100,6 +100,18 @@ function assertImportsResolve(directory) {
   }
 }
 
+function importLines(entryPath) {
+  return readFileSync(entryPath, "utf8")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("@import"));
+}
+
+function duplicateImports(entryPath) {
+  const imports = importLines(entryPath);
+  return imports.filter((line, index) => imports.indexOf(line) !== index);
+}
+
 function walk(directory) {
   return readdirSync(directory).flatMap((entry) => {
     const filePath = path.join(directory, entry);
@@ -165,6 +177,10 @@ try {
   if (readFileSync(driftedComponentPath, "utf8").includes("// local drift")) {
     throw new Error("The update manifest did not refresh drifted component source");
   }
+  if (duplicateImports(cssEntry(rootFixture)).length > 0) {
+    throw new Error("Updating the canonical layout duplicated CSS entry imports; shadcn stopped deduplicating exact lines");
+  }
+  assertImportsResolve(rootFixture);
   activeSkinFiles.forEach((file, index) => {
     if (readFileSync(path.join(rootComponents, file), "utf8") !== activeSkinBeforeUpdate[index]) {
       throw new Error(`The update manifest overwrote ${file}, which the active skin owns`);
@@ -314,6 +330,31 @@ try {
   const flatEntryPrefix = `./${path.relative(path.dirname(flatEntryPath), path.join(flatEntryFixture, "src/components/control-ui"))}/`;
   writeFileSync(flatEntryPath, readFileSync(flatEntryPath, "utf8").replaceAll("../components/control-ui/", flatEntryPrefix));
   assertImportsResolve(flatEntryFixture);
+
+  writeFileSync(path.join(flatEntryFixture, "src/probe.control-ui-theme.css"), '[data-skin="flat"][data-skin] { --radius: 8px; }\n');
+  const flatEntryBeforeTheme = readFileSync(flatEntryPath, "utf8");
+  const flatEntrySeparator = flatEntryBeforeTheme.endsWith("\n") ? "" : "\n";
+  writeFileSync(flatEntryPath, `${flatEntryBeforeTheme}${flatEntrySeparator}@import "./probe.control-ui-theme.css";\n`);
+  const flatEntryImportsBeforeUpdate = importLines(flatEntryPath);
+  run("bunx", ["shadcn", "add", `${registryBase}/r/update.json`, "--yes", "--overwrite"], flatEntryFixture);
+  if (unresolvedImports(flatEntryPath).length === 0) {
+    throw new Error(
+      "Updating a rewritten layout no longer re-appends the canonical import block: drop the fix-css-imports chain from the setup prompt",
+    );
+  }
+  run("node", [path.join(flatEntryFixture, "src/components/control-ui/scripts/fix-css-imports.mjs")], flatEntryFixture);
+  assertImportsResolve(flatEntryFixture);
+  const flatEntryImports = importLines(flatEntryPath);
+  const flatEntryLost = flatEntryImportsBeforeUpdate.filter((line) => !flatEntryImports.includes(line));
+  if (flatEntryLost.length > 0) {
+    throw new Error(`fix-css-imports dropped imports that were wired before the update: ${flatEntryLost.join(", ")}`);
+  }
+  if (duplicateImports(flatEntryPath).length > 0) {
+    throw new Error("fix-css-imports left duplicate imports instead of folding the re-appended block");
+  }
+  if (!flatEntryImports[flatEntryImports.length - 1].includes("probe.control-ui-theme.css")) {
+    throw new Error("fix-css-imports did not keep the theme import last, so re-appended recipes outweigh the theme");
+  }
 
   const shikiVersion = JSON.parse(readFileSync(path.join(sourceFixture, "package.json"), "utf8")).dependencies?.shiki;
   if (shikiVersion !== "^4.4.3") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);

@@ -42,6 +42,7 @@ Wire it
 
 Leave an update path
 - Add two package.json scripts against \`${normalizedOrigin}/r/update.json\`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
+- Chain \`&& node <installed control-ui directory>/scripts/fix-css-imports.mjs\` onto control-ui:update, with the real path. The overwrite re-appends the CSS import block under the canonical prefix the registry assumes, and the script folds those lines onto this app's real paths, drops the duplicates, and keeps the theme import last. In the canonical layout it is a no-op; leave it chained anyway.
 - After a lean install those scripts must name the items I installed instead, since update.json would pull in the rest of the set.
 - Say that the diff comes first and the overwrite wants a clean tree, because it rewrites source I own. The three skin files are never touched by either.
 - Offer once to install the Control UI skill: fetch ${normalizedOrigin}/r/control-ui-skill.md and write it to .claude/skills/control-ui/SKILL.md. It carries the token contract and the working rules, so later sessions in this repository build with the library without this prompt.

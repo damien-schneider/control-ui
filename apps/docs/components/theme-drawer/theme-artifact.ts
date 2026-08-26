@@ -200,7 +200,7 @@ export function compactContract() {
 export function themeApplyCssRules(baseSkinRef: string) {
   const scope = `[data-skin="${baseSkinRef}"][data-skin]`;
   return [
-    `Write the artifact's tokens as one CSS file beside the app's CSS entry, named after the theme so it collides with nothing already there: tokens.shared and tokens.light in one \`${scope} { }\` block, tokens.dark in \`:where(.dark) ${scope}, .dark${scope} { }\`. The doubled attribute is the pack's own weight — matching it hands the win to source order.`,
+    `Write the artifact's tokens as one CSS file named <short-name>.control-ui-theme.css beside the app's CSS entry — that exact suffix is how the update tooling recognises the theme import: tokens.shared and tokens.light in one \`${scope} { }\` block, tokens.dark in \`:where(.dark) ${scope}, .dark${scope} { }\`. The doubled attribute is the pack's own weight — matching it hands the win to source order.`,
     "Import that file on the last line of the entry's import block, after every Control UI import. Being last is what makes it win.",
     'If reduceMotion is true, stamp data-motion="reduced" on the root element beside data-skin; remove the attribute when a later theme turns it back off.',
   ];

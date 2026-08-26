@@ -19,7 +19,7 @@ Control UI is installed source, not a dependency: the components, their recipe s
 - data-skin with the installed skin's id stays on the root element. It is the scope every token is declared under, not a multi-skin switch: a missing or misspelled id leaves the whole contract undeclared, and every portalled surface — popover, dialog, menu, tooltip — renders with no tokens at all.
 - Never edit or reorder the recipe stylesheets the CSS entry imports. Layering and scope decide precedence; look changes go through the theme workflow below.
 - skin.config.tsx, styles/skin-theme.css, and styles/skin.css belong to this app. Updates never touch them.
-- npm run control-ui:diff previews an update against the registry; npm run control-ui:update applies it with --overwrite and wants a clean tree, because it rewrites installed source.
+- npm run control-ui:diff previews an update against the registry; npm run control-ui:update applies it with --overwrite and wants a clean tree, because it rewrites installed source. Its chained scripts/fix-css-imports.mjs pass repairs the CSS entry afterwards — the overwrite re-appends the import block under the canonical prefix — so never run the bare shadcn add in its place.
 - Registry installs append CSS imports written as ../components/control-ui/…, which resolves only when the entry sits one directory above the components alias. After any install, resolve each appended line against the entry's own directory and rewrite the prefix where it points at no file; one wrong prefix silently unstyles everything below it.
 
 ## Building screens

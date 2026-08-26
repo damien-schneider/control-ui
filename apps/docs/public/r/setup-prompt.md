@@ -28,6 +28,7 @@ Wire it
 
 Leave an update path
 - Add two package.json scripts against `http://127.0.0.1:3000/r/update.json`, the complete component set with no skin: control-ui:diff adds it with --diff, control-ui:update adds it with --overwrite.
+- Chain `&& node <installed control-ui directory>/scripts/fix-css-imports.mjs` onto control-ui:update, with the real path. The overwrite re-appends the CSS import block under the canonical prefix the registry assumes, and the script folds those lines onto this app's real paths, drops the duplicates, and keeps the theme import last. In the canonical layout it is a no-op; leave it chained anyway.
 - After a lean install those scripts must name the items I installed instead, since update.json would pull in the rest of the set.
 - Say that the diff comes first and the overwrite wants a clean tree, because it rewrites source I own. The three skin files are never touched by either.
 - Offer once to install the Control UI skill: fetch http://127.0.0.1:3000/r/control-ui-skill.md and write it to .claude/skills/control-ui/SKILL.md. It carries the token contract and the working rules, so later sessions in this repository build with the library without this prompt.
@@ -102,7 +103,7 @@ Artifact shape
 
 Apply it
 - The artifact is the source of record; each app consumes it as one derived CSS file.
-- Write the artifact's tokens as one CSS file beside the app's CSS entry, named after the theme so it collides with nothing already there: tokens.shared and tokens.light in one `[data-skin="<baseSkin>"][data-skin] { }` block, tokens.dark in `:where(.dark) [data-skin="<baseSkin>"][data-skin], .dark[data-skin="<baseSkin>"][data-skin] { }`. The doubled attribute is the pack's own weight — matching it hands the win to source order.
+- Write the artifact's tokens as one CSS file named <short-name>.control-ui-theme.css beside the app's CSS entry — that exact suffix is how the update tooling recognises the theme import: tokens.shared and tokens.light in one `[data-skin="<baseSkin>"][data-skin] { }` block, tokens.dark in `:where(.dark) [data-skin="<baseSkin>"][data-skin], .dark[data-skin="<baseSkin>"][data-skin] { }`. The doubled attribute is the pack's own weight — matching it hands the win to source order.
 - Import that file on the last line of the entry's import block, after every Control UI import. Being last is what makes it win.
 - If reduceMotion is true, stamp data-motion="reduced" on the root element beside data-skin; remove the attribute when a later theme turns it back off.
 - Every app this run installed into gets the same theme this same way. One app themed while another rests on the raw reset is the bug, not a smaller scope.

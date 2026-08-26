@@ -99,9 +99,10 @@ const coreFiles = [
   "src/registry/sources/control-ui/control-props.ts",
   "src/registry/sources/control-ui/control-variants.ts",
   "src/registry/sources/control-ui/theme.css",
+  "src/registry/sources/control-ui/scripts/fix-css-imports.mjs",
 ] as const;
 
-if (coreFiles.length !== 5) throw new Error(`Control UI core must contain exactly 5 files; received ${coreFiles.length}`);
+if (coreFiles.length !== 6) throw new Error(`Control UI core must contain exactly 6 files; received ${coreFiles.length}`);
 
 const styleUtilitySource = "src/registry/sources/control-ui/effects.css";
 
@@ -498,7 +499,7 @@ function sourceToTarget(filePath: string): string {
 
 function fileType(filePath: string): RegistryFileType {
   if (filePath.startsWith("src/registry/starters/")) return "registry:page";
-  if (filePath.endsWith(".css")) return "registry:file";
+  if (filePath.endsWith(".css") || filePath.endsWith(".mjs")) return "registry:file";
   if (filePath.endsWith("skin.config.tsx") || filePath.endsWith("modern-apple-liquid-glass.ts")) return "registry:lib";
   if (filePath.includes("/blocks/")) return "registry:block";
   if (filePath.includes("/hooks/")) return "registry:hook";

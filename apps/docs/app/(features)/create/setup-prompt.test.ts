@@ -76,6 +76,8 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("control-ui:diff");
     expect(prompt).toContain("control-ui:update");
     expect(prompt).toContain("https://control-ui.example/r/update.json`, the complete component set with no skin");
+    // The overwrite re-appends the canonical import block, which breaks every rewritten layout without this chain.
+    expect(prompt).toContain("scripts/fix-css-imports.mjs");
   });
 
   test("offers the shadcn call sites instead of migrating them silently", () => {
@@ -93,6 +95,8 @@ describe("agent setup prompt", () => {
 
   test("carries the theme into every installed app instead of ending at the docs site", () => {
     expect(prompt).toContain("Apply it");
+    // fix-css-imports recognises the theme import by this suffix; a freely named file loses its last place on update.
+    expect(prompt).toContain("<short-name>.control-ui-theme.css");
     expect(prompt).toContain("Import that file on the last line of the entry's import block");
     expect(prompt).toContain("Every app this run installed into gets the same theme");
     expect(prompt).toContain('stamp data-motion="reduced"');
