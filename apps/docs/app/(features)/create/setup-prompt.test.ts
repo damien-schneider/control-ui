@@ -20,6 +20,9 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("Stamp data-skin on the root element");
     expect(prompt).toContain("not a multi-skin switch, so one skin still needs it");
     expect(prompt).toContain("the skin out-specifies that block on purpose and wins");
+    // Field run: a leftover @theme block out-merged the skin's radius scale and font mapping while the :root corpse got all the attention.
+    expect(prompt).toContain("Tailwind merges every @theme in the build and the last declaration wins");
+    expect(prompt).toContain("scripts/control-ui-doctor.mjs");
   });
 
   test("makes the agent resolve the css imports the registry cannot address", () => {
@@ -78,12 +81,15 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("https://control-ui.example/r/update.json`, the complete component set with no skin");
     // The overwrite re-appends the canonical import block, which breaks every rewritten layout without this chain.
     expect(prompt).toContain("scripts/fix-css-imports.mjs");
+    expect(prompt).toContain("control-ui:doctor");
   });
 
   test("offers the shadcn call sites instead of migrating them silently", () => {
     expect(prompt).toContain("Never migrate without my answer");
     expect(prompt).toContain("read the exported prop types of the installed Control UI component");
     expect(prompt).toContain("Leave the shadcn source in place");
+    // Field run: every call site moved but the old token plumbing stayed, so the "migrated" app looked broken.
+    expect(prompt).toContain("Migrating the call sites without migrating the token plumbing");
   });
 
   test("inventories the app's own components instead of naming four obvious ones", () => {

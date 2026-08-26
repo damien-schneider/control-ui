@@ -14,6 +14,8 @@ Control UI is installed source, not a dependency: the components, their recipe s
 - skin.config.tsx, styles/skin-theme.css, and styles/skin.css belong to this app. Updates never touch them.
 - npm run control-ui:diff previews an update against the registry; npm run control-ui:update applies it with --overwrite and wants a clean tree, because it rewrites installed source. Its chained scripts/fix-css-imports.mjs pass repairs the CSS entry afterwards — the overwrite re-appends the import block under the canonical prefix — so never run the bare shadcn add in its place.
 - Registry installs append CSS imports written as ../components/control-ui/…, which resolves only when the entry sits one directory above the components alias. After any install, resolve each appended line against the entry's own directory and rewrite the prefix where it points at no file; one wrong prefix silently unstyles everything below it.
+- Never redeclare Control UI-mapped keys — --color-*, --radius-sm through --radius-2xl, --font-*, --text-* — in an app @theme block: Tailwind merges every @theme in the build and the last declaration wins, silently detaching those utilities from the skin. App :root or .dark blocks declaring skin token names are dead under the skin scope; delete them rather than extend them, and re-point app-specific names at skin tokens instead of keeping a parallel palette.
+- npm run control-ui:doctor (scripts/control-ui-doctor.mjs in the installed directory) audits all of this read-only: unresolved CSS imports, the theme import staying last, app @theme blocks redeclaring Control UI keys, dead or hybrid :root palettes, and the data-skin stamp. Run it after any update or migration and resolve its errors before styling on top of them.
 
 ## Building screens
 

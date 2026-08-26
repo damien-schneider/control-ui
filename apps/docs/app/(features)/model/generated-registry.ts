@@ -1896,6 +1896,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/scripts/control-ui-doctor.mjs",
+        target: "@components/control-ui/scripts/control-ui-doctor.mjs",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/scripts/fix-css-imports.mjs",
         target: "@components/control-ui/scripts/fix-css-imports.mjs",
         type: "registry:file",

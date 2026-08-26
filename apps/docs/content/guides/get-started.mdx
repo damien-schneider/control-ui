@@ -84,6 +84,7 @@
     <GuidePoint>`--diff` prints a per-file unified diff between the registry and your install; identical files are skipped.</GuidePoint>
     <GuidePoint>To refresh a stock skin too, reinstall its pack afterwards: `npx shadcn@latest add …/r/skin-<id>.json --overwrite`.</GuidePoint>
     <GuidePoint>`all-<skin>` manifests with `--overwrite` also update everything, but reset the three skin files to that pack.</GuidePoint>
+    <GuidePoint>After any overwrite, `node <install dir>/scripts/fix-css-imports.mjs` repairs the re-appended entry imports, and `node <install dir>/scripts/control-ui-doctor.mjs` audits the wiring read-only: unresolved imports, theme import order, app `@theme` blocks fighting the skin, and the `data-skin` stamp.</GuidePoint>
   </GuidePoints>
 
   Crossing skin contract versions is a reinstall of core, affected components or their containing blocks, and the selected

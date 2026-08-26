@@ -7,7 +7,7 @@ const root = process.cwd();
 const temporaryRoot = mkdtempSync(path.join(tmpdir(), "control-ui-registry-install-"));
 const registryBase = "http://127.0.0.1:3000";
 const activeSkinFiles = ["skin.config.tsx", "styles/skin-theme.css", "styles/skin.css"];
-const buttonInstallBudget = { files: 9, bytes: 58_000 };
+const buttonInstallBudget = { files: 10, bytes: 68_000 };
 const server = spawn(process.execPath, [path.join(root, "scripts/serve-public-registry.mjs"), path.join(root, "public"), "3000"], {
   stdio: "ignore",
 });
@@ -361,11 +361,37 @@ try {
     throw new Error("fix-css-imports did not keep the theme import last, so re-appended recipes outweigh the theme");
   }
 
+  const doctorScript = path.join(flatEntryFixture, "src/components/control-ui/scripts/control-ui-doctor.mjs");
+  const installedSkinId = /\[data-skin="([\w-]+)"\]/.exec(
+    readFileSync(path.join(flatEntryFixture, "src/components/control-ui/styles/skin-theme.css"), "utf8"),
+  )[1];
+  writeFileSync(path.join(flatEntryFixture, "index.html"), `<html data-skin="${installedSkinId}"><body></body></html>\n`);
+  const doctorClean = spawnSync("node", [doctorScript], { cwd: flatEntryFixture, encoding: "utf8" });
+  if (doctorClean.status !== 0) {
+    throw new Error(`control-ui-doctor reported errors on a healed install:\n${doctorClean.stdout}${doctorClean.stderr}`);
+  }
+  const healthyEntry = readFileSync(flatEntryPath, "utf8");
+  writeFileSync(
+    flatEntryPath,
+    `${healthyEntry}\n:root { --background: red; --chart-1: blue; }\n@theme inline { --radius-sm: calc(var(--radius) - 4px); }\n`,
+  );
+  const doctorConflict = spawnSync("node", [doctorScript], { cwd: flatEntryFixture, encoding: "utf8" });
+  if (doctorConflict.status === 0) {
+    throw new Error("control-ui-doctor passed an entry whose @theme block out-merges the skin's radius scale");
+  }
+  if (!doctorConflict.stderr.includes("--radius-sm")) {
+    throw new Error(`control-ui-doctor did not name the conflicting @theme key:\n${doctorConflict.stderr}`);
+  }
+  if (!doctorConflict.stderr.includes("--chart-1")) {
+    throw new Error(`control-ui-doctor did not flag the hybrid :root palette:\n${doctorConflict.stderr}`);
+  }
+  writeFileSync(flatEntryPath, healthyEntry);
+
   const shikiVersion = JSON.parse(readFileSync(path.join(sourceFixture, "package.json"), "utf8")).dependencies?.shiki;
   if (shikiVersion !== "^4.4.3") throw new Error(`Expected the tested Shiki range, received ${String(shikiVersion)}`);
 
   console.log(
-    `Registry install smoke test passed (root layout, src layout, component-first skin install, all alias, update overwrite, ${fullInstallFixtures.length} per-skin full installs, source invariance, import resolution, and TypeScript).`,
+    `Registry install smoke test passed (root layout, src layout, component-first skin install, all alias, update overwrite, doctor audit, ${fullInstallFixtures.length} per-skin full installs, source invariance, import resolution, and TypeScript).`,
   );
 } finally {
   if (server.exitCode === null) server.kill();
