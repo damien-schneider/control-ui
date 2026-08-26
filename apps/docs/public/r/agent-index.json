@@ -224,7 +224,7 @@
         "id": "flat",
         "name": "Flat",
         "kind": "Skin",
-        "summary": "Neutral reset skin with square corners, no shadows, and instant motion.",
+        "summary": "Neutral reset skin with square corners, no shadows, and the stock motion tempo.",
         "href": "/skins/flat",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite"
       },

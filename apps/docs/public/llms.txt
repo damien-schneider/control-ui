@@ -140,7 +140,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Windows XP](http://127.0.0.1:3000/skins/xp): Windows XP-inspired Luna tokens, bevels, and titlebar details.
 - [Liquid metal](http://127.0.0.1:3000/skins/liquid-metal): Polished metal skin with a WebGL shader control surface.
 - [Rig](http://127.0.0.1:3000/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
-- [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and instant motion.
+- [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and the stock motion tempo.
 - [Modern Apple](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.
 - [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
 - [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.

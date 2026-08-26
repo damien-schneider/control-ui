@@ -75,7 +75,7 @@ export const skinMetas = [
     id: "flat",
     label: "Flat",
     kind: "theme",
-    description: "Neutral reset skin with square corners, no shadows, and instant motion.",
+    description: "Neutral reset skin with square corners, no shadows, and the stock motion tempo.",
     packManifestPath: "registry/flat/skin.json",
     paths: skinPackFiles("flat"),
   },

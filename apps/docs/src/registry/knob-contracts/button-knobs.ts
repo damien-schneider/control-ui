@@ -2,6 +2,7 @@
 export const buttonKnobs = [
   "--cui-button-radius",
   "--cui-button-gap",
+  "--cui-button-icon",
   "--cui-button-bg",
   "--cui-button-bg-image",
   "--cui-button-foreground",

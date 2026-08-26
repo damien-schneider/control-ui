@@ -21,9 +21,6 @@
   --scroll-fade-size: 0px; /* hard edges */
   --backdrop-blur-popover: 0px;
   --backdrop-blur-overlay: 0px;
-  --duration-fast: 0ms;
-  --duration-base: 0ms;
-  --duration-slow: 0ms;
 
   /* these CANNOT be 0 (would break rendering) — kept at real values */
   --control-h: 36px; /* 0 = buttons/inputs collapse to invisible */
@@ -50,6 +47,9 @@
   --radius-popup-item: calc(var(--radius-control) * 0.6);
   --shadow-color: oklch(0.2986 0 0);
   --shadow-opacity: 1;
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   --popover-padding: 0.25rem;

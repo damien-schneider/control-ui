@@ -12224,6 +12224,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "0.375rem",
       },
       {
+        name: "--cui-button-icon",
+        syntax: "<length>",
+        initialValue: "16px",
+        defaultValue: "1rem",
+      },
+      {
         name: "--cui-button-bg",
         syntax: "<color>",
         initialValue: "transparent",

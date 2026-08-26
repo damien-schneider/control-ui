@@ -164,7 +164,7 @@
 - `xp` (Windows XP) — Windows XP-inspired Luna tokens, bevels, and titlebar details. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite`
 - `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite`
 - `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite`
-- `flat` (Flat) — Neutral reset skin with square corners, no shadows, and instant motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite`
+- `flat` (Flat) — Neutral reset skin with square corners, no shadows, and the stock motion tempo. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite`
 - `modern-apple` (Modern Apple) — Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite`
 - `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite`
 - `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite`

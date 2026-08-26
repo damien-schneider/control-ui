@@ -4268,7 +4268,7 @@
       "name": "skin-flat",
       "type": "registry:theme",
       "title": "Flat skin",
-      "description": "Neutral reset skin with square corners, no shadows, and instant motion.",
+      "description": "Neutral reset skin with square corners, no shadows, and the stock motion tempo.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"

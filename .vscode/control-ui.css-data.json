@@ -256,6 +256,11 @@
       "description": "Control UI button knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
+      "name": "--cui-button-icon",
+      "description": "Control UI button knob — registered syntax <length>, fallback 16px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-button-press-bg",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
