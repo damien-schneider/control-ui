@@ -1,8 +1,9 @@
 "use client";
 
 import { AlertTriangleIcon, EyeIcon, EyeOffIcon, FileUpIcon, PlusIcon, RotateCcwIcon, SaveIcon, Trash2Icon } from "lucide-react";
-import type { ChangeEvent, ClipboardEvent, ComponentProps, CSSProperties, ReactNode, SubmitEvent } from "react";
+import type { ChangeEvent, ClipboardEvent, ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, use, useId } from "react";
+import type { FormSubmitEvent } from "@/components/control-ui/control-props";
 import {
   type EnvironmentVariableRow,
   type EnvironmentVariablesController,
@@ -89,7 +90,7 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
   children,
   ...props
 }: EnvironmentVariablesRootProps<TRow>) {
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormSubmitEvent) {
     if (event.defaultPrevented || !onSubmit) return;
 
     event.preventDefault();

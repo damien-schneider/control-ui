@@ -15,10 +15,11 @@ const WHITESPACE = new Set([" ", "\n", "\t", " "]);
 export function detectTrigger(textBeforeCaret: string, triggerChars: readonly string[]): TriggerMatch | null {
   const triggerSet = new Set(triggerChars);
   for (let i = textBeforeCaret.length - 1; i >= 0; i -= 1) {
-    const char = textBeforeCaret[i];
+    const char = textBeforeCaret.at(i);
+    if (char === undefined) return null;
     if (WHITESPACE.has(char)) return null;
     if (triggerSet.has(char)) {
-      const preceding = i === 0 ? "" : textBeforeCaret[i - 1];
+      const preceding = i === 0 ? "" : (textBeforeCaret.at(i - 1) ?? "");
       if (preceding === "" || WHITESPACE.has(preceding)) {
         return { char, query: textBeforeCaret.slice(i + 1), start: i, end: textBeforeCaret.length };
       }

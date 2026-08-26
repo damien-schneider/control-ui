@@ -139,7 +139,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     if (currentIndex === -1) start = delta > 0 ? -1 : 0;
     for (let step = 1; step <= options.length; step += 1) {
       const candidate = options[(start + delta * step + options.length * step) % options.length];
-      if (!candidate.disabled) {
+      if (candidate && !candidate.disabled) {
         select(activeQuestion.id, candidate.key);
         return;
       }

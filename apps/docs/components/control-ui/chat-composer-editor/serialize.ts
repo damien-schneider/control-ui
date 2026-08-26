@@ -11,6 +11,10 @@ export function serializeDoc(doc: ProseMirrorNode): string {
 // external resets only — rebuilding doc from its own output would fight caret
 export function docFromText(schema: Schema, text: string): ProseMirrorNode {
   const paragraph = schema.nodes.paragraph;
+  const doc = schema.nodes.doc;
+  if (!paragraph || !doc) {
+    throw new Error("Chat composer schema requires doc and paragraph nodes.");
+  }
   const blocks = text.split("\n").map((line) => paragraph.create(null, line === "" ? null : schema.text(line)));
-  return schema.nodes.doc.create(null, blocks.length === 0 ? paragraph.create() : blocks);
+  return doc.create(null, blocks.length === 0 ? paragraph.create() : blocks);
 }

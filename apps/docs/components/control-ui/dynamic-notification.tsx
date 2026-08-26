@@ -1,7 +1,8 @@
 "use client";
 
-import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, SubmitEvent } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent } from "react";
 import { createContext, useContext, useEffect, useId, useMemo, useRef } from "react";
+import type { FormSubmitEvent } from "@/components/control-ui/control-props";
 import { createDynamicNotificationGlass } from "@/components/control-ui/dynamic-notification-glass";
 import { createDynamicNotificationLiquid } from "@/components/control-ui/dynamic-notification-liquid";
 import type { DynamicNotificationProps, DynamicNotificationVariant } from "@/components/control-ui/hooks/use-dynamic-notification";
@@ -331,7 +332,7 @@ export type DynamicNotificationReplyProps = ComponentProps<"form"> & { style?: C
 export function DynamicNotificationReply({ className, onSubmit, ...props }: DynamicNotificationReplyProps) {
   const { handleReplySubmit } = useDynamicNotificationReplyContext();
 
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormSubmitEvent) {
     onSubmit?.(event);
     if (event.defaultPrevented) return;
     handleReplySubmit(event);

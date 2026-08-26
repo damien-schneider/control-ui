@@ -66,7 +66,7 @@ function formatActivityTitle(value: string) {
     .replace(/[_-]+/g, " ")
     .trim();
 
-  return words ? `${words[0].toUpperCase()}${words.slice(1)}` : value;
+  return words ? `${words.charAt(0).toUpperCase()}${words.slice(1)}` : value;
 }
 
 export function Activity({ kind = "default", name, state = "pending", statusLabel, className, children, ...props }: ActivityProps) {

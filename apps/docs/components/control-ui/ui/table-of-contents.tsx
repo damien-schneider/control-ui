@@ -51,7 +51,8 @@ export function useVisibleSections(ids: string[]): string[] {
   useEffect(() => {
     const idList = idsKey ? idsKey.split("|") : [];
     const elements = idList.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
-    if (elements.length === 0) return;
+    const firstElement = elements[0];
+    if (!firstElement) return;
 
     const order = new Map(elements.map((el, index) => [el.id, index]));
     const visible = new Set<string>();
@@ -67,7 +68,7 @@ export function useVisibleSections(ids: string[]): string[] {
           visibleIds: [...visible].sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0)),
         });
       },
-      { root: getScrollContainer(elements[0]), rootMargin: DETECTION_MARGIN, threshold: 0 },
+      { root: getScrollContainer(firstElement), rootMargin: DETECTION_MARGIN, threshold: 0 },
     );
 
     for (const el of elements) observer.observe(el);

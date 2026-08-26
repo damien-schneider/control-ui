@@ -76,7 +76,7 @@ export function DynamicNotificationSurfaceExample() {
                 <DynamicNotificationTitle>Assistant</DynamicNotificationTitle>
                 <DynamicNotificationClose />
               </div>
-              <DynamicNotificationMessage>{MESSAGES[messageIndex]}</DynamicNotificationMessage>
+              <DynamicNotificationMessage>{MESSAGES[messageIndex % MESSAGES.length] ?? ""}</DynamicNotificationMessage>
               <DynamicNotificationReply>
                 <DynamicNotificationReplyInput placeholder="Answer…" />
                 <DynamicNotificationReplySubmit />

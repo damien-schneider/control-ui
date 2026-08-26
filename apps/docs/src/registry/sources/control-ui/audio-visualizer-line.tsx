@@ -32,7 +32,7 @@ function smoothPath(points: readonly Point[]) {
 
   return rest.reduce(
     (path, point, index) => {
-      const previous = points[index];
+      const previous = points[index] ?? first;
       const controlOffset = (point.x - previous.x) * CURVE_TENSION;
       return `${path} C ${(previous.x + controlOffset).toFixed(2)} ${previous.y.toFixed(2)}, ${(point.x - controlOffset).toFixed(2)} ${point.y.toFixed(2)}, ${point.x.toFixed(2)} ${point.y.toFixed(2)}`;
     },

@@ -144,10 +144,12 @@ export function hexToRgba(input: string): Rgba | null {
   const read = (h: string) => Number.parseInt(h, 16);
   if (m.length === 3 || m.length === 4) {
     if (!/^[0-9a-f]+$/i.test(m)) return null;
-    const r = read(m[0] + m[0]);
-    const g = read(m[1] + m[1]);
-    const b = read(m[2] + m[2]);
-    const a = m.length === 4 ? read(m[3] + m[3]) / 255 : 1;
+    const [red, green, blue, alpha] = m;
+    if (!red || !green || !blue) return null;
+    const r = read(red + red);
+    const g = read(green + green);
+    const b = read(blue + blue);
+    const a = alpha ? read(alpha + alpha) / 255 : 1;
     return { r, g, b, a };
   }
   if (m.length === 6 || m.length === 8) {
@@ -219,42 +221,53 @@ function readAlpha(token: string | undefined): number {
   return clamp01(Number.parseFloat(t));
 }
 
+function parseHexColor(raw: string): Hsva | null {
+  const rgba = hexToRgba(raw);
+  return rgba ? rgbaToHsva(rgba) : null;
+}
+
+function parseRgbFunction(raw: string): Hsva | null {
+  const match = raw.match(/^rgba?\(\s*([\d.]+%?)[\s,]+([\d.]+%?)[\s,]+([\d.]+%?)\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
+  if (!match) return null;
+  const [, red, green, blue, alpha] = match;
+  if (!red || !green || !blue) return null;
+  const chan = (t: string) => (t.endsWith("%") ? (Number.parseFloat(t) / 100) * 255 : Number.parseFloat(t));
+  return rgbaToHsva({ r: chan(red), g: chan(green), b: chan(blue), a: readAlpha(alpha) });
+}
+
+function parseHslFunction(raw: string): Hsva | null {
+  const match = raw.match(/^hsla?\(\s*([\d.]+)(?:deg)?[\s,]+([\d.]+)%[\s,]+([\d.]+)%\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
+  if (!match) return null;
+  const [, hue, saturation, lightness, alpha] = match;
+  if (!hue || !saturation || !lightness) return null;
+  return hslaToHsva({
+    h: Number.parseFloat(hue),
+    s: Number.parseFloat(saturation),
+    l: Number.parseFloat(lightness),
+    a: readAlpha(alpha),
+  });
+}
+
+function parseOklchFunction(raw: string): Hsva | null {
+  const match = raw.match(/^oklch\(\s*([\d.]+%?)\s+([\d.]+%?)\s+([\d.]+)\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
+  if (!match) return null;
+  const [, lightness, chroma, hue, alpha] = match;
+  if (!lightness || !chroma || !hue) return null;
+  const L = lightness.endsWith("%") ? Number.parseFloat(lightness) / 100 : Number.parseFloat(lightness);
+  // chroma as percentage is 0%→0, 100%→0.4 per CSS Color 4 reference range
+  const C = chroma.endsWith("%") ? (Number.parseFloat(chroma) / 100) * 0.4 : Number.parseFloat(chroma);
+  return oklchaToHsva({ L, C, H: Number.parseFloat(hue), a: readAlpha(alpha) });
+}
+
 // Pure parser: identical server/client results keep controlled color UI hydration-safe.
 export function parseColor(input: string): Hsva | null {
   const raw = input.trim().toLowerCase();
   if (!raw) return null;
 
   const named = NAMED[raw];
-  if (named) {
-    const rgba = hexToRgba(named);
-    return rgba ? rgbaToHsva(rgba) : null;
-  }
-
-  if (raw.startsWith("#")) {
-    const rgba = hexToRgba(raw);
-    return rgba ? rgbaToHsva(rgba) : null;
-  }
-
-  const rgb = raw.match(/^rgba?\(\s*([\d.]+%?)[\s,]+([\d.]+%?)[\s,]+([\d.]+%?)\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
-  if (rgb) {
-    const chan = (t: string) => (t.endsWith("%") ? (Number.parseFloat(t) / 100) * 255 : Number.parseFloat(t));
-    return rgbaToHsva({ r: chan(rgb[1]), g: chan(rgb[2]), b: chan(rgb[3]), a: readAlpha(rgb[4]) });
-  }
-
-  const hsl = raw.match(/^hsla?\(\s*([\d.]+)(?:deg)?[\s,]+([\d.]+)%[\s,]+([\d.]+)%\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
-  if (hsl) {
-    return hslaToHsva({ h: Number.parseFloat(hsl[1]), s: Number.parseFloat(hsl[2]), l: Number.parseFloat(hsl[3]), a: readAlpha(hsl[4]) });
-  }
-
-  const oklch = raw.match(/^oklch\(\s*([\d.]+%?)\s+([\d.]+%?)\s+([\d.]+)\s*(?:[/,]\s*([\d.]+%?))?\s*\)$/);
-  if (oklch) {
-    const L = oklch[1].endsWith("%") ? Number.parseFloat(oklch[1]) / 100 : Number.parseFloat(oklch[1]);
-    // chroma as percentage is 0%→0, 100%→0.4 per CSS Color 4 reference range
-    const C = oklch[2].endsWith("%") ? (Number.parseFloat(oklch[2]) / 100) * 0.4 : Number.parseFloat(oklch[2]);
-    return oklchaToHsva({ L, C, H: Number.parseFloat(oklch[3]), a: readAlpha(oklch[4]) });
-  }
-
-  return null;
+  if (named) return parseHexColor(named);
+  if (raw.startsWith("#")) return parseHexColor(raw);
+  return parseRgbFunction(raw) ?? parseHslFunction(raw) ?? parseOklchFunction(raw);
 }
 
 // preserves hue (+sat at true black) on achromatic mutation so area/hue thumbs don't jump to red; `prev` = color before edit

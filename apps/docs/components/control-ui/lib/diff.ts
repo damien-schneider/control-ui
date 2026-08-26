@@ -102,24 +102,28 @@ export function computeWordDiff(
   return [oldSegments, newSegments];
 }
 
+export function diffRunEnd(lines: readonly DiffLine[], start: number, type: DiffLine["type"]): number {
+  let end = start;
+  while (lines[end]?.type === type) end += 1;
+  return end;
+}
+
 // pairs each maximal [del…][add…] block across boundary
 function attachWordDiff(lines: DiffLine[], kind: LineDiffType, maxLength: number): void {
   if (kind === "none") return;
   let index = 0;
   while (index < lines.length) {
-    if (lines[index].type !== "del") {
+    if (lines[index]?.type !== "del") {
       index += 1;
       continue;
     }
-    let delEnd = index;
-    while (delEnd < lines.length && lines[delEnd].type === "del") delEnd += 1;
-    let addEnd = delEnd;
-    while (addEnd < lines.length && lines[addEnd].type === "add") addEnd += 1;
-
+    const delEnd = diffRunEnd(lines, index, "del");
+    const addEnd = diffRunEnd(lines, delEnd, "add");
     const pairCount = Math.min(delEnd - index, addEnd - delEnd);
     for (let pair = 0; pair < pairCount; pair += 1) {
       const delLine = lines[index + pair];
       const addLine = lines[delEnd + pair];
+      if (!delLine || !addLine) continue;
       const [oldSegments, newSegments] = computeWordDiff(delLine.text, addLine.text, kind, maxLength);
       delLine.segments = oldSegments;
       addLine.segments = newSegments;
@@ -280,7 +284,7 @@ function emptyStructuredPatch(): StructuredPatch {
 
 // git appends tab-separated timestamp after path
 function patchFileName(rest: string): string {
-  return rest.split("\t")[0].trim();
+  return rest.split("\t", 1)[0]?.trim() ?? "";
 }
 
 // header numbers are not trusted — counted from body instead
@@ -387,7 +391,8 @@ function indexRawHunkHeaders(patchText: string, patches: StructuredPatch[]): voi
   const scopes: string[] = [];
   for (const line of patchText.split("\n")) {
     const match = line.match(/^@@[^@]*@@(.*)$/);
-    if (match) scopes.push(match[1]);
+    const scope = match?.[1];
+    if (scope !== undefined) scopes.push(scope);
   }
   let hunkIndex = 0;
   for (const patch of patches) {

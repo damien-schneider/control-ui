@@ -129,7 +129,11 @@ function readEditorTrigger(view: EditorView, triggerChars: readonly string[]): E
 type MentionNodeAttrs = { id: string; label: string; kind?: string; icon?: string | null };
 
 function insertMention(view: EditorView, from: number, to: number, attrs: MentionNodeAttrs) {
-  const node = view.state.schema.nodes.mention.create({
+  const mention = view.state.schema.nodes.mention;
+  if (!mention) {
+    throw new Error("Mention extension requires a mention node in the editor schema.");
+  }
+  const node = mention.create({
     id: attrs.id,
     label: attrs.label,
     kind: attrs.kind ?? "mention",

@@ -52,10 +52,12 @@ export type ThemeDropdownProps = Omit<ComponentProps<typeof DropdownMenuTrigger>
     label?: string;
   };
 
+const systemThemeOption = { value: "system", label: "System", icon: MonitorIcon } satisfies ThemeToggleOption;
+
 const defaultThemeOptions: readonly ThemeToggleOption[] = [
   { value: "light", label: "Light", icon: SunIcon },
   { value: "dark", label: "Dark", icon: MoonIcon },
-  { value: "system", label: "System", icon: MonitorIcon },
+  systemThemeOption,
 ];
 
 const defaultSwitchCheckedIcon = <MoonIcon />;
@@ -75,9 +77,7 @@ function controlOptions(options: readonly ThemeToggleOption[]) {
 
 function currentThemeOption(value: ThemeMode, options: readonly ThemeToggleOption[]) {
   return (
-    options.find((option) => option.value === value) ??
-    defaultThemeOptions.find((option) => option.value === value) ??
-    defaultThemeOptions[2]
+    options.find((option) => option.value === value) ?? defaultThemeOptions.find((option) => option.value === value) ?? systemThemeOption
   );
 }
 
@@ -91,7 +91,7 @@ function nextThemeValue(value: ThemeMode, options: readonly ThemeToggleOption[])
   if (available.length === 0) return value;
 
   const currentIndex = available.findIndex((option) => option.value === value);
-  return available[(currentIndex + 1) % available.length]?.value ?? available[0].value;
+  return available[(currentIndex + 1) % available.length]?.value ?? available[0]?.value ?? value;
 }
 
 export function ThemeSwitch({

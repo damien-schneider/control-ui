@@ -154,8 +154,9 @@ function focusItem(item: RegisteredTreeItem | undefined, ctx: TreeContextValue):
 
 function focusParentItem(items: RegisteredTreeItem[], index: number, level: number, ctx: TreeContextValue): void {
   for (let itemIndex = index - 1; itemIndex >= 0; itemIndex--) {
-    if (items[itemIndex].level !== level - 1) continue;
-    focusItem(items[itemIndex], ctx);
+    const item = items[itemIndex];
+    if (!item || item.level !== level - 1) continue;
+    focusItem(item, ctx);
     return;
   }
 }

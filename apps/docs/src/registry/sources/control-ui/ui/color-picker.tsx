@@ -212,7 +212,6 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
   const alphaRef = useRef(alpha);
   const onValueChangeRef = useRef(onValueChange);
   const lastEmitted = useRef<string | null>(null);
-  if (lastEmitted.current === null) lastEmitted.current = formatColor(hsva, format, { alpha });
 
   useEffect(() => {
     hsvaRef.current = hsva;
@@ -235,6 +234,7 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
 
   // skips echo of its own emit, which would jitter thumbs
   useEffect(() => {
+    if (lastEmitted.current === null) lastEmitted.current = formatColor(hsvaRef.current, formatRef.current, { alpha: alphaRef.current });
     if (value === undefined || value === lastEmitted.current) return;
     const parsed = parseColor(value);
     if (!parsed) return;

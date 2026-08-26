@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts/code-diff-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
-import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine } from "@/components/control-ui/lib/diff";
+import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine, diffRunEnd } from "@/components/control-ui/lib/diff";
 import type { CodeOverflow } from "@/components/control-ui/ui/code";
 import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -99,23 +99,19 @@ function splitPairs(lines: DiffLine[]): { left: DiffLine | null; right: DiffLine
   let index = 0;
   while (index < lines.length) {
     const line = lines[index];
+    if (!line) break;
     if (line.type === "context") {
       rows.push({ left: line, right: line });
       index += 1;
       continue;
     }
-    const dels: DiffLine[] = [];
-    while (index < lines.length && lines[index].type === "del") {
-      dels.push(lines[index]);
-      index += 1;
-    }
-    const adds: DiffLine[] = [];
-    while (index < lines.length && lines[index].type === "add") {
-      adds.push(lines[index]);
-      index += 1;
-    }
+    const delEnd = diffRunEnd(lines, index, "del");
+    const addEnd = diffRunEnd(lines, delEnd, "add");
+    const dels = lines.slice(index, delEnd);
+    const adds = lines.slice(delEnd, addEnd);
     const count = Math.max(dels.length, adds.length);
     for (let pair = 0; pair < count; pair += 1) rows.push({ left: dels[pair] ?? null, right: adds[pair] ?? null });
+    index = addEnd;
   }
   return rows;
 }
@@ -504,16 +500,20 @@ function CodeDiffFileSection({
       >
         {shouldVirtualize ? (
           <div className={gridClassName} style={{ position: "relative", height: `${virtualizer.getTotalSize()}px` }}>
-            {virtualizer.getVirtualItems().map((item) => (
-              <div
-                key={rows[item.index].id}
-                ref={virtualizer.measureElement}
-                data-index={item.index}
-                style={{ position: "absolute", top: 0, left: 0, width: "100%", transform: `translateY(${item.start}px)` }}
-              >
-                {renderRow(rows[item.index])}
-              </div>
-            ))}
+            {virtualizer.getVirtualItems().map((item) => {
+              const row = rows[item.index];
+              if (!row) return null;
+              return (
+                <div
+                  key={row.id}
+                  ref={virtualizer.measureElement}
+                  data-index={item.index}
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", transform: `translateY(${item.start}px)` }}
+                >
+                  {renderRow(row)}
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className={gridClassName}>
@@ -551,6 +551,7 @@ export function CodeDiff({
   const additions = files.reduce((total, file) => total + file.additions, 0);
   const deletions = files.reduce((total, file) => total + file.deletions, 0);
   const copyValue = patch ?? newText ?? "";
+  const firstFile = files[0];
 
   return (
     <figure
@@ -573,7 +574,7 @@ export function CodeDiff({
           className="flex min-h-10 items-center justify-between gap-3 px-3 py-1.5"
         >
           <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="title" className="min-w-0 truncate">
-            {files.length === 1 ? fileTitle(files[0]) : `${files.length} files`}
+            {files.length === 1 && firstFile ? fileTitle(firstFile) : `${files.length} files`}
           </span>
           <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="actions" className="flex shrink-0 items-center gap-2">
             <DiffStats additions={additions} deletions={deletions} />

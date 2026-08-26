@@ -59,11 +59,12 @@ export function createTrackHighlight(
 
   function resolveActiveBox(trackRect: DOMRect): Box | null {
     const actives = Array.from(track.querySelectorAll<HTMLElement>(activeSelector)).filter(isHighlightable);
-    if (actives.length === 0) return null;
-    if (!range) return measureBox(actives[0], trackRect);
-    let box = measureBox(actives[0], trackRect);
-    for (let i = 1; i < actives.length; i += 1) {
-      const b = measureBox(actives[i], trackRect);
+    const firstActive = actives[0];
+    if (!firstActive) return null;
+    if (!range) return measureBox(firstActive, trackRect);
+    let box = measureBox(firstActive, trackRect);
+    for (const active of actives.slice(1)) {
+      const b = measureBox(active, trackRect);
       const left = Math.min(box.x, b.x);
       const top = Math.min(box.y, b.y);
       const right = Math.max(box.x + box.w, b.x + b.w);

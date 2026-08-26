@@ -248,8 +248,8 @@ function rmsFromSamples(samples: Uint8Array<ArrayBuffer>, start: number, end: nu
   let total = 0;
   let count = 0;
 
-  for (let index = start; index < end; index += 1) {
-    const sample = (samples[index] - 128) / 128;
+  for (const sampleValue of samples.subarray(start, end)) {
+    const sample = (sampleValue - 128) / 128;
     total += sample * sample;
     count += 1;
   }

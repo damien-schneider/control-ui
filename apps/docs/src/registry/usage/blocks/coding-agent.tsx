@@ -33,7 +33,7 @@ export default function CodingAgentPage() {
     <CodingAgentBlock
       projects={projects}
       activeTaskId={activeTaskId}
-      activeTaskTitle={projects[0].tasks.find((task) => task.id === activeTaskId)?.title}
+      activeTaskTitle={projects[0]?.tasks.find((task) => task.id === activeTaskId)?.title}
       onTaskSelect={(task) => setActiveTaskId(task.id)}
       onNewTask={() => setActiveTaskId(undefined)}
     >

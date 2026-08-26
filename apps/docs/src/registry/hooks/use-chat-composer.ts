@@ -1,5 +1,6 @@
-import type { ComponentProps, CSSProperties, ReactNode, SubmitEvent } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useState } from "react";
+import type { FormSubmitEvent } from "@/components/control-ui/control-props";
 import type { ChatDensity } from "@/components/control-ui/hooks/use-chat-message";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 
@@ -72,7 +73,7 @@ export function useChatComposer({
     Promise.resolve(onSubmit?.({ value: normalizedValue, clear, ...extra })).catch(reportError);
   }
 
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormSubmitEvent) {
     event.preventDefault();
     submit();
   }

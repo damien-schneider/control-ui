@@ -38,6 +38,12 @@ function tickPositions(min: number, max: number, step: number | undefined): numb
   return Array.from({ length: stepCount - 1 }, (_, i) => ((i + 1) / stepCount) * 100);
 }
 
+function displaySliderValue(values: readonly number[], formatValue?: (value: number) => string): string | number {
+  const value = values[0];
+  if (value === undefined) return "";
+  return formatValue ? formatValue(value) : Math.round(value);
+}
+
 export function Slider({
   className,
   variant = "default",
@@ -154,7 +160,7 @@ export function Slider({
               data-slot="value"
               className="select-none"
             >
-              {(_, values) => (formatValue ? formatValue(values[0]) : Math.round(values[0]))}
+              {(_, values) => displaySliderValue(values, formatValue)}
             </SliderPrimitive.Value>
           )}
         </div>

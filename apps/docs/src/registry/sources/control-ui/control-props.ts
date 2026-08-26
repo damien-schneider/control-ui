@@ -1,4 +1,7 @@
-import type { ReactElement } from "react";
+import type { ComponentProps, ReactElement } from "react";
+
+// Tracks the consumer's React types: form onSubmit is FormEvent-based before React 19.2 and SubmitEvent-based after.
+export type FormSubmitEvent = Parameters<NonNullable<ComponentProps<"form">["onSubmit"]>>[0];
 
 export type ControlledChoice<TValue extends string = string> = {
   value?: TValue;

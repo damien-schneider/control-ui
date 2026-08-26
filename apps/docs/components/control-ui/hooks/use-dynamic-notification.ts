@@ -1,6 +1,6 @@
-import type { ComponentProps, CSSProperties, SubmitEvent } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import { useMemo, useState } from "react";
-import type { OpenChangeEventDetails, OpenChangeReason } from "@/components/control-ui/control-props";
+import type { FormSubmitEvent, OpenChangeEventDetails, OpenChangeReason } from "@/components/control-ui/control-props";
 import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts/dynamic-notification-knobs";
 
 export type DynamicNotificationVariant = "surface" | "glass" | "liquid";
@@ -81,7 +81,7 @@ export type DynamicNotificationController = {
   canSubmit: boolean;
   clear: () => void;
   submitReply: () => void;
-  handleReplySubmit: (event: SubmitEvent<HTMLFormElement>) => void;
+  handleReplySubmit: (event: FormSubmitEvent) => void;
 };
 
 export function useDynamicNotification({
@@ -137,7 +137,7 @@ export function useDynamicNotification({
   );
 
   const handleReplySubmit = useMemo(
-    () => (event: SubmitEvent<HTMLFormElement>) => {
+    () => (event: FormSubmitEvent) => {
       event.preventDefault();
       submitReply();
     },

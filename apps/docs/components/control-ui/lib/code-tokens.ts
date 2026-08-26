@@ -133,25 +133,33 @@ function reconstructs(value: string, parts: readonly string[]): boolean {
   return parts.join("") === value;
 }
 
+function coveringTokens(plain: string, tokens: CodeTokenLine | null): CodeTokenLine {
+  const parts = tokens?.filter((token) => token.content.length > 0) ?? [];
+  return reconstructs(
+    plain,
+    parts.map((token) => token.content),
+  )
+    ? parts
+    : [{ content: plain }];
+}
+
+function coveringSegments(plain: string, segments: readonly CodeEmphasisSegment[] | undefined): readonly CodeEmphasisSegment[] {
+  const parts = segments?.filter((segment) => segment.text.length > 0) ?? [];
+  return reconstructs(
+    plain,
+    parts.map((segment) => segment.text),
+  )
+    ? parts
+    : [{ text: plain, emphasis: false }];
+}
+
 export function mergeCodeTokenLineWithEmphasis(
   plain: string,
   tokens: CodeTokenLine | null,
   segments: readonly CodeEmphasisSegment[] | undefined,
 ): CodeTokenEmphasisRun[] {
-  const tokenParts = tokens?.filter((token) => token.content.length > 0) ?? [];
-  const validTokens = reconstructs(
-    plain,
-    tokenParts.map((token) => token.content),
-  )
-    ? tokenParts
-    : [{ content: plain }];
-  const segmentParts = segments?.filter((segment) => segment.text.length > 0) ?? [];
-  const validSegments = reconstructs(
-    plain,
-    segmentParts.map((segment) => segment.text),
-  )
-    ? segmentParts
-    : [{ text: plain, emphasis: false }];
+  const validTokens = coveringTokens(plain, tokens);
+  const validSegments = coveringSegments(plain, segments);
 
   if (plain.length === 0) return [];
 
@@ -165,6 +173,7 @@ export function mergeCodeTokenLineWithEmphasis(
   while (tokenIndex < validTokens.length && segmentIndex < validSegments.length) {
     const token = validTokens[tokenIndex];
     const segment = validSegments[segmentIndex];
+    if (!token || !segment) break;
     const length = Math.min(token.content.length - tokenOffset, segment.text.length - segmentOffset);
     runs.push({
       start: runStart,
