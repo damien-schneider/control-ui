@@ -155,14 +155,22 @@ export function FieldDescription({ className, ...props }: FieldDescriptionProps)
 
 export function FieldError({ className, ...props }: FieldErrorProps) {
   return (
-    <FieldPrimitive.Error
+    <div
       data-control-ui="field"
       data-control-family="field"
       data-field-kind="field"
-      data-slot="error"
-      className={className}
-      {...props}
-    />
+      data-slot="error-reserve"
+      className="min-h-[1lh] text-caption"
+    >
+      <FieldPrimitive.Error
+        data-control-ui="field"
+        data-control-family="field"
+        data-field-kind="field"
+        data-slot="error"
+        className={className}
+        {...props}
+      />
+    </div>
   );
 }
 

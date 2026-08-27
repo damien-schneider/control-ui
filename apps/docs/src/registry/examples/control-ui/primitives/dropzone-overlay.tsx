@@ -59,12 +59,9 @@ export function PrimitiveDropzoneOverlayExample() {
             <Braces className="size-4 text-muted-foreground" aria-hidden="true" />
             Configuration workspace
           </div>
-          <div className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <FileCode2 className="size-4" aria-hidden="true" />
-              Drop JSON or CSS anywhere on this workspace.
-            </div>
-            <p>Dragging over the document reveals this bounded target; dropping elsewhere never adds files.</p>
+          <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+            <FileCode2 className="size-4" aria-hidden="true" />
+            Drop JSON or CSS anywhere on this workspace.
           </div>
           <DropzoneOverlay scope="global" />
         </div>
@@ -76,7 +73,7 @@ export function PrimitiveDropzoneOverlayExample() {
           {intakeError}
         </p>
       ) : null}
-      <DropzoneStatus />
+      <DropzoneStatus className="sr-only" />
     </Dropzone>
   );
 }

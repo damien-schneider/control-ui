@@ -11,7 +11,7 @@ export function PrimitiveCalendarExample() {
   const [range, setRange] = useState<DateRange | undefined>({ from: new Date(2026, 6, 9), to: new Date(2026, 6, 15) });
 
   return (
-    <div className="flex w-full flex-col items-start gap-8 sm:flex-row">
+    <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
       <div className="flex flex-col gap-2">
         <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-[var(--radius-panel)] border bg-card shadow-sm" />
         <span className="px-1 text-[11px] text-muted-foreground">

@@ -136,7 +136,7 @@
 - `spinner` (Spinner) — Accessible loading indicator for pending buttons, panels, and inline waits. — `npx shadcn@latest add http://127.0.0.1:3000/r/spinner.json`
 - `meter` (Meter) — Static range meter for quota, storage, score, or usage values. — `npx shadcn@latest add http://127.0.0.1:3000/r/meter.json`
 - `tree` (Tree) — Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure. — `npx shadcn@latest add http://127.0.0.1:3000/r/tree.json`
-- `checkbox-group` (Checkbox Group) **[beta]** — Multi-select checkbox set with shared state and select-all support. — `npx shadcn@latest add http://127.0.0.1:3000/r/checkbox-group.json`
+- `checkbox-group` (Checkbox Group) — Multi-select checkbox set with shared state and select-all support. — `npx shadcn@latest add http://127.0.0.1:3000/r/checkbox-group.json`
 - `autocomplete` (Autocomplete) — Free-text input with search-as-you-type suggestions. — `npx shadcn@latest add http://127.0.0.1:3000/r/autocomplete.json`
 - `number-field` (Number Field) — Numeric input with stepper buttons and optional drag-to-change behavior. — `npx shadcn@latest add http://127.0.0.1:3000/r/number-field.json`
 - `trigger-menu` (Trigger Menu) **[beta]** — Caret-anchored command or mention menu for text editors. — `npx shadcn@latest add http://127.0.0.1:3000/r/trigger-menu.json`
@@ -147,7 +147,7 @@
 - `color-picker` (Color Picker) **[beta]** — Color input with picker UI, formats, presets, and contrast helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/color-picker.json`
 - `gradient-editor` (Gradient Editor) **[beta]** — CSS gradient editor with draggable stops and live preview. — `npx shadcn@latest add http://127.0.0.1:3000/r/gradient-editor.json`
 - `resizable` (Resizable) **[beta]** — Accessible resizable panel groups and split layouts with keyboard support. — `npx shadcn@latest add http://127.0.0.1:3000/r/resizable.json`
-- `calendar` (Calendar) **[beta]** — Date selection grid built on react-day-picker and themed through tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json`
+- `calendar` (Calendar) — Date selection grid built on react-day-picker and themed through tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json`
 - `typography` (Typography) — The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component. — `npx shadcn@latest add http://127.0.0.1:3000/r/typography.json`
 - `code` (Code) — Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files. — `npx shadcn@latest add http://127.0.0.1:3000/r/code.json`
 - `code-diff` (Code Diff) — Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-diff.json`

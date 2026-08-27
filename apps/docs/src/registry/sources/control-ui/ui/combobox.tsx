@@ -73,7 +73,7 @@ const ComboboxDisabledValueContext = createContext<DisabledComboboxValueRegistry
 
 // Searchable single-select — selecting locks to discrete value, unlike Autocomplete.
 
-export function Combobox<Value = string>({ children, onValueChange, ...props }: ComboboxProps<Value>) {
+export function Combobox<Value = string>({ children, onValueChange, autoHighlight = true, ...props }: ComboboxProps<Value>) {
   const [disabledValues] = useState(() => new Set<unknown>());
   const [disabledValueRegistry] = useState<DisabledComboboxValueRegistry>(() => ({
     register(value, disabled) {
@@ -86,6 +86,7 @@ export function Combobox<Value = string>({ children, onValueChange, ...props }: 
   return (
     <ComboboxDisabledValueContext.Provider value={disabledValueRegistry}>
       <ComboboxPrimitive.Root
+        autoHighlight={autoHighlight}
         {...props}
         onValueChange={
           onValueChange
