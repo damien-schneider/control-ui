@@ -4,8 +4,6 @@ import { docsPathForPageId, guidePageIds, isGuidePageId } from "@/app/(features)
 import { RoutedGuidePage } from "@/app/(features)/page-templates/routed-page";
 import { DocsPageStructuredData, metadataForDocsPath } from "@/app/(features)/seo/seo";
 
-export const instant = false;
-
 type PageProps = { params: Promise<{ pageId: string }> };
 
 export function generateStaticParams() {

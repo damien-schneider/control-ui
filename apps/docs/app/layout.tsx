@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Inter } from "next/font/google";
-import { cookies } from "next/headers";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import { DocsShell } from "@/app/(features)/client/client";
@@ -8,7 +7,6 @@ import { getDocsShellData } from "@/app/(features)/model/data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
 import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
-import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
 import { DEFAULT_SKIN_ID, THEME_INIT_SCRIPT } from "@/components/theme";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";
@@ -19,9 +17,6 @@ import "./globals.css";
 
 export const metadata: Metadata = siteMetadata;
 
-// Sidebar state comes from a cookie read here, so no route can produce a static shell.
-export const instant = false;
-
 // next/font self-hosts geist, fills --font-geist-sans; theme.css's --font-sans consumes it first, falls to system stack when app shell absent.
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
 // Same contract for linear pack's face: it reads --font-inter, falling back to the system stack when the shell doesn't provide it.
@@ -29,8 +24,6 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const githubStars = await getControlUiGitHubStars();
-  const sidebarCookie = (await cookies()).get(SIDEBAR_COOKIE_NAME)?.value;
-  const defaultSidebarOpen = sidebarCookie !== "false";
   return (
     <html lang="en" data-skin={DEFAULT_SKIN_ID} suppressHydrationWarning className={cn(geist.variable, inter.variable)}>
       <body>
@@ -42,7 +35,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <ThemeDrawerProvider>
           <ThemeRuntimeProvider>
             <div data-skin-scope="docs">
-              <DocsShell {...getDocsShellData()} githubStars={githubStars} defaultSidebarOpen={defaultSidebarOpen}>
+              <DocsShell {...getDocsShellData()} githubStars={githubStars}>
                 {children}
               </DocsShell>
             </div>

@@ -4,8 +4,6 @@ import { isPrimitivePageId, primitivePageIds } from "@/app/(features)/model/page
 import { PrimitivePage } from "@/app/(features)/page-templates/primitive-page";
 import { DocsPageStructuredData, metadataForDocsPath } from "@/app/(features)/seo/seo";
 
-export const instant = false;
-
 type PageProps = { params: Promise<{ primitiveId: string }> };
 
 export function generateStaticParams() {

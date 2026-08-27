@@ -12,6 +12,7 @@ import { DocsFloatingToolbar } from "@/app/(features)/sidebar/floating-toolbar";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import type { SidebarMode } from "@/app/(features)/sidebar/types";
 import { clampSidebarWidth, readStoredSidebarWidth, SIDEBAR_WIDTH_VAR } from "@/app/(features)/sidebar/width";
+import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
@@ -30,13 +31,14 @@ import {
 
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
+// Read here and not in the layout: a server-side cookie read makes every route blocking, costing a round trip on every sidebar click.
+function storedSidebarCollapsed() {
+  return document.cookie.split("; ").includes(`${SIDEBAR_COOKIE_NAME}=false`);
+}
+
 type DocsShellViewProps = DocsShellData & {
   children: ReactNode;
   githubStars: number | null;
-};
-
-type DocsShellProps = DocsShellViewProps & {
-  defaultSidebarOpen: boolean;
 };
 
 type DocsShellStateProps = {
@@ -81,10 +83,14 @@ function PersistedDocsShell(props: PersistedDocsShellProps) {
   return <DocsShellContent {...props} integration={setupPreference.integration} updateSetupPreference={updateDocsSetupPreference} />;
 }
 
-export function DocsShell({ defaultSidebarOpen, ...props }: DocsShellProps) {
+export function DocsShell(props: DocsShellViewProps) {
   const isHydrated = useIsHydrated();
-  const [sidebarOpen, setSidebarOpen] = useState(defaultSidebarOpen);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [lastSidebarMode, setLastSidebarMode] = useState<SidebarMode | null>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    if (storedSidebarCollapsed()) setSidebarOpen(false);
+  }, []);
 
   return (
     <SkinEpochBoundary>
