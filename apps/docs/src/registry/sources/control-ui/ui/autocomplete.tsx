@@ -66,8 +66,12 @@ export type AutocompleteGroupLabelProps = Omit<ComponentProps<"div">, "style"> &
 
 // Free text, unlike Combobox — value is filter string, and picking item only fills field.
 
-export function Autocomplete<Value = string>({ children, ...props }: AutocompleteProps<Value>) {
-  return <AutocompletePrimitive.Root {...props}>{children}</AutocompletePrimitive.Root>;
+export function Autocomplete<Value = string>({ children, autoHighlight = true, ...props }: AutocompleteProps<Value>) {
+  return (
+    <AutocompletePrimitive.Root autoHighlight={autoHighlight} {...props}>
+      {children}
+    </AutocompletePrimitive.Root>
+  );
 }
 
 export function AutocompleteClear({ className, children, ...props }: AutocompleteClearProps) {
