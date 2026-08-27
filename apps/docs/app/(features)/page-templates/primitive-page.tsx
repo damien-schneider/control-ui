@@ -36,7 +36,6 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
       }}
       examples={examplesForPrimitive(primitive.id, primitive.registry.examples)}
       composition={composition}
-      compositionDescription="The preferred shape for composing the installed primitive from its exported parts."
       install={{
         commands: [{ label: "Registry command", value: installCommand }],
         manifestHref,

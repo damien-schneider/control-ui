@@ -65,7 +65,6 @@ export function RegistryItemPage({
   preview,
   examples = emptyRegistryItemExamples,
   composition,
-  compositionDescription,
   install,
   usageCode,
   knobs = emptyKnobFamilies,
@@ -81,7 +80,6 @@ export function RegistryItemPage({
   preview: RegistryItemPreview;
   examples?: RegistryItemExample[];
   composition: CompositionExample[];
-  compositionDescription: string;
   install: RegistryItemInstall;
   usageCode?: string;
   knobs?: DocsKnobFamily[];
@@ -100,7 +98,7 @@ export function RegistryItemPage({
       <RegistryItemExamples examples={examples} />
 
       <SectionStack>
-        <CompositionSection items={composition} description={compositionDescription} />
+        <CompositionSection items={composition} />
         <InstallPanel commands={install.commands} manifestHref={install.manifestHref} subtitle={install.subtitle}>
           {install.children}
         </InstallPanel>

@@ -33,10 +33,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
       </PreviewTabs>
 
       <SectionStack>
-        <CompositionSection
-          items={composition}
-          description={`How this ${kind.singularLabel.toLowerCase()} nests its exported parts and installed Control UI sources.`}
-        />
+        <CompositionSection items={composition} />
         <InstallPanel commands={commands} manifestHref={manifestHref} subtitle="registry" />
         <SectionCode id="usage" title="Usage" code={usageCode} />
         <RegistryDependencyReferences dependencies={block.registryDependencies} />

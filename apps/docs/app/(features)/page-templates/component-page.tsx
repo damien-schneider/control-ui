@@ -129,7 +129,6 @@ export function ComponentPage({
         })) ?? []
       }
       composition={composition}
-      compositionDescription="The preferred shape for composing the installed agent from its exported parts."
       install={{
         commands,
         manifestHref,

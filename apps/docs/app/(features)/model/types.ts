@@ -81,6 +81,7 @@ export type CompositionExample = {
   title: string;
   description?: string;
   code: string;
+  ownParts?: string[];
 };
 
 export type DocsKnob = { name: string; syntax: string; defaultValue: string };

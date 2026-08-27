@@ -1,4 +1,5 @@
 import { skinMetas } from "@/app/(features)/catalog/skins";
+import { compositionTreeFromExample } from "@/app/(features)/model/composition-from-example";
 import type {
   CompositionExample,
   DocsComponent,
@@ -37,44 +38,40 @@ function exportedComponentNames(source: string) {
     .filter((name): name is string => Boolean(name));
 }
 
-function compositionTree(root: string, parts: string[]) {
-  if (parts.length === 0) return root;
-
-  return [
-    root,
-    ...parts.map((part, index) => {
-      const prefix = index === parts.length - 1 ? "└──" : "├──";
-      return `${prefix} ${part}`;
-    }),
-  ].join("\n");
+function partsList(parts: string[], ownParts: string[], title: string): CompositionExample[] {
+  if (parts.length === 0) return [];
+  return [{ title, description: "Siblings, not a fixed nesting.", code: parts.join("\n"), ownParts }];
 }
 
-function compositionForSource(source?: SourceFile, composition?: CompositionExample[]): CompositionExample[] {
-  if (composition && composition.length > 0) return composition;
+function compositionForSource(source?: SourceFile, example?: SourceFile, composition?: CompositionExample[]): CompositionExample[] {
+  const ownParts = source ? exportedComponentNames(source.code) : [];
+  if (composition && composition.length > 0) return composition.map((entry) => ({ ...entry, ownParts }));
   if (!source) return [];
 
-  const [root, ...parts] = exportedComponentNames(source.code);
+  const [root, ...parts] = ownParts;
   if (!root) return [];
 
   const compoundParts = parts.filter((part) => part.startsWith(root));
   const visibleParts = compoundParts.length > 0 ? compoundParts : parts;
+  const tree = example && compositionTreeFromExample(example.code, ownParts);
 
-  return [
-    {
-      title: visibleParts.length > 0 ? "Parts" : "Root",
-      description:
-        visibleParts.length > 0 ? "Exported compound parts from the installed source." : "Single-slot surface with no nested parts.",
-      code: compositionTree(root, visibleParts),
-    },
-  ];
+  if (tree) {
+    return [
+      { title: "Anatomy", description: "Nesting as the example composes it.", code: tree.code, ownParts },
+      ...partsList(tree.unusedParts, ownParts, "Other exported parts"),
+    ];
+  }
+
+  if (visibleParts.length === 0) return [{ title: "Root", code: root, ownParts }];
+  return partsList([root, ...visibleParts], ownParts, "Exported parts");
 }
 
 export function primitiveComposition(primitive: DocsPrimitive): CompositionExample[] {
-  return compositionForSource(primitive.registry.source, primitive.registry.composition);
+  return compositionForSource(primitive.registry.source, primitive.registry.example, primitive.registry.composition);
 }
 
 export function componentComposition(component: DocsComponent): CompositionExample[] {
-  return compositionForSource(component.source);
+  return compositionForSource(component.source, component.example);
 }
 
 export function publicRegistryHref(kind: string) {

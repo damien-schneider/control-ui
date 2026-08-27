@@ -8,6 +8,8 @@ import { StatusBadge } from "@/app/(features)/components/status";
 import type { CompositionExample, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 
+import { CompositionTree } from "./composition-tree";
+
 // Cross-page building blocks: every page module composes these instead of re-deriving header/section/install-panel frame.
 
 export function PageHeader({
@@ -57,24 +59,20 @@ export function SectionCode({ id, title, description, code }: { id: string; titl
   );
 }
 
-export function CompositionSection({
-  items,
-  description = "Canonical nesting for the installed parts.",
-}: {
-  items: CompositionExample[];
-  description?: string;
-}) {
+export function CompositionSection({ items }: { items: CompositionExample[] }) {
   if (items.length === 0) return null;
 
   return (
     <section id="composition" className="min-w-0 scroll-mt-20">
-      <SectionTitle title="Composition" description={description} />
+      <SectionTitle title="Composition" />
       <div className="grid min-w-0 gap-12">
         {items.map((item) => (
           <div key={item.title} className="min-w-0">
             <h3 className="text-body-lg font-semibold tracking-tight">{item.title}</h3>
             {item.description ? <p className="mt-1 text-body text-muted-foreground">{item.description}</p> : null}
-            <pre className="mt-6 min-w-0 overflow-x-auto font-mono text-body leading-7">{item.code}</pre>
+            <div className="mt-6 min-w-0">
+              <CompositionTree code={item.code} ownParts={item.ownParts} />
+            </div>
           </div>
         ))}
       </div>

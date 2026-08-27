@@ -1408,6 +1408,17 @@ export const primitiveEntries = [
         example: sourceFile("Button group preview", "src/registry/examples/control-ui/primitives/button-group.tsx", "example"),
         source: sourceFile("Button group slot", "src/registry/sources/control-ui/ui/button-group.tsx", "component"),
         supportFiles: [buttonGroupRecipeFile],
+        composition: [
+          {
+            title: "Joined actions",
+            description: "The group owns the joined shape; children stay ordinary Buttons.",
+            code: `ButtonGroup
+├── ButtonGroupText
+├── Button
+├── ButtonGroupSeparator
+└── Button`,
+          },
+        ],
         registryKind: "button-group",
       },
     },
@@ -1566,7 +1577,6 @@ export const primitiveEntries = [
     id: "checkbox-group",
     category: "forms",
     kind: "Primitive",
-    status: "beta",
     name: "Checkbox Group",
     summary: "Multi-select checkbox set with shared state and select-all support.",
     paths: {
@@ -1896,7 +1906,6 @@ export const primitiveEntries = [
     id: "calendar",
     category: "forms",
     kind: "Primitive",
-    status: "beta",
     name: "Calendar",
     summary: "Date selection grid built on react-day-picker and themed through tokens.",
     paths: {
