@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 
 // The theme editor is the floating toolbar, morphed: same surface, expanded to (near) the whole content area on every breakpoint.
 // The pill hangs from the bottom edge below lg and from the top edge from lg, and the morph grows away from whichever edge holds it.
@@ -100,6 +101,9 @@ test("skin source tab recovers from a failed request", async ({ page }) => {
     });
   });
 
+  await page.addInitScript((storageKey) => {
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
+  }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Edit theme" }).click();
 

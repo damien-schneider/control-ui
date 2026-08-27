@@ -4,7 +4,9 @@ export type Theme = "light" | "dark";
 
 export const THEME_STORAGE_KEY = "control-ui:theme:v1";
 
-export const DEFAULT_SKIN_ID = "refined";
+export const DEFAULT_SKIN_ID = "xp";
+// token contract every other skin is diffed against in the editor — not the default selection
+export const BASE_SKIN_ID = "refined";
 export const THEME_INIT_SKIN_IDS = skinMetas.map((skin) => skin.id);
 
 // the v1 key is read once, for migration

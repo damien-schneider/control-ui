@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { DEFAULT_SKIN_ID } from "@/components/theme";
 import { DEFAULT_THEME } from "./presets";
 import { buildThemePrompt, parseThemeArtifact, serializeThemeArtifact, validateThemeArtifact } from "./theme-artifact";
 import type { ControlUiThemeArtifactV1 } from "./types";
@@ -25,7 +26,7 @@ describe("theme AI prompt", () => {
     expect(prompt).toContain("ask me to describe the visual direction");
     expect(prompt).toContain("Ask one focused question at a time");
     expect(prompt).toContain("If I have attached no reference images yet, ask for them");
-    expect(prompt).toContain('"baseSkin": "refined"');
+    expect(prompt).toContain(`"baseSkin": "${DEFAULT_SKIN_ID}"`);
     expect(prompt).toContain('"--radius": "12px"');
     expect(prompt).toContain("https://control-ui.example/r/theme-contract.json");
     expect(prompt).toContain("Write exactly one file named <short-name>.control-ui-theme.json");

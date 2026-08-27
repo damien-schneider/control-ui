@@ -12,7 +12,7 @@ import { Button, buttonContentClasses, buttonRecipeClasses } from "@/components/
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
-import { DEFAULT_SKIN_ID } from "@/components/theme";
+import { BASE_SKIN_ID } from "@/components/theme";
 import { useThemeDrawer } from "@/components/theme-drawer-context";
 import { useThemeModePreference } from "@/components/theme-toggle";
 import type { ThemeContractToken } from "@/src/registry/lib/theme-contract";
@@ -333,7 +333,7 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
   const descriptionId = describedById ?? fallbackDescriptionId;
   const activeMeta = SKIN_META_BY_ID[t.skin];
   const { source: skinSource, retry: retrySource } = useSkinSource(t.skin);
-  const { source: baseSkinSource } = useSkinSource(DEFAULT_SKIN_ID);
+  const { source: baseSkinSource } = useSkinSource(BASE_SKIN_ID);
 
   async function copyCss() {
     try {

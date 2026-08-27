@@ -1,4 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 
 async function horizontalInsetError(container: Locator, content: Locator) {
   const [containerBox, contentBox] = await Promise.all([container.boundingBox(), content.boundingBox()]);
@@ -17,16 +18,15 @@ test("floating toolbar contains search and skin controls while section navigatio
 
   await expect(toolbar.getByRole("combobox", { name: "Search documentation" })).toBeVisible();
   await expect(toolbar.getByRole("button", { name: "Edit theme" })).toBeVisible();
-  const presetControls = toolbar.getByRole("group", { name: "Skin presets" });
+  const skinSelect = toolbar.getByRole("combobox", { name: "Skin" });
+  await expect(skinSelect).toHaveText("Windows XP");
+  await skinSelect.click();
+  const skinOptions = page.getByRole("listbox");
   for (const label of ["Refined", "Rig", "Flat", "Windows XP", "Liquid metal", "Modern Apple", "Cuicui", "Linear"]) {
-    await expect(presetControls.getByRole("button", { name: label })).toBeVisible();
+    await expect(skinOptions.getByRole("option", { name: label })).toBeVisible();
   }
-  const refinedPreset = presetControls.getByRole("button", { name: "Refined" });
-  await expect(refinedPreset).toHaveAttribute("aria-pressed", "true");
-  await expect(refinedPreset).toHaveText("Refined");
-  const applePreset = presetControls.getByRole("button", { name: "Modern Apple" });
-  await applePreset.hover();
-  await expect(page.getByRole("tooltip").filter({ hasText: "Modern Apple" })).toBeVisible();
+  await expect(skinOptions.getByRole("option", { name: "Windows XP" })).toHaveAttribute("aria-selected", "true");
+  await page.keyboard.press("Escape");
   await expect(toolbar.getByRole("navigation")).toHaveCount(0);
   await expect(toolbar.getByRole("link")).toHaveCount(0);
   await expect(sectionNavigation).toBeVisible();
@@ -37,12 +37,10 @@ test("floating toolbar contains search and skin controls while section navigatio
   expect(navigationBox).not.toBeNull();
   expect(navigationBox?.y ?? 0).toBeGreaterThanOrEqual((headerBox?.y ?? 0) + (headerBox?.height ?? 0) - 1);
 
-  const rigPreset = presetControls.getByRole("button", { name: "Rig" });
-  await rigPreset.click();
+  await skinSelect.click();
+  await page.getByRole("option", { name: "Rig" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "rig");
-  await expect(rigPreset).toHaveAttribute("aria-pressed", "true");
-  await expect(rigPreset).toHaveText("Rig");
-  await expect(refinedPreset).toHaveText("");
+  await expect(skinSelect).toHaveText("Rig");
 });
 
 test("sidebar setup controls follow the section selector", async ({ page }) => {
@@ -103,6 +101,10 @@ for (const { name, width, height } of [
   { name: "mobile", width: 390, height: 844 },
 ]) {
   test(`floating toolbar fits its controls and expands for search on ${name}`, async ({ page }) => {
+    // width motion is the subject here, so the default skin's reduced-motion flag is opted out of
+    await page.addInitScript((storageKey) => {
+      localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
+    }, THEME_EDITOR_STORAGE_KEY);
     await page.setViewportSize({ width, height });
     await page.goto("/primitives/button");
     await page.waitForLoadState("networkidle");
