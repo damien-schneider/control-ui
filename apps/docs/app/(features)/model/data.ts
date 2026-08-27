@@ -133,6 +133,7 @@ function compositionArray(examples: readonly { title: string; description?: stri
 function getGuides(): GuidePage[] {
   return guideEntries.map((entry) => ({
     id: entry.id,
+    group: entry.group,
     name: entry.name,
     summary: entry.summary,
     layout: "layout" in entry ? entry.layout : undefined,

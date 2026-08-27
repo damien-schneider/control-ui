@@ -5,7 +5,6 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
 import type { RefObject } from "react";
-import { skinsOverview } from "@/app/(features)/catalog/skins";
 import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { Badge } from "@/components/control-ui/ui/badge";
@@ -22,7 +21,7 @@ import {
 } from "@/components/control-ui/ui/sidebar";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { ControlUiLogo } from "./control-ui-logo";
-import { primitiveCategorySidebarIcons, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
+import { guideGroupIcons, primitiveCategorySidebarIcons, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
 import { DocsNavGroup, SkillConcernNavGroups } from "./nav-groups";
 import {
@@ -30,7 +29,7 @@ import {
   ctaGuide,
   extensionNavItems,
   getUseCaseNavGroups,
-  guideNavItems,
+  guideNavGroups,
   hookNavItems,
   primitiveNavGroups,
   utilNavItems,
@@ -44,7 +43,6 @@ function setupControlsScopeForKind(kind: string | undefined): SidebarSetupContro
   return "none";
 }
 
-const skinOverviewNavItems = [{ id: skinsOverview.id, name: skinsOverview.label }];
 const githubStarsFormatter = new Intl.NumberFormat("en-US");
 
 type DocsSidebarProps = DocsSidebarContentProps & {
@@ -147,22 +145,17 @@ export function DocsSidebarContent({
         <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
 
         <SidebarContent>
-          <DocsNavGroup
-            title="Guides"
-            icon={sidebarGroupIcons.guides}
-            items={guideNavItems(guides)}
-            active={active}
-            prefix="/"
-            onNavigate={onNavigate}
-          />
-          <DocsNavGroup
-            title="Skins"
-            icon={sidebarGroupIcons.skins}
-            items={skinOverviewNavItems}
-            active={active}
-            prefix="/"
-            onNavigate={onNavigate}
-          />
+          {guideNavGroups(guides).map((group) => (
+            <DocsNavGroup
+              key={group.id}
+              title={group.title}
+              icon={guideGroupIcons[group.id]}
+              items={group.items}
+              active={active}
+              prefix="/"
+              onNavigate={onNavigate}
+            />
+          ))}
           {mode === "skills" ? (
             <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />
           ) : null}

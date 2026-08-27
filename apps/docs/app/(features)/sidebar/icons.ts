@@ -1,5 +1,6 @@
 import {
   AiGenerativeIcon,
+  BalanceScaleIcon,
   BlocksIcon,
   Book04Icon,
   CodeSquareIcon,
@@ -22,6 +23,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
 import type { UseCaseKindId } from "@/app/(features)/catalog/blocks";
+import type { GuideGroupId } from "@/app/(features)/catalog/guides";
 import type { PrimitiveCategoryId } from "@/app/(features)/catalog/primitives";
 import type { DocsSkillConcern } from "@/app/(features)/model/types";
 import type { SidebarMode } from "./types";
@@ -45,14 +47,19 @@ export const primitiveCategorySidebarIcons = {
   display: ViewIcon,
 } as const satisfies Record<PrimitiveCategoryId, IconSvgElement>;
 
-export const sidebarGroupIcons = {
+export const guideGroupIcons = {
   guides: Home05Icon,
+  theming: PaintBrush01Icon,
+  concepts: HierarchyIcon,
+  compare: BalanceScaleIcon,
+} as const satisfies Record<GuideGroupId, IconSvgElement>;
+
+export const sidebarGroupIcons = {
   agents: AiGenerativeIcon,
   primitives: ComponentIcon,
   hooks: FunctionSquareIcon,
   utils: ContractsIcon,
   extensions: PlusSignSquareIcon,
-  skins: PaintBrush01Icon,
 } as const satisfies Record<string, IconSvgElement>;
 
 export const useCaseKindSidebarIcons = {

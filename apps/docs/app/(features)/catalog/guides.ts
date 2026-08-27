@@ -13,10 +13,20 @@ type GuideSectionCatalogEntry = {
     | "update-install";
 };
 
+export const guideGroups = [
+  { id: "guides", title: "Guides" },
+  { id: "theming", title: "Theming" },
+  { id: "concepts", title: "Concepts" },
+  { id: "compare", title: "Compare" },
+] as const;
+
+export type GuideGroupId = (typeof guideGroups)[number]["id"];
+
 export const guideEntries = [
   {
     id: "create",
     kind: "Guide",
+    group: "guides",
     name: "Create app",
     summary:
       "Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.",
@@ -30,6 +40,7 @@ export const guideEntries = [
   {
     id: "overview",
     kind: "Guide",
+    group: "guides",
     name: "Overview",
     summary: "An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.",
     sections: [
@@ -41,6 +52,7 @@ export const guideEntries = [
   {
     id: "get-started",
     kind: "Guide",
+    group: "guides",
     name: "Get started",
     summary: "Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.",
     sections: [
@@ -56,6 +68,7 @@ export const guideEntries = [
   {
     id: "create-a-skin",
     kind: "Guide",
+    group: "theming",
     name: "Create a skin",
     summary:
       "Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.",
@@ -69,6 +82,7 @@ export const guideEntries = [
   {
     id: "shadcn-compatibility",
     kind: "Guide",
+    group: "guides",
     name: "shadcn compatibility",
     summary: "shadcn registry, token, and ownership conventions without writing to components/ui.",
     sections: [
@@ -79,6 +93,7 @@ export const guideEntries = [
   {
     id: "architecture",
     kind: "Guide",
+    group: "concepts",
     name: "Architecture",
     summary: "Runtime ownership, skin layering, customization paths, and registry derivation.",
     sections: [
@@ -94,6 +109,7 @@ export const guideEntries = [
   {
     id: "agent-surface",
     kind: "Guide",
+    group: "concepts",
     name: "Agent surface",
     summary: "Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.",
     sections: [
@@ -105,6 +121,7 @@ export const guideEntries = [
   {
     id: "lock-in",
     kind: "Guide",
+    group: "concepts",
     name: "Lock-in",
     summary: "What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.",
     sections: [
@@ -114,24 +131,27 @@ export const guideEntries = [
     ],
   },
   {
-    id: "theme-accessibility",
-    kind: "Guide",
-    name: "Theme accessibility",
-    summary: "Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.",
-    layout: "wide",
-    sections: [],
-  },
-  {
     id: "theme-ai-builder",
     kind: "Guide",
+    group: "theming",
     name: "Theme AI builder",
     summary: "Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.",
     layout: "wide",
     sections: [],
   },
   {
+    id: "theme-accessibility",
+    kind: "Guide",
+    group: "theming",
+    name: "Theme accessibility",
+    summary: "Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.",
+    layout: "wide",
+    sections: [],
+  },
+  {
     id: "control-ui-vs-shadcn-ui",
     kind: "Guide",
+    group: "compare",
     name: "Control UI vs shadcn/ui",
     summary:
       "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.",
@@ -178,6 +198,7 @@ export const guideEntries = [
   {
     id: "best-react-component-libraries-for-ai-interfaces",
     kind: "Guide",
+    group: "compare",
     name: "Best React component libraries for AI interfaces",
     summary:
       "Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.",
@@ -221,6 +242,7 @@ export const guideEntries = [
 ] as const satisfies readonly {
   id: string;
   kind: "Guide";
+  group: GuideGroupId;
   name: string;
   summary: string;
   layout?: "default" | "wide";

@@ -1,5 +1,7 @@
 import { useCaseKinds } from "@/app/(features)/catalog/blocks";
+import { type GuideGroupId, guideGroups } from "@/app/(features)/catalog/guides";
 import { primitiveCategories } from "@/app/(features)/catalog/primitives";
+import { skinsOverview } from "@/app/(features)/catalog/skins";
 import type {
   ActivePageId,
   DocsBlock,
@@ -40,8 +42,18 @@ export function humanizeNavName(name: string) {
   return label.charAt(0).toUpperCase() + label.slice(1);
 }
 
-export function guideNavItems(guides: GuidePage[]): DocsNavItem[] {
-  return guides.flatMap((guide) => (guide.cta ? [] : [{ id: guide.id, name: guide.name }]));
+const extraGroupItems: Partial<Record<GuideGroupId, DocsNavItem[]>> = {
+  theming: [{ id: skinsOverview.id, name: skinsOverview.label }],
+};
+
+export function guideNavGroups(guides: GuidePage[]) {
+  return guideGroups.map((group) => ({
+    ...group,
+    items: [
+      ...guides.flatMap((guide) => (guide.cta || guide.group !== group.id ? [] : [{ id: guide.id, name: guide.name }])),
+      ...(extraGroupItems[group.id] ?? []),
+    ],
+  }));
 }
 
 export function ctaGuide(guides: GuidePage[]) {

@@ -2,7 +2,7 @@ import type { PracticeSkillId, SkillConcern, SkillConcernId } from "@control-ui/
 import type { blockEntries, UseCaseKindId } from "@/app/(features)/catalog/blocks";
 import type { componentEntries } from "@/app/(features)/catalog/components";
 import type { extensionEntries } from "@/app/(features)/catalog/extensions";
-import type { guideEntries } from "@/app/(features)/catalog/guides";
+import type { GuideGroupId, guideEntries } from "@/app/(features)/catalog/guides";
 import type { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import type { PrimitiveCategoryId, primitiveEntries } from "@/app/(features)/catalog/primitives";
@@ -170,6 +170,7 @@ export type GuideFaq = { question: string; answer: string };
 
 export type GuidePage = {
   id: GuideId;
+  group: GuideGroupId;
   name: string;
   summary: string;
   layout?: "default" | "wide";
