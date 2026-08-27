@@ -4,7 +4,7 @@ import { GithubIcon, StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
-import type { RefObject } from "react";
+import { type RefObject, useState } from "react";
 import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { Badge } from "@/components/control-ui/ui/badge";
@@ -112,6 +112,16 @@ export function DocsSidebarContent({
       ? "Control UI on GitHub"
       : `Control UI on GitHub, ${formattedGitHubStars} ${githubStars === 1 ? "star" : "stars"}`;
   const caseNavigationGroups = getUseCaseNavGroups(blocks);
+  const [openGuideGroups, setOpenGuideGroups] = useState<Record<string, boolean>>({});
+  const guideGroupsWithOpenState = guideNavGroups(guides).map((group) => ({
+    ...group,
+    open: group.collapsible ? (openGuideGroups[group.id] ?? group.items.some((item) => item.id === active)) : undefined,
+  }));
+
+  function toggleGuideGroup(id: string, open: boolean) {
+    setOpenGuideGroups((previous) => ({ ...previous, [id]: open }));
+  }
+
   const { isMobile, state } = useSidebar();
 
   return (
@@ -145,7 +155,7 @@ export function DocsSidebarContent({
         <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
 
         <SidebarContent>
-          {guideNavGroups(guides).map((group) => (
+          {guideGroupsWithOpenState.map((group) => (
             <DocsNavGroup
               key={group.id}
               title={group.title}
@@ -154,6 +164,8 @@ export function DocsSidebarContent({
               active={active}
               prefix="/"
               onNavigate={onNavigate}
+              open={group.open}
+              onOpenChange={(next) => toggleGuideGroup(group.id, next)}
             />
           ))}
           {mode === "skills" ? (

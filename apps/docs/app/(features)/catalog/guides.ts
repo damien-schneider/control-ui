@@ -14,11 +14,11 @@ type GuideSectionCatalogEntry = {
 };
 
 export const guideGroups = [
-  { id: "guides", title: "Guides" },
-  { id: "theming", title: "Theming" },
-  { id: "concepts", title: "Concepts" },
-  { id: "compare", title: "Compare" },
-] as const;
+  { id: "guides", title: "Guides", collapsible: false },
+  { id: "theming", title: "Theming", collapsible: true },
+  { id: "concepts", title: "Concepts", collapsible: true },
+  { id: "compare", title: "Compare", collapsible: true },
+] as const satisfies readonly { id: string; title: string; collapsible: boolean }[];
 
 export type GuideGroupId = (typeof guideGroups)[number]["id"];
 
