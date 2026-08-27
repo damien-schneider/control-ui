@@ -34,7 +34,7 @@ export const slugify = (s: string) => s.trim().toLowerCase().replace(/\\s+/g, "-
 
 export function PrimitiveMarkdownExample() {
   return (
-    <div className="w-full max-w-2xl rounded-panel border bg-background p-4">
+    <div className="w-full max-w-2xl rounded-panel border bg-background">
       <Markdown content={SAMPLE} />
     </div>
   );

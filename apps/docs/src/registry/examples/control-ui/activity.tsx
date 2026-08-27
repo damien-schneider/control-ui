@@ -38,7 +38,7 @@ const thinkingTrace = [
 
 export function ActivityExample() {
   return (
-    <div className="mx-auto grid w-full max-w-xl gap-5 p-6">
+    <div className="mx-auto grid w-full max-w-xl gap-5">
       <Activity state="success">
         <ActivityRow>
           <ActivityIcon>

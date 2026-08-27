@@ -23,7 +23,7 @@ const sources = [
 
 export function InlineCitationExample() {
   return (
-    <div className="mx-auto max-w-xl p-6 text-sm leading-7 text-foreground">
+    <div className="mx-auto max-w-xl text-sm leading-7 text-foreground">
       A citation with several references stays compact in the answer, then opens a keyboard-accessible source preview
       <InlineCitation sources={sources} />. Each source keeps its own title, excerpt, and outbound link.
     </div>

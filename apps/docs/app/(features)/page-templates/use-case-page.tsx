@@ -28,7 +28,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
   return (
     <section className="mx-auto min-w-0 w-full max-w-4xl px-5 py-12">
       <PageHeader label={kind.singularLabel} title={block.name} summary={block.summary} status={block.status} wide />
-      <PreviewTabs code={previewCode} previewClassName="">
+      <PreviewTabs code={previewCode} previewClassName="block min-h-0 p-0">
         <BlockPreview blockId={block.id} integration={integration} />
       </PreviewTabs>
 

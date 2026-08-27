@@ -11,7 +11,7 @@ const segments = [
 
 export function ContextExample() {
   return (
-    <div className="flex min-h-72 w-full items-end justify-center p-8">
+    <div className="flex min-h-72 w-full items-end justify-center">
       <Context segments={segments} maxTokens={200_000} model="GPT-5" />
     </div>
   );

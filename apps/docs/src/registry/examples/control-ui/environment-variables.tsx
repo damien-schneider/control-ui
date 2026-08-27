@@ -14,7 +14,7 @@ export function EnvironmentVariablesExample() {
   const [saved, setSaved] = useState<Record<string, string> | null>(null);
 
   return (
-    <div className="w-full max-w-3xl p-4">
+    <div className="w-full max-w-3xl">
       <EnvironmentVariables
         initialRows={initialRows}
         description="Import a .env file, paste multiple KEY=value lines, or edit variables one row at a time."

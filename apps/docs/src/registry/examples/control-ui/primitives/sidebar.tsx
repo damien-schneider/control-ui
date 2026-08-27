@@ -18,7 +18,7 @@ type SidebarPreviewVariant = "sidebar" | "floating" | "inset";
 
 export function PrimitiveSidebarExample() {
   return (
-    <div className="grid w-full gap-3 p-3 sm:grid-cols-3">
+    <div className="grid w-full gap-3 sm:grid-cols-3">
       <SidebarVariantPreview variant="sidebar" label="Sidebar" />
       <SidebarVariantPreview variant="floating" label="Floating" />
       <SidebarVariantPreview variant="inset" label="Inset" />

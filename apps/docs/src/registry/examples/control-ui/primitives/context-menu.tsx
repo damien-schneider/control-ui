@@ -19,7 +19,7 @@ export function PrimitiveContextMenuExample() {
   const [lastAction, setLastAction] = useState("No action yet");
 
   return (
-    <div className="grid w-full gap-3 p-4">
+    <div className="grid w-full gap-3">
       <ContextMenu>
         <ContextMenuTrigger className="grid min-h-56 place-items-center rounded-[var(--radius-panel)] bg-canvas text-center ring-1 ring-border/70">
           <div className="grid gap-1">

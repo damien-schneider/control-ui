@@ -48,7 +48,7 @@ export function DynamicNotificationExample() {
   useEffect(() => () => window.clearTimeout(thinkTimer.current), []);
 
   return (
-    <div className="w-full max-w-xl p-6">
+    <div className="w-full max-w-xl">
       <div
         data-dn-scene
         className="relative isolate flex min-h-72 w-full flex-col items-center overflow-hidden rounded-[var(--radius-panel)] border bg-background p-5"

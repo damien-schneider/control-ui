@@ -24,7 +24,7 @@ export function ChatLayoutExample() {
   }
 
   return (
-    <div className="p-4">
+    <div>
       <ChatLayout className="border shadow-soft">
         <ChatThread className="min-h-[260px]">
           <ChatTurn from="user">

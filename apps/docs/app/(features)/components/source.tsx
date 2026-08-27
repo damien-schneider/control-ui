@@ -4,6 +4,7 @@ import { ChevronRightIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import type { SourceFile } from "@/app/(features)/model/types";
+import { cn } from "@/components/control-ui/lib/cn";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -140,7 +141,7 @@ export function PreviewTabs({
   code,
   children,
   controls,
-  previewClassName = "flex min-h-[280px] items-center justify-center",
+  previewClassName,
 }: {
   anchorId?: string | null;
   code: string;
@@ -164,7 +165,7 @@ export function PreviewTabs({
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        <TabsPanel value="preview" className={previewClassName}>
+        <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
           {children}
         </TabsPanel>
         <TabsPanel value="code">

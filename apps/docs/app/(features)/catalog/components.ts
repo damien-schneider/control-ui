@@ -113,7 +113,7 @@ export const componentEntries = [
       supportFiles: [chatMessageRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/chat-message").then((mod) => ({ default: mod.ChatMessageExample }))),
-    previewClassName: "flex min-h-[280px] items-start justify-center",
+    previewClassName: "min-h-[280px] items-start",
   },
   {
     id: "chat-composer",
@@ -229,7 +229,7 @@ export const componentEntries = [
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/audio-recorder-line").then((mod) => ({ default: mod.AudioRecorderLineExample })),
         ),
-        previewClassName: "flex min-h-[180px] items-center justify-center",
+        previewClassName: "min-h-[180px]",
       },
     ],
   },

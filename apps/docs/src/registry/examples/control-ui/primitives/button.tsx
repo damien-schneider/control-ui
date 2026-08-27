@@ -7,7 +7,7 @@ import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">{label}</span>
+      <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
       <div className="flex flex-wrap items-center gap-2">{children}</div>
     </div>
   );
@@ -81,20 +81,6 @@ export function PrimitiveButtonExample() {
           Render as link
           <ArrowUpRightIcon className="size-3.5" />
         </ButtonLink>
-      </Row>
-      <Row label="Knobs">
-        <Button variant="solid" style={{ "--cui-button-radius": "2px" }}>
-          Sharp instance
-        </Button>
-        <Button variant="solid" style={{ "--cui-button-press-scale": "0.85" }}>
-          Deep press
-        </Button>
-        <Button variant="surface" className="[--cui-button-radius:2px] md:[--cui-button-radius:9999px]">
-          Responsive radius
-        </Button>
-        <Button variant="solid" data-flavor="neon">
-          Consumer flavor
-        </Button>
       </Row>
     </div>
   );

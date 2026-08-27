@@ -10,7 +10,7 @@ const canvasItems = [
 
 export function PrimitiveInfiniteCanvasExample() {
   return (
-    <div className="w-full p-4 sm:p-6">
+    <div className="w-full sm:p-6">
       <InfiniteCanvas className="h-140 w-full sm:h-150" defaultTransform={{ x: 96, y: 72, scale: 1 }}>
         <InfiniteCanvasContent>
           {canvasItems.map((item) => (

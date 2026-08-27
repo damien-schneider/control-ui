@@ -17,7 +17,7 @@ export function SkinPresetControls() {
         if (isSkinId(next)) selectSkin(next);
       }}
     >
-      <SelectTrigger aria-label="Skin" render={<ToolbarButton className="gap-1.5" />}>
+      <ToolbarButton aria-label="Skin" render={<SelectTrigger variant="ghost" />}>
         <SelectValue placeholder="Skin">
           {(selected) =>
             isSkinId(selected) ? (
@@ -28,7 +28,7 @@ export function SkinPresetControls() {
             ) : null
           }
         </SelectValue>
-      </SelectTrigger>
+      </ToolbarButton>
       <SelectContent>
         {ALL_SKIN_IDS.map((id) => (
           <SelectItem key={id} value={id} label={SKIN_META_BY_ID[id].label}>

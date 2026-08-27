@@ -2,7 +2,7 @@ import { SourceBadge } from "@/components/control-ui/source-badge";
 
 export function SourceBadgeExample() {
   return (
-    <div className="flex flex-wrap items-center gap-2 p-6">
+    <div className="flex flex-wrap items-center gap-2">
       <SourceBadge href="https://ui.shadcn.com/docs/components/base/marker" faviconSrc="https://ui.shadcn.com/favicon.ico">
         shadcn/ui
       </SourceBadge>

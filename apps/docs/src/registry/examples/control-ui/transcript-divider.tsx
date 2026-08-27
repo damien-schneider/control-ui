@@ -3,7 +3,7 @@ import { TranscriptDivider } from "@/components/control-ui/transcript-divider";
 
 export function TranscriptDividerExample() {
   return (
-    <div className="mx-auto grid w-full max-w-md gap-1 p-6">
+    <div className="mx-auto grid w-full max-w-md gap-1">
       <ChatMessage from="user">
         <ChatMessageRow>
           <ChatMessageBody>

@@ -37,7 +37,7 @@ export function TaskListExample() {
   }
 
   return (
-    <div className="flex h-[440px] flex-col justify-end p-5">
+    <div className="flex h-[440px] flex-col justify-end">
       <ChatComposer density="compact" onSubmit={submitPrompt}>
         <div className="absolute inset-x-2 bottom-full pb-2">
           <TaskList>

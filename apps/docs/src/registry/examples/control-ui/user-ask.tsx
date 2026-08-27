@@ -38,7 +38,7 @@ export function UserAskExample() {
   }
 
   return (
-    <div className="flex h-[440px] flex-col justify-end p-5">
+    <div className="flex h-[440px] flex-col justify-end">
       <div className="w-full">
         {asking ? (
           <UserAsk autoFocus onComplete={completeAsk} onDismiss={() => setAsking(false)}>

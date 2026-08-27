@@ -30,7 +30,7 @@ test("floating toolbar contains search and skin controls while section navigatio
   await expect(toolbar.getByRole("navigation")).toHaveCount(0);
   await expect(toolbar.getByRole("link")).toHaveCount(0);
   await expect(sectionNavigation).toBeVisible();
-  await expect(sectionNavigation.locator('[aria-current="page"]')).toHaveAccessibleName("Primitives");
+  await expect(sectionNavigation.getByRole("combobox", { name: "Documentation section" })).toHaveText("Primitives");
 
   const [headerBox, navigationBox] = await Promise.all([sidebarHeader.boundingBox(), sectionNavigation.boundingBox()]);
   expect(headerBox).not.toBeNull();

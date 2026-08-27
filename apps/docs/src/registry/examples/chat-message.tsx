@@ -13,7 +13,7 @@ import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageHeader, Ch
 
 export function ChatMessageExample() {
   return (
-    <div className="p-6">
+    <div>
       <ChatMessage from="user">
         <ChatMessageRow>
           <ChatMessageBody>

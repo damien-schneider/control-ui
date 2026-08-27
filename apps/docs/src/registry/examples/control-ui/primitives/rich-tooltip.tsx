@@ -29,7 +29,7 @@ export function PrimitiveRichTooltipExample() {
   const sitesRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className="flex w-full flex-col items-center gap-6 p-8">
+    <div className="flex w-full flex-col items-center gap-6">
       <div className="flex items-center gap-3 rounded-[var(--radius-panel)] bg-card p-3 ring-1 ring-inset ring-border">
         <button ref={activityRef} type="button" aria-label="Activity" className={railButtonClass}>
           <BellIcon />

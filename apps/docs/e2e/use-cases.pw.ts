@@ -5,13 +5,13 @@ test("Use cases owns block browsing and canonical detail routes", async ({ page 
   await page.waitForLoadState("networkidle");
 
   const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
-  const useCasesMode = sectionNavigation.getByRole("link", { name: "Use cases" });
-  await expect(useCasesMode).toBeVisible();
+  const sectionSelect = sectionNavigation.getByRole("combobox", { name: "Documentation section" });
+  await expect(sectionSelect).toHaveText("AI");
   await expect(page.getByText("Agents", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Blocks", { exact: true })).toHaveCount(0);
 
-  await useCasesMode.focus();
-  await useCasesMode.press("Enter");
+  await sectionSelect.click();
+  await page.getByRole("option", { name: "Use cases" }).click();
   await expect(page).toHaveURL("/use-cases");
   await expect(page.getByRole("heading", { name: "Use cases", level: 1 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Templates", level: 2 })).toBeVisible();
@@ -39,9 +39,11 @@ test("Use cases stays single-column and toolbar-safe on mobile", async ({ page }
 
   const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
   await expect(sectionNavigation).toBeVisible();
+  await sectionNavigation.getByRole("combobox", { name: "Documentation section" }).click();
   for (const name of ["Primitives", "AI", "Use cases", "Skills"]) {
-    await expect(sectionNavigation.getByRole("link", { name })).toHaveCount(1);
+    await expect(page.getByRole("listbox").getByRole("option", { name })).toHaveCount(1);
   }
+  await page.keyboard.press("Escape");
 
   await page.keyboard.press("Escape");
   await expect(sectionNavigation).toBeHidden();

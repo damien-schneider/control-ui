@@ -27,7 +27,7 @@ export function ChatComposerExample() {
   }
 
   return (
-    <div className="flex h-[420px] flex-col justify-end p-5">
+    <div className="flex h-[420px] flex-col justify-end">
       <ChatComposer density="compact" onSubmit={submitPrompt}>
         <ChatComposerShell>
           <ChatComposerAccent />

@@ -159,7 +159,7 @@ function MastraChatPreview() {
   }
 
   return (
-    <div className="p-4">
+    <div>
       <ChatBlock
         className="border shadow-soft"
         composer={

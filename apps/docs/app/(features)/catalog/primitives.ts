@@ -1,12 +1,12 @@
 import { preview, sourceFile } from "./shared";
 
 export const primitiveCategories = [
-  { id: "layout", label: "Layout" },
   { id: "actions", label: "Actions" },
   { id: "forms", label: "Forms" },
-  { id: "navigation", label: "Navigation" },
   { id: "overlays", label: "Overlays" },
+  { id: "navigation", label: "Navigation" },
   { id: "feedback", label: "Feedback" },
+  { id: "layout", label: "Layout" },
   { id: "display", label: "Display" },
 ] as const;
 
@@ -416,7 +416,7 @@ export const primitiveEntries = [
         id: "controlled-vertical",
         title: "Controlled vertical workflow",
         description: "Application state owns navigation while Stepper derives progress and keeps inactive panels mounted.",
-        previewClassName: "flex min-h-[420px] items-start justify-center p-6",
+        previewClassName: "min-h-[420px] items-start",
         source: sourceFile("Controlled stepper preview", "src/registry/examples/control-ui/primitives/stepper-controlled.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/stepper-controlled").then((mod) => ({
@@ -686,7 +686,7 @@ export const primitiveEntries = [
         id: "nested",
         title: "Nested drawers",
         description: "Open a multi-step flow without unmounting the parent drawer or losing its focus-managed context.",
-        previewClassName: "flex min-h-[240px] items-center justify-center p-6",
+        previewClassName: "min-h-[240px]",
         source: sourceFile("Nested drawer preview", "src/registry/examples/control-ui/primitives/drawer-nested.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/drawer-nested").then((mod) => ({
@@ -698,7 +698,7 @@ export const primitiveEntries = [
         id: "sides",
         title: "Drawer sides",
         description: "Match the drawer placement and dismissal gesture to any viewport edge.",
-        previewClassName: "flex min-h-[240px] items-center justify-center p-6",
+        previewClassName: "min-h-[240px]",
         source: sourceFile("Drawer sides preview", "src/registry/examples/control-ui/primitives/drawer-sides.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/drawer-sides").then((mod) => ({
@@ -710,7 +710,7 @@ export const primitiveEntries = [
         id: "floating",
         title: "Floating drawers",
         description: "Inset the popup from its edge on any side so the panel reads as a detached, fully rounded surface.",
-        previewClassName: "flex min-h-[240px] items-center justify-center p-6",
+        previewClassName: "min-h-[240px]",
         source: sourceFile("Floating drawer preview", "src/registry/examples/control-ui/primitives/drawer-floating.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/drawer-floating").then((mod) => ({
@@ -722,7 +722,7 @@ export const primitiveEntries = [
         id: "scrollable",
         title: "Scrollable content",
         description: "Keep the header and close action visible while a longer drawer body scrolls.",
-        previewClassName: "flex min-h-[240px] items-center justify-center p-6",
+        previewClassName: "min-h-[240px]",
         source: sourceFile("Scrollable drawer preview", "src/registry/examples/control-ui/primitives/drawer-scrollable.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/drawer-scrollable").then((mod) => ({
@@ -855,7 +855,7 @@ export const primitiveEntries = [
         id: "invisible-overlay",
         title: "Invisible overlay",
         description: "Document drag tracking reveals a bounded workspace overlay; only the Area accepts the drop.",
-        previewClassName: "flex min-h-[420px] items-center justify-center p-6",
+        previewClassName: "min-h-[420px]",
         source: sourceFile("Invisible overlay preview", "src/registry/examples/control-ui/primitives/dropzone-overlay.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/dropzone-overlay").then((mod) => ({
@@ -1882,7 +1882,7 @@ export const primitiveEntries = [
         title: "Hover handle",
         description:
           'variant="hover" leaves the track transparent until the separator is hovered, focused, or dragged, then fades in a gradient line from --cui-resizable-handle-color to alpha 0.',
-        previewClassName: "flex min-h-[320px] items-center justify-center p-6",
+        previewClassName: "min-h-[320px]",
         source: sourceFile("Hover handle example", "src/registry/examples/control-ui/primitives/resizable-hover-handle.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/resizable-hover-handle").then((mod) => ({
@@ -1916,7 +1916,7 @@ export const primitiveEntries = [
         id: "date-picker",
         title: "Date picker",
         description: "Compose Calendar with a Button trigger and Popover when the date grid should open from a field.",
-        previewClassName: "flex min-h-[320px] items-center justify-center p-6",
+        previewClassName: "min-h-[320px]",
         source: sourceFile("Date picker example", "src/registry/examples/control-ui/primitives/date-picker.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/date-picker").then((mod) => ({
@@ -1978,7 +1978,7 @@ export const primitiveEntries = [
             default: mod.PrimitiveCodeHeaderlessExample,
           })),
         ),
-        previewClassName: "flex min-h-[220px] items-center justify-center p-6",
+        previewClassName: "min-h-[220px]",
       },
     ],
   },
@@ -2020,7 +2020,7 @@ export const primitiveEntries = [
             default: mod.PrimitiveCodeDiffHeaderlessExample,
           })),
         ),
-        previewClassName: "flex min-h-[220px] items-center justify-center p-6",
+        previewClassName: "min-h-[220px]",
       },
     ],
   },

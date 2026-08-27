@@ -7,7 +7,7 @@ import {
 
 export function InlineAttachmentExample() {
   return (
-    <div className="flex flex-wrap items-start justify-center gap-4 p-6">
+    <div className="flex flex-wrap items-start justify-center gap-4">
       <InlineAttachment name="handwritten-note.jpeg">
         <InlineAttachmentMedia />
         <InlineAttachmentContent>

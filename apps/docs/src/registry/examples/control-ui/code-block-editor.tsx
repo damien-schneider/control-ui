@@ -45,7 +45,7 @@ export function CodeBlockEditorExample() {
   const copyValue = selectedFile === "scratch" ? scratchCode : file.code;
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full">
       <Tabs value={selectedFile} onValueChange={(value) => setActiveFile(isFileKey(value) ? value : firstCodeFileKey)}>
         <CodeBlockEditor>
           <CodeBlockEditorHeader>

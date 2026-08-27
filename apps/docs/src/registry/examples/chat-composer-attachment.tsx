@@ -50,7 +50,7 @@ export function ChatComposerAttachmentExample() {
   }
 
   return (
-    <div className="max-w-[34rem] p-4">
+    <div className="max-w-[34rem]">
       <div className="overflow-hidden rounded-field border bg-card shadow-sm">
         <ChatComposerAttachments>
           {attachments.map((attachment) =>

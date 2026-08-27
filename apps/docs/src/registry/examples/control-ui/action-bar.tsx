@@ -15,7 +15,7 @@ export function ActionBarExample() {
   }
 
   return (
-    <div className="p-6">
+    <div>
       <ActionBar label="Response actions" copyValue={assistantCopy}>
         <ActionBarCopy />
         <ActionBarItem>Share</ActionBarItem>

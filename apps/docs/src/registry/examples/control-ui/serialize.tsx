@@ -30,7 +30,7 @@ export function SerializeExample() {
   }
 
   return (
-    <div className="grid gap-4 p-5">
+    <div className="grid gap-4">
       <ChatComposer value={value} onValueChange={setValue} onSubmit={handleSubmit}>
         <ChatComposerShell>
           <ChatComposerEditor placeholder="Type a message, then @mention someone…" extensions={extensions} />
