@@ -422,16 +422,22 @@
      box-shadow: a skin that re-paints box-shadow cannot erase it, and forced-colors mode repaints
      outline-color with a system color while it drops box-shadow entirely. Opt OUT (a part that takes
      programmatic focus but is not a target) by re-valuing --focus-ring-width to 0px on that part.
-     A control rendered as a <label> never takes focus itself — the input it wraps does. */
+     A control rendered as a <label> never takes focus itself — the input it wraps does, and a part
+     nested inside a composed control (an input inside InputGroup) lets that shell carry the ring so
+     it wraps the whole field instead of one part of it. */
   :where([data-control-family]):focus-visible,
-  :where(label[data-control-family][data-control="true"]):has(:focus-visible) {
+  :where([data-control-family][data-control="true"]):has(:focus-visible) {
     outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring);
     outline-offset: var(--focus-ring-offset);
   }
 
+  :where([data-control-family][data-control="true"] [data-control-family]):focus-visible {
+    outline-width: 0;
+  }
+
   @media (forced-colors: active) {
     :where([data-control-family]):focus-visible,
-    :where(label[data-control-family][data-control="true"]):has(:focus-visible) {
+    :where([data-control-family][data-control="true"]):has(:focus-visible) {
       outline-color: transparent;
     }
   }

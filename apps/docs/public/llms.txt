@@ -110,7 +110,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Spinner](http://127.0.0.1:3000/primitives/spinner): Accessible loading indicator for pending buttons, panels, and inline waits.
 - [Meter](http://127.0.0.1:3000/primitives/meter): Static range meter for quota, storage, score, or usage values.
 - [Tree](http://127.0.0.1:3000/primitives/tree): Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.
-- [Checkbox Group](http://127.0.0.1:3000/primitives/checkbox-group): Multi-select checkbox set with shared state and select-all support. Status: beta.
+- [Checkbox Group](http://127.0.0.1:3000/primitives/checkbox-group): Multi-select checkbox set with shared state and select-all support.
 - [Autocomplete](http://127.0.0.1:3000/primitives/autocomplete): Free-text input with search-as-you-type suggestions.
 - [Number Field](http://127.0.0.1:3000/primitives/number-field): Numeric input with stepper buttons and optional drag-to-change behavior.
 - [Trigger Menu](http://127.0.0.1:3000/primitives/trigger-menu): Caret-anchored command or mention menu for text editors. Status: beta.
@@ -121,7 +121,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Color Picker](http://127.0.0.1:3000/primitives/color-picker): Color input with picker UI, formats, presets, and contrast helpers. Status: beta.
 - [Gradient Editor](http://127.0.0.1:3000/primitives/gradient-editor): CSS gradient editor with draggable stops and live preview. Status: beta.
 - [Resizable](http://127.0.0.1:3000/primitives/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
-- [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens. Status: beta.
+- [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens.
 - [Typography](http://127.0.0.1:3000/primitives/typography): The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.
 - [Code](http://127.0.0.1:3000/primitives/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.
 - [Code Diff](http://127.0.0.1:3000/primitives/code-diff): Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.

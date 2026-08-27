@@ -142,7 +142,8 @@
       "environment-variables"
     ],
     "field": [
-      "field"
+      "field",
+      "phone-input"
     ],
     "form": [
       "form"
@@ -7359,6 +7360,22 @@
             }
           ]
         },
+        "error-reserve": {
+          "family": "field",
+          "registryItems": [
+            "field"
+          ],
+          "states": [
+            {
+              "attribute": "data-field-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "field"
+              ]
+            }
+          ]
+        },
         "group": {
           "family": "field",
           "registryItems": [
@@ -7371,6 +7388,22 @@
               "valueKind": "enum",
               "values": [
                 "field"
+              ]
+            }
+          ]
+        },
+        "input": {
+          "family": "field",
+          "registryItems": [
+            "phone-input"
+          ],
+          "states": [
+            {
+              "attribute": "data-field-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "phone-input"
               ]
             }
           ]
@@ -7579,7 +7612,8 @@
         }
       },
       "registryItems": [
-        "field"
+        "field",
+        "phone-input"
       ]
     },
     "form": {
@@ -18520,6 +18554,10 @@
       {
         "scope": "combobox",
         "part": "input"
+      },
+      {
+        "scope": "command",
+        "part": "input-wrapper"
       },
       {
         "scope": "dropdown-menu",

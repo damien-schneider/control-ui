@@ -51,7 +51,7 @@ export const generatedSkinContract: SkinContract = {
     "dynamic-notification": ["dynamic-notification"],
     empty: ["empty"],
     "environment-variables": ["environment-variables"],
-    field: ["field"],
+    field: ["field", "phone-input"],
     form: ["form"],
     "gradient-editor": ["gradient-editor"],
     "hover-card": ["hover-card"],
@@ -5615,6 +5615,18 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "error-reserve": {
+          family: "field",
+          registryItems: ["field"],
+          states: [
+            {
+              attribute: "data-field-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["field"],
+            },
+          ],
+        },
         group: {
           family: "field",
           registryItems: ["field"],
@@ -5624,6 +5636,18 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["field"],
+            },
+          ],
+        },
+        input: {
+          family: "field",
+          registryItems: ["phone-input"],
+          states: [
+            {
+              attribute: "data-field-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["phone-input"],
             },
           ],
         },
@@ -5802,7 +5826,7 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
       },
-      registryItems: ["field"],
+      registryItems: ["field", "phone-input"],
     },
     form: {
       parts: {
@@ -15107,6 +15131,10 @@ export const generatedSkinContract: SkinContract = {
       {
         scope: "combobox",
         part: "input",
+      },
+      {
+        scope: "command",
+        part: "input-wrapper",
       },
       {
         scope: "dropdown-menu",

@@ -69,6 +69,7 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
       data-popup-kind="command"
       data-slot="input-wrapper"
       data-control-family="popup"
+      data-control="true"
       data-size="lg"
       className={cn("flex items-center", controlSize({ size: "lg" }), "px-3")}
     >

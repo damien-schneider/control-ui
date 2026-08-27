@@ -76,7 +76,11 @@ function PhoneInputContainer({ className, ...props }: ComponentProps<typeof Inpu
 function PhoneInputControl({ className, normalizationCountry, onChange, onNativeChange, ...props }: PhoneInputControlProps) {
   return (
     <InputGroupInput
+      {...props}
+      data-control-ui="field"
+      data-control-family="field"
       data-field-kind="phone-input"
+      data-slot="input"
       dir="ltr"
       className={cn("px-3", className)}
       onChange={(event) => {
@@ -85,7 +89,6 @@ function PhoneInputControl({ className, normalizationCountry, onChange, onNative
         onChange?.(event);
         onNativeChange?.(event);
       }}
-      {...props}
     />
   );
 }

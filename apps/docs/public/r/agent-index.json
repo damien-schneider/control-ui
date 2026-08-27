@@ -1112,7 +1112,6 @@
         "kind": "Primitive",
         "summary": "Multi-select checkbox set with shared state and select-all support.",
         "href": "/primitives/checkbox-group",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/checkbox-group.json"
       },
       {
@@ -1208,7 +1207,6 @@
         "kind": "Primitive",
         "summary": "Date selection grid built on react-day-picker and themed through tokens.",
         "href": "/primitives/calendar",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json"
       },
       {
