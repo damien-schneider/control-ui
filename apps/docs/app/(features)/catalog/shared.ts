@@ -138,7 +138,6 @@ export type CatalogNamedPreview = {
 
 export type CatalogCompositionExample = {
   title: string;
-  description?: string;
   code: string;
 };
 

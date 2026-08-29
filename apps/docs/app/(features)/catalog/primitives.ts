@@ -310,7 +310,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Application shell",
-            description: "Provider owns responsive state; Sidebar and SidebarInset stay as siblings.",
             code: `SidebarProvider
 ├── Sidebar
 │   ├── SidebarHeader
@@ -838,7 +837,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Visible and overlay intake",
-            description: "The root owns selection and policy while Area alone defines the bounded native drop target.",
             code: "Dropzone → Input + Area(Trigger/Overlay/content) + Lists + Status",
           },
         ],
@@ -885,7 +883,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Country-aware form field",
-            description: "Field wires labels and errors while PhoneInput submits a canonical E.164 value.",
             code: `Field
 ├── FieldLabel
 ├── FieldControl render={<PhoneInput />}
@@ -1260,7 +1257,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Searchable list",
-            description: "Input and floating content stay as siblings under the Combobox root.",
             code: `Combobox
 ├── ComboboxInput
 └── ComboboxContent
@@ -1338,7 +1334,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Panel anatomy",
-            description: "Header parts are optional; content and footer keep the surface predictable.",
             code: `Card
 ├── CardHeader
 │   ├── CardTitle
@@ -1411,7 +1406,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Joined actions",
-            description: "The group owns the joined shape; children stay ordinary Buttons.",
             code: `ButtonGroup
 ├── ButtonGroupText
 ├── Button
@@ -1464,7 +1458,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Grouped content rows",
-            description: "ItemGroup owns list grouping while ItemSeparator divides independently composed rows.",
             code: `ItemGroup
 ├── Item
 │   ├── ItemMedia
@@ -1555,7 +1548,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Branching tree",
-            description: "TreeItem owns each row; nested TreeItemContent contains child items.",
             code: `Tree
 ├── TreeItem
 │   ├── TreeItemTrigger
@@ -1613,7 +1605,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Free-text suggestions",
-            description: "The field value remains text; choosing an item fills the input instead of locking selection state.",
             code: `Autocomplete
 ├── AutocompleteInput
 │   └── AutocompleteClear
@@ -1736,7 +1727,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Workspace panel",
-            description: "The root owns two-slot placement and drag previews; header actions expose the equivalent keyboard controls.",
             code: `DockablePanel
 ├── DockablePanelHeader
 │   ├── DockablePanelDragHandle
@@ -1773,7 +1763,6 @@ export const primitiveEntries = [
         composition: [
           {
             title: "Unbounded spatial workspace",
-            description: "The root owns pan and zoom state while content remains an open composition surface for product-specific nodes.",
             code: `InfiniteCanvas
 ├── InfiniteCanvasContent
 │   └── Your spatial nodes

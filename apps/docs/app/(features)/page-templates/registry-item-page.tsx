@@ -5,16 +5,7 @@ import type { ReactNode } from "react";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import type { CompositionExample, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
-import {
-  CompositionSection,
-  InstallPanel,
-  PageHeader,
-  RegistryDependencyReferences,
-  SectionCode,
-  SectionStack,
-  SectionTitle,
-  SupportFiles,
-} from "./shared";
+import { CompositionSection, DependencySection, InstallPanel, PageHeader, SectionCode, SectionStack, SectionTitle } from "./shared";
 
 type RegistryItemPreview = {
   code: string;
@@ -34,7 +25,6 @@ export type RegistryItemExample = {
 
 type RegistryItemFileSection = {
   files: SourceFile[];
-  description: string;
   id?: string;
   title?: string;
   installCommand?: string;
@@ -50,7 +40,7 @@ type RegistryItemSourceSection = {
 type RegistryItemInstall = {
   commands: Array<{ label: string; value: string }>;
   manifestHref: string;
-  subtitle: string;
+  subtitle?: string;
   children?: ReactNode;
 };
 
@@ -103,11 +93,10 @@ export function RegistryItemPage({
           {install.children}
         </InstallPanel>
         {usageCode ? <SectionCode id="usage" title="Usage" code={usageCode} /> : null}
-        <KnobsSection families={knobs} />
-        {dependencies ? <SupportFiles {...dependencies} /> : null}
-        {libraryDependencies ? <RegistryDependencyReferences dependencies={libraryDependencies} /> : null}
+        <DependencySection {...dependencies} dependencies={libraryDependencies} />
         {source ? <RegistryItemSource {...source} /> : null}
         {children}
+        <KnobsSection families={knobs} />
       </SectionStack>
     </section>
   );
@@ -117,7 +106,7 @@ function RegistryItemExamples({ examples }: { examples: RegistryItemExample[] })
   if (examples.length === 0) return null;
 
   return (
-    <section id="examples" className="mb-16 min-w-0 scroll-mt-20">
+    <section id="examples" className="mb-24 min-w-0 scroll-mt-20">
       <SectionTitle title="Examples" />
       <div className="grid min-w-0 gap-8">
         {examples.map((example) => (

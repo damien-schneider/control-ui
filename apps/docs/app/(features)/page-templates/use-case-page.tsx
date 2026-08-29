@@ -34,7 +34,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
 
       <SectionStack>
         <CompositionSection items={composition} />
-        <InstallPanel commands={commands} manifestHref={manifestHref} subtitle="registry" />
+        <InstallPanel commands={commands} manifestHref={manifestHref} />
         <SectionCode id="usage" title="Usage" code={usageCode} />
         <RegistryDependencyReferences dependencies={block.registryDependencies} />
         <section id="included-source" className="min-w-0 scroll-mt-20">

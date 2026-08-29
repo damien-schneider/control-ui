@@ -44,7 +44,6 @@ export const blockEntries = [
     composition: [
       {
         title: "Controlled shell",
-        description: "The block owns layout only. Usage examples render native provider messages at the application boundary.",
         code: `ChatBlock
 ├── ChatLayout
 │   └── ChatThread
@@ -72,7 +71,6 @@ export const blockEntries = [
     composition: [
       {
         title: "Controlled controls",
-        description: "Every exported control receives value and onValueChange from the host app.",
         code: `Theme controls
 ├── ThemeSegmentedSwitch
 │   ├── input type="radio"
@@ -108,8 +106,6 @@ export const blockEntries = [
     composition: [
       {
         title: "Coding workspace shell",
-        description:
-          "The block owns responsive task navigation and layout while the host controls task identity, messages, and composer behavior.",
         code: `CodingAgentBlock
 ├── SidebarProvider
 │   ├── Sidebar
@@ -146,7 +142,6 @@ export const blockEntries = [
     composition: [
       {
         title: "Searchable settings shell",
-        description: "One definition tree drives navigation, search metadata, sections, labels, and controlled app settings.",
         code: `SettingsBlock
 ├── SidebarProvider
 │   ├── Sidebar
@@ -185,7 +180,6 @@ export const blockEntries = [
     composition: [
       {
         title: "Column file browser",
-        description: "Recursive entry data resolves into one resizable column per selected folder, followed by the selected item preview.",
         code: `FileExplorerBlock
 ├── SidebarProvider
 │   ├── Sidebar

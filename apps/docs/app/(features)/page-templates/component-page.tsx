@@ -63,10 +63,7 @@ function versionCopy(version: DocsComponentVersion | undefined, versionsShareIte
 function dependencyDetails(supportFiles: SourceFile[]) {
   const dependencyFiles = installedDependencyFiles(supportFiles);
   if (dependencyFiles.length === 0) return undefined;
-  return {
-    files: dependencyFiles,
-    description: "Private support files installed with this agent. Public library dependencies stay linked to their own pages.",
-  };
+  return { files: dependencyFiles };
 }
 
 export function ComponentPage({
@@ -132,7 +129,6 @@ export function ComponentPage({
       install={{
         commands,
         manifestHref,
-        subtitle: "registry",
         children: installDescription,
       }}
       usageCode={usageCode}

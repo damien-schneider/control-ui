@@ -79,7 +79,6 @@ export type DocsPrimitiveExample = {
 
 export type CompositionExample = {
   title: string;
-  description?: string;
   code: string;
   ownParts?: string[];
 };

@@ -49,7 +49,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
             )}
           </p>
         </div>
-        <InstallPanel commands={commands} manifestHref={`/r/${extension.registryKind}.json`} subtitle="registry">
+        <InstallPanel commands={commands} manifestHref={`/r/${extension.registryKind}.json`}>
           Installs to <code>{extension.target}</code>. Extensions are optional items layered on the library — no component bundle carries
           them.
         </InstallPanel>

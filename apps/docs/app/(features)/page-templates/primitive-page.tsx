@@ -39,30 +39,16 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
       install={{
         commands: [{ label: "Registry command", value: installCommand }],
         manifestHref,
-        subtitle: "Control UI",
         children: (
           <>
-            The Control UI source installs this primitive from <code>{primitive.registry.source.path}</code>. Install it on its own with the
-            command above, or inspect the source below.
+            The Control UI source installs this primitive from <code>{primitive.registry.source.path}</code>.
           </>
         ),
       }}
       knobs={primitive.registry.knobs}
-      dependencies={
-        dependencyFiles.length > 0
-          ? {
-              files: dependencyFiles,
-              description:
-                "Support files installed with this primitive — shared ones arrive once with your first Control UI component. Public dependencies stay linked to their own pages.",
-            }
-          : undefined
-      }
+      dependencies={dependencyFiles.length > 0 ? { files: dependencyFiles } : undefined}
       libraryDependencies={primitive.registry.registryDependencies}
-      source={{
-        files: [primitive.registry.source, ...supportFiles],
-        title: "Raw code",
-        description: "This primitive's source and the support files it installs with",
-      }}
+      source={{ files: [primitive.registry.source, ...supportFiles], title: "Raw code" }}
     >
       <AvailableExtensions hostId={primitive.id} extensions={extensions} />
     </RegistryItemPage>

@@ -40,7 +40,7 @@ function exportedComponentNames(source: string) {
 
 function partsList(parts: string[], ownParts: string[], title: string): CompositionExample[] {
   if (parts.length === 0) return [];
-  return [{ title, description: "Siblings, not a fixed nesting.", code: parts.join("\n"), ownParts }];
+  return [{ title, code: parts.join("\n"), ownParts }];
 }
 
 function compositionForSource(source?: SourceFile, example?: SourceFile, composition?: CompositionExample[]): CompositionExample[] {
@@ -56,10 +56,7 @@ function compositionForSource(source?: SourceFile, example?: SourceFile, composi
   const tree = example && compositionTreeFromExample(example.code, ownParts);
 
   if (tree) {
-    return [
-      { title: "Anatomy", description: "Nesting as the example composes it.", code: tree.code, ownParts },
-      ...partsList(tree.unusedParts, ownParts, "Other exported parts"),
-    ];
+    return [{ title: "Anatomy", code: tree.code, ownParts }, ...partsList(tree.unusedParts, ownParts, "Other exported parts")];
   }
 
   if (visibleParts.length === 0) return [{ title: "Root", code: root, ownParts }];

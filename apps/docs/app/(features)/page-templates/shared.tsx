@@ -3,10 +3,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { CodeBlock, CommandBlock, DocsCollapsible } from "@/app/(features)/components/source";
+import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { CompositionExample, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
-import { Badge } from "@/components/control-ui/ui/badge";
 
 import { CompositionTree } from "./composition-tree";
 
@@ -38,7 +37,7 @@ export function PageHeader({
 }
 
 export function SectionStack({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={className ? `grid min-w-0 gap-16 ${className}` : "grid min-w-0 gap-16"}>{children}</div>;
+  return <div className={className ? `grid min-w-0 gap-24 ${className}` : "grid min-w-0 gap-24"}>{children}</div>;
 }
 
 export function SectionTitle({ title, description }: { title: string; description?: string }) {
@@ -68,8 +67,7 @@ export function CompositionSection({ items }: { items: CompositionExample[] }) {
       <div className="grid min-w-0 gap-12">
         {items.map((item) => (
           <div key={item.title} className="min-w-0">
-            <h3 className="text-body-lg font-semibold tracking-tight">{item.title}</h3>
-            {item.description ? <p className="mt-1 text-body text-muted-foreground">{item.description}</p> : null}
+            <h3 className="text-body font-normal text-muted-foreground">{item.title}</h3>
             <div className="mt-6 min-w-0">
               <CompositionTree code={item.code} ownParts={item.ownParts} />
             </div>
@@ -80,40 +78,40 @@ export function CompositionSection({ items }: { items: CompositionExample[] }) {
   );
 }
 
-export function SupportFiles({
-  files,
-  description,
+export function DependencySection({
+  files = [],
+  dependencies = [],
   id = "dependencies",
-  title = "Installed dependencies",
+  title = "Dependencies",
+  description,
   installCommand,
   usage,
 }: {
-  files: SourceFile[];
-  description: string;
+  files?: SourceFile[];
+  dependencies?: DocsRegistryDependency[];
   id?: string;
   title?: string;
+  description?: string;
   installCommand?: string;
   usage?: { description: string; code: string };
 }) {
-  if (files.length === 0) return null;
+  if (files.length === 0 && dependencies.length === 0) return null;
 
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
       <SectionTitle title={title} description={description} />
-      <div className="grid gap-2">
+      <div className="min-w-0 divide-y divide-border/60 overflow-hidden rounded-xl border">
         {files.map((file) => (
-          <div
-            key={file.path}
-            className="flex min-w-0 items-center justify-between gap-4 rounded-xl border bg-background px-4 py-3 text-body shadow-sm"
-          >
-            <span className="flex min-w-0 items-center gap-2">
-              <span className="font-medium">{file.label}</span>
-              <code className="min-w-0 truncate text-label text-muted-foreground">{file.path}</code>
-            </span>
-            <Badge variant="outline" size="sm">
-              {supportFileLabel(file)}
-            </Badge>
-          </div>
+          <DependencyRow key={file.path} name={file.label} detail={file.path} kind={supportFileLabel(file)} />
+        ))}
+        {dependencies.map((dependency) => (
+          <DependencyRow
+            key={dependency.registryKind}
+            name={dependency.name}
+            detail={dependency.registryKind}
+            kind={dependency.kind}
+            href={dependency.href}
+          />
         ))}
       </div>
       {installCommand ? (
@@ -132,32 +130,27 @@ export function SupportFiles({
 }
 
 export function RegistryDependencyReferences({ dependencies }: { dependencies: DocsRegistryDependency[] }) {
-  if (dependencies.length === 0) return null;
+  return <DependencySection id="library-dependencies" title="Library dependencies" dependencies={dependencies} />;
+}
+
+function DependencyRow({ name, detail, kind, href }: { name: string; detail: string; kind: string; href?: string }) {
+  const content = (
+    <>
+      <span className="flex min-w-0 items-baseline gap-2">
+        <span className="font-medium">{name}</span>
+        <code className="min-w-0 truncate text-label text-muted-foreground">{detail}</code>
+      </span>
+      <span className="shrink-0 text-caption text-muted-foreground">{kind}</span>
+    </>
+  );
+  const className = "flex min-w-0 items-baseline justify-between gap-4 px-4 py-2.5 text-body";
+
+  if (!href) return <div className={className}>{content}</div>;
 
   return (
-    <section id="library-dependencies" className="min-w-0 scroll-mt-20">
-      <SectionTitle
-        title="Library dependencies"
-        description="Public registry items keep their source on their own documentation page instead of duplicating it here."
-      />
-      <div className="grid gap-2">
-        {dependencies.map((dependency) => (
-          <Link
-            key={dependency.registryKind}
-            href={dependency.href}
-            className="flex min-w-0 items-center justify-between gap-4 rounded-xl border bg-background px-4 py-3 text-body shadow-sm transition hover:border-foreground/20 hover:bg-muted/30"
-          >
-            <span className="flex min-w-0 items-center gap-2">
-              <span className="font-medium">{dependency.name}</span>
-              <code className="min-w-0 truncate text-label text-muted-foreground">{dependency.registryKind}</code>
-            </span>
-            <Badge variant="outline" size="sm">
-              {dependency.kind}
-            </Badge>
-          </Link>
-        ))}
-      </div>
-    </section>
+    <Link href={href} className={`${className} transition hover:bg-muted/40`}>
+      {content}
+    </Link>
   );
 }
 
@@ -180,37 +173,36 @@ export function InstallPanel({
 }: {
   commands: Array<{ label: string; value: string }>;
   manifestHref: string;
-  subtitle: string;
+  subtitle?: string;
   children?: ReactNode;
   requiresSkin?: boolean;
 }) {
   return (
-    <DocsCollapsible id="install" title="Installation" subtitle={subtitle} defaultOpen>
-      <div className="p-4">
-        {requiresSkin ? (
-          <p className="mb-3 text-body leading-6 text-muted-foreground">
-            First install and activate one{" "}
-            <Link href="/skins" className="font-medium text-foreground underline underline-offset-4">
-              skin
-            </Link>
-            . Core deliberately contains no visual token defaults.
-          </p>
-        ) : null}
-        {children ? <p className="mb-3 text-body leading-6 text-muted-foreground">{children}</p> : null}
-        <div className="grid min-w-0 gap-2">
-          {commands.map((command) => (
-            <CommandBlock key={command.label} label={command.label} command={command.value} />
-          ))}
-        </div>
-        <a
-          href={manifestHref}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-3 inline-flex h-8 items-center rounded-md border bg-background px-3 text-label font-medium transition hover:bg-muted"
-        >
-          See registry manifest
-        </a>
+    <section id="install" className="min-w-0 scroll-mt-20">
+      <SectionTitle title="Installation" description={subtitle} />
+      {requiresSkin ? (
+        <p className="mb-3 text-body leading-6 text-muted-foreground">
+          First install and activate one{" "}
+          <Link href="/skins" className="font-medium text-foreground underline underline-offset-4">
+            skin
+          </Link>
+          . Core deliberately contains no visual token defaults.
+        </p>
+      ) : null}
+      {children ? <p className="mb-3 text-body leading-6 text-muted-foreground">{children}</p> : null}
+      <div className="grid min-w-0 gap-2">
+        {commands.map((command) => (
+          <CommandBlock key={command.label} label={command.label} command={command.value} />
+        ))}
       </div>
-    </DocsCollapsible>
+      <a
+        href={manifestHref}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-3 inline-flex h-8 items-center rounded-md border bg-background px-3 text-label font-medium transition hover:bg-muted"
+      >
+        See registry manifest
+      </a>
+    </section>
   );
 }
