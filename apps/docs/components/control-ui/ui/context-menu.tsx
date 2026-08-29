@@ -74,7 +74,7 @@ export type ContextMenuSubContentProps = Omit<ComponentProps<"div">, "style"> & 
 const popupClasses = "min-w-[10rem]";
 
 // group/cmi lets gutter glyphs and shortcuts key off highlighted row if pack wants them to.
-const itemClasses = cn("group/cmi relative", popupItemStructureClasses, "px-[calc(var(--padding-x)*0.5)] py-1");
+const itemClasses = cn("group/cmi relative", popupItemStructureClasses);
 
 export function ContextMenu(props: ContextMenuProps) {
   return <ContextMenuPrimitive.Root {...props} />;
@@ -140,7 +140,8 @@ export function ContextMenuItem({ className, inset = false, ...props }: ContextM
       data-slot="item"
       data-control-family="popup"
       data-popup-part="item"
-      className={cn(itemClasses, inset && "ps-8", className)}
+      data-inset={inset || undefined}
+      className={cn(itemClasses, className)}
       {...props}
     />
   );
@@ -154,7 +155,7 @@ export function ContextMenuCheckboxItem({ className, children, ...props }: Conte
       data-slot="checkbox-item"
       data-control-family="popup"
       data-popup-part="item"
-      className={cn(itemClasses, "ps-8", className)}
+      className={cn(itemClasses, className)}
       {...props}
     >
       <span className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
@@ -190,7 +191,7 @@ export function ContextMenuRadioItem({ className, children, ...props }: ContextM
       data-slot="radio-item"
       data-control-family="popup"
       data-popup-part="item"
-      className={cn(itemClasses, "ps-8", className)}
+      className={cn(itemClasses, className)}
       {...props}
     >
       <span className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
@@ -217,7 +218,8 @@ export function ContextMenuLabel({ className, inset = false, ...props }: Context
       data-slot="label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-[calc(var(--padding-x)*0.5)] py-1", inset && "ps-8", className)}
+      data-inset={inset || undefined}
+      className={cn(className)}
       {...props}
     />
   );
@@ -231,7 +233,7 @@ export function ContextMenuSeparator({ className, ...props }: ContextMenuSeparat
       data-slot="separator"
       data-control-family="popup"
       data-popup-part="separator"
-      className={cn("-mx-[var(--popover-padding)] my-1 h-px", className)}
+      className={cn(className)}
       {...props}
     />
   );
@@ -245,7 +247,7 @@ export function ContextMenuShortcut({ className, ...props }: ContextMenuShortcut
       data-slot="shortcut"
       data-control-family="popup"
       data-popup-part="shortcut"
-      className={cn("ms-auto ps-6", className)}
+      className={cn(className)}
       {...props}
     />
   );
@@ -263,7 +265,8 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
       data-slot="sub-trigger"
       data-control-family="popup"
       data-popup-part="item"
-      className={cn(itemClasses, inset && "ps-8", className)}
+      data-inset={inset || undefined}
+      className={cn(itemClasses, className)}
       {...props}
     >
       {children}
@@ -273,7 +276,6 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
         data-control-family="popup"
         data-slot="sub-trigger-indicator"
         aria-hidden="true"
-        className="ms-auto ps-4"
       >
         ›
       </span>

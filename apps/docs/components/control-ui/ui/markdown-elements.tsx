@@ -23,13 +23,7 @@ function languageFromClassName(className?: string) {
 
 export function MarkdownInlineCode({ className, children, node: _node, ...props }: MarkdownCodeProps) {
   return (
-    <code
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="inline-code"
-      className={cn("px-1 py-0.5", className)}
-      {...props}
-    >
+    <code data-control-ui="markdown" data-control-family="markdown" data-slot="inline-code" className={className} {...props}>
       {children}
     </code>
   );
@@ -69,51 +63,19 @@ export function MarkdownCode({ className, children, node: _node, ...props }: Mar
 }
 
 export function MarkdownH1({ className, node: _node, ...props }: MarkdownElementProps<"h1">) {
-  return (
-    <h1
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="h1"
-      className={cn("mt-6 mb-3 first:mt-0", className)}
-      {...props}
-    />
-  );
+  return <h1 data-control-ui="markdown" data-control-family="markdown" data-slot="h1" className={className} {...props} />;
 }
 
 export function MarkdownH2({ className, node: _node, ...props }: MarkdownElementProps<"h2">) {
-  return (
-    <h2
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="h2"
-      className={cn("mt-6 mb-3 first:mt-0", className)}
-      {...props}
-    />
-  );
+  return <h2 data-control-ui="markdown" data-control-family="markdown" data-slot="h2" className={className} {...props} />;
 }
 
 export function MarkdownH3({ className, node: _node, ...props }: MarkdownElementProps<"h3">) {
-  return (
-    <h3
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="h3"
-      className={cn("mt-5 mb-2 first:mt-0", className)}
-      {...props}
-    />
-  );
+  return <h3 data-control-ui="markdown" data-control-family="markdown" data-slot="h3" className={className} {...props} />;
 }
 
 export function MarkdownP({ className, node: _node, ...props }: MarkdownElementProps<"p">) {
-  return (
-    <p
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="paragraph"
-      className={cn("my-3 first:mt-0 last:mb-0", className)}
-      {...props}
-    />
-  );
+  return <p data-control-ui="markdown" data-control-family="markdown" data-slot="paragraph" className={className} {...props} />;
 }
 
 export function MarkdownUl({ className, node: _node, ...props }: MarkdownElementProps<"ul">) {
@@ -122,7 +84,7 @@ export function MarkdownUl({ className, node: _node, ...props }: MarkdownElement
       data-control-ui="markdown"
       data-control-family="markdown"
       data-slot="unordered-list"
-      className={cn("my-3 list-disc space-y-1 pl-6", className)}
+      className={cn("list-disc", className)}
       {...props}
     />
   );
@@ -134,7 +96,7 @@ export function MarkdownOl({ className, node: _node, ...props }: MarkdownElement
       data-control-ui="markdown"
       data-control-family="markdown"
       data-slot="ordered-list"
-      className={cn("my-3 list-decimal space-y-1 pl-6", className)}
+      className={cn("list-decimal", className)}
       {...props}
     />
   );
@@ -149,21 +111,11 @@ export function MarkdownA({ className, node: _node, ...props }: MarkdownElementP
 }
 
 export function MarkdownBlockquote({ className, node: _node, ...props }: MarkdownElementProps<"blockquote">) {
-  return (
-    <blockquote
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="blockquote"
-      className={cn("my-4 pl-4", className)}
-      {...props}
-    />
-  );
+  return <blockquote data-control-ui="markdown" data-control-family="markdown" data-slot="blockquote" className={className} {...props} />;
 }
 
 export function MarkdownHr({ className, node: _node, ...props }: MarkdownElementProps<"hr">) {
-  return (
-    <hr data-control-ui="markdown" data-control-family="markdown" data-slot="separator" className={cn("my-6", className)} {...props} />
-  );
+  return <hr data-control-ui="markdown" data-control-family="markdown" data-slot="separator" className={className} {...props} />;
 }
 
 export function MarkdownStrong({ className, node: _node, ...props }: MarkdownElementProps<"strong">) {
@@ -176,7 +128,7 @@ export function MarkdownEm({ className, node: _node, ...props }: MarkdownElement
 
 export function MarkdownTable({ className, children, node: _node, ...props }: MarkdownElementProps<"table">) {
   return (
-    <div data-control-ui="markdown" data-control-family="markdown" data-slot="table-scroll" className="my-4 overflow-x-auto">
+    <div data-control-ui="markdown" data-control-family="markdown" data-slot="table-scroll" className="overflow-x-auto">
       <table data-control-ui="markdown" data-control-family="markdown" data-slot="table" className={cn("w-full", className)} {...props}>
         {children}
       </table>
@@ -185,27 +137,11 @@ export function MarkdownTable({ className, children, node: _node, ...props }: Ma
 }
 
 export function MarkdownTh({ className, node: _node, ...props }: MarkdownElementProps<"th">) {
-  return (
-    <th
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="table-header"
-      className={cn("px-3 py-1.5", className)}
-      {...props}
-    />
-  );
+  return <th data-control-ui="markdown" data-control-family="markdown" data-slot="table-header" className={className} {...props} />;
 }
 
 export function MarkdownTd({ className, node: _node, ...props }: MarkdownElementProps<"td">) {
-  return (
-    <td
-      data-control-ui="markdown"
-      data-control-family="markdown"
-      data-slot="table-cell"
-      className={cn("px-3 py-1.5", className)}
-      {...props}
-    />
-  );
+  return <td data-control-ui="markdown" data-control-family="markdown" data-slot="table-cell" className={className} {...props} />;
 }
 
 // `pre` must stay unoverridden: Streamdown only routes fenced blocks to `code` with language-* className while it is default.

@@ -14,12 +14,16 @@
   }
 
   :where([data-control-family="markdown"][data-slot="table-cell"]) {
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 1.5);
     border-style: solid;
     border-width: 1px;
     border-color: var(--cui-markdown-table-cell-border-color);
   }
 
   :where([data-control-family="markdown"][data-slot="table-header"]) {
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 1.5);
     border-style: solid;
     border-width: 1px;
     border-color: var(--border);
@@ -43,10 +47,13 @@
   }
 
   :where([data-control-family="markdown"][data-slot="separator"]) {
+    margin-block: calc(var(--spacing) * 6);
     border-color: var(--border);
   }
 
   :where([data-control-family="markdown"][data-slot="blockquote"]) {
+    margin-block: calc(var(--spacing) * 4);
+    padding-inline-start: calc(var(--spacing) * 4);
     border-color: var(--cui-markdown-blockquote-border-color);
     border-left-style: solid;
     border-left-width: 2px;
@@ -74,10 +81,12 @@
   }
 
   :where([data-control-family="markdown"][data-slot="paragraph"]) {
+    margin-block: calc(var(--spacing) * 3);
     line-height: calc(var(--spacing) * 7);
   }
 
   :where([data-control-family="markdown"][data-slot="h3"]) {
+    margin-block: calc(var(--spacing) * 5) calc(var(--spacing) * 2);
     font-weight: var(--font-weight-semibold);
     font-size: var(--text-base);
     line-height: var(--text-base--line-height);
@@ -98,7 +107,40 @@
     color: var(--foreground);
   }
 
+  :where([data-control-family="markdown"][data-slot="h1"]),
+  :where([data-control-family="markdown"][data-slot="h2"]) {
+    margin-block: calc(var(--spacing) * 6) calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="markdown"]:is([data-slot="h1"], [data-slot="h2"], [data-slot="h3"]):first-child) {
+    margin-block-start: 0;
+  }
+
+  :where([data-control-family="markdown"][data-slot="paragraph"]:first-child) {
+    margin-block-start: 0;
+  }
+
+  :where([data-control-family="markdown"][data-slot="paragraph"]:last-child) {
+    margin-block-end: 0;
+  }
+
+  :where([data-control-family="markdown"][data-slot="unordered-list"]),
+  :where([data-control-family="markdown"][data-slot="ordered-list"]) {
+    margin-block: calc(var(--spacing) * 3);
+    padding-inline-start: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="markdown"]:is([data-slot="unordered-list"], [data-slot="ordered-list"]) > * + *) {
+    margin-block-start: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="markdown"][data-slot="table-scroll"]) {
+    margin-block: calc(var(--spacing) * 4);
+  }
+
   :where([data-control-family="markdown"][data-slot="inline-code"]) {
+    padding-inline: calc(var(--spacing) * 1);
+    padding-block: calc(var(--spacing) * 0.5);
     border-radius: var(--cui-markdown-inline-code-radius);
     background-color: var(--cui-markdown-inline-code-background);
     font-family: var(--font-mono);

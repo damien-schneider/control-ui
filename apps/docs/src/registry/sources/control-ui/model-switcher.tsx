@@ -53,7 +53,7 @@ export function ModelSwitcher({
           data-control-family="button"
           data-button-kind="model-switcher"
           data-slot="value"
-          className="flex min-w-0 items-center gap-1.5"
+          className="flex min-w-0 items-center"
         >
           <span
             data-control-ui="model-switcher"
@@ -61,7 +61,7 @@ export function ModelSwitcher({
             data-button-kind="model-switcher"
             data-slot="indicator"
             aria-hidden="true"
-            className="size-1.5 shrink-0"
+            className="shrink-0"
           />
           <SelectValue placeholder="Model">
             {(current: string) => models.find((model) => model.value === current)?.label ?? "Model"}
@@ -73,13 +73,7 @@ export function ModelSwitcher({
           <SelectItem key={model.value} value={model.value}>
             <span className="truncate">{model.label}</span>
             {model.hint ? (
-              <span
-                data-control-ui="model-switcher"
-                data-control-family="popup"
-                data-popup-kind="model-switcher"
-                data-slot="hint"
-                className="ml-auto pl-4"
-              >
+              <span data-control-ui="model-switcher" data-control-family="popup" data-popup-kind="model-switcher" data-slot="hint">
                 {model.hint}
               </span>
             ) : null}

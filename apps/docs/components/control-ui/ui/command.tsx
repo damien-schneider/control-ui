@@ -71,7 +71,7 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
       data-control-family="popup"
       data-control="true"
       data-size="lg"
-      className={cn("flex items-center", controlSize({ size: "lg" }), "px-3")}
+      className={cn("flex items-center", controlSize({ size: "lg" }))}
     >
       <svg
         data-control-ui="command"
@@ -125,7 +125,7 @@ export function CommandEmpty({ className, ...props }: CommandEmptyProps) {
       data-control-family="popup"
       data-popup-kind="command"
       data-slot="empty"
-      className={cn("py-6", className)}
+      className={className}
       {...props}
     />
   );
@@ -140,10 +140,7 @@ export function CommandGroup({ className, ...props }: CommandGroupProps) {
       data-control-family="popup"
       data-popup-kind="command"
       data-slot="group"
-      className={cn(
-        "overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:uppercase",
-        className,
-      )}
+      className={cn("overflow-hidden p-[var(--popover-padding)]", className)}
       {...props}
     />
   );
@@ -161,7 +158,7 @@ export function CommandSeparator({ className, ...props }: CommandSeparatorProps)
       data-control-family="popup"
       data-popup-part="separator"
       data-slot="separator"
-      className={cn("-mx-[var(--popover-padding)] my-1 h-px", className)}
+      className={cn(className)}
       {...props}
     />
   );
@@ -202,7 +199,7 @@ export function CommandShortcut({ className, ...props }: CommandShortcutProps) {
       data-control-family="popup"
       data-popup-part="shortcut"
       data-slot="shortcut"
-      className={cn("ml-auto pl-6", className)}
+      className={cn(className)}
       {...props}
     />
   );

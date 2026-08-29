@@ -1,5 +1,15 @@
 @layer components {
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="footer"]) {
+    margin-block-start: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 3);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="progress"]) {
+    gap: calc(var(--spacing) * 1.5);
     --_rich-tooltip-dot-radius: var(--_rich-tooltip-content-dot-radius);
     --_rich-tooltip-dot-opacity: var(--_rich-tooltip-content-dot-opacity);
     --_rich-tooltip-dot-transition-property: opacity;
@@ -13,6 +23,8 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="dot"]) {
+    inline-size: calc(var(--spacing) * 1.5);
+    block-size: calc(var(--spacing) * 1.5);
     border-radius: var(--_rich-tooltip-dot-radius);
     background-color: var(--cui-rich-tooltip-dot-background);
     opacity: var(--_rich-tooltip-dot-opacity);
@@ -47,6 +59,8 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 4);
     --cui-rich-tooltip-action-background: transparent;
     --cui-rich-tooltip-action-foreground: currentColor;
     --cui-rich-tooltip-action-radius: var(--radius-control);
@@ -147,6 +161,9 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="media"]) {
+    margin-inline: calc(var(--spacing) * -4);
+    margin-block-start: calc(var(--spacing) * -4);
+    margin-block-end: calc(var(--spacing) * 1);
     border-start-start-radius: inherit;
     border-start-end-radius: inherit;
   }
@@ -176,6 +193,11 @@
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="previous"]),
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="next"]),
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="close"]) {
+    block-size: calc(var(--spacing) * 7);
+    inline-size: calc(var(--spacing) * 7);
+    margin-inline-end: calc(var(--spacing) * -1);
+    gap: calc(var(--spacing) * 1);
+    padding-inline: 0;
     border-radius: var(--cui-rich-tooltip-action-radius);
     background: var(--cui-rich-tooltip-action-background);
     color: var(--cui-rich-tooltip-action-foreground);

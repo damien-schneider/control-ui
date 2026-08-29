@@ -105,10 +105,7 @@ export function ResizableHandle({ className, variant = "solid", withHandle, chil
           data-slot="handle-grip"
           data-variant={variant}
           data-axis={axis}
-          className={cn(
-            "absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center",
-            axis === "vertical" ? "h-5 w-3.5" : "h-3.5 w-5",
-          )}
+          className="absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
         >
           <GripIcon className={axis === "horizontal" ? "rotate-90" : undefined} />
         </span>

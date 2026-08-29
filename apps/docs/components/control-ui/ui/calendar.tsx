@@ -23,9 +23,9 @@ type CalendarPropsWithStyle<Props> = Props extends unknown ? Omit<Props, "style"
 
 export type CalendarProps = CalendarPropsWithStyle<ComponentProps<typeof DayPicker>>;
 
-const dayButtonClasses = "flex h-9 w-full min-w-9 items-center justify-center disabled:pointer-events-none";
+const dayButtonClasses = "flex w-full items-center justify-center disabled:pointer-events-none";
 
-const navButtonClasses = "inline-flex size-8 items-center justify-center disabled:pointer-events-none";
+const navButtonClasses = "inline-flex items-center justify-center disabled:pointer-events-none";
 
 const chevronPathByOrientation = {
   left: "M10 3 5.5 8 10 13",
@@ -36,7 +36,7 @@ const chevronPathByOrientation = {
 
 export function Calendar({ className, showOutsideDays = true, style, ...props }: CalendarProps) {
   return (
-    <div data-control-ui="calendar" data-control-family="calendar" data-slot="root" className={cn("w-fit p-3", className)} style={style}>
+    <div data-control-ui="calendar" data-control-family="calendar" data-slot="root" className={cn("w-fit", className)} style={style}>
       <DayPicker
         showOutsideDays={showOutsideDays}
         components={{
@@ -66,7 +66,7 @@ function CalendarMonths({ className, ...props }: ComponentProps<typeof MonthsBas
       data-control-ui="calendar"
       data-control-family="calendar"
       data-slot="months"
-      className={cn("relative flex flex-col gap-4 sm:flex-row", className)}
+      className={cn("relative flex flex-col sm:flex-row", className)}
       {...props}
     />
   );
@@ -78,7 +78,7 @@ function CalendarMonth({ className, ...props }: ComponentProps<typeof MonthBase>
       data-control-ui="calendar"
       data-control-family="calendar"
       data-slot="month"
-      className={cn("flex flex-col gap-3", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );
@@ -90,7 +90,7 @@ function CalendarMonthCaption({ className, ...props }: ComponentProps<typeof Mon
       data-control-ui="calendar"
       data-control-family="calendar"
       data-slot="month-caption"
-      className={cn("flex h-9 items-center justify-center", className)}
+      className={cn("flex items-center justify-center", className)}
       {...props}
     />
   );
@@ -115,7 +115,7 @@ function CalendarNav({ className, ...props }: ComponentProps<typeof NavBase>) {
       data-control-ui="calendar"
       data-control-family="calendar"
       data-slot="nav"
-      className={cn("absolute inset-x-0 top-0 flex h-9 items-center justify-between", className)}
+      className={cn("absolute inset-x-0 top-0 flex items-center justify-between", className)}
       {...props}
     />
   );
@@ -139,22 +139,14 @@ function CalendarMonthGrid({ className, ...props }: ComponentProps<typeof MonthG
       data-control-ui="calendar"
       data-control-family="calendar"
       data-slot="month-grid"
-      className={cn("mt-1 w-full", className)}
+      className={cn("w-full", className)}
       {...props}
     />
   );
 }
 
 function CalendarWeekday({ className, ...props }: ComponentProps<typeof WeekdayBase>) {
-  return (
-    <WeekdayBase
-      data-control-ui="calendar"
-      data-control-family="calendar"
-      data-slot="weekday"
-      className={cn("pb-1.5", className)}
-      {...props}
-    />
-  );
+  return <WeekdayBase data-control-ui="calendar" data-control-family="calendar" data-slot="weekday" className={cn(className)} {...props} />;
 }
 
 function CalendarDay({ className, ...props }: ComponentProps<typeof DayBase>) {

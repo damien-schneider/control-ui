@@ -47,7 +47,7 @@ export function Toolbar({ orientation = "horizontal", variant = "default", class
       data-control-family="toolbar"
       data-slot="root"
       data-variant={variant}
-      className={cn("group/toolbar inline-flex gap-1", orientation === "vertical" ? "flex-col items-stretch" : "items-center", className)}
+      className={cn("group/toolbar inline-flex", orientation === "vertical" ? "flex-col items-stretch" : "items-center", className)}
       {...props}
     />
   );
@@ -68,8 +68,6 @@ export function ToolbarButton({ iconOnly = false, className, ...props }: Refined
       className={cn(
         "inline-flex shrink-0 items-center justify-center select-none data-[disabled]:pointer-events-none [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         controlSize({ size: "sm" }),
-        "px-2",
-        iconOnly && "aspect-square px-0",
         className,
       )}
       {...props}
@@ -91,7 +89,7 @@ export function ToolbarLink({ variant = "default", className, ...props }: Refine
       className={cn(
         "inline-flex shrink-0 items-center justify-center [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         controlSize({ size: "sm" }),
-        variant === "track" ? "relative z-[2] gap-1 px-1 sm:px-1.5" : "px-2",
+        variant === "track" && "relative z-[2]",
         className,
       )}
       {...props}
@@ -105,7 +103,7 @@ export function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {
       data-control-ui="toolbar"
       data-control-family="toolbar"
       data-slot="group"
-      className={cn("inline-flex items-center gap-1", className)}
+      className={cn("inline-flex items-center", className)}
       {...props}
     />
   );
@@ -119,7 +117,7 @@ export function ToolbarSeparator({ orientation = "vertical", className, ...props
       data-control-ui="toolbar"
       data-control-family="toolbar"
       data-slot="separator"
-      className={cn("shrink-0 self-stretch", orientation === "vertical" ? "w-px" : "h-px w-full", className)}
+      className={cn("shrink-0 self-stretch", className)}
       {...props}
     />
   );
@@ -135,7 +133,7 @@ export function ToolbarInput({ className, ...props }: RefinedToolbarInputProps) 
       data-slot="input"
       data-control="true"
       data-size="sm"
-      className={cn("min-w-0", controlSize({ size: "sm" }), "px-2", className)}
+      className={cn("min-w-0", controlSize({ size: "sm" }), className)}
       {...props}
     />
   );

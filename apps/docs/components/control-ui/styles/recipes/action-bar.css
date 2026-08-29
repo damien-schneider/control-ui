@@ -1,5 +1,8 @@
 @layer components {
   :where([data-control-family="action-bar"][data-slot="root"]) {
+    margin-block-start: calc(var(--spacing) * 1);
+    min-block-size: calc(var(--spacing) * 8);
+    gap: calc(var(--spacing) * 1);
     opacity: 0;
     transition: opacity var(--duration-base) var(--ease-standard);
   }

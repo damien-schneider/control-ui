@@ -8,7 +8,27 @@
     --cui-timeline-separator-background: var(--border);
     --cui-timeline-title-foreground: var(--foreground);
   }
+  :where([data-control-family="timeline"][data-slot="item"]) {
+    column-gap: calc(var(--spacing) * 3);
+    padding-block-end: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="timeline"][data-slot="item"]:last-child) {
+    padding-block-end: 0;
+  }
+
+  :where([data-control-family="timeline"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="timeline"][data-slot="meta"]) {
+    margin-block-start: calc(var(--spacing) * 1);
+    gap: calc(var(--spacing) * 1.5);
+  }
+
   :where([data-control-family="timeline"][data-slot="indicator"]) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
     border-radius: 9999px;
     background: var(--cui-timeline-indicator-background);
     color: var(--cui-timeline-indicator-foreground);

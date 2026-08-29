@@ -93,6 +93,16 @@
     transition-timing-function: var(--ease-standard);
   }
 
+  :where([data-control-family="resizable"][data-slot="handle-grip"][data-axis="vertical"]) {
+    block-size: calc(var(--spacing) * 5);
+    inline-size: calc(var(--spacing) * 3.5);
+  }
+
+  :where([data-control-family="resizable"][data-slot="handle-grip"][data-axis="horizontal"]) {
+    block-size: calc(var(--spacing) * 3.5);
+    inline-size: calc(var(--spacing) * 5);
+  }
+
   :where([data-control-family="resizable"][data-slot="handle-grip"][data-variant="hover"]) {
     opacity: 0;
   }

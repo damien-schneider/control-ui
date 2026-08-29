@@ -54,7 +54,7 @@ export function ChatComposer({
         data-state={state}
         data-density={density}
         onSubmit={input.handleSubmit}
-        className={cn("sticky bottom-0 w-full px-2 pb-2 pt-1", className)}
+        className={cn("sticky bottom-0 w-full", className)}
         {...props}
       >
         {/* component owns this position contract and skin supplies only visuals — no skin, no DOM */}
@@ -95,7 +95,7 @@ export function ChatComposerAccent({ className, ...props }: ChatComposerAccentPr
       data-control-family="chat-composer"
       data-slot="accent"
       aria-hidden="true"
-      className={cn("pointer-events-none absolute inset-x-5 top-0 h-px", className)}
+      className={cn("pointer-events-none absolute inset-x-5 top-0", className)}
       {...props}
     />
   );
@@ -140,7 +140,7 @@ export function ChatComposerToolbar({ className, ...props }: ChatComposerToolbar
       data-control-ui="chat-composer"
       data-control-family="chat-composer"
       data-slot="toolbar"
-      className={cn("flex min-h-10 items-center justify-between gap-2 px-2.5 pb-2", className)}
+      className={cn("flex items-center justify-between", className)}
       {...props}
     />
   );
@@ -154,7 +154,7 @@ export function ChatComposerTools({ className, ...props }: ChatComposerToolsProp
       data-control-ui="chat-composer"
       data-control-family="chat-composer"
       data-slot="tools"
-      className={cn("flex min-w-0 items-center gap-1.5", className)}
+      className={cn("flex min-w-0 items-center", className)}
       {...props}
     />
   );
@@ -164,13 +164,7 @@ export type ChatComposerFooterProps = Omit<ComponentProps<"div">, "style"> & { s
 
 export function ChatComposerFooter({ className, ...props }: ChatComposerFooterProps) {
   return (
-    <div
-      data-control-ui="chat-composer"
-      data-control-family="chat-composer"
-      data-slot="footer"
-      className={cn("px-3 pb-2", className)}
-      {...props}
-    />
+    <div data-control-ui="chat-composer" data-control-family="chat-composer" data-slot="footer" className={cn(className)} {...props} />
   );
 }
 

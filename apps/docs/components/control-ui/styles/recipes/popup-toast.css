@@ -45,7 +45,13 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 3);
     transition: opacity var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="content"] > div) {
+    gap: calc(var(--spacing) * 0.5);
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="content"][data-behind]) {
@@ -58,6 +64,9 @@
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="indicator"]) {
     --_toast-indicator-background: var(--foreground);
+    margin-block-start: calc(var(--spacing) * 1.5);
+    inline-size: calc(var(--spacing) * 2);
+    block-size: calc(var(--spacing) * 2);
     border-radius: 9999px;
     background: var(--_toast-indicator-background);
   }
@@ -68,7 +77,7 @@
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="title"]) {
     font-size: var(--text-body);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     line-height: 1;
     letter-spacing: -0.025em;
   }
@@ -95,10 +104,14 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="action"]) {
+    padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
     box-shadow: inset 0 0 0 1px var(--border);
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="close"]) {
+    margin-block-start: calc(var(--spacing) * -1);
+    margin-inline-end: calc(var(--spacing) * -1);
+    padding: calc(var(--spacing) * 1);
     --_toast-control-foreground: var(--muted-foreground);
     opacity: 0.7;
   }

@@ -111,7 +111,7 @@ export function TooltipContent({
           data-popup-part="surface"
           data-slot="content"
           data-arrow={arrow ? "true" : undefined}
-          className={cn("relative flex w-fit max-w-xs flex-col px-2.5 py-1", className)}
+          className={cn("relative flex w-fit max-w-xs flex-col", className)}
           {...props}
         >
           {children}

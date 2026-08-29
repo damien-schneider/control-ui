@@ -77,7 +77,7 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
         aria-label="Conversation timeline"
         style={railStyle}
         // widest fisheye tick gets — fixed column stops card drifting as ticks resize
-        className={cn("flex w-4 flex-col", className)}
+        className={cn("flex flex-col", className)}
         {...props}
       >
         {items.map((item, index) => cloneElement(item, { index }))}
@@ -89,7 +89,7 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
           data-slot="popover"
           data-surface="floating"
           style={{ ...activePopover?.style, height: cardHeight }}
-          className={cn("pointer-events-none z-20 ms-3 w-72 overflow-hidden", activePopover?.className)}
+          className={cn("pointer-events-none z-20 w-72 overflow-hidden", activePopover?.className)}
         >
           {items.map((item, index) => (
             <div
@@ -99,7 +99,7 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
               key={item.key ?? index}
               ref={index === hovered ? activeLayerRef : undefined}
               data-active={index === hovered ? "true" : undefined}
-              className="p-3.5"
+              className=""
             >
               {popovers[index]?.children ?? null}
             </div>
@@ -134,7 +134,7 @@ export function ThreadRailItem({
         // driven by state, not :hover, so card's anchor survives pointer leaving
         data-rail-current={index === rail.current ? "true" : undefined}
         // tiles rows with no gap, so :hover travels tick to tick without ever losing anchor
-        className={cn("relative flex items-center py-1", className)}
+        className={cn("relative flex items-center", className)}
         {...props}
       >
         {children}
@@ -159,7 +159,7 @@ export function ThreadRailLine({ className, ...props }: ThreadRailLineProps) {
       aria-current={inView ? "location" : undefined}
       onMouseEnter={() => activate(index)}
       onFocus={() => activate(index)}
-      className={cn("relative block h-px cursor-pointer before:absolute before:-inset-y-1 before:inset-x-0 before:content-['']", className)}
+      className={cn("relative block cursor-pointer before:absolute before:-inset-y-1 before:inset-x-0 before:content-['']", className)}
       {...props}
     />
   );
@@ -199,7 +199,7 @@ export function ThreadRailSummary({ className, ...props }: ThreadRailSummaryProp
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
       data-slot="summary"
-      className={cn("mt-1.5 line-clamp-3", className)}
+      className={cn("line-clamp-3", className)}
       {...props}
     />
   );
@@ -215,7 +215,7 @@ export function ThreadRailFooter({ className, ...props }: ThreadRailFooterProps)
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
       data-slot="footer"
-      className={cn("mt-3 flex flex-wrap items-center gap-2 pt-2.5", className)}
+      className={cn("flex flex-wrap items-center", className)}
       {...props}
     />
   );
@@ -231,7 +231,7 @@ export function ThreadRailFile({ className, ...props }: ThreadRailFileProps) {
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
       data-slot="file"
-      className={cn("inline-flex max-w-[180px] items-center gap-1.5 truncate", className)}
+      className={cn("inline-flex max-w-[180px] items-center truncate", className)}
       {...props}
     />
   );
@@ -247,7 +247,7 @@ export function ThreadRailFileIcon({ className, children, ...props }: ThreadRail
       data-control-ui="thread-rail"
       data-control-family="thread-rail"
       data-slot="file-icon"
-      className={cn("inline-flex size-3.5 shrink-0 items-center justify-center", className)}
+      className={cn("inline-flex shrink-0 items-center justify-center", className)}
       aria-hidden
       {...props}
     >

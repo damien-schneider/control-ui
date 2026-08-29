@@ -414,6 +414,13 @@
             }
           ]
         },
+        "panel-content": {
+          "family": "accordion",
+          "registryItems": [
+            "accordion"
+          ],
+          "states": []
+        },
         "trigger": {
           "family": "accordion",
           "registryItems": [
@@ -518,6 +525,13 @@
           "states": []
         },
         "content": {
+          "registryItems": [
+            "activity"
+          ],
+          "states": []
+        },
+        "content-grid": {
+          "family": "activity",
           "registryItems": [
             "activity"
           ],
@@ -2541,7 +2555,16 @@
           "registryItems": [
             "chat-layout"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-chat-layout-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "thought"
+              ]
+            }
+          ]
         },
         "chevron": {
           "family": "chat-layout",
@@ -2583,7 +2606,16 @@
           "registryItems": [
             "chat-layout"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-chat-layout-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "thread"
+              ]
+            }
+          ]
         }
       },
       "registryItems": [
@@ -2893,6 +2925,23 @@
           ],
           "states": []
         },
+        "floating-frame": {
+          "family": "code",
+          "registryItems": [
+            "code"
+          ],
+          "states": [
+            {
+              "attribute": "data-density",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "compact",
+                "default"
+              ]
+            }
+          ]
+        },
         "grid": {
           "family": "code",
           "registryItems": [
@@ -3008,6 +3057,13 @@
           "states": []
         },
         "editor": {
+          "family": "code-block-editor",
+          "registryItems": [
+            "code-block-editor"
+          ],
+          "states": []
+        },
+        "floating-frame": {
           "family": "code-block-editor",
           "registryItems": [
             "code-block-editor"
@@ -4980,6 +5036,13 @@
           ],
           "states": []
         },
+        "content-grid": {
+          "family": "context",
+          "registryItems": [
+            "context"
+          ],
+          "states": []
+        },
         "description": {
           "family": "context",
           "registryItems": [
@@ -5403,6 +5466,12 @@
               "values": []
             },
             {
+              "attribute": "data-inset",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-popup-kind",
               "source": "control-ui",
               "valueKind": "enum",
@@ -5418,6 +5487,12 @@
             "context-menu"
           ],
           "states": [
+            {
+              "attribute": "data-inset",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
             {
               "attribute": "data-popup-kind",
               "source": "control-ui",
@@ -5630,6 +5705,12 @@
             {
               "attribute": "data-highlighted",
               "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-inset",
+              "source": "control-ui",
               "valueKind": "presence",
               "values": []
             },
@@ -6227,6 +6308,22 @@
             }
           ]
         },
+        "scroll": {
+          "family": "popup",
+          "registryItems": [
+            "drawer"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "drawer"
+              ]
+            }
+          ]
+        },
         "title": {
           "family": "popup",
           "registryItems": [
@@ -6297,10 +6394,30 @@
               ]
             },
             {
+              "attribute": "data-side",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "bottom",
+                "left",
+                "right",
+                "top"
+              ]
+            },
+            {
               "attribute": "data-starting-style",
               "source": "external",
               "valueKind": "presence",
               "values": []
+            },
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "edge",
+                "floating"
+              ]
             }
           ]
         }
@@ -7619,10 +7736,20 @@
     "form": {
       "parts": {
         "root": {
+          "family": "field",
           "registryItems": [
             "form"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-field-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "form"
+              ]
+            }
+          ]
         }
       },
       "registryItems": [
@@ -7667,6 +7794,13 @@
           "states": []
         },
         "track": {
+          "family": "gradient-editor",
+          "registryItems": [
+            "gradient-editor"
+          ],
+          "states": []
+        },
+        "value-row": {
           "family": "gradient-editor",
           "registryItems": [
             "gradient-editor"
@@ -8935,6 +9069,12 @@
           ],
           "states": [
             {
+              "attribute": "data-inset",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-popup-kind",
               "source": "control-ui",
               "valueKind": "enum",
@@ -9074,6 +9214,12 @@
             {
               "attribute": "data-highlighted",
               "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-inset",
+              "source": "control-ui",
               "valueKind": "presence",
               "values": []
             },
@@ -12313,6 +12459,13 @@
           ],
           "states": []
         },
+        "content-stack": {
+          "family": "sidebar",
+          "registryItems": [
+            "sidebar"
+          ],
+          "states": []
+        },
         "footer": {
           "family": "sidebar",
           "registryItems": [
@@ -12610,6 +12763,14 @@
               "values": []
             },
             {
+              "attribute": "data-labeled",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "true"
+              ]
+            },
+            {
               "attribute": "data-orientation",
               "source": "external",
               "valueKind": "enum",
@@ -12717,6 +12878,22 @@
           ]
         },
         "label": {
+          "family": "range",
+          "registryItems": [
+            "slider"
+          ],
+          "states": [
+            {
+              "attribute": "data-range-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "slider"
+              ]
+            }
+          ]
+        },
+        "label-overlay": {
           "family": "range",
           "registryItems": [
             "slider"
@@ -12865,6 +13042,14 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
+            },
+            {
+              "attribute": "data-labeled",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "true"
+              ]
             },
             {
               "attribute": "data-orientation",
@@ -13024,7 +13209,19 @@
           "registryItems": [
             "spinner"
           ],
-          "states": []
+          "states": [
+            {
+              "attribute": "data-size",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "lg",
+                "md",
+                "sm",
+                "xs"
+              ]
+            }
+          ]
         }
       },
       "registryItems": [
@@ -14405,6 +14602,7 @@
           "states": []
         },
         "group": {
+          "family": "button",
           "registryItems": [
             "toggle"
           ],
@@ -15674,7 +15872,7 @@
         "name": "--cui-button-gap",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "0.375rem"
+        "defaultValue": "calc(var(--spacing) * 1.5)"
       },
       {
         "name": "--cui-button-icon",
@@ -17765,7 +17963,7 @@
         "name": "--cui-tabs-list-padding",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "0.25rem"
+        "defaultValue": "calc(var(--spacing) * 1)"
       },
       {
         "name": "--cui-tabs-list-radius",
@@ -17983,7 +18181,7 @@
         "name": "--cui-toolbar-padding",
         "syntax": "<length-percentage>",
         "initialValue": "0px",
-        "defaultValue": "0.25rem"
+        "defaultValue": "calc(var(--spacing) * 1)"
       },
       {
         "name": "--cui-toolbar-background",
@@ -18181,7 +18379,7 @@
         "name": "--cui-tree-item-trigger-selected-font-weight",
         "syntax": "<number>",
         "initialValue": "400",
-        "defaultValue": "400"
+        "defaultValue": "var(--font-weight-normal)"
       }
     ],
     "user-ask": [

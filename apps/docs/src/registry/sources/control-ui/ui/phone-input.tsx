@@ -82,7 +82,7 @@ function PhoneInputControl({ className, normalizationCountry, onChange, onNative
       data-field-kind="phone-input"
       data-slot="input"
       dir="ltr"
-      className={cn("px-3", className)}
+      className={className}
       onChange={(event) => {
         const normalizedText = normalizePhoneInputText(event.currentTarget.value, normalizationCountry);
         if (normalizedText !== event.currentTarget.value) event.currentTarget.value = normalizedText;
@@ -129,7 +129,7 @@ function PhoneCountrySelect({
           aria-label={accessibleLabel}
           onFocus={onFocus}
           onBlur={onBlur}
-          className="inline-flex h-full min-w-14 items-center justify-center gap-2 px-3 disabled:cursor-not-allowed"
+          className="inline-flex h-full items-center justify-center disabled:cursor-not-allowed"
           style={triggerStyle}
         >
           <CountryFlag country={value} />
@@ -193,7 +193,7 @@ function CountryFlag({ country }: { country?: PhoneInputCountry }) {
       data-control-ui="phone-input"
       data-control-family="phone-input"
       data-slot="flag"
-      className="h-3.5 w-5 shrink-0"
+      className="shrink-0"
     />
   ) : (
     <span data-control-ui="phone-input" data-control-family="phone-input" data-slot="country-code">

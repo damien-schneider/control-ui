@@ -4,7 +4,7 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Menubar as MenubarPrimitive } from "@base-ui/react/menubar";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
-import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -62,7 +62,7 @@ export type MenubarSubContentProps = Omit<ComponentProps<"div">, "style"> & { st
 
 const popupClasses = "min-w-[11rem]";
 
-const itemClasses = cn("group/mbi relative", popupItemStructureClasses, "px-[calc(var(--padding-x)*0.5)] py-1");
+const itemClasses = cn("group/mbi relative", popupItemStructureClasses);
 
 export function Menubar({ className, ...props }: MenubarProps) {
   return (
@@ -72,7 +72,7 @@ export function Menubar({ className, ...props }: MenubarProps) {
       data-slot="root"
       data-control-family="popup"
       data-popup-part="bar"
-      className={cn("inline-flex items-center gap-0.5 p-1", className)}
+      className={cn("inline-flex items-center", className)}
       {...props}
     />
   );
@@ -94,7 +94,7 @@ export function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
       data-variant="ghost"
       data-tone="neutral"
       data-shape="default"
-      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), buttonGapClass, className)}
+      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), className)}
       {...props}
     />
   );
@@ -164,7 +164,8 @@ export function MenubarLabel({ className, inset = false, ...props }: MenubarLabe
       data-slot="label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-[calc(var(--padding-x)*0.5)] py-1", inset && "ps-8", className)}
+      data-inset={inset || undefined}
+      className={cn(className)}
       {...props}
     />
   );
@@ -179,7 +180,7 @@ export function MenubarSeparator({ className, ...props }: MenubarSeparatorProps)
       data-slot="separator"
       data-control-family="popup"
       data-popup-part="separator"
-      className={cn("-mx-[var(--popover-padding)] my-1 h-px", className)}
+      className={cn(className)}
       {...props}
     />
   );
@@ -193,7 +194,7 @@ export function MenubarShortcut({ className, ...props }: MenubarShortcutProps) {
       data-slot="shortcut"
       data-control-family="popup"
       data-popup-part="shortcut"
-      className={cn("ms-auto ps-6", className)}
+      className={cn(className)}
       {...props}
     />
   );
@@ -211,7 +212,8 @@ export function MenubarSubTrigger({ className, inset = false, children, ...props
       data-slot="sub-trigger"
       data-control-family="popup"
       data-popup-part="item"
-      className={cn(itemClasses, inset && "ps-8", className)}
+      data-inset={inset || undefined}
+      className={cn(itemClasses, className)}
       {...props}
     >
       {children}
@@ -221,7 +223,6 @@ export function MenubarSubTrigger({ className, inset = false, children, ...props
         data-control-family="popup"
         data-slot="sub-trigger-indicator"
         aria-hidden="true"
-        className="ms-auto ps-4"
       >
         ›
       </span>

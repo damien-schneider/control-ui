@@ -86,7 +86,7 @@ export function DialogContent({ className, children, showCloseButton = true, ...
         data-control-family="popup"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 gap-4 p-0", className)}
+        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 p-0", className)}
         {...props}
       >
         {skinAdornment("dialog", "titlebar", {})}
@@ -111,7 +111,7 @@ export function DialogHeader({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="dialog"
       data-slot="header"
-      className={cn("grid gap-1.5 p-4 pb-0", className)}
+      className={cn("grid", className)}
       {...props}
     />
   );
@@ -124,7 +124,7 @@ export function DialogFooter({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="dialog"
       data-slot="footer"
-      className={cn("flex flex-col-reverse gap-2 p-4 pt-0 sm:flex-row sm:justify-end", className)}
+      className={cn("flex flex-col-reverse sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );

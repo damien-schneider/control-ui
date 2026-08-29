@@ -13,18 +13,40 @@
     box-shadow: var(--cui-card-shadow);
     -webkit-backdrop-filter: var(--cui-card-backdrop-filter);
     backdrop-filter: var(--cui-card-backdrop-filter);
+    gap: calc(var(--spacing) * 6);
+    padding-block: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="card"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="card"][data-slot="content"]) {
+    padding-inline: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="card"][data-slot="footer"]) {
+    padding-inline: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"]) {
     --cui-card-shadow: var(--shadow-pop);
+    gap: 0;
+    padding-block: 0;
+  }
+
+  :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="content"]) {
+    padding-block: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="card"][data-slot="root"][data-variant="sectioned"] > [data-slot="header"]) {
+    padding-block: calc(var(--spacing) * 5);
     border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
   }
 
   :where([data-control-family="card"][data-slot="title"]) {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     line-height: 1;
   }
 

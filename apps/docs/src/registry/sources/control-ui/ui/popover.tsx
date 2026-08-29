@@ -68,7 +68,7 @@ export function PopoverContent({
           data-control-family="popup"
           data-popup-part="surface"
           data-padding={padding}
-          className={cn("w-72", padding === "default" && "p-4", className)}
+          className={cn("w-72", className)}
           {...props}
         >
           {children}
@@ -85,7 +85,7 @@ export function PopoverHeader({ className, ...props }: ComponentProps<"div"> & {
       data-control-family="popup"
       data-popup-kind="popover"
       data-slot="header"
-      className={cn("grid gap-1.5 pb-3", className)}
+      className={cn("grid", className)}
       {...props}
     />
   );

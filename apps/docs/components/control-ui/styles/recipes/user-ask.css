@@ -20,6 +20,7 @@
       inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
       var(--cui-user-ask-shadow);
     backdrop-filter: blur(var(--backdrop-blur-popover));
+    padding: calc(var(--spacing) * 3);
     font-size: var(--text-body);
     transition-property: opacity, translate;
     transition-duration: var(--duration-base);
@@ -29,8 +30,14 @@
   @starting-style {
     :where([data-control-family="user-ask"][data-slot="root"]) {
       opacity: 0;
-      translate: 0 0.5rem;
+      translate: 0 calc(var(--spacing) * 2);
     }
+  }
+
+  :where([data-control-family="user-ask"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 3);
+    padding-inline: calc(var(--spacing) * 1);
+    padding-block-end: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="user-ask"][data-slot="title"]) {
@@ -39,11 +46,19 @@
   }
 
   :where([data-control-family="user-ask"][data-slot="pagination"]) {
+    gap: calc(var(--spacing) * 1);
     color: var(--muted-foreground);
     font-size: var(--text-micro);
   }
 
+  :where([data-control-family="user-ask"][data-slot="question"]) {
+    gap: calc(var(--spacing) * 0.5);
+  }
+
   :where([data-control-family="user-ask"][data-slot="option"]) {
+    gap: calc(var(--spacing) * 2.5);
+    padding-inline: calc(var(--spacing) * 2);
+    padding-block: calc(var(--spacing) * 1.5);
     border-radius: var(--cui-user-ask-option-radius);
     font-size: var(--text-sm);
     transition-property: background-color, box-shadow;
@@ -67,6 +82,9 @@
   }
 
   :where([data-control-family="user-ask"][data-slot="option-indicator"]) {
+    margin-block-start: 1px;
+    inline-size: calc(var(--spacing) * 5);
+    block-size: calc(var(--spacing) * 5);
     border-radius: var(--radius-control);
     background: var(--cui-user-ask-indicator-background);
     color: var(--cui-user-ask-indicator-foreground);
@@ -87,7 +105,18 @@
   }
 
   :where([data-control-family="user-ask"][data-slot="option-description"]) {
+    padding-block-start: calc(var(--spacing) * 0.5);
     font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="footer"]) {
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 1);
+    padding-block-start: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="button"][data-user-ask-dismiss="true"]) {
+    gap: calc(var(--spacing) * 1.5);
   }
 
   :where([data-control-family="user-ask"][data-slot="option-input"]) {
@@ -99,7 +128,7 @@
 
   :where([data-control-family="user-ask"][data-slot="option-input"])::placeholder {
     color: var(--_user-ask-input-placeholder-paint);
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
   }
 }
 

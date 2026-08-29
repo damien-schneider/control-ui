@@ -146,7 +146,7 @@
 - `flat` (Flat) — Neutral reset skin with square corners, no shadows, and the stock motion tempo. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite`
 - `modern-apple` (Modern Apple) — Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite`
 - `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite`
-- `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite`
+- `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite`
 
 ### Hooks
 - `use-chat-message` (useChatMessage) — Typed role, density, and lifecycle state for ChatMessage.

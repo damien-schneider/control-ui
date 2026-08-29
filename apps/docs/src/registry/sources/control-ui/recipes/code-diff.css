@@ -1,5 +1,6 @@
 @layer components {
   :where([data-control-family="code-diff"][data-slot="root"]) {
+    margin-block: calc(var(--spacing) * 4);
     --cui-code-diff-background: var(--background);
     --cui-code-diff-border-color: var(--border);
     --cui-code-diff-radius: var(--radius-panel);
@@ -20,8 +21,23 @@
   }
 
   :where([data-control-family="code-diff"]:is([data-slot="header"], [data-slot="file-header"])) {
+    gap: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 3);
     border-bottom: 1px solid var(--border);
     background: var(--diff-gutter-bg);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="header"]) {
+    min-block-size: calc(var(--spacing) * 10);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="file-header"]) {
+    min-block-size: calc(var(--spacing) * 9);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="actions"]) {
+    gap: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="code-diff"][data-slot="title"]),
@@ -72,7 +88,22 @@
     background: var(--diff-gutter-bg);
   }
 
+  :where([data-control-family="code-diff"][data-slot="root"]:not([data-header])) {
+    position: relative;
+    padding-block-start: calc(var(--spacing) * 9);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="line"] code) {
+    padding-inline-end: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="expander"] > span[aria-hidden="true"]) {
+    padding-inline: calc(var(--spacing) * 1.5);
+  }
+
   :where([data-control-family="code-diff"][data-slot="gutter"]) {
+    min-inline-size: calc(var(--spacing) * 11);
+    padding-inline: calc(var(--spacing) * 2);
     color: var(--diff-context-fg);
     opacity: 0.7;
     text-align: right;
@@ -88,6 +119,7 @@
   }
 
   :where([data-control-family="code-diff"][data-slot="marker"]) {
+    padding-inline: calc(var(--spacing) * 1);
     color: transparent;
     font-variant-numeric: tabular-nums;
   }
@@ -103,17 +135,23 @@
   }
 
   :where([data-control-family="code-diff"][data-slot="stat"]) {
+    gap: calc(var(--spacing) * 1.5);
     font-size: var(--text-micro);
     font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="code-diff"][data-slot="expander"]) {
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 1);
     background: var(--diff-gutter-bg);
     color: var(--muted-foreground);
     font-size: var(--text-micro);
   }
 
   :where([data-control-family="code-diff"][data-slot="expand-button"]) {
+    padding-inline: calc(var(--spacing) * 1.5);
+    padding-block: calc(var(--spacing) * 0.5);
     border-radius: var(--cui-code-diff-expand-button-radius);
     background: var(--cui-code-diff-expand-button-background);
     box-shadow: var(--cui-code-diff-expand-button-shadow);

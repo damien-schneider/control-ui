@@ -114,7 +114,7 @@ export const skinMetas = [
     label: "Linear",
     kind: "advanced",
     description:
-      "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.",
+      "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
     packManifestPath: "registry/linear/skin.json",
     paths: skinPackFiles("linear"),
   },

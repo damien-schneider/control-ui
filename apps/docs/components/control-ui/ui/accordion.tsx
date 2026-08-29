@@ -60,17 +60,11 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
         data-control-ui="accordion"
         data-control-family="accordion"
         data-slot="trigger"
-        className={cn("group flex flex-1 cursor-pointer select-none items-center justify-between gap-4 py-3", className)}
+        className={cn("group flex flex-1 cursor-pointer select-none items-center justify-between", className)}
         {...props}
       >
         {children}
-        <ChevronDown
-          aria-hidden="true"
-          data-control-ui="accordion"
-          data-control-family="accordion"
-          data-slot="icon"
-          className="size-4 shrink-0"
-        />
+        <ChevronDown aria-hidden="true" data-control-ui="accordion" data-control-family="accordion" data-slot="icon" className="shrink-0" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -79,7 +73,9 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
 export function AccordionPanel({ className, children, ...props }: AccordionPanelProps) {
   return (
     <AccordionPrimitive.Panel data-control-ui="accordion" data-control-family="accordion" data-slot="panel" {...props}>
-      <div className={cn("pb-3", className)}>{children}</div>
+      <div data-control-ui="accordion" data-control-family="accordion" data-slot="panel-content" className={className}>
+        {children}
+      </div>
     </AccordionPrimitive.Panel>
   );
 }

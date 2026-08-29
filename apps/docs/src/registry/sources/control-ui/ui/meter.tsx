@@ -38,7 +38,7 @@ export function Meter({ className, ...props }: MeterProps) {
       data-range-kind="meter"
       data-slot="root"
       data-control-family="range"
-      className={cn("flex w-full flex-col gap-2", className)}
+      className={cn("flex w-full flex-col", className)}
       {...props}
     />
   );
@@ -77,7 +77,7 @@ export function MeterTrack({ className, ...props }: MeterTrackProps) {
       data-control-family="range"
       data-range-kind="meter"
       data-slot="track"
-      className={cn("relative h-2 w-full overflow-hidden", className)}
+      className={cn("relative w-full overflow-hidden", className)}
       {...props}
     />
   );

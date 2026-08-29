@@ -21,10 +21,7 @@ export function Alert({ variant = "default", className, ...props }: AlertProps) 
       data-slot="root"
       data-surface="panel"
       data-variant={variant}
-      className={cn(
-        "relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 px-4 py-3 has-[>svg]:grid-cols-[1rem_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4",
-        className,
-      )}
+      className={cn("relative grid w-full grid-cols-[0_1fr] items-start has-[>svg]:grid-cols-[1rem_1fr] [&>svg]:size-4", className)}
       {...props}
     />
   );
@@ -36,7 +33,7 @@ export function AlertTitle({ className, ...props }: AlertTitleProps) {
       data-control-ui="alert"
       data-control-family="alert"
       data-slot="title"
-      className={cn("col-start-2 line-clamp-1 min-h-4", className)}
+      className={cn("col-start-2 line-clamp-1", className)}
       {...props}
     />
   );
@@ -48,7 +45,7 @@ export function AlertDescription({ className, ...props }: AlertDescriptionProps)
       data-control-ui="alert"
       data-control-family="alert"
       data-slot="description"
-      className={cn("col-start-2 grid justify-items-start gap-1", className)}
+      className={cn("col-start-2 grid justify-items-start", className)}
       {...props}
     />
   );

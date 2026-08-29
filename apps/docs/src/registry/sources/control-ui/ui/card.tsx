@@ -26,12 +26,7 @@ export function Card({ variant = "default", className, ...props }: CardProps) {
       data-slot="root"
       data-surface="panel"
       data-variant={variant}
-      className={cn(
-        "flex flex-col gap-6 py-6",
-        variant === "sectioned" &&
-          "gap-0 py-0 [&>[data-slot=header]]:px-6 [&>[data-slot=header]]:py-5 [&>[data-slot=content]]:px-6 [&>[data-slot=content]]:py-6",
-        className,
-      )}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );
@@ -43,10 +38,7 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
       data-control-ui="card"
       data-control-family="card"
       data-slot="header"
-      className={cn(
-        "grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto]",
-        className,
-      )}
+      className={cn("grid auto-rows-min grid-rows-[auto_auto] items-start has-data-[slot=card-action]:grid-cols-[1fr_auto]", className)}
       {...props}
     />
   );
@@ -73,7 +65,7 @@ export function CardAction({ className, ...props }: CardActionProps) {
 }
 
 export function CardContent({ className, ...props }: CardContentProps) {
-  return <div data-control-ui="card" data-control-family="card" data-slot="content" className={cn("px-6", className)} {...props} />;
+  return <div data-control-ui="card" data-control-family="card" data-slot="content" className={className} {...props} />;
 }
 
 export function CardFooter({ className, ...props }: CardFooterProps) {
@@ -82,7 +74,7 @@ export function CardFooter({ className, ...props }: CardFooterProps) {
       data-control-ui="card"
       data-control-family="card"
       data-slot="footer"
-      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      className={cn("flex items-center [.border-t]:pt-6", className)}
       {...props}
     />
   );

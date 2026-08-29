@@ -74,7 +74,7 @@ export function HoverCardContent({
           data-slot="content"
           data-surface="floating"
           data-popup-part="surface"
-          className={cn("w-64 p-[var(--popover-padding)]", className)}
+          className={cn("w-64", className)}
           {...props}
         >
           {children}

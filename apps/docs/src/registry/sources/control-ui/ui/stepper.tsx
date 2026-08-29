@@ -99,34 +99,34 @@ function defaultIndicatorContent(step: number, state: StepperState, invalid: boo
 
 function itemLayout(orientation: StepperOrientation, responsive: boolean) {
   if (orientation === "vertical") {
-    return "grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] pb-6 last:pb-0";
+    return "grid min-w-0 grid-cols-[2rem_minmax(0,1fr)]";
   }
   return cn(
     "relative grid min-w-0 flex-1 grid-cols-1 justify-items-center",
     responsive &&
-      "@max-md/stepper:w-full @max-md/stepper:flex-none @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch @max-md/stepper:pb-6 @max-md/stepper:last:pb-0",
+      "@max-md/stepper:w-full @max-md/stepper:flex-none @max-md/stepper:grid-cols-[2rem_minmax(0,1fr)] @max-md/stepper:justify-items-stretch",
   );
 }
 
 function partLayout(orientation: StepperOrientation, responsive: boolean, part: "indicator" | "title" | "description") {
   const vertical = {
     indicator: "col-start-1 row-span-2 row-start-1",
-    title: "col-start-2 row-start-1 ml-3",
-    description: "col-start-2 row-start-2 ml-3",
+    title: "col-start-2 row-start-1",
+    description: "col-start-2 row-start-2",
   }[part];
   if (orientation === "vertical") return vertical;
 
   const horizontal = {
     indicator: "col-start-1 row-start-1",
-    title: "col-start-1 row-start-2 mt-2",
-    description: "col-start-1 row-start-3 mt-0.5",
+    title: "col-start-1 row-start-2",
+    description: "col-start-1 row-start-3",
   }[part];
   if (!responsive) return horizontal;
 
   const narrow = {
     indicator: "@max-md/stepper:col-start-1 @max-md/stepper:row-span-2 @max-md/stepper:row-start-1",
-    title: "@max-md/stepper:col-start-2 @max-md/stepper:row-start-1 @max-md/stepper:mt-0 @max-md/stepper:ml-3",
-    description: "@max-md/stepper:col-start-2 @max-md/stepper:row-start-2 @max-md/stepper:mt-0 @max-md/stepper:ml-3",
+    title: "@max-md/stepper:col-start-2 @max-md/stepper:row-start-1",
+    description: "@max-md/stepper:col-start-2 @max-md/stepper:row-start-2",
   }[part];
   return cn(horizontal, narrow);
 }
@@ -278,11 +278,7 @@ export function StepperIndicator({ className, children, ...props }: StepperIndic
       data-slot="indicator"
       data-state={state}
       data-invalid={invalid ? "true" : undefined}
-      className={cn(
-        "relative z-10 flex size-8 shrink-0 items-center justify-center",
-        partLayout(orientation, responsive, "indicator"),
-        className,
-      )}
+      className={cn("relative z-10 flex shrink-0 items-center justify-center", partLayout(orientation, responsive, "indicator"), className)}
     >
       <span aria-hidden="true">{indicatorContent}</span>
       <span className="sr-only">{status}</span>
@@ -304,11 +300,11 @@ export function StepperSeparator({ className, ...props }: StepperSeparatorProps)
       aria-hidden="true"
       className={cn(
         "absolute",
-        orientation === "horizontal" && "top-4 right-[calc(-50%+1rem)] left-[calc(50%+1rem)] h-px",
-        orientation === "vertical" && "top-8 bottom-0 left-4 w-px",
+        orientation === "horizontal" && "top-4 right-[calc(-50%+1rem)] left-[calc(50%+1rem)]",
+        orientation === "vertical" && "top-8 bottom-0 left-4",
         orientation === "horizontal" &&
           responsive &&
-          "@max-md/stepper:top-8 @max-md/stepper:right-auto @max-md/stepper:bottom-0 @max-md/stepper:left-4 @max-md/stepper:h-auto @max-md/stepper:w-px",
+          "@max-md/stepper:top-8 @max-md/stepper:right-auto @max-md/stepper:bottom-0 @max-md/stepper:left-4",
         className,
       )}
     />
@@ -359,7 +355,7 @@ export function StepperContent({ step, keepMounted = true, className, ...props }
       data-state={active ? "active" : "inactive"}
       hidden={hidden}
       aria-labelledby={`${baseId}-step-${step}-title`}
-      className={cn("mt-6", className)}
+      className={className}
     />
   );
 }

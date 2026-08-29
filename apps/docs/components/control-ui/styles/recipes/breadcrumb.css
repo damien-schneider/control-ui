@@ -10,9 +10,25 @@
   }
 
   :where([data-control-family="breadcrumb"][data-slot="list"]) {
+    gap: calc(var(--spacing) * 1.5);
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
     color: var(--cui-breadcrumb-list-foreground);
+  }
+
+  @media (width >= 40rem) {
+    :where([data-control-family="breadcrumb"][data-slot="list"]) {
+      gap: calc(var(--spacing) * 2.5);
+    }
+  }
+
+  :where([data-control-family="breadcrumb"][data-slot="item"]) {
+    gap: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="breadcrumb"][data-slot="ellipsis"]) {
+    inline-size: calc(var(--spacing) * 9);
+    block-size: calc(var(--spacing) * 9);
   }
 }
 

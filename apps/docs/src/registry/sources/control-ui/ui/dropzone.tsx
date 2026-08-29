@@ -177,10 +177,7 @@ export function DropzoneTrigger({ className, children, onClick, disabled, ...pro
       data-slot="trigger"
       data-state={context.visualState}
       data-disabled={triggerDisabled ? "true" : undefined}
-      className={cn(
-        "flex min-h-32 w-full cursor-pointer flex-col items-center justify-center gap-3 p-6 disabled:cursor-not-allowed",
-        className,
-      )}
+      className={cn("flex w-full cursor-pointer flex-col items-center justify-center disabled:cursor-not-allowed", className)}
       onClick={(event) => {
         onClick?.(event);
         if (!event.defaultPrevented) context.open();
@@ -210,7 +207,7 @@ export function DropzoneOverlay({ scope = "local", className, children, ...props
       data-state={context.visualState}
       data-active={active ? "true" : undefined}
       data-scope={scope}
-      className={cn("pointer-events-none absolute inset-0 z-10 hidden items-center justify-center p-6 data-[active=true]:flex", className)}
+      className={cn("pointer-events-none absolute inset-0 z-10 hidden items-center justify-center data-[active=true]:flex", className)}
     >
       {children ?? <DropzoneFeedback state={context.visualState} />}
     </div>
@@ -237,7 +234,7 @@ export function DropzoneFileList({
       data-control-family="dropzone"
       data-slot="file-list"
       data-empty={empty ? "true" : undefined}
-      className={cn("mt-3 flex flex-col gap-2", className)}
+      className={cn("flex flex-col", className)}
     >
       {context.value.map((file, index) => (
         <li key={getFileRenderKey(file)} data-control-ui="dropzone" data-control-family="dropzone" data-slot="file" className={undefined}>
@@ -268,7 +265,7 @@ export function DropzoneRejectionList({
       data-control-family="dropzone"
       data-slot="rejection-list"
       data-empty={empty ? "true" : undefined}
-      className={cn("mt-3 flex flex-col gap-2", className)}
+      className={cn("flex flex-col", className)}
     >
       {context.fileRejections.map((rejection, index) => (
         <li
@@ -296,7 +293,7 @@ export function DropzoneStatus({ className, children, role = "status", "aria-liv
       data-control-family="dropzone"
       data-slot="status"
       data-state={context.visualState}
-      className={cn("mt-3", className)}
+      className={className}
     >
       {children ? children(context) : getDropzoneStatusMessage(context)}
     </div>
@@ -362,7 +359,7 @@ function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
   }
 
   return (
-    <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback" className="flex flex-col items-center gap-2">
+    <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback" className="flex flex-col items-center">
       <span data-control-ui="dropzone" data-control-family="dropzone" data-slot="feedback-icon" className="[&>svg]:size-6">
         {icon}
       </span>
@@ -375,7 +372,7 @@ function DropzoneFeedback({ state }: { state: DropzoneVisualState }) {
 
 function DefaultFile({ file }: { file: File }) {
   return (
-    <Item variant="muted" className="py-2">
+    <Item variant="muted">
       <ItemMedia>
         <FileIcon aria-hidden="true" />
       </ItemMedia>
@@ -392,7 +389,7 @@ function DefaultFile({ file }: { file: File }) {
 
 function DefaultRejection({ rejection }: { rejection: DropzoneFileRejection }) {
   return (
-    <Item variant="muted" className="py-2">
+    <Item variant="muted">
       <ItemMedia data-dropzone-invalid="">
         <CircleAlert aria-hidden="true" />
       </ItemMedia>

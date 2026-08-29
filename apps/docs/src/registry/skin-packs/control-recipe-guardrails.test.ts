@@ -326,6 +326,18 @@ describe("recipe hygiene", () => {
   });
 });
 
+function literalGeometryUtilities(classList: string): string[] {
+  return classList
+    .split(/\s+/)
+    .filter((utility) => /^-?(?:h|min-h|max-h|w|min-w|size|p|px|py|ps|pe|pt|pb|gap|rounded)(?:-|$)/.test(utility))
+    .filter((utility) => !utility.includes("var(--"));
+}
+
+const popupStructureConst = componentSources.find(({ name }) => name === "surface-variants.ts");
+const popupStructureClasses = popupStructureConst?.source.match(/popupItemStructureClasses = "([^"]*)"/)?.[1] ?? "";
+const controlSizeConst = componentSources.find(({ name }) => name === "control-variants.ts");
+const controlSizeClassLists = [...(controlSizeConst?.source.matchAll(/(?:xs|sm|md|lg): "([^"]*)"/g) ?? [])].map((match) => match[1]);
+
 describe("recipe reachability", () => {
   test("every public knob reaches rendered CSS or a structural utility", () => {
     expect(deadKnobs(recipes, contractKnobs, sourceText)).toEqual([]);
@@ -369,5 +381,21 @@ describe("recipe reachability", () => {
   test("rejects oversized recipe files", () => {
     const invalid = [{ file: "invalid.css", source: `@layer components {\n${"\n".repeat(399)}}` }];
     expect(recipeStructureOffenders(invalid)).toEqual(["invalid.css: exceeds 400 lines"]);
+  });
+
+  test("shared popup structure stays free of literal geometry the popup recipe owns", () => {
+    expect(popupStructureClasses).not.toBe("");
+    expect(literalGeometryUtilities(popupStructureClasses)).toEqual([]);
+  });
+
+  test("shared size ramp reads tokens for every geometry utility", () => {
+    expect(controlSizeClassLists.length).toBe(4);
+    for (const classList of controlSizeClassLists) {
+      expect(literalGeometryUtilities(classList)).toEqual([]);
+    }
+  });
+
+  test("rejects literal geometry smuggled into a shared structure const", () => {
+    expect(literalGeometryUtilities("flex min-h-[2rem] items-center gap-2 p-[var(--popover-padding)]")).toEqual(["min-h-[2rem]", "gap-2"]);
   });
 });

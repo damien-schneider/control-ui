@@ -6,11 +6,19 @@
     --cui-audio-visualizer-line-stroke: oklch(from var(--primary) l c h / 0.8);
   }
   :where([data-control-family="audio-visualizer"][data-slot="root"][data-variant]) {
+    block-size: calc(var(--spacing) * 7);
+    inline-size: calc(var(--spacing) * 44);
+    padding-inline: calc(var(--spacing) * 1.5);
     --_audio-visualizer-bar-track-filter: none;
     border-radius: var(--cui-audio-visualizer-radius);
   }
 
+  :where([data-control-family="audio-visualizer"][data-slot="root"][data-variant="bars"]) {
+    padding-block: calc(var(--spacing) * 1.5);
+  }
+
   :where([data-control-family="audio-visualizer"][data-slot="track"]) {
+    gap: 1px;
     opacity: 0.55;
     transition: opacity var(--duration-base) var(--ease-standard);
   }
@@ -20,6 +28,7 @@
   }
 
   :where([data-control-family="audio-visualizer"][data-slot="bar-track"]) {
+    inline-size: calc(var(--spacing) * 1);
     transition:
       opacity var(--duration-base) var(--ease-emphasized),
       filter var(--duration-base) var(--ease-emphasized),

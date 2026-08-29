@@ -5,6 +5,14 @@
     --cui-scroll-area-corner-background: transparent;
   }
 
+  :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
+    inline-size: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {
+    block-size: calc(var(--spacing) * 1.5);
+  }
+
   :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
     opacity: 0;
     transition: opacity var(--duration-fast) var(--ease-standard);

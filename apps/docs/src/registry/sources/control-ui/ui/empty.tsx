@@ -19,7 +19,7 @@ export function Empty({ className, ...props }: EmptyProps) {
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="root"
-      className={cn("flex min-w-0 flex-1 flex-col items-center justify-center gap-6 p-6", className)}
+      className={cn("flex min-w-0 flex-1 flex-col items-center justify-center", className)}
       {...props}
     />
   );
@@ -31,7 +31,7 @@ export function EmptyHeader({ className, ...props }: ComponentProps<"div"> & { s
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="header"
-      className={cn("flex max-w-sm flex-col items-center gap-2", className)}
+      className={cn("flex max-w-sm flex-col items-center", className)}
       {...props}
     />
   );
@@ -43,7 +43,7 @@ export function EmptyMedia({ className, ...props }: EmptyMediaProps) {
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="media"
-      className={cn("mb-2 flex size-10 shrink-0 items-center justify-center [&>svg]:size-5 [&>svg]:shrink-0", className)}
+      className={cn("flex shrink-0 items-center justify-center [&>svg]:size-5 [&>svg]:shrink-0", className)}
       {...props}
     />
   );
@@ -63,7 +63,7 @@ export function EmptyContent({ className, ...props }: EmptyContentProps) {
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="content"
-      className={cn("flex w-full max-w-sm flex-col items-center justify-center gap-2", className)}
+      className={cn("flex w-full max-w-sm flex-col items-center justify-center", className)}
       {...props}
     />
   );

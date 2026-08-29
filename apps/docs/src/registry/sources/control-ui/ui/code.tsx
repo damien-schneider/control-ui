@@ -51,7 +51,6 @@ function hasCodeHeader(children: ReactNode) {
 }
 
 export function Code({ overflow = "scroll", chrome = "standalone", density = "default", className, children, ...props }: CodeProps) {
-  const isEmbedded = chrome === "embedded";
   const hasHeader = hasCodeHeader(children);
 
   return (
@@ -64,12 +63,7 @@ export function Code({ overflow = "scroll", chrome = "standalone", density = "de
         data-chrome={chrome}
         data-density={density}
         data-header={hasHeader ? "true" : undefined}
-        className={cn(
-          "min-w-0 [--nest-gap:0.5rem]",
-          !hasHeader && "relative",
-          isEmbedded ? "my-0 overflow-hidden" : "my-4 overflow-hidden",
-          className,
-        )}
+        className={cn("min-w-0 overflow-hidden", !hasHeader && "relative", className)}
         {...props}
       >
         {children}
@@ -86,7 +80,7 @@ export function CodeHeader({ className, ...props }: CodeHeaderProps) {
       data-control-ui="code"
       data-control-family="code"
       data-slot="header"
-      className={cn("flex min-h-10 items-center justify-between gap-3 px-3 py-1.5", className)}
+      className={cn("flex items-center justify-between", className)}
       {...props}
     />
   );
@@ -114,7 +108,7 @@ export function CodeActions({ className, ...props }: CodeActionsProps) {
       data-control-ui="code"
       data-control-family="code"
       data-slot="actions"
-      className={cn("flex shrink-0 items-center gap-1 ms-auto", className)}
+      className={cn("flex shrink-0 items-center", className)}
       {...props}
     />
   );
@@ -150,7 +144,8 @@ export function CodeCopy({
       size="xs"
       aria-live="polite"
       aria-label={label && isCopied ? copiedAriaLabel : label}
-      className={cn(isIconOnly && "size-7 p-0", className)}
+      data-code-copy={isIconOnly ? "true" : undefined}
+      className={className}
       {...props}
       onClick={handleCopy}
     >
@@ -251,28 +246,15 @@ function CodeRow({
       data-control-ui="code"
       data-control-family="code"
       data-slot="line"
-      className="flex min-h-5 w-full"
+      className="flex w-full"
       style={style}
     >
       {showLineNumbers ? (
-        <span
-          data-control-ui="code"
-          data-control-family="code"
-          data-slot="gutter"
-          aria-hidden="true"
-          className="shrink-0 select-none pr-3 pl-4"
-          style={{ minWidth: "3.5rem" }}
-        >
+        <span data-control-ui="code" data-control-family="code" data-slot="gutter" aria-hidden="true" className="shrink-0 select-none">
           {number}
         </span>
       ) : null}
-      <code
-        className={cn(
-          "min-w-0 flex-1 pr-4",
-          overflow === "wrap" ? "whitespace-pre-wrap break-words" : "whitespace-pre",
-          !showLineNumbers && "pl-4",
-        )}
-      >
+      <code className={cn("min-w-0 flex-1", overflow === "wrap" ? "whitespace-pre-wrap break-words" : "whitespace-pre")}>
         <CodeTokenLine tokens={tokens} plain={plain} />
       </code>
     </div>
@@ -328,7 +310,7 @@ export function CodeContent({
     enabled: shouldVirtualize,
   });
 
-  const gridClassName = cn(isCompact ? "py-2" : "py-3", overflow === "scroll" ? "w-max min-w-full" : "w-full");
+  const gridClassName = overflow === "scroll" ? "w-max min-w-full" : "w-full";
   const textStyle = style;
 
   const grid = shouldVirtualize ? (
@@ -417,7 +399,13 @@ export function CodeContent({
 
   // reserves exactly overlay's footprint (top-2 + size-7) so no dead band is left
   return (
-    <div className={cn("relative", isCompact ? "pt-7" : "pt-6")}>
+    <div
+      data-control-ui="code"
+      data-control-family="code"
+      data-slot="floating-frame"
+      data-density={isCompact ? "compact" : "default"}
+      className="relative"
+    >
       <CodeFloatingCopy value={code} />
       {content}
     </div>

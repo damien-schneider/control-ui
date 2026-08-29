@@ -159,7 +159,7 @@ export function GradientEditor({
         data-control-ui="gradient-editor"
         data-control-family="gradient-editor"
         data-slot="root"
-        className={cn("grid gap-3", className)}
+        className={cn("grid", className)}
         {...props}
       >
         {children}
@@ -182,7 +182,7 @@ export function GradientEditorPreview({
       data-slot="preview"
       role="img"
       aria-label={ariaLabel}
-      className={cn("h-32 w-full", className)}
+      className={cn("w-full", className)}
       style={{ ...style, backgroundImage: gradient }}
       {...props}
     />
@@ -207,7 +207,7 @@ export function GradientEditorTrack({
       data-slot="track"
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient stops") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("relative m-0 h-6 min-w-0 w-full cursor-copy p-0", className)}
+      className={cn("relative m-0 min-w-0 w-full cursor-copy p-0", className)}
       style={{ ...style, backgroundImage: stripe }}
       onPointerDown={(event) => {
         // only bare track adds stop — click on handle is that handle's to deal with
@@ -327,10 +327,7 @@ export function GradientEditorStop({
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onDoubleClick={handleDoubleClick}
-      className={cn(
-        "-translate-x-1/2 absolute top-1/2 size-5 -translate-y-1/2 cursor-grab overflow-hidden active:cursor-grabbing",
-        className,
-      )}
+      className={cn("-translate-x-1/2 absolute top-1/2 -translate-y-1/2 cursor-grab overflow-hidden active:cursor-grabbing", className)}
       style={{ ...style, left: `${stop.position * 100}%`, backgroundColor: stop.color }}
       {...props}
     />
@@ -347,7 +344,7 @@ export function GradientEditorStopAdd({ className, children, ...props }: Gradien
       data-slot="stop-add"
       aria-label="Add gradient stop"
       onClick={() => addStop(0.5)}
-      className={cn("flex size-7 shrink-0 cursor-pointer items-center justify-center", className)}
+      className={cn("flex shrink-0 cursor-pointer items-center justify-center", className)}
       {...props}
     >
       {children ?? (
@@ -378,7 +375,7 @@ export function GradientEditorStopColor() {
         <ColorPickerArea />
         <ColorPickerHue />
         <ColorPickerAlpha />
-        <div className="flex gap-2">
+        <div data-control-ui="gradient-editor" data-control-family="gradient-editor" data-slot="value-row" className="flex">
           <ColorPickerFormatSelect />
           <ColorPickerInput className="flex-1" />
         </div>

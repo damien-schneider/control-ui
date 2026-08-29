@@ -14,15 +14,21 @@
     color: var(--foreground);
     text-align: center;
     text-wrap: balance;
+    gap: calc(var(--spacing) * 6);
+    padding: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="empty"][data-slot="media"]) {
+    margin-block-end: calc(var(--spacing) * 2);
+    inline-size: calc(var(--spacing) * 10);
+    block-size: calc(var(--spacing) * 10);
     border-radius: var(--cui-empty-media-radius);
     background: var(--cui-empty-media-background);
     color: var(--muted-foreground);
   }
 
   :where([data-control-family="empty"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 2);
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
     text-wrap: balance;
@@ -42,6 +48,7 @@
   }
 
   :where([data-control-family="empty"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 2);
     text-align: center;
   }
 }

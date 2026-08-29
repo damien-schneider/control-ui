@@ -49,7 +49,7 @@ export function ChatMessageRow({ className, children, ...props }: ChatMessageRow
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="row"
-      className={cn("flex w-full gap-2", message.isUser ? "justify-end" : "justify-start", message.isCompact ? "py-1" : "py-2", className)}
+      className={cn("flex w-full", message.isUser ? "justify-end" : "justify-start", className)}
       {...props}
     >
       {children}
@@ -67,7 +67,7 @@ export function ChatMessageAvatar({ className, ...props }: ChatMessageAvatarProp
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="avatar"
-      className={cn("mt-0.5 flex size-6 shrink-0 items-center justify-center", className)}
+      className={cn("flex shrink-0 items-center justify-center", className)}
       {...props}
     />
   );
@@ -76,14 +76,14 @@ export function ChatMessageAvatar({ className, ...props }: ChatMessageAvatarProp
 export type ChatMessageBodyProps = ComponentProps<"div"> & { style?: CSSProperties & ChatMessageKnobStyle };
 
 export function ChatMessageBody({ className, ...props }: ChatMessageBodyProps) {
-  const message = useChatMessageContext();
+  useChatMessageContext();
 
   return (
     <div
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="body"
-      className={cn("min-w-0", message.isUser ? "max-w-[76%]" : "max-w-[80%] flex-1", className)}
+      className={cn("min-w-0", className)}
       {...props}
     />
   );
@@ -99,7 +99,7 @@ export function ChatMessageHeader({ className, ...props }: ChatMessageHeaderProp
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="header"
-      className={cn("mb-1 flex items-center gap-2 px-1", className)}
+      className={cn("flex items-center", className)}
       {...props}
     />
   );
@@ -135,7 +135,7 @@ export function ChatMessageActions({ className, ...props }: ChatMessageActionsPr
       data-control-ui="chat-message"
       data-control-family="chat-message"
       data-slot="actions"
-      className={cn("mt-1 flex items-center gap-1", className)}
+      className={cn("flex items-center", className)}
       {...props}
     />
   );

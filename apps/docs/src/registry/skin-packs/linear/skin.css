@@ -1,39 +1,58 @@
 /* Only what Tailwind classes cannot say — everything else lives in skin.config or theme.css. */
 
-/* Row fills derive from --foreground, so one declaration serves both modes; surfaces and shadows do not. */
 [data-skin="linear"] {
-  --linear-row-hover: oklch(from var(--foreground) l c h / 0.05);
-  --linear-row-active: oklch(from var(--foreground) l c h / 0.08);
-  --linear-control-bg: var(--card);
-  --linear-control-hover: oklch(from var(--foreground) l c h / 0.04);
-  --linear-control-active: oklch(from var(--foreground) l c h / 0.07);
+  /* Linear draws its edges at half a device pixel; below 2dppx that would vanish, so it thickens. */
+  --linear-hairline: 1px;
+
+  /* Row fills derive from --foreground, so one declaration serves every surface the row can land on.
+     Light darkens less than dark lightens — measured off the app, not mirrored. */
+  --linear-row-hover: oklch(from var(--foreground) l c h / 0.035);
+  --linear-row-active: oklch(from var(--foreground) l c h / 0.06);
+  --linear-control-bg: var(--popover);
+  --linear-control-hover: oklch(from var(--foreground) l c h / 0.06);
+  --linear-control-active: oklch(from var(--foreground) l c h / 0.09);
 
   /* The brand ramp: Linear darkens the indigo on press rather than fading it. */
   --linear-primary-hover: oklch(0.5897 0.1527 276.397); /* #6771d6 */
   --linear-primary-active: oklch(0.5177 0.1507 275.398); /* #525cbd */
 
-  /* Own vars rather than the shared shadow tokens, so each surface tier stays tunable on its own. */
-  --linear-control-shadow: 0 1px 1px 0 oklch(from var(--shadow-color) l c h / 0.05);
-  --linear-panel-shadow: 0 1px 3px 0 oklch(from var(--shadow-color) l c h / 0.04);
-  --linear-menu-shadow:
-    0 1px 2px 0 oklch(from var(--shadow-color) l c h / 0.08), 0 6px 24px -4px oklch(from var(--shadow-color) l c h / 0.14);
+  /* Own vars rather than the shared shadow tokens, so each surface tier stays tunable on its own.
+     Each stack is Linear's own recipe: many near-transparent layers, never one big blur. */
+  --linear-control-shadow: 0 3px 6px -2px oklch(0 0 0 / 0.02), 0 1px 1px 0 oklch(0 0 0 / 0.04);
+  --linear-panel-shadow: 0 3px 6px -2px oklch(0 0 0 / 0.02), 0 1px 1px 0 oklch(0 0 0 / 0.04);
+  --linear-menu-shadow: 0 6px 18px 0 oklch(0 0 0 / 0.02), 0 3px 9px 0 oklch(0 0 0 / 0.04), 0 1px 1px 0 oklch(0 0 0 / 0.04);
   --linear-modal-shadow:
-    0 4px 12px 0 oklch(from var(--shadow-color) l c h / 0.1), 0 20px 70px -10px oklch(from var(--shadow-color) l c h / 0.22);
+    0 4px 40px 0 oklch(0 0 0 / 0.1), 0 3px 20px 0 oklch(0 0 0 / 0.12), 0 3px 12px 0 oklch(0 0 0 / 0.12), 0 2px 8px 0 oklch(0 0 0 / 0.12),
+    0 1px 1px 0 oklch(0 0 0 / 0.12);
 
-  --linear-tab-active-bg: var(--card);
-  --linear-tab-active-shadow: 0 0 0 1px var(--border), 0 1px 2px 0 oklch(from var(--shadow-color) l c h / 0.06);
+  /* Menus carry their own edge: on ink it reads lighter than --border, on paper barely darker. */
+  --linear-menu-border: oklch(0.931 0 0); /* #e8e8e8 */
+
+  --linear-tab-active-bg: var(--popover);
+  --linear-tab-active-shadow: 0 0 0 var(--linear-hairline) var(--border), 0 1px 1px 0 oklch(0 0 0 / 0.04);
+}
+
+@media (min-resolution: 2dppx) {
+  [data-skin="linear"] {
+    --linear-hairline: 0.5px;
+  }
 }
 
 /* Dark: raised surfaces get lighter, not brighter-edged; shadows go deep and neutral. */
 :where(.dark) [data-skin="linear"],
 .dark[data-skin="linear"] {
+  --linear-row-hover: oklch(1 0 0 / 0.06);
+  --linear-row-active: oklch(1 0 0 / 0.105);
   --linear-control-bg: oklch(1 0 0 / 0.05);
-  --linear-control-hover: oklch(1 0 0 / 0.09);
+  --linear-control-hover: oklch(1 0 0 / 0.08);
   --linear-control-active: oklch(1 0 0 / 0.12);
-  --linear-control-shadow: 0 1px 1px 0 oklch(0 0 0 / 0.3);
-  --linear-panel-shadow: 0 1px 2px 0 oklch(0 0 0 / 0.25);
-  --linear-menu-shadow: 0 0 0 1px oklch(1 0 0 / 0.04), 0 8px 32px -4px oklch(0 0 0 / 0.6);
-  --linear-modal-shadow: 0 0 0 1px oklch(1 0 0 / 0.05), 0 24px 80px -12px oklch(0 0 0 / 0.7);
+  --linear-control-shadow: 0 0.5px 1px 1px oklch(0 0 0 / 0.3);
+  --linear-panel-shadow: 0 0.5px 1px 1px oklch(0 0 0 / 0.3);
+  --linear-menu-shadow: 0 3px 8px 0 oklch(0 0 0 / 0.125), 0 2px 5px 0 oklch(0 0 0 / 0.125), 0 1px 1px 0 oklch(0 0 0 / 0.125);
+  --linear-modal-shadow:
+    0 4px 40px 0 oklch(0 0 0 / 0.4), 0 3px 20px 0 oklch(0 0 0 / 0.5), 0 3px 12px 0 oklch(0 0 0 / 0.5), 0 2px 8px 0 oklch(0 0 0 / 0.5),
+    0 1px 1px 0 oklch(0 0 0 / 0.5);
+  --linear-menu-border: oklch(0.3602 0.0053 271.268); /* #3c3d40 */
   --linear-tab-active-bg: oklch(1 0 0 / 0.07);
   --linear-tab-active-shadow: none;
 }
@@ -43,14 +62,6 @@
   :root[data-skin="linear"] body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.0075em;
-    font-feature-settings:
-      "cv01" 1,
-      "cv02" 1,
-      "cv03" 1,
-      "cv04" 1,
-      "calt" 1,
-      "liga" 1;
   }
 }
 
@@ -61,6 +72,7 @@
       [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
     ) {
     --cui-button-gap: 0.375rem;
+    --cui-button-radius: var(--radius-control);
     --cui-button-press-scale: 1;
     --cui-button-hover-bg: var(--linear-row-hover);
     --cui-button-active-bg: var(--linear-row-active);
@@ -73,7 +85,6 @@
       [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
     ) {
-    --cui-button-radius: 9999px;
     --cui-button-hover-bg: var(--linear-primary-hover);
     --cui-button-press-bg: var(--linear-primary-active);
     --cui-button-shadow: var(--linear-control-shadow);
@@ -84,12 +95,11 @@
       [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]
     ) {
-    --cui-button-radius: 9999px;
     --cui-button-bg: var(--linear-control-bg);
     --cui-button-hover-bg: var(--linear-control-hover);
     --cui-button-press-bg: var(--linear-control-active);
-    --cui-button-shadow: inset 0 0 0 1px var(--border), var(--linear-control-shadow);
-    --cui-button-active-shadow: inset 0 0 0 1px oklch(from var(--primary) l c h / 0.6), var(--linear-control-shadow);
+    --cui-button-shadow: inset 0 0 0 var(--linear-hairline) var(--border), var(--linear-control-shadow);
+    --cui-button-active-shadow: inset 0 0 0 var(--linear-hairline) oklch(from var(--primary) l c h / 0.6), var(--linear-control-shadow);
   }
 
   [data-skin="linear"]
@@ -97,7 +107,6 @@
       [data-control-ui="button"][data-slot="root"][data-tone="danger"][data-variant="solid"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-tone="danger"][data-variant="solid"][data-control-family="button"]
     ) {
-    --cui-button-radius: 9999px;
     --cui-button-hover-bg: var(--destructive);
     --cui-button-press-bg: var(--destructive);
     --cui-button-shadow: var(--linear-control-shadow);
@@ -163,12 +172,14 @@
       [data-control-family="popup"][data-popup-part="list-surface"]
     ) {
     --cui-popup-background: var(--popover);
-    --cui-popup-border-color: var(--border);
+    --cui-popup-border-color: var(--linear-menu-border);
+    --cui-popup-border-width: var(--linear-hairline);
     --cui-popup-shadow: var(--linear-menu-shadow);
   }
 
+  /* 6px block padding on a 20px line lands the row on Linear's 32px, without touching --control-h-xs. */
   [data-skin="linear"] :where([data-popup-part="item"]) {
-    padding: 0.25rem 0.5rem;
+    padding: 0.375rem 0.5rem;
     font-size: var(--text-label);
   }
 
@@ -202,10 +213,9 @@
   }
 
   [data-skin="linear"] :where([data-control-ui="select"][data-slot="trigger"][data-control-family="button"]) {
-    --cui-button-radius: var(--radius-control);
     --cui-button-bg: transparent;
     --cui-button-hover-bg: var(--linear-row-hover);
-    --cui-button-shadow: inset 0 0 0 1px var(--input);
+    --cui-button-shadow: inset 0 0 0 var(--linear-hairline) var(--input);
     --cui-button-press-scale: 1;
   }
 
@@ -214,7 +224,6 @@
       [data-control-ui="dropdown-menu"][data-slot="trigger"][data-control-family="button"],
       [data-control-ui="menubar"][data-slot="trigger"][data-control-family="button"]
     ) {
-    --cui-button-radius: var(--radius-control);
     --cui-button-bg: transparent;
     --cui-button-hover-bg: var(--linear-row-hover);
     --cui-button-shadow: none;
@@ -228,7 +237,7 @@
     --cui-popup-radius: var(--radius-panel);
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: transparent;
-    --cui-popup-border-width: 1px;
+    --cui-popup-border-width: var(--linear-hairline);
     --cui-popup-shadow: var(--linear-modal-shadow);
   }
 
@@ -259,7 +268,7 @@
   [data-skin="linear"] :where([data-control-ui="sheet"][data-popup-part="surface"][data-control-family="popup"]) {
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: var(--border);
-    --cui-popup-border-width: 1px;
+    --cui-popup-border-width: var(--linear-hairline);
     --cui-popup-shadow: var(--linear-modal-shadow);
   }
 }
@@ -270,7 +279,7 @@
     --cui-field-background: transparent;
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
-    --cui-field-border-width: 1px;
+    --cui-field-border-width: var(--linear-hairline);
     --cui-field-shadow: 0 0 transparent;
     --cui-field-focus-border-color: var(--primary);
   }
@@ -324,8 +333,8 @@
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="thread-rail"]) {
     --cui-thread-rail-popover-background: var(--popover);
-    --cui-thread-rail-popover-border-color: var(--border);
-    --cui-thread-rail-popover-border-width: 1px;
+    --cui-thread-rail-popover-border-color: var(--linear-menu-border);
+    --cui-thread-rail-popover-border-width: var(--linear-hairline);
     --cui-thread-rail-popover-shadow: var(--linear-menu-shadow);
     --cui-thread-rail-item-radius: 9999px;
     --cui-thread-rail-item-background: var(--linear-row-active);
@@ -333,8 +342,8 @@
 
   [data-skin="linear"] :where([data-control-ui="command"][data-slot="root"][data-control-family="popup"]) {
     --cui-popup-background: var(--popover);
-    --cui-popup-border-color: var(--border);
-    --cui-popup-border-width: 1px;
+    --cui-popup-border-color: var(--linear-menu-border);
+    --cui-popup-border-width: var(--linear-hairline);
     --cui-popup-shadow: var(--linear-menu-shadow);
     overflow: hidden;
   }
@@ -431,7 +440,7 @@
     --cui-chat-message-avatar-radius: 9999px;
     --cui-chat-message-avatar-background: var(--linear-control-bg);
     --cui-chat-message-avatar-border-color: var(--border);
-    --cui-chat-message-avatar-border-width: 1px;
+    --cui-chat-message-avatar-border-width: var(--linear-hairline);
   }
 
   [data-skin="linear"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
@@ -441,7 +450,7 @@
     --cui-chat-composer-shell-shadow: var(--linear-panel-shadow);
     --cui-chat-composer-mention-radius: var(--radius-control);
     --cui-chat-composer-mention-border-color: var(--border);
-    --cui-chat-composer-mention-border-width: 1px;
+    --cui-chat-composer-mention-border-width: var(--linear-hairline);
     --cui-chat-composer-mention-background: var(--linear-row-hover);
   }
 

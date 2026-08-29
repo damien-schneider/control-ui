@@ -1,5 +1,6 @@
 @layer components {
   :where([data-control-family="markdown-block"][data-slot="root"]) {
+    margin-block: calc(var(--spacing) * 4);
     --cui-markdown-block-radius: var(--radius-panel);
     --cui-markdown-block-background: var(--background);
     --cui-markdown-block-border-color: var(--border);
@@ -13,15 +14,25 @@
   }
 
   :where([data-control-family="markdown-block"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 3);
+    padding-inline: calc(var(--spacing) * 4);
+    padding-block: calc(var(--spacing) * 2);
     border-bottom: 1px solid var(--cui-markdown-block-header-border-color);
   }
 
   :where([data-control-family="markdown-block"][data-slot="title"]) {
+    gap: calc(var(--spacing) * 2);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
   }
 
+  :where([data-control-family="markdown-block"][data-slot="content"]) {
+    padding: calc(var(--spacing) * 4);
+  }
+
   :where([data-control-family="markdown-block"][data-slot="title-icon"]) {
+    inline-size: calc(var(--spacing) * 5);
+    block-size: calc(var(--spacing) * 5);
     background: var(--cui-markdown-block-icon-background);
     border-radius: var(--radius-md);
     font-size: var(--text-micro);

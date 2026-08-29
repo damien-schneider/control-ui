@@ -56,7 +56,7 @@ export function Checkbox({
       value={value}
       id={id}
       className={cn(
-        "group/checkbox relative inline-flex size-4 shrink-0 cursor-pointer items-center justify-center",
+        "group/checkbox relative inline-flex shrink-0 cursor-pointer items-center justify-center",
         "data-[disabled]:cursor-not-allowed",
         className,
       )}

@@ -88,10 +88,11 @@ export function ToggleGroup<TValue extends string = string>({ className, orienta
   return (
     <ToggleGroupPrimitive
       data-control-ui="toggle"
+      data-control-family="button"
       data-slot="group"
       data-orientation={orientation}
       orientation={orientation}
-      className={cn("inline-flex items-center gap-1", orientation === "vertical" && "flex-col", className)}
+      className={cn("inline-flex items-center", orientation === "vertical" && "flex-col", className)}
       {...props}
     />
   );

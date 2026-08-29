@@ -15,7 +15,7 @@ describe("Toolbar contracts", () => {
     expect(RECIPE).toContain(
       "clamp(0px, calc(min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--cui-toolbar-padding))",
     );
-    expect(RECIPE).toContain("--cui-toolbar-padding: 0.25rem;");
+    expect(RECIPE).toContain("--cui-toolbar-padding: calc(var(--spacing) * 1);");
   });
 
   test("keeps menu semantics when a button renders a DropdownMenu trigger", () => {

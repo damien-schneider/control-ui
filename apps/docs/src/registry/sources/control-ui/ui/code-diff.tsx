@@ -193,7 +193,7 @@ function DiffCode({
   if (line.segments && line.segments.length > 0) {
     const runs = mergeCodeTokenLineWithEmphasis(line.text, tokens, line.segments);
     return (
-      <code className={cn("min-w-0 flex-1 pr-4", wrapClass)}>
+      <code className={cn("min-w-0 flex-1", wrapClass)}>
         {runs.map((run) => {
           const style: CSSProperties | undefined = run.style || undefined;
           if (run.emphasis) {
@@ -220,7 +220,7 @@ function DiffCode({
     );
   }
   return (
-    <code className={cn("min-w-0 flex-1 pr-4", wrapClass)}>
+    <code className={cn("min-w-0 flex-1", wrapClass)}>
       <CodeTokenLine tokens={tokens} plain={line.text} />
     </code>
   );
@@ -234,8 +234,7 @@ function Gutter({ children, type }: { children: ReactNode; type: DiffLine["type"
       data-line-type={type}
       data-slot="gutter"
       aria-hidden="true"
-      className="shrink-0 select-none px-2"
-      style={{ minWidth: "2.75rem" }}
+      className="shrink-0 select-none"
     >
       {children}
     </span>
@@ -251,7 +250,7 @@ function Marker({ type, indicators }: { type: DiffLine["type"]; indicators: Diff
       data-slot="marker"
       data-line-type={type}
       aria-hidden="true"
-      className="shrink-0 select-none pl-1 pr-1"
+      className="shrink-0 select-none"
     >
       {markerFor[type] || " "}
     </span>
@@ -335,7 +334,7 @@ function fileTitle(file: DiffFile): string {
 
 function DiffStats({ additions, deletions }: { additions: number; deletions: number }) {
   return (
-    <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat" className="flex items-center gap-1.5">
+    <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat" className="flex items-center">
       <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="stat-additions">
         +{additions}
       </span>
@@ -422,7 +421,7 @@ function CodeDiffFileSection({
   function renderRow(row: VisualRow): ReactNode {
     if (row.kind === "separator") {
       return (
-        <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander" className="flex items-center gap-2 px-3 py-1">
+        <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander" className="flex items-center">
           {row.canExpand ? (
             <button
               type="button"
@@ -431,15 +430,13 @@ function CodeDiffFileSection({
               data-slot="expand-button"
               data-control="true"
               onClick={() => expandGap(row.gapIndex)}
-              className="cursor-pointer px-1.5 py-0.5"
+              className="cursor-pointer"
               aria-label="Expand hidden lines"
             >
               ⋯
             </button>
           ) : (
-            <span aria-hidden="true" className="px-1.5">
-              ⋯
-            </span>
+            <span aria-hidden="true">⋯</span>
           )}
           <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander-label" className="truncate">
             {row.label}
@@ -477,7 +474,7 @@ function CodeDiffFileSection({
           data-control-ui="code-diff"
           data-control-family="code-diff"
           data-slot="file-header"
-          className="flex min-h-9 items-center justify-between gap-3 px-3 py-1.5"
+          className="flex items-center justify-between"
         >
           <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="file-title" className="min-w-0 truncate">
             {fileTitle(file)}
@@ -562,7 +559,7 @@ export function CodeDiff({
       data-diff-style={diffStyle}
       data-file-count={files.length}
       data-header={header ? "true" : undefined}
-      className={cn("my-4 overflow-hidden", !header && "relative pt-9", className)}
+      className={cn("overflow-hidden", className)}
       style={style}
       {...props}
     >
@@ -571,12 +568,12 @@ export function CodeDiff({
           data-control-ui="code-diff"
           data-control-family="code-diff"
           data-slot="header"
-          className="flex min-h-10 items-center justify-between gap-3 px-3 py-1.5"
+          className="flex items-center justify-between"
         >
           <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="title" className="min-w-0 truncate">
             {files.length === 1 && firstFile ? fileTitle(firstFile) : `${files.length} files`}
           </span>
-          <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="actions" className="flex shrink-0 items-center gap-2">
+          <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="actions" className="flex shrink-0 items-center">
             <DiffStats additions={additions} deletions={deletions} />
             <CodeDiffCopy value={copyValue} />
           </div>

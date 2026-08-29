@@ -46,7 +46,7 @@ export type FieldSetProps = Omit<ComponentProps<"fieldset">, "style"> & { style?
 
 export type FieldLegendProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & FieldKnobStyle };
 
-const fieldVariants = cva("group/field flex w-full gap-3", {
+const fieldVariants = cva("group/field flex w-full", {
   variants: {
     orientation: {
       vertical:
@@ -83,7 +83,7 @@ export function FieldContent({ className, ...props }: FieldContentProps) {
       data-control-family="field"
       data-field-kind="field"
       data-slot="content"
-      className={cn("flex min-w-0 flex-1 flex-col gap-1", className)}
+      className={cn("flex min-w-0 flex-1 flex-col", className)}
       {...props}
     />
   );
@@ -181,7 +181,7 @@ export function FieldGroup({ className, ...props }: FieldGroupProps) {
       data-control-family="field"
       data-field-kind="field"
       data-slot="group"
-      className={cn("group/field-group @container/field-group flex flex-col gap-5", className)}
+      className={cn("group/field-group @container/field-group flex flex-col", className)}
       {...props}
     />
   );
@@ -195,7 +195,7 @@ export function FieldSeparator({ children, className, ...props }: FieldSeparator
       data-field-kind="field"
       data-slot="separator"
       data-content={children ? "true" : undefined}
-      className={cn("relative h-px", children && "my-2 h-5", className)}
+      className={cn("relative", className)}
       {...props}
     >
       <Separator className={children ? "absolute top-1/2" : undefined} />
@@ -205,7 +205,7 @@ export function FieldSeparator({ children, className, ...props }: FieldSeparator
           data-control-family="field"
           data-field-kind="field"
           data-slot="separator-content"
-          className="relative mx-auto block w-fit px-2"
+          className="relative block w-fit"
         >
           {children}
         </span>
@@ -221,7 +221,7 @@ export function FieldItem({ className, ...props }: FieldItemProps) {
       data-control-family="field"
       data-field-kind="field"
       data-slot="item"
-      className={cn("flex items-center gap-2", className)}
+      className={cn("flex items-center", className)}
       {...props}
     />
   );
@@ -234,7 +234,7 @@ export function FieldSet({ className, ...props }: FieldSetProps) {
       data-control-family="field"
       data-field-kind="field"
       data-slot="set"
-      className={cn("m-0 flex min-w-0 flex-col gap-4 p-0", className)}
+      className={cn("m-0 flex min-w-0 flex-col p-0", className)}
       {...props}
     />
   );

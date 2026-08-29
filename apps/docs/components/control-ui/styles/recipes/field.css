@@ -1,5 +1,6 @@
 @layer components {
   :where([data-control-family="field"][data-control="true"]) {
+    gap: calc(var(--spacing) * 1.5);
     --cui-field-radius: var(--radius-control);
     --cui-field-background: oklch(from var(--card) l c h / 0.72);
     --cui-field-foreground: var(--foreground);
@@ -25,6 +26,13 @@
     transition-property: color, background-color, border-color, box-shadow, opacity, backdrop-filter;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="field"][data-control="true"][data-size="xs"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+  :where([data-control-family="field"][data-control="true"][data-size="lg"]) {
+    gap: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="field"][data-control="true"])::placeholder {
@@ -65,6 +73,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="combobox"][data-slot="input"]) {
+    padding-inline-end: calc(var(--spacing) * 9);
     font-weight: var(--font-weight-medium);
   }
 
@@ -78,6 +87,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"]) {
+    padding-inline: calc(var(--spacing) * 2);
     text-align: center;
     font-weight: var(--font-weight-medium);
     font-variant-numeric: tabular-nums;
@@ -88,11 +98,54 @@
   }
 
   :where([data-control-family="field"][data-field-kind="textarea"][data-slot="root"]) {
+    min-block-size: calc(var(--spacing) * 16);
+    max-block-size: calc(var(--spacing) * 64);
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
     font-size: var(--text-body);
   }
 
   :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="input"]) {
+    padding-inline-end: calc(var(--spacing) * 9);
     font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="root"]) {
+    gap: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="group"]),
+  :where([data-control-family="field"][data-field-kind="form"][data-slot="root"]) {
+    gap: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="item"]) {
+    gap: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="set"]) {
+    gap: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="separator"]) {
+    block-size: 1px;
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="separator"][data-content]) {
+    margin-block: calc(var(--spacing) * 2);
+    block-size: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="field"][data-field-kind="field"][data-slot="separator-content"]) {
+    margin-inline: auto;
+    padding-inline: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="input"]) {
+    padding-inline: calc(var(--spacing) * 3);
   }
 }
 

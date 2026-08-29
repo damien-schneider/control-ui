@@ -53,7 +53,7 @@ function Scrollbar({
       data-control-family="scroll-area"
       data-slot="scrollbar"
       data-visibility={visibility}
-      className={cn("m-px flex touch-none select-none", orientation === "vertical" ? "w-1.5 justify-center" : "h-1.5 flex-col")}
+      className={cn("m-px flex touch-none select-none", orientation === "vertical" ? "justify-center" : "flex-col")}
     >
       <ScrollAreaPrimitive.Thumb
         data-control-ui="scroll-area"

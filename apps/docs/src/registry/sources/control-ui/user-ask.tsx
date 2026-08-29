@@ -72,7 +72,7 @@ export function UserAsk({ onComplete, onDismiss, autoFocus = false, className, c
         aria-labelledby={titleId}
         tabIndex={-1}
         onKeyDown={ask.handleKeyDown}
-        className={cn("relative w-full p-3", className)}
+        className={cn("relative w-full", className)}
         {...props}
       >
         {children}
@@ -89,7 +89,7 @@ export function UserAskHeader({ className, ...props }: UserAskHeaderProps) {
       data-control-ui="user-ask"
       data-control-family="user-ask"
       data-slot="header"
-      className={cn("flex items-start justify-between gap-3 px-1 pb-2", className)}
+      className={cn("flex items-start justify-between", className)}
       {...props}
     />
   );
@@ -118,7 +118,7 @@ export function UserAskPagination({ className, ...props }: UserAskPaginationProp
       data-control-ui="user-ask"
       data-control-family="user-ask"
       data-slot="pagination"
-      className={cn("flex shrink-0 items-center gap-1", className)}
+      className={cn("flex shrink-0 items-center", className)}
       {...props}
     >
       <Button
@@ -174,7 +174,7 @@ export function UserAskQuestion({ id, title, defaultValue, className, children, 
         data-control-family="user-ask"
         data-slot="question"
         data-active={active ? "" : undefined}
-        className={cn("flex flex-col gap-0.5", className)}
+        className={cn("flex flex-col", className)}
         {...props}
       >
         {children}
@@ -196,7 +196,7 @@ function useUserAskOptionContext() {
   return context;
 }
 
-const optionRowClasses = "grid w-full grid-cols-[auto_minmax(0,1fr)] items-start gap-2.5 px-2 py-1.5";
+const optionRowClasses = "grid w-full grid-cols-[auto_minmax(0,1fr)] items-start";
 
 export type UserAskOptionProps = UserAskStyleProps<Omit<ComponentProps<"button">, "value">, UserAskKnobStyle> & {
   value: string;
@@ -250,7 +250,7 @@ export function UserAskOption({
           data-control-family="user-ask"
           data-slot="option-indicator"
           data-selected={selected ? "" : undefined}
-          className="mt-px inline-flex size-5 shrink-0 items-center justify-center"
+          className="inline-flex shrink-0 items-center justify-center"
         >
           {selected ? <Check className="size-3" /> : index + 1}
         </span>
@@ -286,7 +286,7 @@ export function UserAskOptionDescription({ className, ...props }: UserAskOptionD
       data-control-ui="user-ask"
       data-control-family="user-ask"
       data-slot="option-description"
-      className={cn("block pt-0.5", className)}
+      className={cn("block", className)}
       {...props}
     />
   );
@@ -351,7 +351,7 @@ export function UserAskOptionInput({
           data-control-ui="user-ask"
           data-control-family="user-ask"
           data-slot="option-indicator"
-          className="mt-px inline-flex size-5 shrink-0 items-center justify-center"
+          className="inline-flex shrink-0 items-center justify-center"
         >
           {index + 1}
         </span>
@@ -378,7 +378,7 @@ export function UserAskOptionInput({
         data-control-family="user-ask"
         data-slot="option-indicator"
         data-selected=""
-        className="mt-px inline-flex size-5 shrink-0 items-center justify-center"
+        className="inline-flex shrink-0 items-center justify-center"
       >
         <PencilLine className="size-3" />
       </span>
@@ -408,7 +408,7 @@ export function UserAskFooter({ className, ...props }: UserAskFooterProps) {
       data-control-ui="user-ask"
       data-control-family="user-ask"
       data-slot="footer"
-      className={cn("flex items-center justify-end gap-2 px-1 pt-3", className)}
+      className={cn("flex items-center justify-end", className)}
       {...props}
     />
   );
@@ -433,7 +433,7 @@ export function UserAskDismiss({ className, children, onClick, ...props }: UserA
       variant="quiet"
       size="xs"
       onClick={handleClick}
-      className={cn("gap-1.5", className)}
+      className={cn(className)}
       {...props}
     >
       {children ?? (

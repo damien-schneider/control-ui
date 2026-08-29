@@ -118,13 +118,13 @@ export function ChatComposerAttachments({
         mask
         scrollbarVisibility="hover"
         className="w-full"
-        viewportClassName={cn("pb-2", viewportClassName)}
+        viewportClassName={viewportClassName}
       >
         <ul
           data-control-ui="chat-composer-attachments"
           data-control-family="chat-composer-attachment"
           data-slot="list"
-          className="flex w-max min-w-full list-none gap-2 px-3 pt-3"
+          className="flex w-max min-w-full list-none"
         >
           {children}
         </ul>
@@ -197,13 +197,7 @@ export function ChatComposerAttachment({
         data-kind={resolvedKind}
         data-state={status}
         data-variant={resolvedVariant}
-        className={cn(
-          "relative shrink-0 overflow-hidden",
-          resolvedVariant === "preview"
-            ? "flex h-14 w-fit max-w-40 items-center p-1"
-            : "flex h-14 w-64 max-w-[calc(100vw-5rem)] items-center gap-2 p-1.5 pr-8",
-          className,
-        )}
+        className={cn("relative shrink-0 overflow-hidden", "flex items-center", className)}
         {...props}
       >
         {children ?? (
@@ -237,11 +231,7 @@ export function ChatComposerAttachmentPreview({ className, children, ...props }:
       data-control-ui="chat-composer-attachment"
       data-control-family="chat-composer-attachment"
       data-slot="preview"
-      className={cn(
-        "relative grid shrink-0 place-items-center overflow-hidden",
-        context.variant === "preview" ? "h-full w-fit min-w-10 max-w-full" : "size-10",
-        className,
-      )}
+      className={cn("relative grid shrink-0 place-items-center overflow-hidden", className)}
       {...props}
     >
       {children ??
@@ -269,7 +259,7 @@ export function ChatComposerAttachmentPreview({ className, children, ...props }:
           data-control-ui="chat-composer-attachment"
           data-control-family="chat-composer-attachment"
           data-slot="status"
-          className="absolute right-1 top-1 size-4"
+          className="absolute right-1 top-1"
         />
       )}
     </div>
@@ -359,7 +349,7 @@ export function ChatComposerAttachmentRemove({
       aria-label={ariaLabel ?? removeLabel ?? `Remove ${name}`}
       size="xs"
       variant="solid"
-      className={cn("absolute right-1 top-1 z-10 size-5 p-0", className)}
+      className={cn("absolute right-1 top-1 z-10", className)}
       onClick={handleClick}
       {...props}
     >
@@ -383,7 +373,7 @@ export function ChatComposerAttachmentProgress({ className, children, style, ...
       data-control-ui="chat-composer-attachment"
       data-control-family="chat-composer-attachment"
       data-slot="progress"
-      className={cn("absolute inset-x-0 bottom-0 h-1", className)}
+      className={cn("absolute inset-x-0 bottom-0", className)}
       style={style}
       {...props}
     >

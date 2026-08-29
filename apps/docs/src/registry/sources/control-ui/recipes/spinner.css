@@ -5,7 +5,24 @@
   }
 
   :where([data-control-family="spinner"][data-slot="indicator"]) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
     animation: spin calc(var(--duration-slow) * 3.333) linear infinite;
+  }
+
+  :where([data-control-family="spinner"][data-slot="indicator"][data-size="xs"]) {
+    inline-size: calc(var(--spacing) * 3);
+    block-size: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="spinner"][data-slot="indicator"][data-size="md"]) {
+    inline-size: calc(var(--spacing) * 5);
+    block-size: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="spinner"][data-slot="indicator"][data-size="lg"]) {
+    inline-size: calc(var(--spacing) * 6);
+    block-size: calc(var(--spacing) * 6);
   }
 }
 

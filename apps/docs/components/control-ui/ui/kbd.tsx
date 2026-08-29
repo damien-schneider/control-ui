@@ -11,7 +11,7 @@ export function Kbd({ className, ...props }: KbdProps) {
       data-control-ui="kbd"
       data-control-family="kbd"
       data-slot="root"
-      className={cn("inline-flex h-5 min-w-5 select-none items-center justify-center gap-1 px-1.5", className)}
+      className={cn("inline-flex select-none items-center justify-center", className)}
       {...props}
     />
   );
@@ -23,7 +23,7 @@ export function KbdGroup({ className, ...props }: ComponentProps<"span"> & { sty
       data-control-ui="kbd"
       data-control-family="kbd"
       data-slot="group"
-      className={cn("inline-flex items-center gap-1", className)}
+      className={cn("inline-flex items-center", className)}
       {...props}
     />
   );

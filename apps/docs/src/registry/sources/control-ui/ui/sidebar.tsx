@@ -328,7 +328,7 @@ export function SidebarRail({ className, ...props }: SidebarRailProps) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 group-data-[side=left]:-right-4 group-data-[side=right]:left-0 lg:flex",
+        "absolute inset-y-0 z-20 hidden -translate-x-1/2 group-data-[side=left]:-right-4 group-data-[side=right]:left-0 lg:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0",
@@ -345,11 +345,7 @@ export function SidebarInset({ className, ...props }: SidebarInsetProps) {
       data-control-ui="sidebar"
       data-control-family="sidebar"
       data-slot="inset"
-      className={cn(
-        "relative flex w-full flex-1 flex-col",
-        "lg:peer-data-[variant=inset]:m-2 lg:peer-data-[variant=inset]:ml-0 lg:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
-        className,
-      )}
+      className={cn("relative flex w-full flex-1 flex-col", className)}
       {...props}
     />
   );
@@ -357,25 +353,13 @@ export function SidebarInset({ className, ...props }: SidebarInsetProps) {
 
 export function SidebarHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
   return (
-    <div
-      data-control-ui="sidebar"
-      data-control-family="sidebar"
-      data-slot="header"
-      className={cn("flex flex-col gap-2 p-2", className)}
-      {...props}
-    />
+    <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="header" className={cn("flex flex-col", className)} {...props} />
   );
 }
 
 export function SidebarFooter({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & SidebarKnobStyle }) {
   return (
-    <div
-      data-control-ui="sidebar"
-      data-control-family="sidebar"
-      data-slot="footer"
-      className={cn("flex flex-col gap-2 p-2", className)}
-      {...props}
-    />
+    <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="footer" className={cn("flex flex-col", className)} {...props} />
   );
 }
 
@@ -388,7 +372,9 @@ export function SidebarContent({ className, children, ...props }: ComponentProps
       lockAxis="x"
       {...props}
     >
-      <div className="flex flex-col gap-2">{children}</div>
+      <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="content-stack" className="flex flex-col">
+        {children}
+      </div>
     </ScrollArea>
   );
 }
@@ -399,7 +385,7 @@ export function SidebarGroup({ className, ...props }: ComponentProps<"div"> & { 
       data-control-ui="sidebar"
       data-control-family="sidebar"
       data-slot="group"
-      className={cn("relative flex w-full min-w-0 flex-col p-2", className)}
+      className={cn("relative flex w-full min-w-0 flex-col", className)}
       {...props}
     />
   );
@@ -415,7 +401,7 @@ export function SidebarGroupLabel({ className, render, children, ...props }: Sid
       "data-control-family": "sidebar",
       "data-slot": "group-label",
       className: cn(
-        "flex h-[var(--control-h-sm)] shrink-0 items-center gap-2 px-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "flex h-[var(--control-h-sm)] shrink-0 items-center [&>svg]:size-4 [&>svg]:shrink-0",
         "group-data-[collapsible=icon]:-mt-[var(--control-h-sm)] group-data-[collapsible=icon]:opacity-0",
         className,
       ),
@@ -451,7 +437,7 @@ export function SidebarMenu({
       data-control-family="sidebar"
       data-slot="menu"
       data-indicator={resolvedIndicator}
-      className={cn("flex w-full min-w-0 flex-col gap-1", sliding ? undefined : className)}
+      className={cn("flex w-full min-w-0 flex-col", sliding ? undefined : className)}
       {...props}
     >
       <SidebarMenuContext.Provider value={resolvedIndicator}>{children}</SidebarMenuContext.Provider>

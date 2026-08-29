@@ -38,8 +38,9 @@ export function ChatThread({ children, className, ...props }: ChatThreadProps) {
     <div
       data-control-ui="chat-thread"
       data-control-family="chat-layout"
+      data-chat-layout-kind="thread"
       data-slot="root"
-      className={cn("flex min-h-0 flex-1 flex-col gap-8 overflow-y-auto px-4 py-6 sm:px-8", className)}
+      className={cn("flex min-h-0 flex-1 flex-col overflow-y-auto", className)}
       {...props}
     >
       {children}
@@ -92,8 +93,9 @@ export function ChatThought({
         defaultOpen={defaultOpen}
         data-control-ui="chat-thought"
         data-control-family="chat-layout"
+        data-chat-layout-kind="thought"
         data-slot="root"
-        className={cn("mb-2 self-start", className)}
+        className={cn("self-start", className)}
         style={style}
         {...props}
       >
@@ -102,7 +104,7 @@ export function ChatThought({
           data-control-ui="chat-thought"
           data-control-family="chat-layout"
           data-slot="trigger"
-          className="inline-flex items-center gap-1 px-1.5 py-1"
+          className="inline-flex items-center"
         >
           {children}
           <span aria-hidden="true" data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="chevron">
@@ -135,17 +137,13 @@ export function ChatThought({
       defaultOpen={defaultOpen}
       data-control-ui="chat-thought"
       data-control-family="chat-layout"
+      data-chat-layout-kind="thought"
       data-slot="root"
-      className={cn("my-0 mb-2 self-start", className)}
+      className={cn("self-start", className)}
       style={style}
       {...props}
     >
-      <ActivityTrigger
-        data-control-ui="chat-thought"
-        data-control-family="chat-layout"
-        data-slot="trigger"
-        className="min-h-0 w-fit gap-1 px-1.5 py-1"
-      >
+      <ActivityTrigger data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="trigger">
         <ActivityTitle data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="title">
           {children}
         </ActivityTitle>

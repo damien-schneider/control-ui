@@ -28,7 +28,7 @@ export function MarkdownBlock({ code, className, children, ...props }: MarkdownB
         data-control-family="markdown-block"
         data-slot="root"
         data-surface="panel"
-        className={cn("my-4 overflow-hidden", className)}
+        className={cn("overflow-hidden", className)}
         {...props}
       >
         {children}
@@ -47,7 +47,7 @@ export function MarkdownBlockHeader({ className, ...props }: MarkdownBlockHeader
       data-control-ui="markdown-block"
       data-control-family="markdown-block"
       data-slot="header"
-      className={cn("sticky top-0 z-10 flex items-center justify-between gap-3 px-4 py-2", className)}
+      className={cn("sticky top-0 z-10 flex items-center justify-between", className)}
       {...props}
     />
   );
@@ -63,7 +63,7 @@ export function MarkdownBlockTitle({ children = "Markdown", className, ...props 
       data-control-ui="markdown-block"
       data-control-family="markdown-block"
       data-slot="title"
-      className={cn("flex min-w-0 items-center gap-2", className)}
+      className={cn("flex min-w-0 items-center", className)}
       {...props}
     >
       <span
@@ -71,7 +71,7 @@ export function MarkdownBlockTitle({ children = "Markdown", className, ...props 
         data-control-ui="markdown-block"
         data-control-family="markdown-block"
         data-slot="title-icon"
-        className="flex size-5 items-center justify-center"
+        className="flex items-center justify-center"
       >
         MD
       </span>
@@ -98,7 +98,7 @@ export function MarkdownBlockContent({ children, className, ...props }: Markdown
       data-control-ui="markdown-block"
       data-control-family="markdown-block"
       data-slot="content"
-      className={cn("max-h-[420px] overflow-auto mask-y-from-[calc(100%_-_var(--scroll-fade-size))] p-4", className)}
+      className={cn("max-h-[420px] overflow-auto mask-y-from-[calc(100%_-_var(--scroll-fade-size))]", className)}
       {...props}
     >
       {children ?? <Markdown content={code} />}

@@ -530,7 +530,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
         focusItem(tree.getItem(item.value), tree);
       },
       className: cn(
-        "flex cursor-pointer select-none items-center gap-1.5 py-1 pr-2",
+        "flex cursor-pointer select-none items-center",
         "pl-[calc(var(--\\_tree-level,1)*1.25rem)]",
         "aria-disabled:pointer-events-none",
         className,
@@ -551,7 +551,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
         data-control-family="tree"
         data-slot="item-indicator"
         aria-hidden
-        className={cn("inline-flex size-4 shrink-0", className)}
+        className={cn("inline-flex shrink-0", className)}
         {...props}
       />
     );
@@ -567,7 +567,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
       data-slot="item-indicator"
       data-state={expanded ? "open" : "closed"}
       aria-hidden
-      className={cn("inline-flex size-4 shrink-0 items-center justify-center", className)}
+      className={cn("inline-flex shrink-0 items-center justify-center", className)}
       {...props}
     >
       {children ?? <ChevronRightIcon className="size-4" />}

@@ -38,7 +38,7 @@ export function Progress({ className, ...props }: ProgressProps) {
       data-range-kind="progress"
       data-slot="root"
       data-control-family="range"
-      className={cn("flex w-full flex-col gap-2", className)}
+      className={cn("flex w-full flex-col", className)}
       {...props}
     />
   );
@@ -77,7 +77,7 @@ export function ProgressTrack({ className, ...props }: ProgressTrackProps) {
       data-control-family="range"
       data-range-kind="progress"
       data-slot="track"
-      className={cn("relative h-2 w-full overflow-hidden", className)}
+      className={cn("relative w-full overflow-hidden", className)}
       {...props}
     />
   );

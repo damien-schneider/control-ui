@@ -95,7 +95,7 @@ export function TriggerMenuList({ className, ...props }: TriggerMenuListProps) {
       data-control-family="popup"
       data-popup-part="list-content"
       role="listbox"
-      className={cn("flex flex-col gap-0.5", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );
@@ -135,7 +135,7 @@ export function TriggerMenuIcon({ className, ...props }: TriggerMenuIconProps) {
       data-control-family="popup"
       data-popup-kind="trigger-menu"
       data-slot="icon"
-      className={cn("flex size-5 shrink-0 items-center justify-center [&_svg]:size-4", className)}
+      className={cn("flex shrink-0 items-center justify-center [&_svg]:size-4", className)}
       {...props}
     />
   );
@@ -148,7 +148,7 @@ export function TriggerMenuEmpty({ className, ...props }: TriggerMenuEmptyProps)
       data-control-family="popup"
       data-popup-kind="trigger-menu"
       data-slot="empty"
-      className={cn("px-[calc(var(--padding-x)*0.5)] py-2", className)}
+      className={cn("px-[calc(var(--padding-x)*0.5)]", className)}
       {...props}
     />
   );
@@ -161,7 +161,7 @@ export function TriggerMenuGroup({ className, ...props }: TriggerMenuGroupProps)
       data-control-family="popup"
       data-popup-kind="trigger-menu"
       data-slot="group"
-      className={cn("flex flex-col gap-0.5", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );
@@ -175,7 +175,7 @@ export function TriggerMenuGroupLabel({ className, ...props }: TriggerMenuGroupL
       data-slot="group-label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-[calc(var(--padding-x)*0.5)] pb-0.5 pt-1 uppercase", className)}
+      className={cn("px-[calc(var(--padding-x)*0.5)]", className)}
       {...props}
     />
   );

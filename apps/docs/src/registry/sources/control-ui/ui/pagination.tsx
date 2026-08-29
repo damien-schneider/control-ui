@@ -34,7 +34,7 @@ export function PaginationContent({ className, ...props }: ComponentProps<"ul"> 
       data-control-ui="pagination"
       data-control-family="pagination"
       data-slot="content"
-      className={cn("flex flex-row items-center gap-1", className)}
+      className={cn("flex flex-row items-center", className)}
       {...props}
     />
   );
@@ -45,7 +45,7 @@ export function PaginationItem({ className, ...props }: ComponentProps<"li"> & {
 }
 
 const paginationLinkChrome =
-  "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center gap-1 whitespace-nowrap px-2.5 aria-disabled:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0";
+  "inline-flex h-[var(--control-h-sm)] min-w-[var(--control-h-sm)] cursor-pointer select-none items-center justify-center whitespace-nowrap aria-disabled:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0";
 
 export function PaginationLink({ isActive = false, className, ...props }: PaginationLinkProps) {
   return (
@@ -64,7 +64,7 @@ export function PaginationLink({ isActive = false, className, ...props }: Pagina
 
 export function PaginationPrevious({ className, ...props }: ComponentProps<typeof PaginationLink>) {
   return (
-    <PaginationLink aria-label="Go to previous page" className={cn("gap-1 pr-2.5 pl-2", className)} {...props}>
+    <PaginationLink aria-label="Go to previous page" className={className} {...props}>
       <ChevronLeft />
       <span>Previous</span>
     </PaginationLink>
@@ -73,7 +73,7 @@ export function PaginationPrevious({ className, ...props }: ComponentProps<typeo
 
 export function PaginationNext({ className, ...props }: ComponentProps<typeof PaginationLink>) {
   return (
-    <PaginationLink aria-label="Go to next page" className={cn("gap-1 pr-2 pl-2.5", className)} {...props}>
+    <PaginationLink aria-label="Go to next page" className={className} {...props}>
       <span>Next</span>
       <ChevronRight />
     </PaginationLink>

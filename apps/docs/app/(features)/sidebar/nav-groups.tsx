@@ -40,7 +40,7 @@ export function DocsNavGroup({
     </>
   );
   const menu = (
-    <SidebarMenu indicator="slide">
+    <SidebarMenu>
       {items.map((item) => {
         const href = `${prefix}${item.id}`;
         const name = humanizeNavName(item.name);

@@ -88,7 +88,7 @@ export function Activity({ kind = "default", name, state = "pending", statusLabe
         data-activity-kind={kind}
         data-activity-name={name}
         aria-busy={context.isRunning || undefined}
-        className={cn("group/activity my-1 min-w-0", className)}
+        className={cn("group/activity min-w-0", className)}
         {...props}
       >
         <span
@@ -111,7 +111,7 @@ export function Activity({ kind = "default", name, state = "pending", statusLabe
 
 export type ActivityRowProps = ActivityStyleProps<ComponentProps<"div">, ActivityKnobStyle>;
 
-const activityRowClassName = "flex min-h-8 w-fit max-w-full items-center gap-2 px-1.5 py-1";
+const activityRowClassName = "flex w-fit max-w-full items-center";
 
 export function ActivityRow({ className, ...props }: ActivityRowProps) {
   return (
@@ -145,7 +145,7 @@ export function ActivityTrigger({ className, children, chevronProps, ...props }:
         data-control-family="activity"
         data-slot="chevron"
         {...chevronProps}
-        className={cn("size-3.5 shrink-0", chevronProps?.className)}
+        className={cn("shrink-0", chevronProps?.className)}
       />
     </CollapsibleTrigger>
   );
@@ -164,7 +164,7 @@ export function ActivityIcon({ className, children, ...props }: ActivityIconProp
       data-status-icon={children === undefined ? "" : undefined}
       data-slot="icon"
       {...props}
-      className={cn("flex size-4 shrink-0 items-center justify-center [&_svg]:size-4", className)}
+      className={cn("flex shrink-0 items-center justify-center [&_svg]:size-4", className)}
     >
       {children ?? <Icon />}
     </span>
@@ -235,7 +235,9 @@ export function ActivityContent({
         className={cn("min-w-0", scrollAreaClassName)}
         {...resolvedScrollAreaProps}
       >
-        <div className="grid min-w-0 gap-3 pb-2 pl-7.5 pr-1 pt-0.5">{children}</div>
+        <div data-control-ui="activity" data-control-family="activity" data-slot="content-grid" className="grid min-w-0">
+          {children}
+        </div>
       </ScrollArea>
     </CollapsibleContent>
   );
@@ -250,7 +252,7 @@ export function ActivityDetail({ className, ...props }: ActivityDetailProps) {
       data-control-family="activity"
       data-slot="detail"
       {...props}
-      className={cn("grid min-w-0 gap-1", className)}
+      className={cn("grid min-w-0", className)}
     />
   );
 }
@@ -281,7 +283,7 @@ export function ActivityDetailContent({ format = "text", className, ...props }: 
       data-slot="detail-content"
       data-format={format}
       {...props}
-      className={cn("min-w-0 whitespace-pre-wrap wrap-anywhere", format === "code" && "w-fit max-w-full px-2 py-1.5", className)}
+      className={cn("min-w-0 whitespace-pre-wrap wrap-anywhere", format === "code" && "w-fit max-w-full", className)}
     />
   );
 }

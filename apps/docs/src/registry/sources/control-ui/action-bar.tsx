@@ -69,7 +69,7 @@ export function ActionBar({
         data-slot="root"
         role="toolbar"
         aria-label={label}
-        className={cn("mt-1 flex min-h-8 items-center gap-1", align === "end" ? "justify-end" : "justify-start", className)}
+        className={cn("flex items-center", align === "end" ? "justify-end" : "justify-start", className)}
         {...props}
       >
         {children}

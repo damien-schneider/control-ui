@@ -1,7 +1,7 @@
 @layer components {
   :where([data-control-family="button"][data-control="true"]) {
     --cui-button-radius: var(--radius-control);
-    --cui-button-gap: 0.375rem;
+    --cui-button-gap: calc(var(--spacing) * 1.5);
     --cui-button-icon: 1rem;
     --cui-button-bg: transparent;
     --cui-button-bg-image: none;
@@ -23,7 +23,7 @@
     box-shadow: var(--cui-button-shadow);
     color: var(--cui-button-foreground);
     cursor: pointer;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     outline: none;
     transition-property: color, background-color, border-color, box-shadow, scale, translate, opacity, filter, backdrop-filter;
     transition-timing-function: var(--ease-standard);
@@ -37,11 +37,11 @@
   }
 
   :where([data-control-family="button"][data-size="xs"]) {
-    --cui-button-gap: 0.25rem;
+    --cui-button-gap: calc(var(--spacing) * 1);
     --cui-button-icon: 0.875rem;
   }
   :where([data-control-family="button"][data-size="lg"]) {
-    --cui-button-gap: 0.5rem;
+    --cui-button-gap: calc(var(--spacing) * 2);
     --cui-button-icon: 1.125rem;
   }
 
@@ -148,9 +148,19 @@
     opacity: 0.45;
   }
 
+  :where([data-control-family="button"][data-button-kind="model-switcher"][data-slot="value"]) {
+    gap: calc(var(--spacing) * 1.5);
+  }
+
   :where([data-control-family="button"][data-button-kind="model-switcher"][data-slot="indicator"]) {
+    inline-size: calc(var(--spacing) * 1.5);
+    block-size: calc(var(--spacing) * 1.5);
     border-radius: calc(infinity * 1px);
     background-color: var(--primary);
+  }
+
+  :where([data-control-family="button"][data-slot="group"]) {
+    gap: calc(var(--spacing) * 1);
   }
 }
 

@@ -13,5 +13,14 @@ export type FormProps = ComponentProps<"form"> & {
 
 // Merges externally-returned errors, keyed by Field name, onto matching FieldError.
 export function Form({ className, ...props }: FormProps) {
-  return <FormPrimitive data-control-ui="form" data-slot="root" className={cn("flex w-full flex-col gap-5", className)} {...props} />;
+  return (
+    <FormPrimitive
+      data-control-ui="form"
+      data-control-family="field"
+      data-field-kind="form"
+      data-slot="root"
+      className={cn("flex w-full flex-col", className)}
+      {...props}
+    />
+  );
 }

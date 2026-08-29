@@ -135,7 +135,7 @@ const HUE_GRADIENT =
 // adapts to light and dark through border token
 const CHECKER = "repeating-conic-gradient(oklch(from var(--border) l c h) 0 25%, transparent 0 50%)";
 const CHECKER_SIZE = "10px 10px";
-const RING_THUMB = "block size-4 -translate-x-1/2";
+const RING_THUMB = "block -translate-x-1/2";
 
 const isColorFormat = (v: string): v is ColorFormat => v === "hex" || v === "rgb" || v === "hsl" || v === "oklch";
 const CHANNEL_NAMES: Record<ChannelId, string> = {
@@ -298,7 +298,7 @@ export function ColorPickerTrigger({
       disabled={disabled}
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? `Choose color (${valueString})`) : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("relative inline-flex size-8 shrink-0 cursor-pointer overflow-hidden disabled:cursor-not-allowed", className)}
+      className={cn("relative inline-flex shrink-0 cursor-pointer overflow-hidden disabled:cursor-not-allowed", className)}
       {...props}
     >
       <span
@@ -351,7 +351,7 @@ export function ColorPickerContent({
           data-slot="content"
           data-surface="floating"
           data-popup-part="surface"
-          className={cn("grid w-64 gap-3 p-3", className)}
+          className={cn("grid", className)}
           {...props}
         >
           {children}
@@ -371,7 +371,7 @@ export function ColorPickerPanel({ className, children, ...props }: ColorPickerP
       data-surface="floating"
       data-popup-part="surface"
       data-popup-static=""
-      className={cn("grid w-64 gap-3 p-3", className)}
+      className={cn("grid", className)}
       {...props}
     >
       {children}
@@ -412,7 +412,7 @@ export function ColorPickerArea({ className, style, ...props }: ColorPickerAreaP
       aria-label="Saturation and brightness"
       onPointerDown={disabled ? undefined : onPointerDown}
       className={cn(
-        "group relative h-40 w-full touch-none select-none overflow-hidden",
+        "group relative w-full touch-none select-none overflow-hidden",
         disabled ? "cursor-not-allowed" : "cursor-crosshair",
         className,
       )}
@@ -469,7 +469,7 @@ export function ColorPickerAreaThumb({ className, ...props }: ColorPickerAreaThu
       data-control-family="color-picker"
       data-slot="area-thumb"
       aria-hidden
-      className={cn("pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2", className)}
+      className={cn("pointer-events-none absolute -translate-x-1/2 -translate-y-1/2", className)}
       {...props}
     />
   );
@@ -490,15 +490,15 @@ export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-label
       step={1}
       disabled={disabled}
       onValueChange={(next) => setHsva({ h: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex h-4 w-full touch-none select-none items-center", className)}
+      className={cn("relative flex w-full touch-none select-none items-center", className)}
       {...props}
     >
-      <SliderPrimitive.Control className="flex h-4 w-full items-center">
+      <SliderPrimitive.Control className="flex h-full w-full items-center">
         <SliderPrimitive.Track
           data-control-ui="color-picker"
           data-control-family="color-picker"
           data-slot="hue-track"
-          className="relative h-3 w-full"
+          className="relative w-full"
           style={{ backgroundImage: HUE_GRADIENT }}
         >
           <SliderPrimitive.Thumb
@@ -535,15 +535,15 @@ export function ColorPickerAlpha({
       step={0.01}
       disabled={disabled}
       onValueChange={(next) => setHsva({ a: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex h-4 w-full touch-none select-none items-center", className)}
+      className={cn("relative flex w-full touch-none select-none items-center", className)}
       {...props}
     >
-      <SliderPrimitive.Control className="flex h-4 w-full items-center">
+      <SliderPrimitive.Control className="flex h-full w-full items-center">
         <SliderPrimitive.Track
           data-control-ui="color-picker"
           data-control-family="color-picker"
           data-slot="alpha-track"
-          className="relative h-3 w-full"
+          className="relative w-full"
           style={{
             backgroundImage: `linear-gradient(to right, transparent, ${opaque}), ${CHECKER}`,
             backgroundSize: `auto, ${CHECKER_SIZE}`,
@@ -602,7 +602,7 @@ export function ColorPickerWheel({ className, style, ...props }: ColorPickerWhee
         data-control-family="color-picker"
         data-slot="wheel-thumb"
         aria-hidden
-        className="pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2"
         style={{ left: `${left}%`, top: `${top}%` }}
       />
       <input
@@ -721,7 +721,7 @@ export function ColorPickerChannels({ className, children, ...props }: ColorPick
       data-control-ui="color-picker"
       data-control-family="color-picker"
       data-slot="channels"
-      className={cn("grid grid-flow-col auto-cols-fr gap-1.5", className)}
+      className={cn("grid grid-flow-col auto-cols-fr", className)}
       {...props}
     >
       {children ?? specs.map((spec) => <ColorPickerChannel key={spec.id} channel={spec.id} label={spec.label} />)}
@@ -734,13 +734,7 @@ export function ColorPickerChannel({ channel, label, className, "aria-label": ar
   const spec = getChannels(hsva, format).find((s) => s.id === channel);
   if (!spec) return null;
   return (
-    <div
-      data-control-ui="color-picker"
-      data-control-family="color-picker"
-      data-slot="channel"
-      className={cn("grid gap-1", className)}
-      {...props}
-    >
+    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="channel" className={cn("grid", className)} {...props}>
       <NumberField
         size="sm"
         value={spec.value}
@@ -802,7 +796,7 @@ export function ColorPickerEyeDropper({ className, children, ...props }: ColorPi
 
 export function ColorPickerSwatches({ colors, label, className, children, ...props }: ColorPickerSwatchesProps) {
   return (
-    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-group" className="grid gap-1.5">
+    <div data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-group" className="grid">
       {label ? (
         <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="swatches-label">
           {label}
@@ -812,7 +806,7 @@ export function ColorPickerSwatches({ colors, label, className, children, ...pro
         data-control-ui="color-picker"
         data-control-family="color-picker"
         data-slot="swatches"
-        className={cn("flex flex-wrap gap-1.5", className)}
+        className={cn("flex flex-wrap", className)}
         {...props}
       >
         {colors?.map((color) => (
@@ -838,7 +832,7 @@ export function ColorPickerSwatch({ color, className, "aria-label": ariaLabel, .
       aria-label={ariaLabel ?? `Set color ${color}`}
       title={color}
       onClick={() => setFromString(color)}
-      className={cn("relative size-6 shrink-0 cursor-pointer overflow-hidden", className)}
+      className={cn("relative shrink-0 cursor-pointer overflow-hidden", className)}
       {...props}
     >
       <span
@@ -871,7 +865,7 @@ export function ColorPickerSwatchAdd({ onAdd, className, children, ...props }: C
       data-slot="swatch-add"
       aria-label="Add current color"
       onClick={() => onAdd?.(valueString)}
-      className={cn("flex size-6 shrink-0 cursor-pointer items-center justify-center", className)}
+      className={cn("flex shrink-0 cursor-pointer items-center justify-center", className)}
       {...props}
     >
       {children ?? <PlusIcon />}
@@ -899,7 +893,7 @@ export function ColorPickerContrast({ background = "#ffffff", className, ...prop
       data-control-ui="color-picker"
       data-control-family="color-picker"
       data-slot="contrast"
-      className={cn("flex items-center gap-1.5", className)}
+      className={cn("flex items-center", className)}
       {...props}
     >
       <span data-control-ui="color-picker" data-control-family="color-picker" data-slot="contrast-ratio">
@@ -914,7 +908,7 @@ export function ColorPickerContrast({ background = "#ffffff", className, ...prop
           data-control-family="color-picker"
           data-slot="contrast-fix"
           onClick={applyFix}
-          className="ml-auto cursor-pointer px-1.5 py-0.5"
+          className="ml-auto cursor-pointer"
         >
           Fix → {target}
         </button>
@@ -930,7 +924,7 @@ function WcagPill({ ok, children }: { ok: boolean; children: ReactNode }) {
       data-control-family="color-picker"
       data-slot="contrast-level"
       data-passing={ok ? "true" : undefined}
-      className="inline-flex items-center gap-1 px-1.5 py-0.5"
+      className="inline-flex items-center"
     >
       {ok ? "✓" : "✕"} {children}
     </span>
@@ -944,7 +938,7 @@ export function ColorPickerOutput({ className, children, renderValue, ...props }
       data-control-ui="color-picker"
       data-control-family="color-picker"
       data-slot="output"
-      className={cn("flex items-center gap-2", className)}
+      className={cn("flex items-center", className)}
       {...props}
     >
       {renderValue
@@ -955,7 +949,7 @@ export function ColorPickerOutput({ className, children, renderValue, ...props }
                 data-control-ui="color-picker"
                 data-control-family="color-picker"
                 data-slot="output-swatch"
-                className="relative size-6 shrink-0 overflow-hidden"
+                className="relative shrink-0 overflow-hidden"
               >
                 <span
                   data-control-ui="color-picker"

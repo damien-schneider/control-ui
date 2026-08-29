@@ -1,15 +1,17 @@
-/* Hairline borders instead of elevation; floating surfaces are the only things allowed a real shadow. */
+/* Values measured off the running Linear app (light + dark), converted from its LCH tokens to oklch.
+   Hairline borders instead of elevation; floating surfaces are the only things allowed a real shadow. */
 
 [data-skin="linear"][data-skin] {
   /* Inter, self-hosted by the app shell (next/font fills --font-inter); host without it falls to the system stack. */
-  --font-sans: var(--font-inter, "Inter"), "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  --font-sans:
+    var(--font-inter, "Inter"), "Inter Variable", "SF Pro Display", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Berkeley Mono", "SFMono Regular", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
 
   /* Type scale: Linear runs one flat 13px band for ALL chrome (nav rows, controls, body) and reserves
      the larger rungs for content headings. Label == body on purpose. */
   --text-label: 0.8125rem; /* 13px — sm controls, nav rows, tooltips */
   --text-body: 0.8125rem; /* 13px — THE workhorse */
-  --text-body-lg: 0.9375rem; /* 15px */
+  --text-body-lg: 0.9375rem; /* 15px — the editor rung */
 
   /* Headings stay tight and semibold; no 700 anywhere (Linear tops out at semibold). */
   --text-heading-4: 0.875rem;
@@ -25,28 +27,28 @@
   --text-display--line-height: 1.15;
   --text-display--letter-spacing: -0.022em;
 
-  /* Light: pure-white surfaces on a cool gray paper. card == background so the shell's content frame
-     reads as the one white sheet Linear floats its whole app on. */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.2228 0.0079 274.573); /* #1a1b1f */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2228 0.0079 274.573);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2228 0.0079 274.573);
+  /* Light: the content sheet is off-white (#f9f9fa), never pure white — pure white is reserved for the
+     surfaces that float above it. card == background so the shell's frame reads as one sheet. */
+  --background: oklch(0.9824 0.0013 286.376); /* #f9f9fa */
+  --foreground: oklch(0.2221 0 0); /* #1b1b1b */
+  --card: oklch(0.9824 0.0013 286.376);
+  --card-foreground: oklch(0.2221 0 0);
+  --popover: oklch(1 0 0); /* #ffffff — menus are the one white surface */
+  --popover-foreground: oklch(0.3099 0.0035 286.192); /* #303032 */
   --primary: oklch(0.5674 0.1585 275.206); /* #5e6ad2 — THE Linear indigo */
   --primary-foreground: oklch(1 0 0);
-  --muted: oklch(0.9614 0.0013 286.375); /* #f2f2f3 */
-  --muted-foreground: oklch(0.5401 0.0124 280.281); /* #6d6e76 */
-  --secondary: oklch(0.9614 0.0013 286.375);
-  --secondary-foreground: oklch(0.2228 0.0079 274.573);
-  --accent: oklch(0.9434 0.0013 286.374); /* #ececed — hover / selection fill */
-  --accent-foreground: oklch(0.2228 0.0079 274.573);
+  --muted: oklch(0.9343 0.0013 286.374); /* #e9e9ea */
+  --muted-foreground: oklch(0.4755 0.0032 286.278); /* #5c5c5e */
+  --secondary: oklch(0.9343 0.0013 286.374);
+  --secondary-foreground: oklch(0.306 0.0035 286.188); /* #2f2f31 */
+  --accent: oklch(0.91 0.0013 286.373); /* #e1e1e2 — the selected-row fill */
+  --accent-foreground: oklch(0.2221 0 0);
   --destructive: oklch(0.576 0.1835 23.679);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9255 0.0027 286.347 / var(--ring-opacity)); /* #e6e6e8 hairline */
-  --input: oklch(0.9042 0.0027 286.346); /* #dfdfe1 — fields carry a touch more edge */
-  --ring: oklch(0.5674 0.1585 275.206); /* focus == brand */
-  --canvas: oklch(0.9734 0.0013 286.375); /* #f6f6f7 — the paper the white sheet sits on */
+  --border: oklch(0.9128 0 0 / var(--ring-opacity)); /* #e2e2e2 hairline */
+  --input: oklch(0.8669 0 0); /* #d3d3d3 — fields carry a touch more edge */
+  --ring: oklch(0.5648 0.1585 275.564); /* #5e69d1 — Linear's focus indigo, a hair off the brand */
+  --canvas: oklch(0.9524 0.0013 286.375); /* #efeff0 — the paper the sheet sits on */
 
   /* Surfaces are opaque: no glass anywhere. The modal scrim is the only dim. */
   --popover-opacity: 1;
@@ -66,57 +68,60 @@
   --shadow-popover-multiplier: 5;
   --shadow-modal-multiplier: 8;
 
-  /* THE radius knob: 4px. Controls ride 1.5x (6px), panels 3x (12px) — small, never pill-shaped by
-     token (the button pill is a deliberate slot choice, not a radius side effect). */
+  /* A 1px focus hairline, not a 2px halo — Linear rings with the indigo, it does not glow. */
+  --focus-ring-width: 1px;
+
+  /* THE radius knob: 4px. Controls ride 2x (8px, Linear's --control-border-radius), panels 3x (12px).
+     Never pill-shaped by token — the button pill is a deliberate slot choice, not a radius side effect. */
   --radius: 0.25rem;
-  --radius-control: calc(var(--radius) * 1.5);
+  --radius-control: calc(var(--radius) * 2); /* 8px — buttons, rows, tabs, tree, sidebar */
   --radius-field: calc(var(--radius) * 2); /* 8px — composer shell, user bubble */
   --radius-panel: calc(var(--radius) * 3); /* 12px — dialogs, code, the content sheet */
   --radius-scene: calc(var(--radius) * 3.5); /* 14px */
 
-  /* Concentric floating-list geometry is authored here so the pack owns the exact 4px-derived ratios. */
+  /* Linear insets each row 4px inside the menu and rounds it at 8px; the surface keeps the 12px panel corner. */
   --popover-padding: 0.25rem;
-  /* Rows carry the SAME 6px corner as controls (Linear has one row corner everywhere: menus, nav,
-     tree, and the sliding selection pill, which the library shapes from this token). */
-  --radius-popup-item: var(--radius-control);
+  --radius-popup-item: 0.5rem;
+  --radius-popover: var(--radius-panel);
 
   --padding-x: 0.75rem;
   --padding-y: 0.5rem;
 
-  /* Control ramp: 32px base, so `sm` lands on Linear's 28px button. */
+  /* Control ramp: 32px base, so `sm` lands on Linear's 28px chrome button. */
   --control-h: 2rem;
 
-  /* Motion is a snap, not a glide — Linear's whole feel rests on this. */
+  /* Motion is a snap, not a glide — Linear's whole feel rests on this. 150ms is what its controls
+     actually transition at; 250ms is its slowest (opacity) tempo. */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 90ms;
-  --duration-base: 130ms;
-  --duration-slow: 200ms;
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 250ms;
 }
 
-/* Dark tokens: the real Linear night — near-black canvas, panel one step up, popups two. */
+/* Dark tokens: the real Linear night — near-black canvas, sheet one step up, menus three. */
 :where(.dark) [data-skin="linear"][data-skin],
 .dark[data-skin="linear"][data-skin] {
-  --background: oklch(0.1739 0.0041 285.967); /* #101012 */
-  --foreground: oklch(0.9784 0.0011 197.139); /* #f7f8f8 */
-  --card: oklch(0.1739 0.0041 285.967);
-  --card-foreground: oklch(0.9784 0.0011 197.139);
-  --popover: oklch(0.2277 0.0057 285.935); /* #1c1c1f — menus sit above the sheet */
-  --popover-foreground: oklch(0.9784 0.0011 197.139);
+  --background: oklch(0.1826 0.002 286.198); /* #121213 */
+  --foreground: oklch(1 0 0); /* Linear's primary ink is pure white, not off-white */
+  --card: oklch(0.1826 0.002 286.198);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.2482 0.0019 286.263); /* #212122 — menus sit well above the sheet */
+  --popover-foreground: oklch(0.9247 0.0029 264.541); /* #e5e6e8 */
   --primary: oklch(0.5674 0.1585 275.206);
   --primary-foreground: oklch(1 0 0);
-  --muted: oklch(0.2277 0.0057 285.935);
-  --muted-foreground: oklch(0.6488 0.0146 262.359); /* #8a8f98 */
-  --secondary: oklch(0.2277 0.0057 285.935);
-  --secondary-foreground: oklch(0.9784 0.0011 197.139);
-  --accent: oklch(0.2494 0.0075 285.844); /* #212125 */
-  --accent-foreground: oklch(0.9784 0.0011 197.139);
+  --muted: oklch(0.2006 0.002 286.221); /* #161617 */
+  --muted-foreground: oklch(0.6705 0.0029 286.321); /* #959597 */
+  --secondary: oklch(0.2006 0.002 286.221);
+  --secondary-foreground: oklch(0.9187 0.0029 264.541); /* #e3e4e6 */
+  --accent: oklch(0.257 0.0037 286.136); /* #232325 */
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.576 0.1835 23.679);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.2618 0.0113 278.089 / var(--ring-opacity)); /* #23242a */
-  --input: oklch(0.2986 0.0109 278.197);
+  --border: oklch(0.2517 0.004 264.495 / var(--ring-opacity)); /* #212224 */
+  --input: oklch(0.278 0.0055 286.04); /* #28282b */
   --ring: oklch(0.6102 0.1404 276.317); /* the indigo lifts a rung to stay legible on ink */
-  --canvas: oklch(0.139 0.0029 246.256); /* #08090a */
+  --canvas: oklch(0.1403 0.0022 286.109); /* #09090a */
   --shadow-color: oklch(0 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.05);
   --shadow-opacity: 1;

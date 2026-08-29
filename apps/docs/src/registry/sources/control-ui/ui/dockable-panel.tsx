@@ -271,7 +271,7 @@ export function DockablePanelHeader({ className, ...props }: DockablePanelHeader
       data-control-ui="dockable-panel"
       data-control-family="dockable-panel"
       data-slot="header"
-      className={cn("flex min-h-11 shrink-0 items-center gap-2 px-2", className)}
+      className={cn("flex shrink-0 items-center", className)}
       {...props}
     />
   );
@@ -293,7 +293,7 @@ export function DockablePanelDragHandle({
         data-control-ui="dockable-panel"
         data-control-family="dockable-panel"
         data-slot="drag-handle"
-        className={cn("flex min-w-0 flex-1 items-center self-stretch px-2", className)}
+        className={cn("flex min-w-0 flex-1 items-center self-stretch", className)}
       >
         {children}
       </div>
@@ -308,7 +308,7 @@ export function DockablePanelDragHandle({
       data-slot="drag-handle"
       aria-label="Drag panel"
       aria-pressed={context.dragging}
-      className={cn("flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch px-2 active:cursor-grabbing", className)}
+      className={cn("flex min-w-0 flex-1 cursor-grab touch-none items-center self-stretch active:cursor-grabbing", className)}
       onPointerDown={(event) => {
         onPointerDown?.(event);
         if (!event.defaultPrevented) context.dragHandleProps.onPointerDown(event);
@@ -350,7 +350,7 @@ export function DockablePanelActions({ className, ...props }: DockablePanelActio
       data-control-ui="dockable-panel"
       data-control-family="dockable-panel"
       data-slot="actions"
-      className={cn("ml-auto flex shrink-0 items-center gap-0.5", className)}
+      className={cn("ml-auto flex shrink-0 items-center", className)}
       {...props}
     />
   );
@@ -449,7 +449,7 @@ export function DockablePanelContent({ padding = "default", className, ...props 
       data-control-family="dockable-panel"
       data-slot="content"
       data-padding={padding}
-      className={cn("min-h-0 flex-1 overflow-y-auto", padding === "default" && "p-3", className)}
+      className={cn("min-h-0 flex-1 overflow-y-auto", className)}
       {...props}
     />
   );

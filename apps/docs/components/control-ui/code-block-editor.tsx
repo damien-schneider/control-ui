@@ -47,15 +47,8 @@ function resolveCodeBlockEditorClasses({ overflow, density, variant }: CodeBlock
   const scrollOverflowClassName = isCommand ? "w-full max-w-full overflow-x-auto whitespace-pre" : "w-max min-w-full whitespace-pre";
 
   return {
-    codeClassName: cn(
-      isCompact ? "min-h-0 px-3 py-2" : "min-h-[160px] p-4",
-      overflow === "scroll" ? scrollOverflowClassName : "w-full whitespace-pre-wrap break-words",
-    ),
-    editorClassName: cn(
-      "w-full max-w-full overflow-auto",
-      isCompact ? "max-h-[320px] min-h-0 px-3 py-2" : "max-h-[520px] min-h-[160px] p-4",
-      overflow === "scroll" ? "whitespace-pre" : "whitespace-pre-wrap break-words",
-    ),
+    codeClassName: cn(overflow === "scroll" ? scrollOverflowClassName : "w-full whitespace-pre-wrap break-words"),
+    editorClassName: cn("w-full max-w-full overflow-auto", overflow === "scroll" ? "whitespace-pre" : "whitespace-pre-wrap break-words"),
     scrollable: !isCommand,
     maxHeight: isCompact ? "320px" : "520px",
   };
@@ -241,7 +234,6 @@ export function CodeBlockEditor({
   children,
   ...props
 }: CodeBlockEditorProps) {
-  const isEmbedded = chrome === "embedded";
   const resolvedOverflow = overflow ?? (variant === "command" ? "wrap" : "scroll");
   const hasHeader = hasCodeBlockEditorHeader(children);
 
@@ -256,7 +248,7 @@ export function CodeBlockEditor({
         data-chrome={chrome}
         data-density={density}
         data-header={hasHeader ? "true" : undefined}
-        className={cn("min-w-0", !hasHeader && "relative", isEmbedded ? "my-0 overflow-hidden" : "my-4 overflow-hidden", className)}
+        className={cn("min-w-0 overflow-hidden", !hasHeader && "relative", className)}
         {...props}
       >
         {children}
@@ -271,7 +263,7 @@ export function CodeBlockEditorHeader({ className, ...props }: CodeBlockEditorHe
       data-control-ui="code-block-editor"
       data-control-family="code-block-editor"
       data-slot="header"
-      className={cn("flex min-h-11 items-center justify-between gap-3 px-3 py-2", className)}
+      className={cn("flex items-center justify-between", className)}
       {...props}
     />
   );
@@ -295,7 +287,7 @@ export function CodeBlockEditorActions({ className, ...props }: CodeBlockEditorA
       data-control-ui="code-block-editor"
       data-control-family="code-block-editor"
       data-slot="actions"
-      className={cn("flex shrink-0 items-center gap-1", className)}
+      className={cn("flex shrink-0 items-center", className)}
       {...props}
     />
   );
@@ -324,7 +316,8 @@ export function CodeBlockEditorCopy({
       size="xs"
       aria-live="polite"
       aria-label={label && isCopied ? copiedAriaLabel : label}
-      className={cn(isIconOnly && "size-7 p-0", className)}
+      data-code-block-editor-copy={isIconOnly ? "true" : undefined}
+      className={className}
       {...props}
       onClick={handleCopy}
     >
@@ -385,7 +378,7 @@ export function CodeBlockEditorContent({
 
   // reserves exactly overlay's footprint (top-2 + size-7) so no dead band is left
   return (
-    <div className={cn("relative", context.density === "compact" || context.variant === "command" ? "pt-7" : "pt-5")}>
+    <div data-control-ui="code-block-editor" data-control-family="code-block-editor" data-slot="floating-frame" className="relative">
       <CodeBlockEditorFloatingCopy value={code} />
       {content}
     </div>

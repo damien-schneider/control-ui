@@ -143,7 +143,7 @@ export function ContextTrigger({
               data-status={model.status}
               viewBox="0 0 16 16"
               aria-hidden="true"
-              className="size-4 shrink-0 -rotate-90"
+              className="shrink-0 -rotate-90"
             >
               <circle
                 cx="8"
@@ -171,12 +171,7 @@ export function ContextTrigger({
                 />
               ) : null}
             </svg>
-            <span
-              data-control-ui="context"
-              data-control-family="context"
-              data-slot="trigger-label"
-              className="max-w-0 overflow-hidden group-hover/context:max-w-32 group-focus-visible/context:max-w-32 group-data-[popup-open]/context:max-w-32"
-            >
+            <span data-control-ui="context" data-control-family="context" data-slot="trigger-label" className="overflow-hidden">
               {shortLabel}
             </span>
           </>
@@ -216,7 +211,7 @@ export function ContextContent({
       <div data-control-ui="context" data-control-family="context" data-slot="content" className="overflow-hidden">
         {children ?? (
           <ScrollArea maxHeight="min(36rem, calc(100dvh - 8rem))" lockAxis="x">
-            <div className="grid gap-4 p-4">
+            <div data-control-ui="context" data-control-family="context" data-slot="content-grid" className="grid">
               <ContextSummary />
               <ContextGraph />
               <ContextLegend />
@@ -237,7 +232,7 @@ export function ContextHeader({ className, children, ...props }: ContextHeaderPr
       data-control-ui="context"
       data-control-family="context"
       data-slot="header"
-      className={cn("flex items-start gap-3 p-4 pb-0", className)}
+      className={cn("flex items-start", className)}
     >
       {children ?? (
         <>
@@ -286,7 +281,7 @@ export function ContextSummary({ className, children, ...props }: ContextSummary
       data-control-family="context"
       data-slot="summary"
       data-status={model.status}
-      className={cn("flex items-baseline justify-between gap-3", className)}
+      className={cn("flex items-baseline justify-between", className)}
     >
       {children ?? (
         <>
@@ -317,7 +312,7 @@ export function ContextGraph({ className, ...props }: ContextGraphProps) {
       viewBox="0 0 100 10"
       preserveAspectRatio="none"
       aria-hidden="true"
-      className={cn("h-2.5 w-full overflow-hidden", className)}
+      className={cn("w-full overflow-hidden", className)}
     >
       <rect data-control-ui="context" data-control-family="context" data-slot="track" x="0" y="0" width="100" height="10" rx="5" />
       {model.segments.map((segment) => (
@@ -378,16 +373,16 @@ function ContextLegendRow({ kind, label, description, value, tone }: ContextLege
       data-slot="legend-item"
       data-kind={kind}
       data-tone={tone}
-      className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 py-1.5"
+      className="grid grid-cols-[minmax(0,1fr)_auto] items-start"
     >
-      <div className="flex min-w-0 items-start gap-2">
+      <div className="flex min-w-0 items-start">
         <span
           data-control-ui="context"
           data-control-family="context"
           data-slot="legend-indicator"
           data-kind={kind}
           aria-hidden="true"
-          className="mt-1 size-2.5 shrink-0"
+          className="shrink-0"
         />
         <div className="min-w-0">
           <div data-control-ui="context" data-control-family="context" data-slot="legend-label">

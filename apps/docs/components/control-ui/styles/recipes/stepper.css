@@ -20,6 +20,8 @@
   }
 
   :where([data-control-family="stepper"][data-slot="indicator"]) {
+    inline-size: calc(var(--spacing) * 8);
+    block-size: calc(var(--spacing) * 8);
     --_stepper-indicator-shadow: 0 0 transparent;
     border: 1px solid var(--cui-stepper-indicator-border-color);
     border-radius: var(--cui-stepper-indicator-radius);
@@ -77,13 +79,64 @@
   }
 
   :where([data-control-family="stepper"][data-slot="content"]) {
+    margin-block-start: calc(var(--spacing) * 6);
     outline: none;
+  }
+
+  :where([data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] [data-slot="item"]) {
+    padding-block-end: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] [data-slot="item"]:last-child) {
+    padding-block-end: 0;
+  }
+
+  :where(
+    [data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] :is([data-slot="title"], [data-slot="description"])
+  ) {
+    margin-inline-start: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="title"]) {
+    margin-block-start: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="description"]) {
+    margin-block-start: calc(var(--spacing) * 0.5);
+  }
+
+  :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="separator"]) {
+    block-size: 1px;
+  }
+
+  :where([data-control-family="stepper"][data-slot="root"][data-orientation="vertical"] [data-slot="separator"]) {
+    inline-size: 1px;
   }
 
   @container stepper (width < 28rem) {
     :where([data-control-family="stepper"][data-slot="trigger"]) {
       --_stepper-trigger-text-align: left;
       text-align: var(--_stepper-trigger-text-align);
+    }
+
+    :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="item"]) {
+      padding-block-end: calc(var(--spacing) * 6);
+    }
+
+    :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="item"]:last-child) {
+      padding-block-end: 0;
+    }
+
+    :where(
+        [data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] :is([data-slot="title"], [data-slot="description"])
+      ) {
+      margin-block-start: 0;
+      margin-inline-start: calc(var(--spacing) * 3);
+    }
+
+    :where([data-control-family="stepper"][data-slot="root"][data-orientation="horizontal"] [data-slot="separator"]) {
+      block-size: auto;
+      inline-size: 1px;
     }
   }
 }

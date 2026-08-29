@@ -26,12 +26,10 @@ export type TableOfContentsProps = Omit<Omit<ComponentProps<"nav">, "children">,
 };
 
 const DETECTION_MARGIN = "-80px 0px -20% 0px";
-const indentByDepth = ["pl-3", "pl-5", "pl-7", "pl-9", "pl-11", "pl-14"] as const;
-
 const TOC_ITEM_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"]';
 const TOC_ACTIVE_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"][data-active]';
 
-const tableOfContentsItemClass = "block py-1.5";
+const tableOfContentsItemClass = "block";
 const tableOfContentsHighlightClass = "";
 const tableOfContentsTrailClass = "absolute inset-y-0 left-0 w-0.5";
 
@@ -112,10 +110,6 @@ function flattenItems(items: TocNode[]): TocNode[] {
   return items.flatMap((item) => [item, ...flattenItems(item.children ?? [])]);
 }
 
-function itemIndentClass(depth: number) {
-  return indentByDepth[Math.min(depth, indentByDepth.length - 1)];
-}
-
 function activeIdsInRange(visibleIds: string[], targetIds: string[]) {
   let firstIndex = targetIds.length;
   let lastIndex = -1;
@@ -150,11 +144,11 @@ export function TableOfContents({ items, label = "On this page", variant = "both
       data-slot="root"
       data-variant={variant}
       aria-label={label}
-      className={cn("sticky top-6 p-4", className)}
+      className={cn("sticky top-6", className)}
       style={style}
       {...props}
     >
-      <p data-control-ui="table-of-contents" data-control-family="table-of-contents" data-slot="label" className="mb-3">
+      <p data-control-ui="table-of-contents" data-control-family="table-of-contents" data-slot="label">
         {label}
       </p>
       <div data-control-ui="table-of-contents" data-control-family="table-of-contents" data-slot="track" className="relative isolate">
@@ -225,7 +219,7 @@ function TocList({
               data-depth={item.depth}
               aria-current={isActive ? "location" : undefined}
               href={item.href}
-              className={cn(tableOfContentsItemClass, itemIndentClass(item.depth))}
+              className={tableOfContentsItemClass}
             >
               {item.label}
             </a>

@@ -1,5 +1,6 @@
 @layer components {
   :where([data-control-family="calendar"][data-slot="root"]) {
+    padding: calc(var(--spacing) * 3);
     --cui-calendar-day-radius: var(--radius-control);
     --cui-calendar-today-background: var(--accent);
     --cui-calendar-selected-background: var(--primary);
@@ -10,17 +11,33 @@
   :where([data-control-family="calendar"][data-slot="caption-label"]) {
     color: var(--foreground);
     font-size: var(--text-sm);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     line-height: var(--text-sm--line-height, 1.25rem);
   }
 
+  :where([data-control-family="calendar"][data-slot="months"]) {
+    gap: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="calendar"][data-slot="month"]) {
+    gap: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="calendar"][data-slot="month-caption"]),
+  :where([data-control-family="calendar"][data-slot="nav"]) {
+    block-size: calc(var(--spacing) * 9);
+  }
+
   :where([data-control-family="calendar"][data-slot="weekday"]) {
+    padding-block-end: calc(var(--spacing) * 1.5);
     color: var(--muted-foreground);
     font-size: 0.72rem;
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
   }
 
   :where([data-control-family="calendar"][data-slot="nav-button"]) {
+    inline-size: calc(var(--spacing) * 8);
+    block-size: calc(var(--spacing) * 8);
     border-radius: var(--radius-control);
     outline: none;
     color: var(--muted-foreground);
@@ -41,11 +58,13 @@
   }
 
   :where([data-control-family="calendar"][data-slot="day"]) {
+    block-size: calc(var(--spacing) * 9);
+    min-inline-size: calc(var(--spacing) * 9);
     border-radius: var(--cui-calendar-day-radius);
     outline: none;
     color: var(--foreground);
     font-size: var(--text-sm);
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     line-height: 1;
     transition-property: background-color, color, box-shadow;
     transition-duration: var(--duration-fast);
@@ -66,7 +85,7 @@
   :where([data-control-family="calendar"][data-slot="day"][data-today]) {
     background-color: var(--cui-calendar-today-background);
     color: var(--accent-foreground);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="calendar"][data-slot="day"][data-selected-single]),
@@ -97,6 +116,7 @@
   }
 
   :where([data-control-family="calendar"][data-slot="month-grid"]) {
+    margin-block-start: calc(var(--spacing) * 1);
     border-collapse: collapse;
   }
 }

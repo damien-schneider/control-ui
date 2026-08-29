@@ -9,13 +9,15 @@
     background-color: oklch(from var(--card) l c h / 0.8);
     box-shadow: var(--shadow-sm);
     backdrop-filter: blur(var(--blur-sm));
+    padding: calc(var(--spacing) * 4);
     font-size: var(--text-sm);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="label"]) {
+    margin-block-end: calc(var(--spacing) * 3);
     color: var(--muted-foreground);
     font-size: var(--text-caption);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="rail"]) {
@@ -23,16 +25,35 @@
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"]) {
+    padding-block: calc(var(--spacing) * 1.5);
+    padding-inline-start: calc(var(--spacing) * 14);
     color: var(--muted-foreground);
     font-size: var(--text-sm);
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }
 
+  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="1"]) {
+    padding-inline-start: calc(var(--spacing) * 5);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="2"]) {
+    padding-inline-start: calc(var(--spacing) * 7);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="3"]) {
+    padding-inline-start: calc(var(--spacing) * 9);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="4"]) {
+    padding-inline-start: calc(var(--spacing) * 11);
+  }
+
   :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="0"]) {
-    font-weight: 500;
+    padding-inline-start: calc(var(--spacing) * 3);
+    font-weight: var(--font-weight-medium);
   }
 
   @media (hover: hover) {

@@ -21,6 +21,9 @@
   }
 
   :where([data-control-family="task-list"][data-slot="trigger"]) {
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 2);
     font-size: var(--text-sm);
     transition: background-color var(--duration-fast) var(--ease-standard);
     text-align: left;
@@ -40,7 +43,21 @@
     color: var(--foreground);
   }
 
+  :where([data-control-family="task-list"][data-slot="chevron"]) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
+  }
+
+  :where([data-control-family="task-list"][data-slot="items"]) {
+    gap: calc(var(--spacing) * 0.5);
+    padding-inline: calc(var(--spacing) * 2);
+    padding-block-end: calc(var(--spacing) * 2);
+  }
+
   :where([data-control-family="task-list"][data-slot="item"]) {
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 1.5);
+    padding-block: calc(var(--spacing) * 1);
     border-radius: var(--radius-popup-item);
     color: var(--cui-task-list-item-foreground);
     font-size: var(--text-sm);

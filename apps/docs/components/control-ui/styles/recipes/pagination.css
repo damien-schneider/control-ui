@@ -6,7 +6,13 @@
     --cui-pagination-link-foreground: var(--foreground);
     --cui-pagination-link-shadow: none;
   }
+  :where([data-control-family="pagination"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+
   :where([data-control-family="pagination"][data-slot="link"]) {
+    gap: calc(var(--spacing) * 1);
+    padding-inline: calc(var(--spacing) * 2.5);
     --_pagination-link-border-color: transparent;
     border-radius: var(--cui-pagination-link-radius);
     background: var(--cui-pagination-link-background);
@@ -35,6 +41,14 @@
 
   :where([data-control-family="pagination"][data-slot="link"][aria-disabled="true"]) {
     opacity: 0.45;
+  }
+
+  :where([data-control-family="pagination"][data-slot="link"]:has(> svg:first-child)) {
+    padding-inline-start: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="pagination"][data-slot="link"]:has(> svg:last-child)) {
+    padding-inline-end: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="pagination"][data-slot="ellipsis"]) {

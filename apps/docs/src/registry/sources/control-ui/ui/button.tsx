@@ -5,7 +5,7 @@ import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize, ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
-import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinAdornment } from "@/components/control-ui/skin";
@@ -48,7 +48,7 @@ const buttonStructureClasses = "relative isolate inline-flex shrink-0 items-cent
 export const buttonContentClasses = "relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]";
 
 export function buttonRecipeClasses(size: ControlSize, iconOnly = false): string {
-  return cn(buttonStructureClasses, controlSize({ size }), buttonGapClass, iconOnly && "aspect-square px-0");
+  return cn(buttonStructureClasses, controlSize({ size }), iconOnly && "aspect-square px-0");
 }
 
 function ButtonContent({ children }: { children: ReactNode }) {

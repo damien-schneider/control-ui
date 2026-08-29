@@ -140,6 +140,11 @@ export type EmittedStateContract = {
   "input:root:data-size": ControlSize;
   "input-group:root:data-size": ControlSize;
   "item:root:data-variant": "default" | "outline" | "muted";
+  "context-menu:item:data-inset": true;
+  "context-menu:label:data-inset": true;
+  "context-menu:sub-trigger:data-inset": true;
+  "menubar:label:data-inset": true;
+  "menubar:sub-trigger:data-inset": true;
   "dropdown-menu:trigger:data-size": ControlSize;
   "dropdown-menu:trigger:data-icon-only": true;
   "dropdown-menu:trigger:data-variant": DropdownMenuTriggerVariant;
@@ -149,6 +154,8 @@ export type EmittedStateContract = {
   "drawer:content:data-surface-variant": DrawerContentSurface;
   "drawer:content:data-variant": DrawerContentVariant;
   "drawer:content:data-side": DrawerSide;
+  "drawer:viewport:data-variant": DrawerContentVariant;
+  "drawer:viewport:data-side": DrawerSide;
   "sheet:content:data-side": "left" | "right";
   "popover:content:data-padding": PopoverContentPadding;
   "resizable:handle:data-variant": ResizableHandleVariant;
@@ -173,6 +180,7 @@ export type EmittedStateContract = {
   "number-field:group:data-size": ControlSize;
   "radio-group:root:data-orientation": "horizontal" | "vertical";
   "select:trigger:data-size": ControlSize;
+  "spinner:indicator:data-size": ControlSize;
   "scroll-area:scrollbar:data-visibility": ScrollAreaScrollbarVisibility;
   "sidebar:root:data-collapsible": "offcanvas" | "icon" | "none";
   "sidebar:root:data-side": "left" | "right";
@@ -184,6 +192,8 @@ export type EmittedStateContract = {
   "sidebar:menu-button:data-size": SidebarMenuButtonSize;
   "sidebar:menu-button:data-variant": SidebarMenuButtonVariant;
   "slider:root:data-variant": SliderVariant;
+  "slider:control:data-labeled": "true";
+  "slider:track:data-labeled": "true";
   "slider:track:data-variant": SliderVariant;
   "slider:indicator:data-variant": SliderVariant;
   "slider:thumb:data-variant": SliderVariant;

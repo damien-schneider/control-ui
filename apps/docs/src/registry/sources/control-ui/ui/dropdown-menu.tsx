@@ -4,7 +4,7 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -69,7 +69,6 @@ export function DropdownMenuTrigger({
       className={cn(
         "relative isolate inline-flex shrink-0 items-center justify-center overflow-visible",
         controlSize({ size }),
-        buttonGapClass,
         iconOnly && "aspect-square px-0",
         className,
       )}
@@ -123,7 +122,7 @@ export function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps)
       data-slot="item"
       data-control-family="popup"
       data-popup-part="item"
-      className={cn(popupItemStructureClasses, "px-[calc(var(--padding-x)*0.5)] py-1", className)}
+      className={cn(popupItemStructureClasses, className)}
       {...props}
     />
   );
@@ -137,7 +136,7 @@ export function DropdownMenuSeparator({ className, ...props }: DropdownMenuSepar
       data-slot="separator"
       data-control-family="popup"
       data-popup-part="separator"
-      className={cn("-mx-[var(--popover-padding)] my-1 h-px", className)}
+      className={cn(className)}
       {...props}
     />
   );
@@ -150,7 +149,7 @@ export function DropdownMenuLabel({ className, ...props }: DropdownMenuLabelProp
       data-slot="label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-2 py-1", className)}
+      className={cn(className)}
       {...props}
     />
   );

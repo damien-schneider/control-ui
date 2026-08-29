@@ -59,7 +59,7 @@ export function Item({ variant = "default", render, className, children, ...prop
       "data-control-family": "item",
       "data-slot": "root",
       "data-variant": variant,
-      className: cn("flex items-center gap-3 p-3 [&[href]]:cursor-pointer", className),
+      className: cn("flex items-center [&[href]]:cursor-pointer", className),
       children,
     },
   });
@@ -83,7 +83,7 @@ export function ItemContent({ className, ...props }: ComponentProps<"div"> & { s
       data-control-ui="item"
       data-control-family="item"
       data-slot="content"
-      className={cn("flex min-w-0 flex-1 flex-col gap-0.5", className)}
+      className={cn("flex min-w-0 flex-1 flex-col", className)}
       {...props}
     />
   );
@@ -95,7 +95,7 @@ export function ItemTitle({ className, ...props }: ItemTitleProps) {
       data-control-ui="item"
       data-control-family="item"
       data-slot="title"
-      className={cn("flex w-fit items-center gap-2", className)}
+      className={cn("flex w-fit items-center", className)}
       {...props}
     />
   );
@@ -114,7 +114,7 @@ export function ItemActions({ className, ...props }: ComponentProps<"div"> & { s
       data-control-ui="item"
       data-control-family="item"
       data-slot="actions"
-      className={cn("flex shrink-0 items-center gap-1.5", className)}
+      className={cn("flex shrink-0 items-center", className)}
       {...props}
     />
   );
@@ -126,7 +126,7 @@ export function ItemHeader({ className, ...props }: ComponentProps<"div"> & { st
       data-control-ui="item"
       data-control-family="item"
       data-slot="header"
-      className={cn("flex basis-full items-center justify-between gap-2", className)}
+      className={cn("flex basis-full items-center justify-between", className)}
       {...props}
     />
   );
@@ -138,7 +138,7 @@ export function ItemFooter({ className, ...props }: ItemFooterProps) {
       data-control-ui="item"
       data-control-family="item"
       data-slot="footer"
-      className={cn("flex basis-full items-center justify-between gap-2", className)}
+      className={cn("flex basis-full items-center justify-between", className)}
       {...props}
     />
   );

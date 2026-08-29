@@ -12,6 +12,11 @@
     --cui-inline-citation-trigger-radius: 9999px;
   }
   :where([data-control-family="inline-citation"][data-slot="trigger"]) {
+    margin-inline-start: calc(var(--spacing) * 1);
+    block-size: calc(var(--spacing) * 6);
+    max-inline-size: calc(var(--spacing) * 52);
+    gap: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
     border: 1px solid var(--cui-inline-citation-trigger-border-color);
     border-radius: var(--cui-inline-citation-trigger-radius);
     background: var(--cui-inline-citation-trigger-background);
@@ -32,12 +37,17 @@
   }
 
   :where([data-control-ui="inline-citation"][data-slot="favicon"]) {
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
     border: 1px solid var(--background);
     border-radius: 9999px;
     background: var(--muted);
   }
 
   :where([data-control-family="inline-citation"][data-slot="navigation"]) {
+    min-block-size: calc(var(--spacing) * 10);
+    gap: calc(var(--spacing) * 1);
+    padding-inline: calc(var(--spacing) * 2);
     border-bottom: 1px solid var(--border);
     background: var(--cui-inline-citation-navigation-background);
   }
@@ -54,12 +64,24 @@
     font-size: var(--text-caption);
   }
 
+  :where([data-control-family="inline-citation"][data-slot="source"]) {
+    gap: calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="inline-citation"][data-slot="source-header"]) {
+    gap: calc(var(--spacing) * 2);
+  }
+
   :where([data-control-ui="inline-citation"][data-slot="source-favicon"]) {
+    inline-size: calc(var(--spacing) * 5);
+    block-size: calc(var(--spacing) * 5);
     border-radius: 9999px;
     background: var(--muted);
   }
 
   :where([data-control-family="inline-citation"][data-slot="source-title"]) {
+    gap: calc(var(--spacing) * 2);
     color: var(--foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
@@ -72,10 +94,15 @@
   }
 
   :where([data-control-family="inline-citation"][data-slot="source-external-icon"]) {
+    margin-block-start: calc(var(--spacing) * 0.5);
+    inline-size: calc(var(--spacing) * 3.5);
+    block-size: calc(var(--spacing) * 3.5);
     color: var(--muted-foreground);
   }
 
   :where([data-control-family="inline-citation"][data-slot="source-quote"]) {
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 2);
     border-radius: var(--cui-inline-citation-quote-radius);
     background: var(--cui-inline-citation-quote-background);
     line-height: calc(var(--spacing) * 5);
@@ -86,6 +113,8 @@
   }
 
   :where([data-control-family="inline-citation"][data-slot="position"]) {
+    margin-inline-start: auto;
+    padding-inline: calc(var(--spacing) * 1);
     font-variant-numeric: tabular-nums;
   }
 }

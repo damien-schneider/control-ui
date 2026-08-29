@@ -24,7 +24,7 @@ export function Avatar({ className, ...props }: AvatarProps) {
       data-control-ui="avatar"
       data-control-family="avatar"
       data-slot="root"
-      className={cn("relative inline-flex size-9 shrink-0 select-none items-center justify-center overflow-hidden align-middle", className)}
+      className={cn("relative inline-flex shrink-0 select-none items-center justify-center overflow-hidden align-middle", className)}
       {...props}
     />
   );

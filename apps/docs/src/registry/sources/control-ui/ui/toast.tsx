@@ -72,7 +72,7 @@ function ToastList({
           data-control-family="popup"
           data-popup-kind="toast"
           data-slot="content"
-          className="flex items-start gap-3 p-3"
+          className="flex items-start"
         >
           {entry.type && entry.type !== "message" ? (
             <span
@@ -82,10 +82,10 @@ function ToastList({
               data-popup-kind="toast"
               data-slot="indicator"
               style={indicatorStyle}
-              className="mt-1.5 size-2 shrink-0"
+              className="shrink-0"
             />
           ) : null}
-          <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+          <div className="flex min-w-0 flex-1 flex-col">
             {entry.title ? (
               <ToastPrimitive.Title data-control-ui="toast" data-control-family="popup" data-popup-kind="toast" data-slot="title" />
             ) : null}
@@ -105,7 +105,7 @@ function ToastList({
               data-popup-kind="toast"
               data-slot="action"
               style={actionStyle}
-              className="shrink-0 cursor-pointer px-2 py-1"
+              className="shrink-0 cursor-pointer"
             />
           ) : null}
           <ToastPrimitive.Close
@@ -115,7 +115,7 @@ function ToastList({
             data-slot="close"
             style={closeStyle}
             aria-label="Close"
-            className="-mr-1 -mt-1 shrink-0 cursor-pointer p-1"
+            className="shrink-0 cursor-pointer"
           >
             <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
               <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />

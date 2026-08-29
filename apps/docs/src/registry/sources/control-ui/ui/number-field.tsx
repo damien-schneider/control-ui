@@ -97,7 +97,7 @@ export function NumberFieldGroup({ className, children, ...props }: NumberFieldG
       data-control="true"
       data-control-family="field"
       data-size={size}
-      className={cn("inline-flex items-stretch overflow-hidden", controlSize({ size }), "gap-0 px-0", className)}
+      className={cn("inline-flex items-stretch overflow-hidden", controlSize({ size }), "px-0", className)}
       {...props}
     >
       {children}
@@ -112,7 +112,7 @@ export function NumberFieldInput({ className, ...props }: NumberFieldInputProps)
       data-control-family="field"
       data-field-kind="number-field"
       data-slot="input"
-      className={cn("h-full min-w-0 flex-1 px-2 disabled:cursor-not-allowed", className)}
+      className={cn("h-full min-w-0 flex-1 disabled:cursor-not-allowed", className)}
       {...props}
     />
   );

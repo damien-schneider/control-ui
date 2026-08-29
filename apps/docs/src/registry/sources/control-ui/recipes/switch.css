@@ -1,5 +1,8 @@
 @layer components {
   :where([data-control-family="switch"][data-slot="root"]) {
+    block-size: calc(var(--spacing) * 5);
+    inline-size: calc(var(--spacing) * 9);
+    padding: calc(var(--spacing) * 0.5);
     --cui-switch-background: oklch(from var(--foreground) l c h / 0.14);
     --cui-switch-hover-background: oklch(from var(--foreground) l c h / 0.2);
     --cui-switch-checked-background: var(--primary);

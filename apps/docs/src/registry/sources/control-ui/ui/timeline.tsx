@@ -36,7 +36,7 @@ export function TimelineItem({ state = "neutral", className, ...props }: Timelin
       data-slot="item"
       data-state={state}
       {...props}
-      className={cn("group/timeline-item relative grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] gap-x-3 pb-5 last:pb-0", className)}
+      className={cn("group/timeline-item relative grid min-w-0 grid-cols-[1rem_minmax(0,1fr)]", className)}
     />
   );
 }
@@ -49,7 +49,7 @@ export function TimelineIndicator({ className, ...props }: TimelineIndicatorProp
       data-control-family="timeline"
       data-slot="indicator"
       {...props}
-      className={cn("relative z-10 col-start-1 row-start-1 flex size-4 shrink-0 items-center justify-center", className)}
+      className={cn("relative z-10 col-start-1 row-start-1 flex shrink-0 items-center justify-center", className)}
     />
   );
 }
@@ -74,7 +74,7 @@ export function TimelineContent({ className, ...props }: TimelineContentProps) {
       data-control-family="timeline"
       data-slot="content"
       {...props}
-      className={cn("col-start-2 row-start-1 grid min-w-0 gap-1", className)}
+      className={cn("col-start-2 row-start-1 grid min-w-0", className)}
     />
   );
 }
@@ -104,7 +104,7 @@ export function TimelineMeta({ className, ...props }: TimelineMetaProps) {
       data-control-family="timeline"
       data-slot="meta"
       {...props}
-      className={cn("mt-1 flex min-w-0 flex-wrap items-center gap-1.5", className)}
+      className={cn("flex min-w-0 flex-wrap items-center", className)}
     />
   );
 }

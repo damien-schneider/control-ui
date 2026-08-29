@@ -39,10 +39,7 @@ export function RadioGroup<TValue extends string = string>({ className, orientat
       data-choice-kind="radio-group"
       data-slot="root"
       data-orientation={orientation}
-      className={cn(
-        "flex gap-2 data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:flex-col",
-        className,
-      )}
+      className={cn("flex data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col", className)}
       {...props}
     />
   );
@@ -57,7 +54,7 @@ export function Radio({ className, disabled, ...props }: RadioProps) {
       data-control-family="choice"
       disabled={disabled}
       className={cn(
-        "group/radio relative inline-flex size-4 shrink-0 cursor-pointer items-center justify-center",
+        "group/radio relative inline-flex shrink-0 cursor-pointer items-center justify-center",
         "data-[disabled]:cursor-not-allowed",
         className,
       )}
@@ -68,7 +65,7 @@ export function Radio({ className, disabled, ...props }: RadioProps) {
         data-control-family="choice"
         data-choice-kind="radio-group"
         data-slot="indicator"
-        className="size-1.5 data-[unchecked]:hidden"
+        className="data-[unchecked]:hidden"
       />
     </RadioPrimitive.Root>
   );

@@ -13,7 +13,28 @@
     --cui-chat-message-border-width: 0px;
     --cui-chat-message-shadow: none;
   }
+  :where([data-control-family="chat-message"][data-slot="row"]) {
+    gap: calc(var(--spacing) * 2);
+    padding-block: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="root"][data-density="compact"] [data-slot="row"]) {
+    padding-block: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="root"][data-role="user"] [data-slot="body"]) {
+    max-inline-size: 76%;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="root"]:not([data-role="user"]) [data-slot="body"]) {
+    max-inline-size: 80%;
+    flex: 1;
+  }
+
   :where([data-control-family="chat-message"][data-slot="avatar"]) {
+    margin-block-start: calc(var(--spacing) * 0.5);
+    inline-size: calc(var(--spacing) * 6);
+    block-size: calc(var(--spacing) * 6);
     border: var(--cui-chat-message-avatar-border-width) solid var(--cui-chat-message-avatar-border-color);
     border-radius: var(--cui-chat-message-avatar-radius);
     background: var(--cui-chat-message-avatar-background);
@@ -45,6 +66,8 @@
     @apply shimmer-text;
   }
   :where([data-control-family="chat-message"][data-slot="actions"]) {
+    margin-block-start: calc(var(--spacing) * 1);
+    gap: calc(var(--spacing) * 1);
     opacity: 0;
     transition-property: opacity;
     transition-timing-function: var(--ease-standard);
@@ -58,6 +81,9 @@
   }
 
   :where([data-control-family="chat-message"][data-slot="header"]) {
+    margin-block-end: calc(var(--spacing) * 1);
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 1);
     font-size: var(--text-caption);
     color: var(--muted-foreground);
   }

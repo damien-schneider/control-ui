@@ -5,13 +5,19 @@
     --cui-transcript-divider-danger-foreground: var(--destructive-text);
     --cui-transcript-divider-success-foreground: var(--badge-green-foreground);
     --cui-transcript-divider-warning-foreground: var(--badge-yellow-foreground);
+    margin-block: calc(var(--spacing) * 2);
     color: var(--cui-transcript-divider-foreground);
     font-size: var(--text-caption);
   }
 
   :where([data-control-family="transcript-divider"][data-slot="root"])::before,
   :where([data-control-family="transcript-divider"][data-slot="root"])::after {
+    block-size: 1px;
     background: var(--cui-transcript-divider-line-color);
+  }
+
+  :where([data-control-family="transcript-divider"][data-slot="label"]) {
+    padding-inline: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="transcript-divider"][data-slot="root"][data-tone="success"]) {

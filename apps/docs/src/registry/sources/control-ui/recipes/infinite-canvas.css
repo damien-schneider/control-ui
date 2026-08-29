@@ -16,6 +16,8 @@
   }
 
   :where([data-control-family="infinite-canvas"][data-slot="controls"]) {
+    gap: calc(var(--spacing) * 0.5);
+    padding: calc(var(--spacing) * 1);
     border-radius: var(--cui-infinite-canvas-controls-radius);
     background-color: var(--cui-infinite-canvas-controls-background);
     box-shadow:

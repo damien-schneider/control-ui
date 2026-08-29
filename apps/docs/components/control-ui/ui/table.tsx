@@ -55,7 +55,7 @@ export function TableHead({ className, ...props }: TableHeadProps) {
       data-control-ui="table"
       data-control-family="table"
       data-slot="head"
-      className={cn("h-10 whitespace-nowrap px-2 align-middle [&:has([role=checkbox])]:pr-0", className)}
+      className={cn("whitespace-nowrap align-middle [&:has([role=checkbox])]:pr-0", className)}
       {...props}
     />
   );
@@ -67,12 +67,12 @@ export function TableCell({ className, ...props }: TableCellProps) {
       data-control-ui="table"
       data-control-family="table"
       data-slot="cell"
-      className={cn("whitespace-nowrap p-2 align-middle [&:has([role=checkbox])]:pr-0", className)}
+      className={cn("whitespace-nowrap align-middle [&:has([role=checkbox])]:pr-0", className)}
       {...props}
     />
   );
 }
 
 export function TableCaption({ className, ...props }: TableCaptionProps) {
-  return <caption data-control-ui="table" data-control-family="table" data-slot="caption" className={cn("mt-4", className)} {...props} />;
+  return <caption data-control-ui="table" data-control-family="table" data-slot="caption" className={className} {...props} />;
 }

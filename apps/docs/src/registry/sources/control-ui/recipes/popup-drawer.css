@@ -58,13 +58,33 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="handle"]) {
+    margin-inline: auto;
+    block-size: calc(var(--spacing) * 1.5);
+    inline-size: calc(var(--spacing) * 12);
     border-radius: 9999px;
     background-color: oklch(from var(--muted-foreground) l c h / 0.3);
   }
 
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-side="bottom"] [data-slot="handle"]) {
+    margin-block: calc(var(--spacing) * 2.5) calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-side="top"] [data-slot="handle"]) {
+    order: 9999;
+    margin-block: calc(var(--spacing) * 1) calc(var(--spacing) * 2.5);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="scroll"]) {
+    gap: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="viewport"][data-variant="floating"]) {
+    padding: calc(var(--spacing) * 2);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="title"]) {
     color: var(--foreground);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="description"]) {
@@ -72,7 +92,31 @@
     font-size: var(--text-sm);
   }
 
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"][data-side="bottom"]) {
+    padding-block-end: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"][data-side="top"]) {
+    padding-block-start: calc(var(--spacing) * 4);
+  }
+
+  :where(
+    [data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"]:is(
+      [data-side="left"],
+      [data-side="right"]
+    )
+  ) {
+    padding-block: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="footer"]) {
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 4);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="header"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 4);
     --_drawer-header-text-align: center;
     text-align: var(--_drawer-header-text-align);
   }
@@ -85,6 +129,7 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 4);
     outline-style: none;
     transform: translate(var(--drawer-swipe-movement-x, 0), var(--drawer-swipe-movement-y, 0));
     transition-property: transform, translate, scale, rotate;

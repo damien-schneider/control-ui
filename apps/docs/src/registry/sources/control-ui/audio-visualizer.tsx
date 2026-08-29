@@ -38,7 +38,7 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
       data-variant="bars"
       data-active={active ? "true" : undefined}
       aria-hidden="true"
-      className={cn("h-7 w-44 shrink-0 overflow-hidden px-1.5 py-1.5", className)}
+      className={cn("shrink-0 overflow-hidden", className)}
       style={style}
       {...props}
     >
@@ -47,7 +47,7 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
         data-control-family="audio-visualizer"
         data-slot="track"
         data-active={active ? "true" : undefined}
-        className="flex size-full items-stretch justify-end gap-px mask-l-from-90%"
+        className="flex size-full items-stretch justify-end mask-l-from-90%"
       >
         {visible.map(({ key, level }) => {
           const perceptualLevel = Math.sqrt(level);
@@ -63,7 +63,7 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
               data-control-ui="audio-visualizer"
               data-control-family="audio-visualizer"
               data-slot="bar-track"
-              className="flex w-1 shrink-0 items-center"
+              className="flex shrink-0 items-center"
             >
               <span
                 data-control-ui="audio-visualizer"

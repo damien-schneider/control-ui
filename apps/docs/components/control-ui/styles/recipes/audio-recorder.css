@@ -4,8 +4,15 @@
     --cui-audio-recorder-foreground: var(--muted-foreground);
     --cui-audio-recorder-recording-ring-color: oklch(from var(--destructive) l c h / 0.25);
     --cui-audio-recorder-error-foreground: var(--destructive-text);
+    min-block-size: calc(var(--spacing) * 8);
+    gap: calc(var(--spacing) * 2);
+    padding-inline-end: calc(var(--spacing) * 1);
     color: var(--cui-audio-recorder-foreground);
     transition: color var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-ui="audio-recorder"][data-slot="actions"]) {
+    gap: calc(var(--spacing) * 1);
   }
 
   :where([data-control-ui="audio-recorder"][data-slot="root"]:is([data-state="recording"], [data-state="recorded"])) {
@@ -64,6 +71,7 @@
   }
 
   :where([data-control-ui="audio-recorder"][data-slot="duration"]) {
+    inline-size: calc(var(--spacing) * 10);
     text-align: right;
     font-variant-numeric: tabular-nums;
   }

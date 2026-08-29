@@ -201,6 +201,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "panel-content": {
+          family: "accordion",
+          registryItems: ["accordion"],
+          states: [],
+        },
         trigger: {
           family: "accordion",
           registryItems: ["accordion"],
@@ -276,6 +281,11 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         content: {
+          registryItems: ["activity"],
+          states: [],
+        },
+        "content-grid": {
+          family: "activity",
           registryItems: ["activity"],
           states: [],
         },
@@ -1800,7 +1810,14 @@ export const generatedSkinContract: SkinContract = {
         root: {
           family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [],
+          states: [
+            {
+              attribute: "data-chat-layout-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["thought"],
+            },
+          ],
         },
         chevron: {
           family: "chat-layout",
@@ -1830,7 +1847,14 @@ export const generatedSkinContract: SkinContract = {
         root: {
           family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [],
+          states: [
+            {
+              attribute: "data-chat-layout-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["thread"],
+            },
+          ],
         },
       },
       registryItems: ["chat-layout"],
@@ -2100,6 +2124,18 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["code"],
           states: [],
         },
+        "floating-frame": {
+          family: "code",
+          registryItems: ["code"],
+          states: [
+            {
+              attribute: "data-density",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["compact", "default"],
+            },
+          ],
+        },
         grid: {
           family: "code",
           registryItems: ["code"],
@@ -2185,6 +2221,11 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         editor: {
+          family: "code-block-editor",
+          registryItems: ["code-block-editor"],
+          states: [],
+        },
+        "floating-frame": {
           family: "code-block-editor",
           registryItems: ["code-block-editor"],
           states: [],
@@ -3769,6 +3810,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["context"],
           states: [],
         },
+        "content-grid": {
+          family: "context",
+          registryItems: ["context"],
+          states: [],
+        },
         description: {
           family: "context",
           registryItems: ["context"],
@@ -4067,6 +4113,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-inset",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
@@ -4078,6 +4130,12 @@ export const generatedSkinContract: SkinContract = {
           family: "popup",
           registryItems: ["context-menu"],
           states: [
+            {
+              attribute: "data-inset",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -4243,6 +4301,12 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-highlighted",
               source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-inset",
+              source: "control-ui",
               valueKind: "presence",
               values: [],
             },
@@ -4726,6 +4790,18 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        scroll: {
+          family: "popup",
+          registryItems: ["drawer"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["drawer"],
+            },
+          ],
+        },
         title: {
           family: "popup",
           registryItems: ["drawer"],
@@ -4784,10 +4860,22 @@ export const generatedSkinContract: SkinContract = {
               values: ["drawer"],
             },
             {
+              attribute: "data-side",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bottom", "left", "right", "top"],
+            },
+            {
               attribute: "data-starting-style",
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-variant",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["edge", "floating"],
             },
           ],
         },
@@ -5831,8 +5919,16 @@ export const generatedSkinContract: SkinContract = {
     form: {
       parts: {
         root: {
+          family: "field",
           registryItems: ["form"],
-          states: [],
+          states: [
+            {
+              attribute: "data-field-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["form"],
+            },
+          ],
         },
       },
       registryItems: ["form"],
@@ -5867,6 +5963,11 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         track: {
+          family: "gradient-editor",
+          registryItems: ["gradient-editor"],
+          states: [],
+        },
+        "value-row": {
           family: "gradient-editor",
           registryItems: ["gradient-editor"],
           states: [],
@@ -6837,6 +6938,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["menubar"],
           states: [
             {
+              attribute: "data-inset",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
@@ -6941,6 +7048,12 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-highlighted",
               source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-inset",
+              source: "control-ui",
               valueKind: "presence",
               values: [],
             },
@@ -9589,6 +9702,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["sidebar"],
           states: [],
         },
+        "content-stack": {
+          family: "sidebar",
+          registryItems: ["sidebar"],
+          states: [],
+        },
         footer: {
           family: "sidebar",
           registryItems: ["sidebar"],
@@ -9823,6 +9941,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-labeled",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["true"],
+            },
+            {
               attribute: "data-orientation",
               source: "external",
               valueKind: "enum",
@@ -9915,6 +10039,18 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         label: {
+          family: "range",
+          registryItems: ["slider"],
+          states: [
+            {
+              attribute: "data-range-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["slider"],
+            },
+          ],
+        },
+        "label-overlay": {
           family: "range",
           registryItems: ["slider"],
           states: [
@@ -10043,6 +10179,12 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
+            },
+            {
+              attribute: "data-labeled",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["true"],
             },
             {
               attribute: "data-orientation",
@@ -10175,7 +10317,14 @@ export const generatedSkinContract: SkinContract = {
         indicator: {
           family: "spinner",
           registryItems: ["spinner"],
-          states: [],
+          states: [
+            {
+              attribute: "data-size",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["lg", "md", "sm", "xs"],
+            },
+          ],
         },
       },
       registryItems: ["spinner"],
@@ -11231,6 +11380,7 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
         group: {
+          family: "button",
           registryItems: ["toggle"],
           states: [
             {
@@ -12245,7 +12395,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-button-gap",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "0.375rem",
+        defaultValue: "calc(var(--spacing) * 1.5)",
       },
       {
         name: "--cui-button-icon",
@@ -14341,7 +14491,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tabs-list-padding",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "0.25rem",
+        defaultValue: "calc(var(--spacing) * 1)",
       },
       {
         name: "--cui-tabs-list-radius",
@@ -14560,7 +14710,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-toolbar-padding",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "0.25rem",
+        defaultValue: "calc(var(--spacing) * 1)",
       },
       {
         name: "--cui-toolbar-background",
@@ -14758,7 +14908,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tree-item-trigger-selected-font-weight",
         syntax: "<number>",
         initialValue: "400",
-        defaultValue: "400",
+        defaultValue: "var(--font-weight-normal)",
       },
     ],
     "user-ask": [

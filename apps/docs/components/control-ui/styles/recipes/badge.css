@@ -1,5 +1,7 @@
 @layer components {
   :where([data-control-family="badge"][data-slot="root"]) {
+    gap: calc(var(--spacing) * 1);
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
     --cui-badge-radius: var(--radius-control);
     --cui-badge-background: var(--_badge-color-background);
     --cui-badge-foreground: var(--_badge-color-foreground);
@@ -15,6 +17,11 @@
     color: var(--cui-badge-foreground);
     outline: none;
     transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="badge"][data-slot="root"][data-size="sm"]) {
+    block-size: calc(var(--spacing) * 4);
+    padding: 0 calc(var(--spacing) * 1.5);
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-variant="outline"]) {

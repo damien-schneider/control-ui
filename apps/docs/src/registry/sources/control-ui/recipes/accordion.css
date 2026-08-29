@@ -14,6 +14,8 @@
   }
 
   :where([data-control-family="accordion"][data-slot="trigger"]) {
+    gap: calc(var(--spacing) * 4);
+    padding-block: calc(var(--spacing) * 3);
     color: var(--cui-accordion-trigger-foreground);
     font-size: var(--text-body);
     outline: none;
@@ -32,12 +34,18 @@
   }
 
   :where([data-control-family="accordion"][data-slot="icon"]) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
     color: var(--cui-accordion-icon-foreground);
     transition: rotate var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="accordion"][data-slot="trigger"][data-panel-open] > [data-slot="icon"]) {
     rotate: 180deg;
+  }
+
+  :where([data-control-family="accordion"][data-slot="panel-content"]) {
+    padding-block-end: calc(var(--spacing) * 3);
   }
 
   :where([data-control-family="accordion"][data-slot="panel"]) {

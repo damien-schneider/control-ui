@@ -48,12 +48,15 @@
   }
 
   :where([data-control-family="table"][data-slot="head"]) {
+    block-size: calc(var(--spacing) * 10);
+    padding-inline: calc(var(--spacing) * 2);
     color: var(--cui-table-header-foreground);
     text-align: left;
     font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="table"][data-slot="caption"]) {
+    margin-block-start: calc(var(--spacing) * 4);
     color: var(--muted-foreground);
     font-size: var(--text-body);
   }
@@ -71,6 +74,10 @@
   :where([data-control-family="table"][data-slot="header"] tr) {
     border-bottom-style: solid;
     border-bottom-width: 1px;
+  }
+
+  :where([data-control-family="table"][data-slot="cell"]) {
+    padding: calc(var(--spacing) * 2);
   }
 }
 

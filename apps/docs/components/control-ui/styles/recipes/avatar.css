@@ -1,4 +1,9 @@
 @layer components {
+  :where([data-control-family="avatar"][data-slot="root"]) {
+    inline-size: calc(var(--spacing) * 9);
+    block-size: calc(var(--spacing) * 9);
+  }
+
   :where([data-control-family="avatar"][data-slot="root"]),
   :where([data-control-family="avatar"][data-slot="favicon"]),
   :where([data-control-family="avatar"][data-slot="source-favicon"]) {

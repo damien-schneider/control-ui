@@ -95,7 +95,8 @@ export function Slider({
         data-control-family="range"
         data-range-kind="slider"
         data-slot="control"
-        className={cn("flex w-full items-center", labeled ? "h-[1.875rem]" : "py-1.5")}
+        data-labeled={labeled ? "true" : undefined}
+        className="flex w-full items-center"
       >
         <SliderPrimitive.Track
           data-control-ui="slider"
@@ -103,7 +104,8 @@ export function Slider({
           data-range-kind="slider"
           data-slot="track"
           data-variant={variant}
-          className={cn("relative w-full grow overflow-hidden", variant === "default" ? "h-1.5" : "h-1.5", labeled && "h-full")}
+          data-labeled={labeled ? "true" : undefined}
+          className="relative w-full grow overflow-hidden"
           style={trackStyle}
         >
           <SliderPrimitive.Indicator
@@ -122,7 +124,7 @@ export function Slider({
               data-control-family="range"
               data-range-kind="slider"
               data-slot="tick"
-              className="pointer-events-none absolute bottom-0 h-1.5 w-px"
+              className="pointer-events-none absolute bottom-0"
               style={{ left: `${pct}%` }}
             />
           ))}
@@ -132,13 +134,19 @@ export function Slider({
             data-range-kind="slider"
             data-slot="thumb"
             data-variant={variant}
-            className={cn("block", variant === "default" ? "size-3.5" : "after:absolute after:-inset-3 after:content-['']")}
+            className={cn("block", variant === "plain" && "after:absolute after:-inset-3 after:content-['']")}
             style={thumbStyle}
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>
       {labeled && (
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-between px-3">
+        <div
+          data-control-ui="slider"
+          data-control-family="range"
+          data-range-kind="slider"
+          data-slot="label-overlay"
+          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-between"
+        >
           {label ? (
             <SliderPrimitive.Label
               data-control-ui="slider"

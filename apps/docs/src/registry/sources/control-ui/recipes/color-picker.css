@@ -1,4 +1,47 @@
 @layer components {
+  :where([data-control-family="color-picker"][data-slot="trigger"]) {
+    inline-size: calc(var(--spacing) * 8);
+    block-size: calc(var(--spacing) * 8);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="color-picker"][data-popup-part="surface"]) {
+    inline-size: calc(var(--spacing) * 64);
+    gap: calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="hue-track"]),
+  :where([data-control-family="color-picker"][data-slot="alpha-track"]) {
+    block-size: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="hue-thumb"]),
+  :where([data-control-family="color-picker"][data-slot="alpha-thumb"]),
+  :where([data-control-family="color-picker"][data-slot="area-thumb"]),
+  :where([data-control-family="color-picker"][data-slot="wheel-thumb"]) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatch"]),
+  :where([data-control-family="color-picker"][data-slot="swatch-add"]) {
+    inline-size: calc(var(--spacing) * 6);
+    block-size: calc(var(--spacing) * 6);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="swatches-group"]),
+  :where([data-control-family="color-picker"][data-slot="swatches"]) {
+    gap: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="channels"]) {
+    gap: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="color-picker"][data-slot="channel"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+
   :where([data-control-family="color-picker"][data-slot="trigger"]),
   :where([data-control-family="color-picker"][data-slot="area"]),
   :where([data-control-family="color-picker"][data-slot="hue"]),
@@ -16,6 +59,7 @@
   }
   :where([data-control-family="color-picker"][data-slot="hue"]),
   :where([data-control-family="color-picker"][data-slot="alpha"]) {
+    block-size: calc(var(--spacing) * 4);
     --_color-picker-slider-thumb-outline: none;
     --_color-picker-slider-thumb-scale: 1;
     --_color-picker-slider-thumb-transition-property: scale;
@@ -77,6 +121,7 @@
   }
 
   :where([data-control-family="color-picker"][data-slot="area"]) {
+    block-size: calc(var(--spacing) * 40);
     border-radius: var(--cui-color-picker-area-radius);
     box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--border) 60%, transparent);
     --_color-picker-area-thumb-shadow: 0 0 0 1px oklch(from var(--foreground) l c h / 0.4);

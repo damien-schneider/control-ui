@@ -113,7 +113,7 @@
   ) {
     opacity: 0;
     filter: blur(10px);
-    translate: 0 -0.5rem;
+    translate: 0 calc(var(--spacing) * -2);
     scale: 0.94;
     transition:
       opacity var(--duration-base) var(--ease-standard),

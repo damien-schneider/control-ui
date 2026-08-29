@@ -21,18 +21,30 @@
   }
 
   :where([data-control-family="dockable-panel"][data-slot="header"]) {
+    min-block-size: calc(var(--spacing) * 11);
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 2);
     border-block-end: 1px solid oklch(from var(--border) l c h / 0.7);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="drag-handle"]) {
+    padding-inline: calc(var(--spacing) * 2);
     border-radius: var(--radius-control);
     text-align: left;
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="actions"]) {
+    gap: calc(var(--spacing) * 0.5);
+  }
+
+  :where([data-control-family="dockable-panel"][data-slot="content"][data-padding="default"]) {
+    padding: calc(var(--spacing) * 3);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="title"]) {
     color: var(--foreground);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   :where([data-control-family="dockable-panel"][data-slot="drop-zone"]) {

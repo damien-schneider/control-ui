@@ -1,5 +1,9 @@
 @layer components {
   :where([data-control-family="kbd"][data-slot="root"]) {
+    block-size: calc(var(--spacing) * 5);
+    min-inline-size: calc(var(--spacing) * 5);
+    gap: calc(var(--spacing) * 1);
+    padding-inline: calc(var(--spacing) * 1.5);
     --cui-kbd-radius: var(--radius-control);
     --cui-kbd-background: oklch(from var(--card) l c h / 0.6);
     --cui-kbd-foreground: var(--muted-foreground);
@@ -14,6 +18,10 @@
     font-size: var(--text-micro);
     font-family: var(--font-sans);
     font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="kbd"][data-slot="group"]) {
+    gap: calc(var(--spacing) * 1);
   }
 }
 

@@ -69,7 +69,7 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
       data-variant="line"
       data-active={active ? "true" : undefined}
       aria-hidden="true"
-      className={cn("h-7 w-44 shrink-0 overflow-hidden px-1.5", className)}
+      className={cn("shrink-0 overflow-hidden", className)}
       style={style}
       {...props}
     >

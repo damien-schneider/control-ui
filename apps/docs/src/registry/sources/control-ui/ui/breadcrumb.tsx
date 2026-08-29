@@ -29,7 +29,7 @@ export function BreadcrumbList({
       data-control-ui="breadcrumb"
       data-control-family="breadcrumb"
       data-slot="list"
-      className={cn("flex flex-wrap items-center gap-1.5 break-words sm:gap-2.5", className)}
+      className={cn("flex flex-wrap items-center break-words", className)}
       {...props}
     />
   );
@@ -41,7 +41,7 @@ export function BreadcrumbItem({ className, ...props }: ComponentProps<"li"> & {
       data-control-ui="breadcrumb"
       data-control-family="breadcrumb"
       data-slot="item"
-      className={cn("inline-flex items-center gap-1.5", className)}
+      className={cn("inline-flex items-center", className)}
       {...props}
     />
   );
@@ -113,7 +113,7 @@ export function BreadcrumbEllipsis({ className, ...props }: ComponentProps<"span
       data-slot="ellipsis"
       role="presentation"
       aria-hidden="true"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn("flex items-center justify-center", className)}
       {...props}
     >
       <MoreHorizontal className="size-4" />

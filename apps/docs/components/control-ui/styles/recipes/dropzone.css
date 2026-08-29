@@ -15,6 +15,9 @@
   }
 
   :where([data-control-family="dropzone"][data-slot="trigger"]) {
+    min-block-size: calc(var(--spacing) * 32);
+    gap: calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 6);
     background-color: var(--card);
     text-align: center;
     outline-style: none;
@@ -33,7 +36,24 @@
     opacity: 0.5;
   }
 
+  :where([data-control-family="dropzone"][data-slot="file-list"]),
+  :where([data-control-family="dropzone"][data-slot="rejection-list"]) {
+    margin-block-start: calc(var(--spacing) * 3);
+    gap: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="dropzone"][data-slot="feedback"]) {
+    gap: calc(var(--spacing) * 2);
+  }
+
+  :where(
+    [data-control-family="dropzone"]:is([data-slot="file"], [data-slot="rejection"]) > [data-control-family="item"][data-slot="root"]
+  ) {
+    padding-block: calc(var(--spacing) * 2);
+  }
+
   :where([data-control-family="dropzone"][data-slot="overlay"]) {
+    padding: calc(var(--spacing) * 6);
     border-style: solid;
     background-color: var(--cui-dropzone-overlay-background);
     opacity: 0;
@@ -67,13 +87,14 @@
   }
 
   :where([data-control-family="dropzone"][data-slot="status"]) {
+    margin-block-start: calc(var(--spacing) * 3);
     color: var(--muted-foreground);
     font-size: var(--text-sm);
   }
 
   :where([data-control-family="dropzone"][data-slot="feedback-message"]) {
     font-size: var(--text-sm);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   :where([data-control-family="dropzone"][data-slot="feedback-spinner"]) {

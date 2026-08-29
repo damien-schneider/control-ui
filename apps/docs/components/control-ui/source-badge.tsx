@@ -68,13 +68,13 @@ export function SourceBadge({ faviconSrc, href, children, className, rel, target
           href={href}
           target={target}
           rel={resolvedRel}
-          className={cn("h-6 gap-1.5 px-1.5 py-0 pr-2", className)}
+          className={cn(className)}
           {...props}
         />
       }
     >
-      <SourceFavicon href={href} faviconSrc={faviconSrc} className="size-3.5" />
-      <span data-control-ui="source-badge" data-slot="label" className="max-w-44 truncate">
+      <SourceFavicon href={href} faviconSrc={faviconSrc} />
+      <span data-control-ui="source-badge" data-slot="label" className="truncate">
         {children ?? hostname}
       </span>
     </Badge>

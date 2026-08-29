@@ -52,7 +52,7 @@ const mentionNode: NodeSpec = {
     const kind = attrString(node.attrs.kind, "mention");
     const icon = typeof node.attrs.icon === "string" ? node.attrs.icon : null;
     const attrs = {
-      class: "inline-flex items-center gap-1 px-1 align-baseline",
+      class: "inline-flex items-center align-baseline",
       "data-control-ui": "chat-composer",
       "data-control-family": "chat-composer",
       "data-slot": "mention",
@@ -81,7 +81,7 @@ const mentionNode: NodeSpec = {
             {
               src: icon,
               alt: "",
-              class: "size-4 shrink-0",
+              class: "shrink-0",
               "data-control-ui": "chat-composer",
               "data-control-family": "chat-composer",
               "data-slot": "mention-icon",

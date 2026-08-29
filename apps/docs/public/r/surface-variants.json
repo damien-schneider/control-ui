@@ -13,7 +13,7 @@
       "path": "src/registry/sources/control-ui/surface-variants.ts",
       "target": "@components/control-ui/surface-variants.ts",
       "type": "registry:component",
-      "content": "export const popupItemStructureClasses = \"flex min-h-[var(--control-h-xs)] select-none items-center gap-2\";\n\nexport const popupParts = [\n  \"backdrop\",\n  \"surface\",\n  \"list-surface\",\n  \"list-content\",\n  \"bar\",\n  \"item\",\n  \"navigation-link\",\n  \"label\",\n  \"separator\",\n  \"shortcut\",\n] as const;\n\nexport type PopupPart = (typeof popupParts)[number];\n"
+      "content": "export const popupItemStructureClasses = \"flex select-none items-center\";\n\nexport const popupParts = [\n  \"backdrop\",\n  \"surface\",\n  \"list-surface\",\n  \"list-content\",\n  \"bar\",\n  \"item\",\n  \"navigation-link\",\n  \"label\",\n  \"separator\",\n  \"shortcut\",\n] as const;\n\nexport type PopupPart = (typeof popupParts)[number];\n"
     }
   ],
   "meta": {

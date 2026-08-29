@@ -168,7 +168,7 @@ export function InlineCitationTrigger({
       data-control-ui="inline-citation"
       data-control-family="inline-citation"
       data-slot="trigger"
-      className={cn("ml-1 inline-flex h-6 max-w-52 items-center gap-1.5 px-1.5 pr-2 align-baseline", className)}
+      className={cn("inline-flex items-center align-baseline", className)}
     >
       {children ?? (
         <>
@@ -202,7 +202,6 @@ export function InlineCitationFavicons({ limit = 3, className, ...props }: Inlin
           data-slot="favicon"
           href={source.href}
           faviconSrc={source.faviconSrc}
-          className="size-3.5"
         />
       ))}
     </span>
@@ -263,7 +262,7 @@ export function InlineCitationNavigation({ className, children, ...props }: Inli
       data-control-family="inline-citation"
       data-slot="navigation"
       {...props}
-      className={cn("flex min-h-10 items-center gap-1 px-2", className)}
+      className={cn("flex items-center", className)}
     >
       {children ?? (
         <>
@@ -343,7 +342,7 @@ export function InlineCitationPosition({ className, children, ...props }: Inline
       data-control-family="inline-citation"
       data-slot="position"
       {...props}
-      className={cn("ml-auto px-1", className)}
+      className={cn(className)}
     >
       {children ?? `${sources.length === 0 ? 0 : currentIndex + 1}/${sources.length}`}
     </span>
@@ -364,19 +363,8 @@ function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
 
   return (
     <>
-      <div
-        data-control-ui="inline-citation"
-        data-control-family="inline-citation"
-        data-slot="source-header"
-        className="flex items-center gap-2"
-      >
-        <SourceFavicon
-          data-control-ui="inline-citation"
-          data-slot="source-favicon"
-          href={source.href}
-          faviconSrc={source.faviconSrc}
-          className="size-5"
-        />
+      <div data-control-ui="inline-citation" data-control-family="inline-citation" data-slot="source-header" className="flex items-center">
+        <SourceFavicon data-control-ui="inline-citation" data-slot="source-favicon" href={source.href} faviconSrc={source.faviconSrc} />
         <span
           data-control-ui="inline-citation"
           data-control-family="inline-citation"
@@ -393,7 +381,7 @@ function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
         href={source.href}
         target="_blank"
         rel="noreferrer noopener"
-        className="group/source-title flex min-w-0 items-start gap-2"
+        className="group/source-title flex min-w-0 items-start"
       >
         <span className="min-w-0 flex-1 wrap-anywhere">{source.title ?? hostname}</span>
         <ExternalLink
@@ -401,7 +389,7 @@ function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
           data-control-family="inline-citation"
           data-slot="source-external-icon"
           aria-hidden="true"
-          className="mt-0.5 size-3.5 shrink-0"
+          className="shrink-0"
         />
       </a>
       {source.description ? (
@@ -410,7 +398,7 @@ function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
         </p>
       ) : null}
       {source.quote ? (
-        <blockquote data-control-ui="inline-citation" data-control-family="inline-citation" data-slot="source-quote" className="px-3 py-2">
+        <blockquote data-control-ui="inline-citation" data-control-family="inline-citation" data-slot="source-quote">
           “{source.quote}”
         </blockquote>
       ) : null}
@@ -423,7 +411,7 @@ export function InlineCitationSource({ source: sourceProp, className, children, 
   const source = sourceProp ?? currentSource;
   // custom children read CURRENT source, so cloning them would send incoming content out instead of outgoing one
   const slides = !sourceProp && !children;
-  const panelClassName = cn("grid gap-3 p-4", className);
+  const panelClassName = cn("grid", className);
   const sourceStyle = style;
   const enteringStyle: SourcePanelStyle | undefined =
     slides && entering?.previousHeight ? { "--aui-slide-prev-height": `${entering.previousHeight}px`, ...sourceStyle } : sourceStyle;

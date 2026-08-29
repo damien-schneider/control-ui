@@ -16,6 +16,21 @@
     transition-property: background-color, box-shadow, color, outline-color, scale;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+    gap: calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="item"][data-slot="content"]) {
+    gap: calc(var(--spacing) * 0.5);
+  }
+
+  :where([data-control-family="item"][data-slot="actions"]) {
+    gap: calc(var(--spacing) * 1.5);
+  }
+
+  :where([data-control-family="item"][data-slot="header"]),
+  :where([data-control-family="item"][data-slot="footer"]) {
+    gap: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="item"][data-slot="root"][data-variant="outline"]) {
@@ -49,6 +64,7 @@
   }
 
   :where([data-control-family="item"][data-slot="title"]) {
+    gap: calc(var(--spacing) * 2);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
     line-height: 1;

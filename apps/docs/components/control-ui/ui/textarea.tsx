@@ -13,7 +13,7 @@ export function Textarea({ className, ...props }: TextareaProps) {
       data-slot="root"
       data-control-family="field"
       data-control="true"
-      className={cn("field-sizing-content min-h-16 max-h-64 w-full min-w-0 resize-none px-3 py-2", className)}
+      className={cn("field-sizing-content w-full min-w-0 resize-none", className)}
       {...props}
     />
   );

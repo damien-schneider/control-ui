@@ -4,7 +4,7 @@
       min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) +
       clamp(0px, calc(min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--cui-toolbar-padding))
     );
-    --cui-toolbar-padding: 0.25rem;
+    --cui-toolbar-padding: calc(var(--spacing) * 1);
     --cui-toolbar-background: oklch(from var(--card) l c h / 0.72);
     --cui-toolbar-foreground: var(--foreground);
     --cui-toolbar-border-color: var(--border);
@@ -24,6 +24,7 @@
     background-color: var(--cui-toolbar-background);
     color: var(--cui-toolbar-foreground);
     box-shadow: var(--cui-toolbar-shadow);
+    gap: calc(var(--spacing) * 1);
   }
 
   :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"]) {
@@ -42,14 +43,34 @@
   :where([data-control-family="toolbar"][data-slot="button"]),
   :where([data-control-family="toolbar"][data-slot="link"]),
   :where([data-control-family="toolbar"][data-slot="input"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 2);
     border-radius: var(--cui-toolbar-item-radius);
     background-color: var(--cui-toolbar-item-background);
     box-shadow: var(--cui-toolbar-item-shadow);
     color: var(--cui-toolbar-item-foreground);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     transition-property: background-color, color, box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="group"]) {
+    gap: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="toolbar"][data-slot="button"][data-icon-only]) {
+    aspect-ratio: 1 / 1;
+    padding-inline: 0;
+  }
+
+  :where([data-control-family="toolbar"][data-slot="separator"][data-orientation="vertical"]) {
+    inline-size: 1px;
+  }
+
+  :where([data-control-family="toolbar"][data-slot="separator"][data-orientation="horizontal"]) {
+    block-size: 1px;
+    inline-size: 100%;
   }
 
   @media (hover: hover) {
@@ -91,11 +112,14 @@
     --_toolbar-track-font-size: var(--text-caption);
     --_toolbar-track-active-hover-foreground: var(--muted-foreground);
     font-size: var(--_toolbar-track-font-size);
+    gap: calc(var(--spacing) * 1);
+    padding-inline: calc(var(--spacing) * 1);
   }
 
   @media (width >= 40rem) {
     :where([data-control-family="toolbar"][data-slot="link"][data-variant="track"]) {
       --_toolbar-track-font-size: var(--text-label);
+      padding-inline: calc(var(--spacing) * 1.5);
     }
   }
 

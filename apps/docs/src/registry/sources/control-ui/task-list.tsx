@@ -112,7 +112,7 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
       data-control-ui="task-list"
       data-control-family="task-list"
       data-slot="trigger"
-      className={cn("flex w-full items-center gap-2 px-3 py-2", className)}
+      className={cn("flex w-full items-center", className)}
       {...props}
     >
       {children ?? (
@@ -124,7 +124,7 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
             data-control-ui="task-list"
             data-control-family="task-list"
             data-slot="chevron"
-            className="size-3.5 shrink-0"
+            className="shrink-0"
           />
           {/* expanded list already shows current task, so pill's preview hides while open */}
           <TaskListLabel className="in-data-[state=open]:hidden" />
@@ -174,7 +174,7 @@ export function TaskListContent({ className, children, ...props }: TaskListConte
         data-control-ui="task-list"
         data-control-family="task-list"
         data-slot="items"
-        className={cn("flex flex-col gap-0.5 px-2 pb-2", className)}
+        className={cn("flex flex-col", className)}
         {...props}
       >
         {children}
@@ -202,7 +202,7 @@ export function TaskListItem({ label, status = "pending", className, children, .
       data-control-family="task-list"
       data-slot="item"
       data-status={status}
-      className={cn("flex items-center gap-2 px-1.5 py-1", className)}
+      className={cn("flex items-center", className)}
       {...props}
     >
       <TaskListIndicator status={status} />

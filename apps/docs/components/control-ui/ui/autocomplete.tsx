@@ -109,7 +109,7 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
         data-control="true"
         data-control-family="field"
         data-size={size}
-        className={cn("w-full min-w-0 pr-9 disabled:cursor-not-allowed", controlSize({ size }), className)}
+        className={cn("w-full min-w-0 disabled:cursor-not-allowed", controlSize({ size }), className)}
         {...props}
       />
       <AutocompleteClear className="absolute right-1.5 top-1/2 -translate-y-1/2" />
@@ -175,7 +175,7 @@ export function AutocompleteEmpty({ className, children, ...props }: Autocomplet
       data-control-family="popup"
       data-popup-kind="autocomplete"
       data-slot="empty"
-      className={cn("px-[calc(var(--padding-x)*0.5)] py-6 empty:h-0 empty:overflow-hidden empty:p-0", className)}
+      className={cn("px-[calc(var(--padding-x)*0.5)] empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}
     >
       {children}
@@ -195,7 +195,7 @@ export function AutocompleteItem<Value = unknown>({ className, children, disable
       className={cn(popupItemStructureClasses, className)}
       {...props}
     >
-      <span className="flex min-w-0 flex-1 items-center gap-2 truncate">{children}</span>
+      <span className="flex min-w-0 flex-1 items-center truncate">{children}</span>
     </AutocompletePrimitive.Item>
   );
 }
@@ -207,7 +207,7 @@ export function AutocompleteGroup({ className, children, ...props }: Autocomplet
       data-control-family="field"
       data-field-kind="autocomplete"
       data-slot="group"
-      className={cn("py-1", className)}
+      className={className}
       {...props}
     >
       {children}
@@ -223,7 +223,7 @@ export function AutocompleteGroupLabel({ className, children, ...props }: Autoco
       data-slot="group-label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-[calc(var(--padding-x)*0.5)] py-1", className)}
+      className={cn("px-[calc(var(--padding-x)*0.5)]", className)}
       {...props}
     >
       {children}

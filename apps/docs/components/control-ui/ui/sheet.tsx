@@ -53,11 +53,7 @@ export function SheetContent({ className, children, side = "right", ...props }: 
         data-slot="content"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn(
-          "fixed inset-y-0 z-[71] flex h-full w-3/4 max-w-sm flex-col gap-4",
-          side === "left" ? "left-0" : "right-0",
-          className,
-        )}
+        className={cn("fixed inset-y-0 z-[71] flex h-full w-3/4 max-w-sm flex-col", side === "left" ? "left-0" : "right-0", className)}
         {...props}
         data-side={side}
       >
@@ -74,7 +70,7 @@ export function SheetHeader({ className, ...props }: ComponentProps<"div"> & { s
       data-control-family="popup"
       data-popup-kind="sheet"
       data-slot="header"
-      className={cn("flex flex-col gap-1.5 p-4", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );

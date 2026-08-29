@@ -66,11 +66,7 @@ export function Switch({
       id={id}
       nativeButton
       render={<button type="button" />}
-      className={cn(
-        "relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center p-0.5",
-        "data-[disabled]:cursor-not-allowed",
-        className,
-      )}
+      className={cn("relative inline-flex shrink-0 cursor-pointer items-center", "data-[disabled]:cursor-not-allowed", className)}
       {...props}
     >
       <SwitchPrimitive.Thumb

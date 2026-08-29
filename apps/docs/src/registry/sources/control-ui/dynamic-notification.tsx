@@ -237,7 +237,7 @@ export function DynamicNotificationPill({ className, children, onClick, ...props
       data-slot="pill"
       onClick={handleClick}
       disabled={disabled}
-      className={cn("absolute inset-0 flex cursor-pointer items-center justify-center gap-2 px-4", className)}
+      className={cn("absolute inset-0 flex cursor-pointer items-center justify-center", className)}
       {...props}
     >
       {children}
@@ -255,7 +255,7 @@ export function DynamicNotificationIndicator({ className, ...props }: DynamicNot
       data-control-ui="dynamic-notification"
       data-control-family="dynamic-notification"
       data-slot="indicator"
-      className={cn("size-2 shrink-0", className)}
+      className={cn("shrink-0", className)}
       {...props}
     />
   );
@@ -273,7 +273,7 @@ export function DynamicNotificationContent({ className, id, ...props }: DynamicN
       data-control-ui="dynamic-notification"
       data-control-family="dynamic-notification"
       data-slot="content"
-      className={cn("flex flex-col gap-2.5 px-4 pt-3 pb-3.5", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );
@@ -344,7 +344,7 @@ export function DynamicNotificationReply({ className, onSubmit, ...props }: Dyna
       data-control-family="dynamic-notification"
       data-slot="reply"
       onSubmit={handleSubmit}
-      className={cn("flex items-center gap-2", className)}
+      className={cn("flex items-center", className)}
       {...props}
     />
   );
@@ -380,7 +380,7 @@ export function DynamicNotificationReplyInput({ className, onChange, disabled, .
       value={reply}
       onChange={handleChange}
       disabled={disabled ?? contextDisabled}
-      className={cn("h-9 min-w-0 flex-1 px-3.5 disabled:cursor-not-allowed", className)}
+      className={cn("min-w-0 flex-1 disabled:cursor-not-allowed", className)}
       {...props}
     />
   );
@@ -437,7 +437,7 @@ export function DynamicNotificationClose({ className, children, onClick, ...prop
       shape="circle"
       aria-label="Dismiss"
       onClick={handleClick}
-      className={cn("-mr-1.5 shrink-0", className)}
+      className={cn("shrink-0", className)}
       {...props}
     >
       {children ?? (

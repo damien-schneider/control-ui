@@ -12,13 +12,6 @@ export type SpinnerProps = Omit<
 > & { style?: CSSProperties & SpinnerKnobStyle };
 
 // Deliberately outside motion kill-switch — loader must keep turning under reduced motion.
-const spinnerSize = {
-  xs: "size-3",
-  sm: "size-4",
-  md: "size-5",
-  lg: "size-6",
-} as const;
-
 export function Spinner({ size = "sm", className, ...props }: SpinnerProps) {
   return (
     <span
@@ -29,13 +22,7 @@ export function Spinner({ size = "sm", className, ...props }: SpinnerProps) {
       className={cn("inline-flex", className)}
       {...props}
     >
-      <Loader2
-        aria-hidden="true"
-        data-control-ui="spinner"
-        data-control-family="spinner"
-        data-slot="indicator"
-        className={spinnerSize[size]}
-      />
+      <Loader2 aria-hidden="true" data-control-ui="spinner" data-control-family="spinner" data-slot="indicator" data-size={size} />
       <span className="sr-only">Loading</span>
     </span>
   );

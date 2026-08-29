@@ -128,7 +128,7 @@ export function EnvironmentVariablesRoot<TRow extends EnvironmentVariableRow = E
         data-surface="panel"
         data-disabled={disabled ? "true" : undefined}
         data-readonly={readOnly ? "true" : undefined}
-        className={cn("flex min-w-0 flex-col gap-4", className)}
+        className={cn("flex min-w-0 flex-col", className)}
         onSubmit={handleSubmit}
         {...props}
       >
@@ -199,7 +199,7 @@ function EnvironmentVariablesComponent<TRow extends EnvironmentVariableRow = Env
           {!hideDefaultActions && (
             <EnvironmentVariablesActions>
               <EnvironmentVariablesAddButton>{addLabel}</EnvironmentVariablesAddButton>
-              <div className="flex min-w-0 items-center gap-2">
+              <div className="flex min-w-0 items-center">
                 <EnvironmentVariablesResetButton>{resetLabel}</EnvironmentVariablesResetButton>
                 {onSubmit ? <EnvironmentVariablesSubmitButton>{submitLabel}</EnvironmentVariablesSubmitButton> : null}
               </div>
@@ -223,7 +223,7 @@ export function EnvironmentVariablesHeader({ title, description, className, chil
         data-control-ui="environment-variables"
         data-control-family="environment-variables"
         data-slot="header"
-        className={cn("flex flex-col gap-1", className)}
+        className={cn("flex flex-col", className)}
         {...props}
       >
         {children}
@@ -238,7 +238,7 @@ export function EnvironmentVariablesHeader({ title, description, className, chil
       data-control-ui="environment-variables"
       data-control-family="environment-variables"
       data-slot="header"
-      className={cn("flex flex-col gap-1", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     >
       {title ? (
@@ -271,7 +271,7 @@ export function EnvironmentVariablesToolbar({ className, children, ...props }: E
       data-control-ui="environment-variables"
       data-control-family="environment-variables"
       data-slot="toolbar"
-      className={cn("flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center", className)}
+      className={cn("flex min-w-0 flex-col sm:flex-row sm:items-center", className)}
       {...props}
     >
       {children ?? (
@@ -368,7 +368,7 @@ export function EnvironmentVariablesRows({ rowErrors, className, children, ...pr
             data-control-family="environment-variables"
             data-slot="column-labels"
             className={cn(
-              "hidden min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] gap-2 px-1 pb-1 sm:grid",
+              "hidden min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] sm:grid",
               readOnly && "grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]",
             )}
           >
@@ -424,13 +424,10 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
       data-control-ui="environment-variables"
       data-control-family="environment-variables"
       data-slot="row"
-      className={cn(
-        "relative grid min-w-0 gap-3 py-2 pr-9 pl-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] sm:gap-2 sm:px-1",
-        className,
-      )}
+      className={cn("relative grid min-w-0 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto]", className)}
       {...props}
     >
-      <div className="flex min-w-0 flex-col gap-1.5">
+      <div className="flex min-w-0 flex-col">
         <label
           data-control-ui="environment-variables"
           data-control-family="environment-variables"
@@ -460,7 +457,7 @@ export function EnvironmentVariablesRow({ row, index, rowErrors, className, ...p
         ) : null}
       </div>
 
-      <div className="flex min-w-0 flex-col gap-1.5">
+      <div className="flex min-w-0 flex-col">
         <label
           data-control-ui="environment-variables"
           data-control-family="environment-variables"
@@ -634,7 +631,7 @@ export function EnvironmentVariablesActions({ className, ...props }: Environment
       data-control-ui="environment-variables"
       data-control-family="environment-variables"
       data-slot="actions"
-      className={cn("flex min-w-0 items-center justify-between gap-2", className)}
+      className={cn("flex min-w-0 items-center justify-between", className)}
       {...props}
     />
   );
@@ -655,7 +652,7 @@ export function EnvironmentVariablesMessage({ error, className, children, ...pro
       data-control-ui="environment-variables"
       data-control-family="environment-variables"
       data-slot="message"
-      className={cn("flex items-start gap-2 px-3 py-2", className)}
+      className={cn("flex items-start", className)}
       {...props}
     >
       <AlertTriangleIcon aria-hidden="true" className="mt-0.5 size-3.5 shrink-0" />
@@ -703,14 +700,14 @@ export function EnvironmentVariablesReadOnlyList({
       data-control-ui="environment-variables"
       data-control-family="environment-variables"
       data-slot="readonly-list"
-      className={cn("flex flex-col gap-1", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     >
       {children ??
         (filledRows.length > 0 ? (
           filledRows.map((row) => <EnvironmentVariablesReadOnlyItem key={row.key} name={row.key} value={row.value} />)
         ) : (
-          <div data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="empty" className="px-3 py-4">
+          <div data-control-ui="environment-variables" data-control-family="environment-variables" data-slot="empty">
             {emptyMessage}
           </div>
         ))}
@@ -737,7 +734,7 @@ export function EnvironmentVariablesReadOnlyItem({
       data-control-ui="environment-variables"
       data-control-family="environment-variables"
       data-slot="readonly-item"
-      className={cn("grid min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3 px-1 py-2", className)}
+      className={cn("grid min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]", className)}
       {...props}
     >
       <span

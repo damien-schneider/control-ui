@@ -143,7 +143,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and the stock motion tempo.
 - [Modern Apple](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.
 - [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
-- [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 4px radius, hairline borders instead of elevation, and pill-shaped filled actions.
+- [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.
 
 ## Hooks
 

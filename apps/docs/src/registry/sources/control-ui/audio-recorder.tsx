@@ -64,7 +64,7 @@ export function AudioRecorder({
         role="group"
         aria-label={label}
         aria-disabled={recorder.isDisabled || undefined}
-        className={cn("flex min-h-8 w-full min-w-0 max-w-full items-center gap-2 pr-1", className)}
+        className={cn("flex w-full min-w-0 max-w-full items-center", className)}
         {...props}
       >
         {children ?? <AudioRecorderDefaultLayout points={barCount} />}
@@ -87,12 +87,7 @@ function AudioRecorderDefaultLayout({ points }: { points?: number }) {
         <AudioRecorderVisualizer points={points} className="col-start-1 row-start-1 w-full" />
       </div>
       <AudioRecorderDuration />
-      <div
-        data-control-ui="audio-recorder"
-        data-control-family="audio-recorder"
-        data-slot="actions"
-        className="flex shrink-0 items-center gap-1"
-      >
+      <div data-control-ui="audio-recorder" data-control-family="audio-recorder" data-slot="actions" className="flex shrink-0 items-center">
         <AudioRecorderCancel />
         <AudioRecorderSubmit />
       </div>
@@ -240,7 +235,7 @@ export function AudioRecorderDuration({ className, children, ...props }: AudioRe
       data-slot="duration"
       data-visible={isVisible ? "true" : undefined}
       aria-hidden={!isVisible}
-      className={cn("w-10 shrink-0", className)}
+      className={cn("shrink-0", className)}
       {...props}
     >
       {children ?? formatAudioRecorderDuration(recorder.durationMs)}

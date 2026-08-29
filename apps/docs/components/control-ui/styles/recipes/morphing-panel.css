@@ -23,18 +23,32 @@
   }
 
   :where([data-control-ui="morphing-panel"][data-slot="trigger"]) {
+    inline-size: 100%;
+    block-size: 100%;
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 4);
     border-radius: inherit;
     outline: none;
     color: currentColor;
     font-size: var(--text-body);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     transition-property: top, right, width, height, border-radius, padding, color, background-color, box-shadow;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-emphasized);
   }
 
   :where([data-control-ui="morphing-panel"][data-slot="trigger"][data-state="open"]) {
+    inline-size: calc(var(--spacing) * 9);
+    block-size: calc(var(--spacing) * 9);
+    padding: 0;
     border-radius: var(--radius-control);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-ui="morphing-panel"][data-slot="trigger"][data-state="open"]) {
+      inline-size: calc(var(--spacing) * 11);
+      block-size: calc(var(--spacing) * 11);
+    }
   }
 
   @media (hover: hover) {

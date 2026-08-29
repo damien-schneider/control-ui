@@ -55,41 +55,27 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
   floating: {
     bottom: {
       viewport:
-        "items-end justify-center p-2 pb-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-bottom))]",
+        "items-end justify-center pb-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-bottom))]",
       popup: "w-full max-h-[85vh]",
     },
     top: {
-      viewport:
-        "items-start justify-center p-2 pt-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-top))]",
+      viewport: "items-start justify-center pt-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-top))]",
       popup: "w-full max-h-[85vh]",
     },
     right: {
       viewport:
-        "items-stretch justify-end p-2 pr-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-right))]",
+        "items-stretch justify-end pr-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-right))]",
       popup: "w-3/4 max-w-sm",
     },
     left: {
       viewport:
-        "items-stretch justify-start p-2 pl-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-left))]",
+        "items-stretch justify-start pl-[var(--_drawer-float-gap)] [--_drawer-float-gap:max(--spacing(2),env(safe-area-inset-left))]",
       popup: "w-3/4 max-w-sm",
     },
   },
 };
 
 // inset belongs to handle, not popup padding — under padding="none" pill would otherwise sit flush against rounded edge
-const handleGap: Record<"bottom" | "top", string> = {
-  bottom: "mt-2.5 mb-1",
-  top: "order-last mt-1 mb-2.5",
-};
-
-// skips grabbed edge, whose inset handleGap already owns
-const contentPadding: Record<DrawerSide, string> = {
-  bottom: "pb-4",
-  top: "pt-4",
-  right: "py-4",
-  left: "py-4",
-};
-
 export function Drawer(props: ComponentProps<typeof DrawerPrimitive.Root> & { side?: DrawerSide }) {
   const { side = "bottom", swipeDirection, ...rest } = props;
   return <DrawerPrimitive.Root swipeDirection={swipeDirection ?? swipeFor[side]} {...rest} />;
@@ -160,6 +146,8 @@ export function DrawerContent({
         data-control-family="popup"
         data-popup-kind="drawer"
         data-slot="viewport"
+        data-side={side}
+        data-variant={variant}
         data-skin={skinId()}
         data-effects={skinEffects()}
         className={cn("fixed inset-0 z-[71] flex", place.viewport)}
@@ -175,20 +163,22 @@ export function DrawerContent({
           data-padding={padding}
           data-surface-variant={surface}
           data-variant={variant}
-          className={cn("flex flex-col gap-4", padding === "default" && contentPadding[side], place.popup, className)}
+          className={cn("flex flex-col", place.popup, className)}
           style={style}
           {...props}
         >
           {grabbable ? (
-            <div
-              data-control-ui="drawer"
-              data-control-family="popup"
-              data-popup-kind="drawer"
-              data-slot="handle"
-              className={cn("mx-auto h-1.5 w-12 shrink-0", handleGap[side])}
-            />
+            <div data-control-ui="drawer" data-control-family="popup" data-popup-kind="drawer" data-slot="handle" className="shrink-0" />
           ) : null}
-          <DrawerPrimitive.Content className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto">{children}</DrawerPrimitive.Content>
+          <DrawerPrimitive.Content
+            data-control-ui="drawer"
+            data-control-family="popup"
+            data-popup-kind="drawer"
+            data-slot="scroll"
+            className="flex min-h-0 flex-1 flex-col overflow-y-auto"
+          >
+            {children}
+          </DrawerPrimitive.Content>
         </DrawerPrimitive.Popup>
       </DrawerPrimitive.Viewport>
     </DrawerPrimitive.Portal>
@@ -202,7 +192,7 @@ export function DrawerHeader({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="drawer"
       data-slot="header"
-      className={cn("flex flex-col gap-1.5 px-4", className)}
+      className={cn("flex flex-col", className)}
       {...props}
     />
   );
@@ -215,7 +205,7 @@ export function DrawerFooter({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="drawer"
       data-slot="footer"
-      className={cn("mt-auto flex flex-col gap-2 px-4", className)}
+      className={cn("mt-auto flex flex-col", className)}
       {...props}
     />
   );

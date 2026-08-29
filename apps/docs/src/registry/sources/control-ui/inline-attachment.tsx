@@ -88,50 +88,40 @@ function GeneratingPlaceholder() {
 
 function DocumentPlaceholder() {
   return (
-    <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document" className="size-full p-5">
-      <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-sheet" className="h-full p-4">
-        <div
-          data-control-ui="inline-attachment"
-          data-control-family="inline-attachment"
-          data-slot="document-heading"
-          className="h-2 w-20"
-        />
-        <div className="mt-5 grid gap-2">
+    <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document" className="size-full">
+      <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-sheet" className="h-full">
+        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-heading" className="" />
+        <div className="grid">
           <div
             data-control-ui="inline-attachment"
             data-control-family="inline-attachment"
             data-slot="document-line"
             data-width="long"
-            className="h-1.5 w-44"
+            className=""
           />
           <div
             data-control-ui="inline-attachment"
             data-control-family="inline-attachment"
             data-slot="document-line"
             data-width="medium"
-            className="h-1.5 w-36"
+            className=""
           />
           <div
             data-control-ui="inline-attachment"
             data-control-family="inline-attachment"
             data-slot="document-line"
             data-width="longest"
-            className="h-1.5 w-48"
+            className=""
           />
           <div
             data-control-ui="inline-attachment"
             data-control-family="inline-attachment"
             data-slot="document-line"
             data-width="short"
-            className="h-1.5 w-28"
+            className=""
           />
         </div>
-        <div
-          data-control-ui="inline-attachment"
-          data-control-family="inline-attachment"
-          data-slot="document-stamp"
-          className="mt-5 h-9 w-24"
-        />
+        <div data-control-ui="inline-attachment" data-control-family="inline-attachment" data-slot="document-stamp" className="" />
       </div>
     </div>
   );
@@ -180,7 +170,7 @@ export function InlineAttachmentContent({ className, ...props }: InlineAttachmen
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="content"
-      className={cn("absolute inset-x-3 bottom-3 px-3 py-1", className)}
+      className={cn("absolute inset-x-3 bottom-3", className)}
       {...props}
     />
   );
@@ -226,7 +216,7 @@ export function InlineAttachmentActions({ className, ...props }: InlineAttachmen
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="actions"
-      className={cn("mt-1 flex items-center gap-1", className)}
+      className={cn("flex items-center", className)}
       {...props}
     />
   );
@@ -240,7 +230,7 @@ export function InlineAttachmentAction({ className, ...props }: InlineAttachment
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="action"
-      className={cn("px-1.5 py-0.5", className)}
+      className={cn(className)}
       {...props}
     />
   );

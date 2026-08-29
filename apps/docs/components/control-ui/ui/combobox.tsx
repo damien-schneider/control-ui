@@ -139,7 +139,7 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
         data-control="true"
         data-control-family="field"
         data-size={size}
-        className={cn("w-full min-w-0 pr-9 disabled:cursor-not-allowed", controlSize({ size }), className)}
+        className={cn("w-full min-w-0 disabled:cursor-not-allowed", controlSize({ size }), className)}
         {...props}
       />
       <ComboboxTrigger className="absolute right-1.5 top-1/2 -translate-y-1/2" />
@@ -203,7 +203,7 @@ export function ComboboxEmpty({ className, children, ...props }: ComboboxEmptyPr
       data-control-family="popup"
       data-popup-kind="combobox"
       data-slot="empty"
-      className={cn("px-[calc(var(--padding-x)*0.5)] py-6 empty:h-0 empty:overflow-hidden empty:p-0", className)}
+      className={cn("px-[calc(var(--padding-x)*0.5)] empty:h-0 empty:overflow-hidden empty:p-0", className)}
       {...props}
     >
       {children}
@@ -230,7 +230,7 @@ export function ComboboxItem<Value = unknown>({ className, children, disabled, v
       className={cn(popupItemStructureClasses, className)}
       {...props}
     >
-      <span className="flex min-w-0 flex-1 items-center gap-2 truncate">{children}</span>
+      <span className="flex min-w-0 flex-1 items-center truncate">{children}</span>
       <span
         data-control-ui="combobox"
         data-popup-kind="combobox"
@@ -255,7 +255,7 @@ export function ComboboxGroup({ className, children, ...props }: ComboboxGroupPr
       data-control-family="field"
       data-field-kind="combobox"
       data-slot="group"
-      className={cn("py-1", className)}
+      className={className}
       {...props}
     >
       {children}
@@ -271,7 +271,7 @@ export function ComboboxGroupLabel({ className, children, ...props }: ComboboxGr
       data-slot="group-label"
       data-control-family="popup"
       data-popup-part="label"
-      className={cn("px-[calc(var(--padding-x)*0.5)] py-1", className)}
+      className={cn("px-[calc(var(--padding-x)*0.5)]", className)}
       {...props}
     >
       {children}

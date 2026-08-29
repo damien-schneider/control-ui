@@ -6,6 +6,8 @@
     --cui-alert-shadow: none;
     --_alert-foreground: var(--card-foreground);
     --_alert-description-color: var(--muted-foreground);
+    row-gap: calc(var(--spacing) * 0.5);
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
     border: 1px solid var(--cui-alert-border-color);
     border-radius: var(--cui-alert-radius);
     background: var(--cui-alert-background);
@@ -21,7 +23,12 @@
     --_alert-description-color: oklch(from var(--destructive-text) l c h / 0.9);
   }
 
+  :where([data-control-family="alert"][data-slot="root"]:has(> svg)) {
+    column-gap: calc(var(--spacing) * 3);
+  }
+
   :where([data-control-family="alert"][data-slot="description"]) {
+    gap: calc(var(--spacing) * 1);
     color: var(--_alert-description-color);
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
@@ -32,6 +39,7 @@
   }
 
   :where([data-control-family="alert"][data-slot="title"]) {
+    min-block-size: calc(var(--spacing) * 4);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--tracking-tight);
   }

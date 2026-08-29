@@ -7,7 +7,7 @@
     --cui-tree-item-trigger-selected-background: oklch(from var(--foreground) l c h / 0.06);
     --cui-tree-item-trigger-selected-foreground: var(--foreground);
     --cui-tree-item-trigger-font-size: var(--text-body);
-    --cui-tree-item-trigger-selected-font-weight: 400;
+    --cui-tree-item-trigger-selected-font-weight: var(--font-weight-normal);
   }
 
   :where([data-control-family="tree"][data-slot="root"]),
@@ -16,11 +16,14 @@
   }
 
   :where([data-control-family="tree"][data-slot="item-trigger"]) {
+    gap: calc(var(--spacing) * 1.5);
+    padding-block: calc(var(--spacing) * 1);
+    padding-inline-end: calc(var(--spacing) * 2);
     border-radius: var(--cui-tree-item-trigger-radius);
     background-color: transparent;
     color: var(--cui-tree-item-trigger-foreground);
     font-size: var(--cui-tree-item-trigger-font-size);
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     outline: none;
   }
 
@@ -48,6 +51,8 @@
   }
 
   :where([data-control-family="tree"][data-slot="item-indicator"]) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
     color: var(--muted-foreground);
   }
 
@@ -79,7 +84,7 @@
   }
 
   :where([data-control-family="tree"][data-slot="item-content"]:is([data-starting-style], [data-ending-style]) > [data-slot="item-group"]) {
-    translate: 0 -0.25rem;
+    translate: 0 calc(var(--spacing) * -1);
   }
 }
 

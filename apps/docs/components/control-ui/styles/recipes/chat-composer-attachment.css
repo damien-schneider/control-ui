@@ -6,6 +6,7 @@
     --cui-chat-composer-attachment-shadow: var(--shadow-sm);
     --cui-chat-composer-attachment-progress-background: oklch(from var(--foreground) l c h / 0.1);
     --cui-chat-composer-attachment-progress-foreground: var(--primary);
+    block-size: calc(var(--spacing) * 14);
     text-align: left;
     border: 1px solid var(--cui-chat-composer-attachment-border-color);
     border-radius: var(--cui-chat-composer-attachment-radius);
@@ -16,6 +17,38 @@
     transition-property: background-color, border-color, box-shadow;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="list"]) {
+    gap: calc(var(--spacing) * 2);
+    padding-block: calc(var(--spacing) * 3) calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant="preview"]) {
+    inline-size: fit-content;
+    max-inline-size: calc(var(--spacing) * 40);
+    padding: calc(var(--spacing) * 1);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant="file"]) {
+    inline-size: calc(var(--spacing) * 64);
+    max-inline-size: calc(100vw - 5rem);
+    gap: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 1.5);
+    padding-inline-end: calc(var(--spacing) * 8);
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant="preview"] [data-slot="preview"]) {
+    block-size: 100%;
+    inline-size: fit-content;
+    min-inline-size: calc(var(--spacing) * 10);
+    max-inline-size: 100%;
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant="file"] [data-slot="preview"]) {
+    inline-size: calc(var(--spacing) * 10);
+    block-size: calc(var(--spacing) * 10);
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-state="uploading"]) {
@@ -54,6 +87,8 @@
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="status"]) {
+    inline-size: calc(var(--spacing) * 4);
+    block-size: calc(var(--spacing) * 4);
     border: 2px solid oklch(from var(--background) l c h / 0.75);
     border-top-color: var(--primary);
     border-radius: 9999px;
@@ -77,6 +112,9 @@
   }
 
   :where([data-control-family="button"][data-chat-composer-attachment-remove="true"]) {
+    inline-size: calc(var(--spacing) * 5);
+    block-size: calc(var(--spacing) * 5);
+    padding: 0;
     border-radius: 9999px;
     background: var(--foreground);
     color: var(--background);
@@ -90,6 +128,7 @@
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="progress"]) {
+    block-size: calc(var(--spacing) * 1);
     background: var(--cui-chat-composer-attachment-progress-background);
   }
 

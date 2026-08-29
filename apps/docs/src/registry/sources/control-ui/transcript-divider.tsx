@@ -16,7 +16,7 @@ export function TranscriptDivider({ tone = "neutral", className, children, ...pr
       data-control-family="transcript-divider"
       data-slot="root"
       data-tone={tone}
-      className={cn("my-2 flex min-w-0 items-center before:h-px before:flex-1 after:h-px after:flex-1", className)}
+      className={cn("flex min-w-0 items-center before:flex-1 after:flex-1", className)}
       {...props}
     >
       {children != null ? <TranscriptDividerLabel>{children}</TranscriptDividerLabel> : null}
@@ -32,7 +32,7 @@ export function TranscriptDividerLabel({ className, ...props }: TranscriptDivide
       data-control-ui="transcript-divider"
       data-control-family="transcript-divider"
       data-slot="label"
-      className={cn("min-w-0 truncate px-2", className)}
+      className={cn("min-w-0 truncate", className)}
       {...props}
     />
   );

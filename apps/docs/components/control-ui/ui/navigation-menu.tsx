@@ -2,7 +2,7 @@
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import type { ComponentProps, CSSProperties } from "react";
-import { buttonGapClass, controlSize } from "@/components/control-ui/control-variants";
+import { controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -67,7 +67,7 @@ export function NavigationMenuList({ className, ...props }: NavigationMenuListPr
       data-control-family="popup"
       data-popup-kind="navigation-menu"
       data-slot="list"
-      className={cn("flex flex-1 list-none items-center justify-center gap-0.5", className)}
+      className={cn("flex flex-1 list-none items-center justify-center", className)}
       {...props}
     />
   );
@@ -98,7 +98,7 @@ export function NavigationMenuTrigger({ className, children, ...props }: Navigat
       data-variant="quiet"
       data-tone="neutral"
       data-shape="default"
-      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), buttonGapClass, className)}
+      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), className)}
       {...props}
     >
       {children}
@@ -142,8 +142,8 @@ export function NavigationMenuLink({ variant = "default", className, active, chi
       data-variant={variant}
       active={active}
       className={cn(
-        "block select-none px-3 py-2",
-        variant === "compact" && "inline-flex h-[var(--control-h-sm)] items-center px-[calc(var(--padding-x)*0.75)] py-0",
+        "block select-none",
+        variant === "compact" && "inline-flex h-[var(--control-h-sm)] items-center px-[calc(var(--padding-x)*0.75)]",
         className,
       )}
       {...props}

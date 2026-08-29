@@ -256,7 +256,7 @@ export function RichTooltipContent({
           data-tone={tone}
           data-surface={isSurface ? "floating" : undefined}
           data-popup-part={isSurface ? "surface" : undefined}
-          className={cn("relative grid w-80 max-w-[calc(100vw-2rem)] gap-2 p-4", className)}
+          className={cn("relative grid w-80 max-w-[calc(100vw-2rem)]", className)}
           {...props}
         >
           {children}
@@ -300,7 +300,7 @@ export function RichTooltipMedia({ className, ...props }: ComponentProps<"div"> 
       data-control-family="popup"
       data-popup-kind="rich-tooltip"
       data-slot="media"
-      className={cn("-mx-4 -mt-4 mb-1 overflow-hidden [&_img]:w-full [&_img]:object-cover [&_video]:w-full", className)}
+      className={cn("overflow-hidden [&_img]:w-full [&_img]:object-cover [&_video]:w-full", className)}
       {...props}
     />
   );
@@ -313,7 +313,7 @@ export function RichTooltipHeader({ className, ...props }: ComponentProps<"div">
       data-control-family="popup"
       data-popup-kind="rich-tooltip"
       data-slot="header"
-      className={cn("flex items-start justify-between gap-3", className)}
+      className={cn("flex items-start justify-between", className)}
       {...props}
     />
   );
@@ -364,7 +364,7 @@ export function RichTooltipFooter({ className, ...props }: ComponentProps<"div">
       data-control-family="popup"
       data-popup-kind="rich-tooltip"
       data-slot="footer"
-      className={cn("mt-2 flex items-center justify-between gap-3", className)}
+      className={cn("flex items-center justify-between", className)}
       {...props}
     />
   );
@@ -388,7 +388,7 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
       data-slot="progress"
       data-variant={variant}
       data-tone={tone}
-      className={cn("flex items-center gap-1.5", className)}
+      className={cn("flex items-center", className)}
       {...props}
     >
       <span className="sr-only">{`Step ${tour.index + 1} of ${tour.total}`}</span>
@@ -403,7 +403,7 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
               data-popup-kind="rich-tooltip"
               data-slot="dot"
               data-active={dot === tour.index ? "true" : undefined}
-              className="size-1.5"
+              className=""
             />
           ))
         ) : (
@@ -413,8 +413,7 @@ export function RichTooltipProgress({ className, variant = "count", children, ..
   );
 }
 
-const actionClasses =
-  "inline-flex h-7 shrink-0 cursor-pointer items-center justify-center gap-1 px-2 disabled:pointer-events-none [&_svg]:size-4";
+const actionClasses = "inline-flex shrink-0 cursor-pointer items-center justify-center disabled:pointer-events-none [&_svg]:size-4";
 
 export function RichTooltipPrevious({
   className,
@@ -505,7 +504,7 @@ export function RichTooltipClose({
       data-control-family="popup"
       data-popup-kind="rich-tooltip"
       data-slot="close"
-      className={cn(actionClasses, "-mr-1 size-7 px-0", className)}
+      className={cn(actionClasses, className)}
       {...props}
     >
       {children ?? (

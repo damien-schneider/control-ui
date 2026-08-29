@@ -57,7 +57,7 @@ export function InputOTPSeparator({ className, ...props }: InputOTPSeparatorProp
       data-control-family="field"
       data-field-kind="input-otp"
       data-slot="separator"
-      className={cn("h-px w-2.5 shrink-0", className)}
+      className={cn("shrink-0", className)}
       {...props}
     />
   );
@@ -71,7 +71,7 @@ export function InputOTP({ length = 6, separator = false, className, children, .
       data-field-kind="input-otp"
       data-slot="root"
       length={length}
-      className={cn("flex items-center gap-2", className)}
+      className={cn("flex items-center", className)}
       {...props}
     >
       {children ??
