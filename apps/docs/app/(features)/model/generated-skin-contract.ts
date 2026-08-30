@@ -14380,6 +14380,12 @@ export const generatedSkinContract: SkinContract = {
     ],
     switch: [
       {
+        name: "--cui-switch-thumb-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--shadow-sm)",
+      },
+      {
         name: "--cui-switch-background",
         syntax: "<color>",
         initialValue: "transparent",
@@ -14534,6 +14540,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "none",
         defaultValue: "var(--shadow-sm)",
+      },
+      {
+        name: "--cui-tabs-list-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.06)",
       },
       {
         name: "--cui-tabs-border-color",

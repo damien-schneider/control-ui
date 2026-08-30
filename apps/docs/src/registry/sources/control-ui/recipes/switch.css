@@ -9,6 +9,7 @@
     --cui-switch-checked-hover-background: oklch(from var(--primary) l c h / 0.9);
     --cui-switch-thumb-radius: 9999px;
     --cui-switch-thumb-background: var(--background);
+    --cui-switch-thumb-shadow: var(--shadow-sm);
     border-radius: calc(infinity * 1px);
     background: var(--cui-switch-background);
     outline: none;
@@ -50,7 +51,7 @@
   :where([data-control-family="switch"][data-slot="thumb"]) {
     border-radius: var(--cui-switch-thumb-radius);
     background: var(--cui-switch-thumb-background);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--cui-switch-thumb-shadow);
     width: calc(var(--spacing) * 4);
     height: calc(var(--spacing) * 4);
     transition-property: translate, width;
@@ -104,6 +105,11 @@
     --_switch-thumb-translate: calc(var(--spacing) * 3) 0;
     translate: var(--_switch-thumb-translate);
   }
+}
+
+@property --cui-switch-thumb-shadow {
+  syntax: "*";
+  inherits: true;
 }
 
 @property --cui-switch-background {

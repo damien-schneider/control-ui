@@ -155,7 +155,7 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
       />
       <div className="grid min-w-0 gap-4">
         {families.map((family) => (
-          <div key={family.id} className="min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
+          <div key={family.id} className="min-w-0 overflow-hidden rounded-panel border border-border/70 bg-card shadow-sm">
             <div className="flex items-baseline justify-between gap-3 border-b border-border/70 bg-muted/30 px-4 py-2 text-caption text-muted-foreground">
               <span>
                 <KnobFamilyName id={family.id} href={family.href} /> · {family.knobs.length} knobs

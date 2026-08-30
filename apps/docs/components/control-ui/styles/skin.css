@@ -1,1 +1,143 @@
-/* Refined needs no pack-specific structural CSS; installing this file clears the previous pack's structural layer. */
+/* Only what Tailwind classes cannot say — everything else lives in skin.config or theme.css. */
+
+/* Refined separates surfaces with light, never a line. Raised chrome catches a top gloss and drops a soft shadow;
+   recessed chrome sinks under an inner one. Recess comes in two depths because blur has to match the anatomy: a
+   diffuse well fills a 20px chip with haze instead of reading as depth, so small chrome gets a tight top lip.
+   All of it is pack vars, not contract tokens, because the shared --shadow-* tiers have no inset rung. */
+[data-skin="refined"] {
+  /* Every surface is rimmed: the rim draws the edge, the shadow gives it depth. A recessed edge catches the
+     light, so its rim is a step lighter than the surface it cuts into — which lands on white over paper and on
+     a faint lift in the dark. Raised chrome keeps the plain --border hairline; without both halves the well
+     reads as a smudge instead of an engraving. */
+  --refined-rim: oklch(from var(--secondary) calc(l + 0.04) c h);
+
+  --refined-gloss: inset 0 1.4px 1px 0 var(--shadow-highlight);
+  --refined-lift: 0 2px 4px 0 oklch(from var(--shadow-color) l c h / 0.05), 0 14px 20px 0 oklch(from var(--shadow-color) l c h / 0.05);
+  --refined-lift-sm: 0 2.5px 6px 0 oklch(from var(--shadow-color) l c h / 0.1);
+
+  /* Surfaces deep enough to hold content sink all round; anything shorter takes the lip instead. */
+  --refined-well: inset 0 0 6px 0 oklch(from var(--shadow-color) l c h / 0.18);
+  --refined-press:
+    inset 0 2px 4px -2px oklch(from var(--shadow-color) l c h / 0.18), inset 0 1px 1px 0 oklch(from var(--shadow-color) l c h / 0.18);
+
+  /* A solid button carries no drop shadow at all — it reads raised from a rim one step lighter than its own fill. */
+  --refined-solid-rim: 0 0 0 1.4px oklch(from var(--primary) calc(l + 0.28) c h);
+
+  /* A saturated fill swallows both: the rim has to go darker than the fill to survive, and the drop needs three
+     times the density to show under it. Ring, gloss and drop together are the only place all three stack. */
+  --refined-tint-emboss:
+    0 0 0 1px oklch(from var(--destructive) calc(l - 0.11) c h), inset 0 1.4px 1px 0 oklch(1 0 0 / 0.12),
+    0 1.4px 4px 0 oklch(from var(--shadow-color) l c h / 0.3);
+}
+
+/* Ink and paper swap, so the rim that was lighter than the fill has to go darker to stay a rim. */
+:where(.dark) [data-skin="refined"],
+.dark[data-skin="refined"] {
+  --refined-solid-rim: 0 0 0 1.4px oklch(from var(--primary) calc(l - 0.28) c h);
+}
+
+@layer base {
+  /* Body-level, not a utility: type rendering is inherited, so portalled popups pick it up too. */
+  :root[data-skin="refined"] body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* ── raised ─────────────────────────────────────────────────────────────── */
+
+  [data-skin="refined"] :where([data-control-family="card"][data-slot="root"]) {
+    --cui-card-shadow: var(--refined-lift);
+  }
+
+  [data-skin="refined"]
+    :where(
+      [data-control-family="popup"][data-popup-part="surface"],
+      [data-control-family="popup"][data-popup-part="list-surface"],
+      [data-control-family="popup"][data-popup-part="bar"]
+    ) {
+    --cui-popup-shadow: var(--refined-lift);
+  }
+
+  [data-skin="refined"]
+    :where(
+      [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
+      [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
+    ) {
+    --cui-button-shadow: var(--refined-gloss), var(--refined-solid-rim);
+  }
+
+  [data-skin="refined"] :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
+    --cui-button-shadow: var(--refined-tint-emboss);
+  }
+
+  [data-skin="refined"]
+    :where(
+      [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"],
+      [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]
+    ) {
+    --cui-button-bg: var(--card);
+    --cui-button-shadow: inset 0 0 0 1px var(--border), var(--refined-lift-sm);
+    --cui-button-active-shadow: inset 0 0 0 1px oklch(from var(--primary) l c h / 0.6), var(--refined-lift-sm);
+  }
+
+  [data-skin="refined"] :where([data-control-family="range"][data-slot="root"]) {
+    --cui-range-thumb-shadow: var(--refined-lift-sm);
+  }
+
+  /* ── recessed ───────────────────────────────────────────────────────────── */
+
+  [data-skin="refined"] :where([data-control-family="field"][data-control="true"]) {
+    --cui-field-background: var(--secondary);
+    --cui-field-border-color: var(--refined-rim);
+    --cui-field-focus-border-color: var(--focus-ring);
+    --cui-field-shadow: var(--refined-well);
+  }
+
+  [data-skin="refined"] :where([data-control-family="code"][data-slot="root"]) {
+    --cui-code-background: var(--secondary);
+    --cui-code-border-color: var(--refined-rim);
+    --cui-code-shadow: var(--refined-well);
+  }
+
+  [data-skin="refined"] :where([data-control-family="tabs"][data-slot="root"]) {
+    --cui-tabs-list-background: var(--secondary);
+    --cui-tabs-list-shadow: inset 0 0 0 1px var(--refined-rim), var(--refined-well);
+    --cui-tabs-indicator-shadow: var(--refined-lift-sm);
+  }
+
+  [data-skin="refined"] :where([data-control-family="kbd"][data-slot="root"]) {
+    --cui-kbd-background: var(--secondary);
+    --cui-kbd-border-color: var(--refined-rim);
+    --cui-kbd-shadow: var(--refined-press);
+  }
+
+  /* A chip is neither raised nor sunk — it is delineated. Kraftbase rims every pill and shadows none. */
+  [data-skin="refined"] :where([data-control-family="badge"][data-slot="root"]) {
+    --cui-badge-border-color: var(--border);
+  }
+
+  [data-skin="refined"]
+    :where(
+      [data-control-family="range"][data-range-kind="slider"][data-slot="track"],
+      [data-control-family="range"][data-range-kind="progress"][data-slot="track"],
+      [data-control-family="range"][data-range-kind="meter"][data-slot="track"]
+    ) {
+    box-shadow:
+      inset 0 0 0 1px var(--refined-rim),
+      var(--refined-press);
+  }
+
+  /* A switch is the one control that inverts on state: the track is a groove until it fills, then it is a lit key. */
+  [data-skin="refined"] :where([data-control-family="switch"][data-slot="root"]) {
+    --cui-switch-thumb-shadow: var(--refined-lift-sm);
+    box-shadow:
+      inset 0 0 0 1px var(--refined-rim),
+      var(--refined-press);
+  }
+
+  [data-skin="refined"] :where([data-control-family="switch"][data-slot="root"][data-checked]) {
+    box-shadow: var(--refined-gloss), var(--refined-solid-rim);
+  }
+}

@@ -1746,6 +1746,10 @@
       "syntax": "<length-percentage>"
     },
     {
+      "name": "--cui-switch-thumb-shadow",
+      "description": "Control UI switch knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
       "name": "--cui-table-background",
       "description": "Control UI table knob — registered syntax *, fallback transparent. Re-value it under [data-skin] or per instance via style."
     },
@@ -1832,6 +1836,10 @@
       "name": "--cui-tabs-list-radius",
       "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-tabs-list-shadow",
+      "description": "Control UI tabs knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
       "name": "--cui-tabs-trigger-radius",

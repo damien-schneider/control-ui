@@ -5,33 +5,46 @@
 
   --text-label: 0.75rem; /* 12px — form labels + small chrome (nav item, tooltip, shortcut) */
 
+  /* Headings run medium, not bold, and pull tight — Geist at -0.03em is the whole voice. */
+  --text-heading-4--font-weight: 500;
+  --text-heading-3--font-weight: 500;
+  --text-heading-2--font-weight: 500;
+  --text-heading-1--font-weight: 500;
+  --text-heading-1--letter-spacing: -0.03em;
+  --text-display--font-weight: 500;
+  --text-display--letter-spacing: -0.03em;
+
   /* shadcn base names, full colors, authored in oklch (wider gamut, matches Tailwind/shadcn v4); any format still works.
-     Refined brand = warm sand neutral ramp (hue ~60-90, low chroma), umber shadows — soft daylight, not studio gray. */
-  --background: oklch(0.9852 0.0053 84);
-  --foreground: oklch(0.3042 0.0266 63);
-  --card: oklch(0.9945 0.0031 88);
-  --card-foreground: oklch(0.3042 0.0266 63);
-  --popover: oklch(0.9945 0.0031 88);
-  --popover-foreground: oklch(0.3042 0.0266 63);
-  --primary: oklch(0.3184 0.0327 61);
-  --primary-foreground: oklch(0.9852 0.0058 85);
-  --muted: oklch(0.9425 0.0104 79);
-  --muted-foreground: oklch(0.52 0.0224 72);
-  --secondary: oklch(0.9425 0.0104 79);
-  --secondary-foreground: oklch(0.3184 0.0327 61);
-  --accent: oklch(0.9295 0.0118 77);
-  --accent-foreground: oklch(0.3184 0.0327 61);
+     Refined brand = four warm-paper neutrals (#FFF / #F5F4F3 / #F4F2F0 / #EEECEA) under a cool ink (#060612), so the
+     page reads as pressed paper and every edge comes from light, not from a line. */
+  --background: oklch(0.984 0.0018 68);
+  --foreground: oklch(0.1304 0.0277 282);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.1304 0.0277 282);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.1304 0.0277 282);
+  --primary: oklch(0.1304 0.0277 282);
+  --primary-foreground: oklch(1 0 0);
+  --muted: oklch(0.9441 0.0034 68);
+  --muted-foreground: oklch(0.5202 0.0094 294);
+  --secondary: oklch(0.9621 0.0034 68);
+  --secondary-foreground: oklch(0.1304 0.0277 282);
+  --accent: oklch(0.9441 0.0034 68);
+  --accent-foreground: oklch(0.1304 0.0277 282);
   --destructive: oklch(0.568 0.1961 32);
-  --destructive-foreground: oklch(0.9852 0.0058 85);
-  --border: oklch(0.8851 0.0135 76 / var(--ring-opacity));
-  --input: oklch(0.8851 0.0135 76);
-  --ring: oklch(0.6903 0.0198 74);
-  --focus-ring: oklch(0.5 0.0198 74);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.915 0.004 68 / var(--ring-opacity));
+  --input: oklch(0.915 0.004 68);
+  /* The brand orange only ever lands on the focus ring: white-on-#FF6321 is 2.98:1, so it can never be a fill
+     that carries text. --focus-ring darkens to their button rim (#CF4E17) to clear 3:1 against the paper. */
+  --ring: oklch(0.6931 0.2032 40);
+  --focus-ring: oklch(0.5911 0.1746 40);
+  --primary-text: oklch(0.48 0.16 40); /* links and primary-tone text: the orange darkened until it clears 4.5:1 on paper */
 
   /* Page canvas, a level below --background/--card/--popover (all elevated surfaces); GitHub Primer calls this `canvas`.
-     Keep it clear of --muted (0.9425): when the two match, every muted surface dropped straight onto the page — a
-     standalone Code block, say — reads as nothing but its ring. Light ladder: muted < canvas < background < card. */
-  --canvas: oklch(0.96 0.008 80);
+     Keep it clear of --muted (0.9441): when the two match, every muted surface dropped straight onto the page — a
+     standalone Code block, say — reads as nothing but its ring. Light ladder: muted < secondary < canvas < background < card. */
+  --canvas: oklch(0.9676 0.0017 68);
 
   /* popover/dropdown/select/dialog all read bg-popover, so this pair frosts them together. 1 = solid; <1 + blur = glass. */
   --popover-opacity: 1;
@@ -45,16 +58,17 @@
   --scroll-fade-size: 2rem;
 
   /* elevation controls */
-  --shadow-color: oklch(0.2986 0.0421 63); /* hue every shadow tints with — warm umber, not studio blue */
-  /* 1px inset top light on raised surfaces (buttons, pills, popovers) — "lit paper card" read.
+  --shadow-color: oklch(0.1304 0.0277 282); /* hue every shadow tints with — the ink itself, cool near-black */
+  /* Top-light stays at the alpha their raised chrome uses (white 0.08): invisible on a white card, a bare catch on ink.
      Recipes scale it by opacity/size knobs too, so --shadow-size:0 extinguishes it with everything else. */
+  --shadow-highlight: oklch(1 0 0 / 0.08);
   --shadow-size: 1; /* global geometry multiplier: 1 = default depth, 0 = flat */
   --shadow-opacity: 1; /* global alpha multiplier: 1 = default density, 0 = invisible */
 
   /* THE radius knob; @theme surface scale + --radius-control both derive from it — squares (0) or rounds whole UI. */
-  --radius: 0.625rem;
-  /* Shared by every control (button, select trigger, field, chip); ×2 of --radius so short controls read as pill. */
-  --radius-control: calc(var(--radius) * 2);
+  --radius: 0.5rem;
+  /* Controls sit at THE radius, not a multiple of it: an 8px corner on a 36px button is the rounded rect they use everywhere. */
+  --radius-control: var(--radius);
 
   /* Progressive enhancement over border-radius; `round` = current look, squircle/superellipse(2)/scoop reshape Control UI surfaces. */
   /* Squircle reads ~half as round as a circular arc at same radius; browsers w/o corner-shape support fall back to
@@ -87,34 +101,37 @@
 /* Semantic rungs re-declared on the skin root so portal-scoped radius changes resolve locally;
    the sm–2xl scale is a derived-tier default in core theme.css. */
 [data-skin="refined"][data-skin] {
-  --radius-field: calc(var(--radius) * 2.2); /* user bubble, composer shell */
-  --radius-panel: calc(var(--radius) * 2.6); /* code / markdown surfaces */
-  --radius-scene: calc(var(--radius) * 2.8); /* scene frame, large media */
+  --radius-field: var(--radius); /* user bubble, composer shell */
+  /* Kraftbase rounds every content surface the same 8px; only the scene-scale frames go bigger. */
+  --radius-panel: var(--radius);
+  --radius-scene: calc(var(--radius) * 2); /* scene frame, large media */
 }
 
 :where(.dark) [data-skin="refined"][data-skin],
 .dark[data-skin="refined"][data-skin] {
-  --background: oklch(0.1786 0.0104 62);
-  --foreground: oklch(0.9645 0.008 84);
-  --card: oklch(0.2166 0.0119 64);
-  --card-foreground: oklch(0.9645 0.008 84);
-  --popover: oklch(0.2166 0.0119 64);
-  --popover-foreground: oklch(0.9645 0.008 84);
-  --primary: oklch(0.9645 0.008 84);
-  --primary-foreground: oklch(0.2311 0.0131 64);
-  --muted: oklch(0.2668 0.0132 66);
-  --muted-foreground: oklch(0.7405 0.0175 76);
-  --secondary: oklch(0.2668 0.0132 66);
-  --secondary-foreground: oklch(0.9645 0.008 84);
-  --accent: oklch(0.2864 0.0141 67);
-  --accent-foreground: oklch(0.9645 0.008 84);
+  --background: oklch(0.1852 0.0113 250);
+  --foreground: oklch(0.9645 0.0033 250);
+  --card: oklch(0.2153 0.0121 250);
+  --card-foreground: oklch(0.9645 0.0033 250);
+  --popover: oklch(0.2153 0.0121 250);
+  --popover-foreground: oklch(0.9645 0.0033 250);
+  --primary: oklch(0.9645 0.0033 250);
+  --primary-foreground: oklch(0.1852 0.0113 250);
+  --muted: oklch(0.2668 0.0128 250);
+  --muted-foreground: oklch(0.7405 0.0104 260);
+  --secondary: oklch(0.2412 0.0124 250);
+  --secondary-foreground: oklch(0.9645 0.0033 250);
+  --accent: oklch(0.2864 0.0132 250);
+  --accent-foreground: oklch(0.9645 0.0033 250);
   --destructive: oklch(0.551 0.1799 32);
-  --destructive-foreground: oklch(0.9645 0.008 84);
-  --border: oklch(0.3082 0.0147 67 / var(--ring-opacity));
-  --input: oklch(0.3082 0.0147 67);
-  --ring: oklch(0.5521 0.0181 70);
-  --focus-ring: oklch(0.66 0.0181 70);
-  --canvas: oklch(0.1618 0.0096 61);
+  --destructive-foreground: oklch(0.9645 0.0033 250);
+  --border: oklch(0.3082 0.0139 250 / var(--ring-opacity));
+  --input: oklch(0.3082 0.0139 250);
+  --ring: oklch(0.6931 0.2032 40);
+  --focus-ring: oklch(0.72 0.19 42);
+  --primary-text: oklch(0.78 0.16 42);
+  --canvas: oklch(0.1322 0.0113 250);
   --shadow-color: oklch(0 0 0);
   /* In dark the inner top light is a faint edge catch, not a glow. */
+  --shadow-highlight: oklch(1 0 0 / 0.055);
 }

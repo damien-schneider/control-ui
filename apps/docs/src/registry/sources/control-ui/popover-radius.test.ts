@@ -153,7 +153,7 @@ describe("code-block panel: capped corner keeps header tabs (inset --nest-gap) u
   });
 
   test("negative control: the UNCAPPED panel radius (--radius-panel) cuts header tabs at large --radius", () => {
-    const s = sample(40, 28.08); // --radius-panel = 40*2.6 = 104px, way past (2+√2)·gap
+    const s = sample(64, 28.08); // --radius-panel = 64px, way past (2+√2)·gap ≈ 27.3px
     const tabRendered = Math.min(s.controlHxs / 2, s.controlHxs / 2);
     expect(clearance(s.panelR, tabRendered, NEST_GAP)).toBeLessThan(0); // uncapped ⇒ tab sliced
     const capped = Math.min(s.panelR, NEST_GAP * s.cornerRatio);
