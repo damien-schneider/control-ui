@@ -113,7 +113,7 @@ function createAnatomyOf(contract: SkinContract): (compound: Compound) => Anatom
     const slot = attributeValue(compound, slotAttribute);
     const site = scope && slot ? `${scope}/${slot}` : undefined;
     const family = attributeValue(compound, familyAttribute) ?? (site ? familyOfPart.get(site) : undefined);
-    if (!family) return keysEveryFamily(compound) ? { family: EVERY_FAMILY, part: undefined } : undefined;
+    if (!family) return keysEveryFamily(compound) ? { family: EVERY_FAMILY, part: partOf(compound, EVERY_FAMILY, undefined) } : undefined;
     return { family, part: partOf(compound, family, site) };
   };
 
@@ -197,8 +197,18 @@ export function collectKnobOwnership(
 /** A recipe rule keyed on the family alone paints every part of it, so its knobs own the property there too. */
 export function knobsPainting(ownership: KnobOwnership, anatomy: Anatomy, property: string): string[] {
   if (anatomy.family === EVERY_FAMILY) {
-    return [...new Set([...ownership.values()].flatMap((byProperty) => [...(byProperty.get(property) ?? [])]))];
+    const partOfKey = (key: string): string => key.slice(key.indexOf(anatomySeparator) + 1);
+    const reached = [...ownership.entries()].filter(([key]) => {
+      const part = partOfKey(key);
+      return anatomy.part === undefined || part === "" || part === anatomy.part;
+    });
+    return [...new Set(reached.flatMap(([, byProperty]) => [...(byProperty.get(property) ?? [])]))];
   }
-  const reaching = [{ family: EVERY_FAMILY, part: undefined }, { family: anatomy.family, part: undefined }, anatomy];
+  const reaching = [
+    { family: EVERY_FAMILY, part: undefined },
+    { family: EVERY_FAMILY, part: anatomy.part },
+    { family: anatomy.family, part: undefined },
+    anatomy,
+  ];
   return [...new Set(reaching.flatMap((key) => [...(ownership.get(anatomyKey(key))?.get(property) ?? [])]))];
 }

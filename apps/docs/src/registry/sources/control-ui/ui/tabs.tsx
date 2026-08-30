@@ -126,7 +126,7 @@ export function TabsList({ size = "sm", variant = "default", className, children
       data-size={size}
       data-variant={variant}
       data-single={isSingle ? "true" : undefined}
-      className={cn(variant === "browser" && "gap-0 p-0 px-(--_tabs-trigger-radius-fit) pt-(--cui-tabs-list-padding)", className)}
+      className={cn(variant === "browser" && "gap-0 p-0 px-(--_tabs-browser-inset) pt-(--cui-tabs-list-padding)", className)}
       style={controlStyle}
       {...props}
     >
@@ -138,7 +138,7 @@ export function TabsList({ size = "sm", variant = "default", className, children
           data-slot="indicator"
           className={
             variant === "browser"
-              ? "top-auto bottom-0 z-0 h-(--_tabs-trigger-h) w-(--_tabs-browser-indicator-width) transform-[translateX(var(--_tabs-browser-indicator-x))]"
+              ? "top-auto bottom-0 left-(--_tabs-browser-indicator-x) z-0 h-(--_tabs-trigger-h) w-(--_tabs-browser-indicator-width) transform-none"
               : undefined
           }
         />

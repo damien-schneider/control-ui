@@ -15,7 +15,14 @@ import {
   surfaceAttribute,
 } from "./control-anatomy";
 import { knobPrefix, knobsByFamily } from "./knob-contracts/collect";
-import { type Anatomy, collectEffectUtilities, collectKnobOwnership, createAnatomyResolver, knobsPainting } from "./knob-ownership";
+import {
+  type Anatomy,
+  collectEffectUtilities,
+  collectKnobOwnership,
+  createAnatomyResolver,
+  createSubjectAnatomyResolver,
+  knobsPainting,
+} from "./knob-ownership";
 import { collectSkinContract } from "./skin-contract/collect";
 import type { ContractPart } from "./skin-contract/model";
 
@@ -24,6 +31,7 @@ const controlKnobContracts = knobsByFamily();
 const contract = collectSkinContract();
 const knobOwnership = collectKnobOwnership(contract);
 const resolveAnatomy = createAnatomyResolver(contract);
+const resolveSubjectAnatomy = createSubjectAnatomyResolver(contract);
 const effectUtilities = collectEffectUtilities();
 const knobsByPrefix: Record<string, readonly string[]> = Object.fromEntries(
   Object.entries(controlKnobContracts)
@@ -318,9 +326,8 @@ function validateCss(file: string, source: string): void {
         validateModeScope(file, rule, [...selectorRoot.nodes]);
         validateTokenScopeWeight(file, rule, [...selectorRoot.nodes]);
       }).processSync(rule.selector);
-      const anatomies = resolveAnatomy(rule.selector);
-      validateLayer(file, rule, anatomies.length > 0);
-      validateKnobBypass(file, rule, anatomies);
+      validateLayer(file, rule, resolveAnatomy(rule.selector).length > 0);
+      validateKnobBypass(file, rule, resolveSubjectAnatomy(rule.selector));
     });
     validateKnobs(file, root);
   } catch (error) {

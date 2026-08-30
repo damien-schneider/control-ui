@@ -107,21 +107,21 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
 
   return (
     <Tabs value={selectedPath} onValueChange={setActivePath}>
-      <Code className="my-0">
-        {files.length > 1 ? (
-          <ScrollArea scrollbarVisibility="hover">
-            <TabsList variant="browser" className="w-full rounded-none">
-              {files.map((file) => (
-                <TabsTab key={file.path} value={file.path}>
-                  {sourceFileName(file.path)}
-                  {file.shared ? (
-                    <span className="ml-1.5 font-normal text-[10px] text-muted-foreground uppercase tracking-wide">shared</span>
-                  ) : null}
-                </TabsTab>
-              ))}
-            </TabsList>
-          </ScrollArea>
-        ) : null}
+      {files.length > 1 ? (
+        <ScrollArea scrollbarVisibility="hover">
+          <TabsList variant="browser" className="w-full shadow-none">
+            {files.map((file) => (
+              <TabsTab key={file.path} value={file.path}>
+                {sourceFileName(file.path)}
+                {file.shared ? (
+                  <span className="ml-1.5 font-normal text-[10px] text-muted-foreground uppercase tracking-wide">shared</span>
+                ) : null}
+              </TabsTab>
+            ))}
+          </TabsList>
+        </ScrollArea>
+      ) : null}
+      <Code className={cn("my-0", files.length > 1 && "-mt-px")}>
         <CodeHeader>
           <SourcePath path={activeFile.path} />
           <CodeActions>
@@ -152,27 +152,30 @@ export function PreviewTabs({
   const [tab, setTab] = useState("preview");
 
   return (
-    <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20 overflow-hidden rounded-panel border bg-background">
+    <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
       <Tabs value={tab} onValueChange={setTab}>
         {/* Controls overlay list instead of nesting in it: role="tablist" takes tabs only, and Base UI's composite keydown would eat their arrow keys. */}
         <div className="relative">
-          <TabsList variant="browser" className="w-full rounded-none">
+          <TabsList variant="browser" className="w-full shadow-none">
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
-          <div className="absolute inset-y-0 right-3 flex items-center justify-end gap-1.5">
+          <div className="absolute inset-y-0 right-3 z-[2] flex items-center justify-end gap-1.5">
             {controls}
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
-          {children}
-        </TabsPanel>
-        <TabsPanel value="code">
-          <Code chrome="embedded">
-            <CodeContent code={code} lang="tsx" />
-          </Code>
-        </TabsPanel>
+        {/* The strip sits on the page; the panel is the box. Pulled up 1px so the indicator covers the top border under the active tab. */}
+        <div className="-mt-px min-w-0 overflow-hidden rounded-panel border bg-background">
+          <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
+            {children}
+          </TabsPanel>
+          <TabsPanel value="code">
+            <Code chrome="embedded">
+              <CodeContent code={code} lang="tsx" />
+            </Code>
+          </TabsPanel>
+        </div>
       </Tabs>
     </div>
   );

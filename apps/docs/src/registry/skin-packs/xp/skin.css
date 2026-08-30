@@ -160,8 +160,10 @@
 
   /* classic XP tab strip: baseline recipe keeps geometry/states; knobs re-value component-local vars.
      un-tokenizable Luna reading stays as rules: raised gradient boxes on the Luna desktop gray; active tab white,
-     1px taller, cuts baseline, wears orange top stripe (tabs-indicator slides via Base UI --active-tab-* vars). */
-  [data-skin="xp"] :where([data-slot="list"][data-control-family="tabs"]) {
+     1px taller, cuts baseline, wears orange top stripe (tabs-indicator slides via Base UI --active-tab-* vars).
+     None of it reaches the browser variant: its chrome (flare, outline, notch) comes from the recipe, and a real
+     border-bottom can never be notched — the indicator stops at the padding box. */
+  [data-skin="xp"] :where([data-slot="list"][data-control-family="tabs"]:not([data-variant="browser"])) {
     --_tabs-list-h: calc(var(--_tabs-trigger-h) + 3px); /* squares the strip; the tab/indicator keep their own 3px tops */
     align-items: flex-end;
     /* gap stays a real declaration: the line variant resets it to 0 and the Luna strip must hold either way. */
@@ -183,7 +185,8 @@
     --cui-tabs-indicator-background: var(--background);
   }
 
-  [data-skin="xp"] :where([data-slot="tab"][data-control-family="tabs"]) {
+  [data-skin="xp"]
+    :where([data-slot="list"][data-control-family="tabs"]:not([data-variant="browser"]) [data-slot="tab"][data-control-family="tabs"]) {
     /* height/cursor restated (baseline values) so the single-tab reset keeps the full Luna box */
     height: var(--_tabs-trigger-h);
     cursor: pointer;
@@ -198,14 +201,25 @@
     transition: color var(--duration-fast) var(--ease-standard);
   }
 
-  [data-skin="xp"] :where([data-slot="tab"][aria-selected="true"][data-control-family="tabs"]),
-  [data-skin="xp"] :where([data-slot="tab"][data-active][data-control-family="tabs"]) {
+  [data-skin="xp"]
+    :where(
+      [data-slot="list"][data-control-family="tabs"]:not([data-variant="browser"])
+        [data-slot="tab"][aria-selected="true"][data-control-family="tabs"]
+    ),
+  [data-skin="xp"]
+    :where(
+      [data-slot="list"][data-control-family="tabs"]:not([data-variant="browser"])
+        [data-slot="tab"][data-active][data-control-family="tabs"]
+    ) {
     height: calc(var(--_tabs-trigger-h) + 2px);
     margin-bottom: -1px;
     background: var(--background);
   }
 
-  [data-skin="xp"] :where([data-slot="indicator"][data-control-family="tabs"]) {
+  [data-skin="xp"]
+    :where(
+      [data-slot="list"][data-control-family="tabs"]:not([data-variant="browser"]) [data-slot="indicator"][data-control-family="tabs"]
+    ) {
     top: 1px;
     bottom: auto;
     z-index: 2;
