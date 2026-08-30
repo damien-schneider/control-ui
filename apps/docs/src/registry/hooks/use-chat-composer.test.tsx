@@ -6,15 +6,33 @@ import { useChatComposer } from "./use-chat-composer";
 
 type ComposerOptions = Pick<ChatComposerProps, "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled">;
 
-function renderComposerSubmit(options: ComposerOptions) {
-  let submit: (() => void) | undefined;
+function renderComposer(options: ComposerOptions) {
+  let composer: ReturnType<typeof useChatComposer> | undefined;
   function Probe() {
-    submit = useChatComposer(options).submit;
+    composer = useChatComposer(options);
     return null;
   }
   renderToStaticMarkup(<Probe />);
-  if (!submit) throw new Error("useChatComposer did not run");
-  return submit;
+  if (!composer) throw new Error("useChatComposer did not run");
+  return composer;
+}
+
+function renderComposerSubmit(options: ComposerOptions) {
+  return renderComposer(options).submit;
+}
+
+function keyEvent(key: string, overrides: { shiftKey?: boolean; isComposing?: boolean } = {}) {
+  let prevented = false;
+  return {
+    key,
+    shiftKey: overrides.shiftKey ?? false,
+    defaultPrevented: false,
+    nativeEvent: { isComposing: overrides.isComposing ?? false },
+    preventDefault: () => {
+      prevented = true;
+    },
+    wasPrevented: () => prevented,
+  };
 }
 
 describe("useChatComposer", () => {
@@ -29,6 +47,25 @@ describe("useChatComposer", () => {
 
     renderComposerSubmit({ defaultValue: "   ", onSubmit })();
     renderComposerSubmit({ defaultValue: "hi", state: "submitting", onSubmit })();
+    expect(submitted).toEqual(["hello"]);
+  });
+
+  test("sends on Enter and leaves Shift+Enter, IME composition, and other keys to the textarea", () => {
+    const submitted: string[] = [];
+    const onSubmit = ({ value }: { value: string }) => {
+      submitted.push(value);
+    };
+    const { handleKeyDown } = renderComposer({ defaultValue: "hello", onSubmit });
+
+    const enter = keyEvent("Enter");
+    handleKeyDown(enter);
+    expect(submitted).toEqual(["hello"]);
+    expect(enter.wasPrevented()).toBe(true);
+
+    for (const event of [keyEvent("Enter", { shiftKey: true }), keyEvent("Enter", { isComposing: true }), keyEvent("a")]) {
+      handleKeyDown(event);
+      expect(event.wasPrevented()).toBe(false);
+    }
     expect(submitted).toEqual(["hello"]);
   });
 

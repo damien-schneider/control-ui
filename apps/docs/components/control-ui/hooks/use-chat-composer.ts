@@ -24,6 +24,14 @@ export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit" | "style
 
 export type MentionItem = { id: string; label: string; kind: string };
 
+type ComposerKeyEvent = {
+  key: string;
+  shiftKey: boolean;
+  defaultPrevented: boolean;
+  nativeEvent: { isComposing: boolean };
+  preventDefault: () => void;
+};
+
 function useControllableText({
   value,
   defaultValue = "",
@@ -78,6 +86,13 @@ export function useChatComposer({
     submit();
   }
 
+  // same contract as the rich editor keymap: Enter sends, Shift+Enter breaks the line
+  function handleKeyDown(event: ComposerKeyEvent) {
+    if (event.defaultPrevented || event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing) return;
+    event.preventDefault();
+    submit();
+  }
+
   return {
     value: inputValue,
     setValue: setInputValue,
@@ -92,5 +107,6 @@ export function useChatComposer({
     clear,
     submit,
     handleSubmit,
+    handleKeyDown,
   };
 }

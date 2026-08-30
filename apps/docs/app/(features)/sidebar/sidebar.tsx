@@ -1,6 +1,6 @@
 "use client";
 
-import { GithubIcon, StarIcon } from "@hugeicons/core-free-icons";
+import { GithubIcon, PlusSignIcon, StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
@@ -68,8 +68,9 @@ function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; act
       render={<Link href={`/${cta.id}`} onClick={onNavigate} aria-current={active === cta.id ? "page" : undefined} />}
       variant="solid"
       tone="primary"
-      className="w-full"
+      size="xs"
     >
+      <HugeiconsIcon aria-hidden icon={PlusSignIcon} strokeWidth={2} />
       {cta.name}
     </ButtonLink>
   );
@@ -137,19 +138,18 @@ export function DocsSidebarContent({
         inert={sidebarNavigationInert(isMobile, state)}
       >
         <SidebarHeader>
-          <div className="grid gap-1">
-            <div className="flex items-center gap-1.5">
+          <div className="flex items-center justify-between gap-2">
+            <div className="relative flex min-w-0 items-center gap-1.5">
               <ControlUiLogo />
               <span className="block truncate font-display text-body-lg font-medium leading-none tracking-tight text-sidebar-foreground">
                 control/ui
               </span>
-              <Badge size="sm">alpha</Badge>
+              <Badge size="sm" className="absolute -top-1 left-full ml-1">
+                alpha
+              </Badge>
             </div>
-            <p className="text-balance text-caption leading-relaxed text-muted-foreground">
-              An opinionated, customizable superset of shadcn/ui
-            </p>
+            <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
           </div>
-          <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
         </SidebarHeader>
         <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
         <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />

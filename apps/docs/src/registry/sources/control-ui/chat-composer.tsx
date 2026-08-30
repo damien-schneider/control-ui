@@ -1,6 +1,6 @@
 "use client";
 
-import type { ChangeEvent, ComponentProps, CSSProperties } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent } from "react";
 import { createContext, useContext } from "react";
 import type { ChatComposerProps } from "@/components/control-ui/hooks/use-chat-composer";
 import { useChatComposer } from "@/components/control-ui/hooks/use-chat-composer";
@@ -105,12 +105,17 @@ export type ChatComposerTextareaProps = Omit<ComponentProps<"textarea">, "style"
   style?: CSSProperties & ChatComposerKnobStyle;
 };
 
-export function ChatComposerTextarea({ className, rows, disabled, onChange, ...props }: ChatComposerTextareaProps) {
+export function ChatComposerTextarea({ className, rows, disabled, onChange, onKeyDown, ...props }: ChatComposerTextareaProps) {
   const input = useChatComposerContext();
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     onChange?.(event);
     if (!event.defaultPrevented) input.setValue(event.currentTarget.value);
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    onKeyDown?.(event);
+    input.handleKeyDown(event);
   }
 
   return (
@@ -122,6 +127,7 @@ export function ChatComposerTextarea({ className, rows, disabled, onChange, ...p
       aria-label="Message"
       value={input.value}
       onChange={handleChange}
+      onKeyDown={handleKeyDown}
       disabled={disabled ?? input.isDisabled}
       rows={rows ?? input.rows}
       className={cn(
