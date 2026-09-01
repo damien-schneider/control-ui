@@ -688,7 +688,7 @@ function createRegistryItem(definition: Definition, context: RegistryBuildContex
     files,
     css: definition.css ?? registryCss(files),
     meta: {
-      internal: definition.internal || undefined,
+      ...(definition.internal && { internal: true }),
       sourceManifestPath: sourceManifestPath(definition),
     },
   };

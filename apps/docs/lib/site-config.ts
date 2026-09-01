@@ -22,6 +22,7 @@ export const siteConfig = {
   registry: {
     name: "control-ui",
     componentRoot: "@components/control-ui",
+    githubRepo: "damien-schneider/control-ui",
   },
 } as const;
 
