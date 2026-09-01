@@ -1,0 +1,165 @@
+{
+  "version": 8,
+  "family": "accordion",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "accordion"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-accordion-item-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-accordion-trigger-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-accordion-trigger-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.8)"
+    },
+    {
+      "name": "--cui-accordion-icon-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "accordion": {
+      "root": {
+        "family": "accordion",
+        "registryItems": [
+          "accordion"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "icon": {
+        "family": "accordion",
+        "registryItems": [
+          "accordion"
+        ],
+        "states": []
+      },
+      "item": {
+        "family": "accordion",
+        "registryItems": [
+          "accordion"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-index",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "panel": {
+        "family": "accordion",
+        "registryItems": [
+          "accordion"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-index",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "panel-content": {
+        "family": "accordion",
+        "registryItems": [
+          "accordion"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "family": "accordion",
+        "registryItems": [
+          "accordion"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-panel-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/accordion.contrast.json"
+}

@@ -6,7 +6,7 @@ import type { ComponentProps } from "react";
 import type { ControlledMultiChoice } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
 import type { ButtonProps } from "@/components/control-ui/ui/button";
-import { buttonContentClasses, buttonRecipeClasses } from "@/components/control-ui/ui/button";
+import { buttonContentClasses, buttonStructureClasses } from "@/components/control-ui/ui/button";
 
 export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value"> & {
   pressed?: boolean;
@@ -60,7 +60,7 @@ export function Toggle({
             data-variant={variant}
             data-tone={tone}
             data-size={size}
-            className={cn(buttonRecipeClasses(size), renderProps.className, className)}
+            className={cn(buttonStructureClasses, renderProps.className, className)}
           >
             <span data-control-ui="toggle" data-control-family="button" data-slot="content" className={buttonContentClasses}>
               {showCheck ? (

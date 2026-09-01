@@ -15,7 +15,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 - [Theme accessibility](http://127.0.0.1:3000/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - [Update & diff](http://127.0.0.1:3000/update): Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.
-- [Contract versions](http://127.0.0.1:3000/contract-versions): The skin contract is version 7. Crossing a version reinstalls core, the affected items, and the skin together.
+- [Contract versions](http://127.0.0.1:3000/contract-versions): The skin contract is version 8. Crossing a version reinstalls core, the affected items, and the skin together.
 - [Setup prompt](http://127.0.0.1:3000/setup-prompt): One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
 - [Agent skill](http://127.0.0.1:3000/agent-skill): The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
 - [Machine docs](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
@@ -24,7 +24,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Lock-in](http://127.0.0.1:3000/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
 - [Control UI vs shadcn/ui](http://127.0.0.1:3000/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.
-- [Best React component libraries for AI interfaces](http://127.0.0.1:3000/best-react-component-libraries-for-ai-interfaces): Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.
+- [Best React component libraries for AI interfaces](http://127.0.0.1:3000/best-react-component-libraries-for-ai-interfaces): Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
 - [Reference](http://127.0.0.1:3000/reference): Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 
 ## AI components
@@ -210,9 +210,8 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Registry API](http://127.0.0.1:3000/api/registry): JSON index of every public catalog item.
 - [Agent index](http://127.0.0.1:3000/r/agent-index.json): Static agent-friendly registry metadata.
 - [shadcn registry](http://127.0.0.1:3000/r/registry.json): Registry schema consumed by shadcn tooling.
-- [Skin anatomy contract](http://127.0.0.1:3000/r/skin-contract.json): Generated scopes, parts, states, knobs (the `--cui-*` CSS custom properties every component paints through), adornments, and semantic families.
+- [Skin anatomy contract](http://127.0.0.1:3000/r/contract/index.json): Index of every paint family. Each family slices its own scopes, parts, states, knobs (the `--cui-*` CSS custom properties every component paints through), and adornments, with a `.contrast.json` sibling carrying the rendered ancestor chain that paints behind each one.
 - [Theme token contract](http://127.0.0.1:3000/r/theme-contract.json): Generated skin token reference.
-- [Contrast anatomy](http://127.0.0.1:3000/r/contrast-anatomy.json): Every text knob with the rendered ancestor chain that paints behind it, for checking a skin's contrast without guessing selectors.
 - [Setup prompt](http://127.0.0.1:3000/r/setup-prompt.md): Paste-ready instructions for a coding agent: read a repository, install Control UI into it, wire the CSS, then design and contrast-check its skin.
 
 ## Optional

@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "family": "transcript-divider",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "transcript-divider",
+          "data-control-ui": "transcript-divider",
+          "data-slot": "root",
+          "data-tone": "danger"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "transcript-divider",
+          "data-control-ui": "transcript-divider",
+          "data-slot": "root",
+          "data-tone": "neutral"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "transcript-divider",
+          "data-control-ui": "transcript-divider",
+          "data-slot": "root",
+          "data-tone": "warning"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "text": "--cui-transcript-divider-danger-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-transcript-divider-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-transcript-divider-warning-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

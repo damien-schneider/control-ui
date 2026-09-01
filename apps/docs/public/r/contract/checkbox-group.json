@@ -1,0 +1,38 @@
+{
+  "version": 8,
+  "family": "checkbox-group",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "checkbox-group"
+  ],
+  "knobs": [],
+  "parts": {
+    "checkbox-group": {
+      "root": {
+        "registryItems": [
+          "checkbox-group"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/checkbox-group.contrast.json"
+}

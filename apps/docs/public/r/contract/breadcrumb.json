@@ -1,0 +1,81 @@
+{
+  "version": 8,
+  "family": "breadcrumb",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "breadcrumb"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-breadcrumb-list-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-breadcrumb-page-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    }
+  ],
+  "parts": {
+    "breadcrumb": {
+      "root": {
+        "family": "breadcrumb",
+        "registryItems": [
+          "breadcrumb"
+        ],
+        "states": []
+      },
+      "ellipsis": {
+        "family": "breadcrumb",
+        "registryItems": [
+          "breadcrumb"
+        ],
+        "states": []
+      },
+      "item": {
+        "family": "breadcrumb",
+        "registryItems": [
+          "breadcrumb"
+        ],
+        "states": []
+      },
+      "link": {
+        "family": "breadcrumb",
+        "registryItems": [
+          "breadcrumb"
+        ],
+        "states": []
+      },
+      "list": {
+        "family": "breadcrumb",
+        "registryItems": [
+          "breadcrumb"
+        ],
+        "states": []
+      },
+      "page": {
+        "family": "breadcrumb",
+        "registryItems": [
+          "breadcrumb"
+        ],
+        "states": []
+      },
+      "separator": {
+        "family": "breadcrumb",
+        "registryItems": [
+          "breadcrumb"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-breadcrumb-list-foreground",
+    "--cui-breadcrumb-page-foreground"
+  ],
+  "contrast": "/r/contract/breadcrumb.contrast.json"
+}

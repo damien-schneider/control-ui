@@ -1,0 +1,231 @@
+{
+  "version": 8,
+  "family": "environment-variables",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "environment-variables"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-environment-variables-title-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-environment-variables-meta-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-environment-variables-error-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive-text)"
+    },
+    {
+      "name": "--cui-environment-variables-message-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--destructive) l c h / 0.05)"
+    },
+    {
+      "name": "--cui-environment-variables-message-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive-text)"
+    },
+    {
+      "name": "--cui-environment-variables-message-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--destructive) l c h / 0.4)"
+    }
+  ],
+  "parts": {
+    "environment-variables": {
+      "root": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "actions": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "column-labels": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "empty": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "field-error": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "field-label": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "hint": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "hint-code": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "key-input": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "message": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "readonly-item": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "readonly-key": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "readonly-list": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "readonly-value": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "row": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "rows": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "toolbar": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      },
+      "value-group": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": [
+          {
+            "attribute": "data-invalid",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "value-input": {
+        "family": "environment-variables",
+        "registryItems": [
+          "environment-variables"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-environment-variables-error-foreground",
+    "--cui-environment-variables-message-background",
+    "--cui-environment-variables-message-foreground"
+  ],
+  "contrast": "/r/contract/environment-variables.contrast.json"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "family": "skeleton",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "skeleton",
+          "data-control-ui": "skeleton",
+          "data-slot": "root"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-skeleton-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    }
+  ]
+}

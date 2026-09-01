@@ -29,19 +29,19 @@ Control UI is installed source, not a dependency: the components, their recipe s
 - The contract tokens below re-theme every screen that reads their names, so a token change is an app-wide decision, never a local styling fix.
 - One theme artifact is the source of record: <short-name>.control-ui-theme.json, format control-ui-theme/v1, with tokens split into shared, light, and dark. Color-valued tokens go in light and dark; every other token in shared. A token left out inherits the base skin.
 - Each app consumes the artifact as one derived CSS file:
-- Write the artifact's tokens as one CSS file named <short-name>.control-ui-theme.css beside the app's CSS entry — that exact suffix is how the update tooling recognises the theme import: tokens.shared and tokens.light in one `[data-skin="<baseSkin>"][data-skin] { }` block, tokens.dark in `:where(.dark) [data-skin="<baseSkin>"][data-skin], .dark[data-skin="<baseSkin>"][data-skin] { }`. The doubled attribute is the pack's own weight — matching it hands the win to source order.
+- Run `node <install>/scripts/control-ui-doctor.mjs --emit-css <short-name>.control-ui-theme.json` to write <short-name>.control-ui-theme.css beside the artifact — that exact suffix is how the update tooling recognises the theme import. Never hand-write the selectors: the emitted `[data-skin="<baseSkin>"][data-skin]` doubles the attribute to match the pack's own weight, which is what hands the win to source order.
 - Import that file on the last line of the entry's import block, after every Control UI import. Being last is what makes it win.
 - If reduceMotion is true, stamp data-motion="reduced" on the root element beside data-skin; remove the attribute when a later theme turns it back off.
 - Contrast is part of the theme, not a follow-up: normal and small text clears 4.5:1 after alpha compositing in both modes, focus indicators and control boundaries clear 3:1. Review a theme at http://127.0.0.1:3000/theme-accessibility.
 
 What the components actually paint:
-- Every painted knob with what the browser actually paints behind it: `http://127.0.0.1:3000/r/contrast-anatomy.json`, harvested from rendered components and verified against the browser.
-- A probe's `anatomy` is the paint stack under the part, back to front: its ancestors, but also a sibling indicator that slides beneath it. The last node is the part itself.
+- Every painted knob with what the browser actually paints behind it, one file per paint family: `http://127.0.0.1:3000/r/contract/<family>.contrast.json`, harvested from rendered components and verified against the browser. `http://127.0.0.1:3000/r/contract/index.json` names the families and how many probes each has.
+- A probe's `anatomy` indexes into the file's `anatomies`: the paint stack under the part, back to front, its ancestors but also a sibling indicator that slides beneath it. The last node is the part itself.
 - A part's contrast is decided by the knob it paints from **and** by every knob in that stack, never by theme tokens alone: re-valuing a surface knob changes the contrast of text you did not touch.
 - For each probe: rebuild `anatomy` as nested elements, resolve `knobs.text` on the last one, composite the stack's fills behind it, and clear `rendersText ? 4.5 : 3`:1.
 - `state: true` means the paint waits on an interaction, so force `knobs.fill` onto the part instead of expecting it to paint itself.
 - A knob you leave alone still paints — it keeps its recipe default and still has to clear the ratio under your surfaces.
-- `uncovered` names the knobs no documented route renders. Nothing measured them, so treat them as unverified rather than passing.
+- The family's `/r/contract/<family>.json` slice lists `uncovered`: the knobs no documented route renders. Nothing measured them, so treat them as unverified rather than passing.
 
 ## Token contract
 
@@ -69,6 +69,9 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --input [light+dark] Form field border color.
 - --ring [light+dark] Focus ring color.
 - --focus-ring [light+dark] Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).
+- --control-rim [light+dark] Boundary color of a control's own edge; defaults to --border.
+- --hover-fill [light+dark] Wash a row or control takes on hover; defaults to a 6% tint of --foreground.
+- --active-fill [light+dark] Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground.
 - --canvas [light+dark] The page paper the scene/panels float on — a level BELOW --background.
 - --ring-opacity [shared] Alpha of the border/ring hairlines; 0 = borderless, defaults to 1.
 - --badge-neutral [light+dark] Soft neutral-family badge background; the skin owns the exact hue.
@@ -173,3 +176,4 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --focus-ring-width [shared] Thickness of the keyboard focus indicator; 0 removes it and fails WCAG 2.4.7.
 - --focus-ring-style [shared] Line style of the keyboard focus indicator (solid, dotted, dashed); none removes it and fails WCAG 2.4.7.
 - --focus-ring-offset [shared] Gap between a control edge and its focus indicator; negative draws the indicator inside.
+- --control-rim-width [shared] Thickness of a control's own edge; defaults to 1px, shared across modes.

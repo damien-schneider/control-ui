@@ -1,0 +1,112 @@
+{
+  "version": 8,
+  "family": "card",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "card"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-card-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-card-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-card-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-card-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-card-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-card-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "none"
+    }
+  ],
+  "parts": {
+    "card": {
+      "root": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "sectioned"
+            ]
+          }
+        ]
+      },
+      "action": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "card",
+        "registryItems": [
+          "card"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/card.contrast.json"
+}

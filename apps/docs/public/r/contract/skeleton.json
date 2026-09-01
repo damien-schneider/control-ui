@@ -1,0 +1,36 @@
+{
+  "version": 8,
+  "family": "skeleton",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "skeleton"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-skeleton-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-skeleton-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    }
+  ],
+  "parts": {
+    "skeleton": {
+      "root": {
+        "family": "skeleton",
+        "registryItems": [
+          "skeleton"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/skeleton.contrast.json"
+}

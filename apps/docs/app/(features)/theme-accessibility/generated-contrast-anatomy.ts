@@ -76,7 +76,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown",
       rendersText: true,
       state: false,
-      route: "/primitives/markdown",
+      route: "/control-ui-vs-shadcn-ui",
     },
     {
       knobs: {
@@ -778,7 +778,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -806,7 +806,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "surface",
             href: "#",
           },
         },
@@ -818,7 +818,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -870,7 +870,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -910,7 +910,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -950,7 +950,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -990,7 +990,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1030,7 +1030,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1071,7 +1071,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1111,7 +1111,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1161,7 +1161,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1215,7 +1215,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-bg",
+        fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1278,7 +1278,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1306,7 +1306,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "surface",
             href: "#",
           },
         },
@@ -1318,7 +1318,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1370,7 +1370,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1414,7 +1414,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1454,7 +1454,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1494,7 +1494,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1534,7 +1534,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1574,7 +1574,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1615,7 +1615,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1655,7 +1655,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1705,7 +1705,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1759,7 +1759,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-active-hover-bg",
+        fill: "--cui-button-active-hover-background",
         text: "--cui-button-active-foreground",
       },
       anatomy: [
@@ -1822,7 +1822,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -1849,7 +1889,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "surface",
             href: "#",
           },
         },
@@ -1861,7 +1901,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -1885,7 +1925,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "button",
             "data-control-ui": "button",
             "data-shape": "default",
-            "data-size": "sm",
+            "data-size": "xs",
             "data-slot": "root",
             "data-tone": "primary",
             "data-variant": "solid",
@@ -1900,7 +1940,46 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -1941,233 +2020,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/primitives/responsive-dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-bg",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "backdrop",
-            "data-slot": "backdrop",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "surface",
-            "data-slot": "content",
-            "data-surface": "modal",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-part": "close",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/primitives/dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-bg",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "backdrop",
-            "data-slot": "backdrop",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "surface",
-            "data-slot": "content",
-            "data-surface": "modal",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-part": "close",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/primitives/dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2218,7 +2071,87 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/create",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/theme-ai-builder",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2274,7 +2207,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2328,7 +2261,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2393,7 +2326,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2457,7 +2390,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2508,7 +2441,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2558,7 +2491,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2608,7 +2541,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2639,49 +2572,26 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
           },
         },
       ],
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/primitives/markdown",
+      route: "/setup-prompt",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2727,11 +2637,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/create-a-skin",
+      route: "/primitives/code",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2793,7 +2703,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2849,7 +2759,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2906,7 +2816,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -2934,162 +2844,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-bg",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-bg",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
+            "data-chat-layout-kind": "thread",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -3132,7 +2887,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3160,6 +2915,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -3186,7 +2942,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3236,7 +2992,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3286,7 +3042,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3336,7 +3092,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3385,7 +3141,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3431,78 +3187,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "infinite-canvas",
-            "data-control-ui": "infinite-canvas",
-            "data-slot": "root",
-            role: "application",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/primitives/infinite-canvas",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3558,7 +3243,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3613,7 +3298,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3660,7 +3345,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3709,7 +3394,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3773,7 +3458,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3837,7 +3522,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3902,7 +3587,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -3962,11 +3647,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/primitives/responsive-dialog",
+      route: "/primitives/dialog",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4026,11 +3711,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/primitives/responsive-dialog",
+      route: "/primitives/dialog",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4099,7 +3784,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4153,7 +3838,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4206,7 +3891,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4259,7 +3944,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4313,7 +3998,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4366,7 +4051,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4419,7 +4104,180 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "submitting",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "submitting",
+          },
+        },
+        {
+          attributes: {
+            "data-button-kind": "model-switcher",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4498,7 +4356,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4577,7 +4435,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4655,7 +4513,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4689,64 +4547,36 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
+            "data-control-family": "resizable",
+            "data-control-ui": "resizable",
+            "data-slot": "panel-group",
             "data-surface": "panel",
+            "data-variant": "framed",
           },
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
+            "data-active": "true",
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
+            "data-variant": "quiet",
+            tabindex: "0",
           },
         },
       ],
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/use-cases/file-explorer",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4808,7 +4638,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4863,7 +4693,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4917,7 +4747,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -4971,7 +4801,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5024,7 +4854,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5077,7 +4907,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5134,7 +4964,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5191,7 +5021,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5247,7 +5077,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5300,7 +5130,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5349,7 +5179,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5397,7 +5227,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5446,7 +5276,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5495,7 +5325,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5535,7 +5365,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5576,7 +5406,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5617,7 +5447,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5657,7 +5487,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5697,7 +5527,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5737,7 +5567,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5777,7 +5607,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5817,7 +5647,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5857,7 +5687,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5897,7 +5727,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5937,7 +5767,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -5977,7 +5807,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6031,7 +5861,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6070,7 +5940,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6109,7 +5979,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6148,7 +6018,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6187,7 +6057,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6226,7 +6096,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6265,7 +6135,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6304,7 +6174,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6343,7 +6213,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6378,11 +6248,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/theme-accessibility",
+      route: "/create",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6421,7 +6291,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6456,11 +6326,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/theme-ai-builder",
+      route: "/get-started",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6498,7 +6368,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6533,11 +6403,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/theme-ai-builder",
+      route: "/get-started",
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6576,7 +6446,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6616,7 +6486,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6656,7 +6526,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6695,7 +6565,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6735,7 +6605,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6777,7 +6647,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6818,7 +6688,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6856,7 +6726,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -6894,7 +6764,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-bg",
+        fill: "--cui-button-background",
         text: "--cui-button-foreground",
       },
       anatomy: [
@@ -7041,7 +6911,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7069,7 +6939,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "surface",
             href: "#",
           },
         },
@@ -7081,7 +6951,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7108,7 +7018,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "surface",
             href: "#",
           },
         },
@@ -7120,7 +7030,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7144,7 +7054,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "button",
             "data-control-ui": "button",
             "data-shape": "default",
-            "data-size": "sm",
+            "data-size": "xs",
             "data-slot": "root",
             "data-tone": "primary",
             "data-variant": "solid",
@@ -7159,7 +7069,46 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7200,7 +7149,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7252,233 +7201,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/responsive-dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "backdrop",
-            "data-slot": "backdrop",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "surface",
-            "data-slot": "content",
-            "data-surface": "modal",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-part": "close",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "backdrop",
-            "data-slot": "backdrop",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "surface",
-            "data-slot": "content",
-            "data-surface": "modal",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-part": "close",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7529,7 +7252,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7573,7 +7296,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7613,7 +7336,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7653,7 +7376,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7693,7 +7416,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7733,7 +7456,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7774,7 +7497,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7814,7 +7537,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7870,7 +7593,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7924,7 +7647,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -7989,7 +7712,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8053,7 +7776,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8104,7 +7827,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8154,7 +7877,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8204,7 +7927,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8235,49 +7958,26 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
           },
         },
       ],
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/primitives/markdown",
+      route: "/setup-prompt",
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8302,55 +8002,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "code",
             "data-density": "default",
             "data-header": "true",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/create-a-skin",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
             "data-slot": "root",
             "data-surface": "panel",
           },
@@ -8376,7 +8027,56 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/doctor",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8438,7 +8138,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8488,7 +8188,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8546,7 +8246,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8604,7 +8304,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8660,7 +8360,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8717,7 +8417,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8745,162 +8445,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
+            "data-chat-layout-kind": "thread",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -8943,7 +8488,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -8971,6 +8516,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -8997,7 +8543,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9047,7 +8593,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9097,7 +8643,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9147,7 +8693,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9196,7 +8742,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9242,78 +8788,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "infinite-canvas",
-            "data-control-ui": "infinite-canvas",
-            "data-slot": "root",
-            role: "application",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/infinite-canvas",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9369,7 +8844,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9424,7 +8899,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9471,7 +8946,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9520,7 +8995,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9572,7 +9047,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9636,7 +9111,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9700,7 +9175,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9765,7 +9240,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9825,11 +9300,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/primitives/responsive-dialog",
+      route: "/primitives/dialog",
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9889,11 +9364,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/primitives/responsive-dialog",
+      route: "/primitives/dialog",
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -9962,7 +9437,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10018,7 +9493,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10072,7 +9547,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10125,7 +9600,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10178,7 +9653,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10232,7 +9707,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10285,7 +9760,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10338,7 +9813,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10392,7 +9867,99 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10476,7 +10043,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10557,7 +10124,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10636,7 +10203,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10715,7 +10282,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10793,98 +10360,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -10947,7 +10423,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11009,7 +10485,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11064,7 +10540,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11118,7 +10594,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11172,7 +10648,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11225,7 +10701,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11278,7 +10754,67 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-filled": "",
+            "data-focused": "",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/settings",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11338,7 +10874,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11395,7 +10931,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11452,7 +10988,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11508,7 +11044,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11561,7 +11097,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11610,7 +11146,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11658,7 +11194,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11707,7 +11243,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11756,7 +11292,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11797,7 +11333,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11837,7 +11373,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11878,7 +11414,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11919,7 +11455,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11959,7 +11495,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -11999,7 +11535,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12039,7 +11575,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12079,7 +11615,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12119,7 +11655,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12159,7 +11695,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12199,7 +11735,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12239,7 +11775,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12279,7 +11815,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12337,7 +11873,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12391,7 +11927,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12430,7 +12006,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12469,7 +12045,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12508,7 +12084,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12547,7 +12123,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12586,7 +12162,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12625,7 +12201,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12664,7 +12240,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12703,7 +12279,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12738,11 +12314,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/theme-accessibility",
+      route: "/create",
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12781,7 +12357,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12816,11 +12392,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/theme-ai-builder",
+      route: "/get-started",
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12858,7 +12434,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12893,11 +12469,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/theme-ai-builder",
+      route: "/get-started",
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12936,7 +12512,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -12977,7 +12553,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13017,7 +12593,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13058,7 +12634,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13098,7 +12674,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13139,7 +12715,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13178,7 +12754,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13220,7 +12796,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13260,7 +12836,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13303,7 +12879,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13344,7 +12920,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13386,7 +12962,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13430,7 +13006,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13471,7 +13047,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13509,7 +13085,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13547,7 +13123,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-hover-bg",
+        fill: "--cui-button-hover-background",
         text: "--cui-button-hover-foreground",
       },
       anatomy: [
@@ -13596,7 +13172,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -13623,7 +13199,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "surface",
             href: "#",
           },
         },
@@ -13635,7 +13211,46 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -13661,7 +13276,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "sm",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "surface",
             href: "#",
           },
         },
@@ -13673,7 +13288,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -13696,7 +13311,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "button",
             "data-control-ui": "button",
             "data-shape": "default",
-            "data-size": "sm",
+            "data-size": "xs",
             "data-slot": "root",
             "data-tone": "primary",
             "data-variant": "solid",
@@ -13711,7 +13326,45 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -13751,7 +13404,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -13802,230 +13455,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/responsive-dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "backdrop",
-            "data-slot": "backdrop",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "surface",
-            "data-slot": "content",
-            "data-surface": "modal",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-part": "close",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "backdrop",
-            "data-slot": "backdrop",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "popup",
-            "data-control-ui": "dialog",
-            "data-open": "",
-            "data-popup-kind": "dialog",
-            "data-popup-part": "surface",
-            "data-slot": "content",
-            "data-surface": "modal",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-part": "close",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14075,7 +13505,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14118,7 +13548,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14157,7 +13587,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14196,7 +13626,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14235,7 +13665,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14274,7 +13704,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14314,7 +13744,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14353,7 +13783,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14408,7 +13838,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14461,7 +13891,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14525,7 +13955,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14588,7 +14018,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14638,7 +14068,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14687,7 +14117,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14736,7 +14166,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14766,49 +14196,26 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
           },
         },
       ],
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/primitives/markdown",
+      route: "/setup-prompt",
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14832,54 +14239,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "code",
             "data-density": "default",
             "data-header": "true",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/create-a-skin",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
             "data-slot": "root",
             "data-surface": "panel",
           },
@@ -14905,7 +14264,55 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/doctor",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -14966,7 +14373,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15015,7 +14422,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15072,7 +14479,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15129,7 +14536,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15184,7 +14591,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15240,7 +14647,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15267,160 +14674,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
+            "data-chat-layout-kind": "thread",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -15463,7 +14717,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15490,6 +14744,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -15516,7 +14771,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15565,7 +14820,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15614,7 +14869,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15663,7 +14918,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15711,7 +14966,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15756,77 +15011,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "infinite-canvas",
-            "data-control-ui": "infinite-canvas",
-            "data-slot": "root",
-            role: "application",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/primitives/infinite-canvas",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15881,7 +15066,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15935,7 +15120,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -15981,7 +15166,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16029,7 +15214,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16080,7 +15265,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16143,7 +15328,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16206,7 +15391,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16270,7 +15455,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16329,11 +15514,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/primitives/responsive-dialog",
+      route: "/primitives/dialog",
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16392,11 +15577,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/primitives/responsive-dialog",
+      route: "/primitives/dialog",
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16464,7 +15649,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16519,7 +15704,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16572,7 +15757,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16624,7 +15809,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16676,7 +15861,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16729,7 +15914,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16781,7 +15966,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16833,7 +16018,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16886,7 +16071,98 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -16969,7 +16245,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17049,7 +16325,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17127,7 +16403,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17205,7 +16481,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17282,97 +16558,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17434,7 +16620,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17495,7 +16681,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17549,7 +16735,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17602,7 +16788,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17655,7 +16841,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17707,7 +16893,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17759,7 +16945,66 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-filled": "",
+            "data-focused": "",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/settings",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17818,7 +17063,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17874,7 +17119,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17930,7 +17175,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -17985,7 +17230,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18037,7 +17282,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18085,7 +17330,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18132,7 +17377,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18180,7 +17425,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18228,7 +17473,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18268,7 +17513,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18307,7 +17552,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18347,7 +17592,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18387,7 +17632,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18426,7 +17671,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18465,7 +17710,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18504,7 +17749,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18543,7 +17788,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18582,7 +17827,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18621,7 +17866,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18660,7 +17905,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18699,7 +17944,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18738,7 +17983,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18795,7 +18040,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18848,7 +18093,46 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18886,7 +18170,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18924,7 +18208,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -18962,7 +18246,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19000,7 +18284,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19038,7 +18322,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19076,7 +18360,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19114,7 +18398,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19152,7 +18436,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19186,11 +18470,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/theme-accessibility",
+      route: "/create",
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19228,7 +18512,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19262,11 +18546,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/theme-ai-builder",
+      route: "/get-started",
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19303,7 +18587,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19337,11 +18621,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/theme-ai-builder",
+      route: "/get-started",
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19379,7 +18663,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19419,7 +18703,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19458,7 +18742,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19498,7 +18782,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19537,7 +18821,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19577,7 +18861,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19615,7 +18899,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19656,7 +18940,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19695,7 +18979,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19737,7 +19021,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19777,7 +19061,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19818,7 +19102,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19861,7 +19145,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19901,7 +19185,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19938,7 +19222,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -19975,7 +19259,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-press-bg",
+        fill: "--cui-button-press-background",
       },
       anatomy: [
         {
@@ -20336,6 +19620,49 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "data-control-family": "chat-composer-attachment",
+            "data-control-ui": "chat-composer-attachment",
+            "data-kind": "image",
+            "data-slot": "root",
+            "data-state": "uploading",
+            "data-surface": "panel",
+            "data-variant": "preview",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer-attachment",
+            "data-control-ui": "chat-composer-attachment",
+            "data-slot": "progress",
+          },
+        },
+      ],
+      recipe: "chat-composer-attachment",
+      rendersText: false,
+      state: false,
+      route: "/ai/chat-composer-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-composer-attachment-progress-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer-attachment",
             "data-control-ui": "chat-composer-attachments",
             "data-slot": "root",
           },
@@ -20356,6 +19683,56 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "chat-composer-attachment",
             "data-control-ui": "chat-composer-attachment",
             "data-slot": "progress",
+          },
+        },
+      ],
+      recipe: "chat-composer-attachment",
+      rendersText: false,
+      state: false,
+      route: "/ai/chat-composer-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-composer-attachment-progress-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer-attachment",
+            "data-control-ui": "chat-composer-attachment",
+            "data-kind": "image",
+            "data-slot": "root",
+            "data-state": "uploading",
+            "data-surface": "panel",
+            "data-variant": "preview",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer-attachment",
+            "data-control-ui": "chat-composer-attachment",
+            "data-slot": "progress",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer-attachment",
+            "data-control-ui": "chat-composer-attachment",
+            "data-slot": "progress-indicator",
           },
         },
       ],
@@ -20680,6 +20057,217 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-chat-composer-shell-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "submitting",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "submitting",
+          },
+        },
+      ],
+      recipe: "chat-composer",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-layout-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "default",
+            "data-activity-state": "success",
+            "data-chat-layout-kind": "thought",
+            "data-closed": "",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-layout-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "default",
+            "data-activity-state": "success",
+            "data-chat-layout-kind": "thought",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-layout-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
         fill: "--cui-chat-layout-background",
       },
       anatomy: [
@@ -20896,6 +20484,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -20906,6 +20495,186 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-layout-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-layout-thought-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "default",
+            "data-activity-state": "success",
+            "data-chat-layout-kind": "thought",
+            "data-closed": "",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-layout-thought-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "default",
+            "data-activity-state": "success",
+            "data-chat-layout-kind": "thought",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "trigger",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-layout",
     },
     {
       knobs: {
@@ -21027,6 +20796,126 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-layout",
       rendersText: true,
       state: true,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "compact",
+            "data-role": "assistant",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "compact",
+            "data-role": "user",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "user",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
       route: "/ai/chat-layout",
     },
     {
@@ -21305,7 +21194,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/create-a-skin",
+      route: "/setup-prompt",
     },
     {
       knobs: {
@@ -21340,7 +21229,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/primitives/code",
+      route: "/doctor",
     },
     {
       knobs: {
@@ -21814,7 +21703,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "color-picker",
       rendersText: false,
       state: false,
-      route: "/primitives/color-picker",
+      route: "/primitives/gradient-editor",
     },
     {
       knobs: {
@@ -21866,6 +21755,66 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-index": "0",
             "data-orientation": "horizontal",
             "data-slot": "hue-thumb",
+          },
+        },
+      ],
+      recipe: "color-picker",
+      rendersText: false,
+      state: false,
+      route: "/primitives/color-picker",
+    },
+    {
+      knobs: {
+        fill: "--cui-color-picker-slider-thumb-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "popup",
+            "data-control-ui": "color-picker",
+            "data-popup-kind": "color-picker",
+            "data-popup-part": "surface",
+            "data-popup-static": "",
+            "data-slot": "panel",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "center",
+            "data-control-family": "popup",
+            "data-control-ui": "color-picker",
+            "data-open": "",
+            "data-popup-kind": "color-picker",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "color-picker",
+            "data-control-ui": "color-picker",
+            "data-index": "0",
+            "data-orientation": "horizontal",
+            "data-slot": "alpha-thumb",
           },
         },
       ],
@@ -22336,6 +22285,56 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-attachment",
+            "data-control-ui": "inline-attachment",
+            "data-slot": "root",
+            "data-state": "ready",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "inline-attachment",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-inline-attachment-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -22423,6 +22422,64 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-inline-attachment-content-background",
+        text: "--cui-inline-attachment-content-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-attachment",
+            "data-control-ui": "inline-attachment",
+            "data-slot": "root",
+            "data-state": "ready",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-attachment",
+            "data-control-ui": "inline-attachment",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "inline-attachment",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/chat",
     },
     {
       knobs: {
@@ -22893,6 +22950,70 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "title-icon",
+          },
+        },
+      ],
+      recipe: "markdown-block",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-markdown-block-icon-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -23005,7 +23126,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/get-started",
     },
     {
       knobs: {
@@ -23044,7 +23165,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown",
       rendersText: true,
       state: false,
-      route: "/primitives/markdown",
+      route: "/control-ui-vs-shadcn-ui",
     },
     {
       knobs: {
@@ -24090,7 +24211,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/primitives/select",
+      route: "/create",
     },
     {
       knobs: {
@@ -24644,6 +24765,77 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-composer",
             "data-control-ui": "chat-composer",
             "data-density": "compact",
@@ -24657,6 +24849,105 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "submitting",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "submitting",
+          },
+        },
+        {
+          attributes: {
+            "data-button-kind": "model-switcher",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
           },
         },
         {
@@ -24896,6 +25187,101 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/create",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "popup",
             "data-control-ui": "command",
             "data-popup-kind": "command",
@@ -25039,6 +25425,131 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-composer",
             "data-control-ui": "chat-composer",
             "data-density": "compact",
@@ -25107,6 +25618,95 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-filled": "",
+            "data-focused": "",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/settings",
     },
     {
       knobs: {
@@ -25314,7 +25914,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           },
         },
       ],
-      recipe: "popup",
+      recipe: "popup-lists",
       rendersText: false,
       state: false,
       route: "/primitives/dropdown-menu",
@@ -25365,7 +25965,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           },
         },
       ],
-      recipe: "popup",
+      recipe: "popup-lists",
       rendersText: false,
       state: false,
       route: "/primitives/menubar",
@@ -25412,7 +26012,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           },
         },
       ],
-      recipe: "popup",
+      recipe: "popup-lists",
       rendersText: false,
       state: false,
       route: "/primitives/command",
@@ -25462,6 +26062,74 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "range",
             "data-control-ui": "slider",
+            "data-labeled": "true",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "track",
+            "data-variant": "plain",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "indicator",
+            "data-variant": "plain",
+          },
+        },
+      ],
+      recipe: "range",
+      rendersText: false,
+      state: false,
+      route: "/primitives/morphing-panel",
+    },
+    {
+      knobs: {
+        fill: "--cui-range-indicator-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
+            "data-labeled": "true",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "root",
+            "data-variant": "plain",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
             "data-orientation": "horizontal",
             "data-range-kind": "slider",
             "data-slot": "track",
@@ -25634,6 +26302,64 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "range",
             "data-control-ui": "slider",
             "data-disabled": "",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "indicator",
+            "data-variant": "plain",
+          },
+        },
+      ],
+      recipe: "range",
+      rendersText: false,
+      state: false,
+      route: "/primitives/slider",
+    },
+    {
+      knobs: {
+        fill: "--cui-range-indicator-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
+            "data-labeled": "true",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "root",
+            "data-variant": "plain",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
+            "data-labeled": "true",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "track",
+            "data-variant": "plain",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
             "data-orientation": "horizontal",
             "data-range-kind": "slider",
             "data-slot": "indicator",
@@ -25860,6 +26586,64 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "range",
             "data-control-ui": "slider",
+            "data-labeled": "true",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "track",
+            "data-variant": "plain",
+          },
+        },
+      ],
+      recipe: "range",
+      rendersText: false,
+      state: false,
+      route: "/primitives/morphing-panel",
+    },
+    {
+      knobs: {
+        fill: "--cui-range-track-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
+            "data-labeled": "true",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "root",
+            "data-variant": "plain",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
             "data-orientation": "horizontal",
             "data-range-kind": "slider",
             "data-slot": "track",
@@ -25994,6 +26778,54 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "range",
             "data-control-ui": "slider",
             "data-disabled": "",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "track",
+            "data-variant": "plain",
+          },
+        },
+      ],
+      recipe: "range",
+      rendersText: false,
+      state: false,
+      route: "/primitives/slider",
+    },
+    {
+      knobs: {
+        fill: "--cui-range-track-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
+            "data-labeled": "true",
+            "data-orientation": "horizontal",
+            "data-range-kind": "slider",
+            "data-slot": "root",
+            "data-variant": "plain",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "range",
+            "data-control-ui": "slider",
+            "data-labeled": "true",
             "data-orientation": "horizontal",
             "data-range-kind": "slider",
             "data-slot": "track",
@@ -26672,7 +27504,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar",
       rendersText: true,
       state: true,
-      route: "/overview",
+      route: "/create-a-skin",
     },
     {
       knobs: {
@@ -26714,6 +27546,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "menu-button",
             "data-variant": "default",
             href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar",
+      rendersText: true,
+      state: true,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
           },
         },
       ],
@@ -26892,7 +27771,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar",
       rendersText: true,
       state: true,
-      route: "/overview",
+      route: "/create-a-skin",
     },
     {
       knobs: {
@@ -26934,6 +27813,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "menu-button",
             "data-variant": "default",
             href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar",
+      rendersText: true,
+      state: true,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-hover-background",
+        text: "--cui-sidebar-menu-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
           },
         },
       ],
@@ -27868,6 +28794,55 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "switch",
+            "data-control-ui": "switch",
+            "data-slot": "root",
+            "data-unchecked": "",
+            role: "switch",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "switch",
+      rendersText: false,
+      state: false,
+      route: "/use-cases/settings",
+    },
+    {
+      knobs: {
+        fill: "--cui-switch-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "switch",
             "data-control-ui": "switch",
             "data-disabled": "",
@@ -28410,6 +29385,55 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "switch",
+            "data-control-ui": "switch",
+            "data-slot": "root",
+            "data-unchecked": "",
+            role: "switch",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "switch",
+      rendersText: false,
+      state: true,
+      route: "/use-cases/settings",
+    },
+    {
+      knobs: {
+        fill: "--cui-switch-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "switch",
             "data-control-ui": "switch",
             "data-disabled": "",
@@ -28459,6 +29483,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/switch",
+    },
+    {
+      knobs: {
+        fill: "--cui-tabs-list-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives",
     },
     {
       knobs: {
@@ -29431,6 +30502,82 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-background",
+        text: "--cui-toolbar-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -29720,6 +30867,72 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/create",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-layout",
             "data-slot": "root",
@@ -29984,6 +31197,102 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/morphing-panel",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -30449,6 +31758,69 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-layout",
             "data-slot": "root",
@@ -30795,6 +32167,99 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/primitives/morphing-panel",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -30922,6 +32387,58 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-focusable": "",
             "data-icon-only": "true",
             "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
             "data-size": "sm",
             "data-slot": "button",
             tabindex: "-1",
@@ -31378,6 +32895,135 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       ],
       recipe: "toolbar",
       rendersText: false,
+      state: true,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: true,
+      route: "/create",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
       state: true,
       route: "/primitives",
     },
@@ -32036,6 +33682,195 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/morphing-panel",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "inverse",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -32411,6 +34246,58 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-tone": "neutral",
             "data-variant": "ghost",
             tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
           },
         },
       ],
@@ -34449,6 +36336,100 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "data-activity-kind": "tool",
+            "data-activity-name": "active_setup",
+            "data-activity-state": "success",
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "trigger",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "activity",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-message",
+    },
+    {
+      knobs: {
+        text: "--cui-activity-row-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "tool",
+            "data-activity-name": "read_registry",
+            "data-activity-state": "success",
+            "data-closed": "",
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "activity",
+      rendersText: true,
+      state: false,
+      route: "/ai/activity",
+    },
+    {
+      knobs: {
+        text: "--cui-activity-row-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "tool",
             "data-activity-name": "read_registry",
             "data-activity-state": "success",
             "data-control-family": "activity",
@@ -34474,6 +36455,79 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/ai/activity",
+    },
+    {
+      knobs: {
+        text: "--cui-activity-row-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "default",
+            "data-activity-state": "running",
+            "data-closed": "",
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "row",
+          },
+        },
+      ],
+      recipe: "activity",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -34831,6 +36885,65 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-filled": "",
+            "data-focused": "",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/settings",
     },
     {
       knobs: {
@@ -35395,6 +37508,132 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "default",
+            "data-activity-state": "success",
+            "data-chat-layout-kind": "thought",
+            "data-closed": "",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        text: "--cui-chat-layout-thought-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-chat-layout-kind": "thread",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thread",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "default",
+            "data-activity-state": "success",
+            "data-chat-layout-kind": "thought",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-thought",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "trigger",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "chat-layout",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        text: "--cui-chat-layout-thought-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-thread",
             "data-slot": "root",
@@ -35579,6 +37818,49 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chrome": "embedded",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/get-started",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-chrome": "standalone",
             "data-control-family": "code",
             "data-control-ui": "code",
@@ -35628,49 +37910,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "code",
             "data-density": "default",
             "data-header": "true",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "grid",
-          },
-        },
-      ],
-      recipe: "code",
-      rendersText: true,
-      state: false,
-      route: "/create-a-skin",
-    },
-    {
-      knobs: {
-        text: "--cui-code-text-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "standalone",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
             "data-slot": "root",
             "data-surface": "panel",
           },
@@ -35691,6 +37930,49 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/doctor",
+    },
+    {
+      knobs: {
         text: "--cui-code-title-foreground",
       },
       anatomy: [
@@ -35773,7 +38055,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/create-a-skin",
+      route: "/setup-prompt",
     },
     {
       knobs: {
@@ -36043,6 +38325,46 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "markdown",
             "data-control-ui": "markdown",
             "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "markdown",
+      rendersText: true,
+      state: false,
+      route: "/create",
+    },
+    {
+      knobs: {
+        text: "--cui-markdown-link-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown",
+            "data-control-ui": "markdown",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown",
+            "data-control-ui": "markdown",
+            "data-slot": "link",
+            href: "#",
           },
         },
       ],
@@ -36566,7 +38888,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           },
         },
       ],
-      recipe: "popup",
+      recipe: "popup-lists",
       rendersText: true,
       state: false,
       route: "/primitives/menubar",
@@ -36626,7 +38948,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           },
         },
       ],
-      recipe: "popup",
+      recipe: "popup-lists",
       rendersText: true,
       state: false,
       route: "/primitives/command",
@@ -36672,7 +38994,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           },
         },
       ],
-      recipe: "popup",
+      recipe: "popup-lists",
       rendersText: true,
       state: false,
       route: "/primitives/command",
@@ -36872,7 +39194,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar",
       rendersText: true,
       state: false,
-      route: "/overview",
+      route: "/create-a-skin",
     },
     {
       knobs: {
@@ -36913,6 +39235,52 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "menu-button",
             "data-variant": "default",
             href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar",
+      rendersText: true,
+      state: false,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
           },
         },
       ],
@@ -37255,6 +39623,66 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-slot": "inset",
           },
         },
@@ -37442,6 +39870,76 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives/tabs",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
             "data-activation-direction": "none",
             "data-control-family": "tabs",
             "data-control-ui": "tabs",
@@ -37534,6 +40032,88 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/code-block-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code-block-editor",
+            "data-control-ui": "code-block-editor",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
             "data-activation-direction": "none",
             "data-control-family": "tabs",
             "data-control-ui": "tabs",
@@ -37560,6 +40140,86 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/ai/code-block-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives/morphing-panel",
     },
     {
       knobs: {
@@ -37667,6 +40327,125 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inner",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-slot": "inset",
           },
         },
@@ -37702,6 +40481,76 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "tab",
             role: "tab",
             tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-message",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
           },
         },
       ],
@@ -37826,6 +40675,86 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-orientation": "horizontal",
             "data-size": "sm",
             "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives/tabs",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
             "data-variant": "default",
             role: "tablist",
           },
@@ -37840,6 +40769,76 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "tab",
             role: "tab",
             tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives/tabs",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
           },
         },
       ],
@@ -37960,6 +40959,88 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code-block-editor",
+            "data-control-ui": "code-block-editor",
+            "data-density": "default",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+            "data-variant": "default",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/code-block-editor",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "morphing-panel",
             "data-control-ui": "morphing-panel",
             "data-open": "",
@@ -38000,6 +41081,86 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "tab",
             role: "tab",
             tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/primitives/morphing-panel",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "morphing-panel",
+            "data-control-ui": "morphing-panel",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
           },
         },
       ],
@@ -38729,7 +41890,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-label-root-foreground",
     "--cui-markdown-blockquote-border-color",
     "--cui-markdown-blockquote-foreground",
-    "--cui-markdown-link-foreground",
     "--cui-phone-input-trigger-focus-background",
     "--cui-range-thumb-background",
     "--cui-resizable-handle-active-background",

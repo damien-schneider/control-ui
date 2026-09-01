@@ -6,9 +6,9 @@
     --cui-range-indicator-background: var(--primary);
     --cui-range-thumb-radius: 9999px;
     --cui-range-thumb-background: var(--background);
-    --cui-range-thumb-border-color: var(--border);
+    --cui-range-thumb-border-color: var(--control-rim);
     --cui-range-thumb-shadow: var(--shadow-sm);
-    --_range-thumb-border-width: 1px;
+    --_range-thumb-border-width: var(--control-rim-width);
   }
 
   :where([data-control-family="range"][data-range-kind="progress"][data-slot="root"]),
@@ -39,7 +39,7 @@
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-variant="plain"]) {
     --cui-range-track-radius: 3px;
-    --cui-range-track-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-range-track-background: var(--hover-fill);
     --cui-range-indicator-radius: 0px;
     --cui-range-indicator-background: oklch(from var(--foreground) l c h / 0.14);
     --cui-range-thumb-radius: 1px;

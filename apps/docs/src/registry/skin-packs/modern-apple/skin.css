@@ -167,11 +167,11 @@
     [data-control-ui="button"][data-slot="root"][data-control-family="button"],
     [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
   ) {
-    --cui-button-bg: var(--glass-fill);
+    --cui-button-background: var(--glass-fill);
     --cui-button-foreground: var(--foreground);
-    --cui-button-hover-bg: var(--glass-fill-hover);
+    --cui-button-hover-background: var(--glass-fill-hover);
     --cui-button-hover-foreground: var(--foreground);
-    --cui-button-press-bg: var(--glass-fill-active);
+    --cui-button-press-background: var(--glass-fill-active);
     --cui-button-press-scale: 0.97;
     --cui-button-shadow: inset 0 0 0 0.5px var(--glass-rim), inset 0 1px 0 0 var(--glass-gloss), 0 1px 2px 0 oklch(0 0 0 / 0.06);
     -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
@@ -183,11 +183,11 @@
       [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
     ) {
-    --cui-button-bg: var(--primary);
+    --cui-button-background: var(--primary);
     --cui-button-foreground: var(--primary-foreground);
-    --cui-button-hover-bg: var(--primary);
+    --cui-button-hover-background: var(--primary);
     --cui-button-hover-foreground: var(--primary-foreground);
-    --cui-button-press-bg: var(--primary);
+    --cui-button-press-background: var(--primary);
     --cui-button-shadow: inset 0 1px 0 0 oklch(1 0 0 / 0.35), 0 1px 3px 0 rgb(10 102 240 / 0.4);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -216,14 +216,14 @@
       [data-slot="root"][data-variant="inverse"][data-control-family="toolbar"]
         [data-control-ui="button"][data-slot="root"][data-control-family="button"]
     ) {
-    --cui-button-bg: transparent;
+    --cui-button-background: transparent;
     --cui-button-foreground: oklch(from var(--background) l c h / 0.7);
-    --cui-button-hover-bg: oklch(from var(--background) l c h / 0.1);
+    --cui-button-hover-background: oklch(from var(--background) l c h / 0.1);
     --cui-button-hover-foreground: var(--background);
-    --cui-button-press-bg: oklch(from var(--background) l c h / 0.12);
-    --cui-button-active-bg: var(--background);
+    --cui-button-press-background: oklch(from var(--background) l c h / 0.12);
+    --cui-button-active-background: var(--background);
     --cui-button-active-foreground: var(--foreground);
-    --cui-button-active-hover-bg: var(--background);
+    --cui-button-active-hover-background: var(--background);
     --cui-button-shadow: 0 0 transparent;
     --cui-button-active-shadow: 0 0 transparent;
   }
@@ -332,11 +332,11 @@
       [data-control-ui="dropdown-menu"][data-slot="trigger"][data-control-family="button"]
     ) {
     --cui-button-radius: var(--radius-control);
-    --cui-button-bg: var(--glass-fill);
+    --cui-button-background: var(--glass-fill);
     --cui-button-foreground: var(--foreground);
-    --cui-button-hover-bg: var(--glass-fill-hover);
+    --cui-button-hover-background: var(--glass-fill-hover);
     --cui-button-hover-foreground: var(--foreground);
-    --cui-button-press-bg: var(--glass-fill-active);
+    --cui-button-press-background: var(--glass-fill-active);
     --cui-button-press-scale: 0.97;
     --cui-button-shadow: inset 0 0 0 0.5px var(--glass-rim), inset 0 1px 0 0 var(--glass-gloss), 0 1px 2px 0 oklch(0 0 0 / 0.06);
     -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
@@ -360,7 +360,6 @@
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 1px;
-    --cui-field-shadow: inset 0 1px 2px oklch(0 0 0 / 0.04);
     --cui-field-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
     --cui-field-focus-border-color: var(--input);
   }
@@ -417,7 +416,7 @@
     --cui-chat-composer-shell-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
     --cui-chat-composer-shell-border-color: var(--input);
     --cui-chat-composer-shell-radius: var(--radius-control);
-    --cui-chat-composer-shell-shadow: inset 0 1px 2px oklch(0 0 0 / 0.04);
+    --cui-chat-composer-shell-shadow: var(--shadow-inset);
     --cui-chat-composer-input-foreground: var(--foreground);
   }
 

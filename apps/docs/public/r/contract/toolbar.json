@@ -1,0 +1,293 @@
+{
+  "version": 8,
+  "family": "toolbar",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "toolbar"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-toolbar-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(\n      min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) +\n      clamp(0px, calc(min(var(--cui-toolbar-item-radius), calc(var(--control-h-sm) / 2)) * 1000), var(--cui-toolbar-padding))\n    )"
+    },
+    {
+      "name": "--cui-toolbar-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1)"
+    },
+    {
+      "name": "--cui-toolbar-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.72)"
+    },
+    {
+      "name": "--cui-toolbar-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-toolbar-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-toolbar-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-toolbar-item-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "min(var(--radius-sm), calc(var(--control-h-sm) / 2))"
+    },
+    {
+      "name": "--cui-toolbar-item-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-toolbar-item-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-toolbar-item-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-toolbar-item-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-toolbar-item-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-toolbar-item-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--active-fill)"
+    },
+    {
+      "name": "--cui-toolbar-item-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-toolbar-separator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    }
+  ],
+  "parts": {
+    "toolbar": {
+      "root": {
+        "family": "toolbar",
+        "registryItems": [
+          "toolbar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "inverse"
+            ]
+          }
+        ]
+      },
+      "button": {
+        "family": "toolbar",
+        "registryItems": [
+          "toolbar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focusable",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-icon-only",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sm"
+            ]
+          }
+        ]
+      },
+      "group": {
+        "family": "toolbar",
+        "registryItems": [
+          "toolbar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      },
+      "input": {
+        "family": "toolbar",
+        "registryItems": [
+          "toolbar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focusable",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sm"
+            ]
+          }
+        ]
+      },
+      "link": {
+        "family": "toolbar",
+        "registryItems": [
+          "toolbar"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sm"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "track"
+            ]
+          }
+        ]
+      },
+      "separator": {
+        "family": "toolbar",
+        "registryItems": [
+          "toolbar"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/toolbar.contrast.json"
+}

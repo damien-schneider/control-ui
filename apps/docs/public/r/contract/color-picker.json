@@ -1,0 +1,699 @@
+{
+  "version": 8,
+  "family": "color-picker",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "color-picker"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-color-picker-output-swatch-radius",
+      "syntax": "<length-percentage>+",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-md)"
+    },
+    {
+      "name": "--cui-color-picker-swatch-radius",
+      "syntax": "<length-percentage>+",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-md)"
+    },
+    {
+      "name": "--cui-color-picker-area-radius",
+      "syntax": "<length-percentage>+",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-field)"
+    },
+    {
+      "name": "--cui-color-picker-trigger-radius",
+      "syntax": "<length-percentage>+",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-color-picker-trigger-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "inset 0 0 0 1px var(--border)"
+    },
+    {
+      "name": "--cui-color-picker-slider-thumb-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(infinity * 1px)"
+    },
+    {
+      "name": "--cui-color-picker-slider-thumb-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    }
+  ],
+  "parts": {
+    "color-picker": {
+      "alpha": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "alpha-thumb": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-index",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "alpha-track": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "area": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "area-brightness": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "area-saturation": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "area-thumb": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "channel": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "channel-label": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "channels": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "contrast": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "contrast-fix": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "contrast-level": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-passing",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "contrast-ratio": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "eye-dropper": {
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "format": {
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "hue": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "hue-thumb": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-index",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "hue-track": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "input": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "output": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "output-checker": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "output-color": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "output-swatch": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "output-value": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "swatch": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "swatch-add": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "swatch-checker": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "swatch-color": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "swatches": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "swatches-group": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "swatches-label": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "trigger-checker": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "trigger-color": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "wheel": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "wheel-thumb": {
+        "family": "color-picker",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/color-picker.contrast.json"
+}

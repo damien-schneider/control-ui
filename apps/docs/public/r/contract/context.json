@@ -1,0 +1,364 @@
+{
+  "version": 8,
+  "family": "context",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "context"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-context-graph-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-context-track-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-context-segment-tool-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-context-segment-message-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.65)"
+    },
+    {
+      "name": "--cui-context-segment-source-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--accent-foreground) l c h / 0.65)"
+    },
+    {
+      "name": "--cui-context-segment-reasoning-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.5)"
+    },
+    {
+      "name": "--cui-context-overage-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--destructive-text) l c h / 0.22)"
+    },
+    {
+      "name": "--cui-context-limit-marker-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive-text)"
+    }
+  ],
+  "parts": {
+    "context": {
+      "root": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "normal",
+              "over-limit",
+              "unavailable"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "content-grid": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "graph": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "normal",
+              "over-limit",
+              "unavailable"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "legend": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "legend-description": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "legend-indicator": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "cache",
+              "message",
+              "other",
+              "reasoning",
+              "source",
+              "system",
+              "tool"
+            ]
+          }
+        ]
+      },
+      "legend-item": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "cache",
+              "message",
+              "other",
+              "reasoning",
+              "source",
+              "system",
+              "tool"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "available",
+              "over-limit"
+            ]
+          }
+        ]
+      },
+      "legend-label": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "legend-value": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "limit-marker": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "overage": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "segment": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "cache",
+              "message",
+              "other",
+              "reasoning",
+              "source",
+              "system",
+              "tool"
+            ]
+          }
+        ]
+      },
+      "summary": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "normal",
+              "over-limit",
+              "unavailable"
+            ]
+          }
+        ]
+      },
+      "summary-value": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "track": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "normal",
+              "over-limit",
+              "unavailable"
+            ]
+          }
+        ]
+      },
+      "trigger-indicator": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "normal",
+              "over-limit",
+              "unavailable"
+            ]
+          }
+        ]
+      },
+      "trigger-label": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": []
+      },
+      "trigger-track": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "normal",
+              "over-limit",
+              "unavailable"
+            ]
+          }
+        ]
+      },
+      "trigger-value": {
+        "family": "context",
+        "registryItems": [
+          "context"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "normal",
+              "over-limit",
+              "unavailable"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/context.contrast.json"
+}

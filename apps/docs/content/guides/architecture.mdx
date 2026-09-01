@@ -65,10 +65,11 @@
 [data-skin="rig"] [data-control="true"][data-control-family] { ... }
 ```
 
-  The generated `skin-contract.json` is the equivalent of a `defineAnatomy` catalog, but it is built from the component
-  source instead of becoming a browser-side object. It lists scopes, parts, states, adornments, semantic families, and
-  registry ownership in one agent-readable artifact. Item API responses separate `ownScopes` from `installedScopes`, so
-  an agent sees both the requested component and the anatomy brought by its dependency closure.
+  The generated contract is the equivalent of a `defineAnatomy` catalog, but it is built from the component source
+  instead of becoming a browser-side object. `/r/contract/index.json` names every paint family; each
+  `/r/contract/<family>.json` lists that family's scopes, parts, states, adornments, and registry ownership, so an agent
+  restyling one family reads one file instead of the whole catalog. Item API responses separate `ownScopes` from
+  `installedScopes`, so an agent sees both the requested component and the anatomy brought by its dependency closure.
 </GuideSection>
 
 <GuideSection id="skin-cost" title="Keep the active skin sparse">
@@ -103,8 +104,8 @@
 ```css
 /* Application CSS. The call site renders <Button data-campaign="launch" />. */
 [data-slot="root"][data-control-family="button"][data-campaign="launch"] {
-  --cui-button-bg: var(--brand-launch);
-  --cui-button-hover-bg: var(--brand-launch-hover);
+  --cui-button-background: var(--brand-launch);
+  --cui-button-hover-background: var(--brand-launch-hover);
 }
 ```
 </GuideSection>
@@ -116,8 +117,11 @@
 
   <RegistryPipeline />
 
-  The current anatomy contract is version 7. Version 6 removed runtime class and paint maps: component visuals now flow through
+  The current anatomy contract is version 8. Version 6 removed runtime class and paint maps: component visuals now flow through
   registered CSS knob contracts, while skin config retains only behavior and adornments. Version 7 publishes every registered
-  `--cui-*` knob (syntax and recipe default included) in the generated contract. This pre-release registry uses a
+  `--cui-*` knob (syntax and recipe default included) in the generated contract. Version 8 renames every paint knob to the
+  `-background` suffix, adds the surface archetype tokens (`--control-rim`, `--hover-fill`, `--active-fill`), and moves control
+  sizing out of the shared utility into the recipes as `--cui-button-height` and its padding, font-size and field twins.
+  This pre-release registry uses a
   clean contract cutover: reinstall core, affected components or blocks, and the selected skin together.
 </GuideSection>

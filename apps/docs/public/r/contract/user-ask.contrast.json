@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "family": "user-ask",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-freeform": "",
+          "data-slot": "option",
+          "role": "radio"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "option-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "option",
+          "role": "radio"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "option-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-freeform": "",
+          "data-slot": "option",
+          "role": "radio"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-recommended": "",
+          "data-selected": "",
+          "data-slot": "option",
+          "role": "radio"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "user-ask",
+          "data-control-ui": "user-ask",
+          "data-slot": "option",
+          "role": "radio"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-user-ask-background",
+        "text": "--cui-user-ask-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-user-ask-indicator-background",
+        "text": "--cui-user-ask-indicator-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-user-ask-indicator-background",
+        "text": "--cui-user-ask-indicator-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-user-ask-option-hover-background"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-user-ask-option-hover-background"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-user-ask-option-hover-background"
+      },
+      "anatomy": 5,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-user-ask-option-selected-background"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

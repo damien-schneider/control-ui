@@ -6,7 +6,6 @@
   "description": "Shared contracts, skin resolver, utilities, token bindings, and invariant mechanics for Control UI.",
   "docs": "Components compile once a skin pack is installed (it creates skin.config.tsx). Pick one at http://127.0.0.1:3000/skins, e.g.: npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite",
   "dependencies": [
-    "class-variance-authority@^0.7.1",
     "clsx@^2.1.1",
     "tailwind-merge@^3.6.0"
   ],
@@ -31,6 +30,11 @@
       "path": "src/registry/sources/control-ui/control-variants.ts",
       "target": "@components/control-ui/control-variants.ts",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/scripts/contrast-eval.mjs",
+      "target": "@components/control-ui/scripts/contrast-eval.mjs",
+      "type": "registry:file"
     },
     {
       "path": "src/registry/sources/control-ui/scripts/control-ui-doctor.mjs",

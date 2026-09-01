@@ -1,0 +1,74 @@
+{
+  "version": 8,
+  "family": "alert",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "alert"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-alert-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-alert-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-alert-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-alert-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "none"
+    }
+  ],
+  "parts": {
+    "alert": {
+      "root": {
+        "family": "alert",
+        "registryItems": [
+          "alert"
+        ],
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "destructive"
+            ]
+          }
+        ]
+      },
+      "description": {
+        "family": "alert",
+        "registryItems": [
+          "alert"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "alert",
+        "registryItems": [
+          "alert"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-alert-background"
+  ],
+  "contrast": "/r/contract/alert.contrast.json"
+}

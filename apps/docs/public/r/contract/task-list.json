@@ -1,0 +1,149 @@
+{
+  "version": 8,
+  "family": "task-list",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "task-list"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-task-list-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-field)"
+    },
+    {
+      "name": "--cui-task-list-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.9)"
+    },
+    {
+      "name": "--cui-task-list-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-task-list-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-task-list-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-md)"
+    },
+    {
+      "name": "--cui-task-list-item-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-task-list-item-pending-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-task-list-indicator-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted-foreground) l c h / 0.7)"
+    },
+    {
+      "name": "--cui-task-list-indicator-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-text)"
+    }
+  ],
+  "parts": {
+    "task-list": {
+      "root": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": []
+      },
+      "chevron": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": []
+      },
+      "item": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "active",
+              "completed",
+              "pending"
+            ]
+          }
+        ]
+      },
+      "item-indicator": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "active",
+              "completed",
+              "pending"
+            ]
+          }
+        ]
+      },
+      "items": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": []
+      },
+      "label": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": []
+      },
+      "progress": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "family": "task-list",
+        "registryItems": [
+          "task-list"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/task-list.contrast.json"
+}

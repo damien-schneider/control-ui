@@ -71,6 +71,7 @@
   --ring: oklch(from var(--primary) l c h / 0.38);
   --focus-ring: var(--primary);
   --canvas: oklch(0.985 0 0);
+  --control-rim: oklch(from var(--foreground) l c h / 0.16);
 }
 
 .dark[data-skin="cuicui"][data-skin],
@@ -92,6 +93,7 @@
   --ring: oklch(from var(--primary) l c h / 0.52);
   --focus-ring: var(--primary);
   --canvas: oklch(0.145 0 0);
+  --control-rim: oklch(1 0 0 / 0.13);
   --popover-opacity: 0.82;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 1;

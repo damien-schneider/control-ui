@@ -42,7 +42,7 @@
 
   Then resolve the contract: 46 tokens required in both modes — the 26 core roles plus the 20 the theme editor groups
   under advanced (shadows, motion, overlay opacity, control geometry). Advanced means edited less often, not optional.
-  The remaining 80 contract tokens are derived: core ships their defaults, re-value them only when the look calls for
+  The remaining 84 contract tokens are derived: core ships their defaults, re-value them only when the look calls for
   it. Tests enforce these boundaries on every shipped pack.
 
   <GuidePoints>
@@ -54,19 +54,19 @@
 
 <GuideSection id="knobs" title="Go deeper with component knobs">
   When tokens cannot express the look — a gradient hover, a popup family with its own border treatment — re-value the
-  registered `--cui-*` knobs in `skin.css`. Every visual decision in a recipe reads one, and all 441 knobs inherit, so
+  registered `--cui-*` knobs in `skin.css`. Every visual decision in a recipe reads one, and all 452 knobs inherit, so
   a value set at the family root reaches every part beneath it.
 
 ```css
 /* skin.css — one family, restyled at its root. */
 [data-skin="acme"] :where([data-control-family="button"][data-control="true"]) {
   --cui-button-radius: 999px;
-  --cui-button-hover-bg: oklch(from var(--primary) l c h / 0.12);
+  --cui-button-hover-background: oklch(from var(--primary) l c h / 0.12);
 }
 ```
 
-  Every knob — name, syntax, initial value, recipe default — is published per family in the generated
-  `skin-contract.json`, so a skin can be written or generated against the catalog instead of the recipe sources. Set
+  Every knob — name, syntax, initial value, recipe default — is published in that family's generated
+  `/r/contract/<family>.json`, so a skin can be written or generated against the catalog instead of the recipe sources. Set
   knobs at family roots: a knob set on an inner part is final and beats every inherited re-value, including inline
   styles. The full resolution story is in the architecture guide's cascade contract.
 </GuideSection>

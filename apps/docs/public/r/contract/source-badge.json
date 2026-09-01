@@ -1,0 +1,78 @@
+{
+  "version": 8,
+  "family": "source-badge",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "source-badge"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-source-badge-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-source-badge-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-source-badge-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.6)"
+    },
+    {
+      "name": "--cui-source-badge-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-source-badge-favicon-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-source-badge-favicon-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-sm)"
+    }
+  ],
+  "parts": {
+    "source-badge": {
+      "root": {
+        "registryItems": [
+          "source-badge"
+        ],
+        "states": [
+          {
+            "attribute": "data-source-badge",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-source-badge-favicon",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "label": {
+        "registryItems": [
+          "source-badge"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/source-badge.contrast.json"
+}

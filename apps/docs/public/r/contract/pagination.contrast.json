@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "family": "pagination",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "pagination",
+          "data-control-ui": "pagination",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control": "true",
+          "data-control-family": "pagination",
+          "data-control-ui": "pagination",
+          "data-slot": "link",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "pagination",
+          "data-control-ui": "pagination",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "pagination",
+          "data-control-ui": "pagination",
+          "data-slot": "link",
+          "href": "#"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-pagination-link-background",
+        "text": "--cui-pagination-link-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-pagination-link-background",
+        "text": "--cui-pagination-link-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-pagination-link-hover-background"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-pagination-link-hover-background"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": true
+    }
+  ]
+}

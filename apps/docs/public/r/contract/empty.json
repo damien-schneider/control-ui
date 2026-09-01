@@ -1,0 +1,104 @@
+{
+  "version": 8,
+  "family": "empty",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "empty"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-empty-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-empty-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-empty-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-empty-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-empty-border-style",
+      "syntax": "*",
+      "initialValue": "solid",
+      "defaultValue": "solid"
+    },
+    {
+      "name": "--cui-empty-media-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-empty-media-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    }
+  ],
+  "parts": {
+    "empty": {
+      "root": {
+        "family": "empty",
+        "registryItems": [
+          "empty"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "empty",
+        "registryItems": [
+          "empty"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "empty",
+        "registryItems": [
+          "empty"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "empty",
+        "registryItems": [
+          "empty"
+        ],
+        "states": []
+      },
+      "media": {
+        "family": "empty",
+        "registryItems": [
+          "empty"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "empty",
+        "registryItems": [
+          "empty"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-empty-background",
+    "--cui-empty-media-background"
+  ],
+  "contrast": "/r/contract/empty.contrast.json"
+}

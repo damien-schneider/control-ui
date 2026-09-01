@@ -1,0 +1,103 @@
+{
+  "version": 8,
+  "family": "morphing-panel",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "morphing-panel"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-morphing-panel-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-morphing-panel-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-morphing-panel-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card-foreground)"
+    },
+    {
+      "name": "--cui-morphing-panel-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--border) l c h / 0.8)"
+    },
+    {
+      "name": "--cui-morphing-panel-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-md)"
+    },
+    {
+      "name": "--cui-morphing-panel-trigger-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+    }
+  ],
+  "parts": {
+    "morphing-panel": {
+      "root": {
+        "family": "morphing-panel",
+        "registryItems": [
+          "morphing-panel"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "morphing-panel",
+        "registryItems": [
+          "morphing-panel"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "registryItems": [
+          "morphing-panel"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/morphing-panel.contrast.json"
+}

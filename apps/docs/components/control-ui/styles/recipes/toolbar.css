@@ -13,9 +13,9 @@
     --cui-toolbar-item-background: transparent;
     --cui-toolbar-item-foreground: var(--muted-foreground);
     --cui-toolbar-item-shadow: none;
-    --cui-toolbar-item-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-toolbar-item-hover-background: var(--hover-fill);
     --cui-toolbar-item-hover-foreground: var(--foreground);
-    --cui-toolbar-item-active-background: oklch(from var(--foreground) l c h / 0.08);
+    --cui-toolbar-item-active-background: var(--active-fill);
     --cui-toolbar-item-active-foreground: var(--foreground);
     --cui-toolbar-separator-background: var(--border);
     border: 1px solid var(--cui-toolbar-border-color);
@@ -44,7 +44,9 @@
   :where([data-control-family="toolbar"][data-slot="link"]),
   :where([data-control-family="toolbar"][data-slot="input"]) {
     gap: calc(var(--spacing) * 1.5);
-    padding-inline: calc(var(--spacing) * 2);
+    block-size: var(--control-h-sm);
+    padding-inline: calc(var(--padding-x) * 0.75);
+    font-size: var(--text-label);
     border-radius: var(--cui-toolbar-item-radius);
     background-color: var(--cui-toolbar-item-background);
     box-shadow: var(--cui-toolbar-item-shadow);
@@ -130,14 +132,14 @@
   }
 
   :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"] [data-control-family="button"][data-slot="root"]) {
-    --cui-button-bg: transparent;
+    --cui-button-background: transparent;
     --cui-button-foreground: oklch(from var(--background) l c h / 0.7);
-    --cui-button-hover-bg: oklch(from var(--background) l c h / 0.1);
+    --cui-button-hover-background: oklch(from var(--background) l c h / 0.1);
     --cui-button-hover-foreground: var(--background);
-    --cui-button-press-bg: oklch(from var(--background) l c h / 0.12);
-    --cui-button-active-bg: var(--background);
+    --cui-button-press-background: oklch(from var(--background) l c h / 0.12);
+    --cui-button-active-background: var(--background);
     --cui-button-active-foreground: var(--foreground);
-    --cui-button-active-hover-bg: var(--background);
+    --cui-button-active-hover-background: var(--background);
     --cui-button-shadow: 0 0 transparent;
     --cui-button-active-shadow: 0 0 transparent;
   }

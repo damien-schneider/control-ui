@@ -34,7 +34,7 @@ export const skinSurfaceFamilies = ["floating", "modal", "panel"] as const;
 export type SkinSurfaceFamily = (typeof skinSurfaceFamilies)[number];
 
 export type SkinContract = {
-  version: 7;
+  version: 8;
   selectorPattern: string;
   registryItemMapping: Record<string, string[]>;
   scopes: Record<string, ContractScope>;
@@ -47,6 +47,17 @@ export type SkinContract = {
   };
   externalStateAttributes: string[];
 };
+
+/** Emitted contracts are diffed byte for byte, so every record the collector and its slices write is key-sorted. */
+export function sortRecord<Value>(record: Record<string, Value>, rootFirst = false): Record<string, Value> {
+  return Object.fromEntries(
+    Object.entries(record).sort(([left], [right]) => {
+      if (rootFirst && left === "root") return -1;
+      if (rootFirst && right === "root") return 1;
+      return left.localeCompare(right);
+    }),
+  );
+}
 
 export type ThemeContractArtifact = {
   version: 1;

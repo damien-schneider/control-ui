@@ -1,0 +1,190 @@
+{
+  "version": 8,
+  "family": "chat-message",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "chat-message"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-chat-message-avatar-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-chat-message-avatar-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-chat-message-avatar-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-chat-message-avatar-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-chat-message-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-chat-message-corner-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-chat-message-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-chat-message-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-chat-message-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-chat-message-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-chat-message-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-chat-message-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    }
+  ],
+  "parts": {
+    "chat-message": {
+      "root": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-density",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "comfortable",
+              "compact"
+            ]
+          },
+          {
+            "attribute": "data-role",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "assistant",
+              "system",
+              "tool",
+              "user"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "idle",
+              "pending",
+              "streaming"
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
+      "avatar": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
+      "body": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": [
+          {
+            "attribute": "data-role",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "assistant",
+              "system",
+              "tool",
+              "user"
+            ]
+          },
+          {
+            "attribute": "data-streaming",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "header": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
+      "row": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-chat-message-avatar-background"
+  ],
+  "contrast": "/r/contract/chat-message.contrast.json"
+}

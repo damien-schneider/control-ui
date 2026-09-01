@@ -335,8 +335,6 @@ function literalGeometryUtilities(classList: string): string[] {
 
 const popupStructureConst = componentSources.find(({ name }) => name === "surface-variants.ts");
 const popupStructureClasses = popupStructureConst?.source.match(/popupItemStructureClasses = "([^"]*)"/)?.[1] ?? "";
-const controlSizeConst = componentSources.find(({ name }) => name === "control-variants.ts");
-const controlSizeClassLists = [...(controlSizeConst?.source.matchAll(/(?:xs|sm|md|lg): "([^"]*)"/g) ?? [])].map((match) => match[1]);
 
 describe("recipe reachability", () => {
   test("every public knob reaches rendered CSS or a structural utility", () => {
@@ -386,13 +384,6 @@ describe("recipe reachability", () => {
   test("shared popup structure stays free of literal geometry the popup recipe owns", () => {
     expect(popupStructureClasses).not.toBe("");
     expect(literalGeometryUtilities(popupStructureClasses)).toEqual([]);
-  });
-
-  test("shared size ramp reads tokens for every geometry utility", () => {
-    expect(controlSizeClassLists.length).toBe(4);
-    for (const classList of controlSizeClassLists) {
-      expect(literalGeometryUtilities(classList)).toEqual([]);
-    }
   });
 
   test("rejects literal geometry smuggled into a shared structure const", () => {

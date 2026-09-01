@@ -3,7 +3,7 @@
   "data": {
     "count": 174,
     "contracts": {
-      "skin": "http://127.0.0.1:3000/r/skin-contract.json",
+      "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
     },
     "fullInstalls": [
@@ -164,7 +164,7 @@
         "id": "contract-versions",
         "name": "Contract versions",
         "kind": "Guide",
-        "summary": "The skin contract is version 7. Crossing a version reinstalls core, the affected items, and the skin together.",
+        "summary": "The skin contract is version 8. Crossing a version reinstalls core, the affected items, and the skin together.",
         "href": "/contract-versions"
       },
       {
@@ -227,7 +227,7 @@
         "id": "best-react-component-libraries-for-ai-interfaces",
         "name": "Best React component libraries for AI interfaces",
         "kind": "Guide",
-        "summary": "Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.",
+        "summary": "Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.",
         "href": "/best-react-component-libraries-for-ai-interfaces"
       },
       {

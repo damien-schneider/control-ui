@@ -1,0 +1,261 @@
+{
+  "version": 8,
+  "family": "dropzone",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "dropzone"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-dropzone-surface-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-dropzone-surface-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-dropzone-surface-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-dropzone-accept-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-dropzone-reject-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive)"
+    },
+    {
+      "name": "--cui-dropzone-overlay-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.95)"
+    }
+  ],
+  "parts": {
+    "dropzone": {
+      "root": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-empty",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "area": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accept",
+              "idle",
+              "processing",
+              "reject",
+              "unknown"
+            ]
+          }
+        ]
+      },
+      "feedback": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": []
+      },
+      "feedback-icon": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": []
+      },
+      "feedback-message": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": []
+      },
+      "feedback-spinner": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": []
+      },
+      "file": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": []
+      },
+      "file-list": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": [
+          {
+            "attribute": "data-empty",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "input": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": []
+      },
+      "overlay": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-scope",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "global",
+              "local"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accept",
+              "idle",
+              "processing",
+              "reject",
+              "unknown"
+            ]
+          }
+        ]
+      },
+      "rejection": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": []
+      },
+      "rejection-list": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": [
+          {
+            "attribute": "data-empty",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "status": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accept",
+              "idle",
+              "processing",
+              "reject",
+              "unknown"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "family": "dropzone",
+        "registryItems": [
+          "dropzone"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accept",
+              "idle",
+              "processing",
+              "reject",
+              "unknown"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-dropzone-accept-border-color",
+    "--cui-dropzone-overlay-background",
+    "--cui-dropzone-reject-border-color"
+  ],
+  "contrast": "/r/contract/dropzone.contrast.json"
+}

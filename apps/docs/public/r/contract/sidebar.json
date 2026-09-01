@@ -1,0 +1,352 @@
+{
+  "version": 8,
+  "family": "sidebar",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "sidebar"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-sidebar-rail-divider-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-sidebar-wrapper-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-sidebar-wrapper-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popup-item)"
+    },
+    {
+      "name": "--cui-sidebar-inner-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar)"
+    },
+    {
+      "name": "--cui-sidebar-inner-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar-border)"
+    },
+    {
+      "name": "--cui-sidebar-inner-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-sidebar-inner-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-sidebar-inner-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-sidebar-inner-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-sidebar-inset-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-sidebar-inset-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-sidebar-inset-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-sidebar-group-label-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--sidebar-foreground) l c h / 0.7)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar-foreground)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-hover-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--active-fill)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-sidebar-menu-button-active-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    }
+  ],
+  "parts": {
+    "sidebar": {
+      "root": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": [
+          {
+            "attribute": "data-collapsible",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "icon",
+              "none",
+              "offcanvas"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "collapsed",
+              "expanded"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "floating",
+              "inset",
+              "sidebar"
+            ]
+          }
+        ]
+      },
+      "container": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "content": {
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "content-stack": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "gap": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "group": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "group-label": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "inner": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "inset": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "menu": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": [
+          {
+            "attribute": "data-indicator",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none",
+              "slide"
+            ]
+          }
+        ]
+      },
+      "menu-button": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "lg",
+              "sm"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "outline"
+            ]
+          }
+        ]
+      },
+      "menu-item": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "menu-track": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": [
+          {
+            "attribute": "data-indicator",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none",
+              "slide"
+            ]
+          }
+        ]
+      },
+      "rail": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
+      "wrapper": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/sidebar.contrast.json"
+}

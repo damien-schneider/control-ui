@@ -1,0 +1,70 @@
+{
+  "version": 8,
+  "family": "track-highlight",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "track-highlight"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-track-highlight-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popup-item)"
+    },
+    {
+      "name": "--cui-track-highlight-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-track-highlight-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "color-mix(in oklab, var(--card) 92%, var(--foreground) 8%)"
+    },
+    {
+      "name": "--cui-track-highlight-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.05)"
+    },
+    {
+      "name": "--cui-track-highlight-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-track-highlight-transition-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "var(--duration-fast)"
+    }
+  ],
+  "parts": {
+    "track-highlight": {
+      "root": {
+        "family": "track-highlight",
+        "registryItems": [
+          "track-highlight"
+        ],
+        "states": []
+      },
+      "hover": {
+        "family": "track-highlight",
+        "registryItems": [
+          "track-highlight"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-track-highlight-background",
+    "--cui-track-highlight-hover-background"
+  ],
+  "contrast": "/r/contract/track-highlight.contrast.json"
+}

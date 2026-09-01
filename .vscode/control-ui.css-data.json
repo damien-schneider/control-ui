@@ -184,7 +184,7 @@
       "syntax": "<color>"
     },
     {
-      "name": "--cui-button-active-bg",
+      "name": "--cui-button-active-background",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
@@ -194,7 +194,7 @@
       "syntax": "<color>"
     },
     {
-      "name": "--cui-button-active-hover-bg",
+      "name": "--cui-button-active-hover-background",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
@@ -203,13 +203,18 @@
       "description": "Control UI button knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--cui-button-bg",
+      "name": "--cui-button-background",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
     {
-      "name": "--cui-button-bg-image",
+      "name": "--cui-button-background-image",
       "description": "Control UI button knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-button-font-size",
+      "description": "Control UI button knob — registered syntax <length-percentage>, fallback 1rem. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-button-foreground",
@@ -242,7 +247,12 @@
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--cui-button-hover-bg",
+      "name": "--cui-button-height",
+      "description": "Control UI button knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-button-hover-background",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
@@ -261,7 +271,12 @@
       "syntax": "<length>"
     },
     {
-      "name": "--cui-button-press-bg",
+      "name": "--cui-button-padding-inline",
+      "description": "Control UI button knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-button-press-background",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
@@ -941,9 +956,24 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-field-font-size",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 1rem. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-field-foreground",
       "description": "Control UI field knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-field-height",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-field-padding-inline",
+      "description": "Control UI field knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-field-radius",

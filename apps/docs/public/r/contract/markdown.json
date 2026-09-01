@@ -1,0 +1,200 @@
+{
+  "version": 8,
+  "family": "markdown",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "markdown"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-markdown-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.9)"
+    },
+    {
+      "name": "--cui-markdown-blockquote-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-markdown-blockquote-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-markdown-inline-code-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "color-mix(in oklab, var(--foreground) 8%, transparent)"
+    },
+    {
+      "name": "--cui-markdown-inline-code-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-markdown-inline-code-radius",
+      "syntax": "<length-percentage>+",
+      "initialValue": "0px",
+      "defaultValue": "0.25rem"
+    },
+    {
+      "name": "--cui-markdown-link-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-text)"
+    },
+    {
+      "name": "--cui-markdown-table-cell-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-markdown-table-header-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    }
+  ],
+  "parts": {
+    "markdown": {
+      "root": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "blockquote": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "emphasis": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "h1": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "h2": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "h3": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "inline-code": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "link": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "list-item": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "ordered-list": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "paragraph": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "separator": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "strong": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "table": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "table-cell": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "table-header": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "table-scroll": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      },
+      "unordered-list": {
+        "family": "markdown",
+        "registryItems": [
+          "markdown"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-markdown-blockquote-border-color",
+    "--cui-markdown-blockquote-foreground"
+  ],
+  "contrast": "/r/contract/markdown.contrast.json"
+}

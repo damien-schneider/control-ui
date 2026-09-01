@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "family": "thread-rail",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "thread-rail",
+          "data-control-ui": "thread-rail",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "thread-rail",
+          "data-control-ui": "thread-rail",
+          "data-from": "user",
+          "data-in-view": "true",
+          "data-slot": "item"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "thread-rail",
+          "data-control-ui": "thread-rail",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "thread-rail",
+          "data-control-ui": "thread-rail",
+          "data-from": "user",
+          "data-rail-current": "true",
+          "data-slot": "item"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "thread-rail",
+          "data-control-ui": "thread-rail",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "thread-rail",
+          "data-control-ui": "thread-rail",
+          "data-from": "user",
+          "data-slot": "item"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-thread-rail-item-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-thread-rail-item-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-thread-rail-item-background"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": false
+    }
+  ]
+}

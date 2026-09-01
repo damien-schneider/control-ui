@@ -1,0 +1,22 @@
+{
+  "version": 8,
+  "family": "aspect-ratio",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "aspect-ratio"
+  ],
+  "knobs": [],
+  "parts": {
+    "aspect-ratio": {
+      "root": {
+        "registryItems": [
+          "aspect-ratio"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/aspect-ratio.contrast.json"
+}

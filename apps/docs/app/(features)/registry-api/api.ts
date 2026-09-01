@@ -141,7 +141,7 @@ function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
     selectorPattern: generatedSkinContract.selectorPattern,
     ownScopes,
     installedScopes,
-    knobs: knobFamiliesOwnedBy(new Set(Object.keys(installedScopes))),
+    knobs: knobFamiliesOwnedBy(installedRegistryItems(itemId)),
   };
 }
 

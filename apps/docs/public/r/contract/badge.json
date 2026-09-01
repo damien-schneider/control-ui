@@ -1,0 +1,86 @@
+{
+  "version": 8,
+  "family": "badge",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "badge"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-badge-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-badge-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "var(--_badge-color-background)"
+    },
+    {
+      "name": "--cui-badge-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--_badge-color-foreground)"
+    },
+    {
+      "name": "--cui-badge-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    }
+  ],
+  "parts": {
+    "badge": {
+      "root": {
+        "family": "badge",
+        "registryItems": [
+          "badge"
+        ],
+        "states": [
+          {
+            "attribute": "data-color",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "blue",
+              "green",
+              "neutral",
+              "orange",
+              "pink",
+              "purple",
+              "red",
+              "yellow"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "md",
+              "sm"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "outline"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-badge-background",
+    "--cui-badge-border-color",
+    "--cui-badge-foreground"
+  ],
+  "contrast": "/r/contract/badge.contrast.json"
+}

@@ -2,7 +2,6 @@
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import type { ComponentProps, CSSProperties } from "react";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -98,7 +97,7 @@ export function NavigationMenuTrigger({ className, children, ...props }: Navigat
       data-variant="quiet"
       data-tone="neutral"
       data-shape="default"
-      className={cn("inline-flex select-none items-center", controlSize({ size: "sm" }), className)}
+      className={cn("inline-flex select-none items-center", className)}
       {...props}
     >
       {children}

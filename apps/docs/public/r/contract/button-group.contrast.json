@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "family": "button-group",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "button-group",
+          "data-control-ui": "button-group",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "button-group",
+          "data-control-ui": "button-group",
+          "data-orientation": "vertical",
+          "data-slot": "separator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "button-group",
+          "data-control-ui": "button-group",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "button-group",
+          "data-control-ui": "button-group",
+          "data-size": "sm",
+          "data-slot": "text"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-button-group-separator-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-group-text-background",
+        "text": "--cui-button-group-text-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

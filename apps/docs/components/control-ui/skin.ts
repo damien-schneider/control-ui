@@ -57,7 +57,35 @@ export function activeSkin(): ControlUiSkin {
   return skin;
 }
 
+const verifiedSkinIds = new Set<string>();
+
+/**
+ * A skin id no element carries, or a skin-theme.css that never loaded, leaves every token undeclared and the app
+ * renders unstyled with no error. Next and Vite replace NODE_ENV, so this whole branch drops out of a production build.
+ */
+function verifySkinScope(id: string): void {
+  if (process.env.NODE_ENV === "production" || typeof document === "undefined" || verifiedSkinIds.has(id)) return;
+  verifiedSkinIds.add(id);
+  // React commits the boundary after the render that read the id, so a microtask would look before it exists.
+  setTimeout(() => {
+    const boundary = document.querySelector<HTMLElement>(`[data-skin="${id}"]`);
+    if (!boundary) {
+      // biome-ignore lint/suspicious/noConsole: the misconfiguration is invisible in the UI, so dev needs the console.
+      console.error(
+        `Control UI: skin.config id is "${id}" but no element carries data-skin="${id}" (root has ${JSON.stringify(document.documentElement.dataset.skin ?? null)}); every token is undeclared until they match.`,
+      );
+      return;
+    }
+    if (getComputedStyle(boundary).getPropertyValue("--background").trim()) return;
+    // biome-ignore lint/suspicious/noConsole: the misconfiguration is invisible in the UI, so dev needs the console.
+    console.error(
+      `Control UI: skin-theme.css declares no tokens for data-skin="${id}"; check the CSS entry imports (../components/control-ui/styles/skin-theme.css) or run scripts/control-ui-doctor.mjs.`,
+    );
+  }, 0);
+}
+
 export function skinId(): string {
+  verifySkinScope(skin.id);
   return skin.id;
 }
 

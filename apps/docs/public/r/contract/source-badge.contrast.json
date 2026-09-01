@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "family": "source-badge",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "source-badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-source-badge": "",
+          "data-variant": "outline",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "source-badge",
+          "data-size": "md",
+          "data-slot": "root",
+          "data-source-badge": "",
+          "data-variant": "outline",
+          "href": "#"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "source-badge",
+          "data-slot": "root",
+          "data-source-badge-favicon": ""
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-source-badge-background",
+        "text": "--cui-source-badge-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-source-badge-favicon-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-source-badge-hover-background",
+        "text": "--cui-source-badge-hover-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": true
+    }
+  ]
+}

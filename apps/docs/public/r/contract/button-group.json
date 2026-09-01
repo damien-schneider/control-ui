@@ -1,0 +1,94 @@
+{
+  "version": 8,
+  "family": "button-group",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "button-group"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-button-group-text-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-button-group-text-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.72)"
+    },
+    {
+      "name": "--cui-button-group-text-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-button-group-separator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    }
+  ],
+  "parts": {
+    "button-group": {
+      "root": {
+        "family": "button-group",
+        "registryItems": [
+          "button-group"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      },
+      "separator": {
+        "family": "button-group",
+        "registryItems": [
+          "button-group"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      },
+      "text": {
+        "family": "button-group",
+        "registryItems": [
+          "button-group"
+        ],
+        "states": [
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/button-group.contrast.json"
+}

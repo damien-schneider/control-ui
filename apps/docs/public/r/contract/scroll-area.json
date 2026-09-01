@@ -1,0 +1,293 @@
+{
+  "version": 8,
+  "family": "scroll-area",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "scroll-area"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-scroll-area-thumb-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-scroll-area-thumb-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.4)"
+    },
+    {
+      "name": "--cui-scroll-area-corner-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    }
+  ],
+  "parts": {
+    "scroll-area": {
+      "root": {
+        "family": "scroll-area",
+        "registryItems": [
+          "scroll-area"
+        ],
+        "states": [
+          {
+            "attribute": "data-has-overflow-x",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-has-overflow-y",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-x-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-x-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-scrolling",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "scroll-area",
+        "registryItems": [
+          "scroll-area"
+        ],
+        "states": [
+          {
+            "attribute": "data-has-overflow-x",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-has-overflow-y",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-x-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-x-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-scrolling",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "corner": {
+        "family": "scroll-area",
+        "registryItems": [
+          "scroll-area"
+        ],
+        "states": []
+      },
+      "scrollbar": {
+        "family": "scroll-area",
+        "registryItems": [
+          "scroll-area"
+        ],
+        "states": [
+          {
+            "attribute": "data-has-overflow-x",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-has-overflow-y",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-hovering",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-overflow-x-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-x-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-scrolling",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-visibility",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "always",
+              "hover",
+              "scroll"
+            ]
+          }
+        ]
+      },
+      "thumb": {
+        "family": "scroll-area",
+        "registryItems": [
+          "scroll-area"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-scrolling",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "viewport": {
+        "family": "scroll-area",
+        "registryItems": [
+          "scroll-area"
+        ],
+        "states": [
+          {
+            "attribute": "data-has-overflow-x",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-has-overflow-y",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-x-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-x-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-end",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-overflow-y-start",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-scrolling",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-scroll-area-corner-background",
+    "--cui-scroll-area-thumb-background"
+  ],
+  "contrast": "/r/contract/scroll-area.contrast.json"
+}

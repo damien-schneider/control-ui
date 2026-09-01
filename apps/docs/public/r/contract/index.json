@@ -1,0 +1,522 @@
+{
+  "version": 8,
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "slice": "/r/contract/<family>.json",
+  "contrast": "/r/contract/<family>.contrast.json",
+  "families": {
+    "accordion": {
+      "registryItems": [
+        "accordion"
+      ],
+      "knobs": 4,
+      "probes": 25
+    },
+    "action-bar": {
+      "registryItems": [
+        "action-bar"
+      ],
+      "knobs": 0,
+      "probes": 0
+    },
+    "activity": {
+      "registryItems": [
+        "activity",
+        "chat-layout"
+      ],
+      "knobs": 4,
+      "probes": 22
+    },
+    "alert": {
+      "registryItems": [
+        "alert"
+      ],
+      "knobs": 4,
+      "probes": 0
+    },
+    "aspect-ratio": {
+      "registryItems": [
+        "aspect-ratio"
+      ],
+      "knobs": 0,
+      "probes": 0
+    },
+    "audio-recorder": {
+      "registryItems": [
+        "audio-recorder"
+      ],
+      "knobs": 4,
+      "probes": 4
+    },
+    "audio-visualizer": {
+      "registryItems": [
+        "audio-visualizer",
+        "audio-visualizer-line"
+      ],
+      "knobs": 4,
+      "probes": 1
+    },
+    "avatar": {
+      "registryItems": [
+        "avatar"
+      ],
+      "knobs": 4,
+      "probes": 4
+    },
+    "badge": {
+      "registryItems": [
+        "badge"
+      ],
+      "knobs": 4,
+      "probes": 0
+    },
+    "breadcrumb": {
+      "registryItems": [
+        "breadcrumb"
+      ],
+      "knobs": 2,
+      "probes": 0
+    },
+    "button": {
+      "registryItems": [
+        "button",
+        "dropdown-menu",
+        "menubar",
+        "model-switcher",
+        "navigation-menu",
+        "select",
+        "toggle"
+      ],
+      "knobs": 20,
+      "probes": 386
+    },
+    "button-group": {
+      "registryItems": [
+        "button-group"
+      ],
+      "knobs": 4,
+      "probes": 2
+    },
+    "calendar": {
+      "registryItems": [
+        "calendar"
+      ],
+      "knobs": 5,
+      "probes": 2
+    },
+    "card": {
+      "registryItems": [
+        "card"
+      ],
+      "knobs": 6,
+      "probes": 1
+    },
+    "chat-composer": {
+      "registryItems": [
+        "chat-composer"
+      ],
+      "knobs": 13,
+      "probes": 10
+    },
+    "chat-composer-attachment": {
+      "registryItems": [
+        "chat-composer-attachment"
+      ],
+      "knobs": 6,
+      "probes": 8
+    },
+    "chat-layout": {
+      "registryItems": [
+        "chat-layout"
+      ],
+      "knobs": 6,
+      "probes": 16
+    },
+    "chat-message": {
+      "registryItems": [
+        "chat-message"
+      ],
+      "knobs": 12,
+      "probes": 6
+    },
+    "checkbox-group": {
+      "registryItems": [
+        "checkbox-group"
+      ],
+      "knobs": 0,
+      "probes": 0
+    },
+    "choice": {
+      "registryItems": [
+        "checkbox",
+        "radio-group"
+      ],
+      "knobs": 4,
+      "probes": 0
+    },
+    "code": {
+      "registryItems": [
+        "code"
+      ],
+      "knobs": 6,
+      "probes": 9
+    },
+    "code-block-editor": {
+      "registryItems": [
+        "code-block-editor"
+      ],
+      "knobs": 6,
+      "probes": 3
+    },
+    "code-diff": {
+      "registryItems": [
+        "code-diff"
+      ],
+      "knobs": 13,
+      "probes": 10
+    },
+    "collapsible": {
+      "registryItems": [
+        "collapsible"
+      ],
+      "knobs": 0,
+      "probes": 0
+    },
+    "color-picker": {
+      "registryItems": [
+        "color-picker"
+      ],
+      "knobs": 7,
+      "probes": 5
+    },
+    "context": {
+      "registryItems": [
+        "context"
+      ],
+      "knobs": 8,
+      "probes": 4
+    },
+    "dockable-panel": {
+      "registryItems": [
+        "dockable-panel"
+      ],
+      "knobs": 7,
+      "probes": 1
+    },
+    "dropzone": {
+      "registryItems": [
+        "dropzone"
+      ],
+      "knobs": 6,
+      "probes": 1
+    },
+    "dynamic-notification": {
+      "registryItems": [
+        "dynamic-notification"
+      ],
+      "knobs": 13,
+      "probes": 1
+    },
+    "empty": {
+      "registryItems": [
+        "empty"
+      ],
+      "knobs": 7,
+      "probes": 0
+    },
+    "environment-variables": {
+      "registryItems": [
+        "environment-variables"
+      ],
+      "knobs": 6,
+      "probes": 4
+    },
+    "field": {
+      "registryItems": [
+        "autocomplete",
+        "combobox",
+        "field",
+        "form",
+        "input",
+        "input-group",
+        "input-otp",
+        "native-select",
+        "number-field",
+        "phone-input",
+        "textarea"
+      ],
+      "knobs": 11,
+      "probes": 0
+    },
+    "gradient-editor": {
+      "registryItems": [
+        "gradient-editor"
+      ],
+      "knobs": 8,
+      "probes": 0
+    },
+    "infinite-canvas": {
+      "registryItems": [
+        "infinite-canvas"
+      ],
+      "knobs": 8,
+      "probes": 2
+    },
+    "inline-attachment": {
+      "registryItems": [
+        "inline-attachment"
+      ],
+      "knobs": 9,
+      "probes": 7
+    },
+    "inline-citation": {
+      "registryItems": [
+        "inline-citation"
+      ],
+      "knobs": 9,
+      "probes": 4
+    },
+    "item": {
+      "registryItems": [
+        "item"
+      ],
+      "knobs": 5,
+      "probes": 1
+    },
+    "kbd": {
+      "registryItems": [
+        "kbd"
+      ],
+      "knobs": 5,
+      "probes": 3
+    },
+    "label": {
+      "registryItems": [
+        "label"
+      ],
+      "knobs": 1,
+      "probes": 0
+    },
+    "markdown": {
+      "registryItems": [
+        "markdown"
+      ],
+      "knobs": 9,
+      "probes": 5
+    },
+    "markdown-block": {
+      "registryItems": [
+        "markdown-block"
+      ],
+      "knobs": 6,
+      "probes": 4
+    },
+    "morphing-panel": {
+      "registryItems": [
+        "morphing-panel"
+      ],
+      "knobs": 6,
+      "probes": 4
+    },
+    "pagination": {
+      "registryItems": [
+        "pagination"
+      ],
+      "knobs": 5,
+      "probes": 4
+    },
+    "phone-input": {
+      "registryItems": [
+        "phone-input"
+      ],
+      "knobs": 5,
+      "probes": 5
+    },
+    "popup": {
+      "registryItems": [
+        "alert-dialog",
+        "autocomplete",
+        "color-picker",
+        "combobox",
+        "command",
+        "context-menu",
+        "dialog",
+        "drawer",
+        "dropdown-menu",
+        "hover-card",
+        "menubar",
+        "model-switcher",
+        "navigation-menu",
+        "popover",
+        "rich-tooltip",
+        "select",
+        "sheet",
+        "toast",
+        "tooltip",
+        "trigger-menu"
+      ],
+      "knobs": 16,
+      "probes": 52
+    },
+    "range": {
+      "registryItems": [
+        "meter",
+        "progress",
+        "slider"
+      ],
+      "knobs": 8,
+      "probes": 18
+    },
+    "resizable": {
+      "registryItems": [
+        "resizable"
+      ],
+      "knobs": 9,
+      "probes": 5
+    },
+    "rich-tooltip": {
+      "registryItems": [],
+      "knobs": 8,
+      "probes": 1
+    },
+    "scroll-area": {
+      "registryItems": [
+        "scroll-area"
+      ],
+      "knobs": 3,
+      "probes": 0
+    },
+    "separator": {
+      "registryItems": [
+        "separator"
+      ],
+      "knobs": 1,
+      "probes": 2
+    },
+    "sidebar": {
+      "registryItems": [
+        "sidebar"
+      ],
+      "knobs": 21,
+      "probes": 22
+    },
+    "sidebar-layout": {
+      "registryItems": [
+        "sidebar-layout-block"
+      ],
+      "knobs": 0,
+      "probes": 0
+    },
+    "skeleton": {
+      "registryItems": [
+        "skeleton"
+      ],
+      "knobs": 2,
+      "probes": 1
+    },
+    "source-badge": {
+      "registryItems": [
+        "source-badge"
+      ],
+      "knobs": 6,
+      "probes": 3
+    },
+    "spinner": {
+      "registryItems": [
+        "spinner"
+      ],
+      "knobs": 1,
+      "probes": 1
+    },
+    "stepper": {
+      "registryItems": [
+        "stepper"
+      ],
+      "knobs": 6,
+      "probes": 16
+    },
+    "switch": {
+      "registryItems": [
+        "switch"
+      ],
+      "knobs": 7,
+      "probes": 19
+    },
+    "table": {
+      "registryItems": [
+        "table"
+      ],
+      "knobs": 7,
+      "probes": 1
+    },
+    "table-of-contents": {
+      "registryItems": [
+        "table-of-contents"
+      ],
+      "knobs": 3,
+      "probes": 0
+    },
+    "tabs": {
+      "registryItems": [
+        "tabs"
+      ],
+      "knobs": 11,
+      "probes": 27
+    },
+    "task-list": {
+      "registryItems": [
+        "task-list"
+      ],
+      "knobs": 9,
+      "probes": 9
+    },
+    "thread-rail": {
+      "registryItems": [
+        "thread-rail"
+      ],
+      "knobs": 9,
+      "probes": 3
+    },
+    "timeline": {
+      "registryItems": [
+        "timeline"
+      ],
+      "knobs": 7,
+      "probes": 5
+    },
+    "toolbar": {
+      "registryItems": [
+        "toolbar"
+      ],
+      "knobs": 15,
+      "probes": 66
+    },
+    "track-highlight": {
+      "registryItems": [
+        "track-highlight"
+      ],
+      "knobs": 6,
+      "probes": 0
+    },
+    "transcript-divider": {
+      "registryItems": [
+        "transcript-divider"
+      ],
+      "knobs": 5,
+      "probes": 3
+    },
+    "tree": {
+      "registryItems": [
+        "tree"
+      ],
+      "knobs": 8,
+      "probes": 6
+    },
+    "user-ask": {
+      "registryItems": [
+        "user-ask"
+      ],
+      "knobs": 12,
+      "probes": 7
+    }
+  }
+}

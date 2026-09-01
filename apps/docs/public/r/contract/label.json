@@ -1,0 +1,32 @@
+{
+  "version": 8,
+  "family": "label",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "label"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-label-root-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "label": {
+      "root": {
+        "family": "label",
+        "registryItems": [
+          "label"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-label-root-foreground"
+  ],
+  "contrast": "/r/contract/label.contrast.json"
+}

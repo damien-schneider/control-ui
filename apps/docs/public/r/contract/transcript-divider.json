@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "family": "transcript-divider",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "transcript-divider"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-transcript-divider-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-transcript-divider-line-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-transcript-divider-danger-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive-text)"
+    },
+    {
+      "name": "--cui-transcript-divider-success-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--badge-green-foreground)"
+    },
+    {
+      "name": "--cui-transcript-divider-warning-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--badge-yellow-foreground)"
+    }
+  ],
+  "parts": {
+    "transcript-divider": {
+      "root": {
+        "family": "transcript-divider",
+        "registryItems": [
+          "transcript-divider"
+        ],
+        "states": [
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "danger",
+              "neutral",
+              "success",
+              "warning"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "transcript-divider",
+        "registryItems": [
+          "transcript-divider"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-transcript-divider-line-color",
+    "--cui-transcript-divider-success-foreground"
+  ],
+  "contrast": "/r/contract/transcript-divider.contrast.json"
+}

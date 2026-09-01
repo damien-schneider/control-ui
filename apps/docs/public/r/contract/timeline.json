@@ -1,0 +1,131 @@
+{
+  "version": 8,
+  "family": "timeline",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "timeline"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-timeline-indicator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-timeline-indicator-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-timeline-running-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-text)"
+    },
+    {
+      "name": "--cui-timeline-success-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-timeline-error-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive-text)"
+    },
+    {
+      "name": "--cui-timeline-separator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-timeline-title-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    }
+  ],
+  "parts": {
+    "timeline": {
+      "root": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": []
+      },
+      "indicator": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": []
+      },
+      "item": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "neutral",
+              "pending",
+              "running",
+              "success"
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": []
+      },
+      "separator": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "timeline",
+        "registryItems": [
+          "timeline"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-timeline-indicator-background",
+    "--cui-timeline-indicator-foreground"
+  ],
+  "contrast": "/r/contract/timeline.contrast.json"
+}

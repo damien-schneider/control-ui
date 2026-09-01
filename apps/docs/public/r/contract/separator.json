@@ -1,0 +1,40 @@
+{
+  "version": 8,
+  "family": "separator",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "separator"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-separator-root-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    }
+  ],
+  "parts": {
+    "separator": {
+      "root": {
+        "family": "separator",
+        "registryItems": [
+          "separator"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/separator.contrast.json"
+}

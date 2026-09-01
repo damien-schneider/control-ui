@@ -1,0 +1,4864 @@
+{
+  "version": 8,
+  "family": "popup",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "alert-dialog",
+    "autocomplete",
+    "color-picker",
+    "combobox",
+    "command",
+    "context-menu",
+    "dialog",
+    "drawer",
+    "dropdown-menu",
+    "hover-card",
+    "menubar",
+    "model-switcher",
+    "navigation-menu",
+    "popover",
+    "rich-tooltip",
+    "select",
+    "sheet",
+    "toast",
+    "tooltip",
+    "trigger-menu"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-popup-radius",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--radius-popover)"
+    },
+    {
+      "name": "--cui-popup-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover)"
+    },
+    {
+      "name": "--cui-popup-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover-foreground)"
+    },
+    {
+      "name": "--cui-popup-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--control-rim)"
+    },
+    {
+      "name": "--cui-popup-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-popup-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-pop)"
+    },
+    {
+      "name": "--cui-popup-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "blur(var(--backdrop-blur-popover))"
+    },
+    {
+      "name": "--cui-popup-backdrop-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / var(--overlay-opacity))"
+    },
+    {
+      "name": "--cui-popup-item-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popup-item)"
+    },
+    {
+      "name": "--cui-popup-item-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-popup-item-highlight-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-popup-item-highlight-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-popup-item-foreground)"
+    },
+    {
+      "name": "--cui-popup-item-highlight-muted-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-popup-item-disabled-opacity",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "0.4"
+    },
+    {
+      "name": "--cui-popup-separator-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-popup-shortcut-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "alert-dialog": {
+      "backdrop": {
+        "family": "popup",
+        "registryItems": [
+          "alert-dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "alert-dialog"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "alert-dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested-dialog-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "alert-dialog"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "description": {
+        "family": "popup",
+        "registryItems": [
+          "alert-dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "alert-dialog"
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "family": "popup",
+        "registryItems": [
+          "alert-dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "alert-dialog"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "popup",
+        "registryItems": [
+          "alert-dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "alert-dialog"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "popup",
+        "registryItems": [
+          "alert-dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "alert-dialog"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "registryItems": [
+          "alert-dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "alert-dialog"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "autocomplete": {
+      "root": {
+        "registryItems": [
+          "autocomplete"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-field-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "autocomplete"
+            ]
+          },
+          {
+            "attribute": "data-filled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-list-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "autocomplete"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "autocomplete"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "empty": {
+        "family": "popup",
+        "registryItems": [
+          "autocomplete"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "autocomplete"
+            ]
+          }
+        ]
+      },
+      "group-label": {
+        "family": "popup",
+        "registryItems": [
+          "autocomplete"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "autocomplete"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "autocomplete"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "autocomplete"
+            ]
+          }
+        ]
+      },
+      "list": {
+        "family": "popup",
+        "registryItems": [
+          "autocomplete"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "autocomplete"
+            ]
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "autocomplete"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "autocomplete"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      }
+    },
+    "color-picker": {
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "focus",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "color-picker"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "eye-dropper": {
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "format": {
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": []
+      },
+      "panel": {
+        "family": "popup",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "color-picker"
+            ]
+          },
+          {
+            "attribute": "data-popup-static",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "color-picker"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "color-picker"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      }
+    },
+    "combobox": {
+      "root": {
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-field-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          },
+          {
+            "attribute": "data-filled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-list-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-placeholder",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "empty": {
+        "family": "popup",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          }
+        ]
+      },
+      "group-label": {
+        "family": "popup",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          },
+          {
+            "attribute": "data-selected",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "item-indicator": {
+        "family": "popup",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          }
+        ]
+      },
+      "list": {
+        "family": "popup",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "combobox"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-empty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "combobox"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      }
+    },
+    "command": {
+      "root": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          },
+          {
+            "attribute": "data-popup-static",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "dialog-root": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "empty": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "group": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "input": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "input-icon": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "input-wrapper": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          },
+          {
+            "attribute": "data-selected",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "false",
+              "true"
+            ]
+          }
+        ]
+      },
+      "list": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "separator": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      },
+      "shortcut": {
+        "family": "popup",
+        "registryItems": [
+          "command"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command"
+            ]
+          }
+        ]
+      }
+    },
+    "context-menu": {
+      "checkbox-item": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-checked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          },
+          {
+            "attribute": "data-unchecked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "group",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "group": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "radio-group": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "radio-indicator": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "radio-item": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-checked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          },
+          {
+            "attribute": "data-unchecked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "separator": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "shortcut": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "sub-content": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "group",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "sub-trigger": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "sub-trigger-indicator": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "family": "popup",
+        "registryItems": [
+          "context-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "context-menu"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "dialog": {
+      "backdrop": {
+        "family": "popup",
+        "registryItems": [
+          "dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "dialog"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested-dialog-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "dialog"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "description": {
+        "family": "popup",
+        "registryItems": [
+          "dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "dialog"
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "family": "popup",
+        "registryItems": [
+          "dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "dialog"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "popup",
+        "registryItems": [
+          "dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "dialog"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "popup",
+        "registryItems": [
+          "dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "dialog"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "registryItems": [
+          "dialog"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "dialog"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "drawer": {
+      "backdrop": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "close": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-expanded",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested-drawer-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested-drawer-swiping",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-padding",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "none"
+            ]
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-surface-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "background",
+              "card"
+            ]
+          },
+          {
+            "attribute": "data-swipe-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-swipe-dismiss",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-swiping",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "edge",
+              "floating"
+            ]
+          }
+        ]
+      },
+      "description": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "handle": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "scroll": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          }
+        ]
+      },
+      "viewport": {
+        "family": "popup",
+        "registryItems": [
+          "drawer"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "drawer"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "edge",
+              "floating"
+            ]
+          }
+        ]
+      }
+    },
+    "dropdown-menu": {
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "group",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "label": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": []
+      },
+      "separator": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      }
+    },
+    "hover-card": {
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "hover-card"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover-card"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "hover-card"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover-card"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "family": "popup",
+        "registryItems": [
+          "hover-card"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover-card"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "menubar": {
+      "root": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-has-submenu-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-modal",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "group",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "group": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      },
+      "separator": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      },
+      "shortcut": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      },
+      "sub-content": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "group",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "sub-trigger": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-inset",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "sub-trigger-indicator": {
+        "family": "popup",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "menubar"
+            ]
+          }
+        ]
+      }
+    },
+    "model-switcher": {
+      "hint": {
+        "family": "popup",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "model-switcher"
+            ]
+          }
+        ]
+      }
+    },
+    "navigation-menu": {
+      "root": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-activation-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "icon": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          }
+        ]
+      },
+      "link": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "compact",
+              "default"
+            ]
+          }
+        ]
+      },
+      "list": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          }
+        ]
+      },
+      "popup": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      },
+      "viewport": {
+        "family": "popup",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "navigation-menu"
+            ]
+          }
+        ]
+      }
+    },
+    "popover": {
+      "close": {
+        "family": "popup",
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "focus",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-padding",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "none"
+            ]
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "description": {
+        "family": "popup",
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "popup",
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "popup",
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "registryItems": [
+          "popover"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "popover"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "rich-tooltip": {
+      "arrow": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accent",
+              "surface"
+            ]
+          },
+          {
+            "attribute": "data-uncentered",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "close": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "focus",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accent",
+              "surface"
+            ]
+          }
+        ]
+      },
+      "description": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accent",
+              "surface"
+            ]
+          }
+        ]
+      },
+      "dot": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "media": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "next": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      },
+      "previous": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "progress": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "accent",
+              "surface"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "count",
+              "dots"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "family": "popup",
+        "registryItems": [
+          "rich-tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "rich-tooltip"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "select": {
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "none",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "icon": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          },
+          {
+            "attribute": "data-selected",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "item-indicator": {
+        "family": "popup",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "sheet": {
+      "backdrop": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "close": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-nested-dialog-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "description": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "popup",
+        "registryItems": [
+          "sheet"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sheet"
+            ]
+          }
+        ]
+      }
+    },
+    "toast": {
+      "root": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-expanded",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-limited",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-swipe-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-swiping",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-type",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "action": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          },
+          {
+            "attribute": "data-type",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "close": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          },
+          {
+            "attribute": "data-type",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-behind",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-expanded",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          }
+        ]
+      },
+      "description": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          },
+          {
+            "attribute": "data-type",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "indicator": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          },
+          {
+            "attribute": "data-type",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "viewport": {
+        "family": "popup",
+        "registryItems": [
+          "toast"
+        ],
+        "states": [
+          {
+            "attribute": "data-expanded",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toast"
+            ]
+          }
+        ]
+      }
+    },
+    "tooltip": {
+      "arrow": {
+        "family": "popup",
+        "registryItems": [
+          "tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "delay",
+              "dismiss",
+              "focus"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "tooltip"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-uncentered",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "arrow-shape": {
+        "family": "popup",
+        "registryItems": [
+          "tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "tooltip"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "popup",
+        "registryItems": [
+          "tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-arrow",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "delay",
+              "dismiss",
+              "focus"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "tooltip"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "tooltip"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "tooltip"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      }
+    },
+    "trigger-menu": {
+      "root": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-instant",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "click",
+              "dismiss",
+              "focus",
+              "trigger-change"
+            ]
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "empty": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          }
+        ]
+      },
+      "group": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          }
+        ]
+      },
+      "group-label": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          }
+        ]
+      },
+      "icon": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          }
+        ]
+      },
+      "list": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          }
+        ]
+      },
+      "positioner": {
+        "family": "popup",
+        "registryItems": [
+          "trigger-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-align",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "center",
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-closed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "trigger-menu"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/popup.contrast.json"
+}

@@ -1,0 +1,220 @@
+{
+  "version": 8,
+  "family": "activity",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "activity",
+    "chat-layout"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-activity-row-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-activity-trigger-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-activity-trigger-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.45)"
+    },
+    {
+      "name": "--cui-activity-code-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.5)"
+    }
+  ],
+  "parts": {
+    "activity": {
+      "root": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": [
+          {
+            "attribute": "data-activity-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "reasoning",
+              "signal",
+              "tool"
+            ]
+          },
+          {
+            "attribute": "data-activity-name",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-activity-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "pending",
+              "running",
+              "success"
+            ]
+          }
+        ]
+      },
+      "announcement": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": [
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "pending",
+              "running",
+              "success"
+            ]
+          }
+        ]
+      },
+      "chevron": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      },
+      "content": {
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      },
+      "content-grid": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      },
+      "content-viewport": {
+        "family": "activity",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
+      },
+      "detail": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      },
+      "detail-content": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": [
+          {
+            "attribute": "data-format",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "code",
+              "text"
+            ]
+          }
+        ]
+      },
+      "detail-label": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      },
+      "icon": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": [
+          {
+            "attribute": "data-status-icon",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "row": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      },
+      "status": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": [
+          {
+            "attribute": "data-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "reasoning",
+              "signal",
+              "tool"
+            ]
+          },
+          {
+            "attribute": "data-status",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "pending",
+              "running",
+              "success"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "family": "activity",
+        "registryItems": [
+          "activity"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/activity.contrast.json"
+}

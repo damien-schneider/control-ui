@@ -1,0 +1,161 @@
+{
+  "version": 8,
+  "family": "resizable",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "resizable"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-resizable-group-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-resizable-group-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-resizable-group-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-resizable-handle-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-resizable-handle-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.25)"
+    },
+    {
+      "name": "--cui-resizable-handle-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.4)"
+    },
+    {
+      "name": "--cui-resizable-grip-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-resizable-grip-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-resizable-grip-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "resizable": {
+      "handle": {
+        "family": "resizable",
+        "registryItems": [
+          "resizable"
+        ],
+        "states": [
+          {
+            "attribute": "data-axis",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-separator",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "active",
+              "disabled",
+              "focus",
+              "hover"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover",
+              "solid"
+            ]
+          }
+        ]
+      },
+      "handle-grip": {
+        "family": "resizable",
+        "registryItems": [
+          "resizable"
+        ],
+        "states": [
+          {
+            "attribute": "data-axis",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover",
+              "solid"
+            ]
+          }
+        ]
+      },
+      "panel": {
+        "family": "resizable",
+        "registryItems": [
+          "resizable"
+        ],
+        "states": []
+      },
+      "panel-group": {
+        "family": "resizable",
+        "registryItems": [
+          "resizable"
+        ],
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "framed",
+              "nested"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-resizable-handle-active-background",
+    "--cui-resizable-handle-hover-background"
+  ],
+  "contrast": "/r/contract/resizable.contrast.json"
+}

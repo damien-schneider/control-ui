@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "family": "phone-input",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "input-group",
+          "data-field-kind": "phone-input",
+          "data-size": "md",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "phone-input",
+          "data-control-ui": "phone-input",
+          "data-popup-kind": "popover",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-slot": "country-trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "input-group",
+          "data-field-kind": "phone-input",
+          "data-size": "md",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "phone-input",
+          "data-control-ui": "phone-input",
+          "data-popup-kind": "popover",
+          "data-slot": "country-trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "input-group",
+          "data-field-kind": "phone-input",
+          "data-size": "md",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "phone-input",
+          "data-control-ui": "phone-input",
+          "data-popup-kind": "popover",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-slot": "country-trigger",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "phone-input",
+          "data-control-ui": "phone-input",
+          "data-open": "true",
+          "data-slot": "chevron"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "field",
+          "data-control-ui": "input-group",
+          "data-field-kind": "phone-input",
+          "data-size": "md",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "phone-input",
+          "data-control-ui": "phone-input",
+          "data-popup-kind": "popover",
+          "data-slot": "country-trigger",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "phone-input",
+          "data-control-ui": "phone-input",
+          "data-slot": "chevron"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "phone-input",
+          "data-control-ui": "phone-input",
+          "data-slot": "metadata"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-phone-input-trigger-hover-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-phone-input-trigger-hover-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-phone-input-chevron-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-phone-input-chevron-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-phone-input-metadata-foreground"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

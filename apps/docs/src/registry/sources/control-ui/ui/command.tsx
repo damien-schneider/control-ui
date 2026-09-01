@@ -2,7 +2,6 @@
 
 import { Command as CommandPrimitive } from "cmdk";
 import type { ComponentProps, CSSProperties } from "react";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
@@ -71,7 +70,7 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
       data-control-family="popup"
       data-control="true"
       data-size="lg"
-      className={cn("flex items-center", controlSize({ size: "lg" }))}
+      className="flex items-center"
     >
       <svg
         data-control-ui="command"

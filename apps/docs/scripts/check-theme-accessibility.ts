@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium, type Page } from "@playwright/test";
 import type { ThemeAuditResult } from "../app/(features)/theme-accessibility/audit-contract";
+import { evaluate, REQUIRED_PAIRS, tokenMaps } from "../src/registry/sources/control-ui/scripts/contrast-eval.mjs";
 
 const docsRoot = fileURLToPath(new URL("../", import.meta.url));
 const defaultSkinRoot = path.join(docsRoot, "src/registry/skin-packs");
@@ -94,6 +95,8 @@ const globalsCss = readFileSync(path.join(docsRoot, "app/globals.css"), "utf8");
 const coreTheme = [...globalsCss.matchAll(/@import "(\.\.\/src\/registry\/[^"]+)";/g)]
   .map((match) => readFileSync(path.join(docsRoot, "app", match[1]), "utf8"))
   .join("\n");
+// The parity run reads what a consumer install has — core theme tokens plus one pack — not the docs app's own skin.
+const coreThemeTokens = readFileSync(path.join(docsRoot, "src/registry/sources/control-ui/theme.css"), "utf8");
 const browserEntry = path.join(docsRoot, "scripts/theme-accessibility-browser.ts");
 const bundle = await Bun.build({ entrypoints: [browserEntry], target: "browser", minify: true });
 if (!bundle.success || !bundle.outputs[0]) throw new Error("Could not build the browser accessibility audit.");
@@ -183,6 +186,22 @@ try {
 } finally {
   await browser.close();
 }
+
+// A consumer's doctor resolves these same pairs with no browser; drift here means it would report a ratio nobody renders.
+const parityDrift = reports.flatMap((report) => {
+  const tokens = tokenMaps([coreThemeTokens, readFileSync(path.join(process.cwd(), report.file), "utf8")])[report.mode];
+  return evaluate(tokens, REQUIRED_PAIRS).flatMap((evaluated: { id: string; status: string; ratio: number }) => {
+    const rendered = report.results.find((result) => result.id === evaluated.id);
+    if (evaluated.status === "unverified" || rendered?.ratio == null) return [];
+    // The browser probe paints through a canvas, which quantizes each layer's alpha to 8 bits; that costs ~0.1 of ratio.
+    if (Math.abs(rendered.ratio - evaluated.ratio) <= 0.25) return [];
+    return [
+      `${report.skin} ${report.mode}: ${evaluated.id} — contrast-eval reads ${evaluated.ratio.toFixed(2)}:1, the browser renders ` +
+        `${rendered.ratio.toFixed(2)}:1 (${rendered.foreground} ${rendered.resolvedForeground} on ${rendered.background} ${rendered.resolvedBackground})`,
+    ];
+  });
+});
+if (parityDrift.length > 0) throw new Error(`contrast-eval disagrees with the browser:\n  ${parityDrift.join("\n  ")}`);
 
 if (jsonOutput) {
   console.log(JSON.stringify(reports, null, 2));

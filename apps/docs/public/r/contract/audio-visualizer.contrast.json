@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "family": "audio-visualizer",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "audio-visualizer",
+          "data-control-ui": "audio-visualizer",
+          "data-slot": "root",
+          "data-variant": "bars"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-visualizer",
+          "data-control-ui": "audio-visualizer",
+          "data-slot": "bar"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-audio-visualizer-bar-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": 8,
+  "family": "sidebar-layout",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "sidebar-layout-block"
+  ],
+  "knobs": [],
+  "parts": {
+    "sidebar-layout": {
+      "content": {
+        "family": "sidebar-layout",
+        "registryItems": [
+          "sidebar-layout-block"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/sidebar-layout.contrast.json"
+}

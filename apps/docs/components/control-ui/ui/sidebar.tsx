@@ -6,7 +6,6 @@ import { PanelLeftIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, lazy, Suspense, useContext, useEffect, useRef, useState } from "react";
 import { type RenderProp, type SelectionIndicator, SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
-import { controlSize } from "@/components/control-ui/control-variants";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -485,9 +484,9 @@ const sidebarMenuButtonVariantClasses = {
 } satisfies Record<SidebarMenuButtonVariant, null>;
 
 const sidebarMenuButtonSizeClasses = {
-  default: `${controlSize({ size: "md" })} group-data-[collapsible=icon]:size-[var(--control-h-md)]!`,
-  sm: `${controlSize({ size: "sm" })} group-data-[collapsible=icon]:size-[var(--control-h-sm)]!`,
-  lg: `${controlSize({ size: "lg" })} group-data-[collapsible=icon]:size-[var(--control-h-lg)]!`,
+  default: "group-data-[collapsible=icon]:size-[var(--control-h-md)]!",
+  sm: "group-data-[collapsible=icon]:size-[var(--control-h-sm)]!",
+  lg: "group-data-[collapsible=icon]:size-[var(--control-h-lg)]!",
 } satisfies Record<SidebarMenuButtonSize, string>;
 
 const sidebarMenuButtonClasses = cva(

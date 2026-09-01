@@ -1,0 +1,317 @@
+{
+  "version": 8,
+  "family": "tabs",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "tabs"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-tabs-trigger-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-tabs-list-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1)"
+    },
+    {
+      "name": "--cui-tabs-list-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-list-radius-offset))"
+    },
+    {
+      "name": "--cui-tabs-list-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-tabs-list-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-tabs-indicator-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-tabs-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-tabs-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-tabs-indicator-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-tabs-list-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset)"
+    },
+    {
+      "name": "--cui-tabs-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    }
+  ],
+  "parts": {
+    "tabs": {
+      "root": {
+        "family": "tabs",
+        "registryItems": [
+          "tabs"
+        ],
+        "states": [
+          {
+            "attribute": "data-activation-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "none",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-slide",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "scope"
+            ]
+          }
+        ]
+      },
+      "indicator": {
+        "family": "tabs",
+        "registryItems": [
+          "tabs"
+        ],
+        "states": [
+          {
+            "attribute": "data-activation-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "none",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      },
+      "list": {
+        "family": "tabs",
+        "registryItems": [
+          "tabs"
+        ],
+        "states": [
+          {
+            "attribute": "data-activation-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "none",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-single",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "browser",
+              "default"
+            ]
+          }
+        ]
+      },
+      "panel": {
+        "family": "tabs",
+        "registryItems": [
+          "tabs"
+        ],
+        "states": [
+          {
+            "attribute": "data-activation-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "none",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-index",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-slide",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "panel"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "tab": {
+        "family": "tabs",
+        "registryItems": [
+          "tabs"
+        ],
+        "states": [
+          {
+            "attribute": "aria-selected",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "false",
+              "true"
+            ]
+          },
+          {
+            "attribute": "data-activation-direction",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "down",
+              "left",
+              "none",
+              "right",
+              "up"
+            ]
+          },
+          {
+            "attribute": "data-active",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-tabs-indicator-background"
+  ],
+  "contrast": "/r/contract/tabs.contrast.json"
+}

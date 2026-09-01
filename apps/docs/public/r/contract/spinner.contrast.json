@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "family": "spinner",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "spinner",
+          "data-control-ui": "spinner",
+          "data-slot": "root",
+          "role": "status"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "text": "--cui-spinner-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

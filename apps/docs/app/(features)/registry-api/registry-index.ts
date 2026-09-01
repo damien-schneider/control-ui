@@ -148,7 +148,7 @@ export function searchRegistry(query: string): SearchItem[] {
 
 export function contractLinks(): RegistryContractLinks {
   return {
-    skin: `${env.NEXT_PUBLIC_REGISTRY_URL}/r/skin-contract.json`,
+    skin: `${env.NEXT_PUBLIC_REGISTRY_URL}/r/contract/index.json`,
     theme: `${env.NEXT_PUBLIC_REGISTRY_URL}/r/theme-contract.json`,
   };
 }

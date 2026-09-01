@@ -1,0 +1,698 @@
+{
+  "version": 1,
+  "family": "chat-layout",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-chat-layout-kind": "thread",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-chat-layout-kind": "thought",
+          "data-closed": "",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-chat-layout-kind": "thread",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-chat-layout-kind": "thought",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-chat-layout-kind": "thread",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-closed": "",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-chat-layout-kind": "thread",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-chat-layout-kind": "thread",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-chat-layout-kind": "thought",
+          "data-closed": "",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-chat-layout-kind": "thread",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-chat-layout-kind": "thought",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-closed": "",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thought",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 5,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 6,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 7,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-background"
+      },
+      "anatomy": 8,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-thought-hover-background"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-thought-hover-background"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-thought-hover-background"
+      },
+      "anatomy": 11,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-layout-thought-hover-background"
+      },
+      "anatomy": 12,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-layout-thought-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-layout-thought-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-layout-thought-foreground"
+      },
+      "anatomy": 11,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

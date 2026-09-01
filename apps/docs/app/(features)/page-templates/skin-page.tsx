@@ -166,8 +166,8 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
             Copy a selector as{" "}
             <code>[data-skin=&quot;brand&quot;] [data-slot=&quot;shell&quot;][data-control-family=&quot;chat-composer&quot;]</code>.
             Optional adornment anchors are listed separately in the{" "}
-            <Link href="/r/skin-contract.json" className="font-medium text-foreground underline underline-offset-4">
-              full machine-readable contract
+            <Link href="/r/contract/index.json" className="font-medium text-foreground underline underline-offset-4">
+              machine-readable contract, one slice per paint family
             </Link>
             , so they cannot be mistaken for DOM parts.
           </p>

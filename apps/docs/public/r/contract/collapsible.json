@@ -1,0 +1,64 @@
+{
+  "version": 8,
+  "family": "collapsible",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "collapsible"
+  ],
+  "knobs": [],
+  "parts": {
+    "collapsible": {
+      "root": {
+        "family": "collapsible",
+        "registryItems": [
+          "collapsible"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "collapsible",
+        "registryItems": [
+          "collapsible"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      },
+      "trigger": {
+        "family": "collapsible",
+        "registryItems": [
+          "collapsible"
+        ],
+        "states": [
+          {
+            "attribute": "data-panel-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/collapsible.contrast.json"
+}

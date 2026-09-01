@@ -9,8 +9,13 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "Stacked disclosure rows with measured panel animation.",
-      "dependencies": ["@base-ui/react@^1.7.0", "lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0",
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/accordion-knobs.ts",
@@ -71,7 +76,9 @@
       "type": "registry:component",
       "title": "Activity",
       "description": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/collapsible",
         "damien-schneider/control-ui/core",
@@ -105,7 +112,9 @@
       "title": "Alert",
       "description": "Inline status panel for callouts, errors, and notices.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/alert-knobs.ts",
@@ -133,7 +142,9 @@
       "type": "registry:ui",
       "title": "Alert dialog",
       "description": "Modal confirmation dialog for destructive or blocking decisions.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -185,7 +196,10 @@
       "title": "All Control UI components",
       "description": "Alias for the complete Control UI component set with the Refined skin.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/all-refined", "damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/all-refined",
+        "damien-schneider/control-ui/core"
+      ],
       "files": []
     },
     {
@@ -1123,7 +1137,9 @@
       "title": "Aspect ratio",
       "description": "CSS aspect-ratio wrapper for media and previews.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/sources/control-ui/ui/aspect-ratio.tsx",
@@ -1138,7 +1154,9 @@
       "type": "registry:component",
       "title": "AudioRecorder",
       "description": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/audio-visualizer",
         "damien-schneider/control-ui/button",
@@ -1192,7 +1210,9 @@
       "title": "AudioVisualizer",
       "description": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/audio-visualizer-knobs.ts",
@@ -1221,7 +1241,10 @@
       "title": "AudioVisualizer — line",
       "description": "Line rendering of the shared realtime audio visualizer contract.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/audio-visualizer", "damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/audio-visualizer",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/sources/control-ui/audio-visualizer-line.tsx",
@@ -1236,7 +1259,9 @@
       "type": "registry:ui",
       "title": "Autocomplete",
       "description": "Free-text input with search-as-you-type suggestions.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/core",
         "damien-schneider/control-ui/scroll-area",
@@ -1304,8 +1329,12 @@
       "type": "registry:ui",
       "title": "Avatar",
       "description": "Profile image with initials fallback and composable overlapping groups.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/avatar-knobs.ts",
@@ -1333,8 +1362,12 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Compact status, label, or count chip.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/badge-knobs.ts",
@@ -1362,8 +1395,12 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Accessible action button with size, variant, and semantic tone support.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/button-knobs.ts",
@@ -1391,8 +1428,12 @@
       "type": "registry:ui",
       "title": "Button group",
       "description": "Joined button group for toolbars, split actions, and segmented controls.",
-      "dependencies": ["class-variance-authority@^0.7.1"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/button-group-knobs.ts",
@@ -1420,8 +1461,12 @@
       "type": "registry:ui",
       "title": "Calendar",
       "description": "Date selection grid built on react-day-picker and themed through tokens.",
-      "dependencies": ["react-day-picker@^10.0.1"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "react-day-picker@^10.0.1"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/calendar-knobs.ts",
@@ -1450,7 +1495,9 @@
       "title": "Card",
       "description": "Content surface for panels, tiles, and settings groups.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/card-knobs.ts",
@@ -1505,7 +1552,10 @@
       "title": "Chat",
       "description": "Controlled chat shell that composes rendered turns and a provider-owned composer.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/chat-layout", "damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/chat-layout",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/blocks/chat.tsx",
@@ -1602,7 +1652,9 @@
       "type": "registry:component",
       "title": "ChatComposerAttachment",
       "description": "Composer attachment rail with file previews, upload progress, and removal.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -1674,7 +1726,10 @@
       "title": "ChatMessage",
       "description": "Composable chat message with typed role, density, and lifecycle state.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/effects"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/effects"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/hooks/use-chat-message.ts",
@@ -1707,8 +1762,12 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Single checkbox control with checked and indeterminate states.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/choice-knobs.ts",
@@ -1736,8 +1795,12 @@
       "type": "registry:ui",
       "title": "Checkbox Group",
       "description": "Multi-select checkbox set with shared state and select-all support.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/sources/control-ui/ui/checkbox-group.tsx",
@@ -1752,7 +1815,11 @@
       "type": "registry:ui",
       "title": "Code",
       "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
-      "dependencies": ["@tanstack/react-virtual@^3.14.9", "lucide-react@^1.31.0", "shiki@^4.4.3"],
+      "dependencies": [
+        "@tanstack/react-virtual@^3.14.9",
+        "lucide-react@^1.31.0",
+        "shiki@^4.4.3"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -1798,7 +1865,9 @@
       "type": "registry:component",
       "title": "CodeBlockEditor",
       "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/code",
@@ -1849,7 +1918,10 @@
       "type": "registry:ui",
       "title": "Code Diff",
       "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
-      "dependencies": ["@tanstack/react-virtual@^3.14.9", "diff@^9.0.0"],
+      "dependencies": [
+        "@tanstack/react-virtual@^3.14.9",
+        "diff@^9.0.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/code",
         "damien-schneider/control-ui/core",
@@ -1887,7 +1959,9 @@
       "type": "registry:block",
       "title": "Coding agent",
       "description": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/chat-layout",
@@ -1909,8 +1983,12 @@
       "type": "registry:ui",
       "title": "Collapsible",
       "description": "Accessible disclosure primitive with measured open and close motion.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/collapsible-knobs.ts",
@@ -1938,7 +2016,9 @@
       "type": "registry:ui",
       "title": "Color Picker",
       "description": "Color input with picker UI, formats, presets, and contrast helpers.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -2035,8 +2115,13 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Searchable single-select with input and floating option list.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -2104,7 +2189,9 @@
       "type": "registry:ui",
       "title": "Command",
       "description": "Command palette with token-matched dialog, input, and result rows.",
-      "dependencies": ["cmdk@^1.1.1"],
+      "dependencies": [
+        "cmdk@^1.1.1"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/core",
         "damien-schneider/control-ui/dialog",
@@ -2156,7 +2243,9 @@
       "type": "registry:component",
       "title": "Context",
       "description": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -2205,8 +2294,13 @@
       "type": "registry:ui",
       "title": "Context Menu",
       "description": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -2253,7 +2347,9 @@
       "title": "ControlEffects",
       "description": "CSS-driven control effects (top-shine, ripple, hover-circle) that follow every control app-wide through the emitted anatomy — portalled surfaces included.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/sources/control-ui/extensions/control-effects-root.tsx",
@@ -2276,8 +2372,13 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "Modal dialog for focused tasks, confirmations, and custom panels.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/button", "damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -2367,8 +2468,12 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -2420,8 +2525,13 @@
       "type": "registry:ui",
       "title": "DropdownMenu",
       "description": "Dropdown menu for actions, resources, labels, separators, and submenus.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/button-knobs.ts",
@@ -2478,7 +2588,9 @@
       "type": "registry:ui",
       "title": "Dropzone",
       "description": "Composable file intake with validation, managed selection, and drag-activated overlays.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -2587,7 +2699,9 @@
       "title": "Empty",
       "description": "Empty-state layout for blank lists, zero results, and new workspaces.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/empty-knobs.ts",
@@ -2615,7 +2729,9 @@
       "type": "registry:component",
       "title": "EnvironmentVariables",
       "description": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -2659,8 +2775,14 @@
       "type": "registry:ui",
       "title": "Field",
       "description": "Form field wrapper for labels, descriptions, errors, and validity state.",
-      "dependencies": ["@base-ui/react@^1.7.0", "class-variance-authority@^0.7.1"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/separator"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/separator"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -2694,7 +2816,9 @@
       "type": "registry:block",
       "title": "File explorer",
       "description": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -2723,8 +2847,12 @@
       "type": "registry:ui",
       "title": "Form",
       "description": "Form wrapper that coordinates field validation and returned errors.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/sources/control-ui/ui/form.tsx",
@@ -2773,8 +2901,13 @@
       "type": "registry:ui",
       "title": "Hover card",
       "description": "Hover or focus preview panel for profiles, links, and contextual details.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -2820,8 +2953,13 @@
       "type": "registry:ui",
       "title": "Infinite Canvas",
       "description": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
-      "dependencies": ["lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/button", "damien-schneider/control-ui/core"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/infinite-canvas-knobs.ts",
@@ -2850,7 +2988,10 @@
       "title": "InlineAttachment",
       "description": "Inline file and media previews for chat turns.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/effects"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/effects"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/inline-attachment-knobs.ts",
@@ -2878,7 +3019,9 @@
       "type": "registry:component",
       "title": "InlineCitation",
       "description": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -2912,8 +3055,12 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "Text field primitive sized and styled to match other controls.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -2947,8 +3094,12 @@
       "type": "registry:ui",
       "title": "Input group",
       "description": "Joined input wrapper for addons, icons, and focus-within rings.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -2982,8 +3133,12 @@
       "type": "registry:ui",
       "title": "Input OTP",
       "description": "One-time-code field with grouped, focus-aware slots.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -3017,8 +3172,13 @@
       "type": "registry:ui",
       "title": "Item",
       "description": "List row with media, content, and trailing actions.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/separator"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/separator"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/item-knobs.ts",
@@ -3047,7 +3207,9 @@
       "title": "Kbd",
       "description": "Keyboard shortcut chip and chord group.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/kbd-knobs.ts",
@@ -3075,7 +3237,9 @@
       "type": "registry:ui",
       "title": "Markdown",
       "description": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
-      "dependencies": ["streamdown@^2.5.0"],
+      "dependencies": [
+        "streamdown@^2.5.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/code",
         "damien-schneider/control-ui/code-diff",
@@ -3147,8 +3311,13 @@
       "type": "registry:ui",
       "title": "Menubar",
       "description": "Desktop command bar with nested menus, shortcuts, and separators.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/button-knobs.ts",
@@ -3205,8 +3374,12 @@
       "type": "registry:ui",
       "title": "Meter",
       "description": "Static range meter for quota, storage, score, or usage values.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/range-knobs.ts",
@@ -3234,8 +3407,13 @@
       "type": "registry:ui",
       "title": "Morphing Panel",
       "description": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/collapsible", "damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/collapsible",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/morphing-panel-knobs.ts",
@@ -3264,7 +3442,9 @@
       "title": "Native select",
       "description": "Native select control styled to match the Control UI control family.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -3298,8 +3478,12 @@
       "type": "registry:ui",
       "title": "Navigation menu",
       "description": "Site navigation menu with a shared animated viewport.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/button-knobs.ts",
@@ -3357,7 +3541,11 @@
       "title": "Control UI Next.js app",
       "description": "Minimal Next.js starter wiring for the complete Control UI registry.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/all", "damien-schneider/control-ui/button", "damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/all",
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/starters/next/layout.tsx",
@@ -3377,8 +3565,12 @@
       "type": "registry:ui",
       "title": "Number Field",
       "description": "Numeric input with stepper buttons and optional drag-to-change behavior.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -3412,8 +3604,12 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "Page navigation for long lists and result sets.",
-      "dependencies": ["lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/pagination-knobs.ts",
@@ -3441,7 +3637,11 @@
       "type": "registry:ui",
       "title": "Phone input",
       "description": "International phone field with country search, E.164 values, and Zod validation helpers.",
-      "dependencies": ["libphonenumber-js@^1.13.10", "react-phone-number-input@^3.4.17", "zod@^4.4.3"],
+      "dependencies": [
+        "libphonenumber-js@^1.13.10",
+        "react-phone-number-input@^3.4.17",
+        "zod@^4.4.3"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/command",
         "damien-schneider/control-ui/core",
@@ -3485,8 +3685,12 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Anchored floating panel for inline settings and contextual content.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -3532,8 +3736,12 @@
       "type": "registry:ui",
       "title": "Progress",
       "description": "Determinate task progress with optional label and value rows.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/range-knobs.ts",
@@ -3561,8 +3769,12 @@
       "type": "registry:ui",
       "title": "Radio group",
       "description": "Single-choice radio set for plans, filters, and option lists.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/choice-knobs.ts",
@@ -3590,8 +3802,12 @@
       "type": "registry:ui",
       "title": "Resizable",
       "description": "Accessible resizable panel groups and split layouts with keyboard support.",
-      "dependencies": ["react-resizable-panels@^4.12.2"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "react-resizable-panels@^4.12.2"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/resizable-knobs.ts",
@@ -3640,8 +3856,14 @@
       "type": "registry:ui",
       "title": "Rich tooltip",
       "description": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
-      "dependencies": ["@base-ui/react@^1.7.0", "lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0",
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -3703,8 +3925,12 @@
       "type": "registry:ui",
       "title": "Scroll area",
       "description": "Scroll container with overlay scrollbars and edge fades.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/scroll-area-knobs.ts",
@@ -3732,8 +3958,13 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Single-choice picker with a token-matched trigger and floating list.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/button-knobs.ts",
@@ -3791,7 +4022,9 @@
       "title": "SendAurora",
       "description": "Anchored ChatComposer extension: a blurred aurora backdrop that sweeps up once per sent message — activated from skin.config via the chat-composer:send-layer anchor.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/sources/control-ui/extensions/send-aurora.css",
@@ -3814,7 +4047,9 @@
       "type": "registry:block",
       "title": "Settings",
       "description": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -3843,7 +4078,11 @@
       "type": "registry:ui",
       "title": "Sidebar",
       "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
-      "dependencies": ["@base-ui/react@^1.7.0", "class-variance-authority@^0.7.1", "lucide-react@^1.31.0"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0",
+        "class-variance-authority@^0.7.1",
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -3885,7 +4124,10 @@
       "title": "Skeleton",
       "description": "Loading placeholder with a token-driven shimmer.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/effects"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/effects"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/skeleton-knobs.ts",
@@ -3914,7 +4156,10 @@
       "title": "Cuicui skin",
       "description": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/send-aurora"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/send-aurora"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/cuicui/skin.config.tsx",
@@ -3944,7 +4189,9 @@
       "title": "Flat skin",
       "description": "Neutral reset skin with square corners, no shadows, and the stock motion tempo.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/flat/skin.config.tsx",
@@ -3974,7 +4221,9 @@
       "title": "Linear skin",
       "description": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/linear/skin.config.tsx",
@@ -4003,8 +4252,12 @@
       "type": "registry:style",
       "title": "Liquid metal skin",
       "description": "Polished metal skin with a WebGL shader control surface.",
-      "dependencies": ["metal-fx@^1.0.4"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "metal-fx@^1.0.4"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/liquid-metal/liquid-metal-runtime.tsx",
@@ -4040,7 +4293,10 @@
       "description": "Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.",
       "docs": "Add these imports once to app/globals.css: @import \"../components/control-ui/styles/skin-theme.css\"; @import \"../components/control-ui/styles/skin.css\"; Then mount ModernAppleLiquidGlassRuntime once near the app root from @/components/control-ui/modern-apple-liquid-glass-runtime. The runtime uses createImageBitmap when available; if an older browser needs its image-decoder fallback, allow data: in img-src or it will retain the CSS glass fallback.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/liquid-glass-optics"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/liquid-glass-optics"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime.tsx",
@@ -4080,7 +4336,9 @@
       "title": "Refined skin",
       "description": "Compact, calm starting skin with a complete Control UI token contract.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/refined/skin.config.tsx",
@@ -4110,7 +4368,9 @@
       "title": "Rig skin",
       "description": "Brutalist skin with coral accents, squared corners, and dense typography.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/rig/skin.config.tsx",
@@ -4140,7 +4400,10 @@
       "title": "Windows XP skin",
       "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/effects"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/effects"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/skin-packs/xp/skin.config.tsx",
@@ -4169,8 +4432,12 @@
       "type": "registry:ui",
       "title": "Slider",
       "description": "Single-value range control with branded and plain treatments.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/range-knobs.ts",
@@ -4198,7 +4465,9 @@
       "type": "registry:component",
       "title": "SourceBadge",
       "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/avatar",
         "damien-schneider/control-ui/badge",
@@ -4236,8 +4505,12 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "Accessible loading indicator for pending buttons, panels, and inline waits.",
-      "dependencies": ["lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/spinner-knobs.ts",
@@ -4265,8 +4538,12 @@
       "type": "registry:ui",
       "title": "Stepper",
       "description": "Static and interactive workflow steps with horizontal and vertical layouts.",
-      "dependencies": ["lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/stepper-knobs.ts",
@@ -4294,8 +4571,12 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "On/off control with token-driven track, thumb, and press motion.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/switch-knobs.ts",
@@ -4324,7 +4605,9 @@
       "title": "Table",
       "description": "Responsive data table for lists, comparisons, and structured records.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/table-knobs.ts",
@@ -4353,7 +4636,10 @@
       "title": "Table of contents",
       "description": "Sticky in-page navigation with scroll-spy range highlighting.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/track-highlight"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/track-highlight"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/table-of-contents-knobs.ts",
@@ -4381,8 +4667,12 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "Segmented and browser-style navigation with a stable active indicator.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/tabs-knobs.ts",
@@ -4410,8 +4700,13 @@
       "type": "registry:component",
       "title": "TaskList",
       "description": "Floating agent task progress pill above the composer that expands into the full task list.",
-      "dependencies": ["lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/collapsible", "damien-schneider/control-ui/core"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/collapsible",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/task-list-knobs.ts",
@@ -4440,7 +4735,9 @@
       "title": "Textarea",
       "description": "Multiline text field with CSS-first auto-growth.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/field-knobs.ts",
@@ -4474,7 +4771,9 @@
       "type": "registry:block",
       "title": "Theme toggle",
       "description": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
-      "dependencies": ["lucide-react@^1.31.0"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
@@ -4496,7 +4795,10 @@
       "title": "ThreadRail",
       "description": "Conversation minimap for scanning and jumping between chat turns.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/chat-message", "damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/chat-message",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/thread-rail-knobs.ts",
@@ -4525,7 +4827,9 @@
       "title": "Timeline",
       "description": "Static chronological events with independent status, connectors, descriptions, and metadata.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/timeline-knobs.ts",
@@ -4553,8 +4857,12 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "Transient notifications with a callable toast API and single Toaster mount.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -4606,8 +4914,13 @@
       "type": "registry:ui",
       "title": "Toggle",
       "description": "Pressed-state button and toggle group built on the Button surface.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/button", "damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/sources/control-ui/recipes/button.css",
@@ -4630,8 +4943,12 @@
       "type": "registry:ui",
       "title": "Toolbar",
       "description": "Roving-focus toolbar for editor controls and compact actions.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/toolbar-knobs.ts",
@@ -4659,8 +4976,12 @@
       "type": "registry:ui",
       "title": "Tooltip",
       "description": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/popup-knobs.ts",
@@ -4707,7 +5028,9 @@
       "title": "TranscriptDivider",
       "description": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/transcript-divider-knobs.ts",
@@ -4735,8 +5058,14 @@
       "type": "registry:ui",
       "title": "Tree",
       "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
-      "dependencies": ["@base-ui/react@^1.7.0", "lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/track-highlight"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0",
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/track-highlight"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/knob-contracts/tree-knobs.ts",
@@ -4764,8 +5093,13 @@
       "type": "registry:ui",
       "title": "Trigger Menu",
       "description": "Caret-anchored command or mention menu for text editors.",
-      "dependencies": ["@base-ui/react@^1.7.0"],
-      "registryDependencies": ["damien-schneider/control-ui/core", "damien-schneider/control-ui/surface-variants"],
+      "dependencies": [
+        "@base-ui/react@^1.7.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/surface-variants"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/hooks/use-textarea-trigger-menu.ts",
@@ -4827,7 +5161,9 @@
       "title": "Typography",
       "description": "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/examples/control-ui/primitives/type-scale.css",
@@ -4954,8 +5290,14 @@
       "type": "registry:component",
       "title": "UserAsk",
       "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
-      "dependencies": ["lucide-react@^1.31.0"],
-      "registryDependencies": ["damien-schneider/control-ui/button", "damien-schneider/control-ui/core", "damien-schneider/control-ui/kbd"],
+      "dependencies": [
+        "lucide-react@^1.31.0"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/kbd"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/hooks/use-user-ask.ts",
@@ -4995,7 +5337,9 @@
       "title": "viewTransition",
       "description": "Interrupt-safe driver for the browser View Transitions API: page transitions, shared-element morphs, and a reduced-motion fallback for both.",
       "dependencies": [],
-      "registryDependencies": ["damien-schneider/control-ui/core"],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
       "files": [
         {
           "path": "apps/docs/src/registry/hooks/use-morph-transition.ts",

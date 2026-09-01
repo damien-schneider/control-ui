@@ -1,0 +1,82 @@
+{
+  "version": 8,
+  "family": "avatar",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "avatar"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-avatar-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-avatar-group-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-avatar-fallback-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-avatar-fallback-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "avatar": {
+      "root": {
+        "family": "avatar",
+        "registryItems": [
+          "avatar"
+        ],
+        "states": []
+      },
+      "fallback": {
+        "family": "avatar",
+        "registryItems": [
+          "avatar"
+        ],
+        "states": []
+      },
+      "group": {
+        "family": "avatar",
+        "registryItems": [
+          "avatar"
+        ],
+        "states": []
+      },
+      "image": {
+        "family": "avatar",
+        "registryItems": [
+          "avatar"
+        ],
+        "states": [
+          {
+            "attribute": "data-ending-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/avatar.contrast.json"
+}

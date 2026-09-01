@@ -1,0 +1,175 @@
+{
+  "version": 8,
+  "family": "code",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "code"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-code-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-code-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-code-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--control-rim)"
+    },
+    {
+      "name": "--cui-code-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-code-title-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-code-text-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--code-foreground)"
+    }
+  ],
+  "parts": {
+    "code": {
+      "root": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": [
+          {
+            "attribute": "data-chrome",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "embedded",
+              "standalone"
+            ]
+          },
+          {
+            "attribute": "data-density",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "compact",
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-header",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "accessible-source": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      },
+      "actions": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      },
+      "floating-frame": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": [
+          {
+            "attribute": "data-density",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "compact",
+              "default"
+            ]
+          }
+        ]
+      },
+      "grid": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": [
+          {
+            "attribute": "data-density",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "compact",
+              "default"
+            ]
+          }
+        ]
+      },
+      "gutter": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      },
+      "line": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": [
+          {
+            "attribute": "data-index",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          }
+        ]
+      },
+      "title": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/code.contrast.json"
+}

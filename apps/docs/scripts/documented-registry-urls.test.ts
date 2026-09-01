@@ -17,7 +17,7 @@ describe("documented registry URLs", () => {
 
     for (const relativeFile of trackedDocumentationFiles()) {
       const source = readFileSync(path.join(repositoryRoot, relativeFile), "utf8");
-      for (const match of source.matchAll(/\/r\/([a-z0-9][a-z0-9-]*\.json)\b/g)) {
+      for (const match of source.matchAll(/\/r\/((?:contract\/)?[a-z0-9][a-z0-9.-]*\.json)\b/g)) {
         if (!existsSync(path.join(publicRegistryDirectory, match[1]))) {
           missingPayloads.push(`${relativeFile}: ${match[1]}`);
         }

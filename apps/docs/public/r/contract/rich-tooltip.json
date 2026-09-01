@@ -1,0 +1,64 @@
+{
+  "version": 8,
+  "family": "rich-tooltip",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [],
+  "knobs": [
+    {
+      "name": "--cui-rich-tooltip-content-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-rich-tooltip-content-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-foreground)"
+    },
+    {
+      "name": "--cui-rich-tooltip-content-radius",
+      "syntax": "<length-percentage>+",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popover)"
+    },
+    {
+      "name": "--cui-rich-tooltip-content-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "inset 0 1px 0\n      oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity) * min(var(--shadow-size), 1))), 0 calc(\n        0.5px *\n        var(--shadow-size) *\n        var(--shadow-popover-multiplier) *\n        var(--shadow-y)\n      )\n      calc(0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      calc(-0.25px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity))), 0 calc(\n        1.5px *\n        var(--shadow-size) *\n        var(--shadow-popover-multiplier) *\n        var(--shadow-y)\n      )\n      calc(3px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      calc(-0.75px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))), 0 calc(\n        3px *\n        var(--shadow-size) *\n        var(--shadow-popover-multiplier) *\n        var(--shadow-y)\n      )\n      calc(6px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      calc(-1.5px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))), 0 calc(\n        6px *\n        var(--shadow-size) *\n        var(--shadow-popover-multiplier) *\n        var(--shadow-y)\n      )\n      calc(14px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      calc(-3px * var(--shadow-size) * var(--shadow-popover-multiplier))\n      oklch(from var(--shadow-color) l c h / calc(0.07 * var(--shadow-opacity)))"
+    },
+    {
+      "name": "--cui-rich-tooltip-dot-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "currentcolor"
+    },
+    {
+      "name": "--cui-rich-tooltip-action-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-rich-tooltip-action-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-rich-tooltip-action-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "currentColor"
+    }
+  ],
+  "parts": {},
+  "adornments": {},
+  "uncovered": [
+    "--cui-rich-tooltip-action-background",
+    "--cui-rich-tooltip-action-foreground",
+    "--cui-rich-tooltip-dot-background"
+  ],
+  "contrast": "/r/contract/rich-tooltip.contrast.json"
+}

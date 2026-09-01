@@ -1,0 +1,89 @@
+{
+  "version": 8,
+  "family": "pagination",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "pagination"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-pagination-link-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-pagination-link-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-pagination-link-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+    },
+    {
+      "name": "--cui-pagination-link-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-pagination-link-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    }
+  ],
+  "parts": {
+    "pagination": {
+      "root": {
+        "family": "pagination",
+        "registryItems": [
+          "pagination"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "pagination",
+        "registryItems": [
+          "pagination"
+        ],
+        "states": []
+      },
+      "ellipsis": {
+        "family": "pagination",
+        "registryItems": [
+          "pagination"
+        ],
+        "states": []
+      },
+      "item": {
+        "family": "pagination",
+        "registryItems": [
+          "pagination"
+        ],
+        "states": []
+      },
+      "link": {
+        "family": "pagination",
+        "registryItems": [
+          "pagination"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/pagination.contrast.json"
+}

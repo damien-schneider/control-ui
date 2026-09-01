@@ -8,5 +8,8 @@ export const fieldKnobs = [
   "--cui-field-shadow",
   "--cui-field-backdrop-filter",
   "--cui-field-focus-border-color",
+  "--cui-field-height",
+  "--cui-field-padding-inline",
+  "--cui-field-font-size",
 ] as const;
 export type FieldKnobStyle = Partial<Record<(typeof fieldKnobs)[number], string>>;

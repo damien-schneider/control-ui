@@ -320,7 +320,7 @@ const solidButtonPairs = ["primary", "danger"].flatMap((tone) =>
       category: "Controls",
       label: `Solid ${tone} button label on ${surface}`,
       foreground: "--cui-button-foreground",
-      background: "--cui-button-bg",
+      background: "--cui-button-background",
       backgroundAnatomy: solidButton(tone),
       surface: `--${surface}`,
       threshold: 4.5,
@@ -384,6 +384,19 @@ const boundaryPair = (id: string, label: string, foreground: string, background:
   severity: "warning",
 });
 
+const archetypeFillPairs = (["background", "card"] as const).flatMap((surface): ThemeAuditPair[] =>
+  (["hover", "active"] as const).map((state) => ({
+    id: `${state}-fill-on-${surface}`,
+    category: "Component states",
+    label: `Text on ${state} fill over ${surface}`,
+    foreground: "--foreground",
+    background: `--${state}-fill`,
+    surface: `--${surface}`,
+    threshold: 4.5,
+    severity: "error",
+  })),
+);
+
 export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   textPair("body-on-background", "Body text on background", "--foreground", "--background"),
   textPair("body-on-canvas", "Body text on canvas", "--foreground", "--canvas"),
@@ -439,6 +452,9 @@ export const THEME_AUDIT_PAIRS: readonly ThemeAuditPair[] = [
   boundaryPair("input-on-card", "Input boundary on card", "--input", "--card"),
   boundaryPair("ring-on-background", "Focus ring on background", "--ring", "--background"),
   boundaryPair("ring-on-card", "Focus ring on card", "--ring", "--card"),
+  boundaryPair("control-rim-on-background", "Control rim on background", "--control-rim", "--background"),
+  boundaryPair("control-rim-on-card", "Control rim on card", "--control-rim", "--card"),
+  ...archetypeFillPairs,
   ...anatomyPairs,
 ];
 

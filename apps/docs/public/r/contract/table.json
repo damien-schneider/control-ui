@@ -1,0 +1,128 @@
+{
+  "version": 8,
+  "family": "table",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "table"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-table-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-table-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-table-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-table-row-hover-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.03)"
+    },
+    {
+      "name": "--cui-table-row-selected-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.05)"
+    },
+    {
+      "name": "--cui-table-header-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-table-footer-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.03)"
+    }
+  ],
+  "parts": {
+    "table": {
+      "root": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "body": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "caption": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "cell": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "container": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "head": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      },
+      "row": {
+        "family": "table",
+        "registryItems": [
+          "table"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-table-background",
+    "--cui-table-footer-background",
+    "--cui-table-foreground",
+    "--cui-table-row-hover-background",
+    "--cui-table-row-selected-background"
+  ],
+  "contrast": "/r/contract/table.contrast.json"
+}

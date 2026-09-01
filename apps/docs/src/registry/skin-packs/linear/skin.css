@@ -1,13 +1,6 @@
 /* Only what Tailwind classes cannot say — everything else lives in skin.config or theme.css. */
 
 [data-skin="linear"] {
-  /* Linear draws its edges at half a device pixel; below 2dppx that would vanish, so it thickens. */
-  --linear-hairline: 1px;
-
-  /* Row fills derive from --foreground, so one declaration serves every surface the row can land on.
-     Light darkens less than dark lightens — measured off the app, not mirrored. */
-  --linear-row-hover: oklch(from var(--foreground) l c h / 0.035);
-  --linear-row-active: oklch(from var(--foreground) l c h / 0.06);
   --linear-control-bg: var(--popover);
   --linear-control-hover: oklch(from var(--foreground) l c h / 0.06);
   --linear-control-active: oklch(from var(--foreground) l c h / 0.09);
@@ -29,20 +22,12 @@
   --linear-menu-border: oklch(0.931 0 0); /* #e8e8e8 */
 
   --linear-tab-active-bg: var(--popover);
-  --linear-tab-active-shadow: 0 0 0 var(--linear-hairline) var(--border), 0 1px 1px 0 oklch(0 0 0 / 0.04);
-}
-
-@media (min-resolution: 2dppx) {
-  [data-skin="linear"] {
-    --linear-hairline: 0.5px;
-  }
+  --linear-tab-active-shadow: 0 0 0 var(--control-rim-width) var(--border), 0 1px 1px 0 oklch(0 0 0 / 0.04);
 }
 
 /* Dark: raised surfaces get lighter, not brighter-edged; shadows go deep and neutral. */
 :where(.dark) [data-skin="linear"],
 .dark[data-skin="linear"] {
-  --linear-row-hover: oklch(1 0 0 / 0.06);
-  --linear-row-active: oklch(1 0 0 / 0.105);
   --linear-control-bg: oklch(1 0 0 / 0.05);
   --linear-control-hover: oklch(1 0 0 / 0.08);
   --linear-control-active: oklch(1 0 0 / 0.12);
@@ -74,9 +59,9 @@
     --cui-button-gap: 0.375rem;
     --cui-button-radius: var(--radius-control);
     --cui-button-press-scale: 1;
-    --cui-button-hover-bg: var(--linear-row-hover);
-    --cui-button-active-bg: var(--linear-row-active);
-    --cui-button-active-hover-bg: var(--linear-row-active);
+    --cui-button-hover-background: var(--hover-fill);
+    --cui-button-active-background: var(--active-fill);
+    --cui-button-active-hover-background: var(--active-fill);
     transition-property: color, background-color, border-color, box-shadow;
   }
 
@@ -85,8 +70,8 @@
       [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
     ) {
-    --cui-button-hover-bg: var(--linear-primary-hover);
-    --cui-button-press-bg: var(--linear-primary-active);
+    --cui-button-hover-background: var(--linear-primary-hover);
+    --cui-button-press-background: var(--linear-primary-active);
     --cui-button-shadow: var(--linear-control-shadow);
   }
 
@@ -95,11 +80,11 @@
       [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]
     ) {
-    --cui-button-bg: var(--linear-control-bg);
-    --cui-button-hover-bg: var(--linear-control-hover);
-    --cui-button-press-bg: var(--linear-control-active);
-    --cui-button-shadow: inset 0 0 0 var(--linear-hairline) var(--border), var(--linear-control-shadow);
-    --cui-button-active-shadow: inset 0 0 0 var(--linear-hairline) oklch(from var(--primary) l c h / 0.6), var(--linear-control-shadow);
+    --cui-button-background: var(--linear-control-bg);
+    --cui-button-hover-background: var(--linear-control-hover);
+    --cui-button-press-background: var(--linear-control-active);
+    --cui-button-shadow: inset 0 0 0 var(--control-rim-width) var(--border), var(--linear-control-shadow);
+    --cui-button-active-shadow: inset 0 0 0 var(--control-rim-width) oklch(from var(--primary) l c h / 0.6), var(--linear-control-shadow);
   }
 
   [data-skin="linear"]
@@ -107,8 +92,8 @@
       [data-control-ui="button"][data-slot="root"][data-tone="danger"][data-variant="solid"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-tone="danger"][data-variant="solid"][data-control-family="button"]
     ) {
-    --cui-button-hover-bg: var(--destructive);
-    --cui-button-press-bg: var(--destructive);
+    --cui-button-hover-background: var(--destructive);
+    --cui-button-press-background: var(--destructive);
     --cui-button-shadow: var(--linear-control-shadow);
   }
 
@@ -135,21 +120,21 @@
       [data-slot="root"][data-variant="inverse"][data-control-family="toolbar"]
         [data-control-ui="button"][data-slot="root"][data-control-family="button"]
     ) {
-    --cui-button-bg: transparent;
+    --cui-button-background: transparent;
     --cui-button-foreground: oklch(from var(--background) l c h / 0.7);
-    --cui-button-hover-bg: oklch(from var(--background) l c h / 0.1);
+    --cui-button-hover-background: oklch(from var(--background) l c h / 0.1);
     --cui-button-hover-foreground: var(--background);
-    --cui-button-press-bg: oklch(from var(--background) l c h / 0.12);
-    --cui-button-active-bg: var(--background);
+    --cui-button-press-background: oklch(from var(--background) l c h / 0.12);
+    --cui-button-active-background: var(--background);
     --cui-button-active-foreground: var(--foreground);
-    --cui-button-active-hover-bg: var(--background);
+    --cui-button-active-hover-background: var(--background);
     --cui-button-shadow: 0 0 transparent;
     --cui-button-active-shadow: 0 0 transparent;
   }
 
   /* Re-values the library's pill knobs: a flat ink wash, never a raised card. */
   [data-skin="linear"] :where([data-slot="root"][data-control-family="track-highlight"]) {
-    --cui-track-highlight-background: var(--linear-row-active);
+    --cui-track-highlight-background: var(--active-fill);
     --cui-track-highlight-ring-color: transparent;
     --cui-track-highlight-shadow: none;
   }
@@ -173,7 +158,7 @@
     ) {
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: var(--linear-menu-border);
-    --cui-popup-border-width: var(--linear-hairline);
+    --cui-popup-border-width: var(--control-rim-width);
     --cui-popup-shadow: var(--linear-menu-shadow);
   }
 
@@ -197,7 +182,6 @@
       [data-control-family="popup"][data-popup-part="bar"]
     ) {
     --cui-popup-item-radius: var(--radius-popup-item);
-    --cui-popup-item-highlight-background: var(--linear-row-hover);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-separator-color: var(--border);
   }
@@ -213,9 +197,9 @@
   }
 
   [data-skin="linear"] :where([data-control-ui="select"][data-slot="trigger"][data-control-family="button"]) {
-    --cui-button-bg: transparent;
-    --cui-button-hover-bg: var(--linear-row-hover);
-    --cui-button-shadow: inset 0 0 0 var(--linear-hairline) var(--input);
+    --cui-button-background: transparent;
+    --cui-button-hover-background: var(--hover-fill);
+    --cui-button-shadow: inset 0 0 0 var(--control-rim-width) var(--input);
     --cui-button-press-scale: 1;
   }
 
@@ -224,8 +208,8 @@
       [data-control-ui="dropdown-menu"][data-slot="trigger"][data-control-family="button"],
       [data-control-ui="menubar"][data-slot="trigger"][data-control-family="button"]
     ) {
-    --cui-button-bg: transparent;
-    --cui-button-hover-bg: var(--linear-row-hover);
+    --cui-button-background: transparent;
+    --cui-button-hover-background: var(--hover-fill);
     --cui-button-shadow: none;
     --cui-button-press-scale: 1;
   }
@@ -237,7 +221,7 @@
     --cui-popup-radius: var(--radius-panel);
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: transparent;
-    --cui-popup-border-width: var(--linear-hairline);
+    --cui-popup-border-width: var(--control-rim-width);
     --cui-popup-shadow: var(--linear-modal-shadow);
   }
 
@@ -268,7 +252,7 @@
   [data-skin="linear"] :where([data-control-ui="sheet"][data-popup-part="surface"][data-control-family="popup"]) {
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: var(--border);
-    --cui-popup-border-width: var(--linear-hairline);
+    --cui-popup-border-width: var(--control-rim-width);
     --cui-popup-shadow: var(--linear-modal-shadow);
   }
 }
@@ -279,7 +263,6 @@
     --cui-field-background: transparent;
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
-    --cui-field-border-width: var(--linear-hairline);
     --cui-field-shadow: 0 0 transparent;
     --cui-field-focus-border-color: var(--primary);
   }
@@ -292,7 +275,7 @@
 
   @media (hover: hover) {
     [data-skin="linear"] :where([data-control-ui="combobox"][data-slot="trigger"][data-control-family="field"]):hover {
-      background: var(--linear-row-hover);
+      background: var(--hover-fill);
     }
   }
 }
@@ -334,16 +317,16 @@
   [data-skin="linear"] :where([data-slot="root"][data-control-family="thread-rail"]) {
     --cui-thread-rail-popover-background: var(--popover);
     --cui-thread-rail-popover-border-color: var(--linear-menu-border);
-    --cui-thread-rail-popover-border-width: var(--linear-hairline);
+    --cui-thread-rail-popover-border-width: var(--control-rim-width);
     --cui-thread-rail-popover-shadow: var(--linear-menu-shadow);
     --cui-thread-rail-item-radius: 9999px;
-    --cui-thread-rail-item-background: var(--linear-row-active);
+    --cui-thread-rail-item-background: var(--active-fill);
   }
 
   [data-skin="linear"] :where([data-control-ui="command"][data-slot="root"][data-control-family="popup"]) {
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: var(--linear-menu-border);
-    --cui-popup-border-width: var(--linear-hairline);
+    --cui-popup-border-width: var(--control-rim-width);
     --cui-popup-shadow: var(--linear-menu-shadow);
     overflow: hidden;
   }
@@ -351,7 +334,6 @@
   [data-skin="linear"] :where([data-control-ui="command"][data-popup-part="bar"][data-control-family="popup"]) {
     --cui-popup-separator-color: var(--border);
     --cui-popup-item-radius: var(--radius-popup-item);
-    --cui-popup-item-highlight-background: var(--linear-row-hover);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-shortcut-foreground: var(--muted-foreground);
   }
@@ -365,9 +347,7 @@
     --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-menu-button-radius: var(--radius-control);
     --cui-sidebar-menu-button-foreground: var(--muted-foreground);
-    --cui-sidebar-menu-button-hover-background: var(--linear-row-hover);
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
-    --cui-sidebar-menu-button-active-background: var(--linear-row-active);
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
     --cui-sidebar-group-label-foreground: var(--muted-foreground);
   }
@@ -388,9 +368,7 @@
   [data-skin="linear"] :where([data-slot="root"][data-control-family="tree"]) {
     --cui-tree-item-trigger-radius: var(--radius-control);
     --cui-tree-item-trigger-foreground: var(--muted-foreground);
-    --cui-tree-item-trigger-hover-background: var(--linear-row-hover);
     --cui-tree-item-trigger-hover-foreground: var(--foreground);
-    --cui-tree-item-trigger-selected-background: var(--linear-row-active);
     --cui-tree-item-trigger-selected-foreground: var(--foreground);
     --cui-tree-item-trigger-font-size: var(--text-label);
     --cui-tree-item-trigger-selected-font-weight: 500;
@@ -404,7 +382,7 @@
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="item"]) {
     --cui-item-radius: var(--radius-control);
-    --cui-item-hover-background: var(--linear-row-hover);
+    --cui-item-hover-background: var(--hover-fill);
     --cui-item-active-scale: 1;
   }
 
@@ -440,7 +418,7 @@
     --cui-chat-message-avatar-radius: 9999px;
     --cui-chat-message-avatar-background: var(--linear-control-bg);
     --cui-chat-message-avatar-border-color: var(--border);
-    --cui-chat-message-avatar-border-width: var(--linear-hairline);
+    --cui-chat-message-avatar-border-width: var(--control-rim-width);
   }
 
   [data-skin="linear"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
@@ -450,8 +428,8 @@
     --cui-chat-composer-shell-shadow: var(--linear-panel-shadow);
     --cui-chat-composer-mention-radius: var(--radius-control);
     --cui-chat-composer-mention-border-color: var(--border);
-    --cui-chat-composer-mention-border-width: var(--linear-hairline);
-    --cui-chat-composer-mention-background: var(--linear-row-hover);
+    --cui-chat-composer-mention-border-width: var(--control-rim-width);
+    --cui-chat-composer-mention-background: var(--hover-fill);
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="markdown-block"]) {

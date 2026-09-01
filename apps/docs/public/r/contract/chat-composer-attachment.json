@@ -1,0 +1,199 @@
+{
+  "version": 8,
+  "family": "chat-composer-attachment",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "chat-composer-attachment"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-chat-composer-attachment-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-field)"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.92)"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--border) l c h / 0.8)"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-progress-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.1)"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-progress-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    }
+  ],
+  "parts": {
+    "chat-composer-attachment": {
+      "root": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": [
+          {
+            "attribute": "data-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "archive",
+              "audio",
+              "document",
+              "file",
+              "image",
+              "pdf",
+              "spreadsheet",
+              "video"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "idle",
+              "uploaded",
+              "uploading"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "file",
+              "preview"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "idle",
+              "uploaded",
+              "uploading"
+            ]
+          }
+        ]
+      },
+      "preview": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "preview-label": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "progress": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "progress-indicator": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "remove": {
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": [
+          {
+            "attribute": "data-chat-composer-attachment-remove",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "status": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      }
+    },
+    "chat-composer-attachments": {
+      "root": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "list": {
+        "family": "chat-composer-attachment",
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      },
+      "scroll": {
+        "registryItems": [
+          "chat-composer-attachment"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/chat-composer-attachment.contrast.json"
+}

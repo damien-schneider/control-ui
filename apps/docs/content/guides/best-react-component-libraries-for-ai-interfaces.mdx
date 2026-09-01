@@ -33,6 +33,29 @@
   check how far the coupling reaches before committing.
 </GuideSection>
 
+<GuideSection id="ai-elements" title="Vercel AI Elements">
+  [AI Elements](https://ai-sdk.dev/elements) is Vercel's shadcn-registry catalog of AI components: conversation,
+  message, reasoning, sources, tool calls, and a prompt input, installed as source into your repository with the same
+  CLI you already use. Shipped by the team behind the AI SDK, its parts map directly onto the SDK's message shape, so a
+  streaming `useChat` transcript renders with almost no glue.
+
+  That mapping is the trade-off. Against the four criteria: ownership is genuine, theming is shadcn's Tailwind tokens
+  with no skin layer above them, agent surfaces are first-class, and runtime independence is where it gives ground —
+  the components are shaped around AI SDK message parts, and there is no published anatomy contract, so restyling
+  means editing the copied components rather than re-valuing a contract.
+</GuideSection>
+
+<GuideSection id="prompt-kit" title="prompt-kit">
+  [prompt-kit](https://www.prompt-kit.com) is a focused set of shadcn-style blocks for the prompt surface itself:
+  prompt input with attachments, message list, response stream, reasoning and code blocks. It installs as source, keeps
+  its props plain, and wires to nothing — you feed it state, it renders.
+
+  Against the four criteria it scores well on ownership and runtime independence, and narrowly on the other two: the
+  catalog covers the conversation surface rather than a whole product, and theming stops at shadcn's tokens, so a
+  distinct visual identity is component edits rather than a token swap. A good fit when you need a strong composer and
+  transcript inside an app whose design system already exists.
+</GuideSection>
+
 <GuideSection id="material-ui" title="Material UI (MUI)">
   [MUI](https://mui.com/material-ui/) is the most mature system here — enormous component breadth, deep documentation,
   and enterprise adoption measured in decades of web time. If your team needs guaranteed coverage for any conventional
@@ -80,18 +103,22 @@
   | --- | --- | --- | --- | --- | --- |
   | shadcn/ui | Source in repo | Tailwind + CSS variables | Assemble from primitives | Agnostic | General product UI |
   | assistant-ui | Source in repo | Tailwind + shadcn conventions | Native, chat-first | Adapter-coupled | Fast path to AI SDK/LangGraph chat |
+  | AI Elements | Source in repo | Tailwind + shadcn tokens | Native, AI SDK-shaped | Shaped by AI SDK messages | Chat on a Vercel AI SDK stack |
+  | prompt-kit | Source in repo | Tailwind + shadcn tokens | Composer and transcript | Agnostic | A strong prompt surface in an existing design system |
   | MUI | npm package | JS theme objects + CSS-in-JS | None | Agnostic | Maximum breadth, enterprise apps |
   | Ant Design | npm package | Own token system | None | Agnostic | Dense internal tools |
   | Chakra UI | npm package | Style props → CSS variables | None | Agnostic | Small teams, general products |
   | Control UI | Source in repo | Token contract + skin packs | Native, agent-wide | Agnostic by contract | Owned-source products, agent surfaces included |
 
-  All six are MIT-licensed and free for commercial use.
+  All eight are MIT-licensed and free for commercial use.
 </GuideSection>
 
 <GuideSection id="recommendation" title="Which one for your product">
   - **General SaaS, no agent ambitions** — shadcn/ui when community recipes carry your team, Control UI when the brand
     has to hold across a redesign, MUI when breadth matters more than ownership.
-  - **One embedded chat panel on an existing AI-SDK stack** — assistant-ui gets you there fastest.
+  - **One embedded chat panel on an existing AI-SDK stack** — assistant-ui gets you there fastest; AI Elements is the
+    closer fit when the transcript is already `useChat` message parts and you want Vercel's own rendering of them.
+  - **A composer and transcript inside an app that already has a design system** — prompt-kit, and nothing above it.
   - **Internal ops console** — Ant Design's density is genuinely unmatched.
   - **An AI product as the product** — chat, tasks, activity, and context as core UX, with a brand that survives
     redesigns: that is Control UI's exact territory. Start with [getting started](/get-started), or see how it

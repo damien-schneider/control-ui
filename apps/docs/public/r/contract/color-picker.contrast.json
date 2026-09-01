@@ -1,0 +1,269 @@
+{
+  "version": 1,
+  "family": "color-picker",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "color-picker",
+          "data-open": "",
+          "data-popup-kind": "color-picker",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-slot": "alpha-thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "color-picker",
+          "data-open": "",
+          "data-popup-kind": "color-picker",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-orientation": "horizontal",
+          "data-slot": "hue",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-slot": "hue-thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "color-picker",
+          "data-popup-kind": "color-picker",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "panel",
+          "data-surface": "floating"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "color-picker",
+          "data-open": "",
+          "data-popup-kind": "color-picker",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-slot": "alpha-thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "color-picker",
+          "data-popup-kind": "color-picker",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "panel",
+          "data-surface": "floating"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-slot": "alpha-thumb"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "color-picker",
+          "data-popup-kind": "color-picker",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "panel",
+          "data-surface": "floating"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-orientation": "horizontal",
+          "data-slot": "hue",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "color-picker",
+          "data-control-ui": "color-picker",
+          "data-index": "0",
+          "data-orientation": "horizontal",
+          "data-slot": "hue-thumb"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-color-picker-slider-thumb-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-color-picker-slider-thumb-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-color-picker-slider-thumb-background"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-color-picker-slider-thumb-background"
+      },
+      "anatomy": 3,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-color-picker-slider-thumb-background"
+      },
+      "anatomy": 4,
+      "rendersText": false,
+      "state": false
+    }
+  ]
+}

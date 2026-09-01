@@ -7,12 +7,12 @@
     --cui-kbd-radius: var(--radius-control);
     --cui-kbd-background: oklch(from var(--card) l c h / 0.6);
     --cui-kbd-foreground: var(--muted-foreground);
-    --cui-kbd-border-color: var(--border);
+    --cui-kbd-border-color: var(--control-rim);
     --cui-kbd-shadow: var(--shadow-sm);
     border-radius: var(--cui-kbd-radius);
     background: var(--cui-kbd-background);
     box-shadow:
-      inset 0 0 0 1px var(--cui-kbd-border-color),
+      inset 0 0 0 var(--control-rim-width) var(--cui-kbd-border-color),
       var(--cui-kbd-shadow);
     color: var(--cui-kbd-foreground);
     font-size: var(--text-micro);

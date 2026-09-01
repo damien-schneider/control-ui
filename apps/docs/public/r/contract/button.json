@@ -1,0 +1,686 @@
+{
+  "version": 8,
+  "family": "button",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "button",
+    "dropdown-menu",
+    "menubar",
+    "model-switcher",
+    "navigation-menu",
+    "select",
+    "toggle"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-button-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-button-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1.5)"
+    },
+    {
+      "name": "--cui-button-icon",
+      "syntax": "<length>",
+      "initialValue": "16px",
+      "defaultValue": "1rem"
+    },
+    {
+      "name": "--cui-button-height",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-h-md)"
+    },
+    {
+      "name": "--cui-button-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--padding-x)"
+    },
+    {
+      "name": "--cui-button-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "1rem",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-button-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-button-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-button-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-button-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-button-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-button-press-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-button-hover-background)"
+    },
+    {
+      "name": "--cui-button-press-scale",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "0.98"
+    },
+    {
+      "name": "--cui-button-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--active-fill)"
+    },
+    {
+      "name": "--cui-button-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-button-active-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-button-active-background)"
+    },
+    {
+      "name": "--cui-button-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    },
+    {
+      "name": "--cui-button-hover-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "var(--cui-button-shadow)"
+    },
+    {
+      "name": "--cui-button-press-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "var(--cui-button-hover-shadow)"
+    },
+    {
+      "name": "--cui-button-active-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--cui-button-shadow)"
+    }
+  ],
+  "parts": {
+    "button": {
+      "root": {
+        "family": "button",
+        "registryItems": [
+          "button"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-icon-only",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-shape",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "circle",
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "danger",
+              "neutral",
+              "primary"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "ghost",
+              "quiet",
+              "solid",
+              "surface"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "family": "button",
+        "registryItems": [
+          "button",
+          "dropdown-menu",
+          "select"
+        ],
+        "states": []
+      }
+    },
+    "dropdown-menu": {
+      "trigger": {
+        "family": "button",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-icon-only",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-shape",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "neutral"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "ghost",
+              "surface"
+            ]
+          }
+        ]
+      }
+    },
+    "menubar": {
+      "trigger": {
+        "family": "button",
+        "registryItems": [
+          "menubar"
+        ],
+        "states": [
+          {
+            "attribute": "data-cursor",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-shape",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sm"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "neutral"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "ghost"
+            ]
+          }
+        ]
+      }
+    },
+    "model-switcher": {
+      "root": {
+        "family": "button",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": [
+          {
+            "attribute": "data-button-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "model-switcher"
+            ]
+          }
+        ]
+      },
+      "indicator": {
+        "family": "button",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": [
+          {
+            "attribute": "data-button-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "model-switcher"
+            ]
+          }
+        ]
+      },
+      "value": {
+        "family": "button",
+        "registryItems": [
+          "model-switcher"
+        ],
+        "states": [
+          {
+            "attribute": "data-button-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "model-switcher"
+            ]
+          }
+        ]
+      }
+    },
+    "navigation-menu": {
+      "trigger": {
+        "family": "button",
+        "registryItems": [
+          "navigation-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-cursor",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-shape",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "sm"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "neutral"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "quiet"
+            ]
+          }
+        ]
+      }
+    },
+    "select": {
+      "trigger": {
+        "family": "button",
+        "registryItems": [
+          "select"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-filled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-placeholder",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "select"
+            ]
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-side",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "bottom",
+              "inline-end",
+              "inline-start",
+              "left",
+              "right",
+              "top"
+            ]
+          },
+          {
+            "attribute": "data-pressed",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-readonly",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-required",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-shape",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "neutral"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "ghost",
+              "surface"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "root": {
+        "family": "button",
+        "registryItems": [
+          "toggle"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          },
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "danger",
+              "neutral",
+              "primary"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "ghost",
+              "quiet",
+              "solid",
+              "surface"
+            ]
+          }
+        ]
+      },
+      "check": {
+        "registryItems": [
+          "toggle"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "button",
+        "registryItems": [
+          "toggle"
+        ],
+        "states": []
+      },
+      "group": {
+        "family": "button",
+        "registryItems": [
+          "toggle"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-multiple",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/button.contrast.json"
+}

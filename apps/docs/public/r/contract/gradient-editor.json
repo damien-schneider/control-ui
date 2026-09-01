@@ -1,0 +1,114 @@
+{
+  "version": 8,
+  "family": "gradient-editor",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "gradient-editor"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-gradient-editor-preview-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-field)"
+    },
+    {
+      "name": "--cui-gradient-editor-preview-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--border) l c h / 0.6)"
+    },
+    {
+      "name": "--cui-gradient-editor-track-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-gradient-editor-stop-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-gradient-editor-stop-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(1 0 0)"
+    },
+    {
+      "name": "--cui-gradient-editor-stop-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 0 1px oklch(from var(--foreground) l c h / 0.4)"
+    },
+    {
+      "name": "--cui-gradient-editor-add-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-gradient-editor-add-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    }
+  ],
+  "parts": {
+    "gradient-editor": {
+      "root": {
+        "family": "gradient-editor",
+        "registryItems": [
+          "gradient-editor"
+        ],
+        "states": []
+      },
+      "preview": {
+        "family": "gradient-editor",
+        "registryItems": [
+          "gradient-editor"
+        ],
+        "states": []
+      },
+      "stop": {
+        "family": "gradient-editor",
+        "registryItems": [
+          "gradient-editor"
+        ],
+        "states": [
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "stop-add": {
+        "family": "gradient-editor",
+        "registryItems": [
+          "gradient-editor"
+        ],
+        "states": []
+      },
+      "track": {
+        "family": "gradient-editor",
+        "registryItems": [
+          "gradient-editor"
+        ],
+        "states": []
+      },
+      "value-row": {
+        "family": "gradient-editor",
+        "registryItems": [
+          "gradient-editor"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/gradient-editor.contrast.json"
+}

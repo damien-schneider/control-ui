@@ -1,0 +1,133 @@
+{
+  "version": 8,
+  "family": "table-of-contents",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "table-of-contents"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-table-of-contents-rail-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--border) l c h / 0.6)"
+    },
+    {
+      "name": "--cui-table-of-contents-highlight-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-md)"
+    },
+    {
+      "name": "--cui-table-of-contents-highlight-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.04)"
+    }
+  ],
+  "parts": {
+    "table-of-contents": {
+      "root": {
+        "family": "table-of-contents",
+        "registryItems": [
+          "table-of-contents"
+        ],
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "background",
+              "both",
+              "trail"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "table-of-contents",
+        "registryItems": [
+          "table-of-contents"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-depth",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-level",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "background",
+              "both",
+              "trail"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "table-of-contents",
+        "registryItems": [
+          "table-of-contents"
+        ],
+        "states": []
+      },
+      "list": {
+        "family": "table-of-contents",
+        "registryItems": [
+          "table-of-contents"
+        ],
+        "states": [
+          {
+            "attribute": "data-nested",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "rail": {
+        "family": "table-of-contents",
+        "registryItems": [
+          "table-of-contents"
+        ],
+        "states": []
+      },
+      "track": {
+        "family": "table-of-contents",
+        "registryItems": [
+          "table-of-contents"
+        ],
+        "states": []
+      },
+      "trail": {
+        "family": "table-of-contents",
+        "registryItems": [
+          "table-of-contents"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-table-of-contents-rail-background"
+  ],
+  "contrast": "/r/contract/table-of-contents.contrast.json"
+}

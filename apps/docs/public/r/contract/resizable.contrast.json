@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "family": "resizable",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "horizontal",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "handle-grip",
+          "data-variant": "solid"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      },
+      {
+        "attributes": {
+          "data-axis": "vertical",
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "handle-grip",
+          "data-variant": "solid"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "nested"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "resizable",
+          "data-control-ui": "resizable",
+          "data-slot": "panel-group",
+          "data-surface": "panel",
+          "data-variant": "framed"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-resizable-grip-background",
+        "text": "--cui-resizable-grip-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-grip-background",
+        "text": "--cui-resizable-grip-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-group-background"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-group-background"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-resizable-group-background"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

@@ -6,12 +6,32 @@
     --cui-button-group-separator-background: var(--border);
   }
   :where([data-control-family="button-group"][data-slot="text"]) {
+    block-size: var(--control-h-md);
     border: 1px solid var(--border);
     border-radius: var(--cui-button-group-text-radius);
     background: var(--cui-button-group-text-background);
     box-shadow: var(--shadow-sm);
+    padding-inline: var(--padding-x);
     color: var(--cui-button-group-text-foreground);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
+  }
+
+  :where([data-control-family="button-group"][data-slot="text"][data-size="xs"]) {
+    block-size: var(--control-h-xs);
+    padding-inline: calc(var(--padding-x) * 0.6);
+    font-size: var(--text-caption);
+  }
+
+  :where([data-control-family="button-group"][data-slot="text"][data-size="sm"]) {
+    block-size: var(--control-h-sm);
+    padding-inline: calc(var(--padding-x) * 0.75);
+    font-size: var(--text-label);
+  }
+
+  :where([data-control-family="button-group"][data-slot="text"][data-size="lg"]) {
+    block-size: var(--control-h-lg);
+    padding-inline: calc(var(--padding-x) * 1.25);
   }
 
   :where([data-control-family="button-group"][data-slot="separator"]) {

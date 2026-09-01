@@ -1,0 +1,837 @@
+{
+  "version": 8,
+  "family": "range",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "meter",
+    "progress",
+    "slider"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-range-track-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-range-track-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-range-indicator-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-range-indicator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-range-thumb-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-range-thumb-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-range-thumb-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--control-rim)"
+    },
+    {
+      "name": "--cui-range-thumb-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "var(--shadow-sm)"
+    }
+  ],
+  "parts": {
+    "meter": {
+      "root": {
+        "family": "range",
+        "registryItems": [
+          "meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "meter"
+            ]
+          }
+        ]
+      },
+      "indicator": {
+        "family": "range",
+        "registryItems": [
+          "meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "meter"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "range",
+        "registryItems": [
+          "meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "meter"
+            ]
+          }
+        ]
+      },
+      "track": {
+        "family": "range",
+        "registryItems": [
+          "meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "meter"
+            ]
+          }
+        ]
+      },
+      "value": {
+        "family": "range",
+        "registryItems": [
+          "meter"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "meter"
+            ]
+          }
+        ]
+      }
+    },
+    "progress": {
+      "root": {
+        "family": "range",
+        "registryItems": [
+          "progress"
+        ],
+        "states": [
+          {
+            "attribute": "data-complete",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-indeterminate",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-progressing",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "progress"
+            ]
+          }
+        ]
+      },
+      "indicator": {
+        "family": "range",
+        "registryItems": [
+          "progress"
+        ],
+        "states": [
+          {
+            "attribute": "data-complete",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-indeterminate",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-progressing",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "progress"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "range",
+        "registryItems": [
+          "progress"
+        ],
+        "states": [
+          {
+            "attribute": "data-complete",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-indeterminate",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-progressing",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "progress"
+            ]
+          }
+        ]
+      },
+      "track": {
+        "family": "range",
+        "registryItems": [
+          "progress"
+        ],
+        "states": [
+          {
+            "attribute": "data-complete",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-indeterminate",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-progressing",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "progress"
+            ]
+          }
+        ]
+      },
+      "value": {
+        "family": "range",
+        "registryItems": [
+          "progress"
+        ],
+        "states": [
+          {
+            "attribute": "data-complete",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-indeterminate",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-progressing",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    "slider": {
+      "root": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-labeled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "plain"
+            ]
+          }
+        ]
+      },
+      "control": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-labeled",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "true"
+            ]
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "indicator": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "plain"
+            ]
+          }
+        ]
+      },
+      "label": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          }
+        ]
+      },
+      "label-overlay": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          }
+        ]
+      },
+      "thumb": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-index",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "plain"
+            ]
+          }
+        ]
+      },
+      "tick": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          }
+        ]
+      },
+      "track": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-labeled",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "true"
+            ]
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "plain"
+            ]
+          }
+        ]
+      },
+      "value": {
+        "family": "range",
+        "registryItems": [
+          "slider"
+        ],
+        "states": [
+          {
+            "attribute": "data-dirty",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-dragging",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-focused",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "external",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-range-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "slider"
+            ]
+          },
+          {
+            "attribute": "data-touched",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-valid",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-range-thumb-background"
+  ],
+  "contrast": "/r/contract/range.contrast.json"
+}

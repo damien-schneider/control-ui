@@ -4,7 +4,6 @@ import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomple
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -109,7 +108,7 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
         data-control="true"
         data-control-family="field"
         data-size={size}
-        className={cn("w-full min-w-0 disabled:cursor-not-allowed", controlSize({ size }), className)}
+        className={cn("w-full min-w-0 disabled:cursor-not-allowed", className)}
         {...props}
       />
       <AutocompleteClear className="absolute right-1.5 top-1/2 -translate-y-1/2" />

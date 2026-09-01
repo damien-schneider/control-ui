@@ -1,0 +1,105 @@
+{
+  "version": 8,
+  "family": "phone-input",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "phone-input"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-phone-input-country-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-phone-input-trigger-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+    },
+    {
+      "name": "--cui-phone-input-trigger-focus-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+    },
+    {
+      "name": "--cui-phone-input-metadata-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-phone-input-chevron-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "phone-input": {
+      "check": {
+        "family": "phone-input",
+        "registryItems": [
+          "phone-input"
+        ],
+        "states": [
+          {
+            "attribute": "data-visible",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "chevron": {
+        "family": "phone-input",
+        "registryItems": [
+          "phone-input"
+        ],
+        "states": [
+          {
+            "attribute": "data-open",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "country-code": {
+        "family": "phone-input",
+        "registryItems": [
+          "phone-input"
+        ],
+        "states": []
+      },
+      "country-trigger": {
+        "family": "phone-input",
+        "registryItems": [
+          "phone-input"
+        ],
+        "states": []
+      },
+      "flag": {
+        "family": "phone-input",
+        "registryItems": [
+          "phone-input"
+        ],
+        "states": []
+      },
+      "metadata": {
+        "family": "phone-input",
+        "registryItems": [
+          "phone-input"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-phone-input-trigger-focus-background"
+  ],
+  "contrast": "/r/contract/phone-input.contrast.json"
+}

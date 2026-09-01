@@ -1,0 +1,61 @@
+{
+  "version": 8,
+  "family": "kbd",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "kbd"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-kbd-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-kbd-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.6)"
+    },
+    {
+      "name": "--cui-kbd-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-kbd-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--control-rim)"
+    },
+    {
+      "name": "--cui-kbd-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    }
+  ],
+  "parts": {
+    "kbd": {
+      "root": {
+        "family": "kbd",
+        "registryItems": [
+          "kbd"
+        ],
+        "states": []
+      },
+      "group": {
+        "family": "kbd",
+        "registryItems": [
+          "kbd"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/kbd.contrast.json"
+}

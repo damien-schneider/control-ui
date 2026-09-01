@@ -3,7 +3,7 @@ import "server-only";
 import type { SkinContract } from "@/scripts/skin-contract/model";
 
 export const generatedSkinContract: SkinContract = {
-  version: 7,
+  version: 8,
   selectorPattern: '[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])',
   registryItemMapping: {
     accordion: ["accordion"],
@@ -12404,13 +12404,31 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "1rem",
       },
       {
-        name: "--cui-button-bg",
+        name: "--cui-button-height",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--control-h-md)",
+      },
+      {
+        name: "--cui-button-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--padding-x)",
+      },
+      {
+        name: "--cui-button-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "1rem",
+        defaultValue: "var(--text-body)",
+      },
+      {
+        name: "--cui-button-background",
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "transparent",
       },
       {
-        name: "--cui-button-bg-image",
+        name: "--cui-button-background-image",
         syntax: "*",
         initialValue: "",
         defaultValue: "none",
@@ -12422,10 +12440,10 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--muted-foreground)",
       },
       {
-        name: "--cui-button-hover-bg",
+        name: "--cui-button-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.06)",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-button-hover-foreground",
@@ -12434,10 +12452,10 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--foreground)",
       },
       {
-        name: "--cui-button-press-bg",
+        name: "--cui-button-press-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--cui-button-hover-bg)",
+        defaultValue: "var(--cui-button-hover-background)",
       },
       {
         name: "--cui-button-press-scale",
@@ -12446,10 +12464,10 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "0.98",
       },
       {
-        name: "--cui-button-active-bg",
+        name: "--cui-button-active-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.08)",
+        defaultValue: "var(--active-fill)",
       },
       {
         name: "--cui-button-active-foreground",
@@ -12458,10 +12476,10 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--foreground)",
       },
       {
-        name: "--cui-button-active-hover-bg",
+        name: "--cui-button-active-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--cui-button-active-bg)",
+        defaultValue: "var(--cui-button-active-background)",
       },
       {
         name: "--cui-button-shadow",
@@ -12857,7 +12875,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-code-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--control-rim)",
       },
       {
         name: "--cui-code-shadow",
@@ -13362,19 +13380,19 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-field-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--control-rim)",
       },
       {
         name: "--cui-field-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-field-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "var(--shadow-sm)",
+        defaultValue: "var(--shadow-inset)",
       },
       {
         name: "--cui-field-backdrop-filter",
@@ -13387,6 +13405,24 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-field-height",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--control-h-md)",
+      },
+      {
+        name: "--cui-field-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--padding-x)",
+      },
+      {
+        name: "--cui-field-font-size",
+        syntax: "<length-percentage>",
+        initialValue: "1rem",
+        defaultValue: "var(--text-body)",
       },
     ],
     "gradient-editor": [
@@ -13656,7 +13692,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-kbd-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--control-rim)",
       },
       {
         name: "--cui-kbd-shadow",
@@ -13892,13 +13928,13 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-popup-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--control-rim)",
       },
       {
         name: "--cui-popup-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-popup-shadow",
@@ -13934,7 +13970,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-popup-item-highlight-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.06)",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-popup-item-highlight-foreground",
@@ -14008,7 +14044,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-range-thumb-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--control-rim)",
       },
       {
         name: "--cui-range-thumb-shadow",
@@ -14247,7 +14283,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-sidebar-menu-button-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.06)",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-sidebar-menu-button-hover-foreground",
@@ -14265,7 +14301,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-sidebar-menu-button-active-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.08)",
+        defaultValue: "var(--active-fill)",
       },
       {
         name: "--cui-sidebar-menu-button-active-foreground",
@@ -14509,7 +14545,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tabs-list-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.07)",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-tabs-list-backdrop-filter",
@@ -14545,7 +14581,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tabs-list-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.06)",
+        defaultValue: "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset)",
       },
       {
         name: "--cui-tabs-border-color",
@@ -14776,7 +14812,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-toolbar-item-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.06)",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-toolbar-item-hover-foreground",
@@ -14788,7 +14824,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-toolbar-item-active-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.08)",
+        defaultValue: "var(--active-fill)",
       },
       {
         name: "--cui-toolbar-item-active-foreground",
@@ -14890,7 +14926,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tree-item-trigger-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.04)",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-tree-item-trigger-hover-foreground",
@@ -14902,7 +14938,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tree-item-trigger-selected-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.06)",
+        defaultValue: "var(--active-fill)",
       },
       {
         name: "--cui-tree-item-trigger-selected-foreground",

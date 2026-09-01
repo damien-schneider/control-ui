@@ -6,9 +6,9 @@ const { getRegistryItem } = await import("./api");
 const { listRegistry } = await import("./registry-index");
 
 describe("registry anatomy discovery", () => {
-  test("the agent index links the full skin and theme contracts", () => {
+  test("the agent index links the contract slice index and the theme contract", () => {
     const index = listRegistry();
-    expect(index.data.contracts.skin).toEndWith("/r/skin-contract.json");
+    expect(index.data.contracts.skin).toEndWith("/r/contract/index.json");
     expect(index.data.contracts.theme).toEndWith("/r/theme-contract.json");
   });
 
@@ -30,14 +30,14 @@ describe("registry anatomy discovery", () => {
   test("an item separates its own anatomy from installed dependency anatomy", () => {
     const result = getRegistryItem("code-diff");
     if ("error" in result) throw new Error(result.error);
-    expect(result.data.anatomy?.version).toBe(7);
+    expect(result.data.anatomy?.version).toBe(8);
     expect("root" in (result.data.anatomy?.ownScopes["code-diff"].parts ?? {})).toBe(true);
     expect(result.data.anatomy?.ownScopes.button).toBeUndefined();
     expect(result.data.anatomy?.installedScopes.button).toBeDefined();
     expect(result.data.anatomy?.installedScopes.code).toBeDefined();
     expect(Object.keys(result.data.anatomy?.knobs ?? {})).toEqual(["button", "code", "code-diff", "popup", "scroll-area"]);
     expect(result.data.anatomy?.knobs.popup?.[0]?.name).toStartWith("--cui-popup-");
-    expect(result.data.anatomy?.contractUrl).toEndWith("/r/skin-contract.json");
+    expect(result.data.anatomy?.contractUrl).toEndWith("/r/contract/index.json");
   });
 
   test("an item owns only the foreign-scope parts it actually emits", () => {

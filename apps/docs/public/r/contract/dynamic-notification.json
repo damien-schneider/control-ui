@@ -1,0 +1,251 @@
+{
+  "version": 8,
+  "family": "dynamic-notification",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "dynamic-notification"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-dynamic-notification-content-easing",
+      "syntax": "*",
+      "initialValue": "linear(\n    0,\n    0.0553 4.55%,\n    0.1795 9.09%,\n    0.328 13.64%,\n    0.4745 18.18%,\n    0.6054 22.73%,\n    0.7148 27.27%,\n    0.8017 31.82%,\n    0.868 36.36%,\n    0.9166 40.91%,\n    0.9509 45.45%,\n    0.9741 50%,\n    0.9891 54.55%,\n    0.9982 59.09%,\n    1.0032 63.64%,\n    1.0056 68.18%,\n    1.0063 72.73%,\n    1.006 77.27%,\n    1.0053 81.82%,\n    1.0044 86.36%,\n    1.0034 90.91%,\n    1.0026 95.45%,\n    1\n  )",
+      "defaultValue": "linear(\n      0,\n      0.0553 4.55%,\n      0.1795 9.09%,\n      0.328 13.64%,\n      0.4745 18.18%,\n      0.6054 22.73%,\n      0.7148 27.27%,\n      0.8017 31.82%,\n      0.868 36.36%,\n      0.9166 40.91%,\n      0.9509 45.45%,\n      0.9741 50%,\n      0.9891 54.55%,\n      0.9982 59.09%,\n      1.0032 63.64%,\n      1.0056 68.18%,\n      1.0063 72.73%,\n      1.006 77.27%,\n      1.0053 81.82%,\n      1.0044 86.36%,\n      1.0034 90.91%,\n      1.0026 95.45%,\n      1\n    )"
+    },
+    {
+      "name": "--cui-dynamic-notification-expanded-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1.65rem"
+    },
+    {
+      "name": "--cui-dynamic-notification-morph-easing",
+      "syntax": "*",
+      "initialValue": "linear(\n    0,\n    0.0568 3.85%,\n    0.1888 7.69%,\n    0.351 11.54%,\n    0.5142 15.38%,\n    0.6608 19.23%,\n    0.7824 23.08%,\n    0.8767 26.92%,\n    0.9449 30.77%,\n    0.9908 34.62%,\n    1.0187 38.46%,\n    1.0332 42.31%,\n    1.0382 46.15%,\n    1.0372 50%,\n    1.0327 53.85%,\n    1.0266 57.69%,\n    1.0203 61.54%,\n    1.0145 65.38%,\n    1.0095 69.23%,\n    1.0056 73.08%,\n    1.0027 76.92%,\n    1.0008 80.77%,\n    0.9995 84.62%,\n    0.9988 88.46%,\n    0.9986 92.31%,\n    0.9985 96.15%,\n    1\n  )",
+      "defaultValue": "linear(\n      0,\n      0.0568 3.85%,\n      0.1888 7.69%,\n      0.351 11.54%,\n      0.5142 15.38%,\n      0.6608 19.23%,\n      0.7824 23.08%,\n      0.8767 26.92%,\n      0.9449 30.77%,\n      0.9908 34.62%,\n      1.0187 38.46%,\n      1.0332 42.31%,\n      1.0382 46.15%,\n      1.0372 50%,\n      1.0327 53.85%,\n      1.0266 57.69%,\n      1.0203 61.54%,\n      1.0145 65.38%,\n      1.0095 69.23%,\n      1.0056 73.08%,\n      1.0027 76.92%,\n      1.0008 80.77%,\n      0.9995 84.62%,\n      0.9988 88.46%,\n      0.9986 92.31%,\n      0.9985 96.15%,\n      1\n    )"
+    },
+    {
+      "name": "--cui-dynamic-notification-glass-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "white"
+    },
+    {
+      "name": "--cui-dynamic-notification-glass-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(1 0 0 / 0.12)"
+    },
+    {
+      "name": "--cui-dynamic-notification-liquid-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "white"
+    },
+    {
+      "name": "--cui-dynamic-notification-surface-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover)"
+    },
+    {
+      "name": "--cui-dynamic-notification-surface-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover-foreground)"
+    },
+    {
+      "name": "--cui-dynamic-notification-surface-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-dynamic-notification-surface-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-pop)"
+    },
+    {
+      "name": "--cui-dynamic-notification-indicator-end",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(0.7 0.17 250)"
+    },
+    {
+      "name": "--cui-dynamic-notification-indicator-middle",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(0.75 0.15 70)"
+    },
+    {
+      "name": "--cui-dynamic-notification-indicator-start",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(0.62 0.19 25)"
+    }
+  ],
+  "parts": {
+    "dynamic-notification": {
+      "root": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "collapsed",
+              "expanded",
+              "thinking"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "glass",
+              "liquid",
+              "surface"
+            ]
+          }
+        ]
+      },
+      "close": {
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": [
+          {
+            "attribute": "data-dynamic-notification-close",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "glass": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "indicator": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "island": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "collapsed",
+              "expanded",
+              "thinking"
+            ]
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "glass",
+              "liquid",
+              "surface"
+            ]
+          }
+        ]
+      },
+      "liquid": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "message": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "pill": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "reply": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "reply-input": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "reply-submit": {
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": [
+          {
+            "attribute": "data-dynamic-notification-submit",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "title": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      },
+      "word": {
+        "family": "dynamic-notification",
+        "registryItems": [
+          "dynamic-notification"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-dynamic-notification-glass-foreground",
+    "--cui-dynamic-notification-surface-background",
+    "--cui-dynamic-notification-surface-foreground"
+  ],
+  "contrast": "/r/contract/dynamic-notification.contrast.json"
+}

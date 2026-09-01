@@ -1,0 +1,159 @@
+{
+  "version": 8,
+  "family": "calendar",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "calendar"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-calendar-day-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-calendar-today-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--accent)"
+    },
+    {
+      "name": "--cui-calendar-selected-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary)"
+    },
+    {
+      "name": "--cui-calendar-selected-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--primary-foreground)"
+    },
+    {
+      "name": "--cui-calendar-range-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--accent)"
+    }
+  ],
+  "parts": {
+    "calendar": {
+      "root": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "caption-label": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "day": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": [
+          {
+            "attribute": "data-range-end",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-range-middle",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-range-start",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-selected-single",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-today",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "day-cell": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "month": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "month-caption": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "month-grid": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "months": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "nav": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "nav-button": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      },
+      "weekday": {
+        "family": "calendar",
+        "registryItems": [
+          "calendar"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-calendar-range-background",
+    "--cui-calendar-selected-background",
+    "--cui-calendar-selected-foreground"
+  ],
+  "contrast": "/r/contract/calendar.contrast.json"
+}

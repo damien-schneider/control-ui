@@ -80,8 +80,10 @@
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input-wrapper"]) {
     gap: calc(var(--spacing) * 2);
-    padding-inline: calc(var(--spacing) * 3);
+    block-size: var(--control-h-lg);
+    padding-inline: calc(var(--padding-x) * 1.25);
     border-block-end: 1px solid var(--cui-popup-separator-color);
+    font-size: var(--text-body);
   }
 
   :where([data-control-family="popup"][data-popup-kind="command"][data-slot="input"]) {

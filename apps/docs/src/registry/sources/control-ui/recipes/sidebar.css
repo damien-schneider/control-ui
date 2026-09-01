@@ -24,10 +24,10 @@
     --cui-sidebar-group-label-foreground: oklch(from var(--sidebar-foreground) l c h / 0.7);
     --cui-sidebar-menu-button-radius: var(--radius-popup-item);
     --cui-sidebar-menu-button-foreground: var(--sidebar-foreground);
-    --cui-sidebar-menu-button-hover-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-sidebar-menu-button-hover-background: var(--hover-fill);
     --cui-sidebar-menu-button-hover-foreground: var(--foreground);
     --cui-sidebar-menu-button-hover-shadow: 0 0 transparent;
-    --cui-sidebar-menu-button-active-background: oklch(from var(--foreground) l c h / 0.08);
+    --cui-sidebar-menu-button-active-background: var(--active-fill);
     --cui-sidebar-menu-button-active-shadow: 0 0 transparent;
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
     background-color: var(--sidebar);
@@ -149,7 +149,10 @@
 
   :where([data-control-family="sidebar"][data-slot="menu-button"]) {
     gap: calc(var(--spacing) * 1.5);
+    block-size: var(--control-h-md);
     border-radius: var(--cui-sidebar-menu-button-radius);
+    padding-inline: var(--padding-x);
+    font-size: var(--text-body);
     background-color: transparent;
     color: var(--cui-sidebar-menu-button-foreground);
     outline: none;
@@ -158,8 +161,16 @@
     transition-timing-function: var(--ease-standard);
   }
 
+  :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"]) {
+    block-size: var(--control-h-sm);
+    padding-inline: calc(var(--padding-x) * 0.75);
+    font-size: var(--text-label);
+  }
+
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="lg"]) {
     gap: calc(var(--spacing) * 2);
+    block-size: var(--control-h-lg);
+    padding-inline: calc(var(--padding-x) * 1.25);
   }
 
   @media (hover: hover) {

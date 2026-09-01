@@ -5,7 +5,7 @@ import { componentEntries } from "../app/(features)/catalog/components";
 import { primitiveEntries } from "../app/(features)/catalog/primitives";
 import { type CatalogSkinMeta, skinMetas } from "../app/(features)/catalog/skins";
 import { importSpecifiers } from "./module-imports";
-import { publicPayloads } from "./public-payloads";
+import { contractDir, publicPayloads } from "./public-payloads";
 
 type RegistryFile = {
   path: string;
@@ -417,6 +417,8 @@ if (!existsSync(publicRegistryPath)) {
 if (existsSync(publicRegistryRoot)) {
   for (const publicPath of walk(publicRegistryRoot).filter((file) => file.endsWith(".json"))) {
     const relativePath = path.relative(publicRegistryRoot, publicPath);
+    // Contract slices are pruned by the generator that knows the family set; this loop only guards the flat payloads.
+    if (relativePath.startsWith(`${contractDir}${path.sep}`)) continue;
     if (!expectedPublicFiles.has(relativePath)) failures.push(`public/r/${relativePath} is stale`);
   }
 }

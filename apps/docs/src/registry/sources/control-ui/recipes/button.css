@@ -3,23 +3,26 @@
     --cui-button-radius: var(--radius-control);
     --cui-button-gap: calc(var(--spacing) * 1.5);
     --cui-button-icon: 1rem;
-    --cui-button-bg: transparent;
-    --cui-button-bg-image: none;
+    --cui-button-height: var(--control-h-md);
+    --cui-button-padding-inline: var(--padding-x);
+    --cui-button-font-size: var(--text-body);
+    --cui-button-background: transparent;
+    --cui-button-background-image: none;
     --cui-button-foreground: var(--muted-foreground);
-    --cui-button-hover-bg: oklch(from var(--foreground) l c h / 0.06);
+    --cui-button-hover-background: var(--hover-fill);
     --cui-button-hover-foreground: var(--foreground);
-    --cui-button-press-bg: var(--cui-button-hover-bg);
+    --cui-button-press-background: var(--cui-button-hover-background);
     --cui-button-press-scale: 0.98;
-    --cui-button-active-bg: oklch(from var(--foreground) l c h / 0.08);
+    --cui-button-active-background: var(--active-fill);
     --cui-button-active-foreground: var(--foreground);
-    --cui-button-active-hover-bg: var(--cui-button-active-bg);
+    --cui-button-active-hover-background: var(--cui-button-active-background);
     --cui-button-active-shadow: var(--cui-button-shadow);
     --cui-button-shadow: 0 0 transparent;
     --cui-button-hover-shadow: var(--cui-button-shadow);
     --cui-button-press-shadow: var(--cui-button-hover-shadow);
     border-radius: var(--cui-button-radius);
-    background-color: var(--cui-button-bg);
-    background-image: var(--cui-button-bg-image);
+    background-color: var(--cui-button-background);
+    background-image: var(--cui-button-background-image);
     box-shadow: var(--cui-button-shadow);
     color: var(--cui-button-foreground);
     cursor: pointer;
@@ -30,8 +33,7 @@
     transition-duration: var(--duration-fast);
   }
 
-  /* Keyed on the family alone so every trigger owns the knob, and declared here so a skin re-values gap
-   * without losing to the size utility that Tailwind emits from a later cascade layer. */
+  /* Keyed on the family alone so every trigger owns the knob. */
   :where([data-control-family="button"]) {
     gap: var(--cui-button-gap);
   }
@@ -39,10 +41,31 @@
   :where([data-control-family="button"][data-size="xs"]) {
     --cui-button-gap: calc(var(--spacing) * 1);
     --cui-button-icon: 0.875rem;
+    --cui-button-height: var(--control-h-xs);
+    --cui-button-padding-inline: calc(var(--padding-x) * 0.6);
+    --cui-button-font-size: var(--text-caption);
+  }
+  :where([data-control-family="button"][data-size="sm"]) {
+    --cui-button-height: var(--control-h-sm);
+    --cui-button-padding-inline: calc(var(--padding-x) * 0.75);
+    --cui-button-font-size: var(--text-label);
   }
   :where([data-control-family="button"][data-size="lg"]) {
     --cui-button-gap: calc(var(--spacing) * 2);
     --cui-button-icon: 1.125rem;
+    --cui-button-height: var(--control-h-lg);
+    --cui-button-padding-inline: calc(var(--padding-x) * 1.25);
+  }
+
+  :where([data-control-family="button"][data-size]) {
+    block-size: var(--cui-button-height);
+    padding-inline: var(--cui-button-padding-inline);
+    font-size: var(--cui-button-font-size);
+  }
+
+  :where([data-control-family="button"][data-icon-only="true"]) {
+    aspect-ratio: 1;
+    padding-inline: 0;
   }
 
   /* Default clamp for unclassed icons (lucide ships width/height 24); zero specificity, so any utility on the svg wins. */
@@ -59,32 +82,32 @@
 
   :where([data-control-family="button"][data-variant="ghost"]) {
     --cui-button-foreground: var(--foreground);
-    --cui-button-active-bg: transparent;
+    --cui-button-active-background: transparent;
     --cui-button-active-foreground: var(--foreground);
-    --cui-button-active-hover-bg: var(--cui-button-hover-bg);
+    --cui-button-active-hover-background: var(--cui-button-hover-background);
   }
 
   :where([data-control-family="button"][data-variant="solid"]) {
-    --cui-button-bg: var(--primary);
+    --cui-button-background: var(--primary);
     --cui-button-foreground: var(--primary-foreground);
-    --cui-button-hover-bg: oklch(from var(--primary) l c h / 0.9);
+    --cui-button-hover-background: oklch(from var(--primary) l c h / 0.9);
     --cui-button-hover-foreground: var(--primary-foreground);
     --cui-button-shadow: var(--shadow-sm);
-    --cui-button-active-bg: var(--cui-button-bg);
+    --cui-button-active-background: var(--cui-button-background);
     --cui-button-active-foreground: var(--cui-button-foreground);
-    --cui-button-active-hover-bg: var(--cui-button-hover-bg);
+    --cui-button-active-hover-background: var(--cui-button-hover-background);
   }
 
   :where([data-control-family="button"][data-variant="surface"]) {
-    --cui-button-bg: oklch(from var(--card) l c h / 0.72);
+    --cui-button-background: oklch(from var(--card) l c h / 0.72);
     --cui-button-foreground: var(--foreground);
-    --cui-button-hover-bg: oklch(from var(--foreground) l c h / 0.05);
+    --cui-button-hover-background: oklch(from var(--foreground) l c h / 0.05);
     --cui-button-hover-foreground: var(--foreground);
-    --cui-button-shadow: inset 0 0 0 1px var(--border), var(--shadow-sm);
-    --cui-button-active-bg: oklch(from var(--primary) l c h / 0.08);
+    --cui-button-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm);
+    --cui-button-active-background: oklch(from var(--primary) l c h / 0.08);
     --cui-button-active-foreground: var(--primary-text);
     --cui-button-active-shadow: inset 0 0 0 1px oklch(from var(--primary) l c h / 0.6), var(--shadow-sm);
-    --cui-button-active-hover-bg: oklch(from var(--primary) l c h / 0.1);
+    --cui-button-active-hover-background: oklch(from var(--primary) l c h / 0.1);
   }
 
   :where([data-control-family="button"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"])[data-popup-open]) {
@@ -98,13 +121,13 @@
   }
 
   :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
-    --cui-button-bg: var(--destructive);
+    --cui-button-background: var(--destructive);
     --cui-button-foreground: var(--destructive-foreground);
-    --cui-button-hover-bg: oklch(from var(--destructive) l c h / 0.9);
+    --cui-button-hover-background: oklch(from var(--destructive) l c h / 0.9);
     --cui-button-hover-foreground: var(--destructive-foreground);
-    --cui-button-active-bg: var(--cui-button-bg);
+    --cui-button-active-background: var(--cui-button-background);
     --cui-button-active-foreground: var(--cui-button-foreground);
-    --cui-button-active-hover-bg: var(--cui-button-hover-bg);
+    --cui-button-active-hover-background: var(--cui-button-hover-background);
   }
 
   :where([data-control-family="button"][data-tone="danger"]:not([data-variant="solid"])) {
@@ -118,27 +141,27 @@
 
   @media (hover: hover) {
     :where([data-control-family="button"][data-control="true"]:hover) {
-      background-color: var(--cui-button-hover-bg);
+      background-color: var(--cui-button-hover-background);
       box-shadow: var(--cui-button-hover-shadow);
       color: var(--cui-button-hover-foreground);
     }
   }
 
   :where([data-control-family="button"][data-active="true"]) {
-    background-color: var(--cui-button-active-bg);
+    background-color: var(--cui-button-active-background);
     box-shadow: var(--cui-button-active-shadow);
     color: var(--cui-button-active-foreground);
   }
 
   @media (hover: hover) {
     :where([data-control-family="button"][data-active="true"]:hover) {
-      background-color: var(--cui-button-active-hover-bg);
+      background-color: var(--cui-button-active-hover-background);
       color: var(--cui-button-active-foreground);
     }
   }
 
   :where([data-control-family="button"][data-control="true"]:active) {
-    background-color: var(--cui-button-press-bg);
+    background-color: var(--cui-button-press-background);
     box-shadow: var(--cui-button-press-shadow);
     scale: var(--cui-button-press-scale);
   }
@@ -182,13 +205,31 @@
   initial-value: 16px;
 }
 
-@property --cui-button-bg {
+@property --cui-button-height {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-button-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-button-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 1rem;
+}
+
+@property --cui-button-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --cui-button-bg-image {
+@property --cui-button-background-image {
   syntax: "*";
   inherits: true;
 }
@@ -199,7 +240,7 @@
   initial-value: transparent;
 }
 
-@property --cui-button-hover-bg {
+@property --cui-button-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -211,7 +252,7 @@
   initial-value: transparent;
 }
 
-@property --cui-button-press-bg {
+@property --cui-button-press-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -223,7 +264,7 @@
   initial-value: 1;
 }
 
-@property --cui-button-active-bg {
+@property --cui-button-active-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -235,7 +276,7 @@
   initial-value: transparent;
 }
 
-@property --cui-button-active-hover-bg {
+@property --cui-button-active-hover-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

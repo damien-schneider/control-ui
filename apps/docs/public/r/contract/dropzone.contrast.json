@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "family": "dropzone",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "dropzone",
+          "data-control-ui": "dropzone",
+          "data-empty": "true",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "dropzone",
+          "data-control-ui": "dropzone",
+          "data-slot": "trigger",
+          "data-state": "idle"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "text": "--cui-dropzone-surface-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

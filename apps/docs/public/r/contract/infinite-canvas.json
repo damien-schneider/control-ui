@@ -1,0 +1,100 @@
+{
+  "version": 8,
+  "family": "infinite-canvas",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "infinite-canvas"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-infinite-canvas-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-infinite-canvas-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--canvas)"
+    },
+    {
+      "name": "--cui-infinite-canvas-grid-dot-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.16)"
+    },
+    {
+      "name": "--cui-infinite-canvas-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-infinite-canvas-controls-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-infinite-canvas-controls-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-infinite-canvas-controls-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-infinite-canvas-controls-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    }
+  ],
+  "parts": {
+    "infinite-canvas": {
+      "root": {
+        "family": "infinite-canvas",
+        "registryItems": [
+          "infinite-canvas"
+        ],
+        "states": [
+          {
+            "attribute": "data-panning",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "infinite-canvas",
+        "registryItems": [
+          "infinite-canvas"
+        ],
+        "states": [
+          {
+            "attribute": "data-scale",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          }
+        ]
+      },
+      "controls": {
+        "family": "infinite-canvas",
+        "registryItems": [
+          "infinite-canvas"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/infinite-canvas.contrast.json"
+}

@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import path from "node:path";
 import { registryItemSchema, registrySchema } from "shadcn/schema";
 import { siteConfig } from "@/lib/site-config";
-import { publicPayloads } from "./public-payloads";
+import { contractDir, publicPayloads } from "./public-payloads";
 import { createRegistryItems, publicRegistryDependency } from "./registry-model";
 
 const checkOnly = process.argv.includes("--check");
@@ -58,11 +58,12 @@ for (const [fileName, content] of expected) {
 
 if (!checkOnly && existsSync(publicRoot)) {
   const expectedNames = new Set([...expected.keys(), ...Object.values(publicPayloads)]);
-  for (const filePath of new Bun.Glob("**/*.json").scanSync({ cwd: publicRoot })) {
+  for (const filePath of new Bun.Glob("*.json").scanSync({ cwd: publicRoot })) {
     if (!expectedNames.has(filePath)) rmSync(path.join(publicRoot, filePath));
   }
+  // Contract slices are written by their own generator, so this prune keeps their directory and drops every other.
   for (const entry of readdirSync(publicRoot, { withFileTypes: true })) {
-    if (entry.isDirectory()) rmSync(path.join(publicRoot, entry.name), { recursive: true, force: true });
+    if (entry.isDirectory() && entry.name !== contractDir) rmSync(path.join(publicRoot, entry.name), { recursive: true, force: true });
   }
 }
 

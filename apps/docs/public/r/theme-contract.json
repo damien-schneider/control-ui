@@ -134,6 +134,24 @@
       "description": "Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11)."
     },
     {
+      "name": "--control-rim",
+      "group": "color",
+      "tier": "derived",
+      "description": "Boundary color of a control's own edge; defaults to --border."
+    },
+    {
+      "name": "--hover-fill",
+      "group": "color",
+      "tier": "derived",
+      "description": "Wash a row or control takes on hover; defaults to a 6% tint of --foreground."
+    },
+    {
+      "name": "--active-fill",
+      "group": "color",
+      "tier": "derived",
+      "description": "Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground."
+    },
+    {
       "name": "--canvas",
       "group": "color",
       "tier": "core",
@@ -756,6 +774,12 @@
       "group": "layout",
       "tier": "derived",
       "description": "Gap between a control edge and its focus indicator; negative draws the indicator inside."
+    },
+    {
+      "name": "--control-rim-width",
+      "group": "layout",
+      "tier": "derived",
+      "description": "Thickness of a control's own edge; defaults to 1px, shared across modes."
     }
   ]
 }

@@ -5,13 +5,13 @@
     --cui-popup-radius: var(--radius-popover);
     --cui-popup-background: var(--popover);
     --cui-popup-foreground: var(--popover-foreground);
-    --cui-popup-border-color: var(--border);
-    --cui-popup-border-width: 1px;
+    --cui-popup-border-color: var(--control-rim);
+    --cui-popup-border-width: var(--control-rim-width);
     --cui-popup-shadow: var(--shadow-pop);
     --cui-popup-backdrop-filter: blur(var(--backdrop-blur-popover));
     --cui-popup-item-radius: var(--radius-popup-item);
     --cui-popup-item-foreground: var(--foreground);
-    --cui-popup-item-highlight-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-popup-item-highlight-background: var(--hover-fill);
     --cui-popup-item-highlight-foreground: var(--cui-popup-item-foreground);
     --cui-popup-item-highlight-muted-foreground: var(--muted-foreground);
     --cui-popup-item-disabled-opacity: 0.4;

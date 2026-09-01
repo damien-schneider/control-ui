@@ -1,0 +1,127 @@
+{
+  "version": 8,
+  "family": "item",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "item"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-item-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-lg)"
+    },
+    {
+      "name": "--cui-item-hover-background",
+      "syntax": "*",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-item-hover-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--_item-border-color)"
+    },
+    {
+      "name": "--cui-item-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-item-active-scale",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "1"
+    }
+  ],
+  "parts": {
+    "item": {
+      "root": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "muted",
+              "outline"
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "group": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "media": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "separator": {
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "item",
+        "registryItems": [
+          "item"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/item.contrast.json"
+}

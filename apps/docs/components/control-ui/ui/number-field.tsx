@@ -4,7 +4,6 @@ import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field
 import type { ComponentProps, CSSProperties, ReactNode, Ref } from "react";
 import { createContext, useContext } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -97,7 +96,7 @@ export function NumberFieldGroup({ className, children, ...props }: NumberFieldG
       data-control="true"
       data-control-family="field"
       data-size={size}
-      className={cn("inline-flex items-stretch overflow-hidden", controlSize({ size }), "px-0", className)}
+      className={cn("inline-flex items-stretch overflow-hidden", className)}
       {...props}
     >
       {children}

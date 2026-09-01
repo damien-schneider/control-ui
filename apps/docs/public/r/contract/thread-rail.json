@@ -1,0 +1,187 @@
+{
+  "version": 8,
+  "family": "thread-rail",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "thread-rail"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-thread-rail-item-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-thread-rail-item-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-thread-rail-line-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-thread-rail-popover-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popover)"
+    },
+    {
+      "name": "--cui-thread-rail-popover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--popover)"
+    },
+    {
+      "name": "--cui-thread-rail-popover-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-thread-rail-popover-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-thread-rail-popover-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-pop)"
+    },
+    {
+      "name": "--cui-thread-rail-popover-backdrop-blur",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--backdrop-blur-popover)"
+    }
+  ],
+  "parts": {
+    "thread-rail": {
+      "root": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "file": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "file-icon": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "item": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-from",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "assistant",
+              "system",
+              "tool",
+              "user"
+            ]
+          },
+          {
+            "attribute": "data-in-view",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-rail-current",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "line": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "more": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "popover": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "popover-layer": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "summary": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "thread-rail",
+        "registryItems": [
+          "thread-rail"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-thread-rail-popover-background"
+  ],
+  "contrast": "/r/contract/thread-rail.contrast.json"
+}

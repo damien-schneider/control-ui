@@ -1,0 +1,245 @@
+{
+  "version": 8,
+  "family": "stepper",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "stepper"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-stepper-indicator-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-stepper-indicator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-stepper-indicator-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-stepper-indicator-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-stepper-separator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-stepper-title-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    }
+  ],
+  "parts": {
+    "stepper": {
+      "root": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": [
+          {
+            "attribute": "data-content-mode",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "all",
+              "current"
+            ]
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          {
+            "attribute": "data-responsive",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "active",
+              "inactive"
+            ]
+          }
+        ]
+      },
+      "description": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": []
+      },
+      "indicator": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": [
+          {
+            "attribute": "data-invalid",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "complete",
+              "current",
+              "neutral",
+              "upcoming"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-invalid",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "complete",
+              "current",
+              "neutral",
+              "upcoming"
+            ]
+          },
+          {
+            "attribute": "data-step",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          }
+        ]
+      },
+      "list": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": [
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        ]
+      },
+      "separator": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": [
+          {
+            "attribute": "data-invalid",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "complete",
+              "current",
+              "neutral",
+              "upcoming"
+            ]
+          }
+        ]
+      },
+      "title": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "family": "stepper",
+        "registryItems": [
+          "stepper"
+        ],
+        "states": [
+          {
+            "attribute": "data-invalid",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "complete",
+              "current",
+              "neutral",
+              "upcoming"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/stepper.contrast.json"
+}

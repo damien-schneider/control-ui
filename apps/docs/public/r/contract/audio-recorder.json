@@ -1,0 +1,192 @@
+{
+  "version": 8,
+  "family": "audio-recorder",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "audio-recorder"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-audio-recorder-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-audio-recorder-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-audio-recorder-recording-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--destructive) l c h / 0.25)"
+    },
+    {
+      "name": "--cui-audio-recorder-error-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--destructive-text)"
+    }
+  ],
+  "parts": {
+    "audio-recorder": {
+      "root": {
+        "family": "audio-recorder",
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-error",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "idle",
+              "recorded",
+              "recording",
+              "requesting",
+              "submitting"
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "family": "audio-recorder",
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": []
+      },
+      "cancel": {
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": [
+          {
+            "attribute": "data-visible",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "content": {
+        "family": "audio-recorder",
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": []
+      },
+      "duration": {
+        "family": "audio-recorder",
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": [
+          {
+            "attribute": "data-visible",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "status": {
+        "family": "audio-recorder",
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": [
+          {
+            "attribute": "data-tone",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "neutral"
+            ]
+          },
+          {
+            "attribute": "data-visible",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "submit": {
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": [
+          {
+            "attribute": "data-visible",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "trigger": {
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": [
+          {
+            "attribute": "data-recorder-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "idle",
+              "recorded",
+              "recording",
+              "requesting",
+              "submitting"
+            ]
+          },
+          {
+            "attribute": "data-status-only",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "visualizer": {
+        "registryItems": [
+          "audio-recorder"
+        ],
+        "states": [
+          {
+            "attribute": "data-visible",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-audio-recorder-active-foreground"
+  ],
+  "contrast": "/r/contract/audio-recorder.contrast.json"
+}

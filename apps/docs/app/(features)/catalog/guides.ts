@@ -73,6 +73,7 @@ export const guideEntries = [
       { id: "run", title: "Run the doctor" },
       { id: "clean", title: "What a clean install looks like" },
       { id: "reports", title: "What it reports" },
+      { id: "flags", title: "Two flags beyond the wiring audit" },
       { id: "contract", title: "The contract" },
     ],
   },
@@ -150,7 +151,7 @@ export const guideEntries = [
     kind: "Guide",
     group: "maintain",
     name: "Contract versions",
-    summary: "The skin contract is version 7. Crossing a version reinstalls core, the affected items, and the skin together.",
+    summary: "The skin contract is version 8. Crossing a version reinstalls core, the affected items, and the skin together.",
     sections: [
       { id: "current", title: "Where the contract stands" },
       { id: "crossing", title: "Crossing a version" },
@@ -299,11 +300,13 @@ export const guideEntries = [
     group: "why",
     name: "Best React component libraries for AI interfaces",
     summary:
-      "Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.",
+      "Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.",
     sections: [
       { id: "criteria", title: "How we evaluated" },
       { id: "shadcn-ui", title: "shadcn/ui" },
       { id: "assistant-ui", title: "assistant-ui" },
+      { id: "ai-elements", title: "Vercel AI Elements" },
+      { id: "prompt-kit", title: "prompt-kit" },
       { id: "material-ui", title: "Material UI (MUI)" },
       { id: "ant-design", title: "Ant Design" },
       { id: "chakra-ui", title: "Chakra UI" },
@@ -314,6 +317,8 @@ export const guideEntries = [
     comparedApplications: [
       { name: "shadcn/ui", url: "https://ui.shadcn.com" },
       { name: "assistant-ui", url: "https://www.assistant-ui.com" },
+      { name: "AI Elements", url: "https://ai-sdk.dev/elements" },
+      { name: "prompt-kit", url: "https://www.prompt-kit.com" },
       { name: "Material UI", url: "https://mui.com/material-ui/" },
       { name: "Ant Design", url: "https://ant.design" },
       { name: "Chakra UI", url: "https://chakra-ui.com" },
@@ -328,7 +333,7 @@ export const guideEntries = [
       {
         question: "Are these React component libraries free?",
         answer:
-          "All six profiled libraries are MIT-licensed open source and free for commercial use. They differ in what ships after install: versioned npm packages (MUI, Ant Design, Chakra) versus source copied into your repository (shadcn/ui, assistant-ui, Control UI).",
+          "All eight profiled libraries are MIT-licensed open source and free for commercial use. They differ in what ships after install: versioned npm packages (MUI, Ant Design, Chakra) versus source copied into your repository (shadcn/ui, assistant-ui, AI Elements, prompt-kit, Control UI).",
       },
       {
         question: "What makes a component library suitable for AI products?",

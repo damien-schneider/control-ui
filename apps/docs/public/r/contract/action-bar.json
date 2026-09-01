@@ -1,0 +1,23 @@
+{
+  "version": 8,
+  "family": "action-bar",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "action-bar"
+  ],
+  "knobs": [],
+  "parts": {
+    "action-bar": {
+      "root": {
+        "family": "action-bar",
+        "registryItems": [
+          "action-bar"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/action-bar.contrast.json"
+}

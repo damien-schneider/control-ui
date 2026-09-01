@@ -5,7 +5,6 @@ import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize, ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinAdornment } from "@/components/control-ui/skin";
@@ -43,13 +42,10 @@ export type ButtonLinkProps = ComponentProps<"a"> &
 
 export type ButtonLabelProps = ComponentProps<"label"> & ButtonAppearanceProps;
 
-const buttonStructureClasses = "relative isolate inline-flex shrink-0 items-center justify-center overflow-visible whitespace-nowrap";
+export const buttonStructureClasses =
+  "relative isolate inline-flex shrink-0 items-center justify-center overflow-visible whitespace-nowrap";
 
 export const buttonContentClasses = "relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]";
-
-export function buttonRecipeClasses(size: ControlSize, iconOnly = false): string {
-  return cn(buttonStructureClasses, controlSize({ size }), iconOnly && "aspect-square px-0");
-}
 
 function ButtonContent({ children }: { children: ReactNode }) {
   return (
@@ -101,7 +97,7 @@ export function Button({
       data-variant={variant}
       data-tone={tone}
       data-size={size}
-      className={cn(buttonRecipeClasses(size, iconOnly), className)}
+      className={cn(buttonStructureClasses, className)}
       render={render}
       nativeButton={nativeButton}
       {...props}
@@ -140,7 +136,7 @@ export function ButtonLink({
       "data-variant": variant,
       "data-tone": tone,
       "data-size": size,
-      className: cn(buttonRecipeClasses(size, iconOnly), className),
+      className: cn(buttonStructureClasses, className),
       children: <ButtonBody layer={skinAdornment("button", "layer", { variant, tone })}>{children}</ButtonBody>,
     },
   });
@@ -171,7 +167,7 @@ export function ButtonLabel({
       data-variant={variant}
       data-tone={tone}
       data-size={size}
-      className={cn(buttonRecipeClasses(size, iconOnly), className)}
+      className={cn(buttonStructureClasses, className)}
     >
       <ButtonBody layer={skinAdornment("button", "layer", { variant, tone })}>{children}</ButtonBody>
     </label>

@@ -39,6 +39,30 @@ control-ui doctor: clean.
   </GuidePoints>
 </GuideSection>
 
+<GuideSection id="flags" title="Two flags beyond the wiring audit">
+  `--contrast` resolves the theme contract's required color pairs straight from the installed CSS — no browser, no
+  network — and prints a per-mode tally with every failure named:
+
+```bash
+$ node components/control-ui/scripts/control-ui-doctor.mjs --contrast
+light: 27/55 pass
+dark: 27/55 pass
+```
+
+  It reads token values only, so a pair a recipe paints (popup items, sidebar rows, tabs, solid buttons, tooltips,
+  focus rings, badges) is reported as unverified rather than guessed at; those live in the rendered audit at
+  [/theme-accessibility](/theme-accessibility). A failure exits non-zero.
+
+  `--emit-css` turns a theme artifact into the one derived stylesheet an app imports:
+
+```bash
+$ node components/control-ui/scripts/control-ui-doctor.mjs --emit-css midnight.control-ui-theme.json
+```
+
+  It writes `midnight.control-ui-theme.css` beside the artifact. Never hand-write those selectors: the emitted scope
+  doubles the `data-skin` attribute to match the pack's own weight, which is what hands the win to source order.
+</GuideSection>
+
 <GuideSection id="contract" title="The contract">
   The doctor audits wiring, never taste. It cannot see a token that is ugly, only one that is undeclared, dead, or
   fighting the skin.

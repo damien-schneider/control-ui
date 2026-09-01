@@ -1,0 +1,111 @@
+{
+  "version": 8,
+  "family": "audio-visualizer",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "audio-visualizer",
+    "audio-visualizer-line"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-audio-visualizer-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-audio-visualizer-bar-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.8)"
+    },
+    {
+      "name": "--cui-audio-visualizer-line-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.18)"
+    },
+    {
+      "name": "--cui-audio-visualizer-line-stroke",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.8)"
+    }
+  ],
+  "parts": {
+    "audio-visualizer": {
+      "root": {
+        "family": "audio-visualizer",
+        "registryItems": [
+          "audio-visualizer",
+          "audio-visualizer-line"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bars",
+              "line"
+            ]
+          }
+        ]
+      },
+      "bar": {
+        "family": "audio-visualizer",
+        "registryItems": [
+          "audio-visualizer"
+        ],
+        "states": []
+      },
+      "bar-track": {
+        "family": "audio-visualizer",
+        "registryItems": [
+          "audio-visualizer"
+        ],
+        "states": []
+      },
+      "baseline": {
+        "family": "audio-visualizer",
+        "registryItems": [
+          "audio-visualizer-line"
+        ],
+        "states": []
+      },
+      "track": {
+        "family": "audio-visualizer",
+        "registryItems": [
+          "audio-visualizer",
+          "audio-visualizer-line"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    },
+    "audio-visualizer-line": {
+      "waveform": {
+        "family": "audio-visualizer",
+        "registryItems": [
+          "audio-visualizer-line"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/audio-visualizer.contrast.json"
+}

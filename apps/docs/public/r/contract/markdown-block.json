@@ -1,0 +1,88 @@
+{
+  "version": 8,
+  "family": "markdown-block",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "markdown-block"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-markdown-block-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-markdown-block-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-markdown-block-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-markdown-block-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-markdown-block-header-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-markdown-block-icon-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
+    }
+  ],
+  "parts": {
+    "markdown-block": {
+      "root": {
+        "family": "markdown-block",
+        "registryItems": [
+          "markdown-block"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "markdown-block",
+        "registryItems": [
+          "markdown-block"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "markdown-block",
+        "registryItems": [
+          "markdown-block"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "markdown-block",
+        "registryItems": [
+          "markdown-block"
+        ],
+        "states": []
+      },
+      "title-icon": {
+        "family": "markdown-block",
+        "registryItems": [
+          "markdown-block"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/markdown-block.contrast.json"
+}

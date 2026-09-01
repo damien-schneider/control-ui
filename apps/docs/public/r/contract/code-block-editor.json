@@ -1,0 +1,136 @@
+{
+  "version": 8,
+  "family": "code-block-editor",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "code-block-editor"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-code-block-editor-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "min(var(--radius-panel), calc(0.5rem * var(--nest-corner-ratio)))"
+    },
+    {
+      "name": "--cui-code-block-editor-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-code-block-editor-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-code-block-editor-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-code-block-editor-title-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-code-block-editor-code-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    }
+  ],
+  "parts": {
+    "code-block-editor": {
+      "root": {
+        "family": "code-block-editor",
+        "registryItems": [
+          "code-block-editor"
+        ],
+        "states": [
+          {
+            "attribute": "data-chrome",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "embedded",
+              "standalone"
+            ]
+          },
+          {
+            "attribute": "data-density",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "compact",
+              "default"
+            ]
+          },
+          {
+            "attribute": "data-header",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "command",
+              "default"
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "family": "code-block-editor",
+        "registryItems": [
+          "code-block-editor"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "code-block-editor",
+        "registryItems": [
+          "code-block-editor"
+        ],
+        "states": []
+      },
+      "editor": {
+        "family": "code-block-editor",
+        "registryItems": [
+          "code-block-editor"
+        ],
+        "states": []
+      },
+      "floating-frame": {
+        "family": "code-block-editor",
+        "registryItems": [
+          "code-block-editor"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "code-block-editor",
+        "registryItems": [
+          "code-block-editor"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "code-block-editor",
+        "registryItems": [
+          "code-block-editor"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/code-block-editor.contrast.json"
+}

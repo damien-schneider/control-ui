@@ -1,0 +1,261 @@
+{
+  "version": 8,
+  "family": "chat-composer",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "chat-composer"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-chat-composer-root-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--background) l c h / 0.8)"
+    },
+    {
+      "name": "--cui-chat-composer-shell-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-field)"
+    },
+    {
+      "name": "--cui-chat-composer-shell-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.78)"
+    },
+    {
+      "name": "--cui-chat-composer-shell-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-chat-composer-shell-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-chat-composer-shell-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-chat-composer-shell-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-chat-composer-input-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-chat-composer-input-placeholder-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-chat-composer-mention-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.1)"
+    },
+    {
+      "name": "--cui-chat-composer-mention-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popup-item)"
+    },
+    {
+      "name": "--cui-chat-composer-mention-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-chat-composer-mention-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    }
+  ],
+  "parts": {
+    "chat-composer": {
+      "root": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": [
+          {
+            "attribute": "data-density",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "comfortable",
+              "compact"
+            ]
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "disabled",
+              "idle",
+              "submitting"
+            ]
+          }
+        ]
+      },
+      "accent": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "footer": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "mention": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": [
+          {
+            "attribute": "data-icon",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-id",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-mention",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          }
+        ]
+      },
+      "mention-description": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "mention-icon": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "mention-label": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "shell": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "disabled",
+              "idle",
+              "submitting"
+            ]
+          }
+        ]
+      },
+      "submit": {
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "textarea": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "toolbar": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "tools": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      }
+    },
+    "chat-composer-editor": {
+      "root": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "editor": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "fallback": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      },
+      "placeholder": {
+        "family": "chat-composer",
+        "registryItems": [
+          "chat-composer"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-chat-composer-input-placeholder-foreground",
+    "--cui-chat-composer-mention-background"
+  ],
+  "contrast": "/r/contract/chat-composer.contrast.json"
+}

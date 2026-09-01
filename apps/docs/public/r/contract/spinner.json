@@ -1,0 +1,49 @@
+{
+  "version": 8,
+  "family": "spinner",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "spinner"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-spinner-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    }
+  ],
+  "parts": {
+    "spinner": {
+      "root": {
+        "family": "spinner",
+        "registryItems": [
+          "spinner"
+        ],
+        "states": []
+      },
+      "indicator": {
+        "family": "spinner",
+        "registryItems": [
+          "spinner"
+        ],
+        "states": [
+          {
+            "attribute": "data-size",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "lg",
+              "md",
+              "sm",
+              "xs"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/spinner.contrast.json"
+}

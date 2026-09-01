@@ -1,0 +1,205 @@
+{
+  "version": 8,
+  "family": "tree",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "tree"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-tree-item-trigger-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popup-item)"
+    },
+    {
+      "name": "--cui-tree-item-trigger-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-tree-item-trigger-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-tree-item-trigger-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-tree-item-trigger-selected-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--active-fill)"
+    },
+    {
+      "name": "--cui-tree-item-trigger-selected-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-tree-item-trigger-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "1rem",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-tree-item-trigger-selected-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-normal)"
+    }
+  ],
+  "parts": {
+    "tree": {
+      "root": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": [
+          {
+            "attribute": "data-indicator",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none",
+              "slide"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-label",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-value",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          }
+        ]
+      },
+      "item-content": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      },
+      "item-group": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": []
+      },
+      "item-indicator": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      },
+      "item-label": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": []
+      },
+      "item-trigger": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": [
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "closed",
+              "open"
+            ]
+          }
+        ]
+      },
+      "track": {
+        "family": "tree",
+        "registryItems": [
+          "tree"
+        ],
+        "states": [
+          {
+            "attribute": "data-indicator",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none",
+              "slide"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-tree-item-trigger-selected-background",
+    "--cui-tree-item-trigger-selected-foreground"
+  ],
+  "contrast": "/r/contract/tree.contrast.json"
+}

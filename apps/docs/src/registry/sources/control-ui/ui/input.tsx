@@ -3,7 +3,6 @@
 import { Input as InputPrimitive } from "@base-ui/react/input";
 import type { ComponentProps, CSSProperties } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -19,7 +18,7 @@ export function Input({ size = "md", className, ...props }: InputProps) {
       data-control-family="field"
       data-control="true"
       data-size={size}
-      className={cn("w-full min-w-0", controlSize({ size }), className)}
+      className={cn("w-full min-w-0", className)}
       {...props}
     />
   );

@@ -62,8 +62,8 @@
   Exactly one pack owns `skin.config.tsx`, `skin-theme.css`, and `skin.css`. `--overwrite` claims all three — without
   it the CLI keeps the previous pack's files in place.
 
-  The current skin contract is version 7: registered component CSS knobs carry every visual decision, published in
-  `skin-contract.json`.
+  The current skin contract is version 8: registered component CSS knobs carry every visual decision, sizing included, published one
+  slice per paint family under `/r/contract/`, indexed by `/r/contract/index.json`.
 
   There is no token fallback when `data-skin` is missing or misspelled. It is the scope every token is declared under,
   not a multi-skin switch, so one skin still needs it: without it every portalled surface renders with no tokens at all.

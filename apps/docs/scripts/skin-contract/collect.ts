@@ -22,6 +22,7 @@ import {
   type SkinContract,
   type SkinSurfaceFamily,
   skinSurfaceFamilies,
+  sortRecord,
   type ThemeContractArtifact,
 } from "./model";
 
@@ -274,16 +275,6 @@ function nestedContextType(typeName: string): Record<string, Record<string, Reco
     );
   });
   return result;
-}
-
-function sortRecord<Value>(record: Record<string, Value>, rootFirst = false): Record<string, Value> {
-  return Object.fromEntries(
-    Object.entries(record).sort(([left], [right]) => {
-      if (rootFirst && left === "root") return -1;
-      if (rootFirst && right === "root") return 1;
-      return left.localeCompare(right);
-    }),
-  );
 }
 
 function recordAlias(aliases: Map<string, string>, name: string, text: string, file: string) {
@@ -558,7 +549,7 @@ export function collectSkinContract(): SkinContract {
     );
 
   return {
-    version: 7,
+    version: 8,
     selectorPattern: skinSelector({ skin: "{skin}", family: "{family}", part: "{part}" }),
     registryItemMapping: sortRecord(Object.fromEntries([...registryItemMapping].map(([scope, items]) => [scope, [...items].sort()]))),
     scopes: sortRecord(scopes),

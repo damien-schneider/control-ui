@@ -41,5 +41,5 @@
 /*
  * History: fixed 3 competing type systems (Tailwind defaults + named rungs + raw text-[Npx]) into one rung/role; 14px = body.
  * Usage: apply utility directly to element (no <Text> component), e.g. text-heading-1 on <h1>, text-body on <p>.
- * Do NOT resize control chrome text (button/tab/sidebar item) — that reads controlSize, not these tokens.
+ * Control chrome text is sized by its recipe (`--cui-button-font-size`, `--cui-field-font-size`), not by these utilities.
  */

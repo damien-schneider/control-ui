@@ -54,6 +54,9 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
     "derived",
     "Color of the keyboard focus indicator; defaults to --ring. Must clear 3:1 against every surface it lands on (WCAG 1.4.11).",
   ),
+  token("--control-rim", "color", "derived", "Boundary color of a control's own edge; defaults to --border."),
+  token("--hover-fill", "color", "derived", "Wash a row or control takes on hover; defaults to a 6% tint of --foreground."),
+  token("--active-fill", "color", "derived", "Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground."),
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),
   // color knobs
   token("--ring-opacity", "color", "derived", "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."),
@@ -144,6 +147,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
     "derived",
     "Gap between a control edge and its focus indicator; negative draws the indicator inside.",
   ),
+  token("--control-rim-width", "layout", "derived", "Thickness of a control's own edge; defaults to 1px, shared across modes."),
 ];
 
 export const THEME_CONTRACT_NAMES: ReadonlySet<string> = new Set(THEME_CONTRACT.map((entry) => entry.name));

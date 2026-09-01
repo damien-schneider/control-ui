@@ -1,0 +1,233 @@
+{
+  "version": 8,
+  "family": "inline-citation",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "inline-citation"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-inline-citation-trigger-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-inline-citation-trigger-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.55)"
+    },
+    {
+      "name": "--cui-inline-citation-trigger-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-inline-citation-trigger-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-inline-citation-trigger-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-inline-citation-trigger-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-inline-citation-navigation-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.45)"
+    },
+    {
+      "name": "--cui-inline-citation-quote-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.55)"
+    },
+    {
+      "name": "--cui-inline-citation-quote-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    }
+  ],
+  "parts": {
+    "inline-citation": {
+      "root": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "content": {
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": [
+          {
+            "attribute": "data-slide",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "scope"
+            ]
+          }
+        ]
+      },
+      "favicon": {
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "favicons": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "label": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "navigation": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "next": {
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "position": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "previous": {
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "source": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": [
+          {
+            "attribute": "data-activation-direction",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          },
+          {
+            "attribute": "data-ending-style",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-slide",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "panel"
+            ]
+          },
+          {
+            "attribute": "data-starting-style",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "source-description": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "source-external-icon": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "source-favicon": {
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "source-header": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "source-hostname": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "source-quote": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "source-title": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      },
+      "trigger": {
+        "family": "inline-citation",
+        "registryItems": [
+          "inline-citation"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-inline-citation-quote-background"
+  ],
+  "contrast": "/r/contract/inline-citation.contrast.json"
+}

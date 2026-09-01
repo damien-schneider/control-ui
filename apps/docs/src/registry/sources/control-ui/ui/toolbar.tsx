@@ -2,7 +2,6 @@
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
 import type { ComponentProps, CSSProperties } from "react";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { ToolbarKnobStyle } from "@/components/control-ui/knob-contracts/toolbar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -67,7 +66,6 @@ export function ToolbarButton({ iconOnly = false, className, ...props }: Refined
       data-icon-only={iconOnly ? "true" : undefined}
       className={cn(
         "inline-flex shrink-0 items-center justify-center select-none data-[disabled]:pointer-events-none [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-        controlSize({ size: "sm" }),
         className,
       )}
       {...props}
@@ -88,7 +86,6 @@ export function ToolbarLink({ variant = "default", className, ...props }: Refine
       data-variant={variant}
       className={cn(
         "inline-flex shrink-0 items-center justify-center [&_svg]:block [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-        controlSize({ size: "sm" }),
         variant === "track" && "relative z-[2]",
         className,
       )}
@@ -133,7 +130,7 @@ export function ToolbarInput({ className, ...props }: RefinedToolbarInputProps) 
       data-slot="input"
       data-control="true"
       data-size="sm"
-      className={cn("min-w-0", controlSize({ size: "sm" }), className)}
+      className={cn("min-w-0", className)}
       {...props}
     />
   );

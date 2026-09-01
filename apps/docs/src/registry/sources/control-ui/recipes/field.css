@@ -4,11 +4,14 @@
     --cui-field-radius: var(--radius-control);
     --cui-field-background: oklch(from var(--card) l c h / 0.72);
     --cui-field-foreground: var(--foreground);
-    --cui-field-border-color: var(--border);
-    --cui-field-border-width: 1px;
-    --cui-field-shadow: var(--shadow-sm);
+    --cui-field-border-color: var(--control-rim);
+    --cui-field-border-width: var(--control-rim-width);
+    --cui-field-shadow: var(--shadow-inset);
     --cui-field-backdrop-filter: blur(0px);
     --cui-field-focus-border-color: var(--border);
+    --cui-field-height: var(--control-h-md);
+    --cui-field-padding-inline: var(--padding-x);
+    --cui-field-font-size: var(--text-body);
     border: var(--cui-field-border-width) solid var(--cui-field-border-color);
     border-radius: var(--cui-field-radius);
     outline: none;
@@ -30,9 +33,25 @@
 
   :where([data-control-family="field"][data-control="true"][data-size="xs"]) {
     gap: calc(var(--spacing) * 1);
+    --cui-field-height: var(--control-h-xs);
+    --cui-field-padding-inline: calc(var(--padding-x) * 0.6);
+    --cui-field-font-size: var(--text-caption);
+  }
+  :where([data-control-family="field"][data-control="true"][data-size="sm"]) {
+    --cui-field-height: var(--control-h-sm);
+    --cui-field-padding-inline: calc(var(--padding-x) * 0.75);
+    --cui-field-font-size: var(--text-label);
   }
   :where([data-control-family="field"][data-control="true"][data-size="lg"]) {
     gap: calc(var(--spacing) * 2);
+    --cui-field-height: var(--control-h-lg);
+    --cui-field-padding-inline: calc(var(--padding-x) * 1.25);
+  }
+
+  :where([data-control-family="field"][data-control="true"][data-size]) {
+    block-size: var(--cui-field-height);
+    padding-inline: var(--cui-field-padding-inline);
+    font-size: var(--cui-field-font-size);
   }
 
   :where([data-control-family="field"][data-control="true"])::placeholder {
@@ -44,7 +63,7 @@
     :where([data-control-family="field"][data-field-kind="combobox"]:hover),
     :where([data-control-family="field"][data-field-kind="native-select"]:hover),
     :where([data-control-family="field"][data-field-kind="number-field"]:hover) {
-      background: oklch(from var(--foreground) l c h / 0.05);
+      background: var(--hover-fill);
     }
   }
 
@@ -78,6 +97,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
+    padding-inline-end: calc(var(--padding-x) * 1.4);
     font-weight: var(--font-weight-medium);
     appearance: none;
   }
@@ -94,6 +114,7 @@
   }
 
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="group"]) {
+    padding-inline: 0;
     font-weight: var(--font-weight-medium);
   }
 
@@ -192,4 +213,22 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-field-height {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-field-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 1rem;
 }

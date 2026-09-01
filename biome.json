@@ -13,6 +13,7 @@
       "!**/playwright-report",
       "!**/test-results",
       "!apps/docs/public/r/**/*.json",
+      "!registry.json",
       "!apps/docs/registry.json",
       "!apps/docs/registry/**/*.json"
     ]

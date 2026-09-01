@@ -1,0 +1,249 @@
+{
+  "version": 8,
+  "family": "user-ask",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "user-ask"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-user-ask-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-field)"
+    },
+    {
+      "name": "--cui-user-ask-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--card) l c h / 0.9)"
+    },
+    {
+      "name": "--cui-user-ask-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-user-ask-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-user-ask-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-md)"
+    },
+    {
+      "name": "--cui-user-ask-option-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-popup-item)"
+    },
+    {
+      "name": "--cui-user-ask-option-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.5)"
+    },
+    {
+      "name": "--cui-user-ask-option-selected-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.7)"
+    },
+    {
+      "name": "--cui-user-ask-indicator-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-user-ask-indicator-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-user-ask-input-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-user-ask-input-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    }
+  ],
+  "parts": {
+    "user-ask": {
+      "root": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "dismiss": {
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": [
+          {
+            "attribute": "data-user-ask-dismiss",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "footer": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "freeform-label": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "header": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "option": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": [
+          {
+            "attribute": "data-freeform",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-recommended",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "option-description": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "option-indicator": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": [
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "option-input": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "option-label": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "pagination": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "pagination-count": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "question": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "recommended": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      },
+      "submit": {
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": [
+          {
+            "attribute": "data-user-ask-submit",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "title": {
+        "family": "user-ask",
+        "registryItems": [
+          "user-ask"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-user-ask-input-background",
+    "--cui-user-ask-input-foreground"
+  ],
+  "contrast": "/r/contract/user-ask.contrast.json"
+}

@@ -1,7 +1,6 @@
 import { cva } from "class-variance-authority";
 import type { ComponentProps, CSSProperties } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { ButtonGroupKnobStyle } from "@/components/control-ui/knob-contracts/button-group-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -61,11 +60,7 @@ export function ButtonGroupText({ size = "sm", className, ...props }: ButtonGrou
       data-control-family="button-group"
       data-slot="text"
       data-size={size}
-      className={cn(
-        "inline-flex items-center whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0",
-        controlSize({ size }),
-        className,
-      )}
+      className={cn("inline-flex items-center whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-4 [&>svg]:shrink-0", className)}
       {...props}
     />
   );

@@ -1,0 +1,349 @@
+{
+  "version": 8,
+  "family": "code-diff",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "code-diff"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-code-diff-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-code-diff-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-code-diff-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
+    },
+    {
+      "name": "--cui-code-diff-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-code-diff-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--code-foreground)"
+    },
+    {
+      "name": "--cui-code-diff-add-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--diff-add-line)"
+    },
+    {
+      "name": "--cui-code-diff-del-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--diff-del-line)"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
+    },
+    {
+      "name": "--cui-code-diff-expand-button-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    }
+  ],
+  "parts": {
+    "code-diff": {
+      "root": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": [
+          {
+            "attribute": "data-diff-style",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "split",
+              "unified"
+            ]
+          },
+          {
+            "attribute": "data-file-count",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-header",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "accessible-source": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "actions": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "body": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "emphasis": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": [
+          {
+            "attribute": "data-line-type",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "add",
+              "context",
+              "del"
+            ]
+          }
+        ]
+      },
+      "empty-half": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": [
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          }
+        ]
+      },
+      "expand-button": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "expander": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "expander-label": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "file": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": [
+          {
+            "attribute": "data-file-name",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          }
+        ]
+      },
+      "file-header": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "file-title": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "gutter": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": [
+          {
+            "attribute": "data-line-type",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "add",
+              "context",
+              "del"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "line": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": [
+          {
+            "attribute": "data-indicators",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bars",
+              "classic",
+              "none"
+            ]
+          },
+          {
+            "attribute": "data-line-type",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "add",
+              "context",
+              "del"
+            ]
+          },
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          }
+        ]
+      },
+      "marker": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": [
+          {
+            "attribute": "data-line-type",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "add",
+              "context",
+              "del"
+            ]
+          }
+        ]
+      },
+      "row": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "stat": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "stat-additions": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "stat-deletions": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-code-diff-expand-button-background",
+    "--cui-code-diff-expand-button-foreground",
+    "--cui-code-diff-expand-button-hover-background",
+    "--cui-code-diff-expand-button-hover-foreground"
+  ],
+  "contrast": "/r/contract/code-diff.contrast.json"
+}

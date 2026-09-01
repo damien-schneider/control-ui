@@ -28,7 +28,7 @@ import {
   StepperTrigger,
 } from "@/components/control-ui/ui/stepper";
 import { Textarea } from "@/components/control-ui/ui/textarea";
-import { downloadThemeArtifact } from "@/components/theme-drawer/custom-themes";
+import { downloadThemeArtifact, downloadThemeCss, downloadThemeTokens } from "@/components/theme-drawer/custom-themes";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 import { buildThemePrompt, parseThemeArtifact, type ThemeArtifactResult } from "@/components/theme-drawer/theme-artifact";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
@@ -118,16 +118,24 @@ function ThemeTestStep({
           <input
             id="theme-ai-file"
             type="file"
-            accept=".json,application/json"
+            accept=".json,.tokens.json,application/json"
             aria-label="Import theme file"
             onChange={onImportFile}
             className="sr-only"
           />
         </ButtonLabel>
         {artifact ? (
-          <Button variant="quiet" onClick={() => downloadThemeArtifact(artifact)}>
-            <DownloadIcon aria-hidden className="size-3.5" /> Download draft
-          </Button>
+          <>
+            <Button variant="quiet" onClick={() => downloadThemeArtifact(artifact)}>
+              <DownloadIcon aria-hidden className="size-3.5" /> Download draft
+            </Button>
+            <Button variant="quiet" onClick={() => downloadThemeCss(artifact)}>
+              <DownloadIcon aria-hidden className="size-3.5" /> Download CSS
+            </Button>
+            <Button variant="quiet" onClick={() => downloadThemeTokens(artifact)}>
+              <DownloadIcon aria-hidden className="size-3.5" /> Download tokens
+            </Button>
+          </>
         ) : null}
       </div>
 

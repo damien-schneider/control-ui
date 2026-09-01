@@ -74,9 +74,9 @@
     and fails the build if any of the 91 required checks drops below WCAG AA.</GuidePoint>
     <GuidePoint>**Focus survives the skin.** Forced-colors focus indicators pass on all 8 skins, and label-wrapped
     controls keep a visible ring in all 16 modes. Both run in the same pass.</GuidePoint>
-    <GuidePoint>**The contract is published.** The audited pairs ship as `/r/contrast-anatomy.json` and the full knob
-    surface as `/r/skin-contract.json`, so a coding agent can read what it is allowed to re-value before it edits
-    anything. See [agent surface](/agent-surface).</GuidePoint>
+    <GuidePoint>**The contract is published.** Per paint family, the knob surface ships as `/r/contract/<family>.json`
+    and the audited pairs as its `.contrast.json` sibling, so a coding agent reads what it is allowed to re-value before
+    it edits anything — one family at a time. See [agent surface](/agent-surface).</GuidePoint>
   </GuidePoints>
 
   One honest limit: the runner lives in this repository, not in your install, so a skin you write yourself is not

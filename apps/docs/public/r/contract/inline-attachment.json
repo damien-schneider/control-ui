@@ -1,0 +1,192 @@
+{
+  "version": 8,
+  "family": "inline-attachment",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "inline-attachment"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-inline-attachment-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-scene)"
+    },
+    {
+      "name": "--cui-inline-attachment-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-inline-attachment-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-inline-attachment-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-inline-attachment-hover-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-md)"
+    },
+    {
+      "name": "--cui-inline-attachment-content-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-inline-attachment-content-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--background) l c h / 0.85)"
+    },
+    {
+      "name": "--cui-inline-attachment-content-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-inline-attachment-content-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-sm)"
+    }
+  ],
+  "parts": {
+    "inline-attachment": {
+      "root": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": [
+          {
+            "attribute": "data-state",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "error",
+              "pending",
+              "ready"
+            ]
+          }
+        ]
+      },
+      "action": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "actions": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "description": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "document": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "document-heading": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "document-line": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": [
+          {
+            "attribute": "data-width",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "long",
+              "longest",
+              "medium",
+              "short"
+            ]
+          }
+        ]
+      },
+      "document-sheet": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "document-stamp": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "image": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "media-image": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "placeholder": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "inline-attachment",
+        "registryItems": [
+          "inline-attachment"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/inline-attachment.contrast.json"
+}

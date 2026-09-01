@@ -1891,7 +1891,7 @@ export const registryMetadata = {
     ],
   },
   core: {
-    dependencies: ["class-variance-authority@^0.7.1", "clsx@^2.1.1", "tailwind-merge@^3.6.0"],
+    dependencies: ["clsx@^2.1.1", "tailwind-merge@^3.6.0"],
     registryDependencies: [],
     sourceManifestPath: "registry/control-ui/core.json",
     files: [
@@ -1914,6 +1914,11 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/control-variants.ts",
         target: "@components/control-ui/control-variants.ts",
         type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/scripts/contrast-eval.mjs",
+        target: "@components/control-ui/scripts/contrast-eval.mjs",
+        type: "registry:file",
       },
       {
         path: "src/registry/sources/control-ui/scripts/control-ui-doctor.mjs",

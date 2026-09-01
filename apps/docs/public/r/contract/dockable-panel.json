@@ -1,0 +1,152 @@
+{
+  "version": 8,
+  "family": "dockable-panel",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "dockable-panel"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-dockable-panel-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-dockable-panel-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-dockable-panel-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card-foreground)"
+    },
+    {
+      "name": "--cui-dockable-panel-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--border) l c h / 0.8)"
+    },
+    {
+      "name": "--cui-dockable-panel-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-pop)"
+    },
+    {
+      "name": "--cui-dockable-panel-drop-zone-active-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.12)"
+    },
+    {
+      "name": "--cui-dockable-panel-drop-zone-active-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.55)"
+    }
+  ],
+  "parts": {
+    "dockable-panel": {
+      "root": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": [
+          {
+            "attribute": "data-dragging",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-placement",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": []
+      },
+      "content": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": [
+          {
+            "attribute": "data-padding",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "none"
+            ]
+          }
+        ]
+      },
+      "drag-handle": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": []
+      },
+      "drop-zone": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": [
+          {
+            "attribute": "data-active",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          }
+        ]
+      },
+      "header": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": []
+      },
+      "title": {
+        "family": "dockable-panel",
+        "registryItems": [
+          "dockable-panel"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [
+    "--cui-dockable-panel-drop-zone-active-background"
+  ],
+  "contrast": "/r/contract/dockable-panel.contrast.json"
+}

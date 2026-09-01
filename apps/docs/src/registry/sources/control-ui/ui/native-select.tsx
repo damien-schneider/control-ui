@@ -1,6 +1,5 @@
 import type { ComponentProps, CSSProperties } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
-import { controlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
@@ -19,7 +18,7 @@ export function NativeSelect({ size = "md", className, children, ...props }: Nat
         data-size={size}
         data-control-family="field"
         data-control="true"
-        className={cn("w-full min-w-0 cursor-pointer pr-[calc(var(--padding-x)*1.4)]", controlSize({ size }), className)}
+        className={cn("w-full min-w-0 cursor-pointer", className)}
         {...props}
       >
         {children}

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "family": "table",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table",
+          "data-control-ui": "table",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table",
+          "data-control-ui": "table",
+          "data-slot": "head"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "text": "--cui-table-header-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

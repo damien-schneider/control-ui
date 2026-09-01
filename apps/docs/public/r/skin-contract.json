@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItemMapping": {
     "accordion": [
@@ -15881,13 +15881,31 @@
         "defaultValue": "1rem"
       },
       {
-        "name": "--cui-button-bg",
+        "name": "--cui-button-height",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-h-md)"
+      },
+      {
+        "name": "--cui-button-padding-inline",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--padding-x)"
+      },
+      {
+        "name": "--cui-button-font-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "1rem",
+        "defaultValue": "var(--text-body)"
+      },
+      {
+        "name": "--cui-button-background",
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "transparent"
       },
       {
-        "name": "--cui-button-bg-image",
+        "name": "--cui-button-background-image",
         "syntax": "*",
         "initialValue": "",
         "defaultValue": "none"
@@ -15899,10 +15917,10 @@
         "defaultValue": "var(--muted-foreground)"
       },
       {
-        "name": "--cui-button-hover-bg",
+        "name": "--cui-button-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-button-hover-foreground",
@@ -15911,10 +15929,10 @@
         "defaultValue": "var(--foreground)"
       },
       {
-        "name": "--cui-button-press-bg",
+        "name": "--cui-button-press-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--cui-button-hover-bg)"
+        "defaultValue": "var(--cui-button-hover-background)"
       },
       {
         "name": "--cui-button-press-scale",
@@ -15923,10 +15941,10 @@
         "defaultValue": "0.98"
       },
       {
-        "name": "--cui-button-active-bg",
+        "name": "--cui-button-active-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
+        "defaultValue": "var(--active-fill)"
       },
       {
         "name": "--cui-button-active-foreground",
@@ -15935,10 +15953,10 @@
         "defaultValue": "var(--foreground)"
       },
       {
-        "name": "--cui-button-active-hover-bg",
+        "name": "--cui-button-active-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--cui-button-active-bg)"
+        "defaultValue": "var(--cui-button-active-background)"
       },
       {
         "name": "--cui-button-shadow",
@@ -16334,7 +16352,7 @@
         "name": "--cui-code-border-color",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--border)"
+        "defaultValue": "var(--control-rim)"
       },
       {
         "name": "--cui-code-shadow",
@@ -16835,19 +16853,19 @@
         "name": "--cui-field-border-color",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--border)"
+        "defaultValue": "var(--control-rim)"
       },
       {
         "name": "--cui-field-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-field-shadow",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "var(--shadow-sm)"
+        "defaultValue": "var(--shadow-inset)"
       },
       {
         "name": "--cui-field-backdrop-filter",
@@ -16860,6 +16878,24 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "var(--border)"
+      },
+      {
+        "name": "--cui-field-height",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--control-h-md)"
+      },
+      {
+        "name": "--cui-field-padding-inline",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "var(--padding-x)"
+      },
+      {
+        "name": "--cui-field-font-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "1rem",
+        "defaultValue": "var(--text-body)"
       }
     ],
     "gradient-editor": [
@@ -17129,7 +17165,7 @@
         "name": "--cui-kbd-border-color",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--border)"
+        "defaultValue": "var(--control-rim)"
       },
       {
         "name": "--cui-kbd-shadow",
@@ -17365,13 +17401,13 @@
         "name": "--cui-popup-border-color",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--border)"
+        "defaultValue": "var(--control-rim)"
       },
       {
         "name": "--cui-popup-border-width",
         "syntax": "<length>",
         "initialValue": "0px",
-        "defaultValue": "1px"
+        "defaultValue": "var(--control-rim-width)"
       },
       {
         "name": "--cui-popup-shadow",
@@ -17407,7 +17443,7 @@
         "name": "--cui-popup-item-highlight-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-popup-item-highlight-foreground",
@@ -17481,7 +17517,7 @@
         "name": "--cui-range-thumb-border-color",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "var(--border)"
+        "defaultValue": "var(--control-rim)"
       },
       {
         "name": "--cui-range-thumb-shadow",
@@ -17719,7 +17755,7 @@
         "name": "--cui-sidebar-menu-button-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-sidebar-menu-button-hover-foreground",
@@ -17737,7 +17773,7 @@
         "name": "--cui-sidebar-menu-button-active-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
+        "defaultValue": "var(--active-fill)"
       },
       {
         "name": "--cui-sidebar-menu-button-active-foreground",
@@ -17981,7 +18017,7 @@
         "name": "--cui-tabs-list-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.07)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-tabs-list-backdrop-filter",
@@ -18017,7 +18053,7 @@
         "name": "--cui-tabs-list-shadow",
         "syntax": "*",
         "initialValue": "",
-        "defaultValue": "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset)"
       },
       {
         "name": "--cui-tabs-border-color",
@@ -18247,7 +18283,7 @@
         "name": "--cui-toolbar-item-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-toolbar-item-hover-foreground",
@@ -18259,7 +18295,7 @@
         "name": "--cui-toolbar-item-active-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.08)"
+        "defaultValue": "var(--active-fill)"
       },
       {
         "name": "--cui-toolbar-item-active-foreground",
@@ -18361,7 +18397,7 @@
         "name": "--cui-tree-item-trigger-hover-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.04)"
+        "defaultValue": "var(--hover-fill)"
       },
       {
         "name": "--cui-tree-item-trigger-hover-foreground",
@@ -18373,7 +18409,7 @@
         "name": "--cui-tree-item-trigger-selected-background",
         "syntax": "<color>",
         "initialValue": "transparent",
-        "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+        "defaultValue": "var(--active-fill)"
       },
       {
         "name": "--cui-tree-item-trigger-selected-foreground",

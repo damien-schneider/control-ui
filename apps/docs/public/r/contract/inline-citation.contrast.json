@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "family": "inline-citation",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "inline-citation",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slide": "scope",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-slot": "navigation"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-popup-kind": "popover",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-popup-kind": "popover",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-inline-citation-navigation-background"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-inline-citation-trigger-background",
+        "text": "--cui-inline-citation-trigger-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-inline-citation-trigger-hover-background",
+        "text": "--cui-inline-citation-trigger-hover-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-inline-citation-trigger-hover-background",
+        "text": "--cui-inline-citation-trigger-hover-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": true
+    }
+  ]
+}

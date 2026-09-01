@@ -1,6 +1,8 @@
 import { CUSTOM_THEME_STORAGE_KEY } from "@/components/theme";
 import { hexToOklchColor } from "./color-utils";
+import { toDtcg } from "./dtcg";
 import { isSkinId } from "./presets";
+import { themeArtifactCss } from "./theme-artifact";
 import type { ControlUiThemeArtifactV1, CustomThemeProfile, LabelMode, ThemeState, TokenValues } from "./types";
 
 type ThemeProfileOptions = {
@@ -205,22 +207,35 @@ export function artifactFromThemeProfile(profile: CustomThemeProfile): ControlUi
   };
 }
 
-export function themeArtifactFilename(name: string) {
+export function themeArtifactFilename(name: string, extension: "json" | "css" | "tokens.json" = "json") {
   const slug = name
     .trim()
     .toLocaleLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 48);
-  return `${slug || "control-ui-theme"}.control-ui-theme.json`;
+  return `${slug || "control-ui-theme"}.control-ui-theme.${extension}`;
+}
+
+export function downloadFile(name: string, content: string, type: string) {
+  const url = URL.createObjectURL(new Blob([content], { type }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = name;
+  link.click();
+  URL.revokeObjectURL(url);
 }
 
 export function downloadThemeArtifact(artifact: ControlUiThemeArtifactV1) {
-  const blob = new Blob([`${JSON.stringify(artifact, null, 2)}\n`], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = themeArtifactFilename(artifact.name);
-  link.click();
-  URL.revokeObjectURL(url);
+  downloadFile(themeArtifactFilename(artifact.name), `${JSON.stringify(artifact, null, 2)}\n`, "application/json");
+}
+
+/** The same file the doctor emits, for the reader who has the artifact in the browser rather than on disk. */
+export function downloadThemeCss(artifact: ControlUiThemeArtifactV1) {
+  downloadFile(themeArtifactFilename(artifact.name, "css"), themeArtifactCss(artifact), "text/css");
+}
+
+/** DTCG shape, for importing the theme into Tokens Studio or Figma variables; it imports back here unchanged. */
+export function downloadThemeTokens(artifact: ControlUiThemeArtifactV1) {
+  downloadFile(themeArtifactFilename(artifact.name, "tokens.json"), `${JSON.stringify(toDtcg(artifact), null, 2)}\n`, "application/json");
 }

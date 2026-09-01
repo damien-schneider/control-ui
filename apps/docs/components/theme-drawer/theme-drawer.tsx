@@ -6,9 +6,8 @@ import { ShieldCheckIcon, SparklesIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { useId, useMemo, useState } from "react";
-import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
-import { Button, buttonContentClasses, buttonRecipeClasses } from "@/components/control-ui/ui/button";
+import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
@@ -483,19 +482,14 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
                       category.group === "color" ? (
                         <div className="grid gap-3">
                           <ContrastPanel t={t} onFix={(textFixes) => patch({ textFixes })} />
-                          <Link
-                            href="/theme-accessibility"
-                            onClick={() => setOpen(false)}
-                            data-control-ui="button"
-                            data-slot="root"
-                            data-variant="surface"
-                            className={buttonRecipeClasses("sm")}
+                          <ButtonLink
+                            render={<Link href="/theme-accessibility" onClick={() => setOpen(false)} />}
+                            variant="surface"
+                            size="sm"
                           >
-                            <span className={buttonContentClasses}>
-                              <ShieldCheckIcon aria-hidden className="size-3.5" />
-                              Open full accessibility audit
-                            </span>
-                          </Link>
+                            <ShieldCheckIcon aria-hidden className="size-3.5" />
+                            Open full accessibility audit
+                          </ButtonLink>
                         </div>
                       ) : null
                     }
@@ -509,19 +503,15 @@ export function ThemeEditorContent({ labelledById, describedById }: { labelledBy
 
       <div className="mt-auto flex flex-col gap-2.5 border-t border-border p-3.5 sm:flex-row sm:items-center sm:justify-end">
         {storageError ? <p className="flex-1 text-[10px] leading-relaxed text-destructive-text">{storageError}</p> : null}
-        <Link
-          href="/theme-ai-builder"
-          onClick={() => setOpen(false)}
-          data-control-ui="button"
-          data-slot="root"
-          data-variant="surface"
-          className={cn(buttonRecipeClasses("sm"), "w-full sm:w-auto")}
+        <ButtonLink
+          render={<Link href="/theme-ai-builder" onClick={() => setOpen(false)} />}
+          variant="surface"
+          size="sm"
+          className="w-full sm:w-auto"
         >
-          <span className={buttonContentClasses}>
-            <SparklesIcon aria-hidden className="size-3.5" />
-            Build with AI
-          </span>
-        </Link>
+          <SparklesIcon aria-hidden className="size-3.5" />
+          Build with AI
+        </ButtonLink>
         <Button variant="solid" tone="primary" size="sm" onClick={copyCss} className="w-full sm:w-auto">
           {copied ? "Copied ✓" : "Copy CSS variables"}
         </Button>
