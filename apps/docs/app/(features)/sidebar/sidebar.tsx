@@ -5,8 +5,10 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
 import { type RefObject, useState } from "react";
+import { referenceGroupTitle } from "@/app/(features)/catalog/guides";
 import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
+import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import {
@@ -21,20 +23,21 @@ import {
 } from "@/components/control-ui/ui/sidebar";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { ControlUiLogo } from "./control-ui-logo";
-import { guideGroupIcons, primitiveCategorySidebarIcons, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
+import { primitiveCategorySidebarIcons, referenceGroupIcon, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
-import { DocsNavGroup, SkillConcernNavGroups } from "./nav-groups";
+import { DocsNavGroup, ReferenceDoorRow, ReferencePane, SkillConcernNavGroups } from "./nav-groups";
 import {
   agentNavItems,
   ctaGuide,
   extensionNavItems,
   getUseCaseNavGroups,
-  guideNavGroups,
+  guideNavSections,
   hookNavItems,
   primitiveNavGroups,
   utilNavItems,
 } from "./nav-items";
 import { SidebarSetupControls, type SidebarSetupControlsScope } from "./setup-controls";
+import { StartCard } from "./start-card";
 import type { DocsSidebarContentProps, SidebarMode } from "./types";
 import { useSidebarNavigation } from "./use-sidebar-navigation";
 
@@ -76,6 +79,96 @@ function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; act
   );
 }
 
+type CatalogNavGroupsProps = Pick<
+  DocsSidebarContentProps,
+  "skills" | "skillConcerns" | "components" | "blocks" | "primitives" | "hooks" | "utils" | "extensions"
+> & {
+  mode: SidebarMode;
+  active: ActivePageId;
+  onNavigate: () => void;
+};
+
+function CatalogNavGroups({
+  mode,
+  active,
+  onNavigate,
+  skills,
+  skillConcerns,
+  components,
+  blocks,
+  primitives,
+  hooks,
+  utils,
+  extensions,
+}: CatalogNavGroupsProps) {
+  if (mode === "skills") return <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />;
+
+  if (mode === "agents")
+    return (
+      <DocsNavGroup
+        title="Agents"
+        icon={sidebarGroupIcons.agents}
+        items={agentNavItems(components)}
+        active={active}
+        prefix="/ai/"
+        onNavigate={onNavigate}
+      />
+    );
+
+  if (mode === "use-cases")
+    return getUseCaseNavGroups(blocks).map((group) => (
+      <DocsNavGroup
+        key={group.id}
+        title={group.title}
+        icon={useCaseKindSidebarIcons[group.kind]}
+        items={group.items}
+        active={active}
+        prefix="/use-cases/"
+        onNavigate={onNavigate}
+      />
+    ));
+
+  return (
+    <>
+      {primitiveNavGroups(primitives).map((group) => (
+        <DocsNavGroup
+          key={group.id}
+          title={group.title}
+          icon={primitiveCategorySidebarIcons[group.id]}
+          items={group.items}
+          active={active}
+          prefix="/primitives/"
+          onNavigate={onNavigate}
+        />
+      ))}
+      <DocsNavGroup
+        title="Hooks"
+        icon={sidebarGroupIcons.hooks}
+        items={hookNavItems(hooks)}
+        active={active}
+        prefix="/hooks/"
+        onNavigate={onNavigate}
+      />
+      <DocsNavGroup
+        title="Utils"
+        icon={sidebarGroupIcons.utils}
+        items={utilNavItems(utils)}
+        active={active}
+        prefix="/utils/"
+        onNavigate={onNavigate}
+      />
+      <DocsNavGroup
+        title="Extensions"
+        icon={sidebarGroupIcons.extensions}
+        items={extensionNavItems(extensions)}
+        active={active}
+        prefix="/extensions/"
+        onNavigate={onNavigate}
+      />
+    </>
+  );
+}
+
 export function DocsSidebarContent({
   active,
   githubStars,
@@ -112,15 +205,22 @@ export function DocsSidebarContent({
     formattedGitHubStars == null
       ? "Control UI on GitHub"
       : `Control UI on GitHub, ${formattedGitHubStars} ${githubStars === 1 ? "star" : "stars"}`;
-  const caseNavigationGroups = getUseCaseNavGroups(blocks);
-  const [openGuideGroups, setOpenGuideGroups] = useState<Record<string, boolean>>({});
-  const guideGroupsWithOpenState = guideNavGroups(guides).map((group) => ({
-    ...group,
-    open: group.collapsible ? (openGuideGroups[group.id] ?? group.items.some((item) => item.id === active)) : undefined,
-  }));
+  const guideSections = guideNavSections(guides);
+  const startGroup = guideSections.top.find((group) => group.id === "start");
+  const agentGroup = guideSections.top.find((group) => group.id === "agents");
+  const isInsideReference =
+    active === "reference" || guideSections.reference.some((group) => group.items.some((item) => item.id === active));
+  const [paneOverride, setPaneOverride] = useState<"root" | "reference" | null>(null);
+  const pane = paneOverride ?? (isInsideReference ? "reference" : "root");
 
-  function toggleGuideGroup(id: string, open: boolean) {
-    setOpenGuideGroups((previous) => ({ ...previous, [id]: open }));
+  function handleNavigate() {
+    setPaneOverride(null);
+    onNavigate();
+  }
+
+  function handleModeNavigate(nextMode: SidebarMode) {
+    setPaneOverride(null);
+    onModeNavigate(nextMode);
   }
 
   const { isMobile, state } = useSidebar();
@@ -151,88 +251,58 @@ export function DocsSidebarContent({
             <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
           </div>
         </SidebarHeader>
-        <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
+        <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={handleModeNavigate} />
         <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
 
         <SidebarContent>
-          {guideGroupsWithOpenState.map((group) => (
-            <DocsNavGroup
-              key={group.id}
-              title={group.title}
-              icon={guideGroupIcons[group.id]}
-              items={group.items}
-              active={active}
-              prefix="/"
-              onNavigate={onNavigate}
-              open={group.open}
-              onOpenChange={(next) => toggleGuideGroup(group.id, next)}
-            />
-          ))}
-          {mode === "skills" ? (
-            <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />
-          ) : null}
-          {mode === "agents" ? (
-            <DocsNavGroup
-              title="Agents"
-              icon={sidebarGroupIcons.agents}
-              items={agentNavItems(components)}
-              active={active}
-              prefix="/ai/"
-              onNavigate={onNavigate}
-            />
-          ) : null}
-          {mode === "use-cases"
-            ? caseNavigationGroups.map((group) => (
-                <DocsNavGroup
-                  key={group.id}
-                  title={group.title}
-                  icon={useCaseKindSidebarIcons[group.kind]}
-                  items={group.items}
-                  active={active}
-                  prefix="/use-cases/"
-                  onNavigate={onNavigate}
-                />
-              ))
-            : null}
-          {mode === "primitives" ? (
-            <>
-              {primitiveNavGroups(primitives).map((group) => (
-                <DocsNavGroup
-                  key={group.id}
-                  title={group.title}
-                  icon={primitiveCategorySidebarIcons[group.id]}
-                  items={group.items}
-                  active={active}
-                  prefix="/primitives/"
-                  onNavigate={onNavigate}
-                />
-              ))}
-              <DocsNavGroup
-                title="Hooks"
-                icon={sidebarGroupIcons.hooks}
-                items={hookNavItems(hooks)}
+          {pane === "reference" ? (
+            <div
+              key="reference"
+              className={cn(
+                "flex min-h-0 flex-col gap-2",
+                paneOverride && "animate-[docs-pane-in-right_var(--duration-base)_var(--ease-standard)]",
+              )}
+            >
+              <ReferencePane
+                title={referenceGroupTitle}
+                groups={guideSections.reference}
                 active={active}
-                prefix="/hooks/"
-                onNavigate={onNavigate}
+                onNavigate={handleNavigate}
+                onBack={() => setPaneOverride("root")}
               />
-              <DocsNavGroup
-                title="Utils"
-                icon={sidebarGroupIcons.utils}
-                items={utilNavItems(utils)}
+            </div>
+          ) : (
+            <div
+              key="root"
+              className={cn(
+                "flex min-h-0 flex-col gap-2",
+                paneOverride && "animate-[docs-pane-in-left_var(--duration-base)_var(--ease-standard)]",
+              )}
+            >
+              {startGroup && agentGroup ? (
+                <StartCard steps={startGroup} agent={agentGroup} active={active} onNavigate={handleNavigate} />
+              ) : null}
+              <ReferenceDoorRow
+                title={referenceGroupTitle}
+                icon={referenceGroupIcon}
+                isInside={isInsideReference}
+                onOpen={() => setPaneOverride("reference")}
+              />
+              <CatalogNavGroups
+                mode={mode}
                 active={active}
-                prefix="/utils/"
-                onNavigate={onNavigate}
+                onNavigate={handleNavigate}
+                skills={skills}
+                skillConcerns={skillConcerns}
+                components={components}
+                blocks={blocks}
+                primitives={primitives}
+                hooks={hooks}
+                utils={utils}
+                extensions={extensions}
               />
-              <DocsNavGroup
-                title="Extensions"
-                icon={sidebarGroupIcons.extensions}
-                items={extensionNavItems(extensions)}
-                active={active}
-                prefix="/extensions/"
-                onNavigate={onNavigate}
-              />
-            </>
-          ) : null}
+            </div>
+          )}
         </SidebarContent>
 
         <SidebarFooter>

@@ -48,9 +48,7 @@ for (const page of docsPageManifest) {
   if (!page.summary.trim()) failures.push(`${page.href} has no summary`);
   if (seo.url !== absoluteSiteUrl(page.href)) failures.push(`${page.href} canonical does not match the page manifest`);
   if (seo.socialImage.url !== `/og${page.href}`) failures.push(`${page.href} social image does not match the canonical path`);
-  if (page.href !== "/overview" && !seo.socialImage.alt.includes(page.name)) {
-    failures.push(`${page.href} social image alt does not name the page`);
-  }
+  if (!seo.socialImage.alt.includes(page.name)) failures.push(`${page.href} social image alt does not name the page`);
   seoTitles.push(seo.title);
   socialImageUrls.push(seo.socialImage.url);
 }

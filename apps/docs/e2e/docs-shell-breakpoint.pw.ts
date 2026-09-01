@@ -105,12 +105,9 @@ test("Cuicui inherits shell spacing and aligns sidebar sections", async ({ page 
 
   const sidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
   await expect(sidebar).toHaveCSS("width", "310px");
-  const createBox = await sidebar.getByRole("link", { name: "Create app" }).boundingBox();
-  const overviewBox = await sidebar.getByRole("link", { name: "Overview", exact: true }).boundingBox();
+  const overviewBox = await sidebar.getByRole("link", { name: "Overview" }).boundingBox();
   const githubBox = await sidebar.getByRole("link", { name: /Control UI on GitHub/ }).boundingBox();
-  if (!createBox || !overviewBox || !githubBox) throw new Error("Sidebar section geometry is unavailable");
-  expect(Math.abs(createBox.x - overviewBox.x)).toBeLessThan(1);
-  expect(Math.abs(createBox.x - githubBox.x)).toBeLessThan(1);
-  expect(Math.abs(createBox.width - overviewBox.width)).toBeLessThan(1);
-  expect(Math.abs(createBox.width - githubBox.width)).toBeLessThan(1);
+  if (!overviewBox || !githubBox) throw new Error("Sidebar section geometry is unavailable");
+  expect(Math.abs(overviewBox.x - githubBox.x)).toBeLessThan(1);
+  expect(Math.abs(overviewBox.width - githubBox.width)).toBeLessThan(1);
 });

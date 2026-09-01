@@ -1,0 +1,34 @@
+<GuideSection id="compose" title="Compose your runtime">
+  Render provider-owned messages directly with Control UI components. Keep native provider types — no intermediary
+  message schema, no store to adopt.
+
+  <GuideCode kind="component-usage" />
+
+  <GuideCheck>
+    Your provider's own message objects reaching the screen unmapped: the runtime keeps the transport and the
+    lifecycle, the components keep the paint.
+  </GuideCheck>
+</GuideSection>
+
+<GuideSection id="props" title="One prop convention">
+  Every component reads the same four props, so a call site written for one reads like a call site written for
+  another.
+
+  <GuidePoints>
+    <GuidePoint>`variant` picks the recipe, `tone` picks the semantic color, `size` picks the control height, and `iconOnly` collapses the label.</GuidePoint>
+    <GuidePoint>Composition uses `render` where other libraries use `asChild`.</GuidePoint>
+    <GuidePoint>Coming from another library, read the installed component's exported prop types before rewriting a call site: a variant with no counterpart is a decision, not a guess.</GuidePoint>
+    <GuidePoint>A migrated call site keeps its layout classes — width, flex, grid, gap — and sheds its styling ones. Border, radius, background, and padding utilities now fight the recipe underneath.</GuidePoint>
+  </GuidePoints>
+
+  Browse what is installed: [components](/ai) for the agent surfaces, [blocks](/use-cases) for complete recipes,
+  [primitives](/primitives) for the classic app surface.
+</GuideSection>
+
+<GuideSection id="contract" title="The contract">
+  Installed source is owned but never edited. Every look change belongs in the skin: the source is what the update
+  overwrites, and the three skin-owned files are what it never touches.
+
+  Components accept plain props and children. Anatomy is stable without runtime metadata, so a skin can re-paint every
+  screen that reads these token names without either side knowing about the other.
+</GuideSection>

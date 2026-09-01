@@ -1,24 +1,37 @@
+export type GuideCodeId =
+  | "skin-install"
+  | "all-install"
+  | "skin-scaffold-install"
+  | "component-install"
+  | "block-install"
+  | "component-usage"
+  | "runtime-agnostic-message"
+  | "agent-endpoints"
+  | "agent-llms"
+  | "update-install"
+  | "skill-install";
+
 type GuideSectionCatalogEntry = {
   id: string;
   title: string;
-  code?:
-    | "skin-install"
-    | "skin-scaffold-install"
-    | "component-install"
-    | "block-install"
-    | "component-usage"
-    | "runtime-agnostic-message"
-    | "agent-endpoints"
-    | "agent-llms"
-    | "update-install";
+  code?: GuideCodeId;
 };
 
 export const guideGroups = [
-  { id: "guides", title: "Guides", collapsible: false },
-  { id: "theming", title: "Theming", collapsible: true },
-  { id: "concepts", title: "Concepts", collapsible: true },
-  { id: "compare", title: "Compare", collapsible: true },
-] as const satisfies readonly { id: string; title: string; collapsible: boolean }[];
+  { id: "start", title: "Start" },
+  { id: "agents", title: "With your agent" },
+  { id: "theme", title: "Theme", parent: "reference" },
+  { id: "maintain", title: "Maintain", parent: "reference" },
+  { id: "why", title: "Why Control UI", parent: "reference" },
+] as const satisfies readonly { id: string; title: string; parent?: "reference" }[];
+
+export const referenceGroupTitle = "Reference";
+
+export const referenceOverview = {
+  id: "reference",
+  name: referenceGroupTitle,
+  summary: "Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.",
+} as const;
 
 export type GuideGroupId = (typeof guideGroups)[number]["id"];
 
@@ -26,49 +39,72 @@ export const guideEntries = [
   {
     id: "create",
     kind: "Guide",
-    group: "guides",
+    group: "start",
     name: "Create app",
     summary:
       "Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.",
     cta: true,
     sections: [
       { id: "command", title: "Create your app" },
-      { id: "agent", title: "Install in an existing app" },
       { id: "included", title: "What you get" },
-    ],
-  },
-  {
-    id: "overview",
-    kind: "Guide",
-    group: "guides",
-    name: "Overview",
-    summary: "An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.",
-    sections: [
-      { id: "why", title: "Why it exists" },
-      { id: "model", title: "How it works" },
-      { id: "css-first", title: "CSS-first by default" },
     ],
   },
   {
     id: "get-started",
     kind: "Guide",
-    group: "guides",
-    name: "Get started",
-    summary: "Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.",
+    group: "start",
+    name: "Install",
+    summary: "One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.",
     sections: [
-      { id: "choose", title: "Choose what to install" },
-      { id: "install-skin", title: "Install a skin", code: "skin-install" },
-      { id: "install-component", title: "Install a component", code: "component-install" },
-      { id: "install-block", title: "Install a block", code: "block-install" },
+      { id: "install", title: "Install the set and its skin", code: "all-install" },
+      { id: "items", title: "Install one item at a time", code: "component-install" },
       { id: "wire-css", title: "Wire the CSS" },
-      { id: "use", title: "Compose your runtime", code: "component-usage" },
-      { id: "update", title: "Update installed components", code: "update-install" },
+      { id: "contract", title: "The contract" },
+    ],
+  },
+  {
+    id: "doctor",
+    kind: "Guide",
+    group: "start",
+    name: "Verify",
+    summary:
+      "The doctor audits what the registry cannot see from inside one install: imports that resolve, theme order, app blocks fighting the skin, and the data-skin stamp.",
+    sections: [
+      { id: "run", title: "Run the doctor" },
+      { id: "clean", title: "What a clean install looks like" },
+      { id: "reports", title: "What it reports" },
+      { id: "contract", title: "The contract" },
+    ],
+  },
+  {
+    id: "build-a-screen",
+    kind: "Guide",
+    group: "start",
+    name: "Build a screen",
+    summary: "Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.",
+    sections: [
+      { id: "compose", title: "Compose your runtime", code: "component-usage" },
+      { id: "props", title: "One prop convention" },
+      { id: "contract", title: "The contract" },
+    ],
+  },
+  {
+    id: "theming",
+    kind: "Guide",
+    group: "start",
+    name: "Theme it",
+    summary: "Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.",
+    sections: [
+      { id: "pack", title: "Pick the pack" },
+      { id: "artifact", title: "One artifact owns the theme" },
+      { id: "contrast", title: "Contrast is part of the theme" },
+      { id: "deeper", title: "Go deeper" },
     ],
   },
   {
     id: "create-a-skin",
     kind: "Guide",
-    group: "theming",
+    group: "theme",
     name: "Create a skin",
     summary:
       "Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.",
@@ -80,20 +116,101 @@ export const guideEntries = [
     ],
   },
   {
-    id: "shadcn-compatibility",
+    id: "theme-ai-builder",
     kind: "Guide",
-    group: "guides",
-    name: "shadcn compatibility",
-    summary: "shadcn registry, token, and ownership conventions without writing to components/ui.",
+    group: "theme",
+    name: "Theme AI builder",
+    summary: "Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.",
+    layout: "wide",
+    sections: [],
+  },
+  {
+    id: "theme-accessibility",
+    kind: "Guide",
+    group: "theme",
+    name: "Theme accessibility",
+    summary: "Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.",
+    layout: "wide",
+    sections: [],
+  },
+  {
+    id: "update",
+    kind: "Guide",
+    group: "maintain",
+    name: "Update & diff",
+    summary: "Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.",
     sections: [
-      { id: "contract", title: "Compatible by contract" },
-      { id: "tokens", title: "Bring an existing theme" },
+      { id: "run", title: "Diff, then overwrite", code: "update-install" },
+      { id: "after", title: "After the overwrite" },
+      { id: "contract", title: "The contract" },
+    ],
+  },
+  {
+    id: "contract-versions",
+    kind: "Guide",
+    group: "maintain",
+    name: "Contract versions",
+    summary: "The skin contract is version 7. Crossing a version reinstalls core, the affected items, and the skin together.",
+    sections: [
+      { id: "current", title: "Where the contract stands" },
+      { id: "crossing", title: "Crossing a version" },
+      { id: "activity", title: "Version 4: ToolCall became Activity" },
+    ],
+  },
+  {
+    id: "setup-prompt",
+    kind: "Guide",
+    group: "agents",
+    name: "Setup prompt",
+    summary:
+      "One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.",
+    sections: [
+      { id: "prompt", title: "The prompt" },
+      { id: "what", title: "What it does" },
+      { id: "when", title: "When to use it" },
+    ],
+  },
+  {
+    id: "agent-skill",
+    kind: "Guide",
+    group: "agents",
+    name: "Agent skill",
+    summary:
+      "The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.",
+    sections: [
+      { id: "installed", title: "What gets installed" },
+      { id: "commands", title: "The commands it reaches for" },
+      { id: "install", title: "Install it on its own", code: "skill-install" },
+    ],
+  },
+  {
+    id: "agent-surface",
+    kind: "Guide",
+    group: "agents",
+    name: "Machine docs",
+    summary: "Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.",
+    sections: [
+      { id: "envelope", title: "One registry, multiple interfaces" },
+      { id: "endpoints", title: "HTTP API", code: "agent-endpoints" },
+      { id: "agent-docs", title: "Machine-readable docs", code: "agent-llms" },
+    ],
+  },
+  {
+    id: "overview",
+    kind: "Guide",
+    group: "why",
+    name: "Why Control UI",
+    summary: "An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.",
+    sections: [
+      { id: "why", title: "Why it exists" },
+      { id: "model", title: "How it works" },
+      { id: "css-first", title: "CSS-first by default" },
     ],
   },
   {
     id: "architecture",
     kind: "Guide",
-    group: "concepts",
+    group: "why",
     name: "Architecture",
     summary: "Runtime ownership, skin layering, customization paths, and registry derivation.",
     sections: [
@@ -107,21 +224,9 @@ export const guideEntries = [
     ],
   },
   {
-    id: "agent-surface",
-    kind: "Guide",
-    group: "concepts",
-    name: "Agent surface",
-    summary: "Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.",
-    sections: [
-      { id: "envelope", title: "One registry, multiple interfaces" },
-      { id: "endpoints", title: "HTTP API", code: "agent-endpoints" },
-      { id: "agent-docs", title: "Machine-readable docs", code: "agent-llms" },
-    ],
-  },
-  {
     id: "lock-in",
     kind: "Guide",
-    group: "concepts",
+    group: "why",
     name: "Lock-in",
     summary: "What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.",
     sections: [
@@ -131,27 +236,20 @@ export const guideEntries = [
     ],
   },
   {
-    id: "theme-ai-builder",
+    id: "shadcn-compatibility",
     kind: "Guide",
-    group: "theming",
-    name: "Theme AI builder",
-    summary: "Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.",
-    layout: "wide",
-    sections: [],
-  },
-  {
-    id: "theme-accessibility",
-    kind: "Guide",
-    group: "theming",
-    name: "Theme accessibility",
-    summary: "Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.",
-    layout: "wide",
-    sections: [],
+    group: "why",
+    name: "shadcn compatibility",
+    summary: "shadcn registry, token, and ownership conventions without writing to components/ui.",
+    sections: [
+      { id: "contract", title: "Compatible by contract" },
+      { id: "tokens", title: "Bring an existing theme" },
+    ],
   },
   {
     id: "control-ui-vs-shadcn-ui",
     kind: "Guide",
-    group: "compare",
+    group: "why",
     name: "Control UI vs shadcn/ui",
     summary:
       "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.",
@@ -198,7 +296,7 @@ export const guideEntries = [
   {
     id: "best-react-component-libraries-for-ai-interfaces",
     kind: "Guide",
-    group: "compare",
+    group: "why",
     name: "Best React component libraries for AI interfaces",
     summary:
       "Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.",

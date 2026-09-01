@@ -18,7 +18,7 @@ export const catalogOverviews = [
   {
     id: "use-cases",
     label: "Library",
-    name: "Use cases",
+    name: "Blocks",
     summary: "Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.",
     kind: "Block",
     href: "/use-cases",

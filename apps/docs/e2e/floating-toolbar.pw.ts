@@ -14,7 +14,7 @@ test("floating toolbar contains search and skin controls while section navigatio
 
   const toolbar = page.locator("[data-docs-floating-toolbar]");
   const sidebarHeader = page.locator('[data-control-ui="sidebar"][data-slot="header"]');
-  const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
+  const sectionNavigation = page.getByRole("navigation", { name: "Catalogs" });
 
   await expect(toolbar.getByRole("combobox", { name: "Search documentation" })).toBeVisible();
   await expect(toolbar.getByRole("button", { name: "Edit theme" })).toBeVisible();
@@ -30,7 +30,7 @@ test("floating toolbar contains search and skin controls while section navigatio
   await expect(toolbar.getByRole("navigation")).toHaveCount(0);
   await expect(toolbar.getByRole("link")).toHaveCount(0);
   await expect(sectionNavigation).toBeVisible();
-  await expect(sectionNavigation.getByRole("combobox", { name: "Documentation section" })).toHaveText("Primitives");
+  await expect(sectionNavigation.getByRole("link", { name: "Primitives" })).toHaveAttribute("aria-current", "true");
 
   const [headerBox, navigationBox] = await Promise.all([sidebarHeader.boundingBox(), sectionNavigation.boundingBox()]);
   expect(headerBox).not.toBeNull();
@@ -47,7 +47,7 @@ test("sidebar setup controls follow the section selector", async ({ page }) => {
   await page.goto("/ai");
   await page.waitForLoadState("networkidle");
 
-  const sectionNavigation = page.getByRole("navigation", { name: "Documentation sections" });
+  const sectionNavigation = page.getByRole("navigation", { name: "Catalogs" });
   const integration = page.getByTestId("integration-select");
   await expect(sectionNavigation).toBeVisible();
   await expect(integration).toBeVisible();

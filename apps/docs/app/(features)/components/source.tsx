@@ -10,18 +10,26 @@ import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } 
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 
-export function CodeBlock({ code, lang = "tsx", fileName }: { code: string; lang?: string; fileName?: string }) {
-  const title = fileName ?? (lang === "text" ? undefined : lang);
+export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string }) {
+  if (!code.includes("\n")) return <CodeSnippet code={code} lang={lang} />;
 
   return (
     <Code>
-      <CodeHeader>
-        {title ? <CodeTitle>{title}</CodeTitle> : null}
-        <CodeActions>
-          <CodeCopy value={code} />
-        </CodeActions>
-      </CodeHeader>
       <CodeContent code={code} lang={lang} />
+    </Code>
+  );
+}
+
+function CodeSnippet({ code, lang }: { code: string; lang: string }) {
+  return (
+    <Code
+      chrome="embedded"
+      density="compact"
+      overflow="wrap"
+      className="flex items-center gap-1 rounded-(--radius-control) border border-border bg-background py-1 pr-1"
+    >
+      <CodeContent code={code} lang={lang} className="min-w-0 flex-1" />
+      <CodeCopy value={code} />
     </Code>
   );
 }

@@ -1,0 +1,40 @@
+<GuideSection id="pack" title="Pick the pack">
+  The pack is the starting values, and it is a decision rather than a resemblance: every pack re-values the component
+  knobs, and some install adornments and layout defaults that a theme cannot undo.
+
+  Flat is the neutral reset — an empty `skin.css`, no adornments — so a theme written over it owns every value.
+  Refined is the calm complete contract. Browse them on the [skins](/skins) page; the theme editor in the toolbar
+  swaps the whole site to any of them, live.
+
+  <GuideCheck>
+    The pack re-themes every screen that reads these token names the moment it lands. Between the install and the
+    theme below, the app looks rougher than before — that reset is scaffolding, never the state you stop at.
+  </GuideCheck>
+</GuideSection>
+
+<GuideSection id="artifact" title="One artifact owns the theme">
+  A theme is one file — `<short-name>.control-ui-theme.json`, format `control-ui-theme/v1` — with tokens split into
+  `shared`, `light`, and `dark`. Color-valued tokens go in `light` and `dark`; everything else in `shared`. A token
+  left out inherits the base skin, so the artifact composes onto the pack instead of forking it.
+
+  <GuidePoints>
+    <GuidePoint>Edit it live in the theme editor, then export the JSON — the toolbar's palette button opens it on any page.</GuidePoint>
+    <GuidePoint>Or write it with your agent from a brief: the [theme AI builder](/theme-ai-builder) carries the prompt, the contract, and the import.</GuidePoint>
+    <GuidePoint>Each app consumes the artifact as one derived CSS file, imported after the pack's own theme so source order decides.</GuidePoint>
+  </GuidePoints>
+</GuideSection>
+
+<GuideSection id="contrast" title="Contrast is part of the theme">
+  Contrast is a property of the theme, not a follow-up audit. Normal and small text clears 4.5:1 after alpha
+  compositing in both modes; focus indicators and control boundaries clear 3:1.
+
+  The [accessibility page](/theme-accessibility) checks the canonical colors plus what the components actually paint —
+  popups, badges, active tabs — and the same checks run from the CLI, on every commit, over 16 skin modes.
+</GuideSection>
+
+<GuideSection id="deeper" title="Go deeper">
+  <GuidePoints>
+    <GuidePoint>Re-valuing tokens is not enough? [Create a skin](/create-a-skin) — own a full pack of three files, then reach the component knobs beneath.</GuidePoint>
+    <GuidePoint>One component off? The knob cascade in the [architecture](/architecture) guide names the smallest surface that fixes it.</GuidePoint>
+  </GuidePoints>
+</GuideSection>

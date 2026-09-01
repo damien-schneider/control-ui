@@ -1,6 +1,5 @@
 import {
   AiGenerativeIcon,
-  BalanceScaleIcon,
   BlocksIcon,
   Book04Icon,
   CodeSquareIcon,
@@ -9,7 +8,6 @@ import {
   FormIcon,
   FunctionSquareIcon,
   HierarchyIcon,
-  Home05Icon,
   Layers01Icon,
   Layout01Icon,
   MagicWand01Icon,
@@ -23,7 +21,6 @@ import {
 } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
 import type { UseCaseKindId } from "@/app/(features)/catalog/blocks";
-import type { GuideGroupId } from "@/app/(features)/catalog/guides";
 import type { PrimitiveCategoryId } from "@/app/(features)/catalog/primitives";
 import type { DocsSkillConcern } from "@/app/(features)/model/types";
 import type { SidebarMode } from "./types";
@@ -47,12 +44,8 @@ export const primitiveCategorySidebarIcons = {
   display: ViewIcon,
 } as const satisfies Record<PrimitiveCategoryId, IconSvgElement>;
 
-export const guideGroupIcons = {
-  guides: Home05Icon,
-  theming: PaintBrush01Icon,
-  concepts: HierarchyIcon,
-  compare: BalanceScaleIcon,
-} as const satisfies Record<GuideGroupId, IconSvgElement>;
+// The Components and Practices catalog tabs already carry AiGenerativeIcon and Book04Icon, so this avoids both.
+export const referenceGroupIcon: IconSvgElement = HierarchyIcon;
 
 export const sidebarGroupIcons = {
   agents: AiGenerativeIcon,
@@ -68,10 +61,10 @@ export const useCaseKindSidebarIcons = {
 } as const satisfies Record<UseCaseKindId, IconSvgElement>;
 
 export const sidebarModes = [
+  { id: "agents", label: "Components", icon: AiGenerativeIcon },
+  { id: "use-cases", label: "Blocks", icon: BlocksIcon },
   { id: "primitives", label: "Primitives", icon: ComponentIcon },
-  { id: "agents", label: "AI", icon: AiGenerativeIcon },
-  { id: "use-cases", label: "Use cases", icon: BlocksIcon },
-  { id: "skills", label: "Skills", icon: Book04Icon },
+  { id: "skills", label: "Practices", icon: Book04Icon },
 ] as const satisfies readonly {
   id: SidebarMode;
   label: string;

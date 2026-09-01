@@ -1,0 +1,26 @@
+<GuideSection id="prompt" title="The prompt">
+  Paste it into the agent already open in your project. Nothing else to configure: the prompt carries the catalog URL,
+  the wiring rules, and the checks it has to pass before it reports back.
+
+  <AgentSetup />
+</GuideSection>
+
+<GuideSection id="what" title="What it does">
+  <GuidePoints>
+    <GuidePoint>**Reads the repository first.** Package manager, framework, Tailwind version, CSS entry, `components.json` — and in a workspace, which app is the target.</GuidePoint>
+    <GuidePoint>**Installs from the registry**, never by hand-copying source out of the documentation, and reports every dependency version it moved.</GuidePoint>
+    <GuidePoint>**Wires the CSS entry** against this app's real paths, stamps `data-skin`, and sweeps the token blocks a previous library left behind.</GuidePoint>
+    <GuidePoint>**Runs the doctor and settles what it reports** before styling anything, then confirms in a browser that a control paints and a portalled surface opens.</GuidePoint>
+    <GuidePoint>**Leaves the update path behind**: `control-ui:diff`, `control-ui:update`, `control-ui:doctor`, and the [agent skill](/agent-skill) that keeps later sessions building without this prompt.</GuidePoint>
+    <GuidePoint>**Designs the theme with you** in the same run, and checks its contrast against what the components actually paint.</GuidePoint>
+  </GuidePoints>
+</GuideSection>
+
+<GuideSection id="when" title="When to use it">
+  This prompt is for an app that already exists. Starting from nothing, [create the app](/create) instead — one
+  command scaffolds it with the whole set installed.
+
+  It also handles the case where shadcn/ui already sits in the project: it inventories `components/ui/*`, maps each
+  component to its Control UI counterpart, and asks once which call sites to move. It never migrates without an
+  answer, and leaving both side by side is a real answer.
+</GuideSection>

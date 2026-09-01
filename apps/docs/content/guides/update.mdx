@@ -1,0 +1,34 @@
+<GuideSection id="run" title="Diff, then overwrite">
+  <GuideCode kind="update-install" />
+
+  The diff comes first, and the overwrite wants a clean tree: it rewrites source you own. Keep both as package
+  scripts against that same `update` manifest — `control-ui:diff` with `--diff`, `control-ui:update` with
+  `--overwrite`, chained onto `node <install dir>/scripts/fix-css-imports.mjs` — so no session has to remember the URL.
+
+  <GuideCheck>
+    A diff listing per-file what the overwrite would change, and nothing outside the installed component directory —
+    `skin.config.tsx`, `skin-theme.css`, and `skin.css` never appear in it.
+  </GuideCheck>
+</GuideSection>
+
+<GuideSection id="after" title="After the overwrite">
+  <GuidePoints>
+    <GuidePoint>The overwrite re-appends the CSS import block under the canonical `../components/…` prefix, so `scripts/fix-css-imports.mjs` runs chained onto it — a no-op in the canonical layout, the repair everywhere else.</GuidePoint>
+    <GuidePoint>Then `scripts/control-ui-doctor.mjs`: the same read-only audit as after the first install. [Verify](/doctor) before styling on top of it.</GuidePoint>
+    <GuidePoint>The update also refreshes `.claude/skills/control-ui/SKILL.md`, the [agent skill](/agent-skill) installed with the set — so hand-edits there do not survive.</GuidePoint>
+    <GuidePoint>Installed only a few items? Reinstall those items: `update` pulls the whole set.</GuidePoint>
+    <GuidePoint>Refresh a stock skin too: `npx shadcn@latest add …/r/skin-<id>.json --overwrite`.</GuidePoint>
+    <GuidePoint>`all-<skin>` with `--overwrite` also updates everything, but resets the three skin files to that pack.</GuidePoint>
+  </GuidePoints>
+</GuideSection>
+
+<GuideSection id="contract" title="The contract">
+  Updating is a reinstall. The `update` manifest refreshes every installed source and never touches the three
+  skin-owned files — a fully custom skin included.
+
+  That is the whole ownership rule made operational: installed source is owned but never edited, customization lives
+  in the skin, and the update is safe precisely because those two never overlap.
+
+  A version of the skin contract can cross under you. [Contract versions](/contract-versions) carries what each
+  crossing costs.
+</GuideSection>

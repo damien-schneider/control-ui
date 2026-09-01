@@ -35,7 +35,7 @@ describe("docs social image metadata", () => {
       const seo = docsSeoForPath(page.href);
       expect(seo).toBeDefined();
       expect(seo?.socialImage.url).toBe(`/og${page.href}`);
-      if (page.href !== "/overview") expect(seo?.socialImage.alt).toContain(page.name);
+      expect(seo?.socialImage.alt).toContain(page.name);
       return seo?.socialImage.url;
     });
 

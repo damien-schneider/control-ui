@@ -122,11 +122,11 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
               <>
                 <CommandGroup heading="Guides">{guideItems.map(renderItem)}</CommandGroup>
                 <CommandGroup heading="Skins">{skinItems.map(renderItem)}</CommandGroup>
-                <CommandGroup heading="Skills">{skillItems.map(renderItem)}</CommandGroup>
-                <CommandGroup heading="AI">{componentItems.map(renderItem)}</CommandGroup>
+                <CommandGroup heading="Practices">{skillItems.map(renderItem)}</CommandGroup>
+                <CommandGroup heading="Components">{componentItems.map(renderItem)}</CommandGroup>
                 <CommandGroup heading="Primitives">{primitiveItems.map(renderItem)}</CommandGroup>
                 <CommandGroup heading="Support files">{supportItems.map(renderItem)}</CommandGroup>
-                <CommandGroup heading="Use cases">{blockItems.map(renderItem)}</CommandGroup>
+                <CommandGroup heading="Blocks">{blockItems.map(renderItem)}</CommandGroup>
               </>
             )}
           </CommandList>

@@ -1,9 +1,9 @@
 "use client";
 
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import type { ReactNode } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 import { sidebarModes } from "./icons";
 import type { SidebarMode } from "./types";
 
@@ -16,18 +16,6 @@ export function SidebarControlSection({ title, children }: { title: string; chil
   );
 }
 
-function ModeOption({ value }: { value: string }) {
-  const item = sidebarModes.find((candidate) => candidate.id === value);
-  if (!item) return null;
-
-  return (
-    <span className="flex min-w-0 items-center gap-2">
-      <HugeiconsIcon icon={item.icon} size={16} strokeWidth={1.7} className="shrink-0" />
-      <span className="truncate">{item.label}</span>
-    </span>
-  );
-}
-
 export function SidebarModeSelector({
   mode,
   hrefs,
@@ -37,28 +25,21 @@ export function SidebarModeSelector({
   hrefs: Record<SidebarMode, string>;
   onNavigate: (mode: SidebarMode) => void;
 }) {
-  const router = useRouter();
-
   return (
-    <nav aria-label="Documentation sections" className="shrink-0 px-2 pb-2">
-      <Select<SidebarMode>
-        value={mode}
-        onValueChange={(next) => {
-          onNavigate(next);
-          router.push(hrefs[next]);
-        }}
-      >
-        <SelectTrigger size="sm" className="w-full" aria-label="Documentation section">
-          <SelectValue>{(value: string) => <ModeOption value={value} />}</SelectValue>
-        </SelectTrigger>
-        <SelectContent>
-          {sidebarModes.map((item) => (
-            <SelectItem key={item.id} value={item.id} label={item.label}>
-              <ModeOption value={item.id} />
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+    <nav aria-label="Catalogs" className="grid shrink-0 grid-cols-2 gap-1 px-2 pb-2">
+      {sidebarModes.map((item) => (
+        <ButtonLink
+          key={item.id}
+          render={<Link href={hrefs[item.id]} onClick={() => onNavigate(item.id)} aria-current={mode === item.id ? "true" : undefined} />}
+          variant="surface"
+          size="sm"
+          active={mode === item.id}
+          className="min-w-0 justify-start"
+        >
+          <HugeiconsIcon aria-hidden icon={item.icon} size={16} strokeWidth={1.7} className="shrink-0" />
+          <span className="truncate">{item.label}</span>
+        </ButtonLink>
+      ))}
     </nav>
   );
 }

@@ -10,12 +10,45 @@ import { buildSetupPrompt } from "./setup-prompt";
 
 const setupPrompt = buildSetupPrompt({ origin: siteConfig.url.origin });
 
-export function AgentSetup() {
+function useSetupPromptCopy() {
   const [copyError, setCopyError] = useState<string | null>(null);
   const promptCopy = useCopyToClipboard({
     text: setupPrompt,
     onCopyError: () => setCopyError("The prompt could not be copied. Check clipboard permissions and try again."),
   });
+
+  return {
+    copyError,
+    isCopied: promptCopy.isCopied,
+    copy: () => {
+      setCopyError(null);
+      void promptCopy.handleCopy();
+    },
+  };
+}
+
+export function SetupPromptCopyButton({ className, compact }: { className?: string; compact?: boolean }) {
+  const { copyError, isCopied, copy } = useSetupPromptCopy();
+  const idleLabel = compact ? "Copy prompt" : "Copy setup prompt";
+  const copiedLabel = compact ? "Copied" : "Prompt copied";
+
+  return (
+    <div className={className}>
+      <Button size={compact ? "xs" : "sm"} variant="solid" tone="primary" onClick={copy}>
+        {isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
+        {isCopied ? copiedLabel : idleLabel}
+      </Button>
+      {copyError ? (
+        <p role="alert" className="mt-2 text-caption text-destructive-text">
+          {copyError}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+export function AgentSetup() {
+  const { copyError, isCopied, copy } = useSetupPromptCopy();
 
   return (
     <div className="mt-4 grid max-w-2xl gap-2">
@@ -23,17 +56,9 @@ export function AgentSetup() {
         <CodeHeader>
           <CodeTitle>Agent setup prompt</CodeTitle>
           <CodeActions>
-            <Button
-              size="sm"
-              variant="solid"
-              tone="primary"
-              onClick={() => {
-                setCopyError(null);
-                void promptCopy.handleCopy();
-              }}
-            >
-              {promptCopy.isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
-              {promptCopy.isCopied ? "Agent prompt copied" : "Copy agent prompt"}
+            <Button size="sm" variant="solid" tone="primary" onClick={copy}>
+              {isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
+              {isCopied ? "Agent prompt copied" : "Copy agent prompt"}
             </Button>
           </CodeActions>
         </CodeHeader>

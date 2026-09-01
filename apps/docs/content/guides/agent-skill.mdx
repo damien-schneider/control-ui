@@ -1,0 +1,40 @@
+<GuideSection id="installed" title="What gets installed">
+  Every `all-<skin>` pack and every update writes `.claude/skills/control-ui/SKILL.md` into the repository. It is
+  installed source like the components: `control-ui:update` refreshes it, so hand-edits there do not survive — and
+  repository-specific rules belong in your own instruction files instead.
+
+  It carries what a later session needs to build with the library and nothing that would go stale silently:
+
+  <GuidePoints>
+    <GuidePoint>**The ground rules** — the `data-skin` scope, the recipe stylesheets that are never edited or reordered, the three skin files the update never touches.</GuidePoint>
+    <GuidePoint>**The prop convention** — `variant`, `tone`, `size`, `iconOnly`, and `render` instead of `asChild`, plus what a call site migrated from another library keeps and sheds.</GuidePoint>
+    <GuidePoint>**The theme workflow** — the artifact format, how an app consumes it, and the contrast the components actually paint.</GuidePoint>
+    <GuidePoint>**The full token contract** — every themable custom property, marked shared or per-mode.</GuidePoint>
+  </GuidePoints>
+
+  <GuideCheck>
+    A session that starts cold in this repository installs a component, themes it, and updates it without being handed
+    the setup prompt again.
+  </GuideCheck>
+</GuideSection>
+
+<GuideSection id="commands" title="The commands it reaches for">
+  The skill is the reading; these three scripts are the doing. The setup prompt leaves all three in `package.json`, so
+  the agent runs them by name.
+
+| Command | What it does | When |
+| --- | --- | --- |
+| `control-ui:diff` | Previews per-file what an update would rewrite | Before every update |
+| `control-ui:update` | Overwrites installed source, then repairs the CSS entry | On a clean tree |
+| `control-ui:doctor` | Read-only audit of imports, theme order, `@theme` conflicts, `data-skin` | After any install, update, or migration |
+
+  Beyond the repository, the machine surfaces stay open: the catalog at `/r/agent-index.json`, one manifest per item,
+  and `llms.txt` indexing the documentation. [Machine docs](/agent-surface) has the endpoints.
+</GuideSection>
+
+<GuideSection id="install" title="Install it on its own">
+  A lean install skips the skill, since it only rides the complete packs. Add it explicitly — and name it in the
+  update script too, so it keeps refreshing with everything else:
+
+  <GuideCode kind="skill-install" />
+</GuideSection>

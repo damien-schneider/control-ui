@@ -1,11 +1,12 @@
 "use client";
 
 import type { MDXComponents } from "mdx/types";
+import type { ComponentProps } from "react";
 
+import { CodeBlock } from "@/app/(features)/components/source";
 import {
   MarkdownA,
   MarkdownBlockquote,
-  MarkdownCode,
   MarkdownEm,
   MarkdownH1,
   MarkdownH2,
@@ -23,9 +24,24 @@ import {
   MarkdownUl,
 } from "@/components/control-ui/ui/markdown-elements";
 
+// Docs fences render headerless snippets; the registry's MarkdownCode keeps its lang header for chat surfaces.
+function DocsMdxCode({ className, children, ...props }: ComponentProps<"code">) {
+  const value = typeof children === "string" ? children : "";
+  const lang = /language-([\w-]+)/.exec(className ?? "")?.[1];
+  if (!lang && !value.includes("\n")) {
+    return (
+      <MarkdownInlineCode className={className} {...props}>
+        {children}
+      </MarkdownInlineCode>
+    );
+  }
+
+  return <CodeBlock code={value.replace(/\n$/, "")} lang={lang ?? "text"} />;
+}
+
 const mdxComponents = {
   pre: MarkdownPre,
-  code: MarkdownCode,
+  code: DocsMdxCode,
   inlineCode: MarkdownInlineCode,
   h1: MarkdownH1,
   h2: MarkdownH2,

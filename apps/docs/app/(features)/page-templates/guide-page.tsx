@@ -11,19 +11,27 @@ import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-a
 import { ThemeAiBuilder } from "@/app/(features)/theme-ai-builder/theme-ai-builder";
 import { cn } from "@/components/control-ui/lib/cn";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
+import AgentSkillContent from "@/content/guides/agent-skill.mdx";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
 import ArchitectureContent from "@/content/guides/architecture.mdx";
 import BestReactComponentLibrariesContent from "@/content/guides/best-react-component-libraries-for-ai-interfaces.mdx";
+import BuildAScreenContent from "@/content/guides/build-a-screen.mdx";
+import ContractVersionsContent from "@/content/guides/contract-versions.mdx";
 import ControlUiVsShadcnUiContent from "@/content/guides/control-ui-vs-shadcn-ui.mdx";
 import CreateContent from "@/content/guides/create.mdx";
 import CreateASkinContent from "@/content/guides/create-a-skin.mdx";
+import DoctorContent from "@/content/guides/doctor.mdx";
 import GetStartedContent from "@/content/guides/get-started.mdx";
 import LockInContent from "@/content/guides/lock-in.mdx";
 import OverviewContent from "@/content/guides/overview.mdx";
+import SetupPromptContent from "@/content/guides/setup-prompt.mdx";
 import ShadcnCompatibilityContent from "@/content/guides/shadcn-compatibility.mdx";
+import ThemingContent from "@/content/guides/theming.mdx";
+import UpdateContent from "@/content/guides/update.mdx";
 import { ArchitectureLayers, CustomizationLadder, RegistryPipeline, SkinFileStack, SkinResolutionMap } from "./architecture-visuals";
-import { GuideCode, type GuideCodeMdxProps, GuidePoint, GuidePoints, GuideSection } from "./guide-code";
-import { AgentSurfaceMap, CompatibilityBridge, CssFirstDecisionMap, GettingStartedMap } from "./guide-maps";
+import { AgentShortcut, GuideCheck, GuideCode, type GuideCodeMdxProps, GuidePoint, GuidePoints, GuideSection } from "./guide-code";
+import { AgentSurfaceMap, CompatibilityBridge, CssFirstDecisionMap } from "./guide-maps";
+import { OpenInAgent } from "./open-in-agent";
 
 type GuideContent = ComponentType<{ components?: MDXComponents }>;
 
@@ -31,6 +39,13 @@ const guideContent: Partial<Record<GuideId, GuideContent>> = {
   create: CreateContent,
   overview: OverviewContent,
   "get-started": GetStartedContent,
+  doctor: DoctorContent,
+  "build-a-screen": BuildAScreenContent,
+  theming: ThemingContent,
+  update: UpdateContent,
+  "contract-versions": ContractVersionsContent,
+  "setup-prompt": SetupPromptContent,
+  "agent-skill": AgentSkillContent,
   "create-a-skin": CreateASkinContent,
   "shadcn-compatibility": ShadcnCompatibilityContent,
   architecture: ArchitectureContent,
@@ -51,6 +66,8 @@ function GuideMdxCode(props: GuideCodeMdxProps) {
 const guideComponents = {
   AgentSetup,
   CreateCommand,
+  AgentShortcut,
+  GuideCheck,
   GuideCode: GuideMdxCode,
   GuidePoint,
   GuidePoints,
@@ -61,7 +78,6 @@ const guideComponents = {
   SkinResolutionMap,
   RegistryPipeline,
   CssFirstDecisionMap,
-  GettingStartedMap,
   CompatibilityBridge,
   AgentSurfaceMap,
 } satisfies MDXComponents;
@@ -112,10 +128,13 @@ export function GuidePage({ page, integration }: { page: GuidePageData; integrat
 
   return (
     <section className={cn("mx-auto min-w-0 w-full px-5 py-12", page.layout === "wide" ? "max-w-[90rem]" : "max-w-4xl")}>
-      <div className="mb-8 max-w-2xl">
-        <div className="text-caption font-medium text-muted-foreground">Guide</div>
-        <h1 className="mt-2 text-display font-display">{page.name}</h1>
-        <p className="mt-3 text-body-lg text-muted-foreground">{page.summary}</p>
+      <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
+        <div className="max-w-2xl">
+          <div className="text-caption font-medium text-muted-foreground">Guide</div>
+          <h1 className="mt-2 text-display font-display">{page.name}</h1>
+          <p className="mt-3 text-body-lg text-muted-foreground">{page.summary}</p>
+        </div>
+        <OpenInAgent name={page.name} pathname={`/${page.id}`} />
       </div>
 
       <div className="grid min-w-0 gap-12">

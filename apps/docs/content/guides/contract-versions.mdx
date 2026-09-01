@@ -1,0 +1,31 @@
+<GuideSection id="current" title="Where the contract stands">
+  The current skin contract is version 7: registered component CSS knobs carry every visual decision, published in
+  `skin-contract.json`.
+
+  A pack written against the current version installs and paints with no migration. Contract versions only matter
+  when installed source and installed skin were written against different ones.
+</GuideSection>
+
+<GuideSection id="crossing" title="Crossing a version">
+  Crossing a version reinstalls core, the affected components or their blocks, and the skin together. Updating one
+  side alone is what leaves knobs declared by nobody.
+
+  <GuideCheck>
+    After the crossing, `control-ui:doctor` reports clean and the components paint with the pack's own values — not
+    the browser's defaults where a knob went missing.
+  </GuideCheck>
+</GuideSection>
+
+<GuideSection id="activity" title="Version 4: ToolCall became Activity">
+  Version 4 replaced `ToolCall` with Activity's typed tool variant. From version 3 or earlier, remove both old layouts
+  before reinstalling:
+
+```bash
+rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
+rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
+```
+
+  Then replace `ToolCall` with `<Activity kind="tool" name="…">` and its `Activity*` parts — `ActivityDetail`,
+  `ActivityDetailLabel`, `ActivityDetailContent` — mapping provider status directly to `ActivityState`. Drop
+  `useToolCall`; no legacy selectors ship.
+</GuideSection>

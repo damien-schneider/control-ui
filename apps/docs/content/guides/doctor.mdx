@@ -1,0 +1,50 @@
+<GuideSection id="run" title="Run the doctor">
+  The doctor ships with the install. It is read-only: it reads the CSS entry named in `components.json`, follows every
+  import it finds, and looks for the `data-skin` stamp.
+
+```bash
+node <install dir>/scripts/control-ui-doctor.mjs
+```
+
+  Keep it runnable as a script, so a later session — or your agent — can check the wiring without this page:
+
+```json
+{
+  "scripts": {
+    "control-ui:doctor": "node components/control-ui/scripts/control-ui-doctor.mjs"
+  }
+}
+```
+</GuideSection>
+
+<GuideSection id="clean" title="What a clean install looks like">
+  <GuideCheck>
+```bash
+$ npm run control-ui:doctor
+control-ui doctor: clean.
+```
+  </GuideCheck>
+
+  Anything else is one of the five checks below. Errors exit non-zero and block: styling on top of them is what reads
+  as a broken install afterwards. Warnings exit zero and are deletion offers, named file by file and token by token.
+</GuideSection>
+
+<GuideSection id="reports" title="What it reports">
+  <GuidePoints>
+    <GuidePoint>**An import that resolves to no file.** The install wrote `../components/…` and your entry sits somewhere else. Run `node <install dir>/scripts/fix-css-imports.mjs`; one wrong prefix silently unstyles everything below it.</GuidePoint>
+    <GuidePoint>**A theme import that is no longer last.** A derived `*.control-ui-theme.css` composes over the pack, so source order is what makes it win. The same script repairs the order.</GuidePoint>
+    <GuidePoint>**An app `@theme` block redeclaring Control UI keys.** Tailwind merges every `@theme` in the build and the last declaration wins, so the block detaches those utilities from the skin — a hardcoded font splits the app into two typefaces, a redeclared `--radius` collapses every corner.</GuidePoint>
+    <GuidePoint>**A `:root` or `.dark` block declaring skin token names.** The skin out-specifies it, so those declarations are dead; a hybrid block keeps the names the skin never declares painting a second palette beside it.</GuidePoint>
+    <GuidePoint>**A missing or mismatched `data-skin` stamp.** Without an id the installed skin declares, every token is undeclared and portalled surfaces render unstyled.</GuidePoint>
+  </GuidePoints>
+</GuideSection>
+
+<GuideSection id="contract" title="The contract">
+  The doctor audits wiring, never taste. It cannot see a token that is ugly, only one that is undeclared, dead, or
+  fighting the skin.
+
+  Each deletion it offers is a change to source you own, so it names the file and the token instead of writing them:
+  the sweep stays yours to read as one diff.
+
+  Run it after every install, update, and migration. A migration you said yes to ends clean, not hybrid.
+</GuideSection>

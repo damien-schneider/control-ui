@@ -2,7 +2,7 @@ import type { PracticeSkillId, SkillConcern, SkillConcernId } from "@control-ui/
 import type { blockEntries, UseCaseKindId } from "@/app/(features)/catalog/blocks";
 import type { componentEntries } from "@/app/(features)/catalog/components";
 import type { extensionEntries } from "@/app/(features)/catalog/extensions";
-import type { GuideGroupId, guideEntries } from "@/app/(features)/catalog/guides";
+import type { GuideCodeId, GuideGroupId, guideEntries } from "@/app/(features)/catalog/guides";
 import type { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import type { PrimitiveCategoryId, primitiveEntries } from "@/app/(features)/catalog/primitives";
@@ -19,7 +19,7 @@ export type ExtensionId = (typeof extensionEntries)[number]["id"];
 export type SkillId = PracticeSkillId;
 export type PageId = GuideId | ComponentId | BlockId | PrimitiveId | HookId | UtilId | ExtensionId | SkillId;
 export type SkinMetaId = (typeof skinMetas)[number]["id"];
-export type ActivePageId = PageId | SkinMetaId | CatalogOverviewId | "skins";
+export type ActivePageId = PageId | SkinMetaId | CatalogOverviewId | "skins" | "reference";
 export type IntegrationId = (typeof integrationIds)[number];
 export type RegistryKindId = (typeof registryKindIds)[number];
 // `undefined` = stable
@@ -152,16 +152,7 @@ export type GuideSection = {
   title: string;
   body?: string;
   points?: string[];
-  code?:
-    | "skin-install"
-    | "skin-scaffold-install"
-    | "component-install"
-    | "block-install"
-    | "component-usage"
-    | "runtime-agnostic-message"
-    | "agent-endpoints"
-    | "agent-llms"
-    | "update-install";
+  code?: GuideCodeId;
 };
 
 export type ComparedApplication = { name: string; url: string };

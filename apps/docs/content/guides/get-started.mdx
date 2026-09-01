@@ -1,35 +1,37 @@
-<GuideSection id="choose" title="Choose what to install">
-  Pick one skin, then install components one by one or a block as a complete recipe. The skin is required: it owns every
-  token value the components paint with.
+<AgentShortcut />
 
-  Starting fresh? Each skin page exposes an `all-<skin>` manifest that installs the complete component set plus that
-  skin in one command.
+<GuideSection id="install" title="Install the set and its skin">
+  One command copies every component, block, and primitive into your repository as source you own, together with the
+  Refined skin that owns every token value they paint with.
 
-  <GettingStartedMap />
+  <GuideCode kind="all-install" />
+
+  <GuideCheck>
+    A `components/control-ui/` directory holding the source, `styles/skin-theme.css` and `styles/skin.css` holding the
+    pack, and a `components.json` the registry keeps writing to.
+  </GuideCheck>
+
+  Every skin page exposes the same `all-<skin>` manifest, so the pack you start on is the one you name here.
 </GuideSection>
 
-<GuideSection id="install-skin" title="Install a skin">
+<GuideSection id="items" title="Install one item at a time">
+  A lean install picks the items instead. The skin stays required either way: it owns every token value the components
+  paint with, and one pack always installs first.
+
   <GuideCode kind="skin-install" />
 
-  Exactly one pack owns `skin.config.tsx`, `skin-theme.css`, and `skin.css`. `--overwrite` claims all three — without
-  it the CLI keeps the previous pack's files in place.
-
-  The current skin contract is version 7: registered component CSS knobs carry every visual decision, published in
-  `skin-contract.json`. Upgrade notes for earlier versions are in the update section below.
-</GuideSection>
-
-<GuideSection id="install-component" title="Install a component">
   <GuideCode kind="component-install" />
-</GuideSection>
 
-<GuideSection id="install-block" title="Install a block">
-  The chat block is a complete composition: messages, input, attachments, markdown, composer controls, and actions.
+  Blocks install the same way and land as a complete composition — the chat block brings messages, input, attachments,
+  markdown, composer controls, and actions.
 
   <GuideCode kind="block-install" />
+
+  Naming items instead of the set means the update and doctor scripts have to name them too.
 </GuideSection>
 
 <GuideSection id="wire-css" title="Wire the CSS">
-  Each item adds its own imports to the CSS entry named in `components.json`. Core plus a skin leaves you with:
+  Each item appends its own imports to the CSS entry named in `components.json`. Core plus a skin leaves you with:
 
 ```css
 /* app/globals.css */
@@ -40,52 +42,32 @@
 @import "../components/control-ui/styles/skin.css";
 ```
 
-  The registry always writes `../components/…`. When your entry sits elsewhere — `app/globals.css` with `@/*` pointing
-  at `./src/*` — run `node <install dir>/scripts/fix-css-imports.mjs`: it rewrites every import to the real path.
-
-  Stamp the pack id on the root element. There is no token fallback when `data-skin` is missing or misspelled:
+  Then stamp the pack id on the root element:
 
 ```tsx
 <html data-skin="refined">…</html>
 ```
 
+  <GuideCheck>
+    A control paints with the skin's own radius and color, and one portalled surface — a popover, dialog, menu, or
+    tooltip — opens carrying the same tokens. Both, or the wiring is not done.
+  </GuideCheck>
+
+  Nothing paints? The registry always writes `../components/…`, which resolves only when the entry sits one directory
+  above the components alias. Run `node <install dir>/scripts/fix-css-imports.mjs` to fold every appended line onto
+  this app's real paths, then verify with the doctor.
+</GuideSection>
+
+<GuideSection id="contract" title="The contract">
+  Exactly one pack owns `skin.config.tsx`, `skin-theme.css`, and `skin.css`. `--overwrite` claims all three — without
+  it the CLI keeps the previous pack's files in place.
+
+  The current skin contract is version 7: registered component CSS knobs carry every visual decision, published in
+  `skin-contract.json`.
+
+  There is no token fallback when `data-skin` is missing or misspelled. It is the scope every token is declared under,
+  not a multi-skin switch, so one skin still needs it: without it every portalled surface renders with no tokens at all.
+
   Compiled styles assume Safari 16.4+, Chrome 119+, Firefox 128+; the architecture guide's cascade section derives the
   floor.
-</GuideSection>
-
-<GuideSection id="use" title="Compose your runtime">
-  Render provider-owned messages directly with Control UI components. Keep native provider types — no intermediary
-  message schema.
-
-  <GuideCode kind="component-usage" />
-</GuideSection>
-
-<GuideSection id="update" title="Update installed components">
-  <GuideCode kind="update-install" />
-
-  Updating is a reinstall. The `update` manifest refreshes every installed source and never touches the three
-  skin-owned files — a fully custom skin included. Installed source is owned but never edited; customization lives in
-  the skin.
-
-  <GuidePoints>
-    <GuidePoint>`--diff` previews per-file what the overwrite would change.</GuidePoint>
-    <GuidePoint>Installed only a few items? Reinstall those items; `update` pulls the whole set.</GuidePoint>
-    <GuidePoint>Refresh a stock skin too: `npx shadcn@latest add …/r/skin-<id>.json --overwrite`.</GuidePoint>
-    <GuidePoint>`all-<skin>` with `--overwrite` also updates everything, but resets the three skin files to that pack.</GuidePoint>
-    <GuidePoint>After any overwrite: `node <install dir>/scripts/fix-css-imports.mjs` heals the entry imports, and `node <install dir>/scripts/control-ui-doctor.mjs` audits the wiring — imports, theme order, app `@theme` conflicts, `data-skin`.</GuidePoint>
-    <GuidePoint>The update also refreshes `.claude/skills/control-ui/SKILL.md`, the agent skill installed with the set.</GuidePoint>
-  </GuidePoints>
-
-  Crossing skin contract versions reinstalls core, the affected components or their blocks, and the skin together.
-  Version 4 replaced `ToolCall` with Activity's typed tool variant; from version 3 or earlier, remove both old layouts
-  before reinstalling:
-
-```bash
-rm -f components/control-ui/tool-call.tsx components/control-ui/hooks/use-tool-call.ts
-rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/use-tool-call.ts
-```
-
-  Then replace `ToolCall` with `<Activity kind="tool" name="…">` and its `Activity*` parts — `ActivityDetail`,
-  `ActivityDetailLabel`, `ActivityDetailContent` — mapping provider status directly to `ActivityState`. Drop
-  `useToolCall`; no legacy selectors ship.
 </GuideSection>

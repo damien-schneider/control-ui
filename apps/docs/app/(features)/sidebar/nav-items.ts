@@ -42,18 +42,30 @@ export function humanizeNavName(name: string) {
   return label.charAt(0).toUpperCase() + label.slice(1);
 }
 
+// Skins is a route, not a guide entry, and it opens the Theme group.
 const extraGroupItems: Partial<Record<GuideGroupId, DocsNavItem[]>> = {
-  theming: [{ id: skinsOverview.id, name: skinsOverview.label }],
+  theme: [{ id: skinsOverview.id, name: skinsOverview.label }],
 };
 
-export function guideNavGroups(guides: GuidePage[]) {
-  return guideGroups.map((group) => ({
+export type GuideNavGroup = {
+  id: GuideGroupId;
+  title: string;
+  items: DocsNavItem[];
+};
+
+export function guideNavSections(guides: GuidePage[]): { top: GuideNavGroup[]; reference: GuideNavGroup[] } {
+  const groups = guideGroups.map((group) => ({
     ...group,
     items: [
-      ...guides.flatMap((guide) => (guide.cta || guide.group !== group.id ? [] : [{ id: guide.id, name: guide.name }])),
       ...(extraGroupItems[group.id] ?? []),
+      ...guides.flatMap((guide) => (guide.cta || guide.group !== group.id ? [] : [{ id: guide.id, name: guide.name }])),
     ],
   }));
+
+  return {
+    top: groups.filter((group) => !("parent" in group)),
+    reference: groups.filter((group) => "parent" in group),
+  };
 }
 
 export function ctaGuide(guides: GuidePage[]) {

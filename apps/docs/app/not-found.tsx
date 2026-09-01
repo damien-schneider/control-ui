@@ -15,7 +15,7 @@ export default function NotFound() {
       </div>
 
       <div className="flex items-center gap-3">
-        <Button variant="solid" tone="primary" onClick={() => router.push("/overview")}>
+        <Button variant="solid" tone="primary" onClick={() => router.push("/")}>
           Back to home
         </Button>
         <Button variant="surface" onClick={() => router.refresh()}>

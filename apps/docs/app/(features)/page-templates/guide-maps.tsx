@@ -27,42 +27,6 @@ export function CssFirstDecisionMap() {
   );
 }
 
-export function GettingStartedMap() {
-  const steps = [
-    { title: "Choose", note: "skin + UI surface" },
-    { title: "Install skin", note: "complete token owner" },
-    { title: "Install UI", note: "component or block" },
-    { title: "Wire CSS", note: "core + active skin" },
-    { title: "Map data", note: "plain props + children" },
-    { title: "Own it", note: "edit local source" },
-  ];
-
-  return (
-    <GuideVisual title="From registry to product code" description="Runner and skin are independent choices">
-      <ol className="grid gap-2 md:grid-cols-6">
-        {steps.map((step, index) => (
-          <li
-            key={step.title}
-            className="group relative rounded-lg border border-border/80 bg-background/70 p-3 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-primary/40"
-          >
-            <div className="font-mono text-micro text-primary-text">{index + 1}</div>
-            <div className="mt-2 font-medium text-label">{step.title}</div>
-            <div className="mt-0.5 text-caption text-muted-foreground">{step.note}</div>
-            {index < steps.length - 1 ? (
-              <span
-                aria-hidden="true"
-                className="absolute -right-2.5 top-1/2 z-10 hidden -translate-y-1/2 bg-card px-1 text-muted-foreground md:block"
-              >
-                →
-              </span>
-            ) : null}
-          </li>
-        ))}
-      </ol>
-    </GuideVisual>
-  );
-}
-
 export function CompatibilityBridge() {
   return (
     <GuideVisual title="Compatible by contract" description="Shared language; separate owned source trees">

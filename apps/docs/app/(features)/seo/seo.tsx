@@ -93,28 +93,22 @@ export function docsSeoForPath(pathname: string) {
   const page = docsPageForPath(pathname);
   if (!page) return undefined;
 
-  const isSiteOverview = pathname === "/overview";
   const isCatalogOverview = catalogOverviews.some((overview) => overview.href === pathname);
-  let title = `${page.name} — ${kindTitle[page.kind]}`;
-  if (isCatalogOverview) title = page.name;
-  if (isSiteOverview) title = siteConfig.title;
-  const description = isSiteOverview ? siteConfig.description : page.summary;
-  const socialTitle = isSiteOverview ? siteConfig.title : `${title} | ${siteConfig.name}`;
-  let socialImageLabel: string = kindTitle[page.kind];
-  if (isCatalogOverview) socialImageLabel = "Component catalog";
-  if (isSiteOverview) socialImageLabel = "Open-source UI registry";
+  const title = isCatalogOverview ? page.name : `${page.name} — ${kindTitle[page.kind]}`;
+  const socialTitle = `${title} | ${siteConfig.name}`;
+  const socialImageLabel: string = isCatalogOverview ? "Component catalog" : kindTitle[page.kind];
 
   return {
     page,
     pathname,
     url: absoluteSiteUrl(pathname),
     title,
-    description,
+    description: page.summary,
     socialTitle,
     socialImage: {
       url: socialImagePath(pathname),
       alt: socialTitle,
-      title: isSiteOverview ? "React component library for AI interfaces" : page.name,
+      title: page.name,
       label: socialImageLabel,
       status: page.status,
     },
@@ -126,7 +120,7 @@ export function metadataForDocsPath(pathname: string): Metadata {
   if (!seo) return {};
 
   return {
-    title: seo.pathname === "/overview" ? { absolute: siteConfig.title } : seo.title,
+    title: seo.title,
     description: seo.description,
     alternates: {
       canonical: seo.pathname,
@@ -228,20 +222,17 @@ export function DocsPageStructuredData({ pathname }: { pathname: string }) {
             })),
           }
         : {}),
-      ...(pathname === "/overview" ? {} : { breadcrumb: { "@id": breadcrumbId } }),
+      breadcrumb: { "@id": breadcrumbId },
     },
-  ];
-
-  if (pathname !== "/overview") {
-    graph.push({
+    {
       "@type": "BreadcrumbList",
       "@id": breadcrumbId,
       itemListElement: [
         {
           "@type": "ListItem",
           position: 1,
-          name: "Overview",
-          item: absoluteSiteUrl("/overview"),
+          name: siteConfig.name,
+          item: absoluteSiteUrl("/"),
         },
         {
           "@type": "ListItem",
@@ -250,8 +241,8 @@ export function DocsPageStructuredData({ pathname }: { pathname: string }) {
           item: seo.url,
         },
       ],
-    });
-  }
+    },
+  ];
 
   if (guideFaqs && guideFaqs.length > 0) {
     graph.push({
