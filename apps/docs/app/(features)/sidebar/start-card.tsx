@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SetupPromptCopyButton } from "@/app/(features)/create/agent-setup";
 import type { ActivePageId } from "@/app/(features)/model/types";
-import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
@@ -135,9 +134,9 @@ export function StartCard({
 
   return (
     <SidebarGroup className={className}>
-      <Tabs<StartTab> value={tab} onValueChange={setSelected} className="grid gap-1 rounded-[var(--radius-panel)] bg-sidebar-accent p-1">
+      <Tabs<StartTab> value={tab} onValueChange={setSelected} className="grid gap-1.5">
         <div className="relative">
-          <TabsList size="xs" className="mx-auto w-fit">
+          <TabsList size="xs" className="mx-auto w-fit [--cui-tabs-foreground:var(--sidebar-foreground)]">
             <TabsTab value="steps">By hand</TabsTab>
             <TabsTab value="agent">With agent</TabsTab>
           </TabsList>
@@ -155,8 +154,7 @@ export function StartCard({
         </div>
         <StartPanel value="steps" items={steps.items} numbered active={active} onNavigate={onNavigate} />
         <StartPanel value="agent" items={agent.items} active={active} onNavigate={onNavigate} />
-        <div className={cn("flex items-center justify-between gap-2 px-1.5 pt-0.5 pb-0.5", tab === "agent" && "justify-end")}>
-          {tab === "agent" ? null : <span className="min-w-0 truncate text-micro text-muted-foreground">One prompt runs all four.</span>}
+        <div className="flex justify-end">
           <SetupPromptCopyButton compact />
         </div>
       </Tabs>
