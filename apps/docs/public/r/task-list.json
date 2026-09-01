@@ -33,6 +33,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/task-list.css\"": {}
-  },
-  "meta": {}
+  }
 }

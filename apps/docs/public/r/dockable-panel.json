@@ -45,6 +45,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/dockable-panel.css\"": {}
-  },
-  "meta": {}
+  }
 }

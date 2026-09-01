@@ -40,6 +40,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/chat-composer-attachment.css\"": {}
-  },
-  "meta": {}
+  }
 }

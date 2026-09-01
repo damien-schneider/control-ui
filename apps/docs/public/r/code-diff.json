@@ -41,6 +41,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/code-diff.css\"": {}
-  },
-  "meta": {}
+  }
 }

@@ -55,6 +55,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/code-block-editor.css\"": {}
-  },
-  "meta": {}
+  }
 }

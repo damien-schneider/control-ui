@@ -40,6 +40,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/source-badge.css\"": {}
-  },
-  "meta": {}
+  }
 }

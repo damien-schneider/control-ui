@@ -31,6 +31,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/inline-attachment.css\"": {}
-  },
-  "meta": {}
+  }
 }

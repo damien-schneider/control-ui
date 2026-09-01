@@ -9,6 +9,5 @@
     "http://127.0.0.1:3000/r/all-refined.json",
     "http://127.0.0.1:3000/r/core.json"
   ],
-  "files": [],
-  "meta": {}
+  "files": []
 }

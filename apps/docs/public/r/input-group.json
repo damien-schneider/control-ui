@@ -39,6 +39,5 @@
   "css": {
     "@import \"../components/control-ui/styles/recipes/field.css\"": {},
     "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-  },
-  "meta": {}
+  }
 }

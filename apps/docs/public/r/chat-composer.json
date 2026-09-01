@@ -89,6 +89,5 @@
   "css": {
     "@import \"../components/control-ui/styles/recipes/chat-composer.css\"": {},
     "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {}
-  },
-  "meta": {}
+  }
 }

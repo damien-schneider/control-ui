@@ -18,6 +18,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/type-scale.css\"": {}
-  },
-  "meta": {}
+  }
 }

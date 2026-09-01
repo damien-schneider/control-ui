@@ -17,6 +17,5 @@
       "type": "registry:ui",
       "content": "\"use client\";\n\nimport { CheckboxGroup as CheckboxGroupPrimitive } from \"@base-ui/react/checkbox-group\";\nimport type { ComponentProps } from \"react\";\nimport type { ControlledMultiChoice } from \"@/components/control-ui/control-props\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\n\nexport type CheckboxGroupProps = Omit<ComponentProps<\"div\">, \"defaultValue\" | \"onChange\"> &\n  ControlledMultiChoice & {\n    allValues?: string[];\n    disabled?: boolean;\n    orientation?: \"horizontal\" | \"vertical\";\n  };\n\n// `orientation` is visual only — each Checkbox owns its own focus. Pair `allValues` with select-all Checkbox for indeterminate state.\nexport function CheckboxGroup({ className, orientation = \"vertical\", ...props }: CheckboxGroupProps) {\n  return (\n    <CheckboxGroupPrimitive\n      data-control-ui=\"checkbox-group\"\n      data-slot=\"root\"\n      data-orientation={orientation}\n      className={cn(\"flex flex-col gap-2.5 data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:gap-4\", className)}\n      {...props}\n    />\n  );\n}\n"
     }
-  ],
-  "meta": {}
+  ]
 }

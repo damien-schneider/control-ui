@@ -33,6 +33,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/infinite-canvas.css\"": {}
-  },
-  "meta": {}
+  }
 }

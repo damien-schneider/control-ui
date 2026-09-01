@@ -24,6 +24,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/send-aurora.css\"": {}
-  },
-  "meta": {}
+  }
 }

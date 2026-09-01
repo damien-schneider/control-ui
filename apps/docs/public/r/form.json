@@ -17,6 +17,5 @@
       "type": "registry:ui",
       "content": "\"use client\";\n\nimport { Form as FormPrimitive } from \"@base-ui/react/form\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"@/components/control-ui/lib/cn\";\n\nexport type FormErrors = Record<string, string | string[]>;\n\nexport type FormProps = ComponentProps<\"form\"> & {\n  errors?: FormErrors;\n  validationMode?: \"onSubmit\" | \"onBlur\" | \"onChange\";\n};\n\n// Merges externally-returned errors, keyed by Field name, onto matching FieldError.\nexport function Form({ className, ...props }: FormProps) {\n  return (\n    <FormPrimitive\n      data-control-ui=\"form\"\n      data-control-family=\"field\"\n      data-field-kind=\"form\"\n      data-slot=\"root\"\n      className={cn(\"flex w-full flex-col\", className)}\n      {...props}\n    />\n  );\n}\n"
     }
-  ],
-  "meta": {}
+  ]
 }

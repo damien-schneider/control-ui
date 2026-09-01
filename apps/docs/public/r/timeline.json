@@ -30,6 +30,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/timeline.css\"": {}
-  },
-  "meta": {}
+  }
 }

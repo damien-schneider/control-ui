@@ -30,6 +30,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/view-transition.css\"": {}
-  },
-  "meta": {}
+  }
 }

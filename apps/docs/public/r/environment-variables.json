@@ -47,6 +47,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/environment-variables.css\"": {}
-  },
-  "meta": {}
+  }
 }

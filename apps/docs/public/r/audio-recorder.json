@@ -58,6 +58,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/audio-recorder.css\"": {}
-  },
-  "meta": {}
+  }
 }

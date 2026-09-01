@@ -105,6 +105,5 @@
     "http://127.0.0.1:3000/r/typography.json",
     "http://127.0.0.1:3000/r/user-ask.json"
   ],
-  "files": [],
-  "meta": {}
+  "files": []
 }

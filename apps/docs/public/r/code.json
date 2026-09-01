@@ -51,6 +51,5 @@
   "css": {
     "@import \"../components/control-ui/styles/code.css\"": {},
     "@import \"../components/control-ui/styles/recipes/code.css\"": {}
-  },
-  "meta": {}
+  }
 }

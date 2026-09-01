@@ -72,7 +72,7 @@
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
 
 ### Blocks (pre-composed recipes)
-- `use-cases` (Use cases) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
+- `use-cases` (Blocks) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
 - `chat` (Chat) — Controlled chat shell that composes rendered turns and a provider-owned composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json`
 - `theme-toggle` (Theme toggle) — Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown. — `npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json`
 - `coding-agent` (Coding agent) **[beta]** — Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json`
@@ -184,17 +184,25 @@
 
 ### Guides
 - `create` (Create app) — Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
-- `overview` (Overview) — An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
-- `get-started` (Get started) — Choose a skin, install a component or complete block, wire its CSS, and compose your application runtime.
+- `get-started` (Install) — One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.
+- `doctor` (Verify) — The doctor audits what the registry cannot see from inside one install: imports that resolve, theme order, app blocks fighting the skin, and the data-skin stamp.
+- `build-a-screen` (Build a screen) — Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
+- `theming` (Theme it) — Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
 - `create-a-skin` (Create a skin) — Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
-- `shadcn-compatibility` (shadcn compatibility) — shadcn registry, token, and ownership conventions without writing to components/ui.
-- `architecture` (Architecture) — Runtime ownership, skin layering, customization paths, and registry derivation.
-- `agent-surface` (Agent surface) — Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
-- `lock-in` (Lock-in) — What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - `theme-ai-builder` (Theme AI builder) — Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 - `theme-accessibility` (Theme accessibility) — Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
+- `update` (Update & diff) — Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.
+- `contract-versions` (Contract versions) — The skin contract is version 7. Crossing a version reinstalls core, the affected items, and the skin together.
+- `setup-prompt` (Setup prompt) — One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
+- `agent-skill` (Agent skill) — The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
+- `agent-surface` (Machine docs) — Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
+- `overview` (Why Control UI) — An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
+- `architecture` (Architecture) — Runtime ownership, skin layering, customization paths, and registry derivation.
+- `lock-in` (Lock-in) — What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
+- `shadcn-compatibility` (shadcn compatibility) — shadcn registry, token, and ownership conventions without writing to components/ui.
 - `control-ui-vs-shadcn-ui` (Control UI vs shadcn/ui) — Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.
 - `best-react-component-libraries-for-ai-interfaces` (Best React component libraries for AI interfaces) — Six production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui to MUI to Control UI.
+- `reference` (Reference) — Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 
 ## Practice rules (how to build well)
 

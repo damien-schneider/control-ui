@@ -45,6 +45,5 @@
   "css": {
     "@import \"../components/control-ui/styles/skin-theme.css\"": {},
     "@import \"../components/control-ui/styles/skin.css\"": {}
-  },
-  "meta": {}
+  }
 }

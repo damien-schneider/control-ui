@@ -70,6 +70,5 @@
     "@import \"../components/control-ui/styles/recipes/dynamic-notification.css\"": {},
     "@import \"../components/control-ui/styles/recipes/dynamic-notification-input.css\"": {},
     "@import \"../components/control-ui/styles/recipes/dynamic-notification-motion.css\"": {}
-  },
-  "meta": {}
+  }
 }

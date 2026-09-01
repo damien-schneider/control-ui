@@ -46,6 +46,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/dropzone.css\"": {}
-  },
-  "meta": {}
+  }
 }

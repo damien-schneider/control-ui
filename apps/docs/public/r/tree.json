@@ -34,6 +34,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/tree.css\"": {}
-  },
-  "meta": {}
+  }
 }

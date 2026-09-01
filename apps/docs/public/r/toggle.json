@@ -27,6 +27,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/button.css\"": {}
-  },
-  "meta": {}
+  }
 }

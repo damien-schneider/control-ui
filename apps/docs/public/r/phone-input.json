@@ -49,6 +49,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/phone-input.css\"": {}
-  },
-  "meta": {}
+  }
 }

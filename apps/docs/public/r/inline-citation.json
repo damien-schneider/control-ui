@@ -35,6 +35,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/inline-citation.css\"": {}
-  },
-  "meta": {}
+  }
 }

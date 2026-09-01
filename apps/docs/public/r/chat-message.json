@@ -37,6 +37,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/chat-message.css\"": {}
-  },
-  "meta": {}
+  }
 }

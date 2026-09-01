@@ -67,6 +67,5 @@
     "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
     "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-  },
-  "meta": {}
+  }
 }

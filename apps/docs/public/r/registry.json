@@ -35,8 +35,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/accordion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -69,8 +68,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/action-bar.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -105,8 +103,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/activity.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -137,8 +134,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/alert.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -191,8 +187,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -205,8 +200,7 @@
         "http://127.0.0.1:3000/r/all-refined.json",
         "http://127.0.0.1:3000/r/core.json"
       ],
-      "files": [],
-      "meta": {}
+      "files": []
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -322,8 +316,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -439,8 +432,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -556,8 +548,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -673,8 +664,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -790,8 +780,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -907,8 +896,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1024,8 +1012,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1141,8 +1128,7 @@
         "@import \"../components/control-ui/styles/effects.css\"": {},
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1160,8 +1146,7 @@
           "target": "@components/control-ui/ui/aspect-ratio.tsx",
           "type": "registry:ui"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1216,8 +1201,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/audio-recorder.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1248,8 +1232,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/audio-visualizer.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1268,8 +1251,7 @@
           "target": "@components/control-ui/audio-visualizer-line.tsx",
           "type": "registry:component"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1339,8 +1321,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1373,8 +1354,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/avatar.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1407,8 +1387,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/badge.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1441,8 +1420,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/button.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1475,8 +1453,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/button-group.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1509,8 +1486,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/calendar.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1541,8 +1517,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/card.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1568,8 +1543,7 @@
         "http://127.0.0.1:3000/r/thread-rail.json",
         "http://127.0.0.1:3000/r/transcript-divider.json"
       ],
-      "files": [],
-      "meta": {}
+      "files": []
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1588,8 +1562,7 @@
           "target": "@components/control-ui/blocks/chat.tsx",
           "type": "registry:block"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1671,8 +1644,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/chat-composer.css\"": {},
         "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1712,8 +1684,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/chat-composer-attachment.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1746,8 +1717,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/chat-layout.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1784,8 +1754,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/chat-message.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1818,8 +1787,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/choice.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1839,8 +1807,7 @@
           "target": "@components/control-ui/ui/checkbox-group.tsx",
           "type": "registry:ui"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1890,8 +1857,7 @@
       "css": {
         "@import \"../components/control-ui/styles/code.css\"": {},
         "@import \"../components/control-ui/styles/recipes/code.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1944,8 +1910,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/code-block-editor.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1986,8 +1951,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/code-diff.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2011,8 +1975,7 @@
           "target": "@components/control-ui/blocks/coding-agent.tsx",
           "type": "registry:block"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2045,8 +2008,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/collapsible.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2145,8 +2107,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2220,8 +2181,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2275,8 +2235,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2327,8 +2286,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/context.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2380,8 +2338,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2407,8 +2364,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/control-effects.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2460,8 +2416,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2505,8 +2460,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/dockable-panel.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2563,8 +2517,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-drawer.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2627,8 +2580,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2673,8 +2625,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/dropzone.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2739,8 +2690,7 @@
         "@import \"../components/control-ui/styles/recipes/dynamic-notification.css\"": {},
         "@import \"../components/control-ui/styles/recipes/dynamic-notification-input.css\"": {},
         "@import \"../components/control-ui/styles/recipes/dynamic-notification-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2771,8 +2721,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/empty.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2818,8 +2767,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/environment-variables.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2860,8 +2808,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2892,8 +2839,7 @@
           "target": "@components/control-ui/blocks/file-explorer.tsx",
           "type": "registry:block"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2913,8 +2859,7 @@
           "target": "@components/control-ui/ui/form.tsx",
           "type": "registry:ui"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -2948,8 +2893,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/gradient-editor.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3001,8 +2945,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3036,8 +2979,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/infinite-canvas.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3069,8 +3011,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/inline-attachment.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3106,8 +3047,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/inline-citation.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3146,8 +3086,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3186,8 +3125,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3226,8 +3164,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3261,8 +3198,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/item.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3293,8 +3229,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/kbd.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3334,8 +3269,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/markdown.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3369,8 +3303,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/markdown-block.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3433,8 +3366,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3467,8 +3399,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/range.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3502,8 +3433,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/morphing-panel.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3540,8 +3470,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3603,8 +3532,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3629,8 +3557,7 @@
           "target": "~/app/page.tsx",
           "type": "registry:page"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3669,8 +3596,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3703,8 +3629,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/pagination.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3752,8 +3677,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/phone-input.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3804,8 +3728,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3838,8 +3761,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/range.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3872,8 +3794,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/choice.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3906,8 +3827,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/resizable.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3928,8 +3848,7 @@
           "target": "@components/control-ui/ui/responsive-dialog.tsx",
           "type": "registry:ui"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -3998,8 +3917,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {},
         "@import \"../components/control-ui/styles/recipes/rich-tooltip.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4032,8 +3950,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/scroll-area.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4096,8 +4013,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4123,8 +4039,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/send-aurora.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4155,8 +4070,7 @@
           "target": "@components/control-ui/blocks/settings.tsx",
           "type": "registry:block"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4201,8 +4115,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/sidebar.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4234,8 +4147,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/skeleton.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4268,8 +4180,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4301,8 +4212,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4334,8 +4244,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4374,8 +4283,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4419,8 +4327,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4452,8 +4359,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4485,8 +4391,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4519,8 +4424,7 @@
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4553,8 +4457,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/range.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4594,8 +4497,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/source-badge.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4628,8 +4530,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/spinner.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4662,8 +4563,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/stepper.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4696,8 +4596,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/switch.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4728,8 +4627,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/table.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4761,8 +4659,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/table-of-contents.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4795,8 +4692,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/tabs.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4830,8 +4726,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/task-list.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4868,8 +4763,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4892,8 +4786,7 @@
           "target": "@components/control-ui/blocks/theme-toggle.tsx",
           "type": "registry:block"
         }
-      ],
-      "meta": {}
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4925,8 +4818,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/thread-rail.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -4957,8 +4849,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/timeline.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5015,8 +4906,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-toast.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5045,8 +4935,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/button.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5079,8 +4968,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/toolbar.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5131,8 +5019,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5163,8 +5050,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/transcript-divider.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5199,8 +5085,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/tree.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5267,8 +5152,7 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5289,8 +5173,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/type-scale.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5399,8 +5282,7 @@
         "http://127.0.0.1:3000/r/typography.json",
         "http://127.0.0.1:3000/r/user-ask.json"
       ],
-      "files": [],
-      "meta": {}
+      "files": []
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5446,8 +5328,7 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/user-ask.css\"": {},
         "@import \"../components/control-ui/styles/recipes/user-ask-details.css\"": {}
-      },
-      "meta": {}
+      }
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5478,8 +5359,7 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/view-transition.css\"": {}
-      },
-      "meta": {}
+      }
     }
   ]
 }

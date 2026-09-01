@@ -47,6 +47,5 @@
   "css": {
     "@import \"../components/control-ui/styles/recipes/user-ask.css\"": {},
     "@import \"../components/control-ui/styles/recipes/user-ask-details.css\"": {}
-  },
-  "meta": {}
+  }
 }

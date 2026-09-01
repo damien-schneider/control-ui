@@ -15,6 +15,5 @@
       "type": "registry:ui",
       "content": "import type { ComponentProps } from \"react\";\n\nexport type AspectRatioProps = ComponentProps<\"div\"> & { ratio?: number };\n\nconst DEFAULT_ASPECT_RATIO = 16 / 9;\n\n// native CSS aspect-ratio, no Radix; rounding and clipping stay caller's to add\nexport function AspectRatio({ ratio = DEFAULT_ASPECT_RATIO, className, style, ...props }: AspectRatioProps) {\n  return <div data-control-ui=\"aspect-ratio\" data-slot=\"root\" style={{ aspectRatio: ratio, ...style }} className={className} {...props} />;\n}\n"
     }
-  ],
-  "meta": {}
+  ]
 }

@@ -53,6 +53,5 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/context.css\"": {}
-  },
-  "meta": {}
+  }
 }
