@@ -181,6 +181,36 @@ function unusedPrivateVariableOffenders(root: Root, renderedSource: string): str
     );
 }
 
+/** Same file, same family and slot: the element a rule's declarations compute on, whatever its state or variant. */
+function elementKey(rule: postcss.Rule): string {
+  const identity = rule.selector.match(/data-(?:control-family|slot)="[^"]*"/g) ?? [];
+  return `${rule.source?.input.file ?? ""} ${identity.join("")}`;
+}
+
+function knobReadingForeignPrivateOffenders(root: Root): string[] {
+  const declaredOn = new Map<string, Set<string>>();
+  root.walkDecls(/^--_/, (declaration) => {
+    const rule = declaration.parent;
+    if (!(rule instanceof postcss.Rule)) return;
+    const key = elementKey(rule);
+    declaredOn.set(key, (declaredOn.get(key) ?? new Set()).add(declaration.prop));
+  });
+  const offenders: string[] = [];
+  root.walkRules((rule) => {
+    const declaredHere = declaredOn.get(elementKey(rule)) ?? new Set<string>();
+    rule.each((node) => {
+      if (node.type !== "decl" || !node.prop.startsWith("--cui-")) return;
+      for (const [reference] of node.value.matchAll(/--_[\w-]+/g)) {
+        if (declaredHere.has(reference)) continue;
+        offenders.push(
+          `${path.basename(node.source?.input.file ?? "recipe.css")}:${node.source?.start?.line ?? "?"} ${node.prop} reads ${reference}`,
+        );
+      }
+    });
+  });
+  return offenders;
+}
+
 function selectorContext(rule: postcss.Rule): string {
   const ancestors: string[] = [];
   for (let node: postcss.Container | postcss.Document | undefined = rule.parent; node; node = node.parent) {
@@ -281,6 +311,18 @@ describe("recipe hygiene", () => {
   test("rejects unused private variables", () => {
     const invalid = postcss.parse("a { --_unused: red; }", { from: "invalid.css" });
     expect(unusedPrivateVariableOffenders(invalid, "")).toEqual(["invalid.css:1 --_unused"]);
+  });
+
+  test("knob defaults read only private variables declared in the same rule", () => {
+    expect(knobReadingForeignPrivateOffenders(recipes)).toEqual([]);
+  });
+
+  test("rejects a knob default computed from another slot's private variable", () => {
+    const invalid = postcss.parse(
+      '[data-slot="root"] { --cui-x-radius: calc(var(--_fit) + 1px); }\n[data-slot="list"] { --_fit: 1px; }\n[data-slot="list"][data-size="sm"] { --cui-x-gap: var(--_fit); }',
+      { from: "invalid.css" },
+    );
+    expect(knobReadingForeignPrivateOffenders(invalid)).toEqual(["invalid.css:1 --cui-x-radius reads --_fit"]);
   });
 
   test("selectors open once per at-rule context", () => {

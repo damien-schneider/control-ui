@@ -14539,7 +14539,8 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tabs-list-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-list-radius-offset))",
+        defaultValue:
+          "calc(\n      var(--cui-tabs-trigger-radius) +\n      clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding))\n    )",
       },
       {
         name: "--cui-tabs-list-background",

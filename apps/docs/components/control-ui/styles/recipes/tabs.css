@@ -2,7 +2,10 @@
   :where([data-control-family="tabs"][data-slot="root"]) {
     --cui-tabs-trigger-radius: var(--radius-control);
     --cui-tabs-list-padding: calc(var(--spacing) * 1);
-    --cui-tabs-list-radius: calc(var(--_tabs-trigger-radius-fit) + var(--_tabs-list-radius-offset));
+    --cui-tabs-list-radius: calc(
+      var(--cui-tabs-trigger-radius) +
+      clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding))
+    );
     --cui-tabs-list-background: var(--hover-fill);
     --cui-tabs-list-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset);
     --cui-tabs-list-backdrop-filter: none;
@@ -14,14 +17,13 @@
   }
   :where([data-control-family="tabs"][data-slot="list"]) {
     --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--_tabs-trigger-h) / 2));
-    --_tabs-list-radius-offset: clamp(0px, calc(var(--_tabs-trigger-radius-fit) * 1000), var(--cui-tabs-list-padding));
     position: relative;
     display: flex;
     min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding) + var(--cui-tabs-list-padding));
     width: fit-content;
     align-items: center;
     gap: calc(var(--spacing) * 1);
-    border-radius: var(--cui-tabs-list-radius);
+    border-radius: min(var(--cui-tabs-list-radius), calc(var(--_tabs-trigger-h) / 2 + var(--cui-tabs-list-padding)));
     background: var(--cui-tabs-list-background);
     box-shadow: var(--cui-tabs-list-shadow);
     padding: var(--cui-tabs-list-padding);

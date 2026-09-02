@@ -165,7 +165,6 @@
 
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="tabs"]) {
     --cui-tabs-trigger-radius: calc(var(--radius-control) * 0.78);
-    --cui-tabs-list-radius: var(--radius-control);
     --cui-tabs-list-padding: 0.25rem;
     --cui-tabs-list-background: var(--cuicui-control-bg);
     --cui-tabs-active-foreground: var(--primary-foreground);

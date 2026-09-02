@@ -97,7 +97,10 @@
 
   --corner-shape: round;
   --corner-radius-fit: 0.5;
-  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px));
+  --radius-popover: calc(
+    var(--radius-popup-item-fit) +
+    clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - var(--nest-safe))
+  );
 
   --shadow-highlight: oklch(1 0 0 / 0.62);
   --shadow-y: 1;
@@ -413,7 +416,7 @@
         --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
         --radius-popover: calc(
           var(--radius-popup-item-fit) +
-          clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - 1px)
+          clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - var(--nest-safe))
         );
         /* Each derives straight from --radius; must mirror the :where([data-skin]) scale above ×fit. */
         --radius-sm: calc(var(--radius) * 0.6 * var(--corner-radius-fit));
