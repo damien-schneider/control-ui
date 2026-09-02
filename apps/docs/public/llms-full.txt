@@ -24,6 +24,7 @@
 - `state: true` means the paint waits on an interaction, so force `knobs.fill` onto the part instead of expecting it to paint itself.
 - A knob you leave alone still paints — it keeps its recipe default and still has to clear the ratio under your surfaces.
 - The family's `/r/contract/<family>.json` slice lists `uncovered`: the knobs no documented route renders. Nothing measured them, so treat them as unverified rather than passing.
+- After importing a theme, run `node <install>/scripts/control-ui-doctor.mjs --contrast`: it resolves every required pair that theme tokens alone decide, offline, and exits non-zero on a failure. Pairs a recipe paints are only measured by the rendered audit at `/theme-accessibility`.
 
 ## Catalog
 

@@ -1,6 +1,7 @@
 import { CUSTOM_THEME_STORAGE_KEY } from "@/components/theme";
 import { hexToOklchColor } from "./color-utils";
 import { toDtcg } from "./dtcg";
+import { isRecord } from "./is-record";
 import { isSkinId } from "./presets";
 import { themeArtifactCss } from "./theme-artifact";
 import type { ControlUiThemeArtifactV1, CustomThemeProfile, LabelMode, ThemeState, TokenValues } from "./types";
@@ -17,10 +18,6 @@ function readTokenMap(value: unknown): TokenValues {
     if (name.startsWith("--") && typeof tokenValue === "string" && tokenValue.trim()) tokens[name] = tokenValue;
   }
   return tokens;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function readCustomTheme(value: unknown): CustomThemeProfile | null {
@@ -230,12 +227,10 @@ export function downloadThemeArtifact(artifact: ControlUiThemeArtifactV1) {
   downloadFile(themeArtifactFilename(artifact.name), `${JSON.stringify(artifact, null, 2)}\n`, "application/json");
 }
 
-/** The same file the doctor emits, for the reader who has the artifact in the browser rather than on disk. */
 export function downloadThemeCss(artifact: ControlUiThemeArtifactV1) {
   downloadFile(themeArtifactFilename(artifact.name, "css"), themeArtifactCss(artifact), "text/css");
 }
 
-/** DTCG shape, for importing the theme into Tokens Studio or Figma variables; it imports back here unchanged. */
 export function downloadThemeTokens(artifact: ControlUiThemeArtifactV1) {
   downloadFile(themeArtifactFilename(artifact.name, "tokens.json"), `${JSON.stringify(toDtcg(artifact), null, 2)}\n`, "application/json");
 }

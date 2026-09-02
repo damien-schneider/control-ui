@@ -2,7 +2,6 @@ import type { ContrastAnatomyArtifact, ContrastAnatomyNode, ContrastProbe } from
 import { contractSlicePath, contractSliceUrl } from "../public-payloads";
 import { type ContractKnob, type ContractPart, type SkinContract, sortRecord } from "./model";
 
-/** One paint family's slice of the contract: what an agent restyling that family has to read, and nothing else. */
 export type ContractFamilySlice = {
   version: SkinContract["version"];
   family: string;
@@ -15,7 +14,6 @@ export type ContractFamilySlice = {
   contrast: string;
 };
 
-/** The family's probes with anatomies deduped by index: the same ancestor chain repeats across hundreds of probes. */
 export type ContrastFamilySlice = {
   version: ContrastAnatomyArtifact["version"];
   family: string;
@@ -31,10 +29,6 @@ export type ContractSliceIndex = {
   families: Record<string, { registryItems: string[]; knobs: number; probes: number }>;
 };
 
-/**
- * A part without `data-control-family` is painted by whatever families its scope carries, so it belongs to each of
- * them rather than to none; a scope carrying no family at all is its own, which is what keeps every part routed.
- */
 function familiesByScope(contract: SkinContract): Map<string, string[]> {
   return new Map(
     Object.entries(contract.scopes).map(([scopeName, scope]) => {
@@ -87,7 +81,6 @@ function routeUncovered(owners: Map<string, string>, families: string[], uncover
   return routed;
 }
 
-/** A family can span several recipe files, so the knob a probe paints with names its owner; the file name does not. */
 export function probeFamily(owners: Map<string, string>, probe: ContrastProbe): string | undefined {
   return Object.values(probe.knobs).flatMap((knob) => owners.get(knob) ?? [])[0];
 }

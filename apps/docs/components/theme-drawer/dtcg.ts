@@ -1,4 +1,5 @@
 import { THEME_CONTRACT } from "@/src/registry/lib/theme-contract";
+import { isRecord } from "./is-record";
 import { isColorValuedToken } from "./token-metadata";
 import type { ControlUiThemeArtifactV1, TokenValues } from "./types";
 
@@ -10,11 +11,6 @@ export type DtcgThemeFile = { $extensions: Record<string, unknown>; shared: Dtcg
 
 const DESCRIPTIONS = new Map(THEME_CONTRACT.map((token) => [token.name, token.description]));
 
-/**
- * DTCG carries a type per token, but a Control UI value is a CSS string first: a relative color, a `calc()` chain, a
- * `linear()` easing. Typing is therefore driven by the value, and anything CSS-shaped stays raw so the round-trip is
- * byte-exact — a design tool can read what it understands and hand the rest back unchanged.
- */
 function dtcgType(name: string, value: string): string | undefined {
   if (/^(?:var|calc)\(/.test(value)) return undefined;
   if (isColorValuedToken(name)) return "color";
@@ -58,15 +54,10 @@ export function toDtcg(artifact: ControlUiThemeArtifactV1): DtcgThemeFile {
   };
 }
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
 export function isDtcg(value: unknown): boolean {
   return isRecord(value) && isRecord(value.$extensions) && isRecord(value.$extensions[VENDOR]);
 }
 
-/** A design tool may hand back a token as a typed object rather than the CSS string it was given; both have to land. */
 function cssValue(value: unknown): string | undefined {
   if (typeof value === "string") return value;
   if (!isRecord(value)) return undefined;
@@ -88,7 +79,6 @@ function fromDtcgBucket(value: unknown): TokenValues {
   return tokens;
 }
 
-/** Shapes a DTCG file back into artifact form; `validateThemeArtifact` still decides whether it is a valid theme. */
 export function artifactFromDtcg(value: unknown): unknown {
   if (!isRecord(value) || !isRecord(value.$extensions)) return value;
   const identity = value.$extensions[VENDOR];

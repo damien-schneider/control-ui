@@ -61,7 +61,6 @@ if (!checkOnly && existsSync(publicRoot)) {
   for (const filePath of new Bun.Glob("*.json").scanSync({ cwd: publicRoot })) {
     if (!expectedNames.has(filePath)) rmSync(path.join(publicRoot, filePath));
   }
-  // Contract slices are written by their own generator, so this prune keeps their directory and drops every other.
   for (const entry of readdirSync(publicRoot, { withFileTypes: true })) {
     if (entry.isDirectory() && entry.name !== contractDir) rmSync(path.join(publicRoot, entry.name), { recursive: true, force: true });
   }

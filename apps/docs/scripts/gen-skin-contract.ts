@@ -24,13 +24,11 @@ targets.push({
   ),
 });
 
-// Both inputs are committed, so slices stay deterministic even though the anatomy harvest needs a dev server.
 const anatomyPath = path.join(process.cwd(), publicPayloadPath(publicPayloads.contrastAnatomy));
 const anatomy: ContrastAnatomyArtifact | undefined = existsSync(anatomyPath) ? JSON.parse(readFileSync(anatomyPath, "utf8")) : undefined;
 const slices = contractSlices(skinContract, anatomy);
 targets.push(...slices);
 
-// The installed engine resolves theme tokens only; a pair that needs a rendered recipe stays in the browser audit.
 const requiredPairs = THEME_AUDIT_PAIRS.filter(
   (pair) =>
     pair.severity === "error" &&
@@ -46,15 +44,10 @@ const requiredPairs = THEME_AUDIT_PAIRS.filter(
   threshold,
 }));
 
-const contrastEvalPath = "src/registry/sources/control-ui/scripts/contrast-eval.mjs";
-const contrastEvalSource = readFileSync(path.join(process.cwd(), contrastEvalPath), "utf8");
-const generatedPairs = `// generated:required-pairs:start\nexport const REQUIRED_PAIRS = ${JSON.stringify(requiredPairs, null, 2)};\n// generated:required-pairs:end`;
+const requiredPairsPath = "src/registry/sources/control-ui/scripts/required-pairs.mjs";
 targets.push({
-  path: contrastEvalPath,
-  content: formatGeneratedTypeScript(
-    contrastEvalPath,
-    contrastEvalSource.replace(/\/\/ generated:required-pairs:start[\s\S]*?\/\/ generated:required-pairs:end/, generatedPairs),
-  ),
+  path: requiredPairsPath,
+  content: formatGeneratedTypeScript(requiredPairsPath, `export const REQUIRED_PAIRS = ${JSON.stringify(requiredPairs, null, 2)};\n`),
 });
 
 let drift = false;

@@ -13,7 +13,6 @@ let boundaryFor: (id: string) => { background: string } | null = () => null;
 const originalDocument = globalThis.document;
 const originalGetComputedStyle = globalThis.getComputedStyle;
 
-// The check reads only these two, so a hand-built stub says more about the failure paths than jsdom would.
 Object.assign(globalThis, {
   document: {
     documentElement: { dataset: { skin: "installed" } },

@@ -67,7 +67,6 @@
   --popover: oklch(0.9933 0.0016 81.514);
   --popover-foreground: oklch(0.2168 0.0113 55.716);
 
-  /* Rig draws its controls with a heavy ink rim, not a hairline — the same weight in both modes. */
   --control-rim: oklch(from var(--foreground) l c h / 0.5);
   --control-rim-width: 1.5px;
 }

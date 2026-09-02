@@ -68,10 +68,8 @@
   --focus-ring-style: solid;
   --focus-ring-offset: 2px;
 
-  /* A control's own edge, split colour/width like the focus ring so a pack can thin the hairline without re-picking it. */
   --control-rim: var(--border);
   --control-rim-width: 1px;
-  /* The wash every row and quiet control shares; recipes read these instead of open-coding the same foreground alpha. */
   --hover-fill: oklch(from var(--foreground) l c h / 0.06);
   --active-fill: oklch(from var(--foreground) l c h / 0.08);
 
@@ -375,7 +373,6 @@
     calc(12px * var(--shadow-size) * var(--shadow-ambient-multiplier)) calc(-2.5px * var(--shadow-size) * var(--shadow-ambient-multiplier))
     oklch(from var(--shadow-color) l c h / calc(0.05 * var(--shadow-opacity))); /* ambient lift */
 
-  /* The recessed rung: a well, not a lift. No highlight layer — a recess catches no top light. */
   --shadow-inset:
     inset 0 calc(1px * var(--shadow-size) * var(--shadow-control-multiplier) * var(--shadow-y))
     calc(2px * var(--shadow-size) * var(--shadow-control-multiplier))

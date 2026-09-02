@@ -1,16 +1,21 @@
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { THEME_AUDIT_PAIRS } from "@/app/(features)/theme-accessibility/audit-contract";
 import { contrastRatio as referenceRatio } from "@/src/registry/lib/contrast";
-import { composite, contrastRatio, evaluate, REQUIRED_PAIRS, resolveColor, tokenMaps } from "./contrast-eval.mjs";
+import { composite, contrastRatio, evaluate, resolveColor, tokenMaps } from "./contrast-eval.mjs";
+import { REQUIRED_PAIRS } from "./required-pairs.mjs";
 
 const docsRoot = fileURLToPath(new URL("../../../../../", import.meta.url));
 const readCss = (relativePath: string) => readFileSync(path.join(docsRoot, relativePath), "utf8");
+const tailwindPalette = readFileSync(createRequire(import.meta.url).resolve("tailwindcss/theme.css"), "utf8");
+const packsDir = path.join(docsRoot, "src/registry/skin-packs");
+const packIds = readdirSync(packsDir).filter((entry) => statSync(path.join(packsDir, entry)).isDirectory());
 
 const packTokens = (pack: string) =>
-  tokenMaps([readCss("src/registry/sources/control-ui/theme.css"), readCss(`src/registry/skin-packs/${pack}/theme.css`)]);
+  tokenMaps([tailwindPalette, readCss("src/registry/sources/control-ui/theme.css"), readCss(`src/registry/skin-packs/${pack}/theme.css`)]);
 
 const rgb = (value: string, tokens = new Map<string, string>()) => resolveColor(value, tokens);
 
@@ -58,12 +63,26 @@ describe("contrast-eval required pairs", () => {
     expect(REQUIRED_PAIRS.map((pair: { id: string }) => pair.id)).toEqual(expected);
   });
 
-  test("resolves and passes every theme-only pair on a shipped pack, both modes", () => {
-    for (const [mode, tokens] of Object.entries(packTokens("refined"))) {
-      const results = evaluate(tokens, REQUIRED_PAIRS);
-      const failed = results.filter((result: { status: string }) => result.status === "fail");
-      expect({ mode, failed: failed.map((result: { id: string }) => result.id) }).toEqual({ mode, failed: [] });
-      expect(results.some((result: { status: string }) => result.status === "pass")).toBe(true);
-    }
+  test("routes a block to the modes its prelude names", () => {
+    const { light, dark } = tokenMaps([
+      '@theme default { --color-red-500: #f00; }\n:where(:not(.dark)) [data-skin="a"] { --background: #fff; }\n.dark [data-skin="a"] { --background: #000; }\n@theme inline { --background: var(--background); }',
+    ]);
+    expect([light.get("--color-red-500"), dark.get("--color-red-500")]).toEqual(["#f00", "#f00"]);
+    expect([light.get("--background"), dark.get("--background")]).toEqual(["#fff", "#000"]);
   });
+
+  for (const pack of packIds) {
+    test(`resolves and passes every theme-only pair on the ${pack} pack, both modes`, () => {
+      for (const [mode, tokens] of Object.entries(packTokens(pack))) {
+        const results = evaluate(tokens, REQUIRED_PAIRS);
+        const notPassing = results.filter((result: { status: string }) => result.status !== "pass");
+        expect({ mode, notPassing: notPassing.map((result: { id: string; reason: string | null }) => [result.id, result.reason]) }).toEqual(
+          {
+            mode,
+            notPassing: [],
+          },
+        );
+      }
+    });
+  }
 });

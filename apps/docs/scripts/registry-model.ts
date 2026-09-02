@@ -102,9 +102,10 @@ const coreFiles = [
   "src/registry/sources/control-ui/scripts/fix-css-imports.mjs",
   "src/registry/sources/control-ui/scripts/control-ui-doctor.mjs",
   "src/registry/sources/control-ui/scripts/contrast-eval.mjs",
+  "src/registry/sources/control-ui/scripts/required-pairs.mjs",
 ] as const;
 
-if (coreFiles.length !== 8) throw new Error(`Control UI core must contain exactly 8 files; received ${coreFiles.length}`);
+if (coreFiles.length !== 9) throw new Error(`Control UI core must contain exactly 9 files; received ${coreFiles.length}`);
 
 const styleUtilitySource = "src/registry/sources/control-ui/effects.css";
 

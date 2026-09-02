@@ -1,9 +1,11 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium, type Page } from "@playwright/test";
 import type { ThemeAuditResult } from "../app/(features)/theme-accessibility/audit-contract";
-import { evaluate, REQUIRED_PAIRS, tokenMaps } from "../src/registry/sources/control-ui/scripts/contrast-eval.mjs";
+import { evaluate, tokenMaps } from "../src/registry/sources/control-ui/scripts/contrast-eval.mjs";
+import { REQUIRED_PAIRS } from "../src/registry/sources/control-ui/scripts/required-pairs.mjs";
 
 const docsRoot = fileURLToPath(new URL("../", import.meta.url));
 const defaultSkinRoot = path.join(docsRoot, "src/registry/skin-packs");
@@ -88,15 +90,15 @@ const requestedPaths = suppliedPaths.length > 0 ? suppliedPaths : [defaultSkinRo
 const themeFiles = requestedPaths.flatMap(collectThemeFiles);
 if (themeFiles.length === 0) throw new Error("No theme.css files found at the supplied path.");
 
-const tailwindTheme = readFileSync(path.join(docsRoot, "node_modules/tailwindcss/theme.css"), "utf8").replace("@theme default", ":root");
+const tailwindPalette = readFileSync(createRequire(import.meta.url).resolve("tailwindcss/theme.css"), "utf8");
+const tailwindTheme = tailwindPalette.replace("@theme default", ":root");
 // The audit renders real anatomy, so it needs the same core sheets the app imports — theme tokens
 // alone leave every recipe-owned knob unresolved. globals.css is the one list of what core ships.
 const globalsCss = readFileSync(path.join(docsRoot, "app/globals.css"), "utf8");
 const coreTheme = [...globalsCss.matchAll(/@import "(\.\.\/src\/registry\/[^"]+)";/g)]
   .map((match) => readFileSync(path.join(docsRoot, "app", match[1]), "utf8"))
   .join("\n");
-// The parity run reads what a consumer install has — core theme tokens plus one pack — not the docs app's own skin.
-const coreThemeTokens = readFileSync(path.join(docsRoot, "src/registry/sources/control-ui/theme.css"), "utf8");
+const installedTokenSources = [tailwindPalette, readFileSync(path.join(docsRoot, "src/registry/sources/control-ui/theme.css"), "utf8")];
 const browserEntry = path.join(docsRoot, "scripts/theme-accessibility-browser.ts");
 const bundle = await Bun.build({ entrypoints: [browserEntry], target: "browser", minify: true });
 if (!bundle.success || !bundle.outputs[0]) throw new Error("Could not build the browser accessibility audit.");
@@ -130,7 +132,7 @@ try {
         if (typeof audit !== "function") throw new Error("Theme accessibility audit did not load.");
         return audit();
       });
-      reports.push({ file: path.relative(process.cwd(), file), skin, mode, results });
+      reports.push({ file: path.relative(docsRoot, file), skin, mode, results });
       const labelFocus = await labelFocusProbe(page);
       if (!focusProbeRendered(labelFocus)) {
         throw new Error(`${skin} ${mode}: label-wrapped focus outline did not render (${JSON.stringify(labelFocus)})`);
@@ -187,12 +189,13 @@ try {
   await browser.close();
 }
 
-// A consumer's doctor resolves these same pairs with no browser; drift here means it would report a ratio nobody renders.
 const parityDrift = reports.flatMap((report) => {
-  const tokens = tokenMaps([coreThemeTokens, readFileSync(path.join(process.cwd(), report.file), "utf8")])[report.mode];
-  return evaluate(tokens, REQUIRED_PAIRS).flatMap((evaluated: { id: string; status: string; ratio: number }) => {
+  const tokens = tokenMaps([...installedTokenSources, readFileSync(path.join(docsRoot, report.file), "utf8")])[report.mode];
+  return evaluate(tokens, REQUIRED_PAIRS).flatMap((evaluated: { id: string; status: string; ratio: number; reason: string | null }) => {
+    if (evaluated.status === "unverified")
+      return [`${report.skin} ${report.mode}: ${evaluated.id} — contrast-eval cannot resolve it: ${evaluated.reason}`];
     const rendered = report.results.find((result) => result.id === evaluated.id);
-    if (evaluated.status === "unverified" || rendered?.ratio == null) return [];
+    if (rendered?.ratio == null) return [];
     // The browser probe paints through a canvas, which quantizes each layer's alpha to 8 bits; that costs ~0.1 of ratio.
     if (Math.abs(rendered.ratio - evaluated.ratio) <= 0.25) return [];
     return [

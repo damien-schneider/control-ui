@@ -45,13 +45,16 @@ control-ui doctor: clean.
 
 ```bash
 $ node components/control-ui/scripts/control-ui-doctor.mjs --contrast
-light: 27/55 pass
-dark: 27/55 pass
+light: 55/55 pass
+dark: 55/55 pass
+Pairs painted by a rendered recipe (popup items, sidebar, tabs, solid buttons, tooltip, focus ring, badges) are audited at /theme-accessibility.
 ```
 
-  It reads token values only, so a pair a recipe paints (popup items, sidebar rows, tabs, solid buttons, tooltips,
-  focus rings, badges) is reported as unverified rather than guessed at; those live in the rendered audit at
-  [/theme-accessibility](/theme-accessibility). A failure exits non-zero.
+  It reads the Tailwind palette, the core theme, the installed skin theme and every `*.control-ui-theme.css` the
+  entry imports, in that order, so it sees exactly what the browser resolves. A pair a recipe paints is not guessed at;
+  those live in the rendered audit at [/theme-accessibility](/theme-accessibility). A failure names the pair, its
+  ratio and the threshold, and exits non-zero. A value the engine cannot model, such as `color-mix()`, is reported
+  as unverified instead of passing.
 
   `--emit-css` turns a theme artifact into the one derived stylesheet an app imports:
 

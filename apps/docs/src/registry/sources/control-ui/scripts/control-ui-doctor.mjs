@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { declarations, evaluate, flattenBlocks, REQUIRED_PAIRS, stripComments, tokenMaps } from "./contrast-eval.mjs";
+import { declarations, evaluate, flattenBlocks, stripComments, tokenMaps } from "./contrast-eval.mjs";
+import { REQUIRED_PAIRS } from "./required-pairs.mjs";
 
 // Read-only audit of the wiring the registry cannot see from inside one install:
 // the CSS entry, the app's own token blocks fighting the skin, and the data-skin stamp.
@@ -48,7 +50,7 @@ const entryRelative = componentsConfig.tailwind?.css;
 if (typeof entryRelative !== "string") throw new Error(`components.json in ${appDir} names no tailwind.css entry`);
 const entryPath = path.join(appDir, entryRelative);
 
-const readCss = (filePath) => (existsSync(filePath) ? readFileSync(filePath, "utf8") : "");
+const readCss = (filePath) => readFileSync(filePath, "utf8");
 
 if (process.argv.includes("--contrast")) {
   const overrides = [...stripComments(readCss(entryPath)).matchAll(/@import\s+"([^"]+)"/g)]
@@ -56,6 +58,7 @@ if (process.argv.includes("--contrast")) {
     .filter((specifier) => specifier.endsWith(themeSuffix))
     .map((specifier) => readCss(path.resolve(path.dirname(entryPath), specifier)));
   const modes = tokenMaps([
+    readCss(createRequire(entryPath).resolve("tailwindcss/theme.css")),
     readCss(path.join(controlUiDir, "styles/theme.css")),
     readCss(path.join(controlUiDir, "styles/skin-theme.css")),
     ...overrides,
@@ -70,7 +73,6 @@ if (process.argv.includes("--contrast")) {
         `  fail        ${result.label}: ${result.ratio.toFixed(2)}:1 (needs ${result.threshold}:1; ${result.foreground} on ${result.background})`,
       );
     }
-    // Tailwind's own palette is not one of the files read here, so every pair reaching it lands in one grouped line.
     const unverified = results.filter((result) => result.status === "unverified");
     if (unverified.length > 0) {
       const reasons = [...new Set(unverified.map((result) => result.reason))];

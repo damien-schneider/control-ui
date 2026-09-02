@@ -1,6 +1,7 @@
 import { contrastAgentRules } from "@/app/(features)/theme-accessibility/agent-rules";
 import { THEME_CONTRACT, THEME_CONTRACT_NAMES, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { artifactFromDtcg, isDtcg } from "./dtcg";
+import { isRecord } from "./is-record";
 import { skinScopeSelector } from "./override-decls";
 import { isSkinId } from "./presets";
 import { isColorValuedToken } from "./token-metadata";
@@ -21,10 +22,6 @@ type ThemeArtifactBriefInput = {
   context?: string;
   discoveryMode: ThemeDiscoveryMode;
 };
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
 
 function balancedCssValue(value: string) {
   const withoutStrings = value.replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, "");
@@ -80,7 +77,7 @@ function validateTokenValue(token: ThemeContractToken, value: string) {
   return null;
 }
 
-function validateTokenEntry(name: string, raw: unknown, bucket: "shared" | "light" | "dark", errors: string[]) {
+export function validateTokenEntry(name: string, raw: unknown, bucket: "shared" | "light" | "dark", errors: string[]) {
   if (!THEME_CONTRACT_NAMES.has(name)) {
     errors.push(`tokens.${bucket}.${name} is not part of the theme contract.`);
     return null;
@@ -199,10 +196,6 @@ export function compactContract() {
   }).join("\n");
 }
 
-/**
- * The artifact is the source of record; this is the one derived CSS an app imports. The doctor emits byte-identical
- * output from the installed copy, so nobody has to hand-write the doubled-attribute selector the pack's weight needs.
- */
 export function themeArtifactCss(artifact: ControlUiThemeArtifactV1): string {
   const scope = skinScopeSelector(artifact.baseSkin);
   const block = (tokens: TokenValues) =>

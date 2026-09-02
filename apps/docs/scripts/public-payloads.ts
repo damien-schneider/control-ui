@@ -13,7 +13,6 @@ export const publicPayloads = {
   controlUiSkill: "control-ui-skill.md",
 } as const;
 
-/** Per-family contract slices live one directory down, so the item build prunes around it instead of through it. */
 export const contractDir = "contract";
 
 export const publicPayloadPath = (payload: string) => path.join("public/r", payload);

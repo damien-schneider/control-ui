@@ -46,7 +46,6 @@ function knobsWithRepeatedFamilyPrefix(knobs: readonly string[]): string[] {
   });
 }
 
-// Matched over the whole name, not a last-segment set: a bare `width` would otherwise admit `--cui-x-width`.
 const KNOB_SUFFIX =
   /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|icon|height|padding(?:-inline)?|font-(?:size|weight)|easing|transition-duration|indicator-(?:start|middle|end))$/;
 
@@ -62,9 +61,10 @@ describe("knob naming", () => {
   });
 
   test("rejects -bg and an unnamed -color", () => {
-    expect(knobsOutsideSuffixVocabulary(["--cui-x-bg", "--cui-x-accent-color", "--cui-x-background"])).toEqual([
+    expect(knobsOutsideSuffixVocabulary(["--cui-x-bg", "--cui-x-accent-color", "--cui-x-width", "--cui-x-background"])).toEqual([
       "--cui-x-bg",
       "--cui-x-accent-color",
+      "--cui-x-width",
     ]);
   });
 

@@ -71,11 +71,9 @@
   /* A 1px focus hairline, not a 2px halo — Linear rings with the indigo, it does not glow. */
   --focus-ring-width: 1px;
 
-  /* Row fills derive from --foreground, so one declaration serves every surface a row can land on.
-     Light darkens less than dark lightens — measured off the app, not mirrored. */
+  /* Measured off the app: light darkens less than dark lightens. */
   --hover-fill: oklch(from var(--foreground) l c h / 0.035);
   --active-fill: oklch(from var(--foreground) l c h / 0.06);
-  --control-rim-width: 1px;
 
   /* THE radius knob: 4px. Controls ride 2x (8px, Linear's --control-border-radius), panels 3x (12px).
      Never pill-shaped by token — the button pill is a deliberate slot choice, not a radius side effect. */
@@ -135,7 +133,6 @@
   --active-fill: oklch(1 0 0 / 0.105);
 }
 
-/* Linear draws its edges at half a device pixel; below 2dppx that would vanish, so the rim thickens. */
 @media (min-resolution: 2dppx) {
   [data-skin="linear"][data-skin] {
     --control-rim-width: 0.5px;

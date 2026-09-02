@@ -1931,6 +1931,11 @@ export const registryMetadata = {
         type: "registry:file",
       },
       {
+        path: "src/registry/sources/control-ui/scripts/required-pairs.mjs",
+        target: "@components/control-ui/scripts/required-pairs.mjs",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/theme.css",
         target: "@components/control-ui/styles/theme.css",
         type: "registry:file",

@@ -417,7 +417,6 @@ if (!existsSync(publicRegistryPath)) {
 if (existsSync(publicRegistryRoot)) {
   for (const publicPath of walk(publicRegistryRoot).filter((file) => file.endsWith(".json"))) {
     const relativePath = path.relative(publicRegistryRoot, publicPath);
-    // Contract slices are pruned by the generator that knows the family set; this loop only guards the flat payloads.
     if (relativePath.startsWith(`${contractDir}${path.sep}`)) continue;
     if (!expectedPublicFiles.has(relativePath)) failures.push(`public/r/${relativePath} is stale`);
   }

@@ -1,13 +1,71 @@
 import { describe, expect, test } from "bun:test";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { themeArtifactCss } from "@/components/theme-drawer/theme-artifact";
 import type { ControlUiThemeArtifactV1 } from "@/components/theme-drawer/types";
 import { packThemeArtifacts } from "@/scripts/pack-theme-artifacts";
+import { REQUIRED_PAIRS } from "./required-pairs.mjs";
 
-const doctorPath = fileURLToPath(new URL("./control-ui-doctor.mjs", import.meta.url));
+const scriptsDir = fileURLToPath(new URL("./", import.meta.url));
+const docsRoot = path.resolve(scriptsDir, "../../../../..");
+const doctorPath = path.join(scriptsDir, "control-ui-doctor.mjs");
+const tailwindDir = path.dirname(createRequire(import.meta.url).resolve("tailwindcss/package.json"));
+
+function contrastDoctor(skinPack: string | null, override?: string) {
+  const app = mkdtempSync(path.join(tmpdir(), "control-ui-contrast-"));
+  try {
+    const controlUi = path.join(app, "components/control-ui");
+    mkdirSync(path.join(controlUi, "scripts"), { recursive: true });
+    mkdirSync(path.join(controlUi, "styles"), { recursive: true });
+    mkdirSync(path.join(app, "node_modules"));
+    symlinkSync(tailwindDir, path.join(app, "node_modules/tailwindcss"));
+    for (const script of ["control-ui-doctor.mjs", "contrast-eval.mjs", "required-pairs.mjs"]) {
+      copyFileSync(path.join(scriptsDir, script), path.join(controlUi, "scripts", script));
+    }
+    copyFileSync(path.join(docsRoot, "src/registry/sources/control-ui/theme.css"), path.join(controlUi, "styles/theme.css"));
+    if (skinPack)
+      copyFileSync(path.join(docsRoot, `src/registry/skin-packs/${skinPack}/theme.css`), path.join(controlUi, "styles/skin-theme.css"));
+    const imports = [
+      '@import "tailwindcss";',
+      '@import "./components/control-ui/styles/theme.css";',
+      '@import "./components/control-ui/styles/skin-theme.css";',
+    ];
+    if (override) {
+      writeFileSync(path.join(app, "brand.control-ui-theme.css"), override);
+      imports.push('@import "./brand.control-ui-theme.css";');
+    }
+    writeFileSync(path.join(app, "components.json"), JSON.stringify({ tailwind: { css: "app.css" } }));
+    writeFileSync(path.join(app, "app.css"), `${imports.join("\n")}\n`);
+    const result = Bun.spawnSync(["node", path.join(controlUi, "scripts/control-ui-doctor.mjs"), "--contrast"]);
+    return { exitCode: result.exitCode, stdout: result.stdout.toString(), stderr: result.stderr.toString() };
+  } finally {
+    rmSync(app, { recursive: true, force: true });
+  }
+}
+
+describe("control-ui-doctor --contrast", () => {
+  test("passes every required pair for an installed pack in both modes", () => {
+    const run = contrastDoctor("refined");
+    expect(run.exitCode).toBe(0);
+    expect(run.stdout).toContain(`light: ${REQUIRED_PAIRS.length}/${REQUIRED_PAIRS.length} pass`);
+    expect(run.stdout).toContain(`dark: ${REQUIRED_PAIRS.length}/${REQUIRED_PAIRS.length} pass`);
+  });
+
+  test("names the pair an app override breaks and exits non-zero", () => {
+    const run = contrastDoctor("refined", '[data-skin="refined"][data-skin] { --foreground: var(--background); }\n');
+    expect(run.exitCode).toBe(1);
+    expect(run.stderr).toContain("fail        Body text on background: 1.00:1");
+  });
+
+  test("stops on a missing skin theme instead of reporting an empty pass", () => {
+    const run = contrastDoctor(null);
+    expect(run.exitCode).not.toBe(0);
+    expect(run.stderr).toContain("skin-theme.css");
+  });
+});
 
 // The doctor ships inside an install and cannot import the docs app, so the emitter lives twice; this is the guard.
 function emitCss(artifact: ControlUiThemeArtifactV1) {
