@@ -129,7 +129,7 @@ export function guideCodeForKind(code: GuideSection["code"], integration: "mastr
   if (code === "block-install") return registryInstallCommand("chat-block");
   if (code === "update-install") return updateInstallCode();
   if (code === "all-install") return fullInstallCommand("refined");
-  if (code === "skill-install") return `npx shadcn@latest add ${registryManifestUrl(publicRegistryHref("control-ui-skill"))}`;
+  if (code === "skill-install") return `npx skills add ${env.NEXT_PUBLIC_REGISTRY_URL}`;
 
   if (code === "component-usage") {
     return integration === "mastra"

@@ -33,8 +33,17 @@
 </GuideSection>
 
 <GuideSection id="install" title="Install it on its own">
-  A lean install skips the skill, since it only rides the complete packs. Add it explicitly — and name it in the
-  update script too, so it keeps refreshing with everything else:
+  A lean install skips the skill, since it only rides the complete packs. The skills CLI adds it alone — one markdown
+  file, no components, no npm dependencies, nothing written outside `.claude/skills/control-ui/`:
 
   <GuideCode kind="skill-install" />
+
+  <GuidePoints>
+    <GuidePoint>**It resolves through discovery** — `/.well-known/agent-skills/index.json` names the skill and the digest of the file it serves, so the CLI verifies what it downloads.</GuidePoint>
+    <GuidePoint>**It stays updatable** — the install records the source in `skills-lock.json`, and `npx skills update` refreshes it against the site.</GuidePoint>
+    <GuidePoint>**It is not Claude Code-only** — `-a` targets any agent the CLI supports, `-g` installs once for every repository instead of into this one.</GuidePoint>
+  </GuidePoints>
+
+  Inside a repository that already runs `control-ui:update`, prefer the shadcn manifest at `/r/control-ui-skill.json`
+  instead: the skill then refreshes on the same command as the components rather than on its own.
 </GuideSection>
