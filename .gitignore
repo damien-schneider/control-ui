@@ -7,6 +7,7 @@ apps/*/.gaps/
 apps/docs/playwright-report/
 apps/docs/test-results/
 packages/*/dist
+packages/components/src
 dist
 build
 coverage

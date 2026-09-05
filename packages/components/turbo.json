@@ -1,0 +1,15 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/apps/docs/registry/**", "$TURBO_ROOT$/apps/docs/src/registry/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck", "build"]
+    },
+    "validate": {
+      "dependsOn": ["^validate", "build"]
+    }
+  }
+}

@@ -8,7 +8,7 @@ Production-ready, shadcn-compatible React components, blocks, and skins for agen
 
 [Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Browse components](https://control-ui.dev/overview) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
 
-Control UI is an owned-source registry for building AI chat, coding-agent, and operational interfaces. Install only the surfaces you need with the shadcn CLI, then adapt the source in your application. There is no runtime UI package and no provider lock-in.
+Control UI is an owned-source registry for building AI chat, coding-agent, and operational interfaces. Install only the surfaces you need with the shadcn CLI and adapt the source in your application, or add the same set as the versioned `@ctrl-ui/react` package. Either way there is no provider lock-in.
 
 > [!NOTE]
 > Control UI is currently in alpha. Stable, beta, and experimental items are labeled in the catalog; beta and experimental APIs may change.
@@ -104,6 +104,22 @@ npx shadcn@latest add https://control-ui.dev/r/chat-block.json
 
 See the [getting-started guide](https://control-ui.dev/get-started) for skin choices, provider integrations, CSS setup, and contract migrations.
 
+### Prefer a package?
+
+The same set ships as `@ctrl-ui/react` with the Refined skin baked in. Import paths mirror the registry tree, so every example above works after replacing `@/components/control-ui/` with `@ctrl-ui/react/`.
+
+```bash
+bun add @ctrl-ui/react
+```
+
+```css
+@import "tailwindcss";
+@import "@ctrl-ui/react/styles/index.css";
+@source "../node_modules/@ctrl-ui/react/dist";
+```
+
+Stamp `data-skin="refined"` as in step 3. Choose the registry when you want to edit the source or run another skin.
+
 ## Explore the catalog
 
 - [Agent surfaces](https://control-ui.dev/overview#agents) — messages, inputs, activities, attachments, code, and task UI.
@@ -165,6 +181,7 @@ Run `bun run sync` after changing registry source, catalog metadata, or skin pac
 | `apps/docs/registry` | Generated source manifests |
 | `apps/docs/public/r` | Generated shadcn payloads served to consumers |
 | `apps/docs/components/control-ui` | Generated installed fixture used by the docs app |
+| `packages/components` | `@ctrl-ui/react`, the `all-refined` install set as an npm package; its `src/` is generated |
 
 Do not edit generated manifests, payloads, or the installed fixture directly. Change the canonical source and run `bun run sync`.
 

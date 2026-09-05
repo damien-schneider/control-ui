@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["bun"]
+  },
+  "include": ["consumer.tsx", "dist.test.ts", "registry-closure.ts"]
+}

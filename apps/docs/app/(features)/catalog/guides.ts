@@ -60,6 +60,7 @@ export const guideEntries = [
       { id: "items", title: "Install one item at a time", code: "component-install" },
       { id: "wire-css", title: "Wire the CSS" },
       { id: "contract", title: "The contract" },
+      { id: "package", title: "Or install the package" },
     ],
   },
   {

@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": [],
+    "paths": {
+      "@/components/control-ui/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}

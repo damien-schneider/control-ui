@@ -15,7 +15,8 @@
       "!apps/docs/public/r/**/*.json",
       "!registry.json",
       "!apps/docs/registry.json",
-      "!apps/docs/registry/**/*.json"
+      "!apps/docs/registry/**/*.json",
+      "!packages/components/src"
     ]
   },
   "formatter": {

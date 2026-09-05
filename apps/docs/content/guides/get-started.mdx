@@ -71,3 +71,23 @@
   Compiled styles assume Safari 16.4+, Chrome 119+, Firefox 128+; the architecture guide's cascade section derives the
   floor.
 </GuideSection>
+
+<GuideSection id="package" title="Or install the package">
+  The same set ships as `@ctrl-ui/react` with the Refined skin baked in, for apps that would rather pin a version
+  than own the source. Import paths mirror the registry tree: replace `@/components/control-ui/` with
+  `@ctrl-ui/react/` in any example on this site.
+
+```bash
+bun add @ctrl-ui/react
+```
+
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@import "@ctrl-ui/react/styles/index.css";
+@source "../node_modules/@ctrl-ui/react/dist";
+```
+
+  Stamp `data-skin="refined"` on the root element as above. Other skins, the update script, and the doctor stay
+  registry-only.
+</GuideSection>

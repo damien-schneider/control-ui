@@ -25,6 +25,8 @@ bun run sync
 
 Commit the regenerated outputs together with your change. Generated files are marked `linguist-generated` so they stay collapsed in review; `bun run validate` fails on any drift between sources and outputs.
 
+`packages/components` is generated from the same manifests: `bun run build` regenerates its `src/` from `apps/docs/registry` before bundling, so run `bun run sync` first and never edit `src/` by hand.
+
 ## Checks
 
 All of these must pass before a PR:
