@@ -78,26 +78,20 @@ function usesRuntimeProvider(source: string) {
   return /(@assistant-ui|AssistantRuntimeProvider|RuntimeProvider|useChatRuntime|useAssistantRuntime)/.test(source);
 }
 
-const componentFiles = componentEntries.map((component) => `${component.id}.tsx`);
 const documentedComponents = new Set<string>(componentEntries.map((component) => component.id));
 const documentedPrimitives = new Set<string>(primitiveEntries.map((primitive) => primitive.id));
 
-for (const sourceName of readdirSync(sourcesRoot)) {
-  const sourcePath = path.join(sourcesRoot, sourceName);
-  if (!statSync(sourcePath).isDirectory()) continue;
+for (const component of componentEntries) {
+  const componentPath = path.join(root, component.paths.source.path);
+  if (!existsSync(componentPath)) {
+    failures.push(`${component.id} is missing ${component.paths.source.path}`);
+    continue;
+  }
 
-  for (const component of componentFiles) {
-    const componentPath = path.join(sourcePath, component);
-    if (!existsSync(componentPath)) {
-      failures.push(`source "${sourceName}" is missing ${component}`);
-      continue;
-    }
-
-    const source = readFileSync(componentPath, "utf8");
-    if (importsRuntime(source)) failures.push(`source "${sourceName}" mixes runner imports in ${component}`);
-    if (/create(ChatMessage|ChatComposer)Component/.test(source)) {
-      failures.push(`source "${sourceName}" uses a component factory in ${component}; sources must install explicit TSX`);
-    }
+  const source = readFileSync(componentPath, "utf8");
+  if (importsRuntime(source)) failures.push(`${component.id} mixes runner imports in ${component.paths.source.path}`);
+  if (/create(ChatMessage|ChatComposer)Component/.test(source)) {
+    failures.push(`${component.id} uses a component factory; sources must install explicit TSX`);
   }
 }
 

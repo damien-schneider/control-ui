@@ -1,3 +1,4 @@
+import { emailEntry } from "./email";
 import { preview, sourceFile } from "./shared";
 
 const chatMessageRecipeFile = sourceFile(
@@ -96,6 +97,7 @@ const codeBlockEditorRecipeFile = sourceFile(
 );
 
 export const componentEntries = [
+  emailEntry,
   {
     id: "chat-message",
     kind: "Agent",

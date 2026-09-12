@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 176,
+    "count": 177,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -545,6 +545,15 @@
         "kind": "Skill",
         "summary": "Reach for a compound-component context only when props cannot reach the part, and store intent in it, not styling.",
         "href": "/skills/context-vs-props"
+      },
+      {
+        "id": "email",
+        "name": "Email",
+        "kind": "Agent",
+        "summary": "React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export.",
+        "href": "/ai/email",
+        "status": "experimental",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/email.json"
       },
       {
         "id": "chat-message",

@@ -56,7 +56,7 @@ function collectFiles(items: Manifest[]) {
     for (const file of item.files ?? []) {
       if (!file.target.startsWith(componentRoot)) continue;
       const name = file.target.slice(componentRoot.length);
-      if (name.startsWith("scripts/")) continue;
+      if (name.startsWith("scripts/") && name !== "scripts/contrast-eval.mjs") continue;
       files.set(name, path.join(docsRoot, file.path));
     }
   }

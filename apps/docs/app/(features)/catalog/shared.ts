@@ -3,6 +3,7 @@ import { type ComponentType, type LazyExoticComponent, lazy } from "react";
 // shadcn compatibility is contract over shared tokens and APIs, not parallel source tree; skin is separate axis and never ships component source.
 export const integrationIds = ["mastra", "ai-sdk"] as const;
 export const registryKindIds = [
+  "email",
   "chat",
   "chat-message",
   "chat-composer",

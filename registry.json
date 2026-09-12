@@ -250,6 +250,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -368,6 +369,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -486,6 +488,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -604,6 +607,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -722,6 +726,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -840,6 +845,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -958,6 +964,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -1076,6 +1083,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",
@@ -2708,6 +2716,46 @@
         "@import \"../components/control-ui/styles/recipes/dynamic-notification-input.css\"": {},
         "@import \"../components/control-ui/styles/recipes/dynamic-notification-motion.css\"": {}
       }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "email",
+      "type": "registry:component",
+      "title": "Email",
+      "description": "React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export.",
+      "dependencies": [
+        "react-email@^6.9.5"
+      ],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/README.md",
+          "target": "@components/control-ui/email/README.md",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/email.tsx",
+          "target": "@components/control-ui/email/email.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/length.ts",
+          "target": "@components/control-ui/email/length.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/templates.tsx",
+          "target": "@components/control-ui/email/templates.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/theme.ts",
+          "target": "@components/control-ui/email/theme.ts",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -5324,6 +5372,7 @@
         "damien-schneider/control-ui/dropdown-menu",
         "damien-schneider/control-ui/dropzone",
         "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
         "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/environment-variables",
         "damien-schneider/control-ui/field",

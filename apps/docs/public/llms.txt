@@ -30,6 +30,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 ## AI components
 
 - [AI components](http://127.0.0.1:3000/ai): Explore composable surfaces for messages, input, activity, media, and agent workflows.
+- [Email](http://127.0.0.1:3000/ai/email): React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export. Status: experimental.
 - [ChatMessage](http://127.0.0.1:3000/ai/chat-message): Composable chat message with typed role, density, and lifecycle state.
 - [ChatComposer](http://127.0.0.1:3000/ai/chat-composer): Prompt composer with controlled text, submit state, and trigger-menu support.
 - [ChatComposerAttachment](http://127.0.0.1:3000/ai/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.

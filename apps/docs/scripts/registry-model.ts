@@ -519,7 +519,7 @@ function walk(directory: string): string[] {
 
 function registrySources() {
   return walk(path.join(root, "src/registry"))
-    .filter((filePath) => /\.(css|ts|tsx)$/.test(filePath) && !filePath.includes(".test."))
+    .filter((filePath) => /\.(css|ts|tsx|mjs)$/.test(filePath) && !filePath.includes(".test."))
     .map((filePath) => path.relative(root, filePath));
 }
 

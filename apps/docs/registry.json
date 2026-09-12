@@ -268,6 +268,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -389,6 +390,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -510,6 +512,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -631,6 +634,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -752,6 +756,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -873,6 +878,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -994,6 +1000,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -1115,6 +1122,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",
@@ -2857,6 +2865,49 @@
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/dynamic-notification.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "email",
+      "type": "registry:component",
+      "title": "Email",
+      "description": "React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export.",
+      "dependencies": [
+        "react-email@^6.9.5"
+      ],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/sources/control-ui/email/README.md",
+          "target": "@components/control-ui/email/README.md",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/email/email.tsx",
+          "target": "@components/control-ui/email/email.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/email/length.ts",
+          "target": "@components/control-ui/email/length.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/email/templates.tsx",
+          "target": "@components/control-ui/email/templates.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/email/theme.ts",
+          "target": "@components/control-ui/email/theme.ts",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/email.json"
       }
     },
     {
@@ -5681,6 +5732,7 @@
         "http://127.0.0.1:3000/r/dropdown-menu.json",
         "http://127.0.0.1:3000/r/dropzone.json",
         "http://127.0.0.1:3000/r/dynamic-notification.json",
+        "http://127.0.0.1:3000/r/email.json",
         "http://127.0.0.1:3000/r/empty.json",
         "http://127.0.0.1:3000/r/environment-variables.json",
         "http://127.0.0.1:3000/r/field.json",

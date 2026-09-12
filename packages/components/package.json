@@ -1,6 +1,6 @@
 {
   "name": "@ctrl-ui/react",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Control UI components, blocks, and primitives with the Refined skin, as a versioned package.",
   "license": "MIT",
   "repository": {
@@ -50,6 +50,7 @@
     "prosemirror-view": "^1.42.2",
     "react": "^19.2.8",
     "react-day-picker": "^10.0.1",
+    "react-email": "^6.9.5",
     "react-phone-number-input": "^3.4.17",
     "react-resizable-panels": "^4.12.2",
     "shiki": "^4.4.3",
@@ -89,6 +90,9 @@
       "optional": true
     },
     "react-day-picker": {
+      "optional": true
+    },
+    "react-email": {
       "optional": true
     },
     "react-phone-number-input": {

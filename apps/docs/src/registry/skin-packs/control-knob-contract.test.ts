@@ -29,7 +29,7 @@ const skins = readdirSync(SKIN_PACKS_DIR)
   .sort()
   .map((id) => ({ id, root: postcss.parse(readFileSync(path.join(SKIN_PACKS_DIR, id, "skin.css"), "utf8")) }));
 
-const recipeOptionalCatalogIds = ["aspect-ratio", "checkbox-group", "form", "responsive-dialog"] as const;
+const recipeOptionalCatalogIds = ["aspect-ratio", "checkbox-group", "email", "form", "responsive-dialog"] as const;
 const catalogComponentSources = [
   ...componentEntries.map((entry) => ({ id: entry.id, source: entry.paths.source.path })),
   ...primitiveEntries

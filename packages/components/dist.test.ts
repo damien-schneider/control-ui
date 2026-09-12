@@ -1,6 +1,10 @@
 import { expect, test } from "bun:test";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
+import { createElement } from "react";
+import { render } from "react-email";
+import { InvitationEmail } from "./dist/email/templates.js";
+import { emailThemeFromCss } from "./dist/email/theme.js";
 import pkg from "./package.json";
 import { closure, stylesIndex } from "./registry-closure";
 
@@ -46,4 +50,21 @@ test("peer dependencies mirror the closure manifests", () => {
   expect(Object.keys(pkg.peerDependencies).sort()).toEqual([...dependencies.keys(), "react"].sort());
   for (const [name, range] of dependencies) expect(pkg.peerDependencies).toHaveProperty(name, range);
   for (const name of Object.keys(pkg.peerDependenciesMeta)) expect(pkg.peerDependencies).toHaveProperty(name);
+});
+
+test("published email templates resolve the installed theme and render standalone HTML", async () => {
+  const theme = emailThemeFromCss([read("styles/theme.css"), read("styles/skin-theme.css")]);
+  const html = await render(
+    createElement(InvitationEmail, {
+      theme,
+      brand: "Control UI",
+      footer: "Built with Control UI",
+      inviter: "Alex",
+      workspace: "Studio",
+      inviteUrl: "https://example.com/invite",
+    }),
+  );
+  expect(html).toContain("https://example.com/invite");
+  expect(html).toContain(theme.colors.primary.replaceAll(" ", ""));
+  expect(html).not.toMatch(/var\(|oklch\(/);
 });

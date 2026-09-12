@@ -68,3 +68,4 @@ Install a peer only when you import the component that needs it.
 | `ui/phone-input` | `react-phone-number-input`, `libphonenumber-js`, `zod` |
 | `ui/resizable` | `react-resizable-panels` |
 | `chat-composer` | `prosemirror-*` |
+| `email/email`, `email/templates` | `react-email` |

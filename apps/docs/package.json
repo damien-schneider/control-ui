@@ -65,6 +65,7 @@
     "react": "^19.2.8",
     "react-day-picker": "^10.0.1",
     "react-dom": "^19.2.8",
+    "react-email": "^6.9.5",
     "react-grab": "^0.1.50",
     "react-phone-number-input": "^3.4.17",
     "react-resizable-panels": "^4.12.2",
