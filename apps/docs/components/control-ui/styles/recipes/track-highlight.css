@@ -4,7 +4,7 @@
     --_track-highlight-opacity: 0;
     border-radius: var(--cui-track-highlight-radius);
     opacity: var(--_track-highlight-opacity);
-    transition-property: top, left, right, bottom, opacity, background-color, box-shadow;
+    transition-property: top, left, right, bottom, width, height, opacity, background-color, box-shadow;
     transition-duration: var(--cui-track-highlight-transition-duration);
     transition-timing-function: var(--ease-emphasized);
   }
@@ -22,7 +22,8 @@
       var(--cui-track-highlight-shadow);
   }
 
-  :where([data-control-family="track-highlight"][data-slot="root"][data-hover]) {
+  :where([data-control-family="track-highlight"][data-slot="root"][data-hover]),
+  :where([data-track="hover"] > [data-control-family="track-highlight"][data-slot="root"]) {
     --cui-track-highlight-background: var(--cui-track-highlight-hover-background);
     --cui-track-highlight-ring-color: transparent;
     --cui-track-highlight-shadow: none;
@@ -35,6 +36,129 @@
   :where([data-control-family="track-highlight"][data-slot="root"][data-visible]),
   :where([data-control-family="track-highlight"][data-slot="hover"][data-visible]) {
     --_track-highlight-opacity: 1;
+  }
+
+  :where(
+    [data-track="hover"]:is([data-control-family="button-group"], [data-control-family="button"][data-slot="group"])
+      > [data-control-family="track-highlight"]
+  ) {
+    --cui-track-highlight-hover-background: oklch(from var(--foreground) l c h / 0.06);
+  }
+
+  :where([data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"]),
+  :where(
+    [data-track]:is(
+        [data-control-family="button-group"],
+        [data-control-family="button"][data-slot="group"],
+        [data-control-family="checkbox-group"]
+      )
+      > [data-control-family="track-highlight"]
+  ) {
+    --cui-track-highlight-radius: var(--radius-control);
+  }
+
+  @supports ((anchor-name: --cui-track) and (anchor-scope: --cui-track)) {
+    :where([data-track]:has(> [data-control-family="track-highlight"])) {
+      anchor-scope: --cui-track-active, --cui-track-hover, --cui-track-focus;
+      --_track-anchor: --cui-track-active;
+      --_track-display: none;
+    }
+
+    :where(
+        [data-track="slide"]:has(> [data-control-family="track-highlight"]):has(
+          [data-track-item][data-active="true"]:not(:disabled, [aria-disabled="true"], [data-disabled])
+        )
+      ) {
+      --_track-display: block;
+    }
+
+    :where([data-track="hover"]:has(> [data-control-family="track-highlight"])) {
+      --_track-anchor: --cui-track-idle;
+    }
+
+    :where(
+        [data-track]:has(> [data-control-family="track-highlight"])
+          [data-track-item][data-active="true"]:not(:disabled, [aria-disabled="true"], [data-disabled])
+      ) {
+      anchor-name: --cui-track-active;
+    }
+
+    :where([data-track] > [data-control-family="track-highlight"][data-positioning="anchor"]:not([data-measured])) {
+      display: var(--_track-display);
+      position-anchor: var(--_track-anchor);
+      top: anchor(top, 0px);
+      width: anchor-size(width, 0px);
+      height: anchor-size(height, 0px);
+      left: anchor(left, 0px);
+      --_track-highlight-opacity: 1;
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+
+    @media (hover: hover) {
+      :where(
+          [data-track]:has(> [data-control-family="track-highlight"])
+            [data-track-item]:hover:not(:disabled, [aria-disabled="true"], [data-disabled], :has([role="checkbox"][data-disabled]))
+        ) {
+        anchor-name: --cui-track-hover;
+      }
+
+      :where(
+          [data-track]:has(> [data-control-family="track-highlight"]):has(
+            [data-track-item]:hover:not(:disabled, [aria-disabled="true"], [data-disabled])
+          ):not(:has([data-track-item]:hover [role="checkbox"][data-disabled])):not(:has([data-track] [data-track-item]:hover))
+        ) {
+        --_track-anchor: --cui-track-hover;
+        --_track-display: block;
+      }
+
+      :where(
+          [data-track="slide"]:has(
+              [data-track-item]:hover:not([data-active="true"], :disabled, [aria-disabled="true"], [data-disabled])
+            ):not(:has(:focus-visible, [data-track] [data-track-item]:hover))
+            > [data-control-family="track-highlight"][data-positioning="anchor"]:not([data-measured])
+        ) {
+        --cui-track-highlight-background: var(--cui-track-highlight-hover-background);
+        --cui-track-highlight-ring-color: transparent;
+        --cui-track-highlight-shadow: none;
+      }
+    }
+
+    :where(
+        [data-track]:has(> [data-control-family="track-highlight"])
+          [data-track-item]:is(:focus-visible, :has(:focus-visible)):not(
+            :disabled,
+            [aria-disabled="true"],
+            [data-disabled],
+            :has([role="checkbox"][data-disabled])
+          )
+      ) {
+      anchor-name: --cui-track-focus;
+    }
+
+    :where(
+        [data-track]:has(> [data-control-family="track-highlight"]):has(
+          [data-track-item]:focus-visible,
+          [data-track-item] :focus-visible
+        ):not(:has([data-track] :focus-visible))
+      ) {
+      --_track-anchor: --cui-track-focus;
+      --_track-display: block;
+    }
+
+    :where(
+        [data-track="slide"]:has(
+            [data-track-item]:not([data-active="true"]):focus-visible,
+            [data-track-item]:not([data-active="true"]) :focus-visible
+          ):not(:has([data-track] :focus-visible))
+          > [data-control-family="track-highlight"][data-positioning="anchor"]:not([data-measured])
+      ) {
+      --cui-track-highlight-background: var(--cui-track-highlight-hover-background);
+      --cui-track-highlight-ring-color: transparent;
+      --cui-track-highlight-shadow: none;
+    }
   }
 }
 

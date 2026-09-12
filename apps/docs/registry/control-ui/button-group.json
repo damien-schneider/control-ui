@@ -4,11 +4,11 @@
   "type": "registry:ui",
   "title": "Button group",
   "description": "Joined button group for toolbars, split actions, and segmented controls.",
-  "dependencies": [
-    "class-variance-authority@^0.7.1"
-  ],
+  "dependencies": [],
   "registryDependencies": [
-    "core"
+    "button",
+    "core",
+    "track-highlight"
   ],
   "files": [
     {

@@ -35,7 +35,14 @@ describe("registry anatomy discovery", () => {
     expect(result.data.anatomy?.ownScopes.button).toBeUndefined();
     expect(result.data.anatomy?.installedScopes.button).toBeDefined();
     expect(result.data.anatomy?.installedScopes.code).toBeDefined();
-    expect(Object.keys(result.data.anatomy?.knobs ?? {})).toEqual(["button", "code", "code-diff", "popup", "scroll-area"]);
+    expect(Object.keys(result.data.anatomy?.knobs ?? {})).toEqual([
+      "button",
+      "code",
+      "code-diff",
+      "popup",
+      "progressive-blur",
+      "scroll-area",
+    ]);
     expect(result.data.anatomy?.knobs.popup?.[0]?.name).toStartWith("--cui-popup-");
     expect(result.data.anatomy?.contractUrl).toEndWith("/r/contract/index.json");
   });

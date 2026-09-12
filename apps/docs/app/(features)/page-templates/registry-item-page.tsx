@@ -155,8 +155,8 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
       />
       <div className="grid min-w-0 gap-4">
         {families.map((family) => (
-          <div key={family.id} className="min-w-0 overflow-hidden rounded-panel border border-border/70 bg-card shadow-sm">
-            <div className="flex items-baseline justify-between gap-3 border-b border-border/70 bg-muted/30 px-4 py-2 text-caption text-muted-foreground">
+          <div key={family.id} className="docs-panel overflow-hidden">
+            <div className="flex items-baseline justify-between gap-3 border-b border-border bg-muted/30 px-4 py-2 text-caption text-muted-foreground">
               <span>
                 <KnobFamilyName id={family.id} href={family.href} /> · {family.knobs.length} knobs
               </span>
@@ -164,7 +164,7 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
                 How the cascade resolves
               </Link>
             </div>
-            <div className="divide-y divide-border/50">
+            <div className="divide-y divide-border">
               {family.knobs.map((knob) => (
                 <div key={knob.name} className="flex min-w-0 flex-col gap-0.5 px-4 py-2 sm:flex-row sm:items-baseline sm:gap-3">
                   <code className="min-w-0 break-all font-mono text-label text-foreground sm:w-72 sm:shrink-0">{knob.name}</code>

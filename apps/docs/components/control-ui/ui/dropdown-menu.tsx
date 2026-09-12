@@ -21,11 +21,12 @@ export const dropdownMenuTriggerVariants = ["surface", "ghost"] as const;
 
 export type DropdownMenuTriggerVariant = (typeof dropdownMenuTriggerVariants)[number];
 
-export type DropdownMenuTriggerProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & ButtonKnobStyle } & {
-  size?: ControlSize;
-  iconOnly?: boolean;
-  variant?: DropdownMenuTriggerVariant;
-};
+export type DropdownMenuTriggerProps = Omit<ComponentProps<"button">, "style"> &
+  Pick<ComponentProps<typeof MenuPrimitive.Trigger>, "nativeButton" | "render"> & { style?: CSSProperties & ButtonKnobStyle } & {
+    size?: ControlSize;
+    iconOnly?: boolean;
+    variant?: DropdownMenuTriggerVariant;
+  };
 
 export type DropdownMenuContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
@@ -37,9 +38,6 @@ export type DropdownMenuItemProps = Omit<Omit<ComponentProps<"div">, "onClick">,
 export type DropdownMenuSeparatorProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 export type DropdownMenuLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
-
-type RefinedDropdownMenuTriggerProps = DropdownMenuTriggerProps &
-  Pick<ComponentProps<typeof MenuPrimitive.Trigger>, "nativeButton" | "render">;
 
 export function DropdownMenu({ children, ...props }: DropdownMenuProps) {
   return <MenuPrimitive.Root {...props}>{children}</MenuPrimitive.Root>;
@@ -53,7 +51,7 @@ export function DropdownMenuTrigger({
   children,
   disabled,
   ...props
-}: RefinedDropdownMenuTriggerProps) {
+}: DropdownMenuTriggerProps) {
   return (
     <MenuPrimitive.Trigger
       data-control-ui="dropdown-menu"
@@ -69,14 +67,7 @@ export function DropdownMenuTrigger({
       disabled={disabled}
       {...props}
     >
-      <span
-        data-control-ui="button"
-        data-control-family="button"
-        data-slot="content"
-        className="relative z-[1] inline-flex items-center justify-center gap-[inherit]"
-      >
-        {children}
-      </span>
+      {children}
     </MenuPrimitive.Trigger>
   );
 }
@@ -84,7 +75,6 @@ export function DropdownMenuTrigger({
 export function DropdownMenuContent({ className, children, ...props }: DropdownMenuContentProps) {
   return (
     <MenuPrimitive.Portal>
-      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <MenuPrimitive.Positioner
         data-skin={skinId()}
         data-effects={skinEffects()}
@@ -124,7 +114,6 @@ export function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps)
 
 export function DropdownMenuSeparator({ className, ...props }: DropdownMenuSeparatorProps) {
   return (
-    // bleeds rule through popup padding so it spans edge to edge while rows keep their inset
     <MenuPrimitive.Separator
       data-control-ui="dropdown-menu"
       data-slot="separator"

@@ -30,6 +30,7 @@
 @import "../src/registry/sources/control-ui/recipes/pagination.css";
 @import "../src/registry/sources/control-ui/recipes/spinner.css";
 @import "../src/registry/sources/control-ui/recipes/stepper.css";
+@import "../src/registry/sources/control-ui/recipes/progressive-blur.css";
 @import "../src/registry/sources/control-ui/recipes/scroll-area.css";
 @import "../src/registry/sources/control-ui/recipes/timeline.css";
 @import "../src/registry/sources/control-ui/recipes/track-highlight.css";
@@ -105,6 +106,14 @@
 @source "../src/registry";
 @source "../examples";
 
+@utility docs-panel {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: var(--background);
+  box-shadow: none;
+}
+
 [data-control-ui="button"][data-flavor="neon"] {
   --cui-button-background: oklch(0.55 0.24 330);
   --cui-button-hover-background: oklch(0.5 0.26 330);
@@ -112,11 +121,7 @@
   --cui-button-shadow: 0 0 14px oklch(0.62 0.24 330 / 0.55);
 }
 
-/*
- * Docs-owned paper grain (shippable theme never paints <body>; consumer opts in by copying this).
- * Turbulence tile, cuicui-style but quieter, gives sand surfaces paper tooth.
- * Gated on the explicit Refined skin; every rendered root carries a valid data-skin id.
- */
+/* Installed themes leave body paint to consumers. */
 @layer base {
   :root {
     --control-ui-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='224'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='224' height='224' filter='url(%23p)'/%3E%3C/svg%3E");
@@ -139,11 +144,7 @@
   }
 }
 
-/*
- * Refined flat shell: app is one continuous sand surface, content-surface loses card/border/shadow so sidebar+content merge; only raised elements (nav pill, cards, popovers) keep elevation.
- * Unlayered on purpose — must beat callsite bg/border/shadow utilities.
- * Gated like grain: Refined opts into the flat docs shell; other packs keep the studio frame.
- */
+/* Unlayered so Refined's continuous canvas wins over shell utilities. */
 :root[data-skin="refined"] [data-control-ui="sidebar-layout"][data-slot="content"] {
   background-color: transparent;
   border-color: transparent;
@@ -156,7 +157,6 @@
   transition-property: none;
 }
 
-/* Docs-app base resets — not shippable (consumer owns body styling/resets); theme.css already restores themed border-color on universal selector. */
 @layer base {
   :root {
     color-scheme: light;
@@ -171,7 +171,6 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    /* Control UI typography sits tighter than the face defaults; headings carry their own stronger tracking. */
     letter-spacing: -0.01em;
   }
 
@@ -180,7 +179,7 @@
     font: inherit;
   }
 
-  /* Native color swatches ship own border/padding/shadow (Chrome inset ring); stripped so only theme-editor's Tailwind classes show. */
+  /* Browsers add their own chrome to native color swatches. */
   input[type="color"] {
     appearance: none;
     -webkit-appearance: none;

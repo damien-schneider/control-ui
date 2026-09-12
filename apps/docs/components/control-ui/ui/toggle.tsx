@@ -2,11 +2,18 @@
 
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
-import type { ComponentProps } from "react";
-import type { ControlledMultiChoice } from "@/components/control-ui/control-props";
+import { type ComponentProps, useContext } from "react";
+import type { ControlledMultiChoice, HoverIndicator } from "@/components/control-ui/control-props";
+import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import { cn } from "@/components/control-ui/lib/cn";
+import { skinIndicator } from "@/components/control-ui/skin";
 import type { ButtonProps } from "@/components/control-ui/ui/button";
-import { buttonContentClasses, buttonStructureClasses } from "@/components/control-ui/ui/button";
+import {
+  ButtonTrackContext,
+  buttonContentClasses,
+  buttonStructureClasses,
+  buttonTrackStructureClasses,
+} from "@/components/control-ui/ui/button";
 
 export type ToggleProps = Omit<ButtonProps, "render" | "nativeButton" | "value"> & {
   pressed?: boolean;
@@ -21,9 +28,9 @@ export type ToggleGroupProps<TValue extends string = string> = Omit<ComponentPro
     multiple?: boolean;
     disabled?: boolean;
     orientation?: "horizontal" | "vertical";
+    indicator?: HoverIndicator;
   };
 
-// keeps its own anatomy while sharing Button's visual recipe
 export function Toggle({
   variant = "surface",
   size = "sm",
@@ -39,8 +46,10 @@ export function Toggle({
   children,
   ...props
 }: ToggleProps) {
+  const tracksHover = useContext(ButtonTrackContext);
   return (
     <TogglePrimitive
+      data-track-item={tracksHover ? "" : undefined}
       pressed={pressed}
       defaultPressed={defaultPressed}
       onPressedChange={onPressedChange}
@@ -84,16 +93,35 @@ export function Toggle({
   );
 }
 
-export function ToggleGroup<TValue extends string = string>({ className, orientation = "horizontal", ...props }: ToggleGroupProps<TValue>) {
+export function ToggleGroup<TValue extends string = string>({
+  className,
+  orientation = "horizontal",
+  indicator,
+  children,
+  ...props
+}: ToggleGroupProps<TValue>) {
+  const resolvedIndicator = indicator ?? skinIndicator("toggle-group") ?? "none";
+  const tracksHover = resolvedIndicator === "hover";
   return (
-    <ToggleGroupPrimitive
-      data-control-ui="toggle"
-      data-control-family="button"
-      data-slot="group"
-      data-orientation={orientation}
-      orientation={orientation}
-      className={cn("inline-flex items-center", orientation === "vertical" && "flex-col", className)}
-      {...props}
-    />
+    <ButtonTrackContext value={tracksHover}>
+      <ToggleGroupPrimitive
+        data-control-ui="toggle"
+        data-control-family="button"
+        data-slot="group"
+        data-orientation={orientation}
+        data-track={resolvedIndicator}
+        orientation={orientation}
+        className={cn(
+          buttonTrackStructureClasses,
+          "inline-flex items-center data-[track=hover]:gap-0",
+          orientation === "vertical" && "flex-col",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+        {tracksHover ? <TrackHighlight className="z-0" /> : null}
+      </ToggleGroupPrimitive>
+    </ButtonTrackContext>
   );
 }

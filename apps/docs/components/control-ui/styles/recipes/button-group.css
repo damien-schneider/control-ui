@@ -5,6 +5,7 @@
     --cui-button-group-text-foreground: var(--muted-foreground);
     --cui-button-group-separator-background: var(--border);
   }
+
   :where([data-control-family="button-group"][data-slot="text"]) {
     block-size: var(--control-h-md);
     border: 1px solid var(--border);
@@ -36,6 +37,51 @@
 
   :where([data-control-family="button-group"][data-slot="separator"]) {
     background: var(--cui-button-group-separator-background);
+  }
+  :where([data-control-family="button-group"][data-slot="root"] > :not([data-control-family="track-highlight"])) {
+    position: relative;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-orientation="horizontal"]
+      > :not([data-control-family="track-highlight"])
+      + :not([data-control-family="track-highlight"])
+  ) {
+    margin-inline-start: -1px;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  :where([data-control-family="button-group"][data-orientation="horizontal"] > :has(~ :not([data-control-family="track-highlight"]))) {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-orientation="vertical"]
+      > :not([data-control-family="track-highlight"])
+      + :not([data-control-family="track-highlight"])
+  ) {
+    margin-block-start: -1px;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
+
+  :where([data-control-family="button-group"][data-orientation="vertical"] > :has(~ :not([data-control-family="track-highlight"]))) {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  :where([data-control-family="button-group"][data-slot="root"] > :focus-within) {
+    z-index: 1;
+  }
+
+  :where([data-control-family="button-group"][data-slot="root"] > [data-active="true"]) {
+    z-index: 2;
+  }
+
+  :where([data-control-family="button-group"][data-slot="root"] > [data-active="true"]:focus-within) {
+    z-index: 3;
   }
 }
 

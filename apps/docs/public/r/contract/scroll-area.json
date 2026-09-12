@@ -34,6 +34,12 @@
         ],
         "states": [
           {
+            "attribute": "data-blur",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-has-overflow-x",
             "source": "external",
             "valueKind": "presence",
@@ -42,6 +48,22 @@
           {
             "attribute": "data-has-overflow-y",
             "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-lock-axis",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "both",
+              "x",
+              "y"
+            ]
+          },
+          {
+            "attribute": "data-mask",
+            "source": "control-ui",
             "valueKind": "presence",
             "values": []
           },
@@ -271,6 +293,12 @@
           {
             "attribute": "data-overflow-y-start",
             "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-scroll-area-viewport",
+            "source": "control-ui",
             "valueKind": "presence",
             "values": []
           },

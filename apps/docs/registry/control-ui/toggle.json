@@ -9,7 +9,8 @@
   ],
   "registryDependencies": [
     "button",
-    "core"
+    "core",
+    "track-highlight"
   ],
   "files": [
     {

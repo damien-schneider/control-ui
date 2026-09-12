@@ -47,7 +47,7 @@ function knobsWithRepeatedFamilyPrefix(knobs: readonly string[]): string[] {
 }
 
 const KNOB_SUFFIX =
-  /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|icon|height|padding(?:-inline)?|font-(?:size|weight)|easing|transition-duration|indicator-(?:start|middle|end))$/;
+  /-(?:background(?:-image)?|foreground|border-(?:color|width|style)|(?:ring|line|dot|marker|separator|handle)-color|radius|shadow|fill|stroke|backdrop-(?:filter|blur)|opacity|scale|gap|icon|height|size|padding(?:-inline)?|font-(?:size|weight)|easing|transition-(?:duration|delay)|indicator-(?:start|middle|end))$/;
 
 const knobsOutsideSuffixVocabulary = (knobs: readonly string[]) => knobs.filter((knob) => !KNOB_SUFFIX.test(knob));
 

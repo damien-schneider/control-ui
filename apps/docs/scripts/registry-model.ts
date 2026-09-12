@@ -241,19 +241,6 @@ const internalDefinitions: Definition[] = [
     primary: ["src/registry/blocks/control-ui/sidebar-layout.tsx"],
     internal: true,
   },
-  {
-    id: "track-highlight",
-    type: "registry:component",
-    title: "Track highlight",
-    description: "Shared sliding selection indicator for tracked lists.",
-    seeds: [
-      "src/registry/sources/control-ui/extensions/create-track-highlight.ts",
-      "src/registry/sources/control-ui/extensions/track-highlight.tsx",
-      "src/registry/sources/control-ui/recipes/track-highlight.css",
-    ],
-    primary: ["src/registry/sources/control-ui/extensions/track-highlight.tsx"],
-    internal: true,
-  },
 ];
 
 function sourcePath(file: { path: string }) {

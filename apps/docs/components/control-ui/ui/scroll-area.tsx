@@ -4,6 +4,7 @@ import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 import type { ComponentProps, CSSProperties, Ref } from "react";
 import type { ScrollAreaKnobStyle } from "@/components/control-ui/knob-contracts/scroll-area-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { ProgressiveBlur, type ProgressiveBlurProps } from "@/components/control-ui/ui/progressive-blur";
 
 export const scrollAreaScrollbarVisibilities = ["scroll", "hover", "always"] as const;
 
@@ -23,19 +24,11 @@ export type ScrollAreaProps = Omit<ComponentProps<"div">, "style"> & { style?: C
   viewportRef?: Ref<HTMLDivElement>;
   maxHeight?: string;
   mask?: boolean;
+  blur?: boolean;
+  blurProps?: Pick<ProgressiveBlurProps, "style">;
   lockAxis?: ScrollAreaLockAxis;
   scrollbarVisibility?: ScrollAreaScrollbarVisibility;
 };
-
-const maskXOverflowClasses = cn(
-  "data-[overflow-x-start]:mask-l-from-[calc(100%_-_var(--scroll-fade-size))]",
-  "data-[overflow-x-end]:mask-r-from-[calc(100%_-_var(--scroll-fade-size))]",
-);
-
-const maskYOverflowClasses = cn(
-  "data-[overflow-y-start]:mask-t-from-[calc(100%_-_var(--scroll-fade-size))]",
-  "data-[overflow-y-end]:mask-b-from-[calc(100%_-_var(--scroll-fade-size))]",
-);
 
 function Scrollbar({
   orientation,
@@ -82,6 +75,8 @@ export function ScrollArea({
   viewportRef,
   maxHeight,
   mask = true,
+  blur = false,
+  blurProps,
   lockAxis,
   scrollbarVisibility = "scroll",
   children,
@@ -102,17 +97,20 @@ export function ScrollArea({
       data-control-ui="scroll-area"
       data-control-family="scroll-area"
       data-slot="root"
+      data-mask={mask || undefined}
+      data-blur={blur || undefined}
+      data-lock-axis={lockAxis}
       className={cn("relative overflow-hidden", className)}
       style={style}
     >
-      {/* overscroll stays at default so wheel falls through to parent — `overscroll-contain` would trap it */}
       <ScrollAreaPrimitive.Viewport
         data-control-ui="scroll-area"
         data-control-family="scroll-area"
         data-slot="viewport"
         {...resolvedViewportProps}
+        data-scroll-area-viewport=""
         ref={viewportRef}
-        className={cn("h-full w-full", mask && !lockX && maskXOverflowClasses, mask && !lockY && maskYOverflowClasses, viewportClassName)}
+        className={cn("h-full w-full", viewportClassName)}
         style={mergedViewportStyle}
       >
         <ScrollAreaPrimitive.Content
@@ -124,6 +122,10 @@ export function ScrollArea({
           {children}
         </ScrollAreaPrimitive.Content>
       </ScrollAreaPrimitive.Viewport>
+      {blur && !lockY && <ProgressiveBlur {...blurProps} side="top" visible={false} />}
+      {blur && !lockY && <ProgressiveBlur {...blurProps} side="bottom" visible={false} />}
+      {blur && !lockX && <ProgressiveBlur {...blurProps} side="inline-start" visible={false} />}
+      {blur && !lockX && <ProgressiveBlur {...blurProps} side="inline-end" visible={false} />}
       {!lockY && <Scrollbar orientation="vertical" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
       {!lockX && <Scrollbar orientation="horizontal" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
       {!lockX && !lockY && (

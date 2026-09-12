@@ -1,0 +1,145 @@
+@layer components {
+  :where([data-control-family="progressive-blur"][data-slot="root"]) {
+    --cui-progressive-blur-size: 3rem;
+    --cui-progressive-blur-backdrop-blur: 16px;
+    --cui-progressive-blur-transition-duration: var(--duration-base);
+    --cui-progressive-blur-transition-delay: calc(var(--cui-progressive-blur-transition-duration) * 0.06);
+    --_progressive-blur-direction: to bottom;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"][data-visible]) {
+    --_progressive-blur-visibility: visible;
+    --_progressive-blur-enter: 1;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"]:is([data-side="top"], [data-side="bottom"])) {
+    inset-inline: 0;
+    height: min(50%, max(0px, var(--cui-progressive-blur-size)));
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"][data-side="top"]) {
+    top: 0;
+    --_progressive-blur-direction: to top;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"][data-side="bottom"]) {
+    bottom: 0;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"]:is([data-side="inline-start"], [data-side="inline-end"])) {
+    inset-block: 0;
+    width: min(50%, max(0px, var(--cui-progressive-blur-size)));
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"][data-side="inline-start"]) {
+    inset-inline-start: 0;
+    --_progressive-blur-direction: to left;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"][data-side="inline-end"]) {
+    inset-inline-end: 0;
+    --_progressive-blur-direction: to right;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"][data-side="inline-start"]:dir(rtl)) {
+    --_progressive-blur-direction: to right;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="root"][data-side="inline-end"]:dir(rtl)) {
+    --_progressive-blur-direction: to left;
+  }
+
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) and (mask-image: linear-gradient(black, transparent)) {
+    :where([data-control-family="progressive-blur"][data-slot="root"]) {
+      display: block;
+    }
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="layer"]) {
+    --_progressive-blur-index: 0;
+    --_progressive-blur-divisor: 32;
+    --_progressive-blur-duration: calc(var(--cui-progressive-blur-transition-duration) * (0.65 + var(--_progressive-blur-enter, 0) * 0.35));
+    position: absolute;
+    inset: 0;
+    opacity: var(--_progressive-blur-enter, 0);
+    visibility: var(--_progressive-blur-visibility, hidden);
+    -webkit-backdrop-filter: blur(max(0px, calc(var(--cui-progressive-blur-backdrop-blur) / var(--_progressive-blur-divisor))));
+    backdrop-filter: blur(max(0px, calc(var(--cui-progressive-blur-backdrop-blur) / var(--_progressive-blur-divisor))));
+    mask-image: linear-gradient(
+      var(--_progressive-blur-direction),
+      oklch(0 0 0 / 0) calc(var(--_progressive-blur-index) * 100% / 7),
+      oklch(0 0 0) calc((var(--_progressive-blur-index) + 1) * 100% / 7),
+      oklch(0 0 0) calc((var(--_progressive-blur-index) + 2) * 100% / 7),
+      oklch(0 0 0 / 0) calc((var(--_progressive-blur-index) + 3) * 100% / 7)
+    );
+    transition:
+      opacity var(--_progressive-blur-duration) var(--ease-standard)
+      calc(var(--_progressive-blur-enter, 0) * var(--_progressive-blur-index) * var(--cui-progressive-blur-transition-delay)),
+      visibility calc(var(--duration-fast) * 0) var(--ease-standard)
+      calc((1 - var(--_progressive-blur-enter, 0)) * var(--_progressive-blur-duration));
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="layer"]:nth-child(2)) {
+    --_progressive-blur-index: 1;
+    --_progressive-blur-divisor: 16;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="layer"]:nth-child(3)) {
+    --_progressive-blur-index: 2;
+    --_progressive-blur-divisor: 8;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="layer"]:nth-child(4)) {
+    --_progressive-blur-index: 3;
+    --_progressive-blur-divisor: 4;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="layer"]:nth-child(5)) {
+    --_progressive-blur-index: 4;
+    --_progressive-blur-divisor: 2;
+  }
+
+  :where([data-control-family="progressive-blur"][data-slot="layer"]:nth-child(6)) {
+    --_progressive-blur-index: 5;
+    --_progressive-blur-divisor: 1;
+  }
+
+  @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+    :where([data-control-family="progressive-blur"][data-slot="root"]) {
+      display: none;
+    }
+  }
+}
+
+@property --cui-progressive-blur-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-progressive-blur-backdrop-blur {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-progressive-blur-transition-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
+}
+
+@property --cui-progressive-blur-transition-delay {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
+}

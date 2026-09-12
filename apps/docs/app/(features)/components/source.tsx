@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
-import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
+import { Code, CodeActions, CodeContent, CodeCopy, CodeFloatingCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
@@ -14,7 +14,8 @@ export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string 
   if (!code.includes("\n")) return <CodeSnippet code={code} lang={lang} />;
 
   return (
-    <Code>
+    <Code chrome="embedded" className="docs-panel pt-6">
+      <CodeFloatingCopy value={code} />
       <CodeContent code={code} lang={lang} />
     </Code>
   );
@@ -22,12 +23,7 @@ export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string 
 
 function CodeSnippet({ code, lang }: { code: string; lang: string }) {
   return (
-    <Code
-      chrome="embedded"
-      density="compact"
-      overflow="wrap"
-      className="flex items-center gap-1 rounded-(--radius-control) border border-border bg-background py-1 pr-1"
-    >
+    <Code chrome="embedded" density="compact" overflow="wrap" className="docs-panel flex items-center gap-1 py-1 pr-1">
       <CodeContent code={code} lang={lang} className="min-w-0 flex-1" />
       <CodeCopy value={code} />
     </Code>
@@ -36,7 +32,7 @@ function CodeSnippet({ code, lang }: { code: string; lang: string }) {
 
 export function CommandBlock({ label, command }: { label: string; command: string }) {
   return (
-    <Code density="compact" overflow="wrap" className="my-0">
+    <Code chrome="embedded" density="compact" overflow="wrap" className="docs-panel">
       <CodeHeader>
         <CodeTitle>{label}</CodeTitle>
         <CodeActions>
@@ -62,7 +58,7 @@ export function DocsCollapsible({
   defaultOpen?: boolean;
 }) {
   return (
-    <UICollapsible id={id} defaultOpen={defaultOpen} className="min-w-0 scroll-mt-20 overflow-hidden rounded-panel border bg-background">
+    <UICollapsible id={id} defaultOpen={defaultOpen} className="docs-panel scroll-mt-20 overflow-hidden">
       <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left text-body font-medium transition-colors hover:bg-muted/30">
         <span>
           {title}
@@ -93,7 +89,6 @@ function languageForPath(path: string) {
   return undefined;
 }
 
-// Path IS file identity — tab strip repeats name, so header spells directory once and emphasizes leaf.
 function SourcePath({ path }: { path: string }) {
   const name = sourceFileName(path);
   const directory = path.slice(0, path.length - name.length);
@@ -129,7 +124,7 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
           </TabsList>
         </ScrollArea>
       ) : null}
-      <Code className={cn("my-0", files.length > 1 && "-mt-px")}>
+      <Code chrome="embedded" className={cn("docs-panel", files.length > 1 && "-mt-px")}>
         <CodeHeader>
           <SourcePath path={activeFile.path} />
           <CodeActions>
@@ -162,7 +157,7 @@ export function PreviewTabs({
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
       <Tabs value={tab} onValueChange={setTab}>
-        {/* Controls overlay list instead of nesting in it: role="tablist" takes tabs only, and Base UI's composite keydown would eat their arrow keys. */}
+        {/* Base UI tablists consume arrow keys, so controls sit outside the list. */}
         <div className="relative">
           <TabsList variant="browser" className="w-full shadow-none">
             <TabsTab value="preview">Preview</TabsTab>
@@ -173,8 +168,7 @@ export function PreviewTabs({
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        {/* The strip sits on the page; the panel is the box. Pulled up 1px so the indicator covers the top border under the active tab. */}
-        <div className="-mt-px min-w-0 overflow-hidden rounded-panel border bg-background">
+        <div className="docs-panel -mt-px overflow-hidden">
           <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
             {children}
           </TabsPanel>

@@ -1,4 +1,11 @@
 import type { ControlUiSkin } from "@/components/control-ui/skin";
 
-// Refined needs no per-slot overrides. Installing it replaces active pack config with this minimal explicit choice.
-export const skin: ControlUiSkin = { id: "refined" };
+export const skin: ControlUiSkin = {
+  id: "refined",
+  indicators: {
+    sidebar: "hover",
+    "button-group": "hover",
+    "toggle-group": "hover",
+    "checkbox-group": "hover",
+  },
+};

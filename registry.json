@@ -277,6 +277,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -304,6 +305,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -393,6 +395,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -420,6 +423,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -509,6 +513,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -536,6 +541,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -625,6 +631,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -652,6 +659,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -741,6 +749,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -768,6 +777,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -857,6 +867,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -884,6 +895,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -973,6 +985,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -1000,6 +1013,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -1089,6 +1103,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -1116,6 +1131,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",
@@ -1428,11 +1444,11 @@
       "type": "registry:ui",
       "title": "Button group",
       "description": "Joined button group for toolbars, split actions, and segmented controls.",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/track-highlight"
       ],
       "files": [
         {
@@ -1799,7 +1815,8 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/track-highlight"
       ],
       "files": [
         {
@@ -3765,6 +3782,37 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "progressive-blur",
+      "type": "registry:ui",
+      "title": "Progressive blur",
+      "description": "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/knob-contracts/progressive-blur-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/progressive-blur-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/progressive-blur.css",
+          "target": "@components/control-ui/styles/recipes/progressive-blur.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/ui/progressive-blur.tsx",
+          "target": "@components/control-ui/ui/progressive-blur.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/progressive-blur.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio group",
@@ -3924,12 +3972,13 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll area",
-      "description": "Scroll container with overlay scrollbars and edge fades.",
+      "description": "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
       "dependencies": [
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/progressive-blur"
       ],
       "files": [
         {
@@ -4077,7 +4126,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+      "description": "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
       "dependencies": [
         "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1",
@@ -4106,6 +4155,16 @@
           "path": "apps/docs/src/registry/sources/control-ui/recipes/sidebar.css",
           "target": "@components/control-ui/styles/recipes/sidebar.css",
           "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/ui/sidebar-menu.tsx",
+          "target": "@components/control-ui/ui/sidebar-menu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/ui/sidebar-provider.tsx",
+          "target": "@components/control-ui/ui/sidebar-provider.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "apps/docs/src/registry/sources/control-ui/ui/sidebar.tsx",
@@ -4919,7 +4978,8 @@
       ],
       "registryDependencies": [
         "damien-schneider/control-ui/button",
-        "damien-schneider/control-ui/core"
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/track-highlight"
       ],
       "files": [
         {
@@ -5019,6 +5079,47 @@
         "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
         "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "track-highlight",
+      "type": "registry:ui",
+      "title": "Track highlight",
+      "description": "Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/knob-contracts/track-highlight-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/track-highlight-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/extensions/create-track-highlight.ts",
+          "target": "@components/control-ui/extensions/create-track-highlight.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/extensions/supports-anchor-transitions.ts",
+          "target": "@components/control-ui/extensions/supports-anchor-transitions.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/extensions/track-highlight.tsx",
+          "target": "@components/control-ui/extensions/track-highlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/track-highlight.css",
+          "target": "@components/control-ui/styles/recipes/track-highlight.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/track-highlight.css\"": {}
       }
     },
     {
@@ -5250,6 +5351,7 @@
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
         "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
         "damien-schneider/control-ui/radio-group",
         "damien-schneider/control-ui/resizable",
         "damien-schneider/control-ui/responsive-dialog",
@@ -5276,6 +5378,7 @@
         "damien-schneider/control-ui/toggle",
         "damien-schneider/control-ui/toolbar",
         "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
         "damien-schneider/control-ui/transcript-divider",
         "damien-schneider/control-ui/tree",
         "damien-schneider/control-ui/trigger-menu",

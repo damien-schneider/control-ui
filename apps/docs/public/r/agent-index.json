@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 174,
+    "count": 176,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -737,10 +737,18 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json"
       },
       {
+        "id": "track-highlight",
+        "name": "Track highlight",
+        "kind": "Primitive",
+        "summary": "Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.",
+        "href": "/primitives/track-highlight",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/track-highlight.json"
+      },
+      {
         "id": "sidebar",
         "name": "Sidebar",
         "kind": "Primitive",
-        "summary": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+        "summary": "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
         "href": "/primitives/sidebar",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json"
@@ -749,9 +757,17 @@
         "id": "scroll-area",
         "name": "Scroll area",
         "kind": "Primitive",
-        "summary": "Scroll container with overlay scrollbars and edge fades.",
+        "summary": "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
         "href": "/primitives/scroll-area",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json"
+      },
+      {
+        "id": "progressive-blur",
+        "name": "Progressive blur",
+        "kind": "Primitive",
+        "summary": "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
+        "href": "/primitives/progressive-blur",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/progressive-blur.json"
       },
       {
         "id": "table-of-contents",

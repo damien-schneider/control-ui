@@ -6,6 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { ActivePageId, DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { skillConcernSidebarIcons } from "./icons";
 import type { GuideNavGroup } from "./nav-items";
@@ -24,13 +25,17 @@ function NavMenu({
   onNavigate: () => void;
 }) {
   return (
-    <SidebarMenu>
+    <SidebarMenu indicator="hover">
       {items.map((item) => {
         const href = `${prefix}${item.id}`;
         const name = humanizeNavName(item.name);
         return (
           <SidebarMenuItem key={item.id}>
-            <SidebarMenuButton render={<Link href={href} onClick={onNavigate} />} isActive={active === item.id} size="sm">
+            <SidebarMenuButton
+              render={<Link href={href} onClick={onNavigate} aria-current={active === item.id ? "page" : undefined} />}
+              isActive={active === item.id}
+              size="sm"
+            >
               <span className="min-w-0 truncate">{name}</span>
               {item.status ? <StatusBadge status={item.status} compact className="ml-auto" /> : null}
             </SidebarMenuButton>
@@ -60,11 +65,16 @@ export function DocsNavGroup({
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>
-        {icon ? <HugeiconsIcon aria-hidden icon={icon} size={16} strokeWidth={1.7} /> : null}
-        <span className="min-w-0 truncate">{title}</span>
-      </SidebarGroupLabel>
-      <NavMenu items={items} active={active} prefix={prefix} onNavigate={onNavigate} />
+      <Collapsible defaultOpen>
+        <SidebarGroupLabel render={<CollapsibleTrigger />}>
+          {icon ? <HugeiconsIcon aria-hidden icon={icon} size={16} strokeWidth={1.7} /> : null}
+          <span className="min-w-0 truncate">{title}</span>
+          <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} data-slot="chevron" />
+        </SidebarGroupLabel>
+        <CollapsibleContent>
+          <NavMenu items={items} active={active} prefix={prefix} onNavigate={onNavigate} />
+        </CollapsibleContent>
+      </Collapsible>
     </SidebarGroup>
   );
 }
@@ -82,7 +92,7 @@ export function ReferenceDoorRow({
 }) {
   return (
     <SidebarGroup>
-      <SidebarMenu>
+      <SidebarMenu indicator="hover">
         <SidebarMenuItem>
           <SidebarMenuButton onClick={onOpen} isActive={isInside} size="sm">
             <HugeiconsIcon aria-hidden icon={icon} size={16} strokeWidth={1.7} />
@@ -112,7 +122,7 @@ export function ReferencePane({
 
   return (
     <SidebarGroup>
-      <SidebarMenu>
+      <SidebarMenu indicator="hover">
         <SidebarMenuItem>
           <SidebarMenuButton onClick={onBack} size="sm" aria-label={`Back from ${title}`}>
             <HugeiconsIcon aria-hidden icon={ArrowLeft01Icon} size={14} strokeWidth={1.7} className="text-muted-foreground" />
@@ -123,10 +133,7 @@ export function ReferencePane({
       <NavMenu items={[{ id: "reference", name: "Overview" }]} active={active} prefix="/" onNavigate={onNavigate} />
       <div className="grid gap-2 pt-1">
         {visibleGroups.map((group) => (
-          <div key={group.id}>
-            <div className="px-2 pt-1 pb-0.5 text-micro font-medium uppercase tracking-[0.08em] text-muted-foreground">{group.title}</div>
-            <NavMenu items={group.items} active={active} prefix="/" onNavigate={onNavigate} />
-          </div>
+          <DocsNavGroup key={group.id} title={group.title} items={group.items} active={active} prefix="/" onNavigate={onNavigate} />
         ))}
       </div>
     </SidebarGroup>

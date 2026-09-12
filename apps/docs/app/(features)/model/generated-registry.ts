@@ -201,6 +201,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -228,6 +229,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -307,6 +309,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -334,6 +337,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -413,6 +417,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -440,6 +445,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -519,6 +525,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -546,6 +553,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -625,6 +633,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -652,6 +661,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -731,6 +741,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -758,6 +769,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -837,6 +849,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -864,6 +877,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -943,6 +957,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -970,6 +985,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",
@@ -1208,8 +1224,8 @@ export const registryMetadata = {
     ],
   },
   "button-group": {
-    dependencies: ["class-variance-authority@^0.7.1"],
-    registryDependencies: ["core"],
+    dependencies: [],
+    registryDependencies: ["button", "core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/button-group.json",
     files: [
       {
@@ -1476,7 +1492,7 @@ export const registryMetadata = {
   },
   "checkbox-group": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/checkbox-group.json",
     files: [
       {
@@ -2978,6 +2994,28 @@ export const registryMetadata = {
       },
     ],
   },
+  "progressive-blur": {
+    dependencies: [],
+    registryDependencies: ["core"],
+    sourceManifestPath: "registry/control-ui/progressive-blur.json",
+    files: [
+      {
+        path: "src/registry/knob-contracts/progressive-blur-knobs.ts",
+        target: "@components/control-ui/knob-contracts/progressive-blur-knobs.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/progressive-blur.css",
+        target: "@components/control-ui/styles/recipes/progressive-blur.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/progressive-blur.tsx",
+        target: "@components/control-ui/ui/progressive-blur.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
   "radio-group": {
     dependencies: ["@base-ui/react@^1.7.0"],
     registryDependencies: ["core"],
@@ -3088,7 +3126,7 @@ export const registryMetadata = {
   },
   "scroll-area": {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["core"],
+    registryDependencies: ["core", "progressive-blur"],
     sourceManifestPath: "registry/control-ui/scroll-area.json",
     files: [
       {
@@ -3247,6 +3285,16 @@ export const registryMetadata = {
         path: "src/registry/sources/control-ui/recipes/sidebar.css",
         target: "@components/control-ui/styles/recipes/sidebar.css",
         type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/sidebar-menu.tsx",
+        target: "@components/control-ui/ui/sidebar-menu.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "src/registry/sources/control-ui/ui/sidebar-provider.tsx",
+        target: "@components/control-ui/ui/sidebar-provider.tsx",
+        type: "registry:ui",
       },
       {
         path: "src/registry/sources/control-ui/ui/sidebar.tsx",
@@ -3822,7 +3870,7 @@ export const registryMetadata = {
   },
   toggle: {
     dependencies: ["@base-ui/react@^1.7.0"],
-    registryDependencies: ["button", "core"],
+    registryDependencies: ["button", "core", "track-highlight"],
     sourceManifestPath: "registry/control-ui/toggle.json",
     files: [
       {
@@ -3909,6 +3957,11 @@ export const registryMetadata = {
       {
         path: "src/registry/sources/control-ui/extensions/create-track-highlight.ts",
         target: "@components/control-ui/extensions/create-track-highlight.ts",
+        type: "registry:component",
+      },
+      {
+        path: "src/registry/sources/control-ui/extensions/supports-anchor-transitions.ts",
+        target: "@components/control-ui/extensions/supports-anchor-transitions.ts",
         type: "registry:component",
       },
       {
@@ -4101,6 +4154,7 @@ export const registryMetadata = {
       "phone-input",
       "popover",
       "progress",
+      "progressive-blur",
       "radio-group",
       "resizable",
       "responsive-dialog",
@@ -4127,6 +4181,7 @@ export const registryMetadata = {
       "toggle",
       "toolbar",
       "tooltip",
+      "track-highlight",
       "transcript-divider",
       "tree",
       "trigger-menu",

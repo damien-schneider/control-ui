@@ -131,6 +131,24 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "var(--cui-button-shadow)"
+    },
+    {
+      "name": "--cui-button-open-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-button-hover-background)"
+    },
+    {
+      "name": "--cui-button-open-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--cui-button-hover-foreground)"
+    },
+    {
+      "name": "--cui-button-open-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "var(--cui-button-shadow)"
     }
   ],
   "parts": {
@@ -190,6 +208,12 @@
             ]
           },
           {
+            "attribute": "data-track-item",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-variant",
             "source": "control-ui",
             "valueKind": "enum",
@@ -206,7 +230,6 @@
         "family": "button",
         "registryItems": [
           "button",
-          "dropdown-menu",
           "select"
         ],
         "states": []
@@ -674,6 +697,15 @@
             "values": [
               "horizontal",
               "vertical"
+            ]
+          },
+          {
+            "attribute": "data-track",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover",
+              "none"
             ]
           }
         ]

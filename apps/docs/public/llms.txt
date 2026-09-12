@@ -66,8 +66,10 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Button](http://127.0.0.1:3000/primitives/button): Accessible action button with size, variant, and semantic tone support.
 - [Collapsible](http://127.0.0.1:3000/primitives/collapsible): Accessible disclosure primitive with measured open and close motion.
 - [Tabs](http://127.0.0.1:3000/primitives/tabs): Segmented and browser-style navigation with a stable active indicator.
-- [Sidebar](http://127.0.0.1:3000/primitives/sidebar): Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support. Status: beta.
-- [Scroll area](http://127.0.0.1:3000/primitives/scroll-area): Scroll container with overlay scrollbars and edge fades.
+- [Track highlight](http://127.0.0.1:3000/primitives/track-highlight): Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.
+- [Sidebar](http://127.0.0.1:3000/primitives/sidebar): Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse. Status: beta.
+- [Scroll area](http://127.0.0.1:3000/primitives/scroll-area): Scroll container with overlay scrollbars, edge fades, and optional progressive blur.
+- [Progressive blur](http://127.0.0.1:3000/primitives/progressive-blur): CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.
 - [Table of contents](http://127.0.0.1:3000/primitives/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
 - [Timeline](http://127.0.0.1:3000/primitives/timeline): Static chronological events with independent status, connectors, descriptions, and metadata.
 - [Stepper](http://127.0.0.1:3000/primitives/stepper): Static and interactive workflow steps with horizontal and vertical layouts.

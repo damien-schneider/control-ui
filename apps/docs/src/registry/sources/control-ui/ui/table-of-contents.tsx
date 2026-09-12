@@ -29,10 +29,6 @@ const DETECTION_MARGIN = "-80px 0px -20% 0px";
 const TOC_ITEM_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"]';
 const TOC_ACTIVE_SELECTOR = '[data-control-ui="table-of-contents"][data-slot="item"][data-active]';
 
-const tableOfContentsItemClass = "block";
-const tableOfContentsHighlightClass = "";
-const tableOfContentsTrailClass = "absolute inset-y-0 left-0 w-0.5";
-
 function getScrollContainer(el: HTMLElement): HTMLElement | null {
   let node = el.parentElement;
   while (node) {
@@ -132,8 +128,6 @@ export function TableOfContents({ items, label = "On this page", variant = "both
   const targetIds = flatItems.map((item) => item.href.replace(/^#/, ""));
   const visibleIds = useVisibleSections(targetIds);
   const activeSet = activeIdsInRange(visibleIds, targetIds);
-  const railStyle = style;
-  const highlightStyle = style;
 
   if (items.length === 0) return null;
 
@@ -158,7 +152,6 @@ export function TableOfContents({ items, label = "On this page", variant = "both
           data-control-family="table-of-contents"
           data-slot="rail"
           className="pointer-events-none absolute inset-y-0 left-0 -z-20 w-px"
-          style={railStyle}
         />
         <TrackHighlight
           data-variant={variant}
@@ -166,8 +159,6 @@ export function TableOfContents({ items, label = "On this page", variant = "both
           activeSelector={TOC_ACTIVE_SELECTOR}
           range
           followHover={false}
-          style={highlightStyle}
-          className={tableOfContentsHighlightClass}
         >
           {variant !== "background" && (
             <div
@@ -175,7 +166,7 @@ export function TableOfContents({ items, label = "On this page", variant = "both
               data-control-ui="table-of-contents"
               data-control-family="table-of-contents"
               data-slot="trail"
-              className={tableOfContentsTrailClass}
+              className="absolute inset-y-0 left-0 w-0.5"
             />
           )}
         </TrackHighlight>
@@ -219,7 +210,7 @@ function TocList({
               data-depth={item.depth}
               aria-current={isActive ? "location" : undefined}
               href={item.href}
-              className={tableOfContentsItemClass}
+              className="block"
             >
               {item.label}
             </a>

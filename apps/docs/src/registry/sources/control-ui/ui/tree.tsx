@@ -4,8 +4,9 @@ import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible"
 import { useRender } from "@base-ui/react/use-render";
 import { ChevronRightIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode, Ref } from "react";
-import { Children, createContext, isValidElement, lazy, Suspense, useContext, useRef, useState } from "react";
+import { Children, createContext, isValidElement, useContext, useRef, useState } from "react";
 import type { RenderProp, SelectionIndicator } from "@/components/control-ui/control-props";
+import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { TreeKnobStyle } from "@/components/control-ui/knob-contracts/tree-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinIndicator } from "@/components/control-ui/skin";
@@ -58,16 +59,6 @@ export type TreeItemLabelProps = ComponentProps<"span"> & {
 };
 
 export type TreeItemContentProps = ComponentProps<"div"> & { style?: CSSProperties & TreeKnobStyle };
-
-// lazy because highlight drags in JS geometry engine; it is decorative, so null fallback is fine
-const TrackHighlight = lazy(() =>
-  import("@/components/control-ui/extensions/track-highlight").then((module) => ({ default: module.TrackHighlight })),
-);
-
-/*
- * Library-original: Base UI ships no Tree. Follows WAI-ARIA APG treeview — <li> is focusable treeitem, trigger row presentational.
- * Keyboard nav derives visible order from registered item refs at keydown time; collapsed panels unmount, so registry holds exactly reachable items.
- */
 
 const TYPEAHEAD_TIMEOUT = 500;
 
@@ -350,7 +341,6 @@ export function Tree({
     onExpandedChange?.([...next], { value: itemValue, expanded: willExpand, reason });
   };
 
-  // prop → skin → off
   const resolvedIndicator = indicator ?? skinIndicator("tree") ?? "none";
 
   const contextValue: TreeContextValue = {
@@ -369,20 +359,17 @@ export function Tree({
     toggleExpanded,
     setFocusedValue,
   };
-  const rootStyle = style;
   const sliding = resolvedIndicator === "slide";
 
   const list = (
     <ul
       data-control-ui="tree"
       data-control-family="tree"
-      data-indicator={resolvedIndicator}
-      data-slot="root"
+      data-slot="list"
       // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: WAI-ARIA treeview requires role="tree" on the <ul> container.
       role="tree"
       aria-multiselectable={selectionMode === "multiple" || undefined}
-      className={cn("flex flex-col", sliding ? undefined : className)}
-      style={sliding ? undefined : rootStyle}
+      className="flex flex-col"
       onKeyDown={(event) => {
         onKeyDown?.(event);
         handleTreeKeyDown(event, contextValue, typeahead);
@@ -402,27 +389,22 @@ export function Tree({
 
   return (
     <TreeContext.Provider value={contextValue}>
-      {sliding ? (
-        // wrapped, never injected into list: pill must stay sibling of treeitems for the <ul> content model to hold
-        <div
-          data-control-ui="tree"
-          data-control-family="tree"
-          data-slot="track"
-          data-indicator={resolvedIndicator}
-          className={cn("relative isolate", className)}
-          style={rootStyle}
-        >
-          <Suspense fallback={null}>
-            <TrackHighlight
-              itemSelector="[data-control-ui=tree][data-slot=item-trigger]"
-              activeSelector="[data-control-ui=tree][data-slot=item-trigger][data-selected]"
-            />
-          </Suspense>
-          {list}
-        </div>
-      ) : (
-        list
-      )}
+      <div
+        data-control-ui="tree"
+        data-control-family="tree"
+        data-slot="root"
+        data-indicator={resolvedIndicator}
+        className={cn(sliding && "relative isolate", className)}
+        style={style}
+      >
+        {sliding ? (
+          <TrackHighlight
+            itemSelector="[data-control-ui=tree][data-slot=item-trigger]"
+            activeSelector="[data-control-ui=tree][data-slot=item-trigger][data-selected]"
+          />
+        ) : null}
+        {list}
+      </div>
     </TreeContext.Provider>
   );
 }
@@ -502,8 +484,6 @@ export function TreeItem({ value, disabled = false, label, className, style, chi
   );
 }
 
-// presentational — the <li> above owns focus
-
 export function TreeItemTrigger({ className, children, onClick, render, ...props }: TreeItemTriggerProps) {
   const tree = useTree();
   const item = useTreeItem();
@@ -557,7 +537,6 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
     );
   }
 
-  // rotates off its OWN state: nested chevron sits inside parent's open <li>, so descendant selector would rotate every child when ancestor opens
   const expanded = tree.expanded.has(item.value);
 
   return (
@@ -574,8 +553,6 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
     </span>
   );
 }
-
-// accessible name and type-ahead target
 
 export function TreeItemLabel({ className, children, render, ref, ...props }: TreeItemLabelProps) {
   const tree = useTree();
@@ -606,7 +583,6 @@ export function TreeItemLabel({ className, children, render, ref, ...props }: Tr
   });
 }
 
-// Enter and exit both ride data-starting-style/data-ending-style, which Base UI sets only during transition, so slide plays on close too and never sticks.
 export function TreeItemContent({ className, children, ...props }: TreeItemContentProps) {
   return (
     <CollapsiblePrimitive.Panel

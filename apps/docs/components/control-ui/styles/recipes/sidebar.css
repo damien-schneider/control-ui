@@ -134,6 +134,48 @@
     gap: calc(var(--spacing) * 1);
   }
 
+  :where([data-control-family="sidebar"][data-slot="menu"][data-submenu]) {
+    margin-block: calc(var(--spacing) * 1);
+    margin-inline-start: calc(var(--spacing) * 3);
+    padding-inline-start: calc(var(--spacing) * 2);
+    border-inline-start: 1px solid var(--sidebar-border);
+    width: auto;
+  }
+
+  :where([data-control-family="sidebar"]:is([data-slot="group-label"], [data-slot="menu-button"])[aria-expanded] > [data-slot="chevron"]) {
+    margin-inline-start: auto;
+    transition: rotate var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="sidebar"][aria-expanded="true"] > [data-slot="chevron"]) {
+    rotate: 90deg;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="group-label"][aria-expanded]) {
+    cursor: pointer;
+    width: 100%;
+    text-align: start;
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="sidebar"]:is([data-slot="menu-button"], [data-slot="group-label"][aria-expanded])) {
+      min-block-size: 44px;
+    }
+
+    :where([data-control-family="button"][data-sidebar-trigger]) {
+      min-inline-size: 44px;
+      min-block-size: 44px;
+    }
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu"]:is([data-indicator="hover"], [data-indicator="slide"])) {
+    gap: 0;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="menu-track"] > [data-control-family="track-highlight"]) {
+    --cui-track-highlight-radius: var(--cui-sidebar-menu-button-radius);
+  }
+
   :where([data-control-family="sidebar"][data-slot="group-label"]) {
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 2);
@@ -213,6 +255,13 @@
       [data-control-family="sidebar"][data-slot="menu-button"]:is(:hover, :active, [data-active], [data-popup-open])
   ) {
     background-color: transparent;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="sidebar"][data-indicator="hover"] [data-slot="menu-button"]:hover:not([data-active])) {
+      background-color: transparent;
+      box-shadow: none;
+    }
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"]:disabled),

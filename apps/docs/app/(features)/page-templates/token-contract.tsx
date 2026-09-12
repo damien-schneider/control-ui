@@ -2,11 +2,6 @@
 
 import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 
-/*
- * Visible face of token contract SSOT: lib/theme-contract.ts feeds coverage test (theme-contract-coverage.test.ts) AND this reference — docs never hand-maintain token list.
- * Core tokens render open; advanced knobs collapse into one native <details> per group, CSS-first — 170-row tail costs no JS/state.
- */
-
 const GROUP_ORDER = [
   "color",
   "typography",
@@ -49,18 +44,18 @@ function TokenRow({ token }: { token: ThemeContractToken }) {
 export function TokenContractTable() {
   return (
     <div className="grid min-w-0 gap-4">
-      <div className="min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
-        <div className="border-b border-border/70 bg-muted/30 px-4 py-2 text-caption font-medium text-muted-foreground">
+      <div className="docs-panel overflow-hidden">
+        <div className="border-b border-border bg-muted/30 px-4 py-2 text-caption font-medium text-muted-foreground">
           Core — the {coreTokens.length} tokens a skin typically re-values first
         </div>
-        <div className="divide-y divide-border/50">
+        <div className="divide-y divide-border">
           {coreTokens.map((token) => (
             <TokenRow key={token.name} token={token} />
           ))}
         </div>
       </div>
 
-      <details className="group min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
+      <details className="docs-panel group overflow-hidden">
         <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
           <span className="font-medium">Derived — optional overrides</span>
           <span className="text-caption text-muted-foreground">
@@ -70,7 +65,7 @@ export function TokenContractTable() {
             ›
           </span>
         </summary>
-        <div className="divide-y divide-border/50 border-t border-border/70">
+        <div className="divide-y divide-border border-t border-border">
           {derivedTokens.map((token) => (
             <TokenRow key={token.name} token={token} />
           ))}
@@ -78,7 +73,7 @@ export function TokenContractTable() {
       </details>
 
       {advancedGroups.map(({ group, tokens }) => (
-        <details key={group} className="group min-w-0 overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm">
+        <details key={group} className="docs-panel group overflow-hidden">
           <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
             <span className="font-medium">Advanced — {GROUP_LABELS[group]}</span>
             <span className="text-caption text-muted-foreground">
@@ -88,7 +83,7 @@ export function TokenContractTable() {
               ›
             </span>
           </summary>
-          <div className="divide-y divide-border/50 border-t border-border/70">
+          <div className="divide-y divide-border border-t border-border">
             {tokens.map((token) => (
               <TokenRow key={token.name} token={token} />
             ))}

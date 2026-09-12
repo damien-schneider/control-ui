@@ -3,12 +3,13 @@
   "name": "scroll-area",
   "type": "registry:ui",
   "title": "Scroll area",
-  "description": "Scroll container with overlay scrollbars and edge fades.",
+  "description": "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
   "dependencies": [
     "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
-    "core"
+    "core",
+    "progressive-blur"
   ],
   "files": [
     {

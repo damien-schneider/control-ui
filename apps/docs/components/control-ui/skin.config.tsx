@@ -1,6 +1,5 @@
+import { skin as refined } from "@/src/registry/skin-packs/refined/skin.config";
 import type { ControlUiSkin } from "./skin";
-
-const refined: ControlUiSkin = { id: "refined" };
 
 let current = refined;
 

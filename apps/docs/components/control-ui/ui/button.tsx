@@ -3,6 +3,7 @@
 import { Button as BaseButton } from "@base-ui/react/button";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import { createContext, useContext } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize, ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
@@ -14,6 +15,8 @@ export type ButtonVariant = ControlVariant;
 export type ButtonSize = ControlSize;
 
 export type ButtonTone = ControlTone;
+
+export const ButtonTrackContext = createContext(false);
 
 export const buttonShapes = ["default", "circle"] as const;
 
@@ -45,6 +48,8 @@ export type ButtonLabelProps = ComponentProps<"label"> & ButtonAppearanceProps;
 export const buttonStructureClasses =
   "relative isolate inline-flex shrink-0 items-center justify-center overflow-visible whitespace-nowrap";
 
+export const buttonTrackStructureClasses = "data-[track=hover]:relative data-[track=hover]:isolate [&_[data-track-item]]:[isolation:auto]";
+
 export const buttonContentClasses = "relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]";
 
 function ButtonContent({ children }: { children: ReactNode }) {
@@ -55,17 +60,17 @@ function ButtonContent({ children }: { children: ReactNode }) {
   );
 }
 
-/** The content wrapper only earns its node when a skin layer sits behind it and needs stacking above it. */
 function ButtonBody({ layer, wrap = true, children }: { layer: ReactNode; wrap?: boolean; children: ReactNode }) {
+  const tracksHover = useContext(ButtonTrackContext);
+  const wrapsContent = tracksHover || (wrap && Boolean(layer));
   return (
     <>
       {layer}
-      {wrap && layer ? <ButtonContent>{children}</ButtonContent> : children}
+      {wrapsContent ? <ButtonContent>{children}</ButtonContent> : children}
     </>
   );
 }
 
-// composition flows through Base UI Button's `render` prop
 export function Button({
   variant = "quiet",
   size = "sm",
@@ -82,6 +87,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const layer = skinAdornment("button", "layer", { variant, tone });
+  const tracksHover = useContext(ButtonTrackContext);
 
   return (
     <BaseButton
@@ -91,6 +97,7 @@ export function Button({
       data-control-family="button"
       data-slot="root"
       data-control="true"
+      data-track-item={tracksHover ? "" : undefined}
       data-active={active ? "true" : undefined}
       data-icon-only={iconOnly ? "true" : undefined}
       data-shape={shape}
@@ -121,10 +128,12 @@ export function ButtonLink({
   children,
   ...props
 }: ButtonLinkProps) {
+  const tracksHover = useContext(ButtonTrackContext);
   return useRender({
     defaultTagName: "a",
     render,
     props: {
+      "data-track-item": tracksHover ? "" : undefined,
       ...props,
       "data-control-ui": "button",
       "data-control-family": "button",
@@ -153,9 +162,11 @@ export function ButtonLabel({
   children,
   ...props
 }: ButtonLabelProps) {
+  const tracksHover = useContext(ButtonTrackContext);
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: The wrapped file input is supplied through children.
     <label
+      data-track-item={tracksHover ? "" : undefined}
       {...props}
       data-control-ui="button"
       data-control-family="button"

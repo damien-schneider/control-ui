@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { SelectionIndicator } from "@/components/control-ui/control-props";
+import type { HoverIndicator, SelectionIndicator } from "@/components/control-ui/control-props";
 import type { ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
 // Missing module = no skin installed yet; any skin pack creates it: npx shadcn add <registry>/r/skin-<id>.json
 import { skin } from "./skin.config";
@@ -18,6 +18,14 @@ export type SkinAdornmentPart<Scope extends SkinAdornmentScope> = keyof SkinAdor
 
 type AdornmentEntry<Ctx> = ReactNode | ((ctx: Ctx) => ReactNode);
 
+export type SkinIndicators = {
+  sidebar?: SelectionIndicator | HoverIndicator;
+  tree?: SelectionIndicator;
+  "button-group"?: HoverIndicator;
+  "toggle-group"?: HoverIndicator;
+  "checkbox-group"?: HoverIndicator;
+};
+
 export type ControlUiSkin = {
   /** Scopes theme.css/skin.css via data-skin; components stamp it on portal containers. */
   id: string;
@@ -27,8 +35,7 @@ export type ControlUiSkin = {
   colorScheme?: "light" | "dark";
   /** Geometry, not slot restyle — padding, gap, rounding, and shadow across sidebar gap/container/inner. explicit `variant` prop wins; undefined keeps "sidebar". */
   sidebarLayout?: SidebarLayout;
-  /** App-wide choice: sidebars and trees all glide or none do. Explicit `indicator` still wins; undefined also skips highlight engine's lazy chunk. */
-  indicators?: { sidebar?: SelectionIndicator; tree?: SelectionIndicator };
+  indicators?: SkinIndicators;
   /** Any CSS length. Seeds --sidebar-width; caller's own value still wins. Undefined keeps shadcn's 16rem. */
   sidebarWidth?: string;
   /** effects.css keys off data-effects ancestor attribute. top-shine is CSS-only; ripple needs runtime's document pointer listener. */
@@ -95,8 +102,7 @@ export function skinSidebarLayout(): SidebarLayout | undefined {
   return skin.sidebarLayout;
 }
 
-/** Component falls back: indicator prop → this → "none". */
-export function skinIndicator(component: "sidebar" | "tree"): SelectionIndicator | undefined {
+export function skinIndicator<Component extends keyof SkinIndicators>(component: Component): SkinIndicators[Component] {
   return skin.indicators?.[component];
 }
 

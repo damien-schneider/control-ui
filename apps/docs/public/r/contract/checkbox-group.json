@@ -9,6 +9,7 @@
   "parts": {
     "checkbox-group": {
       "root": {
+        "family": "checkbox-group",
         "registryItems": [
           "checkbox-group"
         ],
@@ -27,6 +28,28 @@
               "horizontal",
               "vertical"
             ]
+          },
+          {
+            "attribute": "data-track",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover",
+              "none"
+            ]
+          }
+        ]
+      },
+      "item": {
+        "registryItems": [
+          "checkbox-group"
+        ],
+        "states": [
+          {
+            "attribute": "data-track-item",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
           }
         ]
       }

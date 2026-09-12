@@ -16,6 +16,9 @@ const nextConfig = {
   transpilePackages: ["@control-ui/skills"],
   reactCompiler: true,
   cacheComponents: true,
+  experimental: {
+    lightningCssFeatures: { exclude: ["dir-selector"] },
+  },
   turbopack: {},
   outputFileTracingIncludes: {
     "/**/*": ["./src/registry/**/*", "./components/**/*", "./registry/**/*"],

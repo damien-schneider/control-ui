@@ -50,7 +50,16 @@
         "registryItems": [
           "track-highlight"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-positioning",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "anchor"
+            ]
+          }
+        ]
       },
       "hover": {
         "family": "track-highlight",

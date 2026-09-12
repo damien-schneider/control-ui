@@ -177,22 +177,12 @@
           }
         ]
       },
-      "track": {
+      "list": {
         "family": "tree",
         "registryItems": [
           "tree"
         ],
-        "states": [
-          {
-            "attribute": "data-indicator",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "none",
-              "slide"
-            ]
-          }
-        ]
+        "states": []
       }
     }
   },

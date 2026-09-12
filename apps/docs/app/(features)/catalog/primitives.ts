@@ -290,12 +290,62 @@ export const primitiveEntries = [
     ),
   },
   {
+    id: "track-highlight",
+    category: "navigation",
+    kind: "Primitive",
+    name: "Track highlight",
+    summary:
+      "Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.",
+    paths: {
+      registry: {
+        target: "components/control-ui/extensions/track-highlight.tsx",
+        example: sourceFile("Hover highlight preview", "src/registry/examples/control-ui/primitives/track-highlight.tsx", "example"),
+        source: sourceFile("Track highlight", "src/registry/sources/control-ui/extensions/track-highlight.tsx", "component"),
+        supportFiles: [
+          sourceFile("Anchor animation support", "src/registry/sources/control-ui/extensions/supports-anchor-transitions.ts", "support"),
+          sourceFile("Measured positioning", "src/registry/sources/control-ui/extensions/create-track-highlight.ts", "support"),
+          sourceFile("Highlight recipe", "src/registry/sources/control-ui/recipes/track-highlight.css", "recipe-css"),
+        ],
+        composition: [
+          {
+            title: "Custom hover or selection track",
+            code: `div[data-track="hover" | "slide"]
+├── Button[data-track-item][data-active]
+├── Button[data-track-item]
+└── TrackHighlight`,
+          },
+        ],
+        registryKind: "track-highlight",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/track-highlight").then((mod) => ({
+        default: mod.PrimitiveTrackHighlightExample,
+      })),
+    ),
+    additionalPreviews: [
+      {
+        id: "selection",
+        title: "Sliding selection",
+        previewClassName: "min-h-56",
+        description:
+          'Use a relative, isolated container with data-track="slide", mark its controls with data-track-item, and place TrackHighlight after them. data-active="true" identifies the selection. Hover or keyboard focus previews another item; leaving returns to the selection. Keep hit areas touching for continuous hover: the highlight follows actual targets, without nearest-item detection or gap clicks.',
+        source: sourceFile("Selection highlight preview", "src/registry/examples/control-ui/primitives/track-highlight.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/track-highlight").then((mod) => ({
+            default: mod.PrimitiveTrackHighlightSelectionExample,
+          })),
+        ),
+      },
+    ],
+  },
+  {
     id: "sidebar",
     category: "layout",
     kind: "Primitive",
     status: "beta",
     name: "Sidebar",
-    summary: "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+    summary: "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/sidebar",
     paths: {
       registry: {
@@ -303,6 +353,8 @@ export const primitiveEntries = [
         example: sourceFile("Sidebar preview", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
         source: sourceFile("Sidebar slot", "src/registry/sources/control-ui/ui/sidebar.tsx", "component"),
         supportFiles: [
+          sourceFile("Sidebar state", "src/registry/sources/control-ui/ui/sidebar-provider.tsx", "support"),
+          sourceFile("Sidebar menus", "src/registry/sources/control-ui/ui/sidebar-menu.tsx", "support"),
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
           sidebarRecipeFile,
@@ -318,7 +370,12 @@ export const primitiveEntries = [
 │   │       ├── SidebarGroupLabel
 │   │       └── SidebarMenu
 │   │           └── SidebarMenuItem
-│   │               └── SidebarMenuButton
+│   │               └── Collapsible
+│   │                   ├── SidebarMenuButton (render: CollapsibleTrigger)
+│   │                   └── CollapsibleContent
+│   │                       └── SidebarMenuSub
+│   │                           └── SidebarMenuItem
+│   │                               └── SidebarMenuButton
 │   ├── SidebarFooter
 │   └── SidebarRail
 └── SidebarInset
@@ -331,13 +388,48 @@ export const primitiveEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "nested-navigation",
+        title: "Nested navigation",
+        previewClassName: "min-h-0",
+        description:
+          "Compose Collapsible with SidebarMenuButton and SidebarMenuSub for project subpages. Group labels also render CollapsibleTrigger to fold entire categories. Nested menus hide when the desktop sidebar collapses to icons.",
+        source: sourceFile("Nested sidebar", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarNestedExample })),
+        ),
+      },
+      {
+        id: "floating",
+        title: "Floating sidebar",
+        previewClassName: "min-h-0",
+        description:
+          'Use variant="floating" to give the navigation its own bordered surface. On mobile it opens as an edge sheet with the same navigation.',
+        source: sourceFile("Floating sidebar", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarFloatingExample })),
+        ),
+      },
+      {
+        id: "inset",
+        title: "Inset workspace",
+        previewClassName: "min-h-0",
+        description:
+          'Use variant="inset" with SidebarInset to frame the content inside the workspace. Each preview contains one complete app shell; use its trigger to collapse the sidebar or open it on mobile.',
+        source: sourceFile("Inset sidebar", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarInsetExample })),
+        ),
+      },
+    ],
   },
   {
     id: "scroll-area",
     category: "layout",
     kind: "Primitive",
     name: "Scroll area",
-    summary: "Scroll container with overlay scrollbars and edge fades.",
+    summary: "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/scroll-area",
     paths: {
       registry: {
@@ -351,6 +443,78 @@ export const primitiveEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/scroll-area").then((mod) => ({ default: mod.PrimitiveScrollAreaExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "progressive-blur",
+        title: "Progressive blur",
+        previewClassName: "min-h-80",
+        description:
+          "Enable blur to soften overflowing edges. Combine it with the default mask, or use mask={false} for blur alone. blurProps.style accepts the ProgressiveBlur knobs. Effects follow each unlocked edge without adding scroll listeners.",
+        source: sourceFile("Progressive scroll edges", "src/registry/examples/control-ui/primitives/progressive-blur.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/progressive-blur").then((mod) => ({
+            default: mod.ProgressiveBlurScrollExample,
+          })),
+        ),
+      },
+    ],
+  },
+  {
+    id: "progressive-blur",
+    category: "layout",
+    kind: "Primitive",
+    name: "Progressive blur",
+    summary: "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/progressive-blur.tsx",
+        example: sourceFile("Progressive blur preview", "src/registry/examples/control-ui/primitives/progressive-blur.tsx", "example"),
+        source: sourceFile("Progressive blur", "src/registry/sources/control-ui/ui/progressive-blur.tsx", "component"),
+        supportFiles: [sourceFile("Progressive blur recipe", "src/registry/sources/control-ui/recipes/progressive-blur.css", "recipe-css")],
+        composition: [
+          {
+            title: "Decorative edge overlay",
+            code: `div.relative
+├── Content
+└── ProgressiveBlur`,
+          },
+        ],
+        registryKind: "progressive-blur",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/progressive-blur").then((mod) => ({
+        default: mod.PrimitiveProgressiveBlurExample,
+      })),
+    ),
+    additionalPreviews: [
+      {
+        id: "scroll-edges",
+        title: "Scroll edges",
+        previewClassName: "min-h-80",
+        description:
+          "ScrollArea owns overflow and positions the overlays. The viewport fades before sibling blur layers sample the visible surface, keeping text weight stable and scrollbars sharp. Toggle either effect without resetting the scroll position. Reduced motion removes transitions; reduced transparency and forced colors remove both effects.",
+        source: sourceFile("Progressive scroll edges", "src/registry/examples/control-ui/primitives/progressive-blur.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/progressive-blur").then((mod) => ({
+            default: mod.ProgressiveBlurScrollExample,
+          })),
+        ),
+      },
+      {
+        id: "horizontal-blur",
+        title: "Right-to-left scrolling",
+        previewClassName: "min-h-40",
+        description:
+          'Inline edges follow the scroll direction. Keyboard focus clears the effects so controls stay readable. Pointer input passes through the decorative layers. With Next.js/Turbopack, set experimental.lightningCssFeatures.exclude to ["dir-selector"] to preserve native :dir() matching instead of approximating direction from language.',
+        source: sourceFile("Horizontal blur", "src/registry/examples/control-ui/primitives/progressive-blur.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/progressive-blur").then((mod) => ({
+            default: mod.ProgressiveBlurHorizontalExample,
+          })),
+        ),
+      },
+    ],
   },
   {
     id: "table-of-contents",

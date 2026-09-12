@@ -34,7 +34,7 @@ export function CompositionTree({ code, ownParts }: { code: string; ownParts?: s
   const owned = new Set(ownParts ?? []);
 
   return (
-    <div className={`min-w-0 overflow-x-auto rounded-xl border bg-muted/25 px-5 py-4 font-mono text-label leading-7 ${TREE_HOVER}`}>
+    <div className={`docs-panel overflow-x-auto px-5 py-4 font-mono text-label leading-7 ${TREE_HOVER}`}>
       {flat && nodes.length > 1 ? <PartList nodes={nodes} /> : <NodeList nodes={nodes} owned={owned} />}
     </div>
   );

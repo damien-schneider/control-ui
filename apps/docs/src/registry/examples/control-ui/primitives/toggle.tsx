@@ -28,7 +28,7 @@ export function PrimitiveToggleExample() {
       </Row>
 
       <Row label="Multi-select group">
-        <ToggleGroup multiple value={format} onValueChange={setFormat}>
+        <ToggleGroup multiple value={format} onValueChange={setFormat} aria-label="Text formatting">
           <Toggle value="bold" aria-label="Bold">
             <BoldIcon className="size-3.5" />
           </Toggle>
@@ -42,7 +42,7 @@ export function PrimitiveToggleExample() {
       </Row>
 
       <Row label="Single-select group">
-        <ToggleGroup value={view} onValueChange={setView}>
+        <ToggleGroup value={view} onValueChange={setView} aria-label="View mode">
           <Toggle value="grid">Grid</Toggle>
           <Toggle value="list">List</Toggle>
           <Toggle value="board">Board</Toggle>

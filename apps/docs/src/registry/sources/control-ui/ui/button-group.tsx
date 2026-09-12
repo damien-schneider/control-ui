@@ -1,8 +1,13 @@
-import { cva } from "class-variance-authority";
+"use client";
+
 import type { ComponentProps, CSSProperties } from "react";
+import type { HoverIndicator } from "@/components/control-ui/control-props";
 import type { ControlSize } from "@/components/control-ui/control-variants";
+import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { ButtonGroupKnobStyle } from "@/components/control-ui/knob-contracts/button-group-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { skinIndicator } from "@/components/control-ui/skin";
+import { ButtonTrackContext, buttonTrackStructureClasses } from "@/components/control-ui/ui/button";
 
 export type ButtonGroupTextProps = Omit<
   ComponentProps<"div"> & {
@@ -13,6 +18,7 @@ export type ButtonGroupTextProps = Omit<
 
 export type ButtonGroupProps = ComponentProps<"div"> & {
   orientation?: "horizontal" | "vertical";
+  indicator?: HoverIndicator;
 } & { style?: CSSProperties & ButtonGroupKnobStyle };
 
 export type ButtonGroupSeparatorProps = Omit<
@@ -22,34 +28,26 @@ export type ButtonGroupSeparatorProps = Omit<
   "style"
 > & { style?: CSSProperties & ButtonGroupKnobStyle };
 
-// selected controls sit above adjacent focus rings, keeping their shared seams visible
-const buttonGroupVariant = cva(
-  "inline-flex w-fit items-stretch [&>*]:relative [&>*:focus-within:not([data-active=true])]:z-[1] [&>*[data-active=true]]:z-[2] [&>*[data-active=true]:focus-within]:z-[3]",
-  {
-    variants: {
-      orientation: {
-        horizontal: "flex-row [&>*:not(:first-child)]:-ml-px [&>*:not(:first-child)]:rounded-l-none [&>*:not(:last-child)]:rounded-r-none",
-        vertical: "flex-col [&>*:not(:first-child)]:-mt-px [&>*:not(:first-child)]:rounded-t-none [&>*:not(:last-child)]:rounded-b-none",
-      },
-    },
-    defaultVariants: {
-      orientation: "horizontal",
-    },
-  },
-);
-
-export function ButtonGroup({ orientation = "horizontal", className, ...props }: ButtonGroupProps) {
+export function ButtonGroup({ orientation = "horizontal", indicator, className, children, ...props }: ButtonGroupProps) {
+  const resolvedIndicator = indicator ?? skinIndicator("button-group") ?? "none";
+  const tracksHover = resolvedIndicator === "hover";
   return (
-    // biome-ignore lint/a11y/useSemanticElements: a segmented control is a labelled group, not a fieldset form group.
-    <div
-      role="group"
-      data-control-ui="button-group"
-      data-control-family="button-group"
-      data-slot="root"
-      data-orientation={orientation}
-      className={cn(buttonGroupVariant({ orientation }), className)}
-      {...props}
-    />
+    <ButtonTrackContext value={tracksHover}>
+      {/* biome-ignore lint/a11y/useSemanticElements: a segmented control is a labelled group, not a fieldset form group. */}
+      <div
+        role="group"
+        data-control-ui="button-group"
+        data-control-family="button-group"
+        data-slot="root"
+        data-orientation={orientation}
+        data-track={resolvedIndicator}
+        className={cn(buttonTrackStructureClasses, "inline-flex w-fit items-stretch data-[orientation=vertical]:flex-col", className)}
+        {...props}
+      >
+        {children}
+        {tracksHover ? <TrackHighlight className="z-0" /> : null}
+      </div>
+    </ButtonTrackContext>
   );
 }
 

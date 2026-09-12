@@ -295,6 +295,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -322,6 +323,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -414,6 +416,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -441,6 +444,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -533,6 +537,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -560,6 +565,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -652,6 +658,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -679,6 +686,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -771,6 +779,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -798,6 +807,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -890,6 +900,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -917,6 +928,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -1009,6 +1021,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -1036,6 +1049,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -1128,6 +1142,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -1155,6 +1170,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",
@@ -1494,11 +1510,11 @@
       "type": "registry:ui",
       "title": "Button group",
       "description": "Joined button group for toolbars, split actions, and segmented controls.",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/button.json",
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/track-highlight.json"
       ],
       "files": [
         {
@@ -1895,7 +1911,8 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/track-highlight.json"
       ],
       "files": [
         {
@@ -3999,6 +4016,40 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "progressive-blur",
+      "type": "registry:ui",
+      "title": "Progressive blur",
+      "description": "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/progressive-blur-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/progressive-blur-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/progressive-blur.css",
+          "target": "@components/control-ui/styles/recipes/progressive-blur.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/progressive-blur.tsx",
+          "target": "@components/control-ui/ui/progressive-blur.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/progressive-blur.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/progressive-blur.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio group",
@@ -4170,12 +4221,13 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll area",
-      "description": "Scroll container with overlay scrollbars and edge fades.",
+      "description": "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
       "dependencies": [
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json"
       ],
       "files": [
         {
@@ -4335,7 +4387,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+      "description": "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
       "dependencies": [
         "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1",
@@ -4364,6 +4416,16 @@
           "path": "src/registry/sources/control-ui/recipes/sidebar.css",
           "target": "@components/control-ui/styles/recipes/sidebar.css",
           "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/sidebar-menu.tsx",
+          "target": "@components/control-ui/ui/sidebar-menu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/sidebar-provider.tsx",
+          "target": "@components/control-ui/ui/sidebar-provider.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/registry/sources/control-ui/ui/sidebar.tsx",
@@ -5249,7 +5311,8 @@
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/core.json"
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/track-highlight.json"
       ],
       "files": [
         {
@@ -5358,6 +5421,50 @@
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/tooltip.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "track-highlight",
+      "type": "registry:ui",
+      "title": "Track highlight",
+      "description": "Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/track-highlight-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/track-highlight-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/extensions/create-track-highlight.ts",
+          "target": "@components/control-ui/extensions/create-track-highlight.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/extensions/supports-anchor-transitions.ts",
+          "target": "@components/control-ui/extensions/supports-anchor-transitions.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/extensions/track-highlight.tsx",
+          "target": "@components/control-ui/extensions/track-highlight.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/track-highlight.css",
+          "target": "@components/control-ui/styles/recipes/track-highlight.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/track-highlight.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/track-highlight.json"
       }
     },
     {
@@ -5601,6 +5708,7 @@
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
         "http://127.0.0.1:3000/r/progress.json",
+        "http://127.0.0.1:3000/r/progressive-blur.json",
         "http://127.0.0.1:3000/r/radio-group.json",
         "http://127.0.0.1:3000/r/resizable.json",
         "http://127.0.0.1:3000/r/responsive-dialog.json",
@@ -5627,6 +5735,7 @@
         "http://127.0.0.1:3000/r/toggle.json",
         "http://127.0.0.1:3000/r/toolbar.json",
         "http://127.0.0.1:3000/r/tooltip.json",
+        "http://127.0.0.1:3000/r/track-highlight.json",
         "http://127.0.0.1:3000/r/transcript-divider.json",
         "http://127.0.0.1:3000/r/tree.json",
         "http://127.0.0.1:3000/r/trigger-menu.json",

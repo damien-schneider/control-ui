@@ -19,11 +19,9 @@ test("browser tabs render connected corners and remain keyboard operable", async
     tabsTab.boundingBox(),
     indicator.boundingBox(),
     indicator.evaluate((node) => {
-      const indicatorStyle = getComputedStyle(node);
       const activeTab = node.parentElement?.querySelector<HTMLElement>('[aria-selected="true"]');
       const activeTabStyle = activeTab ? getComputedStyle(activeTab) : null;
       return {
-        maskImage: indicatorStyle.maskImage,
         topRadius: activeTabStyle?.borderTopLeftRadius ?? "0px",
         bottomRadius: activeTabStyle?.borderBottomLeftRadius ?? "0px",
       };
@@ -34,7 +32,6 @@ test("browser tabs render connected corners and remain keyboard operable", async
   expect(indicatorBox).not.toBeNull();
   expect(indicatorBox?.width ?? 0).toBeGreaterThan(activeBox?.width ?? Number.POSITIVE_INFINITY);
   expect(indicatorBox?.height).toBe(activeBox?.height);
-  expect(shape.maskImage).not.toBe("none");
   expect(Number.parseFloat(shape.topRadius)).toBeGreaterThan(0);
   expect(shape.bottomRadius).toBe("0px");
 

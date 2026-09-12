@@ -15,6 +15,10 @@
     outline: none;
   }
 
+  :where([data-control-family="tree"][data-slot="root"] > [data-control-family="track-highlight"]) {
+    --cui-track-highlight-radius: var(--cui-tree-item-trigger-radius);
+  }
+
   :where([data-control-family="tree"][data-slot="item-trigger"]) {
     gap: calc(var(--spacing) * 1.5);
     padding-block: calc(var(--spacing) * 1);

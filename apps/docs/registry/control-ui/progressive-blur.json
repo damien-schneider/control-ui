@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progressive-blur",
+  "type": "registry:ui",
+  "title": "Progressive blur",
+  "description": "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/knob-contracts/progressive-blur-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/progressive-blur-knobs.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/progressive-blur.css",
+      "target": "@components/control-ui/styles/recipes/progressive-blur.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/progressive-blur.tsx",
+      "target": "@components/control-ui/ui/progressive-blur.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/recipes/progressive-blur.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/control-ui/progressive-blur.json"
+  }
+}

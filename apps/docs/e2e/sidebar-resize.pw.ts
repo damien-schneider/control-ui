@@ -157,3 +157,31 @@ test("persisted desktop collapse leaves the mobile sheet interactive", async ({ 
   await expect(sidebarNavigation).not.toHaveAttribute("inert");
   await expect(sidebarNavigation.getByRole("link", { name: "Create app", exact: true })).toBeEnabled();
 });
+
+test("sidebar inset confines wide content to the remaining panel", async ({ page }) => {
+  await page.goto("/primitives/sidebar");
+  for (const name of ["Sidebar", "Floating", "Inset"]) {
+    const preview = page.getByRole("group", { name, exact: true });
+    const panel = preview.locator('[data-slot="inset"]');
+    await expect(panel).toBeVisible();
+    const bounds = await panel.evaluate((element) => {
+      const container = element.parentElement;
+      if (!container) throw new Error("Sidebar preview container missing");
+      return { panel: element.getBoundingClientRect().right, container: container.getBoundingClientRect().right };
+    });
+    expect(bounds.panel).toBeLessThanOrEqual(bounds.container);
+  }
+});
+
+test("sidebar buttons align stretched labels with the start of their content", async ({ page }) => {
+  await page.goto("/primitives/sidebar");
+  const sidebar = page.getByRole("group", { name: "Sidebar", exact: true });
+  const label = sidebar.getByRole("button", { name: "Settings", exact: true }).locator("span");
+  await expect(label).toHaveCSS("text-align", "start");
+  const offset = await label.evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    return range.getBoundingClientRect().left - element.getBoundingClientRect().left;
+  });
+  expect(Math.abs(offset)).toBeLessThanOrEqual(1);
+});

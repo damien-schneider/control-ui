@@ -152,6 +152,12 @@
             ]
           },
           {
+            "attribute": "data-mobile",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-side",
             "source": "control-ui",
             "valueKind": "enum",
@@ -259,11 +265,8 @@
           {
             "attribute": "data-indicator",
             "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "none",
-              "slide"
-            ]
+            "valueKind": "open",
+            "values": []
           }
         ]
       },
@@ -288,6 +291,12 @@
               "lg",
               "sm"
             ]
+          },
+          {
+            "attribute": "data-track-item",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
           },
           {
             "attribute": "data-variant",
@@ -316,11 +325,14 @@
           {
             "attribute": "data-indicator",
             "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "none",
-              "slide"
-            ]
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-track",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
           }
         ]
       },
@@ -335,7 +347,14 @@
         "registryItems": [
           "sidebar"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-sidebar-trigger",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "wrapper": {
         "family": "sidebar",

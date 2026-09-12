@@ -2,26 +2,21 @@
 
 import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react";
 import { useEffect, useRef } from "react";
-import { createTrackHighlight } from "@/components/control-ui/extensions/create-track-highlight";
+import { supportsAnchorTransitions } from "@/components/control-ui/extensions/supports-anchor-transitions";
 import type { TrackHighlightKnobStyle } from "@/components/control-ui/knob-contracts/track-highlight-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-// Always-on tracks import this directly; skin-driven indicators lazy() it so geometry engine ships only when asked.
-
 const trackHighlightStructureClasses = "pointer-events-none absolute -z-10";
+const defaultItemSelector = "[data-track-item]";
+const defaultActiveSelector = '[data-track-item][data-active="true"]';
+const loadTrackHighlight = () => import("@/components/control-ui/extensions/create-track-highlight");
 
 export type TrackHighlightProps = Omit<ComponentProps<"div">, "children" | "ref" | "style"> & {
-  /** Track container (`relative isolate`) highlight is measured against. Defaults to highlight's parent element. */
   trackRef?: RefObject<HTMLElement | null>;
-  /** Selector for highlightable rows, resolved within track. */
   itemSelector?: string;
-  /** Selector for resting row (active/selected) used when nothing is hovered. */
   activeSelector?: string;
-  /** Span box across union of every active row (first..last) instead of single row. */
   range?: boolean;
-  /** Follow pointer to hovered row; turn off for purely selection/scroll-driven box. */
   followHover?: boolean;
-  /** Non-empty = second layer that follows hover while primary layer stays pinned on selection. */
   hoverClassName?: string;
   children?: ReactNode;
   style?: CSSProperties & TrackHighlightKnobStyle;
@@ -29,8 +24,8 @@ export type TrackHighlightProps = Omit<ComponentProps<"div">, "children" | "ref"
 
 export function TrackHighlight({
   trackRef,
-  itemSelector = "[data-track-item]",
-  activeSelector = '[data-track-item][data-active="true"]',
+  itemSelector = defaultItemSelector,
+  activeSelector = defaultActiveSelector,
   range,
   followHover,
   hoverClassName,
@@ -42,14 +37,32 @@ export function TrackHighlight({
   const ref = useRef<HTMLDivElement>(null);
   const hoverRef = useRef<HTMLDivElement>(null);
   const layered = Boolean(hoverClassName);
+  const usesAnchorAnatomy =
+    !trackRef &&
+    !range &&
+    !layered &&
+    followHover !== false &&
+    itemSelector === defaultItemSelector &&
+    activeSelector === defaultActiveSelector;
 
   useEffect(() => {
     const highlight = ref.current;
     const track = trackRef?.current ?? highlight?.parentElement;
     if (!track || !highlight) return;
+    const usesAnchors = usesAnchorAnatomy && track.hasAttribute("data-track") && supportsAnchorTransitions();
+    if (usesAnchors) return;
     const hoverHighlight = layered ? (hoverRef.current ?? undefined) : undefined;
-    return createTrackHighlight(track, highlight, { itemSelector, activeSelector, range, followHover }, hoverHighlight);
-  }, [trackRef, itemSelector, activeSelector, range, followHover, layered]);
+    let cancelled = false;
+    let dispose: (() => void) | undefined;
+    loadTrackHighlight().then(({ createTrackHighlight }) => {
+      if (cancelled) return;
+      dispose = createTrackHighlight(track, highlight, { itemSelector, activeSelector, range, followHover }, hoverHighlight);
+    });
+    return () => {
+      cancelled = true;
+      dispose?.();
+    };
+  }, [trackRef, itemSelector, activeSelector, range, followHover, layered, usesAnchorAnatomy]);
 
   return (
     <>
@@ -59,6 +72,7 @@ export function TrackHighlight({
         data-control-ui="track-highlight"
         data-control-family="track-highlight"
         data-slot="root"
+        data-positioning={usesAnchorAnatomy ? "anchor" : undefined}
         aria-hidden
         style={style}
         className={cn(trackHighlightStructureClasses, className)}

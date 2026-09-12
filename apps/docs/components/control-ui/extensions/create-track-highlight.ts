@@ -1,33 +1,23 @@
-/*
- * Rows are measured with getBoundingClientRect rather than nth-child math, so nesting, variable heights, and
- * positioned ancestors all work. JS writes four inline insets and CSS owns transition and paint;
- * rAF loop re-measures until box settles, which is what tracks disclosure expanding under it.
- */
-
 export type TrackHighlightOptions = {
-  /** Selector for highlightable rows, resolved within track. */
   itemSelector: string;
-  /** Selector for resting row (active/selected) used when nothing is hovered. */
   activeSelector: string;
-  /* spans resting box across every active row so contiguous selection reads as one band */
   range?: boolean;
-  /* turn off for scroll-driven indicators (ToC) so box only tracks active range */
   followHover?: boolean;
 };
 
 type Box = { x: number; y: number; w: number; h: number };
 type LayerState = { ready: boolean; last: Box };
 
-/* below this box counts as unchanged, so follow loop terminates instead of chasing float jitter */
 const STABLE_EPSILON = 0.5;
-/* backstop for never-stable layout; disclosure transition settles well inside it */
+
 const MAX_FOLLOW_FRAMES = 90;
 
 function isHighlightable(node: Element | null): node is HTMLElement {
   return (
     node instanceof HTMLElement &&
-    node.getAttribute("aria-disabled") !== "true" &&
-    node.getAttribute("data-disabled") !== "true" &&
+    !node.matches(
+      ':disabled, [aria-disabled="true"], [data-disabled]:not([data-disabled="false"]), :has([role="checkbox"][data-disabled])',
+    ) &&
     node.checkVisibility()
   );
 }
@@ -39,14 +29,19 @@ export function createTrackHighlight(
   hoverHighlight?: HTMLElement,
 ): () => void {
   const { itemSelector, activeSelector, range = false, followHover = true } = options;
+  highlight.setAttribute("data-measured", "");
 
   let hovered: HTMLElement | null = null;
+  let focused: HTMLElement | null = null;
   let rafId = 0;
   let followFrames = 0;
   const activeLayer: LayerState = { ready: false, last: { x: 0, y: 0, w: 0, h: 0 } };
   const hoverLayer: LayerState = { ready: false, last: { x: 0, y: 0, w: 0, h: 0 } };
 
-  // offset within track's content box, so pill lands right whether track or ancestor scrolls
+  function belongsToTrack(item: HTMLElement): boolean {
+    return track.hasAttribute("data-track") ? item.closest("[data-track]") === track : track.contains(item);
+  }
+
   function measureBox(target: HTMLElement, trackRect: DOMRect): Box {
     const rect = target.getBoundingClientRect();
     return {
@@ -58,7 +53,10 @@ export function createTrackHighlight(
   }
 
   function resolveActiveBox(trackRect: DOMRect): Box | null {
-    const actives = Array.from(track.querySelectorAll<HTMLElement>(activeSelector)).filter(isHighlightable);
+    if (track.dataset.track === "hover") return null;
+    const actives = Array.from(track.querySelectorAll<HTMLElement>(activeSelector)).filter(
+      (item) => isHighlightable(item) && belongsToTrack(item),
+    );
     const firstActive = actives[0];
     if (!firstActive) return null;
     if (!range) return measureBox(firstActive, trackRect);
@@ -75,8 +73,9 @@ export function createTrackHighlight(
   }
 
   function resolveHoveredBox(trackRect: DOMRect): Box | null {
-    if (!followHover || !hovered || !track.contains(hovered) || !isHighlightable(hovered)) return null;
-    return measureBox(hovered, trackRect);
+    const target = focused ?? hovered;
+    if (!followHover || !target || !belongsToTrack(target) || !isHighlightable(target)) return null;
+    return measureBox(target, trackRect);
   }
 
   function place(element: HTMLElement, state: LayerState, next: Box | null, visible: boolean): boolean {
@@ -107,12 +106,12 @@ export function createTrackHighlight(
     return moved;
   }
 
-  // track owns away state so rows can yield emphasis while pill follows another item.
   function placeHighlightLayers(): boolean {
     const trackRect = track.getBoundingClientRect();
     const activeBox = resolveActiveBox(trackRect);
     const hoveredBox = resolveHoveredBox(trackRect);
-    const isAway = hoveredBox !== null && hovered !== null && !hovered.matches(activeSelector);
+    const target = focused ?? hovered;
+    const isAway = hoveredBox !== null && target !== null && !target.matches(activeSelector);
     track.toggleAttribute("data-track-hover", isAway);
 
     const activeMoved = place(
@@ -127,7 +126,6 @@ export function createTrackHighlight(
     return activeMoved || hoverMoved;
   }
 
-  /* runs only while box settles, so nothing polls at rest; frame count resets on new input */
   function scheduleFollow(): void {
     followFrames = 0;
     if (rafId) return;
@@ -142,11 +140,11 @@ export function createTrackHighlight(
   }
 
   const onPointerOver = (event: PointerEvent) => {
-    // Hover-follow is pointer-only; touch taps would flash pill to tapped row and back — leave touch to selection path (MutationObserver).
     if (event.pointerType === "touch" || !(event.target instanceof Element)) return;
     const item = event.target.closest<HTMLElement>(itemSelector);
-    if (!isHighlightable(item) || !track.contains(item) || item === hovered) return;
-    hovered = item;
+    const nextHovered = isHighlightable(item) && belongsToTrack(item) ? item : null;
+    if (nextHovered === hovered) return;
+    hovered = nextHovered;
     scheduleFollow();
   };
 
@@ -156,10 +154,30 @@ export function createTrackHighlight(
     scheduleFollow();
   };
 
-  // Scroll-driven indicators (followHover off) never bind hover — range/selection path drives every move; teardown removeEventListener no-ops if nothing added.
+  const onFocusChange = () => {
+    const activeElement = document.activeElement;
+    const item = activeElement?.closest<HTMLElement>(itemSelector);
+    focused = item && belongsToTrack(item) && activeElement?.matches(":focus-visible") && isHighlightable(item) ? item : null;
+    scheduleFollow();
+  };
+
+  const onFocusOut = () => {
+    focused = null;
+    scheduleFollow();
+  };
+
   if (followHover) {
+    if (matchMedia("(hover: hover)").matches) {
+      hovered =
+        Array.from(track.querySelectorAll<HTMLElement>(itemSelector)).find(
+          (item) => item.matches(":hover") && isHighlightable(item) && belongsToTrack(item),
+        ) ?? null;
+    }
+    onFocusChange();
     track.addEventListener("pointerover", onPointerOver);
     track.addEventListener("pointerleave", onPointerLeave);
+    track.addEventListener("focusin", onFocusChange);
+    track.addEventListener("focusout", onFocusOut);
   }
 
   const resizeObserver = new ResizeObserver(() => scheduleFollow());
@@ -170,18 +188,35 @@ export function createTrackHighlight(
     subtree: true,
     childList: true,
     attributes: true,
-    // Selection reflects on these; data-state flips on disclosure. Highlight's own style/data-visible writes excluded — never observes itself into loop.
-    attributeFilter: ["data-selected", "aria-selected", "data-active", "data-state"],
+    attributeFilter: [
+      "data-selected",
+      "aria-selected",
+      "data-active",
+      "data-state",
+      "data-disabled",
+      "aria-disabled",
+      "disabled",
+      "data-track",
+    ],
   });
 
   scheduleFollow();
 
   return () => {
+    highlight.removeAttribute("data-measured");
     if (rafId) cancelAnimationFrame(rafId);
     track.removeEventListener("pointerover", onPointerOver);
     track.removeEventListener("pointerleave", onPointerLeave);
+    track.removeEventListener("focusin", onFocusChange);
+    track.removeEventListener("focusout", onFocusOut);
     track.removeAttribute("data-track-hover");
     resizeObserver.disconnect();
     mutationObserver.disconnect();
+    for (const element of [highlight, hoverHighlight]) {
+      if (!element) continue;
+      for (const property of ["top", "left", "right", "bottom"]) element.style.removeProperty(property);
+      element.removeAttribute("data-visible");
+      element.removeAttribute("data-hover");
+    }
   };
 }

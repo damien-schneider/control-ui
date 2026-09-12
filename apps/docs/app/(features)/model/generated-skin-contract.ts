@@ -19,7 +19,7 @@ export const generatedSkinContract: SkinContract = {
     avatar: ["avatar"],
     badge: ["badge"],
     breadcrumb: ["breadcrumb"],
-    button: ["button", "dropdown-menu", "select"],
+    button: ["button", "select"],
     "button-group": ["button-group"],
     calendar: ["calendar"],
     card: ["card"],
@@ -77,6 +77,7 @@ export const generatedSkinContract: SkinContract = {
     "phone-input": ["phone-input"],
     popover: ["popover"],
     progress: ["progress"],
+    "progressive-blur": ["progressive-blur"],
     "radio-group": ["radio-group"],
     resizable: ["resizable"],
     "rich-tooltip": ["rich-tooltip"],
@@ -1295,6 +1296,12 @@ export const generatedSkinContract: SkinContract = {
               values: ["danger", "neutral", "primary"],
             },
             {
+              attribute: "data-track-item",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
@@ -1304,11 +1311,11 @@ export const generatedSkinContract: SkinContract = {
         },
         content: {
           family: "button",
-          registryItems: ["button", "dropdown-menu", "select"],
+          registryItems: ["button", "select"],
           states: [],
         },
       },
-      registryItems: ["button", "dropdown-menu", "select"],
+      registryItems: ["button", "select"],
     },
     "button-group": {
       parts: {
@@ -1321,6 +1328,12 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["horizontal", "vertical"],
+            },
+            {
+              attribute: "data-track",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["hover", "none"],
             },
           ],
         },
@@ -2064,6 +2077,7 @@ export const generatedSkinContract: SkinContract = {
     "checkbox-group": {
       parts: {
         root: {
+          family: "checkbox-group",
           registryItems: ["checkbox-group"],
           states: [
             {
@@ -2077,6 +2091,23 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["horizontal", "vertical"],
+            },
+            {
+              attribute: "data-track",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["hover", "none"],
+            },
+          ],
+        },
+        item: {
+          registryItems: ["checkbox-group"],
+          states: [
+            {
+              attribute: "data-track-item",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
             },
           ],
         },
@@ -8446,6 +8477,34 @@ export const generatedSkinContract: SkinContract = {
       },
       registryItems: ["progress"],
     },
+    "progressive-blur": {
+      parts: {
+        root: {
+          family: "progressive-blur",
+          registryItems: ["progressive-blur"],
+          states: [
+            {
+              attribute: "data-side",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bottom", "inline-end", "inline-start", "top"],
+            },
+            {
+              attribute: "data-visible",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        layer: {
+          family: "progressive-blur",
+          registryItems: ["progressive-blur"],
+          states: [],
+        },
+      },
+      registryItems: ["progressive-blur"],
+    },
     "radio-group": {
       parts: {
         root: {
@@ -9037,6 +9096,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["scroll-area"],
           states: [
             {
+              attribute: "data-blur",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-has-overflow-x",
               source: "external",
               valueKind: "presence",
@@ -9045,6 +9110,18 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-has-overflow-y",
               source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-lock-axis",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["both", "x", "y"],
+            },
+            {
+              attribute: "data-mask",
+              source: "control-ui",
               valueKind: "presence",
               values: [],
             },
@@ -9254,6 +9331,12 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-overflow-y-start",
               source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-scroll-area-viewport",
+              source: "control-ui",
               valueKind: "presence",
               values: [],
             },
@@ -9674,6 +9757,12 @@ export const generatedSkinContract: SkinContract = {
               values: ["icon", "none", "offcanvas"],
             },
             {
+              attribute: "data-mobile",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-side",
               source: "control-ui",
               valueKind: "enum",
@@ -9749,8 +9838,8 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-indicator",
               source: "control-ui",
-              valueKind: "enum",
-              values: ["none", "slide"],
+              valueKind: "open",
+              values: [],
             },
           ],
         },
@@ -9769,6 +9858,12 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["default", "lg", "sm"],
+            },
+            {
+              attribute: "data-track-item",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
             },
             {
               attribute: "data-variant",
@@ -9790,8 +9885,14 @@ export const generatedSkinContract: SkinContract = {
             {
               attribute: "data-indicator",
               source: "control-ui",
-              valueKind: "enum",
-              values: ["none", "slide"],
+              valueKind: "open",
+              values: [],
+            },
+            {
+              attribute: "data-track",
+              source: "control-ui",
+              valueKind: "open",
+              values: [],
             },
           ],
         },
@@ -9802,7 +9903,14 @@ export const generatedSkinContract: SkinContract = {
         },
         trigger: {
           registryItems: ["sidebar"],
-          states: [],
+          states: [
+            {
+              attribute: "data-sidebar-trigger",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
         wrapper: {
           family: "sidebar",
@@ -11401,6 +11509,12 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["horizontal", "vertical"],
             },
+            {
+              attribute: "data-track",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["hover", "none"],
+            },
           ],
         },
       },
@@ -11727,7 +11841,14 @@ export const generatedSkinContract: SkinContract = {
         root: {
           family: "track-highlight",
           registryItems: ["track-highlight"],
-          states: [],
+          states: [
+            {
+              attribute: "data-positioning",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["anchor"],
+            },
+          ],
         },
         hover: {
           family: "track-highlight",
@@ -11855,17 +11976,10 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
-        track: {
+        list: {
           family: "tree",
           registryItems: ["tree"],
-          states: [
-            {
-              attribute: "data-indicator",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["none", "slide"],
-            },
-          ],
+          states: [],
         },
       },
       registryItems: ["tree"],
@@ -12503,6 +12617,24 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-button-active-shadow",
         syntax: "*",
         initialValue: "",
+        defaultValue: "var(--cui-button-shadow)",
+      },
+      {
+        name: "--cui-button-open-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-hover-background)",
+      },
+      {
+        name: "--cui-button-open-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--cui-button-hover-foreground)",
+      },
+      {
+        name: "--cui-button-open-shadow",
+        syntax: "*",
+        initialValue: "none",
         defaultValue: "var(--cui-button-shadow)",
       },
     ],
@@ -14001,6 +14133,32 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--muted-foreground)",
+      },
+    ],
+    "progressive-blur": [
+      {
+        name: "--cui-progressive-blur-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "3rem",
+      },
+      {
+        name: "--cui-progressive-blur-backdrop-blur",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "16px",
+      },
+      {
+        name: "--cui-progressive-blur-transition-duration",
+        syntax: "<time>",
+        initialValue: "0s",
+        defaultValue: "var(--duration-base)",
+      },
+      {
+        name: "--cui-progressive-blur-transition-delay",
+        syntax: "<time>",
+        initialValue: "0s",
+        defaultValue: "calc(var(--cui-progressive-blur-transition-duration) * 0.06)",
       },
     ],
     range: [

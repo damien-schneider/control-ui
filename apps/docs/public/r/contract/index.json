@@ -86,8 +86,8 @@
         "select",
         "toggle"
       ],
-      "knobs": 20,
-      "probes": 386
+      "knobs": 23,
+      "probes": 409
     },
     "button-group": {
       "registryItems": [
@@ -355,7 +355,14 @@
         "trigger-menu"
       ],
       "knobs": 16,
-      "probes": 52
+      "probes": 53
+    },
+    "progressive-blur": {
+      "registryItems": [
+        "progressive-blur"
+      ],
+      "knobs": 4,
+      "probes": 0
     },
     "range": {
       "registryItems": [
@@ -397,7 +404,7 @@
         "sidebar"
       ],
       "knobs": 21,
-      "probes": 22
+      "probes": 23
     },
     "sidebar-layout": {
       "registryItems": [

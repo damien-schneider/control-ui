@@ -20,5 +20,8 @@ export const buttonKnobs = [
   "--cui-button-hover-shadow",
   "--cui-button-press-shadow",
   "--cui-button-active-shadow",
+  "--cui-button-open-background",
+  "--cui-button-open-foreground",
+  "--cui-button-open-shadow",
 ] as const;
 export type ButtonKnobStyle = Partial<Record<(typeof buttonKnobs)[number], string>>;

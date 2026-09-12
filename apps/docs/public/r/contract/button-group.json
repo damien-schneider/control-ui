@@ -47,6 +47,15 @@
               "horizontal",
               "vertical"
             ]
+          },
+          {
+            "attribute": "data-track",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "hover",
+              "none"
+            ]
           }
         ]
       },

@@ -84,10 +84,20 @@
 
   [data-skin="xp"]
     :where(
+      [data-control-family="button"][data-slot="root"]:is([data-control-ui="button"], [data-control-ui="toggle"]),
+      [data-control-family="button"][data-slot="trigger"]:is([data-control-ui="select"], [data-control-ui="dropdown-menu"]),
+      [data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"],
+      [data-track]:is([data-control-family="button-group"], [data-control-ui="toggle"]) > [data-control-family="track-highlight"]
+    ) {
+    --cui-button-radius: max(3px, var(--radius-control));
+    --cui-track-highlight-radius: var(--cui-button-radius);
+  }
+
+  [data-skin="xp"]
+    :where(
       [data-control-ui="button"][data-slot="root"][data-control-family="button"],
       [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
     ) {
-    --cui-button-radius: max(3px, var(--radius-control));
     --cui-button-gap: 0.25rem;
     --cui-button-foreground: var(--foreground);
     --cui-button-hover-background: transparent;
@@ -331,7 +341,6 @@
       [data-control-ui="select"][data-slot="trigger"][data-control-family="button"],
       [data-control-ui="dropdown-menu"][data-slot="trigger"][data-control-family="button"]
     ) {
-    --cui-button-radius: max(3px, var(--radius-control));
     --cui-button-background: var(--xp-control-bottom);
     --cui-button-foreground: var(--foreground);
     --cui-button-hover-background: var(--xp-control-top);

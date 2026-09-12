@@ -3,7 +3,7 @@
   "name": "sidebar",
   "type": "registry:ui",
   "title": "Sidebar",
-  "description": "Responsive app sidebar with collapse, mobile sheet, and keyboard toggle support.",
+  "description": "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
   "dependencies": [
     "@base-ui/react@^1.7.0",
     "class-variance-authority@^0.7.1",
@@ -32,6 +32,16 @@
       "path": "src/registry/sources/control-ui/recipes/sidebar.css",
       "target": "@components/control-ui/styles/recipes/sidebar.css",
       "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/sidebar-menu.tsx",
+      "target": "@components/control-ui/ui/sidebar-menu.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/registry/sources/control-ui/ui/sidebar-provider.tsx",
+      "target": "@components/control-ui/ui/sidebar-provider.tsx",
+      "type": "registry:ui"
     },
     {
       "path": "src/registry/sources/control-ui/ui/sidebar.tsx",

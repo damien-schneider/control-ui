@@ -9,8 +9,6 @@ import type { CompositionExample, DocsRegistryDependency, DocsStatus, SourceFile
 
 import { CompositionTree } from "./composition-tree";
 
-// Cross-page building blocks: every page module composes these instead of re-deriving header/section/install-panel frame.
-
 export function PageHeader({
   label,
   title,
@@ -100,7 +98,7 @@ export function DependencySection({
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
       <SectionTitle title={title} description={description} />
-      <div className="min-w-0 divide-y divide-border/60 overflow-hidden rounded-xl border">
+      <div className="docs-panel divide-y divide-border overflow-hidden">
         {files.map((file) => (
           <DependencyRow key={file.path} name={file.label} detail={file.path} kind={supportFileLabel(file)} />
         ))}

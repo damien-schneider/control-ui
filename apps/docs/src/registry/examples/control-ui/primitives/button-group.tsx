@@ -28,6 +28,19 @@ export function PrimitiveButtonGroupExample() {
         <ButtonGroupSeparator />
         <Button variant="surface">Copy</Button>
       </ButtonGroup>
+
+      <ButtonGroup orientation="vertical" aria-label="Item actions">
+        <Button variant="surface">Open</Button>
+        <Button variant="surface" disabled>
+          Duplicate
+        </Button>
+        <Button variant="surface">Open in new window</Button>
+      </ButtonGroup>
+
+      <ButtonGroup indicator="none" aria-label="Static actions">
+        <Button variant="surface">Undo</Button>
+        <Button variant="surface">Redo</Button>
+      </ButtonGroup>
     </div>
   );
 }

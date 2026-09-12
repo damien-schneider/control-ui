@@ -4,6 +4,7 @@ import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dy
 import type { CodeDiffLineType } from "../../src/registry/lib/diff";
 import type { ActivityDetailFormat, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
 import type { ContextSegmentKind, ContextStatus } from "../../src/registry/sources/control-ui/context-model";
+import type { HoverIndicator } from "../../src/registry/sources/control-ui/control-props";
 import type { ControlSize } from "../../src/registry/sources/control-ui/control-variants";
 import type { DynamicNotificationState } from "../../src/registry/sources/control-ui/dynamic-notification";
 import type { InlineAttachmentState } from "../../src/registry/sources/control-ui/inline-attachment";
@@ -26,11 +27,16 @@ import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/cont
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
 import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
 import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
+import type { ProgressiveBlurSide } from "../../src/registry/sources/control-ui/ui/progressive-blur";
 import type { ResizableHandleVariant, ResizablePanelGroupVariant } from "../../src/registry/sources/control-ui/ui/resizable";
 import type { RichTooltipProgressVariant, RichTooltipTone } from "../../src/registry/sources/control-ui/ui/rich-tooltip";
-import type { ScrollAreaScrollbarVisibility } from "../../src/registry/sources/control-ui/ui/scroll-area";
+import type { ScrollAreaLockAxis, ScrollAreaScrollbarVisibility } from "../../src/registry/sources/control-ui/ui/scroll-area";
 import type { SelectTriggerVariant } from "../../src/registry/sources/control-ui/ui/select";
-import type { SidebarMenuButtonSize, SidebarMenuButtonVariant } from "../../src/registry/sources/control-ui/ui/sidebar";
+import type {
+  SidebarMenuButtonSize,
+  SidebarMenuButtonVariant,
+  SidebarSelectionIndicator,
+} from "../../src/registry/sources/control-ui/ui/sidebar";
 import type { SliderVariant } from "../../src/registry/sources/control-ui/ui/slider";
 import type { StepperContentMode, StepperOrientation, StepperState } from "../../src/registry/sources/control-ui/ui/stepper";
 import type { TableOfContentsVariant } from "../../src/registry/sources/control-ui/ui/table-of-contents";
@@ -74,6 +80,7 @@ export type EmittedStateContract = {
   "button:root:data-variant": ButtonVariant;
   "card:root:data-variant": CardVariant;
   "button-group:root:data-orientation": "horizontal" | "vertical";
+  "button-group:root:data-track": HoverIndicator;
   "button-group:separator:data-orientation": "horizontal" | "vertical";
   "button-group:text:data-size": ControlSize;
   "chat-composer:root:data-density": ChatDensity;
@@ -92,6 +99,7 @@ export type EmittedStateContract = {
   "chat-message:content:data-role": ChatRole;
   "chat-turn:turn:data-from": "user" | "assistant";
   "checkbox-group:root:data-orientation": "horizontal" | "vertical";
+  "checkbox-group:root:data-track": HoverIndicator;
   "code:root:data-chrome": CodeChrome;
   "code:root:data-density": CodeDensity;
   "code:line:data-index": number;
@@ -182,12 +190,18 @@ export type EmittedStateContract = {
   "select:trigger:data-size": ControlSize;
   "spinner:indicator:data-size": ControlSize;
   "scroll-area:scrollbar:data-visibility": ScrollAreaScrollbarVisibility;
+  "scroll-area:root:data-mask": true;
+  "scroll-area:root:data-blur": true;
+  "scroll-area:root:data-lock-axis": ScrollAreaLockAxis;
+  "progressive-blur:root:data-side": ProgressiveBlurSide;
+  "progressive-blur:root:data-visible": true;
   "sidebar:root:data-collapsible": "offcanvas" | "icon" | "none";
   "sidebar:root:data-side": "left" | "right";
   "sidebar:root:data-state": "expanded" | "collapsed";
   "sidebar:root:data-variant": "sidebar" | "floating" | "inset";
-  "sidebar:menu:data-indicator": TreeSelectionIndicator;
-  "sidebar:menu-track:data-indicator": TreeSelectionIndicator;
+  "sidebar:menu:data-indicator": SidebarSelectionIndicator;
+  "sidebar:menu-track:data-indicator": SidebarSelectionIndicator;
+  "sidebar:menu-track:data-track": SidebarSelectionIndicator;
   "sidebar:menu-button:data-active": true;
   "sidebar:menu-button:data-size": SidebarMenuButtonSize;
   "sidebar:menu-button:data-variant": SidebarMenuButtonVariant;
@@ -218,10 +232,10 @@ export type EmittedStateContract = {
   "thread-rail:item:data-from": ChatRole;
   "transcript-divider:root:data-tone": ChatTone;
   "toggle:root:data-size": ControlSize;
+  "toggle:group:data-track": HoverIndicator;
   "toggle:root:data-tone": ButtonTone;
   "toggle:root:data-variant": ButtonVariant;
   "tree:root:data-indicator": TreeSelectionIndicator;
-  "tree:track:data-indicator": TreeSelectionIndicator;
   "tree:item:data-disabled": true;
   "tree:item:data-label": string;
   "tree:item:data-selected": true;

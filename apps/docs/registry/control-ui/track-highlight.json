@@ -1,9 +1,9 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "track-highlight",
-  "type": "registry:component",
+  "type": "registry:ui",
   "title": "Track highlight",
-  "description": "Shared sliding selection indicator for tracked lists.",
+  "description": "Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.",
   "dependencies": [],
   "registryDependencies": [
     "core"
@@ -17,6 +17,11 @@
     {
       "path": "src/registry/sources/control-ui/extensions/create-track-highlight.ts",
       "target": "@components/control-ui/extensions/create-track-highlight.ts",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/extensions/supports-anchor-transitions.ts",
+      "target": "@components/control-ui/extensions/supports-anchor-transitions.ts",
       "type": "registry:component"
     },
     {
@@ -34,7 +39,6 @@
     "@import \"../components/control-ui/styles/recipes/track-highlight.css\"": {}
   },
   "meta": {
-    "internal": true,
     "sourceManifestPath": "registry/control-ui/track-highlight.json"
   }
 }

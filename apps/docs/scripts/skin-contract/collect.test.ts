@@ -23,7 +23,7 @@ describe("skin contract generation", () => {
     expect(contract.scopes.button.parts.root.family).toBe("button");
     expect(contract.scopes["code-diff"].registryItems).toContain("code-diff");
     expect(contract.scopes.button.parts.root.registryItems).toEqual(["button"]);
-    expect(contract.scopes.button.parts.content.registryItems).toEqual(["button", "dropdown-menu", "select"]);
+    expect(contract.scopes.button.parts.content.registryItems).toEqual(["button", "select"]);
     expect(contract.scopes.button.parts.root.states).toContainEqual({
       attribute: "data-variant",
       source: "control-ui",

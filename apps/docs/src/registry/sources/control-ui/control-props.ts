@@ -52,6 +52,7 @@ export type OpenChangeEventDetails = {
 };
 
 export type SelectionIndicator = "none" | "slide";
+export type HoverIndicator = "none" | "hover";
 
 // Read server-side (RSC layouts) and written client-side; lives here because ui/sidebar.tsx is "use client".
 export const SIDEBAR_COOKIE_NAME = "sidebar_state";

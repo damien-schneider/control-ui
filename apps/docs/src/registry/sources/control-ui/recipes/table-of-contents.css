@@ -1,6 +1,5 @@
 @layer components {
   :where([data-control-family="table-of-contents"][data-slot="root"]) {
-    --cui-track-highlight-transition-duration: var(--duration-base);
     --cui-table-of-contents-rail-background: oklch(from var(--border) l c h / 0.6);
     --cui-table-of-contents-highlight-radius: var(--radius-md);
     --cui-table-of-contents-highlight-background: oklch(from var(--foreground) l c h / 0.04);
@@ -71,6 +70,7 @@
   }
 
   :where([data-control-family="table-of-contents"][data-slot="root"] [data-control-family="track-highlight"][data-slot="root"]) {
+    --cui-track-highlight-transition-duration: var(--duration-base);
     --cui-track-highlight-radius: var(--cui-table-of-contents-highlight-radius);
     --cui-track-highlight-background: var(--cui-table-of-contents-highlight-background);
     --cui-track-highlight-ring-color: transparent;

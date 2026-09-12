@@ -1,7 +1,11 @@
 import { expect, test } from "@playwright/test";
+import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("selected button keeps shared seams above adjacent focus", async ({ page }) => {
+  await page.addInitScript((storageKey) => {
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
+  }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/primitives/button-group");
 
   const group = page.getByRole("group", { name: "Text alignment" });

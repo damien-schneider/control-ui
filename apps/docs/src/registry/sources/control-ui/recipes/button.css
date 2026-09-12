@@ -20,6 +20,9 @@
     --cui-button-shadow: 0 0 transparent;
     --cui-button-hover-shadow: var(--cui-button-shadow);
     --cui-button-press-shadow: var(--cui-button-hover-shadow);
+    --cui-button-open-background: var(--cui-button-hover-background);
+    --cui-button-open-foreground: var(--cui-button-hover-foreground);
+    --cui-button-open-shadow: var(--cui-button-shadow);
     border-radius: var(--cui-button-radius);
     background-color: var(--cui-button-background);
     background-image: var(--cui-button-background-image);
@@ -33,7 +36,6 @@
     transition-duration: var(--duration-fast);
   }
 
-  /* Keyed on the family alone so every trigger owns the knob. */
   :where([data-control-family="button"]) {
     gap: var(--cui-button-gap);
   }
@@ -68,7 +70,6 @@
     padding-inline: 0;
   }
 
-  /* Default clamp for unclassed icons (lucide ships width/height 24); zero specificity, so any utility on the svg wins. */
   :where([data-control-family="button"][data-control="true"] svg) {
     pointer-events: none;
     flex-shrink: 0;
@@ -110,9 +111,8 @@
     --cui-button-active-hover-background: oklch(from var(--primary) l c h / 0.1);
   }
 
-  :where([data-control-family="button"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"])[data-popup-open]) {
-    background-color: oklch(from var(--foreground) l c h / 0.07);
-    color: var(--cui-button-hover-foreground);
+  :where([data-control-family="button"]:is([data-variant="surface"], [data-variant="ghost"], [data-variant="quiet"])) {
+    --cui-button-open-background: oklch(from var(--foreground) l c h / 0.07);
   }
 
   :where([data-control-family="button"][data-tone="primary"]:not([data-variant="solid"])) {
@@ -147,6 +147,12 @@
     }
   }
 
+  :where([data-control-family="button"][data-popup-open]) {
+    background-color: var(--cui-button-open-background);
+    color: var(--cui-button-open-foreground);
+    box-shadow: var(--cui-button-open-shadow);
+  }
+
   :where([data-control-family="button"][data-active="true"]) {
     background-color: var(--cui-button-active-background);
     box-shadow: var(--cui-button-active-shadow);
@@ -157,6 +163,30 @@
     :where([data-control-family="button"][data-active="true"]:hover) {
       background-color: var(--cui-button-active-hover-background);
       color: var(--cui-button-active-foreground);
+    }
+  }
+
+  @scope ([data-track="hover"]) to ([data-track]) {
+    @media (hover: hover) {
+      :where(
+          [data-track="hover"] [data-control-family="button"][data-track-item]:hover:not([data-active="true"], [data-popup-open], :active)
+        ) {
+        background-color: var(--cui-button-background);
+        box-shadow: var(--cui-button-shadow);
+      }
+
+      :where(
+          [data-track="hover"] [data-control-family="button"][data-track-item][data-active="true"]:hover:not([data-popup-open], :active)
+        ) {
+        background-color: var(--cui-button-active-background);
+      }
+    }
+  }
+
+  @scope ([data-track="slide"]) to ([data-track]) {
+    :where([data-track="slide"] [data-control-family="button"][data-track-item]:not([data-popup-open], :active)) {
+      background-color: var(--cui-button-background);
+      box-shadow: var(--cui-button-shadow);
     }
   }
 
@@ -302,4 +332,22 @@
 @property --cui-button-active-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-button-open-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-open-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-button-open-shadow {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
 }

@@ -5,6 +5,121 @@
     --cui-scroll-area-corner-background: transparent;
   }
 
+  :where([data-control-family="scroll-area"][data-slot="root"] > [data-scroll-area-viewport]) {
+    position: relative;
+    z-index: 0;
+    border-radius: inherit;
+    outline: none;
+    transition:
+      --_scroll-area-fade-top var(--duration-fast) var(--ease-standard),
+      --_scroll-area-fade-bottom var(--duration-fast) var(--ease-standard),
+      --_scroll-area-fade-left var(--duration-fast) var(--ease-standard),
+      --_scroll-area-fade-right var(--duration-fast) var(--ease-standard);
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-mask]:is(
+        [data-overflow-x-start],
+        [data-overflow-x-end],
+        [data-overflow-y-start],
+        [data-overflow-y-end]
+      )
+      > [data-scroll-area-viewport]
+  ) {
+    mask-image:
+      linear-gradient(
+        to bottom,
+        oklch(0 0 0 / 0),
+        oklch(0 0 0) min(50%, var(--_scroll-area-fade-top)),
+        oklch(0 0 0) calc(100% - min(50%, var(--_scroll-area-fade-bottom))),
+        oklch(0 0 0 / 0)
+      ),
+      linear-gradient(
+        to right,
+        oklch(0 0 0 / 0),
+        oklch(0 0 0) min(50%, var(--_scroll-area-fade-left)),
+        oklch(0 0 0) calc(100% - min(50%, var(--_scroll-area-fade-right))),
+        oklch(0 0 0 / 0)
+      );
+    mask-composite: intersect;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-start]:not([data-lock-axis="y"], [data-lock-axis="both"])
+      > [data-scroll-area-viewport]
+  ) {
+    --_scroll-area-fade-top: var(--scroll-fade-size);
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-end]:not([data-lock-axis="y"], [data-lock-axis="both"])
+      > [data-scroll-area-viewport]
+  ) {
+    --_scroll-area-fade-bottom: var(--scroll-fade-size);
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-start]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(ltr)
+      > [data-scroll-area-viewport]
+  ),
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-end]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(rtl)
+      > [data-scroll-area-viewport]
+  ) {
+    --_scroll-area-fade-left: var(--scroll-fade-size);
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-end]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(ltr)
+      > [data-scroll-area-viewport]
+  ),
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-start]:not([data-lock-axis="x"], [data-lock-axis="both"]):dir(rtl)
+      > [data-scroll-area-viewport]
+  ) {
+    --_scroll-area-fade-right: var(--scroll-fade-size);
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-start] > [data-control-family="progressive-blur"][data-side="top"]
+  ),
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-y-end]
+      > [data-control-family="progressive-blur"][data-side="bottom"]
+  ),
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-start]
+      > [data-control-family="progressive-blur"][data-side="inline-start"]
+  ),
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-overflow-x-end]
+      > [data-control-family="progressive-blur"][data-side="inline-end"]
+  ) {
+    --_progressive-blur-visibility: visible;
+    --_progressive-blur-enter: 1;
+  }
+
+  @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+    :where([data-control-family="scroll-area"][data-slot="root"][data-mask] > [data-scroll-area-viewport]) {
+      mask-image: none;
+    }
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"][data-mask] > [data-scroll-area-viewport]:is(:focus-visible, :has(:focus-visible))
+  ) {
+    mask-image: none;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="root"]
+      > [data-scroll-area-viewport]:is(:focus-visible, :has(:focus-visible))
+      ~ [data-control-family="progressive-blur"]
+  ) {
+    --_progressive-blur-visibility: hidden;
+    --_progressive-blur-enter: 0;
+  }
+
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
     inline-size: calc(var(--spacing) * 1.5);
   }
@@ -14,6 +129,7 @@
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
+    z-index: 1;
     opacity: 0;
     transition: opacity var(--duration-fast) var(--ease-standard);
   }
@@ -30,14 +146,33 @@
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="scroll-area"][data-slot="viewport"]) {
-    border-radius: inherit;
-    outline: none;
-  }
-
   :where([data-control-family="scroll-area"][data-slot="corner"]) {
     background: var(--cui-scroll-area-corner-background);
   }
+}
+
+@property --_scroll-area-fade-top {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --_scroll-area-fade-bottom {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --_scroll-area-fade-left {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --_scroll-area-fade-right {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
 }
 
 @property --cui-scroll-area-thumb-radius {

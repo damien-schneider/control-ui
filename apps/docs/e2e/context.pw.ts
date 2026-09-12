@@ -77,7 +77,7 @@ test("context inspector stays bounded and scrollable on narrow viewports", async
   expect(await popup.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
 
   await page.setViewportSize({ width: 320, height: 320 });
-  const viewport = popup.locator('[data-control-ui="scroll-area"][data-slot="root"] > div').first();
+  const viewport = popup.locator('[data-control-ui="scroll-area"][data-slot="viewport"]').first();
   await expect(viewport).toBeVisible();
   await expect.poll(() => viewport.evaluate((element) => element.scrollHeight - element.clientHeight)).toBeGreaterThan(0);
   const scrollTop = await viewport.evaluate((element) => {
