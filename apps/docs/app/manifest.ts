@@ -10,5 +10,6 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     background_color: "oklch(0.98 0.004 270)",
     theme_color: "oklch(0.16 0.012 270)",
+    icons: [{ src: "/icon", sizes: "512x512", type: "image/svg+xml", purpose: "any" }],
   };
 }

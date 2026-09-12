@@ -5,6 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
 import { type RefObject, useState } from "react";
+import { ControlUiLogo } from "@/app/(features)/brand/control-ui-logo";
 import { referenceGroupTitle } from "@/app/(features)/catalog/guides";
 import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
 import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
@@ -22,7 +23,6 @@ import {
   useSidebar,
 } from "@/components/control-ui/ui/sidebar";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
-import { ControlUiLogo } from "./control-ui-logo";
 import { primitiveCategorySidebarIcons, referenceGroupIcon, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
 import { DocsNavGroup, ReferenceDoorRow, ReferencePane, SkillConcernNavGroups } from "./nav-groups";

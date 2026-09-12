@@ -1,0 +1,9 @@
+.probe {
+  position: fixed;
+  visibility: hidden;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  color: var(--sidebar-primary);
+  border-radius: var(--radius-control);
+}

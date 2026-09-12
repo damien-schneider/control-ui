@@ -1,59 +1,42 @@
 "use client";
 
-import { useEffect } from "react";
-import { createThemeFaviconUrl, themeFaviconColors } from "@/app/(features)/theme/favicon";
-
-const FALLBACK_BACKGROUND = themeFaviconColors.light.background;
-const FALLBACK_BRAND = themeFaviconColors.light.brand;
-
-function readThemeColors(): { background: string; brand: string } {
-  const probe = document.createElement("span");
-  probe.style.backgroundColor = `var(--sidebar, ${FALLBACK_BACKGROUND})`;
-  probe.style.color = `var(--sidebar-primary, ${FALLBACK_BRAND})`;
-  probe.style.position = "fixed";
-  probe.style.visibility = "hidden";
-  document.body.append(probe);
-
-  const style = getComputedStyle(probe);
-  const colors = {
-    background: style.backgroundColor || FALLBACK_BACKGROUND,
-    brand: style.color || FALLBACK_BRAND,
-  };
-  probe.remove();
-  return colors;
-}
+import { useEffect, useRef, useState } from "react";
+import { createControlUiLogoSvg } from "@/app/(features)/brand/logo";
+import styles from "./favicon.module.css";
 
 export function ThemeFavicon() {
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "icon";
-    link.type = "image/svg+xml";
-    link.sizes = "any";
-    document.head.append(link);
+  const probeRef = useRef<HTMLSpanElement>(null);
+  const [iconUrl, setIconUrl] = useState<string>();
 
+  useEffect(() => {
+    const probe = probeRef.current;
+    if (!probe) return;
     let frame = 0;
-    function update() {
+
+    const update = () => {
       frame = 0;
-      const colors = readThemeColors();
-      link.href = createThemeFaviconUrl(colors.background, colors.brand);
-    }
+      const style = getComputedStyle(probe);
+      const svg = createControlUiLogoSvg(style.color, Number.parseFloat(style.borderTopLeftRadius));
+      setIconUrl(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+    };
+
     function scheduleUpdate() {
       if (frame === 0) frame = requestAnimationFrame(update);
     }
 
-    update();
     const observer = new MutationObserver(scheduleUpdate);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class", "data-skin", "style"],
-    });
-
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "data-skin", "style"] });
+    scheduleUpdate();
     return () => {
       observer.disconnect();
-      if (frame !== 0) cancelAnimationFrame(frame);
-      link.remove();
+      cancelAnimationFrame(frame);
     };
   }, []);
 
-  return null;
+  return (
+    <>
+      <span ref={probeRef} aria-hidden="true" className={styles.probe} />
+      {iconUrl && <link rel="icon" type="image/svg+xml" sizes="any" href={iconUrl} />}
+    </>
+  );
 }

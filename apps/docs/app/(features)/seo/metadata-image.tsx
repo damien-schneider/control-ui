@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { ControlUiLogoImage } from "@/app/(features)/brand/control-ui-logo-image";
 import { socialImageSize } from "@/app/(features)/seo/social-image-config";
 import { siteConfig } from "@/lib/site-config";
 
@@ -10,18 +11,6 @@ type SocialImageOptions = {
   status?: "beta" | "experimental";
 };
 
-function ControlUiMark() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 79 71" width="51" height="46">
-      <rect x="0" y="0" width="79" height="31" rx="8" fill="rgb(250, 250, 250)" />
-      <rect x="31" y="4" width="44" height="23" rx="5" fill="rgb(15, 15, 18)" />
-      <rect x="0" y="40" width="79" height="31" rx="8" fill="rgb(250, 250, 250)" />
-      <rect x="4" y="44" width="71" height="23" rx="5" fill="rgb(15, 15, 18)" />
-      <rect x="14" y="47" width="4" height="17" rx="2" fill="rgb(250, 250, 250)" />
-    </svg>
-  );
-}
-
 function titleFontSize(title: string) {
   if (title.length > 36) return 62;
   if (title.length > 26) return 68;
@@ -29,7 +18,7 @@ function titleFontSize(title: string) {
   return 82;
 }
 
-// next/og's Satori renderer does not support oklch(), so metadata images use equivalent RGB colors.
+// Satori requires RGB colors.
 export function renderSocialImage({
   title = "React component library for AI interfaces",
   description = siteConfig.description,
@@ -82,7 +71,7 @@ export function renderSocialImage({
 
       <div style={{ alignItems: "center", display: "flex", justifyContent: "space-between", width: "100%" }}>
         <div style={{ alignItems: "center", display: "flex" }}>
-          <ControlUiMark />
+          <ControlUiLogoImage size={46} />
           <div style={{ display: "flex", fontSize: 28, fontWeight: 650, letterSpacing: "-0.035em", marginLeft: 18 }}>Control UI</div>
         </div>
         <div
@@ -190,17 +179,13 @@ export function renderIcon(size: number) {
       style={{
         alignItems: "center",
         background: "rgb(20, 20, 24)",
-        color: "rgb(250, 250, 250)",
         display: "flex",
-        fontSize: size * 0.54,
-        fontWeight: 700,
         height: "100%",
         justifyContent: "center",
-        letterSpacing: "-0.08em",
         width: "100%",
       }}
     >
-      C
+      <ControlUiLogoImage size={size * 0.72} />
     </div>,
     { width: size, height: size },
   );

@@ -17,9 +17,7 @@ import "./globals.css";
 
 export const metadata: Metadata = siteMetadata;
 
-// next/font self-hosts geist, fills --font-geist-sans; theme.css's --font-sans consumes it first, falls to system stack when app shell absent.
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
-// Same contract for linear pack's face: it reads --font-inter, falling back to the system stack when the shell doesn't provide it.
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
@@ -27,8 +25,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="en" data-skin={DEFAULT_SKIN_ID} suppressHydrationWarning className={cn(geist.variable, inter.variable)}>
       <body>
-        <ThemeFavicon />
         <SiteStructuredData />
+        <ThemeFavicon />
         <Script id="control-ui-theme-init" strategy="beforeInteractive">
           {THEME_INIT_SCRIPT}
         </Script>
