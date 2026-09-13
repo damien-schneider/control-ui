@@ -112,7 +112,7 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
           data-control-family="popup"
           data-surface="floating"
           data-popup-part="list-surface"
-          className="pointer-events-none invisible absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-[min(22rem,calc(100vw-1rem))] -translate-x-1/2 translate-y-(--search-results-offset) overflow-hidden border-0 p-0 opacity-0 transition-[opacity,transform,visibility] duration-[var(--duration-fast)] ease-[var(--ease-standard)] [--search-results-offset:0.25rem] group-focus-within/search:pointer-events-auto group-focus-within/search:visible group-focus-within/search:translate-y-0 group-focus-within/search:opacity-100 lg:top-[calc(100%+0.75rem)] lg:bottom-auto lg:[--search-results-offset:-0.25rem]"
+          className="pointer-events-none invisible absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-full -translate-x-1/2 translate-y-(--search-results-offset) overflow-hidden border-0 p-0 opacity-0 transition-[opacity,transform,visibility] duration-[var(--duration-fast)] ease-[var(--ease-standard)] [--search-results-offset:0.25rem] group-focus-within/search:pointer-events-auto group-focus-within/search:visible group-focus-within/search:translate-y-0 group-focus-within/search:opacity-100 lg:top-[calc(100%+0.75rem)] lg:bottom-auto lg:[--search-results-offset:-0.25rem]"
         >
           <CommandList key={query.trim() || "browse"}>
             <CommandEmpty>No results found.</CommandEmpty>
