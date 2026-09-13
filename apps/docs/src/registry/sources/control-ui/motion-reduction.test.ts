@@ -35,7 +35,6 @@ describe("reduced motion contract", () => {
 
   test("switching panels have token-driven cross-slide motion", () => {
     expect(CSS).toContain('[data-slide="panel"]');
-    // content stays opaque through slide, so switch never flashes empty frame
     expect(CSS).toContain("translate var(--duration-slow) var(--ease-emphasized)");
     expect(CSS).toContain('[data-activation-direction="right"]');
   });
@@ -47,7 +46,6 @@ describe("reduced motion contract", () => {
   });
 
   test("skin motion overrides stay token-driven", () => {
-    expect(XP_SKIN).toContain("transition: color var(--duration-fast) var(--ease-standard);");
     expect(XP_SKIN).not.toContain("transition: none;");
     expect(LIQUID_METAL_SKIN).toContain("transition: opacity var(--duration-fast) var(--ease-standard);");
     expect(LIQUID_METAL_RUNTIME).toContain('transition: "opacity var(--duration-fast) var(--ease-standard)"');

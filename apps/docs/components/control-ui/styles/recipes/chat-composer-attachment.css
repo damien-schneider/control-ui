@@ -1,5 +1,5 @@
 @layer components {
-  :where([data-control-ui="chat-composer-attachment"][data-control-family="chat-composer-attachment"][data-slot="root"]) {
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant]) {
     --cui-chat-composer-attachment-background: oklch(from var(--card) l c h / calc(alpha * 0.92));
     --cui-chat-composer-attachment-border-color: oklch(from var(--border) l c h / calc(alpha * 0.8));
     --cui-chat-composer-attachment-radius: var(--radius-field);

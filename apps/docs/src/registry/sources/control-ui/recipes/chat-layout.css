@@ -4,7 +4,7 @@
     --cui-chat-layout-thought-hover-background: oklch(from var(--foreground) l c h / 0.04);
   }
 
-  :where([data-control-ui="chat-layout"][data-control-family="chat-layout"][data-slot="root"]) {
+  :where([data-control-family="chat-layout"][data-slot="root"][data-chrome]) {
     --cui-chat-layout-radius: var(--radius-scene);
     --cui-chat-layout-background: var(--background);
     --cui-chat-layout-border-color: var(--border);
@@ -12,7 +12,7 @@
     background: var(--cui-chat-layout-background);
   }
 
-  :where([data-control-ui="chat-layout"][data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"]) {
+  :where([data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"]) {
     border: 1px solid var(--cui-chat-layout-border-color);
     border-radius: var(--cui-chat-layout-radius);
     box-shadow: var(--cui-chat-layout-shadow);

@@ -1877,6 +1877,16 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        dock: {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [],
+        },
+        "thread-content": {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [],
+        },
       },
       registryItems: ["chat-layout"],
     },

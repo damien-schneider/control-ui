@@ -17,7 +17,7 @@ for (const skin of ["refined", "modern-apple", "flat", "cuicui", "xp", "windows-
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.goto("/use-cases/coding-agent");
       const preview = page.locator("#preview");
-      const thread = preview.locator('[data-control-ui="chat-thread"]');
+      const thread = preview.locator('[data-control-ui="chat-thread"][data-slot="root"]');
       const layout = preview.locator('[data-control-ui="chat-layout"][data-slot="root"]');
       const composer = thread.locator('[data-control-ui="chat-composer"][data-slot="root"]');
       const shell = composer.locator('[data-slot="shell"]');
@@ -66,7 +66,7 @@ for (const skin of ["refined", "modern-apple", "flat", "cuicui", "xp", "windows-
           element.scrollTop = (element.scrollHeight - element.clientHeight) * position;
         }, fraction);
         const bottomGap = await dock.evaluate((element) => {
-          const scroller = element.closest('[data-control-ui="chat-thread"]');
+          const scroller = element.closest('[data-control-ui="chat-thread"][data-slot="root"]');
           if (!scroller) throw new Error("Composer must belong to the conversation scroller");
           return scroller.getBoundingClientRect().bottom - element.getBoundingClientRect().bottom;
         });

@@ -50,11 +50,16 @@ export function ChatThread({ children, composer, className, ...props }: ChatThre
       {...props}
     >
       <div className="relative flex min-h-full min-w-0 flex-col">
-        <div data-control-family="chat-layout" data-slot="thread-content" className="flex min-w-0 flex-1 flex-col">
+        <div
+          data-control-ui="chat-thread"
+          data-control-family="chat-layout"
+          data-slot="thread-content"
+          className="flex min-w-0 flex-1 flex-col"
+        >
           {children}
         </div>
         {composer ? (
-          <div data-control-family="chat-layout" data-slot="dock" className="sticky bottom-0 z-10 shrink-0">
+          <div data-control-ui="chat-thread" data-control-family="chat-layout" data-slot="dock" className="sticky bottom-0 z-10 shrink-0">
             {composer}
           </div>
         ) : null}

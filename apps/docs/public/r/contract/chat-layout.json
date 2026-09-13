@@ -125,6 +125,20 @@
             ]
           }
         ]
+      },
+      "dock": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
+      },
+      "thread-content": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": []
       }
     },
     "chat-turn": {
