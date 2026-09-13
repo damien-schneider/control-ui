@@ -129,9 +129,9 @@ test("collapsed state and committed width survive a skin remount", async ({ page
   await resizeHandle.press("Enter");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
 
-  await page.getByRole("button", { name: "Edit theme" }).click();
+  await page.getByRole("link", { name: "Edit theme" }).click();
   await page.getByLabel("Choose a skin").getByRole("button", { name: "Cuicui", exact: true }).click();
-  await page.keyboard.press("Escape");
+  await page.goBack();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "cuicui");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
 

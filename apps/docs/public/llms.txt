@@ -12,6 +12,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Build a screen](http://127.0.0.1:3000/build-a-screen): Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - [Theme it](http://127.0.0.1:3000/theming): Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
 - [Create a skin](http://127.0.0.1:3000/create-a-skin): Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
+- [Theme editor](http://127.0.0.1:3000/theme-editor): Choose a skin, edit its tokens, and preview your theme across the docs.
 - [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 - [Theme accessibility](http://127.0.0.1:3000/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - [Update & diff](http://127.0.0.1:3000/update): Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.
@@ -153,7 +154,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Liquid metal](http://127.0.0.1:3000/skins/liquid-metal): Polished metal skin with a WebGL shader control surface.
 - [Rig](http://127.0.0.1:3000/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
 - [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and the stock motion tempo.
-- [Modern Apple](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.
+- [Modern Apple](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.
 - [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
 - [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.
 

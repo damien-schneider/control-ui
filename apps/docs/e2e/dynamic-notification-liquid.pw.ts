@@ -15,34 +15,6 @@ test("liquid notification initializes without a CSS backdrop-filter fallback", a
   await expect.poll(() => canvas.evaluate((element) => (element instanceof HTMLCanvasElement ? element.width : 0))).toBeGreaterThan(300);
 });
 
-test("Modern Apple popovers render through the shared refractive WebGL surface", async ({ page }) => {
-  await page.addInitScript(() => {
-    localStorage.setItem(
-      "control-ui:theme-editor:v1",
-      JSON.stringify({
-        skin: "modern-apple",
-        reduceMotion: true,
-        labelMode: "friendly",
-        overrides: {},
-        light: {},
-        dark: {},
-        textFixes: {},
-      }),
-    );
-  });
-  await page.goto("/primitives/popover");
-  await expect(page.locator("html")).toHaveAttribute("data-skin", "modern-apple");
-  const trigger = page.getByRole("button", { name: "Dimensions", exact: true });
-  const popover = page.locator('[data-control-ui="popover"][data-slot="content"]');
-  await expect(async () => {
-    if ((await trigger.getAttribute("aria-expanded")) !== "true") await trigger.click();
-    await expect(popover).toHaveAttribute("data-apple-liquid-glass", "active", { timeout: 1_000 });
-  }).toPass();
-  await expect(popover).toHaveAttribute("data-apple-liquid-glass-ready", "true", { timeout: 15_000 });
-  await expect(popover).toHaveCSS("backdrop-filter", "none");
-  await expect(popover.locator('[data-extension-node="modern-apple-liquid-glass"]')).toHaveCount(1);
-});
-
 test("liquid notification transmits a PNG image beneath the surface", async ({ page }) => {
   const fixturePng = await page.evaluate(() => {
     const raster = document.createElement("canvas");

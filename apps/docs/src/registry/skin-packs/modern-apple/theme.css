@@ -1,86 +1,74 @@
-/* A Liquid Glass reading of iOS 26 / macOS Tahoe. */
-
 [data-skin="modern-apple"][data-skin] {
-  /* typography — the SF stack; small chrome runs a rung larger via the type re-values below */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* type scale — small chrome bumped one rung (11/13px micro/label); body stays 14px */
-  --text-micro: 0.6875rem; /* 11px */
-  --text-label: 0.8125rem; /* 13px */
+  --text-micro: 0.6875rem;
+  --text-caption: 0.75rem;
+  --text-label: 0.8125rem;
+  --text-body-lg: 1.0625rem;
+  --text-heading-1: 2rem;
+  --text-heading-1--font-weight: 600;
+  --text-heading-1--letter-spacing: -0.025em;
+  --text-display: 2.5rem;
+  --text-display--letter-spacing: -0.03em;
 
-  /* shadcn base names, authored in oklch; derived tokens use relative color syntax to track author format. */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.2178 0 89.876); /* #1A1A1A — DS Labels/Vibrant Primary */
+  --foreground: oklch(0.2178 0 89.876);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.2178 0 89.876);
-  --popover: oklch(0.995 0 0); /* near-white glass base, frosted by --popover-opacity below */
+  --popover: oklch(0.995 0 0);
   --popover-foreground: oklch(0.2178 0 89.876);
-  --primary: oklch(0.556 0.2018 254.088); /* iOS system-blue hue, darkened for accessible action text */
+  --primary: oklch(0.556 0.2018 254.088);
   --primary-foreground: oklch(1 0 0);
-  --muted: oklch(0.9673 0.0024 286.354); /* #F5F5F7 parchment */
-  --muted-foreground: oklch(0.5 0 89.876); /* DS Labels/Vibrant Secondary */
-  --secondary: oklch(0.9364 0.0027 286.347); /* #E9E9EB — assistant bubble gray */
+  --muted: oklch(0.9673 0.0024 286.354);
+  --muted-foreground: oklch(0.47 0 0);
+  --secondary: oklch(0.9364 0.0027 286.347);
   --secondary-foreground: oklch(0.2178 0 89.876);
   --accent: oklch(0.9673 0.0024 286.354);
   --accent-foreground: oklch(0.2178 0 89.876);
-  --destructive: oklch(0.583 0.2328 25.739); /* iOS system-red hue, darkened for accessible action text */
+  --destructive: oklch(0.583 0.2328 25.739);
   --destructive-foreground: oklch(1 0 0);
 
-  /* "Ring white" contract: resting + focus ring both white (glass rim / soft halo), not the usual blue outline. */
-  --ring-opacity: 0.55;
-  --border: oklch(from oklch(1 0 0) l c h / var(--ring-opacity)); /* white hairline rim */
-  --input: oklch(1 0 0 / 0.45); /* transparent-glass field border, white */
-  --ring: oklch(1 0 0 / 0.9); /* white focus halo */
+  --ring-opacity: 0.12;
+  --border: oklch(0 0 0 / var(--ring-opacity));
+  --input: oklch(0 0 0 / 0.16);
+  --ring: var(--primary);
   --focus-ring: var(--primary);
-  --focus-ring-width: 3px;
-  --focus-ring-offset: 0px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
 
-  /* page canvas — the light neutral desktop the glass floats on */
-  --canvas: oklch(0.9466 0 0); /* #ECECEC */
+  --canvas: oklch(0.9466 0 0);
 
-  /* Glass pair frosts popover/dropdown/select/context-menu/dialog together (all read bg-popover).
-     Calibrated between DS Frost L/M=16 and apple.com blur(20px) for refined-not-heavy reading. */
-  --popover-opacity: 0.62;
-  --backdrop-blur-popover: 18px; /* DS Liquid Glass/Frost — Large = 16; +2 for the web canvas */
+  --popover-opacity: 0.36;
+  --backdrop-blur-popover: 3px;
 
-  /* The liquid surface owns optical diffusion; the modal backdrop only dims. */
   --overlay-opacity: 0.2;
   --backdrop-blur-overlay: 0px;
 
   --scroll-fade-size: 2rem;
 
-  /* elevation — Apple shadows are soft, large, and low-contrast */
   --shadow-color: oklch(0.2244 0.0257 263.845);
   --shadow-size: 1;
   --shadow-opacity: 0.85;
 
-  /* THE one radius knob. Continuous, generous Apple corners: ~14px surfaces, ~11px controls. */
-  --radius: 0.875rem;
-  --radius-control: calc(var(--radius) * 0.78); /* ~11px push-button / field corner */
-  /* Radius divergence from Refined: TIGHTER ratios (1.9x field/1.7x panel/2x scene) so continuous corners don't balloon. */
-  --radius-field: calc(var(--radius) * 1.9); /* user bubble, composer shell */
-  --radius-panel: calc(var(--radius) * 1.7); /* code / markdown surfaces */
-  --radius-scene: calc(var(--radius) * 2); /* scene frame, large media */
+  --radius: 0.75rem;
+  --radius-control: calc(var(--radius) * 0.75);
 
-  /* Apple's continuous (superellipse) corners since iOS 7; `squircle` is the CSS corner-shape for it. */
-  --corner-shape: squircle;
+  --radius-field: calc(var(--radius) * 1.9);
+  --radius-panel: calc(var(--radius) * 1.7);
+  --radius-scene: calc(var(--radius) * 2);
 
-  /* floating-list geometry (menu / select / context-menu). Rows inset 5px, concentric container. */
-  --popover-padding: 0.3125rem; /* 5px gap between container edge and rows */
-  --radius-popup-item: 0.5rem; /* 8px menu-row corner */
+  --corner-shape: superellipse(1.25);
+
+  --popover-padding: 0.3125rem;
+  --radius-popup-item: 0.5rem;
   --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
 
-  /* content density for the rounded surfaces (bubble / composer field) */
   --padding-x: 1rem;
   --padding-y: 0.5rem;
 
-  /* control size scale — ONE base height; xs/sm/md/lg are COMPUTED from it. ~34px regular controls. */
-  --control-h: 2.125rem;
+  --control-h: 2rem;
 
-  /* Apple system springs overshoot+settle elastically; CSS has no native spring, so --ease-emphasized
-     is a `linear()` spring (~8% overshoot) driving popups/tabs-indicator/select-chevron/panel-enter.
-     --ease-standard stays smooth easeOut for color/text (bounce reads as jitter); tempo runs longer. */
   --ease-standard: cubic-bezier(0.33, 1, 0.68, 1);
   --ease-emphasized: linear(
     0,
@@ -105,42 +93,41 @@
     0.997 91.7%,
     1
   );
-  --duration-fast: 200ms;
-  --duration-base: 340ms;
-  --duration-slow: 520ms;
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-slow: 420ms;
 }
 
-/* Dark tokens: glass goes graphite, brighter #0A84FF accent, white rims. Scoped like light block. */
 :where(.dark) [data-skin="modern-apple"][data-skin],
 .dark[data-skin="modern-apple"][data-skin] {
-  --background: oklch(0.235 0 89.876); /* #1E1E1E — DS Window Background */
+  --background: oklch(0.235 0 89.876);
   --foreground: oklch(0.9673 0.0024 286.354);
   --card: oklch(0.2478 0.0042 286.109);
   --card-foreground: oklch(0.9673 0.0024 286.354);
-  --popover: oklch(0.27 0.006 286.001); /* graphite glass base before frosting */
+  --popover: oklch(0.27 0.006 286.001);
   --popover-foreground: oklch(0.9673 0.0024 286.354);
   --primary: oklch(0.557 0.2056 255.486);
   --primary-foreground: oklch(1 0 0);
   --muted: oklch(0.2978 0.0033 286.199);
-  --muted-foreground: oklch(0.72 0.0112 286.102);
-  --secondary: oklch(0.3473 0.004 286.188); /* #3A3A3C — assistant bubble gray */
+  --muted-foreground: oklch(0.78 0.004 286);
+  --secondary: oklch(0.3473 0.004 286.188);
   --secondary-foreground: oklch(0.9673 0.0024 286.354);
   --accent: oklch(0.326 0.0056 286.084);
   --accent-foreground: oklch(0.9673 0.0024 286.354);
   --destructive: oklch(0.581 0.2261 28.178);
+  --destructive-text: oklch(from var(--destructive) 0.8 c h);
   --destructive-foreground: oklch(1 0 0);
-  /* the white rim reads even brighter on the graphite glass; keep the white ring contract */
-  --ring-opacity: 0.28;
-  --border: oklch(from oklch(1 0 0) l c h / var(--ring-opacity));
-  --input: oklch(1 0 0 / 0.22);
-  --ring: oklch(1 0 0 / 0.8);
+
+  --ring-opacity: 0.14;
+  --border: oklch(1 0 0 / var(--ring-opacity));
+  --input: oklch(1 0 0 / 0.18);
+  --ring: var(--primary);
   --canvas: oklch(0.1822 0.004 286.056);
-  --popover-opacity: 0.55;
+  --popover-opacity: 0.42;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 1;
 }
 
-/* prefers-reduced-motion: token-driven, so every transition/derived tempo flattens together. */
 @media (prefers-reduced-motion: reduce) {
   [data-skin="modern-apple"][data-skin] {
     --duration-fast: 0ms;

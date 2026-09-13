@@ -8,11 +8,11 @@ import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
 import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
 import { cn } from "@/components/control-ui/lib/cn";
+import { SkinEpochProvider } from "@/components/skin-epoch-context";
 import { DEFAULT_SKIN_ID, THEME_INIT_SCRIPT } from "@/components/theme";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";
-import { ThemeDrawerProvider } from "@/components/theme-drawer-context";
 import { LiquidMetalSkinRuntime } from "@/src/registry/skin-packs/liquid-metal/liquid-metal-runtime";
-import { ModernAppleLiquidGlassRuntime } from "@/src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime";
+import { ModernAppleGlassFilter } from "@/src/registry/skin-packs/modern-apple/modern-apple-glass-filter";
 import "./globals.css";
 
 export const metadata: Metadata = siteMetadata;
@@ -30,7 +30,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <Script id="control-ui-theme-init" strategy="beforeInteractive">
           {THEME_INIT_SCRIPT}
         </Script>
-        <ThemeDrawerProvider>
+        <SkinEpochProvider>
           <ThemeRuntimeProvider>
             <div data-skin-scope="docs">
               <DocsShell {...getDocsShellData()} githubStars={githubStars}>
@@ -38,9 +38,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
               </DocsShell>
             </div>
           </ThemeRuntimeProvider>
-        </ThemeDrawerProvider>
-        <ModernAppleLiquidGlassRuntime />
+        </SkinEpochProvider>
         <LiquidMetalSkinRuntime />
+        <ModernAppleGlassFilter />
       </body>
     </html>
   );

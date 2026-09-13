@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
-import type { CompositionExample, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 
 import { CompositionTree } from "./composition-tree";
 
@@ -56,9 +56,7 @@ export function SectionCode({ id, title, description, code }: { id: string; titl
   );
 }
 
-export function CompositionSection({ items }: { items: CompositionExample[] }) {
-  if (items.length === 0) return null;
-
+export function CompositionSection({ items }: { items: Composition }) {
   return (
     <section id="composition" className="min-w-0 scroll-mt-20">
       <SectionTitle title="Composition" />
@@ -66,8 +64,9 @@ export function CompositionSection({ items }: { items: CompositionExample[] }) {
         {items.map((item) => (
           <div key={item.title} className="min-w-0">
             <h3 className="text-body font-normal text-muted-foreground">{item.title}</h3>
+            {item.description ? <p className="mt-2 text-label text-muted-foreground">{item.description}</p> : null}
             <div className="mt-6 min-w-0">
-              <CompositionTree code={item.code} ownParts={item.ownParts} />
+              <CompositionTree tree={item.tree} ownParts={item.ownParts} />
             </div>
           </div>
         ))}

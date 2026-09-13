@@ -161,7 +161,6 @@ function MastraChatPreview() {
   return (
     <div>
       <ChatBlock
-        className="border shadow-soft"
         composer={
           <ChatComposer
             density="compact"

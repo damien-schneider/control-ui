@@ -10,13 +10,14 @@ import {
   Undo2Icon,
   UploadIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { type ChangeEvent, useEffect, useState } from "react";
 import { BlockPreview } from "@/app/(features)/components/previews";
 import { ThemeAuditStatus } from "@/app/(features)/theme-accessibility/theme-audit-status";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
-import { Button, ButtonLabel } from "@/components/control-ui/ui/button";
+import { Button, ButtonLabel, ButtonLink } from "@/components/control-ui/ui/button";
 import {
   Stepper,
   StepperContent,
@@ -33,7 +34,6 @@ import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 import { buildThemePrompt, parseThemeArtifact, type ThemeArtifactResult } from "@/components/theme-drawer/theme-artifact";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
 import type { ControlUiThemeArtifactV1, SkinId } from "@/components/theme-drawer/types";
-import { useThemeDrawer } from "@/components/theme-drawer-context";
 import { useThemeModePreference } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site-config";
 
@@ -42,13 +42,11 @@ function AgentPromptStep({
   copied,
   copyError,
   onCopy,
-  onOpenThemeEditor,
 }: {
   baseSkin: SkinId;
   copied: boolean;
   copyError: string | null;
   onCopy: () => void;
-  onOpenThemeEditor: () => void;
 }) {
   return (
     <div id="prompt" className="grid gap-6 scroll-mt-24">
@@ -61,9 +59,9 @@ function AgentPromptStep({
             theme file.
           </p>
         </div>
-        <Button variant="quiet" size="sm" onClick={onOpenThemeEditor}>
+        <ButtonLink variant="quiet" size="sm" render={<Link href="/theme-editor" />}>
           <PaintbrushIcon aria-hidden className="size-3.5" /> Base: {SKIN_META_BY_ID[baseSkin].label}
-        </Button>
+        </ButtonLink>
       </header>
 
       <div className="grid gap-2">
@@ -91,7 +89,6 @@ function ThemeTestStep({
   importError,
   onArtifactTextChange,
   onImportFile,
-  onOpenThemeEditor,
 }: {
   artifactText: string;
   artifactResult: ThemeArtifactResult;
@@ -101,7 +98,6 @@ function ThemeTestStep({
   importError: string | null;
   onArtifactTextChange: (value: string) => void;
   onImportFile: (event: ChangeEvent<HTMLInputElement>) => void;
-  onOpenThemeEditor: () => void;
 }) {
   return (
     <div id="test" className="grid gap-5 scroll-mt-24">
@@ -180,9 +176,9 @@ function ThemeTestStep({
           <p className="text-caption leading-5 text-foreground">
             This theme uses {SKIN_META_BY_ID[baseMismatch].label}, but {SKIN_META_BY_ID[activeBaseSkin].label} is active.
           </p>
-          <Button variant="surface" size="sm" onClick={onOpenThemeEditor}>
+          <ButtonLink variant="surface" size="sm" render={<Link href="/theme-editor" />}>
             <PaintbrushIcon aria-hidden className="size-3.5" /> Switch to {SKIN_META_BY_ID[baseMismatch].label}
-          </Button>
+          </ButtonLink>
         </div>
       ) : null}
     </div>
@@ -202,7 +198,6 @@ function ThemePreviewPanel({
   onModeChange,
   onApply,
   onUndo,
-  onOpenThemeEditor,
 }: {
   artifact: ControlUiThemeArtifactV1 | null;
   activeBaseSkin: SkinId;
@@ -216,7 +211,6 @@ function ThemePreviewPanel({
   onModeChange: (mode: "light" | "dark") => void;
   onApply: () => void;
   onUndo: () => void;
-  onOpenThemeEditor: () => void;
 }) {
   const [previewRoot, setPreviewRoot] = useState<HTMLElement | null>(null);
   const draftReady = Boolean(artifact && !baseMismatch);
@@ -287,9 +281,9 @@ function ThemePreviewPanel({
               Apply to docs
             </Button>
             {appliedName ? (
-              <Button variant="surface" onClick={onOpenThemeEditor}>
+              <ButtonLink variant="surface" render={<Link href="/theme-editor" />}>
                 <PaintbrushIcon aria-hidden className="size-3.5" /> Edit tokens
-              </Button>
+              </ButtonLink>
             ) : null}
             {canUndo ? (
               <Button variant="surface" onClick={onUndo}>
@@ -305,7 +299,6 @@ function ThemePreviewPanel({
 
 export function ThemeAiBuilder() {
   const { t, storageError, canUndo, applyArtifact, undoLastApply } = useThemeRuntime();
-  const { setOpen } = useThemeDrawer();
   const themeMode = useThemeModePreference();
   const [activeStep, setActiveStep] = useState(0);
   const [previewMode, setPreviewMode] = useState<"light" | "dark">("light");
@@ -314,7 +307,6 @@ export function ThemeAiBuilder() {
   const [copyError, setCopyError] = useState<string | null>(null);
   const [appliedName, setAppliedName] = useState<string | null>(null);
 
-  useEffect(() => setOpen(false), [setOpen]);
   useEffect(() => {
     const root = document.documentElement;
     const updatePreviewMode = () => setPreviewMode(root.classList.contains("dark") ? "dark" : "light");
@@ -390,13 +382,7 @@ export function ThemeAiBuilder() {
           </StepperList>
 
           <StepperContent step={0} keepMounted={false}>
-            <AgentPromptStep
-              baseSkin={t.skin}
-              copied={promptCopy.isCopied}
-              copyError={copyError}
-              onCopy={copyPromptAndContinue}
-              onOpenThemeEditor={() => setOpen(true)}
-            />
+            <AgentPromptStep baseSkin={t.skin} copied={promptCopy.isCopied} copyError={copyError} onCopy={copyPromptAndContinue} />
           </StepperContent>
           <StepperContent step={1} keepMounted={false}>
             <ThemeTestStep
@@ -411,7 +397,6 @@ export function ThemeAiBuilder() {
                 setAppliedName(null);
               }}
               onImportFile={importArtifactFile}
-              onOpenThemeEditor={() => setOpen(true)}
             />
           </StepperContent>
         </Stepper>
@@ -433,7 +418,6 @@ export function ThemeAiBuilder() {
               undoLastApply();
               setAppliedName(null);
             }}
-            onOpenThemeEditor={() => setOpen(true)}
           />
         ) : null}
       </div>

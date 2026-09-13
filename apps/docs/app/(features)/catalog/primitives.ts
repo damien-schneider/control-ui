@@ -306,15 +306,7 @@ export const primitiveEntries = [
           sourceFile("Measured positioning", "src/registry/sources/control-ui/extensions/create-track-highlight.ts", "support"),
           sourceFile("Highlight recipe", "src/registry/sources/control-ui/recipes/track-highlight.css", "recipe-css"),
         ],
-        composition: [
-          {
-            title: "Custom hover or selection track",
-            code: `div[data-track="hover" | "slide"]
-├── Button[data-track-item][data-active]
-├── Button[data-track-item]
-└── TrackHighlight`,
-          },
-        ],
+
         registryKind: "track-highlight",
       },
     },
@@ -358,30 +350,9 @@ export const primitiveEntries = [
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
           sidebarRecipeFile,
+          sourceFile("Sidebar menu recipe", "src/registry/sources/control-ui/recipes/sidebar-menu.css", "recipe-css"),
         ],
-        composition: [
-          {
-            title: "Application shell",
-            code: `SidebarProvider
-├── Sidebar
-│   ├── SidebarHeader
-│   ├── SidebarContent
-│   │   └── SidebarGroup
-│   │       ├── SidebarGroupLabel
-│   │       └── SidebarMenu
-│   │           └── SidebarMenuItem
-│   │               └── Collapsible
-│   │                   ├── SidebarMenuButton (render: CollapsibleTrigger)
-│   │                   └── CollapsibleContent
-│   │                       └── SidebarMenuSub
-│   │                           └── SidebarMenuItem
-│   │                               └── SidebarMenuButton
-│   ├── SidebarFooter
-│   └── SidebarRail
-└── SidebarInset
-    └── SidebarTrigger`,
-          },
-        ],
+
         registryKind: "sidebar",
       },
     },
@@ -471,14 +442,7 @@ export const primitiveEntries = [
         example: sourceFile("Progressive blur preview", "src/registry/examples/control-ui/primitives/progressive-blur.tsx", "example"),
         source: sourceFile("Progressive blur", "src/registry/sources/control-ui/ui/progressive-blur.tsx", "component"),
         supportFiles: [sourceFile("Progressive blur recipe", "src/registry/sources/control-ui/recipes/progressive-blur.css", "recipe-css")],
-        composition: [
-          {
-            title: "Decorative edge overlay",
-            code: `div.relative
-├── Content
-└── ProgressiveBlur`,
-          },
-        ],
+
         registryKind: "progressive-blur",
       },
     },
@@ -998,12 +962,7 @@ export const primitiveEntries = [
           sourceFile("Dropzone file policy", "src/registry/lib/dropzone-validation.ts", "policy"),
           dropzoneRecipeFile,
         ],
-        composition: [
-          {
-            title: "Visible and overlay intake",
-            code: "Dropzone → Input + Area(Trigger/Overlay/content) + Lists + Status",
-          },
-        ],
+
         registryKind: "dropzone",
       },
     },
@@ -1044,20 +1003,7 @@ export const primitiveEntries = [
           sourceFile("Phone input formatting", "src/registry/lib/phone-input-format.ts", "util"),
           phoneInputRecipeFile,
         ],
-        composition: [
-          {
-            title: "Country-aware form field",
-            code: `Field
-├── FieldLabel
-├── FieldControl render={<PhoneInput />}
-│   └── PhoneInput
-│       └── InputGroup
-│           ├── Country search (Popover + Command)
-│           └── InputGroupInput
-├── FieldDescription
-└── FieldError`,
-          },
-        ],
+
         registryKind: "phone-input",
       },
     },
@@ -1418,20 +1364,7 @@ export const primitiveEntries = [
           surfaceVariantsFile,
           ...popupRecipeFiles,
         ],
-        composition: [
-          {
-            title: "Searchable list",
-            code: `Combobox
-├── ComboboxInput
-└── ComboboxContent
-    ├── ComboboxEmpty
-    └── ComboboxList
-        ├── ComboboxGroup
-        │   ├── ComboboxGroupLabel
-        │   └── ComboboxItem
-        └── ComboboxItem`,
-          },
-        ],
+
         registryKind: "combobox",
       },
     },
@@ -1495,18 +1428,7 @@ export const primitiveEntries = [
         example: sourceFile("Card preview", "src/registry/examples/control-ui/primitives/card.tsx", "example"),
         source: sourceFile("Card slot", "src/registry/sources/control-ui/ui/card.tsx", "component"),
         supportFiles: [cardRecipeFile],
-        composition: [
-          {
-            title: "Panel anatomy",
-            code: `Card
-├── CardHeader
-│   ├── CardTitle
-│   ├── CardDescription
-│   └── CardAction
-├── CardContent
-└── CardFooter`,
-          },
-        ],
+
         registryKind: "card",
       },
     },
@@ -1567,16 +1489,7 @@ export const primitiveEntries = [
         example: sourceFile("Button group preview", "src/registry/examples/control-ui/primitives/button-group.tsx", "example"),
         source: sourceFile("Button group slot", "src/registry/sources/control-ui/ui/button-group.tsx", "component"),
         supportFiles: [buttonGroupRecipeFile],
-        composition: [
-          {
-            title: "Joined actions",
-            code: `ButtonGroup
-├── ButtonGroupText
-├── Button
-├── ButtonGroupSeparator
-└── Button`,
-          },
-        ],
+
         registryKind: "button-group",
       },
     },
@@ -1619,18 +1532,7 @@ export const primitiveEntries = [
         example: sourceFile("Item preview", "src/registry/examples/control-ui/primitives/item.tsx", "example"),
         source: sourceFile("Item slot", "src/registry/sources/control-ui/ui/item.tsx", "component"),
         supportFiles: [sourceFile("Separator slot", "src/registry/sources/control-ui/ui/separator.tsx", "skin-control"), itemRecipeFile],
-        composition: [
-          {
-            title: "Grouped content rows",
-            code: `ItemGroup
-├── Item
-│   ├── ItemMedia
-│   ├── ItemContent
-│   └── ItemActions
-├── ItemSeparator
-└── Item`,
-          },
-        ],
+
         registryKind: "item",
       },
     },
@@ -1709,19 +1611,7 @@ export const primitiveEntries = [
         example: sourceFile("Tree preview", "src/registry/examples/control-ui/primitives/tree.tsx", "example"),
         source: sourceFile("Tree slot", "src/registry/sources/control-ui/ui/tree.tsx", "component"),
         supportFiles: [treeRecipeFile],
-        composition: [
-          {
-            title: "Branching tree",
-            code: `Tree
-├── TreeItem
-│   ├── TreeItemTrigger
-│   │   ├── TreeItemIndicator
-│   │   └── TreeItemLabel
-│   └── TreeItemContent
-│       └── TreeItem
-└── TreeItem`,
-          },
-        ],
+
         registryKind: "tree",
       },
     },
@@ -1766,21 +1656,7 @@ export const primitiveEntries = [
           surfaceVariantsFile,
           ...popupRecipeFiles,
         ],
-        composition: [
-          {
-            title: "Free-text suggestions",
-            code: `Autocomplete
-├── AutocompleteInput
-│   └── AutocompleteClear
-└── AutocompleteContent
-    ├── AutocompleteEmpty
-    └── AutocompleteList
-        ├── AutocompleteGroup
-        │   ├── AutocompleteGroupLabel
-        │   └── AutocompleteItem
-        └── AutocompleteItem`,
-          },
-        ],
+
         registryKind: "autocomplete",
       },
     },
@@ -1888,20 +1764,7 @@ export const primitiveEntries = [
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           dockablePanelRecipeFile,
         ],
-        composition: [
-          {
-            title: "Workspace panel",
-            code: `DockablePanel
-├── DockablePanelHeader
-│   ├── DockablePanelDragHandle
-│   │   └── DockablePanelTitle
-│   └── DockablePanelActions
-│       ├── DockablePanelDock
-│       ├── DockablePanelToggle
-│       └── DockablePanelClose
-└── DockablePanelContent`,
-          },
-        ],
+
         registryKind: "dockable-panel",
       },
     },
@@ -1924,15 +1787,7 @@ export const primitiveEntries = [
         example: sourceFile("Infinite canvas preview", "src/registry/examples/control-ui/primitives/infinite-canvas.tsx", "example"),
         source: sourceFile("Infinite canvas", "src/registry/sources/control-ui/ui/infinite-canvas.tsx", "component"),
         supportFiles: [infiniteCanvasRecipeFile],
-        composition: [
-          {
-            title: "Unbounded spatial workspace",
-            code: `InfiniteCanvas
-├── InfiniteCanvasContent
-│   └── Your spatial nodes
-└── InfiniteCanvasControls`,
-          },
-        ],
+
         registryKind: "infinite-canvas",
       },
     },

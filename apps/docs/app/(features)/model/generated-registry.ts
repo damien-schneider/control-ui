@@ -3443,6 +3443,11 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/sidebar-menu.css",
+        target: "@components/control-ui/styles/recipes/sidebar-menu.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/sidebar.css",
         target: "@components/control-ui/styles/recipes/sidebar.css",
         type: "registry:file",
@@ -3593,18 +3598,13 @@ export const registryMetadata = {
   },
   "skin-modern-apple": {
     dependencies: [],
-    registryDependencies: ["core", "liquid-glass-optics"],
+    registryDependencies: ["core"],
     sourceManifestPath: "registry/modern-apple/skin.json",
     files: [
       {
-        path: "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime.tsx",
-        target: "@components/control-ui/modern-apple-liquid-glass-runtime.tsx",
+        path: "src/registry/skin-packs/modern-apple/modern-apple-glass-filter.tsx",
+        target: "@components/control-ui/modern-apple-glass-filter.tsx",
         type: "registry:component",
-      },
-      {
-        path: "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass.ts",
-        target: "@components/control-ui/modern-apple-liquid-glass.ts",
-        type: "registry:lib",
       },
       {
         path: "src/registry/skin-packs/modern-apple/skin.config.tsx",

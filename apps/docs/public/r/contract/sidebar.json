@@ -228,6 +228,13 @@
         ],
         "states": []
       },
+      "group-content": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": []
+      },
       "group-label": {
         "family": "sidebar",
         "registryItems": [
@@ -266,6 +273,20 @@
             "attribute": "data-indicator",
             "source": "control-ui",
             "valueKind": "open",
+            "values": []
+          }
+        ]
+      },
+      "menu-action": {
+        "family": "sidebar",
+        "registryItems": [
+          "sidebar"
+        ],
+        "states": [
+          {
+            "attribute": "data-show-on-hover",
+            "source": "control-ui",
+            "valueKind": "presence",
             "values": []
           }
         ]

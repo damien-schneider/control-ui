@@ -1,6 +1,7 @@
 import type { PracticeSkillId, SkillConcern, SkillConcernId } from "@control-ui/skills";
 import type { blockEntries, UseCaseKindId } from "@/app/(features)/catalog/blocks";
 import type { componentEntries } from "@/app/(features)/catalog/components";
+import type { CatalogCompositionExample } from "@/app/(features)/catalog/compositions/types";
 import type { extensionEntries } from "@/app/(features)/catalog/extensions";
 import type { GuideCodeId, GuideGroupId, guideEntries } from "@/app/(features)/catalog/guides";
 import type { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
@@ -77,11 +78,11 @@ export type DocsPrimitiveExample = {
   previewClassName?: string;
 };
 
-export type CompositionExample = {
-  title: string;
-  code: string;
-  ownParts?: string[];
+export type CompositionExample = CatalogCompositionExample & {
+  ownParts?: readonly string[];
 };
+
+export type Composition = readonly [CompositionExample, ...CompositionExample[]];
 
 export type DocsKnob = { name: string; syntax: string; defaultValue: string };
 export type DocsKnobFamily = { id: string; href?: string; knobs: DocsKnob[] };
@@ -100,7 +101,7 @@ export type DocsPrimitive = {
     examples?: DocsPrimitiveExample[];
     source: SourceFile;
     supportFiles?: SourceFile[];
-    composition?: CompositionExample[];
+    composition: Composition;
     registryKind: RegistryKindId;
     registryDependencies: DocsRegistryDependency[];
     knobs: DocsKnobFamily[];
@@ -198,6 +199,7 @@ export type DocsComponentVersion = {
 };
 
 export type DocsComponent = {
+  composition: Composition;
   id: ComponentId;
   name: string;
   summary: string;
@@ -226,7 +228,7 @@ export type DocsBlock = {
   usage: Record<IntegrationId, SourceFile>;
   registryDependencies: DocsRegistryDependency[];
   files: SourceFile[];
-  composition?: CompositionExample[];
+  composition: Composition;
 };
 
 export type DocsShellData = {

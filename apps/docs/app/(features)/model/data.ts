@@ -1,6 +1,7 @@
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
 import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
+import { catalogCompositions } from "@/app/(features)/catalog/compositions";
 import { extensionEntries } from "@/app/(features)/catalog/extensions";
 import { guideEntries } from "@/app/(features)/catalog/guides";
 import { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
@@ -11,7 +12,7 @@ import { source } from "@/app/(features)/model/data-source";
 import { knobFamiliesFor, knobFamilyIdOf } from "@/app/(features)/model/knob-docs";
 import { publicRegistryDependencies, registryDocumentedSourceFiles } from "@/app/(features)/model/registry-source-files";
 import type {
-  CompositionExample,
+  Composition,
   DocsBlock,
   DocsComponent,
   DocsComponentVersion,
@@ -29,10 +30,6 @@ import type {
   SourceFile,
 } from "@/app/(features)/model/types";
 import { objectFromEntries } from "@/lib/typed-object";
-
-function hasCompositionArray(entry: unknown): entry is { composition: readonly CompositionExample[] } {
-  return typeof entry === "object" && entry !== null && "composition" in entry;
-}
 
 function sourceFrom(file: CatalogSourceFile): SourceFile {
   return source(file.label, file.path, file.slot);
@@ -122,12 +119,12 @@ function sourceRequiredRecord<T extends string>(keys: readonly T[], record: Read
   return objectFromEntries(keys.map((key) => [key, sourceFrom(record[key])] as const));
 }
 
-function compositionArray(examples: readonly { title: string; description?: string; code: string }[]) {
-  return examples.map((example) => ({
-    title: example.title,
-    description: example.description,
-    code: example.code,
-  }));
+function documentedComposition(id: keyof typeof catalogCompositions, sourceFiles: SourceFile[]): Composition {
+  const ownParts = sourceFiles.flatMap((file) =>
+    [...file.code.matchAll(/export\s+(?:function|const)\s+([A-Z][A-Za-z0-9]*)/g)].map((match) => match[1]),
+  );
+  const [first, ...rest] = catalogCompositions[id];
+  return [{ ...first, ownParts }, ...rest.map((example) => ({ ...example, ownParts }))];
 }
 
 function getGuides(): GuidePage[] {
@@ -188,6 +185,7 @@ function getComponents(): DocsComponent[] {
 
     return {
       id: entry.id,
+      composition: documentedComposition(entry.id, [installed.source, ...installed.supportFiles]),
       name: entry.name,
       summary: entry.summary,
       status: catalogStatus(entry),
@@ -232,7 +230,7 @@ function getBlocks(): DocsBlock[] {
       example: sourceFrom(entry.paths.example),
       usage: sourceRequiredRecord(integrationIds, entry.paths.usage),
       files: [installed.source, ...installed.supportFiles],
-      composition: hasCompositionArray(entry) ? compositionArray(entry.composition) : undefined,
+      composition: documentedComposition(entry.id, [installed.source, ...installed.supportFiles]),
     };
   });
 }
@@ -264,7 +262,7 @@ function getPrimitives(): DocsPrimitive[] {
             : undefined,
         source: installed.source,
         supportFiles: installed.supportFiles,
-        composition: hasCompositionArray(entry.paths.registry) ? compositionArray(entry.paths.registry.composition) : undefined,
+        composition: documentedComposition(entry.id, [installed.source, ...installed.supportFiles]),
         registryDependencies: registryDependencyReferences(entry.paths.registry.registryKind),
         registryKind: entry.paths.registry.registryKind,
         knobs: installed.knobs,

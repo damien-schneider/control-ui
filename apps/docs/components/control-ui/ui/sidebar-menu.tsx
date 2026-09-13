@@ -24,6 +24,41 @@ export type SidebarGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { st
   render?: RenderProp<ComponentProps<"div">>;
 };
 
+export type SidebarGroupContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
+
+export type SidebarMenuActionProps = Omit<ComponentProps<"button">, "style"> & {
+  render?: RenderProp<ComponentProps<"button">>;
+  showOnHover?: boolean;
+  style?: CSSProperties & SidebarKnobStyle;
+};
+
+export function SidebarGroupContent({ className, ...props }: SidebarGroupContentProps) {
+  return (
+    <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="group-content" className={cn("w-full", className)} {...props} />
+  );
+}
+
+export function SidebarMenuAction({ className, render, showOnHover = false, children, ...props }: SidebarMenuActionProps) {
+  return useRender({
+    defaultTagName: "button",
+    render,
+    props: {
+      type: "button",
+      ...props,
+      "data-control-ui": "sidebar",
+      "data-control-family": "sidebar",
+      "data-slot": "menu-action",
+      "data-show-on-hover": showOnHover || undefined,
+      className: cn(
+        "end-1 flex size-5 items-center justify-center -translate-y-1/2 disabled:pointer-events-none group-data-[collapsible=icon]:hidden [&>svg]:size-4 [&>svg]:shrink-0",
+        className,
+        "absolute",
+      ),
+      children,
+    },
+  });
+}
+
 export type SidebarMenuButtonProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle } & {
   render?: RenderProp<ComponentProps<"button">>;
   isActive?: boolean;
@@ -135,7 +170,7 @@ const sidebarMenuButtonSizeClasses = {
 } satisfies Record<SidebarMenuButtonSize, string>;
 
 const sidebarMenuButtonClasses = cva(
-  "peer/menu-button flex w-full items-center overflow-hidden text-start group-data-[collapsible=icon]:px-0! disabled:pointer-events-none aria-disabled:pointer-events-none [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  "peer/menu-button flex w-full items-center overflow-hidden text-start group-data-[collapsible=icon]:px-0! disabled:pointer-events-none aria-disabled:pointer-events-none [&>span]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
   {
     variants: {
       variant: sidebarMenuButtonVariantClasses,

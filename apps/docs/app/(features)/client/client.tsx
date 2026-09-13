@@ -17,7 +17,7 @@ import { ControlEffectsRuntime } from "@/components/control-ui/extensions/contro
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
-import { SkinEpochBoundary } from "@/components/theme-drawer-context";
+import { SkinEpochBoundary } from "@/components/skin-epoch-context";
 import { pageLinks } from "./page-links";
 import {
   defaultSetupPreference,
@@ -150,7 +150,6 @@ function DocsShellContent({
   const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
-  // parent effect runs after wrapper and container refs attach
   useIsomorphicLayoutEffect(() => {
     if (!activePage) return;
     const wrapper = sidebarWrapperRef.current;
@@ -235,12 +234,14 @@ function DocsShellContent({
         sidebarWrapperRef={sidebarWrapperRef}
         updateSetupPreference={updateSetupPreference}
       />
-      <SidebarInset className="min-h-0 bg-canvas lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
+      <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
         <div
+          data-docs-content=""
           data-control-ui="sidebar-layout"
+          data-control-family="sidebar-layout"
           data-slot="content"
           data-surface="panel"
-          className="relative m-1.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-card shadow-pop lg:m-2"
+          className="relative flex min-h-0 flex-1 flex-col overflow-hidden"
         >
           <div
             data-docs-sidebar-trigger=""

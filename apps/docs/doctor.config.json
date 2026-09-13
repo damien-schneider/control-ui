@@ -12,7 +12,7 @@
         "rules": ["deslop/unused-file"]
       },
       {
-        "files": ["app/docs-seo.tsx", "components/theme-drawer-context.tsx", "components/theme-toggle.tsx"],
+        "files": ["app/docs-seo.tsx", "components/skin-epoch-context.tsx", "components/theme-toggle.tsx"],
         "rules": ["react-doctor/only-export-components"]
       },
       {

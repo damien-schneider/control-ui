@@ -1,95 +1,88 @@
-/*
- * Pack's own vars + glass utilities. Import after Tailwind+theme. The root runtime progressively
- * replaces the CSS fallback with refractive WebGL while segmented-tab knobs remain CSS-only, all under
- * [data-skin="modern-apple"] so multiple skins co-compile in one build (no @utility — global).
- */
-
-/* Pack's own vars (glass tints, edge-highlight, hairlines, segmented control) — NOT in theme.css
- * token contract. Mode-dependent, same light/dark scoping as theme.css; unlayered so consumers inherit. */
 [data-skin="modern-apple"] {
-  --hairline: oklch(0 0 0 / 0.06);
-  /* the Liquid-Glass control fill — a translucent white wafer the backdrop shows through */
-  --glass-fill: oklch(1 0 0 / 0.55);
-  --glass-fill-hover: oklch(1 0 0 / 0.7);
-  --glass-fill-active: oklch(1 0 0 / 0.42);
-  /* the bright white rim + top gloss that gives the glass its edge ("ring white") */
-  --glass-rim: oklch(1 0 0 / 0.55);
-  --glass-gloss: oklch(1 0 0 / 0.75);
-  --backdrop-blur-glass: 10px; /* DS Liquid Glass/Frost — Regular = 6 (controls frost lighter than large surfaces); 10px on the web canvas */
-  --segmented-bg: oklch(0.7907 0.0074 286.229 / 0.22); /* recessed translucent well */
-  --segmented-active-bg: oklch(1 0 0 / 0.85); /* raised glass segment */
-  /* Subtle canvas gradient: whisper of top-light + cool floor so frosted surfaces read as glass, not flat fill. Low-alpha on purpose. */
-  --canvas-gradient: linear-gradient(170deg, oklch(1 0 0 / 0.75) 0%, oklch(0.96 0.006 255 / 0.2) 48%, oklch(0.9 0.014 262 / 0.4) 100%);
-  /* Float gap: wide enough that soft drop shadow renders on all sides (native p-2/8px was too tight). */
-  --apple-sidebar-float-gap: 0.875rem;
-  /* DS menu material (Figma 2004:25200/25203) doesn't translate to CSS: Figma's stacked-fill blend
-   * modes + inner-shadow spread math produce different results in background-blend-mode/box-shadow.
-   * We reproduce the DS's VISUAL RESULT instead: one translucent grey fill + white top gloss + hairline + soft drop. */
-  --_apple-popup-fill: oklch(0.8665 0 0 / 0.55);
-  /* Shared glass "look" (popover, sidebar, …): white top gloss + hairline edge. Drop/lift added
-   * per-surface (popover = big soft ambient; edge-pinned sidebar = contained, avoids clipping). */
-  --surface-gloss: rgba(255, 255, 255, 0.6);
-  --surface-hairline: rgba(0, 0, 0, 0.1);
-  --menu-shadow:
-    inset 0 1px 0 0 var(--surface-gloss), inset 0 0 0 0.5px var(--surface-hairline), 0 8px 48px 0 rgba(0, 0, 0, 0.2),
-    0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  --apple-liquid-refraction: 0.85;
-  --apple-liquid-modal-refraction: 0.92;
-  --apple-liquid-edge-band: 32;
-  --apple-liquid-edge-ratio: 0.36;
-  --apple-liquid-modal-edge-ratio: 0.25;
-  --apple-liquid-edge-darkening: 0.025;
-  --apple-liquid-specular: 0.11;
-  --apple-liquid-fresnel: 0.35;
-  --apple-liquid-edge-highlight: 0.16;
-  --apple-liquid-center-diffusion: 0.38;
-  --apple-liquid-edge-diffusion: 0.08;
-  --apple-liquid-modal-center-diffusion: 0.82;
-  --apple-liquid-modal-edge-diffusion: 0.32;
-  --apple-liquid-fill: 0.32;
-  --apple-liquid-modal-fill: 0.6;
-  --apple-liquid-shadow: 0 12px 28px -12px oklch(0.2244 0.0257 263.845 / 0.28), 0 2px 7px -3px oklch(0.2244 0.0257 263.845 / 0.16);
-  --apple-liquid-modal-shadow: 0 24px 48px -20px oklch(0.2244 0.0257 263.845 / 0.32), 0 4px 12px -5px oklch(0.2244 0.0257 263.845 / 0.18);
-  /* macOS menu selection blue (DS node 2004:25249): solid pill + white text, not translucent tint. Same both modes. */
-  --menu-selection: oklch(0.5641 0.2301 259.998);
+  --hairline: var(--border);
+  --apple-glass-refraction: blur(0px);
+  --apple-glass-luminance: brightness(1);
+  --glass-fill: oklch(1 0 0 / 0.72);
+  --glass-fill-hover: oklch(1 0 0 / 0.9);
+  --glass-fill-active: oklch(0.92 0 0 / 0.8);
+  --glass-rim: oklch(0 0 0 / 0.08);
+  --glass-gloss: oklch(1 0 0 / 0.85);
+  --backdrop-blur-glass: var(--backdrop-blur-popover);
+  --segmented-bg: oklch(0 0 0 / 0.055);
+  --segmented-active-bg: oklch(1 0 0 / 0.95);
+  --canvas-gradient: linear-gradient(165deg, oklch(0.97 0.004 250), oklch(0.93 0.008 255));
+  --apple-sidebar-float-gap: 0.75rem;
+  --apple-sidebar-background: var(--_apple-popup-fill);
+  --apple-sidebar-selection: oklch(0 0 0 / 0.075);
+  --apple-sidebar-hover: oklch(0 0 0 / 0.035);
+  --apple-sidebar-foreground: var(--foreground);
+  --apple-sidebar-label: var(--muted-foreground);
+  --apple-sidebar-icon: var(--primary);
+  --_apple-popup-fill: oklch(1 0 0 / var(--popover-opacity));
+  --surface-gloss: oklch(1 0 0 / 0.9);
+  --surface-hairline: oklch(0 0 0 / 0.42);
+  --apple-glass-edge-shadow:
+    0 0 0 0.5px var(--surface-hairline),
+    inset 0 0 0 1px var(--surface-gloss),
+    inset 0 2px 1px -0.5px oklch(1 0 0 / 0.95),
+    inset 0 -1px 0 oklch(1 0 0 / 0.6),
+    inset 1px 0 2px oklch(1 0 0 / 0.35),
+    inset -1px 0 2px oklch(0 0 0 / 0.08),
+    inset 0 4px 8px -5px oklch(0 0 0 / 0.2),
+    inset 0 -5px 10px -7px oklch(0 0 0 / 0.28);
+  --apple-liquid-shadow:
+    var(--apple-glass-edge-shadow), 0 12px 40px -8px oklch(from var(--shadow-color) l c h / 0.28),
+    0 3px 10px -3px oklch(from var(--shadow-color) l c h / 0.2);
+  --apple-liquid-modal-shadow:
+    var(--apple-glass-edge-shadow), 0 24px 72px -16px oklch(from var(--shadow-color) l c h / 0.3),
+    0 6px 20px -6px oklch(from var(--shadow-color) l c h / 0.18);
+  --menu-shadow: var(--apple-liquid-shadow);
+  --apple-control-shadow:
+    inset 0 0 0 0.5px var(--glass-rim), inset 0 1px 0 var(--glass-gloss), inset 0 -1px 1px oklch(0 0 0 / 0.04),
+    0 2px 4px -2px oklch(0 0 0 / 0.16);
+}
+
+@supports (backdrop-filter: url("")) {
+  [data-skin="modern-apple"]:has(#cui-modern-apple-refraction),
+  :root:has(#cui-modern-apple-refraction) [data-skin="modern-apple"] {
+    --apple-glass-refraction: url("#cui-modern-apple-refraction");
+  }
 }
 
 :where(.dark) [data-skin="modern-apple"],
 .dark[data-skin="modern-apple"] {
-  --hairline: oklch(1 0 0 / 0.1);
-  --glass-fill: oklch(1 0 0 / 0.12);
-  --glass-fill-hover: oklch(1 0 0 / 0.18);
-  --glass-fill-active: oklch(1 0 0 / 0.08);
-  /* Dark controls over glass (DS node 2004:21141): subtle fill + whisper edge, NOT heavy rim+gloss.
-   * Old white 0.28 rim/0.30 gloss read as "big border" on dark; dropped hard. */
-  --glass-rim: oklch(1 0 0 / 0.09);
-  --glass-gloss: oklch(1 0 0 / 0.07);
-  --segmented-bg: oklch(0.559 0.0147 285.916 / 0.3);
-  --segmented-active-bg: oklch(1 0 0 / 0.16);
-  /* Canvas uses the DS Window Background with whisper top-light; the old high-contrast gradient was too uneven. */
-  --canvas-gradient: linear-gradient(180deg, oklch(0.25 0 0) 0%, oklch(0.235 0 0) 55%, oklch(0.223 0 0) 100%);
-  /* Dark menu material (DS node 2004:25203): graphite rgba(64,64,64,.8) fill + light inner ring +
-   * thin edge rim + soft drop. DS's background-blend-mode:luminosity is a no-op in CSS (see light
-   * block) so tone is baked into fill alpha instead. */
-  --_apple-popup-fill: oklch(0.3715 0 0 / 0.8);
-  --surface-gloss: rgba(255, 255, 255, 0.12);
-  --surface-hairline: rgba(255, 255, 255, 0.2);
-  --menu-shadow:
-    inset 0 0 0 0.5px var(--surface-hairline),
-    1.25px 0 0 -0.75px rgba(219, 219, 219, 0.55),
-    -1.25px 0 0 -0.75px rgba(219, 219, 219, 0.55),
-    0 0 0 0.5px rgba(219, 219, 219, 0.5),
-    0 8px 48px 0 rgba(0, 0, 0, 0.45);
-  --apple-liquid-shadow: 0 14px 32px -12px oklch(0 0 0 / 0.56), 0 2px 8px -3px oklch(0 0 0 / 0.42);
-  --apple-liquid-modal-shadow: 0 28px 56px -20px oklch(0 0 0 / 0.62), 0 5px 14px -5px oklch(0 0 0 / 0.46);
-  --apple-liquid-fill: 0.5;
-  --apple-liquid-modal-fill: 0.76;
-  --menu-selection: oklch(0.5641 0.2301 259.998);
+  --glass-fill: oklch(0.42 0.003 260 / 0.65);
+  --glass-fill-hover: oklch(0.4 0.003 260 / 0.75);
+  --glass-fill-active: oklch(0.35 0.003 260 / 0.75);
+  --glass-rim: oklch(1 0 0 / 0.1);
+  --glass-gloss: oklch(1 0 0 / 0.16);
+  --segmented-bg: oklch(0 0 0 / 0.22);
+  --segmented-active-bg: oklch(0.46 0.003 260 / 0.8);
+  --canvas-gradient: linear-gradient(165deg, oklch(0.27 0.006 255), oklch(0.2 0.004 255));
+  --_apple-popup-fill: oklch(0.46 0.012 280 / var(--popover-opacity));
+  --apple-sidebar-background: oklch(0.275 0.013 250 / 0.8);
+  --apple-sidebar-selection: oklch(1 0 0 / 0.12);
+  --apple-sidebar-hover: oklch(1 0 0 / 0.06);
+  --apple-sidebar-foreground: oklch(0.89 0.004 260);
+  --apple-sidebar-label: oklch(0.68 0.008 250);
+  --apple-sidebar-icon: oklch(from var(--primary) max(l, 0.7) c h);
+  --apple-glass-luminance: brightness(0.55);
+  --surface-gloss: oklch(1 0 0 / 0.26);
+  --surface-hairline: oklch(0 0 0 / 0.92);
+  --apple-glass-edge-shadow:
+    0 0 0 1px var(--surface-hairline),
+    inset 0 0 0 0.5px var(--surface-gloss),
+    inset 0 1px 1px -0.25px oklch(1 0 0 / 0.32),
+    inset 0 -1px 0 oklch(1 0 0 / 0.1),
+    inset 1px 0 2px oklch(1 0 0 / 0.06),
+    inset -1px 0 2px oklch(0 0 0 / 0.18),
+    inset 0 4px 8px -5px oklch(0 0 0 / 0.3),
+    inset 0 -5px 10px -7px oklch(0 0 0 / 0.36);
+  --apple-liquid-shadow: var(--apple-glass-edge-shadow), 0 12px 44px -8px oklch(0 0 0 / 0.55), 0 2px 10px -3px oklch(0 0 0 / 0.4);
+  --apple-liquid-modal-shadow: var(--apple-glass-edge-shadow), 0 28px 72px -16px oklch(0 0 0 / 0.6), 0 6px 20px -6px oklch(0 0 0 / 0.45);
 }
 
 @layer components {
-  /* apple-glass: shared translucent material for ad-hoc panels wanting the same read as popover
-   * surfaces (--popover-opacity/--backdrop-blur-popover); adds white top-edge gloss via inset ring. */
   [data-skin="modern-apple"] .apple-glass {
     background-color: oklch(from var(--popover) l c h / var(--popover-opacity));
     -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
@@ -97,29 +90,21 @@
     box-shadow: inset 0 1px 0 0 var(--glass-gloss);
   }
 
-  /* Floating-sidebar glass: uses NATIVE shadcn `floating` layout (ControlUiSkin.sidebarLayout), which
-   * already draws gap/padding/rounding/border/shadow. Here: (1) re-materialise as Liquid Glass, (2)
-   * widen float gap so drop shadow isn't clipped (native p-2/8px < shadow blur). Not an overflow bug. */
   [data-skin="modern-apple"]
     [data-slot="root"][data-variant="floating"][data-control-family="sidebar"]
     [data-slot="container"][data-control-family="sidebar"] {
     padding: var(--apple-sidebar-float-gap);
-    overflow: visible; /* the main sidebar is not a resizable clip panel — never crop its own shadow */
+    overflow: visible;
   }
 
-  /* Lighter glass and contained elevation avoid clipping at the edge-pinned sidebar float gap. */
   [data-skin="modern-apple"] [data-slot="root"][data-variant="floating"][data-control-family="sidebar"] {
     --cui-sidebar-inner-border-width: 0px;
-    --cui-sidebar-inner-background: oklch(from var(--popover) l c h / var(--popover-opacity));
+    --cui-sidebar-inner-background: var(--apple-sidebar-background);
     --cui-sidebar-inner-shadow:
       inset 0 1px 0 0 var(--surface-gloss), inset 0 0 0 0.5px var(--surface-hairline), 0 3px 12px -1px oklch(0 0 0 / 0.14),
       0 1px 4px oklch(0 0 0 / 0.08);
-    -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
-    backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
   }
 
-  /* Collapsed icon rail: reserve wider float gap on both gap+container so ~3rem icon column isn't
-   * eaten by padding (native floating only budgets 8px). data-collapsible="icon" only while collapsed. */
   [data-skin="modern-apple"]
     [data-slot="root"][data-variant="floating"][data-collapsible="icon"][data-control-family="sidebar"]
     [data-slot="gap"][data-control-family="sidebar"],
@@ -129,29 +114,67 @@
     width: calc(var(--sidebar-width-icon) + var(--apple-sidebar-float-gap) * 2 + 2px);
   }
 
-  /* Canvas gets glass gradient; background-attachment:fixed pins it so wrapper+inset share one seamless wash. */
   [data-skin="modern-apple"] :where([data-slot="wrapper"][data-control-family="sidebar"]) {
     --cui-sidebar-wrapper-background-image: var(--canvas-gradient);
-    --cui-sidebar-inset-background-image: var(--canvas-gradient);
+    --cui-sidebar-inset-background: var(--background);
+    --cui-sidebar-inset-background-image: none;
     --cui-sidebar-inset-shadow: none;
     background-attachment: fixed;
   }
 
   [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="sidebar"]) {
-    --cui-sidebar-inner-background: var(--glass-fill);
+    --sidebar: transparent;
+    --cui-sidebar-inner-background: var(--apple-sidebar-background);
     --cui-sidebar-inner-border-color: var(--glass-rim);
-    --cui-sidebar-inner-border-width: 1px;
-    --cui-sidebar-inner-radius: var(--radius-panel);
-    --cui-sidebar-menu-button-radius: var(--radius-control);
-    --cui-sidebar-menu-button-active-background: oklch(from var(--primary) l c h / 0.14);
+    --cui-sidebar-inner-border-width: 0px;
+    --cui-sidebar-inner-radius: 0px;
+    --cui-sidebar-group-label-foreground: var(--apple-sidebar-label);
+    --cui-sidebar-menu-button-radius: 0.375rem;
+    --cui-sidebar-menu-button-foreground: var(--apple-sidebar-foreground);
+    --cui-sidebar-menu-button-hover-background: var(--apple-sidebar-hover);
+    --cui-sidebar-menu-button-hover-foreground: var(--foreground);
+    --cui-sidebar-menu-button-active-background: var(--apple-sidebar-selection);
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="sidebar"][data-slot="menu-button"]) {
+    font-size: var(--text-label);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="sidebar"][data-slot="menu-button"][data-active]),
+  [data-skin="modern-apple"] :where([data-control-family="sidebar"][data-slot="group-label"]) {
+    font-weight: 600;
+  }
+
+  [data-skin="modern-apple"]
+    :where([data-control-family="sidebar"][data-slot="menu-button"], [data-control-family="sidebar"][data-slot="group-label"])
+    > svg:first-child {
+    color: var(--apple-sidebar-icon);
+  }
+
+  [data-skin="modern-apple"]
+    :where([data-control-family="sidebar"][data-slot="menu-track"])
+    > :where([data-control-family="track-highlight"][data-slot="root"]) {
+    --cui-track-highlight-background: var(--cui-sidebar-menu-button-active-background);
+    --cui-track-highlight-hover-background: var(--cui-sidebar-menu-button-hover-background);
+    --cui-track-highlight-radius: var(--cui-sidebar-menu-button-radius);
+    --cui-track-highlight-ring-color: transparent;
+    --cui-track-highlight-shadow: none;
+  }
+
+  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="sidebar"][data-variant="floating"]) {
+    --cui-sidebar-inner-radius: var(--radius-panel);
+  }
+
+  [data-skin="modern-apple"] :where([data-slot="inner"][data-control-family="sidebar"]) {
+    -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.5);
+    backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.5);
   }
 
   [data-skin="modern-apple"] :where([data-slot="inset"][data-control-family="sidebar"]) {
     background-attachment: fixed;
   }
 
-  /* The glass sidebar already frames the page; the content pane keeps no chrome of its own. */
   [data-skin="modern-apple"] [data-slot="content"][data-control-family="sidebar-layout"] {
     margin: 0;
     border-width: 0;
@@ -160,55 +183,23 @@
     box-shadow: none;
   }
 
-  /* scroll fades + streaming sweep come from library effects.css (token-driven, recolor for free). */
-
-  [data-skin="modern-apple"]
-  :where(
-    [data-control-ui="button"][data-slot="root"][data-control-family="button"],
-    [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
-  ) {
-    --cui-button-background: var(--glass-fill);
-    --cui-button-foreground: var(--foreground);
-    --cui-button-hover-background: var(--glass-fill-hover);
-    --cui-button-hover-foreground: var(--foreground);
-    --cui-button-press-background: var(--glass-fill-active);
+  [data-skin="modern-apple"] :where([data-control-family="button"][data-control="true"]) {
     --cui-button-press-scale: 0.97;
-    --cui-button-shadow: inset 0 0 0 0.5px var(--glass-rim), inset 0 1px 0 0 var(--glass-gloss), 0 1px 2px 0 oklch(0 0 0 / 0.06);
-    -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
-    backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
   }
 
-  [data-skin="modern-apple"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
-    ) {
-    --cui-button-background: var(--primary);
-    --cui-button-foreground: var(--primary-foreground);
-    --cui-button-hover-background: var(--primary);
-    --cui-button-hover-foreground: var(--primary-foreground);
-    --cui-button-press-background: var(--primary);
-    --cui-button-shadow: inset 0 1px 0 0 oklch(1 0 0 / 0.35), 0 1px 3px 0 rgb(10 102 240 / 0.4);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
+  [data-skin="modern-apple"] :where([data-control-family="button"][data-control="true"][data-variant="surface"]) {
+    --cui-button-background: var(--glass-fill);
+    --cui-button-hover-background: var(--glass-fill-hover);
+    --cui-button-press-background: var(--glass-fill-active);
+    --cui-button-shadow: var(--apple-control-shadow);
+    -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.5);
+    backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.5);
   }
 
-  @media (hover: hover) {
-    [data-skin="modern-apple"]
-      :where(
-        [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"]:hover,
-        [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]:hover
-      ) {
-      filter: brightness(1.05);
-    }
-  }
-
-  [data-skin="modern-apple"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"]:active,
-      [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]:active
-    ) {
-    filter: brightness(0.95);
+  [data-skin="modern-apple"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
+    --cui-button-hover-background: var(--cui-button-background);
+    --cui-button-hover-foreground: var(--cui-button-foreground);
+    --cui-button-shadow: inset 0 1px 0 oklch(1 0 0 / 0.2), inset 0 -1px 0 oklch(0 0 0 / 0.12), 0 2px 4px -2px oklch(0 0 0 / 0.2);
   }
 
   [data-skin="modern-apple"]
@@ -228,12 +219,11 @@
     --cui-button-active-shadow: 0 0 transparent;
   }
 
-  /* Apple segmented control: recessed well + raised glass segment. Pure re-values of library's
-   * component-local knobs; geometry/states/line variant stay baseline's. */
   [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="tabs"]) {
     --cui-tabs-trigger-radius: 0.5625rem;
     --cui-tabs-list-padding: 0.125rem;
     --cui-tabs-list-background: var(--segmented-bg);
+    --cui-tabs-list-shadow: inset 0 1px 2px oklch(0 0 0 / 0.08);
     --cui-tabs-list-backdrop-filter: blur(var(--backdrop-blur-glass));
     --cui-tabs-border-color: var(--hairline);
     --cui-tabs-indicator-background: var(--segmented-active-bg);
@@ -246,7 +236,7 @@
 @layer components {
   [data-skin="modern-apple"]
     :where([data-control-family="popup"][data-popup-part="surface"], [data-control-family="popup"][data-popup-part="list-surface"]) {
-    --cui-popup-radius: 0.75rem;
+    --cui-popup-radius: var(--radius-popover);
     --cui-popup-border-width: 0px;
   }
 
@@ -258,44 +248,30 @@
     ) {
     --cui-popup-background: var(--_apple-popup-fill);
     --cui-popup-shadow: var(--menu-shadow);
-    --cui-popup-backdrop-filter: none;
+    --cui-popup-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.5) var(--apple-glass-luminance) var(--apple-glass-refraction);
   }
 
-  [data-skin="modern-apple"]
-    :where(
-      [data-control-family="popup"][data-popup-part="surface"][data-apple-liquid-glass-ready="true"],
-      [data-control-family="popup"][data-popup-part="list-surface"][data-apple-liquid-glass-ready="true"]
-    ) {
-    --cui-popup-background: transparent;
-    --cui-popup-border-width: 0px;
-    --cui-popup-shadow: var(--apple-liquid-shadow);
-    --cui-popup-backdrop-filter: none;
-  }
-
-  [data-skin="modern-apple"]
-    :where(
-      [data-control-family="popup"][data-popup-part="surface"][data-apple-liquid-glass-profile="modal"][data-apple-liquid-glass-ready="true"],
-      [data-control-family="popup"][data-popup-part="list-surface"][data-apple-liquid-glass-profile="modal"][data-apple-liquid-glass-ready="true"]
-    ) {
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"]) {
     --cui-popup-shadow: var(--apple-liquid-modal-shadow);
   }
 
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-slot="description"]) {
+    color: var(--cui-popup-foreground);
+  }
+
   [data-skin="modern-apple"] :where([data-popup-part="list-surface"]) {
-    padding: 0.25rem;
+    padding: var(--popover-padding);
   }
 
   [data-skin="modern-apple"] :where([data-popup-part="item"]) {
     min-height: 1.5rem;
-    padding: 0.125rem 0.5rem;
-    font-size: 0.8125rem;
-  }
-
-  [data-skin="modern-apple"] :where([data-popup-part="item"][data-highlighted]) {
-    color: var(--primary-foreground);
+    padding-block: 0.125rem;
+    font-size: var(--text-label);
+    font-weight: 500;
   }
 
   [data-skin="modern-apple"] :where([data-popup-part="label"]) {
-    padding: 0.25rem 0.5rem;
+    padding-block: 0.25rem;
     font-size: var(--text-label);
     font-weight: 600;
     letter-spacing: normal;
@@ -309,9 +285,9 @@
       [data-control-family="popup"][data-popup-part="bar"]
     ) {
     --cui-popup-item-radius: var(--radius-popup-item);
-    --cui-popup-item-highlight-background: var(--menu-selection);
-    --cui-popup-item-highlight-foreground: var(--primary-foreground);
-    --cui-popup-item-highlight-muted-foreground: var(--primary-foreground);
+    --cui-popup-item-highlight-background: var(--active-fill);
+    --cui-popup-item-highlight-foreground: var(--foreground);
+    --cui-popup-item-highlight-muted-foreground: var(--foreground);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-separator-color: var(--hairline);
   }
@@ -323,28 +299,12 @@
   [data-skin="modern-apple"] :where([data-popup-part="shortcut"]) {
     margin-inline-start: auto;
     font-size: var(--text-caption);
-    letter-spacing: 0.1em;
+    letter-spacing: normal;
   }
 
-  [data-skin="modern-apple"]
-    :where(
-      [data-control-ui="select"][data-slot="trigger"][data-control-family="button"],
-      [data-control-ui="dropdown-menu"][data-slot="trigger"][data-control-family="button"]
-    ) {
-    --cui-button-radius: var(--radius-control);
-    --cui-button-background: var(--glass-fill);
-    --cui-button-foreground: var(--foreground);
-    --cui-button-hover-background: var(--glass-fill-hover);
-    --cui-button-hover-foreground: var(--foreground);
-    --cui-button-press-background: var(--glass-fill-active);
-    --cui-button-press-scale: 0.97;
-    --cui-button-shadow: inset 0 0 0 0.5px var(--glass-rim), inset 0 1px 0 0 var(--glass-gloss), 0 1px 2px 0 oklch(0 0 0 / 0.06);
-    -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
-    backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
-  }
-
-  [data-skin="modern-apple"] :where([data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"]) {
-    --cui-popup-radius: 0.75rem;
+  [data-skin="modern-apple"] :where([data-control-family="popup"][data-slot][data-popup-part="surface"][data-surface="modal"]) {
+    --cui-popup-radius: var(--radius-panel);
+    --cui-popup-shadow: var(--apple-liquid-modal-shadow);
   }
 
   [data-skin="modern-apple"] :where([data-control-ui="dialog"][data-slot="title"][data-control-family="popup"]) {
@@ -356,12 +316,13 @@
 @layer components {
   [data-skin="modern-apple"] :where([data-control-family="field"][data-control="true"]) {
     --cui-field-radius: var(--radius-control);
-    --cui-field-background: transparent;
+    --cui-field-background: oklch(from var(--background) l c h / 0.55);
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 1px;
-    --cui-field-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
-    --cui-field-focus-border-color: var(--input);
+    --cui-field-backdrop-filter: none;
+    --cui-field-shadow: inset 0 1px 2px oklch(0 0 0 / 0.04);
+    --cui-field-focus-border-color: var(--primary);
   }
 }
 @layer components {
@@ -373,32 +334,13 @@
     --cui-thread-rail-popover-background: var(--_apple-popup-fill);
     --cui-thread-rail-popover-border-width: 0px;
     --cui-thread-rail-popover-shadow: var(--menu-shadow);
-    --cui-thread-rail-popover-backdrop-blur: 0px;
-  }
-
-  [data-skin="modern-apple"] :where([data-control-family="thread-rail"][data-slot="popover"][data-apple-liquid-glass-ready="true"]) {
-    --cui-thread-rail-popover-background: transparent;
-    --cui-thread-rail-popover-border-width: 0px;
-    --cui-thread-rail-popover-shadow: var(--apple-liquid-shadow);
-    --cui-thread-rail-popover-backdrop-blur: 0px;
-  }
-
-  [data-skin="modern-apple"]
-    :where(
-      [data-control-family="thread-rail"][data-slot="popover"][data-apple-liquid-glass-profile="modal"][data-apple-liquid-glass-ready="true"]
-    ) {
-    --cui-thread-rail-popover-shadow: var(--apple-liquid-modal-shadow);
-  }
-
-  [data-skin="modern-apple"] :where([data-slot="inner"][data-control-family="sidebar"]) {
-    -webkit-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
-    backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
+    --cui-thread-rail-popover-backdrop-blur: var(--backdrop-blur-popover);
   }
 
   [data-skin="modern-apple"] :where([data-control-ui="slider"][data-slot="root"][data-control-family="range"]) {
     --cui-range-indicator-background: var(--primary);
     --cui-range-thumb-radius: 9999px;
-    --cui-range-thumb-background: white;
+    --cui-range-thumb-background: oklch(1 0 0);
     --cui-range-thumb-border-color: var(--glass-rim);
     --cui-range-thumb-shadow: 0 1px 3px oklch(0 0 0 / 0.28);
   }
@@ -412,7 +354,7 @@
   }
 
   [data-skin="modern-apple"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
-    --cui-chat-composer-shell-background: transparent;
+    --cui-chat-composer-shell-background: oklch(from var(--background) l c h / 0.75);
     --cui-chat-composer-shell-backdrop-filter: blur(var(--backdrop-blur-glass)) saturate(1.8);
     --cui-chat-composer-shell-border-color: var(--input);
     --cui-chat-composer-shell-radius: var(--radius-control);
@@ -425,10 +367,8 @@
   }
 
   [data-skin="modern-apple"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]) {
-    --cui-chat-layout-background: oklch(from var(--card) l c h / 0.7);
-    --cui-chat-layout-border-color: var(--glass-rim);
-    --cui-chat-layout-shadow: var(--shadow-soft);
-    -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
-    backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.8);
+    --cui-chat-layout-background: var(--card);
+    --cui-chat-layout-border-color: var(--border);
+    --cui-chat-layout-shadow: none;
   }
 }

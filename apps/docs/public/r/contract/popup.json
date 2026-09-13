@@ -2334,6 +2334,38 @@
       }
     },
     "dropdown-menu": {
+      "checkbox-item": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-checked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-unchecked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
       "content": {
         "family": "popup",
         "registryItems": [
@@ -2400,6 +2432,13 @@
           }
         ]
       },
+      "group": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": []
+      },
       "item": {
         "family": "popup",
         "registryItems": [
@@ -2427,6 +2466,45 @@
         ],
         "states": []
       },
+      "radio-group": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": []
+      },
+      "radio-item": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-checked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-unchecked",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
       "separator": {
         "family": "popup",
         "registryItems": [
@@ -2443,6 +2521,52 @@
             ]
           }
         ]
+      },
+      "shortcut": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": []
+      },
+      "sub-content": {
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": []
+      },
+      "sub-trigger": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-highlighted",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-popup-open",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      },
+      "sub-trigger-indicator": {
+        "family": "popup",
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": []
       }
     },
     "hover-card": {

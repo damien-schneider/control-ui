@@ -1,12 +1,12 @@
 @layer components {
   :where([data-control-family="chat-composer"][data-slot="root"]) {
-    --cui-chat-composer-root-background: oklch(from var(--background) l c h / 0.8);
-    --cui-chat-composer-shell-background: oklch(from var(--card) l c h / 0.78);
+    --cui-chat-composer-root-background: transparent;
+    --cui-chat-composer-shell-background: oklch(from var(--card) l c h / calc(alpha * 0.78));
     --cui-chat-composer-shell-background-image: none;
     --cui-chat-composer-shell-backdrop-filter: none;
     --cui-chat-composer-shell-border-color: var(--border);
     --cui-chat-composer-shell-radius: var(--radius-field);
-    --cui-chat-composer-shell-shadow: var(--shadow-sm);
+    --cui-chat-composer-shell-shadow: inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04), var(--shadow-sm);
     --cui-chat-composer-input-foreground: var(--foreground);
     --cui-chat-composer-input-placeholder-foreground: var(--muted-foreground);
     --cui-chat-composer-mention-radius: var(--radius-popup-item);
@@ -18,21 +18,12 @@
     background: var(--cui-chat-composer-root-background);
   }
 
-  @supports (backdrop-filter: blur(1px)) {
-    :where([data-control-family="chat-composer"][data-slot="root"]) {
-      --cui-chat-composer-root-background: oklch(from var(--background) l c h / 0.7);
-      backdrop-filter: blur(var(--backdrop-blur-popover));
-    }
-  }
-
   :where([data-control-family="chat-composer"][data-slot="shell"]) {
     border: 1px solid var(--cui-chat-composer-shell-border-color);
     border-radius: var(--cui-chat-composer-shell-radius);
     background-color: var(--cui-chat-composer-shell-background);
     background-image: var(--cui-chat-composer-shell-background-image);
-    box-shadow:
-      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
-      var(--cui-chat-composer-shell-shadow);
+    box-shadow: var(--cui-chat-composer-shell-shadow);
     backdrop-filter: var(--cui-chat-composer-shell-backdrop-filter);
     transition-property: box-shadow, filter, translate;
     transition-duration: var(--duration-base);
@@ -42,9 +33,6 @@
   :where([data-control-family="chat-composer"][data-slot="shell"][data-state="submitting"]) {
     translate: 0 calc(var(--spacing) * -0.5);
     filter: saturate(1.02);
-    box-shadow:
-      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
-      var(--shadow-md);
   }
 
   :where([data-control-family="chat-composer"][data-slot="accent"]) {

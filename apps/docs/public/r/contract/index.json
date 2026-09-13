@@ -9,7 +9,7 @@
         "accordion"
       ],
       "knobs": 4,
-      "probes": 25
+      "probes": 49
     },
     "action-bar": {
       "registryItems": [
@@ -24,7 +24,7 @@
         "chat-layout"
       ],
       "knobs": 4,
-      "probes": 22
+      "probes": 38
     },
     "alert": {
       "registryItems": [
@@ -87,14 +87,14 @@
         "toggle"
       ],
       "knobs": 23,
-      "probes": 409
+      "probes": 543
     },
     "button-group": {
       "registryItems": [
         "button-group"
       ],
       "knobs": 4,
-      "probes": 2
+      "probes": 4
     },
     "calendar": {
       "registryItems": [
@@ -115,28 +115,28 @@
         "chat-composer"
       ],
       "knobs": 13,
-      "probes": 10
+      "probes": 14
     },
     "chat-composer-attachment": {
       "registryItems": [
         "chat-composer-attachment"
       ],
       "knobs": 6,
-      "probes": 8
+      "probes": 13
     },
     "chat-layout": {
       "registryItems": [
         "chat-layout"
       ],
       "knobs": 6,
-      "probes": 16
+      "probes": 22
     },
     "chat-message": {
       "registryItems": [
         "chat-message"
       ],
       "knobs": 12,
-      "probes": 6
+      "probes": 9
     },
     "checkbox-group": {
       "registryItems": [
@@ -158,7 +158,7 @@
         "code"
       ],
       "knobs": 6,
-      "probes": 9
+      "probes": 13
     },
     "code-block-editor": {
       "registryItems": [
@@ -266,7 +266,7 @@
         "inline-attachment"
       ],
       "knobs": 9,
-      "probes": 7
+      "probes": 9
     },
     "inline-citation": {
       "registryItems": [
@@ -308,14 +308,14 @@
         "markdown-block"
       ],
       "knobs": 6,
-      "probes": 4
+      "probes": 5
     },
     "morphing-panel": {
       "registryItems": [
         "morphing-panel"
       ],
       "knobs": 6,
-      "probes": 4
+      "probes": 6
     },
     "pagination": {
       "registryItems": [
@@ -355,7 +355,7 @@
         "trigger-menu"
       ],
       "knobs": 16,
-      "probes": 53
+      "probes": 68
     },
     "progressive-blur": {
       "registryItems": [
@@ -404,7 +404,7 @@
         "sidebar"
       ],
       "knobs": 21,
-      "probes": 23
+      "probes": 34
     },
     "sidebar-layout": {
       "registryItems": [
@@ -467,7 +467,7 @@
         "tabs"
       ],
       "knobs": 11,
-      "probes": 27
+      "probes": 45
     },
     "task-list": {
       "registryItems": [
@@ -475,6 +475,13 @@
       ],
       "knobs": 9,
       "probes": 9
+    },
+    "theme-toggle": {
+      "registryItems": [
+        "theme-toggle-block"
+      ],
+      "knobs": 0,
+      "probes": 0
     },
     "thread-rail": {
       "registryItems": [
@@ -495,7 +502,7 @@
         "toolbar"
       ],
       "knobs": 15,
-      "probes": 66
+      "probes": 98
     },
     "track-highlight": {
       "registryItems": [
@@ -516,7 +523,7 @@
         "tree"
       ],
       "knobs": 8,
-      "probes": 6
+      "probes": 11
     },
     "user-ask": {
       "registryItems": [

@@ -1,0 +1,19 @@
+@layer components {
+  :where([data-docs-inset]) {
+    --cui-sidebar-inset-background: var(--canvas);
+  }
+
+  :where([data-docs-content]) {
+    margin: calc(var(--spacing) * 1.5);
+    border: 1px solid oklch(from var(--border) l c h / calc(alpha * 0.7));
+    border-radius: var(--radius-panel);
+    background-color: var(--card);
+    box-shadow: var(--shadow-pop);
+  }
+
+  @media (width >= 64rem) {
+    :where([data-docs-content]) {
+      margin: calc(var(--spacing) * 2);
+    }
+  }
+}

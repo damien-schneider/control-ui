@@ -139,11 +139,6 @@ export type CatalogNamedPreview = {
   previewClassName?: string;
 };
 
-export type CatalogCompositionExample = {
-  title: string;
-  code: string;
-};
-
 export function includesString<T extends string>(values: readonly T[], value: string): value is T {
   return values.some((item) => item === value);
 }

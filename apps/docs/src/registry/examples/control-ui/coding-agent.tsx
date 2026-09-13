@@ -178,7 +178,7 @@ export function CodingAgentExample() {
       onValueChange={setDraft}
       onSubmit={submitPrompt}
     >
-      <ChatComposerShell className="bg-card">
+      <ChatComposerShell>
         <ChatComposerAccent />
         <div className="flex min-w-0 items-center gap-3 border-b border-border/60 px-3 py-2 text-caption text-muted-foreground">
           <span className="flex min-w-0 items-center gap-1.5">
@@ -280,9 +280,7 @@ function ActiveTask({ prompt, isRunning }: { prompt: string; isRunning: boolean 
         <ChatMessage from="user" density="compact">
           <ChatMessageRow className="py-0">
             <ChatMessageBody className="max-w-[min(85%,38rem)]">
-              <ChatMessageContent className="bg-foreground/8 text-sm leading-6 text-foreground ring-1 ring-foreground/8">
-                {prompt}
-              </ChatMessageContent>
+              <ChatMessageContent>{prompt}</ChatMessageContent>
             </ChatMessageBody>
           </ChatMessageRow>
         </ChatMessage>

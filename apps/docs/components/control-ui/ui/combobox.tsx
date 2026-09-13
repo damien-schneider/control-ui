@@ -31,6 +31,7 @@ export type ComboboxProps<Value = string> = {
   autoHighlight?: boolean;
   itemToStringLabel?: (itemValue: Value) => string;
   isItemEqualToValue?: (itemValue: Value, value: Value) => boolean;
+  filter?: ComboboxPrimitive.Root.Props<Value>["filter"];
 };
 
 export type ComboboxInputProps = Omit<Omit<ComponentProps<"input">, "size">, "style"> & { style?: CSSProperties & FieldKnobStyle } & {
@@ -69,8 +70,6 @@ type DisabledComboboxValueRegistry = {
 };
 
 const ComboboxDisabledValueContext = createContext<DisabledComboboxValueRegistry | null>(null);
-
-// Searchable single-select — selecting locks to discrete value, unlike Autocomplete.
 
 export function Combobox<Value = string>({ children, onValueChange, autoHighlight = true, ...props }: ComboboxProps<Value>) {
   const [disabledValues] = useState(() => new Set<unknown>());

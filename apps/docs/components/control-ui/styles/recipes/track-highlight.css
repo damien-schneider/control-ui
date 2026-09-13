@@ -16,7 +16,8 @@
     --cui-track-highlight-ring-color: oklch(from var(--foreground) l c h / 0.05);
     --cui-track-highlight-shadow: var(--shadow-sm);
     --cui-track-highlight-transition-duration: var(--duration-fast);
-    background: var(--cui-track-highlight-background);
+    --_track-highlight-fill: var(--cui-track-highlight-background);
+    background: var(--_track-highlight-fill);
     box-shadow:
       0 0 0 1px var(--cui-track-highlight-ring-color),
       var(--cui-track-highlight-shadow);
@@ -24,7 +25,7 @@
 
   :where([data-control-family="track-highlight"][data-slot="root"][data-hover]),
   :where([data-track="hover"] > [data-control-family="track-highlight"][data-slot="root"]) {
-    --cui-track-highlight-background: var(--cui-track-highlight-hover-background);
+    --_track-highlight-fill: var(--cui-track-highlight-hover-background);
     --cui-track-highlight-ring-color: transparent;
     --cui-track-highlight-shadow: none;
   }
@@ -120,7 +121,7 @@
             ):not(:has(:focus-visible, [data-track] [data-track-item]:hover))
             > [data-control-family="track-highlight"][data-positioning="anchor"]:not([data-measured])
         ) {
-        --cui-track-highlight-background: var(--cui-track-highlight-hover-background);
+        --_track-highlight-fill: var(--cui-track-highlight-hover-background);
         --cui-track-highlight-ring-color: transparent;
         --cui-track-highlight-shadow: none;
       }
@@ -155,7 +156,7 @@
           ):not(:has([data-track] :focus-visible))
           > [data-control-family="track-highlight"][data-positioning="anchor"]:not([data-measured])
       ) {
-      --cui-track-highlight-background: var(--cui-track-highlight-hover-background);
+      --_track-highlight-fill: var(--cui-track-highlight-hover-background);
       --cui-track-highlight-ring-color: transparent;
       --cui-track-highlight-shadow: none;
     }

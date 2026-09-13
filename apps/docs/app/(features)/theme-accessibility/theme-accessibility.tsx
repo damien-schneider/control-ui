@@ -1,11 +1,11 @@
 "use client";
 
 import { AlertTriangleIcon, CheckCircle2Icon, CircleHelpIcon, CopyIcon, PaintbrushIcon, ShieldCheckIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { cn } from "@/components/control-ui/lib/cn";
-import { Button } from "@/components/control-ui/ui/button";
-import { useThemeDrawer } from "@/components/theme-drawer-context";
+import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { THEME_AUDIT_CATEGORIES, type ThemeAuditCategory, type ThemeAuditResult, type ThemeAuditStatus } from "./audit-contract";
 import { useThemeAudit } from "./use-theme-audit";
@@ -142,7 +142,6 @@ function AuditResults({ loading, results }: { loading: boolean; results: ThemeAu
 }
 
 export function ThemeAccessibility() {
-  const { setOpen } = useThemeDrawer();
   const results = useThemeAudit();
   const [issuesOnly, setIssuesOnly] = useState(false);
   const commandCopy = useCopyToClipboard({ text: CLI_COMMAND });
@@ -191,9 +190,9 @@ export function ThemeAccessibility() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <ThemeModeSwitch />
-            <Button variant="surface" size="sm" onClick={() => setOpen(true)}>
+            <ButtonLink variant="surface" size="sm" render={<Link href="/theme-editor" />}>
               <PaintbrushIcon aria-hidden className="size-3.5" /> Edit theme
-            </Button>
+            </ButtonLink>
           </div>
         </div>
 

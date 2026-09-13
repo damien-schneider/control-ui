@@ -236,6 +236,12 @@
       }
     },
     "dropdown-menu": {
+      "sub-content": {
+        "registryItems": [
+          "dropdown-menu"
+        ],
+        "states": []
+      },
       "trigger": {
         "family": "button",
         "registryItems": [

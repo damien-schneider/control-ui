@@ -1,0 +1,50 @@
+{
+  "version": 8,
+  "family": "theme-toggle",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "theme-toggle-block"
+  ],
+  "knobs": [],
+  "parts": {
+    "theme-toggle": {
+      "root": {
+        "family": "theme-toggle",
+        "registryItems": [
+          "theme-toggle-block"
+        ],
+        "states": []
+      },
+      "indicator": {
+        "family": "theme-toggle",
+        "registryItems": [
+          "theme-toggle-block"
+        ],
+        "states": []
+      },
+      "option": {
+        "family": "theme-toggle",
+        "registryItems": [
+          "theme-toggle-block"
+        ],
+        "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/theme-toggle.contrast.json"
+}

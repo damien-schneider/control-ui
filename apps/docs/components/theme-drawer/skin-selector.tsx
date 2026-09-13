@@ -75,6 +75,7 @@ function SkinGroup({
     <div className="flex flex-col gap-1.5">
       <ToggleGroup
         aria-label="Skin"
+        indicator="hover"
         value={customThemeId ? [] : [skin]}
         onValueChange={(value) => {
           const next = value[value.length - 1];
@@ -88,7 +89,7 @@ function SkinGroup({
             <Toggle
               key={id}
               value={id}
-              variant="surface"
+              variant="quiet"
               size="lg"
               active={active}
               className="w-full justify-start text-left [&_[data-slot=control-content]]:w-full"
@@ -133,7 +134,7 @@ function CustomThemeLibrary({
           <div key={theme.id} className="flex items-center gap-1.5">
             <Button
               type="button"
-              variant="surface"
+              variant="quiet"
               size="sm"
               active={theme.id === activeId}
               className="min-w-0 flex-1 justify-start"

@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import { skin as activeSkinConfig, setSkin } from "@/components/control-ui/skin.config";
+import { useSkinEpoch } from "@/components/skin-epoch-context";
 import { SKIN_CONFIGS } from "@/components/skin-registry";
-import { useThemeDrawer } from "@/components/theme-drawer-context";
 import {
   applyThemeArtifactToLibrary,
   artifactFromThemeProfile,
@@ -61,10 +61,9 @@ function synchronizeActiveProfile(theme: ThemeState, customThemes: CustomThemePr
 }
 
 export function usePersistentTheme() {
-  const { bumpSkinEpoch } = useThemeDrawer();
+  const { bumpSkinEpoch } = useSkinEpoch();
   const [runtime, setRuntime] = useState<ThemeRuntimeState>({ theme: null, customThemes: [], undo: null, hydrated: false });
   const [values, setValues] = useState<TokenValues>({});
-  // mirrors html.dark so render-time consumers (skin diff) track mode without their own observers
   const [isDark, setIsDark] = useState(false);
   const storageError = useSyncExternalStore(subscribeToStorageStatus, currentStorageError, () => null);
   const t = runtime.theme ?? DEFAULT_THEME;

@@ -3,6 +3,7 @@ import type { DropzoneVisualState } from "../../src/registry/hooks/use-dropzone"
 import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dynamic-notification";
 import type { CodeDiffLineType } from "../../src/registry/lib/diff";
 import type { ActivityDetailFormat, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
+import type { ChatLayoutChrome } from "../../src/registry/sources/control-ui/chat-layout";
 import type { ContextSegmentKind, ContextStatus } from "../../src/registry/sources/control-ui/context-model";
 import type { HoverIndicator } from "../../src/registry/sources/control-ui/control-props";
 import type { ControlSize } from "../../src/registry/sources/control-ui/control-variants";
@@ -93,6 +94,7 @@ export type EmittedStateContract = {
   "chat-composer-attachment:root:data-state": "idle" | "uploading" | "uploaded" | "error";
   "chat-composer-attachment:root:data-variant": "preview" | "file";
   "chat-composer-attachment:description:data-state": "idle" | "uploading" | "uploaded" | "error";
+  "chat-layout:root:data-chrome": ChatLayoutChrome;
   "chat-message:root:data-density": ChatDensity;
   "chat-message:root:data-role": ChatRole;
   "chat-message:root:data-state": ChatState;
@@ -203,6 +205,7 @@ export type EmittedStateContract = {
   "sidebar:menu-track:data-indicator": SidebarSelectionIndicator;
   "sidebar:menu-track:data-track": SidebarSelectionIndicator;
   "sidebar:menu-button:data-active": true;
+  "sidebar:menu-action:data-show-on-hover": true;
   "sidebar:menu-button:data-size": SidebarMenuButtonSize;
   "sidebar:menu-button:data-variant": SidebarMenuButtonVariant;
   "slider:root:data-variant": SliderVariant;

@@ -13,7 +13,6 @@ type ChatComposerContextValue = ReturnType<typeof useChatComposer>;
 
 const ChatComposerContext = createContext<ChatComposerContextValue | null>(null);
 
-// exported so opt-in editor shares this context without dragging ProseMirror into base file
 export function useChatComposerContext() {
   const context = useContext(ChatComposerContext);
 
@@ -54,10 +53,9 @@ export function ChatComposer({
         data-state={state}
         data-density={density}
         onSubmit={input.handleSubmit}
-        className={cn("sticky bottom-0 w-full", className)}
+        className={cn("sticky bottom-0 min-w-0 w-full", className)}
         {...props}
       >
-        {/* component owns this position contract and skin supplies only visuals — no skin, no DOM */}
         {sendLayer !== undefined && sendLayer !== null ? (
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-clip contain-paint">
             {sendLayer}

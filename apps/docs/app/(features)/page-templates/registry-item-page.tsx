@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
-import type { CompositionExample, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
+import type { Composition, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
 import { CompositionSection, DependencySection, InstallPanel, PageHeader, SectionCode, SectionStack, SectionTitle } from "./shared";
 
 type RegistryItemPreview = {
@@ -69,7 +69,7 @@ export function RegistryItemPage({
   status?: DocsStatus;
   preview: RegistryItemPreview;
   examples?: RegistryItemExample[];
-  composition: CompositionExample[];
+  composition: Composition;
   install: RegistryItemInstall;
   usageCode?: string;
   knobs?: DocsKnobFamily[];

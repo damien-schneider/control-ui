@@ -10,8 +10,7 @@ export type ChatBlockProps = Omit<ComponentProps<typeof ChatLayout>, "children">
 export function ChatBlock({ children, composer, className, ...props }: ChatBlockProps) {
   return (
     <ChatLayout className={className} {...props}>
-      <ChatThread>{children}</ChatThread>
-      {composer}
+      <ChatThread composer={composer}>{children}</ChatThread>
     </ChatLayout>
   );
 }

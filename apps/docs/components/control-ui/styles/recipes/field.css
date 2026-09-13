@@ -59,10 +59,10 @@
   }
 
   @media (hover: hover) {
-    :where([data-control-family="field"][data-field-kind="autocomplete"]:hover),
-    :where([data-control-family="field"][data-field-kind="combobox"]:hover),
-    :where([data-control-family="field"][data-field-kind="native-select"]:hover),
-    :where([data-control-family="field"][data-field-kind="number-field"]:hover) {
+    :where([data-control-family="field"][data-control="true"][data-field-kind="autocomplete"]:hover),
+    :where([data-control-family="field"][data-control="true"][data-field-kind="combobox"]:hover),
+    :where([data-control-family="field"][data-control="true"][data-field-kind="native-select"]:hover),
+    :where([data-control-family="field"][data-control="true"][data-field-kind="number-field"]:hover) {
       background: var(--hover-fill);
     }
   }

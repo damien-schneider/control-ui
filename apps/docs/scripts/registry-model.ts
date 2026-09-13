@@ -513,7 +513,7 @@ function sourceToTarget(filePath: string): string {
 function fileType(filePath: string): RegistryFileType {
   if (filePath.startsWith("src/registry/starters/")) return "registry:page";
   if (filePath.endsWith(".css") || filePath.endsWith(".mjs") || filePath.endsWith(".md")) return "registry:file";
-  if (filePath.endsWith("skin.config.tsx") || filePath.endsWith("modern-apple-liquid-glass.ts")) return "registry:lib";
+  if (filePath.endsWith("skin.config.tsx")) return "registry:lib";
   if (filePath.includes("/blocks/")) return "registry:block";
   if (filePath.includes("/hooks/")) return "registry:hook";
   if (filePath.includes("/lib/") || filePath.endsWith("skin.ts")) return "registry:lib";

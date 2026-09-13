@@ -25,15 +25,15 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
   await page.evaluate(() => localStorage.clear());
   await page.reload();
 
-  // "Build with AI" lives in the theme editor, which morphs out of the floating toolbar on demand.
-  const themeEditor = page.locator("[data-docs-floating-panel]");
   const openThemeEditor = async () => {
-    if ((await themeEditor.getAttribute("data-state")) === "open") return;
-    await page.getByRole("button", { name: "Edit theme" }).click();
-    await expect(themeEditor).toHaveAttribute("data-state", "open");
+    await page.getByRole("toolbar", { name: "Documentation controls" }).getByRole("link", { name: "Edit theme" }).click();
+    await expect(page).toHaveURL(/\/theme-editor$/);
+    await expect(page.getByRole("heading", { name: "Theme editor", level: 1 })).toBeVisible();
   };
 
   await openThemeEditor();
+  await page.getByRole("region", { name: "Choose a skin" }).getByRole("button", { name: "Refined", exact: true }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
   await expect(page.getByRole("link", { name: "Build with AI" })).toBeVisible();
   await page.getByRole("link", { name: "Build with AI" }).click();
   await expect(page).toHaveURL(/\/theme-ai-builder$/);
@@ -45,12 +45,11 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
   await expect(page.getByRole("heading", { name: "Import and test" })).toBeVisible();
   await expect(page.getByLabel("Theme JSON")).toBeHidden();
   const copiedPrompt = await page.evaluate(() => navigator.clipboard.readText());
-  expect(copiedPrompt).toContain("ask me to describe the visual direction");
-  expect(copiedPrompt).toContain("attach one or more reference images");
+  expect(copiedPrompt).toContain('"baseSkin": "refined"');
   expect(copiedPrompt).toContain("Write exactly one file named <short-name>.control-ui-theme.json");
   expect(copiedPrompt).toContain("Embedded canonical contract fallback");
 
-  const artifactInput = page.locator('input[type="file"][accept=".json,application/json"]');
+  const artifactInput = page.getByLabel("Import theme file", { exact: true });
   await artifactInput.setInputFiles({
     name: "browser-paper.control-ui-theme.json",
     mimeType: "application/json",
@@ -84,9 +83,7 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
     .toBe("oklch(0.94 0.05 105)");
 
   await openThemeEditor();
-  // both the builder page behind the editor and the hidden collapsed toolbar also match /Refined/,
-  // so stay inside the editor's content region
-  const editorContent = page.getByRole("region", { name: "Theme editor" });
+  const editorContent = page.getByRole("region", { name: "Choose a skin" });
   await editorContent
     .getByRole("button", { name: /Refined/ })
     .first()
@@ -104,8 +101,8 @@ test("copies an agent prompt, imports its theme, previews, applies, reloads, and
   await page.getByRole("menuitem", { name: "Export JSON" }).click();
   await expect((await download).suggestedFilename()).toBe("browser-paper.control-ui-theme.json");
 
-  await page.getByRole("button", { name: "Close editor" }).click();
-  await expect(themeEditor).toHaveAttribute("data-state", "closed");
+  await page.goBack();
+  await expect(page).toHaveURL(/\/theme-ai-builder$/);
   await page.getByRole("button", { name: "Import and test" }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   const layout = await page.evaluate(() => {

@@ -17,7 +17,7 @@ test("floating toolbar contains search and skin controls while section navigatio
   const sectionNavigation = page.getByRole("navigation", { name: "Catalogs" });
 
   await expect(toolbar.getByRole("combobox", { name: "Search documentation" })).toBeVisible();
-  await expect(toolbar.getByRole("button", { name: "Edit theme" })).toBeVisible();
+  await expect(toolbar.getByRole("link", { name: "Edit theme" })).toBeVisible();
   const skinSelect = toolbar.getByRole("combobox", { name: "Skin" });
   await expect(skinSelect).toHaveText("Windows XP");
   await skinSelect.click();
@@ -28,7 +28,7 @@ test("floating toolbar contains search and skin controls while section navigatio
   await expect(skinOptions.getByRole("option", { name: "Windows XP" })).toHaveAttribute("aria-selected", "true");
   await page.keyboard.press("Escape");
   await expect(toolbar.getByRole("navigation")).toHaveCount(0);
-  await expect(toolbar.getByRole("link")).toHaveCount(0);
+  await expect(toolbar.getByRole("link")).toHaveCount(1);
   await expect(sectionNavigation).toBeVisible();
   await expect(sectionNavigation.getByRole("link", { name: "Primitives" })).toHaveAttribute("aria-current", "true");
 
@@ -101,7 +101,6 @@ for (const { name, width, height } of [
   { name: "mobile", width: 390, height: 844 },
 ]) {
   test(`floating toolbar fits its controls and expands for search on ${name}`, async ({ page }) => {
-    // width motion is the subject here, so the default skin's reduced-motion flag is opted out of
     await page.addInitScript((storageKey) => {
       localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
     }, THEME_EDITOR_STORAGE_KEY);
@@ -112,7 +111,7 @@ for (const { name, width, height } of [
     const panel = page.locator("[data-docs-floating-panel]");
     const toolbar = page.locator("[data-docs-floating-toolbar]");
     const skinControls = toolbar.locator("[data-skin-controls]");
-    const themeEditorTrigger = toolbar.getByRole("button", { name: "Edit theme" });
+    const themeEditorTrigger = toolbar.getByRole("link", { name: "Edit theme" });
     const search = toolbar.getByRole("combobox", { name: "Search documentation" });
     const maximumWidth = width - 16;
     const restingWidth = await panel.evaluate((element) => element.getBoundingClientRect().width);

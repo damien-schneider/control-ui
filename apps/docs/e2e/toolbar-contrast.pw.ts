@@ -18,7 +18,6 @@ const BACKDROP_SHARE = 0.05;
 
 type GlyphRegion = { name: string; x: number; y: number; width: number; height: number; color: string; hasText: boolean };
 
-// Regions are the rendered glyph bounds (svg + visible text) of every toolbar control, relative to the toolbar box.
 async function glyphRegions(toolbar: Locator): Promise<GlyphRegion[]> {
   return toolbar.evaluate((toolbarElement) => {
     const host = toolbarElement.getBoundingClientRect();
@@ -74,8 +73,6 @@ async function glyphRegions(toolbar: Locator): Promise<GlyphRegion[]> {
   });
 }
 
-// Glyphs are hidden before the shot, so every sampled pixel is real rendered backdrop —
-// gradients, translucency, and specificity outcomes are all measured as pixels, not as styles.
 async function minimumContrasts(toolbar: Locator, regions: GlyphRegion[]): Promise<number[]> {
   await toolbar.evaluate((toolbarElement) => {
     for (const element of toolbarElement.querySelectorAll("button, a")) {
@@ -173,23 +170,14 @@ async function minimumContrasts(toolbar: Locator, regions: GlyphRegion[]): Promi
 test("floating toolbar controls keep rendered contrast across every skin and mode", async ({ page }) => {
   test.setTimeout(600_000);
   await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto("/primitives/button");
+  await page.goto("/theme-editor");
   await page.waitForLoadState("networkidle");
 
   const toolbar = page.locator("[data-docs-floating-toolbar]");
-  const editor = page.locator("[data-docs-floating-panel]");
   const violations: string[] = [];
 
   for (const skin of SKINS) {
-    // a click can land before hydration on a cold dev server; only re-click while the editor stays closed
-    await expect(async () => {
-      if ((await editor.getAttribute("data-state")) !== "open") {
-        await toolbar.getByRole("button", { name: "Edit theme" }).click();
-      }
-      await expect(editor).toHaveAttribute("data-state", "open", { timeout: 2_000 });
-    }).toPass();
     await page.getByLabel("Choose a skin").getByRole("button", { name: skin.label, exact: true }).click();
-    await page.keyboard.press("Escape");
     await page.mouse.move(0, 0);
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin.id);
     await expect(toolbar).toHaveCSS("opacity", "1");

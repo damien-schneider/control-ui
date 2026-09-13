@@ -857,6 +857,173 @@
         "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "submitting"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "submitting"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
           "data-control-ui": "select",
           "data-open": "",
           "data-popup-kind": "select",
@@ -1283,6 +1450,65 @@
       },
       {
         "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "true",
+          "data-slot": "item",
+          "data-value": "International international",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
           "aria-selected": "true",
           "data-control-family": "popup",
           "data-control-ui": "command",
@@ -1410,6 +1636,49 @@
       },
       {
         "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "true",
+          "data-slot": "item",
+          "data-value": "new-thread",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
           "aria-selected": "true",
           "data-control-family": "popup",
           "data-control-ui": "command",
@@ -1461,6 +1730,207 @@
           "data-popup-kind": "select",
           "data-popup-part": "list-surface",
           "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "submitting"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "submitting"
+        }
+      },
+      {
+        "attributes": {
+          "data-button-kind": "model-switcher",
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "model-switcher",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "embedded",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "inverse",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control": "true",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "button",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "listbox",
@@ -1875,6 +2345,144 @@
       },
       {
         "attributes": {
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-orientation": "horizontal",
+          "data-slot": "root",
+          "data-variant": "inverse",
+          "role": "toolbar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control": "true",
+          "data-control-family": "toolbar",
+          "data-control-ui": "toolbar",
+          "data-focusable": "",
+          "data-orientation": "horizontal",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "button",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "select",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "trigger",
+          "data-tone": "neutral",
+          "data-variant": "surface",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
           "data-control": "true",
           "data-control-family": "button",
           "data-control-ui": "select",
@@ -2038,6 +2646,221 @@
           "data-popup-part": "separator",
           "data-slot": "separator",
           "role": "separator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "false",
+          "data-slot": "item",
+          "data-value": "invite",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "false",
+          "data-slot": "item",
+          "data-value": "search-docs",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "false",
+          "data-slot": "item",
+          "data-value": "settings billing invoices",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "false",
+          "data-slot": "item",
+          "data-value": "settings profile",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "false",
+          "data-slot": "item",
+          "data-value": "settings workspace members",
+          "role": "option"
         }
       }
     ],
@@ -2286,6 +3109,58 @@
           "data-control-family": "popup",
           "data-control-ui": "menubar",
           "data-popup-kind": "menubar",
+          "data-popup-part": "shortcut",
+          "data-slot": "shortcut"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "surface",
+          "data-popup-static": "",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "true",
+          "data-slot": "item",
+          "data-value": "new-thread",
+          "role": "option"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
           "data-popup-part": "shortcut",
           "data-slot": "shortcut"
         }
@@ -2659,8 +3534,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 31,
       "rendersText": true,
@@ -2668,8 +3543,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 32,
       "rendersText": true,
@@ -2677,8 +3552,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-item-highlight-background",
-        "text": "--cui-popup-item-highlight-foreground"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 33,
       "rendersText": true,
@@ -2749,31 +3624,35 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-separator-color"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 41,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-popup-separator-color"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 42,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-popup-separator-color"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 43,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 44,
       "rendersText": true,
@@ -2781,7 +3660,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 45,
       "rendersText": true,
@@ -2789,7 +3669,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 46,
       "rendersText": true,
@@ -2797,7 +3678,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 47,
       "rendersText": true,
@@ -2805,7 +3687,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 48,
       "rendersText": true,
@@ -2813,15 +3696,8 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
-      },
-      "anatomy": 34,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 49,
       "rendersText": true,
@@ -2829,9 +3705,113 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 50,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-separator-color"
+      },
+      "anatomy": 51,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-popup-separator-color"
+      },
+      "anatomy": 52,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 53,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 54,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 55,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 56,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 57,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 58,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 59,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 60,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 61,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 62,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
+      "anatomy": 39,
       "rendersText": true,
       "state": false
     },
@@ -2839,7 +3819,31 @@
       "knobs": {
         "text": "--cui-popup-shortcut-foreground"
       },
-      "anatomy": 51,
+      "anatomy": 63,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 64,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 65,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 66,
       "rendersText": true,
       "state": false
     }

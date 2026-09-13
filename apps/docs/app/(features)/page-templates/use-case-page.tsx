@@ -23,17 +23,16 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
   const files = block.files;
   const previewCode = blockPreviewCode(block);
   const usageCode = block.usage[integration].code;
-  const composition = block.composition ?? [];
 
   return (
     <section className="mx-auto min-w-0 w-full max-w-4xl px-5 py-12">
       <PageHeader label={kind.singularLabel} title={block.name} summary={block.summary} status={block.status} wide />
-      <PreviewTabs code={previewCode} previewClassName="block min-h-0 p-0">
+      <PreviewTabs code={previewCode} previewClassName="block min-h-0 p-0" previewFramed={false}>
         <BlockPreview blockId={block.id} integration={integration} />
       </PreviewTabs>
 
       <SectionStack>
-        <CompositionSection items={composition} />
+        <CompositionSection items={block.composition} />
         <InstallPanel commands={commands} manifestHref={manifestHref} />
         <SectionCode id="usage" title="Usage" code={usageCode} />
         <RegistryDependencyReferences dependencies={block.registryDependencies} />

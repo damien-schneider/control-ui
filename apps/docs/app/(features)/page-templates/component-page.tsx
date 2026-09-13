@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ComponentExamplePreview, ComponentVersionPreview, Preview } from "@/app/(features)/components/previews";
 import {
-  componentComposition,
   filesFor,
   installedDependencyFiles,
   publicRegistryHref,
@@ -82,7 +81,6 @@ export function ComponentPage({
   const registryKind = version?.registryKind ?? component.registryKind;
   const commands = registryInstallCommands(registryKind);
   const files = filesFor(component, version);
-  const composition = componentComposition(component);
   const manifestHref = publicRegistryHref(registryKind);
   const exampleCode = version ? version.example.code : component.example.code;
   const usageCode = component.usage[integration].code;
@@ -125,7 +123,7 @@ export function ComponentPage({
           ),
         })) ?? []
       }
-      composition={composition}
+      composition={component.composition}
       install={{
         commands,
         manifestHref,

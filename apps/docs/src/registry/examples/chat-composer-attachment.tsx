@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { ChatComposer, ChatComposerShell, ChatComposerTextarea } from "@/components/control-ui/chat-composer";
 import {
   ChatComposerAttachment,
   ChatComposerAttachmentPreview,
@@ -50,8 +51,8 @@ export function ChatComposerAttachmentExample() {
   }
 
   return (
-    <div className="max-w-[34rem]">
-      <div className="overflow-hidden rounded-field border bg-card shadow-sm">
+    <ChatComposer className="w-full max-w-[34rem]">
+      <ChatComposerShell>
         <ChatComposerAttachments>
           {attachments.map((attachment) =>
             attachment.id === "image" ? (
@@ -82,8 +83,8 @@ export function ChatComposerAttachmentExample() {
             ),
           )}
         </ChatComposerAttachments>
-        <div className="px-3 pb-4 pt-2 text-sm text-muted-foreground">Ask anything</div>
-      </div>
-    </div>
+        <ChatComposerTextarea placeholder="Ask anything" />
+      </ChatComposerShell>
+    </ChatComposer>
   );
 }

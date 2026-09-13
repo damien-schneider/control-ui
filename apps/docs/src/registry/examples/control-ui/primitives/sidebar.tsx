@@ -1,18 +1,21 @@
 "use client";
 
-import { ChevronRightIcon, FolderIcon, HashIcon, LayersIcon, SettingsIcon, SparklesIcon } from "lucide-react";
+import { ChevronRightIcon, FolderIcon, HashIcon, LayersIcon, MoreHorizontalIcon, SettingsIcon, SparklesIcon } from "lucide-react";
 import { useId, useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { NativeSelect } from "@/components/control-ui/ui/native-select";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarInset,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -44,55 +47,69 @@ function WorkspaceNavigation({
     <SidebarContent>
       <SidebarGroup>
         <SidebarGroupLabel>Workspace</SidebarGroupLabel>
-        <SidebarMenu indicator={indicator} aria-label="Workspace">
-          {workspaceItems.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                isActive={active === item.title}
-                aria-current={active === item.title ? "page" : undefined}
-                onClick={() => onNavigate(item.title)}
-                disabled={item.disabled}
-                tooltip={item.title}
-              >
-                <item.icon />
-                <span>{item.title}</span>
+        <SidebarGroupContent>
+          <SidebarMenu indicator={indicator} aria-label="Workspace">
+            {workspaceItems.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton
+                  isActive={active === item.title}
+                  aria-current={active === item.title ? "page" : undefined}
+                  onClick={() => onNavigate(item.title)}
+                  disabled={item.disabled}
+                  tooltip={item.title}
+                >
+                  <item.icon />
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={<SidebarMenuAction showOnHover />}
+                    disabled={item.disabled}
+                    aria-label={`${item.title} actions`}
+                  >
+                    <MoreHorizontalIcon />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent side="right" align="start">
+                    <DropdownMenuItem onClick={() => onNavigate(`${item.title} settings`)}>Settings for {item.title}</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </SidebarMenuItem>
+            ))}
+            {nested ? (
+              <SidebarMenuItem>
+                <Collapsible defaultOpen>
+                  <SidebarMenuButton render={<CollapsibleTrigger />} tooltip="Projects">
+                    <FolderIcon />
+                    <span>Projects</span>
+                    <ChevronRightIcon data-control-ui="sidebar" data-slot="chevron" />
+                  </SidebarMenuButton>
+                  <CollapsibleContent className="group-data-[collapsible=icon]:hidden">
+                    <SidebarMenuSub indicator={indicator} aria-label="Projects">
+                      {projectPages.map((title) => (
+                        <SidebarMenuItem key={title}>
+                          <SidebarMenuButton
+                            size="sm"
+                            isActive={active === title}
+                            aria-current={active === title ? "page" : undefined}
+                            onClick={() => onNavigate(title)}
+                          >
+                            <span>{title}</span>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </Collapsible>
+              </SidebarMenuItem>
+            ) : null}
+            <SidebarMenuItem>
+              <SidebarMenuButton size="lg" isActive={active === "Settings"} onClick={() => onNavigate("Settings")} tooltip="Settings">
+                <SettingsIcon />
+                <span className="flex-1">Settings</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          ))}
-          {nested ? (
-            <SidebarMenuItem>
-              <Collapsible defaultOpen>
-                <SidebarMenuButton render={<CollapsibleTrigger />} tooltip="Projects">
-                  <FolderIcon />
-                  <span>Projects</span>
-                  <ChevronRightIcon data-control-ui="sidebar" data-slot="chevron" />
-                </SidebarMenuButton>
-                <CollapsibleContent className="group-data-[collapsible=icon]:hidden">
-                  <SidebarMenuSub indicator={indicator} aria-label="Projects">
-                    {projectPages.map((title) => (
-                      <SidebarMenuItem key={title}>
-                        <SidebarMenuButton
-                          size="sm"
-                          isActive={active === title}
-                          aria-current={active === title ? "page" : undefined}
-                          onClick={() => onNavigate(title)}
-                        >
-                          <span>{title}</span>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </Collapsible>
-            </SidebarMenuItem>
-          ) : null}
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" isActive={active === "Settings"} onClick={() => onNavigate("Settings")} tooltip="Settings">
-              <SettingsIcon />
-              <span className="flex-1">Settings</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+          </SidebarMenu>
+        </SidebarGroupContent>
       </SidebarGroup>
       <SidebarGroup>
         <Collapsible defaultOpen>

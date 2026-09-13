@@ -26,7 +26,7 @@
   :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]) {
     border-radius: var(--radius-control);
     outline: none;
-    transition-property: color, box-shadow;
+    transition-property: color, background-color, box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }
@@ -36,6 +36,7 @@
     :where([data-control-family="field"][data-field-kind="autocomplete"][data-slot="clear"]:hover),
     :where([data-control-family="field"][data-field-kind="number-field"][data-slot="decrement"]:hover),
     :where([data-control-family="field"][data-field-kind="number-field"][data-slot="increment"]:hover) {
+      background: var(--hover-fill);
       color: var(--foreground);
     }
   }

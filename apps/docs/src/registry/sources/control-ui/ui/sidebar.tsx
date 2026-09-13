@@ -13,9 +13,13 @@ import { type SidebarStyle, useSidebar } from "@/components/control-ui/ui/sideba
 // biome-ignore lint/performance/noBarrelFile: Preserve the sidebar install-facing API.
 export {
   SidebarGroup,
+  SidebarGroupContent,
+  type SidebarGroupContentProps,
   SidebarGroupLabel,
   type SidebarGroupLabelProps,
   SidebarMenu,
+  SidebarMenuAction,
+  type SidebarMenuActionProps,
   SidebarMenuButton,
   type SidebarMenuButtonProps,
   type SidebarMenuButtonSize,

@@ -50,7 +50,17 @@
         "registryItems": [
           "chat-layout"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-chrome",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "embedded",
+              "panel"
+            ]
+          }
+        ]
       }
     },
     "chat-thought": {

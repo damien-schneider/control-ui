@@ -102,20 +102,14 @@ export const skinMetas = [
     id: "modern-apple",
     label: "Modern Apple",
     kind: "advanced",
-    description:
-      "Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.",
-    docs: 'Add these imports once to app/globals.css: @import "../components/control-ui/styles/skin-theme.css"; @import "../components/control-ui/styles/skin.css"; Then mount ModernAppleLiquidGlassRuntime once near the app root from @/components/control-ui/modern-apple-liquid-glass-runtime. The runtime uses createImageBitmap when available; if an older browser needs its image-decoder fallback, allow data: in img-src or it will retain the CSS glass fallback.',
+    description: "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
+    docs: 'Import skin-theme.css and skin.css in your global CSS, then mount <ModernAppleGlassFilter /> once in your root layout from "@/components/control-ui/modern-apple-glass-filter". This static SVG adds edge refraction in Chromium without client effects or backdrop capture. Other browsers retain native blur and glass rims.',
     packManifestPath: "registry/modern-apple/skin.json",
     paths: skinPackFiles("modern-apple", [
       sourceFile(
-        "modern-apple-liquid-glass-runtime.tsx — root-mounted lifecycle that enhances visible floating surfaces and preserves the CSS fallback",
-        "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass-runtime.tsx",
-        "runtime",
-      ),
-      sourceFile(
-        "modern-apple-liquid-glass.ts — shared capture and neutral refractive renderer used by every enhanced surface",
-        "src/registry/skin-packs/modern-apple/modern-apple-liquid-glass.ts",
-        "renderer",
+        "modern-apple-glass-filter.tsx — a static SVG definition for native backdrop edge refraction; mount once in the root layout",
+        "src/registry/skin-packs/modern-apple/modern-apple-glass-filter.tsx",
+        "filter",
       ),
     ]),
   },

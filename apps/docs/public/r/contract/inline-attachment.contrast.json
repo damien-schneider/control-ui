@@ -19,6 +19,40 @@
       },
       {
         "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-attachment",
+          "data-control-ui": "inline-attachment",
+          "data-slot": "root",
+          "data-state": "ready",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-layout",
           "data-control-ui": "chat-layout",
           "data-slot": "root",
@@ -130,6 +164,47 @@
           "data-slot": "root",
           "data-state": "ready",
           "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-attachment",
+          "data-control-ui": "inline-attachment",
+          "data-slot": "root",
+          "data-state": "ready",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-attachment",
+          "data-control-ui": "inline-attachment",
+          "data-slot": "content"
         }
       }
     ],
@@ -283,7 +358,7 @@
         "fill": "--cui-inline-attachment-background"
       },
       "anatomy": 2,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -291,13 +366,12 @@
         "fill": "--cui-inline-attachment-background"
       },
       "anatomy": 3,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-inline-attachment-content-background",
-        "text": "--cui-inline-attachment-content-foreground"
+        "fill": "--cui-inline-attachment-background"
       },
       "anatomy": 4,
       "rendersText": true,
@@ -318,6 +392,24 @@
         "text": "--cui-inline-attachment-content-foreground"
       },
       "anatomy": 6,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-inline-attachment-content-background",
+        "text": "--cui-inline-attachment-content-foreground"
+      },
+      "anatomy": 7,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-inline-attachment-content-background",
+        "text": "--cui-inline-attachment-content-foreground"
+      },
+      "anatomy": 8,
       "rendersText": true,
       "state": false
     }

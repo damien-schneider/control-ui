@@ -105,6 +105,8 @@ for (const positioning of ["anchors", "fallback"]) {
       await workflows.focus();
       await expectHighlightOn(highlight, workflows);
       await page.keyboard.press("Tab");
+      await expect(group.getByRole("button", { name: "Workflows actions", exact: true })).toBeFocused();
+      await page.keyboard.press("Tab");
       await expect(settings).toBeFocused();
       await expectHighlightOn(highlight, settings);
       await expect(group.getByRole("button", { name: "Tools", exact: true })).toBeDisabled();

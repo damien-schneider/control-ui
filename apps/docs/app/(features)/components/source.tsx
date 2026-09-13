@@ -145,12 +145,14 @@ export function PreviewTabs({
   children,
   controls,
   previewClassName,
+  previewFramed = true,
 }: {
   anchorId?: string | null;
   code: string;
   children: ReactNode;
   controls?: ReactNode;
   previewClassName?: string;
+  previewFramed?: boolean;
 }) {
   const [tab, setTab] = useState("preview");
 
@@ -168,7 +170,7 @@ export function PreviewTabs({
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        <div className="docs-panel -mt-px overflow-hidden">
+        <div className={cn("-mt-px", (previewFramed || tab === "code") && "docs-panel overflow-hidden")}>
           <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
             {children}
           </TabsPanel>

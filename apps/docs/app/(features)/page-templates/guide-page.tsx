@@ -11,6 +11,7 @@ import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-a
 import { ThemeAiBuilder } from "@/app/(features)/theme-ai-builder/theme-ai-builder";
 import { cn } from "@/components/control-ui/lib/cn";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
+import { ThemeEditor } from "@/components/theme-drawer/theme-editor";
 import AgentSkillContent from "@/content/guides/agent-skill.mdx";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
 import ArchitectureContent from "@/content/guides/architecture.mdx";
@@ -83,6 +84,7 @@ const guideComponents = {
 } satisfies MDXComponents;
 
 function GuidePageContent({ page, integration, Content }: { page: GuidePageData; integration: IntegrationId; Content?: GuideContent }) {
+  if (page.id === "theme-editor") return <ThemeEditor />;
   if (page.id === "theme-accessibility") return <ThemeAccessibility />;
   if (page.id === "theme-ai-builder") return <ThemeAiBuilder />;
   if (Content) {
@@ -123,6 +125,10 @@ function GuidePageContent({ page, integration, Content }: { page: GuidePageData;
   });
 }
 
+function focusThemeEditorHeading(heading: HTMLHeadingElement | null) {
+  heading?.focus();
+}
+
 export function GuidePage({ page, integration }: { page: GuidePageData; integration: IntegrationId }) {
   const Content = guideContent[page.id];
 
@@ -131,7 +137,13 @@ export function GuidePage({ page, integration }: { page: GuidePageData; integrat
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div className="max-w-2xl">
           <div className="text-caption font-medium text-muted-foreground">Guide</div>
-          <h1 className="mt-2 text-display font-display">{page.name}</h1>
+          <h1
+            ref={page.id === "theme-editor" ? focusThemeEditorHeading : undefined}
+            tabIndex={page.id === "theme-editor" ? -1 : undefined}
+            className="mt-2 text-display font-display"
+          >
+            {page.name}
+          </h1>
           <p className="mt-3 text-body-lg text-muted-foreground">{page.summary}</p>
         </div>
         <OpenInAgent name={page.name} pathname={`/${page.id}`} />

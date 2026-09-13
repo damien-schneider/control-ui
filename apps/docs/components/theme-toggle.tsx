@@ -124,7 +124,7 @@ export function ThemeModeSwitch({ className }: { className?: string }) {
       aria-disabled={locked ? true : undefined}
       title={locked ? `This skin is ${locked}-only` : undefined}
       data-locked={locked ? "true" : undefined}
-      className={cn("border-border/70 bg-background/70 shadow-sm backdrop-blur", locked && "cursor-not-allowed opacity-60", className)}
+      className={cn(locked && "cursor-not-allowed opacity-60", className)}
     />
   );
 }

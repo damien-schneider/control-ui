@@ -36,6 +36,7 @@
 @import "../src/registry/sources/control-ui/recipes/track-highlight.css";
 @import "../src/registry/sources/control-ui/recipes/tree.css";
 @import "../src/registry/sources/control-ui/recipes/sidebar.css";
+@import "../src/registry/sources/control-ui/recipes/sidebar-menu.css";
 @import "../src/registry/sources/control-ui/recipes/table-of-contents.css";
 @import "../src/registry/sources/control-ui/recipes/popup-drawer.css";
 @import "../src/registry/sources/control-ui/recipes/phone-input.css";
@@ -100,6 +101,7 @@
 @import "../src/registry/skin-packs/cuicui/skin.css";
 @import "../src/registry/skin-packs/linear/theme.css";
 @import "../src/registry/skin-packs/linear/skin.css";
+@import "./docs-shell.css";
 @import "../src/registry/sources/control-ui/code.css";
 @import "../src/registry/sources/control-ui/chat-composer-editor.css";
 @import "../src/registry/sources/control-ui/extensions/send-aurora.css";

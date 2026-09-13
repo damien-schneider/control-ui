@@ -1,27 +1,43 @@
 @layer components {
   :where([data-control-family="chat-layout"][data-slot="root"]) {
+    --cui-chat-layout-thought-foreground: var(--muted-foreground);
+    --cui-chat-layout-thought-hover-background: oklch(from var(--foreground) l c h / 0.04);
+  }
+
+  :where([data-control-ui="chat-layout"][data-control-family="chat-layout"][data-slot="root"]) {
     --cui-chat-layout-radius: var(--radius-scene);
     --cui-chat-layout-background: var(--background);
     --cui-chat-layout-border-color: var(--border);
     --cui-chat-layout-shadow: var(--shadow-md);
-    --cui-chat-layout-thought-foreground: var(--muted-foreground);
-    --cui-chat-layout-thought-hover-background: oklch(from var(--foreground) l c h / 0.04);
     background: var(--cui-chat-layout-background);
+  }
+
+  :where([data-control-ui="chat-layout"][data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"]) {
     border: 1px solid var(--cui-chat-layout-border-color);
     border-radius: var(--cui-chat-layout-radius);
     box-shadow: var(--cui-chat-layout-shadow);
   }
 
-  :where([data-control-family="chat-layout"][data-chat-layout-kind="thread"][data-slot="root"]) {
+  :where([data-control-family="chat-layout"][data-slot="thread-content"]) {
     gap: calc(var(--spacing) * 8);
     padding-block: calc(var(--spacing) * 6);
     padding-inline: calc(var(--spacing) * 4);
   }
 
   @media (width >= 40rem) {
-    :where([data-control-family="chat-layout"][data-chat-layout-kind="thread"][data-slot="root"]) {
+    :where([data-control-family="chat-layout"][data-slot="thread-content"]) {
       padding-inline: calc(var(--spacing) * 8);
     }
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="dock"])::before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--scroll-fade-size) * -1) 0 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--cui-chat-layout-background);
+    mask-image: linear-gradient(to bottom, transparent, oklch(0 0 0 / 0.7) calc(var(--scroll-fade-size) * 3));
   }
 
   :where([data-control-family="chat-layout"][data-chat-layout-kind="thought"][data-slot="root"]) {

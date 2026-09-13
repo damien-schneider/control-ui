@@ -149,7 +149,7 @@
 - `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite`
 - `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite`
 - `flat` (Flat) — Neutral reset skin with square corners, no shadows, and the stock motion tempo. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite`
-- `modern-apple` (Modern Apple) — Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite`
+- `modern-apple` (Modern Apple) — Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite`
 - `cuicui` (Cuicui) — Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor). — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-cuicui.json --overwrite`
 - `linear` (Linear) — Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-linear.json --overwrite`
 
@@ -173,6 +173,7 @@
 - `build-a-screen` (Build a screen) — Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - `theming` (Theme it) — Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
 - `create-a-skin` (Create a skin) — Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
+- `theme-editor` (Theme editor) — Choose a skin, edit its tokens, and preview your theme across the docs.
 - `theme-ai-builder` (Theme AI builder) — Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 - `theme-accessibility` (Theme accessibility) — Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - `update` (Update & diff) — Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.

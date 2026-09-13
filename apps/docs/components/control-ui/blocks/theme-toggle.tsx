@@ -135,7 +135,7 @@ export function ThemeSegmentedSwitch({
     choices.findIndex((option) => option.value === currentValue),
   );
   const indicatorStyle = {
-    width: `calc((100% - 0.25rem) / ${choices.length})`,
+    width: `calc((100% - var(--_theme-switch-padding) * 2) / ${choices.length})`,
     transform: `translateX(${activeIndex * 100}%)`,
   } satisfies CSSProperties;
 
@@ -143,8 +143,11 @@ export function ThemeSegmentedSwitch({
     <div
       role="radiogroup"
       aria-label={ariaLabel}
+      data-control-ui="theme-toggle"
+      data-control-family="theme-toggle"
+      data-slot="root"
       className={classes(
-        "relative isolate inline-flex h-7 w-fit shrink-0 rounded-full border border-border bg-foreground/8 p-0.5 text-muted-foreground shadow-inner",
+        "relative isolate inline-grid w-fit shrink-0 auto-cols-fr grid-flow-col [--_theme-switch-padding:calc(var(--spacing)*0.5)] [--_theme-switch-radius:min(var(--radius-control),calc(var(--control-h-xs)/2))] rounded-[calc(var(--_theme-switch-radius)+clamp(0px,var(--_theme-switch-radius)*1000,var(--_theme-switch-padding)))] border-(length:--control-rim-width) border-(--control-rim) bg-(--hover-fill) p-(--_theme-switch-padding) text-muted-foreground shadow-(--shadow-inset)",
         className,
       )}
       style={style}
@@ -152,7 +155,10 @@ export function ThemeSegmentedSwitch({
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-y-0.5 left-0.5 rounded-full bg-background shadow-sm transition-transform duration-[var(--duration-base)] ease-[var(--ease-emphasized)]"
+        data-control-ui="theme-toggle"
+        data-control-family="theme-toggle"
+        data-slot="indicator"
+        className="pointer-events-none absolute inset-y-(--_theme-switch-padding) left-(--_theme-switch-padding) rounded-(--_theme-switch-radius) bg-background shadow-(--shadow-sm) transition-transform duration-(--duration-base) ease-(--ease-standard)"
         style={indicatorStyle}
       />
       {choices.map((option) => {
@@ -162,11 +168,15 @@ export function ThemeSegmentedSwitch({
         return (
           <label
             key={option.value}
+            data-control-ui="theme-toggle"
+            data-control-family="theme-toggle"
+            data-slot="option"
+            data-control="true"
             data-selected={selected ? "true" : undefined}
             data-disabled={option.disabled ? "true" : undefined}
             className={classes(
-              "relative z-[1] inline-flex h-6 cursor-pointer items-center justify-center gap-1.5 rounded-full px-1.5 text-xs font-medium outline-none transition-[color,scale] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:text-foreground has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-foreground/25 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-45 data-[selected=true]:text-foreground active:scale-95",
-              showLabels ? "min-w-20" : "w-7",
+              "relative z-[1] inline-flex h-(--control-h-xs) cursor-pointer items-center justify-center gap-1.5 rounded-(--_theme-switch-radius) px-1.5 text-label font-medium transition-colors duration-(--duration-fast) ease-(--ease-standard) hover:text-foreground data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-45 data-[selected=true]:text-foreground",
+              showLabels ? "min-w-20" : "w-(--control-h-xs)",
             )}
           >
             <input

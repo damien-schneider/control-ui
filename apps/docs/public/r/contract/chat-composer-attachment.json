@@ -16,19 +16,19 @@
       "name": "--cui-chat-composer-attachment-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--card) l c h / 0.92)"
+      "defaultValue": "oklch(from var(--card) l c h / calc(alpha * 0.92))"
     },
     {
       "name": "--cui-chat-composer-attachment-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--border) l c h / 0.8)"
+      "defaultValue": "oklch(from var(--border) l c h / calc(alpha * 0.8))"
     },
     {
       "name": "--cui-chat-composer-attachment-shadow",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "var(--shadow-sm)"
+      "defaultValue": "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04), var(--shadow-sm)"
     },
     {
       "name": "--cui-chat-composer-attachment-progress-background",

@@ -1,12 +1,7 @@
 "use client";
 
 import { PrimitiveExamplePreview, PrimitivePreview } from "@/app/(features)/components/previews";
-import {
-  installedDependencyFiles,
-  primitiveComposition,
-  publicRegistryHref,
-  registryInstallCommand,
-} from "@/app/(features)/model/registry";
+import { installedDependencyFiles, publicRegistryHref, registryInstallCommand } from "@/app/(features)/model/registry";
 import type { DocsExtension, DocsPrimitive, DocsPrimitiveExample } from "@/app/(features)/model/types";
 import { AvailableExtensions } from "./available-extensions";
 import { type RegistryItemExample, RegistryItemPage } from "./registry-item-page";
@@ -18,7 +13,6 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
   const exampleCode = primitive.registry.example.code;
   const supportFiles = primitive.registry.supportFiles ?? [];
   const dependencyFiles = installedDependencyFiles(supportFiles);
-  const composition = primitiveComposition(primitive);
 
   return (
     <RegistryItemPage
@@ -35,7 +29,7 @@ export function PrimitivePage({ primitive, extensions }: { primitive: DocsPrimit
         ),
       }}
       examples={examplesForPrimitive(primitive.id, primitive.registry.examples)}
-      composition={composition}
+      composition={primitive.registry.composition}
       install={{
         commands: [{ label: "Registry command", value: installCommand }],
         manifestHref,

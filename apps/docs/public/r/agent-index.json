@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 178,
+    "count": 179,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -146,6 +146,13 @@
         "kind": "Guide",
         "summary": "Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.",
         "href": "/create-a-skin"
+      },
+      {
+        "id": "theme-editor",
+        "name": "Theme editor",
+        "kind": "Guide",
+        "summary": "Choose a skin, edit its tokens, and preview your theme across the docs.",
+        "href": "/theme-editor"
       },
       {
         "id": "theme-ai-builder",
@@ -304,7 +311,7 @@
         "id": "modern-apple",
         "name": "Modern Apple",
         "kind": "Skin",
-        "summary": "Apple-inspired Liquid Glass skin: WebGL-refraction on floating surfaces, precise directional rims, transparent inputs, and continuous corners.",
+        "summary": "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
         "href": "/skins/modern-apple",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-modern-apple.json --overwrite"
       },

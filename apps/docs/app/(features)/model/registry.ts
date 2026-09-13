@@ -1,10 +1,7 @@
 import { skinMetas } from "@/app/(features)/catalog/skins";
-import { compositionTreeFromExample } from "@/app/(features)/model/composition-from-example";
 import type {
-  CompositionExample,
   DocsComponent,
   DocsComponentVersion,
-  DocsPrimitive,
   GuideSection,
   RegistryKindId,
   SkinMetaId,
@@ -32,45 +29,6 @@ export function installedDependencyFiles(files: SourceFile[]): SourceFile[] {
   return files.filter((file) => file.slot !== "recipe-css");
 }
 
-function exportedComponentNames(source: string) {
-  return [...source.matchAll(/export\s+function\s+([A-Z][A-Za-z0-9]*)/g), ...source.matchAll(/export\s+const\s+([A-Z][A-Za-z0-9]*)\s*=/g)]
-    .map((match) => match[1])
-    .filter((name): name is string => Boolean(name));
-}
-
-function partsList(parts: string[], ownParts: string[], title: string): CompositionExample[] {
-  if (parts.length === 0) return [];
-  return [{ title, code: parts.join("\n"), ownParts }];
-}
-
-function compositionForSource(source?: SourceFile, example?: SourceFile, composition?: CompositionExample[]): CompositionExample[] {
-  const ownParts = source ? exportedComponentNames(source.code) : [];
-  if (composition && composition.length > 0) return composition.map((entry) => ({ ...entry, ownParts }));
-  if (!source) return [];
-
-  const [root, ...parts] = ownParts;
-  if (!root) return [];
-
-  const compoundParts = parts.filter((part) => part.startsWith(root));
-  const visibleParts = compoundParts.length > 0 ? compoundParts : parts;
-  const tree = example && compositionTreeFromExample(example.code, ownParts);
-
-  if (tree) {
-    return [{ title: "Anatomy", code: tree.code, ownParts }, ...partsList(tree.unusedParts, ownParts, "Other exported parts")];
-  }
-
-  if (visibleParts.length === 0) return [{ title: "Root", code: root, ownParts }];
-  return partsList([root, ...visibleParts], ownParts, "Exported parts");
-}
-
-export function primitiveComposition(primitive: DocsPrimitive): CompositionExample[] {
-  return compositionForSource(primitive.registry.source, primitive.registry.example, primitive.registry.composition);
-}
-
-export function componentComposition(component: DocsComponent): CompositionExample[] {
-  return compositionForSource(component.source, component.example);
-}
-
 export function publicRegistryHref(kind: string) {
   return `/r/${kind}.json`;
 }
@@ -87,7 +45,6 @@ export function packInstallCommand(id: SkinMetaId): string | undefined {
   return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/skin-${id}.json --overwrite`;
 }
 
-// Flat `/r/skin-<id>.json` docs URL for pack's published manifest (undefined for docsOnly).
 export function packManifestHref(id: SkinMetaId): string | undefined {
   return packManifestPathFor(id) ? publicRegistryHref(`skin-${id}`) : undefined;
 }

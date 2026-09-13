@@ -98,6 +98,7 @@ export const generatedSkinContract: SkinContract = {
     tabs: ["tabs"],
     "task-list": ["task-list"],
     textarea: ["textarea"],
+    "theme-toggle": ["theme-toggle-block"],
     "thread-rail": ["thread-rail"],
     timeline: ["timeline"],
     toast: ["toast"],
@@ -1741,7 +1742,14 @@ export const generatedSkinContract: SkinContract = {
         root: {
           family: "chat-layout",
           registryItems: ["chat-layout"],
-          states: [],
+          states: [
+            {
+              attribute: "data-chrome",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["embedded", "panel"],
+            },
+          ],
         },
       },
       registryItems: ["chat-layout"],
@@ -4914,6 +4922,36 @@ export const generatedSkinContract: SkinContract = {
     },
     "dropdown-menu": {
       parts: {
+        "checkbox-item": {
+          family: "popup",
+          registryItems: ["dropdown-menu"],
+          states: [
+            {
+              attribute: "data-checked",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-highlighted",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-unchecked",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
         content: {
           family: "popup",
           registryItems: ["dropdown-menu"],
@@ -4962,6 +5000,11 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        group: {
+          family: "popup",
+          registryItems: ["dropdown-menu"],
+          states: [],
+        },
         item: {
           family: "popup",
           registryItems: ["dropdown-menu"],
@@ -4985,6 +5028,41 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["dropdown-menu"],
           states: [],
         },
+        "radio-group": {
+          family: "popup",
+          registryItems: ["dropdown-menu"],
+          states: [],
+        },
+        "radio-item": {
+          family: "popup",
+          registryItems: ["dropdown-menu"],
+          states: [
+            {
+              attribute: "data-checked",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-highlighted",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-unchecked",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
         separator: {
           family: "popup",
           registryItems: ["dropdown-menu"],
@@ -4996,6 +5074,44 @@ export const generatedSkinContract: SkinContract = {
               values: ["horizontal", "vertical"],
             },
           ],
+        },
+        shortcut: {
+          family: "popup",
+          registryItems: ["dropdown-menu"],
+          states: [],
+        },
+        "sub-content": {
+          registryItems: ["dropdown-menu"],
+          states: [],
+        },
+        "sub-trigger": {
+          family: "popup",
+          registryItems: ["dropdown-menu"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-highlighted",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-popup-open",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+        "sub-trigger-indicator": {
+          family: "popup",
+          registryItems: ["dropdown-menu"],
+          states: [],
         },
         trigger: {
           family: "button",
@@ -9810,6 +9926,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["sidebar"],
           states: [],
         },
+        "group-content": {
+          family: "sidebar",
+          registryItems: ["sidebar"],
+          states: [],
+        },
         "group-label": {
           family: "sidebar",
           registryItems: ["sidebar"],
@@ -9838,6 +9959,18 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-indicator",
               source: "control-ui",
               valueKind: "open",
+              values: [],
+            },
+          ],
+        },
+        "menu-action": {
+          family: "sidebar",
+          registryItems: ["sidebar"],
+          states: [
+            {
+              attribute: "data-show-on-hover",
+              source: "control-ui",
+              valueKind: "presence",
               values: [],
             },
           ],
@@ -11115,6 +11248,39 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["textarea"],
+    },
+    "theme-toggle": {
+      parts: {
+        root: {
+          family: "theme-toggle",
+          registryItems: ["theme-toggle-block"],
+          states: [],
+        },
+        indicator: {
+          family: "theme-toggle",
+          registryItems: ["theme-toggle-block"],
+          states: [],
+        },
+        option: {
+          family: "theme-toggle",
+          registryItems: ["theme-toggle-block"],
+          states: [
+            {
+              attribute: "data-disabled",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-selected",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
+        },
+      },
+      registryItems: ["theme-toggle-block"],
     },
     "thread-rail": {
       parts: {
@@ -12738,7 +12904,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-root-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--background) l c h / 0.8)",
+        defaultValue: "transparent",
       },
       {
         name: "--cui-chat-composer-shell-radius",
@@ -12750,7 +12916,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--card) l c h / 0.78)",
+        defaultValue: "oklch(from var(--card) l c h / calc(alpha * 0.78))",
       },
       {
         name: "--cui-chat-composer-shell-background-image",
@@ -12774,7 +12940,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "var(--shadow-sm)",
+        defaultValue: "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04), var(--shadow-sm)",
       },
       {
         name: "--cui-chat-composer-input-foreground",
@@ -12824,19 +12990,19 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-attachment-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--card) l c h / 0.92)",
+        defaultValue: "oklch(from var(--card) l c h / calc(alpha * 0.92))",
       },
       {
         name: "--cui-chat-composer-attachment-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--border) l c h / 0.8)",
+        defaultValue: "oklch(from var(--border) l c h / calc(alpha * 0.8))",
       },
       {
         name: "--cui-chat-composer-attachment-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "var(--shadow-sm)",
+        defaultValue: "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04), var(--shadow-sm)",
       },
       {
         name: "--cui-chat-composer-attachment-progress-background",
@@ -15287,7 +15453,19 @@ export const generatedSkinContract: SkinContract = {
         },
         {
           scope: "dropdown-menu",
+          part: "checkbox-item",
+        },
+        {
+          scope: "dropdown-menu",
           part: "item",
+        },
+        {
+          scope: "dropdown-menu",
+          part: "radio-item",
+        },
+        {
+          scope: "dropdown-menu",
+          part: "sub-trigger",
         },
         {
           scope: "menubar",
@@ -15418,6 +15596,10 @@ export const generatedSkinContract: SkinContract = {
           part: "shortcut",
         },
         {
+          scope: "dropdown-menu",
+          part: "shortcut",
+        },
+        {
           scope: "menubar",
           part: "shortcut",
         },
@@ -15545,6 +15727,10 @@ export const generatedSkinContract: SkinContract = {
       {
         scope: "textarea",
         part: "root",
+      },
+      {
+        scope: "theme-toggle",
+        part: "option",
       },
       {
         scope: "toggle",

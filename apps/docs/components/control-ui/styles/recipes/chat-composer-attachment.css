@@ -1,9 +1,9 @@
 @layer components {
-  :where([data-slot="root"][data-control-family="chat-composer-attachment"]) {
-    --cui-chat-composer-attachment-background: oklch(from var(--card) l c h / 0.92);
-    --cui-chat-composer-attachment-border-color: oklch(from var(--border) l c h / 0.8);
+  :where([data-control-ui="chat-composer-attachment"][data-control-family="chat-composer-attachment"][data-slot="root"]) {
+    --cui-chat-composer-attachment-background: oklch(from var(--card) l c h / calc(alpha * 0.92));
+    --cui-chat-composer-attachment-border-color: oklch(from var(--border) l c h / calc(alpha * 0.8));
     --cui-chat-composer-attachment-radius: var(--radius-field);
-    --cui-chat-composer-attachment-shadow: var(--shadow-sm);
+    --cui-chat-composer-attachment-shadow: inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04), var(--shadow-sm);
     --cui-chat-composer-attachment-progress-background: oklch(from var(--foreground) l c h / 0.1);
     --cui-chat-composer-attachment-progress-foreground: var(--primary);
     block-size: calc(var(--spacing) * 14);
@@ -11,9 +11,7 @@
     border: 1px solid var(--cui-chat-composer-attachment-border-color);
     border-radius: var(--cui-chat-composer-attachment-radius);
     background: var(--cui-chat-composer-attachment-background);
-    box-shadow:
-      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
-      var(--cui-chat-composer-attachment-shadow);
+    box-shadow: var(--cui-chat-composer-attachment-shadow);
     transition-property: background-color, border-color, box-shadow;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-standard);
@@ -66,7 +64,7 @@
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="preview"]) {
-    border-radius: calc(var(--radius-field) - 0.25rem);
+    border-radius: max(0px, calc(var(--cui-chat-composer-attachment-radius) - var(--spacing)));
     background: var(--muted);
     color: var(--muted-foreground);
   }

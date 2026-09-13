@@ -118,6 +118,18 @@ export const guideEntries = [
     ],
   },
   {
+    id: "theme-editor",
+    kind: "Guide",
+    group: "theme",
+    name: "Theme editor",
+    summary: "Choose a skin, edit its tokens, and preview your theme across the docs.",
+    layout: "wide",
+    sections: [
+      { id: "theme-skin", title: "Choose a skin" },
+      { id: "theme-tokens", title: "Edit tokens" },
+    ],
+  },
+  {
     id: "theme-ai-builder",
     kind: "Guide",
     group: "theme",

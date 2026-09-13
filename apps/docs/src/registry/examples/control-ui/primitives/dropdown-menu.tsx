@@ -7,10 +7,18 @@ import { Button } from "@/components/control-ui/ui/button";
 
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/control-ui/ui/dropdown-menu";
 
@@ -67,7 +75,47 @@ export function PrimitiveDropdownMenuExample() {
           The trigger already owns button styling. Set size and variant on DropdownMenuTrigger, including when composing with render.
         </p>
       </Row>
+      <DropdownMenuChoicesExample />
       <span className="text-[11px] text-muted-foreground">{last ? `Last action: ${last}` : "No action yet"}</span>
     </div>
+  );
+}
+
+function DropdownMenuChoicesExample() {
+  const [notifications, setNotifications] = useState(true);
+  const [visibility, setVisibility] = useState("team");
+  const [shared, setShared] = useState(false);
+
+  return (
+    <Row label="Workspace options">
+      <DropdownMenu>
+        <DropdownMenuTrigger>Options</DropdownMenuTrigger>
+        <DropdownMenuContent side="right" align="end" sideOffset={8}>
+          <DropdownMenuGroup aria-label="Preferences">
+            <DropdownMenuCheckboxItem checked={notifications} onCheckedChange={setNotifications} closeOnClick={false}>
+              Notifications
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem disabled>Organization policy</DropdownMenuCheckboxItem>
+            <DropdownMenuRadioGroup value={visibility} onValueChange={setVisibility} aria-label="Visibility">
+              <DropdownMenuRadioItem value="team">Team only</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="everyone">Everyone</DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem render={<a href="#workspace-settings" />} nativeButton={false}>
+            Settings<DropdownMenuShortcut>⌘,</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Share</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem onClick={() => setShared(true)}>Copy workspace link</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <span role="status">
+        {shared ? "Last action: Copy workspace link" : `${notifications ? "Notifications on" : "Notifications off"}, ${visibility}`}
+      </span>
+    </Row>
   );
 }

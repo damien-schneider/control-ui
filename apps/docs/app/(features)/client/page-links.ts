@@ -1,6 +1,6 @@
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { primitiveCategories } from "@/app/(features)/catalog/primitives";
-import { componentComposition, installedDependencyFiles, primitiveComposition, supportFilesFor } from "@/app/(features)/model/registry";
+import { installedDependencyFiles, supportFilesFor } from "@/app/(features)/model/registry";
 import type {
   DocsBlock,
   DocsComponent,
@@ -20,7 +20,7 @@ function primitivePageLinks(activePrimitive: DocsPrimitive, extensions: DocsExte
   return [
     { href: "#preview", label: "Preview" },
     ...((activePrimitive.registry.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
-    ...(primitiveComposition(activePrimitive).length > 0 ? [{ href: "#composition", label: "Composition" }] : []),
+    { href: "#composition", label: "Composition" },
     { href: "#install", label: "Installation" },
     ...(installedDependencyFiles(activePrimitive.registry.supportFiles ?? []).length > 0
       ? [{ href: "#dependencies", label: "Dependencies" }]
@@ -34,14 +34,13 @@ function primitivePageLinks(activePrimitive: DocsPrimitive, extensions: DocsExte
 }
 
 function componentPageLinks(component: DocsComponent, extensions: DocsExtension[]) {
-  const hasComposition = componentComposition(component).length > 0;
   const hasDependencies = installedDependencyFiles(supportFilesFor(component)).length > 0;
   const hasExtensions = extensions.some((extension) => extension.appliesTo?.some((id) => id === component.id));
 
   return [
     { href: "#preview", label: "Preview" },
     ...((component.examples?.length ?? 0) > 0 ? [{ href: "#examples", label: "Examples" }] : []),
-    ...(hasComposition ? [{ href: "#composition", label: "Composition" }] : []),
+    { href: "#composition", label: "Composition" },
     { href: "#install", label: "Installation" },
     { href: "#usage", label: "Usage" },
     ...(hasDependencies ? [{ href: "#dependencies", label: "Dependencies" }] : []),
@@ -106,10 +105,9 @@ function referencePageLinks(): PageLink[] {
 }
 
 function useCasePageLinks(useCase: DocsBlock): PageLink[] {
-  const hasComposition = (useCase.composition?.length ?? 0) > 0;
   return [
     { href: "#preview", label: "Preview" },
-    ...(hasComposition ? [{ href: "#composition", label: "Composition" }] : []),
+    { href: "#composition", label: "Composition" },
     { href: "#install", label: "Installation" },
     { href: "#usage", label: "Usage" },
     ...(useCase.registryDependencies.length > 0 ? [{ href: "#library-dependencies", label: "Library dependencies" }] : []),

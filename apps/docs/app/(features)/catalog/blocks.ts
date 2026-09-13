@@ -41,16 +41,6 @@ export const blockEntries = [
       },
       files: [sourceFile("Block recipe", "src/registry/blocks/chat.tsx", "block")],
     },
-    composition: [
-      {
-        title: "Controlled shell",
-        code: `ChatBlock
-├── ChatLayout
-│   └── ChatThread
-│       └── children (rendered turns)
-└── composer`,
-      },
-    ],
     preview: preview(() => import("@/src/registry/examples/control-ui/chat").then((mod) => ({ default: mod.ChatExample }))),
   },
   {
@@ -68,23 +58,6 @@ export const blockEntries = [
       },
       files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/theme-toggle.tsx", "block")],
     },
-    composition: [
-      {
-        title: "Controlled controls",
-        code: `Theme controls
-├── ThemeSegmentedSwitch
-│   ├── input type="radio"
-│   └── icon / label
-├── ThemeSwitch
-│   └── Switch
-├── ThemeToggle
-│   └── Button
-└── ThemeDropdown
-    ├── MenuTrigger
-    └── MenuContent
-        └── MenuItem`,
-      },
-    ],
     preview: preview(() => import("@/src/registry/examples/control-ui/theme-toggle").then((mod) => ({ default: mod.ThemeToggleExample }))),
   },
   {
@@ -103,25 +76,6 @@ export const blockEntries = [
       },
       files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/coding-agent.tsx", "block")],
     },
-    composition: [
-      {
-        title: "Coding workspace shell",
-        code: `CodingAgentBlock
-├── SidebarProvider
-│   ├── Sidebar
-│   │   ├── navigation
-│   │   └── projects
-│   │       └── tasks
-│   └── SidebarInset
-│       ├── task header
-│       └── children
-└── CodingAgentConversation
-    └── ChatLayout
-        ├── ChatThread
-        │   └── rendered turns or CodingAgentEmptyState
-        └── composer`,
-      },
-    ],
     preview: preview(() => import("@/src/registry/examples/control-ui/coding-agent").then((mod) => ({ default: mod.CodingAgentExample }))),
   },
   {
@@ -139,26 +93,6 @@ export const blockEntries = [
       },
       files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/settings.tsx", "block")],
     },
-    composition: [
-      {
-        title: "Searchable settings shell",
-        code: `SettingsBlock
-├── SidebarProvider
-│   ├── Sidebar
-│   │   ├── SettingsSearch
-│   │   └── SettingsNavigation
-│   └── SidebarInset
-│       └── SettingsPage
-│           └── FieldSet
-│               ├── FieldLegend
-│               └── FieldGroup
-│                   └── Field orientation="responsive"
-│                       ├── FieldContent
-│                       │   ├── FieldLabel
-│                       │   └── FieldDescription
-│                       └── consumer control`,
-      },
-    ],
     preview: preview(() => import("@/src/registry/examples/control-ui/settings").then((mod) => ({ default: mod.SettingsExample }))),
   },
   {
@@ -177,23 +111,6 @@ export const blockEntries = [
       },
       files: [sourceFile("Block recipe", "src/registry/blocks/control-ui/file-explorer.tsx", "block")],
     },
-    composition: [
-      {
-        title: "Column file browser",
-        code: `FileExplorerBlock
-├── SidebarProvider
-│   ├── Sidebar
-│   │   └── grouped locations
-│   └── SidebarInset
-│       ├── toolbar + search
-│       ├── address breadcrumb
-│       ├── ResizablePanelGroup
-│       │   ├── folder columns
-│       │   └── item preview
-│       └── path status bar
-└── search results (when querying)`,
-      },
-    ],
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/file-explorer").then((mod) => ({ default: mod.FileExplorerExample })),
     ),
