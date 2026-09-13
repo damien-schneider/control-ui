@@ -31,7 +31,7 @@ export function SidebarSetupControls({
           <SelectTrigger size="sm" className="w-full" aria-label="Integration" data-testid="integration-select">
             <SelectValue>{(value: string) => (isCatalogIntegrationId(value) ? <IntegrationOption id={value} /> : null)}</SelectValue>
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent alignItemWithTrigger={false}>
             <SelectItem value="mastra">
               <IntegrationOption id="mastra" />
             </SelectItem>

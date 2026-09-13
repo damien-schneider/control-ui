@@ -4065,6 +4065,26 @@ export const registryMetadata = {
         type: "registry:component",
       },
       {
+        path: "src/registry/sources/control-ui/recipes/popup-controls.css",
+        target: "@components/control-ui/styles/recipes/popup-controls.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-lists.css",
+        target: "@components/control-ui/styles/recipes/popup-lists.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup-motion.css",
+        target: "@components/control-ui/styles/recipes/popup-motion.css",
+        type: "registry:file",
+      },
+      {
+        path: "src/registry/sources/control-ui/recipes/popup.css",
+        target: "@components/control-ui/styles/recipes/popup.css",
+        type: "registry:file",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/toolbar.css",
         target: "@components/control-ui/styles/recipes/toolbar.css",
         type: "registry:file",

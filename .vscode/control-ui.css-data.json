@@ -1475,6 +1475,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-progressive-blur-fade-size",
+      "description": "Control UI progressive-blur knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-progressive-blur-size",
       "description": "Control UI progressive-blur knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -1634,6 +1639,10 @@
       "name": "--cui-sidebar-group-label-foreground",
       "description": "Control UI sidebar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-sidebar-inner-backdrop-filter",
+      "description": "Control UI sidebar knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
       "name": "--cui-sidebar-inner-background",

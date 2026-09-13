@@ -1,9 +1,17 @@
-import { expect, type Locator, test } from "@playwright/test";
+import { expect, type Locator, type Page, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { meanScreenshotDifference, waitForReactHydration } from "./browser-test-helpers";
 
 function edgeLayers(viewport: Locator, side: string) {
   return viewport.locator("..").locator(`[data-control-family="progressive-blur"][data-side="${side}"] > [data-slot="layer"]`);
+}
+
+function standaloneBlur(page: Page) {
+  return page
+    .getByText("A little further away.", { exact: true })
+    .locator("..")
+    .locator("..")
+    .locator('[data-control-family="progressive-blur"][data-slot="root"]');
 }
 
 test.beforeEach(async ({ page }) => {
@@ -81,31 +89,39 @@ test("zero-radius blur layers do not darken faded text", async ({ page }) => {
     }
   });
   const withoutLayers = await scrollArea.screenshot({ animations: "disabled" });
-  const meanPixelDifference = await page.evaluate(
-    async (screenshots) => {
-      const pixels = await Promise.all(
-        screenshots.map(async (screenshot) => {
-          const image = new Image();
-          image.src = `data:image/png;base64,${screenshot}`;
-          await image.decode();
-          const canvas = document.createElement("canvas");
-          canvas.width = image.width;
-          canvas.height = image.height;
-          const context = canvas.getContext("2d");
-          if (!context) throw new Error("Canvas pixel inspection is unavailable");
-          context.drawImage(image, 0, 0);
-          return context.getImageData(0, 0, image.width, image.height).data;
-        }),
-      );
-      let difference = 0;
-      for (let index = 0; index < pixels[0].length; index += 1) {
-        difference += Math.abs(pixels[0][index] - pixels[1][index]);
-      }
-      return difference / pixels[0].length;
-    },
-    [withLayers.toString("base64"), withoutLayers.toString("base64")],
-  );
+  const meanPixelDifference = await meanScreenshotDifference(page, [withLayers, withoutLayers]);
   expect(meanPixelDifference).toBeLessThan(0.05);
+});
+
+test("blur feathers into the clipped edge while still softening content", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const viewport = page.getByLabel("Places to explore", { exact: true });
+  const scrollArea = viewport.locator("..");
+  await scrollArea.evaluate((element) => {
+    element.style.background = "black";
+    element.style.border = "0";
+    element.style.borderRadius = "0";
+  });
+  await viewport.getByRole("list").evaluate((element) => {
+    element.style.background = "repeating-linear-gradient(to right, white 0px 8px, black 8px 16px)";
+  });
+  await viewport.evaluate((element) => {
+    element.scrollTop = 70;
+  });
+  const layers = edgeLayers(viewport, "top");
+  await expect(layers.last()).toHaveCSS("opacity", "1");
+  const withBlur = await scrollArea.screenshot();
+  await layers.evaluateAll((elements) => {
+    for (const element of elements) {
+      if (element instanceof HTMLElement) element.style.display = "none";
+    }
+  });
+  const withoutBlur = await scrollArea.screenshot();
+  const screenshots: [Buffer, Buffer] = [withBlur, withoutBlur];
+  const edgeDifference = await meanScreenshotDifference(page, screenshots, { x: 40, y: 1, width: 80, height: 1 });
+  const interiorDifference = await meanScreenshotDifference(page, screenshots, { x: 40, y: 16, width: 80, height: 8 });
+  expect(edgeDifference).toBeLessThan(5);
+  expect(interiorDifference).toBeGreaterThan(20);
 });
 
 test("custom viewport anatomy keeps fading and clears effects for keyboard focus", async ({ page }) => {
@@ -154,7 +170,7 @@ test("RTL inline edges follow scrolling and keyboard focus stays usable", async 
 });
 
 test("blur grows toward the physical edge independently of language and inherited direction", async ({ page }) => {
-  const root = page.locator('[data-control-family="progressive-blur"][data-slot="root"]').first();
+  const root = standaloneBlur(page);
   const layer = root.locator('[data-slot="layer"]').last();
   const surface = root.locator("..");
   for (const { direction, language, startDirection, endDirection } of [
@@ -224,7 +240,7 @@ test("scrolling reveals the blur through intermediate opacity with staggered lay
 
 test("standalone blur staggers individual layers and cancels a rapid reversal", async ({ page }) => {
   const visibility = page.getByRole("switch", { name: "Show blur", exact: true });
-  const root = page.locator('[data-control-family="progressive-blur"][data-visible]').first();
+  const root = standaloneBlur(page);
   const layers = root.locator('[data-slot="layer"]');
   await expect(layers.last()).toHaveCSS("opacity", "1");
   await expect(root).toHaveCSS("opacity", "1");
@@ -236,9 +252,7 @@ test("standalone blur staggers individual layers and cancels a rapid reversal", 
   await visibility.click();
   await expect(layers.last()).toHaveCSS("opacity", "1");
   await visibility.click();
-  await expect(
-    page.locator('[data-control-family="progressive-blur"][data-slot="root"]').first().locator('[data-slot="layer"]').last(),
-  ).toHaveCSS("visibility", "hidden");
+  await expect(layers.last()).toHaveCSS("visibility", "hidden");
 });
 
 test("reduced motion removes delays and forced colors removes decoration", async ({ page }) => {

@@ -17,6 +17,7 @@ import type { ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/
 import type { CardVariant } from "../../src/registry/sources/control-ui/ui/card";
 import type { CodeChrome, CodeDensity } from "../../src/registry/sources/control-ui/ui/code";
 import type { DiffIndicators, DiffStyle } from "../../src/registry/sources/control-ui/ui/code-diff";
+import type { CommandChrome } from "../../src/registry/sources/control-ui/ui/command";
 import type { DockablePanelContentPadding, DockablePanelPlacement } from "../../src/registry/sources/control-ui/ui/dockable-panel";
 import type {
   DrawerContentPadding,
@@ -103,6 +104,7 @@ export type EmittedStateContract = {
   "checkbox-group:root:data-orientation": "horizontal" | "vertical";
   "checkbox-group:root:data-track": HoverIndicator;
   "code:root:data-chrome": CodeChrome;
+  "command:root:data-chrome": CommandChrome;
   "code:root:data-density": CodeDensity;
   "code:line:data-index": number;
   "code-block-editor:root:data-variant": "default" | "command";

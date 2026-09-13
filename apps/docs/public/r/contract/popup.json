@@ -21,6 +21,7 @@
     "select",
     "sheet",
     "toast",
+    "toolbar",
     "tooltip",
     "trigger-menu"
   ],
@@ -1136,6 +1137,15 @@
           "command"
         ],
         "states": [
+          {
+            "attribute": "data-chrome",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "embedded",
+              "standalone"
+            ]
+          },
           {
             "attribute": "data-popup-kind",
             "source": "control-ui",
@@ -4470,6 +4480,30 @@
             "values": [
               "toast"
             ]
+          }
+        ]
+      }
+    },
+    "toolbar": {
+      "surface": {
+        "family": "popup",
+        "registryItems": [
+          "toolbar"
+        ],
+        "states": [
+          {
+            "attribute": "data-popup-kind",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "toolbar"
+            ]
+          },
+          {
+            "attribute": "data-popup-static",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
           }
         ]
       }

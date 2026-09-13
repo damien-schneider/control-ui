@@ -3686,6 +3686,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["command"],
           states: [
             {
+              attribute: "data-chrome",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["embedded", "standalone"],
+            },
+            {
               attribute: "data-popup-kind",
               source: "control-ui",
               valueKind: "enum",
@@ -11681,7 +11687,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["default", "inverse"],
+              values: ["default", "floating", "inverse"],
             },
           ],
         },
@@ -11802,6 +11808,24 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "enum",
               values: ["horizontal", "vertical"],
+            },
+          ],
+        },
+        surface: {
+          family: "popup",
+          registryItems: ["toolbar"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["toolbar"],
+            },
+            {
+              attribute: "data-popup-static",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
             },
           ],
         },
@@ -14294,6 +14318,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "16px",
       },
       {
+        name: "--cui-progressive-blur-fade-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0.5rem",
+      },
+      {
         name: "--cui-progressive-blur-transition-duration",
         syntax: "<time>",
         initialValue: "0s",
@@ -14532,6 +14562,12 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-sidebar-inner-background-image",
         syntax: "*",
         initialValue: "",
+        defaultValue: "none",
+      },
+      {
+        name: "--cui-sidebar-inner-backdrop-filter",
+        syntax: "*",
+        initialValue: "none",
         defaultValue: "none",
       },
       {
@@ -15628,6 +15664,10 @@ export const generatedSkinContract: SkinContract = {
           part: "root",
         },
         {
+          scope: "toolbar",
+          part: "surface",
+        },
+        {
           scope: "tooltip",
           part: "content",
         },
@@ -15788,6 +15828,10 @@ export const generatedSkinContract: SkinContract = {
         {
           scope: "toast",
           part: "root",
+        },
+        {
+          scope: "toolbar",
+          part: "surface",
         },
         {
           scope: "trigger-menu",

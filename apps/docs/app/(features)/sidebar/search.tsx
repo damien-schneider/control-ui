@@ -71,8 +71,8 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
 
   return (
     <Command
+      chrome="embedded"
       className="peer contents"
-      style={{ "--cui-popup-backdrop-filter": "none" }}
       filter={scoreCommandSearchItem}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) setQuery("");
@@ -80,7 +80,7 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
     >
       <div
         data-docs-sidebar-search=""
-        className="group/search relative flex w-[var(--control-h-sm)] min-w-0 shrink-0 items-center rounded-[min(var(--radius-sm),calc(var(--control-h-sm)/2))] text-background/70 outline-hidden transition-[width,background-color,color] duration-[var(--duration-base)] ease-[var(--ease-standard)] focus-within:w-[calc(min(34rem,calc(100vw-1rem))_-_2_*_var(--floating-toolbar-padding)_-_2px)] focus-within:bg-background/10 focus-within:text-background hover:bg-background/10 hover:text-background"
+        className="group/search relative flex w-[var(--control-h-sm)] min-w-0 shrink-0 items-center rounded-[min(var(--radius-sm),calc(var(--control-h-sm)/2))] text-(--cui-toolbar-item-foreground) outline-hidden transition-[width,background-color,color] duration-[var(--duration-base)] ease-[var(--ease-standard)] focus-within:w-[calc(min(34rem,calc(100vw-1rem))_-_2_*_var(--floating-toolbar-padding))] focus-within:bg-(--cui-toolbar-item-hover-background) focus-within:text-(--cui-toolbar-item-hover-foreground) hover:bg-(--cui-toolbar-item-hover-background) hover:text-(--cui-toolbar-item-hover-foreground)"
       >
         <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] flex w-[var(--control-h-sm)] items-center justify-center">
           <HugeiconsIcon icon={Search01Icon} size={15} strokeWidth={1.7} />

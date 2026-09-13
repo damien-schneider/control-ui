@@ -1,11 +1,20 @@
 "use client";
 
+import { Field, FieldDescription, FieldLabel } from "@/components/control-ui/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/control-ui/ui/input-group";
 import { Kbd } from "@/components/control-ui/ui/kbd";
 
 export function PrimitiveInputGroupExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
+      <Field>
+        <FieldLabel htmlFor="input-group-url">URL</FieldLabel>
+        <InputGroup>
+          <InputGroupAddon>/dashboard/</InputGroupAddon>
+          <InputGroupInput id="input-group-url" aria-describedby="input-group-url-description" defaultValue="reflet" />
+        </InputGroup>
+        <FieldDescription id="input-group-url-description">Lowercase letters, numbers, and hyphens</FieldDescription>
+      </Field>
       <div className="flex flex-col gap-2">
         <span className="text-[11px] font-medium text-muted-foreground">Addon + field</span>
         <InputGroup size="sm">

@@ -8,19 +8,25 @@ import { popupItemStructureClasses } from "@/components/control-ui/surface-varia
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/control-ui/ui/dialog";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
-export type CommandProps = Omit<ComponentProps<typeof CommandPrimitive>, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type CommandChrome = "standalone" | "embedded";
 
-export function Command({ className, ...props }: CommandProps) {
+export type CommandProps = Omit<ComponentProps<typeof CommandPrimitive>, "style"> & {
+  chrome?: CommandChrome;
+  style?: CSSProperties & PopupKnobStyle;
+};
+
+export function Command({ chrome = "standalone", className, ...props }: CommandProps) {
   return (
     <CommandPrimitive
       data-control-ui="command"
       data-popup-kind="command"
       data-slot="root"
       data-control-family="popup"
-      data-popup-part="surface"
+      data-popup-part={chrome === "standalone" ? "surface" : undefined}
       data-popup-static=""
-      data-surface="panel"
-      className={cn("flex h-full w-full flex-col overflow-hidden", className)}
+      data-chrome={chrome}
+      data-surface={chrome === "standalone" ? "panel" : undefined}
+      className={cn("flex h-full w-full flex-col", className)}
       {...props}
     />
   );
@@ -41,10 +47,11 @@ export function CommandDialog({
 }) {
   return (
     <Dialog {...props}>
-      <DialogContent className={cn("overflow-hidden p-0", className)} showCloseButton={false}>
+      <DialogContent className={cn("p-0", className)} showCloseButton={false}>
         <DialogTitle className="sr-only">{title}</DialogTitle>
         <DialogDescription className="sr-only">{description}</DialogDescription>
         <Command
+          chrome="embedded"
           {...commandProps}
           data-control-ui="command"
           data-popup-kind="command"
@@ -139,7 +146,7 @@ export function CommandGroup({ className, ...props }: CommandGroupProps) {
       data-control-family="popup"
       data-popup-kind="command"
       data-slot="group"
-      className={cn("overflow-hidden p-[var(--popover-padding)]", className)}
+      className={cn("p-[var(--popover-padding)]", className)}
       {...props}
     />
   );

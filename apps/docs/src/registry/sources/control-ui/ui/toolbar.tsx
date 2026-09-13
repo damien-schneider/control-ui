@@ -5,7 +5,7 @@ import type { ComponentProps, CSSProperties } from "react";
 import type { ToolbarKnobStyle } from "@/components/control-ui/knob-contracts/toolbar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export type ToolbarVariant = "default" | "inverse";
+export type ToolbarVariant = "default" | "inverse" | "floating";
 
 export type ToolbarLinkVariant = "default" | "track";
 
@@ -36,9 +36,7 @@ export type ToolbarInputProps = Omit<ComponentProps<"input">, "style"> & {
   style?: CSSProperties & ToolbarKnobStyle;
 };
 
-// Button and Link forward Base UI's `render` prop, so composed trigger still receives roving-focus wiring.
-
-export function Toolbar({ orientation = "horizontal", variant = "default", className, ...props }: ToolbarProps) {
+export function Toolbar({ orientation = "horizontal", variant = "default", className, children, ...props }: ToolbarProps) {
   return (
     <ToolbarPrimitive.Root
       orientation={orientation}
@@ -48,11 +46,25 @@ export function Toolbar({ orientation = "horizontal", variant = "default", class
       data-variant={variant}
       className={cn("group/toolbar inline-flex", orientation === "vertical" ? "flex-col items-stretch" : "items-center", className)}
       {...props}
-    />
+    >
+      {variant === "floating" && (
+        <div
+          aria-hidden="true"
+          data-control-ui="toolbar"
+          data-control-family="popup"
+          data-popup-kind="toolbar"
+          data-popup-part="surface"
+          data-popup-static=""
+          data-surface="floating"
+          data-slot="surface"
+          className="pointer-events-none absolute inset-0 -z-1"
+        />
+      )}
+      {children}
+    </ToolbarPrimitive.Root>
   );
 }
 
-// `render` is picked straight off Base UI primitive so composed trigger types and merges as Base UI expects
 type RefinedToolbarButtonProps = ToolbarButtonProps & Pick<ComponentProps<typeof ToolbarPrimitive.Button>, "render">;
 
 export function ToolbarButton({ iconOnly = false, className, ...props }: RefinedToolbarButtonProps) {
@@ -107,7 +119,6 @@ export function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {
 }
 
 export function ToolbarSeparator({ orientation = "vertical", className, ...props }: ToolbarSeparatorProps) {
-  // horizontal toolbar renders vertical separators, hence default
   return (
     <ToolbarPrimitive.Separator
       orientation={orientation}

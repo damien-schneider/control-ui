@@ -77,11 +77,17 @@ async function minimumContrasts(toolbar: Locator, regions: GlyphRegion[]): Promi
     for (const element of toolbarElement.querySelectorAll("button, a")) {
       if (element instanceof HTMLElement) element.style.setProperty("color", "transparent", "important");
     }
+    for (const icon of toolbarElement.querySelectorAll("button svg, a svg")) {
+      if (icon instanceof SVGElement) icon.style.visibility = "hidden";
+    }
   });
   const shot = await toolbar.screenshot({ animations: "disabled" });
   await toolbar.evaluate((toolbarElement) => {
     for (const element of toolbarElement.querySelectorAll("button, a")) {
       if (element instanceof HTMLElement) element.style.removeProperty("color");
+    }
+    for (const icon of toolbarElement.querySelectorAll("button svg, a svg")) {
+      if (icon instanceof SVGElement) icon.style.removeProperty("visibility");
     }
   });
 

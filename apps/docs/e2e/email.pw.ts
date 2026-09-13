@@ -1,6 +1,6 @@
 import { expect, type Route, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
-import { emailPreviewRequest } from "@/src/registry/examples/control-ui/email/options";
+import { emailPreviewRequest, emailPreviewResult } from "@/src/registry/examples/control-ui/email/options";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test.beforeEach(async ({ page }) => {
@@ -10,6 +10,33 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/ai/email");
   await waitForReactHydration(page.getByRole("button", { name: "Invitation", exact: true }));
 });
+
+for (const mode of ["Light", "Dark"] as const) {
+  test(`renders and exports a newsletter without a skin in ${mode.toLowerCase()} mode`, async ({ page }) => {
+    await page.getByRole("radio", { name: mode, exact: true }).focus();
+    await page.keyboard.press("Space");
+    await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+    const responsePromise = page.waitForResponse(
+      (response) =>
+        response.url().endsWith("/api/email-preview") && emailPreviewRequest.parse(response.request().postDataJSON()).skin === "none",
+    );
+    await page.getByRole("option", { name: "No skin", exact: true }).click();
+    expect((await responsePromise).status()).toBe(200);
+    const newsletterResponse = page.waitForResponse("**/api/email-preview");
+    await page.getByRole("button", { name: "Newsletter", exact: true }).click();
+    const { html, text } = emailPreviewResult.parse(await (await newsletterResponse).json());
+    expect(html).not.toMatch(/var\(|oklch\(|\drem\b/);
+    expect(text).toContain("A LITTLE ROOM FOR INSPIRATION.");
+    const frame = page.frameLocator('iframe[title$="email preview"]');
+    await expect(frame.getByRole("heading", { level: 1 })).toHaveText("A little room for inspiration.");
+    await expect(frame.locator('table[style*="max-width"]')).toHaveCSS("border-radius", "0px");
+    await expect(page.getByRole("button", { name: "Download HTML", exact: true })).toBeEnabled();
+    await expect(page.getByRole("button", { name: "Plain text", exact: true })).toBeEnabled();
+    await page.getByRole("button", { name: "Mobile", exact: true }).click();
+    await expect.poll(() => frame.locator("html").evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+    await page.screenshot({ path: `/tmp/control-ui-email-no-skin-${mode.toLowerCase()}.png`, fullPage: true });
+  });
+}
 
 test("composes five layouts, loads images, and exports the rendered email", async ({ page }) => {
   const frame = page.frameLocator('iframe[title$="email preview"]');

@@ -49,6 +49,12 @@
       "defaultValue": "none"
     },
     {
+      "name": "--cui-sidebar-inner-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "none"
+    },
+    {
       "name": "--cui-sidebar-inner-border-width",
       "syntax": "<length>",
       "initialValue": "0px",

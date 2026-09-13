@@ -3,7 +3,7 @@
   "name": "input-group",
   "type": "registry:ui",
   "title": "Input group",
-  "description": "Joined input wrapper for addons, icons, and focus-within rings.",
+  "description": "Joined input wrapper for addons, icons, and a shared focus indicator.",
   "dependencies": [
     "@base-ui/react@^1.7.0"
   ],

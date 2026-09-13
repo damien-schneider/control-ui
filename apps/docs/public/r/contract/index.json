@@ -351,6 +351,7 @@
         "select",
         "sheet",
         "toast",
+        "toolbar",
         "tooltip",
         "trigger-menu"
       ],
@@ -361,7 +362,7 @@
       "registryItems": [
         "progressive-blur"
       ],
-      "knobs": 4,
+      "knobs": 5,
       "probes": 0
     },
     "range": {
@@ -403,7 +404,7 @@
       "registryItems": [
         "sidebar"
       ],
-      "knobs": 21,
+      "knobs": 22,
       "probes": 34
     },
     "sidebar-layout": {

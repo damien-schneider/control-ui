@@ -13,7 +13,7 @@
       "path": "src/registry/skin-packs/refined/skin.config.tsx",
       "target": "@components/control-ui/skin.config.tsx",
       "type": "registry:lib",
-      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = {\n  id: \"refined\",\n  indicators: {\n    sidebar: \"hover\",\n    \"button-group\": \"hover\",\n    \"toggle-group\": \"hover\",\n    \"checkbox-group\": \"hover\",\n  },\n};\n"
+      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = {\n  id: \"refined\",\n  scrollAreaBlur: true,\n  indicators: {\n    sidebar: \"hover\",\n    \"button-group\": \"hover\",\n    \"toggle-group\": \"hover\",\n    \"checkbox-group\": \"hover\",\n  },\n};\n"
     },
     {
       "path": "src/registry/skin-packs/refined/skin.css",

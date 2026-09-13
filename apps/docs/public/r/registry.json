@@ -3257,7 +3257,7 @@
       "name": "input-group",
       "type": "registry:ui",
       "title": "Input group",
-      "description": "Joined input wrapper for addons, icons, and focus-within rings.",
+      "description": "Joined input wrapper for addons, icons, and a shared focus indicator.",
       "dependencies": [
         "@base-ui/react@^1.7.0"
       ],
@@ -5178,6 +5178,26 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/popup-controls.css",
+          "target": "@components/control-ui/styles/recipes/popup-controls.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-lists.css",
+          "target": "@components/control-ui/styles/recipes/popup-lists.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup-motion.css",
+          "target": "@components/control-ui/styles/recipes/popup-motion.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/popup.css",
+          "target": "@components/control-ui/styles/recipes/popup.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/toolbar.css",
           "target": "@components/control-ui/styles/recipes/toolbar.css",
           "type": "registry:file"
@@ -5189,6 +5209,10 @@
         }
       ],
       "css": {
+        "@import \"../components/control-ui/styles/recipes/popup.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-controls.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-lists.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/popup-motion.css\"": {},
         "@import \"../components/control-ui/styles/recipes/toolbar.css\"": {}
       }
     },

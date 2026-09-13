@@ -16,6 +16,7 @@
   :where([data-control-family="sidebar"][data-slot="root"]) {
     --cui-sidebar-inner-background: var(--sidebar);
     --cui-sidebar-inner-background-image: none;
+    --cui-sidebar-inner-backdrop-filter: none;
     --cui-sidebar-inner-border-color: var(--sidebar-border);
     --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-inner-radius: 0px;
@@ -54,11 +55,25 @@
   }
 
   :where([data-control-family="sidebar"][data-slot="inner"]) {
+    position: relative;
+    isolation: isolate;
     border: var(--cui-sidebar-inner-border-width) solid var(--cui-sidebar-inner-border-color);
     border-radius: var(--cui-sidebar-inner-radius);
+    box-shadow: var(--cui-sidebar-inner-shadow);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="inner"])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    corner-shape: inherit;
     background-color: var(--cui-sidebar-inner-background);
     background-image: var(--cui-sidebar-inner-background-image);
-    box-shadow: var(--cui-sidebar-inner-shadow);
+    -webkit-backdrop-filter: var(--cui-sidebar-inner-backdrop-filter);
+    backdrop-filter: var(--cui-sidebar-inner-backdrop-filter);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="floating"]) {
@@ -219,6 +234,12 @@
 @property --cui-sidebar-inner-background-image {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-sidebar-inner-backdrop-filter {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
 }
 
 @property --cui-sidebar-inner-border-width {

@@ -1,5 +1,6 @@
 import { expect, type Locator, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
+import { waitForReactHydration } from "./browser-test-helpers";
 
 async function horizontalInsetError(container: Locator, content: Locator) {
   const [containerBox, contentBox] = await Promise.all([container.boundingBox(), content.boundingBox()]);
@@ -9,7 +10,48 @@ async function horizontalInsetError(container: Locator, content: Locator) {
   return Math.abs(leftInset - rightInset);
 }
 
+function surfacePaint(surface: Locator) {
+  return surface.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { background: style.backgroundColor, shadow: style.boxShadow, backdrop: style.backdropFilter, radius: style.borderRadius };
+  });
+}
+
+for (const skinId of ["refined", "modern-apple"]) {
+  test(`${skinId} toolbar shares menu surfaces when the page mode changes`, async ({ page }) => {
+    await page.addInitScript(
+      ({ storageKey, skin }) => {
+        localStorage.setItem(storageKey, JSON.stringify({ skin }));
+      },
+      { storageKey: THEME_EDITOR_STORAGE_KEY, skin: skinId },
+    );
+    await page.goto("/primitives/toolbar");
+    const toolbar = page.locator("[data-docs-floating-toolbar]");
+    const skinPicker = toolbar.getByRole("combobox", { name: "Skin", exact: true });
+    await waitForReactHydration(skinPicker);
+
+    for (const mode of ["light", "dark"]) {
+      await page.evaluate((value) => {
+        localStorage.setItem("control-ui:theme:v1", value);
+        document.documentElement.classList.toggle("dark", value === "dark");
+      }, mode);
+      await skinPicker.focus();
+      await page.keyboard.press("ArrowDown");
+      const menu = page.locator('[data-popup-kind="select"][data-popup-part="list-surface"]');
+      await expect(menu).toBeVisible();
+      const menuPaint = await surfacePaint(menu);
+      await expect.poll(() => surfacePaint(toolbar.locator('[data-popup-kind="toolbar"][data-slot="surface"]'))).toEqual(menuPaint);
+      await page.keyboard.press("Escape");
+      await expect(menu).toBeHidden();
+      await expect(skinPicker).toBeFocused();
+    }
+  });
+}
+
 test("floating toolbar contains search and skin controls while section navigation follows the sidebar header", async ({ page }) => {
+  await page.addInitScript((storageKey) => {
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "xp" }));
+  }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/primitives/button");
 
   const toolbar = page.locator("[data-docs-floating-toolbar]");

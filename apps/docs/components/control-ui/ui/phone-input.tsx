@@ -62,8 +62,7 @@ type PhoneInputControlProps = ComponentProps<"input"> & {
   onNativeChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
-// country-flag-icons spreads full SVG props while react-phone-number-input declares ({ title }) => Element;
-// intersecting both keeps `title` required, so no widening assertion is needed.
+// country-flag-icons accepts SVG props; react-phone-number-input requires title.
 type FlagComponent = ComponentType<SVGProps<SVGSVGElement> & EmbeddedFlagProps>;
 const FLAG_COMPONENTS: Partial<Record<PhoneInputCountry, FlagComponent>> = flags;
 const PhoneNumberInputWithRef: ComponentType<ComponentProps<typeof PhoneNumberInput> & { inputRef?: Ref<HTMLInputElement> }> =
@@ -136,7 +135,7 @@ function PhoneCountrySelect({
           <ChevronIcon open={open} style={chevronStyle} />
         </PopoverTrigger>
         <PopoverContent align="start" padding="none" className="w-[min(20rem,calc(100vw-2rem))]">
-          <Command>
+          <Command chrome="embedded">
             <CommandInput aria-label={searchPlaceholder} placeholder={searchPlaceholder} />
             <CommandList>
               <CommandEmpty>{emptyMessage}</CommandEmpty>

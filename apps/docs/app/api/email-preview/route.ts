@@ -9,10 +9,9 @@ import { renderEmailExample } from "@/src/registry/examples/control-ui/email/ren
 async function readEmailThemeCss(skin: SkinId) {
   "use cache";
   cacheLife("max");
-  return Promise.all([
-    readFile("src/registry/sources/control-ui/theme.css", "utf8"),
-    readFile(`src/registry/skin-packs/${skin}/theme.css`, "utf8"),
-  ]);
+  const themePaths = ["src/registry/sources/control-ui/theme.css"];
+  if (skin !== "none") themePaths.push(`src/registry/skin-packs/${skin}/theme.css`);
+  return Promise.all(themePaths.map((themePath) => readFile(themePath, "utf8")));
 }
 
 export async function POST(request: Request) {
@@ -28,8 +27,8 @@ export async function POST(request: Request) {
   }
   const parsed = emailPreviewRequest.safeParse(payload);
   if (!parsed.success) return Response.json({ error: "Choose a supported layout and valid theme tokens." }, { status: 400 });
-  const [coreCss, skinCss] = await readEmailThemeCss(parsed.data.skin);
-  const tokens = tokenMaps([coreCss, skinCss])[parsed.data.mode];
+  const themeCss = await readEmailThemeCss(parsed.data.skin);
+  const tokens = tokenMaps(themeCss)[parsed.data.mode];
   for (const [name, value] of Object.entries(parsed.data.tokens)) tokens.set(name, value);
   let theme: EmailTheme;
   try {

@@ -2,6 +2,7 @@
   :where([data-control-family="progressive-blur"][data-slot="root"]) {
     --cui-progressive-blur-size: 3rem;
     --cui-progressive-blur-backdrop-blur: 16px;
+    --cui-progressive-blur-fade-size: 0.5rem;
     --cui-progressive-blur-transition-duration: var(--duration-base);
     --cui-progressive-blur-transition-delay: calc(var(--cui-progressive-blur-transition-duration) * 0.06);
     --_progressive-blur-direction: to bottom;
@@ -70,13 +71,20 @@
     visibility: var(--_progressive-blur-visibility, hidden);
     -webkit-backdrop-filter: blur(max(0px, calc(var(--cui-progressive-blur-backdrop-blur) / var(--_progressive-blur-divisor))));
     backdrop-filter: blur(max(0px, calc(var(--cui-progressive-blur-backdrop-blur) / var(--_progressive-blur-divisor))));
-    mask-image: linear-gradient(
-      var(--_progressive-blur-direction),
-      oklch(0 0 0 / 0) calc(var(--_progressive-blur-index) * 100% / 7),
-      oklch(0 0 0) calc((var(--_progressive-blur-index) + 1) * 100% / 7),
-      oklch(0 0 0) calc((var(--_progressive-blur-index) + 2) * 100% / 7),
-      oklch(0 0 0 / 0) calc((var(--_progressive-blur-index) + 3) * 100% / 7)
-    );
+    mask-image:
+      linear-gradient(
+        var(--_progressive-blur-direction),
+        oklch(0 0 0 / 0) calc(var(--_progressive-blur-index) * 100% / 7),
+        oklch(0 0 0) calc((var(--_progressive-blur-index) + 1) * 100% / 7),
+        oklch(0 0 0) calc((var(--_progressive-blur-index) + 2) * 100% / 7),
+        oklch(0 0 0 / 0) calc((var(--_progressive-blur-index) + 3) * 100% / 7)
+      ),
+      linear-gradient(
+        var(--_progressive-blur-direction),
+        oklch(0 0 0) calc(100% - min(50%, max(0px, var(--cui-progressive-blur-fade-size)))),
+        oklch(0 0 0 / 0)
+      );
+    mask-composite: intersect;
     transition:
       opacity var(--_progressive-blur-duration) var(--ease-standard)
       calc(var(--_progressive-blur-enter, 0) * var(--_progressive-blur-index) * var(--cui-progressive-blur-transition-delay)),
@@ -113,6 +121,13 @@
     --_progressive-blur-divisor: 1;
   }
 
+  @container style(--cui-progressive-blur-backdrop-blur: 0px) {
+    :where([data-control-family="progressive-blur"][data-slot="layer"]) {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
   @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
     :where([data-control-family="progressive-blur"][data-slot="root"]) {
       display: none;
@@ -128,6 +143,12 @@
 
 @property --cui-progressive-blur-backdrop-blur {
   syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-progressive-blur-fade-size {
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }

@@ -35,7 +35,7 @@ export function DocsFloatingToolbar({ active, searchItems, skills, lastSectionMo
       <Toolbar
         aria-label="Documentation controls"
         data-docs-floating-toolbar=""
-        variant="inverse"
+        variant="floating"
         className="relative w-max max-w-[calc(100vw-1rem)] [--cui-toolbar-padding:var(--floating-toolbar-padding)] transition-[gap] duration-[var(--duration-base)] ease-[var(--ease-standard)] has-[input:focus]:gap-0"
       >
         <SidebarSearch items={searchItems} onNavigate={onNavigate} />

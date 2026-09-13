@@ -927,7 +927,7 @@ export const primitiveEntries = [
     category: "forms",
     kind: "Primitive",
     name: "Input group",
-    summary: "Joined input wrapper for addons, icons, and focus-within rings.",
+    summary: "Joined input wrapper for addons, icons, and a shared focus indicator.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/input-group",
     paths: {
       registry: {
@@ -1725,7 +1725,7 @@ export const primitiveEntries = [
         target: "components/control-ui/ui/toolbar.tsx",
         example: sourceFile("Toolbar preview", "src/registry/examples/control-ui/primitives/toolbar.tsx", "example"),
         source: sourceFile("Toolbar slot", "src/registry/sources/control-ui/ui/toolbar.tsx", "component"),
-        supportFiles: [toolbarRecipeFile],
+        supportFiles: [toolbarRecipeFile, ...popupRecipeFiles],
         registryKind: "toolbar",
       },
     },
@@ -1736,7 +1736,8 @@ export const primitiveEntries = [
       {
         id: "floating-editor",
         title: "Floating editor toolbar",
-        description: "The toolbar remains placement-agnostic while composing active tools, tooltips, and a nested DropdownMenu trigger.",
+        description:
+          'Use variant="floating" for the shared popover surface, with skin-aware glass, borders, and shadows. Position it with layout classes.',
         source: sourceFile("Floating toolbar preview", "src/registry/examples/control-ui/primitives/toolbar-floating.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/toolbar-floating").then((mod) => ({

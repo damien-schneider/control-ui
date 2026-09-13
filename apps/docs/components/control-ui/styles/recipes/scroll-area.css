@@ -5,6 +5,12 @@
     --cui-scroll-area-corner-background: transparent;
   }
 
+  /* Chromium drops masked backdrops inside superellipse clips. */
+  :where([data-control-family="scroll-area"][data-slot="root"][data-blur]),
+  :where([data-control-family="scroll-area"][data-slot="root"][data-blur] > [data-scroll-area-viewport]) {
+    corner-shape: round;
+  }
+
   :where([data-control-family="scroll-area"][data-slot="root"] > [data-scroll-area-viewport]) {
     position: relative;
     z-index: 0;

@@ -4871,6 +4871,15 @@
           ],
           "states": [
             {
+              "attribute": "data-chrome",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "embedded",
+                "standalone"
+              ]
+            },
+            {
               "attribute": "data-popup-kind",
               "source": "control-ui",
               "valueKind": "enum",
@@ -14965,6 +14974,7 @@
               "valueKind": "enum",
               "values": [
                 "default",
+                "floating",
                 "inverse"
               ]
             }
@@ -15121,6 +15131,28 @@
                 "horizontal",
                 "vertical"
               ]
+            }
+          ]
+        },
+        "surface": {
+          "family": "popup",
+          "registryItems": [
+            "toolbar"
+          ],
+          "states": [
+            {
+              "attribute": "data-popup-kind",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "toolbar"
+              ]
+            },
+            {
+              "attribute": "data-popup-static",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
             }
           ]
         }
@@ -17814,6 +17846,12 @@
         "defaultValue": "16px"
       },
       {
+        "name": "--cui-progressive-blur-fade-size",
+        "syntax": "<length-percentage>",
+        "initialValue": "0px",
+        "defaultValue": "0.5rem"
+      },
+      {
         "name": "--cui-progressive-blur-transition-duration",
         "syntax": "<time>",
         "initialValue": "0s",
@@ -18051,6 +18089,12 @@
         "name": "--cui-sidebar-inner-background-image",
         "syntax": "*",
         "initialValue": "",
+        "defaultValue": "none"
+      },
+      {
+        "name": "--cui-sidebar-inner-backdrop-filter",
+        "syntax": "*",
+        "initialValue": "none",
         "defaultValue": "none"
       },
       {
@@ -19145,6 +19189,10 @@
           "part": "root"
         },
         {
+          "scope": "toolbar",
+          "part": "surface"
+        },
+        {
           "scope": "tooltip",
           "part": "content"
         }
@@ -19305,6 +19353,10 @@
         {
           "scope": "toast",
           "part": "root"
+        },
+        {
+          "scope": "toolbar",
+          "part": "surface"
         },
         {
           "scope": "trigger-menu",

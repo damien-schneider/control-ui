@@ -949,7 +949,7 @@
         "id": "input-group",
         "name": "Input group",
         "kind": "Primitive",
-        "summary": "Joined input wrapper for addons, icons, and focus-within rings.",
+        "summary": "Joined input wrapper for addons, icons, and a shared focus indicator.",
         "href": "/primitives/input-group",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json"
       },

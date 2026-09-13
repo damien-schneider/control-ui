@@ -300,12 +300,11 @@
     --cui-thread-rail-item-background: var(--active-fill);
   }
 
-  [data-skin="linear"] :where([data-control-ui="command"][data-slot="root"][data-control-family="popup"]) {
+  [data-skin="linear"] :where([data-control-ui="command"][data-slot="root"][data-control-family="popup"][data-popup-part="surface"]) {
     --cui-popup-background: var(--popover);
     --cui-popup-border-color: var(--linear-menu-border);
     --cui-popup-border-width: var(--control-rim-width);
     --cui-popup-shadow: var(--linear-menu-shadow);
-    overflow: hidden;
   }
 
   [data-skin="linear"] :where([data-control-ui="command"][data-popup-part="bar"][data-control-family="popup"]) {

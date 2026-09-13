@@ -19,7 +19,7 @@ export function PrimitiveFloatingToolbarExample() {
       />
       <div className="h-28 w-44 rounded-[var(--radius-panel)] bg-card shadow-sm ring-1 ring-border" />
       <TooltipProvider delay={300}>
-        <Toolbar aria-label="Canvas tools" className="absolute bottom-4 left-1/2 -translate-x-1/2">
+        <Toolbar variant="floating" aria-label="Canvas tools" className="absolute bottom-4 left-1/2 -translate-x-1/2">
           <ToolbarGroup aria-label="Tools">
             <Tooltip>
               <TooltipTrigger

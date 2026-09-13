@@ -126,6 +126,7 @@
     --sidebar: transparent;
     --cui-sidebar-inner-background: var(--apple-sidebar-background);
     --cui-sidebar-inner-border-color: var(--glass-rim);
+    --cui-sidebar-inner-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.5);
     --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-inner-radius: 0px;
     --cui-sidebar-group-label-foreground: var(--apple-sidebar-label);
@@ -164,11 +165,6 @@
 
   [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="sidebar"][data-variant="floating"]) {
     --cui-sidebar-inner-radius: var(--radius-panel);
-  }
-
-  [data-skin="modern-apple"] :where([data-slot="inner"][data-control-family="sidebar"]) {
-    -webkit-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.5);
-    backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.5);
   }
 
   [data-skin="modern-apple"] :where([data-slot="inset"][data-control-family="sidebar"]) {

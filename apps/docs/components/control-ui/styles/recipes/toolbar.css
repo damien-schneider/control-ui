@@ -27,6 +27,16 @@
     gap: calc(var(--spacing) * 1);
   }
 
+  :where([data-control-family="toolbar"][data-slot="root"][data-variant="floating"]) {
+    --cui-toolbar-background: transparent;
+    --cui-toolbar-border-color: transparent;
+    --cui-toolbar-shadow: none;
+    --cui-toolbar-item-foreground: var(--foreground);
+    position: relative;
+    isolation: isolate;
+    border-width: 0;
+  }
+
   :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"]) {
     --cui-toolbar-background: var(--foreground);
     --cui-toolbar-foreground: var(--background);

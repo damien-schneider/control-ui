@@ -126,6 +126,7 @@
             "valueKind": "enum",
             "values": [
               "default",
+              "floating",
               "inverse"
             ]
           }
