@@ -1,4 +1,12 @@
 @layer components {
+  :where(
+    [data-control-family="popup"][data-popup-kind="dialog"][data-slot="content"]
+      > [data-control-family="button"][data-popup-part="close"][data-icon-only="true"]
+  ) {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
   :where([data-control-family="button"][data-control="true"]) {
     --cui-button-radius: var(--radius-control);
     --cui-button-gap: calc(var(--spacing) * 1.5);

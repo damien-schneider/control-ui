@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/control-ui/ui/dialog";
+import { Input } from "@/components/control-ui/ui/input";
 
 export function PrimitiveDialogExample() {
   return (
@@ -23,10 +24,7 @@ export function PrimitiveDialogExample() {
             <DialogDescription>Update your display name. Changes are saved to your workspace.</DialogDescription>
           </DialogHeader>
           <div className="px-4">
-            <input
-              defaultValue="Ada Lovelace"
-              className="h-9 w-full rounded-[var(--radius-control)] bg-background px-3 text-sm text-foreground ring-1 ring-inset ring-border focus-visible:outline-(--focus-ring) focus-visible:outline-offset-(--focus-ring-offset) focus-visible:outline-(length:--focus-ring-width)"
-            />
+            <Input aria-label="Display name" defaultValue="Ada Lovelace" />
           </div>
           <DialogFooter>
             <DialogClose>Cancel</DialogClose>

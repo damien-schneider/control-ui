@@ -12,6 +12,7 @@ import {
   slotAttribute,
 } from "../../../scripts/control-anatomy";
 import { type Anatomy, createAnatomyResolver, createSubjectAnatomyResolver } from "../../../scripts/knob-ownership";
+import { readCssWithImports } from "../../../scripts/read-css";
 import { collectSkinContract } from "../../../scripts/skin-contract/collect";
 import type { ContractState, SkinContract } from "../../../scripts/skin-contract/model";
 
@@ -47,7 +48,7 @@ const skinPaths = readdirSync(SKIN_PACKS_DIR)
   .map((name) => path.join(SKIN_PACKS_DIR, name, "skin.css"))
   .sort();
 const recipeStyles = recipePaths.map((filePath) => postcss.parse(readFileSync(filePath, "utf8"), { from: filePath }));
-const styles = [...recipeStyles, ...skinPaths.map((filePath) => postcss.parse(readFileSync(filePath, "utf8"), { from: filePath }))];
+const styles = [...recipeStyles, ...skinPaths.map((filePath) => postcss.parse(readCssWithImports(filePath), { from: filePath }))];
 const contract = collectSkinContract();
 const resolveAnatomy = createSubjectAnatomyResolver(contract);
 const resolveSelectorAnatomy = createAnatomyResolver(contract);

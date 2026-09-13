@@ -23,7 +23,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Architecture](http://127.0.0.1:3000/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
 - [Lock-in](http://127.0.0.1:3000/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - [shadcn compatibility](http://127.0.0.1:3000/shadcn-compatibility): shadcn registry, token, and ownership conventions without writing to components/ui.
-- [Control UI vs shadcn/ui](http://127.0.0.1:3000/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.
+- [Control UI vs shadcn/ui](http://127.0.0.1:3000/control-ui-vs-shadcn-ui): Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.
 - [Best React component libraries for AI interfaces](http://127.0.0.1:3000/best-react-component-libraries-for-ai-interfaces): Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
 - [Reference](http://127.0.0.1:3000/reference): Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 
@@ -148,7 +148,8 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 - [Skinning Control UI](http://127.0.0.1:3000/skins): Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
 - [Refined](http://127.0.0.1:3000/skins/refined): Compact, calm starting skin with a complete Control UI token contract.
-- [Windows XP](http://127.0.0.1:3000/skins/xp): Windows XP-inspired Luna tokens, bevels, and titlebar details.
+- [Windows XP](http://127.0.0.1:3000/skins/xp): Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.
+- [Windows 98](http://127.0.0.1:3000/skins/windows-98): Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.
 - [Liquid metal](http://127.0.0.1:3000/skins/liquid-metal): Polished metal skin with a WebGL shader control surface.
 - [Rig](http://127.0.0.1:3000/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
 - [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and the stock motion tempo.

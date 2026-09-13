@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import postcss from "postcss";
+import { MOTION_REDUCED_SKINS } from "@/components/theme";
 import { isSkinId } from "@/components/theme-drawer/presets";
 import { validateThemeArtifact, validateTokenEntry } from "@/components/theme-drawer/theme-artifact";
 import { isColorValuedToken } from "@/components/theme-drawer/token-metadata";
@@ -43,5 +44,11 @@ function packThemeArtifact(themePath: string, id: SkinId): ControlUiThemeArtifac
     else if (rule.selector.includes(".dark")) dark[declaration.prop] = declaration.value.trim();
     else light[declaration.prop] = declaration.value.trim();
   });
-  return { format: "control-ui-theme/v1", name: `${id} pack`, baseSkin: id, reduceMotion: id === "xp", tokens: { shared, light, dark } };
+  return {
+    format: "control-ui-theme/v1",
+    name: `${id} pack`,
+    baseSkin: id,
+    reduceMotion: MOTION_REDUCED_SKINS.includes(id),
+    tokens: { shared, light, dark },
+  };
 }

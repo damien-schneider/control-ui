@@ -19,10 +19,10 @@ export const COLOR_SCHEME_LOCK_ATTR = "data-color-scheme-lock";
 
 // Mirrors each skin.config's colorScheme rather than deriving it, so the pre-paint init script stays clear of the React and skin-config import graph.
 // theme-color-scheme-lock.test.ts fails if the two drift.
-export const MODE_LOCKED_SKINS: Record<string, Theme> = {};
+export const MODE_LOCKED_SKINS: Record<string, Theme> = { "windows-98": "light" };
 
 // Mirrored for the same reason as MODE_LOCKED_SKINS, and guarded by the same test.
-export const MOTION_REDUCED_SKINS: string[] = ["xp"];
+export const MOTION_REDUCED_SKINS: string[] = ["xp", "windows-98"];
 
 // restores the mode when leaving a mode-locked skin — the lock forces .dark but never persists over this
 export function preferredTheme(): Theme {

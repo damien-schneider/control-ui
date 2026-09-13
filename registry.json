@@ -1037,6 +1037,125 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "all-windows-98",
+      "type": "registry:item",
+      "title": "All Control UI components — Windows 98",
+      "description": "Every Control UI agent component, block, and primitive with the Windows 98 skin.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/accordion",
+        "damien-schneider/control-ui/action-bar",
+        "damien-schneider/control-ui/activity",
+        "damien-schneider/control-ui/alert",
+        "damien-schneider/control-ui/alert-dialog",
+        "damien-schneider/control-ui/aspect-ratio",
+        "damien-schneider/control-ui/audio-recorder",
+        "damien-schneider/control-ui/audio-visualizer",
+        "damien-schneider/control-ui/autocomplete",
+        "damien-schneider/control-ui/avatar",
+        "damien-schneider/control-ui/badge",
+        "damien-schneider/control-ui/button",
+        "damien-schneider/control-ui/button-group",
+        "damien-schneider/control-ui/calendar",
+        "damien-schneider/control-ui/card",
+        "damien-schneider/control-ui/chat-block",
+        "damien-schneider/control-ui/chat-composer",
+        "damien-schneider/control-ui/chat-composer-attachment",
+        "damien-schneider/control-ui/chat-layout",
+        "damien-schneider/control-ui/chat-message",
+        "damien-schneider/control-ui/checkbox",
+        "damien-schneider/control-ui/checkbox-group",
+        "damien-schneider/control-ui/code",
+        "damien-schneider/control-ui/code-block-editor",
+        "damien-schneider/control-ui/code-diff",
+        "damien-schneider/control-ui/coding-agent-block",
+        "damien-schneider/control-ui/collapsible",
+        "damien-schneider/control-ui/color-picker",
+        "damien-schneider/control-ui/combobox",
+        "damien-schneider/control-ui/command",
+        "damien-schneider/control-ui/context",
+        "damien-schneider/control-ui/context-menu",
+        "damien-schneider/control-ui/control-ui-skill",
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/dialog",
+        "damien-schneider/control-ui/dockable-panel",
+        "damien-schneider/control-ui/drawer",
+        "damien-schneider/control-ui/dropdown-menu",
+        "damien-schneider/control-ui/dropzone",
+        "damien-schneider/control-ui/dynamic-notification",
+        "damien-schneider/control-ui/email",
+        "damien-schneider/control-ui/empty",
+        "damien-schneider/control-ui/environment-variables",
+        "damien-schneider/control-ui/field",
+        "damien-schneider/control-ui/file-explorer-block",
+        "damien-schneider/control-ui/form",
+        "damien-schneider/control-ui/gradient-editor",
+        "damien-schneider/control-ui/hover-card",
+        "damien-schneider/control-ui/infinite-canvas",
+        "damien-schneider/control-ui/inline-attachment",
+        "damien-schneider/control-ui/inline-citation",
+        "damien-schneider/control-ui/input",
+        "damien-schneider/control-ui/input-group",
+        "damien-schneider/control-ui/input-otp",
+        "damien-schneider/control-ui/item",
+        "damien-schneider/control-ui/kbd",
+        "damien-schneider/control-ui/markdown",
+        "damien-schneider/control-ui/markdown-block",
+        "damien-schneider/control-ui/menubar",
+        "damien-schneider/control-ui/meter",
+        "damien-schneider/control-ui/morphing-panel",
+        "damien-schneider/control-ui/native-select",
+        "damien-schneider/control-ui/navigation-menu",
+        "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/pagination",
+        "damien-schneider/control-ui/phone-input",
+        "damien-schneider/control-ui/popover",
+        "damien-schneider/control-ui/progress",
+        "damien-schneider/control-ui/progressive-blur",
+        "damien-schneider/control-ui/radio-group",
+        "damien-schneider/control-ui/resizable",
+        "damien-schneider/control-ui/responsive-dialog",
+        "damien-schneider/control-ui/rich-tooltip",
+        "damien-schneider/control-ui/scroll-area",
+        "damien-schneider/control-ui/select",
+        "damien-schneider/control-ui/settings-block",
+        "damien-schneider/control-ui/sidebar",
+        "damien-schneider/control-ui/skeleton",
+        "damien-schneider/control-ui/skin-windows-98",
+        "damien-schneider/control-ui/slider",
+        "damien-schneider/control-ui/source-badge",
+        "damien-schneider/control-ui/spinner",
+        "damien-schneider/control-ui/stepper",
+        "damien-schneider/control-ui/switch",
+        "damien-schneider/control-ui/table",
+        "damien-schneider/control-ui/table-of-contents",
+        "damien-schneider/control-ui/tabs",
+        "damien-schneider/control-ui/task-list",
+        "damien-schneider/control-ui/textarea",
+        "damien-schneider/control-ui/theme-toggle-block",
+        "damien-schneider/control-ui/thread-rail",
+        "damien-schneider/control-ui/timeline",
+        "damien-schneider/control-ui/toast",
+        "damien-schneider/control-ui/toggle",
+        "damien-schneider/control-ui/toolbar",
+        "damien-schneider/control-ui/tooltip",
+        "damien-schneider/control-ui/track-highlight",
+        "damien-schneider/control-ui/transcript-divider",
+        "damien-schneider/control-ui/tree",
+        "damien-schneider/control-ui/trigger-menu",
+        "damien-schneider/control-ui/typography",
+        "damien-schneider/control-ui/user-ask"
+      ],
+      "files": [],
+      "css": {
+        "@import \"../components/control-ui/styles/theme.css\"": {},
+        "@import \"../components/control-ui/styles/effects.css\"": {},
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "all-xp",
       "type": "registry:item",
       "title": "All Control UI components — Windows XP",
@@ -4502,14 +4621,54 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "skin-xp",
+      "name": "skin-windows-98",
       "type": "registry:style",
-      "title": "Windows XP skin",
-      "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
+      "title": "Windows 98 skin",
+      "description": "Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.",
       "dependencies": [],
       "registryDependencies": [
         "damien-schneider/control-ui/core",
-        "damien-schneider/control-ui/effects"
+        "damien-schneider/control-ui/retro-system-font"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/skin-packs/windows-98/skin.config.tsx",
+          "target": "@components/control-ui/skin.config.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "apps/docs/src/registry/skin-packs/windows-98/skin.css",
+          "target": "@components/control-ui/styles/skin.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/skin-packs/windows-98/theme.css",
+          "target": "@components/control-ui/styles/skin-theme.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/skin-packs/windows-98/windows-98-controls.css",
+          "target": "@components/control-ui/styles/windows-98-controls.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+        "@import \"../components/control-ui/styles/skin.css\"": {},
+        "@import \"../components/control-ui/styles/windows-98-controls.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "skin-xp",
+      "type": "registry:style",
+      "title": "Windows XP skin",
+      "description": "Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/effects",
+        "damien-schneider/control-ui/retro-system-font"
       ],
       "files": [
         {
@@ -4526,11 +4685,17 @@
           "path": "apps/docs/src/registry/skin-packs/xp/theme.css",
           "target": "@components/control-ui/styles/skin-theme.css",
           "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/skin-packs/xp/xp-controls.css",
+          "target": "@components/control-ui/styles/xp-controls.css",
+          "type": "registry:file"
         }
       ],
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
-        "@import \"../components/control-ui/styles/skin.css\"": {}
+        "@import \"../components/control-ui/styles/skin.css\"": {},
+        "@import \"../components/control-ui/styles/xp-controls.css\"": {}
       }
     },
     {

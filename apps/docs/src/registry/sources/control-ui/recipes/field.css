@@ -102,6 +102,10 @@
     appearance: none;
   }
 
+  :where([data-control-family="field"][data-field-kind="native-select"][data-slot="icon"]) {
+    right: calc(var(--padding-x) * 0.6);
+  }
+
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="drag-icon"]) {
     color: var(--foreground);
   }

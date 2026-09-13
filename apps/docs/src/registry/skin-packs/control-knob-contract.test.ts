@@ -8,6 +8,7 @@ import { componentEntries } from "../../../app/(features)/catalog/components";
 import { primitiveEntries } from "../../../app/(features)/catalog/primitives";
 import { isFamilyPartAttribute, slotAttribute, surfaceAttribute } from "../../../scripts/control-anatomy";
 import { knobPrefix, knobsByFamily } from "../../../scripts/knob-contracts/collect";
+import { readCssWithImports } from "../../../scripts/read-css";
 import { createRecipeSourceExpectations } from "../../../scripts/registry-model";
 import { collectSkinContract } from "../../../scripts/skin-contract/collect";
 
@@ -27,7 +28,7 @@ const COMPONENT_REFERENCE_ROOTS = [
 const skins = readdirSync(SKIN_PACKS_DIR)
   .filter((entry) => statSync(path.join(SKIN_PACKS_DIR, entry)).isDirectory())
   .sort()
-  .map((id) => ({ id, root: postcss.parse(readFileSync(path.join(SKIN_PACKS_DIR, id, "skin.css"), "utf8")) }));
+  .map((id) => ({ id, root: postcss.parse(readCssWithImports(path.join(SKIN_PACKS_DIR, id, "skin.css"))) }));
 
 const recipeOptionalCatalogIds = ["aspect-ratio", "checkbox-group", "email", "form", "responsive-dialog"] as const;
 const catalogComponentSources = [

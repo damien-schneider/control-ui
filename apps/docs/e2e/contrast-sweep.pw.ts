@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, type Locator, type Page, test } from "@playwright/test";
 import { skinMetas } from "../app/(features)/catalog/skins";
+import { MODE_LOCKED_SKINS } from "../components/theme";
 
 const SKINS = skinMetas.map((skin) => skin.id);
 const MODES = ["light", "dark"] as const;
@@ -268,7 +269,9 @@ async function contrastOffenders(page: Page, label: string): Promise<string[]> {
 async function sweep(page: Page, route: string): Promise<string[]> {
   const offenders: string[] = [];
   for (const skin of SKINS) {
-    for (const mode of MODES) {
+    const lockedMode = MODE_LOCKED_SKINS[skin];
+    const modes = lockedMode ? [lockedMode] : MODES;
+    for (const mode of modes) {
       await applyTheme(page, skin, mode);
       await makePaintMeasurable(page);
       offenders.push(...(await contrastOffenders(page, `${route} ${skin}/${mode}`)));

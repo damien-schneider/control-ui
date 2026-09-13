@@ -3,11 +3,12 @@
   "name": "skin-xp",
   "type": "registry:style",
   "title": "Windows XP skin",
-  "description": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
+  "description": "Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.",
   "dependencies": [],
   "registryDependencies": [
     "core",
-    "effects"
+    "effects",
+    "retro-system-font"
   ],
   "files": [
     {
@@ -24,11 +25,17 @@
       "path": "src/registry/skin-packs/xp/theme.css",
       "target": "@components/control-ui/styles/skin-theme.css",
       "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/xp/xp-controls.css",
+      "target": "@components/control-ui/styles/xp-controls.css",
+      "type": "registry:file"
     }
   ],
   "css": {
     "@import \"../components/control-ui/styles/skin-theme.css\"": {},
-    "@import \"../components/control-ui/styles/skin.css\"": {}
+    "@import \"../components/control-ui/styles/skin.css\"": {},
+    "@import \"../components/control-ui/styles/xp-controls.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/xp/skin.json"

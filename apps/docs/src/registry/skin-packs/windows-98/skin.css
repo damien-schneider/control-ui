@@ -1,0 +1,266 @@
+@import "../retro-system-font.css";
+
+@import "./windows-98-controls.css";
+
+[data-skin="windows-98"] {
+  --win98-white: oklch(1 0 0);
+  --win98-light: oklch(0.9037 0 0);
+  --win98-shadow: oklch(0.5999 0 0);
+  --win98-dark: oklch(0.1448 0 0);
+  --win98-face: var(--secondary);
+  --win98-raised:
+    inset -1px -1px var(--win98-dark), inset 1px 1px var(--win98-white), inset -2px -2px var(--win98-shadow),
+    inset 2px 2px var(--win98-light);
+  --win98-sunken:
+    inset -1px -1px var(--win98-white), inset 1px 1px var(--win98-shadow), inset -2px -2px var(--win98-light),
+    inset 2px 2px var(--win98-dark);
+  --win98-pressed:
+    inset -1px -1px var(--win98-white), inset 1px 1px var(--win98-dark), inset -2px -2px var(--win98-light),
+    inset 2px 2px var(--win98-shadow);
+  --win98-titlebar: linear-gradient(90deg, oklch(0.2711 0.1879 264.052), oklch(0.594 0.1477 245.841));
+  --win98-tooltip: oklch(0.9922 0.039 107.089);
+}
+
+@layer components {
+  [data-skin="windows-98"]
+    :where(
+      [data-control-family="popup"][data-popup-part="surface"],
+      [data-control-family="popup"][data-popup-part="list-surface"],
+      [data-control-family="popup"][data-popup-part="bar"]
+    ) {
+    --cui-popup-radius: 0px;
+    --cui-popup-background: var(--win98-face);
+    --cui-popup-foreground: var(--foreground);
+    --cui-popup-border-width: 0px;
+    --cui-popup-shadow: var(--win98-raised);
+    --cui-popup-backdrop-filter: none;
+    --cui-popup-item-radius: 0px;
+    --cui-popup-item-highlight-background: var(--primary);
+    --cui-popup-item-highlight-foreground: var(--primary-foreground);
+    --cui-popup-item-highlight-muted-foreground: var(--primary-foreground);
+    --cui-popup-separator-color: var(--win98-shadow);
+  }
+  [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="list-surface"]) {
+    padding: 3px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="item"]) {
+    min-block-size: 20px;
+    padding-block: 2px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="separator"]) {
+    box-shadow: 0 1px var(--win98-white);
+  }
+  [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-part="label"]) {
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="popup"][data-popup-part="surface"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    padding: 3px;
+    gap: 12px;
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="popup"][data-slot="header"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    padding: 0;
+    gap: 12px;
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="popup"][data-slot="title"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    min-block-size: 20px;
+    padding: 4px 27px 4px 3px;
+    background: var(--win98-titlebar);
+    color: var(--win98-white);
+    font: 700 11px / 12px var(--font-sans);
+    letter-spacing: normal;
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="popup"][data-slot="description"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    padding-inline: 9px;
+    color: var(--foreground);
+  }
+  [data-skin="windows-98"] :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
+    opacity: 1;
+    --cui-button-background: var(--win98-face);
+    --cui-button-shadow: var(--win98-raised);
+    --cui-button-hover-shadow: var(--win98-raised);
+    --cui-button-height: 16px;
+    --cui-button-icon: 10px;
+    top: 5px;
+    right: 5px;
+    width: 18px;
+    aspect-ratio: auto;
+  }
+  [data-skin="windows-98"] :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {
+    --cui-popup-background: var(--win98-tooltip);
+    --cui-popup-border-width: 1px;
+    --cui-popup-border-color: var(--foreground);
+    --cui-popup-shadow: 1px 1px var(--win98-shadow);
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="root"]) {
+    --cui-sidebar-inner-background: var(--win98-face);
+    --cui-sidebar-inner-background-image: none;
+    --cui-sidebar-inner-border-width: 0px;
+    --cui-sidebar-inner-radius: 0px;
+    --cui-sidebar-inner-shadow: var(--win98-raised);
+    --cui-sidebar-group-label-foreground: var(--foreground);
+    --cui-sidebar-menu-button-radius: 0px;
+    --cui-sidebar-menu-button-foreground: var(--foreground);
+    --cui-sidebar-menu-button-hover-background: transparent;
+    --cui-sidebar-menu-button-hover-foreground: var(--foreground);
+    --cui-sidebar-menu-button-active-background: var(--primary);
+    --cui-sidebar-menu-button-active-foreground: var(--primary-foreground);
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="sidebar"][data-slot="inner"] [data-control-family="scroll-area"][data-slot="root"]) {
+    margin: 0 4px;
+    padding: 3px;
+    background: var(--background);
+    box-shadow: var(--win98-sunken);
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="content-stack"]) {
+    gap: 0;
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="group"]) {
+    padding: 0 3px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="group-label"]) {
+    padding-inline: 4px;
+    min-block-size: 22px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="menu"]) {
+    margin-inline-start: 9px;
+    border-inline-start: 1px dotted var(--win98-shadow);
+    padding-inline-start: 6px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="menu"]) {
+    gap: 0;
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="menu"] [data-control-family="sidebar"][data-slot="menu"]) {
+    border-inline-start: 1px dotted var(--win98-shadow);
+  }
+  [data-skin="windows-98"] :where([data-control-family="sidebar"][data-slot="menu-button"]) {
+    min-block-size: 20px;
+    height: auto;
+    padding: 3px 4px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="tree"][data-slot="root"]) {
+    --cui-tree-item-trigger-radius: 0px;
+    --cui-tree-item-trigger-selected-background: var(--primary);
+    --cui-tree-item-trigger-selected-foreground: var(--primary-foreground);
+    background: var(--background);
+    box-shadow: var(--win98-sunken);
+    padding: 3px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="tree"][data-slot="item-trigger"]) {
+    padding-block: 2px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="card"][data-slot="root"]) {
+    --cui-card-radius: 0px;
+    --cui-card-background: var(--win98-face);
+    --cui-card-border-color: transparent;
+    --cui-card-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"] :where([data-control-family="table"][data-slot="root"]) {
+    --cui-table-background: var(--background);
+    box-shadow: var(--win98-sunken);
+  }
+  [data-skin="windows-98"] :where([data-control-family="table"][data-slot="head"]) {
+    background: var(--win98-face);
+    box-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"] :where([data-control-family="kbd"][data-slot="root"]) {
+    --cui-kbd-radius: 0px;
+    --cui-kbd-background: var(--win98-face);
+    --cui-kbd-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"] :where([data-control-family="chat-layout"][data-control-ui="chat-layout"][data-slot="root"]) {
+    --cui-chat-layout-radius: 0px;
+    --cui-chat-layout-border-color: transparent;
+    --cui-chat-layout-shadow: var(--win98-raised);
+    border-width: 0;
+    padding: 3px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
+    --cui-chat-message-foreground: var(--foreground);
+    --cui-chat-message-radius: 0px;
+    --cui-chat-message-corner-radius: 0px;
+    --cui-chat-message-background: var(--background);
+    --cui-chat-message-border-width: 0px;
+    --cui-chat-message-shadow: var(--win98-sunken);
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"]) {
+    scrollbar-color: auto;
+    scrollbar-width: auto;
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="root"]) {
+    --cui-scroll-area-thumb-radius: 0;
+    --cui-scroll-area-thumb-background: var(--win98-face);
+    --cui-scroll-area-corner-background: var(--secondary);
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
+    background: var(--secondary);
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
+    inline-size: 16px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {
+    block-size: 16px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"][data-slot="thumb"]) {
+    border: 0;
+    box-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-track {
+    background: repeating-conic-gradient(var(--win98-light) 0% 25%, var(--win98-white) 0% 50%) 0 0 / 2px 2px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-thumb {
+    background: var(--win98-face);
+    box-shadow: var(--win98-raised);
+  }
+  @media (pointer: coarse) {
+    [data-skin="windows-98"]
+      :where(
+        [data-control-family="button"][data-control="true"],
+        [data-control-family="field"][data-control="true"],
+        [data-control-family="sidebar"][data-slot="menu-button"],
+        [data-control-family="popup"][data-popup-part="item"]
+      ) {
+      min-block-size: 44px;
+    }
+    [data-skin="windows-98"] :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
+      top: 3px;
+      right: 3px;
+      width: 44px;
+    }
+  }
+}
+
+@layer components {
+  @media (pointer: coarse) {
+    [data-skin="windows-98"]
+      :where([data-control-family="popup"][data-slot="title"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+      min-block-size: 50px;
+      padding-block: 17px;
+      padding-inline-end: 52px;
+    }
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"] [data-control-family="button"][data-control="true"]) {
+    --cui-button-background: var(--cui-toolbar-item-background);
+    --cui-button-background-image: none;
+    --cui-button-foreground: var(--cui-toolbar-item-foreground);
+    --cui-button-hover-background: var(--cui-toolbar-item-hover-background);
+    --cui-button-hover-foreground: var(--cui-toolbar-item-hover-foreground);
+    --cui-button-active-background: var(--cui-toolbar-item-active-background);
+    --cui-button-active-foreground: var(--cui-toolbar-item-active-foreground);
+    --cui-button-active-hover-background: var(--cui-toolbar-item-active-background);
+    --cui-button-shadow: var(--cui-toolbar-item-shadow);
+  }
+}

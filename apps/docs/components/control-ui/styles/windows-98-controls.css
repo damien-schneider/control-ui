@@ -1,0 +1,213 @@
+@layer components {
+  [data-skin="windows-98"]
+    :where(
+      [data-control-family="button"],
+      [data-control-family="field"],
+      [data-control-family="choice"],
+      [data-control-family="tabs"],
+      [data-control-family="sidebar"],
+      [data-control-family="tree"],
+      [data-control-family="popup"],
+      [data-control-family="kbd"]
+    ) {
+    font-family: "Control UI MS Sans Serif", Tahoma, Arial, sans-serif;
+  }
+  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"]) {
+    --cui-button-radius: 0px;
+    --cui-button-icon: 13px;
+    --cui-button-gap: 4px;
+    --cui-button-press-scale: 1;
+    --cui-button-foreground: var(--foreground);
+    --cui-button-hover-foreground: var(--foreground);
+    --cui-button-hover-background: var(--win98-face);
+    --cui-button-press-background: var(--win98-face);
+    --cui-button-active-background: var(--win98-light);
+    --cui-button-active-foreground: var(--foreground);
+    --cui-button-active-hover-background: var(--win98-light);
+    --cui-button-shadow: none;
+    --cui-button-hover-shadow: inset 1px 1px var(--win98-white), inset -1px -1px var(--win98-shadow);
+    --cui-button-press-shadow: var(--win98-pressed);
+    --cui-button-active-shadow: var(--win98-pressed);
+    line-height: 1;
+    font-weight: 400;
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"])) {
+    --cui-button-background: var(--win98-face);
+    --cui-button-shadow: var(--win98-raised);
+    --cui-button-hover-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
+    --cui-button-shadow: var(--win98-raised), 0 0 0 1px var(--win98-dark);
+  }
+  [data-skin="windows-98"]
+    :where(
+      [data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"]):not([data-icon-only="true"])
+    ) {
+    min-inline-size: 75px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]) {
+    --cui-button-foreground: var(--destructive-text);
+    --cui-button-hover-foreground: var(--destructive-text);
+    --cui-button-active-foreground: var(--destructive-text);
+  }
+  [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"]:disabled) {
+    opacity: 1;
+    --cui-button-foreground: var(--win98-shadow);
+    text-shadow: 1px 1px var(--win98-white);
+  }
+  [data-skin="windows-98"] :where([data-control-family="field"][data-control="true"]) {
+    --cui-field-radius: 0px;
+    --cui-field-background: var(--background);
+    --cui-field-foreground: var(--foreground);
+    --cui-field-border-width: 0px;
+    --cui-field-shadow: var(--win98-sunken);
+    --cui-field-padding-inline: 4px;
+    --cui-field-focus-border-color: var(--win98-dark);
+  }
+  [data-skin="windows-98"] :where([data-control-family="button"][data-control-ui="select"][data-slot="trigger"]) {
+    --cui-button-background: var(--background);
+    --cui-button-hover-background: var(--background);
+    --cui-button-press-background: var(--background);
+    --cui-button-shadow: var(--win98-sunken);
+    --cui-button-hover-shadow: var(--win98-sunken);
+    --cui-button-press-shadow: var(--win98-sunken);
+    --cui-button-padding-inline: 4px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="popup"][data-control-ui="select"][data-slot="icon"]) {
+    align-self: stretch;
+    width: 16px;
+    margin: 2px -2px 2px 4px;
+    background: var(--win98-face);
+    box-shadow: var(--win98-raised);
+    color: var(--foreground);
+    rotate: 0deg;
+  }
+  [data-skin="windows-98"]
+    :where(
+      [data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"],
+      [data-control-family="choice"][data-slot="item"][data-choice-kind="radio-group"]
+    ) {
+    --cui-choice-checked-background: var(--background);
+    --cui-choice-border-color: transparent;
+    --cui-choice-checked-border-color: transparent;
+    inline-size: 13px;
+    block-size: 13px;
+    color: var(--foreground);
+    background-color: var(--background);
+    --cui-choice-shadow: var(--win98-sunken);
+  }
+  [data-skin="windows-98"] :where([data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"]) {
+    --cui-choice-radius: 0px;
+  }
+  [data-skin="windows-98"] :where([data-control-family="choice"][data-slot="indicator"][data-choice-kind="radio-group"]) {
+    inline-size: 5px;
+    block-size: 5px;
+    background: currentColor;
+  }
+  [data-skin="windows-98"] :where([data-control-family="switch"][data-slot="root"]) {
+    --cui-switch-background: var(--win98-light);
+    --cui-switch-hover-background: var(--win98-light);
+    --cui-switch-thumb-radius: 0px;
+    --cui-switch-thumb-background: var(--win98-face);
+    --cui-switch-thumb-shadow: var(--win98-raised);
+    border-radius: 0;
+    box-shadow: var(--win98-sunken);
+  }
+  [data-skin="windows-98"] :where([data-control-family="tabs"][data-slot="root"]) {
+    --cui-tabs-trigger-radius: 3px;
+    --cui-tabs-list-padding: 0px;
+    --cui-tabs-list-background: transparent;
+    --cui-tabs-foreground: var(--foreground);
+    --cui-tabs-active-foreground: var(--foreground);
+    --cui-tabs-indicator-background: transparent;
+    --cui-tabs-indicator-shadow: none;
+  }
+  [data-skin="windows-98"] :where([data-control-family="tabs"][data-slot="list"]) {
+    gap: 0;
+    align-items: end;
+    border-bottom: 1px solid var(--win98-white);
+  }
+  [data-skin="windows-98"] :where([data-control-family="tabs"][data-slot="tab"]) {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+    background: var(--win98-face);
+    box-shadow:
+      inset 1px 1px var(--win98-white),
+      inset 2px 2px var(--win98-light),
+      inset -1px 0 var(--win98-dark),
+      inset -2px 0 var(--win98-shadow);
+    font-weight: 400;
+  }
+  [data-skin="windows-98"] :where([data-control-family="tabs"][data-slot="tab"][aria-selected="true"]) {
+    margin-bottom: -1px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--win98-face);
+  }
+  [data-skin="windows-98"] :where([data-control-family="range"][data-slot="root"]) {
+    --cui-range-track-radius: 0px;
+    --cui-range-track-background: var(--win98-face);
+    --cui-range-indicator-radius: 0px;
+    --cui-range-indicator-background: var(--primary);
+    --cui-range-thumb-radius: 0px;
+    --cui-range-thumb-background: var(--win98-face);
+    --cui-range-thumb-border-color: transparent;
+    --cui-range-thumb-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="range"][data-slot="track"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
+    block-size: 17px;
+    padding: 2px;
+    box-shadow: var(--win98-sunken);
+  }
+  [data-skin="windows-98"]
+    :where([data-control-family="range"][data-slot="indicator"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
+    max-block-size: 100%;
+    mask-image: repeating-linear-gradient(90deg, oklch(0 0 0) 0 6px, transparent 6px 8px);
+  }
+  [data-skin="windows-98"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]:not([data-labeled])) {
+    block-size: 4px;
+    box-shadow: var(--win98-sunken);
+  }
+  [data-skin="windows-98"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"]) {
+    inline-size: 11px;
+    block-size: 21px;
+    scale: 1;
+  }
+
+  [data-skin="windows-98"] :where([data-control-family="field"][data-field-kind="native-select"][data-slot="icon"]) {
+    display: grid;
+    place-items: center;
+    inset-block: 2px;
+    right: 2px;
+    inline-size: 17px;
+    background: var(--win98-face);
+    border: 0;
+    border-radius: 0;
+    box-shadow: var(--win98-raised);
+  }
+  [data-skin="windows-98"] :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
+    padding-inline-end: 23px;
+  }
+  [data-skin="windows-98"]
+    :where(
+      [data-control-family="field"][data-field-kind="number-field"]:is(
+        [data-control-family="field"][data-slot="increment"],
+        [data-control-family="field"][data-slot="decrement"]
+      )
+    ) {
+    background: var(--win98-face);
+    box-shadow: var(--win98-raised);
+    border: 0;
+    border-radius: 0;
+  }
+  [data-skin="windows-98"]
+    :where(
+      [data-control-family="field"][data-field-kind="number-field"]:is(
+        [data-control-family="field"][data-slot="increment"],
+        [data-control-family="field"][data-slot="decrement"]
+      ):active
+    ) {
+    box-shadow: var(--win98-pressed);
+  }
+}

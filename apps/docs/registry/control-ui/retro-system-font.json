@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "retro-system-font",
+  "type": "registry:style",
+  "title": "Classic Windows system font",
+  "description": "Embedded bitmap-style font shared by the Windows XP and Windows 98 skins, with its MIT license.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skin-packs/retro-system-font.css",
+      "target": "@components/control-ui/retro-system-font.css",
+      "type": "registry:file"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/retro-system-font.json"
+  }
+}

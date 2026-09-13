@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skin-windows-98",
+  "type": "registry:style",
+  "title": "Windows 98 skin",
+  "description": "Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core",
+    "retro-system-font"
+  ],
+  "files": [
+    {
+      "path": "src/registry/skin-packs/windows-98/skin.config.tsx",
+      "target": "@components/control-ui/skin.config.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/skin-packs/windows-98/skin.css",
+      "target": "@components/control-ui/styles/skin.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/windows-98/theme.css",
+      "target": "@components/control-ui/styles/skin-theme.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/windows-98/windows-98-controls.css",
+      "target": "@components/control-ui/styles/windows-98-controls.css",
+      "type": "registry:file"
+    }
+  ],
+  "css": {
+    "@import \"../components/control-ui/styles/skin-theme.css\"": {},
+    "@import \"../components/control-ui/styles/skin.css\"": {},
+    "@import \"../components/control-ui/styles/windows-98-controls.css\"": {}
+  },
+  "meta": {
+    "sourceManifestPath": "registry/windows-98/skin.json"
+  }
+}

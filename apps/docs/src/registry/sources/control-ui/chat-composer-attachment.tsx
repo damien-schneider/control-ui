@@ -345,6 +345,7 @@ export function ChatComposerAttachmentRemove({
     <Button
       data-control-ui="chat-composer-attachment"
       data-chat-composer-attachment-remove="true"
+      iconOnly
       data-slot="remove"
       aria-label={ariaLabel ?? removeLabel ?? `Remove ${name}`}
       size="xs"

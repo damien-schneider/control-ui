@@ -254,7 +254,7 @@ export const guideEntries = [
     group: "why",
     name: "Control UI vs shadcn/ui",
     summary:
-      "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.",
+      "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.",
     sections: [
       { id: "short-answer", title: "The short answer" },
       { id: "side-by-side", title: "Side by side" },
@@ -276,7 +276,7 @@ export const guideEntries = [
       {
         question: "Should I use shadcn/ui instead of Control UI for a dashboard or SaaS console?",
         answer:
-          "Not automatically. Both cover the primitives a dashboard needs, and Control UI adds a skin system and a contrast gate that re-checks 16 skin modes against WCAG AA on every commit. Pick shadcn/ui when you rely on its larger pool of community recipes, or when you need its chart and carousel components today.",
+          "Not automatically. Both cover the primitives a dashboard needs, and Control UI adds a skin system and a contrast gate that re-checks every supported skin mode against WCAG AA on every commit. Pick shadcn/ui when you rely on its larger pool of community recipes, or when you need its chart and carousel components today.",
       },
       {
         question: "Can I use Control UI and shadcn/ui components in the same project?",

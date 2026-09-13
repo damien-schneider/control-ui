@@ -144,7 +144,8 @@
 ### Skins
 - `skins` (Skinning Control UI) — Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
 - `refined` (Refined) — Compact, calm starting skin with a complete Control UI token contract. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite`
-- `xp` (Windows XP) — Windows XP-inspired Luna tokens, bevels, and titlebar details. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite`
+- `xp` (Windows XP) — Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite`
+- `windows-98` (Windows 98) — Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-windows-98.json --overwrite`
 - `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite`
 - `rig` (Rig) — Brutalist skin with coral accents, squared corners, and dense typography. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite`
 - `flat` (Flat) — Neutral reset skin with square corners, no shadows, and the stock motion tempo. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite`
@@ -183,7 +184,7 @@
 - `architecture` (Architecture) — Runtime ownership, skin layering, customization paths, and registry derivation.
 - `lock-in` (Lock-in) — What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
 - `shadcn-compatibility` (shadcn compatibility) — shadcn registry, token, and ownership conventions without writing to components/ui.
-- `control-ui-vs-shadcn-ui` (Control UI vs shadcn/ui) — Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.
+- `control-ui-vs-shadcn-ui` (Control UI vs shadcn/ui) — Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.
 - `best-react-component-libraries-for-ai-interfaces` (Best React component libraries for AI interfaces) — Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
 - `reference` (Reference) — Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 

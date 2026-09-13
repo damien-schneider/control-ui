@@ -1,0 +1,219 @@
+@layer components {
+  [data-skin="xp"]
+    :where(
+      [data-control-family="button"],
+      [data-control-family="field"],
+      [data-control-family="choice"],
+      [data-control-family="tabs"],
+      [data-control-family="sidebar"],
+      [data-control-family="tree"],
+      [data-control-family="popup"],
+      [data-control-family="kbd"]
+    ) {
+    font-family: "Control UI MS Sans Serif", Tahoma, Arial, sans-serif;
+  }
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"]) {
+    --cui-button-radius: max(3px, var(--radius-control));
+    --cui-button-gap: 4px;
+    --cui-button-icon: 13px;
+    --cui-button-press-scale: 1;
+    --cui-button-foreground: var(--foreground);
+    --cui-button-hover-foreground: var(--foreground);
+    --cui-button-hover-background: transparent;
+    --cui-button-press-background: transparent;
+    --cui-button-active-background: var(--secondary);
+    --cui-button-active-foreground: var(--foreground);
+    --cui-button-active-hover-background: var(--secondary);
+    --cui-button-shadow: none;
+    --cui-button-hover-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
+    --cui-button-press-shadow: inset 1px 1px var(--xp-shadow), inset -1px -1px var(--xp-light);
+    --cui-button-active-shadow: var(--cui-button-press-shadow);
+    border: 1px solid transparent;
+    line-height: 1;
+    font-weight: 400;
+  }
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"])) {
+    --cui-button-background: var(--secondary);
+    --cui-button-background-image: var(--xp-button);
+    --cui-button-hover-shadow: var(--xp-hover-rim);
+    --cui-button-press-shadow: none;
+    border-color: var(--xp-edge);
+  }
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
+    --cui-button-shadow: var(--xp-default-rim);
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="button"][data-control="true"]:is([data-variant="surface"], [data-variant="solid"]):not([data-icon-only="true"])
+    ) {
+    min-inline-size: 75px;
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="button"][data-control="true"]:is(:active, [data-pressed]):is([data-variant="surface"], [data-variant="solid"])
+    ) {
+    --cui-button-background-image: var(--xp-button-pressed);
+  }
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]) {
+    --cui-button-foreground: var(--destructive-text);
+    --cui-button-hover-foreground: var(--destructive-text);
+    --cui-button-active-foreground: var(--destructive-text);
+  }
+  [data-skin="xp"] :where([data-control-family="field"][data-control="true"]) {
+    --cui-field-radius: 0px;
+    --cui-field-background: var(--background);
+    --cui-field-foreground: var(--foreground);
+    --cui-field-border-color: var(--xp-field);
+    --cui-field-border-width: 1px;
+    --cui-field-shadow: none;
+    --cui-field-padding-inline: 4px;
+    --cui-field-focus-border-color: var(--primary);
+  }
+  [data-skin="xp"] :where([data-control-ui="select"][data-slot="trigger"][data-control-family="button"]) {
+    --cui-button-background: var(--background);
+    --cui-button-background-image: none;
+    --cui-button-hover-background: var(--background);
+    --cui-button-press-background: var(--background);
+    --cui-button-padding-inline: 4px;
+    --cui-button-radius: 0px;
+    border-color: var(--xp-field);
+  }
+  [data-skin="xp"] :where([data-control-ui="select"][data-slot="icon"][data-control-family="popup"]) {
+    align-self: stretch;
+    width: 17px;
+    margin: 1px -2px 1px 4px;
+    border: 1px solid var(--xp-field);
+    border-radius: 2px;
+    background: var(--xp-scroll);
+    color: var(--xp-edge);
+    rotate: 0deg;
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"],
+      [data-control-family="choice"][data-slot="item"][data-choice-kind="radio-group"]
+    ) {
+    --cui-choice-border-color: var(--xp-field);
+    --cui-choice-checked-border-color: var(--xp-field);
+    --cui-choice-checked-background: var(--background);
+    inline-size: 13px;
+    block-size: 13px;
+    color: var(--xp-check);
+    background-image: linear-gradient(135deg, oklch(from var(--xp-field) l c h / 0.3), transparent 70%);
+  }
+  [data-skin="xp"] :where([data-control-family="choice"][data-slot="root"][data-choice-kind="checkbox"]) {
+    --cui-choice-radius: 0px;
+  }
+  [data-skin="xp"] :where([data-control-family="choice"][data-slot="indicator"][data-choice-kind="radio-group"]) {
+    background: currentColor;
+  }
+  [data-skin="xp"] :where([data-control-family="switch"][data-slot="root"]) {
+    --cui-switch-background: var(--secondary);
+    --cui-switch-hover-background: var(--secondary);
+    --cui-switch-thumb-radius: 2px;
+    --cui-switch-thumb-background: var(--background);
+    --cui-switch-thumb-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px var(--xp-field);
+  }
+  [data-skin="xp"] :where([data-control-family="tabs"][data-slot="root"]) {
+    --cui-tabs-trigger-radius: 3px;
+    --cui-tabs-list-padding: 0px;
+    --cui-tabs-list-background: transparent;
+    --cui-tabs-foreground: var(--foreground);
+    --cui-tabs-active-foreground: var(--foreground);
+    --cui-tabs-indicator-background: transparent;
+    --cui-tabs-indicator-shadow: none;
+  }
+  [data-skin="xp"] :where([data-control-family="tabs"][data-slot="list"]) {
+    gap: 0;
+    align-items: end;
+    border-bottom: 1px solid var(--xp-tab-border);
+  }
+  [data-skin="xp"] :where([data-control-family="tabs"][data-slot="tab"]) {
+    border: 1px solid var(--xp-tab-border);
+    border-bottom: 0;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+    background: var(--xp-button);
+    margin-bottom: -1px;
+    font-weight: 400;
+  }
+  [data-skin="xp"] :where([data-control-family="tabs"][data-slot="tab"][aria-selected="true"]) {
+    background: var(--xp-tab);
+    box-shadow: inset 0 2px var(--xp-tab-orange);
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--xp-tab);
+  }
+  [data-skin="xp"] :where([data-control-family="range"][data-slot="root"]) {
+    --cui-range-track-radius: 2px;
+    --cui-range-track-background: var(--background);
+    --cui-range-indicator-radius: 0px;
+    --cui-range-indicator-background: var(--xp-progress);
+    --cui-range-thumb-radius: 3px;
+    --cui-range-thumb-background: var(--secondary);
+    --cui-range-thumb-border-color: var(--xp-field);
+    --cui-range-thumb-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
+  }
+  [data-skin="xp"] :where([data-control-family="range"][data-slot="track"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
+    block-size: 16px;
+    padding: 2px;
+    border: 1px solid var(--xp-field);
+  }
+  [data-skin="xp"]
+    :where([data-control-family="range"][data-slot="indicator"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
+    max-block-size: 100%;
+    background-image: linear-gradient(oklch(1 0 0 / 0.4), transparent 45%, oklch(0 0 0 / 0.15));
+    mask-image: repeating-linear-gradient(90deg, oklch(0 0 0) 0 6px, transparent 6px 8px);
+  }
+  [data-skin="xp"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]:not([data-labeled])) {
+    block-size: 4px;
+    border: 1px solid var(--xp-field);
+  }
+  [data-skin="xp"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"]) {
+    inline-size: 11px;
+    block-size: 21px;
+    background-image: var(--xp-button);
+    scale: 1;
+  }
+
+  [data-skin="xp"] :where([data-control-family="field"][data-field-kind="native-select"][data-slot="icon"]) {
+    display: grid;
+    place-items: center;
+    inset-block: 2px;
+    right: 2px;
+    inline-size: 17px;
+    background: var(--xp-scroll);
+    border: 1px solid var(--xp-field);
+    border-radius: 2px;
+    box-shadow:
+      inset 1px 1px var(--xp-light),
+      inset -1px -1px var(--xp-shadow);
+  }
+  [data-skin="xp"] :where([data-control-family="field"][data-field-kind="native-select"][data-slot="root"]) {
+    padding-inline-end: 23px;
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="field"][data-field-kind="number-field"]:is(
+        [data-control-family="field"][data-slot="increment"],
+        [data-control-family="field"][data-slot="decrement"]
+      )
+    ) {
+    background: var(--xp-scroll);
+    box-shadow:
+      inset 1px 1px var(--xp-light),
+      inset -1px -1px var(--xp-shadow);
+    border: 1px solid var(--xp-field);
+    border-radius: 2px;
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="field"][data-field-kind="number-field"]:is(
+        [data-control-family="field"][data-slot="increment"],
+        [data-control-family="field"][data-slot="decrement"]
+      ):active
+    ) {
+    box-shadow: var(--xp-default-rim);
+  }
+}

@@ -1,90 +1,58 @@
-/* Windows XP "Luna". */
-
 [data-skin="xp"][data-skin] {
-  /* typography — Tahoma first: the Luna system face */
-  --font-sans: Tahoma, "Segoe UI", "Trebuchet MS", Verdana, ui-sans-serif, sans-serif;
+  --font-sans: Tahoma, Arial, sans-serif;
   --font-mono: "Lucida Console", Consolas, monospace;
-
-  /* type scale — Tahoma reads at the Luna 13px body rung; the other explicit rungs keep a compact hierarchy */
-  --text-body: 0.8125rem; /* 13px */
-
-  /* color — shadcn base names, full colors */
+  --text-body: 0.75rem;
+  --text-caption: 0.6875rem;
+  --text-body-lg: 0.8125rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.2178 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.2178 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2178 0 0);
-  --primary: oklch(0.5354 0.1543 259.46); /* XP selection blue */
+  --primary: oklch(0.5354 0.1543 259.46);
   --primary-foreground: oklch(1 0 0);
   --muted: oklch(0.9501 0.0174 99.605);
   --muted-foreground: oklch(0.47 0.0245 98.401);
   --secondary: oklch(0.9318 0.0228 98.65);
   --secondary-foreground: oklch(0.2178 0 0);
-  --accent: oklch(0.5354 0.1543 259.46); /* XP highlight = solid selection blue with white text */
+  --accent: oklch(0.5354 0.1543 259.46);
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.1823 25.932);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.6817 0.0116 204.079 / var(--ring-opacity));
-  --input: oklch(0.6833 0.0533 246.812); /* classic field border */
-  --ring: oklch(0.8118 0.1544 77.609); /* XP orange focus glow */
+  --input: oklch(0.6833 0.0533 246.812);
+  --ring: oklch(0.8118 0.1544 77.609);
   --focus-ring: var(--foreground);
   --focus-ring-style: dotted;
   --focus-ring-width: 1px;
   --focus-ring-offset: -4px;
-
-  /* page canvas — the XP dialog beige every panel sits on */
   --canvas: oklch(0.9318 0.0228 98.65);
-
-  /* floating surfaces are solid in XP — no glass */
   --popover-opacity: 1;
   --backdrop-blur-popover: 0px;
-
-  /* modal overlay — plain dim, no blur */
   --overlay-opacity: 0.3;
   --backdrop-blur-overlay: 0px;
-
-  /* hard scroll edges: the square DA never fades clipped content */
   --scroll-fade-size: 0rem;
-
-  /* elevation — low size, hard offset shadows */
   --shadow-color: oklch(0 0 0);
   --shadow-size: 0.4;
   --shadow-opacity: 1;
-
-  /* THE one radius knob: 0 squares the whole DA. Controls consume --radius-control (0 here → square);
-     buttons floor it at Luna's 3px via max(3px, --radius-control) in skin.config.tsx. So the corner is
-     token-driven — raising --radius (theme editor) rounds XP controls instead of leaving them inert. */
   --radius: 0rem;
   --radius-control: calc(var(--radius) * 2);
-
-  /* corner shape stays round — square boxes have no corner arc to reshape */
-
-  /* floating-list geometry: same derivations as Refined; --radius 0 collapses them to square rows/container = XP menu. */
   --popover-padding: 2px;
   --radius-popup-item: calc(var(--radius-control) * 0.6);
-
-  /* content density — XP runs tighter than the Refined skin */
-  --padding-x: 0.75rem;
-  --padding-y: 0.5rem;
-
-  /* control size scale — ONE base height; the ramp derives from it */
-  --control-h: 2rem;
-  /* round() to whole px so no derived step lands on a subpixel height (mirrors Refined). */
-
-  /* motion — XP does not ease: linear curves, near-instant tempos */
+  --padding-x: 0.625rem;
+  --padding-y: 0.375rem;
+  --control-h: 1.625rem;
   --ease-standard: linear;
   --ease-emphasized: linear;
-  --duration-fast: 40ms;
-  --duration-base: 60ms;
-  --duration-slow: 80ms;
-  --text-label: 0.75rem;
+  --duration-fast: 0ms;
+  --duration-base: 0ms;
+  --duration-slow: 0ms;
+  --text-label: 0.6875rem;
   --radius-field: calc(var(--radius) * 2.2);
   --radius-panel: calc(var(--radius) * 2.6);
   --radius-scene: calc(var(--radius) * 2.8);
 }
-
-/* Dark tokens — "Royale Noir" homage, re-asserted on/under a dark XP root so the light values never win by proximity. */
 :where(.dark) [data-skin="xp"][data-skin],
 .dark[data-skin="xp"][data-skin] {
   --background: oklch(0.2459 0.0072 248.122);
@@ -108,13 +76,4 @@
   --ring: oklch(0.7319 0.1299 74.539);
   --canvas: oklch(0.1763 0.0052 248.125);
   --shadow-color: oklch(0 0 0);
-}
-
-/* XP collapses motion UNCONDITIONALLY (Luna tempo IS "reduced"; skin.config matches with motion:"reduced" flag).
-   always-on, de-gated from prefers-reduced-motion, so standalone installs snap without the docs theme editor.
-   declared after token block above on purpose, to override the near-instant Luna values there. */
-[data-skin="xp"][data-skin] {
-  --duration-fast: 0ms;
-  --duration-base: 0ms;
-  --duration-slow: 0ms;
 }

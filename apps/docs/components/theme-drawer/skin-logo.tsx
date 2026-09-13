@@ -35,6 +35,19 @@ function WindowsXpLogo({ className }: { className: string }) {
   );
 }
 
+function Windows98Logo({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 28 28" className={className} aria-hidden="true">
+      <path d="m10 4 7 1 8-2-4 21-8 2-7-3Z" fill="oklch(0.15 0 0)" />
+      <path d="m11 6 5 1-1 6-5-1Z" fill="oklch(0.65 0.22 30)" />
+      <path d="m18 7 5-1-1 6-5 1Z" fill="oklch(0.68 0.19 145)" />
+      <path d="m10 14 5 1-1 7-5-1Z" fill="oklch(0.6 0.2 250)" />
+      <path d="m17 15 5-1-1 7-5 1Z" fill="oklch(0.86 0.17 90)" />
+      <path d="M6 4h2v2H6ZM3 7h3v2H3ZM6 10h2v3H6ZM2 13h3v3H2ZM5 17h2v3H5ZM1 19h2v2H1Z" fill="oklch(0.15 0 0)" />
+    </svg>
+  );
+}
+
 function LiquidMetalLogo({ className }: { className: string }) {
   return (
     <span
@@ -97,6 +110,7 @@ function RefinedLogo({ className }: { className: string }) {
 export function SkinLogo({ id, size = "lg" }: { id: SkinId; size?: SkinLogoSize }) {
   const className = skinLogoClassNames[size];
   if (id === "modern-apple") return <AppleLogo className={className} />;
+  if (id === "windows-98") return <Windows98Logo className={className} />;
   if (id === "xp") return <WindowsXpLogo className={className} />;
   if (id === "liquid-metal") return <LiquidMetalLogo className={className} />;
   if (id === "rig") return <RigLogo className={className} />;

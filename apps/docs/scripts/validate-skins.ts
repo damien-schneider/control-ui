@@ -1,6 +1,6 @@
 /* biome-ignore-all lint/suspicious/noExplicitAny: Babel parser nodes are the dynamic input boundary for skin validation. */
 
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { parse } from "@babel/parser";
 import postcss from "postcss";
@@ -44,7 +44,9 @@ const files = supplied
   ? [path.resolve(supplied)]
   : readdirSync(skinRoot, { withFileTypes: true }).flatMap((entry) => {
       if (!entry.isDirectory()) return [];
-      return ["theme.css", "skin.css", "skin.config.tsx"].map((name) => path.join(skinRoot, entry.name, name)).filter(existsSync);
+      return readdirSync(path.join(skinRoot, entry.name))
+        .filter((name) => name.endsWith(".css") || name === "skin.config.tsx")
+        .map((name) => path.join(skinRoot, entry.name, name));
     });
 const failures: string[] = [];
 

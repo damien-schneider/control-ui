@@ -4,8 +4,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium, type Page } from "@playwright/test";
 import type { ThemeAuditResult } from "../app/(features)/theme-accessibility/audit-contract";
+import { MODE_LOCKED_SKINS, type Theme } from "../components/theme";
 import { evaluate, tokenMaps } from "../src/registry/sources/control-ui/scripts/contrast-eval.mjs";
 import { REQUIRED_PAIRS } from "../src/registry/sources/control-ui/scripts/required-pairs.mjs";
+import { readCssWithImports } from "./read-css";
 
 const docsRoot = fileURLToPath(new URL("../", import.meta.url));
 const defaultSkinRoot = path.join(docsRoot, "src/registry/skin-packs");
@@ -96,7 +98,7 @@ const tailwindTheme = tailwindPalette.replace("@theme default", ":root");
 // alone leave every recipe-owned knob unresolved. globals.css is the one list of what core ships.
 const globalsCss = readFileSync(path.join(docsRoot, "app/globals.css"), "utf8");
 const coreTheme = [...globalsCss.matchAll(/@import "(\.\.\/src\/registry\/[^"]+)";/g)]
-  .map((match) => readFileSync(path.join(docsRoot, "app", match[1]), "utf8"))
+  .map((match) => readCssWithImports(path.join(docsRoot, "app", match[1])))
   .join("\n");
 const installedTokenSources = [tailwindPalette, readFileSync(path.join(docsRoot, "src/registry/sources/control-ui/theme.css"), "utf8")];
 const browserEntry = path.join(docsRoot, "scripts/theme-accessibility-browser.ts");
@@ -113,13 +115,15 @@ try {
     const source = readFileSync(file, "utf8");
     const skin = skinIdFromCss(file, source);
     const skinCssPath = path.join(path.dirname(file), "skin.css");
-    const skinCss = existsSync(skinCssPath) ? readFileSync(skinCssPath, "utf8") : "";
+    const skinCss = existsSync(skinCssPath) ? readCssWithImports(skinCssPath) : "";
     const page = await browser.newPage();
     await page.setContent("<!doctype html><html><body></body></html>");
     await page.addStyleTag({ content: `${tailwindTheme}\n${coreTheme}\n${source}\n${skinCss}` });
     await page.addScriptTag({ content: auditScript });
 
-    for (const mode of ["light", "dark"] as const) {
+    const lockedMode = MODE_LOCKED_SKINS[skin];
+    const modes: Theme[] = lockedMode ? [lockedMode] : ["light", "dark"];
+    for (const mode of modes) {
       await page.evaluate(
         ({ activeSkin, activeMode }) => {
           document.documentElement.dataset.skin = activeSkin;
@@ -221,7 +225,7 @@ if (jsonOutput) {
     for (const warning of warnings) console.warn(`  WARN  ${resultLine(warning)}`);
   }
   console.log(`\nForced colors focus indicators: PASS ${forcedColorsChecked}/${themeFiles.length} skins.`);
-  console.log(`Label-wrapped focus indicators: PASS ${labelFocusChecked}/${themeFiles.length * 2} skin modes.`);
+  console.log(`Label-wrapped focus indicators: PASS ${labelFocusChecked}/${reports.length} skin modes.`);
 }
 
 const hasErrors = reports.some((report) => report.results.some((result) => result.severity === "error" && result.status !== "pass"));

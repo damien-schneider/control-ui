@@ -2,10 +2,12 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "@playwright/test";
+import { skinMetas } from "../app/(features)/catalog/skins";
 import { BADGE_COLORS } from "../components/control-ui/ui/badge";
+import { MODE_LOCKED_SKINS, type Theme } from "../components/theme";
 
-const SKINS = ["refined", "xp", "flat", "rig", "liquid-metal", "modern-apple", "cuicui", "linear"];
-const MODES = ["light", "dark"] as const;
+const SKINS = skinMetas.map((skin) => skin.id);
+const MODES: Theme[] = ["light", "dark"];
 const DOCS_ROOT = fileURLToPath(new URL("../", import.meta.url));
 const CORE_THEME = readFileSync(path.join(DOCS_ROOT, "src/registry/sources/control-ui/theme.css"), "utf8");
 const TAILWIND_PALETTE = readFileSync(path.join(DOCS_ROOT, "node_modules/tailwindcss/theme.css"), "utf8").replace(
@@ -22,7 +24,9 @@ test("semantic fills and badges clear WCAG AA across every skin and mode", async
   const violations: string[] = [];
 
   for (const skin of SKINS) {
-    for (const mode of MODES) {
+    const lockedMode = MODE_LOCKED_SKINS[skin];
+    const modes = lockedMode ? [lockedMode] : MODES;
+    for (const mode of modes) {
       const results = await page.evaluate(
         ({ activeSkin, activeMode, badgeColors }) => {
           const root = document.documentElement;

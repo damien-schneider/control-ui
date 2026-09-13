@@ -4,5 +4,6 @@ export const choiceKnobs = [
   "--cui-choice-border-color",
   "--cui-choice-checked-background",
   "--cui-choice-checked-border-color",
+  "--cui-choice-shadow",
 ] as const;
 export type ChoiceKnobStyle = Partial<Record<(typeof choiceKnobs)[number], string>>;

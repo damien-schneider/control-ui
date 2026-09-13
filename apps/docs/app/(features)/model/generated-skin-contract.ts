@@ -12988,6 +12988,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "transparent",
         defaultValue: "var(--primary)",
       },
+      {
+        name: "--cui-choice-shadow",
+        syntax: "*",
+        initialValue: "none",
+        defaultValue: "var(--shadow-sm)",
+      },
     ],
     code: [
       {

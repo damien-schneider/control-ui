@@ -142,6 +142,15 @@ function usesStyleUtilities(sources: Iterable<string>) {
 
 const internalDefinitions: Definition[] = [
   {
+    id: "retro-system-font",
+    type: "registry:style",
+    title: "Classic Windows system font",
+    description: "Embedded bitmap-style font shared by the Windows XP and Windows 98 skins, with its MIT license.",
+    seeds: ["src/registry/skin-packs/retro-system-font.css"],
+    primary: ["src/registry/skin-packs/retro-system-font.css"],
+    internal: true,
+  },
+  {
     id: "control-ui-skill",
     type: "registry:item",
     title: "Control UI agent skill",
@@ -330,7 +339,7 @@ function skinDefinitions(): Definition[] {
         description: skin.description,
         docs: "docs" in skin ? skin.docs : undefined,
         seeds: skin.paths.map(sourcePath),
-        primary: skin.paths.map(sourcePath),
+        primary: skin.paths.map(sourcePath).filter((file) => file.startsWith(`src/registry/skin-packs/${skin.id}/`)),
         sourceManifestPath: skin.packManifestPath,
       },
     ];
@@ -448,6 +457,7 @@ function sourceManifestPath(item: Definition) {
 }
 
 const directSourceTargets = new Map([
+  ["src/registry/skin-packs/retro-system-font.css", `${componentRoot}/retro-system-font.css`],
   ["src/registry/skin.ts", `${componentRoot}/skin.ts`],
   ["src/registry/examples/control-ui/primitives/type-scale.css", `${componentRoot}/styles/type-scale.css`],
   ["src/registry/skills/control-ui-skill.md", "~/.claude/skills/control-ui/SKILL.md"],
@@ -475,7 +485,8 @@ const skinPackTargets = new Map([
 
 function skinPackTarget(filePath: string) {
   const basename = path.basename(filePath);
-  return skinPackTargets.get(basename) ?? `${componentRoot}/${basename}`;
+  const fallback = filePath.endsWith(".css") ? `${componentRoot}/styles/${basename}` : `${componentRoot}/${basename}`;
+  return skinPackTargets.get(basename) ?? fallback;
 }
 
 function rootedSourceTarget(filePath: string) {

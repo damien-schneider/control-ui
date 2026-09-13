@@ -93,7 +93,7 @@ export function AlertDialogContent({ className, children, ...props }: AlertDialo
         data-control-family="popup"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-md -translate-x-1/2 p-0", className)}
+        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-md -translate-x-1/2", className)}
         {...props}
       >
         {children}

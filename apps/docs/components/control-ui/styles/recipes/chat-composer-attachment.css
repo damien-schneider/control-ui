@@ -115,15 +115,16 @@
     inline-size: calc(var(--spacing) * 5);
     block-size: calc(var(--spacing) * 5);
     padding: 0;
-    border-radius: 9999px;
-    background: var(--foreground);
-    color: var(--background);
-    box-shadow: var(--shadow-sm);
+    --cui-button-radius: 9999px;
+    --cui-button-background: var(--foreground);
+    --cui-button-foreground: var(--background);
+    --cui-button-shadow: var(--shadow-sm);
   }
 
   @media (hover: hover) {
     :where([data-control-family="button"][data-chat-composer-attachment-remove="true"]:hover) {
-      background: oklch(from var(--foreground) l c h / 0.85);
+      --cui-button-hover-background: oklch(from var(--foreground) l c h / 0.85);
+      --cui-button-hover-foreground: var(--background);
     }
   }
 

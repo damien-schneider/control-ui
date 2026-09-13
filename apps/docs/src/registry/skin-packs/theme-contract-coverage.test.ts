@@ -3,6 +3,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcss, { type AtRule, type Declaration, type Node, type Root, type Rule } from "postcss";
+import { readCssWithImports } from "../../../scripts/read-css";
 import { REQUIRED_THEME_CONTRACT, THEME_CONTRACT, THEME_CONTRACT_NAMES } from "../lib/theme-contract";
 
 const DERIVED_CONTRACT_NAMES = new Set(THEME_CONTRACT.filter((token) => token.tier === "derived").map((token) => token.name));
@@ -247,7 +248,7 @@ describe("skin pack theme.css stays within the token contract", () => {
     const themePath = path.join(SKIN_PACKS_DIR, id, "theme.css");
     const skinPath = path.join(SKIN_PACKS_DIR, id, "skin.css");
     const themeCss = readFileSync(themePath, "utf8");
-    const skinCss = readFileSync(skinPath, "utf8");
+    const skinCss = readCssWithImports(skinPath);
     const themeRoot = postcss.parse(themeCss, { from: themePath });
     const skinRoot = postcss.parse(skinCss, { from: skinPath });
 

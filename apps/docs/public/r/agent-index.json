@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 177,
+    "count": 178,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -22,6 +22,14 @@
         "summary": "Complete canonical Control UI component set with the Windows XP skin.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-xp.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-xp.json"
+      },
+      {
+        "id": "all-windows-98",
+        "skin": "windows-98",
+        "name": "All components — Windows 98",
+        "summary": "Complete canonical Control UI component set with the Windows 98 skin.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all-windows-98.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-windows-98.json"
       },
       {
         "id": "all-liquid-metal",
@@ -220,7 +228,7 @@
         "id": "control-ui-vs-shadcn-ui",
         "name": "Control UI vs shadcn/ui",
         "kind": "Guide",
-        "summary": "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and 16 skin modes audited against WCAG AA on every commit.",
+        "summary": "Both ship open-source React source through the shadcn CLI. The difference starts after install: a typed knob contract, skins that re-value it wholesale, and every supported skin mode audited against WCAG AA on every commit.",
         "href": "/control-ui-vs-shadcn-ui"
       },
       {
@@ -256,9 +264,17 @@
         "id": "xp",
         "name": "Windows XP",
         "kind": "Skin",
-        "summary": "Windows XP-inspired Luna tokens, bevels, and titlebar details.",
+        "summary": "Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.",
         "href": "/skins/xp",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite"
+      },
+      {
+        "id": "windows-98",
+        "name": "Windows 98",
+        "kind": "Skin",
+        "summary": "Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.",
+        "href": "/skins/windows-98",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-windows-98.json --overwrite"
       },
       {
         "id": "liquid-metal",

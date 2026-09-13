@@ -28,7 +28,6 @@ export type SliderProps = Omit<
 
 const MAX_VISIBLE_STEP_TICKS = 50;
 
-// skipped when steps are too fine or too coarse to read as marks
 function tickPositions(min: number, max: number, step: number | undefined): number[] {
   if (typeof step !== "number" || step <= 0 || !Number.isFinite(step)) return [];
   const range = max - min;
@@ -58,16 +57,13 @@ export function Slider({
   step,
   disabled,
   style,
+  "aria-label": ariaLabel,
   ...props
 }: SliderProps) {
   const showValueResolved = showValue ?? Boolean(label);
   const labeled = variant === "plain" && (label !== undefined || showValue === true);
   const ticks = labeled ? tickPositions(min, max, step) : [];
-  const trackStyle = style;
-  const indicatorStyle = style;
-  const thumbStyle = style;
 
-  // explicit, never spread: Base UI reads controlled-ness from `value !== undefined`, and spread can carry `undefined` for tick
   return (
     <SliderPrimitive.Root
       data-control-ui="slider"
@@ -105,8 +101,8 @@ export function Slider({
           data-slot="track"
           data-variant={variant}
           data-labeled={labeled ? "true" : undefined}
-          className="relative w-full grow overflow-hidden"
-          style={trackStyle}
+          className="relative w-full grow"
+          style={style}
         >
           <SliderPrimitive.Indicator
             data-control-ui="slider"
@@ -114,7 +110,7 @@ export function Slider({
             data-range-kind="slider"
             data-slot="indicator"
             data-variant={variant}
-            style={indicatorStyle}
+            style={style}
           />
           {ticks.map((pct) => (
             <span
@@ -129,13 +125,14 @@ export function Slider({
             />
           ))}
           <SliderPrimitive.Thumb
+            aria-label={ariaLabel}
             data-control-ui="slider"
             data-control-family="range"
             data-range-kind="slider"
             data-slot="thumb"
             data-variant={variant}
             className={cn("block", variant === "plain" && "after:absolute after:-inset-3 after:content-['']")}
-            style={thumbStyle}
+            style={style}
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>

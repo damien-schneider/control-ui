@@ -66,7 +66,6 @@ export function DialogClose({
 export function DialogContent({ className, children, showCloseButton = true, ...props }: DialogContentProps) {
   return (
     <DialogPrimitive.Portal>
-      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <DialogPrimitive.Backdrop
         data-control-ui="dialog"
         data-popup-kind="dialog"
@@ -86,13 +85,13 @@ export function DialogContent({ className, children, showCloseButton = true, ...
         data-control-family="popup"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 p-0", className)}
+        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2", className)}
         {...props}
       >
         {skinAdornment("dialog", "titlebar", {})}
         {children}
         {showCloseButton ? (
-          <DialogClose variant="ghost" size="xs" iconOnly className="absolute right-3 top-3">
+          <DialogClose variant="ghost" size="xs" iconOnly className="absolute">
             <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
               <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
