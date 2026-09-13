@@ -3,19 +3,18 @@
 import { type CatalogSkinMeta, skinMetas } from "@/app/(features)/catalog/skins";
 import { DEFAULT_SKIN_ID, LEGACY_THEME_EDITOR_STORAGE_KEY, THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { objectFromEntries } from "@/lib/typed-object";
+import { isRecord } from "./is-record";
 import type { LabelMode, SkinId, ThemeState, TokenValues } from "./types";
 
 export const SKIN_META_BY_ID = objectFromEntries(skinMetas.map((meta): [SkinId, CatalogSkinMeta] => [meta.id, meta]));
 export const THEME_SKIN_IDS = skinMetas.flatMap((meta) => (meta.kind === "theme" ? [meta.id] : []));
 export const ADVANCED_SKIN_IDS = skinMetas.flatMap((meta) => (meta.kind === "advanced" ? [meta.id] : []));
-// one flat list, theme skins first — section title already names them
 export const ALL_SKIN_IDS = [...THEME_SKIN_IDS, ...ADVANCED_SKIN_IDS];
 
 export function isSkinId(value: unknown): value is SkinId {
-  return typeof value === "string" && value in SKIN_META_BY_ID;
+  return typeof value === "string" && Object.hasOwn(SKIN_META_BY_ID, value);
 }
 
-// no stored edits — controls read skin's live tokens straight from DOM
 export const DEFAULT_THEME: ThemeState = {
   skin: DEFAULT_SKIN_ID,
   customThemeId: null,
@@ -27,10 +26,6 @@ export const DEFAULT_THEME: ThemeState = {
   textFixes: {},
 };
 
-// Docs-only, keyed from theme.ts so pre-paint init script reads same slot; that script touches only `skin` and `reduceMotion`, which every stored shape carries at top level.
-const STORAGE_KEY = THEME_EDITOR_STORAGE_KEY;
-
-// anything else, legacy scalar knobs included, collapses to {}
 function readTokenMap(value: unknown): TokenValues {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return {};
   const out: TokenValues = {};
@@ -44,13 +39,13 @@ function readLabelMode(value: unknown): LabelMode {
   return value === "css" ? "css" : "friendly";
 }
 
-export function loadStored(storage: Pick<Storage, "getItem"> = localStorage): ThemeState | null {
+export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | null {
   try {
-    const raw = storage.getItem(STORAGE_KEY) ?? storage.getItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
+    const themeStorage = storage ?? localStorage;
+    const raw = themeStorage.getItem(THEME_EDITOR_STORAGE_KEY) ?? themeStorage.getItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
     if (!raw) return null;
-    // JSON.parse is typed `any` — annotated rather than asserted
-    const stored: Record<string, unknown> = JSON.parse(raw);
-    // legacy scalar-knob payload does not map 1:1 onto per-token overrides, so only skin, motion, and textFixes survive
+    const stored: unknown = JSON.parse(raw);
+    if (!isRecord(stored)) return null;
     const isLegacy = Array.isArray(stored.overrides) || typeof stored.primary === "string";
     return {
       ...DEFAULT_THEME,
@@ -68,10 +63,11 @@ export function loadStored(storage: Pick<Storage, "getItem"> = localStorage): Th
   }
 }
 
-export function store(t: ThemeState, storage: Pick<Storage, "setItem" | "removeItem"> = localStorage): boolean {
+export function store(t: ThemeState, storage?: Pick<Storage, "setItem" | "removeItem">): boolean {
   try {
-    storage.setItem(STORAGE_KEY, JSON.stringify(t));
-    storage.removeItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
+    const themeStorage = storage ?? localStorage;
+    themeStorage.setItem(THEME_EDITOR_STORAGE_KEY, JSON.stringify(t));
+    themeStorage.removeItem(LEGACY_THEME_EDITOR_STORAGE_KEY);
     return true;
   } catch {
     return false;

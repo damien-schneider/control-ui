@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import { Geist, Inter } from "next/font/google";
-import Script from "next/script";
 import type { ReactNode } from "react";
 import { DocsShell } from "@/app/(features)/client/client";
 import { getDocsShellData } from "@/app/(features)/model/data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
 import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
+import themeInitScript from "@/app/(features)/theme/generated-theme-init.json";
 import { cn } from "@/components/control-ui/lib/cn";
 import { SkinEpochProvider } from "@/components/skin-epoch-context";
-import { DEFAULT_SKIN_ID, THEME_INIT_SCRIPT } from "@/components/theme";
+import { DEFAULT_SKIN_ID } from "@/components/theme";
+import { SkinRuntimeEffects } from "@/components/theme-drawer/skin-runtime-effects";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";
-import { LiquidMetalSkinRuntime } from "@/src/registry/skin-packs/liquid-metal/liquid-metal-runtime";
 import { ModernAppleGlassFilter } from "@/src/registry/skin-packs/modern-apple/modern-apple-glass-filter";
 import "./globals.css";
 
@@ -24,12 +24,13 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const githubStars = await getControlUiGitHubStars();
   return (
     <html lang="en" data-skin={DEFAULT_SKIN_ID} suppressHydrationWarning className={cn(geist.variable, inter.variable)}>
+      <head>
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static build output must execute before the first paint. */}
+        <script id="control-ui-theme-init" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <SiteStructuredData />
         <ThemeFavicon />
-        <Script id="control-ui-theme-init" strategy="beforeInteractive">
-          {THEME_INIT_SCRIPT}
-        </Script>
         <SkinEpochProvider>
           <ThemeRuntimeProvider>
             <div data-skin-scope="docs">
@@ -37,9 +38,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                 {children}
               </DocsShell>
             </div>
+            <SkinRuntimeEffects />
           </ThemeRuntimeProvider>
         </SkinEpochProvider>
-        <LiquidMetalSkinRuntime />
         <ModernAppleGlassFilter />
       </body>
     </html>

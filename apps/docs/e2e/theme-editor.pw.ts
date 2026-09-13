@@ -45,7 +45,7 @@ test("theme edits survive navigation, direct loads, and refresh", async ({ page,
   await page.getByRole("region", { name: "Choose a skin" }).getByRole("button", { name: "Refined", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
   await page.getByRole("switch", { name: "Caption every control with its CSS variable name" }).check();
-  const radius = page.getByRole("group", { name: "--radius-control", exact: true }).getByRole("slider");
+  const radius = page.getByRole("slider", { name: "--radius-control", exact: true });
   await radius.focus();
   await radius.press("Home");
   await radius.press("ArrowRight");

@@ -6,5 +6,6 @@ apps/docs/public/llms.txt linguist-generated=true
 apps/docs/public/llms-full.txt linguist-generated=true
 apps/docs/app/(features)/model/generated-registry.ts linguist-generated=true
 apps/docs/app/(features)/model/generated-skin-contract.ts linguist-generated=true
+apps/docs/app/(features)/theme/generated-theme-init.json linguist-generated=true
 apps/docs/components/control-ui/** linguist-generated=true
 bun.lock linguist-generated=true

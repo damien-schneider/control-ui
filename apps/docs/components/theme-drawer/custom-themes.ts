@@ -59,9 +59,9 @@ function storedThemeValues(stored: unknown): unknown[] {
   return [];
 }
 
-export function loadCustomThemes(storage: Pick<Storage, "getItem"> = localStorage): CustomThemeProfile[] {
+export function loadCustomThemes(storage?: Pick<Storage, "getItem">): CustomThemeProfile[] {
   try {
-    const raw = storage.getItem(CUSTOM_THEME_STORAGE_KEY);
+    const raw = (storage ?? localStorage).getItem(CUSTOM_THEME_STORAGE_KEY);
     if (!raw) return [];
     const stored: unknown = JSON.parse(raw);
     const themes = storedThemeValues(stored);
@@ -74,9 +74,9 @@ export function loadCustomThemes(storage: Pick<Storage, "getItem"> = localStorag
   }
 }
 
-export function storeCustomThemes(themes: CustomThemeProfile[], storage: Pick<Storage, "setItem"> = localStorage): boolean {
+export function storeCustomThemes(themes: CustomThemeProfile[], storage?: Pick<Storage, "setItem">): boolean {
   try {
-    storage.setItem(CUSTOM_THEME_STORAGE_KEY, JSON.stringify({ version: 1, themes }));
+    (storage ?? localStorage).setItem(CUSTOM_THEME_STORAGE_KEY, JSON.stringify({ version: 1, themes }));
     return true;
   } catch {
     return false;

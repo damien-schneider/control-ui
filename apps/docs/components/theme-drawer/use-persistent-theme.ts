@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import { skin as activeSkinConfig, setSkin } from "@/components/control-ui/skin.config";
 import { useSkinEpoch } from "@/components/skin-epoch-context";
@@ -211,15 +211,14 @@ export function usePersistentTheme() {
     return profile ? artifactFromThemeProfile(profile) : null;
   }
 
-  useEffect(() => {
-    queueMicrotask(() => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-      const customThemes = loadCustomThemes();
-      const restored = loadStored() ?? DEFAULT_THEME;
-      const activeProfileExists = customThemes.some((profile) => profile.id === restored.customThemeId);
-      const theme = restored.customThemeId && !activeProfileExists ? { ...restored, customThemeId: null } : restored;
-      setRuntime({ theme, customThemes, undo: null, hydrated: true });
-    });
+  useLayoutEffect(() => {
+    setIsDark(document.documentElement.classList.contains("dark"));
+    const customThemes = loadCustomThemes();
+    const restored = loadStored() ?? DEFAULT_THEME;
+    const activeProfileExists = customThemes.some((profile) => profile.id === restored.customThemeId);
+    const theme = restored.customThemeId && !activeProfileExists ? { ...restored, customThemeId: null } : restored;
+    writeVars(theme);
+    setRuntime({ theme, customThemes, undo: null, hydrated: true });
   }, []);
 
   useEffect(() => {
@@ -240,7 +239,7 @@ export function usePersistentTheme() {
     return () => cancelAnimationFrame(frame);
   }, [runtime.theme]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!runtime.theme || activeSkinConfig.id === runtime.theme.skin) return;
     setSkin(SKIN_CONFIGS[runtime.theme.skin]);
     bumpSkinEpoch();
