@@ -15,7 +15,7 @@ Heads-up: the docs app tracks bleeding-edge tooling — Next.js preview releases
 
 ## Source of truth and generated files
 
-Component and primitive source lives in `apps/docs/src/registry/sources/control-ui`; the product catalog lives in `apps/docs/app/docs-catalog`. Everything else registry-shaped is generated from those (see the Workspace section of the README).
+Component and primitive source lives in `apps/docs/src/registry/sources/control-ui`; the product catalog lives in `apps/docs/app/(features)/catalog`. Everything else registry-shaped is generated from those (see the Repository layout section of the README).
 
 After changing registry source, catalog metadata, or skin packs:
 
@@ -48,4 +48,4 @@ Browser tests (`bun run test:browser` in `apps/docs`) require Playwright browser
 - Author colors in `oklch()`; prefer CSS-first solutions over React state for interaction and motion.
 - Prefer clearer names over comments; remove comments that restate the code.
 
-`AGENTS.md` carries the full working conventions (including the agent-facing registry surface) and is the reference when in doubt.
+`AGENTS.md` carries repository working rules and architecture constraints. The generated consumer reference lives in `apps/docs/public/llms-full.txt`; it is not injected into repository instructions.
