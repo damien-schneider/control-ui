@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/control-ui/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -11,14 +12,11 @@ import {
   DrawerTrigger,
 } from "@/components/control-ui/ui/drawer";
 
-const triggerClass =
-  "inline-flex h-9 cursor-pointer items-center justify-center rounded-[var(--radius-control)] bg-card px-4 text-sm font-medium text-foreground shadow-sm ring-1 ring-inset ring-border transition hover:bg-foreground/5";
-
 export function PrimitiveDrawerExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
       <Drawer>
-        <DrawerTrigger className={triggerClass}>Open drawer</DrawerTrigger>
+        <DrawerTrigger render={<Button variant="surface" />}>Open drawer</DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Move to project</DrawerTitle>
@@ -26,17 +24,13 @@ export function PrimitiveDrawerExample() {
           </DrawerHeader>
           <div className="flex flex-col gap-1 px-4">
             {["Inbox", "Roadmap", "Archive"].map((name) => (
-              <button
-                key={name}
-                type="button"
-                className="flex h-10 items-center rounded-[var(--radius-control)] px-3 text-left text-sm text-foreground transition hover:bg-foreground/6"
-              >
+              <Button key={name} variant="ghost" className="justify-start">
                 {name}
-              </button>
+              </Button>
             ))}
           </div>
           <DrawerFooter>
-            <DrawerClose className={triggerClass}>Cancel</DrawerClose>
+            <DrawerClose render={<Button variant="surface" />}>Cancel</DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

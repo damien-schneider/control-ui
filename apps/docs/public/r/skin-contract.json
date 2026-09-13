@@ -6148,7 +6148,6 @@
           ]
         },
         "close": {
-          "family": "popup",
           "registryItems": [
             "drawer"
           ],

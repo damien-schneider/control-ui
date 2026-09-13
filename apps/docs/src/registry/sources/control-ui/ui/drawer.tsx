@@ -23,9 +23,6 @@ export const drawerContentVariants = ["edge", "floating"] as const;
 
 export type DrawerContentVariant = (typeof drawerContentVariants)[number];
 
-// Base UI Drawer throughout — native swipe gestures and snap points, no vaul.
-
-// swipeDirection is dismiss axis — always edge drawer is pinned to
 const swipeFor: Record<DrawerSide, ComponentProps<typeof DrawerPrimitive.Root>["swipeDirection"]> = {
   bottom: "down",
   top: "up",
@@ -75,7 +72,6 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
   },
 };
 
-// inset belongs to handle, not popup padding — under padding="none" pill would otherwise sit flush against rounded edge
 export function Drawer(props: ComponentProps<typeof DrawerPrimitive.Root> & { side?: DrawerSide }) {
   const { side = "bottom", swipeDirection, ...rest } = props;
   return <DrawerPrimitive.Root swipeDirection={swipeDirection ?? swipeFor[side]} {...rest} />;
@@ -92,16 +88,7 @@ export function DrawerClose({
   className,
   ...props
 }: ComponentProps<typeof DrawerPrimitive.Close> & { style?: CSSProperties & PopupKnobStyle }) {
-  return (
-    <DrawerPrimitive.Close
-      data-control-ui="drawer"
-      data-control-family="popup"
-      data-popup-kind="drawer"
-      data-slot="close"
-      className={className}
-      {...props}
-    />
-  );
+  return <DrawerPrimitive.Close data-control-ui="drawer" data-popup-kind="drawer" data-slot="close" className={className} {...props} />;
 }
 
 export function DrawerContent({
@@ -129,7 +116,6 @@ export function DrawerContent({
     : undefined;
   return (
     <DrawerPrimitive.Portal>
-      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <DrawerPrimitive.Backdrop
         data-control-ui="drawer"
         data-control-family="popup"

@@ -1,16 +1,11 @@
-/* Only what Tailwind classes cannot say — everything else lives in skin.config or theme.css. */
-
 [data-skin="linear"] {
   --linear-control-bg: var(--popover);
   --linear-control-hover: oklch(from var(--foreground) l c h / 0.06);
   --linear-control-active: oklch(from var(--foreground) l c h / 0.09);
 
-  /* The brand ramp: Linear darkens the indigo on press rather than fading it. */
-  --linear-primary-hover: oklch(0.5897 0.1527 276.397); /* #6771d6 */
-  --linear-primary-active: oklch(0.5177 0.1507 275.398); /* #525cbd */
+  --linear-primary-hover: oklch(0.575 0.1527 276.397);
+  --linear-primary-active: oklch(0.5177 0.1507 275.398);
 
-  /* Own vars rather than the shared shadow tokens, so each surface tier stays tunable on its own.
-     Each stack is Linear's own recipe: many near-transparent layers, never one big blur. */
   --linear-control-shadow: 0 3px 6px -2px oklch(0 0 0 / 0.02), 0 1px 1px 0 oklch(0 0 0 / 0.04);
   --linear-panel-shadow: 0 3px 6px -2px oklch(0 0 0 / 0.02), 0 1px 1px 0 oklch(0 0 0 / 0.04);
   --linear-menu-shadow: 0 6px 18px 0 oklch(0 0 0 / 0.02), 0 3px 9px 0 oklch(0 0 0 / 0.04), 0 1px 1px 0 oklch(0 0 0 / 0.04);
@@ -18,14 +13,12 @@
     0 4px 40px 0 oklch(0 0 0 / 0.1), 0 3px 20px 0 oklch(0 0 0 / 0.12), 0 3px 12px 0 oklch(0 0 0 / 0.12), 0 2px 8px 0 oklch(0 0 0 / 0.12),
     0 1px 1px 0 oklch(0 0 0 / 0.12);
 
-  /* Menus carry their own edge: on ink it reads lighter than --border, on paper barely darker. */
-  --linear-menu-border: oklch(0.931 0 0); /* #e8e8e8 */
+  --linear-menu-border: oklch(0.931 0 0);
 
   --linear-tab-active-bg: var(--popover);
   --linear-tab-active-shadow: 0 0 0 var(--control-rim-width) var(--border), 0 1px 1px 0 oklch(0 0 0 / 0.04);
 }
 
-/* Dark: raised surfaces get lighter, not brighter-edged; shadows go deep and neutral. */
 :where(.dark) [data-skin="linear"],
 .dark[data-skin="linear"] {
   --linear-control-bg: oklch(1 0 0 / 0.05);
@@ -37,13 +30,12 @@
   --linear-modal-shadow:
     0 4px 40px 0 oklch(0 0 0 / 0.4), 0 3px 20px 0 oklch(0 0 0 / 0.5), 0 3px 12px 0 oklch(0 0 0 / 0.5), 0 2px 8px 0 oklch(0 0 0 / 0.5),
     0 1px 1px 0 oklch(0 0 0 / 0.5);
-  --linear-menu-border: oklch(0.3602 0.0053 271.268); /* #3c3d40 */
+  --linear-menu-border: oklch(0.3602 0.0053 271.268);
   --linear-tab-active-bg: oklch(1 0 0 / 0.07);
   --linear-tab-active-shadow: none;
 }
 
 @layer base {
-  /* Body-level, not a utility: type rendering is inherited, so portalled popups pick it up too. */
   :root[data-skin="linear"] body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -51,13 +43,9 @@
 }
 
 @layer components {
-  [data-skin="linear"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
-    ) {
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"]) {
     --cui-button-gap: 0.375rem;
-    --cui-button-radius: var(--radius-control);
+    --cui-button-radius: 9999px;
     --cui-button-press-scale: 1;
     --cui-button-hover-background: var(--hover-fill);
     --cui-button-active-background: var(--active-fill);
@@ -65,21 +53,13 @@
     transition-property: color, background-color, border-color, box-shadow;
   }
 
-  [data-skin="linear"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
-    ) {
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
     --cui-button-hover-background: var(--linear-primary-hover);
     --cui-button-press-background: var(--linear-primary-active);
     --cui-button-shadow: var(--linear-control-shadow);
   }
 
-  [data-skin="linear"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]
-    ) {
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-variant="surface"]) {
     --cui-button-background: var(--linear-control-bg);
     --cui-button-hover-background: var(--linear-control-hover);
     --cui-button-press-background: var(--linear-control-active);
@@ -87,39 +67,24 @@
     --cui-button-active-shadow: inset 0 0 0 var(--control-rim-width) oklch(from var(--primary) l c h / 0.6), var(--linear-control-shadow);
   }
 
-  [data-skin="linear"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-tone="danger"][data-variant="solid"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-tone="danger"][data-variant="solid"][data-control-family="button"]
-    ) {
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-tone="danger"][data-variant="solid"]) {
     --cui-button-hover-background: var(--destructive);
     --cui-button-press-background: var(--destructive);
     --cui-button-shadow: var(--linear-control-shadow);
   }
 
   @media (hover: hover) {
-    [data-skin="linear"]
-      :where(
-        [data-control-ui="button"][data-tone="danger"][data-variant="solid"][data-control-family="button"]:hover,
-        [data-control-ui="toggle"][data-tone="danger"][data-variant="solid"][data-control-family="button"]:hover
-      ) {
+    [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-tone="danger"][data-variant="solid"]:hover) {
       filter: brightness(1.05);
     }
   }
 
-  [data-skin="linear"]
-    :where(
-      [data-control-ui="button"][data-tone="danger"][data-variant="solid"][data-control-family="button"]:active,
-      [data-control-ui="toggle"][data-tone="danger"][data-variant="solid"][data-control-family="button"]:active
-    ) {
+  [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-tone="danger"][data-variant="solid"]:active) {
     filter: brightness(0.95);
   }
 
   [data-skin="linear"]
-    :where(
-      [data-slot="root"][data-variant="inverse"][data-control-family="toolbar"]
-        [data-control-ui="button"][data-slot="root"][data-control-family="button"]
-    ) {
+    :where([data-slot="root"][data-variant="inverse"][data-control-family="toolbar"] [data-control-family="button"][data-control="true"]) {
     --cui-button-background: transparent;
     --cui-button-foreground: oklch(from var(--background) l c h / 0.7);
     --cui-button-hover-background: oklch(from var(--background) l c h / 0.1);
@@ -132,14 +97,12 @@
     --cui-button-active-shadow: 0 0 transparent;
   }
 
-  /* Re-values the library's pill knobs: a flat ink wash, never a raised card. */
   [data-skin="linear"] :where([data-slot="root"][data-control-family="track-highlight"]) {
     --cui-track-highlight-background: var(--active-fill);
     --cui-track-highlight-ring-color: transparent;
     --cui-track-highlight-shadow: none;
   }
 
-  /* Re-values the component-local knobs only, so geometry, states, and the `line` variant stay baseline. */
   [data-skin="linear"] :where([data-slot="root"][data-control-family="tabs"]) {
     --cui-tabs-trigger-radius: var(--radius-control);
     --cui-tabs-list-padding: 0rem;
@@ -162,7 +125,6 @@
     --cui-popup-shadow: var(--linear-menu-shadow);
   }
 
-  /* 6px block padding on a 20px line lands the row on Linear's 32px, without touching --control-h-xs. */
   [data-skin="linear"] :where([data-popup-part="item"]) {
     padding: 0.375rem 0.5rem;
     font-size: var(--text-label);
@@ -197,7 +159,8 @@
   }
 
   [data-skin="linear"] :where([data-control-ui="select"][data-slot="trigger"][data-control-family="button"]) {
-    --cui-button-background: transparent;
+    --cui-button-radius: var(--radius-control);
+    --cui-button-background: var(--linear-control-bg);
     --cui-button-hover-background: var(--hover-fill);
     --cui-button-shadow: inset 0 0 0 var(--control-rim-width) var(--input);
     --cui-button-press-scale: 1;
@@ -212,6 +175,10 @@
     --cui-button-hover-background: var(--hover-fill);
     --cui-button-shadow: none;
     --cui-button-press-scale: 1;
+  }
+
+  [data-skin="linear"] :where([data-control-ui="menubar"][data-slot="trigger"][data-control-family="button"]) {
+    --cui-button-radius: var(--radius-control);
   }
   [data-skin="linear"]
     :where(
@@ -269,7 +236,7 @@
 
   [data-skin="linear"] :where([data-control-ui="combobox"][data-slot="trigger"][data-control-family="field"]) {
     border-radius: var(--radius-control);
-    background: transparent;
+    background: var(--linear-control-bg);
     box-shadow: none;
   }
 
@@ -277,6 +244,16 @@
     [data-skin="linear"] :where([data-control-ui="combobox"][data-slot="trigger"][data-control-family="field"]):hover {
       background: var(--hover-fill);
     }
+  }
+}
+
+@layer components {
+  [data-skin="linear"]
+    :where(
+      [data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"],
+      [data-track]:is([data-control-family="button-group"], [data-control-ui="toggle"]) > [data-control-family="track-highlight"]
+    ) {
+    --cui-track-highlight-radius: 9999px;
   }
 }
 

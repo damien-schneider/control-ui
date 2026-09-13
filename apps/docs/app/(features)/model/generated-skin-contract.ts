@@ -4666,7 +4666,6 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         close: {
-          family: "popup",
           registryItems: ["drawer"],
           states: [
             {

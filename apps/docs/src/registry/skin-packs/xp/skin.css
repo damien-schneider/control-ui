@@ -1,11 +1,3 @@
-/*
- * XP skin.css: pack's --xp-* palette + effect utilities. Import AFTER tailwindcss + theme.css.
- * xp- prefix avoids @utility collisions when multiple skins co-compile in one Tailwind build.
- */
-
-/* Luna palette: pack's OWN --xp-* tokens (not theme.css contract — pack-owned, lives w/ consumers).
- * Mode-dependent, same light/dark scoping as theme.css.
- * Unlayered so class-string consumers (skin.config, adornments, tab recipe) resolve them. */
 [data-skin="xp"] {
   --xp-bevel-light: oklch(1 0 0);
   --xp-bevel-dark: oklch(0.7307 0.0216 94.606);
@@ -32,7 +24,10 @@
   --xp-scroll-thumb-bottom: oklch(0.8366 0.059 254.828);
   --xp-scroll-thumb-border: oklch(0.6845 0.0601 245.565);
   --xp-skeleton: oklch(0.907 0.0215 101.011);
-  /* Luna default-button (pale-blue) gradient + inner ring, and the red close-box gradient */
+  --xp-checkmark: oklch(0.52 0.16 145);
+  --xp-progress: oklch(0.62 0.17 145);
+  --xp-tooltip: oklch(0.991 0.041 107);
+
   --xp-solid-top: oklch(0.994 0 0);
   --xp-solid-bottom: oklch(0.9171 0.0329 256.763);
   --xp-solid-ring: oklch(0.7746 0.0723 256.434);
@@ -40,7 +35,6 @@
   --xp-close-bottom: oklch(0.5896 0.1829 24.717);
 }
 
-/* Dark — "Royale Noir" homage. Scoped like the light block (never a bare .dark subtree). */
 :where(.dark) [data-skin="xp"],
 .dark[data-skin="xp"] {
   --xp-bevel-light: oklch(0.3997 0.0135 256.758);
@@ -68,6 +62,9 @@
   --xp-scroll-thumb-bottom: oklch(0.3466 0.0387 260.466);
   --xp-scroll-thumb-border: oklch(0.5083 0.0442 255.724);
   --xp-skeleton: oklch(0.3122 0.0099 260.713);
+  --xp-checkmark: oklch(0.75 0.17 145);
+  --xp-progress: oklch(0.68 0.17 145);
+  --xp-tooltip: oklch(0.31 0.025 95);
   --xp-solid-top: oklch(0.369 0.0159 255.615);
   --xp-solid-bottom: oklch(0.3481 0.0515 261.732);
   --xp-solid-ring: oklch(0.492 0.081 260.654);
@@ -76,7 +73,6 @@
 }
 
 @layer components {
-  /* Inherited skin typography; component text utilities stay authoritative. */
   [data-skin="xp"] body {
     font-family: var(--font-sans);
     font-size: 0.75rem;
@@ -84,8 +80,7 @@
 
   [data-skin="xp"]
     :where(
-      [data-control-family="button"][data-slot="root"]:is([data-control-ui="button"], [data-control-ui="toggle"]),
-      [data-control-family="button"][data-slot="trigger"]:is([data-control-ui="select"], [data-control-ui="dropdown-menu"]),
+      [data-control-family="button"][data-control="true"],
       [data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"],
       [data-track]:is([data-control-family="button-group"], [data-control-ui="toggle"]) > [data-control-family="track-highlight"]
     ) {
@@ -93,45 +88,34 @@
     --cui-track-highlight-radius: var(--cui-button-radius);
   }
 
-  [data-skin="xp"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]
-    ) {
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"]) {
     --cui-button-gap: 0.25rem;
+    --cui-button-press-scale: 1;
     --cui-button-foreground: var(--foreground);
     --cui-button-hover-background: transparent;
     --cui-button-hover-foreground: var(--foreground);
     line-height: 1;
     --cui-button-press-background: transparent;
     --cui-button-shadow: 0 0 transparent;
-    --cui-button-active-background: transparent;
+    --cui-button-active-background: var(--xp-control-bottom);
     --cui-button-active-foreground: var(--foreground);
-    --cui-button-active-hover-background: transparent;
-    /* Luna reads the raised bevel on hover and inverts it on press. */
+    --cui-button-active-hover-background: var(--xp-control-bottom);
+    --cui-button-active-shadow: inset 1px 1px 0 var(--xp-bevel-dark), inset -1px -1px 0 var(--xp-bevel-light);
+
     --cui-button-hover-shadow: inset 1px 1px 0 var(--xp-bevel-light), inset -1px -1px 0 var(--xp-bevel-dark);
     --cui-button-press-shadow: inset 1px 1px 0 var(--xp-bevel-dark), inset -1px -1px 0 var(--xp-bevel-light);
     border: 1px solid transparent;
   }
 
   @media (hover: hover) {
-    [data-skin="xp"]
-      :where(
-        [data-control-ui="button"][data-slot="root"][data-control-family="button"]:hover,
-        [data-control-ui="toggle"][data-slot="root"][data-control-family="button"]:hover
-      ) {
+    [data-skin="xp"] :where([data-control-family="button"][data-control="true"]:hover) {
       border-color: var(--xp-bevel-dark);
     }
   }
 
-  [data-skin="xp"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]
-    ) {
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-variant="surface"]) {
     --cui-button-press-scale: 1;
     --cui-button-shadow: inset 0 1px 0 var(--xp-bevel-light);
-    --cui-button-active-shadow: inset 0 1px 0 var(--xp-bevel-light);
     --cui-button-hover-shadow: inset 0 0 0 1px var(--ring), inset 0 1px 0 var(--xp-bevel-light);
     --cui-button-press-shadow: inset 0 1px 0 var(--xp-bevel-light);
     --cui-button-background-image: linear-gradient(to bottom, var(--xp-control-top), var(--xp-control-bottom));
@@ -139,28 +123,16 @@
   }
 
   @media (hover: hover) {
-    [data-skin="xp"]
-      :where(
-        [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"]:hover,
-        [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]:hover
-      ) {
+    [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-variant="surface"]:hover) {
       border-color: var(--xp-control-border);
     }
   }
 
-  [data-skin="xp"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"]:active,
-      [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]:active
-    ) {
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-variant="surface"]:active) {
     --cui-button-background-image: linear-gradient(to bottom, var(--xp-control-bottom), var(--xp-control-top));
   }
 
-  [data-skin="xp"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
-    ) {
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
     --cui-button-press-scale: 1;
     --cui-button-shadow: inset 0 0 0 1px var(--xp-solid-ring), inset 0 1px 0 var(--xp-bevel-light);
     --cui-button-background-image: linear-gradient(to bottom, var(--xp-solid-top), var(--xp-solid-bottom));
@@ -168,15 +140,10 @@
     font-weight: 700;
   }
 
-  /* classic XP tab strip: baseline recipe keeps geometry/states; knobs re-value component-local vars.
-     un-tokenizable Luna reading stays as rules: raised gradient boxes on the Luna desktop gray; active tab white,
-     1px taller, cuts baseline, wears orange top stripe (tabs-indicator slides via Base UI --active-tab-* vars).
-     None of it reaches the browser variant: its chrome (flare, outline, notch) comes from the recipe, and a real
-     border-bottom can never be notched — the indicator stops at the padding box. */
   [data-skin="xp"] :where([data-slot="list"][data-control-family="tabs"]:not([data-variant="browser"])) {
-    --_tabs-list-h: calc(var(--_tabs-trigger-h) + 3px); /* squares the strip; the tab/indicator keep their own 3px tops */
+    --_tabs-list-h: calc(var(--_tabs-trigger-h) + 3px);
     align-items: flex-end;
-    /* gap stays a real declaration: the line variant resets it to 0 and the Luna strip must hold either way. */
+
     gap: 2px;
     border-bottom: 1px solid var(--border);
   }
@@ -190,19 +157,17 @@
     --cui-tabs-indicator-shadow: none;
   }
 
-  /* The browser variant drops the accent stripe for the page surface it continues. */
   [data-skin="xp"] :where([data-slot="list"][data-variant="browser"][data-control-family="tabs"]) {
     --cui-tabs-indicator-background: var(--background);
   }
 
   [data-skin="xp"]
     :where([data-slot="list"][data-control-family="tabs"]:not([data-variant="browser"]) [data-slot="tab"][data-control-family="tabs"]) {
-    /* height/cursor restated (baseline values) so the single-tab reset keeps the full Luna box */
     height: var(--_tabs-trigger-h);
     cursor: pointer;
     border: 1px solid var(--border);
     border-bottom: none;
-    /* the tab radius stays the knob's; only the bottom is squared off, where the tab meets the baseline. */
+
     border-end-start-radius: 0;
     border-end-end-radius: 0;
     background: linear-gradient(180deg, var(--xp-tab-face-top) 0%, var(--xp-tab-face-bottom) 100%);
@@ -235,26 +200,23 @@
     z-index: 2;
     height: 3px;
     transform: translateX(var(--active-tab-left));
-    border-end-start-radius: 0; /* also caps the line variant's pill indicator, as before */
+    border-end-start-radius: 0;
     border-end-end-radius: 0;
   }
 }
 
-/* xp-bevel-up: raised toolbar edge (light top-left, dark bottom-right); buttons flat until hover pops this. */
 @utility xp-bevel-up {
   box-shadow:
     inset 1px 1px 0 var(--xp-bevel-light),
     inset -1px -1px 0 var(--xp-bevel-dark);
 }
 
-/* xp-bevel-down — the pressed reading: the bevel inverts so the control sinks into the surface. */
 @utility xp-bevel-down {
   box-shadow:
     inset 1px 1px 0 var(--xp-bevel-dark),
     inset -1px -1px 0 var(--xp-bevel-light);
 }
 
-/* xp-gloss: bright wash over top half of surface; painted on ::before, content should sit above z-0. */
 @utility xp-gloss {
   position: relative;
 
@@ -268,14 +230,10 @@
   }
 }
 
-/* xp-pinstripes — the faint vertical Luna watermark texture for wide surfaces. */
 @utility xp-pinstripes {
   background-image: repeating-linear-gradient(90deg, oklch(from var(--foreground) l c h / 0.03) 0 1px, transparent 1px 4px);
 }
 
-/* "generating" treatment = library progress-sweep effect (effects.css); defaults already match XP sweep, pack re-values nothing. */
-
-/* xp-groupbox: classic dialog groupbox groove; box needs position:relative + padding, float label over top edge yourself. */
 @utility xp-groupbox {
   border-radius: 3px;
   border: 1px solid var(--xp-groupbox-border);
@@ -364,9 +322,13 @@
     rotate: 0deg;
     color: var(--xp-control-border);
   }
-  [data-skin="xp"] :where([data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"]) {
+  [data-skin="xp"]
+    :where(
+      [data-popup-kind="dialog"][data-popup-part="surface"][data-control-family="popup"],
+      [data-popup-kind="alert-dialog"][data-popup-part="surface"][data-control-family="popup"]
+    ) {
     --cui-popup-radius: 5px 5px 0 0;
-    --cui-popup-background: var(--background);
+    --cui-popup-background: var(--secondary);
     --cui-popup-border-color: var(--xp-frame);
     --cui-popup-border-width: 3px;
     --cui-popup-shadow: 3px 3px 8px oklch(0 0 0 / 0.35);
@@ -387,7 +349,7 @@
     font-size: 0.75rem;
   }
 
-  [data-skin="xp"] :where([data-control-family="button"][data-popup-part="close"]) {
+  [data-skin="xp"] :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
     --cui-button-radius: 3px;
     --cui-button-background: var(--xp-close-bottom);
     --cui-button-foreground: white;
@@ -397,6 +359,94 @@
     --cui-button-shadow: inset 0 1px 0 oklch(1 0 0 / 0.45);
     border: 1px solid oklch(1 0 0 / 0.7);
     background-image: linear-gradient(to bottom, var(--xp-close-top), var(--xp-close-bottom));
+  }
+}
+
+@layer components {
+  [data-skin="xp"]
+    :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"] [data-control-family="button"][data-control="true"]) {
+    --cui-button-background: var(--cui-toolbar-item-background);
+    --cui-button-background-image: none;
+    --cui-button-foreground: var(--cui-toolbar-item-foreground);
+    --cui-button-hover-background: var(--cui-toolbar-item-hover-background);
+    --cui-button-hover-foreground: var(--cui-toolbar-item-hover-foreground);
+    --cui-button-active-background: var(--cui-toolbar-item-active-background);
+    --cui-button-active-foreground: var(--cui-toolbar-item-active-foreground);
+    --cui-button-active-hover-background: var(--cui-toolbar-item-active-background);
+    --cui-button-shadow: var(--cui-toolbar-item-shadow);
+  }
+
+  [data-skin="xp"] :where([data-control-family="switch"][data-slot="root"]) {
+    --cui-switch-background: var(--xp-control-bottom);
+    --cui-switch-hover-background: var(--xp-control-top);
+    --cui-switch-thumb-radius: 2px;
+    --cui-switch-thumb-background: var(--background);
+    --cui-switch-thumb-shadow: inset 1px 1px 0 var(--xp-bevel-light), inset -1px -1px 0 var(--xp-bevel-dark);
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px var(--xp-field-border);
+  }
+
+  [data-skin="xp"] :where([data-control-family="button"][data-control="true"][data-tone="danger"]) {
+    --cui-button-foreground: var(--destructive-text);
+    --cui-button-hover-foreground: var(--destructive-text);
+    --cui-button-active-foreground: var(--destructive-text);
+    --cui-button-background: transparent;
+  }
+
+  [data-skin="xp"] :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]) {
+    --cui-choice-radius: 0px;
+  }
+
+  [data-skin="xp"]
+    :where(
+      [data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"],
+      [data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"]
+    ) {
+    --cui-choice-border-color: var(--xp-field-border);
+    --cui-choice-checked-background: var(--background);
+    --cui-choice-checked-border-color: var(--xp-field-border);
+    inline-size: 13px;
+    block-size: 13px;
+    color: var(--xp-checkmark);
+    background-image: linear-gradient(135deg, oklch(from var(--xp-bevel-dark) l c h / 0.35), transparent 65%);
+  }
+
+  [data-skin="xp"] :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="indicator"]) {
+    background: currentColor;
+  }
+
+  [data-skin="xp"] :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {
+    --cui-popup-background: var(--xp-tooltip);
+    --cui-popup-foreground: var(--foreground);
+    --cui-popup-border-color: var(--foreground);
+    --cui-popup-shadow: 2px 2px 2px oklch(0 0 0 / 0.25);
+  }
+
+  [data-skin="xp"] :where([data-control-family="range"][data-slot="root"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
+    --cui-range-track-radius: 2px;
+    --cui-range-track-background: var(--background);
+    --cui-range-indicator-radius: 0px;
+    --cui-range-indicator-background: var(--xp-progress);
+  }
+
+  [data-skin="xp"] :where([data-control-family="range"][data-slot="track"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
+    block-size: 14px;
+    padding: 2px;
+    border: 1px solid var(--xp-field-border);
+    box-shadow: inset 1px 1px 0 var(--xp-bevel-dark);
+  }
+
+  [data-skin="xp"]
+    :where([data-control-family="range"][data-slot="indicator"]:is([data-range-kind="progress"], [data-range-kind="meter"])) {
+    max-block-size: 100%;
+    background-image: linear-gradient(to bottom, oklch(1 0 0 / 0.3), transparent 45%, oklch(0 0 0 / 0.12));
+    mask-image: repeating-linear-gradient(to right, oklch(0 0 0) 0 6px, transparent 6px 8px);
+  }
+
+  [data-skin="xp"] :where([data-control-family="tree"][data-slot="root"]) {
+    --cui-tree-item-trigger-radius: 0px;
+    --cui-tree-item-trigger-selected-background: var(--primary);
+    --cui-tree-item-trigger-selected-foreground: var(--primary-foreground);
   }
 }
 
@@ -498,13 +548,12 @@
     border-end-end-radius: 0;
   }
 
-  /* The Luna scrollbar rides the native bars, so it lands on whatever part owns the overflow. */
   [data-skin="xp"]
-  :where(
-    [data-slot="root"][data-control-family="scroll-area"],
-    [data-slot="root"][data-control-family="markdown-block"],
-    [data-control-ui="chat-thread"][data-slot="root"][data-control-family="chat-layout"]
-  ) {
+    :where(
+      [data-slot="root"][data-control-family="scroll-area"],
+      [data-slot="root"][data-control-family="markdown-block"],
+      [data-control-ui="chat-thread"][data-slot="root"][data-control-family="chat-layout"]
+    ) {
     scrollbar-color: var(--xp-scroll-thumb-bottom) var(--xp-scroll-track);
 
     &::-webkit-scrollbar {
