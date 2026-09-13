@@ -4,7 +4,9 @@ import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import type { CSSProperties, ReactNode } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
+import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
 
 export type ToasterProps = {
   className?: string;
@@ -12,13 +14,10 @@ export type ToasterProps = {
   limit?: number;
   rootStyle?: CSSProperties & PopupKnobStyle;
   indicatorStyle?: CSSProperties & PopupKnobStyle;
-  actionStyle?: CSSProperties & PopupKnobStyle;
-  closeStyle?: CSSProperties & PopupKnobStyle;
+  actionStyle?: ButtonProps["style"];
+  closeStyle?: ButtonProps["style"];
 };
 
-// Base UI's Toast manager, not sonner, behind module-level manager so `toast()` stays callable anywhere.
-
-// shared by imperative `toast()` API and the <Toaster /> Provider
 export const toastManager = ToastPrimitive.createToastManager();
 
 type ToastOptions = Omit<Parameters<typeof toastManager.add>[0], "title">;
@@ -27,7 +26,6 @@ function withType(type: string) {
   return (title: ReactNode, options?: ToastOptions) => toastManager.add({ title, type, ...options });
 }
 
-// callable object, so sonner-shaped surface holds
 export const toast = Object.assign((title: ReactNode, options?: ToastOptions) => toastManager.add({ title, ...options }), {
   success: withType("success"),
   error: withType("error"),
@@ -38,7 +36,6 @@ export const toast = Object.assign((title: ReactNode, options?: ToastOptions) =>
   dismiss: (id?: string) => toastManager.close(id),
 });
 
-// lets custom viewport read live toast list inside Provider
 export const useToast = ToastPrimitive.useToastManager;
 
 function ToastList({
@@ -100,24 +97,20 @@ function ToastList({
           </div>
           {entry.actionProps ? (
             <ToastPrimitive.Action
-              data-control-ui="toast"
-              data-control-family="popup"
-              data-popup-kind="toast"
-              data-slot="action"
               style={actionStyle}
-              className="shrink-0 cursor-pointer"
+              render={(renderProps) => (
+                <Button {...renderProps} data-popup-kind="toast" data-popup-part="action" variant="surface" size="xs" />
+              )}
             />
           ) : null}
           <ToastPrimitive.Close
-            data-control-ui="toast"
-            data-control-family="popup"
-            data-popup-kind="toast"
-            data-slot="close"
             style={closeStyle}
             aria-label="Close"
-            className="shrink-0 cursor-pointer"
+            render={(renderProps) => (
+              <Button {...renderProps} data-popup-kind="toast" data-popup-part="close" variant="quiet" size="xs" iconOnly />
+            )}
           >
-            <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
               <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
           </ToastPrimitive.Close>
@@ -127,8 +120,8 @@ function ToastList({
   });
 }
 
-// Mount once at app root — every toast() lands here, and portalled viewport re-asserts skin scope.
 export function Toaster({ className, timeout, limit, rootStyle, indicatorStyle, actionStyle, closeStyle }: ToasterProps) {
+  const skin = useSkin();
   return (
     <ToastPrimitive.Provider toastManager={toastManager} timeout={timeout} limit={limit}>
       <ToastPrimitive.Portal>
@@ -137,8 +130,8 @@ export function Toaster({ className, timeout, limit, rootStyle, indicatorStyle, 
           data-control-family="popup"
           data-popup-kind="toast"
           data-slot="viewport"
-          data-skin={skinId()}
-          data-effects={skinEffects()}
+          data-skin={skin.id}
+          data-effects={controlEffectsAttribute(skin.effects)}
           className={cn("fixed right-4 bottom-4 z-[95] mx-auto w-[calc(100vw-2rem)] sm:right-6 sm:bottom-6 sm:w-[22.5rem]", className)}
         >
           <ToastList rootStyle={rootStyle} indicatorStyle={indicatorStyle} actionStyle={actionStyle} closeStyle={closeStyle} />

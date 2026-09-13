@@ -9,7 +9,7 @@ import type { RenderProp, SelectionIndicator } from "@/components/control-ui/con
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { TreeKnobStyle } from "@/components/control-ui/knob-contracts/tree-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinIndicator } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type TreeSelectionMode = "none" | "single" | "multiple";
 
@@ -279,6 +279,7 @@ export function Tree({
   onFocusCapture,
   ...props
 }: TreeProps) {
+  const skin = useSkin();
   const [selectedState, setSelectedState] = useState(() => new Set(defaultValue));
   const [expandedState, setExpandedState] = useState(() => new Set(defaultExpandedValue));
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
@@ -341,7 +342,7 @@ export function Tree({
     onExpandedChange?.([...next], { value: itemValue, expanded: willExpand, reason });
   };
 
-  const resolvedIndicator = indicator ?? skinIndicator("tree") ?? "none";
+  const resolvedIndicator = indicator ?? skin.indicators?.tree ?? "none";
 
   const contextValue: TreeContextValue = {
     selectionMode,

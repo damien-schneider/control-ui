@@ -22,7 +22,7 @@ test("floating toolbar contains search and skin controls while section navigatio
   await expect(skinSelect).toHaveText("Windows XP");
   await skinSelect.click();
   const skinOptions = page.getByRole("listbox");
-  for (const label of ["Refined", "Rig", "Flat", "Windows XP", "Liquid metal", "Modern Apple", "Cuicui", "Linear"]) {
+  for (const label of ["Refined", "Rig", "No skin", "Windows XP", "Liquid metal", "macOS", "Cuicui", "Linear"]) {
     await expect(skinOptions.getByRole("option", { name: label })).toBeVisible();
   }
   await expect(skinOptions.getByRole("option", { name: "Windows XP" })).toHaveAttribute("aria-selected", "true");

@@ -33,15 +33,17 @@ test("the docs alias never reaches published output", () => {
   }
 });
 
-test("the baked skin is the registry pack, not the docs theme-editor proxy", () => {
-  expect(read("skin.config.js")).toInclude('"refined"');
-  expect(read("skin.config.js")).not.toInclude("setSkin");
+test("the package works without a skin config or preset stylesheet", () => {
+  expect(existsSync(path.join(dist, "skin.config.js"))).toBe(false);
+  expect(existsSync(path.join(dist, "styles/skin-theme.css"))).toBe(false);
+  expect(existsSync(path.join(dist, "skin-provider.js"))).toBe(true);
 });
 
-test("the stylesheet entry imports every shipped stylesheet, the skin last", () => {
+test("the stylesheet entry imports every shipped stylesheet, without a skin", () => {
   expect(styles.length).toBe(sheets.length);
   expect(styles[0]).toBe("theme.css");
-  expect(styles.slice(-2)).toEqual(["skin-theme.css", "skin.css"]);
+  expect(styles).not.toContain("skin-theme.css");
+  expect(styles).not.toContain("skin.css");
   expect(read("styles/index.css")).toBe(stylesIndex(styles));
   for (const sheet of sheets) expect(existsSync(path.join(dist, sheet))).toBe(true);
 });
@@ -53,7 +55,7 @@ test("peer dependencies mirror the closure manifests", () => {
 });
 
 test("published email templates resolve the installed theme and render standalone HTML", async () => {
-  const theme = emailThemeFromCss([read("styles/theme.css"), read("styles/skin-theme.css")]);
+  const theme = emailThemeFromCss([read("styles/theme.css")]);
   const html = await render(
     createElement(InvitationEmail, {
       theme,

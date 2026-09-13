@@ -35,7 +35,7 @@ control-ui doctor: clean.
     <GuidePoint>**A theme import that is no longer last.** A derived `*.control-ui-theme.css` composes over the pack, so source order is what makes it win. The same script repairs the order.</GuidePoint>
     <GuidePoint>**An app `@theme` block redeclaring Control UI keys.** Tailwind merges every `@theme` in the build and the last declaration wins, so the block detaches those utilities from the skin — a hardcoded font splits the app into two typefaces, a redeclared `--radius` collapses every corner.</GuidePoint>
     <GuidePoint>**A `:root` or `.dark` block declaring skin token names.** The skin out-specifies it, so those declarations are dead; a hybrid block keeps the names the skin never declares painting a second palette beside it.</GuidePoint>
-    <GuidePoint>**A missing or mismatched `data-skin` stamp.** Without an id the installed skin declares, every token is undeclared and portalled surfaces render unstyled.</GuidePoint>
+    <GuidePoint>**A missing or mismatched `data-skin` stamp.** An optional installed preset needs a matching scope and provider; without a preset, the library defaults work with no stamp.</GuidePoint>
   </GuidePoints>
 </GuideSection>
 

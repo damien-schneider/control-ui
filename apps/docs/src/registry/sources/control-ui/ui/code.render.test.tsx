@@ -32,7 +32,7 @@ describe("Code renders", () => {
     const code = Array.from({ length: 201 }, (_, index) => `line ${index + 1}`).join("\n");
     const html = renderToString(
       <Code>
-        <CodeContent code={code} highlight="none" />
+        <CodeContent code={code} highlight="none" virtualize />
       </Code>,
     );
 

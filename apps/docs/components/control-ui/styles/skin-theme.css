@@ -1,137 +1,79 @@
-[data-skin="refined"][data-skin] {
-  /* Geist via next/font (--font-geist-sans); host without it falls to system stack. */
-  --font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, "Liberation Mono", monospace;
-
-  --text-label: 0.75rem; /* 12px — form labels + small chrome (nav item, tooltip, shortcut) */
-
-  /* Headings run medium, not bold, and pull tight — Geist at -0.03em is the whole voice. */
-  --text-heading-4--font-weight: 500;
-  --text-heading-3--font-weight: 500;
-  --text-heading-2--font-weight: 500;
-  --text-heading-1--font-weight: 500;
-  --text-heading-1--letter-spacing: -0.03em;
-  --text-display--font-weight: 500;
-  --text-display--letter-spacing: -0.03em;
-
-  /* shadcn base names, full colors, authored in oklch (wider gamut, matches Tailwind/shadcn v4); any format still works.
-     Refined brand = four warm-paper neutrals (#FFF / #F5F4F3 / #F4F2F0 / #EEECEA) under a cool ink (#060612), so the
-     page reads as pressed paper and every edge comes from light, not from a line. */
-  --background: oklch(0.984 0.0018 68);
-  --foreground: oklch(0.1304 0.0277 282);
+[data-skin="xp"][data-skin] {
+  --font-sans: Tahoma, Arial, sans-serif;
+  --font-mono: "Lucida Console", Consolas, monospace;
+  --text-body: 0.75rem;
+  --text-caption: 0.6875rem;
+  --text-body-lg: 0.8125rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2178 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.1304 0.0277 282);
+  --card-foreground: oklch(0.2178 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.1304 0.0277 282);
-  --primary: oklch(0.1304 0.0277 282);
+  --popover-foreground: oklch(0.2178 0 0);
+  --primary: oklch(0.5354 0.1543 259.46);
   --primary-foreground: oklch(1 0 0);
-  --muted: oklch(0.9441 0.0034 68);
-  --muted-foreground: oklch(0.5202 0.0094 294);
-  --secondary: oklch(0.9621 0.0034 68);
-  --secondary-foreground: oklch(0.1304 0.0277 282);
-  --accent: oklch(0.9441 0.0034 68);
-  --accent-foreground: oklch(0.1304 0.0277 282);
-  --destructive: oklch(0.568 0.1961 32);
+  --muted: oklch(0.9501 0.0174 99.605);
+  --muted-foreground: oklch(0.47 0.0245 98.401);
+  --secondary: oklch(0.9318 0.0228 98.65);
+  --secondary-foreground: oklch(0.2178 0 0);
+  --accent: oklch(0.5354 0.1543 259.46);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.1823 25.932);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.915 0.004 68 / var(--ring-opacity));
-  --input: oklch(0.915 0.004 68);
-  /* The brand orange only ever lands on the focus ring: white-on-#FF6321 is 2.98:1, so it can never be a fill
-     that carries text. --focus-ring darkens to their button rim (#CF4E17) to clear 3:1 against the paper. */
-  --ring: oklch(0.6931 0.2032 40);
-  --focus-ring: oklch(0.5911 0.1746 40);
-  --primary-text: oklch(0.48 0.16 40); /* links and primary-tone text: the orange darkened until it clears 4.5:1 on paper */
-
-  /* Page canvas, a level below --background/--card/--popover (all elevated surfaces); GitHub Primer calls this `canvas`.
-     Keep it clear of --muted (0.9441): when the two match, every muted surface dropped straight onto the page — a
-     standalone Code block, say — reads as nothing but its ring. Light ladder: muted < secondary < canvas < background < card. */
-  --canvas: oklch(0.9676 0.0017 68);
-
-  /* popover/dropdown/select/dialog all read bg-popover, so this pair frosts them together. 1 = solid; <1 + blur = glass. */
+  --border: oklch(0.6817 0.0116 204.079 / var(--ring-opacity));
+  --input: oklch(0.6833 0.0533 246.812);
+  --ring: oklch(0.8118 0.1544 77.609);
+  --focus-ring: var(--foreground);
+  --focus-ring-style: dotted;
+  --focus-ring-width: 1px;
+  --focus-ring-offset: -4px;
+  --canvas: oklch(0.9318 0.0228 98.65);
   --popover-opacity: 1;
   --backdrop-blur-popover: 0px;
-
-  /* modal overlay (dialog backdrop) — dim and blur are theme-driven; color derives from foreground/background. */
-  --overlay-opacity: 0.2;
-  --backdrop-blur-overlay: 1px;
-
-  /* Edge-fade depth shared by scroll-surface masks. 0 = hard edges. */
-  --scroll-fade-size: 2rem;
-
-  /* elevation controls */
-  --shadow-color: oklch(0.1304 0.0277 282); /* hue every shadow tints with — the ink itself, cool near-black */
-  /* Top-light stays at the alpha their raised chrome uses (white 0.08): invisible on a white card, a bare catch on ink.
-     Recipes scale it by opacity/size knobs too, so --shadow-size:0 extinguishes it with everything else. */
-  --shadow-highlight: oklch(1 0 0 / 0.08);
-  --shadow-size: 1; /* global geometry multiplier: 1 = default depth, 0 = flat */
-  --shadow-opacity: 1; /* global alpha multiplier: 1 = default density, 0 = invisible */
-
-  /* THE radius knob; @theme surface scale + --radius-control both derive from it — squares (0) or rounds whole UI. */
-  --radius: 0.5rem;
-  /* Controls sit at THE radius, not a multiple of it: an 8px corner on a 36px button is the rounded rect they use everywhere. */
-  --radius-control: var(--radius);
-
-  /* Progressive enhancement over border-radius; `round` = current look, squircle/superellipse(2)/scoop reshape Control UI surfaces. */
-  /* Squircle reads ~half as round as a circular arc at same radius; browsers w/o corner-shape support fall back to
-     plain round and look over-rounded. This ratio shrinks the fallback radius (squircle only, see @supports not
-     below) to keep cross-browser look close. 1 = no change, 0.5 = halve. */
-
-  /* Floating-list (select/dropdown) concentric corners: container radius = row radius + padding, so hovered row nests exactly. */
-  --popover-padding: 0.25rem; /* gap between container edge and rows (also = p-* on the popup) */
-  --radius-popup-item: calc(var(--radius-control) * 0.6); /* select/menu row corner */
-  /* Container corner = fitted row radius + padding - 1px: ring-clip nests concentric rows with slack,
-     1px tighter hugs snugly (~1.6px clearance); clamp collapses offset to 0 when --radius is 0. */
-
-  /* content density for the rounded surfaces (bubble / composer field) */
-  --padding-x: 1rem;
-  --padding-y: 0.625rem;
-
-  /* One base height; xs/sm/md/lg are computed (proportional ramp), shared by button/select/menu/input.
-     --padding-y stays for content-sized surfaces (bubble/composer). */
-  --control-h: 2.25rem; /* md — THE base height; ramp derives from it */
-  /* round() snaps to whole px: unrounded step ceils scrollHeight past clientHeight, Base UI reads as phantom 1px overflow. */
-
-  /* motion — curves are raw vars so they can be swapped live */
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 150ms;
-  --duration-base: 200ms;
-  --duration-slow: 300ms;
-}
-
-/* Semantic rungs re-declared on the skin root so portal-scoped radius changes resolve locally;
-   the sm–2xl scale is a derived-tier default in core theme.css. */
-[data-skin="refined"][data-skin] {
-  --radius-field: var(--radius); /* user bubble, composer shell */
-  /* Kraftbase rounds every content surface the same 8px; only the scene-scale frames go bigger. */
-  --radius-panel: var(--radius);
-  --radius-scene: calc(var(--radius) * 2); /* scene frame, large media */
-}
-
-:where(.dark) [data-skin="refined"][data-skin],
-.dark[data-skin="refined"][data-skin] {
-  --background: oklch(0.1852 0.0113 250);
-  --foreground: oklch(0.9645 0.0033 250);
-  --card: oklch(0.2153 0.0121 250);
-  --card-foreground: oklch(0.9645 0.0033 250);
-  --popover: oklch(0.2153 0.0121 250);
-  --popover-foreground: oklch(0.9645 0.0033 250);
-  --primary: oklch(0.9645 0.0033 250);
-  --primary-foreground: oklch(0.1852 0.0113 250);
-  --muted: oklch(0.2668 0.0128 250);
-  --muted-foreground: oklch(0.7405 0.0104 260);
-  --secondary: oklch(0.2412 0.0124 250);
-  --secondary-foreground: oklch(0.9645 0.0033 250);
-  --accent: oklch(0.2864 0.0132 250);
-  --accent-foreground: oklch(0.9645 0.0033 250);
-  --destructive: oklch(0.551 0.1799 32);
-  --destructive-foreground: oklch(0.9645 0.0033 250);
-  --border: oklch(0.3082 0.0139 250 / var(--ring-opacity));
-  --input: oklch(0.3082 0.0139 250);
-  --ring: oklch(0.6931 0.2032 40);
-  --focus-ring: oklch(0.72 0.19 42);
-  --primary-text: oklch(0.78 0.16 42);
-  --canvas: oklch(0.1322 0.0113 250);
+  --overlay-opacity: 0.3;
+  --backdrop-blur-overlay: 0px;
+  --scroll-fade-size: 0rem;
   --shadow-color: oklch(0 0 0);
-  /* In dark the inner top light is a faint edge catch, not a glow. */
-  --shadow-highlight: oklch(1 0 0 / 0.055);
+  --shadow-size: 0.4;
+  --shadow-opacity: 1;
+  --radius: 0rem;
+  --radius-control: calc(var(--radius) * 2);
+  --popover-padding: 2px;
+  --radius-popup-item: calc(var(--radius-control) * 0.6);
+  --padding-x: 0.625rem;
+  --padding-y: 0.375rem;
+  --control-h: 1.625rem;
+  --ease-standard: linear;
+  --ease-emphasized: linear;
+  --duration-fast: 0ms;
+  --duration-base: 0ms;
+  --duration-slow: 0ms;
+  --text-label: 0.6875rem;
+  --radius-field: calc(var(--radius) * 2.2);
+  --radius-panel: calc(var(--radius) * 2.6);
+  --radius-scene: calc(var(--radius) * 2.8);
+}
+:where(.dark) [data-skin="xp"][data-skin],
+.dark[data-skin="xp"][data-skin] {
+  --background: oklch(0.2459 0.0072 248.122);
+  --foreground: oklch(0.919 0.0071 88.645);
+  --card: oklch(0.2795 0.0085 255.574);
+  --card-foreground: oklch(0.919 0.0071 88.645);
+  --popover: oklch(0.2795 0.0085 255.574);
+  --popover-foreground: oklch(0.919 0.0071 88.645);
+  --primary: oklch(0.5512 0.1425 260.917);
+  --primary-foreground: oklch(1 0 0);
+  --muted: oklch(0.2958 0.0084 255.567);
+  --muted-foreground: oklch(0.7028 0.0111 247.986);
+  --secondary: oklch(0.2958 0.0084 255.567);
+  --secondary-foreground: oklch(0.919 0.0071 88.645);
+  --accent: oklch(0.5016 0.1504 261.426);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.574 0.1623 27.404);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.3847 0.0136 256.762 / var(--ring-opacity));
+  --input: oklch(0.4441 0.0229 248.341);
+  --ring: oklch(0.7319 0.1299 74.539);
+  --canvas: oklch(0.1763 0.0052 248.125);
+  --shadow-color: oklch(0 0 0);
 }

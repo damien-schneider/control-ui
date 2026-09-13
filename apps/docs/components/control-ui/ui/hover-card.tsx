@@ -5,7 +5,8 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type HoverCardProps = {
   children?: ReactNode;
@@ -23,7 +24,6 @@ export type HoverCardContentProps = Omit<
   "style"
 > & { style?: CSSProperties & PopupKnobStyle };
 
-// Base UI PreviewCard behind shadcn-shaped facade, so shadcn HoverCard snippets compose verbatim.
 export function HoverCard(props: HoverCardProps) {
   return <PreviewCardPrimitive.Root {...props} />;
 }
@@ -52,16 +52,16 @@ export function HoverCardContent({
   sideOffset = 8,
   ...props
 }: HoverCardContentProps) {
+  const skin = useSkin();
   return (
     <PreviewCardPrimitive.Portal>
-      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <PreviewCardPrimitive.Positioner
         data-control-ui="hover-card"
         data-popup-kind="hover-card"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side={side}
         align={align}
         sideOffset={sideOffset}

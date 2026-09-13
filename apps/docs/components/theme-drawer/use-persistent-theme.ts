@@ -2,9 +2,6 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 
-import { skin as activeSkinConfig, setSkin } from "@/components/control-ui/skin.config";
-import { useSkinEpoch } from "@/components/skin-epoch-context";
-import { SKIN_CONFIGS } from "@/components/skin-registry";
 import {
   applyThemeArtifactToLibrary,
   artifactFromThemeProfile,
@@ -61,7 +58,6 @@ function synchronizeActiveProfile(theme: ThemeState, customThemes: CustomThemePr
 }
 
 export function usePersistentTheme() {
-  const { bumpSkinEpoch } = useSkinEpoch();
   const [runtime, setRuntime] = useState<ThemeRuntimeState>({ theme: null, customThemes: [], undo: null, hydrated: false });
   const [values, setValues] = useState<TokenValues>({});
   const [isDark, setIsDark] = useState(false);
@@ -238,12 +234,6 @@ export function usePersistentTheme() {
     const frame = requestAnimationFrame(() => setValues(readContractTokens()));
     return () => cancelAnimationFrame(frame);
   }, [runtime.theme]);
-
-  useLayoutEffect(() => {
-    if (!runtime.theme || activeSkinConfig.id === runtime.theme.skin) return;
-    setSkin(SKIN_CONFIGS[runtime.theme.skin]);
-    bumpSkinEpoch();
-  }, [runtime.theme, bumpSkinEpoch]);
 
   const themeRef = useRef(t);
   useEffect(() => {

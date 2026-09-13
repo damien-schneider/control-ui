@@ -6,7 +6,8 @@ import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 type DropdownMenuStyledProps<PrimitiveProps> = Omit<PrimitiveProps, "className" | "style"> & {
@@ -92,11 +93,12 @@ export function DropdownMenuContent({
   collisionAvoidance,
   ...props
 }: DropdownMenuContentProps) {
+  const skin = useSkin();
   return (
     <MenuPrimitive.Portal>
       <MenuPrimitive.Positioner
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side={side}
         align={align}
         sideOffset={sideOffset}

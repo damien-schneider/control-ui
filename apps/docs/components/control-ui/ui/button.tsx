@@ -9,6 +9,7 @@ import type { ControlSize, ControlTone, ControlVariant } from "@/components/cont
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { skinAdornment } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type ButtonVariant = ControlVariant;
 
@@ -86,7 +87,8 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const layer = skinAdornment("button", "layer", { variant, tone });
+  const skin = useSkin();
+  const layer = skinAdornment(skin, "button", "layer", { variant, tone });
   const tracksHover = useContext(ButtonTrackContext);
 
   return (
@@ -128,6 +130,7 @@ export function ButtonLink({
   children,
   ...props
 }: ButtonLinkProps) {
+  const skin = useSkin();
   const tracksHover = useContext(ButtonTrackContext);
   return useRender({
     defaultTagName: "a",
@@ -146,7 +149,7 @@ export function ButtonLink({
       "data-tone": tone,
       "data-size": size,
       className: cn(buttonStructureClasses, className),
-      children: <ButtonBody layer={skinAdornment("button", "layer", { variant, tone })}>{children}</ButtonBody>,
+      children: <ButtonBody layer={skinAdornment(skin, "button", "layer", { variant, tone })}>{children}</ButtonBody>,
     },
   });
 }
@@ -162,6 +165,7 @@ export function ButtonLabel({
   children,
   ...props
 }: ButtonLabelProps) {
+  const skin = useSkin();
   const tracksHover = useContext(ButtonTrackContext);
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: The wrapped file input is supplied through children.
@@ -180,7 +184,7 @@ export function ButtonLabel({
       data-size={size}
       className={cn(buttonStructureClasses, className)}
     >
-      <ButtonBody layer={skinAdornment("button", "layer", { variant, tone })}>{children}</ButtonBody>
+      <ButtonBody layer={skinAdornment(skin, "button", "layer", { variant, tone })}>{children}</ButtonBody>
     </label>
   );
 }

@@ -16,12 +16,10 @@ describe("agent setup prompt", () => {
     expect(prompt).not.toContain("https://control-ui.example//");
   });
 
-  test("names the wiring steps that fail silently instead of loudly", () => {
-    expect(prompt).toContain("Stamp data-skin on the root element");
-    expect(prompt).toContain("not a multi-skin switch, so one skin still needs it");
-    expect(prompt).toContain("the skin out-specifies that block on purpose and wins");
-    // Field run: a leftover @theme block out-merged the skin's radius scale and font mapping while the :root corpse got all the attention.
-    expect(prompt).toContain("Tailwind merges every @theme in the build and the last declaration wins");
+  test("explains optional skin scope and preserves app-owned tokens", () => {
+    expect(prompt).toContain("No data-skin stamp or provider is required");
+    expect(prompt).toContain("SkinProvider");
+    expect(prompt).toContain("Application :root and .dark tokens override");
     expect(prompt).toContain("scripts/control-ui-doctor.mjs");
   });
 
@@ -35,14 +33,14 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("Do that on a throwaway route, then delete the route and its directory");
     expect(prompt).toContain("Stay inside the app you are installing into");
     expect(prompt).toContain("propose the edit and wait");
-    // The lockfile is written by the install, not chosen: stopping on it turns every workspace install into a checkpoint.
+
     expect(prompt).toContain("the install writes the shared lockfile itself");
   });
 
   test("names the workspace target and makes the per-app-versus-shared choice mine", () => {
     expect(prompt).toContain("run every command from that app's directory");
     expect(prompt).toContain("A second Control UI install in the same workspace is an architecture decision");
-    // The shared path silently loses every utility class without this line: Tailwind v4 stops at the app boundary.
+
     expect(prompt).toContain("@source the package");
   });
 
@@ -53,15 +51,15 @@ describe("agent setup prompt", () => {
   });
 
   test("leaves the base skin for the agent to fill, since it installs the pack itself", () => {
-    expect(prompt).toContain("Set baseSkin to the id of the skin pack you installed");
+    expect(prompt).toContain('Set baseSkin to "none" for the library defaults');
     expect(prompt).toContain('"baseSkin": "<installed skin id>"');
     expect(prompt).not.toContain("undefined");
   });
 
   test("starts on the neutral reset pack the theme can fully own", () => {
-    expect(prompt).toContain("npx shadcn@latest add https://control-ui.example/r/all-flat.json");
-    expect(prompt).toContain("an empty skin.css and no adornments");
-    expect(prompt).toContain("Resemblance is not a reason to switch packs");
+    expect(prompt).toContain("npx shadcn@latest add https://control-ui.example/r/all.json");
+    expect(prompt).toContain("no skin config or provider");
+    expect(prompt).toContain("The application owns its theme");
   });
 
   test("settles the direction after the install it can overwrite", () => {
@@ -79,7 +77,7 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("control-ui:diff");
     expect(prompt).toContain("control-ui:update");
     expect(prompt).toContain("https://control-ui.example/r/update.json`, the complete component set with no skin");
-    // The overwrite re-appends the canonical import block, which breaks every rewritten layout without this chain.
+
     expect(prompt).toContain("scripts/fix-css-imports.mjs");
     expect(prompt).toContain("control-ui:doctor");
   });
@@ -88,25 +86,25 @@ describe("agent setup prompt", () => {
     expect(prompt).toContain("Never migrate without my answer");
     expect(prompt).toContain("read the exported prop types of the installed Control UI component");
     expect(prompt).toContain("Leave the shadcn source in place");
-    // Field run: every call site moved but the old token plumbing stayed, so the "migrated" app looked broken.
+
     expect(prompt).toContain("Migrating the call sites without migrating the token plumbing");
   });
 
   test("inventories the app's own components instead of naming four obvious ones", () => {
     expect(prompt).toContain("inventory that directory, look every component up in the catalog index");
-    // The tree in the first field run stayed unmigrated because the prompt only named button, dropdown, dialog, tooltip.
+
     expect(prompt).toContain("A tree or a scroll area counts as much as a button");
     expect(prompt).toContain("sheds its styling ones");
   });
 
   test("carries the theme into every installed app instead of ending at the docs site", () => {
     expect(prompt).toContain("Apply it");
-    // fix-css-imports recognises the theme import by this suffix; a freely named file loses its last place on update.
+
     expect(prompt).toContain("<short-name>.control-ui-theme.css");
     expect(prompt).toContain("Import that file on the last line of the entry's import block");
     expect(prompt).toContain("Every app this run installed into gets the same theme");
     expect(prompt).toContain('stamp data-motion="reduced"');
-    // The install already proved the registry reachable, so the embedded contract is dead weight here.
+
     expect(prompt).not.toContain("Embedded canonical contract fallback");
     expect(prompt).toContain("https://control-ui.example/r/theme-contract.json");
   });

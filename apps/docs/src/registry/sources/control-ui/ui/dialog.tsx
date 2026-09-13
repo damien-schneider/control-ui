@@ -5,7 +5,8 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinAdornment, skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute, skinAdornment } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { Button } from "@/components/control-ui/ui/button";
 
@@ -64,6 +65,7 @@ export function DialogClose({
 }
 
 export function DialogContent({ className, children, showCloseButton = true, ...props }: DialogContentProps) {
+  const skin = useSkin();
   return (
     <DialogPrimitive.Portal>
       <DialogPrimitive.Backdrop
@@ -72,13 +74,13 @@ export function DialogContent({ className, children, showCloseButton = true, ...
         data-slot="backdrop"
         data-control-family="popup"
         data-popup-part="backdrop"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         className="fixed inset-0 z-[70]"
       />
       <DialogPrimitive.Popup
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         data-control-ui="dialog"
         data-popup-kind="dialog"
         data-slot="content"
@@ -88,7 +90,7 @@ export function DialogContent({ className, children, showCloseButton = true, ...
         className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2", className)}
         {...props}
       >
-        {skinAdornment("dialog", "titlebar", {})}
+        {skinAdornment(skin, "dialog", "titlebar", {})}
         {children}
         {showCloseButton ? (
           <DialogClose variant="ghost" size="xs" iconOnly className="absolute">

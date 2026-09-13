@@ -125,8 +125,8 @@ export function installCommandsFor(item: SearchItem): InstallCommand[] {
 
 export function fullInstallBundles(): RegistryFullInstall[] {
   return skinMetas.flatMap((skin) => {
-    const id = `all-${skin.id}`;
-    if (!("packManifestPath" in skin) || !isRegistryItemId(id)) return [];
+    const id = skin.id === "none" ? "all" : `all-${skin.id}`;
+    if (!isRegistryItemId(id)) return [];
     const url = manifestUrl(id);
     if (!url) return [];
     return [
@@ -134,7 +134,7 @@ export function fullInstallBundles(): RegistryFullInstall[] {
         id,
         skin: skin.id,
         name: `All components — ${skin.label}`,
-        summary: `Complete canonical Control UI component set with the ${skin.label} skin.`,
+        summary: skin.description,
         manifestUrl: url,
         install: `npx shadcn@latest add ${url}`,
       },

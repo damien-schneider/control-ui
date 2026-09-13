@@ -6,7 +6,7 @@ import { disableAnchorSupport, expectHighlightOn } from "./track-highlight-helpe
 test.use({ launchOptions: { args: ["--disable-webgl"] } });
 
 for (const mode of ["light", "dark"] as const) {
-  test.describe(`Modern Apple ${mode}`, () => {
+  test.describe(`macOS ${mode}`, () => {
     test.use({ colorScheme: mode });
 
     test.beforeEach(async ({ page }) => {
@@ -21,7 +21,7 @@ for (const mode of ["light", "dark"] as const) {
 
     test("danger stays red and ghost buttons remain unfilled", async ({ page }) => {
       await page.goto("/primitives/button");
-      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Modern Apple");
+      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
       const danger = page.getByRole("button", { name: "Danger", exact: true }).first();
       for (const hover of [false, true]) {
         if (hover) await danger.hover();
@@ -44,7 +44,7 @@ for (const mode of ["light", "dark"] as const) {
 
     test("sidebar stays flush and the content has no inset frame", async ({ page }) => {
       await page.goto("/primitives/popover");
-      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Modern Apple");
+      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
       const sidebar = page.locator('[data-control-family="sidebar"][data-slot="root"].peer');
       await expect(sidebar).toHaveAttribute("data-variant", "sidebar");
       await expect(sidebar.locator('[data-slot="inner"]')).toHaveCSS("border-radius", "0px");
@@ -65,7 +65,7 @@ for (const mode of ["light", "dark"] as const) {
 
     test("menu indicators stay clear of labels and keyboard selection works", async ({ page }) => {
       await page.goto("/primitives/dropdown-menu");
-      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Modern Apple");
+      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
       const trigger = page.getByRole("button", { name: "Options", exact: true });
       await trigger.focus();
       await page.keyboard.press("Enter");
@@ -92,7 +92,7 @@ for (const mode of ["light", "dark"] as const) {
       test(`sidebar selection and hover keep distinct fills with ${positioning}`, async ({ page }) => {
         if (positioning === "fallback") await disableAnchorSupport(page);
         await page.goto("/primitives/sidebar");
-        await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Modern Apple");
+        await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
         const indicator = page.getByRole("combobox", { name: "Menu highlight" });
         await waitForReactHydration(indicator);
         await indicator.selectOption("none");
@@ -137,7 +137,7 @@ for (const mode of ["light", "dark"] as const) {
     test.describe("native glass", () => {
       test("popover keeps a frosted surface and editable fields", async ({ page }) => {
         await page.goto("/primitives/popover");
-        await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Modern Apple");
+        await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
         const trigger = page.getByRole("button", { name: "Dimensions", exact: true });
         await trigger.click();
         const popover = page.locator('[data-control-ui="popover"][data-slot="content"]');

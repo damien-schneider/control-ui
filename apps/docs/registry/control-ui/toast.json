@@ -8,6 +8,7 @@
     "@base-ui/react@^1.7.0"
   ],
   "registryDependencies": [
+    "button",
     "core"
   ],
   "files": [

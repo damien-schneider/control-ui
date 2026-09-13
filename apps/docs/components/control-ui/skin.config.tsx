@@ -1,38 +1,20 @@
-import { skin as refined } from "@/src/registry/skin-packs/refined/skin.config";
-import type { ControlUiSkin } from "./skin";
+import type { ControlUiSkin } from "@/components/control-ui/skin";
 
-let current = refined;
-
-// -? forces every ControlUiSkin key to be forwarded.
-type CompleteSkinView = ControlUiSkin & { [K in keyof ControlUiSkin]-?: unknown };
-
-export const skin: CompleteSkinView = {
-  get id() {
-    return current.id;
-  },
-  get motion() {
-    return current.motion;
-  },
-  get colorScheme() {
-    return current.colorScheme;
-  },
-  get sidebarLayout() {
-    return current.sidebarLayout;
-  },
-  get indicators() {
-    return current.indicators;
-  },
-  get sidebarWidth() {
-    return current.sidebarWidth;
-  },
-  get adornments() {
-    return current.adornments;
-  },
-  get effects() {
-    return current.effects;
+export const skin: ControlUiSkin = {
+  id: "xp",
+  motion: "reduced",
+  sidebarLayout: "sidebar",
+  indicators: { sidebar: "none", tree: "none" },
+  adornments: {
+    "chat-layout": {
+      titlebar: (
+        <div
+          aria-hidden="true"
+          className="flex h-[27px] shrink-0 select-none items-center rounded-t-[5px] bg-[image:var(--xp-titlebar)] px-2 font-['Trebuchet_MS',Tahoma,sans-serif] text-[13px] font-bold text-[var(--xp-white)] text-shadow-[1px_1px_var(--xp-title-shadow)]"
+        >
+          Agent Chat
+        </div>
+      ),
+    },
   },
 };
-
-export function setSkin(next: ControlUiSkin) {
-  current = next;
-}

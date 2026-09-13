@@ -1,8 +1,41 @@
 import { expect, test } from "@playwright/test";
+import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 
 test.beforeEach(async ({ context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 });
+
+for (const lineCount of [500, 1500]) {
+  test(`${lineCount}-line source scrolls to the end and copies the complete file`, async ({ page }) => {
+    const source = Array.from({ length: lineCount }, (_, index) => `.line-${index + 1} { color: inherit; }`).join("\n");
+    await page.addInitScript((storageKey) => {
+      localStorage.setItem(storageKey, JSON.stringify({ skin: "xp" }));
+    }, THEME_EDITOR_STORAGE_KEY);
+    await page.route("**/api/registry/xp", (route) =>
+      route.fulfill({
+        json: {
+          type: "item",
+          data: { files: [{ path: "skin.css", label: "Skin", code: source, slot: "skin" }] },
+        },
+      }),
+    );
+    await page.goto("/theme-editor");
+    const code = page.locator('#theme-skin [data-control-family="code"][data-slot="root"]');
+    const viewport = code.locator("[data-scroll-area-viewport]");
+    const lines = viewport.locator('[data-slot="line"]');
+    await expect(lines.first()).toHaveText(".line-1 { color: inherit; }");
+    if (lineCount === 500) await expect(lines).toHaveCount(lineCount);
+    else expect(await lines.count()).toBeLessThan(100);
+
+    await viewport.focus();
+    await page.keyboard.press("End");
+    await expect.poll(() => viewport.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+    await expect(lines.last()).toHaveText(`.line-${lineCount} { color: inherit; }`);
+    if (lineCount === 500) await expect(lines.first()).toHaveText(".line-1 { color: inherit; }");
+    await code.getByRole("button", { name: "Copy code", exact: true }).click();
+    await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe(source);
+  });
+}
 
 test("headerless copy stays clear of source and announces success", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 900 });

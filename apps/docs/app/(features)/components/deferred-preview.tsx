@@ -31,7 +31,10 @@ export function DeferredPreview({ children, className }: { children: ReactNode; 
       aria-hidden="true"
       data-gallery-preview=""
       data-gallery-preview-state={mounted ? "mounted" : "deferred"}
-      className={cn("pointer-events-none grid h-full w-full min-w-0 select-none place-items-center overflow-hidden p-5", className)}
+      className={cn(
+        "pointer-events-none grid h-full w-full min-w-0 select-none place-items-center overflow-hidden p-5 supports-[content-visibility:auto]:[content-visibility:auto]",
+        className,
+      )}
     >
       {mounted ? (
         <div className="starting:opacity-0 grid h-full w-full min-w-0 place-items-center opacity-100 transition-opacity duration-[var(--duration-base)] ease-[var(--ease-standard)]">

@@ -4,6 +4,7 @@ import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 import type { ComponentProps, CSSProperties, Ref } from "react";
 import type { ScrollAreaKnobStyle } from "@/components/control-ui/knob-contracts/scroll-area-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { ProgressiveBlur, type ProgressiveBlurProps } from "@/components/control-ui/ui/progressive-blur";
 
 export const scrollAreaScrollbarVisibilities = ["scroll", "hover", "always"] as const;
@@ -75,7 +76,7 @@ export function ScrollArea({
   viewportRef,
   maxHeight,
   mask = true,
-  blur = false,
+  blur,
   blurProps,
   lockAxis,
   scrollbarVisibility = "scroll",
@@ -83,6 +84,8 @@ export function ScrollArea({
   style,
   ...props
 }: ScrollAreaProps) {
+  const skin = useSkin();
+  const resolvedBlur = blur ?? skin.scrollAreaBlur ?? false;
   const lockX = lockAxis === "x" || lockAxis === "both";
   const lockY = lockAxis === "y" || lockAxis === "both";
   const resolvedViewportStyle = viewportStyle(maxHeight, lockX, lockY);
@@ -98,7 +101,7 @@ export function ScrollArea({
       data-control-family="scroll-area"
       data-slot="root"
       data-mask={mask || undefined}
-      data-blur={blur || undefined}
+      data-blur={resolvedBlur || undefined}
       data-lock-axis={lockAxis}
       className={cn("relative overflow-hidden", className)}
       style={style}
@@ -122,10 +125,10 @@ export function ScrollArea({
           {children}
         </ScrollAreaPrimitive.Content>
       </ScrollAreaPrimitive.Viewport>
-      {blur && !lockY && <ProgressiveBlur {...blurProps} side="top" visible={false} />}
-      {blur && !lockY && <ProgressiveBlur {...blurProps} side="bottom" visible={false} />}
-      {blur && !lockX && <ProgressiveBlur {...blurProps} side="inline-start" visible={false} />}
-      {blur && !lockX && <ProgressiveBlur {...blurProps} side="inline-end" visible={false} />}
+      {resolvedBlur && !lockY && <ProgressiveBlur {...blurProps} side="top" visible={false} />}
+      {resolvedBlur && !lockY && <ProgressiveBlur {...blurProps} side="bottom" visible={false} />}
+      {resolvedBlur && !lockX && <ProgressiveBlur {...blurProps} side="inline-start" visible={false} />}
+      {resolvedBlur && !lockX && <ProgressiveBlur {...blurProps} side="inline-end" visible={false} />}
       {!lockY && <Scrollbar orientation="vertical" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
       {!lockX && <Scrollbar orientation="horizontal" visibility={scrollbarVisibility} thumbStyle={thumbStyle} />}
       {!lockX && !lockY && (

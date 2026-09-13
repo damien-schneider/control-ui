@@ -22,7 +22,6 @@ type RegistryManifest = {
   files: RegistryFile[];
 };
 
-// shadcn schema leaves dependency arrays, files, and some targets optional; our generator always emits them, so normalize parsed item to strict local shape (empty target still fails incomplete-file check).
 function manifestFromItem(item: RegistryItem): RegistryManifest {
   return {
     name: item.name,
@@ -183,10 +182,6 @@ const activeSkinTargets = new Set([
   "@components/control-ui/styles/skin.css",
 ]);
 const nextStarterTargets = new Set(["~/app/layout.tsx", "~/app/page.tsx"]);
-const activeSkinConfigPeer = {
-  importer: "src/registry/skin.ts",
-  specifier: "./skin.config",
-} as const;
 const hostOwnedSourceImports = new Set([
   "src/registry/starters/next/layout.tsx::./globals.css",
   "src/registry/starters/next/layout.tsx::next",
@@ -328,7 +323,6 @@ for (const [id, manifest] of manifests) {
     if (!existsSync(absoluteSource) || !/\.(ts|tsx)$/.test(file.path)) continue;
 
     for (const specifier of importSpecifiers(file.path, readFileSync(absoluteSource, "utf8"))) {
-      if (file.path === activeSkinConfigPeer.importer && specifier === activeSkinConfigPeer.specifier) continue;
       if (hostOwnedSourceImports.has(`${file.path}::${specifier}`)) continue;
 
       let requiredTargets: string[] | undefined;

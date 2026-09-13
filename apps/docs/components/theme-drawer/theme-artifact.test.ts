@@ -1,8 +1,9 @@
 import { describe, expect, test } from "bun:test";
 import { DEFAULT_SKIN_ID } from "@/components/theme";
 import { DEFAULT_THEME } from "./presets";
-import { buildThemePrompt, parseThemeArtifact, serializeThemeArtifact, validateThemeArtifact } from "./theme-artifact";
+import { buildThemePrompt, parseThemeArtifact, serializeThemeArtifact, themeArtifactCss, validateThemeArtifact } from "./theme-artifact";
 import type { ControlUiThemeArtifactV1 } from "./types";
+import { toCss } from "./write-vars";
 
 const ARTIFACT: ControlUiThemeArtifactV1 = {
   format: "control-ui-theme/v1",
@@ -111,4 +112,19 @@ describe("theme artifact parsing and validation", () => {
       expect(result.errors).toContain("tokens.shared.--duration-fast must not be empty.");
     }
   });
+});
+
+test("legacy Flat artifacts retain their tokens and export root CSS without a skin dependency", () => {
+  const result = validateThemeArtifact({ ...ARTIFACT, baseSkin: "flat" });
+  expect(result.ok).toBe(true);
+  if (!result.ok) throw new Error(result.errors.join("; "));
+  expect(result.artifact.baseSkin).toBe("none");
+  expect(result.artifact.tokens).toEqual(ARTIFACT.tokens);
+  const css = themeArtifactCss(result.artifact);
+  expect(css).toContain(":root {");
+  expect(css).toContain(".dark:root {");
+  expect(css).not.toContain("[data-skin");
+  const copied = toCss({ ...DEFAULT_THEME, overrides: { "--radius": "4px" } });
+  expect(copied).toContain(":root {");
+  expect(copied).not.toContain("[data-skin");
 });

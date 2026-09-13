@@ -4,7 +4,8 @@ import { PanelLeftIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSidebarLayout } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
+
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/control-ui/ui/sheet";
@@ -61,8 +62,9 @@ export function Sidebar({
   collapsible?: "offcanvas" | "icon" | "none";
   style?: SidebarSurfaceStyle;
 }) {
+  const skin = useSkin();
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
-  const resolvedVariant = variant ?? skinSidebarLayout() ?? "sidebar";
+  const resolvedVariant = variant ?? skin.sidebarLayout ?? "sidebar";
 
   if (collapsible === "none") {
     return (

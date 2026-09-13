@@ -102,7 +102,7 @@ for (const positioning of ["anchors", "fallback"]) {
 
 test("switching skins applies the group defaults while explicit indicators keep their choice", async ({ page }) => {
   await page.addInitScript((storageKey) => {
-    localStorage.setItem(storageKey, JSON.stringify({ skin: "flat" }));
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "none" }));
   }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/primitives/button-group");
   const group = page.getByRole("group", { name: "Text alignment" });
@@ -117,7 +117,7 @@ test("switching skins applies the group defaults while explicit indicators keep 
     group.getByRole("button", { name: "Left", exact: true }),
   );
   await page.getByRole("combobox", { name: "Skin", exact: true }).click();
-  await page.getByRole("option", { name: "Flat", exact: true }).click();
+  await page.getByRole("option", { name: "No skin", exact: true }).click();
   await expect(group).toHaveAttribute("data-track", "none");
   await expect(group.locator('[data-control-family="track-highlight"]')).toHaveCount(0);
 });
@@ -141,7 +141,7 @@ test("Refined enables fluid sidebar and checkbox navigation without per-instance
   await expectHighlightOn(checkboxes.locator('[data-control-family="track-highlight"]'), checkboxes.locator('label[for="channel-sms"]'));
 });
 
-for (const skin of ["refined", "flat"]) {
+for (const skin of ["refined", "none"]) {
   test(`website sidebar enables fluid navigation with the ${skin} skin`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.emulateMedia({ reducedMotion: "no-preference" });

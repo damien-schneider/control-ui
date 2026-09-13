@@ -217,7 +217,6 @@ function CustomThemeLibrary({
   );
 }
 
-// Small transient-copy button for active skin's pack install command.
 function CommandCopyButton({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -232,9 +231,7 @@ function CommandCopyButton({ value }: { value: string }) {
           await navigator.clipboard?.writeText(value);
           setCopied(true);
           window.setTimeout(() => setCopied(false), 1400);
-        } catch {
-          /* clipboard denied — ignore */
-        }
+        } catch {}
       }}
     >
       {copied ? "✓" : "Copy"}
@@ -267,7 +264,7 @@ export function SkinSelector({
 
   return (
     <div className="flex flex-col gap-3">
-      <span className="text-[11px] font-medium text-muted-foreground">Built-in skins</span>
+      <span className="text-[11px] font-medium text-muted-foreground">Presets</span>
       <SkinGroup ids={ALL_SKIN_IDS} skin={skin} customThemeId={customThemeId} onSelect={onSelect} />
       <CustomThemeLibrary
         themes={customThemes}

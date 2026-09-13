@@ -6,7 +6,8 @@ import { type ComponentProps, useContext } from "react";
 import type { ControlledMultiChoice, HoverIndicator } from "@/components/control-ui/control-props";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinIndicator } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
+
 import type { ButtonProps } from "@/components/control-ui/ui/button";
 import {
   ButtonTrackContext,
@@ -100,7 +101,8 @@ export function ToggleGroup<TValue extends string = string>({
   children,
   ...props
 }: ToggleGroupProps<TValue>) {
-  const resolvedIndicator = indicator ?? skinIndicator("toggle-group") ?? "none";
+  const skin = useSkin();
+  const resolvedIndicator = indicator ?? skin.indicators?.["toggle-group"] ?? "none";
   const tracksHover = resolvedIndicator === "hover";
   return (
     <ButtonTrackContext value={tracksHover}>

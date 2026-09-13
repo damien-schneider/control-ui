@@ -1,17 +1,14 @@
 import { BADGE_COLORS } from "../sources/control-ui/ui/badge";
 
-// Names only — values live in each pack's theme.css. name absent here is not in the contract: packs must not declare it in theme.css, and skin.css must never redeclare one that is here.
 export type ThemeContractGroup = "color" | "typography" | "radius" | "shadow" | "motion" | "surface" | "layout";
 
-/** core = re-valued first; advanced = fine-tuning knobs; derived = core ships default, so coverage test does not require it. */
 export type ThemeContractTier = "core" | "advanced" | "derived";
 
 export type ThemeContractToken = {
-  /** Custom-property name as declared in theme.css, e.g. "--primary". */
   name: string;
   group: ThemeContractGroup;
   tier: ThemeContractTier;
-  /** One-liner for docs token-reference page. */
+
   description: string;
 };
 
@@ -58,7 +55,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token("--hover-fill", "color", "derived", "Wash a row or control takes on hover; defaults to a 6% tint of --foreground."),
   token("--active-fill", "color", "derived", "Wash a selected or pressed row keeps; defaults to an 8% tint of --foreground."),
   token("--canvas", "color", "core", "The page paper the scene/panels float on — a level BELOW --background."),
-  // color knobs
+
   token("--ring-opacity", "color", "derived", "Alpha of the border/ring hairlines; 0 = borderless, defaults to 1."),
   ...badgeColorTokens,
 
@@ -152,9 +149,5 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
 
 export const THEME_CONTRACT_NAMES: ReadonlySet<string> = new Set(THEME_CONTRACT.map((entry) => entry.name));
 
-/** Tokens every pack must resolve in both modes — derived tier rides its core default instead. */
 export const REQUIRED_THEME_CONTRACT: readonly ThemeContractToken[] = THEME_CONTRACT.filter((entry) => entry.tier !== "derived");
 export const REQUIRED_THEME_CONTRACT_NAMES: ReadonlySet<string> = new Set(REQUIRED_THEME_CONTRACT.map((entry) => entry.name));
-
-// Core-owned mechanics stay off contract: --nest-safe, --nest-corner-ratio, --radius-popup-item-fit, and --control-h-md
-// are math and aliases, not design choices, declared once on :where([data-skin]) so any pack override still wins.

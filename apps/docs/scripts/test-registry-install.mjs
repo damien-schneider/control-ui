@@ -7,7 +7,7 @@ const root = process.cwd();
 const temporaryRoot = mkdtempSync(path.join(tmpdir(), "control-ui-registry-install-"));
 const registryBase = "http://127.0.0.1:3000";
 const activeSkinFiles = ["skin.config.tsx", "styles/skin-theme.css", "styles/skin.css"];
-const buttonInstallBudget = { files: 10, bytes: 68_000 };
+const buttonInstallBudget = { files: 11, bytes: 70_000 };
 const server = spawn(process.execPath, [path.join(root, "scripts/serve-public-registry.mjs"), path.join(root, "public"), "3000"], {
   stdio: "ignore",
 });
@@ -301,7 +301,7 @@ try {
     }
   }
 
-  for (const stylesheet of ["theme.css", "effects.css", "skin-theme.css", "skin.css"]) {
+  for (const stylesheet of ["theme.css", "effects.css"]) {
     if (!aggregateGlobals.includes(`components/control-ui/styles/${stylesheet}`)) {
       throw new Error(`The all item did not wire ${stylesheet} into app/globals.css`);
     }
@@ -315,8 +315,8 @@ try {
       }
     }
   }
-  if (!readFileSync(path.join(aggregateComponents, "skin.config.tsx"), "utf8").includes('id: "refined"')) {
-    throw new Error("The all item did not install the Refined skin");
+  if (activeSkinFiles.some((file) => existsSync(path.join(aggregateComponents, file)))) {
+    throw new Error("The all item must work without any skin files");
   }
 
   for (const directory of [rootFixture, componentFirstFixture, sourceFixture, aggregateFixture, ...fullInstallFixtures]) {

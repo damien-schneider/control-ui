@@ -3,17 +3,17 @@ import { expect, type Locator, test } from "@playwright/test";
 const SKINS = [
   { id: "refined", label: "Refined" },
   { id: "xp", label: "Windows XP" },
-  { id: "flat", label: "Flat" },
+  { id: "none", label: "No skin" },
   { id: "rig", label: "Rig" },
   { id: "liquid-metal", label: "Liquid metal" },
-  { id: "modern-apple", label: "Modern Apple" },
+  { id: "modern-apple", label: "macOS" },
   { id: "cuicui", label: "Cuicui" },
   { id: "linear", label: "Linear" },
 ] as const;
 const MODES = ["light", "dark"] as const;
 const ICON_THRESHOLD = 3;
 const TEXT_THRESHOLD = 4.5;
-// backdrop clusters below this share are boundary slivers (pill rims, antialiasing), not glyph backdrop
+
 const BACKDROP_SHARE = 0.05;
 
 type GlyphRegion = { name: string; x: number; y: number; width: number; height: number; color: string; hasText: boolean };
@@ -28,7 +28,6 @@ async function glyphRegions(toolbar: Locator): Promise<GlyphRegion[]> {
       return styles.visibility === "visible" && Number.parseFloat(styles.opacity) > 0;
     };
 
-    // multicolor logo svgs paint with their own fills, not the text color the contrast math uses
     const paintsWithTextColor = (glyph: Element) =>
       glyph.tagName !== "svg" ||
       glyph.getAttribute("stroke") === "currentColor" ||
@@ -187,7 +186,7 @@ test("floating toolbar controls keep rendered contrast across every skin and mod
         localStorage.setItem("control-ui:theme:v1", activeMode);
         document.documentElement.classList.toggle("dark", activeMode === "dark");
       }, mode);
-      // transition-colors on toolbar items: let paints settle before sampling pixels
+
       await page.waitForTimeout(400);
 
       const regions = await glyphRegions(toolbar);

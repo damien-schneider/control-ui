@@ -31,7 +31,7 @@ function contrastDoctor(skinPack: string | null, override?: string) {
     const imports = [
       '@import "tailwindcss";',
       '@import "./components/control-ui/styles/theme.css";',
-      '@import "./components/control-ui/styles/skin-theme.css";',
+      ...(skinPack ? ['@import "./components/control-ui/styles/skin-theme.css";'] : []),
     ];
     if (override) {
       writeFileSync(path.join(app, "brand.control-ui-theme.css"), override);
@@ -60,14 +60,19 @@ describe("control-ui-doctor --contrast", () => {
     expect(run.stderr).toContain("fail        Body text on background: 1.00:1");
   });
 
-  test("stops on a missing skin theme instead of reporting an empty pass", () => {
+  test("rejects unreadable root overrides without an installed skin", () => {
+    const run = contrastDoctor(null, ":root { --foreground: #fff; --background: #fff; }");
+    expect(run.exitCode).toBe(1);
+    expect(run.stderr).toContain("Body text on background: 1.00:1");
+  });
+
+  test("checks the core defaults when no skin theme is installed", () => {
     const run = contrastDoctor(null);
-    expect(run.exitCode).not.toBe(0);
-    expect(run.stderr).toContain("skin-theme.css");
+    expect(run.exitCode).toBe(0);
+    expect(run.stderr).toBe("");
   });
 });
 
-// The doctor ships inside an install and cannot import the docs app, so the emitter lives twice; this is the guard.
 function emitCss(artifact: ControlUiThemeArtifactV1) {
   const directory = mkdtempSync(path.join(tmpdir(), "control-ui-emit-"));
   try {

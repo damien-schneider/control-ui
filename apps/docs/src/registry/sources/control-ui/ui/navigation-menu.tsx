@@ -5,7 +5,8 @@ import type { ComponentProps, CSSProperties } from "react";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type NavigationMenuProps = ComponentProps<"nav"> & {
   value?: string | null;
@@ -39,8 +40,6 @@ export type NavigationMenuLinkProps = Omit<ComponentProps<"a">, "style"> & { sty
 };
 
 export type NavigationMenuViewportProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
-
-// Every item has its own Trigger and Content, but single viewport morphs between them rather than one popup per item.
 
 type RefinedLinkProps = NavigationMenuLinkProps & Pick<ComponentProps<typeof NavigationMenuPrimitive.Link>, "render">;
 
@@ -153,17 +152,16 @@ export function NavigationMenuLink({ variant = "default", className, active, chi
 }
 
 export function NavigationMenuViewport({ className, ...props }: NavigationMenuViewportProps) {
+  const skin = useSkin();
   return (
     <NavigationMenuPrimitive.Portal>
-      {/* Portal escapes token-scoped ancestor — positioner re-asserts ACTIVE skin's scope.
-          before:* strip bridges sideOffset gap so hover survives trigger→popup. */}
       <NavigationMenuPrimitive.Positioner
         data-control-ui="navigation-menu"
         data-control-family="popup"
         data-popup-kind="navigation-menu"
         data-slot="positioner"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         sideOffset={8}
         collisionPadding={{ top: 5, bottom: 5, left: 16, right: 16 }}
         collisionAvoidance={{ side: "none" }}

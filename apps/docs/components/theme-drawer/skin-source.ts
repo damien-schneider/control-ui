@@ -3,11 +3,11 @@
 import { useEffect, useSyncExternalStore } from "react";
 import type { SkinMetaId, SourceFile } from "@/app/(features)/model/types";
 import { THEME_CONTRACT } from "@/src/registry/lib/theme-contract";
+import { tokenMaps } from "@/src/registry/sources/control-ui/scripts/contrast-eval.mjs";
 import { cssColorToHexDom } from "./color-utils";
 
 export type SkinSourceState = { status: "loading" } | { status: "error" } | { status: "ready"; files: SourceFile[] };
 
-// Shared across every consumer (source tab + default-skin diff) so one skin loads once per session and retries stay consistent.
 const entries = new Map<SkinMetaId, { state: SkinSourceState }>();
 const inflight = new Map<SkinMetaId, Promise<void>>();
 const listeners = new Set<() => void>();
@@ -102,34 +102,22 @@ export type ParsedSkinTheme = {
 
 const parseCache = new Map<string, ParsedSkinTheme>();
 
-// Flat custom-property blocks only — theme packs never nest braces or wrap contract tokens in @media.
 export function parseSkinTheme(code: string): ParsedSkinTheme {
   const cached = parseCache.get(code);
   if (cached) return cached;
 
-  const light = new Map<string, string>();
-  const dark = new Map<string, string>();
-  const withoutComments = code.replace(/\/\*[\s\S]*?\*\//g, "");
-  for (const [, selectorText, body] of withoutComments.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
-    const scope = /(^|[\s,>+~(])\.dark\b/.test(selectorText.trim()) ? dark : light;
-    for (const [, name, value] of body.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
-      scope.set(name, value.trim().replace(/\s+/g, " "));
-    }
-  }
-
-  const parsed = { light, dark };
+  const parsed: ParsedSkinTheme = tokenMaps([code]);
   parseCache.set(code, parsed);
   return parsed;
 }
 
 function sameCssValue(a: string, b: string): boolean {
   if (a === b) return true;
-  // authored formats drift (oklch vs hex); DOM resolution compares what the browser actually paints
+
   const hexA = cssColorToHexDom(a);
   return hexA !== null && hexA === cssColorToHexDom(b);
 }
 
-/** Contract tokens whose current-mode value the active skin authors differently than the base theme. */
 export function skinChangedTokenNames(active: ParsedSkinTheme, base: ParsedSkinTheme, dark: boolean): ReadonlySet<string> {
   const activeScope = dark ? active.dark : active.light;
   const baseScope = dark ? base.dark : base.light;

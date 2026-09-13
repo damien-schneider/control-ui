@@ -1,14 +1,9 @@
-<GuideSection id="pack" title="Pick the pack">
-  The pack is the starting values, and it is a decision rather than a resemblance: every pack re-values the component
-  knobs, and some install adornments and layout defaults that a theme cannot undo.
-
-  Flat is the neutral reset — an empty `skin.css`, no adornments — so a theme written over it owns every value.
-  Refined is the calm complete contract. Browse them on the [skins](/skins) page; the theme editor in the toolbar
-  swaps the whole site to any of them, live.
+<GuideSection id="pack" title="Start from the defaults">
+  “No skin” shows the neutral library baseline. Your application owns its theme and can override only the values
+  that need to change. Refined and the other named presets remain optional starting points.
 
   <GuideCheck>
-    The pack re-themes every screen that reads these token names the moment it lands. Between the install and the
-    theme below, the app looks rougher than before — that reset is scaffolding, never the state you stop at.
+    Components and portals render without a skin config or provider. Add your brand through application CSS.
   </GuideCheck>
 </GuideSection>
 
@@ -29,7 +24,7 @@
   compositing in both modes; focus indicators and control boundaries clear 3:1.
 
   The [accessibility page](/theme-accessibility) checks the canonical colors plus what the components actually paint —
-  popups, badges, active tabs — and the same checks run from the CLI, on every commit, over 16 skin modes.
+  popups, badges, active tabs — and the same checks run from the CLI, on every commit, over the baseline and every preset mode.
 </GuideSection>
 
 <GuideSection id="deeper" title="Go deeper">

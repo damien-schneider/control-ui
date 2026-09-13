@@ -2,7 +2,7 @@ import { contrastAgentRules } from "@/app/(features)/theme-accessibility/agent-r
 import { THEME_CONTRACT, THEME_CONTRACT_NAMES, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { artifactFromDtcg, isDtcg } from "./dtcg";
 import { isRecord } from "./is-record";
-import { skinScopeSelector } from "./override-decls";
+import { exportedThemeScopeSelector } from "./override-decls";
 import { isSkinId } from "./presets";
 import { isColorValuedToken } from "./token-metadata";
 import type { ControlUiThemeArtifactV1, ThemeState, TokenValues } from "./types";
@@ -132,10 +132,11 @@ function validateArtifactIdentity(value: Record<string, unknown>, expectedBaseSk
   return name;
 }
 
-export function validateThemeArtifact(value: unknown, expectedBaseSkin?: string): ThemeArtifactResult {
-  if (!isRecord(value)) return { ok: false, errors: ["Theme output must be a JSON object."] };
+export function validateThemeArtifact(input: unknown, expectedBaseSkin?: string): ThemeArtifactResult {
+  if (!isRecord(input)) return { ok: false, errors: ["Theme output must be a JSON object."] };
 
   const errors: string[] = [];
+  const value = input.baseSkin === "flat" ? { ...input, baseSkin: "none" } : input;
   const name = validateArtifactIdentity(value, expectedBaseSkin, errors);
   if (!isRecord(value.tokens)) errors.push("tokens must contain shared, light, and dark objects.");
 
@@ -176,9 +177,7 @@ export function parseThemeArtifact(input: string, expectedBaseSkin?: string): Th
     try {
       const value: unknown = JSON.parse(candidate);
       parsed.push(value);
-    } catch {
-      // full AI reply is expected to fail before its fenced JSON candidate is tried.
-    }
+    } catch {}
   }
   if (parsed.length === 0) return { ok: false, errors: ["No valid JSON object was found in the response."] };
 
@@ -197,7 +196,7 @@ export function compactContract() {
 }
 
 export function themeArtifactCss(artifact: ControlUiThemeArtifactV1): string {
-  const scope = skinScopeSelector(artifact.baseSkin);
+  const scope = exportedThemeScopeSelector(artifact.baseSkin);
   const block = (tokens: TokenValues) =>
     Object.entries(tokens)
       .map(([name, value]) => `  ${name}: ${value};`)
@@ -211,7 +210,7 @@ export function themeArtifactCss(artifact: ControlUiThemeArtifactV1): string {
 }
 
 export function themeApplyCssRules(baseSkinRef: string) {
-  const scope = `[data-skin="${baseSkinRef}"][data-skin]`;
+  const scope = exportedThemeScopeSelector(baseSkinRef);
   return [
     `Run \`node <install>/scripts/control-ui-doctor.mjs --emit-css <short-name>.control-ui-theme.json\` to write <short-name>.control-ui-theme.css beside the artifact — that exact suffix is how the update tooling recognises the theme import. Never hand-write the selectors: the emitted \`${scope}\` doubles the attribute to match the pack's own weight, which is what hands the win to source order.`,
     "Import that file on the last line of the entry's import block, after every Control UI import. Being last is what makes it win.",
@@ -253,12 +252,14 @@ export function themeArtifactBrief({ origin, baseSkin, context, discoveryMode }:
   const contractUrl = `${normalizedOrigin}/r/theme-contract.json`;
   const builderUrl = `${normalizedOrigin}/theme-ai-builder`;
   const accessibilityUrl = `${normalizedOrigin}/theme-accessibility`;
-  const baseSkinRule = baseSkin ? `Keep baseSkin exactly "${baseSkin}".` : "Set baseSkin to the id of the skin pack you installed.";
+  const baseSkinRule = baseSkin
+    ? `Keep baseSkin exactly "${baseSkin}".`
+    : 'Set baseSkin to "none" for the library defaults, or to the id of your optional installed preset.';
   const contrastRules = contrastAgentRules(normalizedOrigin)
     .map((rule) => `- ${rule}`)
     .join("\n");
   const appliesInRepo = discoveryMode === "existing-project";
-  // The setup lane just installed from this registry, so the contract URL is proven reachable and the embed is dead weight; only the copy-paste lane can run without network.
+
   const contractRule = appliesInRepo
     ? `- Read the canonical contract from ${contractUrl}. The registry that served the install serves this list too.`
     : `- Read the canonical contract from ${contractUrl}. If it is unreachable, use the embedded contract below.`;

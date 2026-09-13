@@ -3,7 +3,6 @@
 import type { SkinMetaId } from "@/app/(features)/model/types";
 import type { ControlUiSkin } from "@/components/control-ui/skin";
 import { skin as cuicuiPack } from "@/src/registry/skin-packs/cuicui/skin.config";
-import { skin as flatPack } from "@/src/registry/skin-packs/flat/skin.config";
 import { skin as linearPack } from "@/src/registry/skin-packs/linear/skin.config";
 import { skin as liquidMetalPack } from "@/src/registry/skin-packs/liquid-metal/skin.config";
 import { skin as modernApplePack } from "@/src/registry/skin-packs/modern-apple/skin.config";
@@ -18,7 +17,7 @@ export const SKIN_CONFIGS: Record<SkinMetaId, ControlUiSkin> = {
   "windows-98": windows98Pack,
   "liquid-metal": liquidMetalPack,
   rig: rigPack,
-  flat: flatPack,
+  none: { id: "none" },
   "modern-apple": modernApplePack,
   cuicui: cuicuiPack,
   linear: linearPack,

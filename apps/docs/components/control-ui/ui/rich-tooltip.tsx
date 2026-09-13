@@ -4,11 +4,11 @@ import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import type { RichTooltipKnobStyle } from "@/components/control-ui/knob-contracts/rich-tooltip-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { stepAfter, stepBefore, type TourPosition, tourPosition } from "./rich-tooltip-tour";
 
 export type RichTooltipTone = "accent" | "surface";
@@ -27,12 +27,10 @@ type TourValue = TourPosition & {
 
 const TourContext = createContext<TourValue | null>(null);
 
-/** Null outside `<RichTooltipTour>` — single-use rich tooltips read it and skip their step affordances. */
 export function useTour() {
   return useContext(TourContext);
 }
 
-// Blocked storage (private mode, disabled cookies) must not take the surface down with it.
 function readSeen(storageKey: string | undefined) {
   if (!storageKey) return false;
   try {
@@ -46,12 +44,9 @@ function writeSeen(storageKey: string | undefined) {
   if (!storageKey) return;
   try {
     globalThis.localStorage?.setItem(storageKey, "seen");
-  } catch {
-    // no persistence available — surface still dismisses for this session
-  }
+  } catch {}
 }
 
-/** Starts closed so the server and first client pass agree, then opens once storage has been read. */
 function useSeenGate(storageKey: string | undefined, enabled: boolean) {
   const [allowed, setAllowed] = useState(false);
 
@@ -227,20 +222,20 @@ export function RichTooltipContent({
   scrollAnchorIntoView = true,
   ...props
 }: RichTooltipContentProps) {
+  const skin = useSkin();
   const { tone } = useRichTooltipContext();
   const isSurface = tone === "surface";
   useAnchorScroll(anchor, true, scrollAnchorIntoView);
 
   return (
     <PopoverPrimitive.Portal>
-      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <PopoverPrimitive.Positioner
         data-control-ui="rich-tooltip"
         data-popup-kind="rich-tooltip"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side={side}
         align={align}
         sideOffset={sideOffset}
@@ -292,7 +287,6 @@ function RichTooltipArrowSvg() {
   );
 }
 
-// Cancels the content padding, so it only reads correctly as the first child. Inherited corners follow a skinned radius.
 export function RichTooltipMedia({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & PopupKnobStyle }) {
   return (
     <div

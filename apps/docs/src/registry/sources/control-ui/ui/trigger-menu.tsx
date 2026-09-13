@@ -5,7 +5,8 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 export type TriggerMenuProps = {
@@ -37,9 +38,6 @@ export type TriggerMenuGroupLabelProps = Omit<ComponentProps<"div">, "style"> & 
 
 export type TriggerMenuIconProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-// Controlled by headless engine and anchored to virtual caret rect, with no trigger button of its own.
-// initialFocus/finalFocus={false} keep focus in editor, so arrows and Enter keep flowing to caret while menu is up.
-
 export function TriggerMenu({
   open,
   onOpenChange,
@@ -50,17 +48,17 @@ export function TriggerMenu({
   className,
   children,
 }: TriggerMenuProps) {
+  const skin = useSkin();
   return (
     <PopoverPrimitive.Root open={open} onOpenChange={(next, eventDetails) => onOpenChange?.(next, eventDetails)} modal={false}>
       <PopoverPrimitive.Portal>
-        {/* portal escapes both token scope and ChatLayout's overflow clip, so scope is re-asserted here */}
         <PopoverPrimitive.Positioner
           data-control-ui="trigger-menu"
           data-popup-kind="trigger-menu"
           data-control-family="popup"
           data-slot="positioner"
-          data-skin={skinId()}
-          data-effects={skinEffects()}
+          data-skin={skin.id}
+          data-effects={controlEffectsAttribute(skin.effects)}
           anchor={anchorRect === null ? undefined : () => ({ getBoundingClientRect: () => anchorRect })}
           side={side}
           align={align}
@@ -110,13 +108,11 @@ export function TriggerMenuItem({ className, active = false, disabled = false, o
       data-slot="item"
       data-popup-part="item"
       role="option"
-      // driven by editor's keyboard, not tab focus, so -1 keeps rows out of tab order
       tabIndex={-1}
       aria-selected={active}
       aria-disabled={disabled || undefined}
       data-highlighted={active ? "" : undefined}
       data-disabled={disabled ? "" : undefined}
-      // keeps focus in editor on click, so insertion still targets caret
       onMouseDown={(event) => {
         event.preventDefault();
         if (disabled) return;

@@ -2,10 +2,10 @@
 
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 import type { ComponentProps, CSSProperties } from "react";
-
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export const drawerSides = ["bottom", "top", "right", "left"] as const;
 
@@ -107,6 +107,7 @@ export function DrawerContent({
   variant?: DrawerContentVariant;
   style?: CSSProperties & PopupKnobStyle;
 }) {
+  const skin = useSkin();
   const place = placement[variant][side];
   const grabbable = side === "bottom" || side === "top";
   const backdropStyle: (CSSProperties & PopupKnobStyle) | undefined = style
@@ -122,8 +123,8 @@ export function DrawerContent({
         data-popup-kind="drawer"
         data-popup-part="backdrop"
         data-slot="backdrop"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         className="fixed inset-0 z-[70]"
         style={backdropStyle}
       />
@@ -134,8 +135,8 @@ export function DrawerContent({
         data-slot="viewport"
         data-side={side}
         data-variant={variant}
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         className={cn("fixed inset-0 z-[71] flex", place.viewport)}
       >
         <DrawerPrimitive.Popup

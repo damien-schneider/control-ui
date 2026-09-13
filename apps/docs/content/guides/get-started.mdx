@@ -1,93 +1,75 @@
 <AgentShortcut />
 
-<GuideSection id="install" title="Install the set and its skin">
-  One command copies every component, block, and primitive into your repository as source you own, together with the
-  Refined skin that owns every token value they paint with.
+<GuideSection id="install" title="Install the components">
+  One command copies every component, block, and primitive into your repository as source you own. Core includes
+  neutral defaults for both light and dark modes. No skin, configuration file, or provider is required.
 
   <GuideCode kind="all-install" />
 
   <GuideCheck>
-    A `components/control-ui/` directory holding the source, `styles/skin-theme.css` and `styles/skin.css` holding the
-    pack, and a `components.json` the registry keeps writing to.
+    A `components/control-ui/` directory holds the source and `styles/theme.css` holds the library defaults.
   </GuideCheck>
-
-  Every skin page exposes the same `all-<skin>` manifest, so the pack you start on is the one you name here.
 </GuideSection>
 
 <GuideSection id="items" title="Install one item at a time">
-  A lean install picks the items instead. The skin stays required either way: it owns every token value the components
-  paint with, and one pack always installs first.
-
-  <GuideCode kind="skin-install" />
+  Install just the components you need. Each item brings its dependencies and the same core defaults.
 
   <GuideCode kind="component-install" />
 
-  Blocks install the same way and land as a complete composition — the chat block brings messages, input, attachments,
-  markdown, composer controls, and actions.
+  Blocks bring a complete composition of the same components.
 
   <GuideCode kind="block-install" />
-
-  Naming items instead of the set means the update and doctor scripts have to name them too.
 </GuideSection>
 
 <GuideSection id="wire-css" title="Wire the CSS">
-  Each item appends its own imports to the CSS entry named in `components.json`. Core plus a skin leaves you with:
+  Each item appends its own imports to the CSS entry named in `components.json`. For a button:
 
 ```css
-/* app/globals.css */
 @import "tailwindcss";
 @import "../components/control-ui/styles/theme.css";
-
-@import "../components/control-ui/styles/skin-theme.css";
-@import "../components/control-ui/styles/skin.css";
-```
-
-  Then stamp the pack id on the root element:
-
-```tsx
-<html data-skin="refined">…</html>
+@import "../components/control-ui/styles/recipes/button.css";
 ```
 
   <GuideCheck>
-    A control paints with the skin's own radius and color, and one portalled surface — a popover, dialog, menu, or
-    tooltip — opens carrying the same tokens. Both, or the wiring is not done.
+    A control renders with neutral colors and square corners. An opened popover or dialog receives the same root tokens.
   </GuideCheck>
 
-  Nothing paints? The registry always writes `../components/…`, which resolves only when the entry sits one directory
-  above the components alias. Run `node <install dir>/scripts/fix-css-imports.mjs` to fold every appended line onto
-  this app's real paths, then verify with the doctor.
+  The registry writes `../components/…`. If your aliases use different paths, run
+  `node <install dir>/scripts/fix-css-imports.mjs`, then verify with the doctor.
 </GuideSection>
 
-<GuideSection id="contract" title="The contract">
-  Exactly one pack owns `skin.config.tsx`, `skin-theme.css`, and `skin.css`. `--overwrite` claims all three — without
-  it the CLI keeps the previous pack's files in place.
+<GuideSection id="contract" title="Own your theme">
+  Re-value tokens in your application's CSS. Core declares defaults at zero specificity, so your declarations win.
+  “No skin” in these docs shows that library baseline.
 
-  The current skin contract is version 8: registered component CSS knobs carry every visual decision, sizing included, published one
-  slice per paint family under `/r/contract/`, indexed by `/r/contract/index.json`.
+```css
+:root {
+  --primary: oklch(0.45 0.18 260);
+  --radius: 4px;
+}
+```
 
-  There is no token fallback when `data-skin` is missing or misspelled. It is the scope every token is declared under,
-  not a multi-skin switch, so one skin still needs it: without it every portalled surface renders with no tokens at all.
+  Refined and the other example skins are optional registry presets. Installing one adds its token CSS, component
+  CSS, and config. Pass that config to `SkinProvider` and use its id on your theme boundary. The provider carries
+  the id and behavior choices through portals. See the create-a-skin guide for the complete setup.
 
-  Compiled styles assume Safari 16.4+, Chrome 119+, Firefox 128+; the architecture guide's cascade section derives the
-  floor.
+  The current skin contract is version 8. Registered component knobs are published by paint family under
+  `/r/contract/`, indexed by `/r/contract/index.json`.
 </GuideSection>
 
 <GuideSection id="package" title="Or install the package">
-  The same set ships as `@ctrl-ui/react` with the Refined skin baked in, for apps that would rather pin a version
-  than own the source. Import paths mirror the registry tree: replace `@/components/control-ui/` with
-  `@ctrl-ui/react/` in any example on this site.
+  The same components and neutral defaults ship as `@ctrl-ui/react`. The package contains no skin presets.
+  Import paths mirror the registry tree: replace `@/components/control-ui/` with `@ctrl-ui/react/`.
 
 ```bash
 bun add @ctrl-ui/react
 ```
 
 ```css
-/* app/globals.css */
 @import "tailwindcss";
 @import "@ctrl-ui/react/styles/index.css";
 @source "../node_modules/@ctrl-ui/react/dist";
 ```
 
-  Stamp `data-skin="refined"` on the root element as above. Other skins, the update script, and the doctor stay
-  registry-only.
+  Use components immediately, then add your application theme. `SkinProvider` is optional in both install paths.
 </GuideSection>

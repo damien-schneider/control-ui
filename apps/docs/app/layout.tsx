@@ -8,7 +8,6 @@ import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
 import themeInitScript from "@/app/(features)/theme/generated-theme-init.json";
 import { cn } from "@/components/control-ui/lib/cn";
-import { SkinEpochProvider } from "@/components/skin-epoch-context";
 import { DEFAULT_SKIN_ID } from "@/components/theme";
 import { SkinRuntimeEffects } from "@/components/theme-drawer/skin-runtime-effects";
 import { ThemeRuntimeProvider } from "@/components/theme-drawer/theme-runtime-context";
@@ -31,16 +30,16 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <body>
         <SiteStructuredData />
         <ThemeFavicon />
-        <SkinEpochProvider>
-          <ThemeRuntimeProvider>
-            <div data-skin-scope="docs">
-              <DocsShell {...getDocsShellData()} githubStars={githubStars}>
-                {children}
-              </DocsShell>
-            </div>
-            <SkinRuntimeEffects />
-          </ThemeRuntimeProvider>
-        </SkinEpochProvider>
+
+        <ThemeRuntimeProvider>
+          <div data-skin-scope="docs">
+            <DocsShell {...getDocsShellData()} githubStars={githubStars}>
+              {children}
+            </DocsShell>
+          </div>
+          <SkinRuntimeEffects />
+        </ThemeRuntimeProvider>
+
         <ModernAppleGlassFilter />
       </body>
     </html>

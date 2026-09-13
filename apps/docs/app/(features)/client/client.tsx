@@ -17,7 +17,6 @@ import { ControlEffectsRuntime } from "@/components/control-ui/extensions/contro
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
-import { SkinEpochBoundary } from "@/components/skin-epoch-context";
 import { pageLinks } from "./page-links";
 import {
   defaultSetupPreference,
@@ -31,7 +30,6 @@ import {
 
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-// Read here and not in the layout: a server-side cookie read makes every route blocking, costing a round trip on every sidebar click.
 function storedSidebarCollapsed() {
   return document.cookie.split("; ").includes(`${SIDEBAR_COOKIE_NAME}=false`);
 }
@@ -93,7 +91,7 @@ export function DocsShell(props: DocsShellViewProps) {
   }, []);
 
   return (
-    <SkinEpochBoundary>
+    <>
       {isHydrated ? (
         <PersistedDocsShell
           {...props}
@@ -114,7 +112,7 @@ export function DocsShell(props: DocsShellViewProps) {
         />
       )}
       <ControlEffectsRuntime />
-    </SkinEpochBoundary>
+    </>
   );
 }
 

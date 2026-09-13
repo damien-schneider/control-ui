@@ -7,7 +7,8 @@ import type { OpenChangeEventDetails } from "@/components/control-ui/control-pro
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 export type MenubarProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
@@ -57,8 +58,6 @@ export type MenubarSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onClick">
 
 export type MenubarSubContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-// row of independent Menu.Root menus — each trigger drops its own full menu.
-
 const popupClasses = "min-w-[11rem]";
 
 const itemClasses = cn("group/mbi relative", popupItemStructureClasses);
@@ -100,12 +99,12 @@ export function MenubarTrigger({ className, ...props }: MenubarTriggerProps) {
 }
 
 export function MenubarContent({ className, children, ...props }: MenubarContentProps) {
+  const skin = useSkin();
   return (
     <MenuPrimitive.Portal>
-      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <MenuPrimitive.Positioner
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side="bottom"
         align="start"
         sideOffset={6}
@@ -172,7 +171,6 @@ export function MenubarLabel({ className, inset = false, ...props }: MenubarLabe
 
 export function MenubarSeparator({ className, ...props }: MenubarSeparatorProps) {
   return (
-    // bleeds rule through popup padding so it spans edge to edge while rows keep their inset
     <MenuPrimitive.Separator
       data-control-ui="menubar"
       data-popup-kind="menubar"
@@ -230,11 +228,12 @@ export function MenubarSubTrigger({ className, inset = false, children, ...props
 }
 
 export function MenubarSubContent({ className, children, ...props }: MenubarSubContentProps) {
+  const skin = useSkin();
   return (
     <MenuPrimitive.Portal>
       <MenuPrimitive.Positioner
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side="right"
         align="start"
         sideOffset={-4}

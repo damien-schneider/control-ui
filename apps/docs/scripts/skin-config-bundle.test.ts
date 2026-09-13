@@ -5,7 +5,6 @@ import path from "node:path";
 import { gzipSync } from "node:zlib";
 
 const temporaryDirectory = mkdtempSync(path.join(tmpdir(), "control-ui-skin-bundle-"));
-const skinRuntime = path.join(process.cwd(), "src/registry/skin.ts");
 const skinPacks = path.join(process.cwd(), "src/registry/skin-packs");
 const registryRoot = path.join(process.cwd(), "src/registry");
 const controlUiSources = path.join(registryRoot, "sources/control-ui");
@@ -15,7 +14,7 @@ afterAll(() => rmSync(temporaryDirectory, { recursive: true, force: true }));
 async function bundledSkinConfig(skinId: string): Promise<{ code: string; gzipBytes: number }> {
   const entrypoint = path.join(temporaryDirectory, `${skinId}.tsx`);
   const skinConfig = path.join(skinPacks, skinId, "skin.config.tsx");
-  writeFileSync(entrypoint, `import { activeSkin } from ${JSON.stringify(skinRuntime)};\nconsole.log(activeSkin());\n`);
+  writeFileSync(entrypoint, `import { skin } from ${JSON.stringify(skinConfig)};\nconsole.log(skin);\n`);
   const result = await Bun.build({
     entrypoints: [entrypoint],
     minify: true,
@@ -24,7 +23,6 @@ async function bundledSkinConfig(skinId: string): Promise<{ code: string; gzipBy
       {
         name: `active-skin-${skinId}`,
         setup(build) {
-          build.onResolve({ filter: /^\.\/skin\.config$/ }, () => ({ path: skinConfig }));
           build.onResolve({ filter: /^@\/components\/control-ui\// }, ({ path: specifier }) => {
             const relativePath = specifier.slice("@/components/control-ui/".length);
             for (const root of [registryRoot, controlUiSources]) {

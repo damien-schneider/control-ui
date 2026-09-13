@@ -33,13 +33,11 @@ export function publicRegistryHref(kind: string) {
   return `/r/${kind}.json`;
 }
 
-// docsOnly skins carry no packManifestPath (no installable pack); `in` guard narrows skinMetas union so only real packs resolve manifest path.
 function packManifestPathFor(id: SkinMetaId): string | undefined {
   const meta = skinMetas.find((entry) => entry.id === id);
   return meta && "packManifestPath" in meta ? meta.packManifestPath : undefined;
 }
 
-// A pack asserts its three files: without --overwrite the CLI prompts per file, and a non-TTY run silently keeps the old skin.
 export function packInstallCommand(id: SkinMetaId): string | undefined {
   if (!packManifestPathFor(id)) return undefined;
   return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/skin-${id}.json --overwrite`;
@@ -50,11 +48,13 @@ export function packManifestHref(id: SkinMetaId): string | undefined {
 }
 
 export function fullInstallCommand(id: SkinMetaId): string | undefined {
+  if (id === "none") return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/all.json`;
   if (!packManifestPathFor(id)) return undefined;
   return `npx shadcn@latest add ${env.NEXT_PUBLIC_REGISTRY_URL}/r/all-${id}.json`;
 }
 
 export function fullInstallManifestHref(id: SkinMetaId): string | undefined {
+  if (id === "none") return publicRegistryHref("all");
   return packManifestPathFor(id) ? publicRegistryHref(`all-${id}`) : undefined;
 }
 
@@ -81,11 +81,11 @@ export function registryInstallCommands(kind: RegistryKind): InstallCommand[] {
 
 export function guideCodeForKind(code: GuideSection["code"], integration: "mastra" | "ai-sdk") {
   if (code === "skin-install") return packInstallCommand("refined");
-  if (code === "skin-scaffold-install") return packInstallCommand("flat");
+  if (code === "skin-scaffold-install") return fullInstallCommand("none");
   if (code === "component-install") return registryInstallCommand("chat-message");
   if (code === "block-install") return registryInstallCommand("chat-block");
   if (code === "update-install") return updateInstallCode();
-  if (code === "all-install") return fullInstallCommand("refined");
+  if (code === "all-install") return fullInstallCommand("none");
   if (code === "skill-install") return `npx skills add ${env.NEXT_PUBLIC_REGISTRY_URL}`;
 
   if (code === "component-usage") {

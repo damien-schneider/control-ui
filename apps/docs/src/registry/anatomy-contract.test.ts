@@ -90,7 +90,7 @@ describe("Control UI anatomy contract", () => {
       visit(ast, (node) => {
         if (node.type !== "CallExpression" || node.callee.type !== "Identifier") return;
         if (!["skinAdornment", "hasSkinAdornment"].includes(node.callee.name)) return;
-        const [scope, part] = node.arguments;
+        const [, scope, part] = node.arguments;
         if (scope?.type === "StringLiteral" && part?.type === "StringLiteral") return;
         violations.push(`${relative(registryRoot, path)}:${node.loc?.start.line ?? 0} ${node.callee.name} needs literal scope and part`);
       });

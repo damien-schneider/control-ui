@@ -5,7 +5,7 @@ import type { ComponentProps } from "react";
 import type { ControlledMultiChoice, HoverIndicator } from "@/components/control-ui/control-props";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinIndicator } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export type CheckboxGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
   ControlledMultiChoice & {
@@ -16,7 +16,8 @@ export type CheckboxGroupProps = Omit<ComponentProps<"div">, "defaultValue" | "o
   };
 
 export function CheckboxGroup({ className, orientation = "vertical", indicator, children, ...props }: CheckboxGroupProps) {
-  const resolvedIndicator = indicator ?? skinIndicator("checkbox-group") ?? "none";
+  const skin = useSkin();
+  const resolvedIndicator = indicator ?? skin.indicators?.["checkbox-group"] ?? "none";
   return (
     <CheckboxGroupPrimitive
       data-control-ui="checkbox-group"

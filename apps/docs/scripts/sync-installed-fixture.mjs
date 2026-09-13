@@ -5,8 +5,6 @@ const root = process.cwd();
 const checkOnly = process.argv.includes("--check");
 const watchMode = process.argv.includes("--watch");
 
-// components/control-ui/* is the verbatim union of the files a `/r/<item>.json` payload installs, and the docs alias points at it,
-// so every preview renders exactly what an installer would own.
 const CONTROL_UI = {
   source: "control-ui",
   registryRoot: path.join(root, "registry", "control-ui"),
@@ -15,9 +13,6 @@ const CONTROL_UI = {
 const fixtures = [CONTROL_UI];
 const watchRoots = ["src/registry", "registry/control-ui"];
 const watchPollIntervalMs = 500;
-
-// The registry ships a default, but after install the file belongs to the consumer — seeded when missing, never clawed back.
-const userOwnedTargets = new Set(["components/control-ui/skin.config.tsx"]);
 
 function manifestPaths(registryRoot) {
   return readdirSync(registryRoot)
@@ -95,7 +90,7 @@ function syncGeneratedContent(targetPath, desired, provenance, written, outOfSyn
   const absoluteTargetPath = path.join(root, targetPath);
   const target = existsSync(absoluteTargetPath) ? readFileSync(absoluteTargetPath, "utf8") : undefined;
 
-  if (target === desired || (userOwnedTargets.has(targetPath) && target !== undefined)) return;
+  if (target === desired) return;
 
   if (checkOnly) {
     outOfSync.push(`${targetPath} is not generated from ${provenance}`);
@@ -120,8 +115,6 @@ const FIXTURE_README = [
   "(`bun run sync:fixture`, watched in dev).",
   "Edit the sources in `src/registry/` instead, then run `bun run sync`.",
   "",
-  "Exception: `skin.config.tsx` is user-owned — sync seeds it once and never claws it back.",
-  "",
 ].join("\n");
 
 function removeStaleFixtureFiles(fixture, expectedTargets, written, outOfSync) {
@@ -130,7 +123,7 @@ function removeStaleFixtureFiles(fixture, expectedTargets, written, outOfSync) {
 
   for (const absolutePath of walk(fixtureRoot)) {
     const targetPath = path.relative(root, absolutePath);
-    if (expectedTargets.has(targetPath) || userOwnedTargets.has(targetPath)) continue;
+    if (expectedTargets.has(targetPath)) continue;
     if (checkOnly) outOfSync.push(`${targetPath} is stale`);
     else {
       unlinkSync(absolutePath);
@@ -154,7 +147,6 @@ function syncFixture(fixture, written, outOfSync) {
   removeStaleFixtureFiles(fixture, expectedTargets, written, outOfSync);
 }
 
-// --check records drift instead of writing; otherwise it returns the targets it rewrote, so --watch can log them
 function syncOnce() {
   const written = [];
   const outOfSync = [];
@@ -189,7 +181,6 @@ function watchSignature() {
 }
 
 if (watchMode) {
-  // polling, because recursive fs.watch exhausts descriptors here
   const initial = syncOnce();
   console.log(`Installed fixture synced from the Control UI registry manifests (watching ${watchRoots.join(", ")}).`);
   if (initial.written.length > 0) console.log(`  synced: ${initial.written.join(", ")}`);

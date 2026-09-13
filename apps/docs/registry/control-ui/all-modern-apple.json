@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "all-modern-apple",
   "type": "registry:item",
-  "title": "All Control UI components — Modern Apple",
-  "description": "Every Control UI agent component, block, and primitive with the Modern Apple skin.",
+  "title": "All Control UI components — macOS",
+  "description": "Every Control UI agent component, block, and primitive with the macOS skin.",
   "dependencies": [],
   "registryDependencies": [
     "accordion",

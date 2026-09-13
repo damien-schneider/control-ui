@@ -23,12 +23,13 @@ function readTokenMap(value: unknown): TokenValues {
 function readCustomTheme(value: unknown): CustomThemeProfile | null {
   if (!isRecord(value)) return null;
   const profile = value;
+  const baseSkin = profile.baseSkin === "flat" ? "none" : profile.baseSkin;
   if (
     typeof profile.id !== "string" ||
     !profile.id ||
     typeof profile.name !== "string" ||
     !profile.name.trim() ||
-    !isSkinId(profile.baseSkin) ||
+    !isSkinId(baseSkin) ||
     typeof profile.createdAt !== "string" ||
     typeof profile.updatedAt !== "string"
   ) {
@@ -37,7 +38,7 @@ function readCustomTheme(value: unknown): CustomThemeProfile | null {
   return {
     id: profile.id,
     name: profile.name.trim(),
-    baseSkin: profile.baseSkin,
+    baseSkin,
     createdAt: profile.createdAt,
     updatedAt: profile.updatedAt,
     reduceMotion: profile.reduceMotion === true,

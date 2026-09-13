@@ -3,7 +3,7 @@
 import { COLOR_SCHEME_LOCK_ATTR, MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS, preferredTheme } from "@/components/theme";
 import { THEME_CONTRACT_NAMES } from "@/src/registry/lib/theme-contract";
 import { hexToOklchColor } from "./color-utils";
-import { buildDarkColorDecls, buildOverrideDecls, buildOverrideSheetCss, skinScopeSelector } from "./override-decls";
+import { buildDarkColorDecls, buildOverrideDecls, buildOverrideSheetCss, exportedThemeScopeSelector } from "./override-decls";
 import type { ThemeState } from "./types";
 
 const OVERRIDE_STYLE_ID = "control-ui-editor-overrides";
@@ -60,13 +60,11 @@ export function toCss(t: ThemeState): string {
   for (const [name, hex] of Object.entries(t.textFixes)) darkDecls.push([name, hexToOklchColor(hex)]);
 
   if (rootDecls.length === 0 && darkDecls.length === 0) {
-    return `/* No token edits — the "${t.skin}" skin's own theme.css already defines every token. */`;
+    return "/* No token edits. The current theme uses its default values. */";
   }
   const block = (decls: [string, string][]) => decls.map(([name, value]) => `  ${name}: ${value};`).join("\n");
-  const parts: string[] = [
-    `/* Paste after the "${t.skin}" skin's theme.css import — the selector matches the pack's own weight, so source order decides. */`,
-  ];
-  const scope = skinScopeSelector(t.skin);
+  const parts: string[] = ["/* Import after the Control UI styles. */"];
+  const scope = exportedThemeScopeSelector(t.skin);
   if (rootDecls.length > 0) parts.push(`${scope} {\n${block(rootDecls)}\n}`);
   if (darkDecls.length > 0) parts.push(`:where(.dark) ${scope},\n.dark${scope} {\n${block(darkDecls)}\n}`);
   return parts.join("\n\n");

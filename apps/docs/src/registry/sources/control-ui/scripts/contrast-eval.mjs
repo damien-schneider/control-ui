@@ -23,7 +23,6 @@ export function parseBlocks(css) {
   return blocks;
 }
 
-// @layer/@media/@supports wrap real blocks one level down; selector and @theme blocks hold declarations.
 export function flattenBlocks(css) {
   return parseBlocks(css).flatMap((block) => (/^@(layer|media|supports)\b/.test(block.prelude) ? flattenBlocks(block.body) : [block]));
 }
@@ -43,7 +42,17 @@ export function declarations(body) {
   return properties;
 }
 
-const declaresTokens = (prelude) => prelude.includes("[data-skin") || (prelude.startsWith("@theme") && !prelude.includes("inline"));
+function declaresTokens(prelude) {
+  if (prelude.startsWith("@")) return prelude.startsWith("@theme") && !prelude.includes("inline");
+  return prelude.includes("[data-skin") || /(^|[\s,(])(?::root|\.dark)(?=$|[\s,.):])/.test(prelude);
+}
+
+export function themeTokenBlocks(css) {
+  return parseBlocks(stripComments(css)).flatMap((block) => {
+    if (/^@layer\b/.test(block.prelude)) return themeTokenBlocks(block.body);
+    return declaresTokens(block.prelude) ? [block] : [];
+  });
+}
 
 function modesOf(prelude) {
   if (/\.dark\b/.test(prelude.replaceAll(/:not\([^)]*\)/g, ""))) return ["dark"];
@@ -51,12 +60,10 @@ function modesOf(prelude) {
   return ["light", "dark"];
 }
 
-/** Later source wins, so the order is Tailwind palette, core theme, skin theme, app overrides. */
 export function tokenMaps(cssSources) {
   const maps = { light: new Map(), dark: new Map() };
   for (const css of cssSources) {
-    for (const block of flattenBlocks(stripComments(css))) {
-      if (!declaresTokens(block.prelude)) continue;
+    for (const block of themeTokenBlocks(css)) {
       const modes = modesOf(block.prelude);
       for (const [name, value] of declarations(block.body)) {
         for (const mode of modes) maps[mode].set(name, value);
@@ -167,7 +174,6 @@ function splitTopLevel(text) {
 const unresolved = (reason) => ({ unresolved: reason });
 const isUnresolved = (result) => Boolean(result?.unresolved);
 
-/** `calc(<base> <op> <n>)`, `calc(<n> * var(--x))` and `calc(<base> * <n>)` — the only calc shapes the packs write. */
 function evaluateCalc(expression, base, tokens, seen, depth) {
   const inner = expression.slice(5, -1).trim();
   const match = /^(\S+)\s*([+\-*])\s*(\S+)$/.exec(inner);
@@ -202,7 +208,6 @@ function resolveScalar(value, tokens, seen, depth) {
   return null;
 }
 
-// Only lightness takes a percentage; a `%` anywhere else is a grammar this engine will not guess at.
 const literalChannel = (text, allowPercent) => (allowPercent || !text.endsWith("%") ? scalar(text) : null);
 
 const channelValue = (text, keyword, base, tokens, seen, depth) => {

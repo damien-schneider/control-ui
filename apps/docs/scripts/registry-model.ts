@@ -83,10 +83,6 @@ function dependencyVersions(manifest: unknown, key: string): Record<string, stri
 
 const projectPackage: unknown = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
 const packageVersions = { ...dependencyVersions(projectPackage, "dependencies"), ...dependencyVersions(projectPackage, "devDependencies") };
-const activeSkinConfigPeer = {
-  importer: "src/registry/skin.ts",
-  source: "src/registry/skin.config.tsx",
-} as const;
 const hostOwnedRelativeImports = new Set(["src/registry/starters/next/layout.tsx::./globals.css"]);
 const hostOwnedPackageImports = new Set([
   "src/registry/starters/next/layout.tsx::next",
@@ -95,6 +91,7 @@ const hostOwnedPackageImports = new Set([
 
 const coreFiles = [
   "src/registry/skin.ts",
+  "src/registry/skin-provider.tsx",
   "src/registry/lib/cn.ts",
   "src/registry/sources/control-ui/control-props.ts",
   "src/registry/sources/control-ui/control-variants.ts",
@@ -105,7 +102,7 @@ const coreFiles = [
   "src/registry/sources/control-ui/scripts/required-pairs.mjs",
 ] as const;
 
-if (coreFiles.length !== 9) throw new Error(`Control UI core must contain exactly 9 files; received ${coreFiles.length}`);
+if (coreFiles.length !== 10) throw new Error(`Control UI core must contain exactly 10 files; received ${coreFiles.length}`);
 
 const styleUtilitySource = "src/registry/sources/control-ui/effects.css";
 
@@ -256,8 +253,6 @@ function sourcePath(file: { path: string }) {
   return file.path;
 }
 
-// `source` anchors parameter: supportFiles-only shape would be weak type and reject every
-// catalog entry that declares no support files.
 function supportFilePaths(entry: { source: { path: string }; supportFiles?: readonly { path: string }[] }): string[] {
   return entry.supportFiles?.map(sourcePath) ?? [];
 }
@@ -384,7 +379,7 @@ function definitions(): Definition[] {
       type: "registry:base",
       title: "Control UI core",
       description: "Shared contracts, skin resolver, utilities, token bindings, and invariant mechanics for Control UI.",
-      docs: `Components compile once a skin pack is installed (it creates skin.config.tsx). Pick one at ${siteConfig.url.origin}/skins, e.g.: npx shadcn@latest add ${siteConfig.url.origin}/r/skin-refined.json --overwrite`,
+      docs: "Components include neutral defaults. Supply your own tokens and an optional SkinProvider to customize the design.",
       seeds: [...coreFiles],
       primary: [...coreFiles],
       internal: true,
@@ -399,10 +394,10 @@ function definitions(): Definition[] {
       id: "all",
       type: "registry:item",
       title: "All Control UI components",
-      description: "Alias for the complete Control UI component set with the Refined skin.",
+      description: "Every Control UI component with neutral library defaults. No skin required.",
       seeds: [],
       primary: [],
-      dependencies: ["all-refined"],
+      dependencies: [...completeComponentSet],
     },
     {
       id: "update",
@@ -459,6 +454,7 @@ function sourceManifestPath(item: Definition) {
 const directSourceTargets = new Map([
   ["src/registry/skin-packs/retro-system-font.css", `${componentRoot}/retro-system-font.css`],
   ["src/registry/skin.ts", `${componentRoot}/skin.ts`],
+  ["src/registry/skin-provider.tsx", `${componentRoot}/skin-provider.tsx`],
   ["src/registry/examples/control-ui/primitives/type-scale.css", `${componentRoot}/styles/type-scale.css`],
   ["src/registry/skills/control-ui-skill.md", "~/.claude/skills/control-ui/SKILL.md"],
   ["src/registry/starters/next/layout.tsx", "~/app/layout.tsx"],
@@ -651,11 +647,7 @@ function collectDefinitionSources(definition: Definition, context: RegistryBuild
     context.ownerBySource.set(source, definition.id);
 
     const imports = importedDependencies(definition.id, source, context);
-    queue.push(
-      ...imports.sources.filter(
-        (importedSource) => source !== activeSkinConfigPeer.importer || importedSource !== activeSkinConfigPeer.source,
-      ),
-    );
+    queue.push(...imports.sources);
     for (const packageDependency of imports.packages) npmDependencies.add(packageDependency);
   }
 
@@ -710,9 +702,7 @@ function createSourceTargetLookup(allSources: Set<string>) {
   for (const source of allSources) {
     try {
       sourceByTarget.set(sourceToTarget(source), source);
-    } catch {
-      // Docs examples and tests are not installable registry sources.
-    }
+    } catch {}
   }
   return sourceByTarget;
 }
@@ -898,8 +888,6 @@ export function createRegistryItems(): RegistrySourceItem[] {
   return output.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-// Every generated public artifact — manifests, the agent index, the setup prompt — is published against the site
-// origin, so a checkout serving a different registry URL cannot emit dependencies the published prompt cannot reach.
 export function publicRegistryUrl(id: string) {
   return `${siteConfig.url.origin}/r/${id}.json`;
 }

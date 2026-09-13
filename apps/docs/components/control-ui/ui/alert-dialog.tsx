@@ -5,7 +5,8 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { Button } from "@/components/control-ui/ui/button";
 
@@ -18,7 +19,6 @@ export type AlertDialogProps = {
 
 export type AlertDialogContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-// No light dismiss — neither backdrop nor Esc closes it, so it needs explicit action.
 export function AlertDialog(props: AlertDialogProps) {
   return <AlertDialogPrimitive.Root {...props} />;
 }
@@ -71,22 +71,22 @@ export function AlertDialogClose({
 }
 
 export function AlertDialogContent({ className, children, ...props }: AlertDialogContentProps) {
+  const skin = useSkin();
   return (
     <AlertDialogPrimitive.Portal>
-      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <AlertDialogPrimitive.Backdrop
         data-control-ui="alert-dialog"
         data-popup-kind="alert-dialog"
         data-slot="backdrop"
         data-control-family="popup"
         data-popup-part="backdrop"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         className="fixed inset-0 z-[70]"
       />
       <AlertDialogPrimitive.Popup
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         data-control-ui="alert-dialog"
         data-popup-kind="alert-dialog"
         data-slot="content"

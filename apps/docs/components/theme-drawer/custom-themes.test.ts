@@ -121,8 +121,8 @@ describe("custom theme library", () => {
   });
 
   test("apply creates a theme and undo restores the exact previous active state", () => {
-    const previous = { ...DEFAULT_THEME, skin: "flat" as const, overrides: { "--radius": "0px" } };
-    const matchingArtifact = { ...ARTIFACT, baseSkin: "flat" as const };
+    const previous = { ...DEFAULT_THEME, skin: "none" as const, overrides: { "--radius": "0px" } };
+    const matchingArtifact = { ...ARTIFACT, baseSkin: "none" as const };
     const applied = applyThemeArtifactToLibrary(previous, [], matchingArtifact, { id: "created", now: "2026-01-01T00:00:00.000Z" });
     expect(applied.theme.customThemeId).toBe("created");
     expect(applied.customThemes).toHaveLength(1);

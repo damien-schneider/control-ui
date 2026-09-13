@@ -29,11 +29,12 @@ describe("Control UI starter registry items", () => {
     expect(allRefined.files).toEqual([]);
   });
 
-  // `all` is thin alias: every per-skin starter owns catalog, so default one must add nothing of its own.
   test("all aliases the Refined starter and owns no source", () => {
     const all = registryItem("all");
 
-    expect(all.registryDependencies).toEqual(["all-refined", "core"]);
+    expect(all.registryDependencies).toContain("core");
+    expect(all.registryDependencies).toContain("button");
+    expect(all.registryDependencies.some((dependency) => dependency.startsWith("skin-") || dependency.startsWith("all-"))).toBe(false);
     expect(all.files).toEqual([]);
     expect(all.css ?? {}).toEqual({});
   });

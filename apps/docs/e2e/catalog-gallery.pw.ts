@@ -13,7 +13,7 @@ test("catalog overviews render every live preview as one browse-only card", asyn
 
   const firstPrimitiveCard = primitiveCards.first();
   const firstPrimitivePreview = firstPrimitiveCard.locator("[data-gallery-preview]");
-  const firstPrimitiveLink = firstPrimitiveCard.locator("a");
+  const firstPrimitiveLink = firstPrimitiveCard.getByRole("link");
   await expect(firstPrimitivePreview).toHaveAttribute("inert", "");
   await expect(firstPrimitivePreview).toHaveAttribute("aria-hidden", "true");
   await expect(firstPrimitiveLink).toHaveCount(1);
@@ -69,7 +69,6 @@ test("gallery columns respond to their available width", async ({ page }) => {
 test("gallery previews mount near the viewport, unmount when distant, and navigate without console errors", async ({ page }) => {
   const consoleErrors: string[] = [];
   page.on("console", (message) => {
-    // SourceBadge's missing-favicon example intentionally exercises a browser 404 fallback.
     if (message.type() === "error" && !message.text().startsWith("Failed to load resource")) consoleErrors.push(message.text());
   });
   page.on("pageerror", (error) => consoleErrors.push(error.message));
@@ -86,9 +85,9 @@ test("gallery previews mount near the viewport, unmount when distant, and naviga
   await firstCard.scrollIntoViewIfNeeded();
   await expect(lastPreview).toHaveAttribute("data-gallery-preview-state", "deferred");
 
-  const firstHref = await firstCard.locator("a").getAttribute("href");
+  const firstHref = await firstCard.getByRole("link").getAttribute("href");
   expect(firstHref).toBeTruthy();
-  await firstCard.locator("a").click();
+  await firstCard.getByRole("link").click();
   await expect(page).toHaveURL(firstHref ?? "");
 
   await page.goto("/ai");

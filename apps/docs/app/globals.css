@@ -82,15 +82,13 @@
 @import "../src/registry/sources/control-ui/effects.css";
 @import "../src/registry/sources/control-ui/extensions/view-transition.css";
 @import "../src/registry/sources/control-ui/extensions/control-effects.css";
-/* every pack ships here so the live editor can switch data-skin without loading another stylesheet */
+
 @import "../src/registry/skin-packs/refined/theme.css";
 @import "../src/registry/skin-packs/refined/skin.css";
 @import "../src/registry/skin-packs/xp/theme.css";
 @import "../src/registry/skin-packs/xp/skin.css";
 @import "../src/registry/skin-packs/windows-98/theme.css";
 @import "../src/registry/skin-packs/windows-98/skin.css";
-@import "../src/registry/skin-packs/flat/theme.css";
-@import "../src/registry/skin-packs/flat/skin.css";
 @import "../src/registry/skin-packs/rig/theme.css";
 @import "../src/registry/skin-packs/rig/skin.css";
 @import "../src/registry/skin-packs/liquid-metal/theme.css";
@@ -125,7 +123,6 @@
   --cui-button-shadow: 0 0 14px oklch(0.62 0.24 330 / 0.55);
 }
 
-/* Installed themes leave body paint to consumers. */
 @layer base {
   :root {
     --control-ui-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='224'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='224' height='224' filter='url(%23p)'/%3E%3C/svg%3E");
@@ -148,14 +145,12 @@
   }
 }
 
-/* Unlayered so Refined's continuous canvas wins over shell utilities. */
 :root[data-skin="refined"] [data-control-ui="sidebar-layout"][data-slot="content"] {
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
 }
 
-/* docs-sidebar-resize-handle.tsx flags wrapper mid-drag so Sidebar's baked-in transition-[width] doesn't fight cursor with lagged easing. */
 [data-resizing="true"] [data-control-ui="sidebar"][data-slot="gap"],
 [data-resizing="true"] [data-control-ui="sidebar"][data-slot="container"] {
   transition-property: none;
@@ -183,7 +178,6 @@
     font: inherit;
   }
 
-  /* Browsers add their own chrome to native color swatches. */
   input[type="color"] {
     appearance: none;
     -webkit-appearance: none;

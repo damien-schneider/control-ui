@@ -86,7 +86,7 @@ function collectStyles(items: Manifest[]) {
 }
 
 export function closure() {
-  const items = itemsInInstallOrder("all-refined");
+  const items = itemsInInstallOrder("all");
   return { files: collectFiles(items), dependencies: collectDependencies(items), styles: collectStyles(items) };
 }
 

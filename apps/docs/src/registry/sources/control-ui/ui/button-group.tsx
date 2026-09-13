@@ -6,7 +6,8 @@ import type { ControlSize } from "@/components/control-ui/control-variants";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { ButtonGroupKnobStyle } from "@/components/control-ui/knob-contracts/button-group-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinIndicator } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
+
 import { ButtonTrackContext, buttonTrackStructureClasses } from "@/components/control-ui/ui/button";
 
 export type ButtonGroupTextProps = Omit<
@@ -29,7 +30,8 @@ export type ButtonGroupSeparatorProps = Omit<
 > & { style?: CSSProperties & ButtonGroupKnobStyle };
 
 export function ButtonGroup({ orientation = "horizontal", indicator, className, children, ...props }: ButtonGroupProps) {
-  const resolvedIndicator = indicator ?? skinIndicator("button-group") ?? "none";
+  const skin = useSkin();
+  const resolvedIndicator = indicator ?? skin.indicators?.["button-group"] ?? "none";
   const tracksHover = resolvedIndicator === "hover";
   return (
     <ButtonTrackContext value={tracksHover}>

@@ -30,7 +30,7 @@
 ```
 
   <GuidePoints>
-    <GuidePoint>One skin must be installed and activated with `data-skin`; there is no implicit token fallback.</GuidePoint>
+    <GuidePoint>Core provides neutral defaults. Optional scoped skins use `SkinProvider` and a matching `data-skin` boundary.</GuidePoint>
     <GuidePoint>Every skin resolves the full contract — color, typography, radius, shadow, motion, surface — in both modes.</GuidePoint>
     <GuidePoint>A pack declares its tokens under `[data-skin="id"][data-skin]`, which out-specifies a bare `:root` on the same element. Your old `:root` values go dead — delete them. The exception is names no skin declares (`--chart-*` and other app extensions): those keep painting beside the skin, so re-point them at skin tokens. To override a pack token on purpose, match the weight: `:root[data-skin]`.</GuidePoint>
     <GuidePoint>An app `@theme` block never goes dead: Tailwind merges every `@theme` and the last declaration wins. Redeclaring mapped keys — `--color-*`, `--radius-sm` through `--radius-2xl`, `--font-*` — after the Control UI imports detaches those utilities from the skin. Keep your `@theme` to keys Control UI does not map; `scripts/control-ui-doctor.mjs` in the installed directory reports any collision.</GuidePoint>

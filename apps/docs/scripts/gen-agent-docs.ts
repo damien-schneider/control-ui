@@ -83,7 +83,7 @@ function buildLlmsFull() {
     `- Skin anatomy: \`${base}/r/contract/index.json\` lists every paint family; read \`${base}/r/contract/<family>.json\` for the family you restyle, its \`.contrast.json\` sibling for what paints behind it, and \`GET ${base}/api/registry/<id>\` for one item's slice. Do not guess selectors.`,
     "- Component knobs: every component paints through registered `--cui-<family>-*` CSS custom properties (e.g. `--cui-button-radius`). A family slice carries its knobs with syntax and recipe defaults; restyle per instance via the typed `style` prop or from a skin, never by overriding Tailwind classes.",
     "- Install: run the item's `install` command (`npx shadcn@latest add <url>`). Installed files are yours to own and edit.",
-    "- Skinning: a skin is additive CSS + a `skin.config`; install a skin pack to restyle every component at once.",
+    "- Skinning: core has neutral defaults. Consumer CSS owns the theme; optional SkinProvider configs and registry presets add scoped behavior and adornments.",
     `- Setting up a repository from scratch: \`${base}/r/${publicPayloads.setupPrompt}\` is the full procedure, including the wiring steps that fail silently when skipped.`,
     `- Working where Control UI is already installed: \`${base}/r/${publicPayloads.controlUiSkill}\` is the installable skill carrying the token contract and the working rules (mirrored at \`skills/control-ui/SKILL.md\`).`,
     "",

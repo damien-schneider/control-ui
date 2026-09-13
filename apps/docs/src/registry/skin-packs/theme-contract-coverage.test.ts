@@ -6,8 +6,7 @@ import postcss, { type AtRule, type Declaration, type Node, type Root, type Rule
 import { readCssWithImports } from "../../../scripts/read-css";
 import { REQUIRED_THEME_CONTRACT, THEME_CONTRACT, THEME_CONTRACT_NAMES } from "../lib/theme-contract";
 
-const DERIVED_CONTRACT_NAMES = new Set(THEME_CONTRACT.filter((token) => token.tier === "derived").map((token) => token.name));
-const SKIN_ROOT_DEFAULTS_SELECTOR = /^:where\(\[data-skin\]\)$|^:where\(\.dark \[data-skin\], \.dark\[data-skin\]\)$/;
+const SKIN_ROOT_DEFAULTS_SELECTOR = /^:where\((?::root|\.dark:root), [^)]*\[data-skin\][^)]*\)$/;
 
 const SKIN_PACKS_DIR = fileURLToPath(new URL("./", import.meta.url));
 const CORE_THEME_PATH = fileURLToPath(new URL("../sources/control-ui/theme.css", import.meta.url));
@@ -139,9 +138,8 @@ function coreContractDeclarationIsAllowed(declaration: Declaration): boolean {
     return !declaration.important && declaration.value.trim() === `var(${declaration.prop})`;
   }
 
-  // derived tier: core ships default on zero-specificity skin root; packs re-value it in theme.css
   const selectorForDerived = declarationRule(declaration)?.selector ?? "";
-  if (DERIVED_CONTRACT_NAMES.has(declaration.prop) && SKIN_ROOT_DEFAULTS_SELECTOR.test(selectorForDerived.trim())) {
+  if (SKIN_ROOT_DEFAULTS_SELECTOR.test(selectorForDerived.trim())) {
     return atRules.length === 0 && !declaration.important;
   }
 
@@ -218,6 +216,15 @@ function rootBlockDeclarationOffenders(root: Root): string[] {
 }
 
 describe("theme contract ownership", () => {
+  test("the baseline resolves every required token without a skin", () => {
+    const declared = new Set(
+      customDeclarations(CORE_THEME)
+        .filter((declaration) => declarationRule(declaration)?.selector === ":where(:root, [data-skin])")
+        .map((declaration) => declaration.prop),
+    );
+    expect(REQUIRED_THEME_CONTRACT.filter((token) => !declared.has(token.name))).toEqual([]);
+  });
+
   test("the contract is non-empty, unique, and holds its anchors", () => {
     expect(THEME_CONTRACT.length).toBeGreaterThan(100);
     expect(THEME_CONTRACT_NAMES.size).toBe(THEME_CONTRACT.length);
@@ -235,7 +242,7 @@ describe("theme contract ownership", () => {
     expect(offenders).toEqual([]);
   });
 
-  test("core has no contract defaults", () => {
+  test("core defaults stay at zero specificity", () => {
     const offenders = customDeclarations(CORE_THEME)
       .filter((declaration) => THEME_CONTRACT_NAMES.has(declaration.prop) && !coreContractDeclarationIsAllowed(declaration))
       .map(sourceLabel);

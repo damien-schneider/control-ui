@@ -1,72 +1,63 @@
-<GuideSection id="lanes" title="Two lanes">
-  A skin is the token contract resolved twice — light and dark — plus optional component-level CSS. Two ways to make one
-  yours, and the first is usually enough: re-value tokens over an installed pack, or own a full pack when the design
-  system is yours end to end.
-
-  The theme editor in these docs drives the first lane visually — edit tokens live, audit contrast, copy the override.
-  The AI builder produces the same shape from a prompt.
+<GuideSection id="lanes" title="Start with the defaults">
+  Control UI renders without a skin. Core owns a complete neutral token baseline in light and dark modes.
+  Your application owns its theme: override shared tokens, then use component knobs for specific treatments.
 </GuideSection>
 
-<GuideSection id="override" title="Re-value tokens over a pack">
-  Keep the installed pack and re-value tokens in your own CSS, after the skin imports. Scope the override the way the
-  pack scopes itself, repeating `[data-skin]` — portalled surfaces re-assert `data-skin` on their positioner, so a
-  `:root` override never reaches them. Match the pack's weight and the later rule wins.
+<GuideSection id="override" title="Re-value application tokens">
+  Override tokens in your own CSS after the library imports. With no provider, root tokens also reach portalled surfaces.
 
 ```css
-/* app/globals.css, after the skin imports */
-[data-skin="refined"][data-skin] {
-  --primary: oklch(0.55 0.2 260);
-  --radius: 10px;
+:root {
+  --primary: oklch(0.45 0.18 260);
+  --radius: 4px;
 }
-
-:where(.dark) [data-skin="refined"][data-skin],
-.dark[data-skin="refined"][data-skin] {
-  --primary: oklch(0.72 0.17 260);
+.dark {
+  --primary: oklch(0.78 0.1 260);
 }
 ```
 
-  This lane survives every update: `update` never touches your CSS entry, and reinstalling the pack refreshes the
-  pack's files without reclaiming your overrides. The theme editor's copy button emits exactly this block.
+  These overrides survive component updates because they belong to your application. You only need to declare the
+  values that differ from the library defaults.
 </GuideSection>
 
-<GuideSection id="pack" title="Own a full pack">
-  A pack is three files, already in your project: `skin-theme.css`, `skin.css`, and `skin.config.tsx`. Start from Flat —
-  the smallest complete pack, 83 lines of tokens over an intentionally empty `skin.css` — then make it yours.
+<GuideSection id="pack" title="Add an optional skin">
+  A named skin can own `skin-theme.css` for tokens, `skin.css` for component knobs, and `skin.config.tsx` for behavior
+  choices and adornments. Refined and the other registry presets are examples you can install and edit.
 
-  <GuideCode kind="skin-scaffold-install" />
+  <GuideCode kind="skin-install" />
 
-  Give the pack its own id. It appears in three places and all three must agree: the `[data-skin="…"]` selectors in
-  `skin-theme.css`, the `id` in `skin.config.tsx`, and the `data-skin` attribute on your root element. A mismatch does
-  not fail loudly — the page keeps its tokens while every popover, dialog, and menu renders with none, because portals
-  stamp the config `id` on their positioner.
+  Import the installed `skin-theme.css` and `skin.css` after core and recipe CSS. Supply the config through the provider
+  in a client module, so configurations containing render functions remain inside the client boundary:
 
-  Then resolve the contract: 46 tokens required in both modes — the 26 core roles plus the 20 the theme editor groups
-  under advanced (shadows, motion, overlay opacity, control geometry). Advanced means edited less often, not optional.
-  The remaining 84 contract tokens are derived: core ships their defaults, re-value them only when the look calls for
-  it. Tests enforce these boundaries on every shipped pack.
+```tsx
+"use client";
 
-  <GuidePoints>
-    <GuidePoint>`skin-theme.css` — the full token contract, both modes, nothing else.</GuidePoint>
-    <GuidePoint>`skin.css` — component-level CSS under your `data-skin` root; it never redeclares a contract token.</GuidePoint>
-    <GuidePoint>`skin.config.tsx` — the id plus typed behavior choices and optional adornments; Flat needs only the id.</GuidePoint>
-  </GuidePoints>
+import type { ReactNode } from "react";
+import { SkinProvider } from "@/components/control-ui/skin-provider";
+import { skin } from "@/components/control-ui/skin.config";
+
+export function AppTheme({ children }: { children: ReactNode }) {
+  return <SkinProvider skin={skin}><div data-skin={skin.id}>{children}</div></SkinProvider>;
+}
+```
+
+  The CSS selector and provider id must agree. A portalled popover, dialog, or menu receives that same id.
+  Each provider scopes its own subtree; omitting a provider uses the neutral defaults and root theme.
+
+  The example packs resolve the required token contract explicitly so each has a complete, independent appearance.
+  A consumer theme may inherit defaults and override only the values it needs.
 </GuideSection>
 
 <GuideSection id="knobs" title="Go deeper with component knobs">
-  When tokens cannot express the look — a gradient hover, a popup family with its own border treatment — re-value the
-  registered `--cui-*` knobs in `skin.css`. Every visual decision in a recipe reads one, and all 452 knobs inherit, so
-  a value set at the family root reaches every part beneath it.
+  When shared tokens cannot express a treatment, re-value the registered `--cui-*` knobs in your CSS.
 
 ```css
-/* skin.css — one family, restyled at its root. */
 [data-skin="acme"] :where([data-control-family="button"][data-control="true"]) {
   --cui-button-radius: 999px;
   --cui-button-hover-background: oklch(from var(--primary) l c h / 0.12);
 }
 ```
 
-  Every knob — name, syntax, initial value, recipe default — is published in that family's generated
-  `/r/contract/<family>.json`, so a skin can be written or generated against the catalog instead of the recipe sources. Set
-  knobs at family roots: a knob set on an inner part is final and beats every inherited re-value, including inline
-  styles. The full resolution story is in the architecture guide's cascade contract.
+  Every knob's name, syntax, initial value, and recipe default appear in its family's `/r/contract/` file.
+  Re-value knobs at family roots so their parts inherit the treatment.
 </GuideSection>

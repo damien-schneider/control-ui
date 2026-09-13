@@ -13,7 +13,7 @@
 </GuideSection>
 
 <GuideSection id="skins" title="Skins over one component tree">
-  Every skin owns the same three files over one component source. Its `theme.css` explicitly resolves the complete token
+  Core renders without a skin and owns a complete neutral token baseline. Optional example skins own three files over one component source. Its `theme.css` explicitly resolves the complete token
   contract for light and dark modes; it never inherits another skin's values. Component recipes declare registered,
   typed custom-property knobs for every visual decision. Scoped `skin.css` re-values those knobs and owns CSS-only work:
   pseudo-elements, keyframes, native chrome, relational selectors, and uniform semantic families. `skin.config.tsx`
@@ -73,12 +73,12 @@
 </GuideSection>
 
 <GuideSection id="skin-cost" title="Keep the active skin sparse">
-  `skin.config.tsx` is one shared ES module containing only behavior choices and optional adornments. Component rendering
+  `SkinProvider` accepts a consumer-owned config containing behavior choices and optional adornments. Without a provider, components use their own defaults. Each provider scopes its subtree, including portals. Component rendering
   performs no runtime class lookup: recipes read registered custom properties directly from CSS. Visual breadth therefore
   adds no active JavaScript, and unused component recipes remain outside an install unless the component manifest declares
   them.
 
-  Bundle tests cap every shipped config at 4 kB gzip. Refined and Flat remain nearly empty; richer packs pay only for their
+  Bundle tests cap every shipped config at 4 kB gzip. Refined remains nearly empty; richer packs pay only for their
   behavior and adornment config, not once per rendered component.
 </GuideSection>
 

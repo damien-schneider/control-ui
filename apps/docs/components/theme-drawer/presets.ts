@@ -9,7 +9,7 @@ import type { LabelMode, SkinId, ThemeState, TokenValues } from "./types";
 export const SKIN_META_BY_ID = objectFromEntries(skinMetas.map((meta): [SkinId, CatalogSkinMeta] => [meta.id, meta]));
 export const THEME_SKIN_IDS = skinMetas.flatMap((meta) => (meta.kind === "theme" ? [meta.id] : []));
 export const ADVANCED_SKIN_IDS = skinMetas.flatMap((meta) => (meta.kind === "advanced" ? [meta.id] : []));
-export const ALL_SKIN_IDS = [...THEME_SKIN_IDS, ...ADVANCED_SKIN_IDS];
+export const ALL_SKIN_IDS = ["none", ...THEME_SKIN_IDS.filter((id) => id !== "none"), ...ADVANCED_SKIN_IDS] as const;
 
 export function isSkinId(value: unknown): value is SkinId {
   return typeof value === "string" && Object.hasOwn(SKIN_META_BY_ID, value);
@@ -46,10 +46,11 @@ export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | nul
     if (!raw) return null;
     const stored: unknown = JSON.parse(raw);
     if (!isRecord(stored)) return null;
+    const storedSkin = stored.skin === "flat" ? "none" : stored.skin;
     const isLegacy = Array.isArray(stored.overrides) || typeof stored.primary === "string";
     return {
       ...DEFAULT_THEME,
-      skin: isSkinId(stored.skin) ? stored.skin : DEFAULT_THEME.skin,
+      skin: isSkinId(storedSkin) ? storedSkin : DEFAULT_THEME.skin,
       customThemeId: typeof stored.customThemeId === "string" ? stored.customThemeId : null,
       reduceMotion: stored.reduceMotion === true,
       labelMode: readLabelMode(stored.labelMode),

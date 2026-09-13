@@ -4,10 +4,6 @@ import { fileURLToPath } from "node:url";
 import { buildOverrideDecls, buildOverrideSheetCss } from "./override-decls";
 import type { ThemeState } from "./types";
 
-// SPEC for editor→skin override path + portal fix: Overlay/Popover opacity tokens did nothing on portalled surfaces (XP dialogs) because inline <html> vars don't reach body-portalled elements that re-assert data-skin.
-// buildOverrideSheetCss carries diff to them, scoped to ACTIVE skin so it wins cascade there.
-// DOM-free pure serializers, run under bun test.
-
 const BASE: ThemeState = {
   skin: "xp",
   customThemeId: null,
@@ -38,7 +34,7 @@ describe("buildOverrideDecls — authors ONLY the overridden tokens", () => {
   test("editing one token never drags companions along (per-token contract)", () => {
     const m = declMap(theme({ overrides: { "--radius": "10px" } }));
     expect(m["--radius"]).toBe("10px");
-    // Derived rungs stay derived in theme.css — editor must not pin them.
+
     expect(m["--radius-control"]).toBeUndefined();
     expect(Object.keys(m)).toHaveLength(1);
   });
@@ -64,7 +60,7 @@ describe("buildOverrideDecls — authors ONLY the overridden tokens", () => {
     const t = theme({ light: { "--primary": "oklch(0.55 0.2 260)" } });
     const dark = declMap(t, true);
     expect(dark["--primary"]).toBeDefined();
-    expect(dark["--primary"]).not.toBe("oklch(0.55 0.2 260)"); // adapted, not copied
+    expect(dark["--primary"]).not.toBe("oklch(0.55 0.2 260)");
     expect(dark["--primary-foreground"]).toBeDefined();
   });
 
@@ -111,7 +107,7 @@ describe("buildOverrideSheetCss — the portal fix: scope the diff to the ACTIVE
 
   test("the selector targets the active skin — so it matches that skin's portalled surfaces", () => {
     expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).toStartWith(`[data-skin="rig"]`);
-    // The repeated attribute is weight, not a second scope: it must never widen to every skin on a multi-skin page.
+
     expect(buildOverrideSheetCss("rig", [["--radius", "4px"]])).not.toContain("[data-skin] [");
   });
 
@@ -138,6 +134,6 @@ describe("component contract: portalled surfaces still consume the overlay/popov
   });
 
   test("portalled surfaces re-assert data-skin (so they need the scoped override sheet)", () => {
-    expect(read("../control-ui/ui/dialog.tsx")).toContain("data-skin={skinId()}");
+    expect(read("../control-ui/ui/dialog.tsx")).toContain("data-skin={skin.id}");
   });
 });

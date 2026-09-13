@@ -36,10 +36,9 @@ rm -f src/components/control-ui/tool-call.tsx src/components/control-ui/hooks/us
 
 Start with a React application configured for shadcn and Tailwind CSS v4.
 
-### 1. Install a skin and component
+### 1. Install components
 
 ```bash
-npx shadcn@latest add https://control-ui.dev/r/skin-refined.json
 npx shadcn@latest add https://control-ui.dev/r/chat-message.json
 ```
 
@@ -53,18 +52,16 @@ Add the imports once in `app/globals.css` or `src/app/globals.css`:
 @import "tailwindcss";
 @import "../components/control-ui/styles/theme.css";
 @import "../components/control-ui/styles/effects.css";
-@import "../components/control-ui/styles/skin-theme.css";
-@import "../components/control-ui/styles/skin.css";
 ```
 
-### 3. Activate the skin
+### 3. Set up your root layout
 
 ```tsx
 import type { ReactNode } from "react";
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" data-skin="refined">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
@@ -106,7 +103,7 @@ See the [getting-started guide](https://control-ui.dev/get-started) for skin cho
 
 ### Prefer a package?
 
-The same set ships as `@ctrl-ui/react` with the Refined skin baked in. Import paths mirror the registry tree, so every example above works after replacing `@/components/control-ui/` with `@ctrl-ui/react/`.
+The same set ships as `@ctrl-ui/react` with neutral defaults and no skin presets. Import paths mirror the registry tree, so every example above works after replacing `@/components/control-ui/` with `@ctrl-ui/react/`.
 
 ```bash
 bun add @ctrl-ui/react
@@ -118,7 +115,7 @@ bun add @ctrl-ui/react
 @source "../node_modules/@ctrl-ui/react/dist";
 ```
 
-Stamp `data-skin="refined"` as in step 3. Choose the registry when you want to edit the source or run another skin.
+The package includes neutral defaults and no skin presets. Customize application tokens directly, or supply a consumer-owned config through the optional SkinProvider. Choose the registry when you want to edit component source.
 
 ## Explore the catalog
 
@@ -181,7 +178,7 @@ Run `bun run sync` after changing registry source, catalog metadata, or skin pac
 | `apps/docs/registry` | Generated source manifests |
 | `apps/docs/public/r` | Generated shadcn payloads served to consumers |
 | `apps/docs/components/control-ui` | Generated installed fixture used by the docs app |
-| `packages/components` | `@ctrl-ui/react`, the `all-refined` install set as an npm package; its `src/` is generated |
+| `packages/components` | `@ctrl-ui/react`, the skin-free `all` install set as an npm package; its `src/` is generated |
 
 Do not edit generated manifests, payloads, or the installed fixture directly. Change the canonical source and run `bun run sync`.
 

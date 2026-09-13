@@ -7,7 +7,8 @@ import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 export type SelectProps<TValue extends string = string> = ControlledChoice<TValue> & {
@@ -30,7 +31,8 @@ export type SelectValueProps = {
   children?: ReactNode | ((value: string) => ReactNode);
 };
 
-export type SelectContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type SelectContentProps = Omit<ComponentProps<"div">, "style"> &
+  Pick<ComponentProps<typeof SelectPrimitive.Positioner>, "alignItemWithTrigger"> & { style?: CSSProperties & PopupKnobStyle };
 
 export type SelectItemProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle } & {
   value: string;
@@ -41,8 +43,6 @@ export type SelectItemProps = Omit<ComponentProps<"div">, "style"> & { style?: C
 type RefinedSelectTriggerProps = SelectTriggerProps &
   Pick<ComponentProps<typeof SelectPrimitive.Trigger>, "nativeButton" | "render"> & { style?: CSSProperties & PopupKnobStyle };
 
-// Base UI's own root is generic (`SelectRoot<Value>`) and reports null once selection is cleared;
-// naming TValue here is what keeps caller's literal union alive, and null never reaches declared value.
 export function Select<TValue extends string = string>({ children, onValueChange, ...props }: SelectProps<TValue>) {
   return (
     <SelectPrimitive.Root<TValue>
@@ -103,16 +103,17 @@ export function SelectValue({ children, ...props }: SelectValueProps) {
   );
 }
 
-export function SelectContent({ className, children, ...props }: SelectContentProps) {
+export function SelectContent({ className, children, alignItemWithTrigger, ...props }: SelectContentProps) {
+  const skin = useSkin();
   return (
     <SelectPrimitive.Portal>
-      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <SelectPrimitive.Positioner
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side="bottom"
         align="start"
         sideOffset={6}
+        alignItemWithTrigger={alignItemWithTrigger}
         className="z-[80]"
       >
         <SelectPrimitive.Popup

@@ -23,7 +23,8 @@ import {
   setChannel,
 } from "@/components/control-ui/lib/color";
 import { contrastOf, fixColorForContrast, nextFixLevel, TARGET_RATIO, wcagLevels } from "@/components/control-ui/lib/contrast";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Input } from "@/components/control-ui/ui/input";
 import { NumberField, NumberFieldGroup, NumberFieldInput } from "@/components/control-ui/ui/number-field";
@@ -129,10 +130,9 @@ export type ColorPickerOutputProps = Omit<Omit<ComponentProps<"div">, "children"
   renderValue?: (state: { value: string }) => ReactNode;
 };
 
-// gradient data, deliberately not tokens
 const HUE_GRADIENT =
   "linear-gradient(to right, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
-// adapts to light and dark through border token
+
 const CHECKER = "repeating-conic-gradient(oklch(from var(--border) l c h) 0 25%, transparent 0 50%)";
 const CHECKER_SIZE = "10px 10px";
 const RING_THUMB = "block -translate-x-1/2";
@@ -151,7 +151,6 @@ const CHANNEL_NAMES: Record<ChannelId, string> = {
   a: "Opacity",
 };
 
-// Keep hue (and sat at true black) when color arrives achromatic, so thumbs don't jump to red.
 function reconcileAchromatic(prev: Hsva, next: Hsva): Hsva {
   if (next.v === 0) return { ...next, h: prev.h, s: prev.s };
   if (next.s === 0) return { ...next, h: prev.h };
@@ -206,7 +205,6 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
   const [formatState, setFormatState] = useState<ColorFormat>(defaultFormat);
   const format = formatProp ?? formatState;
 
-  // refs so setters read fresh state during fast pointer drags, without side effects inside state updater
   const hsvaRef = useRef(hsva);
   const formatRef = useRef(format);
   const alphaRef = useRef(alpha);
@@ -220,7 +218,6 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
     onValueChangeRef.current = onValueChange;
   }, [hsva, format, alpha, onValueChange]);
 
-  // context value rebuilds every render anyway, so memoized handler identity buys nothing
   const emit = (next: Hsva, fmt: ColorFormat) => {
     const str = formatColor(next, fmt, { alpha: alphaRef.current });
     lastEmitted.current = str;
@@ -232,7 +229,6 @@ function useColorState(props: ColorPickerProps): ColorPickerContextValue {
     emit(next, formatRef.current);
   };
 
-  // skips echo of its own emit, which would jitter thumbs
   useEffect(() => {
     if (lastEmitted.current === null) lastEmitted.current = formatColor(hsvaRef.current, formatRef.current, { alpha: alphaRef.current });
     if (value === undefined || value === lastEmitted.current) return;
@@ -329,16 +325,16 @@ export function ColorPickerContent({
   sideOffset = 6,
   ...props
 }: ColorPickerContentProps) {
+  const skin = useSkin();
   return (
     <PopoverPrimitive.Portal>
-      {/* portal lands outside token-scoped tree, so scope is re-asserted here */}
       <PopoverPrimitive.Positioner
         data-control-ui="color-picker"
         data-popup-kind="color-picker"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side={side}
         align={align}
         sideOffset={sideOffset}
@@ -388,7 +384,7 @@ export function ColorPickerArea({ className, style, ...props }: ColorPickerAreaP
   });
 
   function axisKey(axis: "s" | "v", event: ReactKeyboardEvent) {
-    if (!event.shiftKey) return; // native step (1) handles the un-shifted arrows
+    if (!event.shiftKey) return;
     const cur = axis === "s" ? hsva.s : hsva.v;
     let delta = 0;
     if (event.key === "ArrowUp" || event.key === "ArrowRight") delta = 10;
@@ -560,8 +556,6 @@ export function ColorPickerAlpha({
     </SliderPrimitive.Root>
   );
 }
-
-// alternate to Area + Hue
 
 const WHEEL_HUE =
   "conic-gradient(from 90deg, hsl(0 100% 50%), hsl(60 100% 50%), hsl(120 100% 50%), hsl(180 100% 50%), hsl(240 100% 50%), hsl(300 100% 50%), hsl(360 100% 50%))";
@@ -773,9 +767,7 @@ export function ColorPickerEyeDropper({ className, children, ...props }: ColorPi
     try {
       const result = await new Ctor().open();
       setFromString(result.sRGBHex);
-    } catch {
-      // user cancelled — ignore
-    }
+    } catch {}
   };
   return (
     <Button

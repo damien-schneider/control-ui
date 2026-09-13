@@ -6,7 +6,8 @@ import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinSidebarWidth } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
+
 import { TooltipProvider } from "@/components/control-ui/ui/tooltip";
 
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -63,6 +64,7 @@ export function SidebarProvider({
   children,
   ...props
 }: SidebarProviderProps) {
+  const skin = useSkin();
   const isMobile = useIsMobile(SIDEBAR_MOBILE_BREAKPOINT);
   const [openMobile, setOpenMobile] = useState(false);
 
@@ -107,7 +109,7 @@ export function SidebarProvider({
   const contextValue: SidebarContextProps = { state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar };
 
   const wrapperStyle: SidebarStyle = {
-    "--sidebar-width": skinSidebarWidth() ?? SIDEBAR_WIDTH,
+    "--sidebar-width": skin.sidebarWidth ?? SIDEBAR_WIDTH,
     "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
     ...style,
   };

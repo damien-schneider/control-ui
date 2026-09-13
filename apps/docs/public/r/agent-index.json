@@ -11,7 +11,7 @@
         "id": "all-refined",
         "skin": "refined",
         "name": "All components — Refined",
-        "summary": "Complete canonical Control UI component set with the Refined skin.",
+        "summary": "Compact, calm starting skin with a complete Control UI token contract.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-refined.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-refined.json"
       },
@@ -19,7 +19,7 @@
         "id": "all-xp",
         "skin": "xp",
         "name": "All components — Windows XP",
-        "summary": "Complete canonical Control UI component set with the Windows XP skin.",
+        "summary": "Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-xp.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-xp.json"
       },
@@ -27,7 +27,7 @@
         "id": "all-windows-98",
         "skin": "windows-98",
         "name": "All components — Windows 98",
-        "summary": "Complete canonical Control UI component set with the Windows 98 skin.",
+        "summary": "Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-windows-98.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-windows-98.json"
       },
@@ -35,7 +35,7 @@
         "id": "all-liquid-metal",
         "skin": "liquid-metal",
         "name": "All components — Liquid metal",
-        "summary": "Complete canonical Control UI component set with the Liquid metal skin.",
+        "summary": "Polished metal skin with a WebGL shader control surface.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-liquid-metal.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-liquid-metal.json"
       },
@@ -43,23 +43,23 @@
         "id": "all-rig",
         "skin": "rig",
         "name": "All components — Rig",
-        "summary": "Complete canonical Control UI component set with the Rig skin.",
+        "summary": "Brutalist skin with coral accents, squared corners, and dense typography.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-rig.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-rig.json"
       },
       {
-        "id": "all-flat",
-        "skin": "flat",
-        "name": "All components — Flat",
-        "summary": "Complete canonical Control UI component set with the Flat skin.",
-        "manifestUrl": "http://127.0.0.1:3000/r/all-flat.json",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-flat.json"
+        "id": "all",
+        "skin": "none",
+        "name": "All components — No skin",
+        "summary": "Control UI defaults: neutral colors, square corners, and no shadows. No skin required.",
+        "manifestUrl": "http://127.0.0.1:3000/r/all.json",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all.json"
       },
       {
         "id": "all-modern-apple",
         "skin": "modern-apple",
-        "name": "All components — Modern Apple",
-        "summary": "Complete canonical Control UI component set with the Modern Apple skin.",
+        "name": "All components — macOS",
+        "summary": "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-modern-apple.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-modern-apple.json"
       },
@@ -67,7 +67,7 @@
         "id": "all-cuicui",
         "skin": "cuicui",
         "name": "All components — Cuicui",
-        "summary": "Complete canonical Control UI component set with the Cuicui skin.",
+        "summary": "Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).",
         "manifestUrl": "http://127.0.0.1:3000/r/all-cuicui.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-cuicui.json"
       },
@@ -75,7 +75,7 @@
         "id": "all-linear",
         "skin": "linear",
         "name": "All components — Linear",
-        "summary": "Complete canonical Control UI component set with the Linear skin.",
+        "summary": "Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-linear.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-linear.json"
       }
@@ -300,16 +300,15 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-rig.json --overwrite"
       },
       {
-        "id": "flat",
-        "name": "Flat",
+        "id": "none",
+        "name": "No skin",
         "kind": "Skin",
-        "summary": "Neutral reset skin with square corners, no shadows, and the stock motion tempo.",
-        "href": "/skins/flat",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-flat.json --overwrite"
+        "summary": "Control UI defaults: neutral colors, square corners, and no shadows. No skin required.",
+        "href": "/skins/none"
       },
       {
         "id": "modern-apple",
-        "name": "Modern Apple",
+        "name": "macOS",
         "kind": "Skin",
         "summary": "Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.",
         "href": "/skins/modern-apple",

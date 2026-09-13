@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { DEFAULT_SKIN_ID, MODE_LOCKED_SKINS, THEME_EDITOR_STORAGE_KEY, THEME_INIT_SKIN_IDS, THEME_STORAGE_KEY } from "@/components/theme";
+import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 
 for (const skin of THEME_INIT_SKIN_IDS) {
   test(`${skin} restores before application JavaScript loads`, async ({ page }, testInfo) => {
@@ -51,9 +52,7 @@ for (const skin of THEME_INIT_SKIN_IDS) {
       if (MODE_LOCKED_SKINS[skin] !== "light") expect(beforeHydration.background).toBe("oklch(0.2 0.01 50)");
       if (skin === "rig") await page.screenshot({ path: testInfo.outputPath("before-hydration.png") });
       releaseScripts();
-      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText(
-        skin === "windows-98" ? "Windows 98" : new RegExp(skin.replaceAll("-", "[ -]"), "i"),
-      );
+      await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText(SKIN_META_BY_ID[skin].label);
       const afterHydration = await page.locator("html").evaluate((html) => ({
         radius: html.style.getPropertyValue("--radius-control"),
         primary: html.style.getPropertyValue("--primary"),

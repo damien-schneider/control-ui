@@ -2,10 +2,10 @@
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import type { ComponentProps, CSSProperties } from "react";
-
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 export const popoverContentPaddings = ["default", "none"] as const;
 
@@ -19,7 +19,7 @@ type PopoverPopupProps = Omit<ComponentProps<typeof PopoverPrimitive.Popup>, "st
   padding?: PopoverContentPadding;
   style?: CSSProperties & PopupKnobStyle;
 };
-// shadcn-shaped facade, so shadcn Popover snippets compose verbatim
+
 export function Popover(props: ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root {...props} />;
 }
@@ -34,7 +34,6 @@ export function PopoverTrigger({
 }
 
 export function PopoverAnchor(props: ComponentProps<typeof PopoverPrimitive.Trigger>) {
-  // pass render child to anchor somewhere other than trigger
   return <PopoverPrimitive.Trigger {...props} />;
 }
 
@@ -48,12 +47,12 @@ export function PopoverContent({
   padding = "default",
   ...props
 }: PopoverPopupProps) {
+  const skin = useSkin();
   return (
     <PopoverPrimitive.Portal>
-      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
       <PopoverPrimitive.Positioner
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side={side}
         align={align}
         sideOffset={sideOffset}

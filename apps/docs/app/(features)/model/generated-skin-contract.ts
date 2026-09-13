@@ -11492,42 +11492,6 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
-        action: {
-          family: "popup",
-          registryItems: ["toast"],
-          states: [
-            {
-              attribute: "data-popup-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toast"],
-            },
-            {
-              attribute: "data-type",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-          ],
-        },
-        close: {
-          family: "popup",
-          registryItems: ["toast"],
-          states: [
-            {
-              attribute: "data-popup-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["toast"],
-            },
-            {
-              attribute: "data-type",
-              source: "external",
-              valueKind: "presence",
-              values: [],
-            },
-          ],
-        },
         content: {
           family: "popup",
           registryItems: ["toast"],

@@ -10,6 +10,7 @@ import { REQUIRED_PAIRS } from "../src/registry/sources/control-ui/scripts/requi
 import { readCssWithImports } from "./read-css";
 
 const docsRoot = fileURLToPath(new URL("../", import.meta.url));
+const baselineThemePath = path.join(docsRoot, "src/registry/sources/control-ui/theme.css");
 const defaultSkinRoot = path.join(docsRoot, "src/registry/skin-packs");
 const jsonOutput = process.argv.includes("--json");
 const suppliedPaths = process.argv.slice(2).filter((argument) => !argument.startsWith("--"));
@@ -30,6 +31,7 @@ function collectThemeFiles(inputPath: string): string[] {
 }
 
 function skinIdFromCss(file: string, source: string): string {
+  if (file === baselineThemePath) return "none";
   const match = source.match(/\[data-skin=(?:"([^"]+)"|'([^']+)')\]/);
   const skinId = match?.[1] ?? match?.[2];
   if (!skinId) throw new Error(`${file} does not contain a [data-skin="…"] selector.`);
@@ -88,14 +90,13 @@ function focusProbeRendered(probe: RenderedFocusProbe): boolean {
   return probe.focused && probe.style !== "none" && probe.width > 0 && probe.alpha > 0 && probe.forcedColorAdjust !== "none";
 }
 
-const requestedPaths = suppliedPaths.length > 0 ? suppliedPaths : [defaultSkinRoot];
+const requestedPaths = suppliedPaths.length > 0 ? suppliedPaths : [baselineThemePath, defaultSkinRoot];
 const themeFiles = requestedPaths.flatMap(collectThemeFiles);
 if (themeFiles.length === 0) throw new Error("No theme.css files found at the supplied path.");
 
 const tailwindPalette = readFileSync(createRequire(import.meta.url).resolve("tailwindcss/theme.css"), "utf8");
 const tailwindTheme = tailwindPalette.replace("@theme default", ":root");
-// The audit renders real anatomy, so it needs the same core sheets the app imports — theme tokens
-// alone leave every recipe-owned knob unresolved. globals.css is the one list of what core ships.
+
 const globalsCss = readFileSync(path.join(docsRoot, "app/globals.css"), "utf8");
 const coreTheme = [...globalsCss.matchAll(/@import "(\.\.\/src\/registry\/[^"]+)";/g)]
   .map((match) => readCssWithImports(path.join(docsRoot, "app", match[1])))
@@ -126,7 +127,8 @@ try {
     for (const mode of modes) {
       await page.evaluate(
         ({ activeSkin, activeMode }) => {
-          document.documentElement.dataset.skin = activeSkin;
+          if (activeSkin === "none") delete document.documentElement.dataset.skin;
+          else document.documentElement.dataset.skin = activeSkin;
           document.documentElement.classList.toggle("dark", activeMode === "dark");
         },
         { activeSkin: skin, activeMode: mode },
@@ -200,7 +202,7 @@ const parityDrift = reports.flatMap((report) => {
       return [`${report.skin} ${report.mode}: ${evaluated.id} — contrast-eval cannot resolve it: ${evaluated.reason}`];
     const rendered = report.results.find((result) => result.id === evaluated.id);
     if (rendered?.ratio == null) return [];
-    // The browser probe paints through a canvas, which quantizes each layer's alpha to 8 bits; that costs ~0.1 of ratio.
+
     if (Math.abs(rendered.ratio - evaluated.ratio) <= 0.25) return [];
     return [
       `${report.skin} ${report.mode}: ${evaluated.id} — contrast-eval reads ${evaluated.ratio.toFixed(2)}:1, the browser renders ` +

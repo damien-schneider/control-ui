@@ -4,9 +4,9 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import type { ComponentProps, CSSProperties } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
-// Dialog pinned to edge, slid by @starting-style and @ending-style transforms
 export function Sheet(props: ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root {...props} />;
 }
@@ -32,6 +32,7 @@ export type SheetContentProps = Omit<ComponentProps<typeof SheetPrimitive.Popup>
 };
 
 export function SheetContent({ className, children, side = "right", ...props }: SheetContentProps) {
+  const skin = useSkin();
   return (
     <SheetPrimitive.Portal>
       <SheetPrimitive.Backdrop
@@ -40,13 +41,13 @@ export function SheetContent({ className, children, side = "right", ...props }: 
         data-slot="backdrop"
         data-control-family="popup"
         data-popup-part="backdrop"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         className="fixed inset-0 z-[70]"
       />
       <SheetPrimitive.Popup
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         data-control-ui="sheet"
         data-popup-kind="sheet"
         data-control-family="popup"

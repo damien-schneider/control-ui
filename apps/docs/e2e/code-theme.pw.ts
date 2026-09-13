@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "@playwright/test";
 
-const SKINS = ["refined", "xp", "flat", "rig", "liquid-metal", "modern-apple", "cuicui", "linear"];
+const SKINS = ["refined", "xp", "none", "rig", "liquid-metal", "modern-apple", "cuicui", "linear"];
 const MODES = ["light", "dark"] as const;
 const SYNTAX_TOKENS = [
   "--code-foreground",

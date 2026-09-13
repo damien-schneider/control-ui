@@ -5,7 +5,8 @@ import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react
 import type { ControlledChoice, OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 export type ContextMenuProps = {
@@ -69,11 +70,8 @@ export type ContextMenuSubTriggerProps = Omit<Omit<ComponentProps<"div">, "onCli
 
 export type ContextMenuSubContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-// Composes like DropdownMenu behind right-click trigger; API stays shadcn/ui context-menu compatible.
-
 const popupClasses = "min-w-[10rem]";
 
-// group/cmi lets gutter glyphs and shortcuts key off highlighted row if pack wants them to.
 const itemClasses = cn("group/cmi relative", popupItemStructureClasses);
 
 export function ContextMenu(props: ContextMenuProps) {
@@ -111,10 +109,10 @@ export function ContextMenuGroup({ className, ...props }: ContextMenuGroupProps)
 }
 
 export function ContextMenuContent({ className, children, ...props }: ContextMenuContentProps) {
+  const skin = useSkin();
   return (
     <ContextMenuPrimitive.Portal>
-      {/* portal escapes every token-scoped ancestor, so scope is re-asserted here */}
-      <ContextMenuPrimitive.Positioner data-skin={skinId()} data-effects={skinEffects()} className="z-[80]">
+      <ContextMenuPrimitive.Positioner data-skin={skin.id} data-effects={controlEffectsAttribute(skin.effects)} className="z-[80]">
         <ContextMenuPrimitive.Popup
           data-control-ui="context-menu"
           data-popup-kind="context-menu"
@@ -284,11 +282,12 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
 }
 
 export function ContextMenuSubContent({ className, children, ...props }: ContextMenuSubContentProps) {
+  const skin = useSkin();
   return (
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Positioner
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         className="z-[80]"
         sideOffset={-4}
         alignOffset={-5}

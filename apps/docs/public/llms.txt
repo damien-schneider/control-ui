@@ -153,8 +153,8 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Windows 98](http://127.0.0.1:3000/skins/windows-98): Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette.
 - [Liquid metal](http://127.0.0.1:3000/skins/liquid-metal): Polished metal skin with a WebGL shader control surface.
 - [Rig](http://127.0.0.1:3000/skins/rig): Brutalist skin with coral accents, squared corners, and dense typography.
-- [Flat](http://127.0.0.1:3000/skins/flat): Neutral reset skin with square corners, no shadows, and the stock motion tempo.
-- [Modern Apple](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.
+- [No skin](http://127.0.0.1:3000/skins/none): Control UI defaults: neutral colors, square corners, and no shadows. No skin required.
+- [macOS](http://127.0.0.1:3000/skins/modern-apple): Apple-inspired glass skin with live backdrop blur, SVG edge refraction, paired light and dark rims, and a flush sidebar.
 - [Cuicui](http://127.0.0.1:3000/skins/cuicui): Cuicui-inspired shell skin with fixed grain, a docked w-80 sidebar, a neutral main container, and the send-aurora anchored extension on ChatComposer (skin.config fills the chat-composer:send-layer anchor).
 - [Linear](http://127.0.0.1:3000/skins/linear): Linear-inspired skin: indigo brand on a cool neutral ramp, a flat 13px chrome band, 8px controls on 12px panels, hairline borders instead of elevation, and 8px menu rows inset in a 4px gutter.
 

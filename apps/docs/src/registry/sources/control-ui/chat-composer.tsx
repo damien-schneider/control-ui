@@ -7,6 +7,7 @@ import { useChatComposer } from "@/components/control-ui/hooks/use-chat-composer
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { hasSkinAdornment, skinAdornment } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 
 type ChatComposerContextValue = ReturnType<typeof useChatComposer>;
@@ -32,6 +33,7 @@ export function ChatComposer({
   children,
   ...props
 }: ChatComposerProps) {
+  const skin = useSkin();
   const input = useChatComposer({
     value,
     defaultValue,
@@ -40,9 +42,9 @@ export function ChatComposer({
     state,
     density,
     disabled,
-    trackSends: hasSkinAdornment("chat-composer", "send-layer"),
+    trackSends: hasSkinAdornment(skin, "chat-composer", "send-layer"),
   });
-  const sendLayer = skinAdornment("chat-composer", "send-layer", { sendCount: input.sendCount });
+  const sendLayer = skinAdornment(skin, "chat-composer", "send-layer", { sendCount: input.sendCount });
 
   return (
     <ChatComposerContext.Provider value={input}>

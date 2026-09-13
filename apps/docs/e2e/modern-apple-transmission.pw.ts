@@ -25,7 +25,7 @@ function colorAtFraction(row: number[], fraction: number) {
 }
 
 for (const mode of ["light", "dark"] as const) {
-  test(`Modern Apple ${mode} transmits background colors and refracts the menu edges`, async ({ page }) => {
+  test(`macOS ${mode} transmits background colors and refracts the menu edges`, async ({ page }) => {
     await page.addInitScript(
       ({ skinKey, modeKey, appearance }) => {
         localStorage.setItem(skinKey, JSON.stringify({ skin: "modern-apple", reduceMotion: true }));
@@ -34,7 +34,7 @@ for (const mode of ["light", "dark"] as const) {
       { skinKey: THEME_EDITOR_STORAGE_KEY, modeKey: THEME_STORAGE_KEY, appearance: mode },
     );
     await page.goto("/primitives/dropdown-menu");
-    await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Modern Apple");
+    await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
     const trigger = page.getByRole("button", { name: "Options", exact: true });
     const menu = page.getByRole("menu").filter({ has: page.getByRole("menuitemcheckbox", { name: "Notifications", exact: true }) });
     await trigger.click();
@@ -99,7 +99,7 @@ test("search glass follows the scrolling page with JavaScript paused", async ({ 
     { skinKey: THEME_EDITOR_STORAGE_KEY, modeKey: THEME_STORAGE_KEY },
   );
   await page.goto("/primitives/popover");
-  await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("Modern Apple");
+  await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
   const viewport = page.locator("[data-docs-content] [data-scroll-area-viewport]").first();
   await page.locator("[data-docs-page-grid]").evaluate((grid) => {
     grid.style.position = "relative";

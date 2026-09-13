@@ -7,7 +7,8 @@ import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
@@ -63,8 +64,6 @@ export type AutocompleteGroupProps = ComponentProps<"div"> & { style?: CSSProper
 
 export type AutocompleteGroupLabelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-// Free text, unlike Combobox — value is filter string, and picking item only fills field.
-
 export function Autocomplete<Value = string>({ children, autoHighlight = true, ...props }: AutocompleteProps<Value>) {
   return (
     <AutocompletePrimitive.Root autoHighlight={autoHighlight} {...props}>
@@ -117,16 +116,16 @@ export function AutocompleteInput({ size = "md", className, ...props }: Autocomp
 }
 
 export function AutocompleteContent({ className, children, sideOffset = 6, ...props }: AutocompleteContentProps) {
+  const skin = useSkin();
   return (
     <AutocompletePrimitive.Portal>
-      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <AutocompletePrimitive.Positioner
         data-control-ui="autocomplete"
         data-popup-kind="autocomplete"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side="bottom"
         align="start"
         sideOffset={sideOffset}

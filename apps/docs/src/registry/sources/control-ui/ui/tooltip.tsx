@@ -5,7 +5,8 @@ import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import type { ComponentProps, CSSProperties, Ref } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 
 type TooltipProviderProps = Omit<ComponentProps<typeof TooltipPrimitive.Provider>, "delay" | "timeout"> & {
   delay?: number;
@@ -73,6 +74,7 @@ export function TooltipContent({
   ref,
   ...props
 }: TooltipContentProps) {
+  const skin = useSkin();
   if (hidden) return null;
 
   const positionerProps: TooltipContentPositionerProps = {
@@ -97,8 +99,8 @@ export function TooltipContent({
         data-popup-kind="tooltip"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         className="z-[90]"
         {...positionerProps}
       >

@@ -4,8 +4,8 @@ export type Theme = "light" | "dark";
 
 export const THEME_STORAGE_KEY = "control-ui:theme:v1";
 
-export const DEFAULT_SKIN_ID = "xp";
-export const BASE_SKIN_ID = "refined";
+export const DEFAULT_SKIN_ID = "none";
+export const BASE_SKIN_ID = "none";
 export const THEME_INIT_SKIN_IDS = skinMetas.map((skin) => skin.id);
 
 export const THEME_EDITOR_STORAGE_KEY = "control-ui:theme-editor:v2";
@@ -22,8 +22,6 @@ export function preferredTheme(): Theme {
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (stored === "dark" || stored === "light") return stored;
-  } catch {
-    /* disabled storage — fall through to the OS preference */
-  }
+  } catch {}
   return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }

@@ -8,7 +8,8 @@ import type { HoverIndicator, RenderProp, SelectionIndicator } from "@/component
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinIndicator } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
+
 import { useSidebar } from "@/components/control-ui/ui/sidebar-provider";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
@@ -111,7 +112,8 @@ export function SidebarMenu({
 }: ComponentProps<"ul"> & {
   indicator?: SidebarSelectionIndicator;
 } & { style?: CSSProperties & SidebarKnobStyle }) {
-  const resolvedIndicator = indicator ?? skinIndicator("sidebar") ?? "none";
+  const skin = useSkin();
+  const resolvedIndicator = indicator ?? skin.indicators?.sidebar ?? "none";
   const hasHighlight = resolvedIndicator !== "none";
 
   const list = (

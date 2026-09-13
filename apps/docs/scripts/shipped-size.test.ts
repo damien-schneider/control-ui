@@ -12,7 +12,7 @@ const app = mkdtempSync(path.join(tmpdir(), "control-ui-shipped-"));
 afterAll(() => rmSync(app, { recursive: true, force: true }));
 
 function installButtonApp() {
-  for (const item of ["core", "button", "skin-refined"]) {
+  for (const item of ["core", "button"]) {
     const payload = JSON.parse(readFileSync(path.join(docsRoot, `public/r/${item}.json`), "utf8"));
     for (const file of payload.files) {
       const target = path.join(app, file.target.replace(/^@components\//, "components/"));
@@ -42,8 +42,6 @@ function installButtonApp() {
     [
       '@import "tailwindcss";',
       '@import "./components/control-ui/styles/theme.css";',
-      '@import "./components/control-ui/styles/skin-theme.css";',
-      '@import "./components/control-ui/styles/skin.css";',
       '@import "./components/control-ui/styles/recipes/button.css";',
       "",
     ].join("\n"),
@@ -52,7 +50,7 @@ function installButtonApp() {
 
 const gzipBytes = (text: string) => gzipSync(Buffer.from(text)).length;
 
-describe("an app that installs core, button, and one skin, then renders a button", () => {
+describe("an app that installs core and button without a skin, then renders a button", () => {
   installButtonApp();
 
   test("ships its JavaScript beyond React under budget", async () => {

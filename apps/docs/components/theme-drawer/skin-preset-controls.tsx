@@ -29,7 +29,7 @@ export function SkinPresetControls() {
           }
         </SelectValue>
       </ToolbarButton>
-      <SelectContent>
+      <SelectContent alignItemWithTrigger={false}>
         {ALL_SKIN_IDS.map((id) => (
           <SelectItem key={id} value={id} label={SKIN_META_BY_ID[id].label}>
             <SkinLogo id={id} size="sm" />

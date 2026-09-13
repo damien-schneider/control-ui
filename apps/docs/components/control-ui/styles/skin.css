@@ -1,143 +1,369 @@
-/* Only what Tailwind classes cannot say — everything else lives in skin.config or theme.css. */
+@import "../retro-system-font.css";
 
-/* Refined separates surfaces with light, never a line. Raised chrome catches a top gloss and drops a soft shadow;
-   recessed chrome sinks under an inner one. Recess comes in two depths because blur has to match the anatomy: a
-   diffuse well fills a 20px chip with haze instead of reading as depth, so small chrome gets a tight top lip.
-   All of it is pack vars, not contract tokens: --shadow-inset is one recess depth, and refined needs two. */
-[data-skin="refined"] {
-  /* Every surface is rimmed: the rim draws the edge, the shadow gives it depth. A recessed edge catches the
-     light, so its rim is a step lighter than the surface it cuts into — which lands on white over paper and on
-     a faint lift in the dark. Raised chrome keeps the plain --border hairline; without both halves the well
-     reads as a smudge instead of an engraving. */
-  --refined-rim: oklch(from var(--secondary) calc(l + 0.04) c h);
+@import "./xp-controls.css";
 
-  --refined-gloss: inset 0 1.4px 1px 0 var(--shadow-highlight);
-  --refined-lift: 0 2px 4px 0 oklch(from var(--shadow-color) l c h / 0.05), 0 14px 20px 0 oklch(from var(--shadow-color) l c h / 0.05);
-  --refined-lift-sm: 0 2.5px 6px 0 oklch(from var(--shadow-color) l c h / 0.1);
-
-  /* Surfaces deep enough to hold content sink all round; anything shorter takes the lip instead. */
-  --refined-well: inset 0 0 6px 0 oklch(from var(--shadow-color) l c h / 0.18);
-  --refined-press:
-    inset 0 2px 4px -2px oklch(from var(--shadow-color) l c h / 0.18), inset 0 1px 1px 0 oklch(from var(--shadow-color) l c h / 0.18);
-
-  /* A solid button carries no drop shadow at all — it reads raised from a rim one step lighter than its own fill. */
-  --refined-solid-rim: 0 0 0 1.4px oklch(from var(--primary) calc(l + 0.28) c h);
-
-  /* A saturated fill swallows both: the rim has to go darker than the fill to survive, and the drop needs three
-     times the density to show under it. Ring, gloss and drop together are the only place all three stack. */
-  --refined-tint-emboss:
-    0 0 0 1px oklch(from var(--destructive) calc(l - 0.11) c h), inset 0 1.4px 1px 0 oklch(1 0 0 / 0.12),
-    0 1.4px 4px 0 oklch(from var(--shadow-color) l c h / 0.3);
+[data-skin="xp"] {
+  --xp-white: oklch(1 0 0);
+  --xp-face: var(--secondary);
+  --xp-light: oklch(1 0 0);
+  --xp-shadow: oklch(0.8607 0.0186 78.229);
+  --xp-field: oklch(0.6833 0.0533 246.812);
+  --xp-edge: oklch(0.3571 0.1109 253.22);
+  --xp-button: linear-gradient(oklch(1 0 0), oklch(0.9392 0.0081 98.883) 86%, oklch(0.8607 0.0186 78.229));
+  --xp-button-pressed: linear-gradient(
+    oklch(0.8394 0.0102 87.48),
+    oklch(0.9136 0.0107 106.61) 8%,
+    oklch(0.92 0.0094 106.582) 94%,
+    oklch(0.9609 0.0013 106.424)
+  );
+  --xp-hover-rim:
+    inset -1px 1px oklch(0.9586 0.046 86.465), inset 1px 2px oklch(0.8966 0.1061 85.255), inset -2px 2px oklch(0.8566 0.1329 82.142), inset 2px -2px oklch(
+      0.754 0.1526 76.578
+    );
+  --xp-default-rim:
+    inset -1px 1px oklch(0.9171 0.0423 247.19), inset 1px 2px oklch(0.777 0.08 259.188), inset -2px 2px oklch(0.8632 0.054 257.078), inset 2px -2px oklch(
+      0.7419 0.0893 258.691
+    );
+  --xp-frame-shadow:
+    inset -1px -1px oklch(0.3054 0.1896 264.19), inset 1px 1px oklch(0.4393 0.2509 264.572), inset -2px -2px oklch(0.3447 0.2038 264.074), inset 2px 2px oklch(
+      0.5593 0.2133 260.155
+    ), inset -3px -3px oklch(0.4535 0.2436 263.553), inset 3px 3px oklch(0.5021 0.2181 261.634);
+  --xp-titlebar: linear-gradient(
+    oklch(0.6652 0.1851 249.79),
+    oklch(0.5134 0.2418 262.234) 8%,
+    oklch(0.5082 0.2451 262.523) 40%,
+    oklch(0.5635 0.2408 260.818) 88%,
+    oklch(0.5435 0.2531 262.093) 95%,
+    oklch(0.4534 0.2381 263.377) 96%
+  );
+  --xp-title-shadow: oklch(0.3029 0.185 267.774);
+  --xp-close: linear-gradient(
+    135deg,
+    oklch(0.8223 0.0782 33.584),
+    oklch(0.6738 0.1654 37.394) 35%,
+    oklch(0.6286 0.2041 36.849) 70%,
+    oklch(0.4848 0.1737 34.135)
+  );
+  --xp-task-pane: linear-gradient(oklch(0.7116 0.1103 261.382), oklch(0.5949 0.1485 273.172));
+  --xp-task-heading: linear-gradient(90deg, oklch(1 0 0), oklch(0.8686 0.052 269.632));
+  --xp-task-body: oklch(0.9042 0.0343 269.307);
+  --xp-link: oklch(0.5032 0.1754 260.787);
+  --xp-tab: oklch(0.9916 0.0026 286.352);
+  --xp-tab-border: oklch(0.7157 0.0311 233.807);
+  --xp-tab-orange: oklch(0.8575 0.1584 85.332);
+  --xp-check: oklch(0.619 0.1943 142.776);
+  --xp-progress: oklch(0.6725 0.1979 143.721);
+  --xp-tooltip: oklch(0.9922 0.039 107.089);
+  --xp-scroll: linear-gradient(
+    90deg,
+    oklch(1 0 0),
+    oklch(0.8767 0.0568 267.632) 20%,
+    oklch(0.8316 0.0679 264.509) 80%,
+    oklch(0.8723 0.0576 265.652)
+  );
 }
 
-/* Ink and paper swap, so the rim that was lighter than the fill has to go darker to stay a rim. */
-:where(.dark) [data-skin="refined"],
-.dark[data-skin="refined"] {
-  --refined-solid-rim: 0 0 0 1.4px oklch(from var(--primary) calc(l - 0.28) c h);
-}
-
-@layer base {
-  /* Body-level, not a utility: type rendering is inherited, so portalled popups pick it up too. */
-  :root[data-skin="refined"] body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+:where(.dark) [data-skin="xp"],
+.dark[data-skin="xp"] {
+  --xp-light: oklch(0.4 0.014 257);
+  --xp-shadow: oklch(0.18 0.005 248);
+  --xp-field: var(--input);
+  --xp-edge: oklch(0.54 0.05 260);
+  --xp-button: linear-gradient(oklch(0.37 0.012 253), var(--secondary) 86%, oklch(0.22 0.01 250));
+  --xp-button-pressed: linear-gradient(oklch(0.22 0.01 250), var(--secondary));
+  --xp-hover-rim: inset 0 0 0 2px var(--ring);
+  --xp-default-rim: inset 0 0 0 2px var(--primary);
+  --xp-task-pane: linear-gradient(oklch(0.31 0.07 266), oklch(0.23 0.04 266));
+  --xp-task-heading: linear-gradient(90deg, oklch(0.38 0.025 266), oklch(0.3 0.03 266));
+  --xp-task-body: oklch(0.28 0.02 266);
+  --xp-link: oklch(0.8 0.09 260);
+  --xp-tab: var(--background);
+  --xp-tab-border: var(--input);
+  --xp-check: oklch(0.75 0.17 145);
+  --xp-tooltip: oklch(0.31 0.025 95);
+  --xp-scroll: linear-gradient(90deg, oklch(0.45 0.04 257), oklch(0.33 0.04 260));
 }
 
 @layer components {
-  /* ── raised ─────────────────────────────────────────────────────────────── */
-
-  [data-skin="refined"] :where([data-control-family="card"][data-slot="root"]) {
-    --cui-card-shadow: var(--refined-lift);
-  }
-
-  [data-skin="refined"]
+  [data-skin="xp"]
     :where(
       [data-control-family="popup"][data-popup-part="surface"],
       [data-control-family="popup"][data-popup-part="list-surface"],
       [data-control-family="popup"][data-popup-part="bar"]
     ) {
-    --cui-popup-shadow: var(--refined-lift);
+    --cui-popup-radius: 0px;
+    --cui-popup-background: var(--popover);
+    --cui-popup-foreground: var(--foreground);
+    --cui-popup-border-color: var(--xp-field);
+    --cui-popup-border-width: 1px;
+    --cui-popup-shadow: 2px 2px 2px oklch(0 0 0 / 0.25);
+    --cui-popup-backdrop-filter: none;
+    --cui-popup-item-radius: 0px;
+    --cui-popup-item-highlight-background: var(--primary);
+    --cui-popup-item-highlight-foreground: var(--primary-foreground);
+    --cui-popup-item-highlight-muted-foreground: var(--primary-foreground);
+    --cui-popup-separator-color: var(--xp-shadow);
   }
-
-  [data-skin="refined"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="solid"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-variant="solid"][data-control-family="button"]
-    ) {
-    --cui-button-shadow: var(--refined-gloss), var(--refined-solid-rim);
+  [data-skin="xp"] :where([data-control-family="popup"][data-popup-part="item"]) {
+    min-block-size: 20px;
+    padding-block: 2px;
   }
-
-  [data-skin="refined"] :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
-    --cui-button-shadow: var(--refined-tint-emboss);
+  [data-skin="xp"] :where([data-control-family="popup"][data-popup-part="label"]) {
+    text-transform: none;
+    letter-spacing: normal;
   }
-
-  [data-skin="refined"]
-    :where(
-      [data-control-ui="button"][data-slot="root"][data-variant="surface"][data-control-family="button"],
-      [data-control-ui="toggle"][data-slot="root"][data-variant="surface"][data-control-family="button"]
-    ) {
-    --cui-button-background: var(--card);
-    --cui-button-shadow: inset 0 0 0 1px var(--border), var(--refined-lift-sm);
-    --cui-button-active-shadow: inset 0 0 0 1px oklch(from var(--primary) l c h / 0.6), var(--refined-lift-sm);
+  [data-skin="xp"] :where([data-control-family="popup"][data-popup-part="bar"]) {
+    --cui-popup-background: var(--secondary);
+    --cui-popup-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
   }
-
-  [data-skin="refined"] :where([data-control-family="range"][data-slot="root"]) {
-    --cui-range-thumb-shadow: var(--refined-lift-sm);
+  [data-skin="xp"]
+    :where([data-control-family="popup"][data-popup-part="surface"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    --cui-popup-radius: 8px 8px 0 0;
+    --cui-popup-background: var(--secondary);
+    --cui-popup-border-width: 0px;
+    --cui-popup-shadow: var(--xp-frame-shadow), 3px 3px 8px oklch(0 0 0 / 0.3);
+    padding: 3px;
+    gap: 12px;
   }
-
-  /* ── recessed ───────────────────────────────────────────────────────────── */
-
-  [data-skin="refined"] :where([data-control-family="field"][data-control="true"]) {
-    --cui-field-background: var(--secondary);
-    --cui-field-border-color: var(--refined-rim);
-    --cui-field-focus-border-color: var(--focus-ring);
-    --cui-field-shadow: var(--refined-well);
+  [data-skin="xp"]
+    :where([data-control-family="popup"][data-slot="header"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    padding: 0;
+    gap: 12px;
   }
-
-  [data-skin="refined"] :where([data-control-family="code"][data-slot="root"]) {
-    --cui-code-background: var(--secondary);
-    --cui-code-border-color: var(--refined-rim);
-    --cui-code-shadow: var(--refined-well);
+  [data-skin="xp"]
+    :where([data-control-family="popup"][data-slot="title"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    min-block-size: 27px;
+    padding: 6px 32px 5px 6px;
+    border-radius: 5px 5px 0 0;
+    background: var(--xp-titlebar);
+    color: var(--xp-white);
+    font:
+      700 13px / 16px "Trebuchet MS",
+      Tahoma,
+      sans-serif;
+    letter-spacing: normal;
+    text-shadow: 1px 1px var(--xp-title-shadow);
   }
-
-  [data-skin="refined"] :where([data-control-family="tabs"][data-slot="root"]) {
-    --cui-tabs-list-background: var(--secondary);
-    --cui-tabs-list-shadow: inset 0 0 0 1px var(--refined-rim), var(--refined-well);
-    --cui-tabs-indicator-shadow: var(--refined-lift-sm);
+  [data-skin="xp"]
+    :where([data-control-family="popup"][data-slot="description"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+    padding-inline: 12px;
+    color: var(--foreground);
   }
-
-  [data-skin="refined"] :where([data-control-family="kbd"][data-slot="root"]) {
+  [data-skin="xp"] :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
+    opacity: 1;
+    --cui-button-background-image: var(--xp-close);
+    --cui-button-foreground: var(--xp-white);
+    --cui-button-hover-foreground: var(--xp-white);
+    --cui-button-shadow: inset 1px 1px 1px oklch(1 0 0 / 0.6), inset -1px -1px 1px oklch(0 0 0 / 0.25);
+    --cui-button-hover-shadow: inset 0 0 0 1px var(--xp-white);
+    --cui-button-height: 21px;
+    --cui-button-icon: 13px;
+    border: 1px solid var(--xp-white);
+    top: 6px;
+    right: 6px;
+  }
+  [data-skin="xp"] :where([data-control-family="popup"][data-popup-kind="tooltip"][data-popup-part="surface"]) {
+    --cui-popup-background: var(--xp-tooltip);
+    --cui-popup-border-color: var(--foreground);
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="root"]) {
+    --cui-sidebar-inner-background: var(--xp-task-body);
+    --cui-sidebar-inner-background-image: none;
+    --cui-sidebar-inner-border-width: 0px;
+    --cui-sidebar-inner-radius: 0px;
+    --cui-sidebar-inner-shadow: none;
+    --cui-sidebar-group-label-foreground: var(--xp-link);
+    --cui-sidebar-menu-button-radius: 0px;
+    --cui-sidebar-menu-button-foreground: var(--xp-link);
+    --cui-sidebar-menu-button-hover-background: transparent;
+    --cui-sidebar-menu-button-hover-foreground: var(--xp-link);
+    --cui-sidebar-menu-button-active-background: var(--primary);
+    --cui-sidebar-menu-button-active-foreground: var(--primary-foreground);
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="content-stack"]) {
+    gap: 12px;
+    padding: 12px;
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="group"]) {
+    padding: 0;
+    border: 1px solid var(--xp-light);
+    border-radius: 3px 3px 0 0;
+    background: var(--xp-task-body);
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="group-label"]) {
+    min-block-size: 25px;
+    padding: 4px 10px;
+    border-radius: 2px 2px 0 0;
+    background: var(--xp-task-heading);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu"]) {
+    gap: 0;
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu-button"]:hover) {
+    text-decoration: underline;
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu-button"]) {
+    min-block-size: 22px;
+    height: auto;
+    padding-block: 3px;
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu"] [data-control-family="sidebar"][data-slot="menu"]) {
+    border-inline-start: 1px dotted var(--xp-field);
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="header"], [data-control-family="sidebar"][data-slot="footer"]) {
+    background: var(--secondary);
+    box-shadow:
+      inset 0 1px var(--xp-light),
+      inset 0 -1px var(--xp-shadow);
+  }
+  [data-skin="xp"] :where([data-control-family="tree"][data-slot="root"]) {
+    --cui-tree-item-trigger-radius: 0px;
+    --cui-tree-item-trigger-selected-background: var(--primary);
+    --cui-tree-item-trigger-selected-foreground: var(--primary-foreground);
+    background: var(--background);
+    border: 1px solid var(--xp-field);
+    padding: 3px;
+  }
+  [data-skin="xp"] :where([data-control-family="tree"][data-slot="item-trigger"]) {
+    padding-block: 2px;
+  }
+  [data-skin="xp"] :where([data-control-family="card"][data-slot="root"]) {
+    --cui-card-background: var(--secondary);
+    --cui-card-radius: 3px;
+    --cui-card-border-color: var(--xp-shadow);
+    --cui-card-shadow: inset 1px 1px var(--xp-light);
+  }
+  [data-skin="xp"] :where([data-control-family="table"][data-slot="root"]) {
+    --cui-table-background: var(--background);
+  }
+  [data-skin="xp"] :where([data-control-family="table"][data-slot="head"]) {
+    background: var(--secondary);
+    box-shadow:
+      inset 1px 1px var(--xp-light),
+      inset -1px -1px var(--xp-shadow);
+  }
+  [data-skin="xp"] :where([data-control-family="kbd"][data-slot="root"]) {
+    --cui-kbd-radius: 2px;
     --cui-kbd-background: var(--secondary);
-    --cui-kbd-border-color: var(--refined-rim);
-    --cui-kbd-shadow: var(--refined-press);
+    --cui-kbd-shadow: inset 1px 1px var(--xp-light), inset -1px -1px var(--xp-shadow);
   }
-
-  /* A chip is neither raised nor sunk — it is delineated. Kraftbase rims every pill and shadows none. */
-  [data-skin="refined"] :where([data-control-family="badge"][data-slot="root"]) {
-    --cui-badge-border-color: var(--border);
+  [data-skin="xp"] :where([data-control-family="chat-layout"][data-control-ui="chat-layout"][data-slot="root"]) {
+    --cui-chat-layout-radius: 8px;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+    --cui-chat-layout-border-color: transparent;
+    --cui-chat-layout-shadow: var(--xp-frame-shadow);
+    border-width: 0;
+    padding: 3px;
   }
-
-  [data-skin="refined"]
+  [data-skin="xp"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"]) {
+    --cui-chat-message-foreground: var(--foreground);
+    --cui-chat-message-radius: 3px;
+    --cui-chat-message-corner-radius: 3px;
+    --cui-chat-message-background: var(--xp-task-body);
+    --cui-chat-message-border-color: var(--xp-field);
+    --cui-chat-message-border-width: 1px;
+    --cui-chat-message-shadow: inset 0 1px var(--xp-light);
+  }
+  [data-skin="xp"]
     :where(
-      [data-control-family="range"][data-range-kind="slider"][data-slot="track"],
-      [data-control-family="range"][data-range-kind="progress"][data-slot="track"],
-      [data-control-family="range"][data-range-kind="meter"][data-slot="track"]
+      [data-control-family="scroll-area"][data-slot="root"],
+      [data-control-family="sidebar"][data-slot="inner"] [data-control-family="scroll-area"][data-slot="root"]
     ) {
-    box-shadow:
-      inset 0 0 0 1px var(--refined-rim),
-      var(--refined-press);
+    scrollbar-color: auto;
+    scrollbar-width: auto;
   }
-
-  /* A switch is the one control that inverts on state: the track is a groove until it fills, then it is a lit key. */
-  [data-skin="refined"] :where([data-control-family="switch"][data-slot="root"]) {
-    --cui-switch-thumb-shadow: var(--refined-lift-sm);
-    box-shadow:
-      inset 0 0 0 1px var(--refined-rim),
-      var(--refined-press);
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="root"]) {
+    --cui-scroll-area-thumb-radius: 2px;
+    --cui-scroll-area-thumb-background: var(--xp-scroll);
+    --cui-scroll-area-corner-background: var(--secondary);
   }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
+    background: var(--secondary);
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
+    inline-size: 16px;
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {
+    block-size: 16px;
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="thumb"]) {
+    border: 1px solid var(--xp-field);
+    box-shadow:
+      inset 1px 1px var(--xp-light),
+      inset -1px -1px var(--xp-shadow);
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-track {
+    background: var(--secondary);
+    box-shadow: inset 1px 0 var(--xp-shadow);
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-thumb {
+    border: 1px solid var(--xp-field);
+    border-radius: 2px;
+    background: var(--xp-scroll);
+  }
+  @media (pointer: coarse) {
+    [data-skin="xp"]
+      :where(
+        [data-control-family="button"][data-control="true"],
+        [data-control-family="field"][data-control="true"],
+        [data-control-family="sidebar"][data-slot="menu-button"],
+        [data-control-family="popup"][data-popup-part="item"]
+      ) {
+      min-block-size: 44px;
+    }
+    [data-skin="xp"] :where([data-control-family="button"][data-popup-part="close"][data-icon-only="true"]) {
+      top: 3px;
+      right: 3px;
+      width: 44px;
+    }
+  }
+}
 
-  [data-skin="refined"] :where([data-control-family="switch"][data-slot="root"][data-checked]) {
-    box-shadow: var(--refined-gloss), var(--refined-solid-rim);
+@layer components {
+  [data-skin="xp"] :where([data-control-family="chat-message"][data-slot="content"][data-streaming]) {
+    @apply progress-sweep;
+    --progress-sweep-color: var(--foreground);
+    --progress-sweep-fade: 0.8;
+  }
+}
+
+@layer components {
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="inner"] [data-control-family="scroll-area"][data-slot="root"]) {
+    background-image: var(--xp-task-pane);
+  }
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu"]) {
+    padding: 6px 8px;
+    background: var(--xp-task-body);
+  }
+}
+
+@layer components {
+  @media (pointer: coarse) {
+    [data-skin="xp"]
+      :where([data-control-family="popup"][data-slot="title"]:is([data-popup-kind="dialog"], [data-popup-kind="alert-dialog"])) {
+      min-block-size: 50px;
+      padding-block: 17px;
+      padding-inline-end: 52px;
+    }
+  }
+  [data-skin="xp"]
+    :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"] [data-control-family="button"][data-control="true"]) {
+    --cui-button-background: var(--cui-toolbar-item-background);
+    --cui-button-background-image: none;
+    --cui-button-foreground: var(--cui-toolbar-item-foreground);
+    --cui-button-hover-background: var(--cui-toolbar-item-hover-background);
+    --cui-button-hover-foreground: var(--cui-toolbar-item-hover-foreground);
+    --cui-button-active-background: var(--cui-toolbar-item-active-background);
+    --cui-button-active-foreground: var(--cui-toolbar-item-active-foreground);
+    --cui-button-active-hover-background: var(--cui-toolbar-item-active-background);
+    --cui-button-shadow: var(--cui-toolbar-item-shadow);
   }
 }

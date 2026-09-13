@@ -21,12 +21,7 @@ export type CodeDensity = "default" | "compact";
 
 export type CodeChrome = "standalone" | "embedded";
 
-/* Line numbers sit in select-none cells so a text selection copies clean source. CodeDiff and the
- * markdown fence renderer build on this same token renderer and row shape. */
-
-// virtualizes past this line count even without explicit `virtualize` prop
-const VIRTUALIZE_THRESHOLD = 200;
-// estimate only — measureElement corrects it after paint
+const MAX_STATIC_CODE_LINES = 1000;
 const ESTIMATED_LINE_HEIGHT = 20;
 
 type CodeContextValue = { chrome: CodeChrome; density: CodeDensity; overflow: CodeOverflow; hasHeader: boolean };
@@ -121,7 +116,6 @@ export type CodeCopyProps = Omit<ComponentProps<typeof Button>, "children" | "on
   copiedAriaLabel?: string;
 };
 
-/* Shared by header, floating overlay, and diff, and it IS library Button, so no code surface grows bespoke copy chrome. */
 export function CodeCopy({
   value,
   copiedLabel,
@@ -133,7 +127,6 @@ export function CodeCopy({
 }: CodeCopyProps) {
   const { isCopied, handleCopy } = useCopyToClipboard({ text: value });
   const isIconOnly = children === undefined;
-  // text mode already carries its name in label
   const label = ariaLabel ?? (isIconOnly ? "Copy code" : undefined);
   const copied = copiedLabel ?? (isIconOnly ? <CheckIcon aria-hidden="true" className="size-3.5" /> : "Copied");
 
@@ -171,7 +164,6 @@ export function CodeFloatingCopy({ className, ...props }: CodeFloatingCopyProps)
   return <CodeCopy data-code-floating="true" className={cn("absolute top-2 right-2 z-10", className)} {...props} />;
 }
 
-/** Null until resolved, and whenever highlighting is off or language is unknown — callers fall back to plain text. */
 export function useCodeTokens({
   code,
   lang,
@@ -219,7 +211,6 @@ export function CodeTokenLine({ tokens, plain }: { tokens: CodeTokenLines[number
   });
 }
 
-// kept flat so selection over code column copies clean source
 function CodeRow({
   index,
   number,
@@ -298,7 +289,7 @@ export function CodeContent({
     if (typeof ref === "function") ref(node);
     else if (ref) ref.current = node;
   }
-  const shouldVirtualize = virtualize ?? plainLines.length > VIRTUALIZE_THRESHOLD;
+  const shouldVirtualize = virtualize ?? plainLines.length > MAX_STATIC_CODE_LINES;
   const useScrollArea = density !== "compact" || overflow !== "wrap";
 
   // react-doctor-disable-next-line react-hooks-js/incompatible-library
@@ -394,10 +385,8 @@ export function CodeContent({
     </div>
   );
 
-  // embedded means host frames block and owns copy control
   if (hasHeader || chrome === "embedded") return content;
 
-  // reserves exactly overlay's footprint (top-2 + size-7) so no dead band is left
   return (
     <div
       data-control-ui="code"

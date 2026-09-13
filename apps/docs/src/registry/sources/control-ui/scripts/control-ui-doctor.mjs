@@ -6,8 +6,6 @@ import { fileURLToPath } from "node:url";
 import { declarations, evaluate, flattenBlocks, stripComments, tokenMaps } from "./contrast-eval.mjs";
 import { REQUIRED_PAIRS } from "./required-pairs.mjs";
 
-// Read-only audit of the wiring the registry cannot see from inside one install:
-// the CSS entry, the app's own token blocks fighting the skin, and the data-skin stamp.
 const controlUiDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const themeSuffix = ".control-ui-theme.css";
 
@@ -16,8 +14,8 @@ if (emitCssFlag !== -1) {
   const artifactPath = process.argv[emitCssFlag + 1];
   if (!artifactPath?.endsWith(".control-ui-theme.json")) throw new Error("--emit-css takes one <name>.control-ui-theme.json path");
   const artifact = JSON.parse(readFileSync(artifactPath, "utf8"));
-  // Kept byte-identical to themeArtifactCss in the theme drawer; control-ui-doctor.test.ts is the drift guard.
-  const scope = `[data-skin="${artifact.baseSkin}"][data-skin]`;
+
+  const scope = artifact.baseSkin === "none" ? ":root" : `[data-skin="${artifact.baseSkin}"][data-skin]`;
   const block = (tokens) =>
     Object.entries(tokens)
       .map(([name, value]) => `  ${name}: ${value};`)
@@ -51,6 +49,8 @@ if (typeof entryRelative !== "string") throw new Error(`components.json in ${app
 const entryPath = path.join(appDir, entryRelative);
 
 const readCss = (filePath) => readFileSync(filePath, "utf8");
+const skinThemePath = path.join(controlUiDir, "styles/skin-theme.css");
+const skinThemeCss = existsSync(skinThemePath) ? readCss(skinThemePath) : "";
 
 if (process.argv.includes("--contrast")) {
   const overrides = [...stripComments(readCss(entryPath)).matchAll(/@import\s+"([^"]+)"/g)]
@@ -60,7 +60,7 @@ if (process.argv.includes("--contrast")) {
   const modes = tokenMaps([
     readCss(createRequire(entryPath).resolve("tailwindcss/theme.css")),
     readCss(path.join(controlUiDir, "styles/theme.css")),
-    readCss(path.join(controlUiDir, "styles/skin-theme.css")),
+    skinThemeCss,
     ...overrides,
   ]);
   let failures = 0;
@@ -102,16 +102,11 @@ const skinTokens = new Set([
   ...tokenNames(path.join(controlUiDir, "styles/theme.css"), isSkinScope),
 ]);
 
-const skinIds = new Set(
-  [...stripComments(readFileSync(path.join(controlUiDir, "styles/skin-theme.css"), "utf8")).matchAll(/\[data-skin="([\w-]+)"\]/g)].map(
-    (match) => match[1],
-  ),
-);
+const skinIds = new Set([...stripComments(skinThemeCss).matchAll(/\[data-skin="([\w-]+)"\]/g)].map((match) => match[1]));
 
 const errors = [];
 const warnings = [];
 
-// App-owned stylesheets: the entry plus every relative import that lands outside the control-ui directory.
 const appStylesheets = [];
 const visited = new Set();
 const pending = [entryPath];
@@ -138,7 +133,7 @@ if (firstTheme !== -1 && firstTheme < lastNonTheme) {
   errors.push(`${entryRelative}: the ${themeSuffix} import must stay last — run scripts/fix-css-imports.mjs`);
 }
 
-for (const { filePath, css } of appStylesheets) {
+for (const { filePath, css } of skinIds.size > 0 ? appStylesheets : []) {
   const relative = path.relative(appDir, filePath);
   for (const block of flattenBlocks(css)) {
     const declared = declarations(block.body);
@@ -185,12 +180,12 @@ function findStamps(directory) {
 }
 
 const stamps = findStamps(appDir);
-if (stamps.length === 0) {
+if (skinIds.size > 0 && stamps.length === 0) {
   errors.push(
     `No data-skin stamp found in ${appDir} — without data-skin="${[...skinIds][0] ?? "<skin id>"}" on the root element, ` +
-      "every token is undeclared and portalled surfaces render unstyled",
+      "the optional preset will not apply",
   );
-} else if (!stamps.some((stamp) => stamp.id === null || skinIds.has(stamp.id))) {
+} else if (skinIds.size > 0 && !stamps.some((stamp) => stamp.id === null || skinIds.has(stamp.id))) {
   const found = [...new Set(stamps.map((stamp) => stamp.id))].join(", ");
   errors.push(`data-skin stamp(s) found (${found}) but the installed skin declares ${[...skinIds].join(", ")} — the ids must match`);
 }

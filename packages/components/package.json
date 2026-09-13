@@ -1,7 +1,7 @@
 {
   "name": "@ctrl-ui/react",
   "version": "0.8.2",
-  "description": "Control UI components, blocks, and primitives with the Refined skin, as a versioned package.",
+  "description": "Control UI components, blocks, and primitives with neutral defaults and consumer-owned themes.",
   "license": "MIT",
   "repository": {
     "type": "git",

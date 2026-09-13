@@ -21,7 +21,8 @@ describe("email rendering", () => {
   for (const skin of skinMetas) {
     for (const mode of ["light", "dark"] as const) {
       test(`${skin.id} ${mode} renders without app CSS`, async () => {
-        const skinCss = readFileSync(new URL(`../../../skin-packs/${skin.id}/theme.css`, import.meta.url), "utf8");
+        const skinCss =
+          skin.id === "none" ? "" : readFileSync(new URL(`../../../skin-packs/${skin.id}/theme.css`, import.meta.url), "utf8");
         const theme = emailThemeFromCss([coreCss, skinCss], mode);
         const html = await render(<InvitationEmail {...invitation} theme={theme} />);
         expect(html).toContain('role="presentation"');

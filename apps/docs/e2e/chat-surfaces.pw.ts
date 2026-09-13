@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "../components/theme";
 
-for (const skin of ["refined", "modern-apple", "flat", "cuicui", "xp", "windows-98", "rig", "linear", "liquid-metal"]) {
+for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-98", "rig", "linear", "liquid-metal"]) {
   test.describe(skin, () => {
     test.beforeEach(async ({ page }) => {
       await page.addInitScript(

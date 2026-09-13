@@ -8,7 +8,8 @@ import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinEffects, skinId } from "@/components/control-ui/skin";
+import { controlEffectsAttribute } from "@/components/control-ui/skin";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { emitComboboxValueChange } from "./combobox-disabled-selection";
 
@@ -146,16 +147,16 @@ export function ComboboxInput({ size = "md", className, ...props }: ComboboxInpu
 }
 
 export function ComboboxContent({ className, children, sideOffset = 6, ...props }: ComboboxContentProps) {
+  const skin = useSkin();
   return (
     <ComboboxPrimitive.Portal>
-      {/* portal lands outside container-scoped skin root, so scope is re-asserted here */}
       <ComboboxPrimitive.Positioner
         data-control-ui="combobox"
         data-popup-kind="combobox"
         data-control-family="popup"
         data-slot="positioner"
-        data-skin={skinId()}
-        data-effects={skinEffects()}
+        data-skin={skin.id}
+        data-effects={controlEffectsAttribute(skin.effects)}
         side="bottom"
         align="start"
         sideOffset={sideOffset}

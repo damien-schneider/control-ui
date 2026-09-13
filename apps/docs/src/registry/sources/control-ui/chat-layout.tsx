@@ -2,7 +2,7 @@ import type { ComponentProps, CSSProperties, ElementType, ReactNode } from "reac
 import { Activity, ActivityContent, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
 import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts/chat-layout-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinAdornment } from "@/components/control-ui/skin";
+import { SkinAdornment } from "@/components/control-ui/skin-provider";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 type ChatThoughtCollapsible = {
@@ -29,7 +29,7 @@ export function ChatLayout({ children, chrome = "panel", className, ...props }: 
       className={cn("relative mx-auto flex min-h-[640px] w-full max-w-3xl flex-col overflow-hidden", className)}
       {...props}
     >
-      {chrome === "panel" ? skinAdornment("chat-layout", "titlebar", {}) : null}
+      {chrome === "panel" ? <SkinAdornment scope="chat-layout" part="titlebar" context={{}} /> : null}
       {children}
     </section>
   );
@@ -142,7 +142,7 @@ export function ChatThought({
             }}
           >
             <div data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="details" className="min-w-0 px-1 pb-2 pt-1">
-              {skinAdornment("chat-thought", "details", {})}
+              <SkinAdornment scope="chat-thought" part="details" context={{}} />
               {details}
             </div>
           </ScrollArea>
@@ -169,7 +169,7 @@ export function ChatThought({
         </ActivityTitle>
       </ActivityTrigger>
       <ActivityContent data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="details">
-        {skinAdornment("chat-thought", "details", {})}
+        <SkinAdornment scope="chat-thought" part="details" context={{}} />
         {details}
       </ActivityContent>
     </Activity>

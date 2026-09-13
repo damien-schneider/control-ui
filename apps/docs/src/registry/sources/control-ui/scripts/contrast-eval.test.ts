@@ -86,3 +86,14 @@ describe("contrast-eval required pairs", () => {
     });
   }
 });
+
+test("application root overrides win without applying conditional motion or geometry", () => {
+  const maps = tokenMaps([
+    ":where(:root, [data-skin]) { --background: #fff; --duration-base: 200ms; --radius: 0px; } @media (prefers-reduced-motion: reduce) { :root { --duration-base: 0ms; } } @supports (corner-shape: squircle) { :root { --radius: 20px; } }",
+    ":root { --background: #f00; } .dark { --background: #000; }",
+  ]);
+  expect(maps.light.get("--background")).toBe("#f00");
+  expect(maps.dark.get("--background")).toBe("#000");
+  expect(maps.light.get("--duration-base")).toBe("200ms");
+  expect(maps.light.get("--radius")).toBe("0px");
+});
