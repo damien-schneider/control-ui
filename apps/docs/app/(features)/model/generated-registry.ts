@@ -3466,6 +3466,11 @@ export const registryMetadata = {
         type: "registry:ui",
       },
       {
+        path: "src/registry/sources/control-ui/ui/sidebar-resize-rail.tsx",
+        target: "@components/control-ui/ui/sidebar-resize-rail.tsx",
+        type: "registry:ui",
+      },
+      {
         path: "src/registry/sources/control-ui/ui/sidebar.tsx",
         target: "@components/control-ui/ui/sidebar.tsx",
         type: "registry:ui",

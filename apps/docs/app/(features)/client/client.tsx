@@ -3,7 +3,7 @@
 import { useLiveQuery } from "@tanstack/react-db";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import type { ActivePageId, DocsShellData, IntegrationId, SearchItem, SetupPreferenceUpdate } from "@/app/(features)/model/types";
 import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/routed-page";
@@ -11,7 +11,7 @@ import { buildSearchItems } from "@/app/(features)/registry-api/search";
 import { DocsFloatingToolbar } from "@/app/(features)/sidebar/floating-toolbar";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import type { SidebarMode } from "@/app/(features)/sidebar/types";
-import { clampSidebarWidth, readStoredSidebarWidth, SIDEBAR_WIDTH_VAR } from "@/app/(features)/sidebar/width";
+import { readStoredSidebarWidth, writeStoredSidebarWidth } from "@/app/(features)/sidebar/width";
 import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -44,6 +44,8 @@ type DocsShellStateProps = {
   onLastSidebarModeChange: (mode: SidebarMode) => void;
   onSidebarOpenChange: (open: boolean) => void;
   sidebarOpen: boolean;
+  sidebarWidth: number | undefined;
+  onSidebarWidthChange: (width: number) => void;
 };
 
 type PersistedDocsShellProps = DocsShellViewProps & DocsShellStateProps;
@@ -84,11 +86,18 @@ function PersistedDocsShell(props: PersistedDocsShellProps) {
 export function DocsShell(props: DocsShellViewProps) {
   const isHydrated = useIsHydrated();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarWidth, setSidebarWidth] = useState<number>();
   const [lastSidebarMode, setLastSidebarMode] = useState<SidebarMode | null>(null);
 
   useIsomorphicLayoutEffect(() => {
     if (storedSidebarCollapsed()) setSidebarOpen(false);
+    setSidebarWidth(readStoredSidebarWidth() ?? undefined);
   }, []);
+
+  function updateSidebarWidth(width: number) {
+    setSidebarWidth(width);
+    writeStoredSidebarWidth(width);
+  }
 
   return (
     <>
@@ -99,6 +108,8 @@ export function DocsShell(props: DocsShellViewProps) {
           onLastSidebarModeChange={setLastSidebarMode}
           onSidebarOpenChange={setSidebarOpen}
           sidebarOpen={sidebarOpen}
+          sidebarWidth={sidebarWidth}
+          onSidebarWidthChange={updateSidebarWidth}
         />
       ) : (
         <DocsShellContent
@@ -108,6 +119,8 @@ export function DocsShell(props: DocsShellViewProps) {
           onLastSidebarModeChange={setLastSidebarMode}
           onSidebarOpenChange={setSidebarOpen}
           sidebarOpen={sidebarOpen}
+          sidebarWidth={sidebarWidth}
+          onSidebarWidthChange={updateSidebarWidth}
           updateSetupPreference={() => {}}
         />
       )}
@@ -134,31 +147,13 @@ function DocsShellContent({
   onLastSidebarModeChange,
   onSidebarOpenChange,
   sidebarOpen,
+  sidebarWidth,
+  onSidebarWidthChange,
   updateSetupPreference,
 }: DocsShellContentProps) {
   const pathname = usePathname();
-  const sidebarContainerRef = useRef<HTMLDivElement>(null);
-  const [initialSidebarWidth, setInitialSidebarWidth] = useState<number | null>(null);
-  const resizeHandleRef = useRef<HTMLDivElement>(null);
-  const sidebarNavigationRef = useRef<HTMLDivElement>(null);
-  function updateSidebarOpen(nextOpen: boolean) {
-    if (!nextOpen && sidebarNavigationRef.current?.contains(document.activeElement)) resizeHandleRef.current?.focus();
-    onSidebarOpenChange(nextOpen);
-  }
-  const sidebarWrapperRef = useRef<HTMLDivElement>(null);
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
-  useIsomorphicLayoutEffect(() => {
-    if (!activePage) return;
-    const wrapper = sidebarWrapperRef.current;
-    const renderedWidth = sidebarContainerRef.current?.getBoundingClientRect().width ?? 0;
-    const storedWidth = readStoredSidebarWidth();
-    const nextWidth = storedWidth ?? (renderedWidth > 0 ? clampSidebarWidth(renderedWidth) : null);
-    if (!wrapper || nextWidth === null) return;
-
-    if (storedWidth !== null) wrapper.style.setProperty(SIDEBAR_WIDTH_VAR, `${storedWidth}px`);
-    setInitialSidebarWidth(nextWidth);
-  }, [activePage]);
 
   if (!activePage) return <>{children}</>;
 
@@ -203,10 +198,11 @@ function DocsShellContent({
 
   return (
     <SidebarProvider
-      ref={sidebarWrapperRef}
       className="h-svh bg-canvas text-foreground"
       open={sidebarOpen}
-      onOpenChange={updateSidebarOpen}
+      onOpenChange={onSidebarOpenChange}
+      width={sidebarWidth}
+      onWidthChange={onSidebarWidthChange}
     >
       <DocsSidebarContent
         active={activePage}
@@ -223,13 +219,8 @@ function DocsShellContent({
         skinPages={skinPages}
         searchItems={searchItems}
         integration={integration}
-        initialSidebarWidth={initialSidebarWidth}
         lastSectionMode={lastSidebarMode}
         onLastSectionModeChange={onLastSidebarModeChange}
-        resizeHandleRef={resizeHandleRef}
-        sidebarContainerRef={sidebarContainerRef}
-        sidebarNavigationRef={sidebarNavigationRef}
-        sidebarWrapperRef={sidebarWrapperRef}
         updateSetupPreference={updateSetupPreference}
       />
       <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
@@ -245,7 +236,7 @@ function DocsShellContent({
             data-docs-sidebar-trigger=""
             className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex"
           >
-            <SidebarTrigger className="pointer-events-auto" onClick={() => resizeHandleRef.current?.focus()} />
+            <SidebarTrigger className="pointer-events-auto" />
           </div>
           <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
             <div

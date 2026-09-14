@@ -23,6 +23,16 @@ test("sidebar keyboard resize updates and persists the wrapper width", async ({ 
   await expect(wrapper).toHaveCSS("--sidebar-width", "420px");
 });
 
+test("stored widths outside the shared limits are clamped", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/primitives/code-diff");
+  await page.evaluate(() => localStorage.setItem("control-ui-docs:sidebar-width", "9000"));
+  await page.reload();
+  const rail = page.getByRole("separator", { name: "Resize sidebar", exact: true });
+  await expect(rail).toHaveAttribute("aria-valuenow", "420");
+  await expect(page.locator('[data-control-ui="sidebar"][data-slot="container"]')).toHaveCSS("width", "420px");
+});
+
 test("collapsed state survives reload", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/primitives/code-diff");
@@ -37,7 +47,10 @@ test("collapsed state survives reload", async ({ page }) => {
 
   await page.reload();
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
-  await expect(page.locator("[data-docs-sidebar-navigation]")).toHaveAttribute("inert", "");
+  await expect(page.locator('[data-control-ui="sidebar"][data-slot="inner"]')).toHaveAttribute("inert", "");
+  const navigationLink = page.getByRole("link", { name: "Create app", exact: true });
+  await navigationLink.evaluate((link) => link.focus());
+  await expect(navigationLink).not.toBeFocused();
 });
 
 test("drag collapse restores the committed width and drag expand tracks the pointer", async ({ page }) => {
@@ -154,7 +167,7 @@ test("persisted desktop collapse leaves the mobile sheet interactive", async ({ 
   await page.getByRole("button", { name: "Toggle Sidebar" }).click();
 
   const sidebarNavigation = page.locator("[data-docs-sidebar-navigation]");
-  await expect(sidebarNavigation).not.toHaveAttribute("inert");
+  await expect(sidebarNavigation).toBeVisible();
   await expect(sidebarNavigation.getByRole("link", { name: "Create app", exact: true })).toBeEnabled();
 });
 

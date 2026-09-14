@@ -4,11 +4,10 @@ import { GithubIcon, PlusSignIcon, StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
-import { type RefObject, useState } from "react";
+import { useState } from "react";
 import { ControlUiLogo } from "@/app/(features)/brand/control-ui-logo";
 import { referenceGroupTitle } from "@/app/(features)/catalog/guides";
 import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
-import { DocsSidebarResizeHandle } from "@/app/(features)/sidebar/resize-handle";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
@@ -20,7 +19,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
+  SidebarRail,
 } from "@/components/control-ui/ui/sidebar";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { primitiveCategorySidebarIcons, referenceGroupIcon, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
@@ -49,18 +48,9 @@ function setupControlsScopeForKind(kind: string | undefined): SidebarSetupContro
 const githubStarsFormatter = new Intl.NumberFormat("en-US");
 
 type DocsSidebarProps = DocsSidebarContentProps & {
-  initialSidebarWidth: number | null;
   lastSectionMode: SidebarMode | null;
   onLastSectionModeChange: (mode: SidebarMode) => void;
-  resizeHandleRef: RefObject<HTMLDivElement | null>;
-  sidebarContainerRef: RefObject<HTMLDivElement | null>;
-  sidebarNavigationRef: RefObject<HTMLDivElement | null>;
-  sidebarWrapperRef: RefObject<HTMLDivElement | null>;
 };
-
-function sidebarNavigationInert(isMobile: boolean, state: "expanded" | "collapsed"): true | undefined {
-  return !isMobile && state === "collapsed" ? true : undefined;
-}
 
 function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; active: ActivePageId; onNavigate: () => void }) {
   const cta = ctaGuide(guides);
@@ -183,13 +173,8 @@ export function DocsSidebarContent({
   extensions,
   searchItems,
   integration,
-  initialSidebarWidth,
   lastSectionMode,
   onLastSectionModeChange,
-  resizeHandleRef,
-  sidebarContainerRef,
-  sidebarNavigationRef,
-  sidebarWrapperRef,
   updateSetupPreference,
 }: DocsSidebarProps) {
   const { activeItem, mode, modeHrefs, closeMobile, onNavigate, onModeNavigate } = useSidebarNavigation({
@@ -223,20 +208,9 @@ export function DocsSidebarContent({
     onModeNavigate(nextMode);
   }
 
-  const { isMobile, state } = useSidebar();
-
   return (
-    <Sidebar
-      ref={sidebarContainerRef}
-      collapsible="offcanvas"
-      className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0"
-    >
-      <div
-        ref={sidebarNavigationRef}
-        data-docs-sidebar-navigation=""
-        className="flex min-h-0 flex-1 flex-col"
-        inert={sidebarNavigationInert(isMobile, state)}
-      >
+    <Sidebar collapsible="offcanvas" className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0">
+      <div data-docs-sidebar-navigation="" className="flex min-h-0 flex-1 flex-col">
         <SidebarHeader>
           <div className="flex items-center justify-between gap-2">
             <div className="relative flex min-w-0 items-center gap-1.5">
@@ -353,7 +327,7 @@ export function DocsSidebarContent({
         </SidebarFooter>
       </div>
 
-      <DocsSidebarResizeHandle resizeHandleRef={resizeHandleRef} initialWidth={initialSidebarWidth} sidebarWrapperRef={sidebarWrapperRef} />
+      <SidebarRail resizable />
     </Sidebar>
   );
 }

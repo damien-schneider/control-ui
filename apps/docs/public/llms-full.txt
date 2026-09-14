@@ -66,7 +66,7 @@
 - `collapsible` (Collapsible) — Accessible disclosure primitive with measured open and close motion. — `npx shadcn@latest add http://127.0.0.1:3000/r/collapsible.json`
 - `tabs` (Tabs) — Segmented and browser-style navigation with a stable active indicator. — `npx shadcn@latest add http://127.0.0.1:3000/r/tabs.json`
 - `track-highlight` (Track highlight) — Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/track-highlight.json`
-- `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse. — `npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json`
+- `sidebar` (Sidebar) **[beta]** — Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. — `npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json`
 - `scroll-area` (Scroll area) — Scroll container with overlay scrollbars, edge fades, and optional progressive blur. — `npx shadcn@latest add http://127.0.0.1:3000/r/scroll-area.json`
 - `progressive-blur` (Progressive blur) — CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions. — `npx shadcn@latest add http://127.0.0.1:3000/r/progressive-blur.json`
 - `table-of-contents` (Table of contents) — Sticky in-page navigation with scroll-spy range highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json`

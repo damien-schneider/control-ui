@@ -4541,7 +4541,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
+      "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
       "dependencies": [
         "@base-ui/react@^1.7.0",
         "class-variance-authority@^0.7.1",
@@ -4584,6 +4584,11 @@
         {
           "path": "src/registry/sources/control-ui/ui/sidebar-provider.tsx",
           "target": "@components/control-ui/ui/sidebar-provider.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/sidebar-resize-rail.tsx",
+          "target": "@components/control-ui/ui/sidebar-resize-rail.tsx",
           "type": "registry:ui"
         },
         {

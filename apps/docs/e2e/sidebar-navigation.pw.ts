@@ -27,18 +27,21 @@ test("mobile docs sidebar slides, restores focus, and respects reduced motion", 
   await expect(popup).toHaveCount(0);
   await expect(trigger).toBeFocused();
 
-  await trigger.evaluate((element) => {
+  const entering = await trigger.evaluate(async (element, popupSelector) => {
     if (!(element instanceof HTMLButtonElement)) throw new Error("Sidebar trigger missing");
     element.click();
-  });
-  const entering = await popup.evaluate(async (element) => {
     const positions: number[] = [];
+    let width = 0;
     for (let frame = 0; frame < 15; frame++) {
       await new Promise(requestAnimationFrame);
-      positions.push(element.getBoundingClientRect().x);
+      const surface = document.querySelector(popupSelector);
+      if (!surface) continue;
+      const bounds = surface.getBoundingClientRect();
+      width = bounds.width;
+      positions.push(bounds.x);
     }
-    return { positions, width: element.getBoundingClientRect().width };
-  });
+    return { positions, width };
+  }, sidebarPopup);
   expect(entering.positions.some((x) => x < -1 && x > -entering.width + 1)).toBe(true);
   await page.keyboard.press("Escape");
   await expect(popup).toHaveCount(0);
@@ -98,10 +101,14 @@ test("nested pages navigate and remain selected after folding their parent", asy
   await example.getByRole("button", { name: "Toggle Sidebar", exact: true }).click();
   await expect(overview).toBeVisible();
   await expect(overview).toHaveAttribute("aria-current", "page");
-  const overviewBounds = await overview.boundingBox();
-  const sidebarBounds = await example.locator('[data-slot="container"]').boundingBox();
-  if (!overviewBounds || !sidebarBounds) throw new Error("Nested navigation is not laid out");
-  expect(overviewBounds.x + overviewBounds.width).toBeLessThanOrEqual(sidebarBounds.x + sidebarBounds.width);
+  await expect
+    .poll(async () => {
+      const overviewBounds = await overview.boundingBox();
+      const sidebarBounds = await example.locator('[data-slot="container"]').boundingBox();
+      if (!overviewBounds || !sidebarBounds) throw new Error("Nested navigation is not laid out");
+      return overviewBounds.x + overviewBounds.width - sidebarBounds.x - sidebarBounds.width;
+    })
+    .toBeLessThanOrEqual(0);
 });
 
 test("each sidebar preview is one responsive workspace", async ({ page }) => {

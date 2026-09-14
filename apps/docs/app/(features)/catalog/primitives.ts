@@ -337,7 +337,7 @@ export const primitiveEntries = [
     kind: "Primitive",
     status: "beta",
     name: "Sidebar",
-    summary: "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
+    summary: "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/sidebar",
     paths: {
       registry: {
@@ -346,6 +346,7 @@ export const primitiveEntries = [
         source: sourceFile("Sidebar slot", "src/registry/sources/control-ui/ui/sidebar.tsx", "component"),
         supportFiles: [
           sourceFile("Sidebar state", "src/registry/sources/control-ui/ui/sidebar-provider.tsx", "support"),
+          sourceFile("Sidebar resizing", "src/registry/sources/control-ui/ui/sidebar-resize-rail.tsx", "support"),
           sourceFile("Sidebar menus", "src/registry/sources/control-ui/ui/sidebar-menu.tsx", "support"),
           sourceFile("Mobile hook", "src/registry/hooks/use-mobile.ts", "hook"),
           sourceFile("Sheet slot", "src/registry/sources/control-ui/ui/sheet.tsx", "skin-control"),
@@ -360,6 +361,31 @@ export const primitiveEntries = [
       import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarExample })),
     ),
     additionalPreviews: [
+      {
+        id: "resizable",
+        title: "Resizable sidebar",
+        previewClassName: "min-h-0",
+        description:
+          "Add SidebarRail with resizable to drag or use arrow keys to resize. Drag below minWidth to collapse; click or press Enter to toggle. SidebarProvider accepts defaultWidth or width/onWidthChange in pixels. Keep saved preferences in your application.",
+        source: sourceFile("Resizable sidebar", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({
+            default: mod.PrimitiveSidebarResizableExample,
+          })),
+        ),
+      },
+      {
+        id: "right",
+        title: "Right sidebar",
+        previewClassName: "min-h-0",
+        description:
+          'Use side="right" for navigation on the other edge. The rail follows that edge for pointer and keyboard resizing. This example controls width through SidebarProvider.',
+        source: sourceFile("Right sidebar", "src/registry/examples/control-ui/primitives/sidebar.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/sidebar").then((mod) => ({ default: mod.PrimitiveSidebarRightExample })),
+        ),
+      },
+
       {
         id: "nested-navigation",
         title: "Nested navigation",

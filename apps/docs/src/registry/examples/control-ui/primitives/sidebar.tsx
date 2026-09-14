@@ -20,6 +20,7 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarProvider,
+  SidebarRail,
   type SidebarSelectionIndicator,
   SidebarTrigger,
   useSidebar,
@@ -137,8 +138,12 @@ function Workspace({
   variant,
   indicator,
   nested,
+  resizable,
+  side,
 }: {
   variant: "sidebar" | "floating" | "inset";
+  resizable: boolean;
+  side: "left" | "right";
   indicator?: SidebarSelectionIndicator;
   nested: boolean;
 }) {
@@ -152,7 +157,7 @@ function Workspace({
 
   return (
     <>
-      <Sidebar variant={variant} collapsible="icon" className="h-full">
+      <Sidebar variant={variant} side={side} collapsible={resizable ? "offcanvas" : "icon"} className="h-full">
         <SidebarHeader>
           <div className="flex h-9 items-center gap-2 overflow-hidden px-1">
             <span className="flex size-7 shrink-0 items-center justify-center rounded-(--radius-control) bg-primary text-label font-semibold text-primary-foreground">
@@ -169,6 +174,7 @@ function Workspace({
             <SidebarTrigger className="ml-auto lg:hidden" />
           </div>
         </SidebarFooter>
+        {resizable ? <SidebarRail resizable /> : null}
       </Sidebar>
       <SidebarInset>
         <header className="flex h-14 shrink-0 items-center gap-2 border-b border-border px-3">
@@ -211,12 +217,17 @@ function SidebarExample({
   label,
   nested = false,
   controls = false,
+  resizable = false,
+  side = "left",
 }: {
   variant?: "sidebar" | "floating" | "inset";
   label: string;
   nested?: boolean;
   controls?: boolean;
+  resizable?: boolean;
+  side?: "left" | "right";
 }) {
+  const [width, setWidth] = useState(280);
   const [indicator, setIndicator] = useState<SidebarSelectionIndicator>();
   const highlightId = useId();
 
@@ -246,8 +257,15 @@ function SidebarExample({
         </div>
       ) : null}
       <div className="relative isolate h-[30rem] w-full overflow-hidden rounded-(--radius-panel) border border-border bg-canvas [transform:translateZ(0)]">
-        <SidebarProvider persistOpen={false} keyboardShortcut={null} className="min-h-0! h-full" style={{ "--sidebar-width": "14rem" }}>
-          <Workspace variant={variant} indicator={indicator} nested={nested} />
+        <SidebarProvider
+          persistOpen={false}
+          keyboardShortcut={null}
+          width={resizable && side === "right" ? width : undefined}
+          onWidthChange={resizable && side === "right" ? setWidth : undefined}
+          className="min-h-0! h-full"
+          style={{ "--sidebar-width": "14rem" }}
+        >
+          <Workspace variant={variant} indicator={indicator} nested={nested} resizable={resizable} side={side} />
         </SidebarProvider>
       </div>
     </fieldset>
@@ -268,4 +286,12 @@ export function PrimitiveSidebarFloatingExample() {
 
 export function PrimitiveSidebarInsetExample() {
   return <SidebarExample variant="inset" label="Inset" />;
+}
+
+export function PrimitiveSidebarResizableExample() {
+  return <SidebarExample label="Resizable" resizable />;
+}
+
+export function PrimitiveSidebarRightExample() {
+  return <SidebarExample label="Right sidebar" resizable side="right" />;
 }

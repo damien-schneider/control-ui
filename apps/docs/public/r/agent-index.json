@@ -778,7 +778,7 @@
         "id": "sidebar",
         "name": "Sidebar",
         "kind": "Primitive",
-        "summary": "Responsive app sidebar with animated mobile navigation, collapsible groups, nested menus, and icon collapse.",
+        "summary": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
         "href": "/primitives/sidebar",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json"

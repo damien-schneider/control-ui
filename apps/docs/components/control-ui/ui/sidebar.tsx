@@ -1,7 +1,10 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import { PanelLeftIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties } from "react";
+import type { ComponentProps, CSSProperties, MouseEvent, Ref } from "react";
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSkin } from "@/components/control-ui/skin-provider";
@@ -9,7 +12,14 @@ import { useSkin } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/control-ui/ui/sheet";
-import { type SidebarStyle, useSidebar } from "@/components/control-ui/ui/sidebar-provider";
+import {
+  type SidebarStyle,
+  SidebarSurfaceContext,
+  useSidebar,
+  useSidebarElements,
+  useSidebarSurface,
+} from "@/components/control-ui/ui/sidebar-provider";
+import { SidebarResizeRail, type SidebarResizeRailProps } from "@/components/control-ui/ui/sidebar-resize-rail";
 
 // biome-ignore lint/performance/noBarrelFile: Preserve the sidebar install-facing API.
 export {
@@ -33,7 +43,9 @@ export {
 } from "@/components/control-ui/ui/sidebar-menu";
 export { SidebarProvider, type SidebarProviderProps, type SidebarStyle, useSidebar } from "@/components/control-ui/ui/sidebar-provider";
 
-export type SidebarRailProps = Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
+export type SidebarRailProps =
+  | (Omit<ComponentProps<"button">, "style"> & { resizable?: false; style?: CSSProperties & SidebarKnobStyle })
+  | (SidebarResizeRailProps & { resizable: true });
 
 export type SidebarInsetProps = Omit<ComponentProps<"main">, "style"> & { style?: CSSProperties & SidebarKnobStyle };
 
@@ -47,24 +59,72 @@ const sidebarTriggerWidth = {
   lg: "w-[var(--control-h-lg)]",
 } satisfies Record<NonNullable<ComponentProps<typeof Button>["size"]>, string>;
 
-export function Sidebar({
-  side = "left",
-  variant,
-  collapsible = "offcanvas",
-  ref,
-  className,
-  children,
-  style,
-  ...props
-}: Omit<ComponentProps<"div">, "style"> & {
+export type SidebarProps = Omit<ComponentProps<"div">, "style"> & {
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
   style?: SidebarSurfaceStyle;
-}) {
+};
+
+export function Sidebar({ side = "left", collapsible = "offcanvas", ...props }: SidebarProps) {
+  const [railContainer, setRailContainer] = useState<HTMLDivElement | null>(null);
+  return (
+    <SidebarSurfaceContext.Provider value={{ side, collapsible, railContainer }}>
+      <SidebarSurface {...props} railContainerRef={setRailContainer} />
+    </SidebarSurfaceContext.Provider>
+  );
+}
+
+function SidebarSurface({
+  variant,
+  ref,
+  className,
+  children,
+  style,
+  railContainerRef,
+  ...props
+}: SidebarProps & { railContainerRef: Ref<HTMLDivElement> }) {
+  const { side, collapsible } = useSidebarSurface();
+  const { offcanvasRef } = useSidebarElements();
   const skin = useSkin();
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
   const resolvedVariant = variant ?? skin.sidebarLayout ?? "sidebar";
+
+  const container = useRender({
+    defaultTagName: "div",
+    ref: collapsible === "offcanvas" ? [ref ?? null, offcanvasRef] : ref,
+    props: {
+      ...props,
+      "data-control-ui": "sidebar",
+      "data-control-family": "sidebar",
+      "data-slot": "container",
+      tabIndex: -1,
+      className: cn(
+        "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) lg:flex",
+        side === "left"
+          ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
+          : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
+        resolvedVariant === "floating" || resolvedVariant === "inset"
+          ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
+          : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
+        className,
+      ),
+      children: (
+        <>
+          <div
+            data-control-ui="sidebar"
+            data-control-family="sidebar"
+            data-slot="inner"
+            className="flex h-full w-full flex-col"
+            inert={state === "collapsed" && collapsible === "offcanvas"}
+          >
+            {children}
+          </div>
+          <div ref={railContainerRef} className="contents" />
+        </>
+      ),
+    },
+  });
 
   if (collapsible === "none") {
     return (
@@ -74,11 +134,13 @@ export function Sidebar({
         data-control-family="sidebar"
         data-slot="root"
         data-surface="panel"
-        className={cn("flex h-full w-(--sidebar-width) flex-col", className)}
+        data-side={side}
+        className={cn("group relative flex h-full w-(--sidebar-width) flex-col", className)}
         style={style}
         {...props}
       >
         {children}
+        <div ref={railContainerRef} className="contents" />
       </div>
     );
   }
@@ -119,7 +181,7 @@ export function Sidebar({
 
   return (
     <div
-      className="group peer hidden lg:block"
+      className={cn("group peer hidden lg:block", side === "right" && "order-last")}
       data-control-ui="sidebar"
       data-control-family="sidebar"
       data-slot="root"
@@ -142,78 +204,88 @@ export function Sidebar({
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
         )}
       />
-      <div
-        ref={ref}
-        data-control-ui="sidebar"
-        data-control-family="sidebar"
-        data-slot="container"
-        className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) lg:flex",
-          side === "left"
-            ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
-            : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-          resolvedVariant === "floating" || resolvedVariant === "inset"
-            ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
-          className,
-        )}
-        {...props}
-      >
-        <div data-control-ui="sidebar" data-control-family="sidebar" data-slot="inner" className="flex h-full w-full flex-col">
-          {children}
-        </div>
-      </div>
+      {container}
     </div>
   );
 }
 
-export function SidebarTrigger({ className, onClick, size = "sm", ...props }: ComponentProps<typeof Button>) {
+export function SidebarTrigger({ className, onClick, size = "sm", ref, ...props }: ComponentProps<typeof Button>) {
   const { toggleSidebar, isMobile, openMobile, open } = useSidebar();
+  const { triggerRef, railRef } = useSidebarElements();
 
-  return (
-    <Button
-      data-control-ui="sidebar"
-      data-slot="trigger"
-      data-sidebar-trigger=""
-      variant="ghost"
-      aria-expanded={isMobile ? openMobile : open}
-      size={size}
-      className={cn(sidebarTriggerWidth[size], "px-0", className)}
-      onClick={(event) => {
+  return useRender({
+    defaultTagName: "button",
+    render: <Button variant="ghost" size={size} />,
+    ref: [ref ?? null, triggerRef],
+    props: {
+      ...props,
+      "data-control-ui": "sidebar",
+      "data-slot": "trigger",
+      "data-sidebar-trigger": "",
+      "aria-expanded": isMobile ? openMobile : open,
+      className: cn(sidebarTriggerWidth[size], "px-0", className),
+      onClick: (event: MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
+        if (event.defaultPrevented) return;
         toggleSidebar();
-      }}
-      {...props}
-    >
-      <PanelLeftIcon className="size-4" />
-      <span className="sr-only">Toggle Sidebar</span>
-    </Button>
-  );
+        if (!isMobile && !open) railRef.current?.focus({ preventScroll: true });
+      },
+      children: (
+        <>
+          <PanelLeftIcon className="size-4" />
+          <span className="sr-only">Toggle Sidebar</span>
+        </>
+      ),
+    },
+  });
 }
 
-export function SidebarRail({ className, ...props }: SidebarRailProps) {
-  const { toggleSidebar } = useSidebar();
+export function SidebarRail(props: SidebarRailProps) {
+  const { isMobile } = useSidebar();
+  const { railContainer } = useSidebarSurface();
+  if (isMobile || !railContainer) return null;
+  if (props.resizable) {
+    const { resizable, ...resizeProps } = props;
+    return createPortal(<SidebarResizeRail {...resizeProps} />, railContainer);
+  }
+  const { resizable, ...toggleProps } = props;
+  return createPortal(<SidebarToggleRail {...toggleProps} />, railContainer);
+}
 
-  return (
-    <button
-      type="button"
-      data-control-ui="sidebar"
-      data-control-family="sidebar"
-      data-slot="rail"
-      aria-label="Toggle Sidebar"
-      tabIndex={-1}
-      onClick={toggleSidebar}
-      title="Toggle Sidebar"
-      className={cn(
+function SidebarToggleRail({
+  className,
+  ref,
+  onClick,
+  ...props
+}: Omit<ComponentProps<"button">, "style"> & { style?: CSSProperties & SidebarKnobStyle }) {
+  const { toggleSidebar, open } = useSidebar();
+  const { railRef } = useSidebarElements();
+  return useRender({
+    defaultTagName: "button",
+    ref: [ref ?? null, railRef],
+    props: {
+      ...props,
+      type: "button",
+      "data-control-ui": "sidebar",
+      "data-control-family": "sidebar",
+      "data-slot": "rail",
+      "aria-label": props["aria-label"] ?? "Toggle Sidebar",
+      "aria-expanded": open,
+      tabIndex: -1,
+      onClick: (event: MouseEvent<HTMLButtonElement>) => {
+        onClick?.(event);
+        if (!event.defaultPrevented) toggleSidebar();
+      },
+      title: "Toggle Sidebar",
+      className: cn(
         "absolute inset-y-0 z-20 hidden -translate-x-1/2 group-data-[side=left]:-right-4 group-data-[side=right]:left-0 lg:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0",
         className,
-      )}
-      {...props}
-    />
-  );
+      ),
+    },
+  });
 }
 
 export function SidebarInset({ className, ...props }: SidebarInsetProps) {

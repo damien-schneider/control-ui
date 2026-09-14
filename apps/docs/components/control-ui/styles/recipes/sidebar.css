@@ -102,9 +102,35 @@
       --cui-sidebar-rail-divider-background: var(--sidebar-border);
     }
 
-    :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]:hover) {
+    :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]:not([data-resizable]):hover) {
       background-color: var(--sidebar);
     }
+  }
+
+  :where(
+    [data-control-family="sidebar"][data-slot="wrapper"][data-resizing="true"]
+      [data-control-family="sidebar"]:is([data-slot="gap"], [data-slot="container"])
+  ) {
+    transition: none;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="rail"][data-resizable]) {
+    inline-size: calc(var(--spacing) * 2);
+    background: none;
+  }
+
+  :where([data-control-family="sidebar"][data-slot="rail"][data-resizable])::after {
+    content: "";
+    position: absolute;
+    inset-block: 12.5%;
+    inset-inline-start: 50%;
+    inline-size: 1px;
+    background-image: linear-gradient(transparent, var(--cui-sidebar-rail-divider-background), transparent);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="rail"]:is(:focus-visible, [data-resizing="true"])) {
+    --cui-sidebar-rail-divider-background: var(--ring);
+    outline: none;
   }
 
   :where([data-control-family="sidebar"][data-slot="inset"]) {

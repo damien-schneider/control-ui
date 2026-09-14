@@ -151,11 +151,6 @@
   box-shadow: none;
 }
 
-[data-resizing="true"] [data-control-ui="sidebar"][data-slot="gap"],
-[data-resizing="true"] [data-control-ui="sidebar"][data-slot="container"] {
-  transition-property: none;
-}
-
 @layer base {
   :root {
     color-scheme: light;

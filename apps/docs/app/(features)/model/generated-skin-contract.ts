@@ -9993,7 +9993,20 @@ export const generatedSkinContract: SkinContract = {
         rail: {
           family: "sidebar",
           registryItems: ["sidebar"],
-          states: [],
+          states: [
+            {
+              attribute: "data-resizable",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-resize-ready",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
         trigger: {
           registryItems: ["sidebar"],
