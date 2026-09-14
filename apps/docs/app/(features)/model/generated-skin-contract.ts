@@ -10703,6 +10703,18 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-drag-checked",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["false", "true"],
+            },
+            {
+              attribute: "data-dragging",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-filled",
               source: "external",
               valueKind: "presence",
@@ -14735,6 +14747,42 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--background)",
+      },
+      {
+        name: "--cui-switch-inline-size",
+        syntax: "<length>",
+        initialValue: "36px",
+        defaultValue: "calc(var(--spacing) * 9)",
+      },
+      {
+        name: "--cui-switch-height",
+        syntax: "<length>",
+        initialValue: "20px",
+        defaultValue: "calc(var(--spacing) * 5)",
+      },
+      {
+        name: "--cui-switch-padding",
+        syntax: "<length>",
+        initialValue: "2px",
+        defaultValue: "calc(var(--spacing) * 0.5)",
+      },
+      {
+        name: "--cui-switch-thumb-inline-size",
+        syntax: "<length>",
+        initialValue: "16px",
+        defaultValue: "calc(var(--spacing) * 4)",
+      },
+      {
+        name: "--cui-switch-thumb-press-scale",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "1.25 1",
+      },
+      {
+        name: "--cui-switch-thumb-backdrop-filter",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
       },
     ],
     table: [

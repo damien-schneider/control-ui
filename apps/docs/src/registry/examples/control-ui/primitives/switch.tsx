@@ -53,6 +53,12 @@ export function PrimitiveSwitchExample() {
       <Row htmlFor="sw-off" label="Off, disabled">
         <Switch id="sw-off" disabled aria-label="Off, disabled" />
       </Row>
+      <Row htmlFor="sw-updates" label="Automatic updates">
+        <Switch id="sw-updates" name="automatic-updates" defaultChecked aria-label="Automatic updates" />
+      </Row>
+      <Row htmlFor="sw-managed" label="Managed by organization">
+        <Switch id="sw-managed" checked readOnly aria-label="Managed by organization" />
+      </Row>
     </div>
   );
 }

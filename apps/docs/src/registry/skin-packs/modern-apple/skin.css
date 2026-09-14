@@ -12,7 +12,9 @@
   --segmented-active-bg: oklch(1 0 0 / 0.95);
   --canvas-gradient: linear-gradient(165deg, oklch(0.97 0.004 250), oklch(0.93 0.008 255));
   --apple-sidebar-float-gap: 0.75rem;
-  --apple-sidebar-background: var(--_apple-popup-fill);
+  --apple-sidebar-material: oklch(0.92 0 0);
+  --apple-sidebar-background: oklch(from var(--apple-sidebar-material) l c h / 0.92);
+  --apple-sidebar-backdrop-filter: blur(80px) saturate(0.15);
   --apple-sidebar-selection: oklch(0 0 0 / 0.075);
   --apple-sidebar-hover: oklch(0 0 0 / 0.035);
   --apple-sidebar-foreground: var(--foreground);
@@ -60,7 +62,7 @@
   --segmented-active-bg: oklch(0.46 0.003 260 / 0.8);
   --canvas-gradient: linear-gradient(165deg, oklch(0.27 0.006 255), oklch(0.2 0.004 255));
   --_apple-popup-fill: oklch(0.46 0.012 280 / var(--popover-opacity));
-  --apple-sidebar-background: oklch(0.275 0.013 250 / 0.8);
+  --apple-sidebar-material: oklch(0.195 0.003 264);
   --apple-sidebar-selection: oklch(1 0 0 / 0.12);
   --apple-sidebar-hover: oklch(1 0 0 / 0.06);
   --apple-sidebar-foreground: oklch(0.89 0.004 260);
@@ -126,7 +128,7 @@
     --sidebar: transparent;
     --cui-sidebar-inner-background: var(--apple-sidebar-background);
     --cui-sidebar-inner-border-color: var(--glass-rim);
-    --cui-sidebar-inner-backdrop-filter: blur(var(--backdrop-blur-popover)) saturate(1.5);
+    --cui-sidebar-inner-backdrop-filter: var(--apple-sidebar-backdrop-filter);
     --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-inner-radius: 0px;
     --cui-sidebar-group-label-foreground: var(--apple-sidebar-label);
@@ -339,6 +341,47 @@
     --cui-range-thumb-background: oklch(1 0 0);
     --cui-range-thumb-border-color: var(--glass-rim);
     --cui-range-thumb-shadow: 0 1px 3px oklch(0 0 0 / 0.28);
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="switch"][data-slot="root"]) {
+    --corner-shape: round;
+    --cui-switch-inline-size: 3.375rem;
+    --cui-switch-height: 1.5rem;
+    --cui-switch-thumb-inline-size: 2rem;
+    --cui-switch-padding: 0.125rem;
+    --cui-switch-background: oklch(from var(--foreground) l c h / 0.085);
+    --cui-switch-hover-background: oklch(from var(--foreground) l c h / 0.11);
+    --cui-switch-thumb-background: oklch(1 0 0);
+    --cui-switch-thumb-shadow: 0 3px 36px oklch(0 0 0 / 0.05);
+    --cui-switch-thumb-press-scale: 1.12 1.2;
+  }
+
+  [data-skin="modern-apple"] :where([data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging])) {
+    --cui-switch-background: oklch(from var(--foreground) l c h / 0.16);
+    --cui-switch-checked-background: oklch(from var(--primary) calc(l * 0.95) c h);
+  }
+
+  @supports (backdrop-filter: blur(1px)) {
+    [data-skin="modern-apple"]
+      :where([data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging]):not([data-disabled], [data-readonly])) {
+      --cui-switch-thumb-background: oklch(1 0 0 / 0.3);
+      --cui-switch-thumb-backdrop-filter: blur(2px) saturate(1.5);
+      --cui-switch-thumb-shadow:
+        inset 0 0 0 1px oklch(1 0 0 / 0.65), inset 0 1px 1px oklch(1 0 0 / 0.9), inset 0 -1px 2px oklch(0 0 0 / 0.15),
+        0 2px 8px oklch(0 0 0 / 0.15);
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+    [data-skin="modern-apple"] :where([data-control-family="sidebar"][data-slot="root"]) {
+      --cui-sidebar-inner-background: var(--apple-sidebar-material);
+      --cui-sidebar-inner-backdrop-filter: none;
+    }
+
+    [data-skin="modern-apple"] :where([data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging])) {
+      --cui-switch-thumb-background: oklch(1 0 0);
+      --cui-switch-thumb-backdrop-filter: none;
+    }
   }
 
   [data-skin="modern-apple"] :where([data-slot="root"][data-role="user"][data-control-family="chat-message"]) {

@@ -445,7 +445,7 @@
       "registryItems": [
         "switch"
       ],
-      "knobs": 7,
+      "knobs": 13,
       "probes": 19
     },
     "table": {

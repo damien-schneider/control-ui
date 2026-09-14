@@ -1,8 +1,19 @@
 @layer components {
   :where([data-control-family="switch"][data-slot="root"]) {
-    block-size: calc(var(--spacing) * 5);
-    inline-size: calc(var(--spacing) * 9);
-    padding: calc(var(--spacing) * 0.5);
+    --cui-switch-inline-size: calc(var(--spacing) * 9);
+    --cui-switch-height: calc(var(--spacing) * 5);
+    --cui-switch-padding: calc(var(--spacing) * 0.5);
+    --cui-switch-thumb-inline-size: calc(var(--spacing) * 4);
+    --cui-switch-thumb-press-scale: 1.25 1;
+    --cui-switch-thumb-backdrop-filter: none;
+    --_switch-direction: 1;
+    --_switch-progress: 0;
+    --_switch-travel: calc(var(--cui-switch-inline-size) - var(--cui-switch-padding) * 2 - var(--cui-switch-thumb-inline-size));
+    block-size: var(--cui-switch-height);
+    inline-size: var(--cui-switch-inline-size);
+    padding: var(--cui-switch-padding);
+    touch-action: pan-y;
+    user-select: none;
     --cui-switch-background: oklch(from var(--foreground) l c h / 0.14);
     --cui-switch-hover-background: oklch(from var(--foreground) l c h / 0.2);
     --cui-switch-checked-background: var(--primary);
@@ -21,10 +32,12 @@
   }
 
   :where([data-control-family="switch"][data-slot="root"]:active) {
-    background: oklch(from var(--foreground) l c h / 0.25);
+    --cui-switch-background: oklch(from var(--foreground) l c h / 0.25);
+    background: var(--cui-switch-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked]) {
+    --_switch-progress: 1;
     background: var(--cui-switch-checked-background);
   }
 
@@ -33,7 +46,8 @@
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-checked]:active) {
-    background: oklch(from var(--primary) l c h / 0.8);
+    --cui-switch-checked-background: oklch(from var(--primary) l c h / 0.8);
+    background: var(--cui-switch-checked-background);
   }
 
   :where([data-control-family="switch"][data-slot="root"][data-disabled]) {
@@ -52,9 +66,13 @@
     border-radius: var(--cui-switch-thumb-radius);
     background: var(--cui-switch-thumb-background);
     box-shadow: var(--cui-switch-thumb-shadow);
-    width: calc(var(--spacing) * 4);
-    height: calc(var(--spacing) * 4);
-    transition-property: translate, width;
+    inline-size: var(--cui-switch-thumb-inline-size);
+    block-size: calc(var(--cui-switch-height) - var(--cui-switch-padding) * 2);
+    translate: calc(var(--_switch-direction) * var(--_switch-travel) * var(--_switch-progress)) 0;
+    transform-origin: left center;
+    -webkit-backdrop-filter: var(--cui-switch-thumb-backdrop-filter);
+    backdrop-filter: var(--cui-switch-thumb-backdrop-filter);
+    transition-property: translate, scale, background-color, box-shadow;
     transition-duration: var(--duration-base);
     transition-timing-function: var(--ease-emphasized);
   }
@@ -92,18 +110,39 @@
     opacity: 1;
   }
 
-  :where([data-control-family="switch"][data-slot="thumb"][data-checked]) {
-    --_switch-thumb-translate: calc(var(--spacing) * 4) 0;
-    translate: var(--_switch-thumb-translate);
+  :where([data-control-family="switch"][data-slot="root"]:dir(rtl)) {
+    --_switch-direction: -1;
   }
 
-  :where([data-control-family="switch"][data-slot="root"]:active [data-control-family="switch"][data-slot="thumb"]) {
-    width: calc(var(--spacing) * 5);
+  :where([data-control-family="switch"][data-slot="thumb"][data-checked]),
+  :where([data-control-family="switch"][data-slot="thumb"]:dir(rtl)) {
+    transform-origin: right center;
   }
 
-  :where([data-control-family="switch"][data-slot="root"]:active [data-control-family="switch"][data-slot="thumb"][data-checked]) {
-    --_switch-thumb-translate: calc(var(--spacing) * 3) 0;
-    translate: var(--_switch-thumb-translate);
+  :where([data-control-family="switch"][data-slot="thumb"][data-checked]:dir(rtl)) {
+    transform-origin: left center;
+  }
+
+  :where(
+    [data-control-family="switch"][data-slot="root"]:is(:active, [data-dragging]):not([data-disabled], [data-readonly]) [data-slot="thumb"]
+  ) {
+    scale: var(--cui-switch-thumb-press-scale);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-dragging]) {
+    --_switch-progress: var(--_switch-drag-progress);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-drag-checked="false"]) {
+    background: var(--cui-switch-background);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-drag-checked="true"]) {
+    background: var(--cui-switch-checked-background);
+  }
+
+  :where([data-control-family="switch"][data-slot="root"][data-dragging] [data-slot="thumb"]) {
+    transition-property: scale, background-color, box-shadow;
   }
 }
 
@@ -146,4 +185,38 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-switch-inline-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 36px;
+}
+
+@property --cui-switch-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 20px;
+}
+
+@property --cui-switch-padding {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 2px;
+}
+
+@property --cui-switch-thumb-inline-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 16px;
+}
+
+@property --cui-switch-thumb-press-scale {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-switch-thumb-backdrop-filter {
+  syntax: "*";
+  inherits: true;
 }

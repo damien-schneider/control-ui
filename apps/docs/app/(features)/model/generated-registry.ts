@@ -3827,6 +3827,11 @@ export const registryMetadata = {
         target: "@components/control-ui/ui/switch.tsx",
         type: "registry:ui",
       },
+      {
+        path: "src/registry/sources/control-ui/ui/use-switch-drag.ts",
+        target: "@components/control-ui/ui/use-switch-drag.ts",
+        type: "registry:ui",
+      },
     ],
   },
   table: {
