@@ -1,6 +1,6 @@
 "use client";
 
-import { Command as CommandPrimitive } from "cmdk";
+import { Command as CommandPrimitive, useCommandState } from "cmdk";
 import type { ComponentProps, CSSProperties } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -69,6 +69,7 @@ export function CommandDialog({
 export type CommandInputProps = Omit<ComponentProps<typeof CommandPrimitive.Input>, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
 export function CommandInput({ className, ...props }: CommandInputProps) {
+  const hasResults = useCommandState((state) => state.filtered.count > 0);
   return (
     <div
       data-control-ui="command"
@@ -93,47 +94,62 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
         <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
       </svg>
       <CommandPrimitive.Input
+        asChild
         data-control-ui="command"
         data-popup-kind="command"
         data-control-family="popup"
         data-slot="input"
         className={cn("h-full w-full disabled:cursor-not-allowed", className)}
         {...props}
-      />
+      >
+        <input role="combobox" aria-expanded={hasResults} />
+      </CommandPrimitive.Input>
     </div>
   );
 }
 
+function CommandListSurface({ hasResults, ...props }: ComponentProps<"div"> & { hasResults: boolean }) {
+  return <div {...props} role={hasResults ? "listbox" : "group"} />;
+}
+
 export function CommandList({
   className,
+  children,
   ...props
 }: ComponentProps<typeof CommandPrimitive.List> & { style?: CSSProperties & PopupKnobStyle }) {
+  const hasResults = useCommandState((state) => state.filtered.count > 0);
   return (
     <ScrollArea maxHeight="min(360px, var(--available-height, 360px))" className="min-h-0 w-full">
       <CommandPrimitive.List
+        asChild
         data-control-ui="command"
         data-control-family="popup"
         data-popup-kind="command"
         data-slot="list"
         className={cn("p-[var(--popover-padding)]", className)}
         {...props}
-      />
+      >
+        <CommandListSurface hasResults={hasResults}>{children}</CommandListSurface>
+      </CommandPrimitive.List>
     </ScrollArea>
   );
 }
 
 export type CommandEmptyProps = Omit<ComponentProps<typeof CommandPrimitive.Empty>, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
-export function CommandEmpty({ className, ...props }: CommandEmptyProps) {
+export function CommandEmpty({ className, children, ...props }: CommandEmptyProps) {
   return (
     <CommandPrimitive.Empty
+      asChild
       data-control-ui="command"
       data-control-family="popup"
       data-popup-kind="command"
       data-slot="empty"
       className={className}
       {...props}
-    />
+    >
+      <div role="status">{children}</div>
+    </CommandPrimitive.Empty>
   );
 }
 
@@ -159,6 +175,7 @@ export type CommandSeparatorProps = Omit<ComponentProps<typeof CommandPrimitive.
 export function CommandSeparator({ className, ...props }: CommandSeparatorProps) {
   return (
     <CommandPrimitive.Separator
+      aria-hidden="true"
       data-control-ui="command"
       data-popup-kind="command"
       data-control-family="popup"

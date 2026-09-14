@@ -18,6 +18,8 @@ export function PrimitiveSliderExample() {
   const [value, setValue] = useState(40);
   const [plainValue, setPlainValue] = useState(65);
   const [zoom, setZoom] = useState(50);
+  const [volume, setVolume] = useState(40);
+  const [savedVolume, setSavedVolume] = useState({ value: 40, changes: 0 });
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
@@ -41,6 +43,24 @@ export function PrimitiveSliderExample() {
       </Row>
       <Row label="Disabled">
         <Slider variant="plain" aria-label="Disabled slider" value={30} disabled min={0} max={100} />
+      </Row>
+      <Row label="Vertical, committed on release">
+        <Slider
+          variant="plain"
+          orientation="vertical"
+          label="Volume"
+          value={volume}
+          onValueChange={setVolume}
+          onValueCommitted={(committedVolume) => setSavedVolume((previous) => ({ value: committedVolume, changes: previous.changes + 1 }))}
+          min={0}
+          max={100}
+          step={10}
+          formatValue={(currentVolume) => `${currentVolume}%`}
+          className="h-48"
+        />
+        <output aria-label="Saved volume">
+          {savedVolume.value}% ({savedVolume.changes} changes)
+        </output>
       </Row>
     </div>
   );

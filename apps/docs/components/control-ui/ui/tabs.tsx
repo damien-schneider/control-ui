@@ -9,13 +9,15 @@ import type { TabsKnobStyle } from "@/components/control-ui/knob-contracts/tabs-
 import { cn } from "@/components/control-ui/lib/cn";
 
 export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
-  ControlledChoice<TValue> & { style?: CSSProperties & TabsKnobStyle };
+  ControlledChoice<TValue> & { orientation?: "horizontal" | "vertical"; style?: CSSProperties & TabsKnobStyle };
 
 export type TabsListVariant = "default" | "browser";
 
 export type TabsListProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
   size?: ControlSize;
   variant?: TabsListVariant;
+  activateOnFocus?: boolean;
+  loopFocus?: boolean;
 };
 
 export type TabsTabProps = Omit<Omit<ComponentProps<"button">, "value">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
@@ -26,6 +28,7 @@ export type TabsTabProps = Omit<Omit<ComponentProps<"button">, "value">, "style"
 
 export type TabsPanelProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & TabsKnobStyle } & {
   value: string;
+  keepMounted?: boolean;
 };
 
 type RegisterTabsPanel = (value: string, node: HTMLDivElement | null) => (() => void) | undefined;

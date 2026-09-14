@@ -13,6 +13,8 @@ export type SliderProps = Omit<
     value?: number;
     defaultValue?: number;
     onValueChange?: (value: number) => void;
+    onValueCommitted?: (value: number) => void;
+    orientation?: "horizontal" | "vertical";
     min?: number;
     max?: number;
     step?: number;
@@ -52,6 +54,8 @@ export function Slider({
   value,
   defaultValue,
   onValueChange,
+  onValueCommitted,
+  orientation = "horizontal",
   min = 0,
   max = 100,
   step,
@@ -65,12 +69,13 @@ export function Slider({
   const ticks = labeled ? tickPositions(min, max, step) : [];
 
   return (
-    <SliderPrimitive.Root
+    <SliderPrimitive.Root<number>
       data-control-ui="slider"
       data-range-kind="slider"
       data-slot="root"
       data-control-family="range"
       data-variant={variant}
+      orientation={orientation}
       data-labeled={labeled ? "true" : undefined}
       value={value}
       defaultValue={defaultValue}
@@ -78,9 +83,11 @@ export function Slider({
       max={max}
       step={step}
       disabled={disabled}
-      onValueChange={onValueChange ? (next) => onValueChange(Array.isArray(next) ? next[0] : next) : undefined}
+      onValueChange={onValueChange}
+      onValueCommitted={onValueCommitted}
       className={cn(
-        "group relative flex w-full cursor-pointer touch-none select-none items-center data-[disabled]:cursor-not-allowed",
+        "group relative flex cursor-pointer touch-none select-none items-center data-[disabled]:cursor-not-allowed",
+        orientation === "vertical" ? "min-h-20 w-fit" : "w-full",
         className,
       )}
       style={style}
@@ -92,7 +99,7 @@ export function Slider({
         data-range-kind="slider"
         data-slot="control"
         data-labeled={labeled ? "true" : undefined}
-        className="flex w-full items-center"
+        className={cn("flex items-center", orientation === "vertical" ? "h-full" : "w-full")}
       >
         <SliderPrimitive.Track
           data-control-ui="slider"
@@ -101,7 +108,7 @@ export function Slider({
           data-slot="track"
           data-variant={variant}
           data-labeled={labeled ? "true" : undefined}
-          className="relative w-full grow"
+          className={cn("relative grow", orientation === "vertical" ? "h-full" : "w-full")}
           style={style}
         >
           <SliderPrimitive.Indicator
@@ -120,8 +127,8 @@ export function Slider({
               data-control-family="range"
               data-range-kind="slider"
               data-slot="tick"
-              className="pointer-events-none absolute bottom-0"
-              style={{ left: `${pct}%` }}
+              className="pointer-events-none absolute"
+              style={orientation === "vertical" ? { bottom: `${pct}%` } : { left: `${pct}%`, bottom: 0 }}
             />
           ))}
           <SliderPrimitive.Thumb

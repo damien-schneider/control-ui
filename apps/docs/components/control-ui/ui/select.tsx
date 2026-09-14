@@ -11,8 +11,13 @@ import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
-export type SelectProps<TValue extends string = string> = ControlledChoice<TValue> & {
+export type SelectProps<TValue extends string = string> = Omit<ControlledChoice<TValue>, "value"> & {
+  value?: TValue | null;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
   disabled?: boolean;
+  items?: Record<string, ReactNode> | readonly { value: TValue; label: ReactNode }[];
   name?: string;
   children?: ReactNode;
 };

@@ -11,6 +11,7 @@ import type { ButtonProps } from "@/components/control-ui/ui/button";
 import { Button } from "@/components/control-ui/ui/button";
 
 export type DialogProps = {
+  modal?: boolean | "trap-focus";
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;

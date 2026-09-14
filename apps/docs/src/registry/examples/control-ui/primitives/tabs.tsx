@@ -22,6 +22,18 @@ export function PrimitiveTabsExample() {
         </TabsPanel>
       </Tabs>
 
+      <Tabs defaultValue="audio" orientation="vertical" className="flex gap-4">
+        <TabsList activateOnFocus aria-label="Settings sections">
+          <TabsTab value="audio">Audio</TabsTab>
+          <TabsTab value="video">Video</TabsTab>
+          <TabsTab value="export" disabled>
+            Export
+          </TabsTab>
+        </TabsList>
+        <TabsPanel value="audio">Microphone and output volume.</TabsPanel>
+        <TabsPanel value="video">Camera and recording quality.</TabsPanel>
+      </Tabs>
+
       <Tabs defaultValue="tabs.tsx">
         <TabsList variant="browser" className="w-full">
           <TabsTab value="index.tsx">index.tsx</TabsTab>
