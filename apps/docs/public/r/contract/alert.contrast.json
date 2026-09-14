@@ -1,6 +1,90 @@
 {
   "version": 1,
   "family": "alert",
-  "anatomies": [],
-  "probes": []
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "alert",
+          "data-control-ui": "alert",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "default",
+          "role": "alert"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "alert",
+          "data-control-ui": "alert",
+          "data-slot": "description"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "alert",
+          "data-control-ui": "alert",
+          "data-slot": "root",
+          "data-surface": "panel",
+          "data-variant": "destructive",
+          "role": "alert"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "alert",
+          "data-control-ui": "alert",
+          "data-slot": "description"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "text": "--cui-alert-description-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-alert-description-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    }
+  ]
 }

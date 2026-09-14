@@ -1,72 +1,88 @@
 @layer components {
   :where([data-control-family="table-of-contents"][data-slot="root"]) {
-    --cui-table-of-contents-rail-background: oklch(from var(--border) l c h / 0.6);
-    --cui-table-of-contents-highlight-radius: var(--radius-md);
-    --cui-table-of-contents-highlight-background: oklch(from var(--foreground) l c h / 0.04);
-    border: 1px solid oklch(from var(--border) l c h / 0.7);
-    border-radius: var(--radius-panel);
-    background-color: oklch(from var(--card) l c h / 0.8);
-    box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(var(--blur-sm));
-    padding: calc(var(--spacing) * 4);
-    font-size: var(--text-sm);
+    --cui-table-of-contents-background: var(--card);
+    --cui-table-of-contents-border-color: var(--border);
+    --cui-table-of-contents-border-width: 1px;
+    --cui-table-of-contents-radius: var(--radius-panel);
+    --cui-table-of-contents-shadow: var(--shadow-sm);
+    --cui-table-of-contents-backdrop-filter: none;
+    --cui-table-of-contents-padding: calc(var(--spacing) * 4);
+    --cui-table-of-contents-label-foreground: var(--muted-foreground);
+    --cui-table-of-contents-label-font-size: var(--text-caption);
+    --cui-table-of-contents-label-font-weight: var(--font-weight-medium);
+    --cui-table-of-contents-label-gap: calc(var(--spacing) * 3);
+    --cui-table-of-contents-item-foreground: var(--muted-foreground);
+    --cui-table-of-contents-item-hover-foreground: var(--foreground);
+    --cui-table-of-contents-item-active-foreground: var(--foreground);
+    --cui-table-of-contents-item-font-size: var(--text-body);
+    --cui-table-of-contents-item-line-height: var(--leading-normal);
+    --cui-table-of-contents-item-font-weight: var(--font-weight-normal);
+    --cui-table-of-contents-item-root-font-weight: var(--font-weight-medium);
+    --cui-table-of-contents-item-padding-block: calc(var(--spacing) * 1.5);
+    --cui-table-of-contents-item-padding-inline: calc(var(--spacing) * 3);
+    --cui-table-of-contents-item-indent: calc(var(--spacing) * 2);
+    --cui-table-of-contents-rail-background: var(--border);
+    --cui-table-of-contents-rail-width: 1px;
+    --cui-table-of-contents-trail-background: var(--foreground);
+    --cui-table-of-contents-trail-width: 2px;
+    --cui-table-of-contents-trail-radius: var(--cui-table-of-contents-trail-width);
+    --cui-table-of-contents-highlight-radius: var(--radius-popup-item);
+    --cui-table-of-contents-highlight-background: var(--active-fill);
+    border: var(--cui-table-of-contents-border-width) solid var(--cui-table-of-contents-border-color);
+    border-radius: var(--cui-table-of-contents-radius);
+    background-color: var(--cui-table-of-contents-background);
+    box-shadow: var(--cui-table-of-contents-shadow);
+    -webkit-backdrop-filter: var(--cui-table-of-contents-backdrop-filter);
+    backdrop-filter: var(--cui-table-of-contents-backdrop-filter);
+    padding: var(--cui-table-of-contents-padding);
+    font-size: var(--cui-table-of-contents-item-font-size);
+    line-height: var(--cui-table-of-contents-item-line-height);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="label"]) {
-    margin-block-end: calc(var(--spacing) * 3);
-    color: var(--muted-foreground);
-    font-size: var(--text-caption);
-    font-weight: var(--font-weight-medium);
+    margin-block-end: var(--cui-table-of-contents-label-gap);
+    color: var(--cui-table-of-contents-label-foreground);
+    font-size: var(--cui-table-of-contents-label-font-size);
+    font-weight: var(--cui-table-of-contents-label-font-weight);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="rail"]) {
+    inline-size: var(--cui-table-of-contents-rail-width);
     background-color: var(--cui-table-of-contents-rail-background);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"]) {
-    padding-block: calc(var(--spacing) * 1.5);
-    padding-inline-start: calc(var(--spacing) * 14);
-    color: var(--muted-foreground);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-normal);
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
-  }
-
-  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="1"]) {
-    padding-inline-start: calc(var(--spacing) * 5);
-  }
-
-  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="2"]) {
-    padding-inline-start: calc(var(--spacing) * 7);
-  }
-
-  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="3"]) {
-    padding-inline-start: calc(var(--spacing) * 9);
-  }
-
-  :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="4"]) {
-    padding-inline-start: calc(var(--spacing) * 11);
+    padding-block: var(--cui-table-of-contents-item-padding-block);
+    padding-inline: var(--cui-table-of-contents-item-padding-inline);
+    padding-inline-start: calc(
+      var(--cui-table-of-contents-item-padding-inline) +
+      var(--_toc-depth) *
+      var(--cui-table-of-contents-item-indent)
+    );
+    color: var(--cui-table-of-contents-item-foreground);
+    font-size: var(--cui-table-of-contents-item-font-size);
+    font-weight: var(--cui-table-of-contents-item-font-weight);
+    line-height: var(--cui-table-of-contents-item-line-height);
+    overflow-wrap: anywhere;
+    transition: color var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="0"]) {
-    padding-inline-start: calc(var(--spacing) * 3);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-table-of-contents-item-root-font-weight);
   }
 
   @media (hover: hover) {
     :where([data-control-family="table-of-contents"][data-slot="item"]:hover) {
-      color: var(--foreground);
+      color: var(--cui-table-of-contents-item-hover-foreground);
     }
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"]:focus-visible) {
-    color: var(--foreground);
+    color: var(--cui-table-of-contents-item-hover-foreground);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"][data-active]) {
-    color: var(--foreground);
+    color: var(--cui-table-of-contents-item-active-foreground);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="root"] [data-control-family="track-highlight"][data-slot="root"]) {
@@ -83,15 +99,166 @@
   }
 
   :where([data-control-family="table-of-contents"][data-slot="trail"]) {
-    border-radius: 9999px;
-    background-color: var(--foreground);
+    inline-size: var(--cui-table-of-contents-trail-width);
+    border-radius: var(--cui-table-of-contents-trail-radius);
+    background-color: var(--cui-table-of-contents-trail-background);
   }
+}
+
+@property --cui-table-of-contents-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-of-contents-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-of-contents-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-shadow {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}
+
+@property --cui-table-of-contents-backdrop-filter {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}
+
+@property --cui-table-of-contents-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-label-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-of-contents-label-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 1rem;
+}
+
+@property --cui-table-of-contents-label-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}
+
+@property --cui-table-of-contents-label-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-item-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-of-contents-item-hover-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-of-contents-item-active-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-of-contents-item-font-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 1rem;
+}
+
+@property --cui-table-of-contents-item-line-height {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1.5;
+}
+
+@property --cui-table-of-contents-item-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}
+
+@property --cui-table-of-contents-item-root-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}
+
+@property --cui-table-of-contents-item-padding-block {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-item-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-item-indent {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-table-of-contents-rail-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-table-of-contents-rail-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-trail-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-table-of-contents-trail-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-trail-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-table-of-contents-highlight-radius {

@@ -1,6 +1,84 @@
 {
   "version": 1,
   "family": "empty",
-  "anatomies": [],
-  "probes": []
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "empty",
+          "data-control-ui": "empty",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "empty",
+          "data-control-ui": "empty",
+          "data-slot": "description"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "empty",
+          "data-control-ui": "empty",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "empty",
+          "data-control-ui": "empty",
+          "data-slot": "title"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "text": "--cui-empty-description-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-empty-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    }
+  ]
 }

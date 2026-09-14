@@ -28,7 +28,7 @@
       "name": "--cui-empty-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "0px"
+      "defaultValue": "1px"
     },
     {
       "name": "--cui-empty-border-style",
@@ -47,6 +47,84 @@
       "syntax": "*",
       "initialValue": "transparent",
       "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-empty-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-empty-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-empty-description-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-empty-media-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-empty-padding",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 6)"
+    },
+    {
+      "name": "--cui-empty-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 6)"
+    },
+    {
+      "name": "--cui-empty-header-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-empty-content-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-empty-content-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "24rem"
+    },
+    {
+      "name": "--cui-empty-media-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 10)"
+    },
+    {
+      "name": "--cui-empty-media-icon-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 5)"
+    },
+    {
+      "name": "--cui-empty-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-sm)"
+    },
+    {
+      "name": "--cui-empty-title-font-weight",
+      "syntax": "<number>",
+      "initialValue": "500",
+      "defaultValue": "var(--font-weight-medium)"
     }
   ],
   "parts": {
@@ -98,7 +176,8 @@
   "adornments": {},
   "uncovered": [
     "--cui-empty-background",
-    "--cui-empty-media-background"
+    "--cui-empty-media-background",
+    "--cui-empty-media-foreground"
   ],
   "contrast": "/r/contract/empty.contrast.json"
 }

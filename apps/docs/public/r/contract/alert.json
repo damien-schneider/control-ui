@@ -29,6 +29,72 @@
       "syntax": "*",
       "initialValue": "none",
       "defaultValue": "none"
+    },
+    {
+      "name": "--cui-alert-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card-foreground)"
+    },
+    {
+      "name": "--cui-alert-description-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-alert-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-alert-padding",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-alert-padding-inline",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
+      "name": "--cui-alert-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 0.5)"
+    },
+    {
+      "name": "--cui-alert-icon-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-alert-icon-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
+      "name": "--cui-alert-font-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--text-sm)"
+    },
+    {
+      "name": "--cui-alert-description-gap",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--spacing)"
+    },
+    {
+      "name": "--cui-alert-title-font-weight",
+      "syntax": "<number>",
+      "initialValue": "500",
+      "defaultValue": "var(--font-weight-medium)"
     }
   ],
   "parts": {
@@ -68,7 +134,8 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-alert-background"
+    "--cui-alert-background",
+    "--cui-alert-foreground"
   ],
   "contrast": "/r/contract/alert.contrast.json"
 }

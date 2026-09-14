@@ -29,8 +29,8 @@
       "registryItems": [
         "alert"
       ],
-      "knobs": 4,
-      "probes": 0
+      "knobs": 15,
+      "probes": 2
     },
     "aspect-ratio": {
       "registryItems": [
@@ -219,8 +219,8 @@
       "registryItems": [
         "empty"
       ],
-      "knobs": 7,
-      "probes": 0
+      "knobs": 20,
+      "probes": 2
     },
     "environment-variables": {
       "registryItems": [
@@ -417,8 +417,8 @@
       "registryItems": [
         "skeleton"
       ],
-      "knobs": 2,
-      "probes": 1
+      "knobs": 7,
+      "probes": 4
     },
     "source-badge": {
       "registryItems": [
@@ -459,8 +459,8 @@
       "registryItems": [
         "table-of-contents"
       ],
-      "knobs": 3,
-      "probes": 0
+      "knobs": 28,
+      "probes": 14
     },
     "tabs": {
       "registryItems": [

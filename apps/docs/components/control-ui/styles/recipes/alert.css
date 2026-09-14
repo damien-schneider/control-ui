@@ -4,33 +4,45 @@
     --cui-alert-background: var(--card);
     --cui-alert-border-color: var(--border);
     --cui-alert-shadow: none;
-    --_alert-foreground: var(--card-foreground);
-    --_alert-description-color: var(--muted-foreground);
-    row-gap: calc(var(--spacing) * 0.5);
-    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
-    border: 1px solid var(--cui-alert-border-color);
+    --cui-alert-foreground: var(--card-foreground);
+    --cui-alert-description-foreground: var(--muted-foreground);
+    --cui-alert-border-width: 1px;
+    --cui-alert-padding: calc(var(--spacing) * 3);
+    --cui-alert-padding-inline: calc(var(--spacing) * 4);
+    --cui-alert-gap: calc(var(--spacing) * 0.5);
+    --cui-alert-icon-gap: calc(var(--spacing) * 3);
+    --cui-alert-icon-size: calc(var(--spacing) * 4);
+    --cui-alert-font-size: var(--text-sm);
+    --cui-alert-title-font-weight: var(--font-weight-medium);
+    --cui-alert-description-gap: var(--spacing);
+    grid-template-columns: 0 minmax(0, 1fr);
+    row-gap: var(--cui-alert-gap);
+    padding: var(--cui-alert-padding) var(--cui-alert-padding-inline);
+    border: var(--cui-alert-border-width) solid var(--cui-alert-border-color);
     border-radius: var(--cui-alert-radius);
     background: var(--cui-alert-background);
     box-shadow: var(--cui-alert-shadow);
-    color: var(--_alert-foreground);
-    font-size: var(--text-sm);
+    color: var(--cui-alert-foreground);
+    font-size: var(--cui-alert-font-size);
     line-height: var(--text-sm--line-height);
+    overflow-wrap: anywhere;
   }
 
   :where([data-control-family="alert"][data-slot="root"][data-variant="destructive"]) {
-    --_alert-foreground: var(--destructive-text);
+    --cui-alert-foreground: var(--destructive-text);
     --cui-alert-border-color: oklch(from var(--destructive) l c h / 0.5);
-    --_alert-description-color: oklch(from var(--destructive-text) l c h / 0.9);
+    --cui-alert-description-foreground: oklch(from var(--destructive-text) l c h / 0.9);
   }
 
   :where([data-control-family="alert"][data-slot="root"]:has(> svg)) {
-    column-gap: calc(var(--spacing) * 3);
+    grid-template-columns: var(--cui-alert-icon-size) minmax(0, 1fr);
+    column-gap: var(--cui-alert-icon-gap);
   }
 
   :where([data-control-family="alert"][data-slot="description"]) {
-    gap: calc(var(--spacing) * 1);
-    color: var(--_alert-description-color);
-    font-size: var(--text-sm);
+    gap: var(--cui-alert-description-gap);
+    color: var(--cui-alert-description-foreground);
+    font-size: var(--cui-alert-font-size);
     line-height: var(--text-sm--line-height);
   }
 
@@ -39,14 +51,15 @@
   }
 
   :where([data-control-family="alert"][data-slot="title"]) {
-    min-block-size: calc(var(--spacing) * 4);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--cui-alert-title-font-weight);
     letter-spacing: var(--tracking-tight);
   }
 
   :where([data-control-family="alert"][data-slot="root"] > svg) {
     color: currentcolor;
-    translate: 0 calc(var(--spacing) * 0.5);
+    inline-size: var(--cui-alert-icon-size);
+    block-size: var(--cui-alert-icon-size);
+    margin-block-start: max(0px, calc((1lh - var(--cui-alert-icon-size)) / 2));
   }
 }
 
@@ -72,4 +85,70 @@
   syntax: "*";
   inherits: true;
   initial-value: none;
+}
+
+@property --cui-alert-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-alert-description-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-alert-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-padding {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-padding-inline {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-icon-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-icon-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-font-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-description-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-alert-title-font-weight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 500;
 }

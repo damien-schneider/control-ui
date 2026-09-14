@@ -1,17 +1,27 @@
 "use client";
 
-import { Skeleton } from "@/components/control-ui/ui/skeleton";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
+import { Skeleton, skeletonVariants } from "@/components/control-ui/ui/skeleton";
 
-// Loading chat turn: avatar + text lines, token-driven shimmer sweep.
+const variantLabels = { shimmer: "Shimmer", pulse: "Pulse", none: "Static" };
+
 export function PrimitiveSkeletonExample() {
   return (
-    <div className="flex w-full max-w-sm items-start gap-3 rounded-xl border bg-background">
-      <Skeleton className="size-9 shrink-0 rounded-full" />
-      <div className="flex min-w-0 flex-1 flex-col gap-2 pt-1">
-        <Skeleton className="h-3 w-2/3" />
-        <Skeleton className="h-3 w-full" />
-        <Skeleton className="h-3 w-4/5" />
-      </div>
-    </div>
+    <Card className="w-full max-w-sm">
+      <CardContent className="flex flex-col gap-6">
+        {skeletonVariants.map((variant) => (
+          <div key={variant} className="flex flex-col gap-3">
+            <span className="text-xs font-medium text-muted-foreground">{variantLabels[variant]}</span>
+            <div className="flex items-start gap-3">
+              <Skeleton variant={variant} className="size-10 shrink-0" style={{ "--cui-skeleton-radius": "50%" }} />
+              <div className="flex min-w-0 flex-1 flex-col gap-2 py-1">
+                <Skeleton variant={variant} className="h-3 w-2/3" />
+                <Skeleton variant={variant} className="h-3 w-full" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
   );
 }

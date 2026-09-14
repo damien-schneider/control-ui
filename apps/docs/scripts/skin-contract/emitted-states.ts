@@ -39,6 +39,7 @@ import type {
   SidebarMenuButtonVariant,
   SidebarSelectionIndicator,
 } from "../../src/registry/sources/control-ui/ui/sidebar";
+import type { SkeletonVariant } from "../../src/registry/sources/control-ui/ui/skeleton";
 import type { SliderVariant } from "../../src/registry/sources/control-ui/ui/slider";
 import type { StepperContentMode, StepperOrientation, StepperState } from "../../src/registry/sources/control-ui/ui/stepper";
 import type { TableOfContentsVariant } from "../../src/registry/sources/control-ui/ui/table-of-contents";
@@ -211,6 +212,7 @@ export type EmittedStateContract = {
   "sidebar:menu-action:data-show-on-hover": true;
   "sidebar:menu-button:data-size": SidebarMenuButtonSize;
   "sidebar:menu-button:data-variant": SidebarMenuButtonVariant;
+  "skeleton:root:data-variant": SkeletonVariant;
   "slider:root:data-variant": SliderVariant;
   "slider:control:data-labeled": "true";
   "slider:track:data-labeled": "true";

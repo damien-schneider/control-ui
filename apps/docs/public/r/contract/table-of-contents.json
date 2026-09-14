@@ -7,22 +7,172 @@
   ],
   "knobs": [
     {
+      "name": "--cui-table-of-contents-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-table-of-contents-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-table-of-contents-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-table-of-contents-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-panel)"
+    },
+    {
+      "name": "--cui-table-of-contents-shadow",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-table-of-contents-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-table-of-contents-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 4)"
+    },
+    {
+      "name": "--cui-table-of-contents-label-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-table-of-contents-label-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "1rem",
+      "defaultValue": "var(--text-caption)"
+    },
+    {
+      "name": "--cui-table-of-contents-label-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
+    },
+    {
+      "name": "--cui-table-of-contents-label-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-hover-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-active-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-font-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "1rem",
+      "defaultValue": "var(--text-body)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-line-height",
+      "syntax": "<number>",
+      "initialValue": "1.5",
+      "defaultValue": "var(--leading-normal)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-normal)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-root-font-weight",
+      "syntax": "<number>",
+      "initialValue": "400",
+      "defaultValue": "var(--font-weight-medium)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-padding-block",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1.5)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-table-of-contents-item-indent",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
       "name": "--cui-table-of-contents-rail-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--border) l c h / 0.6)"
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-table-of-contents-rail-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-table-of-contents-trail-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-table-of-contents-trail-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "2px"
+    },
+    {
+      "name": "--cui-table-of-contents-trail-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--cui-table-of-contents-trail-width)"
     },
     {
       "name": "--cui-table-of-contents-highlight-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-md)"
+      "defaultValue": "var(--radius-popup-item)"
     },
     {
       "name": "--cui-table-of-contents-highlight-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.04)"
+      "defaultValue": "var(--active-fill)"
     }
   ],
   "parts": {
@@ -127,7 +277,8 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-table-of-contents-rail-background"
+    "--cui-table-of-contents-rail-background",
+    "--cui-table-of-contents-trail-background"
   ],
   "contrast": "/r/contract/table-of-contents.contrast.json"
 }

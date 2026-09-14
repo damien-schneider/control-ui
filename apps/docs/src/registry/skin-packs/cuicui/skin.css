@@ -619,8 +619,6 @@
 
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="skeleton"]) {
     --cui-skeleton-background: transparent;
-    background-image: var(--cuicui-gradient-top);
-    background-size: 400% 400%;
-    animation: cuicui-gradient-animation 5s ease infinite;
+    --cui-skeleton-background-image: var(--cuicui-gradient-top);
   }
 }

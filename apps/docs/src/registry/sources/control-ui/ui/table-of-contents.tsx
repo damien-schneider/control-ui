@@ -78,6 +78,8 @@ type TocNode = Omit<TableOfContentsProps["items"][number], "children" | "level">
   children?: TocNode[];
 };
 
+type TocItemStyle = CSSProperties & { "--_toc-depth": number };
+
 function collectLevels(items: TableOfContentsProps["items"], fallbackLevel = 2): number[] {
   return items.flatMap((item) => {
     const level = item.level ?? fallbackLevel;
@@ -151,7 +153,7 @@ export function TableOfContents({ items, label = "On this page", variant = "both
           data-control-ui="table-of-contents"
           data-control-family="table-of-contents"
           data-slot="rail"
-          className="pointer-events-none absolute inset-y-0 left-0 -z-20 w-px"
+          className="pointer-events-none absolute inset-y-0 start-0 -z-20"
         />
         <TrackHighlight
           data-variant={variant}
@@ -166,7 +168,7 @@ export function TableOfContents({ items, label = "On this page", variant = "both
               data-control-ui="table-of-contents"
               data-control-family="table-of-contents"
               data-slot="trail"
-              className="absolute inset-y-0 left-0 w-0.5"
+              className="absolute inset-y-0 start-0"
             />
           )}
         </TrackHighlight>
@@ -197,6 +199,7 @@ function TocList({
       {items.map((item) => {
         const targetId = item.href.replace(/^#/, "");
         const isActive = activeSet.has(targetId);
+        const itemStyle: TocItemStyle = { "--_toc-depth": item.depth };
 
         return (
           <li key={item.href}>
@@ -211,6 +214,7 @@ function TocList({
               aria-current={isActive ? "location" : undefined}
               href={item.href}
               className="block"
+              style={itemStyle}
             >
               {item.label}
             </a>

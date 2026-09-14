@@ -559,7 +559,7 @@ export const primitiveEntries = [
     kind: "Primitive",
     status: "beta",
     name: "Skeleton",
-    summary: "Loading placeholder with a token-driven shimmer.",
+    summary: "Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content.",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/skeleton",
     paths: {
       registry: {
@@ -992,7 +992,6 @@ export const primitiveEntries = [
     kind: "Primitive",
     name: "Phone input",
     summary: "International phone field with country search, E.164 values, and Zod validation helpers.",
-    status: "beta",
     paths: {
       registry: {
         target: "components/control-ui/ui/phone-input.tsx",

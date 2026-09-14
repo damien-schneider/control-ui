@@ -17,6 +17,36 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-skeleton-background-image",
+      "syntax": "*",
+      "initialValue": "none",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-skeleton-highlight-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+    },
+    {
+      "name": "--cui-skeleton-animation-duration",
+      "syntax": "<time>",
+      "initialValue": "0s",
+      "defaultValue": "calc(var(--duration-slow) * 5)"
+    },
+    {
+      "name": "--cui-skeleton-easing",
+      "syntax": "*",
+      "initialValue": "ease",
+      "defaultValue": "var(--ease-standard)"
+    },
+    {
+      "name": "--cui-skeleton-pulse-opacity",
+      "syntax": "<number>",
+      "initialValue": "0.5",
+      "defaultValue": "0.5"
     }
   ],
   "parts": {
@@ -26,7 +56,18 @@
         "registryItems": [
           "skeleton"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "none",
+              "pulse",
+              "shimmer"
+            ]
+          }
+        ]
       }
     }
   },

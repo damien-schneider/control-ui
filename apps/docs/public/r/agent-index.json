@@ -827,7 +827,7 @@
         "id": "skeleton",
         "name": "Skeleton",
         "kind": "Primitive",
-        "summary": "Loading placeholder with a token-driven shimmer.",
+        "summary": "Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content.",
         "href": "/primitives/skeleton",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json"
@@ -967,7 +967,6 @@
         "kind": "Primitive",
         "summary": "International phone field with country search, E.164 values, and Zod validation helpers.",
         "href": "/primitives/phone-input",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json"
       },
       {

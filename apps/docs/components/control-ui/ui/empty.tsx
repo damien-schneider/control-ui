@@ -5,6 +5,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 
 export type EmptyProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
 
+export type EmptyHeaderProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
+
 export type EmptyMediaProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
 
 export type EmptyContentProps = Omit<ComponentProps<"div">, "style"> & { style?: CSSProperties & EmptyKnobStyle };
@@ -25,13 +27,13 @@ export function Empty({ className, ...props }: EmptyProps) {
   );
 }
 
-export function EmptyHeader({ className, ...props }: ComponentProps<"div"> & { style?: CSSProperties & EmptyKnobStyle }) {
+export function EmptyHeader({ className, ...props }: EmptyHeaderProps) {
   return (
     <div
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="header"
-      className={cn("flex max-w-sm flex-col items-center", className)}
+      className={cn("flex min-w-0 flex-col items-center", className)}
       {...props}
     />
   );
@@ -43,7 +45,7 @@ export function EmptyMedia({ className, ...props }: EmptyMediaProps) {
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="media"
-      className={cn("flex shrink-0 items-center justify-center [&>svg]:size-5 [&>svg]:shrink-0", className)}
+      className={cn("flex shrink-0 items-center justify-center [&>svg]:shrink-0", className)}
       {...props}
     />
   );
@@ -63,7 +65,7 @@ export function EmptyContent({ className, ...props }: EmptyContentProps) {
       data-control-ui="empty"
       data-control-family="empty"
       data-slot="content"
-      className={cn("flex w-full max-w-sm flex-col items-center justify-center", className)}
+      className={cn("flex w-full min-w-0 flex-col items-center justify-center", className)}
       {...props}
     />
   );

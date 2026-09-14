@@ -72,7 +72,7 @@
 - `table-of-contents` (Table of contents) — Sticky in-page navigation with scroll-spy range highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/table-of-contents.json`
 - `timeline` (Timeline) — Static chronological events with independent status, connectors, descriptions, and metadata. — `npx shadcn@latest add http://127.0.0.1:3000/r/timeline.json`
 - `stepper` (Stepper) — Static and interactive workflow steps with horizontal and vertical layouts. — `npx shadcn@latest add http://127.0.0.1:3000/r/stepper.json`
-- `skeleton` (Skeleton) **[beta]** — Loading placeholder with a token-driven shimmer. — `npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json`
+- `skeleton` (Skeleton) **[beta]** — Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. — `npx shadcn@latest add http://127.0.0.1:3000/r/skeleton.json`
 - `slider` (Slider) — Single-value range control with branded and plain treatments. — `npx shadcn@latest add http://127.0.0.1:3000/r/slider.json`
 - `select` (Select) — Single-choice picker with a token-matched trigger and floating list. — `npx shadcn@latest add http://127.0.0.1:3000/r/select.json`
 - `dropdown-menu` (DropdownMenu) — Dropdown menu for actions, resources, labels, separators, and submenus. — `npx shadcn@latest add http://127.0.0.1:3000/r/dropdown-menu.json`
@@ -89,7 +89,7 @@
 - `input` (Input) — Text field primitive sized and styled to match other controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/input.json`
 - `input-group` (Input group) — Joined input wrapper for addons, icons, and a shared focus indicator. — `npx shadcn@latest add http://127.0.0.1:3000/r/input-group.json`
 - `dropzone` (Dropzone) **[beta]** — Composable file intake with validation, managed selection, and drag-activated overlays. — `npx shadcn@latest add http://127.0.0.1:3000/r/dropzone.json`
-- `phone-input` (Phone input) **[beta]** — International phone field with country search, E.164 values, and Zod validation helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json`
+- `phone-input` (Phone input) — International phone field with country search, E.164 values, and Zod validation helpers. — `npx shadcn@latest add http://127.0.0.1:3000/r/phone-input.json`
 - `command` (Command) — Command palette with token-matched dialog, input, and result rows. — `npx shadcn@latest add http://127.0.0.1:3000/r/command.json`
 - `kbd` (Kbd) — Keyboard shortcut chip and chord group. — `npx shadcn@latest add http://127.0.0.1:3000/r/kbd.json`
 - `checkbox` (Checkbox) — Single checkbox control with checked and indeterminate states. — `npx shadcn@latest add http://127.0.0.1:3000/r/checkbox.json`

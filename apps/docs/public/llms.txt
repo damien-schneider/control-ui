@@ -75,7 +75,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Table of contents](http://127.0.0.1:3000/primitives/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
 - [Timeline](http://127.0.0.1:3000/primitives/timeline): Static chronological events with independent status, connectors, descriptions, and metadata.
 - [Stepper](http://127.0.0.1:3000/primitives/stepper): Static and interactive workflow steps with horizontal and vertical layouts.
-- [Skeleton](http://127.0.0.1:3000/primitives/skeleton): Loading placeholder with a token-driven shimmer. Status: beta.
+- [Skeleton](http://127.0.0.1:3000/primitives/skeleton): Loading placeholders with seamless shimmer, pulse, and static variants. Match their dimensions to the incoming content. Status: beta.
 - [Slider](http://127.0.0.1:3000/primitives/slider): Single-value range control with branded and plain treatments.
 - [Select](http://127.0.0.1:3000/primitives/select): Single-choice picker with a token-matched trigger and floating list.
 - [DropdownMenu](http://127.0.0.1:3000/primitives/dropdown-menu): Dropdown menu for actions, resources, labels, separators, and submenus.
@@ -92,7 +92,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Input](http://127.0.0.1:3000/primitives/input): Text field primitive sized and styled to match other controls.
 - [Input group](http://127.0.0.1:3000/primitives/input-group): Joined input wrapper for addons, icons, and a shared focus indicator.
 - [Dropzone](http://127.0.0.1:3000/primitives/dropzone): Composable file intake with validation, managed selection, and drag-activated overlays. Status: beta.
-- [Phone input](http://127.0.0.1:3000/primitives/phone-input): International phone field with country search, E.164 values, and Zod validation helpers. Status: beta.
+- [Phone input](http://127.0.0.1:3000/primitives/phone-input): International phone field with country search, E.164 values, and Zod validation helpers.
 - [Command](http://127.0.0.1:3000/primitives/command): Command palette with token-matched dialog, input, and result rows.
 - [Kbd](http://127.0.0.1:3000/primitives/kbd): Keyboard shortcut chip and chord group.
 - [Checkbox](http://127.0.0.1:3000/primitives/checkbox): Single checkbox control with checked and indeterminate states.

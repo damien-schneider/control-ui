@@ -2,11 +2,63 @@
   :where([data-control-family="skeleton"][data-slot="root"]) {
     --cui-skeleton-radius: var(--radius-control);
     --cui-skeleton-background: var(--muted);
+    --cui-skeleton-background-image: none;
+    --cui-skeleton-highlight-background: oklch(from var(--foreground) l c h / 0.06);
+    --cui-skeleton-animation-duration: calc(var(--duration-slow) * 5);
+    --cui-skeleton-easing: var(--ease-standard);
+    --cui-skeleton-pulse-opacity: 0.5;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     border-radius: var(--cui-skeleton-radius);
     background-color: var(--cui-skeleton-background);
-    background-image: linear-gradient(100deg, transparent 30%, oklch(from var(--foreground) l c h / 0.06) 50%, transparent 70%);
-    background-size: 220% 100%;
-    animation: shimmer calc(var(--duration-slow) * 5) var(--ease-standard) infinite;
+    background-image: var(--cui-skeleton-background-image);
+  }
+
+  :where([data-control-family="skeleton"][data-slot="root"][data-variant="shimmer"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(90deg, transparent, var(--cui-skeleton-highlight-background), transparent);
+    transform: translateX(-100%);
+    animation: cui-skeleton-shimmer var(--cui-skeleton-animation-duration) var(--cui-skeleton-easing) infinite;
+  }
+
+  :where([data-control-family="skeleton"][data-slot="root"][data-variant="pulse"]) {
+    animation: cui-skeleton-pulse var(--cui-skeleton-animation-duration) var(--cui-skeleton-easing) infinite;
+  }
+
+  :where([data-control-family="skeleton"][data-slot="root"][data-variant="none"]) {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="skeleton"][data-slot="root"]),
+    :where([data-control-family="skeleton"][data-slot="root"])::after {
+      animation: none;
+    }
+  }
+
+  :where([data-motion="reduced"] [data-control-family="skeleton"][data-slot="root"]),
+  :where([data-motion="reduced"] [data-control-family="skeleton"][data-slot="root"])::after {
+    animation: none;
+  }
+}
+
+@keyframes cui-skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes cui-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: var(--cui-skeleton-pulse-opacity);
   }
 }
 
@@ -20,4 +72,34 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-skeleton-background-image {
+  syntax: "*";
+  inherits: true;
+  initial-value: none;
+}
+
+@property --cui-skeleton-highlight-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-skeleton-animation-duration {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0s;
+}
+
+@property --cui-skeleton-easing {
+  syntax: "*";
+  inherits: true;
+  initial-value: ease;
+}
+
+@property --cui-skeleton-pulse-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.5;
 }

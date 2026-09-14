@@ -6,7 +6,7 @@ import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTi
 
 export function PrimitiveEmptyExample() {
   return (
-    <Empty className="w-full max-w-sm ring-1 ring-border">
+    <Empty className="w-full max-w-sm" style={{ "--cui-empty-border-color": "var(--border)" }}>
       <EmptyHeader>
         <EmptyMedia>
           <Inbox />

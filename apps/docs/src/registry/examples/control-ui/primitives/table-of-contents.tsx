@@ -1,7 +1,7 @@
 "use client";
 
 import type { TocItem } from "@/components/control-ui/ui/table-of-contents";
-import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
+import { TableOfContents, tableOfContentsVariants } from "@/components/control-ui/ui/table-of-contents";
 
 type ExampleSection = Omit<TocItem, "children" | "level"> & {
   body: string;
@@ -77,9 +77,16 @@ export function PrimitiveTableOfContentsExample() {
         ))}
       </article>
       <div className="grid h-80 gap-3 overflow-y-auto pr-1 max-sm:hidden">
-        <TableOfContents items={sections} label="Trail" variant="trail" className="static top-0 h-fit rounded-xl p-3 text-xs" />
-        <TableOfContents items={sections} label="Background" variant="background" className="static top-0 h-fit rounded-xl p-3 text-xs" />
-        <TableOfContents items={sections} label="Both" variant="both" className="static top-0 h-fit rounded-xl p-3 text-xs" />
+        {tableOfContentsVariants.map((variant) => (
+          <TableOfContents
+            key={variant}
+            items={sections}
+            label={variant.charAt(0).toUpperCase() + variant.slice(1)}
+            variant={variant}
+            className="static top-0 h-fit"
+            style={{ "--cui-table-of-contents-padding": "calc(var(--spacing) * 3)" }}
+          />
+        ))}
       </div>
     </div>
   );

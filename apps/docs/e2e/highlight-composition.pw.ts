@@ -103,11 +103,12 @@ test("table of contents keeps scroll tracking and inherits highlight knobs witho
   await waitForReactHydration(navigation);
   await navigation.evaluate((node) => {
     node.style.width = "280px";
-    node.style.padding = "24px";
+    node.style.setProperty("--cui-table-of-contents-padding", "24px");
     node.style.setProperty("--cui-table-of-contents-highlight-radius", "12px");
     node.style.setProperty("--duration-base", "240ms");
   });
   await expect(highlight).toHaveCSS("border-radius", "12px");
+  await expect(navigation).toHaveCSS("padding-left", "24px");
   await expect(highlight).toHaveCSS("padding-left", "0px");
   await expect(highlight).toHaveCSS("transition-duration", "0.24s");
   await expect(navigation.locator('[data-slot="rail"]')).toHaveCSS("width", "1px");
