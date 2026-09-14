@@ -9,6 +9,7 @@ import type { ChatComposerAttachmentKnobStyle } from "@/components/control-ui/kn
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { Spinner } from "@/components/control-ui/ui/spinner";
 
 export type ChatComposerAttachmentKind = "image" | "pdf" | "spreadsheet" | "document" | "archive" | "audio" | "video" | "file";
 export type ChatComposerAttachmentStatus = "idle" | "uploading" | "uploaded" | "error";
@@ -83,9 +84,9 @@ function fallbackLabel(kind: ChatComposerAttachmentKind, extension: string) {
 }
 
 function defaultDescription(context: ChatComposerAttachmentContextValue) {
-  const progress = progressValue(context.progress);
+  const { progress } = context;
   if (context.description) return context.description;
-  if (context.status === "uploading") return `Uploading ${Math.round(progress ?? 0)}%`;
+  if (context.status === "uploading") return progress === undefined ? "Uploading…" : `Uploading ${Math.round(progress)}%`;
   if (context.status === "error") return "Upload failed";
   return fallbackLabel(context.kind, context.extension);
 }
@@ -197,7 +198,7 @@ export function ChatComposerAttachment({
         data-kind={resolvedKind}
         data-state={status}
         data-variant={resolvedVariant}
-        className={cn("relative shrink-0 overflow-hidden", "flex items-center", className)}
+        className={cn("relative isolate flex shrink-0 items-center overflow-hidden", className)}
         {...props}
       >
         {children ?? (
@@ -253,15 +254,6 @@ export function ChatComposerAttachmentPreview({ className, children, ...props }:
             {label}
           </span>
         ))}
-      {context.status === "uploading" && (
-        <span
-          aria-hidden="true"
-          data-control-ui="chat-composer-attachment"
-          data-control-family="chat-composer-attachment"
-          data-slot="status"
-          className="absolute right-1 top-1"
-        />
-      )}
     </div>
   );
 }
@@ -364,28 +356,35 @@ export type ChatComposerAttachmentProgressProps = Omit<ComponentProps<"div">, "s
 };
 
 export function ChatComposerAttachmentProgress({ className, children, style, ...props }: ChatComposerAttachmentProgressProps) {
-  const { status, progress } = useChatComposerAttachmentContext();
+  const { name, status, progress } = useChatComposerAttachmentContext();
 
-  if (status !== "uploading" && progress == null) return null;
+  if (status !== "uploading") return null;
 
   return (
     <div
-      aria-hidden="true"
+      role="progressbar"
+      aria-label={`Uploading ${name}`}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={progress}
       data-control-ui="chat-composer-attachment"
       data-control-family="chat-composer-attachment"
       data-slot="progress"
-      className={cn("absolute inset-x-0 bottom-0", className)}
+      className={cn("pointer-events-none absolute inset-0 z-1 grid place-items-center", className)}
       style={style}
       {...props}
     >
       {children ?? (
-        <div
-          data-control-ui="chat-composer-attachment"
-          data-control-family="chat-composer-attachment"
-          data-slot="progress-indicator"
-          className="h-full"
-          style={{ width: `${progress ?? 0}%` }}
-        />
+        <>
+          <div
+            data-control-ui="chat-composer-attachment"
+            data-control-family="chat-composer-attachment"
+            data-slot="progress-indicator"
+            className="absolute inset-y-0 end-0"
+            style={{ inlineSize: `${100 - (progress ?? 0)}%` }}
+          />
+          {progress === undefined && <Spinner aria-hidden="true" className="relative" size="xs" />}
+        </>
       )}
     </div>
   );

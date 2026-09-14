@@ -24,10 +24,6 @@
     box-shadow: none;
   }
 
-  :where([data-control-family="code"][data-slot="root"]:has([data-control-family="scroll-area"][data-blur])) {
-    corner-shape: round;
-  }
-
   :where([data-control-family="code"][data-slot="header"]) {
     min-block-size: calc(var(--spacing) * 10);
     gap: calc(var(--spacing) * 3);

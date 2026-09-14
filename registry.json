@@ -1786,7 +1786,8 @@
       "registryDependencies": [
         "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core",
-        "damien-schneider/control-ui/scroll-area"
+        "damien-schneider/control-ui/scroll-area",
+        "damien-schneider/control-ui/spinner"
       ],
       "files": [
         {

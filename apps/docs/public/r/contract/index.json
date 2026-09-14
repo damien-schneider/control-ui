@@ -120,7 +120,7 @@
       "registryItems": [
         "chat-composer-attachment"
       ],
-      "knobs": 6,
+      "knobs": 7,
       "probes": 13
     },
     "chat-layout": {

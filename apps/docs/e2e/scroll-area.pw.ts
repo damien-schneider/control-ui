@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test("macOS enables scroll-edge blur and keyboard focus clears the decoration", async ({ page }) => {
+test("macOS preserves its corner shape and fades overflow until keyboard focus", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "modern-apple" }));
@@ -12,7 +12,9 @@ test("macOS enables scroll-edge blur and keyboard focus clears the decoration", 
   const scrollArea = viewport.locator("..");
   const endBlur = scrollArea.locator('[data-control-family="progressive-blur"][data-side="inline-end"]');
   await waitForReactHydration(viewport.getByRole("button").first());
-  await expect(endBlur.locator('[data-slot="layer"]').last()).toHaveCSS("opacity", "1");
+  await expect(scrollArea).toHaveCSS("corner-shape", "superellipse(1.25)");
+  await expect(endBlur).toHaveCSS("display", "none");
+  await expect(viewport).not.toHaveCSS("mask-image", "none");
   await expect(scrollArea.locator('[data-control-family="progressive-blur"][data-side="top"]')).toHaveCount(0);
   await viewport.getByRole("button").first().focus();
   await page.keyboard.press("Tab");

@@ -420,7 +420,7 @@ export const primitiveEntries = [
         title: "Progressive blur",
         previewClassName: "min-h-80",
         description:
-          "Enable blur to soften overflowing edges. Combine it with the default mask, or use mask={false} for blur alone. blurProps.style accepts the ProgressiveBlur knobs. Effects follow each unlocked edge without adding scroll listeners.",
+          "Enable blur to soften overflowing edges. Combine it with the default mask, or use mask={false} for blur alone. blurProps.style accepts the ProgressiveBlur knobs. Effects follow each unlocked edge without adding scroll listeners. Where non-round corner shapes are supported, those shapes take priority and disable scroll-edge blur; the mask remains available.",
         source: sourceFile("Progressive scroll edges", "src/registry/examples/control-ui/primitives/progressive-blur.tsx", "example"),
         preview: preview(() =>
           import("@/src/registry/examples/control-ui/primitives/progressive-blur").then((mod) => ({

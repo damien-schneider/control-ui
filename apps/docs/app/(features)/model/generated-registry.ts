@@ -1509,7 +1509,7 @@ export const registryMetadata = {
   },
   "chat-composer-attachment": {
     dependencies: ["lucide-react@^1.31.0"],
-    registryDependencies: ["button", "core", "scroll-area"],
+    registryDependencies: ["button", "core", "scroll-area", "spinner"],
     sourceManifestPath: "registry/control-ui/chat-composer-attachment.json",
     files: [
       {

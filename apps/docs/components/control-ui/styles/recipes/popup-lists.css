@@ -1,12 +1,4 @@
 @layer components {
-  :where(
-    [data-control-family="popup"]:is([data-popup-part="surface"], [data-popup-part="list-surface"]):has(
-      [data-control-family="scroll-area"][data-blur]
-    )
-  ) {
-    corner-shape: round;
-  }
-
   :where([data-control-family="popup"][data-popup-kind="model-switcher"][data-slot="hint"]) {
     margin-inline-start: auto;
     padding-inline-start: calc(var(--spacing) * 4);

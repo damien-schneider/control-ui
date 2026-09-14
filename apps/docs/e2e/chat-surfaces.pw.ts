@@ -106,10 +106,13 @@ for (const skin of ["refined", "modern-apple", "none", "cuicui", "xp", "windows-
       await preview.screenshot({ path: testInfo.outputPath("attachments-mobile.png") });
       const file = items.filter({ hasText: "Document_de_Synthese_J0025.pdf" });
       await file.evaluate((element) => {
-        element.style.setProperty("--border", "oklch(0 0 0 / 0.2)");
+        element.style.setProperty("--cui-chat-composer-attachment-background", "oklch(0.8 0.1 250)");
+        element.style.setProperty("--cui-chat-composer-attachment-radius", "3px");
         element.style.setProperty("--cui-chat-composer-attachment-shadow", "none");
       });
-      await expect(file).toHaveCSS("border-color", "oklch(0 0 0 / 0.16)");
+      await expect(file).toHaveCSS("background-color", "oklch(0.8 0.1 250)");
+      await expect(file).toHaveCSS("border-radius", "3px");
+      await expect(file).toHaveCSS("border-width", "0px");
       await expect(file).toHaveCSS("box-shadow", "none");
       const removeImage = rail.getByRole("button", { name: "Remove vision-reference.png" });
       await removeImage.focus();

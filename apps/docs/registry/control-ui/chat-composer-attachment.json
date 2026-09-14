@@ -10,7 +10,8 @@
   "registryDependencies": [
     "button",
     "core",
-    "scroll-area"
+    "scroll-area",
+    "spinner"
   ],
   "files": [
     {
