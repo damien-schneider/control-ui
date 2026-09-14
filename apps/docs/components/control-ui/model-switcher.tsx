@@ -10,6 +10,7 @@ export type ModelOption = {
   value: string;
   label: string;
   hint?: ReactNode;
+  icon?: ReactNode;
 };
 
 export type ModelSwitcherProps = {
@@ -17,6 +18,7 @@ export type ModelSwitcherProps = {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
+  disabled?: boolean;
   size?: "xs" | "sm";
   variant?: SelectTriggerVariant;
   className?: string;
@@ -28,6 +30,7 @@ export function ModelSwitcher({
   value,
   defaultValue,
   onValueChange,
+  disabled,
   size = "sm",
   variant = "surface",
   className,
@@ -36,7 +39,7 @@ export function ModelSwitcher({
   const fallback = defaultValue ?? models[0]?.value;
 
   return (
-    <Select value={value} defaultValue={fallback} onValueChange={onValueChange}>
+    <Select value={value} defaultValue={fallback} onValueChange={onValueChange} disabled={disabled || models.length === 0}>
       <SelectTrigger
         size={size}
         variant={variant}
@@ -55,22 +58,31 @@ export function ModelSwitcher({
           data-slot="value"
           className="flex min-w-0 items-center"
         >
-          <span
-            data-control-ui="model-switcher"
-            data-control-family="button"
-            data-button-kind="model-switcher"
-            data-slot="indicator"
-            aria-hidden="true"
-            className="shrink-0"
-          />
           <SelectValue placeholder="Model">
-            {(current: string) => models.find((model) => model.value === current)?.label ?? "Model"}
+            {(current: string) => {
+              const model = models.find((option) => option.value === current);
+              return (
+                <span className="flex min-w-0 items-center gap-1.5">
+                  {model?.icon ? (
+                    <span aria-hidden="true" className="flex shrink-0 [&_svg]:size-4">
+                      {model.icon}
+                    </span>
+                  ) : null}
+                  <span className="truncate">{model?.label ?? "Model"}</span>
+                </span>
+              );
+            }}
           </SelectValue>
         </span>
       </SelectTrigger>
       <SelectContent>
         {models.map((model) => (
-          <SelectItem key={model.value} value={model.value}>
+          <SelectItem key={model.value} value={model.value} label={model.label}>
+            {model.icon ? (
+              <span aria-hidden="true" className="me-2 flex shrink-0 [&_svg]:size-4">
+                {model.icon}
+              </span>
+            ) : null}
             <span className="truncate">{model.label}</span>
             {model.hint ? (
               <span data-control-ui="model-switcher" data-control-family="popup" data-popup-kind="model-switcher" data-slot="hint">

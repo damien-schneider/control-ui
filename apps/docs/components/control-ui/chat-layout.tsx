@@ -1,15 +1,7 @@
-import type { ComponentProps, CSSProperties, ElementType, ReactNode } from "react";
-import { Activity, ActivityContent, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts/chat-layout-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { SkinAdornment } from "@/components/control-ui/skin-provider";
-import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-
-type ChatThoughtCollapsible = {
-  Root: ElementType;
-  Trigger: ElementType;
-  Content: ElementType;
-};
 
 export type ChatLayoutChrome = "panel" | "embedded";
 
@@ -84,94 +76,5 @@ export function ChatTurn({ from, children, className, ...props }: ChatTurnProps)
     >
       {children}
     </section>
-  );
-}
-
-export type ChatThoughtProps = Omit<ComponentProps<"div">, "style"> & {
-  details?: ReactNode;
-  defaultOpen?: boolean;
-  collapsible?: ChatThoughtCollapsible;
-  style?: CSSProperties & ChatLayoutKnobStyle;
-};
-
-export function ChatThought({
-  children = "Thought for a couple of seconds",
-  details = "Read the attachment, grouped the notes by intent, and kept the final markdown compact enough to scan.",
-  defaultOpen = false,
-  collapsible,
-  className,
-  style,
-  ...props
-}: ChatThoughtProps) {
-  if (collapsible) {
-    const Root = collapsible.Root;
-    const Trigger = collapsible.Trigger;
-    const Content = collapsible.Content;
-
-    return (
-      <Root
-        defaultOpen={defaultOpen}
-        data-control-ui="chat-thought"
-        data-control-family="chat-layout"
-        data-chat-layout-kind="thought"
-        data-slot="root"
-        className={cn("self-start", className)}
-        style={style}
-        {...props}
-      >
-        <Trigger
-          type="button"
-          data-control-ui="chat-thought"
-          data-control-family="chat-layout"
-          data-slot="trigger"
-          className="inline-flex items-center"
-        >
-          {children}
-          <span aria-hidden="true" data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="chevron">
-            ›
-          </span>
-        </Trigger>
-        <Content>
-          <ScrollArea
-            maxHeight="min(24rem, 50dvh)"
-            lockAxis="x"
-            viewportProps={{
-              "data-control-ui": "activity",
-              "data-control-family": "activity",
-              "data-slot": "content-viewport",
-            }}
-          >
-            <div data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="details" className="min-w-0 px-1 pb-2 pt-1">
-              <SkinAdornment scope="chat-thought" part="details" context={{}} />
-              {details}
-            </div>
-          </ScrollArea>
-        </Content>
-      </Root>
-    );
-  }
-
-  return (
-    <Activity
-      state="success"
-      defaultOpen={defaultOpen}
-      data-control-ui="chat-thought"
-      data-control-family="chat-layout"
-      data-chat-layout-kind="thought"
-      data-slot="root"
-      className={cn("self-start", className)}
-      style={style}
-      {...props}
-    >
-      <ActivityTrigger data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="trigger">
-        <ActivityTitle data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="title">
-          {children}
-        </ActivityTitle>
-      </ActivityTrigger>
-      <ActivityContent data-control-ui="chat-thought" data-control-family="chat-layout" data-slot="details">
-        <SkinAdornment scope="chat-thought" part="details" context={{}} />
-        {details}
-      </ActivityContent>
-    </Activity>
   );
 }

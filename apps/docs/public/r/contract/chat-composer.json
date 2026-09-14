@@ -16,13 +16,13 @@
       "name": "--cui-chat-composer-shell-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-field)"
+      "defaultValue": "var(--radius-popover)"
     },
     {
       "name": "--cui-chat-composer-shell-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--card) l c h / calc(alpha * 0.78))"
+      "defaultValue": "var(--popover)"
     },
     {
       "name": "--cui-chat-composer-shell-background-image",
@@ -34,25 +34,25 @@
       "name": "--cui-chat-composer-shell-backdrop-filter",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "none"
+      "defaultValue": "blur(var(--backdrop-blur-popover))"
     },
     {
       "name": "--cui-chat-composer-shell-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--border)"
+      "defaultValue": "var(--control-rim)"
     },
     {
       "name": "--cui-chat-composer-shell-shadow",
       "syntax": "*",
       "initialValue": "",
-      "defaultValue": "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04), var(--shadow-sm)"
+      "defaultValue": "var(--shadow-pop)"
     },
     {
       "name": "--cui-chat-composer-input-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--foreground)"
+      "defaultValue": "var(--popover-foreground)"
     },
     {
       "name": "--cui-chat-composer-input-placeholder-foreground",
@@ -182,6 +182,12 @@
         ],
         "states": [
           {
+            "attribute": "data-keyboard-navigation",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-state",
             "source": "control-ui",
             "valueKind": "enum",
@@ -222,14 +228,14 @@
       }
     },
     "chat-composer-editor": {
-      "root": {
+      "editor": {
         "family": "chat-composer",
         "registryItems": [
           "chat-composer"
         ],
         "states": []
       },
-      "editor": {
+      "editor-root": {
         "family": "chat-composer",
         "registryItems": [
           "chat-composer"

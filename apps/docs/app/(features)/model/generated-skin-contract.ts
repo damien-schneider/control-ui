@@ -8,7 +8,7 @@ export const generatedSkinContract: SkinContract = {
   registryItemMapping: {
     accordion: ["accordion"],
     "action-bar": ["action-bar"],
-    activity: ["activity", "chat-layout"],
+    activity: ["activity"],
     alert: ["alert"],
     "alert-dialog": ["alert-dialog"],
     "aspect-ratio": ["aspect-ratio"],
@@ -29,7 +29,6 @@ export const generatedSkinContract: SkinContract = {
     "chat-composer-editor": ["chat-composer"],
     "chat-layout": ["chat-layout"],
     "chat-message": ["chat-message"],
-    "chat-thought": ["chat-layout"],
     "chat-thread": ["chat-layout"],
     "chat-turn": ["chat-layout"],
     checkbox: ["checkbox"],
@@ -291,11 +290,6 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["activity"],
           states: [],
         },
-        "content-viewport": {
-          family: "activity",
-          registryItems: ["chat-layout"],
-          states: [],
-        },
         detail: {
           family: "activity",
           registryItems: ["activity"],
@@ -364,7 +358,7 @@ export const generatedSkinContract: SkinContract = {
           states: [],
         },
       },
-      registryItems: ["activity", "chat-layout"],
+      registryItems: ["activity"],
     },
     alert: {
       parts: {
@@ -1577,6 +1571,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["chat-composer"],
           states: [
             {
+              attribute: "data-keyboard-navigation",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-state",
               source: "control-ui",
               valueKind: "enum",
@@ -1714,12 +1714,12 @@ export const generatedSkinContract: SkinContract = {
     },
     "chat-composer-editor": {
       parts: {
-        root: {
+        editor: {
           family: "chat-composer",
           registryItems: ["chat-composer"],
           states: [],
         },
-        editor: {
+        "editor-root": {
           family: "chat-composer",
           registryItems: ["chat-composer"],
           states: [],
@@ -1825,43 +1825,6 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["chat-message"],
-    },
-    "chat-thought": {
-      parts: {
-        root: {
-          family: "chat-layout",
-          registryItems: ["chat-layout"],
-          states: [
-            {
-              attribute: "data-chat-layout-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["thought"],
-            },
-          ],
-        },
-        chevron: {
-          family: "chat-layout",
-          registryItems: ["chat-layout"],
-          states: [],
-        },
-        details: {
-          family: "chat-layout",
-          registryItems: ["chat-layout"],
-          states: [],
-        },
-        title: {
-          family: "chat-layout",
-          registryItems: ["chat-layout"],
-          states: [],
-        },
-        trigger: {
-          family: "chat-layout",
-          registryItems: ["chat-layout"],
-          states: [],
-        },
-      },
-      registryItems: ["chat-layout"],
     },
     "chat-thread": {
       parts: {
@@ -7387,18 +7350,6 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
-        indicator: {
-          family: "button",
-          registryItems: ["model-switcher"],
-          states: [
-            {
-              attribute: "data-button-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["model-switcher"],
-            },
-          ],
-        },
         value: {
           family: "button",
           registryItems: ["model-switcher"],
@@ -12908,13 +12859,13 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-field)",
+        defaultValue: "var(--radius-popover)",
       },
       {
         name: "--cui-chat-composer-shell-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--card) l c h / calc(alpha * 0.78))",
+        defaultValue: "var(--popover)",
       },
       {
         name: "--cui-chat-composer-shell-background-image",
@@ -12926,25 +12877,25 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-backdrop-filter",
         syntax: "*",
         initialValue: "",
-        defaultValue: "none",
+        defaultValue: "blur(var(--backdrop-blur-popover))",
       },
       {
         name: "--cui-chat-composer-shell-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--control-rim)",
       },
       {
         name: "--cui-chat-composer-shell-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04), var(--shadow-sm)",
+        defaultValue: "var(--shadow-pop)",
       },
       {
         name: "--cui-chat-composer-input-foreground",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--foreground)",
+        defaultValue: "var(--popover-foreground)",
       },
       {
         name: "--cui-chat-composer-input-placeholder-foreground",
@@ -13039,18 +12990,6 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "",
         defaultValue: "var(--shadow-md)",
-      },
-      {
-        name: "--cui-chat-layout-thought-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--muted-foreground)",
-      },
-      {
-        name: "--cui-chat-layout-thought-hover-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "oklch(from var(--foreground) l c h / 0.04)",
       },
     ],
     "chat-message": [
@@ -15395,11 +15334,6 @@ export const generatedSkinContract: SkinContract = {
         context: {},
       },
     },
-    "chat-thought": {
-      details: {
-        context: {},
-      },
-    },
     dialog: {
       titlebar: {
         context: {},
@@ -15768,6 +15702,10 @@ export const generatedSkinContract: SkinContract = {
         {
           scope: "autocomplete",
           part: "content",
+        },
+        {
+          scope: "chat-composer",
+          part: "shell",
         },
         {
           scope: "color-picker",

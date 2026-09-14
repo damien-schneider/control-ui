@@ -1,9 +1,4 @@
 @layer components {
-  :where([data-control-family="chat-layout"][data-slot="root"]) {
-    --cui-chat-layout-thought-foreground: var(--muted-foreground);
-    --cui-chat-layout-thought-hover-background: oklch(from var(--foreground) l c h / 0.04);
-  }
-
   :where([data-control-family="chat-layout"][data-slot="root"][data-chrome]) {
     --cui-chat-layout-radius: var(--radius-scene);
     --cui-chat-layout-background: var(--background);
@@ -39,53 +34,6 @@
     background: var(--cui-chat-layout-background);
     mask-image: linear-gradient(to bottom, transparent, oklch(0 0 0 / 0.7) calc(var(--scroll-fade-size) * 3));
   }
-
-  :where([data-control-family="chat-layout"][data-chat-layout-kind="thought"][data-slot="root"]) {
-    margin-block: 0 calc(var(--spacing) * 2);
-  }
-
-  :where([data-control-family="chat-layout"][data-slot="trigger"]) {
-    min-block-size: 0;
-    inline-size: fit-content;
-    gap: calc(var(--spacing) * 1);
-    padding-inline: calc(var(--spacing) * 1.5);
-    padding-block: calc(var(--spacing) * 1);
-    border-radius: var(--radius-control);
-    color: var(--cui-chat-layout-thought-foreground);
-    font-size: var(--text-caption);
-    font-weight: var(--font-weight-medium);
-  }
-
-  @media (hover: hover) {
-    :where([data-control-family="chat-layout"][data-slot="trigger"]:hover) {
-      background: var(--cui-chat-layout-thought-hover-background);
-      color: var(--foreground);
-    }
-  }
-
-  :where([data-control-family="chat-layout"][data-slot="chevron"]) {
-    font-size: var(--text-sm);
-    line-height: 1;
-    transition: rotate var(--duration-base) var(--ease-emphasized);
-  }
-
-  :where([data-control-family="chat-layout"][data-slot="details"]) {
-    padding-inline: calc(var(--spacing) * 1);
-    padding-block: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
-    color: var(--muted-foreground);
-    font-size: var(--text-caption);
-    line-height: calc(var(--spacing) * 5);
-  }
-
-  :where([data-control-family="chat-layout"][data-slot="title"]) {
-    color: var(--muted-foreground);
-    font-size: var(--text-caption);
-    font-weight: var(--font-weight-medium);
-  }
-
-  :where([data-control-family="chat-layout"][data-slot="trigger"][data-state="open"] > span:last-child) {
-    rotate: 90deg;
-  }
 }
 
 @property --cui-chat-layout-radius {
@@ -109,16 +57,4 @@
 @property --cui-chat-layout-shadow {
   syntax: "*";
   inherits: true;
-}
-
-@property --cui-chat-layout-thought-foreground {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
-}
-
-@property --cui-chat-layout-thought-hover-background {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: transparent;
 }

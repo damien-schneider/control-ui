@@ -237,51 +237,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-activity-kind": "default",
             "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: true,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        fill: "--cui-activity-trigger-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -292,53 +247,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "aria-disabled": "false",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: true,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        fill: "--cui-activity-trigger-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -423,51 +331,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-activity-kind": "reasoning",
             "data-activity-state": "running",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: true,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        fill: "--cui-activity-trigger-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "reasoning",
-            "data-activity-state": "running",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -478,53 +341,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "aria-disabled": "false",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: true,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        fill: "--cui-activity-trigger-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "reasoning",
-            "data-activity-state": "running",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -611,52 +427,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-activity-kind": "tool",
             "data-activity-name": "active_setup",
             "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-message",
-    },
-    {
-      knobs: {
-        fill: "--cui-activity-trigger-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "tool",
-            "data-activity-name": "active_setup",
-            "data-activity-state": "success",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -667,54 +437,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "aria-disabled": "false",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-message",
-    },
-    {
-      knobs: {
-        fill: "--cui-activity-trigger-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "tool",
-            "data-activity-name": "active_setup",
-            "data-activity-state": "success",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -801,52 +523,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-activity-kind": "tool",
             "data-activity-name": "read_registry",
             "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: true,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        fill: "--cui-activity-trigger-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "tool",
-            "data-activity-name": "read_registry",
-            "data-activity-state": "success",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -893,8 +569,71 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-activity-kind": "tool",
-            "data-activity-name": "read_registry",
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "reasoning",
+            "data-activity-state": "success",
+            "data-closed": "",
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "activity",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        fill: "--cui-activity-trigger-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "reasoning",
             "data-activity-state": "success",
             "data-control-family": "activity",
             "data-control-ui": "activity",
@@ -905,6 +644,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-disabled": "false",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -918,7 +658,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/ai/chat-layout",
     },
     {
       knobs: {
@@ -3718,6 +3458,171 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
@@ -4376,19 +4281,22 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
+            "data-button-kind": "model-switcher",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "chat-composer",
-            "data-disabled": "",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
             "data-shape": "default",
             "data-size": "xs",
-            "data-slot": "submit",
-            "data-tone": "primary",
-            "data-variant": "solid",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
@@ -4420,46 +4328,34 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-state": "idle",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "assistant",
-            "data-slot": "content",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "markdown-block",
-            "data-control-ui": "markdown-block",
-            "data-slot": "root",
-            "data-surface": "panel",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-icon-only": "true",
             "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-size": "sm",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
             tabindex: "0",
           },
         },
@@ -4467,7 +4363,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/use-cases/chat",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -4491,30 +4387,34 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-state": "idle",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
             "data-shape": "default",
             "data-size": "xs",
-            "data-slot": "root",
+            "data-slot": "trigger",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
@@ -4522,7 +4422,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -6056,113 +5956,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
@@ -6288,6 +6081,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -6369,6 +6163,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -6388,572 +6183,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       ],
       recipe: "button",
       rendersText: false,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "embedded",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "embedded",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "circle",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
       state: false,
       route: "/use-cases/coding-agent",
     },
@@ -7230,60 +6459,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
@@ -7297,59 +6472,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/use-cases/file-explorer",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -7681,6 +6803,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/use-cases/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -8923,7 +8092,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/create",
+      route: "/ai/task-list",
     },
     {
       knobs: {
@@ -9195,7 +8364,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/get-started",
+      route: "/ai/action-bar",
     },
     {
       knobs: {
@@ -9720,6 +8889,137 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/ai/environment-variables",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -11310,6 +10610,171 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
@@ -12183,19 +11648,25 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
+            "data-button-kind": "model-switcher",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "chat-composer",
-            "data-disabled": "",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
             "data-shape": "default",
             "data-size": "xs",
-            "data-slot": "submit",
-            "data-tone": "primary",
-            "data-variant": "solid",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
@@ -12227,54 +11698,43 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-state": "idle",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "assistant",
-            "data-slot": "content",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "markdown-block",
-            "data-control-ui": "markdown-block",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
+            "data-button-kind": "model-switcher",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
             "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
       ],
       recipe: "button",
-      rendersText: false,
+      rendersText: true,
       state: true,
-      route: "/use-cases/chat",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -12298,30 +11758,96 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-state": "idle",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
             "data-shape": "default",
             "data-size": "xs",
-            "data-slot": "root",
+            "data-slot": "trigger",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
@@ -12329,7 +11855,66 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -14077,113 +13662,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
@@ -14309,6 +13787,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -14393,6 +13872,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -14474,6 +13954,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -14493,656 +13974,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       ],
       recipe: "button",
       rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "embedded",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "embedded",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "circle",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
       state: true,
       route: "/use-cases/coding-agent",
     },
@@ -15419,60 +14250,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
@@ -15486,59 +14263,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/use-cases/file-explorer",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -15990,6 +14714,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/use-cases/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -17371,7 +16142,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/ai/task-list",
     },
     {
       knobs: {
@@ -17643,7 +16414,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/get-started",
+      route: "/ai/action-bar",
     },
     {
       knobs: {
@@ -18588,6 +17359,137 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
         fill: "--cui-button-open-background",
         text: "--cui-button-open-foreground",
       },
@@ -18628,6 +17530,131 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/navigation-menu",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-open-background",
+        text: "--cui-button-open-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-button-kind": "model-switcher",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-open-background",
+        text: "--cui-button-open-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -18799,90 +17826,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-open-background",
-        text: "--cui-button-open-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -20863,6 +19807,169 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
@@ -21720,19 +20827,25 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
+            "data-button-kind": "model-switcher",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "chat-composer",
-            "data-disabled": "",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
             "data-shape": "default",
             "data-size": "xs",
-            "data-slot": "submit",
-            "data-tone": "primary",
-            "data-variant": "solid",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
@@ -21763,54 +20876,43 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-state": "idle",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "assistant",
-            "data-slot": "content",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "markdown-block",
-            "data-control-ui": "markdown-block",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
+            "data-button-kind": "model-switcher",
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
             "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
       ],
       recipe: "button",
-      rendersText: false,
+      rendersText: true,
       state: true,
-      route: "/use-cases/chat",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -21833,30 +20935,95 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-state": "idle",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
           attributes: {
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
+            "data-control-ui": "chat-composer",
+            "data-disabled": "",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
             "data-shape": "default",
             "data-size": "xs",
-            "data-slot": "root",
+            "data-slot": "trigger",
             "data-tone": "neutral",
-            "data-variant": "quiet",
+            "data-variant": "ghost",
+            role: "combobox",
             tabindex: "0",
           },
         },
@@ -21864,7 +21031,65 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -23581,111 +22806,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-shape": "default",
             "data-size": "sm",
             "data-slot": "root",
@@ -23809,6 +22929,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -23892,6 +23013,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -23972,6 +23094,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -23991,648 +23114,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       ],
       recipe: "button",
       rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "embedded",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "embedded",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "circle",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
       state: true,
       route: "/use-cases/coding-agent",
     },
@@ -24904,59 +23385,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
@@ -24970,58 +23398,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/use-cases/file-explorer",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -25465,6 +23841,52 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/use-cases/file-explorer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -26813,7 +25235,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/create",
+      route: "/ai/task-list",
     },
     {
       knobs: {
@@ -27078,7 +25500,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/get-started",
+      route: "/ai/action-bar",
     },
     {
       knobs: {
@@ -27997,6 +26419,133 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/ai/environment-variables",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -28798,6 +27347,65 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+      ],
+      recipe: "chat-composer",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-composer-root-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-composer",
             "data-control-ui": "chat-composer",
             "data-density": "comfortable",
@@ -28952,7 +27560,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-chat-composer-root-background",
+        fill: "--cui-chat-composer-shell-background",
       },
       anatomy: [
         {
@@ -28971,22 +27579,25 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
+            "data-chrome": "panel",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
             "data-slot": "root",
             "data-surface": "panel",
           },
@@ -28997,14 +27608,23 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-density": "compact",
             "data-slot": "root",
-            "data-state": "submitting",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
           },
         },
       ],
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/use-cases/chat",
     },
     {
       knobs: {
@@ -29082,6 +27702,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "idle",
+            "data-surface": "floating",
           },
         },
       ],
@@ -29146,70 +27767,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
-          },
-        },
-      ],
-      recipe: "chat-composer",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-composer-shell-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
       ],
@@ -29240,328 +27798,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "data-chrome": "panel",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-layout",
             "data-slot": "root",
@@ -29623,493 +27859,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-thought-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "panel",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-thought-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "panel",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-thought-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-thought-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-thought-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-layout-thought-hover-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
         fill: "--cui-chat-message-background",
         text: "--cui-chat-message-foreground",
       },
@@ -30188,244 +27937,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-layout",
             "data-slot": "root",
             "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "compact",
-            "data-role": "user",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "user",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "compact",
-            "data-role": "assistant",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "assistant",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "compact",
-            "data-role": "user",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "user",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-density": "compact",
-            "data-role": "assistant",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "assistant",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "chat-message",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-chat-message-background",
-        text: "--cui-chat-message-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
           },
         },
         {
@@ -30539,6 +28050,50 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/ai/chat-message",
+    },
+    {
+      knobs: {
+        fill: "--cui-chat-message-background",
+        text: "--cui-chat-message-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-density": "compact",
+            "data-role": "user",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "user",
+            "data-slot": "content",
+          },
+        },
+      ],
+      recipe: "chat-message",
+      rendersText: true,
+      state: false,
+      route: "/ai/action-bar",
     },
     {
       knobs: {
@@ -31802,105 +29357,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-attachment",
-            "data-control-ui": "inline-attachment",
-            "data-slot": "root",
-            "data-state": "ready",
-            "data-surface": "panel",
-          },
-        },
-      ],
-      recipe: "inline-attachment",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-inline-attachment-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-attachment",
-            "data-control-ui": "inline-attachment",
-            "data-slot": "root",
-            "data-state": "ready",
-            "data-surface": "panel",
-          },
-        },
-      ],
-      recipe: "inline-attachment",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-inline-attachment-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "inline-attachment",
             "data-control-ui": "inline-attachment",
             "data-slot": "root",
@@ -31975,121 +29431,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-layout",
             "data-slot": "root",
             "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-attachment",
-            "data-control-ui": "inline-attachment",
-            "data-slot": "root",
-            "data-state": "ready",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-attachment",
-            "data-control-ui": "inline-attachment",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "inline-attachment",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-inline-attachment-content-background",
-        text: "--cui-inline-attachment-content-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-attachment",
-            "data-control-ui": "inline-attachment",
-            "data-slot": "root",
-            "data-state": "ready",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-attachment",
-            "data-control-ui": "inline-attachment",
-            "data-slot": "content",
-          },
-        },
-      ],
-      recipe: "inline-attachment",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-inline-attachment-content-background",
-        text: "--cui-inline-attachment-content-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
           },
         },
         {
@@ -32523,133 +29864,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-layout",
             "data-slot": "root",
             "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "assistant",
-            "data-slot": "content",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "markdown-block",
-            "data-control-ui": "markdown-block",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "markdown-block",
-            "data-control-ui": "markdown-block",
-            "data-slot": "title-icon",
-          },
-        },
-      ],
-      recipe: "markdown-block",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-markdown-block-icon-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-message",
-            "data-control-ui": "chat-message",
-            "data-role": "assistant",
-            "data-slot": "content",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "markdown-block",
-            "data-control-ui": "markdown-block",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "markdown-block",
-            "data-control-ui": "markdown-block",
-            "data-slot": "title-icon",
-          },
-        },
-      ],
-      recipe: "markdown-block",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-markdown-block-icon-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
           },
         },
         {
@@ -33935,6 +31149,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-open": "",
             "data-popup-kind": "select",
             "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
             "data-side": "none",
             "data-slot": "content",
             "data-surface": "floating",
@@ -33947,6 +31202,133 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/create",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -34560,7 +31942,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-open": "",
             "data-popup-kind": "select",
             "data-popup-part": "list-surface",
-            "data-side": "none",
+            "data-side": "bottom",
             "data-slot": "content",
             "data-surface": "floating",
             role: "listbox",
@@ -34630,256 +32012,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "none",
-            "data-slot": "content",
             "data-surface": "floating",
-            role: "listbox",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "none",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "listbox",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "none",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "listbox",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
           },
         },
         {
@@ -35241,6 +32374,61 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-closed": "",
             "data-control-family": "morphing-panel",
             "data-control-ui": "morphing-panel",
@@ -35313,6 +32501,189 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/create",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-button-kind": "model-switcher",
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "model-switcher",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "none",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -35532,49 +32903,13 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
             "data-align": "start",
             "data-control-family": "popup",
             "data-control-ui": "select",
             "data-open": "",
             "data-popup-kind": "select",
             "data-popup-part": "list-surface",
-            "data-side": "none",
+            "data-side": "bottom",
             "data-slot": "content",
             "data-surface": "floating",
             role: "listbox",
@@ -35645,239 +32980,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "none",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "listbox",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "true",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-highlighted": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "item",
-            "data-selected": "",
-            "data-slot": "item",
-            role: "option",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-item-highlight-background",
-        text: "--cui-popup-item-highlight-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-open": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "list-surface",
-            "data-side": "none",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "listbox",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "true",
-            "data-control-family": "popup",
-            "data-control-ui": "select",
-            "data-highlighted": "",
-            "data-popup-kind": "select",
-            "data-popup-part": "item",
-            "data-selected": "",
-            "data-slot": "item",
-            role: "option",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-item-highlight-background",
-        text: "--cui-popup-item-highlight-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "chat-composer",
             "data-control-ui": "chat-composer",
             "data-density": "compact",
@@ -35891,6 +32993,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -38024,7 +35127,199 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar",
       rendersText: true,
       state: false,
-      route: "/primitives/sidebar",
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-inset-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+      ],
+      recipe: "sidebar",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-active-background",
+        text: "--cui-sidebar-menu-button-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -38358,13 +35653,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
             "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
@@ -38422,13 +35710,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
             "data-size": "sm",
             "data-slot": "menu-button",
             "data-variant": "default",
@@ -38439,6 +35720,173 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-hover-background",
+        text: "--cui-sidebar-menu-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-hover-background",
+        text: "--cui-sidebar-menu-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-hover-background",
+        text: "--cui-sidebar-menu-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-menu-button-hover-background",
+        text: "--cui-sidebar-menu-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: true,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -38772,13 +36220,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
             "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
@@ -38830,13 +36271,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-state": "expanded",
             "data-surface": "panel",
             "data-variant": "sidebar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
           },
         },
         {
@@ -40361,6 +37795,46 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        fill: "--cui-tabs-list-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inner",
@@ -40439,7 +37913,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/theme-editor",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -41108,130 +38582,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-background",
-        text: "--cui-toolbar-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-background",
-        text: "--cui-toolbar-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "infinite-canvas",
             "data-control-ui": "infinite-canvas",
             "data-slot": "root",
@@ -41426,158 +38776,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-background",
-        text: "--cui-toolbar-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-background",
-        text: "--cui-toolbar-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -41622,6 +38821,42 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-background",
+        text: "--cui-toolbar-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -41924,156 +39159,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/create",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
     },
     {
       knobs: {
@@ -42260,7 +39345,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -42313,6 +39398,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "wrapper",
@@ -42327,28 +39453,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-variant": "default",
+            role: "toolbar",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
           },
         },
         {
           attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -42357,12 +39508,218 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "default",
             role: "toolbar",
           },
         },
         {
           attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-active-background",
+        text: "--cui-toolbar-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
             "data-control": "true",
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
@@ -42385,406 +39742,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-active-background",
-        text: "--cui-toolbar-item-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -43105,156 +40063,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-background",
-        text: "--cui-toolbar-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-background",
-        text: "--cui-toolbar-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/ai/chat-layout",
     },
     {
       knobs: {
@@ -43668,7 +40476,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -43744,7 +40552,149 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "input",
+            role: "combobox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "embedded",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "input",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "embedded",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -43789,6 +40739,45 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "wrapper",
@@ -43803,28 +40792,52 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-variant": "default",
+            role: "toolbar",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
           },
         },
         {
           attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -43833,12 +40846,211 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "default",
             role: "toolbar",
           },
         },
         {
           attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: false,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-background",
+        text: "--cui-toolbar-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
             "data-control": "true",
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
@@ -43858,7 +41070,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -43882,50 +41094,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -43935,10 +41108,10 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
             "data-focusable": "",
-            "data-icon-only": "true",
             "data-orientation": "horizontal",
             "data-size": "sm",
-            "data-slot": "button",
+            "data-slot": "input",
+            role: "combobox",
             tabindex: "-1",
           },
         },
@@ -43946,7 +41119,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/use-cases/coding-agent",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -43974,24 +41147,20 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "default",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
         {
           attributes: {
-            "aria-disabled": "false",
             "data-control": "true",
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
             "data-focusable": "",
-            "data-icon-only": "true",
             "data-orientation": "horizontal",
-            "data-shape": "default",
             "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
+            "data-slot": "input",
+            role: "combobox",
             tabindex: "0",
           },
         },
@@ -43999,7 +41168,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/primitives/toolbar",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -44027,21 +41196,20 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "default",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
         {
           attributes: {
-            "aria-disabled": "false",
             "data-control": "true",
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
             "data-orientation": "horizontal",
             "data-size": "sm",
-            "data-slot": "button",
+            "data-slot": "link",
+            "data-variant": "default",
+            href: "#",
             tabindex: "-1",
           },
         },
@@ -44049,205 +41217,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-background",
-        text: "--cui-toolbar-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-background",
-        text: "--cui-toolbar-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-background",
-        text: "--cui-toolbar-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: false,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-background",
-        text: "--cui-toolbar-item-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: false,
-      route: "/primitives/toolbar",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -44880,306 +41850,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/primitives",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "idle",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: true,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/ai/chat-layout",
     },
     {
       knobs: {
@@ -45730,7 +42400,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -45809,7 +42479,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -45885,7 +42555,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -45930,6 +42600,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "wrapper",
@@ -45944,28 +42655,53 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-surface": "panel",
+            "data-variant": "default",
+            role: "toolbar",
           },
         },
         {
           attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
           },
         },
         {
           attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -45974,12 +42710,624 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "default",
             role: "toolbar",
           },
         },
         {
           attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-pressed": "",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "button",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-icon-only": "true",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: false,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "default",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-focusable": "",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "button",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "toolbar",
+      rendersText: true,
+      state: true,
+      route: "/primitives/toolbar",
+    },
+    {
+      knobs: {
+        fill: "--cui-toolbar-item-hover-background",
+        text: "--cui-toolbar-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "toolbar",
+            "data-control-ui": "toolbar",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-variant": "floating",
+            role: "toolbar",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
             "data-control": "true",
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
@@ -46002,7 +43350,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: true,
-      route: "/use-cases/coding-agent",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -46026,56 +43374,17 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
         {
           attributes: {
+            "aria-disabled": "false",
             "data-control": "true",
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
@@ -46095,7 +43404,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: true,
       state: true,
-      route: "/use-cases/coding-agent",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -46119,138 +43428,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
             "data-orientation": "horizontal",
             "data-slot": "root",
-            "data-variant": "inverse",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-closed": "",
-            "data-control-family": "morphing-panel",
-            "data-control-ui": "morphing-panel",
-            "data-slot": "root",
-            "data-state": "closed",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "inverse",
+            "data-variant": "floating",
             role: "toolbar",
           },
         },
@@ -46259,11 +43441,11 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "toolbar",
             "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
             "data-orientation": "horizontal",
             "data-size": "sm",
-            "data-slot": "button",
+            "data-slot": "link",
+            "data-variant": "default",
+            href: "#",
             tabindex: "-1",
           },
         },
@@ -46271,724 +43453,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "toolbar",
       rendersText: false,
       state: true,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-pressed": "",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "button",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-icon-only": "true",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: false,
-      state: true,
-      route: "/primitives/toolbar",
-    },
-    {
-      knobs: {
-        fill: "--cui-toolbar-item-hover-background",
-        text: "--cui-toolbar-item-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-variant": "default",
-            role: "toolbar",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "toolbar",
-            "data-control-ui": "toolbar",
-            "data-focusable": "",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "button",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "toolbar",
-      rendersText: true,
-      state: true,
-      route: "/primitives/toolbar",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -50080,51 +46545,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-activity-kind": "default",
             "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -50135,53 +46555,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "aria-disabled": "false",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -50266,51 +46639,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-activity-kind": "reasoning",
             "data-activity-state": "running",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "reasoning",
-            "data-activity-state": "running",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -50321,53 +46649,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "aria-disabled": "false",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "reasoning",
-            "data-activity-state": "running",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -50459,6 +46740,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-disabled": "false",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-slot": "trigger",
@@ -50506,54 +46788,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         {
           attributes: {
             "aria-disabled": "false",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-message",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "tool",
-            "data-activity-name": "active_setup",
-            "data-activity-state": "success",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -50640,52 +46874,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-activity-kind": "tool",
             "data-activity-name": "read_registry",
             "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/ai/activity",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "tool",
-            "data-activity-name": "read_registry",
-            "data-activity-state": "success",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -50732,8 +46920,71 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-activity-kind": "tool",
-            "data-activity-name": "read_registry",
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "reasoning",
+            "data-activity-state": "success",
+            "data-closed": "",
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "root",
+            "data-state": "closed",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "activity",
+            "data-control-ui": "activity",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "activity",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-layout",
+    },
+    {
+      knobs: {
+        text: "--cui-activity-row-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-activity-kind": "reasoning",
             "data-activity-state": "success",
             "data-control-family": "activity",
             "data-control-ui": "activity",
@@ -50744,6 +46995,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-disabled": "false",
             "data-control-family": "activity",
             "data-control-ui": "activity",
             "data-open": "",
@@ -50757,7 +47009,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/ai/chat-layout",
     },
     {
       knobs: {
@@ -50797,151 +47049,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-chrome": "embedded",
             "data-control-family": "chat-layout",
             "data-control-ui": "chat-layout",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "running",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "row",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "running",
-            "data-closed": "",
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "activity",
-            "data-control-ui": "activity",
-            "data-slot": "row",
-          },
-        },
-      ],
-      recipe: "activity",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        text: "--cui-activity-row-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
             "data-slot": "root",
           },
         },
@@ -51170,89 +47277,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/menubar",
-    },
-    {
-      knobs: {
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-button-kind": "model-switcher",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "model-switcher",
-            "data-popup-kind": "select",
-            "data-popup-open": "",
-            "data-popup-side": "bottom",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "ghost",
-            role: "combobox",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/coding-agent",
     },
     {
       knobs: {
@@ -51694,6 +47718,80 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-message",
+            "data-control-ui": "chat-message",
+            "data-role": "assistant",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "markdown-block",
+            "data-control-ui": "markdown-block",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-density": "compact",
+            "data-slot": "root",
+            "data-state": "idle",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "chat-composer",
+            "data-control-ui": "chat-composer",
+            "data-slot": "shell",
+            "data-state": "idle",
+            "data-surface": "floating",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            role: "textbox",
+          },
+        },
+      ],
+      recipe: "chat-composer",
+      rendersText: false,
+      state: false,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        text: "--cui-chat-composer-input-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "chat-composer",
             "data-control-ui": "chat-composer",
             "data-density": "comfortable",
@@ -51810,6 +47908,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "idle",
+            "data-surface": "floating",
           },
         },
         {
@@ -51881,6 +47980,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "chat-composer",
             "data-slot": "shell",
             "data-state": "submitting",
+            "data-surface": "floating",
           },
         },
         {
@@ -51895,393 +47995,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        text: "--cui-chat-composer-input-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-density": "compact",
-            "data-slot": "root",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "shell",
-            "data-state": "submitting",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-composer",
-            "data-control-ui": "chat-composer",
-            "data-slot": "textarea",
-          },
-        },
-      ],
-      recipe: "chat-composer",
-      rendersText: false,
-      state: false,
-      route: "/use-cases/coding-agent",
-    },
-    {
-      knobs: {
-        text: "--cui-chat-layout-thought-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "panel",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        text: "--cui-chat-layout-thought-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "panel",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
-            "aria-disabled": "false",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        text: "--cui-chat-layout-thought-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        text: "--cui-chat-layout-thought-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-chat-layout-kind": "thread",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-chat-layout-kind": "thought",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-slot": "root",
-            "data-state": "open",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-open": "",
-            "data-panel-open": "",
-            "data-slot": "trigger",
-            "data-state": "open",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
-    },
-    {
-      knobs: {
-        text: "--cui-chat-layout-thought-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thread",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activity-kind": "default",
-            "data-activity-state": "success",
-            "data-closed": "",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "root",
-            "data-state": "closed",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-thought",
-            "data-slot": "trigger",
-            "data-state": "closed",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "chat-layout",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-layout",
     },
     {
       knobs: {
@@ -54137,6 +49850,48 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "group-label",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-group-label-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inner",
@@ -54246,6 +50001,57 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
+            "data-slot": "group-label",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/coding-agent",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-group-label-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
             "data-slot": "inner",
           },
         },
@@ -54371,6 +50177,169 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/sidebar",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-track-item": "",
+            "data-variant": "default",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        text: "--cui-sidebar-menu-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-collapsible": "",
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-side": "left",
+            "data-slot": "root",
+            "data-state": "expanded",
+            "data-surface": "panel",
+            "data-variant": "sidebar",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-size": "sm",
+            "data-slot": "menu-button",
+            "data-variant": "default",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "sidebar-menu",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -54648,13 +50617,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
-          },
-        },
-        {
-          attributes: {
             "data-active": "true",
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
@@ -54664,7 +50626,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           },
         },
       ],
-      recipe: "sidebar",
+      recipe: "sidebar-menu",
       rendersText: true,
       state: false,
       route: "/use-cases/coding-agent",
@@ -54705,13 +50667,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-state": "expanded",
             "data-surface": "panel",
             "data-variant": "sidebar",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inner",
           },
         },
         {
@@ -54940,6 +50895,70 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "xs",
+            "data-slot": "list",
+            "data-variant": "default",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/chat-composer",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inner",
@@ -55126,77 +51145,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-active-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-message",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -56426,66 +52375,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "false",
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-message",
+      route: "/ai/chat-composer",
     },
     {
       knobs: {
@@ -56557,76 +52447,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/theme-editor",
-    },
-    {
-      knobs: {
-        text: "--cui-tabs-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slide": "scope",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-size": "sm",
-            "data-slot": "list",
-            "data-variant": "browser",
-            role: "tablist",
-          },
-        },
-        {
-          attributes: {
-            "data-activation-direction": "none",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "indicator",
-            role: "presentation",
-          },
-        },
-        {
-          attributes: {
-            "aria-selected": "true",
-            "data-activation-direction": "none",
-            "data-active": "",
-            "data-control-family": "tabs",
-            "data-control-ui": "tabs",
-            "data-orientation": "horizontal",
-            "data-slot": "tab",
-            role: "tab",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "tabs",
-      rendersText: true,
-      state: false,
-      route: "/ai/chat-message",
     },
     {
       knobs: {
@@ -58709,7 +54529,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-thread-rail-popover-background",
     "--cui-timeline-indicator-background",
     "--cui-timeline-indicator-foreground",
-    "--cui-track-highlight-background",
     "--cui-track-highlight-hover-background",
     "--cui-transcript-divider-line-color",
     "--cui-transcript-divider-success-foreground",

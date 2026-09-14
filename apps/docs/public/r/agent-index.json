@@ -683,7 +683,6 @@
         "kind": "Agent",
         "summary": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
         "href": "/ai/inline-citation",
-        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json"
       },
       {
@@ -731,7 +730,7 @@
         "id": "chat-layout",
         "name": "ChatLayout",
         "kind": "Agent",
-        "summary": "Layout primitives for full chat threads, turns, and thoughts.",
+        "summary": "A scrolling conversation with message turns and a floating composer dock.",
         "href": "/ai/chat-layout",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json"
       },

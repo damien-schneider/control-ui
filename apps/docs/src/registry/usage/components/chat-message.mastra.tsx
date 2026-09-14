@@ -21,7 +21,6 @@ import {
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
-import { ChatThought } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import type { ChatRole } from "@/components/control-ui/hooks/use-chat-message";
 import {
@@ -155,7 +154,15 @@ export function Example({ message }: { message: MastraDBMessage }) {
       roles={messageRoles}
       status={messageStatus}
       Text={({ text }) => <span>{text}</span>}
-      Reasoning={({ reasoning }) => <ChatThought details={reasoning}>Reasoning</ChatThought>}
+      Reasoning={({ reasoning, state }) => (
+        <Activity kind="reasoning" state={state === "streaming" ? "running" : "success"}>
+          <ActivityTrigger>
+            <ActivityIcon />
+            <ActivityTitle>Reasoning</ActivityTitle>
+          </ActivityTrigger>
+          <ActivityContent>{reasoning}</ActivityContent>
+        </Activity>
+      )}
       File={renderFile}
       StepStart={() => <hr />}
       ToolInvocation={renderToolInvocation}

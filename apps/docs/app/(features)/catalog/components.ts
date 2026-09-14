@@ -450,7 +450,6 @@ export const componentEntries = [
     kind: "Agent",
     name: "InlineCitation",
     summary: "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
-    status: "beta",
     registryKind: "inline-citation",
     paths: {
       example: sourceFile("Example", "src/registry/examples/control-ui/inline-citation.tsx", "example"),
@@ -561,7 +560,7 @@ export const componentEntries = [
     id: "chat-layout",
     kind: "Agent",
     name: "ChatLayout",
-    summary: "Layout primitives for full chat threads, turns, and thoughts.",
+    summary: "A scrolling conversation with message turns and a floating composer dock.",
     registryKind: "chat-layout",
     paths: {
       example: sourceFile("Example", "src/registry/examples/control-ui/chat-layout.tsx", "example"),

@@ -6,7 +6,6 @@ type StatelessPart = Record<never, never>;
 export type SkinAdornmentContexts = {
   button: { layer: { variant: ControlVariant; tone: ControlTone } };
   "chat-layout": { titlebar: StatelessPart };
-  "chat-thought": { details: StatelessPart };
   dialog: { titlebar: StatelessPart };
   "chat-composer": { "send-layer": { sendCount: number } };
 };

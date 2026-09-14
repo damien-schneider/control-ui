@@ -1,18 +1,9 @@
 "use client";
 
 import { useState } from "react";
-
-import {
-  ChatComposer,
-  ChatComposerAccent,
-  ChatComposerShell,
-  ChatComposerSubmit,
-  ChatComposerTextarea,
-  ChatComposerToolbar,
-  ChatComposerTools,
-} from "@/components/control-ui/chat-composer";
 import type { TaskStatus } from "@/components/control-ui/task-list";
 import { TaskList, TaskListContent, TaskListItem, TaskListTrigger } from "@/components/control-ui/task-list";
+import { Button } from "@/components/control-ui/ui/button";
 
 const planSteps = [
   "Design data model + storage for projects/tasks/pomodoro",
@@ -31,37 +22,21 @@ function statusFor(index: number, step: number): TaskStatus {
 export function TaskListExample() {
   const [step, setStep] = useState(2);
 
-  function submitPrompt({ clear }: { clear: () => void }) {
-    setStep((current) => (current + 1) % (planSteps.length + 1));
-    clear();
-  }
+  const isComplete = step === planSteps.length;
 
   return (
-    <div className="flex h-[440px] flex-col justify-end">
-      <ChatComposer density="compact" onSubmit={submitPrompt}>
-        <div className="absolute inset-x-2 bottom-full pb-2">
-          <TaskList>
-            <TaskListTrigger />
-            <TaskListContent>
-              {planSteps.map((label, index) => (
-                <TaskListItem key={label} label={label} status={statusFor(index, step)} />
-              ))}
-            </TaskListContent>
-          </TaskList>
-        </div>
-        <ChatComposerShell>
-          <ChatComposerAccent />
-          <ChatComposerTextarea placeholder="Message the agent (sending advances the plan)..." />
-          <ChatComposerToolbar>
-            <ChatComposerTools>
-              <span>
-                {Math.min(step, planSteps.length)} of {planSteps.length} steps done
-              </span>
-            </ChatComposerTools>
-            <ChatComposerSubmit>Send</ChatComposerSubmit>
-          </ChatComposerToolbar>
-        </ChatComposerShell>
-      </ChatComposer>
+    <div className="mx-auto grid w-full max-w-xl gap-3">
+      <TaskList defaultOpen>
+        <TaskListTrigger />
+        <TaskListContent>
+          {planSteps.map((label, index) => (
+            <TaskListItem key={label} label={label} status={statusFor(index, step)} />
+          ))}
+        </TaskListContent>
+      </TaskList>
+      <Button variant="quiet" size="sm" className="justify-self-end" onClick={() => setStep(isComplete ? 0 : step + 1)}>
+        {isComplete ? "Restart plan" : "Complete current task"}
+      </Button>
     </div>
   );
 }

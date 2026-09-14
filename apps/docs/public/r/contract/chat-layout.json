@@ -29,18 +29,6 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "var(--shadow-md)"
-    },
-    {
-      "name": "--cui-chat-layout-thought-foreground",
-      "syntax": "<color>",
-      "initialValue": "transparent",
-      "defaultValue": "var(--muted-foreground)"
-    },
-    {
-      "name": "--cui-chat-layout-thought-hover-background",
-      "syntax": "<color>",
-      "initialValue": "transparent",
-      "defaultValue": "oklch(from var(--foreground) l c h / 0.04)"
     }
   ],
   "parts": {
@@ -61,52 +49,6 @@
             ]
           }
         ]
-      }
-    },
-    "chat-thought": {
-      "root": {
-        "family": "chat-layout",
-        "registryItems": [
-          "chat-layout"
-        ],
-        "states": [
-          {
-            "attribute": "data-chat-layout-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "thought"
-            ]
-          }
-        ]
-      },
-      "chevron": {
-        "family": "chat-layout",
-        "registryItems": [
-          "chat-layout"
-        ],
-        "states": []
-      },
-      "details": {
-        "family": "chat-layout",
-        "registryItems": [
-          "chat-layout"
-        ],
-        "states": []
-      },
-      "title": {
-        "family": "chat-layout",
-        "registryItems": [
-          "chat-layout"
-        ],
-        "states": []
-      },
-      "trigger": {
-        "family": "chat-layout",
-        "registryItems": [
-          "chat-layout"
-        ],
-        "states": []
       }
     },
     "chat-thread": {
@@ -161,13 +103,7 @@
       }
     }
   },
-  "adornments": {
-    "chat-thought": {
-      "details": {
-        "context": {}
-      }
-    }
-  },
+  "adornments": {},
   "uncovered": [],
   "contrast": "/r/contract/chat-layout.contrast.json"
 }

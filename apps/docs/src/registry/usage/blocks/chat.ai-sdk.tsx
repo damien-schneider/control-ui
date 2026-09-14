@@ -23,7 +23,7 @@ import {
   ChatComposerToolbar,
   ChatComposerTools,
 } from "@/components/control-ui/chat-composer";
-import { ChatThought, ChatTurn } from "@/components/control-ui/chat-layout";
+import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { SourceBadge } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
@@ -90,9 +90,13 @@ function AiSdkMessage({ message }: { message: UIMessage }) {
                 }
                 if (part.type === "reasoning") {
                   return (
-                    <ChatThought key={key} details={part.text}>
-                      Reasoning
-                    </ChatThought>
+                    <Activity key={key} kind="reasoning" state={part.state === "streaming" ? "running" : "success"}>
+                      <ActivityTrigger>
+                        <ActivityIcon />
+                        <ActivityTitle>Reasoning</ActivityTitle>
+                      </ActivityTrigger>
+                      <ActivityContent>{part.text}</ActivityContent>
+                    </Activity>
                   );
                 }
                 if (part.type === "source-url") {

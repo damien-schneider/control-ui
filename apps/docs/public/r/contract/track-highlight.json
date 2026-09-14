@@ -72,7 +72,6 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-track-highlight-background",
     "--cui-track-highlight-hover-background"
   ],
   "contrast": "/r/contract/track-highlight.contrast.json"

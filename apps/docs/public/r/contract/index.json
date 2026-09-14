@@ -20,11 +20,10 @@
     },
     "activity": {
       "registryItems": [
-        "activity",
-        "chat-layout"
+        "activity"
       ],
       "knobs": 4,
-      "probes": 38
+      "probes": 25
     },
     "alert": {
       "registryItems": [
@@ -87,7 +86,7 @@
         "toggle"
       ],
       "knobs": 23,
-      "probes": 543
+      "probes": 533
     },
     "button-group": {
       "registryItems": [
@@ -128,15 +127,15 @@
       "registryItems": [
         "chat-layout"
       ],
-      "knobs": 6,
-      "probes": 22
+      "knobs": 4,
+      "probes": 2
     },
     "chat-message": {
       "registryItems": [
         "chat-message"
       ],
       "knobs": 12,
-      "probes": 9
+      "probes": 6
     },
     "checkbox-group": {
       "registryItems": [
@@ -266,7 +265,7 @@
         "inline-attachment"
       ],
       "knobs": 9,
-      "probes": 9
+      "probes": 5
     },
     "inline-citation": {
       "registryItems": [
@@ -308,7 +307,7 @@
         "markdown-block"
       ],
       "knobs": 6,
-      "probes": 5
+      "probes": 3
     },
     "morphing-panel": {
       "registryItems": [
@@ -356,7 +355,7 @@
         "trigger-menu"
       ],
       "knobs": 16,
-      "probes": 68
+      "probes": 69
     },
     "progressive-blur": {
       "registryItems": [
@@ -405,7 +404,7 @@
         "sidebar"
       ],
       "knobs": 22,
-      "probes": 34
+      "probes": 49
     },
     "sidebar-layout": {
       "registryItems": [
@@ -468,7 +467,7 @@
         "tabs"
       ],
       "knobs": 11,
-      "probes": 45
+      "probes": 44
     },
     "task-list": {
       "registryItems": [
@@ -503,7 +502,7 @@
         "toolbar"
       ],
       "knobs": 15,
-      "probes": 98
+      "probes": 89
     },
     "track-highlight": {
       "registryItems": [

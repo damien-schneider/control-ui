@@ -49,8 +49,8 @@ test("knobs set on a family root reach every descendant slot", async ({ page }) 
         <div data-control-family="chat-composer" data-control-ui="chat-composer" data-slot="root" style="--cui-chat-composer-shell-background: rgb(24 25 26)">
           <div id="composer-shell" data-control-family="chat-composer" data-control-ui="chat-composer" data-slot="shell"></div>
         </div>
-        <section data-control-family="chat-layout" data-control-ui="chat-layout" data-slot="root" style="--cui-chat-layout-thought-foreground: rgb(27 28 29)">
-          <button id="chat-thought" data-control-family="chat-layout" data-control-ui="chat-thought" data-slot="trigger">Thought</button>
+        <section data-control-family="activity" data-control-ui="activity" data-slot="root" style="--cui-activity-row-foreground: rgb(27 28 29)">
+          <button id="reasoning-trigger" data-control-family="activity" data-control-ui="activity" data-slot="trigger">Reasoning</button>
         </section>
         <div data-control-family="code" data-control-ui="code" data-slot="root" style="--cui-code-title-foreground: rgb(30 31 32)">
           <span id="code-title" data-control-family="code" data-control-ui="code" data-slot="title">Code</span>
@@ -77,7 +77,7 @@ test("knobs set on a family root reach every descendant slot", async ({ page }) 
 
     return {
       composerShell: style("composer-shell").backgroundColor,
-      chatThought: style("chat-thought").color,
+      reasoning: style("reasoning-trigger").color,
       codeTitle: style("code-title").color,
       inlineAttachmentContent: style("inline-attachment-content").color,
       inlineCitationQuote: {
@@ -90,7 +90,7 @@ test("knobs set on a family root reach every descendant slot", async ({ page }) 
 
   expect(styles).toEqual({
     composerShell: "rgb(24, 25, 26)",
-    chatThought: "rgb(27, 28, 29)",
+    reasoning: "rgb(27, 28, 29)",
     codeTitle: "rgb(30, 31, 32)",
     inlineAttachmentContent: "rgb(33, 34, 35)",
     inlineCitationQuote: { background: "rgb(39, 40, 41)", radius: "17px" },

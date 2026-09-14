@@ -261,7 +261,15 @@ export const agentsCompositions = {
       "Conversation and composer",
       part(
         "ChatLayout",
-        part("ChatThread", part("ChatTurn", part("ChatMessage"), part("ChatThought", content("reasoning content"))), part("ChatComposer")),
+        part(
+          "ChatThread",
+          part(
+            "ChatTurn",
+            part("ChatMessage"),
+            part("Activity", part("ActivityTrigger", part("ActivityTitle")), part("ActivityContent", content("reasoning content"))),
+          ),
+          part("ChatComposer"),
+        ),
       ),
     ),
   ],

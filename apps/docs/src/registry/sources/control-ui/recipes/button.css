@@ -213,13 +213,6 @@
     gap: calc(var(--spacing) * 1.5);
   }
 
-  :where([data-control-family="button"][data-button-kind="model-switcher"][data-slot="indicator"]) {
-    inline-size: calc(var(--spacing) * 1.5);
-    block-size: calc(var(--spacing) * 1.5);
-    border-radius: calc(infinity * 1px);
-    background-color: var(--primary);
-  }
-
   :where([data-control-family="button"][data-slot="group"]) {
     gap: calc(var(--spacing) * 1);
   }

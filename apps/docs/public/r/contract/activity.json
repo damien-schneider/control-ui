@@ -3,8 +3,7 @@
   "family": "activity",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [
-    "activity",
-    "chat-layout"
+    "activity"
   ],
   "knobs": [
     {
@@ -106,13 +105,6 @@
         "family": "activity",
         "registryItems": [
           "activity"
-        ],
-        "states": []
-      },
-      "content-viewport": {
-        "family": "activity",
-        "registryItems": [
-          "chat-layout"
         ],
         "states": []
       },

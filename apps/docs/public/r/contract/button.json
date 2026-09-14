@@ -384,22 +384,6 @@
           }
         ]
       },
-      "indicator": {
-        "family": "button",
-        "registryItems": [
-          "model-switcher"
-        ],
-        "states": [
-          {
-            "attribute": "data-button-kind",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "model-switcher"
-            ]
-          }
-        ]
-      },
       "value": {
         "family": "button",
         "registryItems": [

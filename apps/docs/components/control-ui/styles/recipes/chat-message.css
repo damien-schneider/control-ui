@@ -27,7 +27,7 @@
   }
 
   :where([data-control-family="chat-message"][data-slot="root"]:not([data-role="user"]) [data-slot="body"]) {
-    max-inline-size: 80%;
+    max-inline-size: 100%;
     flex: 1;
   }
 
@@ -50,6 +50,7 @@
     background-image: var(--cui-chat-message-background-image);
     box-shadow: var(--cui-chat-message-shadow);
     color: var(--cui-chat-message-foreground);
+    overflow-wrap: anywhere;
     font-size: var(--text-body);
     line-height: calc(var(--spacing) * 5);
   }
@@ -68,16 +69,24 @@
   :where([data-control-family="chat-message"][data-slot="actions"]) {
     margin-block-start: calc(var(--spacing) * 1);
     gap: calc(var(--spacing) * 1);
-    opacity: 0;
+    opacity: 1;
     transition-property: opacity;
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
   }
 
   @media (hover: hover) {
+    :where([data-control-family="chat-message"][data-slot="actions"]) {
+      opacity: 0;
+    }
+
     :where([data-control-family="chat-message"][data-slot="row"]:hover [data-control-family="chat-message"][data-slot="actions"]) {
       opacity: 1;
     }
+  }
+
+  :where([data-control-family="chat-message"][data-slot="root"]:focus-within [data-slot="actions"]) {
+    opacity: 1;
   }
 
   :where([data-control-family="chat-message"][data-slot="header"]) {

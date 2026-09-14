@@ -3,12 +3,10 @@
   "name": "chat-layout",
   "type": "registry:component",
   "title": "ChatLayout",
-  "description": "Layout primitives for full chat threads, turns, and thoughts.",
+  "description": "A scrolling conversation with message turns and a floating composer dock.",
   "dependencies": [],
   "registryDependencies": [
-    "activity",
-    "core",
-    "scroll-area"
+    "core"
   ],
   "files": [
     {

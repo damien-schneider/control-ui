@@ -10,12 +10,7 @@ import {
   GitPullRequestIcon,
   HammerIcon,
   LoaderCircleIcon,
-  MicIcon,
-  PanelRightIcon,
-  PlusIcon,
   ScanSearchIcon,
-  ShieldCheckIcon,
-  SlidersHorizontalIcon,
   TelescopeIcon,
   WrenchIcon,
 } from "lucide-react";
@@ -32,7 +27,6 @@ import {
 } from "@/components/control-ui/blocks/coding-agent";
 import {
   ChatComposer,
-  ChatComposerAccent,
   ChatComposerShell,
   ChatComposerSubmit,
   ChatComposerTextarea,
@@ -127,8 +121,8 @@ const suggestions: readonly CodingAgentSuggestion[] = [
 ];
 
 const models = [
-  { value: "high", label: "Reasoning", hint: "High" },
-  { value: "balanced", label: "Reasoning", hint: "Balanced" },
+  { value: "sonnet", label: "Claude Sonnet" },
+  { value: "gpt", label: "GPT" },
 ];
 
 const initialPrompt = "Thanks to our components, create a block that feels like a focused coding workspace.";
@@ -139,7 +133,7 @@ export function CodingAgentExample() {
   const [draft, setDraft] = useState("");
   const [submittedPrompt, setSubmittedPrompt] = useState(initialPrompt);
   const [isRunning, setIsRunning] = useState(true);
-  const [model, setModel] = useState("high");
+  const [model, setModel] = useState("sonnet");
   const activeTask = findTask(activeTaskId);
   const activeTaskTitle = customTaskTitle ?? activeTask?.title ?? "New task";
 
@@ -179,7 +173,6 @@ export function CodingAgentExample() {
       onSubmit={submitPrompt}
     >
       <ChatComposerShell>
-        <ChatComposerAccent />
         <div className="flex min-w-0 items-center gap-3 border-b border-border/60 px-3 py-2 text-caption text-muted-foreground">
           <span className="flex min-w-0 items-center gap-1.5">
             <FolderIcon className="size-3.5 shrink-0" aria-hidden="true" />
@@ -197,19 +190,9 @@ export function CodingAgentExample() {
         <ChatComposerTextarea className="min-h-18" placeholder="Do anything" />
         <ChatComposerToolbar>
           <ChatComposerTools>
-            <Button variant="ghost" size="sm" iconOnly aria-label="Attach context">
-              <PlusIcon className="size-4" />
-            </Button>
-            <Button variant="quiet" size="xs">
-              <ShieldCheckIcon className="size-3.5" />
-              <span className="hidden sm:inline">Approve for me</span>
-            </Button>
+            <ModelSwitcher models={models} value={model} onValueChange={setModel} size="xs" variant="ghost" />
           </ChatComposerTools>
           <div className="flex min-w-0 items-center gap-1">
-            <ModelSwitcher models={models} value={model} onValueChange={setModel} size="xs" variant="ghost" />
-            <Button variant="ghost" size="sm" iconOnly aria-label="Use microphone">
-              <MicIcon className="size-3.5" />
-            </Button>
             {isRunning ? (
               <Button variant="solid" size="sm" iconOnly shape="circle" aria-label="Stop response" onClick={() => setIsRunning(false)}>
                 <span className="size-2 rounded-[2px] bg-current" />
@@ -236,25 +219,6 @@ export function CodingAgentExample() {
         activeTaskTitle={activeTaskTitle}
         onTaskSelect={selectTask}
         onNewTask={startNewTask}
-        headerActions={
-          <>
-            <Button variant="surface" size="xs" className="hidden sm:inline-flex">
-              Open in
-              <SlidersHorizontalIcon className="size-3.5" />
-            </Button>
-            <Button variant="ghost" size="sm" iconOnly aria-label="Toggle details panel">
-              <PanelRightIcon className="size-3.5" />
-            </Button>
-          </>
-        }
-        sidebarFooter={
-          <Button variant="ghost" size="sm" className="w-full justify-start">
-            <span className="flex size-5 items-center justify-center rounded-full bg-[oklch(0.72_0.16_70)] text-[10px] font-semibold text-[oklch(0.2_0.02_70)]">
-              DS
-            </span>
-            <span className="truncate">damien</span>
-          </Button>
-        }
       >
         <CodingAgentConversation composer={composer}>
           {activeTaskId ? (

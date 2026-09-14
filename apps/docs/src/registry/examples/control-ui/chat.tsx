@@ -2,12 +2,12 @@
 
 import { MastraReactProvider, MessageFactory, type MessageRoleRendererProps, type MessageRoleRenderers, useChat } from "@mastra/react";
 import { type ReactNode, useState } from "react";
-
-import { ActionBar, ActionBarCopy, ActionBarEdit, ActionBarItem } from "@/components/control-ui/action-bar";
+import { ActionBar, ActionBarCopy, ActionBarEdit } from "@/components/control-ui/action-bar";
+import { Activity, ActivityContent, ActivityIcon, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
 import { ChatBlock } from "@/components/control-ui/blocks/chat";
 import {
   ChatComposer,
-  ChatComposerAccent,
+  ChatComposerFooter,
   ChatComposerShell,
   ChatComposerSubmit,
   ChatComposerToolbar,
@@ -15,7 +15,7 @@ import {
 } from "@/components/control-ui/chat-composer";
 import { ChatComposerEditor } from "@/components/control-ui/chat-composer-editor";
 import { mentionExtension } from "@/components/control-ui/chat-composer-editor/extensions/mention";
-import { ChatThought, ChatTurn } from "@/components/control-ui/chat-layout";
+import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import type { ChatComposerSubmitPayload } from "@/components/control-ui/hooks/use-chat-composer";
 import type { ChatState } from "@/components/control-ui/hooks/use-chat-message";
@@ -37,7 +37,6 @@ import { Button } from "@/components/control-ui/ui/button";
 import { CHAT_PREVIEW_AGENT_ID } from "@/mastra/chat-preview-contract";
 import { assistantLead, noteMarkdown, userPrompt } from "../shared";
 
-// "/" runs command (no pill); "@" inserts a mention pill the mention extension serializes on submit.
 const slashCommands: TriggerMenuItemData[] = [
   { id: "summarize", label: "summarize", description: "Condense the thread", icon: "✦" },
   { id: "translate", label: "translate", description: "To another language", icon: "🌐" },
@@ -118,7 +117,15 @@ function PreviewConversation({ onEdit }: { onEdit: (value: string) => void }) {
       </ChatTurn>
 
       <ChatTurn from="assistant">
-        <ChatThought />
+        <Activity kind="reasoning" state="success">
+          <ActivityTrigger>
+            <ActivityIcon />
+            <ActivityTitle>Thought for 2 seconds</ActivityTitle>
+          </ActivityTrigger>
+          <ActivityContent>
+            Read the attachment, grouped the notes by topic, and marked the handwriting that needs a second look.
+          </ActivityContent>
+        </Activity>
         <ChatMessage from="assistant" density="compact">
           <ChatMessageRow className="py-0">
             <ChatMessageBody className="max-w-full flex-1">
@@ -137,9 +144,6 @@ function PreviewConversation({ onEdit }: { onEdit: (value: string) => void }) {
         </ChatMessage>
         <ActionBar label="Response actions" copyValue={responseCopy}>
           <ActionBarCopy />
-          <ActionBarItem>Share</ActionBarItem>
-          <ActionBarItem>Switch model</ActionBarItem>
-          <ActionBarItem>More</ActionBarItem>
         </ActionBar>
       </ChatTurn>
     </>
@@ -148,19 +152,26 @@ function PreviewConversation({ onEdit }: { onEdit: (value: string) => void }) {
 
 function MastraChatPreview() {
   const [inputValue, setInputValue] = useState("");
+  const [sendError, setSendError] = useState<string>();
   const { cancelRun, isRunning, messages, sendMessage } = useChat({ agentId: CHAT_PREVIEW_AGENT_ID });
   const latestMessage = messages.at(-1);
   const streamingMessageId = isRunning && latestMessage?.role === "assistant" ? latestMessage.id : undefined;
   const messageRoles = mastraMessageRoles(streamingMessageId);
 
   async function submitMessage({ value, clear }: ChatComposerSubmitPayload) {
-    clear();
-    await sendMessage({ message: value });
+    setSendError(undefined);
+    try {
+      await sendMessage({ message: value });
+      clear();
+    } catch (error) {
+      setSendError(error instanceof Error ? error.message : "The response failed. Try sending your message again.");
+    }
   }
 
   return (
     <div>
       <ChatBlock
+        className="h-[min(640px,75dvh)] min-h-96"
         composer={
           <ChatComposer
             density="compact"
@@ -170,12 +181,18 @@ function MastraChatPreview() {
             onSubmit={submitMessage}
           >
             <ChatComposerShell>
-              <ChatComposerAccent />
               <ChatComposerEditor placeholder="Ask the assistant… type / or @" extensions={editorExtensions} />
               <ChatComposerToolbar>
                 <ChatComposerTools>
-                  <span>Attach</span>
-                  <span>Mastra mock</span>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="xs"
+                    disabled={isRunning}
+                    onClick={() => setInputValue("Summarize this note in three bullets.")}
+                  >
+                    Summarize note
+                  </Button>
                 </ChatComposerTools>
                 {isRunning ? (
                   <Button type="button" size="xs" variant="quiet" onClick={cancelRun}>
@@ -185,6 +202,7 @@ function MastraChatPreview() {
                   <ChatComposerSubmit>Send</ChatComposerSubmit>
                 )}
               </ChatComposerToolbar>
+              {sendError ? <ChatComposerFooter role="alert">{sendError}</ChatComposerFooter> : null}
             </ChatComposerShell>
           </ChatComposer>
         }

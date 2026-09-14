@@ -11,7 +11,6 @@ import {
   ActivityTitle,
   ActivityTrigger,
 } from "@/components/control-ui/activity";
-import { ChatThought } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import {
   InlineAttachment,
@@ -86,9 +85,13 @@ function renderPart(part: UIMessage["parts"][number]) {
       return <span key={key}>{part.text}</span>;
     case "reasoning":
       return (
-        <ChatThought key={key} details={part.text}>
-          Reasoning
-        </ChatThought>
+        <Activity key={key} kind="reasoning" state={part.state === "streaming" ? "running" : "success"}>
+          <ActivityTrigger>
+            <ActivityIcon />
+            <ActivityTitle>Reasoning</ActivityTitle>
+          </ActivityTrigger>
+          <ActivityContent>{part.text}</ActivityContent>
+        </Activity>
       );
     case "file": {
       const name = part.filename ?? "Attachment";

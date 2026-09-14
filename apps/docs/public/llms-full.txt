@@ -43,13 +43,13 @@
 - `activity` (Activity) — Shared static and collapsible activity anatomy with bounded, scrollable detail content. — `npx shadcn@latest add http://127.0.0.1:3000/r/activity.json`
 - `transcript-divider` (TranscriptDivider) — Toned run-boundary separator for transcripts: steering, interruptions, and condensed context. — `npx shadcn@latest add http://127.0.0.1:3000/r/transcript-divider.json`
 - `context` (Context) **[beta]** — Compact context-window usage with an automatically derived token graph and anchored detail inspector. — `npx shadcn@latest add http://127.0.0.1:3000/r/context.json`
-- `inline-citation` (InlineCitation) **[beta]** — Inline multi-source citation with a keyboard-accessible preview and source navigation. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json`
+- `inline-citation` (InlineCitation) — Inline multi-source citation with a keyboard-accessible preview and source navigation. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json`
 - `source-badge` (SourceBadge) — Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback. — `npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json`
 - `action-bar` (ActionBar) — Reusable hover actions for message and response controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json`
 - `inline-attachment` (InlineAttachment) **[beta]** — Inline file and media previews for chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json`
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`
 - `code-block-editor` (CodeBlockEditor) — Editable code surface with Shiki highlighting and token-based light/dark themes. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-block-editor.json`
-- `chat-layout` (ChatLayout) — Layout primitives for full chat threads, turns, and thoughts. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
+- `chat-layout` (ChatLayout) — A scrolling conversation with message turns and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
 
 ### Blocks (pre-composed recipes)

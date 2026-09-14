@@ -177,6 +177,149 @@
       },
       {
         "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-track-item": "",
+          "data-variant": "default",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-track-item": "",
+          "data-variant": "default",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-track-item": "",
+          "data-variant": "default"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-size": "sm",
+          "data-slot": "menu-button",
+          "data-variant": "default",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
           "data-collapsible": "",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
@@ -434,13 +577,6 @@
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inner"
-        }
-      },
-      {
-        "attributes": {
           "data-active": "true",
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
@@ -488,13 +624,6 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inner"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
           "data-size": "sm",
           "data-slot": "menu-button",
           "data-variant": "default"
@@ -521,6 +650,39 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-slot": "wrapper"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "group-label",
+          "data-state": "open",
+          "tabindex": "0"
         }
       }
     ],
@@ -589,6 +751,48 @@
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
           "data-slot": "inner"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "group-label"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-collapsible": "",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-side": "left",
+          "data-slot": "root",
+          "data-state": "expanded",
+          "data-surface": "panel",
+          "data-variant": "sidebar"
         }
       },
       {
@@ -784,12 +988,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-active-background",
-        "text": "--cui-sidebar-menu-button-active-foreground"
+        "fill": "--cui-sidebar-inset-background"
       },
       "anatomy": 5,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
@@ -856,10 +1059,46 @@
     },
     {
       "knobs": {
-        "fill": "--cui-sidebar-menu-button-hover-background",
-        "text": "--cui-sidebar-menu-button-hover-foreground"
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
       },
-      "anatomy": 5,
+      "anatomy": 13,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 15,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-active-background",
+        "text": "--cui-sidebar-menu-button-active-foreground"
+      },
+      "anatomy": 17,
       "rendersText": true,
       "state": true
     },
@@ -923,6 +1162,51 @@
         "text": "--cui-sidebar-menu-button-hover-foreground"
       },
       "anatomy": 12,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-hover-background",
+        "text": "--cui-sidebar-menu-button-hover-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-hover-background",
+        "text": "--cui-sidebar-menu-button-hover-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-hover-background",
+        "text": "--cui-sidebar-menu-button-hover-foreground"
+      },
+      "anatomy": 15,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-hover-background",
+        "text": "--cui-sidebar-menu-button-hover-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-sidebar-menu-button-hover-background",
+        "text": "--cui-sidebar-menu-button-hover-foreground"
+      },
+      "anatomy": 17,
       "rendersText": true,
       "state": true
     },
@@ -930,47 +1214,63 @@
       "knobs": {
         "fill": "--cui-sidebar-wrapper-background"
       },
-      "anatomy": 13,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
-      },
-      "anatomy": 14,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
-      },
-      "anatomy": 15,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
-      },
-      "anatomy": 16,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
-      },
-      "anatomy": 17,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-group-label-foreground"
-      },
       "anatomy": 18,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 19,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 20,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 21,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 22,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 23,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 24,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-group-label-foreground"
+      },
+      "anatomy": 25,
       "rendersText": true,
       "state": false
     },
@@ -1010,14 +1310,6 @@
       "knobs": {
         "text": "--cui-sidebar-menu-button-foreground"
       },
-      "anatomy": 10,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-sidebar-menu-button-foreground"
-      },
       "anatomy": 11,
       "rendersText": true,
       "state": false
@@ -1027,6 +1319,46 @@
         "text": "--cui-sidebar-menu-button-foreground"
       },
       "anatomy": 12,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 13,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 15,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-sidebar-menu-button-foreground"
+      },
+      "anatomy": 17,
       "rendersText": true,
       "state": false
     }

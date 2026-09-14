@@ -30,7 +30,7 @@ import {
   ChatComposerToolbar,
   ChatComposerTools,
 } from "@/components/control-ui/chat-composer";
-import { ChatThought, ChatTurn } from "@/components/control-ui/chat-layout";
+import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { SourceBadge } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
@@ -127,7 +127,15 @@ function MastraChat({ agentId }: { agentId: string }) {
           message={message}
           roles={messageRoles}
           Text={({ text }) => <span>{text}</span>}
-          Reasoning={({ reasoning }) => <ChatThought details={reasoning}>Reasoning</ChatThought>}
+          Reasoning={({ reasoning, state }) => (
+            <Activity kind="reasoning" state={state === "streaming" ? "running" : "success"}>
+              <ActivityTrigger>
+                <ActivityIcon />
+                <ActivityTitle>Reasoning</ActivityTitle>
+              </ActivityTrigger>
+              <ActivityContent>{reasoning}</ActivityContent>
+            </Activity>
+          )}
           ToolInvocation={renderToolInvocation}
           SourceUrl={({ title, url }) => <SourceBadge href={url}>{title}</SourceBadge>}
           SourceDocument={({ title }) => <span>{title}</span>}

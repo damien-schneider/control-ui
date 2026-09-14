@@ -4,6 +4,7 @@ import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent } from "
 import { createContext, useContext } from "react";
 import type { ChatComposerProps } from "@/components/control-ui/hooks/use-chat-composer";
 import { useChatComposer } from "@/components/control-ui/hooks/use-chat-composer";
+import { useKeyboardNavigation } from "@/components/control-ui/hooks/use-keyboard-navigation";
 import type { ChatComposerKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { hasSkinAdornment, skinAdornment } from "@/components/control-ui/skin";
@@ -55,7 +56,7 @@ export function ChatComposer({
         data-state={state}
         data-density={density}
         onSubmit={input.handleSubmit}
-        className={cn("sticky bottom-0 min-w-0 w-full", className)}
+        className={cn("relative min-w-0 w-full", className)}
         {...props}
       >
         {sendLayer !== undefined && sendLayer !== null ? (
@@ -73,13 +74,16 @@ export type ChatComposerShellProps = Omit<ComponentProps<"div">, "style"> & { st
 
 export function ChatComposerShell({ className, ...props }: ChatComposerShellProps) {
   const input = useChatComposerContext();
+  const keyboardNavigation = useKeyboardNavigation();
 
   return (
     <div
+      data-keyboard-navigation={keyboardNavigation ? "" : undefined}
       data-control-ui="chat-composer"
       data-control-family="chat-composer"
       data-slot="shell"
       data-state={input.state}
+      data-surface="floating"
       className={cn("relative overflow-hidden", className)}
       {...props}
     />
@@ -120,18 +124,18 @@ export function ChatComposerTextarea({ className, rows, disabled, onChange, onKe
 
   return (
     <textarea
-      {...props}
       data-control-ui="chat-composer"
       data-control-family="chat-composer"
       data-slot="textarea"
       aria-label="Message"
+      {...props}
       value={input.value}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
-      disabled={disabled ?? input.isDisabled}
+      disabled={disabled || input.isDisabled}
       rows={rows ?? input.rows}
       className={cn(
-        "field-sizing-content min-h-16 max-h-[40dvh] w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)] disabled:cursor-not-allowed",
+        "field-sizing-content min-h-16 max-h-[40dvh] w-full resize-none outline-none px-[var(--padding-x)] py-[var(--padding-y)] disabled:cursor-not-allowed",
         className,
       )}
     />
@@ -160,7 +164,7 @@ export function ChatComposerTools({ className, ...props }: ChatComposerToolsProp
       data-control-ui="chat-composer"
       data-control-family="chat-composer"
       data-slot="tools"
-      className={cn("flex min-w-0 items-center", className)}
+      className={cn("flex min-w-0 flex-wrap items-center", className)}
       {...props}
     />
   );
@@ -187,7 +191,7 @@ export function ChatComposerSubmit({ className, disabled, children = "Send", ...
       variant="solid"
       tone="primary"
       size="xs"
-      disabled={disabled ?? !input.canSubmit}
+      disabled={disabled || !input.canSubmit}
       className={className}
       {...props}
     >

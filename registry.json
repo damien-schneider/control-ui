@@ -1714,6 +1714,11 @@
           "type": "registry:hook"
         },
         {
+          "path": "apps/docs/src/registry/hooks/use-keyboard-navigation.ts",
+          "target": "@components/control-ui/hooks/use-keyboard-navigation.ts",
+          "type": "registry:hook"
+        },
+        {
           "path": "apps/docs/src/registry/knob-contracts/chat-composer-knobs.ts",
           "target": "@components/control-ui/knob-contracts/chat-composer-knobs.ts",
           "type": "registry:component"
@@ -1814,12 +1819,10 @@
       "name": "chat-layout",
       "type": "registry:component",
       "title": "ChatLayout",
-      "description": "Layout primitives for full chat threads, turns, and thoughts.",
+      "description": "A scrolling conversation with message turns and a floating composer dock.",
       "dependencies": [],
       "registryDependencies": [
-        "damien-schneider/control-ui/activity",
-        "damien-schneider/control-ui/core",
-        "damien-schneider/control-ui/scroll-area"
+        "damien-schneider/control-ui/core"
       ],
       "files": [
         {

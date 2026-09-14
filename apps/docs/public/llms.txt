@@ -44,13 +44,13 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Activity](http://127.0.0.1:3000/ai/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
 - [TranscriptDivider](http://127.0.0.1:3000/ai/transcript-divider): Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.
 - [Context](http://127.0.0.1:3000/ai/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
-- [InlineCitation](http://127.0.0.1:3000/ai/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation. Status: beta.
+- [InlineCitation](http://127.0.0.1:3000/ai/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation.
 - [SourceBadge](http://127.0.0.1:3000/ai/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
 - [ActionBar](http://127.0.0.1:3000/ai/action-bar): Reusable hover actions for message and response controls.
 - [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns. Status: beta.
 - [MarkdownBlock](http://127.0.0.1:3000/ai/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
 - [CodeBlockEditor](http://127.0.0.1:3000/ai/code-block-editor): Editable code surface with Shiki highlighting and token-based light/dark themes.
-- [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): Layout primitives for full chat threads, turns, and thoughts.
+- [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): A scrolling conversation with message turns and a floating composer dock.
 - [ThreadRail](http://127.0.0.1:3000/ai/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
 ## Blocks

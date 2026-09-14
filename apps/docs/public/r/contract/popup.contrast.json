@@ -463,6 +463,144 @@
           "data-open": "",
           "data-popup-kind": "select",
           "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "floating"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "select",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "trigger",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
           "data-side": "none",
           "data-slot": "content",
           "data-surface": "floating",
@@ -958,7 +1096,7 @@
           "data-open": "",
           "data-popup-kind": "select",
           "data-popup-part": "list-surface",
-          "data-side": "none",
+          "data-side": "bottom",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "listbox",
@@ -1017,227 +1155,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-slot": "shell",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-open": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "list-surface",
-          "data-side": "none",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "listbox",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-chat-layout-kind": "thread",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-thread",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-open": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "list-surface",
-          "data-side": "none",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "listbox",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-open": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "list-surface",
-          "data-side": "none",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "listbox",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-button-kind": "model-switcher",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "model-switcher",
-          "data-popup-kind": "select",
-          "data-popup-open": "",
-          "data-popup-side": "bottom",
-          "data-pressed": "",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "role": "combobox",
-          "tabindex": "0"
+          "data-state": "submitting",
+          "data-surface": "floating"
         }
       },
       {
@@ -1539,6 +1458,51 @@
       },
       {
         "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
           "data-closed": "",
           "data-control-family": "morphing-panel",
           "data-control-ui": "morphing-panel",
@@ -1571,6 +1535,169 @@
           "data-shape": "default",
           "data-size": "sm",
           "data-slot": "button",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "floating"
+        }
+      },
+      {
+        "attributes": {
+          "data-button-kind": "model-switcher",
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "model-switcher",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "ghost",
+          "role": "combobox",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-open": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "list-surface",
+          "data-side": "none",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "listbox",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "select",
+          "data-highlighted": "",
+          "data-popup-kind": "select",
+          "data-popup-part": "item",
+          "data-selected": "",
+          "data-slot": "item",
+          "role": "option",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "floating"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "select",
+          "data-popup-kind": "select",
+          "data-popup-open": "",
+          "data-popup-side": "bottom",
+          "data-pressed": "",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "trigger",
           "data-tone": "neutral",
           "data-variant": "ghost",
           "role": "combobox",
@@ -1790,49 +1917,13 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-button-kind": "model-switcher",
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "model-switcher",
-          "data-popup-kind": "select",
-          "data-popup-open": "",
-          "data-popup-side": "bottom",
-          "data-pressed": "",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "role": "combobox",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "select",
           "data-open": "",
           "data-popup-kind": "select",
           "data-popup-part": "list-surface",
-          "data-side": "none",
+          "data-side": "bottom",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "listbox",
@@ -1893,219 +1984,6 @@
       },
       {
         "attributes": {
-          "data-control-family": "toolbar",
-          "data-control-ui": "toolbar",
-          "data-orientation": "horizontal",
-          "data-slot": "root",
-          "data-variant": "inverse",
-          "role": "toolbar"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control": "true",
-          "data-control-family": "toolbar",
-          "data-control-ui": "toolbar",
-          "data-focusable": "",
-          "data-orientation": "horizontal",
-          "data-popup-kind": "select",
-          "data-popup-open": "",
-          "data-popup-side": "bottom",
-          "data-pressed": "",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "button",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "role": "combobox",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-open": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "list-surface",
-          "data-side": "none",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "listbox",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "aria-selected": "true",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-highlighted": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "item",
-          "data-selected": "",
-          "data-slot": "item",
-          "role": "option",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-chat-layout-kind": "thread",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-thread",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-closed": "",
-          "data-control-family": "morphing-panel",
-          "data-control-ui": "morphing-panel",
-          "data-slot": "root",
-          "data-state": "closed",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "toolbar",
-          "data-control-ui": "toolbar",
-          "data-orientation": "horizontal",
-          "data-slot": "root",
-          "data-variant": "inverse",
-          "role": "toolbar"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "toolbar",
-          "data-control-ui": "toolbar",
-          "data-focusable": "",
-          "data-orientation": "horizontal",
-          "data-popup-kind": "select",
-          "data-popup-open": "",
-          "data-popup-side": "bottom",
-          "data-pressed": "",
-          "data-shape": "default",
-          "data-size": "sm",
-          "data-slot": "button",
-          "data-tone": "neutral",
-          "data-variant": "ghost",
-          "role": "combobox",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-open": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "list-surface",
-          "data-side": "none",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "listbox",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "aria-selected": "true",
-          "data-control-family": "popup",
-          "data-control-ui": "select",
-          "data-highlighted": "",
-          "data-popup-kind": "select",
-          "data-popup-part": "item",
-          "data-selected": "",
-          "data-slot": "item",
-          "role": "option",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
@@ -2118,7 +1996,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-slot": "shell",
-          "data-state": "submitting"
+          "data-state": "submitting",
+          "data-surface": "floating"
         }
       },
       {
@@ -3403,7 +3282,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 16,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3430,7 +3309,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 19,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3705,10 +3584,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-separator-color"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 50,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -3729,10 +3609,10 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 53,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -3811,15 +3691,15 @@
       "knobs": {
         "text": "--cui-popup-item-foreground"
       },
-      "anatomy": 39,
+      "anatomy": 63,
       "rendersText": true,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-popup-shortcut-foreground"
+        "text": "--cui-popup-item-foreground"
       },
-      "anatomy": 63,
+      "anatomy": 42,
       "rendersText": true,
       "state": false
     },
@@ -3844,6 +3724,14 @@
         "text": "--cui-popup-shortcut-foreground"
       },
       "anatomy": 66,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-shortcut-foreground"
+      },
+      "anatomy": 67,
       "rendersText": true,
       "state": false
     }

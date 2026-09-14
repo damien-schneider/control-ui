@@ -18,10 +18,10 @@ import type { ChatComposerEditorApi, ChatComposerEditorProps } from "./chat-comp
 
 const SUBMIT_KEY = "Enter";
 
-// doc is source of truth: it re-hydrates only on external value changes, never on its own keystrokes, which would fight caret.
 export function ChatComposerEditor({
   className,
   placeholder,
+  style,
   extensions = [],
 }: ChatComposerEditorProps & { style?: CSSProperties & ChatComposerKnobStyle }) {
   const input = useChatComposerContext();
@@ -32,11 +32,9 @@ export function ChatComposerEditor({
   useEffect(() => {
     inputRef.current = input;
   }, [input]);
-  // lets reset effect tell external value change from its own keystroke round-trip
   const lastSerialized = useRef(input.value);
   const [mounted, setMounted] = useState(false);
 
-  // stable for editor's lifetime, so extensions never close over stale state
   const listenersRef = useRef(new Set<() => void>());
   const keyHandlersRef = useRef(new Set<(event: KeyboardEvent) => boolean>());
   const [api] = useState<ChatComposerEditorApi>(() => ({
@@ -54,10 +52,8 @@ export function ChatComposerEditor({
       };
     },
   }));
-  // mount-time config only — rebuilding schema mid-life would tear down live editor
   const [initialExtensions] = useState(extensions);
 
-  // value, extensions, and api are read through refs so this never re-runs
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
@@ -78,7 +74,6 @@ export function ChatComposerEditor({
       schema,
       doc: docFromText(schema, inputRef.current.value),
       plugins: [
-        // first, so open overlay consumes arrows, Enter, and Esc before keymaps below
         new Plugin({
           props: {
             handleKeyDown: (_view, event) => {
@@ -89,7 +84,6 @@ export function ChatComposerEditor({
         }),
         ...extensionPlugins,
         history(),
-        // before baseKeymap so extension bindings win
         keymap(extensionKeymap),
         keymap({
           "Mod-z": undo,
@@ -103,6 +97,7 @@ export function ChatComposerEditor({
     });
     const view = new EditorView(mount, {
       state,
+      editable: () => !inputRef.current.isDisabled,
       attributes: { "aria-label": "Message", "aria-multiline": "true", role: "textbox" },
       dispatchTransaction(transaction) {
         const next = view.state.apply(transaction);
@@ -112,7 +107,6 @@ export function ChatComposerEditor({
           lastSerialized.current = text;
           inputRef.current.setValue(text);
         }
-        // every transaction, selection moves included, so overlays can mirror caret
         for (const listener of listenersRef.current) listener();
       },
     });
@@ -128,7 +122,6 @@ export function ChatComposerEditor({
     const view = viewRef.current;
     if (!view) return;
     if (input.value === lastSerialized.current) return;
-    // only text→empty is ghosted, so message blurs out instead of snapping blank; prefill is left alone
     if (input.value === "" && lastSerialized.current !== "" && view.dom instanceof HTMLElement) {
       spawnExitGhost(view.dom, MESSAGE_GHOST_INHERIT);
     }
@@ -137,8 +130,21 @@ export function ChatComposerEditor({
     view.updateState(EditorState.create({ schema, doc: docFromText(schema, input.value), plugins: view.state.plugins }));
   }, [input.value]);
 
+  useEffect(() => {
+    viewRef.current?.setProps({
+      editable: () => !input.isDisabled,
+      attributes: { "aria-label": "Message", "aria-multiline": "true", "aria-disabled": String(input.isDisabled), role: "textbox" },
+    });
+  }, [input.isDisabled]);
+
   return (
-    <div data-control-ui="chat-composer-editor" data-control-family="chat-composer" data-slot="root" className={cn("relative", className)}>
+    <div
+      data-control-ui="chat-composer-editor"
+      data-control-family="chat-composer"
+      data-slot="editor-root"
+      style={style}
+      className={cn("relative", className)}
+    >
       {input.value === "" && placeholder ? (
         <div
           aria-hidden="true"
@@ -156,11 +162,10 @@ export function ChatComposerEditor({
         data-control-family="chat-composer"
         data-slot="editor"
         className={cn(
-          "[&_.ProseMirror]:max-h-[40dvh] [&_.ProseMirror]:min-h-16 [&_.ProseMirror]:w-full [&_.ProseMirror]:overflow-y-auto [&_.ProseMirror]:whitespace-pre-wrap [&_.ProseMirror]:break-words [&_.ProseMirror]:px-[var(--padding-x)] [&_.ProseMirror]:py-[var(--padding-y)]",
+          "[&_.ProseMirror]:max-h-[40dvh] [&_.ProseMirror]:min-h-16 [&_.ProseMirror]:w-full [&_.ProseMirror]:overflow-y-auto [&_.ProseMirror]:outline-none [&_.ProseMirror]:whitespace-pre-wrap [&_.ProseMirror]:break-words [&_.ProseMirror]:px-[var(--padding-x)] [&_.ProseMirror]:py-[var(--padding-y)]",
           mounted ? "" : "hidden",
         )}
       />
-      {/* keeps field visible before editor mounts */}
       {mounted ? null : (
         <textarea
           data-control-ui="chat-composer-editor"
@@ -169,9 +174,10 @@ export function ChatComposerEditor({
           aria-label="Message"
           defaultValue={input.value}
           readOnly
+          disabled={input.isDisabled}
           rows={2}
           placeholder={placeholder}
-          className="min-h-16 w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)]"
+          className="min-h-16 w-full resize-none outline-none px-[var(--padding-x)] py-[var(--padding-y)]"
         />
       )}
       {mounted

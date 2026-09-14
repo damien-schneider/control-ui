@@ -1,6 +1,3 @@
-/* Only what a cva recipe cannot express: chamfer clip-path, corner ticks, scanline. Layered so app utilities still win. */
-
-/* Pack-owned vars, off the theme contract; unlayered so the @layer components block below inherits them. */
 [data-skin="rig"] {
   --rig-chamfer: 9px;
 }
@@ -12,9 +9,6 @@
 }
 
 @layer components {
-  /* Squared + diagonal cut on two corners; clip-path removes border there, so outlined controls use
-   * an inset ring instead. Hard offset shadow rides filter:drop-shadow (honors clip-path shape;
-   * box-shadow would get clipped away). Resting=flat, hover=shadow, press=sink. */
   [data-skin="rig"] [data-control-family][data-control="true"] {
     clip-path: polygon(
       0 0,
@@ -107,15 +101,12 @@
     --cui-button-hover-shadow: inset 0 0 0 1.5px var(--primary), inset 0 0 0 5px oklch(from var(--primary) l c h / 0.12);
   }
 
-  /* User bubble = bg-primary coral both modes. Dark uses a deeper coral so the shared cream ink
-   * keeps AA contrast against the bubble. */
   :is(.dark[data-skin="rig"], :where(.dark) [data-skin="rig"], [data-skin="rig"] :where(.dark))
-  [data-slot="content"][data-role="user"][data-control-family="chat-message"] {
+    [data-slot="content"][data-role="user"][data-control-family="chat-message"] {
     --cui-chat-message-background: oklch(0.444 0.1277 32.246);
     --cui-chat-message-foreground: oklch(0.9313 0.0143 81.504);
   }
 
-  /* --cui-tabs-trigger-radius is the one radius: list, tab and indicator all derive from it. */
   [data-skin="rig"] :where([data-slot="root"][data-control-family="tabs"]) {
     --cui-tabs-trigger-radius: 0px;
     --cui-tabs-active-foreground: var(--primary-foreground);
@@ -123,7 +114,6 @@
     --cui-tabs-indicator-shadow: 0 0 0 1px oklch(from var(--primary) l c h / 0.35);
   }
 
-  /* Crosshair L-ticks in 4 corners: ::before=TL+BR, ::after=TR+BL, each a horiz+vert hairline; inset so they read despite overflow clipping. */
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"],
   [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"],
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"],
@@ -172,12 +162,6 @@
       linear-gradient(var(--rig-tick-c), var(--rig-tick-c)) 0 100% / var(--rig-tick-w) var(--rig-tick) no-repeat;
   }
 
-  /* Composer ticks light coral + frame on focus: "armed" state. */
-  [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]:focus-within {
-    --rig-tick-c: var(--primary);
-    --cui-chat-composer-shell-shadow: inset 0 0 0 1.5px oklch(from var(--primary) l c h / 0.55);
-  }
-
   [data-skin="rig"] [data-control-ui="dropdown-menu"][data-popup-part="list-surface"][data-control-family="popup"],
   [data-skin="rig"] [data-control-ui="select"][data-popup-part="list-surface"][data-control-family="popup"] {
     --cui-popup-radius: 0px;
@@ -221,7 +205,6 @@
     transform: translateX(2px);
   }
 
-  /* Group labels = mono uppercase eyebrows (matches reference's "DATA EXTRACTION"/"001" style). */
   [data-skin="rig"] [data-slot="group-label"][data-control-family="sidebar"],
   [data-skin="rig"] [data-control-ui="dropdown-menu"][data-slot="label"][data-control-family="popup"] {
     font-family: var(--font-mono);

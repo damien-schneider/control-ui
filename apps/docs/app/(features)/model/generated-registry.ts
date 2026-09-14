@@ -1451,6 +1451,11 @@ export const registryMetadata = {
         type: "registry:hook",
       },
       {
+        path: "src/registry/hooks/use-keyboard-navigation.ts",
+        target: "@components/control-ui/hooks/use-keyboard-navigation.ts",
+        type: "registry:hook",
+      },
+      {
         path: "src/registry/knob-contracts/chat-composer-knobs.ts",
         target: "@components/control-ui/knob-contracts/chat-composer-knobs.ts",
         type: "registry:component",
@@ -1531,7 +1536,7 @@ export const registryMetadata = {
   },
   "chat-layout": {
     dependencies: [],
-    registryDependencies: ["activity", "core", "scroll-area"],
+    registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/chat-layout.json",
     files: [
       {

@@ -19,6 +19,56 @@
       },
       {
         "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
@@ -156,22 +206,25 @@
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
+          "data-chrome": "panel",
           "data-control-family": "chat-layout",
           "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
           "data-slot": "root",
           "data-surface": "panel"
         }
@@ -182,7 +235,16 @@
           "data-control-ui": "chat-composer",
           "data-density": "compact",
           "data-slot": "root",
-          "data-state": "submitting"
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "floating"
         }
       }
     ],
@@ -248,7 +310,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-slot": "shell",
-          "data-state": "idle"
+          "data-state": "idle",
+          "data-surface": "floating"
         }
       }
     ],
@@ -303,7 +366,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-slot": "shell",
-          "data-state": "submitting"
+          "data-state": "submitting",
+          "data-surface": "floating"
         }
       }
     ],
@@ -324,22 +388,25 @@
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
+          "data-chrome": "panel",
           "data-control-family": "chat-layout",
           "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "markdown-block",
+          "data-control-ui": "markdown-block",
           "data-slot": "root",
           "data-surface": "panel"
         }
@@ -350,7 +417,7 @@
           "data-control-ui": "chat-composer",
           "data-density": "compact",
           "data-slot": "root",
-          "data-state": "submitting"
+          "data-state": "idle"
         }
       },
       {
@@ -358,7 +425,14 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-slot": "shell",
-          "data-state": "submitting"
+          "data-state": "idle",
+          "data-surface": "floating"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "role": "textbox"
         }
       }
     ],
@@ -476,7 +550,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-slot": "shell",
-          "data-state": "idle"
+          "data-state": "idle",
+          "data-surface": "floating"
         }
       },
       {
@@ -538,69 +613,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-slot": "shell",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "textarea"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "submitting"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "submitting"
+          "data-state": "submitting",
+          "data-surface": "floating"
         }
       },
       {
@@ -690,7 +704,7 @@
         "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 9,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -698,7 +712,7 @@
         "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 10,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {

@@ -105,10 +105,11 @@ async function visit(page: Page, route: string, order: number): Promise<number> 
 }
 
 const WORKERS = 4;
+const requestedRoutes = process.argv.slice(2).filter((argument) => argument.startsWith("/"));
+const routes = requestedRoutes.length > 0 ? requestedRoutes : await documentedRoutes();
 
 const browser = await chromium.launch({ headless: true });
 try {
-  const routes = await documentedRoutes();
   let cursor = 0;
   const worker = async () => {
     let page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
@@ -118,7 +119,6 @@ try {
       const route = routes[index];
       let rendered = await visit(page, route, index);
       if (rendered === 0) {
-        // A page reused across many routes eventually stops rendering; a fresh one is the reconciliation.
         console.log(`${route} rendered nothing — retrying on a fresh page`);
         await page.close();
         page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
@@ -149,7 +149,8 @@ const committedPath = path.join(process.cwd(), artifactPath);
 const committed: ContrastProbe[] = existsSync(committedPath) ? JSON.parse(readFileSync(committedPath, "utf8")).probes : [];
 for (const probe of committed) {
   const key = JSON.stringify([probe.knobs, probe.anatomy]);
-  if (stale(probe) || probes.has(key)) continue;
+  const refreshed = routes.includes(probe.route) || probes.has(key);
+  if (refreshed || stale(probe)) continue;
   probes.set(key, { probe, order: Number.MAX_SAFE_INTEGER });
 }
 

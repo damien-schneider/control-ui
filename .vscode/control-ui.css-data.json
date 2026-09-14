@@ -496,16 +496,6 @@
       "description": "Control UI chat-layout knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--cui-chat-layout-thought-foreground",
-      "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-chat-layout-thought-hover-background",
-      "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
       "name": "--cui-chat-message-avatar-background",
       "description": "Control UI chat-message knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
