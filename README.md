@@ -135,7 +135,7 @@ Control UI stays runtime-neutral: examples show how to map provider-owned data a
 
 ### Requirements
 
-- [Bun 1.3.5](https://bun.sh/) — use the version pinned in `package.json`.
+- [Bun 1.3.14](https://bun.sh/) — use the version pinned in `package.json`.
 - Node.js 24.x for parity with the hosted docs project.
 
 ### Setup

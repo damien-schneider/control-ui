@@ -26,7 +26,7 @@ function fixture(name, sourceLayout, entryPath) {
   writeJson(path.join(directory, "package.json"), {
     name,
     private: true,
-    packageManager: "bun@1.3.5",
+    packageManager: "bun@1.3.14",
     dependencies: { react: "^19.2.0", "react-dom": "^19.2.0" },
     devDependencies: { "@types/react": "^19.2.17", "@types/react-dom": "^19.2.3" },
   });
