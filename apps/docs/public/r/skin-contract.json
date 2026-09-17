@@ -1277,6 +1277,12 @@
               ]
             },
             {
+              "attribute": "data-anchor-hidden",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-closed",
               "source": "external",
               "valueKind": "presence",
@@ -1293,15 +1299,6 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
-            },
-            {
-              "attribute": "data-instant",
-              "source": "external",
-              "valueKind": "enum",
-              "values": [
-                "click",
-                "dismiss"
-              ]
             },
             {
               "attribute": "data-open",
@@ -1641,6 +1638,18 @@
           "states": [
             {
               "attribute": "data-ending-style",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-error",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
+              "attribute": "data-loading",
               "source": "external",
               "valueKind": "presence",
               "values": []
@@ -4320,6 +4329,12 @@
               ]
             },
             {
+              "attribute": "data-anchor-hidden",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-closed",
               "source": "external",
               "valueKind": "presence",
@@ -4336,15 +4351,6 @@
               "source": "external",
               "valueKind": "presence",
               "values": []
-            },
-            {
-              "attribute": "data-instant",
-              "source": "external",
-              "valueKind": "enum",
-              "values": [
-                "click",
-                "dismiss"
-              ]
             },
             {
               "attribute": "data-open",
@@ -6677,6 +6683,12 @@
             "dropdown-menu"
           ],
           "states": [
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
             {
               "attribute": "data-icon-only",
               "source": "control-ui",
@@ -9403,6 +9415,12 @@
               ]
             },
             {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
+            {
               "attribute": "data-popup-open",
               "source": "external",
               "valueKind": "presence",
@@ -10001,6 +10019,12 @@
               "values": [
                 "default"
               ]
+            },
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
             },
             {
               "attribute": "data-popup-open",
@@ -10825,6 +10849,12 @@
             "popover"
           ],
           "states": [
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
             {
               "attribute": "data-popup-kind",
               "source": "control-ui",
@@ -11783,6 +11813,12 @@
             "rich-tooltip"
           ],
           "states": [
+            {
+              "attribute": "data-disabled",
+              "source": "external",
+              "valueKind": "presence",
+              "values": []
+            },
             {
               "attribute": "data-popup-kind",
               "source": "control-ui",
@@ -19788,6 +19824,7 @@
     "data-dragging",
     "data-empty",
     "data-ending-style",
+    "data-error",
     "data-expanded",
     "data-filled",
     "data-focusable",
@@ -19804,6 +19841,7 @@
     "data-invalid",
     "data-limited",
     "data-list-empty",
+    "data-loading",
     "data-modal",
     "data-multiple",
     "data-nested",

@@ -10,8 +10,8 @@
       "title": "Accordion",
       "description": "Stacked disclosure rows with measured panel animation.",
       "dependencies": [
-        "@base-ui/react@^1.7.0",
-        "lucide-react@^1.31.0"
+        "@base-ui/react@^1.8.0",
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -83,7 +83,7 @@
       "title": "Activity",
       "description": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -155,7 +155,7 @@
       "title": "Alert dialog",
       "description": "Modal confirmation dialog for destructive or blocking decisions.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1323,7 +1323,7 @@
       "title": "AudioRecorder",
       "description": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/audio-visualizer.json",
@@ -1437,7 +1437,7 @@
       "title": "Autocomplete",
       "description": "Free-text input with search-as-you-type suggestions.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -1510,7 +1510,7 @@
       "title": "Avatar",
       "description": "Profile image with initials fallback and composable overlapping groups.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1546,7 +1546,7 @@
       "title": "Badge",
       "description": "Compact status, label, or count chip.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1582,7 +1582,7 @@
       "title": "Button",
       "description": "Accessible action button with size, variant, and semantic tone support.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -1780,7 +1780,7 @@
         "prosemirror-keymap@^1.2.3",
         "prosemirror-model@^1.25.11",
         "prosemirror-state@^1.4.4",
-        "prosemirror-view@^1.42.2"
+        "prosemirror-view@^1.42.3"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1865,7 +1865,7 @@
       "title": "ChatComposerAttachment",
       "description": "Composer attachment rail with file previews, upload progress, and removal.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -1983,7 +1983,7 @@
       "title": "Checkbox",
       "description": "Single checkbox control with checked and indeterminate states.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2019,7 +2019,7 @@
       "title": "Checkbox Group",
       "description": "Multi-select checkbox set with shared state and select-all support.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -2043,8 +2043,8 @@
       "title": "Code",
       "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
       "dependencies": [
-        "@tanstack/react-virtual@^3.14.9",
-        "lucide-react@^1.31.0",
+        "@tanstack/react-virtual@^3.14.13",
+        "lucide-react@^1.47.0",
         "shiki@^4.4.3"
       ],
       "registryDependencies": [
@@ -2096,7 +2096,7 @@
       "title": "CodeBlockEditor",
       "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2152,7 +2152,7 @@
       "title": "Code Diff",
       "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
       "dependencies": [
-        "@tanstack/react-virtual@^3.14.9",
+        "@tanstack/react-virtual@^3.14.13",
         "diff@^9.0.0"
       ],
       "registryDependencies": [
@@ -2196,7 +2196,7 @@
       "title": "Coding agent",
       "description": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2223,7 +2223,7 @@
       "title": "Collapsible",
       "description": "Accessible disclosure primitive with measured open and close motion.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2259,7 +2259,7 @@
       "title": "Color Picker",
       "description": "Color input with picker UI, formats, presets, and contrast helpers.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2361,7 +2361,7 @@
       "title": "Combobox",
       "description": "Searchable single-select with input and floating option list.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -2495,7 +2495,7 @@
       "title": "Context",
       "description": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2549,7 +2549,7 @@
       "title": "Context Menu",
       "description": "Pointer-positioned right-click and long-press menu with nested actions and selection controls.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -2633,7 +2633,7 @@
       "title": "Dialog",
       "description": "Modal dialog for focused tasks, confirmations, and custom panels.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -2735,7 +2735,7 @@
       "title": "Drawer",
       "description": "Swipeable edge panel for mobile sheets and off-canvas surfaces.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2795,7 +2795,7 @@
       "title": "DropdownMenu",
       "description": "Dropdown menu for actions, resources, labels, separators, and submenus.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -2861,7 +2861,7 @@
       "title": "Dropzone",
       "description": "Composable file intake with validation, managed selection, and drag-activated overlays.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3054,7 +3054,7 @@
       "title": "EnvironmentVariables",
       "description": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3103,7 +3103,7 @@
       "title": "Field",
       "description": "Form field wrapper for labels, descriptions, errors, and validity state.",
       "dependencies": [
-        "@base-ui/react@^1.7.0",
+        "@base-ui/react@^1.8.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
@@ -3147,7 +3147,7 @@
       "title": "File explorer",
       "description": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3181,7 +3181,7 @@
       "title": "Form",
       "description": "Form wrapper that coordinates field validation and returned errors.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3241,7 +3241,7 @@
       "title": "Hover card",
       "description": "Hover or focus preview panel for profiles, links, and contextual details.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -3296,7 +3296,7 @@
       "title": "Infinite Canvas",
       "description": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3368,7 +3368,7 @@
       "title": "InlineCitation",
       "description": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -3407,7 +3407,7 @@
       "title": "Input",
       "description": "Text field primitive sized and styled to match other controls.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3449,7 +3449,7 @@
       "title": "Input group",
       "description": "Joined input wrapper for addons, icons, and a shared focus indicator.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3491,7 +3491,7 @@
       "title": "Input OTP",
       "description": "One-time-code field with grouped, focus-aware slots.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3533,7 +3533,7 @@
       "title": "Item",
       "description": "List row with media, content, and trailing actions.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -3604,7 +3604,7 @@
       "title": "Markdown",
       "description": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
       "dependencies": [
-        "streamdown@^2.5.0"
+        "streamdown@^2.6.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/code.json",
@@ -3684,7 +3684,7 @@
       "title": "Menubar",
       "description": "Desktop command bar with nested menus, shortcuts, and separators.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -3750,7 +3750,7 @@
       "title": "Meter",
       "description": "Static range meter for quota, storage, score, or usage values.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3786,7 +3786,7 @@
       "title": "Morphing Panel",
       "description": "Accessible disclosure surface that morphs between explicit collapsed and expanded dimensions.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -3863,7 +3863,7 @@
       "title": "Navigation menu",
       "description": "Site navigation menu with a shared animated viewport.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3956,7 +3956,7 @@
       "title": "Number Field",
       "description": "Numeric input with stepper buttons and optional drag-to-change behavior.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -3998,7 +3998,7 @@
       "title": "Pagination",
       "description": "Page navigation for long lists and result sets.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -4034,9 +4034,9 @@
       "title": "Phone input",
       "description": "International phone field with country search, E.164 values, and Zod validation helpers.",
       "dependencies": [
-        "libphonenumber-js@^1.13.10",
-        "react-phone-number-input@^3.4.17",
-        "zod@^4.4.3"
+        "libphonenumber-js@^1.13.13",
+        "react-phone-number-input@^3.4.18",
+        "zod@^4.6.5"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/command.json",
@@ -4085,7 +4085,7 @@
       "title": "Popover",
       "description": "Anchored floating panel for inline settings and contextual content.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -4139,7 +4139,7 @@
       "title": "Progress",
       "description": "Determinate task progress with optional label and value rows.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -4209,7 +4209,7 @@
       "title": "Radio group",
       "description": "Single-choice radio set for plans, filters, and option lists.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -4245,7 +4245,7 @@
       "title": "Resizable",
       "description": "Accessible resizable panel groups and split layouts with keyboard support.",
       "dependencies": [
-        "react-resizable-panels@^4.12.2"
+        "react-resizable-panels@^4.12.4"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -4305,8 +4305,8 @@
       "title": "Rich tooltip",
       "description": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
       "dependencies": [
-        "@base-ui/react@^1.7.0",
-        "lucide-react@^1.31.0"
+        "@base-ui/react@^1.8.0",
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -4377,7 +4377,7 @@
       "title": "Scroll area",
       "description": "Scroll container with overlay scrollbars, edge fades, and optional progressive blur.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -4414,7 +4414,7 @@
       "title": "Select",
       "description": "Single-choice picker with a token-matched trigger and floating list.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -4509,7 +4509,7 @@
       "title": "Settings",
       "description": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -4543,9 +4543,9 @@
       "title": "Sidebar",
       "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
       "dependencies": [
-        "@base-ui/react@^1.7.0",
+        "@base-ui/react@^1.8.0",
         "class-variance-authority@^0.7.1",
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -4718,7 +4718,7 @@
       "title": "Liquid metal skin",
       "description": "Polished metal skin with a WebGL shader control surface.",
       "dependencies": [
-        "metal-fx@^1.0.4"
+        "metal-fx@^2.0.10"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -4956,7 +4956,7 @@
       "title": "Slider",
       "description": "Single-value range control with branded and plain treatments.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -4992,7 +4992,7 @@
       "title": "SourceBadge",
       "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/avatar.json",
@@ -5035,7 +5035,7 @@
       "title": "Spinner",
       "description": "Accessible loading indicator for pending buttons, panels, and inline waits.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -5071,7 +5071,7 @@
       "title": "Stepper",
       "description": "Static and interactive workflow steps with horizontal and vertical layouts.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -5107,7 +5107,7 @@
       "title": "Switch",
       "description": "On/off control with token-driven track, thumb, and press motion.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -5217,7 +5217,7 @@
       "title": "Tabs",
       "description": "Segmented and browser-style navigation with a stable active indicator.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -5253,7 +5253,7 @@
       "title": "TaskList",
       "description": "Floating agent task progress pill above the composer that expands into the full task list.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -5330,7 +5330,7 @@
       "title": "Theme toggle",
       "description": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -5425,7 +5425,7 @@
       "title": "Toast",
       "description": "Transient notifications with a callable toast API and single Toaster mount.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -5486,7 +5486,7 @@
       "title": "Toggle",
       "description": "Pressed-state button and toggle group built on the Button surface.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",
@@ -5519,7 +5519,7 @@
       "title": "Toolbar",
       "description": "Roving-focus toolbar for editor controls and compact actions.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -5579,7 +5579,7 @@
       "title": "Tooltip",
       "description": "Hover or focus hint popup with Base UI positioning and Control UI tokens.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -5711,8 +5711,8 @@
       "title": "Tree",
       "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
       "dependencies": [
-        "@base-ui/react@^1.7.0",
-        "lucide-react@^1.31.0"
+        "@base-ui/react@^1.8.0",
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -5749,7 +5749,7 @@
       "title": "Trigger Menu",
       "description": "Caret-anchored command or mention menu for text editors.",
       "dependencies": [
-        "@base-ui/react@^1.7.0"
+        "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json",
@@ -5958,7 +5958,7 @@
       "title": "UserAsk",
       "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
       "dependencies": [
-        "lucide-react@^1.31.0"
+        "lucide-react@^1.47.0"
       ],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/button.json",

@@ -249,6 +249,12 @@
         ],
         "states": [
           {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-icon-only",
             "source": "control-ui",
             "valueKind": "presence",
@@ -319,6 +325,12 @@
             "values": [
               "default"
             ]
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
           },
           {
             "attribute": "data-popup-open",
@@ -415,6 +427,12 @@
             "values": [
               "default"
             ]
+          },
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
           },
           {
             "attribute": "data-popup-open",

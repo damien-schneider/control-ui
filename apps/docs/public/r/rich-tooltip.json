@@ -5,8 +5,8 @@
   "title": "Rich tooltip",
   "description": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
   "dependencies": [
-    "@base-ui/react@^1.7.0",
-    "lucide-react@^1.31.0"
+    "@base-ui/react@^1.8.0",
+    "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/core.json",

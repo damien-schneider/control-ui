@@ -5,8 +5,8 @@
   "title": "Code",
   "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
   "dependencies": [
-    "@tanstack/react-virtual@^3.14.9",
-    "lucide-react@^1.31.0",
+    "@tanstack/react-virtual@^3.14.13",
+    "lucide-react@^1.47.0",
     "shiki@^4.4.3"
   ],
   "registryDependencies": [

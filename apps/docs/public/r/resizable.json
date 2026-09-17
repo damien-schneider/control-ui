@@ -5,7 +5,7 @@
   "title": "Resizable",
   "description": "Accessible resizable panel groups and split layouts with keyboard support.",
   "dependencies": [
-    "react-resizable-panels@^4.12.2"
+    "react-resizable-panels@^4.12.4"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/core.json"

@@ -39,10 +39,13 @@ function exportedParts(sourcePath: string): string[] {
     const reexportedParts = reexportPath ? exportedParts(resolveReexport(sourcePath, reexportPath)) : [];
     return statement.specifiers.flatMap((specifier) => {
       if (specifier.type !== "ExportSpecifier" || specifier.exportKind === "type") return [];
-      const name = specifier.exported.type === "Identifier" ? specifier.exported.name : specifier.exported.value;
-      return reexportedParts.includes(specifier.local.name) ? [name] : [];
+      return reexportedParts.includes(moduleExportName(specifier.local)) ? [moduleExportName(specifier.exported)] : [];
     });
   });
+}
+
+function moduleExportName(node: { type: "Identifier"; name: string } | { type: "StringLiteral"; value: string }) {
+  return node.type === "Identifier" ? node.name : node.value;
 }
 
 function resolveReexport(sourcePath: string, specifier: string) {

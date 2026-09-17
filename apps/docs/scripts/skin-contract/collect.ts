@@ -204,7 +204,9 @@ function externalStatesFromDeclarations(component: { name: string; source: strin
   if (cached) return cached;
   if (!existsSync(declarationPath)) return [];
   const source = readFileSync(declarationPath, "utf8");
-  const states = [...source.matchAll(/\/\*\*([\s\S]*?)\*\/\s*[A-Za-z_$][\w$]*\s*=\s*["'](data-[^"']+)["']/g)].map((match) => {
+  const states = [
+    ...source.matchAll(/\/\*\*([\s\S]*?)\*\/\s*export\s+declare\s+const\s+[A-Za-z_$][\w$]*\s*=\s*["'](data-[^"']+)["']/g),
+  ].map((match) => {
     const documentedType = match[1].match(/@type\s+\{([^}]+)\}/)?.[1];
     const values = documentedType ? [...documentedType.matchAll(/["']([^"']+)["']/g)].map((value) => value[1]).sort() : [];
     return {

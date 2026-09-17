@@ -67,6 +67,18 @@
             "values": []
           },
           {
+            "attribute": "data-error",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-loading",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-starting-style",
             "source": "external",
             "valueKind": "presence",

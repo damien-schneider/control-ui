@@ -873,6 +873,12 @@ export const generatedSkinContract: SkinContract = {
               values: ["center", "end", "start"],
             },
             {
+              attribute: "data-anchor-hidden",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-closed",
               source: "external",
               valueKind: "presence",
@@ -889,12 +895,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-instant",
-              source: "external",
-              valueKind: "enum",
-              values: ["click", "dismiss"],
             },
             {
               attribute: "data-open",
@@ -1164,6 +1164,18 @@ export const generatedSkinContract: SkinContract = {
           states: [
             {
               attribute: "data-ending-style",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-error",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-loading",
               source: "external",
               valueKind: "presence",
               values: [],
@@ -3243,6 +3255,12 @@ export const generatedSkinContract: SkinContract = {
               values: ["center", "end", "start"],
             },
             {
+              attribute: "data-anchor-hidden",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-closed",
               source: "external",
               valueKind: "presence",
@@ -3259,12 +3277,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-instant",
-              source: "external",
-              valueKind: "enum",
-              values: ["click", "dismiss"],
             },
             {
               attribute: "data-open",
@@ -5091,6 +5103,12 @@ export const generatedSkinContract: SkinContract = {
           family: "button",
           registryItems: ["dropdown-menu"],
           states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-icon-only",
               source: "control-ui",
@@ -7214,6 +7232,12 @@ export const generatedSkinContract: SkinContract = {
               values: ["default"],
             },
             {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-popup-open",
               source: "external",
               valueKind: "presence",
@@ -7668,6 +7692,12 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["default"],
+            },
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
             },
             {
               attribute: "data-popup-open",
@@ -8376,6 +8406,12 @@ export const generatedSkinContract: SkinContract = {
         trigger: {
           registryItems: ["popover"],
           states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -9143,6 +9179,12 @@ export const generatedSkinContract: SkinContract = {
           family: "popup",
           registryItems: ["rich-tooltip"],
           states: [
+            {
+              attribute: "data-disabled",
+              source: "external",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-popup-kind",
               source: "control-ui",
@@ -16282,6 +16324,7 @@ export const generatedSkinContract: SkinContract = {
     "data-dragging",
     "data-empty",
     "data-ending-style",
+    "data-error",
     "data-expanded",
     "data-filled",
     "data-focusable",
@@ -16298,6 +16341,7 @@ export const generatedSkinContract: SkinContract = {
     "data-invalid",
     "data-limited",
     "data-list-empty",
+    "data-loading",
     "data-modal",
     "data-multiple",
     "data-nested",

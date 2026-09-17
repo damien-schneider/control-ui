@@ -5,9 +5,9 @@
   "title": "Phone input",
   "description": "International phone field with country search, E.164 values, and Zod validation helpers.",
   "dependencies": [
-    "libphonenumber-js@^1.13.10",
-    "react-phone-number-input@^3.4.17",
-    "zod@^4.4.3"
+    "libphonenumber-js@^1.13.13",
+    "react-phone-number-input@^3.4.18",
+    "zod@^4.6.5"
   ],
   "registryDependencies": [
     "command",

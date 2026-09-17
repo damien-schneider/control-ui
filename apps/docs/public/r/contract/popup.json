@@ -421,6 +421,12 @@
             ]
           },
           {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-closed",
             "source": "external",
             "valueKind": "presence",
@@ -437,15 +443,6 @@
             "source": "external",
             "valueKind": "presence",
             "values": []
-          },
-          {
-            "attribute": "data-instant",
-            "source": "external",
-            "valueKind": "enum",
-            "values": [
-              "click",
-              "dismiss"
-            ]
           },
           {
             "attribute": "data-open",
@@ -907,6 +904,12 @@
             ]
           },
           {
+            "attribute": "data-anchor-hidden",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-closed",
             "source": "external",
             "valueKind": "presence",
@@ -923,15 +926,6 @@
             "source": "external",
             "valueKind": "presence",
             "values": []
-          },
-          {
-            "attribute": "data-instant",
-            "source": "external",
-            "valueKind": "enum",
-            "values": [
-              "click",
-              "dismiss"
-            ]
           },
           {
             "attribute": "data-open",
@@ -3547,6 +3541,12 @@
         ],
         "states": [
           {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-popup-kind",
             "source": "control-ui",
             "valueKind": "enum",
@@ -3975,6 +3975,12 @@
           "rich-tooltip"
         ],
         "states": [
+          {
+            "attribute": "data-disabled",
+            "source": "external",
+            "valueKind": "presence",
+            "values": []
+          },
           {
             "attribute": "data-popup-kind",
             "source": "control-ui",

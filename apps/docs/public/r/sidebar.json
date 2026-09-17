@@ -5,9 +5,9 @@
   "title": "Sidebar",
   "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus.",
   "dependencies": [
-    "@base-ui/react@^1.7.0",
+    "@base-ui/react@^1.8.0",
     "class-variance-authority@^0.7.1",
-    "lucide-react@^1.31.0"
+    "lucide-react@^1.47.0"
   ],
   "registryDependencies": [
     "http://127.0.0.1:3000/r/button.json",

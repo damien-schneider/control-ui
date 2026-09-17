@@ -5,7 +5,7 @@
   "title": "Markdown",
   "description": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
   "dependencies": [
-    "streamdown@^2.5.0"
+    "streamdown@^2.6.0"
   ],
   "registryDependencies": [
     "code",
