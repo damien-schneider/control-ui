@@ -79,7 +79,6 @@
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
     outline: none;
-    transition: color var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="tabs"][data-slot="tab"]:hover) {

@@ -37,7 +37,7 @@ export const skinMetas = [
     id: "refined",
     label: "Refined",
     kind: "theme",
-    description: "Compact, calm starting skin with a complete Control UI token contract.",
+    description: "Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.",
     packManifestPath: "registry/refined/skin.json",
     paths: skinPackFiles("refined"),
   },

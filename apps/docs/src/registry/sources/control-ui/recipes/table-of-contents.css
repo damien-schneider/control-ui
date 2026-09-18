@@ -64,7 +64,6 @@
     font-weight: var(--cui-table-of-contents-item-font-weight);
     line-height: var(--cui-table-of-contents-item-line-height);
     overflow-wrap: anywhere;
-    transition: color var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"][data-depth="0"]) {

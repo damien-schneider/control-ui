@@ -7,6 +7,20 @@
   </GuideCheck>
 </GuideSection>
 
+<GuideSection id="document" title="Paint the document, not just the body">
+  Apply `bg-background` to your document’s `<html>` element so overscroll and viewport gaps use the active theme.
+  The Next.js starter includes this root background. Keep the skin and color-mode attributes on the same theme boundary.
+</GuideSection>
+
+<GuideSection id="feedback" title="Keep frequent feedback immediate">
+  Hover colors and hover-following highlights update immediately, as do desktop sidebar toggles. Press feedback,
+  selection indicators, and popup entrances retain their motion tokens and respect reduced-motion preferences.
+
+  Group neighboring tooltips in one `TooltipProvider`: the first hover waits 500 ms, then neighboring tooltips open
+  immediately within Base UI’s 400 ms grouping window. Use the provider’s `delay` and `timeout` props when your
+  interaction needs different timing.
+</GuideSection>
+
 <GuideSection id="artifact" title="One artifact owns the theme">
   A theme is one file — `<short-name>.control-ui-theme.json`, format `control-ui-theme/v1` — with tokens split into
   `shared`, `light`, and `dark`. Color-valued tokens go in `light` and `dark`; everything else in `shared`. A token

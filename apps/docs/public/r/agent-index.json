@@ -11,7 +11,7 @@
         "id": "all-refined",
         "skin": "refined",
         "name": "All components — Refined",
-        "summary": "Compact, calm starting skin with a complete Control UI token contract.",
+        "summary": "Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.",
         "manifestUrl": "http://127.0.0.1:3000/r/all-refined.json",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/all-refined.json"
       },
@@ -263,7 +263,7 @@
         "id": "refined",
         "name": "Refined",
         "kind": "Skin",
-        "summary": "Compact, calm starting skin with a complete Control UI token contract.",
+        "summary": "Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.",
         "href": "/skins/refined",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite"
       },

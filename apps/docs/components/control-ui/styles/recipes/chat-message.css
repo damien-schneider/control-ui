@@ -70,9 +70,6 @@
     margin-block-start: calc(var(--spacing) * 1);
     gap: calc(var(--spacing) * 1);
     opacity: 1;
-    transition-property: opacity;
-    transition-timing-function: var(--ease-standard);
-    transition-duration: var(--duration-fast);
   }
 
   @media (hover: hover) {

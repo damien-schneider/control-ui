@@ -61,9 +61,6 @@
     padding-block: calc(var(--spacing) * 1.5);
     border-radius: var(--cui-user-ask-option-radius);
     font-size: var(--text-sm);
-    transition-property: background-color, box-shadow;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
     text-align: left;
   }
 

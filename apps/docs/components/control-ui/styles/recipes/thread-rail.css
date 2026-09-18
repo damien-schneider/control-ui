@@ -27,10 +27,6 @@
     border-radius: var(--cui-thread-rail-line-radius);
     background: oklch(from var(--foreground) l c h / 0.2);
     outline: none;
-    transition:
-      width var(--duration-base) var(--ease-standard),
-      background-color var(--duration-base) var(--ease-standard),
-      box-shadow var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="thread-rail"][data-slot="item"][data-in-view] [data-control-family="thread-rail"][data-slot="line"]) {

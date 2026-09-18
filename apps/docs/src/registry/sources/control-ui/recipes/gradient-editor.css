@@ -44,9 +44,6 @@
     border-radius: var(--cui-gradient-editor-add-radius);
     color: var(--muted-foreground);
     outline: none;
-    transition:
-      border-color var(--duration-fast) var(--ease-standard),
-      color var(--duration-fast) var(--ease-standard);
   }
 
   @media (hover: hover) {

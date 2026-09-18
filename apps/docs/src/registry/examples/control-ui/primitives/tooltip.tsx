@@ -6,9 +6,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 export function PrimitiveTooltipExample() {
   return (
-    <TooltipProvider delay={0}>
+    <TooltipProvider>
       <div className="flex flex-wrap items-center justify-center gap-4 p-8">
-        <Tooltip defaultOpen>
+        <Tooltip>
           <TooltipTrigger render={<Button variant="surface" />}>
             <InfoIcon className="size-4" />
             Details

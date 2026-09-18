@@ -4799,7 +4799,7 @@
       "name": "skin-refined",
       "type": "registry:theme",
       "title": "Refined skin",
-      "description": "Compact, calm starting skin with a complete Control UI token contract.",
+      "description": "Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows.",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"

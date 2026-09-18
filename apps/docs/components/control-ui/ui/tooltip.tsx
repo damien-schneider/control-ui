@@ -8,24 +8,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
-type TooltipProviderProps = Omit<ComponentProps<typeof TooltipPrimitive.Provider>, "delay" | "timeout"> & {
-  delay?: number;
-  timeout?: number;
-  delayDuration?: number;
-  skipDelayDuration?: number;
-};
-
-export function TooltipProvider({ delay, delayDuration, timeout, skipDelayDuration, ...props }: TooltipProviderProps) {
-  const resolvedDelay = delay ?? delayDuration;
-  const resolvedTimeout = timeout ?? skipDelayDuration;
-
-  return (
-    <TooltipPrimitive.Provider
-      {...(resolvedDelay !== undefined ? { delay: resolvedDelay } : {})}
-      {...(resolvedTimeout !== undefined ? { timeout: resolvedTimeout } : {})}
-      {...props}
-    />
-  );
+export function TooltipProvider({ delay = 500, ...props }: ComponentProps<typeof TooltipPrimitive.Provider>) {
+  return <TooltipPrimitive.Provider delay={delay} {...props} />;
 }
 
 export function Tooltip(props: ComponentProps<typeof TooltipPrimitive.Root>) {

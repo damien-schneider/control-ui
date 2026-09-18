@@ -21,7 +21,7 @@
     background-color: var(--card);
     text-align: center;
     outline-style: none;
-    transition-property: background-color, border-color, color, opacity, box-shadow;
+    transition-property: border-color, color, opacity, box-shadow;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }

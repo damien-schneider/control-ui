@@ -15,7 +15,7 @@ import {
 } from "@/components/control-ui/lib/code-block-shiki";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 type CodeBlockEditorStyleProps<Props, Style> = Omit<Props, "style"> & { style?: CSSProperties & Style };
 
@@ -328,12 +328,10 @@ export function CodeBlockEditorCopy({
   if (!isIconOnly) return button;
 
   return (
-    <TooltipProvider delay={0}>
-      <Tooltip>
-        <TooltipTrigger render={button} />
-        <TooltipContent side="left">{label}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger render={button} />
+      <TooltipContent side="left">{label}</TooltipContent>
+    </Tooltip>
   );
 }
 

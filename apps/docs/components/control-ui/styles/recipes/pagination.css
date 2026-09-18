@@ -21,10 +21,6 @@
       var(--cui-pagination-link-shadow);
     color: var(--cui-pagination-link-foreground);
     outline: none;
-    transition:
-      background-color var(--duration-fast) var(--ease-standard),
-      color var(--duration-fast) var(--ease-standard),
-      box-shadow var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="pagination"][data-slot="link"][data-active="true"]) {

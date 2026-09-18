@@ -12706,6 +12706,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "transparent",
         defaultValue: "var(--muted-foreground)",
       },
+      {
+        name: "--cui-avatar-image-outline-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.1)",
+      },
     ],
     badge: [
       {
@@ -12777,6 +12783,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "var(--padding-x)",
+      },
+      {
+        name: "--cui-button-icon-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "max(0px, calc(var(--cui-button-padding-inline) - var(--spacing) * 0.5))",
       },
       {
         name: "--cui-button-font-size",
@@ -13105,6 +13117,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "oklch(from var(--background) l c h / var(--overlay-opacity))",
+      },
+      {
+        name: "--cui-chat-composer-attachment-image-outline-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.1)",
       },
     ],
     "chat-layout": [
@@ -14039,6 +14057,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "",
         defaultValue: "var(--shadow-sm)",
       },
+      {
+        name: "--cui-inline-attachment-image-outline-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.1)",
+      },
     ],
     "inline-citation": [
       {
@@ -14210,6 +14234,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--primary-text)",
+      },
+      {
+        name: "--cui-markdown-image-outline-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.1)",
       },
       {
         name: "--cui-markdown-table-cell-border-color",
@@ -14417,7 +14447,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-popup-item-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-popup-item)",
+        defaultValue: "var(--radius-popup-item-fit)",
       },
       {
         name: "--cui-popup-item-foreground",

@@ -53,10 +53,6 @@
     --_color-picker-swatch-add-foreground: var(--muted-foreground);
     color: var(--_color-picker-swatch-add-foreground);
     outline-style: none;
-    transition-property:
-      color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
-    transition-timing-function: var(--ease-standard);
-    transition-duration: var(--duration-fast);
   }
 
   @media (hover: hover) {

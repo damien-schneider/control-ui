@@ -12,9 +12,6 @@
     --cui-source-badge-favicon-radius: var(--radius-sm);
     background: var(--cui-source-badge-background);
     color: var(--cui-source-badge-foreground);
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
     font-weight: var(--font-weight-normal);
   }
 

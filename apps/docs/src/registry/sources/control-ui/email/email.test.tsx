@@ -71,9 +71,9 @@ describe("email theme boundary", () => {
     const theme = emailThemeFromCss([
       coreCss,
       refinedCss,
-      '[data-skin="refined"] { --radius: calc(0.25rem * 3); --control-h: calc(2rem + 12px); --padding-x: 18px; --text-body: 1rem; }',
+      '[data-skin="refined"] { --radius: calc(0.25rem * 3); --radius-control: var(--radius); --radius-panel: calc(var(--radius) + 4px); --radius-scene: calc(var(--radius) * 2); --control-h: calc(2rem + 12px); --padding-x: 18px; --text-body: 1rem; }',
     ]);
-    expect(theme.radii).toEqual({ control: "12px", panel: "12px", scene: "24px" });
+    expect(theme.radii).toEqual({ control: "12px", panel: "16px", scene: "24px" });
     const html = await render(<InvitationEmail {...invitation} theme={theme} />);
     const button = html.match(/<a\b[^>]*>/)?.[0];
     expect(button).toContain("border-radius:12px");
@@ -98,9 +98,16 @@ describe("email theme boundary", () => {
   });
 
   test("resolves font aliases and converts sizes using the supplied root size", () => {
-    const theme = emailThemeFromCss([coreCss, refinedCss], "light", 20);
-    expect(theme.fonts.body).toContain('"Geist"');
-    expect(theme.fonts.body).not.toContain("var(");
+    const theme = emailThemeFromCss(
+      [
+        coreCss,
+        refinedCss,
+        '[data-skin="refined"] { --font-body: var(--font-sans); --font-sans: "Test Sans", sans-serif; --text-body: 1rem; }',
+      ],
+      "light",
+      20,
+    );
+    expect(theme.fonts.body).toBe('"Test Sans", sans-serif');
     expect(theme.text.body.fontSize).toBe("20px");
   });
 

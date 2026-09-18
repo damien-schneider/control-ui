@@ -43,6 +43,12 @@
       "defaultValue": "var(--padding-x)"
     },
     {
+      "name": "--cui-button-icon-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "max(0px, calc(var(--cui-button-padding-inline) - var(--spacing) * 0.5))"
+    },
+    {
       "name": "--cui-button-font-size",
       "syntax": "<length-percentage>",
       "initialValue": "1rem",

@@ -671,7 +671,7 @@
       "name": "--duration-fast",
       "group": "motion",
       "tier": "core",
-      "description": "Fast tempo (hover, color)."
+      "description": "Fast tempo for press feedback and small state transitions; frequent hover paint is instant."
     },
     {
       "name": "--duration-base",

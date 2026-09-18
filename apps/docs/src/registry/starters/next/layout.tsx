@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Control UI app",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`bg-background ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

@@ -225,6 +225,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-avatar-image-outline-color",
+      "description": "Control UI avatar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-avatar-radius",
       "description": "Control UI avatar knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -346,6 +351,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-button-icon-padding-inline",
+      "description": "Control UI button knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-button-open-background",
       "description": "Control UI button knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -451,6 +461,11 @@
     },
     {
       "name": "--cui-chat-composer-attachment-border-color",
+      "description": "Control UI chat-composer-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-image-outline-color",
       "description": "Control UI chat-composer-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },
@@ -1242,6 +1257,11 @@
       "description": "Control UI inline-attachment knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },
     {
+      "name": "--cui-inline-attachment-image-outline-color",
+      "description": "Control UI inline-attachment knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-inline-attachment-radius",
       "description": "Control UI inline-attachment knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
@@ -1394,6 +1414,11 @@
     },
     {
       "name": "--cui-markdown-foreground",
+      "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-markdown-image-outline-color",
       "description": "Control UI markdown knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
     },

@@ -4,7 +4,7 @@
     --_track-highlight-opacity: 0;
     border-radius: var(--cui-track-highlight-radius);
     opacity: var(--_track-highlight-opacity);
-    transition-property: top, left, right, bottom, width, height, opacity, background-color, box-shadow;
+    transition-property: top, left, right, bottom, width, height, opacity;
     transition-duration: var(--cui-track-highlight-transition-duration);
     transition-timing-function: var(--ease-emphasized);
   }
@@ -32,6 +32,11 @@
 
   :where([data-control-family="track-highlight"][data-slot="hover"]) {
     background: var(--cui-track-highlight-hover-background);
+  }
+
+  :where([data-track="hover"] > [data-control-family="track-highlight"]),
+  :where([data-control-family="track-highlight"][data-slot="hover"]) {
+    transition: none;
   }
 
   :where([data-control-family="track-highlight"][data-slot="root"][data-visible]),

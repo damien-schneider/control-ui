@@ -29,6 +29,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-avatar-image-outline-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.1)"
     }
   ],
   "parts": {

@@ -11,7 +11,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens } from "@/components/control-ui/lib/code-tokens";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 export type CodeOverflow = "wrap" | "scroll";
 
@@ -149,12 +149,10 @@ export function CodeCopy({
   if (!isIconOnly) return button;
 
   return (
-    <TooltipProvider delay={0}>
-      <Tooltip>
-        <TooltipTrigger render={button} />
-        <TooltipContent side="left">{label}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger render={button} />
+      <TooltipContent side="left">{label}</TooltipContent>
+    </Tooltip>
   );
 }
 

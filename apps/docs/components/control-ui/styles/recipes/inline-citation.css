@@ -24,9 +24,6 @@
     font-size: var(--text-caption);
     font-weight: var(--font-weight-normal);
     outline-style: none;
-    transition-property: background-color, color, box-shadow;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
   }
 
   @media (hover: hover) {

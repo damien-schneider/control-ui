@@ -16,7 +16,7 @@
       var(--cui-choice-shadow);
     color: currentColor;
     outline: none;
-    transition-property: background-color, box-shadow, color;
+    transition-property: background-color, color;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }

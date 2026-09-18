@@ -13,7 +13,7 @@
     background: var(--_item-background);
     box-shadow: none;
     color: var(--foreground);
-    transition-property: background-color, box-shadow, color, outline-color, scale;
+    transition-property: scale;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
     gap: calc(var(--spacing) * 3);

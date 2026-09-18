@@ -78,7 +78,7 @@
       "name": "--cui-popup-item-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-popup-item)"
+      "defaultValue": "var(--radius-popup-item-fit)"
     },
     {
       "name": "--cui-popup-item-foreground",

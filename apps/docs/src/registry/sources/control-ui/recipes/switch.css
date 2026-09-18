@@ -24,7 +24,6 @@
     border-radius: calc(infinity * 1px);
     background: var(--cui-switch-background);
     outline: none;
-    transition: background-color var(--duration-base) var(--ease-standard);
   }
 
   :where([data-control-family="switch"][data-slot="root"]:hover) {

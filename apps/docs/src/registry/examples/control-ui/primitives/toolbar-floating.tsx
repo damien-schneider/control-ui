@@ -18,7 +18,7 @@ export function PrimitiveFloatingToolbarExample() {
         className="absolute inset-0 bg-radial-[circle_at_center,oklch(from_var(--foreground)_l_c_h/0.16)_1px,transparent_1px] bg-size-[20px_20px] opacity-45"
       />
       <div className="h-28 w-44 rounded-[var(--radius-panel)] bg-card shadow-sm ring-1 ring-border" />
-      <TooltipProvider delay={300}>
+      <TooltipProvider>
         <Toolbar variant="floating" aria-label="Canvas tools" className="absolute bottom-4 left-1/2 -translate-x-1/2">
           <ToolbarGroup aria-label="Tools">
             <Tooltip>

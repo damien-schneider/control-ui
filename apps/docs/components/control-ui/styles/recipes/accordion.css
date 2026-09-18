@@ -19,7 +19,6 @@
     color: var(--cui-accordion-trigger-foreground);
     font-size: var(--text-body);
     outline: none;
-    transition: color var(--duration-fast) var(--ease-standard);
     text-align: left;
     font-weight: var(--font-weight-medium);
   }

@@ -49,6 +49,12 @@
       "defaultValue": "var(--primary-text)"
     },
     {
+      "name": "--cui-markdown-image-outline-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.1)"
+    },
+    {
       "name": "--cui-markdown-table-cell-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",

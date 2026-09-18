@@ -9,5 +9,6 @@ export const inlineAttachmentKnobs = [
   "--cui-inline-attachment-content-background",
   "--cui-inline-attachment-content-foreground",
   "--cui-inline-attachment-content-shadow",
+  "--cui-inline-attachment-image-outline-color",
 ] as const;
 export type InlineAttachmentKnobStyle = Partial<Record<(typeof inlineAttachmentKnobs)[number], string>>;

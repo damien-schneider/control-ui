@@ -18,7 +18,7 @@ for (const skin of ["refined", "xp", "linear"]) {
     const idleBackground = await trigger.evaluate((element) => getComputedStyle(element).backgroundColor);
     const idleColor = await trigger.evaluate((element) => getComputedStyle(element).color);
 
-    await trigger.hover({ position: { x: 2, y: 2 } });
+    await trigger.hover({ position: await trigger.evaluate((element) => ({ x: 2, y: element.clientHeight / 2 })) });
     await expect(trigger).not.toHaveCSS("background-color", idleBackground);
     await expect(trigger).not.toHaveCSS("color", idleColor);
     await expect(trigger).toHaveCSS("color", await input.evaluate((element) => getComputedStyle(element).color));

@@ -14,7 +14,7 @@ for (const positioning of ["anchors", "fallback"]) {
       if (positioning === "fallback") await disableAnchorSupport(page);
     });
 
-    test("button groups glide over their surfaces, preserve selection and joined edges, and allow opting out", async ({ page }) => {
+    test("button groups follow hover immediately, preserve selection and joined edges, and allow opting out", async ({ page }) => {
       await page.goto("/primitives/button-group");
       await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
       const group = page.getByRole("group", { name: "Text alignment", exact: true });
@@ -107,7 +107,9 @@ test("switching skins applies the group defaults while explicit indicators keep 
   await page.goto("/primitives/button-group");
   const group = page.getByRole("group", { name: "Text alignment" });
   await expect(group).toHaveAttribute("data-track", "none");
-  await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+  const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
+  await waitForReactHydration(skinPicker);
+  await skinPicker.click();
   await page.getByRole("option", { name: "Refined", exact: true }).click();
   await expect(group).toHaveAttribute("data-track", "hover");
   await expect(page.getByRole("group", { name: "Static actions" })).toHaveAttribute("data-track", "none");
@@ -116,7 +118,7 @@ test("switching skins applies the group defaults while explicit indicators keep 
     group.locator('[data-control-family="track-highlight"]'),
     group.getByRole("button", { name: "Left", exact: true }),
   );
-  await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+  await skinPicker.click();
   await page.getByRole("option", { name: "No skin", exact: true }).click();
   await expect(group).toHaveAttribute("data-track", "none");
   await expect(group.locator('[data-control-family="track-highlight"]')).toHaveCount(0);
@@ -142,7 +144,7 @@ test("Refined enables fluid sidebar and checkbox navigation without per-instance
 });
 
 for (const skin of ["refined", "none"]) {
-  test(`website sidebar enables fluid navigation with the ${skin} skin`, async ({ page }) => {
+  test(`website sidebar highlights navigation instantly with the ${skin} skin`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.addInitScript(
@@ -185,7 +187,7 @@ for (const skin of ["refined", "none"]) {
       }
       return framePositions;
     });
-    expect(positions.some((top) => top > firstBox.y + 1 && top < lastBox.y - 1)).toBe(true);
+    expect(positions.every((top) => Math.abs(top - lastBox.y) < 1)).toBe(true);
     await expectHighlightOn(highlight, last);
     await expect(current).toHaveAttribute("data-active", "true");
     await first.click();

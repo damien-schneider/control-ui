@@ -89,10 +89,7 @@
 
   --corner-shape: round;
   --corner-radius-fit: 0.5;
-  --radius-popover: calc(
-    var(--radius-popup-item-fit) +
-    clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - var(--nest-safe))
-  );
+  --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
 
   --shadow-highlight: oklch(1 0 0 / 0.62);
   --shadow-y: 1;
@@ -449,10 +446,7 @@
         --radius-control: calc(var(--radius) * 2 * var(--corner-radius-fit));
         --radius-popup-item: calc(var(--radius-control) * 0.6);
         --radius-popup-item-fit: min(var(--radius-popup-item), calc(var(--control-h-xs) / 2));
-        --radius-popover: calc(
-          var(--radius-popup-item-fit) +
-          clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding) - var(--nest-safe))
-        );
+        --radius-popover: calc(var(--radius-popup-item-fit) + clamp(0px, var(--radius-popup-item-fit) * 1000, var(--popover-padding)));
 
         --radius-sm: calc(var(--radius) * 0.6 * var(--corner-radius-fit));
         --radius-md: calc(var(--radius) * 0.8 * var(--corner-radius-fit));

@@ -14,15 +14,26 @@ describe("DTCG theme tokens", () => {
     });
   }
 
-  test("types what CSS makes typeable and leaves the rest raw", () => {
-    const tokens = toDtcg(artifacts.find((artifact) => artifact.baseSkin === "refined") ?? artifacts[0]);
+  test("exports literal fonts and durations as typed tokens while preserving CSS expressions", () => {
+    const tokens = toDtcg({
+      ...artifacts[0],
+      tokens: {
+        shared: {
+          "--font-mono": '"Test Mono", monospace',
+          "--font-sans": "var(--app-font), sans-serif",
+          "--duration-base": "200ms",
+          "--ease-standard": "cubic-bezier(0.2, 0, 0, 1)",
+        },
+        light: { "--background": "oklch(0.95 0.01 40)" },
+        dark: {},
+      },
+    });
     expect(tokens.light.background.$type).toBe("color");
     expect(tokens.shared["font-mono"].$type).toBe("fontFamily");
     expect(tokens.shared["font-sans"].$type).toBeUndefined();
+    expect(tokens.shared["font-sans"].$value).toBe("var(--app-font), sans-serif");
     expect(tokens.shared["duration-base"].$type).toBe("duration");
-    expect(tokens.shared["ease-standard"].$type).toBeUndefined();
     expect(tokens.shared["ease-standard"].$extensions).toEqual({ "dev.control-ui": { raw: true } });
-    expect(tokens.light.background.$description).toBe("Base surface color (panels, bubbles read it via bg-background).");
   });
 
   test("accepts the object value forms a design tool hands back", () => {

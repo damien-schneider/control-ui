@@ -1,5 +1,6 @@
 @layer components {
   :where([data-control-family="avatar"][data-slot="root"]) {
+    --cui-avatar-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
     inline-size: calc(var(--spacing) * 9);
     block-size: calc(var(--spacing) * 9);
   }
@@ -14,12 +15,21 @@
     border-radius: var(--cui-avatar-radius);
   }
 
+  :where([data-control-family="avatar"][data-slot="root"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px var(--cui-avatar-image-outline-color);
+  }
+
   :where([data-control-family="avatar"][data-slot="group"] > [data-control-family="avatar"]) {
     box-shadow: 0 0 0 2px var(--cui-avatar-group-ring-color);
   }
 
   :where([data-control-family="avatar"][data-slot="fallback"]) {
-    border-radius: 9999px;
+    border-radius: inherit;
     background: var(--cui-avatar-fallback-background);
     color: var(--cui-avatar-fallback-foreground);
     font-size: var(--text-caption);
@@ -46,6 +56,12 @@
 }
 
 @property --cui-avatar-fallback-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-avatar-image-outline-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

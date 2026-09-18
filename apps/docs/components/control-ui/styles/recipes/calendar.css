@@ -41,9 +41,6 @@
     border-radius: var(--radius-control);
     outline: none;
     color: var(--muted-foreground);
-    transition-property: background-color, color, box-shadow;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
   }
 
   @media (hover: hover) {
@@ -66,9 +63,6 @@
     font-size: var(--text-sm);
     font-weight: var(--font-weight-normal);
     line-height: 1;
-    transition-property: background-color, color, box-shadow;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
   }
 
   @media (hover: hover) {

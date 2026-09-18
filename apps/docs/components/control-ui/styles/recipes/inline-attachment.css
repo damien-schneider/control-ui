@@ -4,18 +4,17 @@
     --cui-inline-attachment-hover-shadow: var(--shadow-md);
     --cui-inline-attachment-radius: var(--radius-scene);
     --cui-inline-attachment-ring-color: var(--border);
+    --cui-inline-attachment-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
     --cui-inline-attachment-shadow: var(--shadow-sm);
     --cui-inline-attachment-content-background: oklch(from var(--background) l c h / 0.85);
     --cui-inline-attachment-content-foreground: var(--foreground);
     --cui-inline-attachment-content-radius: var(--radius-control);
     --cui-inline-attachment-content-shadow: var(--shadow-sm);
-    --_inline-attachment-media-hover-scale: 1.02;
     border-radius: var(--cui-inline-attachment-radius);
     background: var(--cui-inline-attachment-background);
     box-shadow:
       inset 0 0 0 1px var(--cui-inline-attachment-ring-color),
       var(--cui-inline-attachment-shadow);
-    transition: box-shadow var(--duration-fast) var(--ease-standard);
     text-align: left;
   }
 
@@ -33,14 +32,14 @@
     }
   }
 
-  :where([data-control-family="inline-attachment"][data-slot="media-image"]) {
-    transition: scale var(--duration-slow) var(--ease-standard);
+  :where([data-control-family="inline-attachment"][data-slot="image"]) {
+    border-radius: inherit;
   }
 
-  @media (hover: hover) {
-    :where([data-control-family="inline-attachment"][data-slot="root"]:hover [data-slot="media-image"]) {
-      scale: var(--_inline-attachment-media-hover-scale);
-    }
+  :where([data-control-family="inline-attachment"][data-slot="media-image"]) {
+    border-radius: inherit;
+    outline: 1px solid var(--cui-inline-attachment-image-outline-color);
+    outline-offset: -1px;
   }
 
   :where([data-control-family="inline-attachment"][data-slot="document"]) {
@@ -179,4 +178,10 @@
 @property --cui-inline-attachment-content-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-inline-attachment-image-outline-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }

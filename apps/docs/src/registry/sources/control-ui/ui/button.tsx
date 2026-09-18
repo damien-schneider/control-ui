@@ -3,7 +3,7 @@
 import { Button as BaseButton } from "@base-ui/react/button";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { Children, createContext, Fragment, isValidElement, useContext } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ControlSize, ControlTone, ControlVariant } from "@/components/control-ui/control-variants";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
@@ -53,6 +53,18 @@ export const buttonTrackStructureClasses = "data-[track=hover]:relative data-[tr
 
 export const buttonContentClasses = "relative z-[1] inline-flex min-w-0 items-center justify-center gap-[inherit]";
 
+function wrapButtonText(children: ReactNode): ReactNode {
+  return Children.map(children, (child) => {
+    if (typeof child === "string" || typeof child === "number") {
+      return <span className="contents">{child}</span>;
+    }
+    if (isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment) {
+      return <Fragment>{wrapButtonText(child.props.children)}</Fragment>;
+    }
+    return child;
+  });
+}
+
 function ButtonContent({ children }: { children: ReactNode }) {
   return (
     <span data-control-ui="button" data-control-family="button" data-slot="content" className={buttonContentClasses}>
@@ -64,10 +76,11 @@ function ButtonContent({ children }: { children: ReactNode }) {
 function ButtonBody({ layer, wrap = true, children }: { layer: ReactNode; wrap?: boolean; children: ReactNode }) {
   const tracksHover = useContext(ButtonTrackContext);
   const wrapsContent = tracksHover || (wrap && Boolean(layer));
+  const content = wrapButtonText(children);
   return (
     <>
       {layer}
-      {wrapsContent ? <ButtonContent>{children}</ButtonContent> : children}
+      {wrapsContent ? <ButtonContent>{content}</ButtonContent> : content}
     </>
   );
 }

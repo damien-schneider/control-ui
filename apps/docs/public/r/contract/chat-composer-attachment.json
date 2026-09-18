@@ -47,6 +47,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--background) l c h / var(--overlay-opacity))"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-image-outline-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.1)"
     }
   ],
   "parts": {

@@ -211,7 +211,7 @@ export function SidebarProvider({
   return (
     <SidebarContext.Provider value={contextValue}>
       <SidebarElementsContext.Provider value={elements}>
-        <TooltipProvider delay={0}>{wrapper}</TooltipProvider>
+        <TooltipProvider>{wrapper}</TooltipProvider>
       </SidebarElementsContext.Provider>
     </SidebarContext.Provider>
   );

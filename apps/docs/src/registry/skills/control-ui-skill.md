@@ -159,7 +159,7 @@ Every themable custom property. [light+dark] is color-valued and declared per mo
 - --shadow-ambient-multiplier [shared] Elevation tier: ambient scene lift; defaults to 8.
 - --ease-standard [shared] Default easing curve for color/text transitions.
 - --ease-emphasized [shared] Emphasized curve for entrances and larger moves.
-- --duration-fast [shared] Fast tempo (hover, color).
+- --duration-fast [shared] Fast tempo for press feedback and small state transitions; frequent hover paint is instant.
 - --duration-base [shared] Base tempo (menus, indicators).
 - --duration-slow [shared] Slow tempo (panel/message entrances).
 - --popover-opacity [shared] Floating-surface translucency; <1 + blur = frosted glass.

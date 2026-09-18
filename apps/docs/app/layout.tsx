@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Inter } from "next/font/google";
+import { Geist, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { DocsShell } from "@/app/(features)/client/client";
 import { getDocsShellData } from "@/app/(features)/model/data";
@@ -18,11 +18,17 @@ export const metadata: Metadata = siteMetadata;
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const githubStars = await getControlUiGitHubStars();
   return (
-    <html lang="en" data-skin={DEFAULT_SKIN_ID} suppressHydrationWarning className={cn(geist.variable, inter.variable)}>
+    <html
+      lang="en"
+      data-skin={DEFAULT_SKIN_ID}
+      suppressHydrationWarning
+      className={cn("bg-background", geist.variable, inter.variable, jetbrainsMono.variable)}
+    >
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static build output must execute before the first paint. */}
         <script id="control-ui-theme-init" dangerouslySetInnerHTML={{ __html: themeInitScript }} />

@@ -7,5 +7,6 @@ export const chatComposerAttachmentKnobs = [
   "--cui-chat-composer-attachment-backdrop-filter",
   "--cui-chat-composer-attachment-progress-background",
   "--cui-chat-composer-attachment-progress-foreground",
+  "--cui-chat-composer-attachment-image-outline-color",
 ] as const;
 export type ChatComposerAttachmentKnobStyle = Partial<Record<(typeof chatComposerAttachmentKnobs)[number], string>>;

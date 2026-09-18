@@ -16,7 +16,6 @@
     background: var(--cui-badge-background);
     color: var(--cui-badge-foreground);
     outline: none;
-    transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="badge"][data-slot="root"][data-size="sm"]) {

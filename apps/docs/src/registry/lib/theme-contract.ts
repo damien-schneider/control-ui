@@ -114,7 +114,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
 
   token("--ease-standard", "motion", "advanced", "Default easing curve for color/text transitions."),
   token("--ease-emphasized", "motion", "advanced", "Emphasized curve for entrances and larger moves."),
-  token("--duration-fast", "motion", "core", "Fast tempo (hover, color)."),
+  token("--duration-fast", "motion", "core", "Fast tempo for press feedback and small state transitions; frequent hover paint is instant."),
   token("--duration-base", "motion", "core", "Base tempo (menus, indicators)."),
   token("--duration-slow", "motion", "core", "Slow tempo (panel/message entrances)."),
 

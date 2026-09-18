@@ -138,7 +138,7 @@ for (const positioning of ["anchors", "fallback"]) {
   });
 }
 
-test("CSS highlight interpolates unequal rows and honours reduced motion", async ({ page }) => {
+test("CSS hover highlight snaps to unequal rows with either motion preference", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
@@ -153,9 +153,8 @@ test("CSS highlight interpolates unequal rows and honours reduced motion", async
   const last = group.getByRole("button", { name: "Settings", exact: true });
   await first.hover();
   await expectHighlightOn(highlight, first);
-  const firstBox = await first.boundingBox();
   const lastBox = await last.boundingBox();
-  if (!firstBox || !lastBox) throw new Error("Sidebar rows are not laid out");
+  if (!lastBox) throw new Error("Sidebar row is not laid out");
   await last.hover();
   const positions = await highlight.evaluate(async (node) => {
     const framePositions: number[] = [];
@@ -165,7 +164,7 @@ test("CSS highlight interpolates unequal rows and honours reduced motion", async
     }
     return framePositions;
   });
-  expect(positions.some((top) => top > firstBox.y + 1 && top < lastBox.y - 1)).toBe(true);
+  expect(positions.every((top) => Math.abs(top - lastBox.y) < 1)).toBe(true);
   await expectHighlightOn(highlight, last);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(highlight).toHaveCSS("transition-duration", "0s");

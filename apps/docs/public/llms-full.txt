@@ -143,7 +143,7 @@
 
 ### Skins
 - `skins` (Skinning Control UI) — Author complete token-driven Control UI skins with slots, adornments, motion controls, and one shared component source.
-- `refined` (Refined) — Compact, calm starting skin with a complete Control UI token contract. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite`
+- `refined` (Refined) — Craft-inspired neutral surfaces, Inter typography, pill controls, and quiet layered shadows. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-refined.json --overwrite`
 - `xp` (Windows XP) — Windows XP Luna with compact system typography, glossy controls, blue window frames, and Explorer task panes. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-xp.json --overwrite`
 - `windows-98` (Windows 98) — Classic Windows 98 with bitmap system typography, raised gray controls, recessed fields, navy title bars, and Explorer tree navigation. Fixed to its original light palette. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-windows-98.json --overwrite`
 - `liquid-metal` (Liquid metal) — Polished metal skin with a WebGL shader control surface. — `npx shadcn@latest add http://127.0.0.1:3000/r/skin-liquid-metal.json --overwrite`

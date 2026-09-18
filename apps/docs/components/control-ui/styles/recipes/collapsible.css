@@ -1,9 +1,6 @@
 @layer components {
   :where([data-control-family="collapsible"][data-slot="trigger"]) {
     outline: none;
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="collapsible"][data-slot="trigger"] > svg) {

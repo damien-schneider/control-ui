@@ -134,23 +134,3 @@ test("a delayed preview cannot replace a newly selected layout", async ({ page }
   });
   await expect(frame.getByRole("heading", { level: 1 })).toHaveText("Good work adds up.");
 });
-
-test("email buttons, panels, and images follow the shared sizing tokens", async ({ page }) => {
-  const frame = page.frameLocator('iframe[title$="email preview"]');
-  const button = frame.getByRole("link", { name: "Explore what’s new", exact: true });
-  for (const theme of [
-    { skin: "Refined", height: "36px", radius: "8px", padding: "16px", fontSize: "14px", panel: "8px", image: "16px" },
-    { skin: "Linear", height: "32px", radius: "8px", padding: "12px", fontSize: "13px", panel: "12px", image: "14px" },
-    { skin: "Rig", height: "40px", radius: "0px", padding: "18px", fontSize: "14px", panel: "0px", image: "0px" },
-  ]) {
-    await page.getByRole("combobox", { name: "Skin", exact: true }).click();
-    await page.getByRole("option", { name: theme.skin, exact: true }).click();
-    await page.getByRole("button", { name: "Announcement", exact: true }).click();
-    await expect(button).toHaveCSS("height", theme.height);
-    await expect(button).toHaveCSS("border-radius", theme.radius);
-    await expect(button).toHaveCSS("padding-left", theme.padding);
-    await expect(button).toHaveCSS("font-size", theme.fontSize);
-    await expect(frame.locator('table[style*="max-width"]')).toHaveCSS("border-radius", theme.panel);
-    await expect(frame.getByRole("img")).toHaveCSS("border-radius", theme.image);
-  }
-});

@@ -27,14 +27,14 @@ export function PrimitiveTableExample() {
               <TableCell className="font-medium">{invoice.id}</TableCell>
               <TableCell>{invoice.status}</TableCell>
               <TableCell>{invoice.method}</TableCell>
-              <TableCell className="text-right">{invoice.amount}</TableCell>
+              <TableCell className="text-right tabular-nums">{invoice.amount}</TableCell>
             </TableRow>
           ))}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">$750.00</TableCell>
+            <TableCell className="text-right tabular-nums">$750.00</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

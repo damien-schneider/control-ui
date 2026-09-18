@@ -94,7 +94,7 @@
     background: var(--cui-range-thumb-background);
     box-shadow: var(--cui-range-thumb-shadow);
     outline: none;
-    transition-property: scale, background-color, box-shadow, height, width;
+    transition-property: scale, box-shadow, height, width;
     transition-duration: var(--duration-fast);
   }
 

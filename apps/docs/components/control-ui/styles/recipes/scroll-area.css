@@ -139,7 +139,6 @@
   :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
     z-index: 1;
     opacity: 0;
-    transition: opacity var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-visibility="always"]),
@@ -151,7 +150,6 @@
   :where([data-control-family="scroll-area"][data-slot="thumb"]) {
     border-radius: var(--cui-scroll-area-thumb-radius);
     background: var(--cui-scroll-area-thumb-background);
-    transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
   :where([data-control-family="scroll-area"][data-slot="corner"]) {

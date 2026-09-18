@@ -59,6 +59,12 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "var(--shadow-sm)"
+    },
+    {
+      "name": "--cui-inline-attachment-image-outline-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.1)"
     }
   ],
   "parts": {

@@ -50,7 +50,6 @@
     --cui-button-hover-background: var(--hover-fill);
     --cui-button-active-background: var(--active-fill);
     --cui-button-active-hover-background: var(--active-fill);
-    transition-property: color, background-color, border-color, box-shadow;
   }
 
   [data-skin="linear"] :where([data-control-family="button"][data-control="true"][data-variant="solid"]) {
@@ -143,7 +142,6 @@
       [data-control-family="popup"][data-popup-part="list-surface"],
       [data-control-family="popup"][data-popup-part="bar"]
     ) {
-    --cui-popup-item-radius: var(--radius-popup-item);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-separator-color: var(--border);
   }
@@ -309,7 +307,6 @@
 
   [data-skin="linear"] :where([data-control-ui="command"][data-popup-part="bar"][data-control-family="popup"]) {
     --cui-popup-separator-color: var(--border);
-    --cui-popup-item-radius: var(--radius-popup-item);
     --cui-popup-item-disabled-opacity: 0.4;
     --cui-popup-shortcut-foreground: var(--muted-foreground);
   }

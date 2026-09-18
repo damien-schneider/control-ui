@@ -125,34 +125,6 @@
 
 @layer base {
   :root {
-    --control-ui-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='224'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='224' height='224' filter='url(%23p)'/%3E%3C/svg%3E");
-  }
-
-  :root[data-skin="refined"] body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    user-select: none;
-    background-image: var(--control-ui-grain);
-    background-size: 224px 224px;
-    opacity: 0.07;
-  }
-
-  :root.dark[data-skin="refined"] body::after {
-    opacity: 0.08;
-  }
-}
-
-:root[data-skin="refined"] [data-control-ui="sidebar-layout"][data-slot="content"] {
-  background-color: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-@layer base {
-  :root {
     color-scheme: light;
   }
 

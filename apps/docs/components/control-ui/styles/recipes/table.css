@@ -27,7 +27,6 @@
 
   :where([data-control-family="table"][data-slot="row"]) {
     border-bottom-color: var(--cui-table-border-color);
-    transition: background-color var(--duration-fast) var(--ease-standard);
     border-bottom-style: solid;
     border-bottom-width: 1px;
   }

@@ -131,7 +131,6 @@
     --_rich-tooltip-content-title-letter-spacing: var(--_rich-tooltip-title-letter-spacing);
     --_rich-tooltip-arrow-rotate: 0deg;
     --_rich-tooltip-action-outline: none;
-    --_rich-tooltip-action-transition-property: background-color, color, box-shadow;
   }
 
   :where([data-control-family="popup"][data-popup-kind="rich-tooltip"][data-slot="content"][data-tone="accent"]) {
@@ -203,9 +202,6 @@
     color: var(--cui-rich-tooltip-action-foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
-    transition-property: var(--_rich-tooltip-action-transition-property);
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
     outline-style: var(--_rich-tooltip-action-outline);
   }
 

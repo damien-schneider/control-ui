@@ -37,13 +37,6 @@
 
   :where([data-control-family="sidebar"][data-slot="gap"]) {
     background-color: transparent;
-    transition: width var(--duration-base) var(--ease-standard);
-  }
-
-  :where([data-control-family="sidebar"][data-slot="container"]) {
-    transition-property: inset-inline-start, inset-inline-end, width;
-    transition-duration: var(--duration-base);
-    transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-slot="root"][data-variant="sidebar"][data-side="left"] [data-slot="container"]) {
@@ -88,9 +81,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 2px 100%;
-    transition-property: --cui-sidebar-rail-divider-background, background-color, translate;
-    transition-duration: var(--duration-base);
-    transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]) {
@@ -105,13 +95,6 @@
     :where([data-control-family="sidebar"][data-collapsible="offcanvas"] [data-slot="rail"]:not([data-resizable]):hover) {
       background-color: var(--sidebar);
     }
-  }
-
-  :where(
-    [data-control-family="sidebar"][data-slot="wrapper"][data-resizing="true"]
-      [data-control-family="sidebar"]:is([data-slot="gap"], [data-slot="container"])
-  ) {
-    transition: none;
   }
 
   :where([data-control-family="sidebar"][data-slot="rail"][data-resizable]) {
@@ -136,9 +119,6 @@
   :where([data-control-family="sidebar"][data-slot="inset"]) {
     background-color: var(--cui-sidebar-inset-background);
     background-image: var(--cui-sidebar-inset-background-image);
-    transition-property: margin, border-radius, box-shadow;
-    transition-duration: var(--duration-base);
-    transition-timing-function: var(--ease-standard);
   }
 
   @media (width >= 64rem) {

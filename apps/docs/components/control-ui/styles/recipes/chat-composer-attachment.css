@@ -3,6 +3,7 @@
     --cui-chat-composer-attachment-background: var(--popover);
     --cui-chat-composer-attachment-border-color: var(--control-rim);
     --cui-chat-composer-attachment-radius: var(--radius-popover);
+    --cui-chat-composer-attachment-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
     --cui-chat-composer-attachment-shadow:
       inset 0 0 0 var(--control-rim-width) var(--cui-chat-composer-attachment-border-color), var(--shadow-sm);
     --cui-chat-composer-attachment-backdrop-filter: blur(var(--backdrop-blur-popover));
@@ -41,11 +42,6 @@
     max-inline-size: 100%;
   }
 
-  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant="file"] [data-slot="preview"]) {
-    inline-size: calc(var(--spacing) * 14);
-    block-size: 100%;
-  }
-
   :where([data-control-family="chat-composer-attachment"][data-slot="content"]) {
     padding-inline: calc(var(--spacing) * 3) calc(var(--spacing) * 8);
   }
@@ -57,6 +53,20 @@
   :where([data-control-family="chat-composer-attachment"][data-slot="preview"]) {
     background: var(--muted);
     color: var(--muted-foreground);
+    border-radius: inherit;
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="preview"] > img) {
+    border-radius: inherit;
+    outline: 1px solid var(--cui-chat-composer-attachment-image-outline-color);
+    outline-offset: -1px;
+  }
+
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant="file"] [data-slot="preview"]) {
+    inline-size: calc(var(--spacing) * 14);
+    block-size: 100%;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
   }
 
   :where([data-control-family="chat-composer-attachment"][data-kind="pdf"] [data-slot="preview"]) {
@@ -153,6 +163,12 @@
 }
 
 @property --cui-chat-composer-attachment-progress-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-composer-attachment-image-outline-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

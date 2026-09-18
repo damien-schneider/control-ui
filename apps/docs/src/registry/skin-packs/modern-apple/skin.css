@@ -282,7 +282,6 @@
       [data-control-family="popup"][data-popup-part="list-surface"],
       [data-control-family="popup"][data-popup-part="bar"]
     ) {
-    --cui-popup-item-radius: var(--radius-popup-item);
     --cui-popup-item-highlight-background: var(--active-fill);
     --cui-popup-item-highlight-foreground: var(--foreground);
     --cui-popup-item-highlight-muted-foreground: var(--foreground);

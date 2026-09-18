@@ -6,11 +6,17 @@
     --cui-markdown-inline-code-background: color-mix(in oklab, var(--foreground) 8%, transparent);
     --cui-markdown-inline-code-foreground: var(--foreground);
     --cui-markdown-inline-code-radius: 0.25rem;
+    --cui-markdown-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
     --cui-markdown-link-foreground: var(--primary-text);
     --cui-markdown-table-cell-border-color: var(--border);
     --cui-markdown-table-header-background: var(--muted);
     color: var(--cui-markdown-foreground);
     font-size: var(--text-label);
+  }
+
+  :where([data-control-family="markdown"][data-slot="root"] img[data-streamdown="image"]) {
+    outline: 1px solid var(--cui-markdown-image-outline-color);
+    outline-offset: -1px;
   }
 
   :where([data-control-family="markdown"][data-slot="table-cell"]) {
@@ -186,6 +192,12 @@
 }
 
 @property --cui-markdown-link-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-markdown-image-outline-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

@@ -32,7 +32,7 @@
     color: currentColor;
     font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
-    transition-property: top, right, width, height, border-radius, padding, color, background-color, box-shadow;
+    transition-property: top, right, width, height, border-radius, padding, color, box-shadow;
     transition-duration: var(--duration-slow);
     transition-timing-function: var(--ease-emphasized);
   }

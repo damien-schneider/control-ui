@@ -6,7 +6,7 @@
       "description": "Build, theme, and update UI with the Control UI components installed in this repository. Use when adding or migrating screens, writing or applying a theme, or updating Control UI.",
       "type": "skill-md",
       "url": "http://127.0.0.1:3000/r/control-ui-skill.md",
-      "digest": "sha256:3368881f04f4052041ce54e005271a259e80672b402227a47b219cb499e8b2f3"
+      "digest": "sha256:0be80d34c9dcb602695e3c8ce0bdd28df113620c00f6f4384cf25e7e4d391a6a"
     }
   ]
 }

@@ -62,9 +62,6 @@
     box-shadow: var(--cui-toolbar-item-shadow);
     color: var(--cui-toolbar-item-foreground);
     font-weight: var(--font-weight-medium);
-    transition-property: background-color, color, box-shadow;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="toolbar"][data-slot="group"]) {

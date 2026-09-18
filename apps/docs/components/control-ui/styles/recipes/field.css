@@ -26,7 +26,7 @@
       [data-control-family="field"][data-field-kind="combobox"]
     )
   ) {
-    transition-property: color, background-color, border-color, box-shadow, opacity, backdrop-filter;
+    transition-property: color, border-color, box-shadow, opacity, backdrop-filter;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
   }

@@ -7,9 +7,6 @@
     font-size: var(--text-caption);
     font-weight: var(--font-weight-medium);
     outline: none;
-    transition-property: margin, opacity;
-    transition-duration: var(--duration-base);
-    transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"]),
@@ -22,9 +19,6 @@
     background-color: transparent;
     color: var(--cui-sidebar-menu-button-foreground);
     outline: none;
-    transition-property: width, height, padding, color, background-color, box-shadow;
-    transition-duration: var(--duration-base);
-    transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="sidebar"][data-slot="menu-button"][data-size="sm"]) {

@@ -25,7 +25,6 @@
     padding-inline: calc(var(--spacing) * 3);
     padding-block: calc(var(--spacing) * 2);
     font-size: var(--text-sm);
-    transition: background-color var(--duration-fast) var(--ease-standard);
     text-align: left;
   }
 

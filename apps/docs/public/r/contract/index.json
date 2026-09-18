@@ -58,7 +58,7 @@
       "registryItems": [
         "avatar"
       ],
-      "knobs": 4,
+      "knobs": 5,
       "probes": 4
     },
     "badge": {
@@ -85,7 +85,7 @@
         "select",
         "toggle"
       ],
-      "knobs": 23,
+      "knobs": 24,
       "probes": 533
     },
     "button-group": {
@@ -120,7 +120,7 @@
       "registryItems": [
         "chat-composer-attachment"
       ],
-      "knobs": 7,
+      "knobs": 8,
       "probes": 13
     },
     "chat-layout": {
@@ -264,7 +264,7 @@
       "registryItems": [
         "inline-attachment"
       ],
-      "knobs": 9,
+      "knobs": 10,
       "probes": 5
     },
     "inline-citation": {
@@ -299,7 +299,7 @@
       "registryItems": [
         "markdown"
       ],
-      "knobs": 9,
+      "knobs": 10,
       "probes": 5
     },
     "markdown-block": {

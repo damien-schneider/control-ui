@@ -4,5 +4,6 @@ export const avatarKnobs = [
   "--cui-avatar-group-ring-color",
   "--cui-avatar-fallback-background",
   "--cui-avatar-fallback-foreground",
+  "--cui-avatar-image-outline-color",
 ] as const;
 export type AvatarKnobStyle = Partial<Record<(typeof avatarKnobs)[number], string>>;

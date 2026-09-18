@@ -7,6 +7,7 @@ export const markdownKnobs = [
   "--cui-markdown-inline-code-foreground",
   "--cui-markdown-inline-code-radius",
   "--cui-markdown-link-foreground",
+  "--cui-markdown-image-outline-color",
   "--cui-markdown-table-cell-border-color",
   "--cui-markdown-table-header-background",
 ] as const;
