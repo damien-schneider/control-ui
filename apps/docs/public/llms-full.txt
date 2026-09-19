@@ -168,9 +168,8 @@
 ### Guides
 - `create` (Create app) — Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
 - `get-started` (Install) — One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.
-- `doctor` (Verify) — The doctor audits what the registry cannot see from inside one install: imports that resolve, theme order, app blocks fighting the skin, and the data-skin stamp.
-- `build-a-screen` (Build a screen) — Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - `theming` (Theme it) — Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
+- `build-a-screen` (Build a screen) — Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - `create-a-skin` (Create a skin) — Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
 - `theme-editor` (Theme editor) — Choose a skin, edit its tokens, and preview your theme across the docs.
 - `theme-ai-builder` (Theme AI builder) — Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.

@@ -80,19 +80,23 @@ for (const skinId of ["refined", "modern-apple"] as const) {
       test(`search results retain text beneath the blur in ${mode} mode`, async ({ page }) => {
         await page.addInitScript(({ key, theme }) => localStorage.setItem(key, theme), { key: THEME_STORAGE_KEY, theme: mode });
         await visitWithSkin(page, "/primitives/phone-input", skinId);
-        const search = page.getByRole("combobox", { name: "Search documentation", exact: true });
-        await waitForReactHydration(search);
-        await search.click();
-        const popup = page.locator('[data-docs-sidebar-search] [data-popup-part="list-surface"]');
-        await expect(popup).toBeVisible();
-        const viewport = popup.locator("[data-scroll-area-viewport]");
+        const searchTrigger = page.getByRole("button", { name: "Search documentation", exact: true });
+        await waitForReactHydration(searchTrigger);
+        await searchTrigger.click();
+        const dialog = page.getByRole("dialog");
+        const search = dialog.getByRole("combobox", { name: "Search documentation", exact: true });
+        await expect(search).toBeFocused();
+        const list = dialog.locator('[data-control-ui="command"][data-slot="list"]');
+        await expect(list).toBeVisible();
+        const viewport = dialog.locator("[data-scroll-area-viewport]");
         await viewport.evaluate((element) => {
           const result = element.querySelectorAll("[cmdk-item]")[30];
           element.scrollTop += result.getBoundingClientRect().top - element.getBoundingClientRect().top - 28;
         });
         await expect(viewport.locator("..")).toHaveAttribute("data-overflow-y-start", "");
-        await expect(popup.locator('[data-side="top"] [data-slot="layer"]').last()).toHaveCSS("opacity", "1");
-        expect((await inspectScrollEdge(page, await popup.screenshot())).detailedPixels).toBeGreaterThan(100);
+        if (skinId === "modern-apple")
+          await expect(dialog.locator('[data-side="top"] [data-slot="layer"]').last()).toHaveCSS("opacity", "1");
+        expect((await inspectScrollEdge(page, await dialog.screenshot())).detailedPixels).toBeGreaterThan(100);
         await expect(search).toBeFocused();
       });
     }

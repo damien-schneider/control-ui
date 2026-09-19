@@ -1,4 +1,4 @@
-<AgentShortcut />
+<InstallPaths current="manual" />
 
 <GuideSection id="install" title="Install the components">
   One command copies every component, block, and primitive into your repository as source you own. Core includes
@@ -35,7 +35,72 @@
   </GuideCheck>
 
   The registry writes `../components/…`. If your aliases use different paths, run
-  `node <install dir>/scripts/fix-css-imports.mjs`, then verify with the doctor.
+  `node <install dir>/scripts/fix-css-imports.mjs`, then verify below.
+</GuideSection>
+
+<GuideSection id="verify" title="Verify the install">
+  The doctor ships with the install. It is read-only: it reads the CSS entry named in `components.json`, follows every
+  import it finds, and looks for the `data-skin` stamp.
+
+```bash
+node <install dir>/scripts/control-ui-doctor.mjs
+```
+
+  Keep it runnable as a script, so a later session — or your agent — can check the wiring without this page:
+
+```json
+{
+  "scripts": {
+    "control-ui:doctor": "node components/control-ui/scripts/control-ui-doctor.mjs"
+  }
+}
+```
+
+  <GuideCheck>
+```bash
+$ npm run control-ui:doctor
+control-ui doctor: clean.
+```
+  </GuideCheck>
+
+  Anything else is one of the five checks below. Errors exit non-zero and block: styling on top of them is what reads
+  as a broken install afterwards. Warnings exit zero and are deletion offers, named file by file and token by token.
+
+  <GuidePoints>
+    <GuidePoint>**An import that resolves to no file.** The install wrote `../components/…` and your entry sits somewhere else. Run `node <install dir>/scripts/fix-css-imports.mjs`; one wrong prefix silently unstyles everything below it.</GuidePoint>
+    <GuidePoint>**A theme import that is no longer last.** A derived `*.control-ui-theme.css` composes over the pack, so source order is what makes it win. The same script repairs the order.</GuidePoint>
+    <GuidePoint>**An app `@theme` block redeclaring Control UI keys.** Tailwind merges every `@theme` in the build and the last declaration wins, so the block detaches those utilities from the skin — a hardcoded font splits the app into two typefaces, a redeclared `--radius` collapses every corner.</GuidePoint>
+    <GuidePoint>**A `:root` or `.dark` block declaring skin token names.** The skin out-specifies it, so those declarations are dead; a hybrid block keeps the names the skin never declares painting a second palette beside it.</GuidePoint>
+    <GuidePoint>**A missing or mismatched `data-skin` stamp.** An optional installed preset needs a matching scope and provider; without a preset, the library defaults work with no stamp.</GuidePoint>
+  </GuidePoints>
+
+  Two flags reach beyond the wiring audit. `--contrast` resolves the theme contract's required color pairs straight
+  from the installed CSS — no browser, no network — and prints a per-mode tally with every failure named:
+
+```bash
+$ node components/control-ui/scripts/control-ui-doctor.mjs --contrast
+light: 55/55 pass
+dark: 55/55 pass
+```
+
+  It reads the Tailwind palette, the core theme, the installed skin theme and every `*.control-ui-theme.css` the
+  entry imports, in that order, so it sees exactly what the browser resolves. A pair a recipe paints — popup items,
+  sidebar, tabs, solid buttons, tooltip, focus ring, badges — is not guessed at; those live in the rendered audit at
+  [/theme-accessibility](/theme-accessibility). A failure names the pair, its ratio and the threshold, and exits
+  non-zero. A value the engine cannot model, such as `color-mix()`, is reported as unverified instead of passing.
+
+  `--emit-css` turns a theme artifact into the one derived stylesheet an app imports:
+
+```bash
+$ node components/control-ui/scripts/control-ui-doctor.mjs --emit-css midnight.control-ui-theme.json
+```
+
+  It writes `midnight.control-ui-theme.css` beside the artifact. Never hand-write those selectors: the emitted scope
+  doubles the `data-skin` attribute to match the pack's own weight, which is what hands the win to source order.
+
+  The doctor audits wiring, never taste. It cannot see a token that is ugly, only one that is undeclared, dead, or
+  fighting the skin. Each deletion it offers is a change to source you own, so it names the file and the token
+  instead of writing them. Run it after every install, update, and migration.
 </GuideSection>
 
 <GuideSection id="contract" title="Own your theme">

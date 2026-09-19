@@ -5,7 +5,7 @@ for (const { name, width, docked } of [
   { name: "below lg", width: 1023, docked: false },
   { name: "at lg", width: 1024, docked: true },
 ]) {
-  test(`docs shell flips sidebar, trigger and toolbar edge together ${name}`, async ({ page }) => {
+  test(`docs shell flips sidebar and trigger together ${name}`, async ({ page }) => {
     const height = 900;
     await page.setViewportSize({ width, height });
     await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
@@ -13,20 +13,11 @@ for (const { name, width, docked } of [
     const dockedSidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
     const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
     const sidebarTrigger = page.getByRole("button", { name: "Toggle Sidebar" });
-    const panel = page.locator("[data-docs-floating-panel]");
     const contentPanel = page.locator('[data-control-ui="sidebar-layout"][data-slot="content"]');
 
     await expect(dockedSidebar).toHaveCount(docked ? 1 : 0);
     await expect(resizeHandle).toHaveCount(docked ? 1 : 0);
     await expect(sidebarTrigger).toBeVisible({ visible: !docked });
-
-    const panelBox = await panel.boundingBox();
-    expect(panelBox).not.toBeNull();
-    if (docked) {
-      expect(panelBox?.y ?? Number.POSITIVE_INFINITY).toBeLessThan(height / 4);
-    } else {
-      expect((panelBox?.y ?? 0) + (panelBox?.height ?? 0)).toBeGreaterThan(height * 0.75);
-    }
 
     const contentBox = await contentPanel.boundingBox();
     expect(contentBox).not.toBeNull();
@@ -51,7 +42,7 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   const contentPanel = page.locator('[data-control-ui="sidebar-layout"][data-slot="content"]');
   const pageGrid = page.locator("[data-docs-page-grid]");
   const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
-  const sidebarNavigation = page.locator("[data-docs-sidebar-navigation]");
+  const sidebarInner = page.locator('[data-control-ui="sidebar"][data-slot="inner"]');
 
   const expandedGapBox = await sidebarGap.boundingBox();
   const expandedPanelBox = await contentPanel.boundingBox();
@@ -67,10 +58,10 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   await expect(sidebarTrigger).toBeVisible();
   await expect(sidebarTrigger).toHaveAttribute("data-variant", "ghost");
   await expect(resizeHandle).toBeFocused();
-  await expect(sidebarNavigation).toHaveAttribute("inert", "");
-  await expect(resizeHandle).toHaveAttribute("aria-valuemin", "224");
+  await expect(sidebarInner).toHaveAttribute("inert", "");
   await expect(resizeHandle).toHaveAttribute("aria-valuemax", "420");
-  await expect(resizeHandle).toHaveAttribute("aria-valuenow", "224");
+  await expect(resizeHandle).toHaveAttribute("aria-valuenow", "0");
+  await expect(resizeHandle).toHaveAttribute("aria-valuetext", "collapsed");
 
   const collapsedPanelBox = await contentPanel.boundingBox();
   const pageGridBox = await pageGrid.boundingBox();

@@ -14,7 +14,7 @@
 <GuideSection id="after" title="After the overwrite">
   <GuidePoints>
     <GuidePoint>The overwrite re-appends the CSS import block under the canonical `../components/…` prefix, so `scripts/fix-css-imports.mjs` runs chained onto it — a no-op in the canonical layout, the repair everywhere else.</GuidePoint>
-    <GuidePoint>Then `scripts/control-ui-doctor.mjs`: the same read-only audit as after the first install. [Verify](/doctor) before styling on top of it.</GuidePoint>
+    <GuidePoint>Then `scripts/control-ui-doctor.mjs`: the same read-only audit as after the first install. [Verify](/get-started#verify) before styling on top of it.</GuidePoint>
     <GuidePoint>The update also refreshes `.claude/skills/control-ui/SKILL.md`, the [agent skill](/agent-skill) installed with the set — so hand-edits there do not survive.</GuidePoint>
     <GuidePoint>Installed only a few items? Reinstall those items: `update` pulls the whole set.</GuidePoint>
     <GuidePoint>Refresh a stock skin too: `npx shadcn@latest add …/r/skin-<id>.json --overwrite`.</GuidePoint>

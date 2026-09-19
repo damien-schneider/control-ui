@@ -18,9 +18,9 @@ const BACKDROP_SHARE = 0.05;
 
 type GlyphRegion = { name: string; x: number; y: number; width: number; height: number; color: string; hasText: boolean };
 
-async function glyphRegions(toolbar: Locator): Promise<GlyphRegion[]> {
-  return toolbar.evaluate((toolbarElement) => {
-    const host = toolbarElement.getBoundingClientRect();
+async function glyphRegions(controls: Locator): Promise<GlyphRegion[]> {
+  return controls.evaluate((controlsElement) => {
+    const host = controlsElement.getBoundingClientRect();
 
     const isMeasurable = (element: Element): element is HTMLElement => {
       if (!(element instanceof HTMLElement) || element.offsetParent === null) return false;
@@ -48,7 +48,7 @@ async function glyphRegions(toolbar: Locator): Promise<GlyphRegion[]> {
     };
 
     const regions: GlyphRegion[] = [];
-    for (const element of toolbarElement.querySelectorAll("button, a")) {
+    for (const element of controlsElement.querySelectorAll("button, a")) {
       if (!isMeasurable(element)) continue;
       const glyphs = glyphsOf(element);
       if (glyphs.length === 0) continue;
@@ -72,26 +72,26 @@ async function glyphRegions(toolbar: Locator): Promise<GlyphRegion[]> {
   });
 }
 
-async function minimumContrasts(toolbar: Locator, regions: GlyphRegion[]): Promise<number[]> {
-  await toolbar.evaluate((toolbarElement) => {
-    for (const element of toolbarElement.querySelectorAll("button, a")) {
+async function minimumContrasts(controls: Locator, regions: GlyphRegion[]): Promise<number[]> {
+  await controls.evaluate((controlsElement) => {
+    for (const element of controlsElement.querySelectorAll("button, a")) {
       if (element instanceof HTMLElement) element.style.setProperty("color", "transparent", "important");
     }
-    for (const icon of toolbarElement.querySelectorAll("button svg, a svg")) {
+    for (const icon of controlsElement.querySelectorAll("button svg, a svg")) {
       if (icon instanceof SVGElement) icon.style.visibility = "hidden";
     }
   });
-  const shot = await toolbar.screenshot({ animations: "disabled" });
-  await toolbar.evaluate((toolbarElement) => {
-    for (const element of toolbarElement.querySelectorAll("button, a")) {
+  const shot = await controls.screenshot({ animations: "disabled" });
+  await controls.evaluate((controlsElement) => {
+    for (const element of controlsElement.querySelectorAll("button, a")) {
       if (element instanceof HTMLElement) element.style.removeProperty("color");
     }
-    for (const icon of toolbarElement.querySelectorAll("button svg, a svg")) {
+    for (const icon of controlsElement.querySelectorAll("button svg, a svg")) {
       if (icon instanceof SVGElement) icon.style.removeProperty("visibility");
     }
   });
 
-  return toolbar.page().evaluate(
+  return controls.page().evaluate(
     async ({ encoded, sampled, minimumShare }) => {
       const scale = window.devicePixelRatio;
       const image = new Image();
@@ -172,20 +172,20 @@ async function minimumContrasts(toolbar: Locator, regions: GlyphRegion[]): Promi
   );
 }
 
-test("floating toolbar controls keep rendered contrast across every skin and mode", async ({ page }) => {
+test("sidebar header controls keep rendered contrast across every skin and mode", async ({ page }) => {
   test.setTimeout(600_000);
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/theme-editor");
   await page.waitForLoadState("networkidle");
 
-  const toolbar = page.locator("[data-docs-floating-toolbar]");
+  const controls = page.locator('[data-control-ui="sidebar"][data-slot="header"]');
   const violations: string[] = [];
 
   for (const skin of SKINS) {
     await page.getByLabel("Choose a skin").getByRole("button", { name: skin.label, exact: true }).click();
     await page.mouse.move(0, 0);
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin.id);
-    await expect(toolbar).toHaveCSS("opacity", "1");
+    await expect(controls).toHaveCSS("opacity", "1");
 
     for (const mode of MODES) {
       await page.evaluate((activeMode) => {
@@ -195,9 +195,9 @@ test("floating toolbar controls keep rendered contrast across every skin and mod
 
       await page.waitForTimeout(400);
 
-      const regions = await glyphRegions(toolbar);
+      const regions = await glyphRegions(controls);
       expect(regions.length).toBeGreaterThan(0);
-      const ratios = await minimumContrasts(toolbar, regions);
+      const ratios = await minimumContrasts(controls, regions);
       regions.forEach((region, index) => {
         const threshold = region.hasText ? TEXT_THRESHOLD : ICON_THRESHOLD;
         if (ratios[index] < threshold) {

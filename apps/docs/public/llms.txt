@@ -8,9 +8,8 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 - [Create app](http://127.0.0.1:3000/create): Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.
 - [Install](http://127.0.0.1:3000/get-started): One command installs the complete set and its skin as source you own. The CSS entry is the only wiring you write.
-- [Verify](http://127.0.0.1:3000/doctor): The doctor audits what the registry cannot see from inside one install: imports that resolve, theme order, app blocks fighting the skin, and the data-skin stamp.
-- [Build a screen](http://127.0.0.1:3000/build-a-screen): Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - [Theme it](http://127.0.0.1:3000/theming): Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.
+- [Build a screen](http://127.0.0.1:3000/build-a-screen): Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.
 - [Create a skin](http://127.0.0.1:3000/create-a-skin): Re-value the token contract over an installed pack, or own a full pack of three files, then reach the component knobs beneath.
 - [Theme editor](http://127.0.0.1:3000/theme-editor): Choose a skin, edit its tokens, and preview your theme across the docs.
 - [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.

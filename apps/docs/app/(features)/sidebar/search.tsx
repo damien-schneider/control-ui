@@ -3,20 +3,58 @@
 import { Search01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { createContext, type ReactNode, use, useEffect, useState } from "react";
 import { StatusBadge } from "@/app/(features)/components/status";
-import type { SearchItem } from "@/app/(features)/model/types";
+import type { ActivePageId, SearchItem } from "@/app/(features)/model/types";
 import { matchSearchItems, scoreCommandSearchItem } from "@/app/(features)/registry-api/search";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/control-ui/ui/command";
+import type { SidebarMode } from "./types";
+import { useSidebarNavigation } from "./use-sidebar-navigation";
 
 function isTypingTarget(target: EventTarget | null) {
   if (!(target instanceof HTMLElement)) return false;
   return target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable;
 }
 
-export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNavigate: () => void }) {
+const DocsSearchContext = createContext<(() => void) | undefined>(undefined);
+
+export function DocsSearchTrigger() {
+  const openSearch = use(DocsSearchContext);
+  if (!openSearch) throw new Error("DocsSearchTrigger must render inside DocsSearchProvider.");
+
+  return (
+    <Button
+      variant="ghost"
+      size="sm"
+      iconOnly
+      aria-label="Search documentation"
+      title="Search documentation"
+      aria-keyshortcuts="Meta+K Control+K"
+      onClick={openSearch}
+      data-docs-sidebar-search=""
+    >
+      <HugeiconsIcon aria-hidden icon={Search01Icon} size={16} strokeWidth={1.7} />
+    </Button>
+  );
+}
+
+// The mobile sidebar unmounts with its sheet, so the dialog and its shortcut live in the shell instead of the header.
+export function DocsSearchProvider({
+  active,
+  items,
+  lastSectionMode,
+  onLastSectionModeChange,
+  children,
+}: {
+  active: ActivePageId;
+  items: SearchItem[];
+  lastSectionMode: SidebarMode | null;
+  onLastSectionModeChange: (mode: SidebarMode) => void;
+  children: ReactNode;
+}) {
+  const { onNavigate } = useSidebarNavigation({ active, searchItems: items, lastSectionMode, onLastSectionModeChange });
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -69,19 +107,8 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
   }
 
   return (
-    <>
-      <Button
-        variant="ghost"
-        size="sm"
-        iconOnly
-        aria-label="Search documentation"
-        title="Search documentation"
-        aria-keyshortcuts="Meta+K Control+K"
-        onClick={() => changeOpen(true)}
-        data-docs-sidebar-search=""
-      >
-        <HugeiconsIcon aria-hidden icon={Search01Icon} size={16} strokeWidth={1.7} />
-      </Button>
+    <DocsSearchContext value={() => setOpen(true)}>
+      {children}
       <CommandDialog
         open={open}
         onOpenChange={changeOpen}
@@ -107,6 +134,6 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
           )}
         </CommandList>
       </CommandDialog>
-    </>
+    </DocsSearchContext>
   );
 }

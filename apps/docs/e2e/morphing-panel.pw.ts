@@ -1,8 +1,7 @@
 import { expect, type Locator, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-// The docs shell's floating toolbar is a morphing panel too, so every lookup here scopes to the example on the page.
-const EXAMPLE_PANEL = '[data-control-ui="morphing-panel"][data-slot="root"]:not([data-docs-floating-panel])';
+const EXAMPLE_PANEL = '[data-control-ui="morphing-panel"][data-slot="root"]';
 
 async function expectSize(locator: Locator, width: number, height: number) {
   await expect

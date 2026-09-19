@@ -3,11 +3,10 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { CodeBlock } from "@/app/(features)/components/source";
-import { SetupPromptCopyButton } from "@/app/(features)/create/agent-setup";
 import { guideCodeForKind } from "@/app/(features)/model/registry";
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
-import { Card, CardDescription } from "@/components/control-ui/ui/card";
+import { Card } from "@/components/control-ui/ui/card";
 
 type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
 export type GuideCodeMdxProps = { kind: GuideCodeKind; lang?: string };
@@ -38,17 +37,40 @@ export function GuideSection({ id, title, children }: { id: string; title: strin
   );
 }
 
-export function AgentShortcut() {
+const installPaths = {
+  agent: {
+    label: "With an agent",
+    href: "/setup-prompt",
+    description:
+      "Hand the install to the coding agent already open in your project. One prompt reads the repository, installs from the registry, wires the CSS, runs the doctor, and designs the theme with you.",
+  },
+  manual: {
+    label: "By hand",
+    href: "/get-started",
+    description: "Run the install yourself: one command copies the source, then you wire the CSS entry and verify the result.",
+  },
+} as const;
+
+export type InstallPathId = keyof typeof installPaths;
+
+export function InstallPaths({ current }: { current: InstallPathId }) {
   return (
-    <Card className="max-w-2xl flex-row flex-wrap items-center gap-x-4 gap-y-3 px-4 py-3">
-      <CardDescription className="min-w-0 flex-1">Your agent can run all four steps from one prompt.</CardDescription>
-      <div className="flex shrink-0 items-center gap-3">
-        <SetupPromptCopyButton />
-        <Link href="/setup-prompt" className="text-label underline decoration-border underline-offset-4 hover:text-foreground">
-          What it does
-        </Link>
-      </div>
-    </Card>
+    <nav aria-label="Install path" className="max-w-2xl">
+      <ul className="flex flex-wrap items-end gap-6 border-border/70 border-b">
+        {Object.entries(installPaths).map(([id, path]) => (
+          <li key={id}>
+            <Link
+              href={path.href}
+              aria-current={id === current ? "page" : undefined}
+              className="-mb-px block border-transparent border-b-2 pb-2 font-display text-heading-3 text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:border-primary aria-[current=page]:text-foreground"
+            >
+              {path.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-body leading-6 text-muted-foreground">{installPaths[current].description}</p>
+    </nav>
   );
 }
 

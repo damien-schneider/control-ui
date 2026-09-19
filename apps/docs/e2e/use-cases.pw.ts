@@ -9,9 +9,11 @@ test("Blocks owns block browsing and canonical detail routes", async ({ page }) 
   await expect(page.getByText("Agents", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Templates", { exact: true })).toHaveCount(0);
 
-  await catalogs.getByRole("link", { name: "Blocks" }).click();
+  const sidebar = page.locator("[data-docs-sidebar-navigation]");
+  await sidebar.getByRole("button", { name: "Templates & patterns" }).click();
+  await sidebar.getByRole("link", { name: "Overview" }).click();
   await expect(page).toHaveURL("/use-cases");
-  await expect(page.getByRole("heading", { name: "Blocks", level: 1 })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Templates & patterns", level: 1 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Templates", level: 2 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Patterns", level: 2 })).toBeVisible();
   await expect(page.locator('[data-use-case-kind="template"]')).toHaveCount(4);
@@ -27,7 +29,7 @@ test("Blocks owns block browsing and canonical detail routes", async ({ page }) 
   await expect(page).toHaveURL("/use-cases/coding-agent");
 });
 
-test("Blocks stays single-column and toolbar-safe on mobile", async ({ page }) => {
+test("Blocks stays single-column on mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/use-cases");
 
@@ -35,22 +37,10 @@ test("Blocks stays single-column and toolbar-safe on mobile", async ({ page }) =
   await expect(sidebarTrigger).toBeVisible();
   await sidebarTrigger.click();
 
-  const catalogs = page.getByRole("navigation", { name: "Catalogs" });
-  await expect(catalogs).toBeVisible();
-  for (const name of ["Components", "Blocks", "Primitives", "Practices"]) {
-    await expect(catalogs.getByRole("link", { name })).toHaveCount(1);
-  }
-
+  const sidebar = page.locator("[data-docs-sidebar-navigation]");
+  await expect(sidebar.getByRole("link", { name: "Overview" })).toBeVisible();
   await page.keyboard.press("Escape");
-  await expect(catalogs).toBeHidden();
-
-  const toolbar = page.locator("[data-docs-floating-toolbar]");
-  await expect(toolbar).toBeVisible();
-  await expect(toolbar.getByRole("navigation")).toHaveCount(0);
-  const toolbarBox = await toolbar.boundingBox();
-  expect(toolbarBox).not.toBeNull();
-  expect(toolbarBox?.x ?? -1).toBeGreaterThanOrEqual(0);
-  expect((toolbarBox?.x ?? 0) + (toolbarBox?.width ?? 391)).toBeLessThanOrEqual(390);
+  await expect(sidebar).toBeHidden();
 
   const templateCards = page.locator('[data-use-case-kind="template"]');
   const firstTwoBoxes = await Promise.all([templateCards.nth(0).boundingBox(), templateCards.nth(1).boundingBox()]);

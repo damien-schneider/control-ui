@@ -1,6 +1,6 @@
 "use client";
 
-import { GithubIcon, PlusSignIcon, StarIcon } from "@hugeicons/core-free-icons";
+import { CustomizeIcon, GithubIcon, PlusSignIcon, StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
@@ -20,6 +20,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/control-ui/ui/sidebar";
+import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { primitiveCategorySidebarIcons, sidebarDoors, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
@@ -36,6 +37,7 @@ import {
   sidebarPaneForActivePage,
   utilNavItems,
 } from "./nav-items";
+import { DocsSearchTrigger } from "./search";
 import { SidebarSetupControls, type SidebarSetupControlsScope } from "./setup-controls";
 import { StartCard } from "./start-card";
 import type { DocsSidebarContentProps, SidebarDoorId, SidebarMode, SidebarPane } from "./types";
@@ -62,7 +64,8 @@ function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; act
       render={<Link href={`/${cta.id}`} onClick={onNavigate} aria-current={active === cta.id ? "page" : undefined} />}
       variant="solid"
       tone="primary"
-      size="xs"
+      size="sm"
+      className="w-full"
     >
       <HugeiconsIcon aria-hidden icon={PlusSignIcon} strokeWidth={2} />
       {cta.name}
@@ -191,7 +194,6 @@ export function DocsSidebarContent({
       : `Control UI on GitHub, ${formattedGitHubStars} ${githubStars === 1 ? "star" : "stars"}`;
   const guideSections = guideNavSections(guides);
   const startGroup = guideSections.top.find((group) => group.id === "start");
-  const agentGroup = guideSections.top.find((group) => group.id === "agents");
   const activePane = sidebarPaneForActivePage(active, searchItems, guideSections.reference);
   const [paneChoice, setPaneChoice] = useState<{ page: ActivePageId; pane: SidebarPane } | null>(null);
   const paneOverride = paneChoice?.page === active ? paneChoice.pane : null;
@@ -205,7 +207,7 @@ export function DocsSidebarContent({
   return (
     <Sidebar collapsible="offcanvas" className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0">
       <div data-docs-sidebar-navigation="" className="flex min-h-0 flex-1 flex-col">
-        <SidebarHeader>
+        <SidebarHeader className="gap-2">
           <div className="flex items-center justify-between gap-2">
             <div className="relative flex min-w-0 items-center gap-1.5">
               <ControlUiLogo />
@@ -216,10 +218,23 @@ export function DocsSidebarContent({
                 alpha
               </Badge>
             </div>
-            <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
+            <DocsSearchTrigger />
+          </div>
+          <div className="flex items-center gap-1.5">
+            <SkinPresetControls className="min-w-0 flex-1 justify-between" />
+            <ButtonLink
+              render={<Link href="/theme-editor" onClick={onNavigate} />}
+              variant="surface"
+              size="sm"
+              iconOnly
+              aria-label="Edit theme"
+              title="Edit theme"
+              aria-current={active === "theme-editor" ? "page" : undefined}
+            >
+              <HugeiconsIcon aria-hidden icon={CustomizeIcon} size={16} strokeWidth={1.7} />
+            </ButtonLink>
           </div>
         </SidebarHeader>
-        <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
         <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
 
         <SidebarContent>
@@ -251,10 +266,9 @@ export function DocsSidebarContent({
                 paneOverride && "animate-[docs-pane-in-left_var(--duration-base)_var(--ease-standard)]",
               )}
             >
-              {startGroup && agentGroup ? (
-                <StartCard steps={startGroup} agent={agentGroup} active={active} onNavigate={onNavigate} />
-              ) : null}
+              {startGroup ? <StartCard steps={startGroup} active={active} onNavigate={onNavigate} /> : null}
               <SidebarDoorMenu doors={sidebarDoors} activeDoorId={activePane === "root" ? null : activePane} onOpen={choosePane} />
+              <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
               <CatalogNavGroups
                 mode={mode}
                 active={active}
@@ -271,6 +285,7 @@ export function DocsSidebarContent({
 
         <SidebarFooter>
           <div className="grid gap-2">
+            <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton

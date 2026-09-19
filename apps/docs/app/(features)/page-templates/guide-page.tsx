@@ -22,7 +22,6 @@ import ContractVersionsContent from "@/content/guides/contract-versions.mdx";
 import ControlUiVsShadcnUiContent from "@/content/guides/control-ui-vs-shadcn-ui.mdx";
 import CreateContent from "@/content/guides/create.mdx";
 import CreateASkinContent from "@/content/guides/create-a-skin.mdx";
-import DoctorContent from "@/content/guides/doctor.mdx";
 import GetStartedContent from "@/content/guides/get-started.mdx";
 import LockInContent from "@/content/guides/lock-in.mdx";
 import OverviewContent from "@/content/guides/overview.mdx";
@@ -31,7 +30,7 @@ import ShadcnCompatibilityContent from "@/content/guides/shadcn-compatibility.md
 import ThemingContent from "@/content/guides/theming.mdx";
 import UpdateContent from "@/content/guides/update.mdx";
 import { ArchitectureLayers, CustomizationLadder, RegistryPipeline, SkinFileStack, SkinResolutionMap } from "./architecture-visuals";
-import { AgentShortcut, GuideCheck, GuideCode, type GuideCodeMdxProps, GuidePoint, GuidePoints, GuideSection } from "./guide-code";
+import { GuideCheck, GuideCode, type GuideCodeMdxProps, GuidePoint, GuidePoints, GuideSection, InstallPaths } from "./guide-code";
 import { AgentSurfaceMap, CompatibilityBridge, CssFirstDecisionMap } from "./guide-maps";
 import { OpenInAgent } from "./open-in-agent";
 
@@ -41,7 +40,6 @@ const guideContent: Partial<Record<GuideId, GuideContent>> = {
   create: CreateContent,
   overview: OverviewContent,
   "get-started": GetStartedContent,
-  doctor: DoctorContent,
   "build-a-screen": BuildAScreenContent,
   theming: ThemingContent,
   update: UpdateContent,
@@ -68,7 +66,7 @@ function GuideMdxCode(props: GuideCodeMdxProps) {
 const guideComponents = {
   AgentSetup,
   CreateCommand,
-  AgentShortcut,
+  InstallPaths,
   GuideCheck,
   GuideCode: GuideMdxCode,
   GuidePoint,

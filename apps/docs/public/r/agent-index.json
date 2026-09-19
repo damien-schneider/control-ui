@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 178,
+    "count": 177,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -120,11 +120,11 @@
         "href": "/get-started"
       },
       {
-        "id": "doctor",
-        "name": "Verify",
+        "id": "theming",
+        "name": "Theme it",
         "kind": "Guide",
-        "summary": "The doctor audits what the registry cannot see from inside one install: imports that resolve, theme order, app blocks fighting the skin, and the data-skin stamp.",
-        "href": "/doctor"
+        "summary": "Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.",
+        "href": "/theming"
       },
       {
         "id": "build-a-screen",
@@ -132,13 +132,6 @@
         "kind": "Guide",
         "summary": "Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.",
         "href": "/build-a-screen"
-      },
-      {
-        "id": "theming",
-        "name": "Theme it",
-        "kind": "Guide",
-        "summary": "Pick the pack, re-value the token contract in one artifact, and check the contrast the components actually paint.",
-        "href": "/theming"
       },
       {
         "id": "create-a-skin",

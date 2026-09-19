@@ -19,7 +19,7 @@ type GuideSectionCatalogEntry = {
 
 export const guideGroups = [
   { id: "start", title: "Start" },
-  { id: "agents", title: "With your agent" },
+  { id: "agents", title: "With your agent", parent: "reference" },
   { id: "theme", title: "Theme", parent: "reference" },
   { id: "maintain", title: "Maintain", parent: "reference" },
   { id: "why", title: "Why Control UI", parent: "reference" },
@@ -59,35 +59,9 @@ export const guideEntries = [
       { id: "install", title: "Install the set and its skin", code: "all-install" },
       { id: "items", title: "Install one item at a time", code: "component-install" },
       { id: "wire-css", title: "Wire the CSS" },
+      { id: "verify", title: "Verify the install" },
       { id: "contract", title: "The contract" },
       { id: "package", title: "Or install the package" },
-    ],
-  },
-  {
-    id: "doctor",
-    kind: "Guide",
-    group: "start",
-    name: "Verify",
-    summary:
-      "The doctor audits what the registry cannot see from inside one install: imports that resolve, theme order, app blocks fighting the skin, and the data-skin stamp.",
-    sections: [
-      { id: "run", title: "Run the doctor" },
-      { id: "clean", title: "What a clean install looks like" },
-      { id: "reports", title: "What it reports" },
-      { id: "flags", title: "Two flags beyond the wiring audit" },
-      { id: "contract", title: "The contract" },
-    ],
-  },
-  {
-    id: "build-a-screen",
-    kind: "Guide",
-    group: "start",
-    name: "Build a screen",
-    summary: "Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.",
-    sections: [
-      { id: "compose", title: "Compose your runtime", code: "component-usage" },
-      { id: "props", title: "One prop convention" },
-      { id: "contract", title: "The contract" },
     ],
   },
   {
@@ -101,6 +75,18 @@ export const guideEntries = [
       { id: "artifact", title: "One artifact owns the theme" },
       { id: "contrast", title: "Contrast is part of the theme" },
       { id: "deeper", title: "Go deeper" },
+    ],
+  },
+  {
+    id: "build-a-screen",
+    kind: "Guide",
+    group: "start",
+    name: "Build a screen",
+    summary: "Render provider-owned messages with plain props and children. No intermediary message schema, no runtime coupling.",
+    sections: [
+      { id: "compose", title: "Compose your runtime", code: "component-usage" },
+      { id: "props", title: "One prop convention" },
+      { id: "contract", title: "The contract" },
     ],
   },
   {

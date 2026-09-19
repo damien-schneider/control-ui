@@ -8,7 +8,7 @@ import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import type { ActivePageId, DocsShellData, IntegrationId, SearchItem, SetupPreferenceUpdate } from "@/app/(features)/model/types";
 import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/routed-page";
 import { buildSearchItems } from "@/app/(features)/registry-api/search";
-import { DocsFloatingToolbar } from "@/app/(features)/sidebar/floating-toolbar";
+import { DocsSearchProvider } from "@/app/(features)/sidebar/search";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import type { SidebarMode } from "@/app/(features)/sidebar/types";
 import { readStoredSidebarWidth, writeStoredSidebarWidth } from "@/app/(features)/sidebar/width";
@@ -217,58 +217,59 @@ function DocsShellContent({
       width={sidebarWidth}
       onWidthChange={onSidebarWidthChange}
     >
-      <DocsSidebarContent
+      <DocsSearchProvider
         active={activePage}
-        githubStars={githubStars}
-        guides={guides}
-        skills={skills}
-        skillConcerns={skillConcerns}
-        components={components}
-        blocks={blocks}
-        primitives={primitives}
-        hooks={hooks}
-        utils={utils}
-        extensions={extensions}
-        skinPages={skinPages}
-        searchItems={searchItems}
-        integration={integration}
+        items={searchItems}
         lastSectionMode={lastSidebarMode}
         onLastSectionModeChange={onLastSidebarModeChange}
-        updateSetupPreference={updateSetupPreference}
-      />
-      <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
-        <div
-          data-docs-content=""
-          data-control-ui="sidebar-layout"
-          data-control-family="sidebar-layout"
-          data-slot="content"
-          data-surface="panel"
-          className={cn("relative flex min-h-0 flex-1 flex-col", !usesPageLayout && "overflow-hidden")}
-        >
-          <div
-            data-docs-sidebar-trigger=""
-            className={cn(
-              "pointer-events-none inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex",
-              usesPageLayout ? "fixed" : "absolute",
-            )}
-          >
-            <SidebarTrigger className="pointer-events-auto" />
-          </div>
-          {usesPageLayout ? (
-            pageGrid
-          ) : (
-            <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
-              {pageGrid}
-            </ScrollArea>
-          )}
-        </div>
-        <DocsFloatingToolbar
+      >
+        <DocsSidebarContent
           active={activePage}
+          githubStars={githubStars}
+          guides={guides}
+          skills={skills}
+          skillConcerns={skillConcerns}
+          components={components}
+          blocks={blocks}
+          primitives={primitives}
+          hooks={hooks}
+          utils={utils}
+          extensions={extensions}
+          skinPages={skinPages}
           searchItems={searchItems}
+          integration={integration}
           lastSectionMode={lastSidebarMode}
           onLastSectionModeChange={onLastSidebarModeChange}
+          updateSetupPreference={updateSetupPreference}
         />
-      </SidebarInset>
+        <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
+          <div
+            data-docs-content=""
+            data-control-ui="sidebar-layout"
+            data-control-family="sidebar-layout"
+            data-slot="content"
+            data-surface="panel"
+            className={cn("relative flex min-h-0 flex-1 flex-col", !usesPageLayout && "overflow-hidden")}
+          >
+            <div
+              data-docs-sidebar-trigger=""
+              className={cn(
+                "pointer-events-none inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex",
+                usesPageLayout ? "fixed" : "absolute",
+              )}
+            >
+              <SidebarTrigger className="pointer-events-auto" />
+            </div>
+            {usesPageLayout ? (
+              pageGrid
+            ) : (
+              <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
+                {pageGrid}
+              </ScrollArea>
+            )}
+          </div>
+        </SidebarInset>
+      </DocsSearchProvider>
     </SidebarProvider>
   );
 }
