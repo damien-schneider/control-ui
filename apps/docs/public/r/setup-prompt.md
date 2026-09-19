@@ -113,4 +113,4 @@ Apply it
 - Every app this run installed into gets the same theme this same way. One app themed while another rests on the raw reset is the bug, not a smaller scope.
 - Reload and confirm a changed token paints — a radius, the primary — before you call it applied.
 
-When finished, tell me the artifact path and where each app imports its CSS. To review the result myself, I import the artifact at http://127.0.0.1:3000/theme-ai-builder and check it at http://127.0.0.1:3000/theme-accessibility.
+When finished, tell me the artifact path and where each app imports its CSS. To review the result myself, I check the active theme at http://127.0.0.1:3000/theme-accessibility.

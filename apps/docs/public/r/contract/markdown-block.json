@@ -25,6 +25,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-markdown-block-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-markdown-block-shadow",
       "syntax": "*",
       "initialValue": "",
@@ -35,6 +41,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-markdown-block-header-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
     },
     {
       "name": "--cui-markdown-block-icon-background",

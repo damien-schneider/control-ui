@@ -25,6 +25,12 @@
       "defaultValue": "var(--control-rim)"
     },
     {
+      "name": "--cui-code-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-code-shadow",
       "syntax": "*",
       "initialValue": "",

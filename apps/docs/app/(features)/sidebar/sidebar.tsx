@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { ControlUiLogo } from "@/app/(features)/brand/control-ui-logo";
 import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
-import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import {
@@ -22,38 +21,23 @@ import {
 } from "@/components/control-ui/ui/sidebar";
 import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
-import { primitiveCategorySidebarIcons, sidebarDoors, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
-import { SidebarModeSelector } from "./mode-selector";
+import { catalogNavGroupIcons, sidebarDoors, themeEditorDoor, useCaseKindSidebarIcons } from "./icons";
 import { DocsNavGroup, SidebarDoorMenu, SidebarDoorPane, SkillConcernNavGroups } from "./nav-groups";
 import {
-  agentNavItems,
+  catalogNavGroups,
   ctaGuide,
-  extensionNavItems,
   type GuideNavGroup,
   getUseCaseNavGroups,
   guideNavSections,
-  hookNavItems,
-  primitiveNavGroups,
   sidebarPaneForActivePage,
-  utilNavItems,
 } from "./nav-items";
 import { DocsSearchTrigger } from "./search";
-import { SidebarSetupControls, type SidebarSetupControlsScope } from "./setup-controls";
 import { StartCard } from "./start-card";
-import type { DocsSidebarContentProps, SidebarDoorId, SidebarMode, SidebarPane } from "./types";
-import { useSidebarNavigation } from "./use-sidebar-navigation";
-
-function setupControlsScopeForKind(kind: string | undefined): SidebarSetupControlsScope {
-  if (kind === "Agent") return "ai";
-  return "none";
-}
+import { ThemeCategoryNav } from "./theme-category-nav";
+import type { DocsSidebarContentProps, SidebarDoorId } from "./types";
+import { useCloseMobileSidebar } from "./use-close-mobile-sidebar";
 
 const githubStarsFormatter = new Intl.NumberFormat("en-US");
-
-type DocsSidebarProps = DocsSidebarContentProps & {
-  lastSectionMode: SidebarMode | null;
-  onLastSectionModeChange: (mode: SidebarMode) => void;
-};
 
 function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; active: ActivePageId; onNavigate: () => void }) {
   const cta = ctaGuide(guides);
@@ -70,66 +54,6 @@ function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; act
       <HugeiconsIcon aria-hidden icon={PlusSignIcon} strokeWidth={2} />
       {cta.name}
     </ButtonLink>
-  );
-}
-
-type CatalogNavGroupsProps = Pick<DocsSidebarContentProps, "components" | "primitives" | "hooks" | "utils" | "extensions"> & {
-  mode: SidebarMode;
-  active: ActivePageId;
-  onNavigate: () => void;
-};
-
-function CatalogNavGroups({ mode, active, onNavigate, components, primitives, hooks, utils, extensions }: CatalogNavGroupsProps) {
-  if (mode === "agents")
-    return (
-      <DocsNavGroup
-        title="Agents"
-        icon={sidebarGroupIcons.agents}
-        items={agentNavItems(components)}
-        active={active}
-        prefix="/ai/"
-        onNavigate={onNavigate}
-      />
-    );
-
-  return (
-    <>
-      {primitiveNavGroups(primitives).map((group) => (
-        <DocsNavGroup
-          key={group.id}
-          title={group.title}
-          icon={primitiveCategorySidebarIcons[group.id]}
-          items={group.items}
-          active={active}
-          prefix="/primitives/"
-          onNavigate={onNavigate}
-        />
-      ))}
-      <DocsNavGroup
-        title="Hooks"
-        icon={sidebarGroupIcons.hooks}
-        items={hookNavItems(hooks)}
-        active={active}
-        prefix="/hooks/"
-        onNavigate={onNavigate}
-      />
-      <DocsNavGroup
-        title="Utils"
-        icon={sidebarGroupIcons.utils}
-        items={utilNavItems(utils)}
-        active={active}
-        prefix="/utils/"
-        onNavigate={onNavigate}
-      />
-      <DocsNavGroup
-        title="Extensions"
-        icon={sidebarGroupIcons.extensions}
-        items={extensionNavItems(extensions)}
-        active={active}
-        prefix="/extensions/"
-        onNavigate={onNavigate}
-      />
-    </>
   );
 }
 
@@ -157,8 +81,29 @@ function DoorNavGroups({ doorId, referenceGroups, blocks, skills, skillConcerns,
   if (doorId === "practices")
     return <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />;
 
+  if (doorId === "theme-editor") return <ThemeCategoryNav onNavigate={onNavigate} />;
+
   return referenceGroups.map((group) => (
     <DocsNavGroup key={group.id} title={group.title} items={group.items} active={active} prefix="/" onNavigate={onNavigate} />
+  ));
+}
+
+type CatalogNavGroupsProps = Pick<DocsSidebarContentProps, "components" | "primitives" | "hooks" | "utils" | "extensions"> & {
+  active: ActivePageId;
+  onNavigate: () => void;
+};
+
+function CatalogNavGroups({ active, onNavigate, ...catalog }: CatalogNavGroupsProps) {
+  return catalogNavGroups(catalog).map((group) => (
+    <DocsNavGroup
+      key={group.id}
+      title={group.title}
+      icon={catalogNavGroupIcons[group.id]}
+      items={group.items}
+      active={active}
+      prefix={group.prefix}
+      onNavigate={onNavigate}
+    />
   ));
 }
 
@@ -175,18 +120,8 @@ export function DocsSidebarContent({
   utils,
   extensions,
   searchItems,
-  integration,
-  lastSectionMode,
-  onLastSectionModeChange,
-  updateSetupPreference,
-}: DocsSidebarProps) {
-  const { activeItem, mode, modeHrefs, closeMobile, onNavigate, onModeNavigate } = useSidebarNavigation({
-    active,
-    searchItems,
-    lastSectionMode,
-    onLastSectionModeChange,
-  });
-  const setupControlsScope = setupControlsScopeForKind(activeItem?.kind);
+}: DocsSidebarContentProps) {
+  const closeSidebar = useCloseMobileSidebar();
   const formattedGitHubStars = githubStars == null ? null : githubStarsFormatter.format(githubStars);
   const githubLinkLabel =
     formattedGitHubStars == null
@@ -194,15 +129,9 @@ export function DocsSidebarContent({
       : `Control UI on GitHub, ${formattedGitHubStars} ${githubStars === 1 ? "star" : "stars"}`;
   const guideSections = guideNavSections(guides);
   const startGroup = guideSections.top.find((group) => group.id === "start");
-  const activePane = sidebarPaneForActivePage(active, searchItems, guideSections.reference);
-  const [paneChoice, setPaneChoice] = useState<{ page: ActivePageId; pane: SidebarPane } | null>(null);
-  const paneOverride = paneChoice?.page === active ? paneChoice.pane : null;
-  const pane = paneOverride ?? activePane;
-  const openDoor = sidebarDoors.find((door) => door.id === pane);
-
-  function choosePane(nextPane: SidebarPane) {
-    setPaneChoice({ page: active, pane: nextPane });
-  }
+  const pane = sidebarPaneForActivePage(active, searchItems, guideSections.reference);
+  const [rootPaneOnPage, setRootPaneOnPage] = useState<ActivePageId | null>(null);
+  const openDoor = rootPaneOnPage === active ? undefined : [...sidebarDoors, themeEditorDoor].find((door) => door.id === pane);
 
   return (
     <Sidebar collapsible="offcanvas" className="group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0">
@@ -220,10 +149,10 @@ export function DocsSidebarContent({
             </div>
             <DocsSearchTrigger />
           </div>
-          <div className="flex items-center gap-1.5">
+          <div role="toolbar" aria-label="Documentation controls" className="flex items-center gap-1.5">
             <SkinPresetControls className="min-w-0 flex-1 justify-between" />
             <ButtonLink
-              render={<Link href="/theme-editor" onClick={onNavigate} />}
+              render={<Link href="/theme-editor" onClick={closeSidebar} />}
               variant="surface"
               size="sm"
               iconOnly
@@ -235,57 +164,39 @@ export function DocsSidebarContent({
             </ButtonLink>
           </div>
         </SidebarHeader>
-        <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
-
         <SidebarContent>
           {openDoor ? (
-            <div
-              key={openDoor.id}
-              className={cn(
-                "flex min-h-0 flex-col gap-2",
-                paneOverride && "animate-[docs-pane-in-right_var(--duration-base)_var(--ease-standard)]",
-              )}
-            >
-              <SidebarDoorPane door={openDoor} active={active} onNavigate={onNavigate} onBack={() => choosePane("root")}>
-                <DoorNavGroups
-                  doorId={openDoor.id}
-                  referenceGroups={guideSections.reference}
-                  blocks={blocks}
-                  skills={skills}
-                  skillConcerns={skillConcerns}
-                  active={active}
-                  onNavigate={onNavigate}
-                />
-              </SidebarDoorPane>
-            </div>
-          ) : (
-            <div
-              key="root"
-              className={cn(
-                "flex min-h-0 flex-col gap-2",
-                paneOverride && "animate-[docs-pane-in-left_var(--duration-base)_var(--ease-standard)]",
-              )}
-            >
-              {startGroup ? <StartCard steps={startGroup} active={active} onNavigate={onNavigate} /> : null}
-              <SidebarDoorMenu doors={sidebarDoors} activeDoorId={activePane === "root" ? null : activePane} onOpen={choosePane} />
-              <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
-              <CatalogNavGroups
-                mode={mode}
+            <SidebarDoorPane door={openDoor} active={active} onNavigate={closeSidebar} onBack={() => setRootPaneOnPage(active)}>
+              <DoorNavGroups
+                doorId={openDoor.id}
+                referenceGroups={guideSections.reference}
+                blocks={blocks}
+                skills={skills}
+                skillConcerns={skillConcerns}
                 active={active}
-                onNavigate={onNavigate}
+                onNavigate={closeSidebar}
+              />
+            </SidebarDoorPane>
+          ) : (
+            <>
+              {startGroup ? <StartCard steps={startGroup} active={active} onNavigate={closeSidebar} /> : null}
+              <SidebarDoorMenu doors={sidebarDoors} onNavigate={closeSidebar} />
+              <CatalogNavGroups
+                active={active}
+                onNavigate={closeSidebar}
                 components={components}
                 primitives={primitives}
                 hooks={hooks}
                 utils={utils}
                 extensions={extensions}
               />
-            </div>
+            </>
           )}
         </SidebarContent>
 
         <SidebarFooter>
           <div className="grid gap-2">
-            <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
+            <GuideCtaLink guides={guides} active={active} onNavigate={closeSidebar} />
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
@@ -295,7 +206,7 @@ export function DocsSidebarContent({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={githubLinkLabel}
-                      onClick={closeMobile}
+                      onClick={closeSidebar}
                     />
                   }
                   size="sm"

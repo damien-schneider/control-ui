@@ -2,6 +2,7 @@
   :where([data-control-family="user-ask"][data-slot="root"]) {
     --cui-user-ask-background: oklch(from var(--card) l c h / 0.9);
     --cui-user-ask-border-color: var(--border);
+    --cui-user-ask-border-width: 1px;
     --cui-user-ask-foreground: var(--foreground);
     --cui-user-ask-radius: var(--radius-field);
     --cui-user-ask-shadow: var(--shadow-md);
@@ -12,7 +13,7 @@
     --cui-user-ask-option-hover-background: oklch(from var(--muted) l c h / 0.5);
     --cui-user-ask-option-radius: var(--radius-popup-item);
     --cui-user-ask-option-selected-background: oklch(from var(--muted) l c h / 0.7);
-    border: 1px solid var(--cui-user-ask-border-color);
+    border: var(--cui-user-ask-border-width) solid var(--cui-user-ask-border-color);
     border-radius: var(--cui-user-ask-radius);
     background: var(--cui-user-ask-background);
     color: var(--cui-user-ask-foreground);
@@ -151,6 +152,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-user-ask-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-user-ask-shadow {

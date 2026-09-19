@@ -44,7 +44,17 @@
         "registryItems": [
           "kbd"
         ],
-        "states": []
+        "states": [
+          {
+            "attribute": "data-variant",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "default",
+              "ghost"
+            ]
+          }
+        ]
       },
       "group": {
         "family": "kbd",

@@ -6,6 +6,7 @@ export const chatComposerKnobs = [
   "--cui-chat-composer-shell-background-image",
   "--cui-chat-composer-shell-backdrop-filter",
   "--cui-chat-composer-shell-border-color",
+  "--cui-chat-composer-shell-border-width",
   "--cui-chat-composer-shell-shadow",
   "--cui-chat-composer-input-foreground",
   "--cui-chat-composer-input-placeholder-foreground",

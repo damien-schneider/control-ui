@@ -6,6 +6,7 @@
     --cui-inline-citation-quote-radius: var(--radius-control);
     --cui-inline-citation-trigger-background: oklch(from var(--muted) l c h / 0.55);
     --cui-inline-citation-trigger-border-color: var(--border);
+    --cui-inline-citation-trigger-border-width: 1px;
     --cui-inline-citation-trigger-foreground: var(--muted-foreground);
     --cui-inline-citation-trigger-hover-background: var(--muted);
     --cui-inline-citation-trigger-hover-foreground: var(--foreground);
@@ -17,7 +18,7 @@
     max-inline-size: calc(var(--spacing) * 52);
     gap: calc(var(--spacing) * 1.5);
     padding-inline: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
-    border: 1px solid var(--cui-inline-citation-trigger-border-color);
+    border: var(--cui-inline-citation-trigger-border-width) solid var(--cui-inline-citation-trigger-border-color);
     border-radius: var(--cui-inline-citation-trigger-radius);
     background: var(--cui-inline-citation-trigger-background);
     color: var(--cui-inline-citation-trigger-foreground);
@@ -138,6 +139,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-inline-citation-trigger-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-inline-citation-trigger-hover-background {

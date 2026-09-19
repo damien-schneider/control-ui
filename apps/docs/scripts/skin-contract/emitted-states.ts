@@ -28,6 +28,7 @@ import type {
 } from "../../src/registry/sources/control-ui/ui/drawer";
 import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/control-ui/ui/dropdown-menu";
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
+import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
 import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
 import type { ProgressiveBlurSide } from "../../src/registry/sources/control-ui/ui/progressive-blur";
@@ -152,6 +153,7 @@ export type EmittedStateContract = {
   "input:root:data-size": ControlSize;
   "input-group:root:data-size": ControlSize;
   "item:root:data-variant": "default" | "outline" | "muted";
+  "kbd:root:data-variant": KbdVariant;
   "context-menu:item:data-inset": true;
   "context-menu:label:data-inset": true;
   "context-menu:sub-trigger:data-inset": true;

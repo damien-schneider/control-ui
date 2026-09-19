@@ -175,17 +175,3 @@
     border-radius: inherit;
   }
 }
-
-@keyframes docs-pane-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-1.25rem);
-  }
-}
-
-@keyframes docs-pane-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(1.25rem);
-  }
-}

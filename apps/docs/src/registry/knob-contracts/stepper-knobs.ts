@@ -4,6 +4,7 @@ export const stepperKnobs = [
   "--cui-stepper-indicator-background",
   "--cui-stepper-indicator-foreground",
   "--cui-stepper-indicator-border-color",
+  "--cui-stepper-indicator-border-width",
   "--cui-stepper-separator-background",
   "--cui-stepper-title-foreground",
 ] as const;

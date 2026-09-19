@@ -108,20 +108,8 @@ export const guideEntries = [
     kind: "Guide",
     group: "theme",
     name: "Theme editor",
-    summary: "Choose a skin, edit its tokens, and preview your theme across the docs.",
-    layout: "wide",
-    sections: [
-      { id: "theme-skin", title: "Choose a skin" },
-      { id: "theme-tokens", title: "Edit tokens" },
-    ],
-  },
-  {
-    id: "theme-ai-builder",
-    kind: "Guide",
-    group: "theme",
-    name: "Theme AI builder",
-    summary: "Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.",
-    layout: "wide",
+    summary: "Edit theme tokens category by category and watch real components repaint as you go.",
+    layout: "workspace",
     sections: [],
   },
   {
@@ -348,7 +336,7 @@ export const guideEntries = [
   group: GuideGroupId;
   name: string;
   summary: string;
-  layout?: "default" | "wide";
+  layout?: "default" | "wide" | "workspace";
   cta?: true;
   sections: readonly GuideSectionCatalogEntry[];
   comparedApplications?: readonly { name: string; url: string }[];

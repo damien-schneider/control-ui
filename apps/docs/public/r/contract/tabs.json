@@ -71,6 +71,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-tabs-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
     }
   ],
   "parts": {

@@ -20,6 +20,14 @@
     font-weight: var(--font-weight-medium);
   }
 
+  :where([data-control-family="kbd"][data-slot="root"][data-variant="ghost"]) {
+    min-inline-size: 0;
+    padding-inline: 0;
+    --cui-kbd-background: transparent;
+    --cui-kbd-border-color: transparent;
+    --cui-kbd-shadow: 0 0 transparent;
+  }
+
   :where([data-control-family="kbd"][data-slot="group"]) {
     gap: calc(var(--spacing) * 1);
   }

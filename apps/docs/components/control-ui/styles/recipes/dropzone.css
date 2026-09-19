@@ -3,13 +3,14 @@
     --cui-dropzone-surface-radius: var(--radius-panel);
     --cui-dropzone-surface-foreground: var(--foreground);
     --cui-dropzone-surface-border-color: var(--border);
+    --cui-dropzone-surface-border-width: 1px;
     --cui-dropzone-accept-border-color: var(--primary);
     --cui-dropzone-reject-border-color: var(--destructive);
     --cui-dropzone-overlay-background: oklch(from var(--card) l c h / 0.95);
   }
   :where([data-control-family="dropzone"][data-slot="trigger"]),
   :where([data-control-family="dropzone"][data-slot="overlay"]) {
-    border: 1px dashed var(--cui-dropzone-surface-border-color);
+    border: var(--cui-dropzone-surface-border-width) dashed var(--cui-dropzone-surface-border-color);
     border-radius: var(--cui-dropzone-surface-radius);
     color: var(--cui-dropzone-surface-foreground);
   }
@@ -128,6 +129,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-dropzone-surface-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-dropzone-accept-border-color {

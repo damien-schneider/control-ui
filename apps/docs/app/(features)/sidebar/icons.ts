@@ -3,8 +3,8 @@ import {
   BlocksIcon,
   Book04Icon,
   CodeSquareIcon,
-  ComponentIcon,
   ContractsIcon,
+  CustomizeIcon,
   FormIcon,
   FunctionSquareIcon,
   HierarchyIcon,
@@ -23,9 +23,10 @@ import type { IconSvgElement } from "@hugeicons/react";
 import type { UseCaseKindId } from "@/app/(features)/catalog/blocks";
 import { referenceGroupTitle, referenceOverview } from "@/app/(features)/catalog/guides";
 import { catalogOverview } from "@/app/(features)/catalog/overviews";
-import type { PrimitiveCategoryId } from "@/app/(features)/catalog/primitives";
+import { skillPageIds } from "@/app/(features)/model/page-ids";
 import type { DocsSkillConcern } from "@/app/(features)/model/types";
-import type { SidebarDoor, SidebarMode } from "./types";
+import { THEME_EDITOR_PATH } from "@/components/theme-drawer/theme-categories";
+import type { CatalogNavGroupId, SidebarDoor } from "./types";
 
 export const skillConcernSidebarIcons = {
   "css-first": WebDesign01Icon,
@@ -36,42 +37,36 @@ export const skillConcernSidebarIcons = {
   "control-ui": AiGenerativeIcon,
 } as const satisfies Record<DocsSkillConcern["id"], IconSvgElement>;
 
-export const primitiveCategorySidebarIcons = {
-  layout: Layout01Icon,
+export const catalogNavGroupIcons = {
+  agents: AiGenerativeIcon,
   actions: MouseLeftClick01Icon,
   forms: FormIcon,
-  navigation: Navigation01Icon,
   overlays: Layers01Icon,
+  navigation: Navigation01Icon,
   feedback: Notification01Icon,
+  layout: Layout01Icon,
   display: ViewIcon,
-} as const satisfies Record<PrimitiveCategoryId, IconSvgElement>;
+  hooks: FunctionSquareIcon,
+  utils: ContractsIcon,
+  extensions: PlusSignSquareIcon,
+} as const satisfies Record<CatalogNavGroupId, IconSvgElement>;
 
 const useCasesOverview = catalogOverview("use-cases");
 
 export const sidebarDoors = [
-  { id: "use-cases", title: useCasesOverview.name, icon: BlocksIcon, overviewId: useCasesOverview.id },
-  { id: "practices", title: "Practices", icon: Book04Icon },
-  { id: "reference", title: referenceGroupTitle, icon: HierarchyIcon, overviewId: referenceOverview.id },
+  { id: "use-cases", title: useCasesOverview.name, icon: BlocksIcon, href: useCasesOverview.href, overviewId: useCasesOverview.id },
+  { id: "practices", title: "Practices", icon: Book04Icon, href: `/skills/${skillPageIds[0]}` },
+  { id: "reference", title: referenceGroupTitle, icon: HierarchyIcon, href: `/${referenceOverview.id}`, overviewId: referenceOverview.id },
 ] as const satisfies readonly SidebarDoor[];
 
-export const sidebarGroupIcons = {
-  agents: AiGenerativeIcon,
-  primitives: ComponentIcon,
-  hooks: FunctionSquareIcon,
-  utils: ContractsIcon,
-  extensions: PlusSignSquareIcon,
-} as const satisfies Record<string, IconSvgElement>;
+export const themeEditorDoor = {
+  id: "theme-editor",
+  title: "Theme editor",
+  icon: CustomizeIcon,
+  href: THEME_EDITOR_PATH,
+} as const satisfies SidebarDoor;
 
 export const useCaseKindSidebarIcons = {
   template: Layout01Icon,
   pattern: BlocksIcon,
 } as const satisfies Record<UseCaseKindId, IconSvgElement>;
-
-export const sidebarModes = [
-  { id: "agents", label: "Components", icon: AiGenerativeIcon },
-  { id: "primitives", label: "Primitives", icon: ComponentIcon },
-] as const satisfies readonly {
-  id: SidebarMode;
-  label: string;
-  icon: IconSvgElement;
-}[];

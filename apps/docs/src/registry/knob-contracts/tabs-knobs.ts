@@ -11,5 +11,6 @@ export const tabsKnobs = [
   "--cui-tabs-indicator-shadow",
   "--cui-tabs-list-shadow",
   "--cui-tabs-border-color",
+  "--cui-tabs-border-width",
 ] as const;
 export type TabsKnobStyle = Partial<Record<(typeof tabsKnobs)[number], string>>;

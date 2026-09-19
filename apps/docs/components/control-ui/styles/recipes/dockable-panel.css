@@ -5,10 +5,11 @@
     --cui-dockable-panel-background: var(--card);
     --cui-dockable-panel-foreground: var(--card-foreground);
     --cui-dockable-panel-border-color: oklch(from var(--border) l c h / 0.8);
+    --cui-dockable-panel-border-width: 1px;
     --cui-dockable-panel-shadow: var(--shadow-pop);
     --cui-dockable-panel-drop-zone-active-background: oklch(from var(--primary) l c h / 0.12);
     --cui-dockable-panel-drop-zone-active-border-color: oklch(from var(--primary) l c h / 0.55);
-    border: 1px solid var(--cui-dockable-panel-border-color);
+    border: var(--cui-dockable-panel-border-width) solid var(--cui-dockable-panel-border-color);
     border-radius: var(--cui-dockable-panel-radius);
     outline: none;
     background-color: var(--cui-dockable-panel-background);
@@ -86,6 +87,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-dockable-panel-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-dockable-panel-shadow {

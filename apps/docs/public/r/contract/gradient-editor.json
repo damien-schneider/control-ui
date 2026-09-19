@@ -37,6 +37,12 @@
       "defaultValue": "oklch(1 0 0)"
     },
     {
+      "name": "--cui-gradient-editor-stop-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "2px"
+    },
+    {
       "name": "--cui-gradient-editor-stop-shadow",
       "syntax": "*",
       "initialValue": "",
@@ -53,6 +59,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-gradient-editor-add-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
     }
   ],
   "parts": {

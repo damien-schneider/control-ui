@@ -1,6 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/phone-input.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const phoneInputKnobs = [
   "--cui-phone-input-country-border-color",
+  "--cui-phone-input-country-border-width",
   "--cui-phone-input-trigger-hover-background",
   "--cui-phone-input-trigger-focus-background",
   "--cui-phone-input-metadata-foreground",

@@ -9,7 +9,7 @@ export function SkinSourceView({ label, source, onRetry }: { label: string; sour
   if (source.status === "ready") {
     return (
       <div className="pt-1">
-        <SourceTabs files={source.files} />
+        <SourceTabs files={source.files} overflow="wrap" />
       </div>
     );
   }

@@ -11,16 +11,13 @@ function nestedEntryCount(value: object | undefined): number {
   return Object.values(value).reduce((count, entries) => count + (entries ? Object.keys(entries).length : 0), 0);
 }
 
-function SectionHeading({ id, number, title, description }: { id: string; number: string; title: string; description: string }) {
+function SectionHeading({ id, title, description }: { id: string; title: string; description: string }) {
   return (
-    <div className="grid gap-2 sm:grid-cols-[2rem_minmax(0,1fr)]">
-      <span className="font-mono text-[10px] text-primary-text">{number}</span>
-      <div className="min-w-0">
-        <h3 id={id} className="text-[14px] font-semibold text-foreground">
-          {title}
-        </h3>
-        <p className="mt-1 max-w-2xl text-[11px] leading-5 text-muted-foreground">{description}</p>
-      </div>
+    <div className="min-w-0">
+      <h3 id={id} className="text-[14px] font-semibold text-foreground">
+        {title}
+      </h3>
+      <p className="mt-1 max-w-2xl text-[11px] leading-5 text-muted-foreground">{description}</p>
     </div>
   );
 }
@@ -159,16 +156,15 @@ export function ThemeArchitecture({ skin }: { skin: SkinId }) {
   const configuredCount = adornmentCount + effectCount + (hasSystemChoice ? 1 : 0);
 
   return (
-    <section id="theme-architecture" aria-labelledby="theme-architecture-title" className="scroll-mt-6 border-border border-t pt-8">
+    <section id="theme-architecture" aria-labelledby="theme-architecture-title" className="scroll-mt-6">
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
         <div>
           <SectionHeading
             id="theme-architecture-title"
-            number="02"
             title="Understand the skin stack"
             description="Tokens feed shared CSS recipes. Typed config remains only for behavior and optional adornments."
           />
-          <div className="mt-5 pl-0 sm:pl-10">
+          <div className="mt-5">
             <div className="flex flex-wrap items-center gap-2">
               <Badge size="sm">{meta.kind === "theme" ? "Theme pack" : "Advanced pack"}</Badge>
               <span className="text-[10px] text-muted-foreground">

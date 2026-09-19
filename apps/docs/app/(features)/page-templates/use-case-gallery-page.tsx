@@ -6,7 +6,7 @@ import { BlockPreview } from "@/app/(features)/components/previews";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { UseCaseGalleryGroup, UseCaseGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import type { IntegrationId } from "@/app/(features)/model/types";
-import { useDocsIntegration } from "@/app/(features)/page-templates/routed-page";
+import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
 import { PageHeader } from "./shared";
 
 export function UseCaseGalleryPage({

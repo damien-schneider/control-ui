@@ -44,12 +44,6 @@
     padding-block-start: 4rem;
   }
 
-  [data-docs-layout="page"] :where([data-control-family="code"][data-slot="root"]) {
-    --docs-panel-background: var(--cui-code-background);
-    --docs-panel-border: var(--cui-code-border-color);
-    --docs-panel-shadow: var(--cui-code-shadow);
-  }
-
   @media (width >= 48rem) {
     :where([data-docs-page-grid]) {
       padding-inline: calc(var(--spacing) * 2);
@@ -62,7 +56,8 @@
     }
 
     [data-docs-layout="page"] :where([data-docs-sidebar-navigation]) {
-      padding-block: 1rem;
+      padding-block: calc(var(--spacing) * 2);
+      padding-inline-start: calc(var(--spacing) * 2);
     }
   }
 
@@ -85,5 +80,12 @@
     :where([data-docs-page-toc]) {
       display: block;
     }
+  }
+
+  /* Workspace pages own their own panes: no article measure, no table of contents column. */
+  [data-docs-page-grid][data-docs-page-layout="workspace"] {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: none;
+    padding: 0;
   }
 }

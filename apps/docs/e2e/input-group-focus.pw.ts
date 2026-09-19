@@ -15,7 +15,9 @@ for (const skin of ["none", "refined", "modern-apple", "rig"]) {
     const url = page.getByRole("textbox", { name: "URL", exact: true });
     const group = url.locator("..");
     const search = page.getByRole("textbox", { name: "Search documentation...", exact: true });
-    const searchButton = page.getByRole("button", { name: "Search documentation", exact: true });
+    const searchButton = page
+      .getByRole("tabpanel", { name: "Preview", exact: true })
+      .getByRole("button", { name: "Search documentation", exact: true });
     await waitForReactHydration(url);
 
     await searchButton.click();

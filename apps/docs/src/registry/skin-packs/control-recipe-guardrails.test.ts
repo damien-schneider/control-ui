@@ -287,6 +287,20 @@ function adHocSourcePartAttributes(source: string): string[] {
   );
 }
 
+function literalBorderWidthOffenders({ file, source }: RecipeSource): string[] {
+  const root = postcss.parse(source, { from: file });
+  const offenders: string[] = [];
+  root.walkDecls(/^border(?:-(?:block|inline|top|right|bottom|left)(?:-(?:start|end))?)?$/, (declaration) => {
+    const knobColor = /var\((--cui-[a-z0-9-]*?-border-color)\)/.exec(declaration.value);
+    const literalWidth = /(?:^|\s)-?\d*\.?\d+(?:px|rem|em)(?:\s|$)/.exec(declaration.value);
+    if (!knobColor || !literalWidth) return;
+    offenders.push(
+      `${file}:${declaration.source?.start?.line ?? "?"} ${declaration.prop} ${literalWidth[0].trim()} beside ${knobColor[1]}`,
+    );
+  });
+  return offenders;
+}
+
 const recipeSources = recipePaths.map((recipePath) => ({
   file: path.basename(recipePath),
   source: readFileSync(recipePath, "utf8"),
@@ -365,6 +379,15 @@ describe("recipe hygiene", () => {
       source: ':where([data-control-family="select"][data-select-part="trigger"]) { color: red; }',
     };
     expect(adHocPartAttributeOffenders(invalid)).toEqual(["invalid.css:1 data-select-part"]);
+  });
+
+  test("a knob-colored border takes its width from a knob too", () => {
+    expect(recipeSources.flatMap(literalBorderWidthOffenders)).toEqual([]);
+  });
+
+  test("rejects a literal border width beside a border-color knob", () => {
+    const invalid = { file: "invalid.css", source: "a { border: 1px solid var(--cui-x-border-color); }" };
+    expect(literalBorderWidthOffenders(invalid)).toEqual(["invalid.css:1 border 1px beside --cui-x-border-color"]);
   });
 });
 

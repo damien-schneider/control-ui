@@ -3,6 +3,7 @@
     --cui-environment-variables-error-foreground: var(--destructive-text);
     --cui-environment-variables-message-background: oklch(from var(--destructive) l c h / 0.05);
     --cui-environment-variables-message-border-color: oklch(from var(--destructive) l c h / 0.4);
+    --cui-environment-variables-message-border-width: 1px;
     --cui-environment-variables-message-foreground: var(--destructive-text);
     --cui-environment-variables-meta-foreground: var(--muted-foreground);
     --cui-environment-variables-title-foreground: var(--foreground);
@@ -91,7 +92,7 @@
     padding-inline: calc(var(--spacing) * 3);
     padding-block: calc(var(--spacing) * 2);
     background: var(--cui-environment-variables-message-background);
-    border-block: 1px solid var(--cui-environment-variables-message-border-color);
+    border-block: var(--cui-environment-variables-message-border-width) solid var(--cui-environment-variables-message-border-color);
     color: var(--cui-environment-variables-message-foreground);
     font-size: var(--text-caption);
   }
@@ -170,4 +171,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-environment-variables-message-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

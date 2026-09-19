@@ -6,7 +6,6 @@ import type { ThemeState } from "./types";
 
 const BASE: ThemeState = {
   skin: "xp",
-  customThemeId: null,
   reduceMotion: false,
   labelMode: "friendly",
   overrides: {},

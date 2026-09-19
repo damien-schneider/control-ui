@@ -25,6 +25,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-resizable-group-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-resizable-handle-color",
       "syntax": "<color>",
       "initialValue": "transparent",

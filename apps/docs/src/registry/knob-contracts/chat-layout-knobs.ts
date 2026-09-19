@@ -3,6 +3,7 @@ export const chatLayoutKnobs = [
   "--cui-chat-layout-radius",
   "--cui-chat-layout-background",
   "--cui-chat-layout-border-color",
+  "--cui-chat-layout-border-width",
   "--cui-chat-layout-shadow",
 ] as const;
 export type ChatLayoutKnobStyle = Partial<Record<(typeof chatLayoutKnobs)[number], string>>;

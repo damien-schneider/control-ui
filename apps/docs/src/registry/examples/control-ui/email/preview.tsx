@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { Button } from "@/components/control-ui/ui/button";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
-import { downloadFile } from "@/components/theme-drawer/custom-themes";
+import { downloadFile } from "@/components/theme-drawer/download";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
 import { type EmailLayoutId, type EmailPreviewResult, emailLayouts, emailPreviewResult } from "./options";
 

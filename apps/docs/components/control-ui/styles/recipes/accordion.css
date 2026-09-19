@@ -1,12 +1,13 @@
 @layer components {
   :where([data-control-family="accordion"][data-slot="root"]) {
     --cui-accordion-item-border-color: var(--border);
+    --cui-accordion-item-border-width: 1px;
     --cui-accordion-trigger-foreground: var(--foreground);
     --cui-accordion-trigger-hover-foreground: oklch(from var(--foreground) l c h / 0.8);
     --cui-accordion-icon-foreground: var(--muted-foreground);
   }
   :where([data-control-family="accordion"][data-slot="item"]) {
-    border-block-end: 1px solid var(--cui-accordion-item-border-color);
+    border-block-end: var(--cui-accordion-item-border-width) solid var(--cui-accordion-item-border-color);
   }
 
   :where([data-control-family="accordion"][data-slot="item"]:last-child) {
@@ -65,6 +66,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-accordion-item-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-accordion-trigger-foreground {

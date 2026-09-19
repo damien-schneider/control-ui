@@ -4,6 +4,7 @@ export const inlineCitationKnobs = [
   "--cui-inline-citation-trigger-background",
   "--cui-inline-citation-trigger-foreground",
   "--cui-inline-citation-trigger-border-color",
+  "--cui-inline-citation-trigger-border-width",
   "--cui-inline-citation-trigger-hover-background",
   "--cui-inline-citation-trigger-hover-foreground",
   "--cui-inline-citation-navigation-background",

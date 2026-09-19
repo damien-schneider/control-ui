@@ -182,7 +182,8 @@ test("sidebar header controls keep rendered contrast across every skin and mode"
   const violations: string[] = [];
 
   for (const skin of SKINS) {
-    await page.getByLabel("Choose a skin").getByRole("button", { name: skin.label, exact: true }).click();
+    await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+    await page.getByRole("option", { name: skin.label, exact: true }).click();
     await page.mouse.move(0, 0);
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin.id);
     await expect(controls).toHaveCSS("opacity", "1");

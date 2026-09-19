@@ -4,11 +4,13 @@
     --cui-markdown-block-radius: var(--radius-panel);
     --cui-markdown-block-background: var(--background);
     --cui-markdown-block-border-color: var(--border);
+    --cui-markdown-block-border-width: 1px;
     --cui-markdown-block-shadow: var(--shadow-sm);
     --cui-markdown-block-header-border-color: var(--border);
+    --cui-markdown-block-header-border-width: 1px;
     --cui-markdown-block-icon-background: oklch(from var(--foreground) l c h / 0.08);
     background: var(--cui-markdown-block-background);
-    border: 1px solid var(--cui-markdown-block-border-color);
+    border: var(--cui-markdown-block-border-width) solid var(--cui-markdown-block-border-color);
     border-radius: var(--cui-markdown-block-radius);
     box-shadow: var(--cui-markdown-block-shadow);
   }
@@ -17,7 +19,7 @@
     gap: calc(var(--spacing) * 3);
     padding-inline: calc(var(--spacing) * 4);
     padding-block: calc(var(--spacing) * 2);
-    border-bottom: 1px solid var(--cui-markdown-block-header-border-color);
+    border-bottom: var(--cui-markdown-block-header-border-width) solid var(--cui-markdown-block-header-border-color);
   }
 
   :where([data-control-family="markdown-block"][data-slot="title"]) {
@@ -57,6 +59,12 @@
   initial-value: transparent;
 }
 
+@property --cui-markdown-block-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 @property --cui-markdown-block-shadow {
   syntax: "*";
   inherits: true;
@@ -66,6 +74,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-markdown-block-header-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-markdown-block-icon-background {

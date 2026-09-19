@@ -4,6 +4,7 @@ export const codeDiffKnobs = [
   "--cui-code-diff-shadow",
   "--cui-code-diff-background",
   "--cui-code-diff-border-color",
+  "--cui-code-diff-border-width",
   "--cui-code-diff-foreground",
   "--cui-code-diff-add-background",
   "--cui-code-diff-del-background",

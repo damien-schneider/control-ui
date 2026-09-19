@@ -8,6 +8,7 @@
     --cui-toolbar-background: oklch(from var(--card) l c h / 0.72);
     --cui-toolbar-foreground: var(--foreground);
     --cui-toolbar-border-color: var(--border);
+    --cui-toolbar-border-width: 1px;
     --cui-toolbar-shadow: var(--shadow-sm);
     --cui-toolbar-item-radius: min(var(--radius-sm), calc(var(--control-h-sm) / 2));
     --cui-toolbar-item-background: transparent;
@@ -18,7 +19,7 @@
     --cui-toolbar-item-active-background: var(--active-fill);
     --cui-toolbar-item-active-foreground: var(--foreground);
     --cui-toolbar-separator-background: var(--border);
-    border: 1px solid var(--cui-toolbar-border-color);
+    border: var(--cui-toolbar-border-width) solid var(--cui-toolbar-border-color);
     padding: var(--cui-toolbar-padding);
     border-radius: var(--cui-toolbar-radius);
     background-color: var(--cui-toolbar-background);
@@ -206,6 +207,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-toolbar-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-toolbar-shadow {

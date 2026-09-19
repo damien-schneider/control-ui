@@ -1,4 +1,5 @@
 import type { IconSvgElement } from "@hugeicons/react";
+import type { PrimitiveCategoryId } from "@/app/(features)/catalog/primitives";
 import type {
   ActivePageId,
   DocsBlock,
@@ -12,9 +13,7 @@ import type {
   DocsStatus,
   DocsUtil,
   GuidePage,
-  IntegrationId,
   SearchItem,
-  SetupPreferenceUpdate,
 } from "@/app/(features)/model/types";
 
 export type DocsSidebarContentProps = {
@@ -31,17 +30,16 @@ export type DocsSidebarContentProps = {
   extensions: DocsExtension[];
   skinPages: DocsSkinPage[];
   searchItems: SearchItem[];
-  integration: IntegrationId;
-  updateSetupPreference: (nextPreference: SetupPreferenceUpdate) => void;
 };
 
-export type SidebarMode = "agents" | "primitives";
-export type SidebarDoorId = "use-cases" | "practices" | "reference";
+export type CatalogNavGroupId = "agents" | PrimitiveCategoryId | "hooks" | "utils" | "extensions";
+export type SidebarDoorId = "use-cases" | "practices" | "reference" | "theme-editor";
 export type SidebarPane = "root" | SidebarDoorId;
 export type SidebarDoor = {
   id: SidebarDoorId;
   title: string;
   icon: IconSvgElement;
+  href: string;
   overviewId?: ActivePageId;
 };
 export type DocsNavItem = {

@@ -3,6 +3,7 @@
     margin-block: calc(var(--spacing) * 4);
     --cui-code-background: var(--background);
     --cui-code-border-color: var(--control-rim);
+    --cui-code-border-width: 1px;
     --cui-code-radius: var(--radius-panel);
     --cui-code-shadow: var(--shadow-sm);
     --cui-code-text-foreground: var(--code-foreground);
@@ -11,7 +12,7 @@
   }
 
   :where([data-control-family="code"][data-slot="root"][data-chrome="standalone"]) {
-    border: 1px solid var(--cui-code-border-color);
+    border: var(--cui-code-border-width) solid var(--cui-code-border-color);
     border-radius: var(--cui-code-radius);
     background: var(--cui-code-background);
     box-shadow: var(--cui-code-shadow);
@@ -58,14 +59,6 @@
     color: var(--cui-code-title-foreground);
     font-size: var(--text-label);
     font-family: var(--font-mono);
-  }
-
-  :where([data-control-family="button"][data-code-floating="true"]) {
-    background: oklch(from var(--background) l c h / 0.85);
-    box-shadow:
-      inset 0 0 0 1px var(--border),
-      var(--shadow-sm);
-    backdrop-filter: blur(var(--backdrop-blur-popover));
   }
 
   :where([data-control-family="code"][data-slot="grid"]) {
@@ -133,6 +126,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-code-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-code-shadow {

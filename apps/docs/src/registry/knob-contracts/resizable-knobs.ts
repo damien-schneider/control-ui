@@ -3,6 +3,7 @@ export const resizableKnobs = [
   "--cui-resizable-group-background",
   "--cui-resizable-group-radius",
   "--cui-resizable-group-border-color",
+  "--cui-resizable-group-border-width",
   "--cui-resizable-handle-color",
   "--cui-resizable-handle-hover-background",
   "--cui-resizable-handle-active-background",

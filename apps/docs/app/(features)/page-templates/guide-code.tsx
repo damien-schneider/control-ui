@@ -79,7 +79,6 @@ export function GuideCheck({ children }: { children: ReactNode }) {
     <Card
       className="mt-4 max-w-2xl gap-1 px-4 py-3"
       style={{
-        "--cui-card-background": "oklch(from var(--primary) l c h / 0.05)",
         "--cui-card-border-color": "oklch(from var(--primary) l c h / 0.25)",
       }}
     >

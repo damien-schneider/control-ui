@@ -3,8 +3,10 @@ export const markdownBlockKnobs = [
   "--cui-markdown-block-radius",
   "--cui-markdown-block-background",
   "--cui-markdown-block-border-color",
+  "--cui-markdown-block-border-width",
   "--cui-markdown-block-shadow",
   "--cui-markdown-block-header-border-color",
+  "--cui-markdown-block-header-border-width",
   "--cui-markdown-block-icon-background",
 ] as const;
 export type MarkdownBlockKnobStyle = Partial<Record<(typeof markdownBlockKnobs)[number], string>>;

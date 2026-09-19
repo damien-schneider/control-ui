@@ -15,8 +15,6 @@ export type LabelMode = "friendly" | "css";
 // Colour-valued tokens scope to mode they were edited in; everything else applies to both.
 export type ThemeState = {
   skin: SkinId;
-  /** Local custom-theme identity. runtime still resolves slots and structural CSS from `skin`. */
-  customThemeId: string | null;
   // effective reduced = this OR skin's own motion:"reduced" — never override
   reduceMotion: boolean;
   labelMode: LabelMode;

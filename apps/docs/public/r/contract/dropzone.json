@@ -25,6 +25,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-dropzone-surface-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-dropzone-accept-border-color",
       "syntax": "<color>",
       "initialValue": "transparent",

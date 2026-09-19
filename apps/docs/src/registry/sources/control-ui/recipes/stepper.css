@@ -4,6 +4,7 @@
     --cui-stepper-indicator-background: var(--background);
     --cui-stepper-indicator-foreground: var(--muted-foreground);
     --cui-stepper-indicator-border-color: var(--border);
+    --cui-stepper-indicator-border-width: 1px;
     --cui-stepper-separator-background: var(--border);
     --cui-stepper-title-foreground: var(--foreground);
   }
@@ -23,7 +24,7 @@
     inline-size: calc(var(--spacing) * 8);
     block-size: calc(var(--spacing) * 8);
     --_stepper-indicator-shadow: 0 0 transparent;
-    border: 1px solid var(--cui-stepper-indicator-border-color);
+    border: var(--cui-stepper-indicator-border-width) solid var(--cui-stepper-indicator-border-color);
     border-radius: var(--cui-stepper-indicator-radius);
     background: var(--cui-stepper-indicator-background);
     color: var(--cui-stepper-indicator-foreground);
@@ -163,6 +164,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-stepper-indicator-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-stepper-separator-background {

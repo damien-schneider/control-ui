@@ -36,7 +36,7 @@ function StartRow({ item, active, onNavigate }: { item: DocsNavItem; active: Act
       href={`/${item.id}`}
       onClick={onNavigate}
       aria-current={active === item.id ? "page" : undefined}
-      className="flex min-w-0 items-center rounded-[calc(var(--radius-panel)-0.375rem)] px-2.5 py-1.5 text-label text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground aria-[current=page]:font-medium aria-[current=page]:text-sidebar-foreground"
+      className="flex min-w-0 items-center rounded-[calc(var(--radius-panel)-0.25rem)] px-2 py-1.5 text-label text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground aria-[current=page]:font-medium aria-[current=page]:text-sidebar-foreground"
     >
       <span className="min-w-0 truncate">{humanizeNavName(item.name)}</span>
     </Link>
@@ -66,10 +66,10 @@ export function StartCard({
 
   return (
     <SidebarGroup className={className}>
-      <Collapsible open={!minimized} onOpenChange={changeOpen} className="rounded-panel border border-border/60 bg-sidebar-accent/35 p-1">
+      <Collapsible open={!minimized} onOpenChange={changeOpen}>
         <SidebarGroupLabel
           render={<CollapsibleTrigger />}
-          className="w-full cursor-pointer gap-2 px-2.5 text-label text-muted-foreground transition-colors hover:text-sidebar-foreground"
+          className="w-full cursor-pointer gap-2 px-2 text-label text-muted-foreground transition-colors hover:text-sidebar-foreground"
         >
           <span className="min-w-0 truncate">Getting started</span>
           <HugeiconsIcon
@@ -81,7 +81,7 @@ export function StartCard({
           />
         </SidebarGroupLabel>
         <CollapsibleContent>
-          <div className="grid gap-0.5 rounded-[calc(var(--radius-panel)-0.25rem)] border border-border/50 bg-card/70 p-1">
+          <div className="grid gap-0.5 rounded-panel border border-border/50 bg-card/70 p-1">
             {steps.items.map((item) => (
               <StartRow key={item.id} item={item} active={active} onNavigate={onNavigate} />
             ))}

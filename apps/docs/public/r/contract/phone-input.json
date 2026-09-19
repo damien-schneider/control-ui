@@ -13,6 +13,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-phone-input-country-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-phone-input-trigger-hover-background",
       "syntax": "<color>",
       "initialValue": "transparent",

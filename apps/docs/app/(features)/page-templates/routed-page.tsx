@@ -1,25 +1,14 @@
 "use client";
 
-import { createContext, type ReactNode, use } from "react";
-import type { DocsBlock, DocsComponent, DocsExtension, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
+import type { DocsBlock, DocsComponent, DocsExtension, GuidePage as GuidePageData } from "@/app/(features)/model/types";
+import type { ThemeCategoryId } from "@/components/theme-drawer/theme-categories";
 import { ComponentPage } from "./component-page";
 import { GuidePage } from "./guide-page";
+import { useDocsIntegration } from "./integration";
 import { UseCasePage } from "./use-case-page";
 
-const DocsIntegrationContext = createContext<IntegrationId | undefined>(undefined);
-
-export function DocsPageIntegrationProvider({ integration, children }: { integration: IntegrationId; children: ReactNode }) {
-  return <DocsIntegrationContext value={integration}>{children}</DocsIntegrationContext>;
-}
-
-export function useDocsIntegration() {
-  const integration = use(DocsIntegrationContext);
-  if (!integration) throw new Error("Docs route content must render inside DocsPageIntegrationProvider.");
-  return integration;
-}
-
-export function RoutedGuidePage({ page }: { page: GuidePageData }) {
-  return <GuidePage page={page} integration={useDocsIntegration()} />;
+export function RoutedGuidePage({ page, themeCategory }: { page: GuidePageData; themeCategory?: ThemeCategoryId }) {
+  return <GuidePage page={page} integration={useDocsIntegration()} themeCategory={themeCategory} />;
 }
 
 export function RoutedUseCasePage({ block }: { block: DocsBlock }) {

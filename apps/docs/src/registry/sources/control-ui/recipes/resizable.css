@@ -3,6 +3,7 @@
     --cui-resizable-group-background: var(--card);
     --cui-resizable-group-radius: var(--radius-panel);
     --cui-resizable-group-border-color: var(--border);
+    --cui-resizable-group-border-width: 1px;
     --cui-resizable-handle-color: var(--foreground);
     --cui-resizable-handle-hover-background: oklch(from var(--foreground) l c h / 0.25);
     --cui-resizable-handle-active-background: oklch(from var(--foreground) l c h / 0.4);
@@ -14,7 +15,7 @@
   }
 
   :where([data-control-family="resizable"][data-slot="panel-group"][data-variant="framed"]) {
-    border: 1px solid var(--cui-resizable-group-border-color);
+    border: var(--cui-resizable-group-border-width) solid var(--cui-resizable-group-border-color);
     border-radius: var(--cui-resizable-group-radius);
     box-shadow: var(--shadow-sm);
   }
@@ -122,6 +123,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-resizable-group-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-resizable-handle-color {

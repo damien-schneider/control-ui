@@ -3,14 +3,19 @@ import type { ComponentProps, CSSProperties } from "react";
 import type { KbdKnobStyle } from "@/components/control-ui/knob-contracts/kbd-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 
-export type KbdProps = Omit<ComponentProps<"kbd">, "style"> & { style?: CSSProperties & KbdKnobStyle };
+export const kbdVariants = ["default", "ghost"] as const;
 
-export function Kbd({ className, ...props }: KbdProps) {
+export type KbdVariant = (typeof kbdVariants)[number];
+
+export type KbdProps = Omit<ComponentProps<"kbd">, "style"> & { variant?: KbdVariant; style?: CSSProperties & KbdKnobStyle };
+
+export function Kbd({ variant = "default", className, ...props }: KbdProps) {
   return (
     <kbd
       data-control-ui="kbd"
       data-control-family="kbd"
       data-slot="root"
+      data-variant={variant}
       className={cn("inline-flex select-none items-center justify-center", className)}
       {...props}
     />

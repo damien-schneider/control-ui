@@ -13,6 +13,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-accordion-item-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-accordion-trigger-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",

@@ -67,6 +67,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-accordion-item-border-width",
+      "description": "Control UI accordion knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-accordion-trigger-foreground",
       "description": "Control UI accordion knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -542,6 +547,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-chat-composer-shell-border-width",
+      "description": "Control UI chat-composer knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-chat-composer-shell-radius",
       "description": "Control UI chat-composer knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
@@ -559,6 +569,11 @@
       "name": "--cui-chat-layout-border-color",
       "description": "Control UI chat-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-layout-border-width",
+      "description": "Control UI chat-layout knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-chat-layout-radius",
@@ -662,6 +677,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-code-border-width",
+      "description": "Control UI code knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-code-diff-add-background",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -675,6 +695,11 @@
       "name": "--cui-code-diff-border-color",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-code-diff-border-width",
+      "description": "Control UI code-diff knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-code-diff-del-background",
@@ -833,6 +858,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-dockable-panel-border-width",
+      "description": "Control UI dockable-panel knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-dockable-panel-drop-zone-active-background",
       "description": "Control UI dockable-panel knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -875,6 +905,11 @@
       "name": "--cui-dropzone-surface-border-color",
       "description": "Control UI dropzone knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-dropzone-surface-border-width",
+      "description": "Control UI dropzone knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-dropzone-surface-foreground",
@@ -1060,6 +1095,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-environment-variables-message-border-width",
+      "description": "Control UI environment-variables knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-environment-variables-message-foreground",
       "description": "Control UI environment-variables knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -1132,6 +1172,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-gradient-editor-add-border-width",
+      "description": "Control UI gradient-editor knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-gradient-editor-add-radius",
       "description": "Control UI gradient-editor knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
@@ -1150,6 +1195,11 @@
       "name": "--cui-gradient-editor-stop-border-color",
       "description": "Control UI gradient-editor knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-gradient-editor-stop-border-width",
+      "description": "Control UI gradient-editor knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-gradient-editor-stop-radius",
@@ -1277,6 +1327,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-inline-citation-trigger-border-width",
+      "description": "Control UI inline-citation knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-inline-citation-trigger-foreground",
       "description": "Control UI inline-citation knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -1360,9 +1415,19 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-markdown-block-border-width",
+      "description": "Control UI markdown-block knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-markdown-block-header-border-color",
       "description": "Control UI markdown-block knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-markdown-block-header-border-width",
+      "description": "Control UI markdown-block knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-markdown-block-icon-background",
@@ -1490,6 +1555,11 @@
       "name": "--cui-phone-input-country-border-color",
       "description": "Control UI phone-input knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-phone-input-country-border-width",
+      "description": "Control UI phone-input knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-phone-input-metadata-foreground",
@@ -1670,6 +1740,11 @@
       "name": "--cui-resizable-group-border-color",
       "description": "Control UI resizable knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-resizable-group-border-width",
+      "description": "Control UI resizable knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-resizable-group-radius",
@@ -1928,6 +2003,11 @@
       "name": "--cui-stepper-indicator-border-color",
       "description": "Control UI stepper knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-stepper-indicator-border-width",
+      "description": "Control UI stepper knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-stepper-indicator-foreground",
@@ -2191,6 +2271,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-tabs-border-width",
+      "description": "Control UI tabs knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-tabs-foreground",
       "description": "Control UI tabs knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -2240,6 +2325,11 @@
       "name": "--cui-task-list-border-color",
       "description": "Control UI task-list knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-task-list-border-width",
+      "description": "Control UI task-list knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-task-list-foreground",
@@ -2363,6 +2453,11 @@
       "name": "--cui-toolbar-border-color",
       "description": "Control UI toolbar knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-toolbar-border-width",
+      "description": "Control UI toolbar knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-toolbar-foreground",
@@ -2530,6 +2625,11 @@
       "name": "--cui-user-ask-border-color",
       "description": "Control UI user-ask knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
+    },
+    {
+      "name": "--cui-user-ask-border-width",
+      "description": "Control UI user-ask knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--cui-user-ask-foreground",

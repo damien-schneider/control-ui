@@ -8,10 +8,10 @@ import { CreateCommand } from "@/app/(features)/create/create-command";
 import { guideCode } from "@/app/(features)/model/registry";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
-import { ThemeAiBuilder } from "@/app/(features)/theme-ai-builder/theme-ai-builder";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Card } from "@/components/control-ui/ui/card";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
+import { SKIN_CATEGORY, type ThemeCategoryId } from "@/components/theme-drawer/theme-categories";
 import { ThemeEditor } from "@/components/theme-drawer/theme-editor";
 import AgentSkillContent from "@/content/guides/agent-skill.mdx";
 import AgentSurfaceContent from "@/content/guides/agent-surface.mdx";
@@ -82,10 +82,19 @@ const guideComponents = {
   AgentSurfaceMap,
 } satisfies MDXComponents;
 
-function GuidePageContent({ page, integration, Content }: { page: GuidePageData; integration: IntegrationId; Content?: GuideContent }) {
-  if (page.id === "theme-editor") return <ThemeEditor />;
+function GuidePageContent({
+  page,
+  integration,
+  themeCategory,
+  Content,
+}: {
+  page: GuidePageData;
+  integration: IntegrationId;
+  themeCategory: ThemeCategoryId;
+  Content?: GuideContent;
+}) {
+  if (page.id === "theme-editor") return <ThemeEditor category={themeCategory} />;
   if (page.id === "theme-accessibility") return <ThemeAccessibility />;
-  if (page.id === "theme-ai-builder") return <ThemeAiBuilder />;
   if (Content) {
     return (
       <GuideIntegrationContext value={integration}>
@@ -124,32 +133,52 @@ function GuidePageContent({ page, integration, Content }: { page: GuidePageData;
   });
 }
 
-function focusThemeEditorHeading(heading: HTMLHeadingElement | null) {
+function focusWorkspaceHeading(heading: HTMLHeadingElement | null) {
   heading?.focus();
 }
 
-export function GuidePage({ page, integration }: { page: GuidePageData; integration: IntegrationId }) {
+export function GuidePage({
+  page,
+  integration,
+  themeCategory = SKIN_CATEGORY,
+}: {
+  page: GuidePageData;
+  integration: IntegrationId;
+  themeCategory?: ThemeCategoryId;
+}) {
   const Content = guideContent[page.id];
+
+  if (page.layout === "workspace") {
+    return (
+      <section className="flex min-w-0 w-full flex-col gap-4 px-4 pt-[calc(var(--control-h-sm)+1rem)] pb-6 lg:px-6 lg:pt-6">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div className="min-w-0 max-w-2xl">
+            <div className="text-caption font-medium text-muted-foreground">Guide</div>
+            <h1 ref={focusWorkspaceHeading} tabIndex={-1} className="mt-1 text-heading-2 font-display">
+              {page.name}
+            </h1>
+            <p className="mt-1 text-body text-muted-foreground">{page.summary}</p>
+          </div>
+          <OpenInAgent name={page.name} pathname={`/${page.id}`} />
+        </div>
+        <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} Content={Content} />
+      </section>
+    );
+  }
 
   return (
     <section className={cn("mx-auto min-w-0 w-full px-5 py-12", page.layout === "wide" ? "max-w-[90rem]" : "max-w-4xl")}>
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div className="max-w-2xl">
           <div className="text-caption font-medium text-muted-foreground">Guide</div>
-          <h1
-            ref={page.id === "theme-editor" ? focusThemeEditorHeading : undefined}
-            tabIndex={page.id === "theme-editor" ? -1 : undefined}
-            className="mt-2 text-display font-display"
-          >
-            {page.name}
-          </h1>
+          <h1 className="mt-2 text-display font-display">{page.name}</h1>
           <p className="mt-3 text-body-lg text-muted-foreground">{page.summary}</p>
         </div>
         <OpenInAgent name={page.name} pathname={`/${page.id}`} />
       </div>
 
       <div className="grid min-w-0 gap-12">
-        <GuidePageContent page={page} integration={integration} Content={Content} />
+        <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} Content={Content} />
         {page.faqs && page.faqs.length > 0 ? (
           <section id="faq" className="min-w-0 scroll-mt-20">
             <div className="max-w-2xl">

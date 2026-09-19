@@ -5,14 +5,9 @@ import { isRecord } from "./is-record";
 import { exportedThemeScopeSelector } from "./override-decls";
 import { isSkinId } from "./presets";
 import { isColorValuedToken } from "./token-metadata";
-import type { ControlUiThemeArtifactV1, ThemeState, TokenValues } from "./types";
+import type { ControlUiThemeArtifactV1, TokenValues } from "./types";
 
 export type ThemeArtifactResult = { ok: true; artifact: ControlUiThemeArtifactV1 } | { ok: false; errors: string[] };
-
-type BuildThemePromptInput = {
-  origin: string;
-  theme: ThemeState;
-};
 
 type ThemeDiscoveryMode = "existing-project" | "new-direction";
 
@@ -235,22 +230,9 @@ function themeDiscoveryBrief(mode: ThemeDiscoveryMode) {
   return "- First ask me to describe the visual direction, including color, typography, density, corners, elevation, and motion.";
 }
 
-function currentThemeContext(theme: ThemeState) {
-  return JSON.stringify(
-    {
-      baseSkin: theme.skin,
-      reduceMotion: theme.reduceMotion,
-      tokens: { shared: theme.overrides, light: theme.light, dark: theme.dark },
-    },
-    null,
-    2,
-  );
-}
-
 export function themeArtifactBrief({ origin, baseSkin, context, discoveryMode }: ThemeArtifactBriefInput) {
   const normalizedOrigin = origin.replace(/\/+$/, "");
   const contractUrl = `${normalizedOrigin}/r/theme-contract.json`;
-  const builderUrl = `${normalizedOrigin}/theme-ai-builder`;
   const accessibilityUrl = `${normalizedOrigin}/theme-accessibility`;
   const baseSkinRule = baseSkin
     ? `Keep baseSkin exactly "${baseSkin}".`
@@ -277,8 +259,8 @@ ${themeApplyCssRules(baseSkin ?? "<baseSkin>")
     : "";
   const embeddedContract = appliesInRepo ? "" : `Embedded canonical contract fallback\n\n${compactContract()}\n\n`;
   const closing = appliesInRepo
-    ? `When finished, tell me the artifact path and where each app imports its CSS. To review the result myself, I import the artifact at ${builderUrl} and check it at ${accessibilityUrl}.`
-    : `When finished, reply with the file path and tell me to import it at ${builderUrl}, then review the active theme at ${accessibilityUrl}.`;
+    ? `When finished, tell me the artifact path and where each app imports its CSS. To review the result myself, I check the active theme at ${accessibilityUrl}.`
+    : `When finished, reply with the file path and the CSS import it needs, then point me at ${accessibilityUrl} to review the active theme.`;
 
   return `Discovery
 ${themeDiscoveryBrief(discoveryMode)}
@@ -327,13 +309,6 @@ Artifact shape
 ${applySection}
 ${embeddedContract}${closing}
 `;
-}
-
-export function buildThemePrompt({ origin, theme }: BuildThemePromptInput) {
-  const context = `Base theme currently active in the editor\n${currentThemeContext(theme)}`;
-  return `You are my Control UI theme builder. Work conversationally, then create one importable theme file.
-
-${themeArtifactBrief({ origin, baseSkin: theme.skin, context, discoveryMode: "new-direction" })}`;
 }
 
 export function serializeThemeArtifact(artifact: ControlUiThemeArtifactV1) {

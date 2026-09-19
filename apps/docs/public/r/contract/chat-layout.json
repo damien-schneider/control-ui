@@ -25,6 +25,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-chat-layout-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-chat-layout-shadow",
       "syntax": "*",
       "initialValue": "",

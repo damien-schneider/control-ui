@@ -129,7 +129,7 @@ test("sidebar shortcut moves focus out of collapsed navigation", async ({ page }
   await expect(resizeHandle).toBeFocused();
 });
 
-test("collapsed state and committed width survive a skin remount", async ({ page }) => {
+test("committed width and collapsed state survive a skin remount", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/primitives/code-diff");
 
@@ -139,12 +139,18 @@ test("collapsed state and committed width survive a skin remount", async ({ page
   await waitForSidebarHydration(resizeHandle);
   await resizeHandle.focus();
   await resizeHandle.press("End");
+  await expect(wrapper).toHaveCSS("--sidebar-width", "420px");
+
+  await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+  await page.getByRole("option", { name: "Cuicui", exact: true }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-skin", "cuicui");
+  await expect(wrapper).toHaveCSS("--sidebar-width", "420px");
+
+  await resizeHandle.focus();
   await resizeHandle.press("Enter");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
 
-  await page.getByRole("link", { name: "Edit theme" }).click();
-  await page.getByLabel("Choose a skin").getByRole("button", { name: "Cuicui", exact: true }).click();
-  await page.goBack();
+  await page.goto("/theme-editor");
   await expect(page.locator("html")).toHaveAttribute("data-skin", "cuicui");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
 

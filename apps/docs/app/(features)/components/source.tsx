@@ -6,7 +6,16 @@ import { useState } from "react";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSkin } from "@/components/control-ui/skin-provider";
-import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, type CodeHighlight, CodeTitle } from "@/components/control-ui/ui/code";
+import {
+  Code,
+  CodeActions,
+  CodeContent,
+  CodeCopy,
+  CodeHeader,
+  type CodeHighlight,
+  type CodeOverflow,
+  CodeTitle,
+} from "@/components/control-ui/ui/code";
 import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
@@ -15,7 +24,7 @@ export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string 
   if (!code.includes("\n")) return <CodeSnippet code={code} lang={lang} />;
 
   return (
-    <Code chrome="embedded" className="docs-panel">
+    <Code className="my-0">
       <CodeContent code={code} lang={lang} />
     </Code>
   );
@@ -33,7 +42,7 @@ export function CodeSnippet({
   children?: ReactNode;
 }) {
   return (
-    <Code copy={false} chrome="embedded" density="compact" overflow="wrap" className="docs-panel flex items-center gap-1 py-1 pr-1">
+    <Code copy={false} density="compact" overflow="wrap" className="my-0 flex items-center gap-1 py-1 pr-1">
       <CodeContent code={code} lang={lang} highlight={highlight} className="min-w-0 flex-1" />
       {children ?? <CodeCopy value={code} />}
     </Code>
@@ -42,7 +51,7 @@ export function CodeSnippet({
 
 export function CommandBlock({ label, command }: { label: string; command: string }) {
   return (
-    <Code chrome="embedded" density="compact" overflow="wrap" className="docs-panel">
+    <Code density="compact" overflow="wrap" className="my-0">
       <CodeHeader>
         <CodeTitle>{label}</CodeTitle>
         <CodeActions>
@@ -111,7 +120,7 @@ function SourcePath({ path }: { path: string }) {
   );
 }
 
-export function SourceTabs({ files }: { files: SourceFile[] }) {
+export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?: CodeOverflow }) {
   const [activePath, setActivePath] = useState(files[0]?.path ?? "");
   const usesPageLayout = useSkin().sidebarLayout === "page";
   const activeFile = files.find((file) => file.path === activePath) ?? files[0];
@@ -135,7 +144,7 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
           </TabsList>
         </ScrollArea>
       ) : null}
-      <Code chrome="embedded" className={cn("docs-panel", files.length > 1 && !usesPageLayout && "-mt-px")}>
+      <Code overflow={overflow} className={cn("my-0", files.length > 1 && !usesPageLayout && "-mt-px")}>
         <CodeHeader>
           <SourcePath path={activeFile.path} />
           <CodeActions>
@@ -167,7 +176,7 @@ export function PreviewTabs({
 }) {
   const [tab, setTab] = useState("preview");
   const usesPageLayout = useSkin().sidebarLayout === "page";
-  const showPanelFrame = tab === "code" || (previewFramed && !usesPageLayout);
+  const showPanelFrame = previewFramed && !usesPageLayout;
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
@@ -188,7 +197,7 @@ export function PreviewTabs({
             {children}
           </TabsPanel>
           <TabsPanel value="code">
-            <Code copy={false} chrome="embedded">
+            <Code copy={false} chrome={showPanelFrame ? "embedded" : "standalone"} className="my-0">
               <CodeContent code={code} lang="tsx" />
             </Code>
           </TabsPanel>

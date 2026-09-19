@@ -19,6 +19,7 @@ import type {
 } from "@/app/(features)/model/types";
 import { Button } from "@/components/control-ui/ui/button";
 import { AvailableExtensions } from "./available-extensions";
+import { IntegrationSelect } from "./integration";
 import { RegistryItemPage } from "./registry-item-page";
 
 function selectedVersion(versions: DocsComponentVersion[] | undefined, pickedVersionId: string | undefined) {
@@ -130,6 +131,7 @@ export function ComponentPage({
         children: installDescription,
       }}
       usageCode={usageCode}
+      usageControls={<IntegrationSelect />}
       knobs={component.knobs}
       dependencies={dependencyDetails(supportFilesFor(component, version))}
       libraryDependencies={component.registryDependencies}

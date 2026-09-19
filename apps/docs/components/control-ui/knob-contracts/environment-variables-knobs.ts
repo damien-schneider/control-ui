@@ -6,5 +6,6 @@ export const environmentVariablesKnobs = [
   "--cui-environment-variables-message-background",
   "--cui-environment-variables-message-foreground",
   "--cui-environment-variables-message-border-color",
+  "--cui-environment-variables-message-border-width",
 ] as const;
 export type EnvironmentVariablesKnobStyle = Partial<Record<(typeof environmentVariablesKnobs)[number], string>>;

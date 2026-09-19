@@ -14,6 +14,7 @@
     --cui-tabs-active-foreground: var(--foreground);
     --cui-tabs-indicator-shadow: var(--shadow-sm);
     --cui-tabs-border-color: var(--border);
+    --cui-tabs-border-width: 1px;
   }
   :where([data-control-family="tabs"][data-slot="list"]) {
     --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--_tabs-trigger-h) / 2));
@@ -121,7 +122,7 @@
     content: "";
     position: absolute;
     inset: 0 var(--_tabs-trigger-radius-fit);
-    border: 1px solid var(--cui-tabs-border-color);
+    border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
     border-bottom: none;
     border-radius: var(--_tabs-trigger-radius-fit) var(--_tabs-trigger-radius-fit) 0 0;
     background: var(--cui-tabs-indicator-background);
@@ -242,4 +243,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-tabs-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

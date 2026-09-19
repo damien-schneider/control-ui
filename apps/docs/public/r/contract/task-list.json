@@ -31,6 +31,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-task-list-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-task-list-shadow",
       "syntax": "*",
       "initialValue": "",

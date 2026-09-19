@@ -41,6 +41,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--destructive) l c h / 0.4)"
+    },
+    {
+      "name": "--cui-environment-variables-message-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
     }
   ],
   "parts": {

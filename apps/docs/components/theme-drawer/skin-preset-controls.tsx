@@ -7,11 +7,9 @@ import { useThemeRuntime } from "./theme-runtime-context";
 
 export function SkinPresetControls({ className }: { className?: string }) {
   const { t, selectSkin } = useThemeRuntime();
-  const value = t.customThemeId === null ? t.skin : "";
-
   return (
     <Select
-      value={value}
+      value={t.skin}
       onValueChange={(next) => {
         if (isSkinId(next)) selectSkin(next);
       }}

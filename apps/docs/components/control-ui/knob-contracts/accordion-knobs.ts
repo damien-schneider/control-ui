@@ -1,6 +1,7 @@
 // Generated from src/registry/sources/control-ui/recipes/accordion.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const accordionKnobs = [
   "--cui-accordion-item-border-color",
+  "--cui-accordion-item-border-width",
   "--cui-accordion-trigger-foreground",
   "--cui-accordion-trigger-hover-foreground",
   "--cui-accordion-icon-foreground",

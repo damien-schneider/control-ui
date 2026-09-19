@@ -13,6 +13,13 @@ for (const { name, width, height, reducedMotion } of [
 
     const toolbar = page.getByRole("toolbar", { name: "Documentation controls" });
     const editTheme = toolbar.getByRole("link", { name: "Edit theme" });
+    const openSidebarOnNarrowViewports = async () => {
+      if (width >= 1024) return;
+      await page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" }).click();
+      await expect(editTheme).toBeVisible();
+    };
+
+    await openSidebarOnNarrowViewports();
     await expect(editTheme).toHaveAttribute("href", "/theme-editor");
     await editTheme.focus();
     await page.keyboard.press("Enter");
@@ -20,10 +27,12 @@ for (const { name, width, height, reducedMotion } of [
     await expect(page).toHaveURL(/\/theme-editor$/);
     await expect(page.getByRole("heading", { name: "Theme editor", level: 1 })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Theme editor", level: 1 })).toBeFocused();
+    await expect(page.getByRole("complementary", { name: "Theme variables" })).toBeVisible();
+    await expect(page.getByRole("tab", { name: "Components", exact: true })).toBeVisible();
+    await openSidebarOnNarrowViewports();
     await expect(editTheme).toHaveAttribute("aria-current", "page");
     await expect(toolbar.getByRole("combobox", { name: "Skin", exact: true })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Close editor" })).toHaveCount(0);
-    await expect(page.locator("[data-docs-page-grid]")).toContainText("Choose a skin");
+    await expect(page.getByRole("link", { name: /^Radius & corners/ })).toBeVisible();
     await expect
       .poll(() => page.locator("[data-docs-page-grid]").evaluate((element) => element.scrollWidth - element.clientWidth))
       .toBeLessThanOrEqual(1);
@@ -42,10 +51,20 @@ for (const { name, width, height, reducedMotion } of [
 test("theme edits survive navigation, direct loads, and refresh", async ({ page, context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("/theme-editor", { waitUntil: "networkidle" });
-  await page.getByRole("region", { name: "Choose a skin" }).getByRole("button", { name: "Refined", exact: true }).click();
+  await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+  await page.getByRole("option", { name: "Refined", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
   await page.getByRole("switch", { name: "Caption every control with its CSS variable name" }).check();
+
   const radius = page.getByRole("slider", { name: "--radius-control", exact: true });
+  const openRadiusTokens = async () => {
+    await page.getByRole("link", { name: /^Radius & corners/ }).click();
+    await expect(page).toHaveURL(/\/theme-editor\/radius$/);
+    await page.getByRole("button", { name: /Advanced/ }).click();
+    await expect(radius).toBeVisible();
+  };
+
+  await openRadiusTokens();
   await radius.focus();
   await radius.press("Home");
   await radius.press("ArrowRight");
@@ -63,8 +82,10 @@ test("theme edits survive navigation, direct loads, and refresh", async ({ page,
     .toBe("1px");
   await page.getByRole("link", { name: "Edit theme", exact: true }).first().click();
   await expect(page).toHaveURL(/\/theme-editor$/);
+  await openRadiusTokens();
   await expect(radius).toHaveAttribute("aria-valuenow", "1");
   await page.reload();
+  await openRadiusTokens();
   await expect(radius).toHaveAttribute("aria-valuenow", "1");
 });
 
@@ -129,8 +150,7 @@ test("copy failure stays actionable without reporting success", async ({ page })
     document.execCommand = () => false;
   });
   await page.getByRole("button", { name: "Copy CSS variables", exact: true }).click();
-  await expect(page.locator("[data-docs-page-grid]").getByRole("alert")).toHaveText(
-    "Could not copy CSS variables. Try again or allow clipboard access.",
-  );
+  const copyStatus = page.locator("[data-docs-page-grid]").getByRole("alert").filter({ hasText: "Could not copy CSS variables" });
+  await expect(copyStatus).toHaveText("Could not copy CSS variables. Try again or allow clipboard access.");
   await expect(page.getByRole("button", { name: "Copy CSS variables", exact: true })).toBeEnabled();
 });

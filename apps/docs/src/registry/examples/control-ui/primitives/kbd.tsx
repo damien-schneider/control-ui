@@ -23,6 +23,10 @@ export function PrimitiveKbdExample() {
           <Kbd>↵</Kbd>
         </KbdGroup>
       </div>
+      <div className="flex items-center gap-2">
+        <span>Inline hint</span>
+        <Kbd variant="ghost">⌘K</Kbd>
+      </div>
     </div>
   );
 }

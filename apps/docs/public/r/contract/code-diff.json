@@ -31,6 +31,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-code-diff-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-code-diff-foreground",
       "syntax": "<color>",
       "initialValue": "transparent",

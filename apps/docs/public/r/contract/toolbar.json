@@ -37,6 +37,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-toolbar-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-toolbar-shadow",
       "syntax": "*",
       "initialValue": "",

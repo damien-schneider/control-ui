@@ -6,11 +6,10 @@ import type { ReactNode } from "react";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import type { ActivePageId, DocsShellData, IntegrationId, SearchItem, SetupPreferenceUpdate } from "@/app/(features)/model/types";
-import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/routed-page";
+import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/integration";
 import { buildSearchItems } from "@/app/(features)/registry-api/search";
 import { DocsSearchProvider } from "@/app/(features)/sidebar/search";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
-import type { SidebarMode } from "@/app/(features)/sidebar/types";
 import { readStoredSidebarWidth, writeStoredSidebarWidth } from "@/app/(features)/sidebar/width";
 import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
@@ -19,6 +18,7 @@ import { useSkin } from "@/components/control-ui/skin-provider";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
+import { isThemeCategoryPath, THEME_EDITOR_PATH } from "@/components/theme-drawer/theme-categories";
 import { pageLinks } from "./page-links";
 import {
   defaultSetupPreference,
@@ -42,8 +42,6 @@ type DocsShellViewProps = DocsShellData & {
 };
 
 type DocsShellStateProps = {
-  lastSidebarMode: SidebarMode | null;
-  onLastSidebarModeChange: (mode: SidebarMode) => void;
   onSidebarOpenChange: (open: boolean) => void;
   sidebarOpen: boolean;
   sidebarWidth: number | undefined;
@@ -63,7 +61,8 @@ function normalizePathname(pathname: string) {
 }
 
 function activePageForPathname(pathname: string, searchItems: SearchItem[]): ActivePageId | undefined {
-  const currentPath = normalizePathname(pathname);
+  const path = normalizePathname(pathname);
+  const currentPath = isThemeCategoryPath(path) ? THEME_EDITOR_PATH : path;
   return searchItems.find((item) => normalizePathname(item.href) === currentPath)?.id;
 }
 
@@ -89,7 +88,6 @@ export function DocsShell(props: DocsShellViewProps) {
   const isHydrated = useIsHydrated();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [sidebarWidth, setSidebarWidth] = useState<number>();
-  const [lastSidebarMode, setLastSidebarMode] = useState<SidebarMode | null>(null);
 
   useIsomorphicLayoutEffect(() => {
     if (storedSidebarCollapsed()) setSidebarOpen(false);
@@ -106,8 +104,6 @@ export function DocsShell(props: DocsShellViewProps) {
       {isHydrated ? (
         <PersistedDocsShell
           {...props}
-          lastSidebarMode={lastSidebarMode}
-          onLastSidebarModeChange={setLastSidebarMode}
           onSidebarOpenChange={setSidebarOpen}
           sidebarOpen={sidebarOpen}
           sidebarWidth={sidebarWidth}
@@ -117,8 +113,6 @@ export function DocsShell(props: DocsShellViewProps) {
         <DocsShellContent
           {...props}
           integration={defaultSetupPreference.integration}
-          lastSidebarMode={lastSidebarMode}
-          onLastSidebarModeChange={setLastSidebarMode}
           onSidebarOpenChange={setSidebarOpen}
           sidebarOpen={sidebarOpen}
           sidebarWidth={sidebarWidth}
@@ -145,8 +139,6 @@ function DocsShellContent({
   extensions,
   skinPages,
   integration,
-  lastSidebarMode,
-  onLastSidebarModeChange,
   onSidebarOpenChange,
   sidebarOpen,
   sidebarWidth,
@@ -198,13 +190,23 @@ function DocsShellContent({
     primitives,
     extensions,
   });
-  const pageContent = <DocsPageIntegrationProvider integration={integration}>{children}</DocsPageIntegrationProvider>;
+  const pageContent = (
+    <DocsPageIntegrationProvider
+      integration={integration}
+      selectIntegration={(nextIntegration) => updateSetupPreference({ integration: nextIntegration })}
+    >
+      {children}
+    </DocsPageIntegrationProvider>
+  );
+  const isWorkspace = activeGuide?.layout === "workspace";
   const pageGrid = (
-    <div data-docs-page-grid="">
+    <div data-docs-page-grid="" data-docs-page-layout={isWorkspace ? "workspace" : undefined}>
       {pageContent}
-      <aside data-docs-page-toc="">
-        <TableOfContents items={links} />
-      </aside>
+      {isWorkspace ? null : (
+        <aside data-docs-page-toc="">
+          <TableOfContents items={links} />
+        </aside>
+      )}
     </div>
   );
 
@@ -217,12 +219,7 @@ function DocsShellContent({
       width={sidebarWidth}
       onWidthChange={onSidebarWidthChange}
     >
-      <DocsSearchProvider
-        active={activePage}
-        items={searchItems}
-        lastSectionMode={lastSidebarMode}
-        onLastSectionModeChange={onLastSidebarModeChange}
-      >
+      <DocsSearchProvider items={searchItems}>
         <DocsSidebarContent
           active={activePage}
           githubStars={githubStars}
@@ -237,10 +234,6 @@ function DocsShellContent({
           extensions={extensions}
           skinPages={skinPages}
           searchItems={searchItems}
-          integration={integration}
-          lastSectionMode={lastSidebarMode}
-          onLastSectionModeChange={onLastSidebarModeChange}
-          updateSetupPreference={updateSetupPreference}
         />
         <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
           <div

@@ -2,6 +2,7 @@
   :where([data-control-family="task-list"][data-slot="root"]) {
     --cui-task-list-background: oklch(from var(--card) l c h / 0.9);
     --cui-task-list-border-color: var(--border);
+    --cui-task-list-border-width: 1px;
     --cui-task-list-foreground: var(--foreground);
     --cui-task-list-radius: var(--radius-field);
     --cui-task-list-shadow: var(--shadow-md);
@@ -9,7 +10,7 @@
     --cui-task-list-indicator-foreground: oklch(from var(--muted-foreground) l c h / 0.7);
     --cui-task-list-item-foreground: var(--foreground);
     --cui-task-list-item-pending-foreground: var(--muted-foreground);
-    border: 1px solid var(--cui-task-list-border-color);
+    border: var(--cui-task-list-border-width) solid var(--cui-task-list-border-color);
     border-radius: var(--cui-task-list-radius);
     background: var(--cui-task-list-background);
     color: var(--cui-task-list-foreground);
@@ -113,6 +114,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-task-list-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-task-list-shadow {

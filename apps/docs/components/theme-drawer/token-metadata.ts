@@ -1,5 +1,6 @@
 import { THEME_CONTRACT, type ThemeContractGroup, type ThemeContractToken } from "@/src/registry/lib/theme-contract";
 import { BADGE_COLORS } from "@/src/registry/sources/control-ui/ui/badge";
+import { TOKEN_GROUP_ORDER, TOKEN_GROUP_TITLES } from "./theme-categories";
 import { CORNER_LABEL, EASE, EASE_LABEL, FONT, FONT_LABEL, FONT_MONO, FONT_MONO_LABEL } from "./types";
 
 // Decides only how token is EDITED; lib/theme-contract.ts stays source of names, groups, and tiers.
@@ -201,16 +202,6 @@ export type TokenCategory = {
   advanced: ThemeContractToken[];
 };
 
-const GROUP_TITLES: Record<ThemeContractGroup, string> = {
-  color: "Colors",
-  typography: "Typography",
-  radius: "Radius & corners",
-  shadow: "Shadows",
-  motion: "Motion",
-  surface: "Surfaces & overlays",
-  layout: "Layout & density",
-};
-
 const GROUP_DESCRIPTIONS: Record<ThemeContractGroup, string> = {
   color: "Semantic surfaces, text, borders, and status roles.",
   typography: "Font families and the shared type scale.",
@@ -221,16 +212,14 @@ const GROUP_DESCRIPTIONS: Record<ThemeContractGroup, string> = {
   layout: "Control sizing, density, spacing, and chrome.",
 };
 
-const GROUP_ORDER: readonly ThemeContractGroup[] = ["color", "typography", "radius", "shadow", "motion", "surface", "layout"];
-
 const isBadgeToken = (token: ThemeContractToken) => token.name.startsWith("--badge-");
 
 // badge tokens get their own subgroup instead of drowning advanced colour list
-export const TOKEN_CATEGORIES: readonly TokenCategory[] = GROUP_ORDER.map((group) => {
+export const TOKEN_CATEGORIES: readonly TokenCategory[] = TOKEN_GROUP_ORDER.map((group) => {
   const tokens = THEME_CONTRACT.filter((token) => token.group === group && !isBadgeToken(token));
   return {
     group,
-    title: GROUP_TITLES[group],
+    title: TOKEN_GROUP_TITLES[group],
     description: GROUP_DESCRIPTIONS[group],
     core: tokens.filter((token) => token.tier === "core"),
     // derived tokens stay editable — override sheet outranks their :where() core default
@@ -249,3 +238,9 @@ export const BADGE_TOKEN_ROWS: readonly BadgeTokenRow[] = BADGE_COLORS.map((colo
     return token ? [token] : [];
   }),
 }));
+
+/** Every contract token a category owns, including the badge palette folded into colors. */
+export function categoryTokenNames(category: TokenCategory): string[] {
+  const badgeTokens = category.group === "color" ? BADGE_TOKEN_ROWS.flatMap((row) => row.tokens) : [];
+  return [...category.core, ...category.advanced, ...badgeTokens].map((token) => token.name);
+}

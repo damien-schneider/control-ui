@@ -55,10 +55,25 @@ export function SectionTitle({ title, description }: { title: string; descriptio
   );
 }
 
-export function SectionCode({ id, title, description, code }: { id: string; title: string; description?: string; code: string }) {
+export function SectionCode({
+  id,
+  title,
+  description,
+  code,
+  controls,
+}: {
+  id: string;
+  title: string;
+  description?: string;
+  code: string;
+  controls?: ReactNode;
+}) {
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
-      <SectionTitle title={title} description={description} />
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <SectionTitle title={title} description={description} />
+        {controls ? <div className="mb-3">{controls}</div> : null}
+      </div>
       <CodeBlock code={code} />
     </section>
   );

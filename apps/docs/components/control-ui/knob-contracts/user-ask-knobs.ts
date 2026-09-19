@@ -4,6 +4,7 @@ export const userAskKnobs = [
   "--cui-user-ask-background",
   "--cui-user-ask-foreground",
   "--cui-user-ask-border-color",
+  "--cui-user-ask-border-width",
   "--cui-user-ask-shadow",
   "--cui-user-ask-option-radius",
   "--cui-user-ask-option-hover-background",

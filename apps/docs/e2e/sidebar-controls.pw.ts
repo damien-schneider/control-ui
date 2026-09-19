@@ -70,11 +70,16 @@ test("search shortcut still works when the sidebar collapses into its sheet", as
   await expect(dialog.getByRole("combobox", { name: "Search documentation" })).toBeFocused();
 });
 
-test("agent pages carry the integration selector", async ({ page }) => {
-  await page.goto("/ai");
-  const integration = page.getByTestId("integration-select");
-  await expect(integration).toBeVisible();
+test("agent pages carry the integration selector in their usage section", async ({ page }) => {
+  await page.goto("/ai/chat-message");
+  const integration = page.locator("#usage").getByTestId("integration-select");
+  await waitForReactHydration(integration);
+  await expect(integration).toHaveText("Mastra");
+
+  await integration.click();
+  await page.getByRole("listbox").getByRole("option", { name: "AI SDK" }).click();
+  await expect(integration).toHaveText("AI SDK");
 
   await page.goto("/primitives/button");
-  await expect(integration).toHaveCount(0);
+  await expect(page.getByTestId("integration-select")).toHaveCount(0);
 });

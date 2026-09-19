@@ -57,6 +57,7 @@ export function RegistryItemPage({
   composition,
   install,
   usageCode,
+  usageControls,
   knobs = emptyKnobFamilies,
   dependencies,
   libraryDependencies,
@@ -72,6 +73,7 @@ export function RegistryItemPage({
   composition: Composition;
   install: RegistryItemInstall;
   usageCode?: string;
+  usageControls?: ReactNode;
   knobs?: DocsKnobFamily[];
   dependencies?: RegistryItemFileSection;
   libraryDependencies?: DocsRegistryDependency[];
@@ -92,7 +94,7 @@ export function RegistryItemPage({
         <InstallPanel commands={install.commands} manifestHref={install.manifestHref} subtitle={install.subtitle}>
           {install.children}
         </InstallPanel>
-        {usageCode ? <SectionCode id="usage" title="Usage" code={usageCode} /> : null}
+        {usageCode ? <SectionCode id="usage" title="Usage" code={usageCode} controls={usageControls} /> : null}
         <DependencySection {...dependencies} dependencies={libraryDependencies} />
         {source ? <RegistryItemSource {...source} /> : null}
         {children}

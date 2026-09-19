@@ -1,13 +1,14 @@
 @layer components {
   :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="root"]) {
     --cui-phone-input-country-border-color: var(--border);
+    --cui-phone-input-country-border-width: 1px;
     --cui-phone-input-trigger-hover-background: oklch(from var(--foreground) l c h / 0.06);
     --cui-phone-input-trigger-focus-background: oklch(from var(--foreground) l c h / 0.06);
     --cui-phone-input-metadata-foreground: var(--muted-foreground);
     --cui-phone-input-chevron-foreground: var(--muted-foreground);
   }
   :where([data-control-family="field"][data-phone-input-country]) {
-    border-inline-end: 1px solid var(--cui-phone-input-country-border-color);
+    border-inline-end: var(--cui-phone-input-country-border-width) solid var(--cui-phone-input-country-border-color);
   }
 
   @media (hover: hover) {
@@ -75,6 +76,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-phone-input-country-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-phone-input-trigger-hover-background {

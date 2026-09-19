@@ -3,6 +3,7 @@ export const codeKnobs = [
   "--cui-code-radius",
   "--cui-code-background",
   "--cui-code-border-color",
+  "--cui-code-border-width",
   "--cui-code-shadow",
   "--cui-code-title-foreground",
   "--cui-code-text-foreground",

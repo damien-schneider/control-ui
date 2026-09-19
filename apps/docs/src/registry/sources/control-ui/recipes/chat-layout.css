@@ -3,12 +3,13 @@
     --cui-chat-layout-radius: var(--radius-scene);
     --cui-chat-layout-background: var(--background);
     --cui-chat-layout-border-color: var(--border);
+    --cui-chat-layout-border-width: 1px;
     --cui-chat-layout-shadow: var(--shadow-md);
     background: var(--cui-chat-layout-background);
   }
 
   :where([data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"]) {
-    border: 1px solid var(--cui-chat-layout-border-color);
+    border: var(--cui-chat-layout-border-width) solid var(--cui-chat-layout-border-color);
     border-radius: var(--cui-chat-layout-radius);
     box-shadow: var(--cui-chat-layout-shadow);
   }
@@ -52,6 +53,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-chat-layout-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-chat-layout-shadow {

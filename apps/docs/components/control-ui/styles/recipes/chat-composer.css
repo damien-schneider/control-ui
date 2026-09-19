@@ -5,6 +5,7 @@
     --cui-chat-composer-shell-background-image: none;
     --cui-chat-composer-shell-backdrop-filter: none;
     --cui-chat-composer-shell-border-color: var(--border);
+    --cui-chat-composer-shell-border-width: 1px;
     --cui-chat-composer-shell-radius: var(--radius-field);
     --cui-chat-composer-shell-shadow: var(--shadow-md);
     --cui-chat-composer-input-foreground: var(--card-foreground);
@@ -19,7 +20,7 @@
   }
 
   :where([data-control-family="chat-composer"][data-slot="shell"]) {
-    border: 1px solid var(--cui-chat-composer-shell-border-color);
+    border: var(--cui-chat-composer-shell-border-width) solid var(--cui-chat-composer-shell-border-color);
     border-radius: var(--cui-chat-composer-shell-radius);
     background-color: var(--cui-chat-composer-shell-background);
     background-image: var(--cui-chat-composer-shell-background-image);
@@ -149,6 +150,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-chat-composer-shell-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-chat-composer-shell-shadow {

@@ -5,6 +5,7 @@ export const toolbarKnobs = [
   "--cui-toolbar-background",
   "--cui-toolbar-foreground",
   "--cui-toolbar-border-color",
+  "--cui-toolbar-border-width",
   "--cui-toolbar-shadow",
   "--cui-toolbar-item-radius",
   "--cui-toolbar-item-background",

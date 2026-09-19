@@ -11,7 +11,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { skillConcernSidebarIcons } from "./icons";
 import { humanizeNavName } from "./nav-items";
-import type { DocsNavItem, SidebarDoor, SidebarDoorId } from "./types";
+import type { DocsNavItem, SidebarDoor } from "./types";
 
 function NavMenu({
   items,
@@ -79,21 +79,13 @@ export function DocsNavGroup({
   );
 }
 
-export function SidebarDoorMenu({
-  doors,
-  activeDoorId,
-  onOpen,
-}: {
-  doors: readonly SidebarDoor[];
-  activeDoorId: SidebarDoorId | null;
-  onOpen: (doorId: SidebarDoorId) => void;
-}) {
+export function SidebarDoorMenu({ doors, onNavigate }: { doors: readonly SidebarDoor[]; onNavigate: () => void }) {
   return (
     <SidebarGroup>
       <SidebarMenu indicator="hover">
         {doors.map((door) => (
           <SidebarMenuItem key={door.id}>
-            <SidebarMenuButton onClick={() => onOpen(door.id)} isActive={activeDoorId === door.id} size="sm">
+            <SidebarMenuButton render={<Link href={door.href} onClick={onNavigate} />} size="sm">
               <HugeiconsIcon aria-hidden icon={door.icon} size={16} strokeWidth={1.7} />
               <span className="min-w-0 truncate">{door.title}</span>
               <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} className="ml-auto text-muted-foreground" />
@@ -119,20 +111,22 @@ export function SidebarDoorPane({
   children: ReactNode;
 }) {
   return (
-    <SidebarGroup>
-      <SidebarMenu indicator="hover">
-        <SidebarMenuItem>
-          <SidebarMenuButton onClick={onBack} size="sm" aria-label={`Back from ${door.title}`}>
-            <HugeiconsIcon aria-hidden icon={ArrowLeft01Icon} size={14} strokeWidth={1.7} className="text-muted-foreground" />
-            <span className="min-w-0 truncate font-medium">{door.title}</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
-      {door.overviewId ? (
-        <NavMenu items={[{ id: door.overviewId, name: "Overview" }]} active={active} prefix="/" onNavigate={onNavigate} />
-      ) : null}
-      <div className="grid gap-2 pt-1">{children}</div>
-    </SidebarGroup>
+    <>
+      <SidebarGroup>
+        <SidebarMenu indicator="hover">
+          <SidebarMenuItem>
+            <SidebarMenuButton onClick={onBack} size="sm" aria-label={`Leave ${door.title}`}>
+              <HugeiconsIcon aria-hidden icon={ArrowLeft01Icon} size={14} strokeWidth={1.7} className="text-muted-foreground" />
+              <span className="min-w-0 truncate font-medium">{door.title}</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        {door.overviewId ? (
+          <NavMenu items={[{ id: door.overviewId, name: "Overview" }]} active={active} prefix="/" onNavigate={onNavigate} />
+        ) : null}
+      </SidebarGroup>
+      {children}
+    </>
   );
 }
 

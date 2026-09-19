@@ -165,7 +165,7 @@ export type GuidePage = {
   group: GuideGroupId;
   name: string;
   summary: string;
-  layout?: "default" | "wide";
+  layout?: "default" | "wide" | "workspace";
   cta?: boolean;
   sections: GuideSection[];
   comparedApplications?: readonly ComparedApplication[];

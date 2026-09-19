@@ -9,11 +9,12 @@ import type {
   DocsExtension,
   DocsHook,
   DocsPrimitive,
+  DocsStatus,
   DocsUtil,
   GuidePage,
   SearchItem,
 } from "@/app/(features)/model/types";
-import type { DocsNavItem, SidebarMode, SidebarPane } from "./types";
+import type { CatalogNavGroupId, DocsNavItem, SidebarPane } from "./types";
 
 const navCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
@@ -21,24 +22,10 @@ function sortNavItemsByName(items: DocsNavItem[]): DocsNavItem[] {
   return [...items].sort((a, b) => navCollator.compare(humanizeNavName(a.name), humanizeNavName(b.name)) || a.id.localeCompare(b.id));
 }
 
-const sidebarModeByKind: Partial<Record<SearchItem["kind"], SidebarMode>> = {
-  Agent: "agents",
-  Primitive: "primitives",
-  Hook: "primitives",
-  Util: "primitives",
-  Extension: "primitives",
-};
-
-export const defaultSidebarMode: SidebarMode = "agents";
-
-export function sidebarModeForActivePage(active: ActivePageId, searchItems: SearchItem[]): SidebarMode | null {
-  const kind = searchItems.find((item) => item.id === active)?.kind;
-  return kind ? (sidebarModeByKind[kind] ?? null) : null;
-}
-
 export function sidebarPaneForActivePage(active: ActivePageId, searchItems: SearchItem[], referenceGroups: GuideNavGroup[]): SidebarPane {
   const kind = searchItems.find((item) => item.id === active)?.kind;
 
+  if (active === "theme-editor") return "theme-editor";
   if (kind === "Block") return "use-cases";
   if (kind === "Skill") return "practices";
   if (active === referenceOverview.id || referenceGroups.some((group) => group.items.some((item) => item.id === active)))
@@ -89,16 +76,6 @@ export function ctaGuide(guides: GuidePage[]) {
   return guides.find((guide) => guide.cta);
 }
 
-export function agentNavItems(components: DocsComponent[]): DocsNavItem[] {
-  return sortNavItemsByName(
-    components.map((component) => ({
-      id: component.id,
-      name: component.name,
-      status: component.status,
-    })),
-  );
-}
-
 export function getUseCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "useCaseKind" | "name" | "status">[]) {
   return useCaseKinds.map((kind) => ({
     id: kind.slug,
@@ -120,44 +97,36 @@ export function getUseCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "use
   }));
 }
 
-export function primitiveNavGroups(primitives: Pick<DocsPrimitive, "id" | "category" | "name" | "status">[]) {
-  return primitiveCategories.map((category) => ({
-    id: category.id,
-    title: category.label,
-    items: sortNavItemsByName(
-      primitives.flatMap((primitive) =>
-        primitive.category === category.id
-          ? [
-              {
-                id: primitive.id,
-                name: primitive.name,
-                status: primitive.status,
-              },
-            ]
-          : [],
-      ),
-    ),
-  }));
+export type CatalogNavGroup = {
+  id: CatalogNavGroupId;
+  title: string;
+  prefix: string;
+  items: DocsNavItem[];
+};
+
+type CatalogNavSource = {
+  components: readonly Pick<DocsComponent, "id" | "name" | "status">[];
+  primitives: readonly Pick<DocsPrimitive, "id" | "category" | "name" | "status">[];
+  hooks: readonly Pick<DocsHook, "id" | "name">[];
+  utils: readonly Pick<DocsUtil, "id" | "name">[];
+  extensions: readonly Pick<DocsExtension, "id" | "name" | "status">[];
+};
+
+function navItem(entry: { id: string; name: string; status?: DocsStatus }): DocsNavItem {
+  return { id: entry.id, name: entry.name, status: entry.status };
 }
 
-export function hookNavItems(hooks: DocsHook[]): DocsNavItem[] {
-  return hooks.map((hook) => ({
-    id: hook.id,
-    name: hook.name,
-  }));
-}
-
-export function utilNavItems(utils: DocsUtil[]): DocsNavItem[] {
-  return utils.map((util) => ({
-    id: util.id,
-    name: util.name,
-  }));
-}
-
-export function extensionNavItems(extensions: DocsExtension[]): DocsNavItem[] {
-  return extensions.map((extension) => ({
-    id: extension.id,
-    name: extension.name,
-    status: extension.status,
-  }));
+export function catalogNavGroups({ components, primitives, hooks, utils, extensions }: CatalogNavSource): CatalogNavGroup[] {
+  return [
+    { id: "agents", title: "Agents", prefix: "/ai/", items: sortNavItemsByName(components.map(navItem)) },
+    ...primitiveCategories.map((category) => ({
+      id: category.id,
+      title: category.label,
+      prefix: "/primitives/",
+      items: sortNavItemsByName(primitives.filter((primitive) => primitive.category === category.id).map(navItem)),
+    })),
+    { id: "hooks", title: "Hooks", prefix: "/hooks/", items: hooks.map(navItem) },
+    { id: "utils", title: "Utils", prefix: "/utils/", items: utils.map(navItem) },
+    { id: "extensions", title: "Extensions", prefix: "/extensions/", items: extensions.map(navItem) },
+  ];
 }

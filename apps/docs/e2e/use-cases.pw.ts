@@ -4,14 +4,12 @@ test("Blocks owns block browsing and canonical detail routes", async ({ page }) 
   await page.goto("/ai");
   await page.waitForLoadState("networkidle");
 
-  const catalogs = page.getByRole("navigation", { name: "Catalogs" });
-  await expect(catalogs.getByRole("link", { name: "Components" })).toHaveAttribute("aria-current", "true");
-  await expect(page.getByText("Agents", { exact: true }).first()).toBeVisible();
+  const sidebar = page.locator("[data-docs-sidebar-navigation]");
+  await expect(sidebar.getByText("Agents", { exact: true })).toBeVisible();
+  await expect(sidebar.getByRole("link", { name: "Chat Message", exact: true })).toBeVisible();
   await expect(page.getByText("Templates", { exact: true })).toHaveCount(0);
 
-  const sidebar = page.locator("[data-docs-sidebar-navigation]");
-  await sidebar.getByRole("button", { name: "Templates & patterns" }).click();
-  await sidebar.getByRole("link", { name: "Overview" }).click();
+  await sidebar.getByRole("link", { name: "Templates & patterns" }).click();
   await expect(page).toHaveURL("/use-cases");
   await expect(page.getByRole("heading", { name: "Templates & patterns", level: 1 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Templates", level: 2 })).toBeVisible();
@@ -38,7 +36,7 @@ test("Blocks stays single-column on mobile", async ({ page }) => {
   await sidebarTrigger.click();
 
   const sidebar = page.locator("[data-docs-sidebar-navigation]");
-  await expect(sidebar.getByRole("link", { name: "Overview" })).toBeVisible();
+  await expect(sidebar.getByRole("link", { name: "Overview", exact: true })).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(sidebar).toBeHidden();
 

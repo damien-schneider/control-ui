@@ -5,7 +5,7 @@ import { DeferredPreview } from "@/app/(features)/components/deferred-preview";
 import { Preview, PrimitivePreview } from "@/app/(features)/components/previews";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { CatalogGalleryGroup, CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
-import { useDocsIntegration } from "@/app/(features)/page-templates/routed-page";
+import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
 import { PageHeader } from "./shared";
 
 export function CatalogGalleryPage({

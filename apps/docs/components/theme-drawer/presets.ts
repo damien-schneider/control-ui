@@ -17,7 +17,6 @@ export function isSkinId(value: unknown): value is SkinId {
 
 export const DEFAULT_THEME: ThemeState = {
   skin: DEFAULT_SKIN_ID,
-  customThemeId: null,
   reduceMotion: false,
   labelMode: "friendly",
   overrides: {},
@@ -51,7 +50,6 @@ export function loadStored(storage?: Pick<Storage, "getItem">): ThemeState | nul
     return {
       ...DEFAULT_THEME,
       skin: isSkinId(storedSkin) ? storedSkin : DEFAULT_THEME.skin,
-      customThemeId: typeof stored.customThemeId === "string" ? stored.customThemeId : null,
       reduceMotion: stored.reduceMotion === true,
       labelMode: readLabelMode(stored.labelMode),
       overrides: isLegacy ? {} : readTokenMap(stored.overrides),

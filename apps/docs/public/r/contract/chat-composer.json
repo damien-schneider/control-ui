@@ -43,6 +43,12 @@
       "defaultValue": "var(--border)"
     },
     {
+      "name": "--cui-chat-composer-shell-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
       "name": "--cui-chat-composer-shell-shadow",
       "syntax": "*",
       "initialValue": "",
