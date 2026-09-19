@@ -164,10 +164,11 @@ export const guideEntries = [
     kind: "Guide",
     group: "maintain",
     name: "Contract versions",
-    summary: "The skin contract is version 8. Crossing a version reinstalls core, the affected items, and the skin together.",
+    summary: "The skin contract is version 9. Crossing a version reinstalls core, the affected items, and the skin together.",
     sections: [
       { id: "current", title: "Where the contract stands" },
       { id: "crossing", title: "Crossing a version" },
+      { id: "code", title: "Version 9: CodeBlockEditor became Code" },
       { id: "activity", title: "Version 4: ToolCall became Activity" },
     ],
   },

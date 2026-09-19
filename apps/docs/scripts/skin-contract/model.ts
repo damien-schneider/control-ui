@@ -34,7 +34,7 @@ export const skinSurfaceFamilies = ["floating", "modal", "panel"] as const;
 export type SkinSurfaceFamily = (typeof skinSurfaceFamilies)[number];
 
 export type SkinContract = {
-  version: 8;
+  version: 9;
   selectorPattern: string;
   registryItemMapping: Record<string, string[]>;
   scopes: Record<string, ContractScope>;

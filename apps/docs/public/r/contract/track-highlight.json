@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "family": "track-highlight",
   "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
   "registryItems": [

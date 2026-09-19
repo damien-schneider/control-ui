@@ -18,7 +18,7 @@ describe("skin contract generation", () => {
 
   test("resolves ownership, adornments, and semantic families", () => {
     const contract = collectSkinContract();
-    expect(contract.version).toBe(8);
+    expect(contract.version).toBe(9);
     expect(contract.selectorPattern).toBe('[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])');
     expect(contract.scopes.button.parts.root.family).toBe("button");
     expect(contract.scopes["code-diff"].registryItems).toContain("code-diff");

@@ -1,5 +1,5 @@
 <GuideSection id="current" title="Where the contract stands">
-  The current skin contract is version 8: registered component CSS knobs carry every visual decision, sizing included, published one
+  The current skin contract is version 9: registered component CSS knobs carry every visual decision, sizing included, published one
   slice per paint family under `/r/contract/`, indexed by `/r/contract/index.json`.
 
   A pack written against the current version installs and paints with no migration. Contract versions only matter
@@ -14,6 +14,27 @@
     After the crossing, `control-ui:doctor` reports clean and the components paint with the pack's own values — not
     the browser's defaults where a knob went missing.
   </GuideCheck>
+</GuideSection>
+
+<GuideSection id="code" title="Version 9: CodeBlockEditor became Code">
+  Version 9 removed the `code-block-editor` item. It was a second implementation of the `code` surface with the same
+  anatomy and a parallel `--cui-code-block-editor-*` knob set, so a skin had to paint the same code panel twice. From
+  version 8 or earlier, remove the old files before reinstalling `code`:
+
+```bash
+rm -f components/control-ui/code-block-editor.tsx components/control-ui/lib/code-block-shiki.ts
+rm -f components/control-ui/knob-contracts/code-block-editor-knobs.ts components/control-ui/styles/recipes/code-block-editor.css
+rm -f src/components/control-ui/code-block-editor.tsx src/components/control-ui/lib/code-block-shiki.ts
+rm -f src/components/control-ui/knob-contracts/code-block-editor-knobs.ts src/components/control-ui/styles/recipes/code-block-editor.css
+```
+
+  Then drop the `CodeBlockEditor` prefix from every part: `CodeBlockEditorHeader` becomes `CodeHeader`, `CodeBlockEditorContent`
+  becomes `CodeContent`, and so on. `CodeBlockEditorTextarea` becomes `CodeEditable`. `highlightCodeToTokens` moves to
+  `highlightToTokens` from `lib/code-tokens`. In a skin, repoint `--cui-code-block-editor-*` to the matching `--cui-code-*` knob
+  and any `[data-control-family="code-block-editor"]` selector to `code`; the editable textarea is `[data-slot="editor"]`.
+
+  `variant="command"` is gone with no replacement — it set no paint of its own. A one-line command surface is a headerless
+  `Code` with `density="compact"` and `overflow="wrap"`.
 </GuideSection>
 
 <GuideSection id="activity" title="Version 4: ToolCall became Activity">

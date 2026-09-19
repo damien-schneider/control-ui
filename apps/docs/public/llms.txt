@@ -16,7 +16,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Theme AI builder](http://127.0.0.1:3000/theme-ai-builder): Create a Control UI theme with Claude Code, Codex, or Mastra Code, then import and test it live.
 - [Theme accessibility](http://127.0.0.1:3000/theme-accessibility): Audit canonical theme colors plus rendered popup, badge, and active-tab states, then run the same checks from the CLI.
 - [Update & diff](http://127.0.0.1:3000/update): Updating is a reinstall: the update manifest refreshes every installed source and never touches the three skin-owned files.
-- [Contract versions](http://127.0.0.1:3000/contract-versions): The skin contract is version 8. Crossing a version reinstalls core, the affected items, and the skin together.
+- [Contract versions](http://127.0.0.1:3000/contract-versions): The skin contract is version 9. Crossing a version reinstalls core, the affected items, and the skin together.
 - [Setup prompt](http://127.0.0.1:3000/setup-prompt): One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
 - [Agent skill](http://127.0.0.1:3000/agent-skill): The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
 - [Machine docs](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.

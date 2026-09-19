@@ -3,7 +3,7 @@ import "server-only";
 import type { SkinContract } from "@/scripts/skin-contract/model";
 
 export const generatedSkinContract: SkinContract = {
-  version: 8,
+  version: 9,
   selectorPattern: '[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])',
   registryItemMapping: {
     accordion: ["accordion"],

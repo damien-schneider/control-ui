@@ -14,6 +14,20 @@ Control UI is an owned-source registry for building AI chat, coding-agent, and o
 > Control UI is currently in alpha. Stable, beta, and experimental items are labeled in the catalog; beta and experimental APIs may change.
 
 > [!IMPORTANT]
+> Upgrading from contract version 8? Contract version 9 removes `CodeBlockEditor`; the `code` item now owns the editable
+> surface as `CodeEditable`. Follow the [migration steps](https://control-ui.dev/contract-versions#code) before reinstalling
+> components or a skin.
+
+Remove the legacy files before reinstalling:
+
+```bash
+rm -f components/control-ui/code-block-editor.tsx components/control-ui/lib/code-block-shiki.ts
+rm -f components/control-ui/knob-contracts/code-block-editor-knobs.ts components/control-ui/styles/recipes/code-block-editor.css
+rm -f src/components/control-ui/code-block-editor.tsx src/components/control-ui/lib/code-block-shiki.ts
+rm -f src/components/control-ui/knob-contracts/code-block-editor-knobs.ts src/components/control-ui/styles/recipes/code-block-editor.css
+```
+
+> [!IMPORTANT]
 > Upgrading from contract version 3? Contract version 4 replaces `ToolCall` with Activity's typed tool variant. Follow the [migration steps](https://control-ui.dev/get-started#install-a-skin) before reinstalling components or a skin.
 
 Remove the legacy files before reinstalling:

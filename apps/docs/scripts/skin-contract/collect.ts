@@ -551,7 +551,7 @@ export function collectSkinContract(): SkinContract {
     );
 
   return {
-    version: 8,
+    version: 9,
     selectorPattern: skinSelector({ skin: "{skin}", family: "{family}", part: "{part}" }),
     registryItemMapping: sortRecord(Object.fromEntries([...registryItemMapping].map(([scope, items]) => [scope, [...items].sort()]))),
     scopes: sortRecord(scopes),

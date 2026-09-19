@@ -117,11 +117,13 @@
 
   <RegistryPipeline />
 
-  The current anatomy contract is version 8. Version 6 removed runtime class and paint maps: component visuals now flow through
+  The current anatomy contract is version 9. Version 6 removed runtime class and paint maps: component visuals now flow through
   registered CSS knob contracts, while skin config retains only behavior and adornments. Version 7 publishes every registered
   `--cui-*` knob (syntax and recipe default included) in the generated contract. Version 8 renames every paint knob to the
   `-background` suffix, adds the surface archetype tokens (`--control-rim`, `--hover-fill`, `--active-fill`), and moves control
   sizing out of the shared utility into the recipes as `--cui-button-height` and its padding, font-size and field twins.
+  Version 9 folds `code-block-editor` into `code`: one paint family, one knob set, with the editable textarea as the
+  `editor` slot.
   This pre-release registry uses a
   clean contract cutover: reinstall core, affected components or blocks, and the selected skin together.
 </GuideSection>

@@ -179,7 +179,7 @@
         "id": "contract-versions",
         "name": "Contract versions",
         "kind": "Guide",
-        "summary": "The skin contract is version 8. Crossing a version reinstalls core, the affected items, and the skin together.",
+        "summary": "The skin contract is version 9. Crossing a version reinstalls core, the affected items, and the skin together.",
         "href": "/contract-versions"
       },
       {
