@@ -5,6 +5,7 @@ import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { registryInstallCommand } from "@/app/(features)/model/registry";
 import type { ComponentId, DocsExtension, PrimitiveId } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
+import { Card } from "@/components/control-ui/ui/card";
 import { hasExtensionDemo } from "./extension-demo-ids";
 import { ExtensionDemo } from "./extension-demos";
 import { SectionTitle } from "./shared";
@@ -24,7 +25,7 @@ export function AvailableExtensions({ hostId, extensions }: { hostId: ComponentI
       />
       <div className="grid gap-4">
         {available.map((extension) => (
-          <div key={extension.id} className="min-w-0 rounded-xl border border-border/70 bg-card p-4 shadow-sm">
+          <Card key={extension.id} className="min-w-0 gap-0 p-4">
             <div className="mb-1 flex items-center gap-2">
               <Link href={`/extensions/${extension.id}`} className="font-medium hover:underline">
                 {extension.name}
@@ -43,7 +44,7 @@ export function AvailableExtensions({ hostId, extensions }: { hostId: ComponentI
               <CommandBlock label="Install" command={registryInstallCommand(extension.registryKind)} />
               <CodeBlock code={extension.activation.code} />
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </section>

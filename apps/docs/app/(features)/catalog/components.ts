@@ -90,11 +90,6 @@ const inlineAttachmentRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/inline-attachment.css",
   "recipe-css",
 );
-const codeBlockEditorRecipeFile = sourceFile(
-  "Code block editor recipe — paint + @property knobs",
-  "src/registry/sources/control-ui/recipes/code-block-editor.css",
-  "recipe-css",
-);
 
 export const componentEntries = [
   emailEntry,
@@ -532,29 +527,6 @@ export const componentEntries = [
       supportFiles: [sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"), markdownBlockRecipeFile],
     },
     preview: preview(() => import("@/src/registry/examples/markdown-block").then((mod) => ({ default: mod.MarkdownBlockExample }))),
-  },
-  {
-    id: "code-block-editor",
-    kind: "Agent",
-    name: "CodeBlockEditor",
-    summary: "Editable code surface with Shiki highlighting and token-based light/dark themes.",
-    registryKind: "code-block-editor",
-    paths: {
-      example: sourceFile("Example", "src/registry/examples/control-ui/code-block-editor.tsx", "example"),
-      usage: {
-        mastra: sourceFile("Usage", "src/registry/usage/components/code-block-editor.tsx", "usage"),
-        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/code-block-editor.tsx", "usage"),
-      },
-      source: sourceFile("Component", "src/registry/sources/control-ui/code-block-editor.tsx", "component"),
-      supportFiles: [
-        sourceFile("Shiki helper", "src/registry/lib/code-block-shiki.ts", "shiki-helper"),
-        sourceFile("Copy hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"),
-        codeBlockEditorRecipeFile,
-      ],
-    },
-    preview: preview(() =>
-      import("@/src/registry/examples/control-ui/code-block-editor").then((mod) => ({ default: mod.CodeBlockEditorExample })),
-    ),
   },
   {
     id: "chat-layout",

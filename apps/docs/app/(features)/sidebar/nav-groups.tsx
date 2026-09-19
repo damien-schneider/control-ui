@@ -4,14 +4,14 @@ import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { ActivePageId, DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
 import { skillConcernSidebarIcons } from "./icons";
-import type { GuideNavGroup } from "./nav-items";
 import { humanizeNavName } from "./nav-items";
-import type { DocsNavItem } from "./types";
+import type { DocsNavItem, SidebarDoor, SidebarDoorId } from "./types";
 
 function NavMenu({
   items,
@@ -79,63 +79,59 @@ export function DocsNavGroup({
   );
 }
 
-export function ReferenceDoorRow({
-  title,
-  icon,
-  isInside,
+export function SidebarDoorMenu({
+  doors,
+  activeDoorId,
   onOpen,
 }: {
-  title: string;
-  icon: IconSvgElement;
-  isInside: boolean;
-  onOpen: () => void;
+  doors: readonly SidebarDoor[];
+  activeDoorId: SidebarDoorId | null;
+  onOpen: (doorId: SidebarDoorId) => void;
 }) {
   return (
     <SidebarGroup>
       <SidebarMenu indicator="hover">
-        <SidebarMenuItem>
-          <SidebarMenuButton onClick={onOpen} isActive={isInside} size="sm">
-            <HugeiconsIcon aria-hidden icon={icon} size={16} strokeWidth={1.7} />
-            <span className="min-w-0 truncate">{title}</span>
-            <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} className="ml-auto text-muted-foreground" />
-          </SidebarMenuButton>
-        </SidebarMenuItem>
+        {doors.map((door) => (
+          <SidebarMenuItem key={door.id}>
+            <SidebarMenuButton onClick={() => onOpen(door.id)} isActive={activeDoorId === door.id} size="sm">
+              <HugeiconsIcon aria-hidden icon={door.icon} size={16} strokeWidth={1.7} />
+              <span className="min-w-0 truncate">{door.title}</span>
+              <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} className="ml-auto text-muted-foreground" />
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        ))}
       </SidebarMenu>
     </SidebarGroup>
   );
 }
 
-export function ReferencePane({
-  title,
-  groups,
+export function SidebarDoorPane({
+  door,
   active,
   onNavigate,
   onBack,
+  children,
 }: {
-  title: string;
-  groups: GuideNavGroup[];
+  door: SidebarDoor;
   active: ActivePageId;
   onNavigate: () => void;
   onBack: () => void;
+  children: ReactNode;
 }) {
-  const visibleGroups = groups.filter((group) => group.items.length > 0);
-
   return (
     <SidebarGroup>
       <SidebarMenu indicator="hover">
         <SidebarMenuItem>
-          <SidebarMenuButton onClick={onBack} size="sm" aria-label={`Back from ${title}`}>
+          <SidebarMenuButton onClick={onBack} size="sm" aria-label={`Back from ${door.title}`}>
             <HugeiconsIcon aria-hidden icon={ArrowLeft01Icon} size={14} strokeWidth={1.7} className="text-muted-foreground" />
-            <span className="min-w-0 truncate font-medium">{title}</span>
+            <span className="min-w-0 truncate font-medium">{door.title}</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
-      <NavMenu items={[{ id: "reference", name: "Overview" }]} active={active} prefix="/" onNavigate={onNavigate} />
-      <div className="grid gap-2 pt-1">
-        {visibleGroups.map((group) => (
-          <DocsNavGroup key={group.id} title={group.title} items={group.items} active={active} prefix="/" onNavigate={onNavigate} />
-        ))}
-      </div>
+      {door.overviewId ? (
+        <NavMenu items={[{ id: door.overviewId, name: "Overview" }]} active={active} prefix="/" onNavigate={onNavigate} />
+      ) : null}
+      <div className="grid gap-2 pt-1">{children}</div>
     </SidebarGroup>
   );
 }

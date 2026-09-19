@@ -5,6 +5,7 @@ import { generatedSkinContract } from "@/app/(features)/model/generated-skin-con
 import { fullInstallCommand, fullInstallManifestHref, packInstallCommand } from "@/app/(features)/model/registry";
 import type { DocsSkinPage } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
+import { Card } from "@/components/control-ui/ui/card";
 import { InstallPanel, PageHeader, SectionStack, SectionTitle } from "./shared";
 import { TokenContractTable } from "./token-contract";
 
@@ -136,15 +137,12 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           <SectionTitle title="Where skin values live" description="One owner for each visual decision." />
           <div className="grid gap-2">
             {SKIN_VALUE_RULES.map((rule) => (
-              <div
-                key={rule.label}
-                className="flex gap-3 rounded-xl border border-border/70 bg-card px-4 py-3 text-body leading-6 shadow-sm"
-              >
+              <Card key={rule.label} className="flex-row gap-3 px-4 py-3 text-body leading-6">
                 <Badge variant="outline" size="sm">
                   {rule.label}
                 </Badge>
                 <span className="text-foreground">{rule.body}</span>
-              </div>
+              </Card>
             ))}
           </div>
         </section>
@@ -173,18 +171,20 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           </p>
           <div className="grid gap-2">
             {Object.entries(generatedSkinContract.scopes).map(([scope, anatomy]) => (
-              <details key={scope} className="rounded-xl border border-border/70 bg-card px-4 py-3 text-body shadow-sm">
-                <summary className="cursor-pointer font-mono text-label font-medium">
-                  {scope} <span className="text-muted-foreground">({Object.keys(anatomy.parts).length})</span>
-                </summary>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {Object.keys(anatomy.parts).map((part) => (
-                    <code key={part} className="rounded-md border bg-background px-1.5 py-0.5 text-caption">
-                      {part}
-                    </code>
-                  ))}
-                </div>
-              </details>
+              <Card key={scope} className="gap-0 px-4 py-3 text-body">
+                <details>
+                  <summary className="cursor-pointer font-mono text-label font-medium">
+                    {scope} <span className="text-muted-foreground">({Object.keys(anatomy.parts).length})</span>
+                  </summary>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {Object.keys(anatomy.parts).map((part) => (
+                      <code key={part} className="rounded-md border bg-background px-1.5 py-0.5 text-caption">
+                        {part}
+                      </code>
+                    ))}
+                  </div>
+                </details>
+              </Card>
             ))}
           </div>
         </section>
@@ -196,15 +196,12 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
           />
           <div className="grid gap-2">
             {SKIN_REQUIREMENTS.map((rule) => (
-              <div
-                key={rule.label}
-                className="flex gap-3 rounded-xl border border-border/70 bg-card px-4 py-3 text-body leading-6 shadow-sm"
-              >
+              <Card key={rule.label} className="flex-row gap-3 px-4 py-3 text-body leading-6">
                 <Badge variant="outline" size="sm" className="self-start">
                   {rule.label}
                 </Badge>
                 <span className="text-foreground">{rule.body}</span>
-              </div>
+              </Card>
             ))}
           </div>
         </section>
@@ -252,18 +249,16 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
               else if (skin.kind === "advanced") kindLabel = "Advanced";
 
               return (
-                <Link
-                  key={skin.id}
-                  href={`/skins/${skin.id}`}
-                  className="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-border/70 bg-card px-4 py-3 text-body shadow-sm transition hover:border-foreground/20 hover:bg-muted/30"
-                >
-                  <span className="flex min-w-0 flex-col">
-                    <span className="font-medium">{skin.label}</span>
-                    <span className="min-w-0 truncate text-label text-muted-foreground">{skin.description}</span>
-                  </span>
-                  <Badge variant="outline" size="sm">
-                    {kindLabel}
-                  </Badge>
+                <Link key={skin.id} href={`/skins/${skin.id}`} className="block min-w-0">
+                  <Card className="min-w-0 flex-row items-center justify-between gap-4 px-4 py-3 text-body transition-colors hover:bg-muted/30">
+                    <span className="flex min-w-0 flex-col">
+                      <span className="font-medium">{skin.label}</span>
+                      <span className="min-w-0 truncate text-label text-muted-foreground">{skin.description}</span>
+                    </span>
+                    <Badge variant="outline" size="sm">
+                      {kindLabel}
+                    </Badge>
+                  </Card>
                 </Link>
               );
             })}

@@ -115,7 +115,6 @@
   }
 
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"],
-  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"],
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"],
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"] {
     position: relative;
@@ -127,8 +126,6 @@
 
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::before,
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::after,
-  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::before,
-  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::after,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::before,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::after,
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]::before,
@@ -141,7 +138,6 @@
   }
 
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::before,
-  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::before,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::before,
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]::before {
     background:
@@ -152,7 +148,6 @@
   }
 
   [data-skin="rig"] [data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]::after,
-  [data-skin="rig"] [data-slot="root"][data-control-family="code-block-editor"]::after,
   [data-skin="rig"] [data-control-ui="dialog"][data-slot="content"][data-control-family="popup"]::after,
   [data-skin="rig"] [data-control-ui="chat-composer"][data-slot="shell"][data-control-family="chat-composer"]::after {
     background:

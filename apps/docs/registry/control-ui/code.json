@@ -3,7 +3,7 @@
   "name": "code",
   "type": "registry:ui",
   "title": "Code",
-  "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+  "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
   "dependencies": [
     "@tanstack/react-virtual@^3.14.13",
     "lucide-react@^1.47.0",

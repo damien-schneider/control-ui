@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 179,
+    "count": 178,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -100,7 +100,7 @@
       {
         "id": "use-cases",
         "label": "Library",
-        "name": "Blocks",
+        "name": "Templates & patterns",
         "summary": "Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.",
         "kind": "Block",
         "href": "/use-cases"
@@ -719,14 +719,6 @@
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json"
       },
       {
-        "id": "code-block-editor",
-        "name": "CodeBlockEditor",
-        "kind": "Agent",
-        "summary": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
-        "href": "/ai/code-block-editor",
-        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code-block-editor.json"
-      },
-      {
         "id": "chat-layout",
         "name": "ChatLayout",
         "kind": "Agent",
@@ -1322,7 +1314,7 @@
         "id": "code",
         "name": "Code",
         "kind": "Primitive",
-        "summary": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+        "summary": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
         "href": "/primitives/code",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/code.json"
       },

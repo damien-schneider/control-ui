@@ -130,7 +130,7 @@ export function SidebarSearch({ items, onNavigate }: { items: SearchItem[]; onNa
                 <CommandGroup heading="Components">{componentItems.map(renderItem)}</CommandGroup>
                 <CommandGroup heading="Primitives">{primitiveItems.map(renderItem)}</CommandGroup>
                 <CommandGroup heading="Support files">{supportItems.map(renderItem)}</CommandGroup>
-                <CommandGroup heading="Blocks">{blockItems.map(renderItem)}</CommandGroup>
+                <CommandGroup heading="Templates & patterns">{blockItems.map(renderItem)}</CommandGroup>
               </>
             )}
           </CommandList>

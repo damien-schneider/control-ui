@@ -220,7 +220,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -332,7 +331,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -451,7 +449,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -570,7 +567,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -689,7 +685,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -808,7 +803,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -927,7 +921,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -1046,7 +1039,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -1165,7 +1157,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",
@@ -1656,7 +1647,6 @@
         "damien-schneider/control-ui/chat-composer-attachment",
         "damien-schneider/control-ui/chat-layout",
         "damien-schneider/control-ui/chat-message",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/core",
         "damien-schneider/control-ui/inline-attachment",
         "damien-schneider/control-ui/inline-citation",
@@ -1942,7 +1932,7 @@
       "name": "code",
       "type": "registry:ui",
       "title": "Code",
-      "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+      "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
       "dependencies": [
         "@tanstack/react-virtual@^3.14.13",
         "lucide-react@^1.47.0",
@@ -1985,59 +1975,6 @@
       "css": {
         "@import \"../components/control-ui/styles/code.css\"": {},
         "@import \"../components/control-ui/styles/recipes/code.css\"": {}
-      }
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "code-block-editor",
-      "type": "registry:component",
-      "title": "CodeBlockEditor",
-      "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
-      "dependencies": [
-        "lucide-react@^1.47.0"
-      ],
-      "registryDependencies": [
-        "damien-schneider/control-ui/button",
-        "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/core",
-        "damien-schneider/control-ui/scroll-area",
-        "damien-schneider/control-ui/tooltip",
-        "damien-schneider/control-ui/use-copy-to-clipboard"
-      ],
-      "files": [
-        {
-          "path": "apps/docs/src/registry/knob-contracts/button-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "apps/docs/src/registry/knob-contracts/code-block-editor-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/code-block-editor-knobs.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "apps/docs/src/registry/knob-contracts/code-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/code-knobs.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "apps/docs/src/registry/lib/code-block-shiki.ts",
-          "target": "@components/control-ui/lib/code-block-shiki.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "apps/docs/src/registry/sources/control-ui/code-block-editor.tsx",
-          "target": "@components/control-ui/code-block-editor.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "apps/docs/src/registry/sources/control-ui/recipes/code-block-editor.css",
-          "target": "@components/control-ui/styles/recipes/code-block-editor.css",
-          "type": "registry:file"
-        }
-      ],
-      "css": {
-        "@import \"../components/control-ui/styles/recipes/code-block-editor.css\"": {}
       }
     },
     {
@@ -5507,7 +5444,6 @@
         "damien-schneider/control-ui/checkbox",
         "damien-schneider/control-ui/checkbox-group",
         "damien-schneider/control-ui/code",
-        "damien-schneider/control-ui/code-block-editor",
         "damien-schneider/control-ui/code-diff",
         "damien-schneider/control-ui/coding-agent-block",
         "damien-schneider/control-ui/collapsible",

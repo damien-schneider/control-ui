@@ -62,7 +62,7 @@ export const hookEntries = [
     references: [
       { label: "ActionBar", href: "/ai/action-bar" },
       { label: "MarkdownBlock", href: "/ai/markdown-block" },
-      { label: "CodeBlockEditor", href: "/ai/code-block-editor" },
+      { label: "Code", href: "/primitives/code" },
     ],
   },
 ] as const;

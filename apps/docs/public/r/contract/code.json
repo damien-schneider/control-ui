@@ -41,6 +41,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--code-foreground)"
+    },
+    {
+      "name": "--cui-code-line-highlight-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.08)"
     }
   ],
   "parts": {
@@ -98,22 +104,19 @@
         ],
         "states": []
       },
+      "editor": {
+        "family": "code",
+        "registryItems": [
+          "code"
+        ],
+        "states": []
+      },
       "floating-frame": {
         "family": "code",
         "registryItems": [
           "code"
         ],
-        "states": [
-          {
-            "attribute": "data-density",
-            "source": "control-ui",
-            "valueKind": "enum",
-            "values": [
-              "compact",
-              "default"
-            ]
-          }
-        ]
+        "states": []
       },
       "grid": {
         "family": "code",
@@ -153,6 +156,12 @@
         ],
         "states": [
           {
+            "attribute": "data-highlighted",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-index",
             "source": "control-ui",
             "valueKind": "open",
@@ -170,6 +179,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-code-line-highlight-background"
+  ],
   "contrast": "/r/contract/code.contrast.json"
 }

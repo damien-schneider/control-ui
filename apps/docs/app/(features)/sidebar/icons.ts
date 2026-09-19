@@ -21,9 +21,11 @@ import {
 } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
 import type { UseCaseKindId } from "@/app/(features)/catalog/blocks";
+import { referenceGroupTitle, referenceOverview } from "@/app/(features)/catalog/guides";
+import { catalogOverview } from "@/app/(features)/catalog/overviews";
 import type { PrimitiveCategoryId } from "@/app/(features)/catalog/primitives";
 import type { DocsSkillConcern } from "@/app/(features)/model/types";
-import type { SidebarMode } from "./types";
+import type { SidebarDoor, SidebarMode } from "./types";
 
 export const skillConcernSidebarIcons = {
   "css-first": WebDesign01Icon,
@@ -44,8 +46,13 @@ export const primitiveCategorySidebarIcons = {
   display: ViewIcon,
 } as const satisfies Record<PrimitiveCategoryId, IconSvgElement>;
 
-// The Components and Practices catalog tabs already carry AiGenerativeIcon and Book04Icon, so this avoids both.
-export const referenceGroupIcon: IconSvgElement = HierarchyIcon;
+const useCasesOverview = catalogOverview("use-cases");
+
+export const sidebarDoors = [
+  { id: "use-cases", title: useCasesOverview.name, icon: BlocksIcon, overviewId: useCasesOverview.id },
+  { id: "practices", title: "Practices", icon: Book04Icon },
+  { id: "reference", title: referenceGroupTitle, icon: HierarchyIcon, overviewId: referenceOverview.id },
+] as const satisfies readonly SidebarDoor[];
 
 export const sidebarGroupIcons = {
   agents: AiGenerativeIcon,
@@ -62,9 +69,7 @@ export const useCaseKindSidebarIcons = {
 
 export const sidebarModes = [
   { id: "agents", label: "Components", icon: AiGenerativeIcon },
-  { id: "use-cases", label: "Blocks", icon: BlocksIcon },
   { id: "primitives", label: "Primitives", icon: ComponentIcon },
-  { id: "skills", label: "Practices", icon: Book04Icon },
 ] as const satisfies readonly {
   id: SidebarMode;
   label: string;

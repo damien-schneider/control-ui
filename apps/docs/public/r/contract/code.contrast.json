@@ -22,33 +22,6 @@
           "data-chrome": "standalone",
           "data-control-family": "code",
           "data-control-ui": "code",
-          "data-density": "compact",
-          "data-header": "true",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
           "data-density": "default",
           "data-header": "true",
           "data-slot": "root",
@@ -181,41 +154,6 @@
           "data-control-family": "code",
           "data-control-ui": "code",
           "data-density": "default",
-          "data-slot": "grid"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "compact",
-          "data-header": "true",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "compact",
           "data-slot": "grid"
         }
       }
@@ -344,40 +282,6 @@
           "data-control-family": "code",
           "data-control-ui": "code",
           "data-density": "default",
-          "data-header": "true",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-slot": "title"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "standalone",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "compact",
           "data-header": "true",
           "data-slot": "root",
           "data-surface": "panel"
@@ -445,7 +349,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-code-background"
+        "text": "--cui-code-text-foreground"
       },
       "anatomy": 2,
       "rendersText": true,
@@ -485,7 +389,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-text-foreground"
+        "text": "--cui-code-title-foreground"
       },
       "anatomy": 7,
       "rendersText": true,
@@ -493,7 +397,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-text-foreground"
+        "text": "--cui-code-title-foreground"
       },
       "anatomy": 8,
       "rendersText": true,
@@ -504,30 +408,6 @@
         "text": "--cui-code-title-foreground"
       },
       "anatomy": 9,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-code-title-foreground"
-      },
-      "anatomy": 10,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-code-title-foreground"
-      },
-      "anatomy": 11,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-code-title-foreground"
-      },
-      "anatomy": 12,
       "rendersText": true,
       "state": false
     }

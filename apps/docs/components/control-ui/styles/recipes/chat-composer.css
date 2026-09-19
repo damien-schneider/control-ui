@@ -1,13 +1,13 @@
 @layer components {
   :where([data-control-family="chat-composer"][data-slot="root"]) {
     --cui-chat-composer-root-background: transparent;
-    --cui-chat-composer-shell-background: var(--popover);
+    --cui-chat-composer-shell-background: var(--card);
     --cui-chat-composer-shell-background-image: none;
-    --cui-chat-composer-shell-backdrop-filter: blur(var(--backdrop-blur-popover));
-    --cui-chat-composer-shell-border-color: var(--control-rim);
-    --cui-chat-composer-shell-radius: var(--radius-popover);
-    --cui-chat-composer-shell-shadow: var(--shadow-pop);
-    --cui-chat-composer-input-foreground: var(--popover-foreground);
+    --cui-chat-composer-shell-backdrop-filter: none;
+    --cui-chat-composer-shell-border-color: var(--border);
+    --cui-chat-composer-shell-radius: var(--radius-field);
+    --cui-chat-composer-shell-shadow: var(--shadow-md);
+    --cui-chat-composer-input-foreground: var(--card-foreground);
     --cui-chat-composer-input-placeholder-foreground: var(--muted-foreground);
     --cui-chat-composer-mention-radius: var(--radius-popup-item);
     --cui-chat-composer-mention-border-color: transparent;

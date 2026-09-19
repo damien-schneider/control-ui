@@ -49,13 +49,12 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [ActionBar](http://127.0.0.1:3000/ai/action-bar): Reusable hover actions for message and response controls.
 - [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns. Status: beta.
 - [MarkdownBlock](http://127.0.0.1:3000/ai/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
-- [CodeBlockEditor](http://127.0.0.1:3000/ai/code-block-editor): Editable code surface with Shiki highlighting and token-based light/dark themes.
 - [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): A scrolling conversation with message turns and a floating composer dock.
 - [ThreadRail](http://127.0.0.1:3000/ai/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
 ## Blocks
 
-- [Blocks](http://127.0.0.1:3000/use-cases): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
+- [Templates & patterns](http://127.0.0.1:3000/use-cases): Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
 - [Chat](http://127.0.0.1:3000/use-cases/chat): Controlled chat shell that composes rendered turns and a provider-owned composer.
 - [Theme toggle](http://127.0.0.1:3000/use-cases/theme-toggle): Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.
 - [Coding agent](http://127.0.0.1:3000/use-cases/coding-agent): Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. Status: beta.
@@ -135,7 +134,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Resizable](http://127.0.0.1:3000/primitives/resizable): Accessible resizable panel groups and split layouts with keyboard support. Status: beta.
 - [Calendar](http://127.0.0.1:3000/primitives/calendar): Date selection grid built on react-day-picker and themed through tokens.
 - [Typography](http://127.0.0.1:3000/primitives/typography): The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.
-- [Code](http://127.0.0.1:3000/primitives/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.
+- [Code](http://127.0.0.1:3000/primitives/code): Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.
 - [Code Diff](http://127.0.0.1:3000/primitives/code-diff): Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.
 - [Markdown](http://127.0.0.1:3000/primitives/markdown): Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.
 

@@ -1,3 +1,4 @@
+import type { IconSvgElement } from "@hugeicons/react";
 import type {
   ActivePageId,
   DocsBlock,
@@ -34,7 +35,15 @@ export type DocsSidebarContentProps = {
   updateSetupPreference: (nextPreference: SetupPreferenceUpdate) => void;
 };
 
-export type SidebarMode = "agents" | "primitives" | "use-cases" | "skills";
+export type SidebarMode = "agents" | "primitives";
+export type SidebarDoorId = "use-cases" | "practices" | "reference";
+export type SidebarPane = "root" | SidebarDoorId;
+export type SidebarDoor = {
+  id: SidebarDoorId;
+  title: string;
+  icon: IconSvgElement;
+  overviewId?: ActivePageId;
+};
 export type DocsNavItem = {
   id: string;
   name: string;

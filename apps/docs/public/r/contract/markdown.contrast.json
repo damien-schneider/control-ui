@@ -58,36 +58,6 @@
         "attributes": {
           "data-control-family": "markdown",
           "data-control-ui": "markdown",
-          "data-slot": "inline-code"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown",
-          "data-control-ui": "markdown",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "markdown",
-          "data-control-ui": "markdown",
           "data-slot": "table-header"
         }
       }
@@ -158,8 +128,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-markdown-inline-code-background",
-        "text": "--cui-markdown-inline-code-foreground"
+        "fill": "--cui-markdown-table-header-background"
       },
       "anatomy": 1,
       "rendersText": true,
@@ -167,7 +136,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-markdown-table-header-background"
+        "text": "--cui-markdown-foreground"
       },
       "anatomy": 2,
       "rendersText": true,
@@ -175,17 +144,9 @@
     },
     {
       "knobs": {
-        "text": "--cui-markdown-foreground"
-      },
-      "anatomy": 3,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
         "text": "--cui-markdown-link-foreground"
       },
-      "anatomy": 4,
+      "anatomy": 3,
       "rendersText": true,
       "state": false
     }

@@ -15,7 +15,6 @@ export const registryKindIds = [
   "action-bar",
   "inline-attachment",
   "markdown-block",
-  "code-block-editor",
   "chat-layout",
   "thread-rail",
   "transcript-divider",

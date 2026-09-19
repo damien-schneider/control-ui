@@ -32,7 +32,6 @@ const CSS_PAINTED_ATTRIBUTES: Record<string, true> = {
 const SOURCE_RENDERED_STATES: Record<string, true> = {
   "audio-visualizer:data-variant": true,
   "chat-composer-attachment:data-variant": true,
-  "code-block-editor:data-variant": true,
   "rich-tooltip:data-variant": true,
   "table-of-contents:data-variant": true,
 };

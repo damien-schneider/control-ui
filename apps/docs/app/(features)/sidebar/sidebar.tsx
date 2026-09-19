@@ -6,7 +6,6 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { useState } from "react";
 import { ControlUiLogo } from "@/app/(features)/brand/control-ui-logo";
-import { referenceGroupTitle } from "@/app/(features)/catalog/guides";
 import type { ActivePageId, GuidePage } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Badge } from "@/components/control-ui/ui/badge";
@@ -22,22 +21,24 @@ import {
   SidebarRail,
 } from "@/components/control-ui/ui/sidebar";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
-import { primitiveCategorySidebarIcons, referenceGroupIcon, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
+import { primitiveCategorySidebarIcons, sidebarDoors, sidebarGroupIcons, useCaseKindSidebarIcons } from "./icons";
 import { SidebarModeSelector } from "./mode-selector";
-import { DocsNavGroup, ReferenceDoorRow, ReferencePane, SkillConcernNavGroups } from "./nav-groups";
+import { DocsNavGroup, SidebarDoorMenu, SidebarDoorPane, SkillConcernNavGroups } from "./nav-groups";
 import {
   agentNavItems,
   ctaGuide,
   extensionNavItems,
+  type GuideNavGroup,
   getUseCaseNavGroups,
   guideNavSections,
   hookNavItems,
   primitiveNavGroups,
+  sidebarPaneForActivePage,
   utilNavItems,
 } from "./nav-items";
 import { SidebarSetupControls, type SidebarSetupControlsScope } from "./setup-controls";
 import { StartCard } from "./start-card";
-import type { DocsSidebarContentProps, SidebarMode } from "./types";
+import type { DocsSidebarContentProps, SidebarDoorId, SidebarMode, SidebarPane } from "./types";
 import { useSidebarNavigation } from "./use-sidebar-navigation";
 
 function setupControlsScopeForKind(kind: string | undefined): SidebarSetupControlsScope {
@@ -69,30 +70,13 @@ function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; act
   );
 }
 
-type CatalogNavGroupsProps = Pick<
-  DocsSidebarContentProps,
-  "skills" | "skillConcerns" | "components" | "blocks" | "primitives" | "hooks" | "utils" | "extensions"
-> & {
+type CatalogNavGroupsProps = Pick<DocsSidebarContentProps, "components" | "primitives" | "hooks" | "utils" | "extensions"> & {
   mode: SidebarMode;
   active: ActivePageId;
   onNavigate: () => void;
 };
 
-function CatalogNavGroups({
-  mode,
-  active,
-  onNavigate,
-  skills,
-  skillConcerns,
-  components,
-  blocks,
-  primitives,
-  hooks,
-  utils,
-  extensions,
-}: CatalogNavGroupsProps) {
-  if (mode === "skills") return <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />;
-
+function CatalogNavGroups({ mode, active, onNavigate, components, primitives, hooks, utils, extensions }: CatalogNavGroupsProps) {
   if (mode === "agents")
     return (
       <DocsNavGroup
@@ -104,19 +88,6 @@ function CatalogNavGroups({
         onNavigate={onNavigate}
       />
     );
-
-  if (mode === "use-cases")
-    return getUseCaseNavGroups(blocks).map((group) => (
-      <DocsNavGroup
-        key={group.id}
-        title={group.title}
-        icon={useCaseKindSidebarIcons[group.kind]}
-        items={group.items}
-        active={active}
-        prefix="/use-cases/"
-        onNavigate={onNavigate}
-      />
-    ));
 
   return (
     <>
@@ -159,6 +130,35 @@ function CatalogNavGroups({
   );
 }
 
+type DoorNavGroupsProps = Pick<DocsSidebarContentProps, "blocks" | "skills" | "skillConcerns"> & {
+  doorId: SidebarDoorId;
+  referenceGroups: GuideNavGroup[];
+  active: ActivePageId;
+  onNavigate: () => void;
+};
+
+function DoorNavGroups({ doorId, referenceGroups, blocks, skills, skillConcerns, active, onNavigate }: DoorNavGroupsProps) {
+  if (doorId === "use-cases")
+    return getUseCaseNavGroups(blocks).map((group) => (
+      <DocsNavGroup
+        key={group.id}
+        title={group.title}
+        icon={useCaseKindSidebarIcons[group.kind]}
+        items={group.items}
+        active={active}
+        prefix="/use-cases/"
+        onNavigate={onNavigate}
+      />
+    ));
+
+  if (doorId === "practices")
+    return <SkillConcernNavGroups concerns={skillConcerns} skills={skills} active={active} onNavigate={onNavigate} />;
+
+  return referenceGroups.map((group) => (
+    <DocsNavGroup key={group.id} title={group.title} items={group.items} active={active} prefix="/" onNavigate={onNavigate} />
+  ));
+}
+
 export function DocsSidebarContent({
   active,
   githubStars,
@@ -180,7 +180,6 @@ export function DocsSidebarContent({
   const { activeItem, mode, modeHrefs, closeMobile, onNavigate, onModeNavigate } = useSidebarNavigation({
     active,
     searchItems,
-    skills,
     lastSectionMode,
     onLastSectionModeChange,
   });
@@ -193,19 +192,14 @@ export function DocsSidebarContent({
   const guideSections = guideNavSections(guides);
   const startGroup = guideSections.top.find((group) => group.id === "start");
   const agentGroup = guideSections.top.find((group) => group.id === "agents");
-  const isInsideReference =
-    active === "reference" || guideSections.reference.some((group) => group.items.some((item) => item.id === active));
-  const [paneOverride, setPaneOverride] = useState<"root" | "reference" | null>(null);
-  const pane = paneOverride ?? (isInsideReference ? "reference" : "root");
+  const activePane = sidebarPaneForActivePage(active, searchItems, guideSections.reference);
+  const [paneChoice, setPaneChoice] = useState<{ page: ActivePageId; pane: SidebarPane } | null>(null);
+  const paneOverride = paneChoice?.page === active ? paneChoice.pane : null;
+  const pane = paneOverride ?? activePane;
+  const openDoor = sidebarDoors.find((door) => door.id === pane);
 
-  function handleNavigate() {
-    setPaneOverride(null);
-    onNavigate();
-  }
-
-  function handleModeNavigate(nextMode: SidebarMode) {
-    setPaneOverride(null);
-    onModeNavigate(nextMode);
+  function choosePane(nextPane: SidebarPane) {
+    setPaneChoice({ page: active, pane: nextPane });
   }
 
   return (
@@ -225,25 +219,29 @@ export function DocsSidebarContent({
             <GuideCtaLink guides={guides} active={active} onNavigate={onNavigate} />
           </div>
         </SidebarHeader>
-        <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={handleModeNavigate} />
+        <SidebarModeSelector mode={mode} hrefs={modeHrefs} onNavigate={onModeNavigate} />
         <SidebarSetupControls integration={integration} scope={setupControlsScope} updateSetupPreference={updateSetupPreference} />
 
         <SidebarContent>
-          {pane === "reference" ? (
+          {openDoor ? (
             <div
-              key="reference"
+              key={openDoor.id}
               className={cn(
                 "flex min-h-0 flex-col gap-2",
                 paneOverride && "animate-[docs-pane-in-right_var(--duration-base)_var(--ease-standard)]",
               )}
             >
-              <ReferencePane
-                title={referenceGroupTitle}
-                groups={guideSections.reference}
-                active={active}
-                onNavigate={handleNavigate}
-                onBack={() => setPaneOverride("root")}
-              />
+              <SidebarDoorPane door={openDoor} active={active} onNavigate={onNavigate} onBack={() => choosePane("root")}>
+                <DoorNavGroups
+                  doorId={openDoor.id}
+                  referenceGroups={guideSections.reference}
+                  blocks={blocks}
+                  skills={skills}
+                  skillConcerns={skillConcerns}
+                  active={active}
+                  onNavigate={onNavigate}
+                />
+              </SidebarDoorPane>
             </div>
           ) : (
             <div
@@ -254,22 +252,14 @@ export function DocsSidebarContent({
               )}
             >
               {startGroup && agentGroup ? (
-                <StartCard steps={startGroup} agent={agentGroup} active={active} onNavigate={handleNavigate} />
+                <StartCard steps={startGroup} agent={agentGroup} active={active} onNavigate={onNavigate} />
               ) : null}
-              <ReferenceDoorRow
-                title={referenceGroupTitle}
-                icon={referenceGroupIcon}
-                isInside={isInsideReference}
-                onOpen={() => setPaneOverride("reference")}
-              />
+              <SidebarDoorMenu doors={sidebarDoors} activeDoorId={activePane === "root" ? null : activePane} onOpen={choosePane} />
               <CatalogNavGroups
                 mode={mode}
                 active={active}
-                onNavigate={handleNavigate}
-                skills={skills}
-                skillConcerns={skillConcerns}
+                onNavigate={onNavigate}
                 components={components}
-                blocks={blocks}
                 primitives={primitives}
                 hooks={hooks}
                 utils={utils}

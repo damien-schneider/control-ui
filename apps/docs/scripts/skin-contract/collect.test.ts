@@ -130,12 +130,6 @@ describe("skin contract generation", () => {
       valueKind: "enum",
       values: ["disabled", "idle", "submitting"],
     });
-    expect(stateAt(contract, "code-block-editor", "root", "data-variant")).toEqual({
-      attribute: "data-variant",
-      source: "control-ui",
-      valueKind: "enum",
-      values: ["command", "default"],
-    });
     expect(stateAt(contract, "sidebar", "root", "data-state")).toEqual({
       attribute: "data-state",
       source: "control-ui",

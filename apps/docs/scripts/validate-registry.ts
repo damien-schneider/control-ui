@@ -121,12 +121,6 @@ for (const sourcePath of walk(registrySourceRoot).filter((file) => /\.(ts|tsx)$/
   if (/<ActionBar[\s\S]*?\bitems=/.test(source)) {
     failures.push(`${relativePath} passes ActionBar items as data; compose ActionBarItem children`);
   }
-  if (/<CodeBlockEditor[\s\S]*?\boptions=/.test(source)) {
-    failures.push(`${relativePath} passes CodeBlockEditor options as data; compose its controls`);
-  }
-  if (/\b(CodeBlockEditorOption|CodeBlockEditorSelector|optionValue|defaultOptionValue|onOptionValueChange)\b/.test(source)) {
-    failures.push(`${relativePath} exposes CodeBlockEditor option-selection props; keep selection in composed controls`);
-  }
   if (/<ActionBarItem[^>]*>\s*Copy\s*<\/ActionBarItem>/.test(source)) {
     failures.push(`${relativePath} renders Copy as a generic ActionBarItem; use ActionBarCopy`);
   }

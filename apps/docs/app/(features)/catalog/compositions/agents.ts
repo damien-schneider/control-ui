@@ -241,21 +241,6 @@ export const agentsCompositions = {
       ),
     ),
   ],
-  "code-block-editor": [
-    example(
-      "Editable code with header",
-      part(
-        "CodeBlockEditor",
-        part("CodeBlockEditorHeader", part("CodeBlockEditorTitle"), part("CodeBlockEditorActions", part("CodeBlockEditorCopy"))),
-        part("CodeBlockEditorTextarea"),
-      ),
-    ),
-    example(
-      "Highlighted read-only content",
-      part("CodeBlockEditor", part("CodeBlockEditorContent", part("CodeBlockEditorFloatingCopy"))),
-      "Content supplies the floating copy action when no header is present.",
-    ),
-  ],
   "chat-layout": [
     example(
       "Conversation and composer",

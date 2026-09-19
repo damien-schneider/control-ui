@@ -110,9 +110,6 @@ export type EmittedStateContract = {
   "command:root:data-chrome": CommandChrome;
   "code:root:data-density": CodeDensity;
   "code:line:data-index": number;
-  "code-block-editor:root:data-variant": "default" | "command";
-  "code-block-editor:root:data-chrome": CodeChrome;
-  "code-block-editor:root:data-density": CodeDensity;
   "code-diff:root:data-diff-style": DiffStyle;
   "code-diff:root:data-file-count": number;
   "code-diff:file:data-file-name": string;

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { CodeSnippet } from "@/app/(features)/components/source";
 import { Button } from "@/components/control-ui/ui/button";
-import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
+import { CodeCopy } from "@/components/control-ui/ui/code";
 import { Input } from "@/components/control-ui/ui/input";
 import { env } from "@/env";
 import { createAppCommand, normalizeProjectName, type PackageManagerId, packageManagerIds } from "./command";
@@ -62,15 +63,9 @@ export function CreateCommand() {
 
       <div className="space-y-2">
         <p className="text-label font-medium text-foreground">Run this command</p>
-        <Code density="compact" className="my-0">
-          <CodeHeader>
-            <CodeTitle>Terminal</CodeTitle>
-            <CodeActions>
-              <CodeCopy value={command} variant="solid" tone="primary" aria-label="Copy command" />
-            </CodeActions>
-          </CodeHeader>
-          <CodeContent code={command} lang="bash" highlight="none" />
-        </Code>
+        <CodeSnippet code={command} highlight="none">
+          <CodeCopy value={command} variant="solid" tone="primary" aria-label="Copy command" />
+        </CodeSnippet>
         <p className="text-caption leading-relaxed text-muted-foreground">
           Dependencies install automatically. When Next.js is ready, open the Local URL printed in your terminal.
         </p>

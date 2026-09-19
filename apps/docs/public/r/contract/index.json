@@ -86,7 +86,7 @@
         "toggle"
       ],
       "knobs": 24,
-      "probes": 533
+      "probes": 529
     },
     "button-group": {
       "registryItems": [
@@ -156,15 +156,8 @@
       "registryItems": [
         "code"
       ],
-      "knobs": 6,
-      "probes": 13
-    },
-    "code-block-editor": {
-      "registryItems": [
-        "code-block-editor"
-      ],
-      "knobs": 6,
-      "probes": 3
+      "knobs": 7,
+      "probes": 10
     },
     "code-diff": {
       "registryItems": [
@@ -300,7 +293,7 @@
         "markdown"
       ],
       "knobs": 10,
-      "probes": 5
+      "probes": 4
     },
     "markdown-block": {
       "registryItems": [
@@ -355,7 +348,7 @@
         "trigger-menu"
       ],
       "knobs": 16,
-      "probes": 69
+      "probes": 66
     },
     "progressive-blur": {
       "registryItems": [
@@ -467,7 +460,7 @@
         "tabs"
       ],
       "knobs": 11,
-      "probes": 44
+      "probes": 36
     },
     "task-list": {
       "registryItems": [
@@ -502,7 +495,7 @@
         "toolbar"
       ],
       "knobs": 15,
-      "probes": 89
+      "probes": 85
     },
     "track-highlight": {
       "registryItems": [

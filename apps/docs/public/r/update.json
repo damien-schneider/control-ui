@@ -29,7 +29,6 @@
     "http://127.0.0.1:3000/r/checkbox.json",
     "http://127.0.0.1:3000/r/checkbox-group.json",
     "http://127.0.0.1:3000/r/code.json",
-    "http://127.0.0.1:3000/r/code-block-editor.json",
     "http://127.0.0.1:3000/r/code-diff.json",
     "http://127.0.0.1:3000/r/coding-agent-block.json",
     "http://127.0.0.1:3000/r/collapsible.json",

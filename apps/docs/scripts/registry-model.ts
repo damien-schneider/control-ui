@@ -435,7 +435,6 @@ function definitions(): Definition[] {
         "action-bar",
         "inline-attachment",
         "markdown-block",
-        "code-block-editor",
         "chat-layout",
         "thread-rail",
         "transcript-divider",

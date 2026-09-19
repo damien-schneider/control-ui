@@ -486,7 +486,6 @@
   [data-skin="cuicui"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
     --cui-chat-composer-shell-background: var(--cuicui-field-bg);
     --cui-chat-composer-shell-border-color: var(--input);
-    --cui-chat-composer-shell-radius: var(--radius-field);
     --cui-chat-composer-shell-shadow: var(--cuicui-control-shadow);
     --cui-chat-composer-input-foreground: var(--foreground);
     --cui-chat-composer-mention-radius: 9999px;

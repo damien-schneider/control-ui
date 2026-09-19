@@ -1,5 +1,5 @@
 import { useCaseKinds } from "@/app/(features)/catalog/blocks";
-import { type GuideGroupId, guideGroups } from "@/app/(features)/catalog/guides";
+import { type GuideGroupId, guideGroups, referenceOverview } from "@/app/(features)/catalog/guides";
 import { primitiveCategories } from "@/app/(features)/catalog/primitives";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import type {
@@ -13,7 +13,7 @@ import type {
   GuidePage,
   SearchItem,
 } from "@/app/(features)/model/types";
-import type { DocsNavItem, SidebarMode } from "./types";
+import type { DocsNavItem, SidebarMode, SidebarPane } from "./types";
 
 const navCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
@@ -21,17 +21,34 @@ function sortNavItemsByName(items: DocsNavItem[]): DocsNavItem[] {
   return [...items].sort((a, b) => navCollator.compare(humanizeNavName(a.name), humanizeNavName(b.name)) || a.id.localeCompare(b.id));
 }
 
-export function sidebarModeForActivePage(active: ActivePageId, searchItems: SearchItem[]): SidebarMode {
-  const activeItem = searchItems.find((item) => item.id === active);
+const sidebarModeByKind: Partial<Record<SearchItem["kind"], SidebarMode>> = {
+  Agent: "agents",
+  Primitive: "primitives",
+  Hook: "primitives",
+  Util: "primitives",
+  Extension: "primitives",
+};
 
-  if (activeItem?.kind === "Skill") return "skills";
-  if (activeItem?.kind === "Block") return "use-cases";
-  if (activeItem?.kind === "Primitive" || activeItem?.kind === "Hook" || activeItem?.kind === "Util" || activeItem?.kind === "Extension")
-    return "primitives";
-  return "agents";
+export const defaultSidebarMode: SidebarMode = "agents";
+
+export function sidebarModeForActivePage(active: ActivePageId, searchItems: SearchItem[]): SidebarMode | null {
+  const kind = searchItems.find((item) => item.id === active)?.kind;
+  return kind ? (sidebarModeByKind[kind] ?? null) : null;
+}
+
+export function sidebarPaneForActivePage(active: ActivePageId, searchItems: SearchItem[], referenceGroups: GuideNavGroup[]): SidebarPane {
+  const kind = searchItems.find((item) => item.id === active)?.kind;
+
+  if (kind === "Block") return "use-cases";
+  if (kind === "Skill") return "practices";
+  if (active === referenceOverview.id || referenceGroups.some((group) => group.items.some((item) => item.id === active)))
+    return "reference";
+  return "root";
 }
 
 export function humanizeNavName(name: string) {
+  if (name.includes(" ")) return name;
+
   const label = name
     .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")

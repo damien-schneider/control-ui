@@ -31,7 +31,7 @@ function visitAstValues(values: unknown[], visited: Set<object>, visitNode: (nod
   for (const value of values) visitAst(value, visited, visitNode);
 }
 
-function visitAst(value: unknown, visited: Set<object>, visitNode: (node: AstNode) => void) {
+export function visitAst(value: unknown, visited: Set<object>, visitNode: (node: AstNode) => void) {
   if (Array.isArray(value)) {
     visitAstValues(value, visited, visitNode);
     return;

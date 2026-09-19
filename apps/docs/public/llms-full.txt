@@ -48,12 +48,11 @@
 - `action-bar` (ActionBar) — Reusable hover actions for message and response controls. — `npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json`
 - `inline-attachment` (InlineAttachment) **[beta]** — Inline file and media previews for chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json`
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json`
-- `code-block-editor` (CodeBlockEditor) — Editable code surface with Shiki highlighting and token-based light/dark themes. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-block-editor.json`
 - `chat-layout` (ChatLayout) — A scrolling conversation with message turns and a floating composer dock. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json`
 
 ### Blocks (pre-composed recipes)
-- `use-cases` (Blocks) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
+- `use-cases` (Templates & patterns) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.
 - `chat` (Chat) — Controlled chat shell that composes rendered turns and a provider-owned composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-block.json`
 - `theme-toggle` (Theme toggle) — Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown. — `npx shadcn@latest add http://127.0.0.1:3000/r/theme-toggle-block.json`
 - `coding-agent` (Coding agent) **[beta]** — Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer. — `npx shadcn@latest add http://127.0.0.1:3000/r/coding-agent-block.json`
@@ -132,7 +131,7 @@
 - `resizable` (Resizable) **[beta]** — Accessible resizable panel groups and split layouts with keyboard support. — `npx shadcn@latest add http://127.0.0.1:3000/r/resizable.json`
 - `calendar` (Calendar) — Date selection grid built on react-day-picker and themed through tokens. — `npx shadcn@latest add http://127.0.0.1:3000/r/calendar.json`
 - `typography` (Typography) — The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component. — `npx shadcn@latest add http://127.0.0.1:3000/r/typography.json`
-- `code` (Code) — Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files. — `npx shadcn@latest add http://127.0.0.1:3000/r/code.json`
+- `code` (Code) — Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files. — `npx shadcn@latest add http://127.0.0.1:3000/r/code.json`
 - `code-diff` (Code Diff) — Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting. — `npx shadcn@latest add http://127.0.0.1:3000/r/code-diff.json`
 - `markdown` (Markdown) — Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff. — `npx shadcn@latest add http://127.0.0.1:3000/r/markdown.json`
 

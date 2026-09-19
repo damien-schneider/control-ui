@@ -7,6 +7,7 @@ import { SetupPromptCopyButton } from "@/app/(features)/create/agent-setup";
 import { guideCodeForKind } from "@/app/(features)/model/registry";
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Card, CardDescription } from "@/components/control-ui/ui/card";
 
 type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
 export type GuideCodeMdxProps = { kind: GuideCodeKind; lang?: string };
@@ -39,24 +40,30 @@ export function GuideSection({ id, title, children }: { id: string; title: strin
 
 export function AgentShortcut() {
   return (
-    <div className="flex max-w-2xl flex-wrap items-center gap-x-4 gap-y-3 rounded-xl border border-border/70 bg-card px-4 py-3">
-      <p className="min-w-0 flex-1 text-body text-muted-foreground">Your agent can run all four steps from one prompt.</p>
+    <Card className="max-w-2xl flex-row flex-wrap items-center gap-x-4 gap-y-3 px-4 py-3">
+      <CardDescription className="min-w-0 flex-1">Your agent can run all four steps from one prompt.</CardDescription>
       <div className="flex shrink-0 items-center gap-3">
         <SetupPromptCopyButton />
         <Link href="/setup-prompt" className="text-label underline decoration-border underline-offset-4 hover:text-foreground">
           What it does
         </Link>
       </div>
-    </div>
+    </Card>
   );
 }
 
 export function GuideCheck({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-4 grid max-w-2xl gap-1 rounded-xl border border-primary/25 bg-primary/5 px-4 py-3">
+    <Card
+      className="mt-4 max-w-2xl gap-1 px-4 py-3"
+      style={{
+        "--cui-card-background": "oklch(from var(--primary) l c h / 0.05)",
+        "--cui-card-border-color": "oklch(from var(--primary) l c h / 0.25)",
+      }}
+    >
       <span className="text-caption font-medium text-primary-text">What you should see now</span>
       <div className="text-body leading-6 text-foreground [&>p]:text-pretty">{children}</div>
-    </div>
+    </Card>
   );
 }
 

@@ -211,8 +211,26 @@ export const displayCompositions = {
     ),
     example(
       "Code without a header",
-      part("Code", part("CodeContent", part("CodeFloatingCopy"))),
-      "Content supplies a floating copy action when no header is present.",
+      part("Code", part("CodeContent")),
+      "A headerless surface overlays its own copy button. Pass copy={false} and place CodeFloatingCopy or CodeCopy yourself.",
+    ),
+    example(
+      "Custom copy placement",
+      part("Code", part("CodeFloatingCopy"), part("CodeContent")),
+      "Pass copy={false} when you need the overlay elsewhere, with a different value, or with your own tone.",
+    ),
+    example(
+      "Editable code",
+      part("Code", part("CodeHeader", part("CodeTitle"), part("CodeActions", part("CodeCopy"))), part("CodeEditable")),
+      "CodeEditable swaps the read-only content for a textarea. It never overlays a copy button over text you are typing, so give it a header.",
+    ),
+    example(
+      "One panel, several files",
+      part(
+        "Tabs",
+        part("Code", part("CodeHeader", part("TabsList", part("TabsTab")), part("CodeActions")), part("TabsPanel", part("CodeContent"))),
+      ),
+      "Wrap Code in Tabs and put TabsList in the header; the panel keeps one frame and Code needs no file API.",
     ),
     example(
       "Custom token rendering",

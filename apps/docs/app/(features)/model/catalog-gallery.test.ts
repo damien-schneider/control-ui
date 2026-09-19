@@ -5,7 +5,7 @@ import { docsPageManifest } from "@/app/(features)/catalog/pages";
 import { primitiveCategories, primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { pageLinks } from "@/app/(features)/client/page-links";
 import type { BlockId } from "@/app/(features)/model/types";
-import { sidebarModeForActivePage } from "@/app/(features)/sidebar/nav-items";
+import { sidebarModeForActivePage, sidebarPaneForActivePage } from "@/app/(features)/sidebar/nav-items";
 import { agentGalleryGroups, primitiveGalleryGroups, useCaseGalleryGroups } from "./catalog-gallery";
 
 describe("catalog galleries", () => {
@@ -58,7 +58,7 @@ describe("catalog galleries", () => {
     expect(docsPageManifest.find((page) => page.id === "use-cases")?.href).toBe("/use-cases");
     expect(sidebarModeForActivePage("primitives", docsPageManifest)).toBe("primitives");
     expect(sidebarModeForActivePage("ai", docsPageManifest)).toBe("agents");
-    expect(sidebarModeForActivePage("use-cases", docsPageManifest)).toBe("use-cases");
+    expect(sidebarPaneForActivePage("use-cases", docsPageManifest, [])).toBe("use-cases");
 
     expect(pageLinks({ activeCatalogOverview: "primitives", primitives: [], extensions: [] })).toEqual(
       primitiveCategories.map((category) => ({ href: `#${category.id}`, label: category.label })),

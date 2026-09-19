@@ -5,6 +5,7 @@ import { BlockPreview } from "@/app/(features)/components/previews";
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import { publicRegistryHref, registryInstallCommands } from "@/app/(features)/model/registry";
 import type { DocsBlock, IntegrationId, SourceFile } from "@/app/(features)/model/types";
+import { Card } from "@/components/control-ui/ui/card";
 import { blockPreviewCode } from "./block-preview-code";
 import {
   CompositionSection,
@@ -57,9 +58,9 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
 
 function BlockFile({ file }: { file: SourceFile }) {
   return (
-    <div className="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-border/70 bg-card px-4 py-3 text-body shadow-sm">
+    <Card className="min-w-0 flex-row items-center justify-between gap-4 px-4 py-3 text-body">
       <span className="font-medium">{file.label}</span>
       <code className="min-w-0 truncate text-label text-muted-foreground">{file.path}</code>
-    </div>
+    </Card>
   );
 }

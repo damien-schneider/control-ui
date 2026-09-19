@@ -45,51 +45,37 @@ export const userPrompt = "Can you make a markdown of this note pleas";
 export const assistantLead = "Here's the markdown version. Some handwriting is hard to read, so I marked uncertain parts with [?].";
 export const assistantCopy = `${assistantLead}\n\n${noteMarkdown}`;
 
-export const codeBlockClientCode = `import {
-  CodeBlockEditor,
-  CodeBlockEditorActions,
-  CodeBlockEditorContent,
-  CodeBlockEditorCopy,
-  CodeBlockEditorHeader,
-  CodeBlockEditorTitle,
-} from "@/components/control-ui/code-block-editor";
+export const codeClientSnippet = `import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 
 export function ClientHighlightedToolResult({ json }: { json: string }) {
   return (
-    <CodeBlockEditor>
-      <CodeBlockEditorHeader>
-        <CodeBlockEditorTitle>tool-result.json</CodeBlockEditorTitle>
-        <CodeBlockEditorActions>
-          <CodeBlockEditorCopy value={json} />
-        </CodeBlockEditorActions>
-      </CodeBlockEditorHeader>
-      <CodeBlockEditorContent code={json} lang="json" />
-    </CodeBlockEditor>
+    <Code>
+      <CodeHeader>
+        <CodeTitle>tool-result.json</CodeTitle>
+        <CodeActions>
+          <CodeCopy value={json} />
+        </CodeActions>
+      </CodeHeader>
+      <CodeContent code={json} lang="json" />
+    </Code>
   );
 }`;
 
-export const codeBlockServerCode = `import {
-  CodeBlockEditor,
-  CodeBlockEditorActions,
-  CodeBlockEditorContent,
-  CodeBlockEditorCopy,
-  CodeBlockEditorHeader,
-  CodeBlockEditorTitle,
-} from "@/components/control-ui/code-block-editor";
-import { highlightCodeToTokens } from "@/components/control-ui/lib/code-block-shiki";
+export const codeServerSnippet = `import { highlightToTokens } from "@/components/control-ui/lib/code-tokens";
+import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 
 export async function ServerHighlightedSnippet({ code }: { code: string }) {
-  const tokens = await highlightCodeToTokens(code, "tsx");
+  const tokens = await highlightToTokens(code, "tsx");
 
   return (
-    <CodeBlockEditor>
-      <CodeBlockEditorHeader>
-        <CodeBlockEditorTitle>server-snippet.tsx</CodeBlockEditorTitle>
-        <CodeBlockEditorActions>
-          <CodeBlockEditorCopy value={code} />
-        </CodeBlockEditorActions>
-      </CodeBlockEditorHeader>
-      <CodeBlockEditorContent code={code} lang="tsx" tokens={tokens} />
-    </CodeBlockEditor>
+    <Code>
+      <CodeHeader>
+        <CodeTitle>server-snippet.tsx</CodeTitle>
+        <CodeActions>
+          <CodeCopy value={code} />
+        </CodeActions>
+      </CodeHeader>
+      <CodeContent code={code} lang="tsx" tokens={tokens} />
+    </Code>
   );
 }`;

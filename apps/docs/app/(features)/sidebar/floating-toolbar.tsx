@@ -3,7 +3,7 @@
 import { CustomizeIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
-import type { ActivePageId, DocsSkill, SearchItem } from "@/app/(features)/model/types";
+import type { ActivePageId, SearchItem } from "@/app/(features)/model/types";
 import { Toolbar, ToolbarGroup, ToolbarLink } from "@/components/control-ui/ui/toolbar";
 import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
 import { SidebarSearch } from "./search";
@@ -13,16 +13,14 @@ import { useSidebarNavigation } from "./use-sidebar-navigation";
 type DocsFloatingToolbarProps = {
   active: ActivePageId;
   searchItems: SearchItem[];
-  skills: readonly DocsSkill[];
   lastSectionMode: SidebarMode | null;
   onLastSectionModeChange: (mode: SidebarMode) => void;
 };
 
-export function DocsFloatingToolbar({ active, searchItems, skills, lastSectionMode, onLastSectionModeChange }: DocsFloatingToolbarProps) {
+export function DocsFloatingToolbar({ active, searchItems, lastSectionMode, onLastSectionModeChange }: DocsFloatingToolbarProps) {
   const { onNavigate } = useSidebarNavigation({
     active,
     searchItems,
-    skills,
     lastSectionMode,
     onLastSectionModeChange,
   });

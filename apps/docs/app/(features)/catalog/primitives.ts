@@ -1993,7 +1993,7 @@ export const primitiveEntries = [
     category: "display",
     kind: "Primitive",
     name: "Code",
-    summary: "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+    summary: "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
     paths: {
       registry: {
         target: "components/control-ui/ui/code.tsx",
@@ -2022,6 +2022,18 @@ export const primitiveEntries = [
           })),
         ),
         previewClassName: "min-h-[220px]",
+      },
+      {
+        id: "editable",
+        title: "Editable files",
+        description: "CodeEditable makes the surface writable; wrap Code in Tabs and put TabsList in the header to switch files.",
+        source: sourceFile("Editable code preview", "src/registry/examples/control-ui/primitives/code-editable.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/code-editable").then((mod) => ({
+            default: mod.PrimitiveCodeEditableExample,
+          })),
+        ),
+        previewClassName: "min-h-[320px]",
       },
     ],
   },

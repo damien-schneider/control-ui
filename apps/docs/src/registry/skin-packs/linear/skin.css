@@ -395,9 +395,6 @@
   }
 
   [data-skin="linear"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
-    --cui-chat-composer-shell-background: var(--card);
-    --cui-chat-composer-shell-border-color: var(--border);
-    --cui-chat-composer-shell-radius: var(--radius-field);
     --cui-chat-composer-shell-shadow: var(--linear-panel-shadow);
     --cui-chat-composer-mention-radius: var(--radius-control);
     --cui-chat-composer-mention-border-color: var(--border);

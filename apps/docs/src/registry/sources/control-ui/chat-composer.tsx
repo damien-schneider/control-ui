@@ -83,7 +83,7 @@ export function ChatComposerShell({ className, ...props }: ChatComposerShellProp
       data-control-family="chat-composer"
       data-slot="shell"
       data-state={input.state}
-      data-surface="floating"
+      data-surface="panel"
       className={cn("relative overflow-hidden", className)}
       {...props}
     />

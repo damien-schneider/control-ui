@@ -108,7 +108,7 @@ export function SelectValue({ children, ...props }: SelectValueProps) {
   );
 }
 
-export function SelectContent({ className, children, alignItemWithTrigger, ...props }: SelectContentProps) {
+export function SelectContent({ className, children, alignItemWithTrigger = false, ...props }: SelectContentProps) {
   const skin = useSkin();
   return (
     <SelectPrimitive.Portal>

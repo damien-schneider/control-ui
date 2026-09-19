@@ -5,6 +5,9 @@ declare global {
     __REACT_GRAB__?: ReactGrabAPI;
     __REACT_GRAB_DISABLED__?: boolean;
   }
+  interface WindowEventMap {
+    "react-grab:init": CustomEvent<ReactGrabAPI>;
+  }
 }
 
 if (process.env.NODE_ENV === "development") {

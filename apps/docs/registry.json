@@ -235,7 +235,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -350,7 +349,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -472,7 +470,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -594,7 +591,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -716,7 +712,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -838,7 +833,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -960,7 +954,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -1082,7 +1075,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -1204,7 +1196,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",
@@ -1731,7 +1722,6 @@
         "http://127.0.0.1:3000/r/chat-composer-attachment.json",
         "http://127.0.0.1:3000/r/chat-layout.json",
         "http://127.0.0.1:3000/r/chat-message.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/core.json",
         "http://127.0.0.1:3000/r/inline-attachment.json",
         "http://127.0.0.1:3000/r/inline-citation.json",
@@ -2041,7 +2031,7 @@
       "name": "code",
       "type": "registry:ui",
       "title": "Code",
-      "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, and virtualization for large files.",
+      "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
       "dependencies": [
         "@tanstack/react-virtual@^3.14.13",
         "lucide-react@^1.47.0",
@@ -2087,62 +2077,6 @@
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/code.json"
-      }
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "code-block-editor",
-      "type": "registry:component",
-      "title": "CodeBlockEditor",
-      "description": "Editable code surface with Shiki highlighting and token-based light/dark themes.",
-      "dependencies": [
-        "lucide-react@^1.47.0"
-      ],
-      "registryDependencies": [
-        "http://127.0.0.1:3000/r/button.json",
-        "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/scroll-area.json",
-        "http://127.0.0.1:3000/r/tooltip.json",
-        "http://127.0.0.1:3000/r/use-copy-to-clipboard.json"
-      ],
-      "files": [
-        {
-          "path": "src/registry/knob-contracts/button-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/button-knobs.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/knob-contracts/code-block-editor-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/code-block-editor-knobs.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/knob-contracts/code-knobs.ts",
-          "target": "@components/control-ui/knob-contracts/code-knobs.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/lib/code-block-shiki.ts",
-          "target": "@components/control-ui/lib/code-block-shiki.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "src/registry/sources/control-ui/code-block-editor.tsx",
-          "target": "@components/control-ui/code-block-editor.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/sources/control-ui/recipes/code-block-editor.css",
-          "target": "@components/control-ui/styles/recipes/code-block-editor.css",
-          "type": "registry:file"
-        }
-      ],
-      "css": {
-        "@import \"../components/control-ui/styles/recipes/code-block-editor.css\"": {}
-      },
-      "meta": {
-        "sourceManifestPath": "registry/control-ui/code-block-editor.json"
       }
     },
     {
@@ -5867,7 +5801,6 @@
         "http://127.0.0.1:3000/r/checkbox.json",
         "http://127.0.0.1:3000/r/checkbox-group.json",
         "http://127.0.0.1:3000/r/code.json",
-        "http://127.0.0.1:3000/r/code-block-editor.json",
         "http://127.0.0.1:3000/r/code-diff.json",
         "http://127.0.0.1:3000/r/coding-agent-block.json",
         "http://127.0.0.1:3000/r/collapsible.json",

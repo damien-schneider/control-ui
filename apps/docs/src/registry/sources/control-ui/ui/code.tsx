@@ -2,7 +2,7 @@
 
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { CheckIcon, CopyIcon } from "lucide-react";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import type { ChangeEvent, ComponentProps, CSSProperties, ReactNode } from "react";
 import { Children, createContext, isValidElement, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
@@ -24,7 +24,7 @@ export type CodeChrome = "standalone" | "embedded";
 const MAX_STATIC_CODE_LINES = 1000;
 const ESTIMATED_LINE_HEIGHT = 20;
 
-type CodeContextValue = { chrome: CodeChrome; density: CodeDensity; overflow: CodeOverflow; hasHeader: boolean };
+type CodeContextValue = { chrome: CodeChrome; density: CodeDensity; overflow: CodeOverflow; hasHeader: boolean; copy: boolean };
 
 const CodeContext = createContext<CodeContextValue | null>(null);
 
@@ -38,6 +38,8 @@ export type CodeProps = Omit<ComponentProps<"figure">, "style"> & {
   overflow?: CodeOverflow;
   chrome?: CodeChrome;
   density?: CodeDensity;
+  /** A headerless surface overlays its own copy button; turn it off to place one yourself. */
+  copy?: boolean;
   style?: CSSProperties & CodeKnobStyle;
 };
 
@@ -45,11 +47,19 @@ function hasCodeHeader(children: ReactNode) {
   return Children.toArray(children).some((child) => isValidElement(child) && child.type === CodeHeader);
 }
 
-export function Code({ overflow = "scroll", chrome = "standalone", density = "default", className, children, ...props }: CodeProps) {
+export function Code({
+  overflow = "scroll",
+  chrome = "standalone",
+  density = "default",
+  copy = true,
+  className,
+  children,
+  ...props
+}: CodeProps) {
   const hasHeader = hasCodeHeader(children);
 
   return (
-    <CodeContext.Provider value={{ chrome, density, overflow, hasHeader }}>
+    <CodeContext.Provider value={{ chrome, density, overflow, hasHeader, copy }}>
       <figure
         data-control-ui="code"
         data-control-family="code"
@@ -216,6 +226,7 @@ function CodeRow({
   plain,
   overflow,
   showLineNumbers,
+  highlighted,
   measureRef,
   style,
 }: {
@@ -225,6 +236,7 @@ function CodeRow({
   plain: string;
   overflow: CodeOverflow;
   showLineNumbers: boolean;
+  highlighted: boolean;
   measureRef?: (node: HTMLDivElement | null) => void;
   style?: CSSProperties;
 }) {
@@ -235,6 +247,7 @@ function CodeRow({
       data-control-ui="code"
       data-control-family="code"
       data-slot="line"
+      data-highlighted={highlighted ? "true" : undefined}
       className="flex w-full"
       style={style}
     >
@@ -257,6 +270,7 @@ export type CodeContentProps = Omit<ComponentProps<"div">, "children" | "style">
   highlight?: CodeHighlight;
   showLineNumbers?: boolean;
   startLine?: number;
+  highlightLines?: readonly number[];
   maxHeight?: string;
   virtualize?: boolean;
   style?: CSSProperties & CodeKnobStyle;
@@ -269,6 +283,7 @@ export function CodeContent({
   highlight = "auto",
   showLineNumbers = false,
   startLine = 1,
+  highlightLines,
   maxHeight = "32rem",
   virtualize,
   className,
@@ -276,9 +291,10 @@ export function CodeContent({
   style,
   ...props
 }: CodeContentProps) {
-  const { chrome, density, overflow, hasHeader } = useCodeContext();
+  const { density, overflow, hasHeader, copy } = useCodeContext();
   const resolvedTokens = useCodeTokens({ code, lang, tokens, highlight });
   const plainLines = useMemo(() => code.split("\n"), [code]);
+  const highlightedLineNumbers = new Set(highlightLines);
   const isCompact = density === "compact";
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -325,6 +341,7 @@ export function CodeContent({
             plain={plainLines[item.index] ?? ""}
             overflow={overflow}
             showLineNumbers={showLineNumbers}
+            highlighted={highlightedLineNumbers.has(startLine + item.index)}
             measureRef={virtualizer.measureElement}
             style={{ position: "absolute", top: 0, left: 0, width: "100%", transform: `translateY(${item.start}px)` }}
           />
@@ -349,6 +366,7 @@ export function CodeContent({
           plain={plain}
           overflow={overflow}
           showLineNumbers={showLineNumbers}
+          highlighted={highlightedLineNumbers.has(startLine + index)}
         />
       ))}
     </div>
@@ -383,18 +401,59 @@ export function CodeContent({
     </div>
   );
 
-  if (hasHeader || chrome === "embedded") return content;
+  if (hasHeader || !copy) return content;
 
   return (
-    <div
-      data-control-ui="code"
-      data-control-family="code"
-      data-slot="floating-frame"
-      data-density={isCompact ? "compact" : "default"}
-      className="relative"
-    >
+    <div data-control-ui="code" data-control-family="code" data-slot="floating-frame" className="relative">
       <CodeFloatingCopy value={code} />
       {content}
     </div>
+  );
+}
+
+export type CodeEditableProps = Omit<ComponentProps<"textarea">, "defaultValue" | "value" | "style"> & {
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  fileName?: string;
+  style?: CSSProperties & CodeKnobStyle;
+};
+
+export function CodeEditable({
+  value,
+  defaultValue = "",
+  onValueChange,
+  onChange,
+  fileName,
+  className,
+  "aria-label": ariaLabel,
+  ...props
+}: CodeEditableProps) {
+  const { overflow } = useCodeContext();
+  const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
+  const currentValue = value ?? uncontrolledValue;
+
+  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    if (value === undefined) setUncontrolledValue(event.target.value);
+    onValueChange?.(event.target.value);
+    onChange?.(event);
+  }
+
+  return (
+    <textarea
+      data-control-ui="code"
+      data-control-family="code"
+      data-slot="editor"
+      value={currentValue}
+      onChange={handleChange}
+      aria-label={ariaLabel ?? (fileName ? `${fileName} code` : "Code editor")}
+      spellCheck={false}
+      className={cn(
+        "block w-full max-w-full resize-y overflow-auto",
+        overflow === "scroll" ? "whitespace-pre" : "whitespace-pre-wrap break-words",
+        className,
+      )}
+      {...props}
+    />
   );
 }

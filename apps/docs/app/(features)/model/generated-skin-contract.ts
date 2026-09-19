@@ -34,7 +34,6 @@ export const generatedSkinContract: SkinContract = {
     checkbox: ["checkbox"],
     "checkbox-group": ["checkbox-group"],
     code: ["code"],
-    "code-block-editor": ["code-block-editor"],
     "code-diff": ["code-diff"],
     collapsible: ["collapsible"],
     "color-picker": ["color-picker"],
@@ -2143,17 +2142,15 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["code"],
           states: [],
         },
+        editor: {
+          family: "code",
+          registryItems: ["code"],
+          states: [],
+        },
         "floating-frame": {
           family: "code",
           registryItems: ["code"],
-          states: [
-            {
-              attribute: "data-density",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["compact", "default"],
-            },
-          ],
+          states: [],
         },
         grid: {
           family: "code",
@@ -2182,6 +2179,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["code"],
           states: [
             {
+              attribute: "data-highlighted",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-index",
               source: "control-ui",
               valueKind: "open",
@@ -2196,71 +2199,6 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["code"],
-    },
-    "code-block-editor": {
-      parts: {
-        root: {
-          family: "code-block-editor",
-          registryItems: ["code-block-editor"],
-          states: [
-            {
-              attribute: "data-chrome",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["embedded", "standalone"],
-            },
-            {
-              attribute: "data-density",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["compact", "default"],
-            },
-            {
-              attribute: "data-header",
-              source: "control-ui",
-              valueKind: "presence",
-              values: [],
-            },
-            {
-              attribute: "data-variant",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["command", "default"],
-            },
-          ],
-        },
-        actions: {
-          family: "code-block-editor",
-          registryItems: ["code-block-editor"],
-          states: [],
-        },
-        content: {
-          family: "code-block-editor",
-          registryItems: ["code-block-editor"],
-          states: [],
-        },
-        editor: {
-          family: "code-block-editor",
-          registryItems: ["code-block-editor"],
-          states: [],
-        },
-        "floating-frame": {
-          family: "code-block-editor",
-          registryItems: ["code-block-editor"],
-          states: [],
-        },
-        header: {
-          family: "code-block-editor",
-          registryItems: ["code-block-editor"],
-          states: [],
-        },
-        title: {
-          family: "code-block-editor",
-          registryItems: ["code-block-editor"],
-          states: [],
-        },
-      },
-      registryItems: ["code-block-editor"],
     },
     "code-diff": {
       parts: {
@@ -13006,13 +12944,13 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-popover)",
+        defaultValue: "var(--radius-field)",
       },
       {
         name: "--cui-chat-composer-shell-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--popover)",
+        defaultValue: "var(--card)",
       },
       {
         name: "--cui-chat-composer-shell-background-image",
@@ -13024,25 +12962,25 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-backdrop-filter",
         syntax: "*",
         initialValue: "",
-        defaultValue: "blur(var(--backdrop-blur-popover))",
+        defaultValue: "none",
       },
       {
         name: "--cui-chat-composer-shell-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--control-rim)",
+        defaultValue: "var(--border)",
       },
       {
         name: "--cui-chat-composer-shell-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "var(--shadow-pop)",
+        defaultValue: "var(--shadow-md)",
       },
       {
         name: "--cui-chat-composer-input-foreground",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--popover-foreground)",
+        defaultValue: "var(--card-foreground)",
       },
       {
         name: "--cui-chat-composer-input-placeholder-foreground",
@@ -13294,43 +13232,11 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "transparent",
         defaultValue: "var(--code-foreground)",
       },
-    ],
-    "code-block-editor": [
       {
-        name: "--cui-code-block-editor-radius",
-        syntax: "<length>",
-        initialValue: "0px",
-        defaultValue: "min(var(--radius-panel), calc(0.5rem * var(--nest-corner-ratio)))",
-      },
-      {
-        name: "--cui-code-block-editor-background",
+        name: "--cui-code-line-highlight-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--background)",
-      },
-      {
-        name: "--cui-code-block-editor-border-color",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--border)",
-      },
-      {
-        name: "--cui-code-block-editor-shadow",
-        syntax: "*",
-        initialValue: "",
-        defaultValue: "var(--shadow-sm)",
-      },
-      {
-        name: "--cui-code-block-editor-title-foreground",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--muted-foreground)",
-      },
-      {
-        name: "--cui-code-block-editor-code-background",
-        syntax: "<color>",
-        initialValue: "transparent",
-        defaultValue: "var(--background)",
+        defaultValue: "oklch(from var(--primary) l c h / 0.08)",
       },
     ],
     "code-diff": [
@@ -16169,10 +16075,6 @@ export const generatedSkinContract: SkinContract = {
           part: "content",
         },
         {
-          scope: "chat-composer",
-          part: "shell",
-        },
-        {
           scope: "color-picker",
           part: "content",
         },
@@ -16273,11 +16175,11 @@ export const generatedSkinContract: SkinContract = {
           part: "root",
         },
         {
-          scope: "chat-layout",
-          part: "root",
+          scope: "chat-composer",
+          part: "shell",
         },
         {
-          scope: "code-block-editor",
+          scope: "chat-layout",
           part: "root",
         },
         {

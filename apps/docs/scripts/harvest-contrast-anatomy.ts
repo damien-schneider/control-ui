@@ -106,7 +106,8 @@ async function visit(page: Page, route: string, order: number): Promise<number> 
 
 const WORKERS = 4;
 const requestedRoutes = process.argv.slice(2).filter((argument) => argument.startsWith("/"));
-const routes = requestedRoutes.length > 0 ? requestedRoutes : await documentedRoutes();
+const documented = await documentedRoutes();
+const routes = requestedRoutes.length > 0 ? requestedRoutes : documented;
 
 const browser = await chromium.launch({ headless: true });
 try {
@@ -141,7 +142,9 @@ if (unrendered.length > 0) {
 
 const paintedKnobs = new Set(rules.flatMap((rule) => Object.values(rule.knobs)));
 const vocabulary = new Set(input.anatomyAttributes);
+// a probe is a promise that a documented page still renders this anatomy; drop it when the page or the paint is gone
 const stale = (probe: ContrastProbe) =>
+  !documented.includes(probe.route) ||
   Object.values(probe.knobs).some((knob) => !paintedKnobs.has(knob)) ||
   probe.anatomy.some((node) => Object.keys(node.attributes).some((name) => !vocabulary.has(name)));
 

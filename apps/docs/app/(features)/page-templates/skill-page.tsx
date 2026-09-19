@@ -1,6 +1,7 @@
 "use client";
 
 import type { DocsSkill, DocsSkillConcern } from "@/app/(features)/model/types";
+import { Card } from "@/components/control-ui/ui/card";
 import { PageHeader, SectionTitle } from "./shared";
 
 export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: DocsSkillConcern }) {
@@ -10,11 +11,11 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
     <section className="docs-article">
       <PageHeader label={label} title={skill.title} summary={skill.summary} />
       <div className="grid min-w-0 gap-8">
-        <section className="min-w-0 rounded-xl border border-border/70 bg-card p-5 shadow-sm">
+        <Card className="min-w-0 gap-0 p-5">
           <div className="text-label font-medium uppercase tracking-[0.08em] text-muted-foreground">Goal</div>
           <p className="mt-2 text-body leading-6 text-foreground">{skill.goal}</p>
           {concern ? <p className="mt-3 text-body leading-6 text-muted-foreground">{concern.summary}</p> : null}
-        </section>
+        </Card>
 
         <SkillRuleList id="checks" title="Checks" items={skill.checks} />
         <SkillRuleList id="avoid" title="Avoid" items={skill.avoid} muted />
@@ -42,12 +43,12 @@ function SkillRuleList({ id, title, items, muted = false }: { id: string; title:
       <SectionTitle title={title} />
       <div className="grid gap-2">
         {items.map((item, index) => (
-          <div key={item} className="flex gap-3 rounded-xl border border-border/70 bg-card px-4 py-3 text-body leading-6 shadow-sm">
+          <Card key={item} className="flex-row gap-3 px-4 py-3 text-body leading-6">
             <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border bg-background text-caption font-medium text-muted-foreground">
               {index + 1}
             </span>
             <span className={muted ? "text-muted-foreground" : "text-foreground"}>{item}</span>
-          </div>
+          </Card>
         ))}
       </div>
     </section>

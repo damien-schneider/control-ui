@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { renderToString } from "react-dom/server";
 
-import { Code, CodeContent } from "@/components/control-ui/ui/code";
+import { Code, CodeContent, CodeEditable } from "@/components/control-ui/ui/code";
 
 describe("Code renders", () => {
   test("uses the shared ScrollArea for scrollable code", () => {
@@ -50,5 +50,45 @@ describe("Code renders", () => {
     );
 
     expect(html).not.toContain("​");
+  });
+
+  test("highlights lines by their displayed number", () => {
+    const code = "ten\neleven\ntwelve";
+    const html = renderToString(
+      <Code>
+        <CodeContent code={code} startLine={10} highlightLines={[11]} highlight="none" />
+      </Code>,
+    );
+
+    const highlightedRows = html.match(/<div[^>]*data-highlighted[^>]*>.*?<\/div>/g) ?? [];
+    expect(highlightedRows).toHaveLength(1);
+    expect(highlightedRows[0]).toContain("eleven");
+  });
+
+  test("names the editable surface after the file it edits", () => {
+    const html = renderToString(
+      <Code>
+        <CodeEditable defaultValue="const answer = 42;" fileName="scratch.tsx" />
+      </Code>,
+    );
+
+    expect(html).toContain('aria-label="scratch.tsx code"');
+    expect(html).toContain("const answer = 42;");
+  });
+
+  test("a headerless surface overlays copy by default and drops it on request", () => {
+    const withCopy = renderToString(
+      <Code chrome="embedded">
+        <CodeContent code="bun run dev" highlight="none" />
+      </Code>,
+    );
+    const withoutCopy = renderToString(
+      <Code chrome="embedded" copy={false}>
+        <CodeContent code="bun run dev" highlight="none" />
+      </Code>,
+    );
+
+    expect(withCopy).toContain('data-code-floating="true"');
+    expect(withoutCopy).not.toContain('data-code-floating="true"');
   });
 });

@@ -6,7 +6,7 @@ import { useState } from "react";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSkin } from "@/components/control-ui/skin-provider";
-import { Code, CodeActions, CodeContent, CodeCopy, CodeFloatingCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
+import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, type CodeHighlight, CodeTitle } from "@/components/control-ui/ui/code";
 import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
@@ -15,18 +15,27 @@ export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string 
   if (!code.includes("\n")) return <CodeSnippet code={code} lang={lang} />;
 
   return (
-    <Code chrome="embedded" className="docs-panel pt-6">
-      <CodeFloatingCopy value={code} />
+    <Code chrome="embedded" className="docs-panel">
       <CodeContent code={code} lang={lang} />
     </Code>
   );
 }
 
-function CodeSnippet({ code, lang }: { code: string; lang: string }) {
+export function CodeSnippet({
+  code,
+  lang = "bash",
+  highlight,
+  children,
+}: {
+  code: string;
+  lang?: string;
+  highlight?: CodeHighlight;
+  children?: ReactNode;
+}) {
   return (
-    <Code chrome="embedded" density="compact" overflow="wrap" className="docs-panel flex items-center gap-1 py-1 pr-1">
-      <CodeContent code={code} lang={lang} className="min-w-0 flex-1" />
-      <CodeCopy value={code} />
+    <Code copy={false} chrome="embedded" density="compact" overflow="wrap" className="docs-panel flex items-center gap-1 py-1 pr-1">
+      <CodeContent code={code} lang={lang} highlight={highlight} className="min-w-0 flex-1" />
+      {children ?? <CodeCopy value={code} />}
     </Code>
   );
 }
@@ -179,7 +188,7 @@ export function PreviewTabs({
             {children}
           </TabsPanel>
           <TabsPanel value="code">
-            <Code chrome="embedded">
+            <Code copy={false} chrome="embedded">
               <CodeContent code={code} lang="tsx" />
             </Code>
           </TabsPanel>

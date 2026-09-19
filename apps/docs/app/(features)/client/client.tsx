@@ -265,7 +265,6 @@ function DocsShellContent({
         <DocsFloatingToolbar
           active={activePage}
           searchItems={searchItems}
-          skills={skills}
           lastSectionMode={lastSidebarMode}
           onLastSectionModeChange={onLastSidebarModeChange}
         />

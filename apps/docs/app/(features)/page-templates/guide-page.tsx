@@ -10,6 +10,7 @@ import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { ThemeAiBuilder } from "@/app/(features)/theme-ai-builder/theme-ai-builder";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Card } from "@/components/control-ui/ui/card";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
 import { ThemeEditor } from "@/components/theme-drawer/theme-editor";
 import AgentSkillContent from "@/content/guides/agent-skill.mdx";
@@ -108,9 +109,9 @@ function GuidePageContent({ page, integration, Content }: { page: GuidePageData;
         {section.points ? (
           <div className="mt-4 grid gap-2">
             {section.points.map((point) => (
-              <div key={point} className="rounded-xl border border-border/70 bg-card px-4 py-3 text-body leading-6 shadow-sm">
+              <Card key={point} className="px-4 py-3 text-body leading-6">
                 {point}
-              </div>
+              </Card>
             ))}
           </div>
         ) : null}
@@ -158,10 +159,10 @@ export function GuidePage({ page, integration }: { page: GuidePageData; integrat
             </div>
             <dl className="mt-4 grid max-w-2xl gap-3">
               {page.faqs.map((faq) => (
-                <div key={faq.question} className="rounded-xl border border-border/70 bg-card px-4 py-3 shadow-sm">
+                <Card key={faq.question} className="gap-1.5 px-4 py-3">
                   <dt className="font-medium text-label">{faq.question}</dt>
-                  <dd className="mt-1.5 text-body leading-6 text-muted-foreground">{faq.answer}</dd>
-                </div>
+                  <dd className="text-body leading-6 text-muted-foreground">{faq.answer}</dd>
+                </Card>
               ))}
             </dl>
           </section>

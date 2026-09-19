@@ -3,6 +3,7 @@ import { referenceOverview } from "@/app/(features)/catalog/guides";
 import { docsPageForPath } from "@/app/(features)/catalog/pages";
 import { getDocsData } from "@/app/(features)/model/data";
 import { guideNavSections } from "@/app/(features)/sidebar/nav-items";
+import { Card } from "@/components/control-ui/ui/card";
 
 export function ReferencePage() {
   const sections = guideNavSections(getDocsData().guides).reference.map((group) => ({
@@ -28,13 +29,11 @@ export function ReferencePage() {
             <h2 className="max-w-2xl text-heading-2 font-display">{section.title}</h2>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {section.entries.map((entry) => (
-                <Link
-                  key={entry.id}
-                  href={entry.href}
-                  className="group rounded-xl border border-border/70 bg-card px-4 py-3 shadow-sm transition-colors hover:border-border hover:bg-sidebar-accent"
-                >
-                  <span className="font-medium text-label group-hover:underline group-hover:underline-offset-4">{entry.name}</span>
-                  <p className="mt-1.5 text-body leading-6 text-muted-foreground">{entry.summary}</p>
+                <Link key={entry.id} href={entry.href} className="group block min-w-0">
+                  <Card className="h-full gap-1.5 px-4 py-3 transition-colors group-hover:bg-sidebar-accent">
+                    <span className="font-medium text-label group-hover:underline group-hover:underline-offset-4">{entry.name}</span>
+                    <p className="text-body leading-6 text-muted-foreground">{entry.summary}</p>
+                  </Card>
                 </Link>
               ))}
             </div>
