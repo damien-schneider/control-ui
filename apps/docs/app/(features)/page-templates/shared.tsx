@@ -35,7 +35,15 @@ export function PageHeader({
 }
 
 export function SectionStack({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={className ? `grid min-w-0 gap-24 ${className}` : "grid min-w-0 gap-24"}>{children}</div>;
+  return (
+    <div
+      className={
+        className ? `grid min-w-0 gap-[var(--docs-section-gap,6rem)] ${className}` : "grid min-w-0 gap-[var(--docs-section-gap,6rem)]"
+      }
+    >
+      {children}
+    </div>
+  );
 }
 
 export function SectionTitle({ title, description }: { title: string; description?: string }) {
@@ -145,7 +153,7 @@ function DependencyRow({ name, detail, kind, href }: { name: string; detail: str
   if (!href) return <div className={className}>{content}</div>;
 
   return (
-    <Link href={href} className={`${className} transition hover:bg-muted/40`}>
+    <Link href={href} className={`${className} hover:bg-muted/40`}>
       {content}
     </Link>
   );
@@ -196,7 +204,7 @@ export function InstallPanel({
         href={manifestHref}
         target="_blank"
         rel="noreferrer"
-        className="mt-3 inline-flex h-8 items-center rounded-md border bg-background px-3 text-label font-medium transition hover:bg-muted"
+        className="mt-3 inline-flex h-8 items-center rounded-md border bg-background px-3 text-label font-medium hover:bg-muted"
       >
         See registry manifest
       </a>

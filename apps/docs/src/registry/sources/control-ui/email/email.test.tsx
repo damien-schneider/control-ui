@@ -102,7 +102,7 @@ describe("email theme boundary", () => {
       [
         coreCss,
         refinedCss,
-        '[data-skin="refined"] { --font-body: var(--font-sans); --font-sans: "Test Sans", sans-serif; --text-body: 1rem; }',
+        '[data-skin="refined"] { --font-body: var(--font-sans); --font-sans: "Test Sans", sans-serif; --text-body-lg: 1rem; }',
       ],
       "light",
       20,

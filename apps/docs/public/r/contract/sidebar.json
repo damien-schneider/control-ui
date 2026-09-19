@@ -188,6 +188,7 @@
             "values": [
               "floating",
               "inset",
+              "page",
               "sidebar"
             ]
           }

@@ -79,7 +79,7 @@ export function RegistryItemPage({
   children?: ReactNode;
 }) {
   return (
-    <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
+    <section className="docs-article">
       <PageHeader label={label} title={title} summary={summary} status={status} />
       <PreviewTabs code={preview.code} controls={preview.controls} previewClassName={preview.className}>
         {preview.children}

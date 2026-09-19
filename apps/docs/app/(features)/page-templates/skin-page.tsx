@@ -25,7 +25,7 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
   const unavailable = skin.docsOnly || skin.files.length === 0;
 
   return (
-    <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
+    <section className="docs-article">
       <PageHeader label={`Skin / ${kindLabel}`} title={skin.label} summary={skin.description} />
       <SectionStack>
         {unavailable ? (

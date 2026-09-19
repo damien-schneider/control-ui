@@ -1,15 +1,27 @@
 [data-skin="refined"][data-skin] {
   --font-sans: var(--font-inter, "Inter"), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --text-caption: 0.75rem;
   --text-label: 0.75rem;
+  --text-body: 0.875rem;
+  --text-body-lg: 0.875rem;
+  --text-heading-4: 0.875rem;
+  --text-heading-4--line-height: 1.5;
   --text-heading-4--font-weight: 500;
+  --text-heading-3: 0.875rem;
+  --text-heading-3--line-height: 1.5;
   --text-heading-3--font-weight: 500;
+  --text-heading-2: 1rem;
+  --text-heading-2--line-height: 1.5;
   --text-heading-2--font-weight: 500;
+  --text-heading-1: 1rem;
+  --text-heading-1--line-height: 1.5;
   --text-heading-1--font-weight: 500;
-  --text-heading-1--letter-spacing: -0.025em;
-  --text-display: 2rem;
+  --text-heading-1--letter-spacing: 0em;
+  --text-display: 1rem;
+  --text-display--line-height: 1.5;
   --text-display--font-weight: 500;
-  --text-display--letter-spacing: -0.03em;
+  --text-display--letter-spacing: 0em;
 
   --background: oklch(0.985 0 0);
   --foreground: oklch(0.205 0 0);
@@ -45,15 +57,18 @@
   --shadow-opacity: 1;
 
   --radius: 0.625rem;
-  --radius-control: calc(var(--radius) * 2);
-  --radius-field: var(--radius);
-  --radius-panel: calc(var(--radius) * 1.4);
+  --radius-control: var(--radius);
+  --radius-field: calc(var(--radius) * 1.2);
+  --radius-panel: calc(var(--radius) * 1.6);
   --radius-scene: calc(var(--radius) * 1.8);
   --radius-popup-item: calc(var(--radius) * 0.8);
   --popover-padding: 0.25rem;
-  --padding-x: 0.875rem;
+  --padding-x: 0.75rem;
   --padding-y: 0.5rem;
   --control-h: 2rem;
+  --control-h-xs: round(var(--control-h) * 0.75, 1px);
+  --control-h-sm: round(var(--control-h) * 0.875, 1px);
+  --control-h-lg: round(var(--control-h) * 1.125, 1px);
 
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.23, 1, 0.32, 1);
@@ -75,8 +90,8 @@
   --accent: oklch(0.269 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.17 0 0);
-  --border: oklch(0.32 0 0 / var(--ring-opacity));
-  --input: oklch(0.36 0 0);
+  --border: oklch(1 0 0 / calc(0.1 * var(--ring-opacity)));
+  --input: oklch(1 0 0 / 0.15);
   --ring: oklch(0.7 0 0);
   --shadow-highlight: oklch(1 0 0 / 0.03);
 }

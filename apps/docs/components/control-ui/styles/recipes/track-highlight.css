@@ -63,6 +63,58 @@
     --cui-track-highlight-radius: var(--radius-control);
   }
 
+  :where([data-control-family="button-group"][data-track="hover"]) {
+    --_button-group-leading-cap: 0;
+    --_button-group-trailing-cap: 0;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="button-group"][data-track="hover"]:has(> :first-child:hover)) {
+      --_button-group-leading-cap: 1;
+    }
+
+    :where(
+        [data-control-family="button-group"][data-track="hover"]:has(
+          > :nth-last-child(1 of :not([data-control-family="track-highlight"])):hover
+        )
+      ) {
+      --_button-group-trailing-cap: 1;
+    }
+  }
+
+  :where([data-control-family="button-group"][data-track="hover"]:has(:focus-visible)) {
+    --_button-group-leading-cap: 0;
+    --_button-group-trailing-cap: 0;
+  }
+
+  :where([data-control-family="button-group"][data-track="hover"]:has(> :first-child:is(:focus-visible, :has(:focus-visible)))) {
+    --_button-group-leading-cap: 1;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-track="hover"]:has(
+      > :nth-last-child(1 of :not([data-control-family="track-highlight"])):is(:focus-visible, :has(:focus-visible))
+    )
+  ) {
+    --_button-group-trailing-cap: 1;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-track="hover"][data-orientation="horizontal"] > [data-control-family="track-highlight"]
+  ) {
+    border-start-start-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-leading-cap));
+    border-end-start-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-leading-cap));
+    border-start-end-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-trailing-cap));
+    border-end-end-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-trailing-cap));
+  }
+
+  :where([data-control-family="button-group"][data-track="hover"][data-orientation="vertical"] > [data-control-family="track-highlight"]) {
+    border-start-start-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-leading-cap));
+    border-start-end-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-leading-cap));
+    border-end-start-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-trailing-cap));
+    border-end-end-radius: calc(var(--cui-track-highlight-radius) * var(--_button-group-trailing-cap));
+  }
+
   @supports ((anchor-name: --cui-track) and (anchor-scope: --cui-track)) {
     :where([data-track]:has(> [data-control-family="track-highlight"])) {
       anchor-scope: --cui-track-active, --cui-track-hover, --cui-track-focus;

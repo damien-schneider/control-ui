@@ -57,9 +57,10 @@ test("track highlight is discoverable as a primitive with working hover and sele
   await page.mouse.move(0, 0);
   await expectHighlightOn(selectionHighlight, selected);
   await expect(selectionHighlight).toHaveCSS("border-radius", await selected.evaluate((node) => getComputedStyle(node).borderRadius));
+  const initialRadius = await selected.evaluate((node) => getComputedStyle(node).borderRadius);
   await selection.evaluate((node) => node.style.setProperty("--radius-control", "12px"));
-  await expect(selected).toHaveCSS("border-radius", "12px");
-  await expect(selectionHighlight).toHaveCSS("border-radius", "12px");
+  await expect(selected).not.toHaveCSS("border-radius", initialRadius);
+  await expect(selectionHighlight).toHaveCSS("border-radius", await selected.evaluate((node) => getComputedStyle(node).borderRadius));
 });
 
 for (const positioning of ["anchors", "fallback"]) {

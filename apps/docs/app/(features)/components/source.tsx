@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeFloatingCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
 import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -59,7 +60,7 @@ export function DocsCollapsible({
 }) {
   return (
     <UICollapsible id={id} defaultOpen={defaultOpen} className="docs-panel scroll-mt-20 overflow-hidden">
-      <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left text-body font-medium transition-colors hover:bg-muted/30">
+      <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left text-body font-medium hover:bg-muted/30">
         <span>
           {title}
           {subtitle ? <span className="ml-2 font-normal text-muted-foreground">{subtitle}</span> : null}
@@ -103,6 +104,7 @@ function SourcePath({ path }: { path: string }) {
 
 export function SourceTabs({ files }: { files: SourceFile[] }) {
   const [activePath, setActivePath] = useState(files[0]?.path ?? "");
+  const usesPageLayout = useSkin().sidebarLayout === "page";
   const activeFile = files.find((file) => file.path === activePath) ?? files[0];
   const selectedPath = activeFile?.path ?? files[0]?.path ?? "";
 
@@ -112,7 +114,7 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
     <Tabs value={selectedPath} onValueChange={setActivePath}>
       {files.length > 1 ? (
         <ScrollArea scrollbarVisibility="hover">
-          <TabsList variant="browser" className="w-full shadow-none">
+          <TabsList variant={usesPageLayout ? "default" : "browser"} className={usesPageLayout ? "mb-3 w-fit" : "w-full shadow-none"}>
             {files.map((file) => (
               <TabsTab key={file.path} value={file.path}>
                 {sourceFileName(file.path)}
@@ -124,7 +126,7 @@ export function SourceTabs({ files }: { files: SourceFile[] }) {
           </TabsList>
         </ScrollArea>
       ) : null}
-      <Code chrome="embedded" className={cn("docs-panel", files.length > 1 && "-mt-px")}>
+      <Code chrome="embedded" className={cn("docs-panel", files.length > 1 && !usesPageLayout && "-mt-px")}>
         <CodeHeader>
           <SourcePath path={activeFile.path} />
           <CodeActions>
@@ -155,13 +157,15 @@ export function PreviewTabs({
   previewFramed?: boolean;
 }) {
   const [tab, setTab] = useState("preview");
+  const usesPageLayout = useSkin().sidebarLayout === "page";
+  const showPanelFrame = tab === "code" || (previewFramed && !usesPageLayout);
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
       <Tabs value={tab} onValueChange={setTab}>
         {/* Base UI tablists consume arrow keys, so controls sit outside the list. */}
         <div className="relative">
-          <TabsList variant="browser" className="w-full shadow-none">
+          <TabsList variant={usesPageLayout ? "default" : "browser"} className={usesPageLayout ? "mb-3 w-fit" : "w-full shadow-none"}>
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
@@ -170,7 +174,7 @@ export function PreviewTabs({
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        <div className={cn("-mt-px", (previewFramed || tab === "code") && "docs-panel overflow-hidden")}>
+        <div className={cn(!usesPageLayout && "-mt-px", showPanelFrame && "docs-panel overflow-hidden")}>
           <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
             {children}
           </TabsPanel>

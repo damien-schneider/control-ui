@@ -108,12 +108,20 @@
 @source "../src/registry";
 @source "../examples";
 
+@utility docs-article {
+  width: 100%;
+  min-width: 0;
+  max-width: var(--docs-article-width, 48rem);
+  margin-inline: auto;
+  padding: 3rem var(--docs-article-gutter, 1.25rem);
+}
+
 @utility docs-panel {
   min-width: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--docs-panel-border, var(--border));
   border-radius: var(--radius-panel);
-  background: var(--background);
-  box-shadow: none;
+  background: var(--docs-panel-background, var(--background));
+  box-shadow: var(--docs-panel-shadow, none);
 }
 
 [data-control-ui="button"][data-flavor="neon"] {

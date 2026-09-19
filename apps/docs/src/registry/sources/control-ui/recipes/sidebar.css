@@ -9,8 +9,12 @@
     background-image: var(--cui-sidebar-wrapper-background-image);
   }
 
-  :where([data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-variant="inset"])) {
+  :where([data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-variant="inset"][data-state])) {
     --cui-sidebar-wrapper-background: var(--sidebar);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="wrapper"]:has([data-control-family="sidebar"][data-variant="page"][data-state])) {
+    --cui-sidebar-inset-background: transparent;
   }
 
   :where([data-control-family="sidebar"][data-slot="root"]) {
@@ -33,6 +37,11 @@
     --cui-sidebar-menu-button-active-foreground: var(--foreground);
     background-color: var(--sidebar);
     color: var(--sidebar-foreground);
+  }
+
+  :where([data-control-family="sidebar"][data-slot="root"][data-variant="page"][data-state]) {
+    --cui-sidebar-inner-background: transparent;
+    background-color: transparent;
   }
 
   :where([data-control-family="sidebar"][data-slot="gap"]) {
@@ -69,7 +78,7 @@
     backdrop-filter: var(--cui-sidebar-inner-backdrop-filter);
   }
 
-  :where([data-control-family="sidebar"][data-slot="root"][data-variant="floating"]) {
+  :where([data-control-family="sidebar"][data-slot="root"][data-variant="floating"][data-state]) {
     --cui-sidebar-inner-border-width: 1px;
     --cui-sidebar-inner-radius: var(--radius-panel);
     --cui-sidebar-inner-shadow: var(--shadow-md);
@@ -122,7 +131,10 @@
   }
 
   @media (width >= 64rem) {
-    :where([data-control-family="sidebar"][data-slot="root"][data-variant="inset"] ~ [data-control-family="sidebar"][data-slot="inset"]) {
+    :where(
+        [data-control-family="sidebar"][data-slot="root"][data-variant="inset"][data-state]
+          ~ [data-control-family="sidebar"][data-slot="inset"]
+      ) {
       margin: calc(var(--spacing) * 2);
       margin-inline-start: 0;
       border-radius: var(--radius-xl);

@@ -9897,7 +9897,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["floating", "inset", "sidebar"],
+              values: ["floating", "inset", "page", "sidebar"],
             },
           ],
         },

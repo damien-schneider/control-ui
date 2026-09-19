@@ -99,7 +99,7 @@
     overflow: visible;
   }
 
-  [data-skin="modern-apple"] [data-slot="root"][data-variant="floating"][data-control-family="sidebar"] {
+  [data-skin="modern-apple"] [data-slot="root"][data-variant="floating"][data-state][data-control-family="sidebar"] {
     --cui-sidebar-inner-border-width: 0px;
     --cui-sidebar-inner-background: var(--apple-sidebar-background);
     --cui-sidebar-inner-shadow:
@@ -165,7 +165,7 @@
     --cui-track-highlight-shadow: none;
   }
 
-  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="sidebar"][data-variant="floating"]) {
+  [data-skin="modern-apple"] :where([data-slot="root"][data-control-family="sidebar"][data-variant="floating"][data-state]) {
     --cui-sidebar-inner-radius: var(--radius-panel);
   }
 

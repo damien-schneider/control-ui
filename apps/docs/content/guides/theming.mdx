@@ -12,6 +12,47 @@
   The Next.js starter includes this root background. Keep the skin and color-mode attributes on the same theme boundary.
 </GuideSection>
 
+<GuideSection id="sidebar" title="Let pages scroll with the window">
+  Set `sidebarLayout: "page"` in your skin config, or use `<Sidebar variant="page">` for one layout.
+  An explicit `variant` takes precedence over the skin default. Page removes the sidebar divider and inset
+  frame while retaining the fixed desktop navigation, collapse controls, resize rail, and mobile drawer.
+
+  Keep `SidebarProvider` in normal document flow: its default minimum height fills the viewport without
+  limiting the page height. Render content directly inside `SidebarInset`; do not add `h-svh`, an
+  overflow-constrained ancestor, or a full-screen `ScrollArea` around the main content. `SidebarContent`
+  can still scroll the navigation independently.
+
+```tsx
+import type { ReactNode } from "react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/control-ui/ui/sidebar";
+
+export function PageLayout({ navigation, children }: { navigation: ReactNode; children: ReactNode }) {
+  return (
+    <SidebarProvider>
+      <Sidebar variant="page">
+        <SidebarContent>{navigation}</SidebarContent>
+      </Sidebar>
+      <SidebarInset>
+        <header className="p-4">
+          <SidebarTrigger />
+        </header>
+        {children}
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+```
+
+  Omit `variant="page"` when the skin should choose the layout. The sidebar component playground confines
+  every variant to its preview frame; use the composition above for native window scrolling.
+</GuideSection>
+
 <GuideSection id="feedback" title="Keep frequent feedback immediate">
   Hover colors and hover-following highlights update immediately, as do desktop sidebar toggles. Press feedback,
   selection indicators, and popup entrances retain their motion tokens and respect reduced-motion preferences.

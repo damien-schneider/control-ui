@@ -7,7 +7,7 @@ import { PageHeader, SectionStack, SectionTitle } from "./shared";
 
 export function HookPage({ hook }: { hook: DocsHook }) {
   return (
-    <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
+    <section className="docs-article">
       <PageHeader label="Hooks" title={hook.name} summary={hook.summary} />
       <SectionStack>
         <div id="install" className="min-w-0 scroll-mt-20 rounded-xl border bg-background p-5">

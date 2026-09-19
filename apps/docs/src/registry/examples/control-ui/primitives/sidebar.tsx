@@ -2,6 +2,7 @@
 
 import { ChevronRightIcon, FolderIcon, HashIcon, LayersIcon, MoreHorizontalIcon, SettingsIcon, SparklesIcon } from "lucide-react";
 import { useId, useState } from "react";
+import type { SidebarLayout } from "@/components/control-ui/skin";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 import { NativeSelect } from "@/components/control-ui/ui/native-select";
@@ -141,7 +142,7 @@ function Workspace({
   resizable,
   side,
 }: {
-  variant: "sidebar" | "floating" | "inset";
+  variant: SidebarLayout;
   resizable: boolean;
   side: "left" | "right";
   indicator?: SidebarSelectionIndicator;
@@ -220,7 +221,7 @@ function SidebarExample({
   resizable = false,
   side = "left",
 }: {
-  variant?: "sidebar" | "floating" | "inset";
+  variant?: SidebarLayout;
   label: string;
   nested?: boolean;
   controls?: boolean;
@@ -229,12 +230,32 @@ function SidebarExample({
 }) {
   const [width, setWidth] = useState(280);
   const [indicator, setIndicator] = useState<SidebarSelectionIndicator>();
+  const [layout, setLayout] = useState<SidebarLayout>();
+  const layoutId = useId();
   const highlightId = useId();
 
   return (
     <fieldset aria-label={label} className="w-full min-w-0">
       {controls ? (
-        <div className="mb-3 flex items-center justify-end gap-2 text-caption text-muted-foreground">
+        <div className="mb-3 flex flex-wrap items-center justify-end gap-2 text-caption text-muted-foreground">
+          <label htmlFor={layoutId} className="shrink-0">
+            Layout
+          </label>
+          <div className="w-32">
+            <NativeSelect
+              id={layoutId}
+              value={layout ?? variant}
+              onChange={(event) => {
+                const value = event.target.value;
+                if (value === "sidebar" || value === "floating" || value === "inset" || value === "page") setLayout(value);
+              }}
+            >
+              <option value="sidebar">Sidebar</option>
+              <option value="floating">Floating</option>
+              <option value="inset">Inset</option>
+              <option value="page">Page</option>
+            </NativeSelect>
+          </div>
           <label htmlFor={highlightId} className="shrink-0">
             Menu highlight
           </label>
@@ -265,7 +286,7 @@ function SidebarExample({
           className="min-h-0! h-full"
           style={{ "--sidebar-width": "14rem" }}
         >
-          <Workspace variant={variant} indicator={indicator} nested={nested} resizable={resizable} side={side} />
+          <Workspace variant={layout ?? variant} indicator={indicator} nested={nested} resizable={resizable} side={side} />
         </SidebarProvider>
       </div>
     </fieldset>

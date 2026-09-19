@@ -44,7 +44,7 @@ export type ControlUiSkin = {
   };
 };
 
-export type SidebarLayout = "sidebar" | "floating" | "inset";
+export type SidebarLayout = "sidebar" | "floating" | "inset" | "page";
 
 export type ControlEffect = "top-shine" | "ripple" | "hover-circle";
 

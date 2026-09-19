@@ -2,7 +2,7 @@ import type { ControlUiSkin } from "@/components/control-ui/skin";
 
 export const skin: ControlUiSkin = {
   id: "refined",
-  scrollAreaBlur: true,
+  sidebarLayout: "page",
   indicators: {
     sidebar: "hover",
     "button-group": "hover",

@@ -2,6 +2,7 @@ import type { ChatDensity, ChatRole, ChatState } from "../../src/registry/hooks/
 import type { DropzoneVisualState } from "../../src/registry/hooks/use-dropzone";
 import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dynamic-notification";
 import type { CodeDiffLineType } from "../../src/registry/lib/diff";
+import type { SidebarLayout } from "../../src/registry/skin";
 import type { ActivityDetailFormat, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
 import type { ChatLayoutChrome } from "../../src/registry/sources/control-ui/chat-layout";
 import type { ContextSegmentKind, ContextStatus } from "../../src/registry/sources/control-ui/context-model";
@@ -204,7 +205,7 @@ export type EmittedStateContract = {
   "sidebar:root:data-collapsible": "offcanvas" | "icon" | "none";
   "sidebar:root:data-side": "left" | "right";
   "sidebar:root:data-state": "expanded" | "collapsed";
-  "sidebar:root:data-variant": "sidebar" | "floating" | "inset";
+  "sidebar:root:data-variant": SidebarLayout;
   "sidebar:menu:data-indicator": SidebarSelectionIndicator;
   "sidebar:menu-track:data-indicator": SidebarSelectionIndicator;
   "sidebar:menu-track:data-track": SidebarSelectionIndicator;

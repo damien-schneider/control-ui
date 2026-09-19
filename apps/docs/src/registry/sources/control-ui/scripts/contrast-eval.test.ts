@@ -34,6 +34,12 @@ describe("contrast-eval color grammar", () => {
     expect(rgb("oklch(from var(--foreground) calc(l + 0.5) c h)", tokens).r).toBeGreaterThan(rgb("var(--foreground)", tokens).r);
   });
 
+  test("resolves calculated literal alpha without accepting relative channel keywords", () => {
+    const tokens = new Map([["--ring-opacity", "0.5"]]);
+    expect(rgb("oklch(1 0 0 / calc(0.1 * var(--ring-opacity)))", tokens)).toMatchObject({ alpha: 0.05 });
+    expect(rgb("oklch(1 0 0 / calc(alpha * 0.5))", tokens).unresolved).toContain("unsupported alpha");
+  });
+
   test("composites a translucent wash onto its surface", () => {
     const over = { r: 0, g: 0, b: 0, alpha: 0.5 };
     const under = { r: 255, g: 255, b: 255, alpha: 1 };

@@ -26,6 +26,7 @@ for (const positioning of ["anchors", "fallback"]) {
       const idleFill = await left.evaluate((node) => getComputedStyle(node).backgroundColor);
       await left.hover();
       await expectHighlightOn(highlight, left);
+      await expect(highlight).toHaveCSS("border-radius", await left.evaluate((node) => getComputedStyle(node).borderRadius));
       await expect(left).toHaveCSS("background-color", idleFill);
       await expect(left).toHaveCSS("isolation", "auto");
       await expect(highlight).toHaveCSS("z-index", "0");
@@ -33,6 +34,7 @@ for (const positioning of ["anchors", "fallback"]) {
       await expect(center).toHaveAttribute("data-active", "true");
       await right.hover();
       await expectHighlightOn(highlight, right);
+      await expect(highlight).toHaveCSS("border-radius", await right.evaluate((node) => getComputedStyle(node).borderRadius));
       await expect(center).toHaveAttribute("data-active", "true");
       await right.click();
       await expect(right).toHaveAttribute("data-active", "true");
@@ -40,6 +42,7 @@ for (const positioning of ["anchors", "fallback"]) {
       await page.keyboard.press("Shift+Tab");
       await expect(center).toBeFocused();
       await expectHighlightOn(highlight, center);
+      await expect(highlight).toHaveCSS("border-radius", await center.evaluate((node) => getComputedStyle(node).borderRadius));
       await expect(left).toHaveCSS("border-top-right-radius", "0px");
       await expect(right).toHaveCSS("border-top-left-radius", "0px");
       expect(await right.evaluate((node) => Number.parseFloat(getComputedStyle(node).borderTopRightRadius))).toBeGreaterThan(0);
@@ -55,8 +58,10 @@ for (const positioning of ["anchors", "fallback"]) {
       const first = group.getByRole("button", { name: "Open", exact: true });
       const last = group.getByRole("button", { name: "Open in new window", exact: true });
       const highlight = group.locator('[data-control-family="track-highlight"]');
+      await waitForReactHydration(first);
       await first.hover();
       await expectHighlightOn(highlight, first);
+      await expect(highlight).toHaveCSS("border-radius", await first.evaluate((node) => getComputedStyle(node).borderRadius));
       await group.getByRole("button", { name: "Duplicate" }).hover({ force: true });
       if (positioning === "anchors") await expect(highlight).toBeHidden();
       else await expect(highlight).toHaveCSS("opacity", "0");
@@ -66,6 +71,7 @@ for (const positioning of ["anchors", "fallback"]) {
       await page.keyboard.press("Tab");
       await expect(last).toBeFocused();
       await expectHighlightOn(highlight, last);
+      await expect(highlight).toHaveCSS("border-radius", await last.evaluate((node) => getComputedStyle(node).borderRadius));
       await expect(first).toHaveCSS("border-bottom-left-radius", "0px");
       await expect(last).toHaveCSS("border-top-left-radius", "0px");
       expect(await last.evaluate((node) => Number.parseFloat(getComputedStyle(node).borderBottomLeftRadius))).toBeGreaterThan(0);

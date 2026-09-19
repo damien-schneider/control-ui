@@ -14,6 +14,8 @@ import type { SidebarMode } from "@/app/(features)/sidebar/types";
 import { readStoredSidebarWidth, writeStoredSidebarWidth } from "@/app/(features)/sidebar/width";
 import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
+import { cn } from "@/components/control-ui/lib/cn";
+import { useSkin } from "@/components/control-ui/skin-provider";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
@@ -152,6 +154,8 @@ function DocsShellContent({
   updateSetupPreference,
 }: DocsShellContentProps) {
   const pathname = usePathname();
+  const skin = useSkin();
+  const usesPageLayout = skin.sidebarLayout === "page";
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
 
@@ -195,10 +199,19 @@ function DocsShellContent({
     extensions,
   });
   const pageContent = <DocsPageIntegrationProvider integration={integration}>{children}</DocsPageIntegrationProvider>;
+  const pageGrid = (
+    <div data-docs-page-grid="">
+      {pageContent}
+      <aside data-docs-page-toc="">
+        <TableOfContents items={links} />
+      </aside>
+    </div>
+  );
 
   return (
     <SidebarProvider
-      className="h-svh bg-canvas text-foreground"
+      data-docs-layout={usesPageLayout ? "page" : "contained"}
+      className={cn("bg-canvas text-foreground", !usesPageLayout && "h-svh")}
       open={sidebarOpen}
       onOpenChange={onSidebarOpenChange}
       width={sidebarWidth}
@@ -230,26 +243,24 @@ function DocsShellContent({
           data-control-family="sidebar-layout"
           data-slot="content"
           data-surface="panel"
-          className="relative flex min-h-0 flex-1 flex-col overflow-hidden"
+          className={cn("relative flex min-h-0 flex-1 flex-col", !usesPageLayout && "overflow-hidden")}
         >
           <div
             data-docs-sidebar-trigger=""
-            className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex"
+            className={cn(
+              "pointer-events-none inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex",
+              usesPageLayout ? "fixed" : "absolute",
+            )}
           >
             <SidebarTrigger className="pointer-events-auto" />
           </div>
-          <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
-            <div
-              data-docs-page-grid=""
-              className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-1 pt-[calc(var(--control-h-sm)+1rem)] pb-24 md:px-2 lg:pt-[calc(var(--control-h-sm)+1.5rem)] 2xl:grid-cols-[minmax(0,1fr)_180px]"
-            >
-              {pageContent}
-
-              <aside className="hidden py-12 2xl:block">
-                <TableOfContents items={links} />
-              </aside>
-            </div>
-          </ScrollArea>
+          {usesPageLayout ? (
+            pageGrid
+          ) : (
+            <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
+              {pageGrid}
+            </ScrollArea>
+          )}
         </div>
         <DocsFloatingToolbar
           active={activePage}

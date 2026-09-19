@@ -7,6 +7,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SidebarLayout } from "@/components/control-ui/skin";
 import { useSkin } from "@/components/control-ui/skin-provider";
 
 import { Button } from "@/components/control-ui/ui/button";
@@ -61,7 +62,7 @@ const sidebarTriggerWidth = {
 
 export type SidebarProps = Omit<ComponentProps<"div">, "style"> & {
   side?: "left" | "right";
-  variant?: "sidebar" | "floating" | "inset";
+  variant?: SidebarLayout;
   collapsible?: "offcanvas" | "icon" | "none";
   style?: SidebarSurfaceStyle;
 };
@@ -134,6 +135,7 @@ function SidebarSurface({
         data-control-family="sidebar"
         data-slot="root"
         data-surface="panel"
+        data-variant={resolvedVariant}
         data-side={side}
         className={cn("group relative flex h-full w-(--sidebar-width) flex-col", className)}
         style={style}
@@ -164,6 +166,7 @@ function SidebarSurface({
             data-control-family="sidebar"
             data-slot="root"
             data-surface="panel"
+            data-variant={resolvedVariant}
             data-mobile=""
             data-side={side}
             className={cn("flex min-h-0 flex-1 flex-col", className)}

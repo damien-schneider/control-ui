@@ -7,7 +7,7 @@ import { PageHeader, SectionStack, SectionTitle } from "./shared";
 
 export function UtilPage({ util }: { util: DocsUtil }) {
   return (
-    <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
+    <section className="docs-article">
       <PageHeader label="Utils" title={util.name} summary={util.summary} />
       <SectionStack>
         {util.hasPreview ? (

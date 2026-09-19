@@ -16,7 +16,7 @@ export function ExtensionPage({ extension }: { extension: DocsExtension }) {
   const files = extension.supportFiles ? [extension.source, ...extension.supportFiles] : [extension.source];
 
   return (
-    <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
+    <section className="docs-article">
       <PageHeader label="Extensions" title={extension.name} summary={extension.summary} status={extension.status} />
       <SectionStack>
         {hasExtensionDemo(extension.id) ? (

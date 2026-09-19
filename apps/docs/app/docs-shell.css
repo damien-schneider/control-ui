@@ -11,9 +11,106 @@
     box-shadow: var(--shadow-pop);
   }
 
+  :where([data-docs-page-grid]) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: calc(var(--spacing) * 5);
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding: calc(var(--control-h-sm) + 1rem) var(--spacing) 6rem;
+  }
+
+  :where([data-docs-page-toc]) {
+    display: none;
+    padding-block: 3rem;
+  }
+
+  :where([data-docs-floating-panel]) {
+    position: absolute;
+    inset-inline-start: 50%;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    translate: -50% 0;
+  }
+
+  [data-docs-layout="page"] {
+    --docs-article-width: 40rem;
+    --docs-article-gutter: 2rem;
+    --docs-section-gap: 3rem;
+  }
+
+  [data-docs-layout="page"] :where([data-docs-content]) {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  [data-docs-layout="page"] :where([data-docs-page-grid]) {
+    padding-block-start: 4rem;
+  }
+
+  [data-docs-layout="page"] :where([data-docs-floating-panel]) {
+    position: fixed;
+  }
+
+  [data-docs-layout="page"] :where([data-control-family="code"][data-slot="root"]) {
+    --docs-panel-background: var(--cui-code-background);
+    --docs-panel-border: var(--cui-code-border-color);
+    --docs-panel-shadow: var(--cui-code-shadow);
+  }
+
+  @media (width >= 48rem) {
+    :where([data-docs-page-grid]) {
+      padding-inline: calc(var(--spacing) * 2);
+    }
+  }
+
   @media (width >= 64rem) {
     :where([data-docs-content]) {
       margin: calc(var(--spacing) * 2);
+    }
+
+    :where([data-docs-page-grid]) {
+      padding-block-start: calc(var(--control-h-sm) + 1.5rem);
+    }
+
+    :where([data-docs-floating-panel]) {
+      top: max(1rem, env(safe-area-inset-top));
+      bottom: auto;
+    }
+
+    [data-docs-layout="page"] :where([data-docs-sidebar-navigation]) {
+      padding-block: 1rem;
+    }
+
+    [data-docs-layout="page"] :where([data-docs-floating-panel]) {
+      inset-inline-start: auto;
+      inset-inline-end: 2rem;
+      top: 1.5rem;
+      translate: none;
+    }
+  }
+
+  @media (width >= 80rem) {
+    [data-docs-layout="page"] :where([data-docs-page-grid]) {
+      max-width: 54rem;
+      grid-template-columns: minmax(0, 40rem) 11.25rem;
+    }
+
+    [data-docs-layout="page"] :where([data-docs-page-toc]) {
+      display: block;
+    }
+  }
+
+  @media (width >= 96rem) {
+    :where([data-docs-page-grid]) {
+      grid-template-columns: minmax(0, 1fr) 11.25rem;
+    }
+
+    :where([data-docs-page-toc]) {
+      display: block;
     }
   }
 }

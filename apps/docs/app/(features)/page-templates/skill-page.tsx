@@ -7,7 +7,7 @@ export function SkillPage({ skill, concern }: { skill: DocsSkill; concern?: Docs
   const label = concern ? `Skill / ${concern.title}` : "Skill";
 
   return (
-    <section className="mx-auto min-w-0 w-full max-w-3xl px-5 py-12">
+    <section className="docs-article">
       <PageHeader label={label} title={skill.title} summary={skill.summary} />
       <div className="grid min-w-0 gap-8">
         <section className="min-w-0 rounded-xl border border-border/70 bg-card p-5 shadow-sm">

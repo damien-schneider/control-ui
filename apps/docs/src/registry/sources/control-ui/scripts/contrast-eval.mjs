@@ -247,7 +247,7 @@ function literalOklch(inner, tokens, seen, depth) {
   const numbers = channels.map((part, index) => literalChannel(part, index === 0));
   if (numbers.some((number) => number === null)) return unresolved(`unsupported \`oklch(${inner})\``);
   const alphaText = slash === -1 ? null : parts.slice(slash + 1).join(" ");
-  const alpha = alphaText === null ? 1 : resolveScalar(alphaText, tokens, seen, depth);
+  const alpha = alphaText === null ? 1 : alphaValue(alphaText, null, tokens, seen, depth);
   if (alpha === null) return unresolved(`unsupported alpha in \`oklch(${inner})\``);
   return { ...oklchToRgb(numbers[0], numbers[1], numbers[2]), alpha: clamp(alpha, 0, 1) };
 }

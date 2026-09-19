@@ -1,39 +1,91 @@
-[data-skin="refined"] {
+[data-skin="refined"],
+[data-skin="refined"] :where([data-control-family]) {
+  --refined-button-radius: calc(var(--radius-control) * 2);
   --refined-surface-shadow:
     0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.06 * var(--ring-opacity))),
     0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.06 * var(--shadow-opacity))),
     0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.04 * var(--shadow-opacity)));
-  --refined-solid-shadow:
-    0 0 0 var(--control-rim-width) oklch(from var(--primary) l c h / calc(0.6 * var(--ring-opacity))),
-    0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
-    oklch(from var(--shadow-color) l c h / calc(0.4 * var(--shadow-opacity))),
-    0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
-    oklch(from var(--shadow-color) l c h / calc(0.18 * var(--shadow-opacity)));
 }
 
-:is(.dark [data-skin="refined"], [data-skin="refined"].dark) {
+:is(.dark [data-skin="refined"], [data-skin="refined"].dark),
+:is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family]) {
   --refined-surface-shadow:
-    inset 0 1px var(--shadow-highlight), inset 0 0 0 var(--control-rim-width) var(--border),
-    0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
+    inset 0 calc(1px * min(var(--shadow-size), 1))
+    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--shadow-opacity))),
+    inset 0 0 0 var(--control-rim-width)
+    oklch(from var(--shadow-highlight) l c h / calc(alpha * var(--ring-opacity))),
+    0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.1 * var(--ring-opacity))),
+    0 calc(2px * var(--shadow-size)) calc(2px * var(--shadow-size))
+    oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity))),
+    0 calc(4px * var(--shadow-size)) calc(4px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity))),
     0 calc(8px * var(--shadow-size)) calc(8px * var(--shadow-size))
     oklch(from var(--shadow-color) l c h / calc(0.1 * var(--shadow-opacity)));
-  --refined-solid-shadow:
-    inset 0 1px oklch(1 0 0 / calc(0.45 * var(--shadow-opacity))),
-    0 0 0 var(--control-rim-width) oklch(from var(--primary) l c h / calc(0.55 * var(--ring-opacity))),
-    0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size))
-    oklch(from var(--shadow-color) l c h / calc(0.5 * var(--shadow-opacity)));
+}
+
+@layer base {
+  [data-skin="refined"],
+  :root[data-skin="refined"] body {
+    letter-spacing: normal;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 @layer components {
+  [data-skin="refined"] :where([data-control-family="button"][data-control="true"]:not([data-shape="circle"])) {
+    --cui-button-radius: var(--refined-button-radius);
+  }
+
+  [data-skin="refined"] :where([data-control-family="button"][data-popup-kind="select"][data-slot="trigger"]) {
+    --cui-button-radius: var(--radius-field);
+  }
+
+  [data-skin="refined"] :where([data-control-family="button-group"][data-slot="root"]) {
+    --cui-button-group-text-radius: var(--refined-button-radius);
+  }
+
+  [data-skin="refined"]
+    :where([data-track]:has(> [data-control-family="button"][data-track-item]) > [data-control-family="track-highlight"]) {
+    --cui-track-highlight-radius: var(--refined-button-radius);
+  }
+
+  [data-skin="refined"] :where([data-control-family="button"][data-control="true"]) {
+    --cui-button-gap: calc(var(--spacing) * 1.25);
+    --cui-button-icon: 0.875rem;
+    --cui-button-press-scale: 0.97;
+  }
+
+  [data-skin="refined"] :where([data-control-family="button"][data-size="xs"]) {
+    --cui-button-gap: var(--spacing);
+    --cui-button-icon: 0.75rem;
+    --cui-button-padding-inline: calc(var(--padding-x) * 5 / 6);
+    --cui-button-icon-padding-inline: max(0px, calc(var(--cui-button-padding-inline) - var(--spacing)));
+  }
+
+  [data-skin="refined"] :where([data-control-family="button"][data-size="sm"]) {
+    --cui-button-font-size: var(--text-body);
+    --cui-button-padding-inline: var(--padding-x);
+    --cui-button-icon-padding-inline: max(0px, calc(var(--cui-button-padding-inline) - var(--spacing) * 0.75));
+  }
+
+  [data-skin="refined"] :where([data-control-family="button"][data-size="lg"]) {
+    --cui-button-gap: calc(var(--spacing) * 1.5);
+    --cui-button-padding-inline: calc(var(--padding-x) * 7 / 6);
+  }
+
   [data-skin="refined"] :where([data-control-family="button"][data-variant="solid"]) {
-    --cui-button-shadow: var(--refined-solid-shadow);
+    --cui-button-shadow:
+      0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.6 * var(--ring-opacity))),
+      0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
+      oklch(from var(--shadow-color) l c h / calc(0.4 * var(--shadow-opacity))),
+      0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
+      oklch(from var(--shadow-color) l c h / calc(0.18 * var(--shadow-opacity)));
   }
 
   [data-skin="refined"] :where([data-control-family="button"][data-variant="surface"]) {
-    --cui-button-background: var(--card);
+    --cui-button-background: var(--background);
     --cui-button-hover-background: var(--muted);
     --cui-button-shadow: var(--refined-surface-shadow);
   }
@@ -41,6 +93,8 @@
   [data-skin="refined"] :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
     --cui-button-shadow:
       0 0 0 var(--control-rim-width) oklch(from var(--destructive) l c h / calc(0.25 * var(--ring-opacity))),
+      0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
+      oklch(from var(--destructive) l c h / calc(0.18 * var(--shadow-opacity))),
       0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
       oklch(from var(--destructive) l c h / calc(0.12 * var(--shadow-opacity)));
   }
@@ -57,13 +111,17 @@
       [data-control-family="popup"][data-popup-part="list-surface"],
       [data-control-family="popup"][data-popup-part="bar"]
     ) {
+    --cui-popup-border-width: 0px;
     --cui-popup-shadow: var(--refined-surface-shadow);
   }
 
   [data-skin="refined"] :where([data-control-family="field"][data-control="true"]) {
-    --cui-field-radius: var(--radius);
-    --cui-field-background: var(--card);
-    --cui-field-shadow: none;
+    --cui-field-radius: var(--radius-field);
+    --cui-field-background: transparent;
+    --cui-field-border-color: var(--input);
+    --cui-field-border-width: 0px;
+    --cui-field-focus-border-color: var(--focus-ring);
+    --cui-field-shadow: var(--refined-surface-shadow);
   }
 
   [data-skin="refined"] :where([data-control-family="code"][data-slot="root"]) {
@@ -73,20 +131,76 @@
   }
 
   [data-skin="refined"] :where([data-control-family="tabs"][data-slot="root"]) {
+    --cui-tabs-trigger-radius: var(--radius-field);
+    --cui-tabs-list-padding: calc(var(--spacing) * 0.75);
     --cui-tabs-list-background: var(--muted);
     --cui-tabs-list-shadow: none;
     --cui-tabs-indicator-shadow: var(--refined-surface-shadow);
   }
 
-  [data-skin="refined"] :where([data-control-family="range"][data-slot="root"]) {
-    --cui-range-thumb-shadow: var(--refined-surface-shadow);
+  [data-skin="refined"] :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-variant="default"]) {
+    --cui-range-indicator-background: oklch(from var(--muted-foreground) l c h / 0.5);
+    --cui-range-thumb-background: var(--primary);
+    --cui-range-thumb-border-color: var(--primary);
+    --cui-range-thumb-shadow: var(--shadow-xs);
   }
 
   [data-skin="refined"] :where([data-control-family="switch"][data-slot="root"]) {
     --cui-switch-thumb-shadow: var(--refined-surface-shadow);
   }
 
+  [data-skin="refined"] :where([data-control-family="table-of-contents"][data-slot="root"]) {
+    --cui-table-of-contents-background: transparent;
+    --cui-table-of-contents-border-width: 0px;
+    --cui-table-of-contents-shadow: none;
+    --cui-table-of-contents-padding: 0px;
+    --cui-table-of-contents-item-font-size: var(--text-caption);
+  }
+
   [data-skin="refined"] :where([data-control-family="sidebar"][data-slot="wrapper"]) {
     --cui-sidebar-inset-shadow: none;
+  }
+
+  :is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family="button"][data-variant="solid"]) {
+    --cui-button-shadow:
+      inset 0 calc(1px * min(var(--shadow-size), 1)) oklch(1 0 0 / calc(0.45 * var(--shadow-opacity))),
+      0 0 0 var(--control-rim-width) oklch(1 0 0 / calc(0.55 * var(--ring-opacity))),
+      0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size))
+      oklch(from var(--shadow-color) l c h / calc(0.5 * var(--shadow-opacity)));
+  }
+
+  :is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family="button"][data-variant="surface"]) {
+    --cui-button-background: var(--card);
+    --cui-button-shadow:
+      inset 0 calc(1px * min(var(--shadow-size), 1)) oklch(1 0 0 / calc(0.05 * var(--shadow-opacity))),
+      inset 0 0 0 var(--control-rim-width) oklch(1 0 0 / calc(0.045 * var(--ring-opacity))),
+      0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.14 * var(--ring-opacity))),
+      0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
+      oklch(from var(--shadow-color) l c h / calc(0.14 * var(--shadow-opacity))),
+      0 calc(2px * var(--shadow-size)) calc(4px * var(--shadow-size))
+      oklch(from var(--shadow-color) l c h / calc(0.08 * var(--shadow-opacity)));
+  }
+
+  :is(.dark [data-skin="refined"], [data-skin="refined"].dark)
+    :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
+    --cui-button-shadow:
+      inset 0 calc(1px * min(var(--shadow-size), 1)) oklch(from var(--destructive) l c h / calc(0.03 * var(--shadow-opacity))),
+      0 0 0 var(--control-rim-width) oklch(from var(--destructive) l c h / calc(0.18 * var(--ring-opacity))),
+      0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size))
+      oklch(from var(--destructive) l c h / calc(0.1 * var(--shadow-opacity)));
+  }
+
+  .dark [data-skin="refined"] :where([data-control-family="field"][data-control="true"]),
+  [data-skin="refined"].dark :where([data-control-family="field"][data-control="true"]) {
+    --cui-field-background: oklch(from var(--input) l c h / calc(alpha * 0.3));
+    --cui-field-border-color: oklch(from var(--border) l c h / calc(alpha * 0.5));
+    --cui-field-border-width: var(--control-rim-width);
+    --cui-field-shadow: none;
+  }
+
+  .dark [data-skin="refined"] :where([data-control-family="tabs"][data-slot="root"]),
+  [data-skin="refined"].dark :where([data-control-family="tabs"][data-slot="root"]) {
+    --cui-tabs-list-background: oklch(from var(--muted) l c h / 0.5);
+    --cui-tabs-indicator-background: oklch(from var(--input) l c h / calc(alpha * 0.5));
   }
 }

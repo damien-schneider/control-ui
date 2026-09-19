@@ -30,7 +30,7 @@ export function DocsFloatingToolbar({ active, searchItems, skills, lastSectionMo
   return (
     <div
       data-docs-floating-panel=""
-      className="absolute bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-40 w-fit max-w-[calc(100%-1rem)] -translate-x-1/2 [--floating-toolbar-padding:0.25rem] sm:[--floating-toolbar-padding:0.375rem] lg:top-[max(1rem,env(safe-area-inset-top))] lg:bottom-auto"
+      className="z-40 w-fit max-w-[calc(100%-1rem)] [--floating-toolbar-padding:0.25rem] sm:[--floating-toolbar-padding:0.375rem]"
     >
       <Toolbar
         aria-label="Documentation controls"
