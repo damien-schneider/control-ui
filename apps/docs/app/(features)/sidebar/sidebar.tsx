@@ -138,11 +138,13 @@ export function DocsSidebarContent({
       <div data-docs-sidebar-navigation="" className="flex min-h-0 flex-1 flex-col">
         <SidebarHeader className="gap-2">
           <div className="flex items-center justify-between gap-2">
-            <div className="relative flex min-w-0 items-center gap-1.5">
-              <ControlUiLogo />
-              <span className="block truncate font-display text-body font-semibold leading-none tracking-tighter text-sidebar-foreground">
-                control.ui
-              </span>
+            <div className="relative flex min-w-0 items-center">
+              <Link href="/" onClick={closeSidebar} className="flex min-w-0 items-center gap-1.5">
+                <ControlUiLogo />
+                <span className="block truncate font-display text-body font-semibold leading-none tracking-tighter text-sidebar-foreground">
+                  control.ui
+                </span>
+              </Link>
               <Badge size="sm" className="absolute -top-1 left-full ml-1">
                 alpha
               </Badge>
