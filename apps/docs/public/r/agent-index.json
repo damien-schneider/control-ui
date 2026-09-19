@@ -186,7 +186,7 @@
         "id": "agent-surface",
         "name": "Machine docs",
         "kind": "Guide",
-        "summary": "Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.",
+        "summary": "Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.",
         "href": "/agent-surface"
       },
       {

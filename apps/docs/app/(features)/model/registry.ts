@@ -79,6 +79,11 @@ export function registryInstallCommands(kind: RegistryKind): InstallCommand[] {
   return [{ label: "Registry command", value: registryInstallCommand(kind) }];
 }
 
+export function languageForGuideCode(kind: NonNullable<GuideSection["code"]>) {
+  if (kind.endsWith("-install") || kind.startsWith("agent-")) return "bash";
+  return "tsx";
+}
+
 export function guideCodeForKind(code: GuideSection["code"], integration: "mastra" | "ai-sdk") {
   if (code === "skin-install") return packInstallCommand("refined");
   if (code === "skin-scaffold-install") return fullInstallCommand("none");
@@ -181,6 +186,25 @@ curl "${base}/api/registry/search?q=chat"
 #   { "error": "…", "code": "ERR_UNKNOWN_ITEM", "suggestions": [ … ] }`;
   }
 
+  if (code === "agent-mcp") {
+    return `# Streamable HTTP MCP endpoint — tools: search_registry, get_registry_item, list_registry
+${base}/api/mcp
+
+# Server card describing the endpoint, its tools, and that no authentication is required
+curl ${base}/.well-known/mcp/server-card.json
+
+# Claude Code
+claude mcp add --transport http control-ui ${base}/api/mcp`;
+  }
+
+  if (code === "agent-markdown") {
+    return `# Any documentation page answers in markdown when you ask for it
+curl -H "Accept: text/markdown" ${base}/primitives/button
+
+# The HTML page stays the default for browsers
+curl -H "Accept: text/html" ${base}/primitives/button`;
+  }
+
   if (code === "agent-llms") {
     return `# Official shadcn registry catalog
 ${base}/r/registry.json
@@ -195,7 +219,13 @@ ${base}/llms.txt
 ${base}/llms-full.txt
 
 # Static agent-friendly registry metadata
-${base}/r/agent-index.json`;
+${base}/r/agent-index.json
+
+# OpenAPI description of the HTTP API, the registration policy, and the discovery manifests that point at everything above
+${base}/openapi.json
+${base}/auth.md
+${base}/.well-known/api-catalog
+${base}/.well-known/ai-catalog.json`;
   }
 
   return undefined;

@@ -1,5 +1,6 @@
 import { permanentRedirect } from "next/navigation";
+import { sectionIndexTargets } from "@/app/(features)/model/page-ids";
 
 export default function HooksPage() {
-  permanentRedirect("/hooks/use-chat-message");
+  permanentRedirect(sectionIndexTargets["/hooks"]);
 }

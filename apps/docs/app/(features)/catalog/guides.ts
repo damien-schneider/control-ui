@@ -1,15 +1,20 @@
-export type GuideCodeId =
-  | "skin-install"
-  | "all-install"
-  | "skin-scaffold-install"
-  | "component-install"
-  | "block-install"
-  | "component-usage"
-  | "runtime-agnostic-message"
-  | "agent-endpoints"
-  | "agent-llms"
-  | "update-install"
-  | "skill-install";
+export const guideCodeIds = [
+  "skin-install",
+  "all-install",
+  "skin-scaffold-install",
+  "component-install",
+  "block-install",
+  "component-usage",
+  "runtime-agnostic-message",
+  "agent-endpoints",
+  "agent-llms",
+  "agent-mcp",
+  "agent-markdown",
+  "update-install",
+  "skill-install",
+] as const;
+
+export type GuideCodeId = (typeof guideCodeIds)[number];
 
 type GuideSectionCatalogEntry = {
   id: string;
@@ -177,10 +182,12 @@ export const guideEntries = [
     kind: "Guide",
     group: "agents",
     name: "Machine docs",
-    summary: "Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.",
+    summary: "Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.",
     sections: [
       { id: "envelope", title: "One registry, multiple interfaces" },
       { id: "endpoints", title: "HTTP API", code: "agent-endpoints" },
+      { id: "mcp", title: "MCP server", code: "agent-mcp" },
+      { id: "markdown", title: "Markdown for agents", code: "agent-markdown" },
       { id: "agent-docs", title: "Machine-readable docs", code: "agent-llms" },
     ],
   },

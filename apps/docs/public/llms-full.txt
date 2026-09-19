@@ -4,6 +4,8 @@
 
 ## How to use this registry
 
+- MCP: `http://127.0.0.1:3000/api/mcp` speaks streamable HTTP Model Context Protocol with `search_registry`, `get_registry_item` and `list_registry`, no authentication; the card is at `http://127.0.0.1:3000/.well-known/mcp/server-card.json`.
+- Markdown: request any canonical documentation page with `Accept: text/markdown` to read it as markdown; browsers still get HTML.
 - Discover: `GET http://127.0.0.1:3000/api/registry` (or the static `http://127.0.0.1:3000/r/agent-index.json`) → the agent-friendly index.
 - shadcn catalog: `http://127.0.0.1:3000/r/registry.json` → the official registry schema used by shadcn tooling.
 - Read one item: `GET http://127.0.0.1:3000/api/registry/<id>` → source files, install command, and deps.
@@ -177,7 +179,7 @@
 - `contract-versions` (Contract versions) — The skin contract is version 9. Crossing a version reinstalls core, the affected items, and the skin together.
 - `setup-prompt` (Setup prompt) — One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
 - `agent-skill` (Agent skill) — The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
-- `agent-surface` (Machine docs) — Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
+- `agent-surface` (Machine docs) — Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.
 - `overview` (Why Control UI) — An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
 - `architecture` (Architecture) — Runtime ownership, skin layering, customization paths, and registry derivation.
 - `lock-in` (Lock-in) — What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.

@@ -17,7 +17,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Contract versions](http://127.0.0.1:3000/contract-versions): The skin contract is version 9. Crossing a version reinstalls core, the affected items, and the skin together.
 - [Setup prompt](http://127.0.0.1:3000/setup-prompt): One prompt that makes the agent already open in your project read the repository, install from the registry, wire the CSS, run the doctor, and design the theme with you.
 - [Agent skill](http://127.0.0.1:3000/agent-skill): The skill installed with every pack: the token contract and the working rules, refreshed by every update, so later sessions build without the prompt.
-- [Machine docs](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, shadcn manifests, static metadata, and machine-readable docs.
+- [Machine docs](http://127.0.0.1:3000/agent-surface): Inspect and install registry items through HTTP, MCP, shadcn manifests, markdown negotiation, and machine-readable docs.
 - [Why Control UI](http://127.0.0.1:3000/overview): An owned-source registry of primitives, agent surfaces, complete blocks, and swappable skins.
 - [Architecture](http://127.0.0.1:3000/architecture): Runtime ownership, skin layering, customization paths, and registry derivation.
 - [Lock-in](http://127.0.0.1:3000/lock-in): What you own at each layer, what stays proprietary, and what leaving costs — measured, not promised.
@@ -209,6 +209,10 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 ## Machine-readable indexes
 
+- [MCP server](http://127.0.0.1:3000/api/mcp): Streamable HTTP Model Context Protocol endpoint — `search_registry`, `get_registry_item`, `list_registry`. No authentication. Card at http://127.0.0.1:3000/.well-known/mcp/server-card.json.
+- [OpenAPI description](http://127.0.0.1:3000/openapi.json): The registry HTTP API, linked from http://127.0.0.1:3000/.well-known/api-catalog.
+- Markdown pages: request any canonical page with `Accept: text/markdown` to read it as markdown instead of HTML.
+- [auth.md](http://127.0.0.1:3000/auth.md): Registration and credential policy. Nothing to register, nothing to send.
 - [Registry API](http://127.0.0.1:3000/api/registry): JSON index of every public catalog item.
 - [Agent index](http://127.0.0.1:3000/r/agent-index.json): Static agent-friendly registry metadata.
 - [shadcn registry](http://127.0.0.1:3000/r/registry.json): Registry schema consumed by shadcn tooling.

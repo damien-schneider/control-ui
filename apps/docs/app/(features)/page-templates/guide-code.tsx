@@ -3,19 +3,13 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { CodeBlock } from "@/app/(features)/components/source";
-import { guideCodeForKind } from "@/app/(features)/model/registry";
+import { guideCodeForKind, languageForGuideCode } from "@/app/(features)/model/registry";
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Card } from "@/components/control-ui/ui/card";
 
 type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
 export type GuideCodeMdxProps = { kind: GuideCodeKind; lang?: string };
-
-function languageForGuideCode(kind: GuideCodeKind) {
-  if (kind === "skin-install" || kind === "component-install" || kind === "block-install" || kind === "update-install") return "bash";
-  if (kind.startsWith("agent-")) return "bash";
-  return "tsx";
-}
 
 export function GuideCode({ kind, lang, integration }: GuideCodeMdxProps & { integration: IntegrationId }) {
   const code = guideCodeForKind(kind, integration);

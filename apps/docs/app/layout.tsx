@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { WebMcpTools } from "@/app/(features)/agent-discovery/webmcp-tools";
 import { DocsShell } from "@/app/(features)/client/client";
 import { getDocsShellData } from "@/app/(features)/model/data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
@@ -33,9 +34,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static build output must execute before the first paint. */}
         <script id="control-ui-theme-init" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
       </head>
       <body>
         <SiteStructuredData />
+        <WebMcpTools />
         <ThemeFavicon />
 
         <ThemeRuntimeProvider>

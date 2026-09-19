@@ -13,6 +13,23 @@
   <GuideCode kind="agent-endpoints" />
 </GuideSection>
 
+<GuideSection id="mcp" title="MCP server">
+  The same catalog is exposed over the Model Context Protocol at `/api/mcp`, streamable HTTP, no authentication. Three
+  tools: `search_registry` by keyword, `get_registry_item` for one entry's install command, dependencies, source files
+  and anatomy, and `list_registry` for the whole index. Agents that read server cards find it at
+  `/.well-known/mcp/server-card.json`.
+
+  <GuideCode kind="agent-mcp" />
+</GuideSection>
+
+<GuideSection id="markdown" title="Markdown for agents">
+  Every documentation page answers in markdown when the request asks for it, at its canonical URL. Guides return their
+  prose and code blocks; component, hook, and skin pages return the install command, dependencies, and installed source
+  paths. Browsers keep getting HTML.
+
+  <GuideCode kind="agent-markdown" />
+</GuideSection>
+
 <GuideSection id="agent-docs" title="Machine-readable docs">
   Use the official shadcn catalog, individual item manifests, the concise linked index, the extended reference, or the static
   agent metadata directly.

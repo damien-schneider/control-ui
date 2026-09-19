@@ -86,3 +86,11 @@ export function docsPathForPageId(value: string) {
   if (isSkillPageId(value)) return `/skills/${value}`;
   return undefined;
 }
+
+export const sectionIndexTargets = {
+  "/skills": `/skills/${skillPageIds[0]}`,
+  "/hooks": "/hooks/use-chat-message",
+  "/utils": "/utils/cn",
+  "/extensions": "/extensions/control-effects",
+  "/blocks": "/use-cases",
+} satisfies Record<string, string>;

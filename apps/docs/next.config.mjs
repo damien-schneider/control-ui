@@ -21,7 +21,7 @@ const nextConfig = {
   },
   turbopack: {},
   outputFileTracingIncludes: {
-    "/**/*": ["./src/registry/**/*", "./components/**/*", "./registry/**/*"],
+    "/**/*": ["./src/registry/**/*", "./components/**/*", "./registry/**/*", "./content/**/*"],
   },
   webpack(config) {
     config.resolve.alias["@"] = appRoot;
@@ -38,9 +38,21 @@ const nextConfig = {
   },
   async headers() {
     const noIndex = [{ key: "X-Robots-Tag", value: "noindex, follow" }];
+    const agentDiscovery = [
+      {
+        key: "Link",
+        value: [
+          '</.well-known/api-catalog>; rel="api-catalog"',
+          '</openapi.json>; rel="service-desc"; type="application/json"',
+          '</llms.txt>; rel="describedby"; type="text/plain"',
+          '</agent-surface>; rel="service-doc"; type="text/html"',
+        ].join(", "),
+      },
+    ];
     return [
       { source: "/api/:path*", headers: noIndex },
       { source: "/r/:path*", headers: noIndex },
+      { source: "/:path((?!api/|r/).*)", headers: agentDiscovery },
     ];
   },
 };
