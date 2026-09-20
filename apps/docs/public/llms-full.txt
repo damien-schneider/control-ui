@@ -32,7 +32,7 @@
 
 ### Agents (installable components)
 - `ai` (AI components) — Explore composable surfaces for messages, input, activity, media, and agent workflows.
-- `email` (Email) **[experimental]** — React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export. — `npx shadcn@latest add http://127.0.0.1:3000/r/email.json`
+- `email` (Email) **[experimental]** — React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts. — `npx shadcn@latest add http://127.0.0.1:3000/r/email.json`
 - `chat-message` (ChatMessage) — Composable chat message with typed role, density, and lifecycle state. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json`
 - `chat-composer` (ChatComposer) — Prompt composer with controlled text, submit state, and trigger-menu support. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json`
 - `chat-composer-attachment` (ChatComposerAttachment) — Composer attachment rail with file previews, upload progress, and removal. — `npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json`

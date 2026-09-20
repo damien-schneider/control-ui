@@ -77,6 +77,18 @@
       "syntax": "*",
       "initialValue": "",
       "defaultValue": "none"
+    },
+    {
+      "name": "--cui-chat-message-pending-dot-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-chat-message-pending-dot-size",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 1.5)"
     }
   ],
   "parts": {
@@ -173,6 +185,13 @@
         ],
         "states": []
       },
+      "pending": {
+        "family": "chat-message",
+        "registryItems": [
+          "chat-message"
+        ],
+        "states": []
+      },
       "row": {
         "family": "chat-message",
         "registryItems": [
@@ -184,7 +203,8 @@
   },
   "adornments": {},
   "uncovered": [
-    "--cui-chat-message-avatar-background"
+    "--cui-chat-message-avatar-background",
+    "--cui-chat-message-pending-dot-color"
   ],
   "contrast": "/r/contract/chat-message.contrast.json"
 }

@@ -135,6 +135,7 @@ export type CatalogNamedPreview = {
   description?: string;
   source: CatalogSourceFile;
   preview: CatalogPreview;
+  previewModule?: string;
   previewClassName?: string;
 };
 

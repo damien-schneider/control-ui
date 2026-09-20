@@ -3,7 +3,7 @@
   "name": "email",
   "type": "registry:component",
   "title": "Email",
-  "description": "React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export.",
+  "description": "React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts.",
   "dependencies": [
     "react-email@^6.9.5"
   ],

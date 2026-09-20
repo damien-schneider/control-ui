@@ -23,6 +23,7 @@ export type ChatMessageContext = {
   isTool: boolean;
   isCompact: boolean;
   isStreaming: boolean;
+  isPending: boolean;
   isError: boolean;
 };
 
@@ -41,6 +42,7 @@ function getChatMessageContext({
     isTool: from === "tool",
     isCompact: density === "compact",
     isStreaming: state === "streaming",
+    isPending: state === "pending",
     isError: state === "error",
   };
 }

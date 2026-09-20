@@ -12,7 +12,58 @@
     --cui-chat-message-border-color: transparent;
     --cui-chat-message-border-width: 0px;
     --cui-chat-message-shadow: none;
+    --cui-chat-message-pending-dot-color: var(--muted-foreground);
+    --cui-chat-message-pending-dot-size: calc(var(--spacing) * 1.5);
   }
+
+  :where([data-control-family="chat-message"][data-slot="pending"]) {
+    gap: var(--cui-chat-message-pending-dot-size);
+    padding-block: calc(var(--spacing) * 2);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="pending"] > span) {
+    inline-size: var(--cui-chat-message-pending-dot-size);
+    block-size: var(--cui-chat-message-pending-dot-size);
+    border-radius: 9999px;
+    background: var(--cui-chat-message-pending-dot-color);
+    animation: chat-message-pending calc(var(--duration-slow) * 3) var(--ease-standard) infinite;
+  }
+
+  :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(2)) {
+    animation-delay: calc(var(--duration-slow) / 2);
+  }
+
+  :where([data-control-family="chat-message"][data-slot="pending"] > span:nth-child(3)) {
+    animation-delay: var(--duration-slow);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="chat-message"][data-slot="pending"] > span) {
+      animation: none;
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  :where([data-motion="reduced"] [data-control-family="chat-message"][data-slot="pending"] > span) {
+    animation: none;
+    opacity: 1;
+    scale: 1;
+  }
+
+  @keyframes chat-message-pending {
+    0%,
+    60%,
+    100% {
+      opacity: 0.3;
+      scale: 0.75;
+    }
+    30% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
   :where([data-control-family="chat-message"][data-slot="row"]) {
     gap: calc(var(--spacing) * 2);
     padding-block: calc(var(--spacing) * 2);
@@ -167,4 +218,16 @@
 @property --cui-chat-message-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-chat-message-pending-dot-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-message-pending-dot-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

@@ -1525,10 +1525,15 @@ export const registryMetadata = {
     ],
   },
   "chat-layout": {
-    dependencies: [],
-    registryDependencies: ["core"],
+    dependencies: ["lucide-react@^1.47.0"],
+    registryDependencies: ["button", "core"],
     sourceManifestPath: "registry/control-ui/chat-layout.json",
     files: [
+      {
+        path: "src/registry/hooks/use-chat-thread-scroll.ts",
+        target: "@components/control-ui/hooks/use-chat-thread-scroll.ts",
+        type: "registry:hook",
+      },
       {
         path: "src/registry/knob-contracts/chat-layout-knobs.ts",
         target: "@components/control-ui/knob-contracts/chat-layout-knobs.ts",

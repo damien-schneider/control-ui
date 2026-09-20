@@ -797,6 +797,143 @@
       },
       {
         "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "chat-composer",
+          "data-disabled": "",
+          "data-icon-only": "true",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "submit",
+          "data-tone": "primary",
+          "data-variant": "solid",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-icon-only": "true",
+          "data-shape": "default",
+          "data-size": "sm",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "surface"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "button",
+          "data-control-ui": "button",
+          "data-shape": "default",
+          "data-size": "xs",
+          "data-slot": "root",
+          "data-tone": "neutral",
+          "data-variant": "quiet",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
           "data-chrome": "standalone",
           "data-control-family": "code",
           "data-control-ui": "code",
@@ -1658,44 +1795,6 @@
         "attributes": {
           "data-control-family": "markdown-block",
           "data-control-ui": "markdown-block",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control": "true",
-          "data-control-family": "button",
-          "data-control-ui": "button",
-          "data-shape": "default",
-          "data-size": "xs",
-          "data-slot": "root",
-          "data-tone": "neutral",
-          "data-variant": "quiet",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
           "data-slot": "root",
           "data-surface": "panel"
         }
@@ -7065,7 +7164,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 24,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7083,7 +7182,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 26,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7092,7 +7191,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 27,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7101,7 +7200,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 28,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7110,15 +7209,6 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 29,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
-      },
-      "anatomy": 2,
       "rendersText": true,
       "state": false
     },
@@ -7154,7 +7244,7 @@
         "fill": "--cui-button-background",
         "text": "--cui-button-foreground"
       },
-      "anatomy": 33,
+      "anatomy": 2,
       "rendersText": true,
       "state": false
     },
@@ -7163,7 +7253,7 @@
         "fill": "--cui-button-background",
         "text": "--cui-button-foreground"
       },
-      "anatomy": 3,
+      "anatomy": 33,
       "rendersText": true,
       "state": false
     },
@@ -7191,6 +7281,42 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 36,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 37,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 38,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 39,
       "rendersText": true,
       "state": false
     },
@@ -7244,33 +7370,6 @@
         "fill": "--cui-button-background",
         "text": "--cui-button-foreground"
       },
-      "anatomy": 37,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
-      },
-      "anatomy": 38,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
-      },
-      "anatomy": 39,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
-      },
       "anatomy": 40,
       "rendersText": true,
       "state": false
@@ -7299,7 +7398,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 43,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7308,7 +7407,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 44,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7335,7 +7434,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 47,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7344,7 +7443,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 48,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7353,7 +7452,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 49,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7362,7 +7461,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 50,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7371,7 +7470,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 51,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7380,7 +7479,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 52,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7407,16 +7506,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 55,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
-      },
-      "anatomy": 12,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7434,7 +7524,16 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 57,
-      "rendersText": true,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7479,7 +7578,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 62,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7640,15 +7739,6 @@
         "fill": "--cui-button-background",
         "text": "--cui-button-foreground"
       },
-      "anatomy": 13,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-background",
-        "text": "--cui-button-foreground"
-      },
       "anatomy": 80,
       "rendersText": true,
       "state": false
@@ -7659,7 +7749,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 81,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7667,8 +7757,8 @@
         "fill": "--cui-button-background",
         "text": "--cui-button-foreground"
       },
-      "anatomy": 14,
-      "rendersText": true,
+      "anatomy": 13,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7694,8 +7784,17 @@
         "fill": "--cui-button-background",
         "text": "--cui-button-foreground"
       },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
       "anatomy": 84,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7713,7 +7812,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 86,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7722,7 +7821,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 87,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7767,7 +7866,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 92,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7794,7 +7893,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 95,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7812,7 +7911,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 97,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7821,7 +7920,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 98,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7857,7 +7956,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 102,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7866,7 +7965,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 103,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7902,7 +8001,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 107,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7911,7 +8010,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 108,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -8046,7 +8145,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 123,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -8064,7 +8163,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 125,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -8154,7 +8253,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 135,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -8163,7 +8262,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 136,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -8190,7 +8289,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 139,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -8199,7 +8298,7 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 140,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -8217,6 +8316,24 @@
         "text": "--cui-button-foreground"
       },
       "anatomy": 142,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 143,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-background",
+        "text": "--cui-button-foreground"
+      },
+      "anatomy": 144,
       "rendersText": true,
       "state": false
     },
@@ -8316,7 +8433,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 24,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -8334,7 +8451,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 26,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -8343,16 +8460,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 27,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 143,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -8361,7 +8469,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 28,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -8378,7 +8486,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 144,
+      "anatomy": 30,
       "rendersText": true,
       "state": true
     },
@@ -8388,42 +8496,6 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 145,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 1,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 2,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 146,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 30,
       "rendersText": true,
       "state": true
     },
@@ -8450,7 +8522,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 33,
+      "anatomy": 146,
       "rendersText": true,
       "state": true
     },
@@ -8459,7 +8531,43 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 3,
+      "anatomy": 147,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 148,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 33,
       "rendersText": true,
       "state": true
     },
@@ -8487,6 +8595,42 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 36,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 37,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 38,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 39,
       "rendersText": true,
       "state": true
     },
@@ -8567,33 +8711,6 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 37,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 38,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 39,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 40,
       "rendersText": true,
       "state": true
@@ -8622,15 +8739,6 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 43,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 44,
       "rendersText": true,
       "state": true
     },
@@ -8639,7 +8747,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 45,
+      "anatomy": 44,
       "rendersText": false,
       "state": true
     },
@@ -8648,7 +8756,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 147,
+      "anatomy": 45,
       "rendersText": false,
       "state": true
     },
@@ -8667,16 +8775,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 47,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 148,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -8693,17 +8792,8 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 150,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 48,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -8712,7 +8802,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 49,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -8720,7 +8810,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 50,
+      "anatomy": 150,
       "rendersText": true,
       "state": true
     },
@@ -8730,24 +8820,6 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 151,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 51,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 52,
       "rendersText": false,
       "state": true
     },
@@ -8757,6 +8829,42 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 152,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 50,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 51,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 52,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 153,
       "rendersText": true,
       "state": true
     },
@@ -8783,26 +8891,17 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 154,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 55,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 153,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 12,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -8820,7 +8919,25 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 57,
-      "rendersText": true,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 155,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": false,
       "state": true
     },
     {
@@ -8865,16 +8982,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 62,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 154,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -8892,6 +9000,15 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 64,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 156,
       "rendersText": true,
       "state": true
     },
@@ -8972,25 +9089,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 155,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 73,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 156,
       "rendersText": true,
       "state": true
     },
@@ -9008,7 +9107,25 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 157,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 75,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 158,
       "rendersText": true,
       "state": true
     },
@@ -9053,24 +9170,6 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 13,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 157,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 80,
       "rendersText": true,
       "state": true
@@ -9081,6 +9180,15 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 81,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 13,
       "rendersText": false,
       "state": true
     },
@@ -9089,7 +9197,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 14,
+      "anatomy": 159,
       "rendersText": true,
       "state": true
     },
@@ -9116,8 +9224,17 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 84,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -9134,26 +9251,8 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 158,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 159,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 86,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -9162,6 +9261,24 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 87,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 160,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 161,
       "rendersText": true,
       "state": true
     },
@@ -9207,15 +9324,6 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 92,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 160,
       "rendersText": true,
       "state": true
     },
@@ -9242,8 +9350,17 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 162,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 95,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -9261,7 +9378,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 97,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -9270,7 +9387,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 98,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -9306,7 +9423,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 102,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -9315,7 +9432,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 103,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -9350,17 +9467,8 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 161,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 107,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -9369,6 +9477,15 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 108,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 163,
       "rendersText": true,
       "state": true
     },
@@ -9504,15 +9621,6 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 123,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 162,
       "rendersText": true,
       "state": true
     },
@@ -9530,17 +9638,8 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 163,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 125,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -9549,24 +9648,6 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 164,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 165,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 166,
       "rendersText": true,
       "state": true
     },
@@ -9584,6 +9665,15 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 165,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 127,
       "rendersText": true,
       "state": true
@@ -9593,7 +9683,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 128,
+      "anatomy": 166,
       "rendersText": true,
       "state": true
     },
@@ -9611,15 +9701,6 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 129,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-hover-background",
-        "text": "--cui-button-hover-foreground"
-      },
       "anatomy": 168,
       "rendersText": true,
       "state": true
@@ -9629,7 +9710,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 169,
+      "anatomy": 128,
       "rendersText": true,
       "state": true
     },
@@ -9638,7 +9719,7 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 170,
+      "anatomy": 129,
       "rendersText": true,
       "state": true
     },
@@ -9656,6 +9737,15 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 169,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 131,
       "rendersText": true,
       "state": true
@@ -9665,7 +9755,25 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 170,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 171,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 172,
       "rendersText": true,
       "state": true
     },
@@ -9692,6 +9800,15 @@
         "fill": "--cui-button-hover-background",
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 173,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 134,
       "rendersText": true,
       "state": true
@@ -9702,7 +9819,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 135,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -9711,7 +9828,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 136,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -9738,7 +9855,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 139,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -9747,7 +9864,7 @@
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 140,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -9770,19 +9887,28 @@
     },
     {
       "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
       },
       "anatomy": 143,
       "rendersText": true,
-      "state": false
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-hover-background",
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 144,
+      "rendersText": true,
+      "state": true
     },
     {
       "knobs": {
         "fill": "--cui-button-open-background",
         "text": "--cui-button-open-foreground"
       },
-      "anatomy": 144,
+      "anatomy": 145,
       "rendersText": true,
       "state": false
     },
@@ -9800,7 +9926,7 @@
         "fill": "--cui-button-open-background",
         "text": "--cui-button-open-foreground"
       },
-      "anatomy": 151,
+      "anatomy": 148,
       "rendersText": true,
       "state": false
     },
@@ -9809,7 +9935,7 @@
         "fill": "--cui-button-open-background",
         "text": "--cui-button-open-foreground"
       },
-      "anatomy": 152,
+      "anatomy": 153,
       "rendersText": true,
       "state": false
     },
@@ -9818,16 +9944,7 @@
         "fill": "--cui-button-open-background",
         "text": "--cui-button-open-foreground"
       },
-      "anatomy": 155,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-open-background",
-        "text": "--cui-button-open-foreground"
-      },
-      "anatomy": 156,
+      "anatomy": 154,
       "rendersText": true,
       "state": false
     },
@@ -9935,7 +10052,7 @@
         "fill": "--cui-button-open-background",
         "text": "--cui-button-open-foreground"
       },
-      "anatomy": 170,
+      "anatomy": 168,
       "rendersText": true,
       "state": false
     },
@@ -9944,7 +10061,25 @@
         "fill": "--cui-button-open-background",
         "text": "--cui-button-open-foreground"
       },
-      "anatomy": 171,
+      "anatomy": 169,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
+      },
+      "anatomy": 172,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-open-background",
+        "text": "--cui-button-open-foreground"
+      },
+      "anatomy": 173,
       "rendersText": true,
       "state": false
     },
@@ -10033,7 +10168,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 24,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -10049,7 +10184,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 26,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10057,15 +10192,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 27,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 143,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10073,7 +10200,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 28,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10088,7 +10215,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 144,
+      "anatomy": 30,
       "rendersText": true,
       "state": true
     },
@@ -10097,38 +10224,6 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 145,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 1,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 2,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 146,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 30,
       "rendersText": true,
       "state": true
     },
@@ -10152,7 +10247,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 33,
+      "anatomy": 146,
       "rendersText": true,
       "state": true
     },
@@ -10160,7 +10255,39 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 3,
+      "anatomy": 147,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 148,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 33,
       "rendersText": true,
       "state": true
     },
@@ -10185,6 +10312,38 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 36,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 37,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 38,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 39,
       "rendersText": true,
       "state": true
     },
@@ -10256,30 +10415,6 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 37,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 38,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 39,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 40,
       "rendersText": true,
       "state": true
@@ -10305,14 +10440,6 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 43,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 44,
       "rendersText": true,
       "state": true
     },
@@ -10320,7 +10447,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 45,
+      "anatomy": 44,
       "rendersText": false,
       "state": true
     },
@@ -10328,7 +10455,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 147,
+      "anatomy": 45,
       "rendersText": false,
       "state": true
     },
@@ -10345,15 +10472,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 47,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 148,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10368,16 +10487,8 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 150,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 48,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -10385,14 +10496,14 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 49,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 50,
+      "anatomy": 150,
       "rendersText": true,
       "state": true
     },
@@ -10401,22 +10512,6 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 151,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 51,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 52,
       "rendersText": false,
       "state": true
     },
@@ -10425,6 +10520,38 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 152,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 50,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 51,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 52,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 153,
       "rendersText": true,
       "state": true
     },
@@ -10448,24 +10575,16 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 154,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 55,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 153,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 12,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -10481,7 +10600,23 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 57,
-      "rendersText": true,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 155,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 12,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10521,15 +10656,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 62,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 154,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10545,6 +10672,14 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 64,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 156,
       "rendersText": true,
       "state": true
     },
@@ -10616,23 +10751,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 155,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 73,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 156,
       "rendersText": true,
       "state": true
     },
@@ -10648,7 +10767,23 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 157,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 75,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 158,
       "rendersText": true,
       "state": true
     },
@@ -10688,22 +10823,6 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 13,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 157,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 80,
       "rendersText": true,
       "state": true
@@ -10713,6 +10832,14 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 81,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 13,
       "rendersText": false,
       "state": true
     },
@@ -10720,7 +10847,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 14,
+      "anatomy": 159,
       "rendersText": true,
       "state": true
     },
@@ -10744,8 +10871,16 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 14,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 84,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -10760,24 +10895,8 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 158,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 159,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 86,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10785,6 +10904,22 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 87,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 160,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 161,
       "rendersText": true,
       "state": true
     },
@@ -10825,14 +10960,6 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 92,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 160,
       "rendersText": true,
       "state": true
     },
@@ -10856,8 +10983,16 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 162,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 95,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -10873,7 +11008,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 97,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10881,7 +11016,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 98,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10913,7 +11048,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 102,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -10921,7 +11056,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 103,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -10952,16 +11087,8 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 161,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 107,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -10969,6 +11096,14 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 108,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 163,
       "rendersText": true,
       "state": true
     },
@@ -11089,14 +11224,6 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 123,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 162,
       "rendersText": true,
       "state": true
     },
@@ -11112,16 +11239,8 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 163,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 125,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -11129,22 +11248,6 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 164,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 165,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
-      "anatomy": 166,
       "rendersText": true,
       "state": true
     },
@@ -11160,6 +11263,14 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 165,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 127,
       "rendersText": true,
       "state": true
@@ -11168,7 +11279,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 128,
+      "anatomy": 166,
       "rendersText": true,
       "state": true
     },
@@ -11184,14 +11295,6 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 129,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-button-press-background"
-      },
       "anatomy": 168,
       "rendersText": true,
       "state": true
@@ -11200,7 +11303,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 169,
+      "anatomy": 128,
       "rendersText": true,
       "state": true
     },
@@ -11208,7 +11311,7 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
-      "anatomy": 170,
+      "anatomy": 129,
       "rendersText": true,
       "state": true
     },
@@ -11224,6 +11327,14 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 169,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 131,
       "rendersText": true,
       "state": true
@@ -11232,7 +11343,23 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 170,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 171,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 172,
       "rendersText": true,
       "state": true
     },
@@ -11256,6 +11383,14 @@
       "knobs": {
         "fill": "--cui-button-press-background"
       },
+      "anatomy": 173,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
       "anatomy": 134,
       "rendersText": true,
       "state": true
@@ -11265,7 +11400,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 135,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -11273,7 +11408,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 136,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -11297,7 +11432,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 139,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -11305,7 +11440,7 @@
         "fill": "--cui-button-press-background"
       },
       "anatomy": 140,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -11326,25 +11461,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-button-hover-foreground"
+        "fill": "--cui-button-press-background"
       },
-      "anatomy": 156,
+      "anatomy": 143,
       "rendersText": true,
-      "state": false
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-button-press-background"
+      },
+      "anatomy": 144,
+      "rendersText": true,
+      "state": true
     },
     {
       "knobs": {
         "text": "--cui-button-hover-foreground"
       },
       "anatomy": 158,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-button-hover-foreground"
-      },
-      "anatomy": 159,
       "rendersText": true,
       "state": false
     },
@@ -11360,6 +11495,14 @@
       "knobs": {
         "text": "--cui-button-hover-foreground"
       },
+      "anatomy": 161,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-button-hover-foreground"
+      },
       "anatomy": 162,
       "rendersText": true,
       "state": false
@@ -11368,7 +11511,7 @@
       "knobs": {
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 163,
+      "anatomy": 164,
       "rendersText": true,
       "state": false
     },
@@ -11376,7 +11519,7 @@
       "knobs": {
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 166,
+      "anatomy": 165,
       "rendersText": true,
       "state": false
     },
@@ -11384,7 +11527,7 @@
       "knobs": {
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 167,
+      "anatomy": 168,
       "rendersText": true,
       "state": false
     },
@@ -11392,7 +11535,15 @@
       "knobs": {
         "text": "--cui-button-hover-foreground"
       },
-      "anatomy": 171,
+      "anatomy": 169,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-button-hover-foreground"
+      },
+      "anatomy": 173,
       "rendersText": true,
       "state": false
     }

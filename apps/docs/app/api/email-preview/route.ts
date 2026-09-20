@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   for (const [name, value] of Object.entries(parsed.data.tokens)) tokens.set(name, value);
   let theme: EmailTheme;
   try {
-    theme = createEmailTheme(tokens);
+    theme = createEmailTheme(tokens, { colorScheme: parsed.data.mode });
   } catch (error) {
     return Response.json({ error: error instanceof Error ? error.message : "Could not resolve the email theme." }, { status: 422 });
   }

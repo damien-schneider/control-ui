@@ -23,7 +23,7 @@
         "activity"
       ],
       "knobs": 5,
-      "probes": 25
+      "probes": 22
     },
     "alert": {
       "registryItems": [
@@ -86,7 +86,7 @@
         "toggle"
       ],
       "knobs": 24,
-      "probes": 541
+      "probes": 547
     },
     "button-group": {
       "registryItems": [
@@ -114,7 +114,7 @@
         "chat-composer"
       ],
       "knobs": 15,
-      "probes": 14
+      "probes": 18
     },
     "chat-composer-attachment": {
       "registryItems": [
@@ -127,14 +127,14 @@
       "registryItems": [
         "chat-layout"
       ],
-      "knobs": 5,
+      "knobs": 6,
       "probes": 2
     },
     "chat-message": {
       "registryItems": [
         "chat-message"
       ],
-      "knobs": 12,
+      "knobs": 14,
       "probes": 6
     },
     "checkbox-group": {

@@ -14,7 +14,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -71,6 +72,182 @@
           "data-control-ui": "activity",
           "data-format": "code",
           "data-slot": "detail-content"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "tool",
+          "data-activity-name": "active_setup",
+          "data-activity-state": "success",
+          "data-closed": "",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "tool",
+          "data-activity-name": "active_setup",
+          "data-activity-state": "success",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "reasoning",
+          "data-activity-state": "success",
+          "data-closed": "",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "reasoning",
+          "data-activity-state": "success",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
         }
       }
     ],
@@ -244,84 +421,6 @@
       {
         "attributes": {
           "data-activity-kind": "tool",
-          "data-activity-name": "active_setup",
-          "data-activity-state": "success",
-          "data-closed": "",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "root",
-          "data-state": "closed"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "trigger",
-          "data-state": "closed",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "tool",
-          "data-activity-name": "active_setup",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-state": "open",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "tool",
           "data-activity-name": "read_registry",
           "data-activity-state": "success",
           "data-closed": "",
@@ -361,100 +460,6 @@
         "attributes": {
           "data-activity-kind": "tool",
           "data-activity-name": "read_registry",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-state": "open",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "reasoning",
-          "data-activity-state": "success",
-          "data-closed": "",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "root",
-          "data-state": "closed"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "trigger",
-          "data-state": "closed",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "reasoning",
           "data-activity-state": "success",
           "data-control-family": "activity",
           "data-control-ui": "activity",
@@ -710,47 +715,15 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 12,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 3,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 4,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 5,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
-      "anatomy": 13,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
       "anatomy": 6,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-activity-row-foreground"
+      },
+      "anatomy": 12,
       "rendersText": true,
       "state": false
     },
@@ -775,6 +748,14 @@
         "text": "--cui-activity-row-foreground"
       },
       "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-activity-row-foreground"
+      },
+      "anatomy": 13,
       "rendersText": true,
       "state": false
     },

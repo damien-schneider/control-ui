@@ -1824,6 +1824,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["chat-message"],
           states: [],
         },
+        pending: {
+          family: "chat-message",
+          registryItems: ["chat-message"],
+          states: [],
+        },
         row: {
           family: "chat-message",
           registryItems: ["chat-message"],
@@ -1839,6 +1844,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["chat-layout"],
           states: [
             {
+              attribute: "data-at-bottom",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-chat-layout-kind",
               source: "control-ui",
               valueKind: "enum",
@@ -1850,6 +1861,18 @@ export const generatedSkinContract: SkinContract = {
           family: "chat-layout",
           registryItems: ["chat-layout"],
           states: [],
+        },
+        "scroll-anchor": {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [
+            {
+              attribute: "data-hidden",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
         "thread-content": {
           family: "chat-layout",
@@ -13160,13 +13183,19 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-layout-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-chat-layout-shadow",
         syntax: "*",
         initialValue: "",
         defaultValue: "var(--shadow-md)",
+      },
+      {
+        name: "--cui-chat-layout-scroll-button-gap",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
       },
     ],
     "chat-message": [
@@ -13241,6 +13270,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "*",
         initialValue: "",
         defaultValue: "none",
+      },
+      {
+        name: "--cui-chat-message-pending-dot-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-chat-message-pending-dot-size",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 1.5)",
       },
     ],
     choice: [
@@ -14107,7 +14148,8 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-inline-attachment-content-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "max(var(--radius-sm), calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding)))",
+        defaultValue:
+          "max(\n      var(--radius-sm),\n      calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding))\n    )",
       },
       {
         name: "--cui-inline-attachment-content-background",

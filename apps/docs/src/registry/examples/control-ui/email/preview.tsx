@@ -6,7 +6,7 @@ import { Button } from "@/components/control-ui/ui/button";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
 import { downloadFile } from "@/components/theme-drawer/download";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
-import { type EmailLayoutId, type EmailPreviewResult, emailLayouts, emailPreviewResult } from "./options";
+import { type EmailLayoutId, type EmailPreviewResult, emailPreviewResult } from "./options";
 
 type PreviewState = { status: "loading" } | { status: "error"; message: string } | { status: "ready"; result: EmailPreviewResult };
 const errorResponse = z.object({ error: z.string() });
@@ -110,8 +110,7 @@ function RenderedEmail({
   );
 }
 
-export function EmailExample() {
-  const [layout, setLayout] = useState<EmailLayoutId>("invitation");
+export function EmailPreview({ layout }: { layout: EmailLayoutId }) {
   const [mobile, setMobile] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const { t, isDark } = useThemeRuntime();
@@ -124,22 +123,9 @@ export function EmailExample() {
 
   return (
     <div className="w-full min-w-0 space-y-4">
-      <fieldset className="flex flex-wrap gap-1" aria-label="Email layout">
-        {emailLayouts.map((item) => (
-          <Button
-            key={item.id}
-            size="sm"
-            variant={layout === item.id ? "surface" : "ghost"}
-            aria-pressed={layout === item.id}
-            onClick={() => setLayout(item.id)}
-          >
-            {item.label}
-          </Button>
-        ))}
-      </fieldset>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-caption text-muted-foreground">React Email · current Control UI theme</p>
-        <fieldset className="flex gap-1" aria-label="Email preview width">
+        <fieldset className="flex gap-1" aria-label={`${layout} preview width`}>
           <Button size="sm" variant={!mobile ? "surface" : "ghost"} aria-pressed={!mobile} onClick={() => setMobile(false)}>
             Desktop
           </Button>
@@ -157,4 +143,36 @@ export function EmailExample() {
       />
     </div>
   );
+}
+
+export function EmailInvitationPreview() {
+  return <EmailPreview layout="invitation" />;
+}
+
+export function EmailAnnouncementPreview() {
+  return <EmailPreview layout="product" />;
+}
+
+export function EmailReleaseNotesPreview() {
+  return <EmailPreview layout="release" />;
+}
+
+export function EmailEditorialPreview() {
+  return <EmailPreview layout="editorial" />;
+}
+
+export function EmailNewsletterPreview() {
+  return <EmailPreview layout="newsletter" />;
+}
+
+export function EmailSummaryPreview() {
+  return <EmailPreview layout="summary" />;
+}
+
+export function EmailVerificationPreview() {
+  return <EmailPreview layout="verification" />;
+}
+
+export function EmailReceiptPreview() {
+  return <EmailPreview layout="receipt" />;
 }

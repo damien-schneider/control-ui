@@ -35,13 +35,14 @@ function checkRecord(owner: string, record: Record<string, CatalogSourceFile>) {
   }
 }
 
-function checkPreview(owner: string, file: CatalogSourceFile, preview?: PreviewWithLoad) {
+function checkPreview(owner: string, file: CatalogSourceFile, preview?: PreviewWithLoad, previewModule?: string) {
   if (!preview) {
     failures.push(`${owner} is missing a preview`);
     return;
   }
 
-  const expected = expectedImportSpecifier(file.path);
+  if (previewModule && !existsSync(path.join(root, previewModule))) failures.push(`${owner} references missing ${previewModule}`);
+  const expected = expectedImportSpecifier(previewModule ?? file.path);
   const imports = importSpecifiers(preview);
 
   if (!imports.includes(expected)) {
@@ -97,12 +98,12 @@ for (const entry of componentEntries) {
     for (const file of entry.paths.supportFiles) checkSourceFile(`${entry.id}.supportFiles`, file);
   }
 
-  checkPreview(entry.id, entry.paths.example, entry.preview);
+  checkPreview(entry.id, entry.paths.example, entry.preview, "previewModule" in entry.paths ? entry.paths.previewModule : undefined);
 
   if ("additionalPreviews" in entry) {
     for (const example of entry.additionalPreviews) {
       checkSourceFile(`${entry.id}.${example.id}.example`, example.source);
-      checkPreview(`${entry.id}.${example.id}`, example.source, example.preview);
+      checkPreview(`${entry.id}.${example.id}`, example.source, example.preview, example.previewModule);
     }
   }
 

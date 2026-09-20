@@ -4,9 +4,12 @@ import { skinMetas } from "@/app/(features)/catalog/skins";
 export const emailLayouts = [
   { id: "invitation", label: "Invitation" },
   { id: "product", label: "Announcement" },
+  { id: "release", label: "Release notes" },
   { id: "editorial", label: "Image + text" },
   { id: "newsletter", label: "Newsletter" },
   { id: "summary", label: "Summary" },
+  { id: "verification", label: "Verification" },
+  { id: "receipt", label: "Receipt" },
 ] as const;
 
 export const emailPreviewRequest = z.object({

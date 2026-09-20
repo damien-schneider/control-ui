@@ -558,7 +558,7 @@
         "id": "email",
         "name": "Email",
         "kind": "Agent",
-        "summary": "React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export.",
+        "summary": "React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts.",
         "href": "/ai/email",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/email.json"

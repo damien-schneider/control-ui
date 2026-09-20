@@ -3,8 +3,9 @@
     --cui-chat-layout-radius: var(--radius-scene);
     --cui-chat-layout-background: var(--background);
     --cui-chat-layout-border-color: var(--border);
-    --cui-chat-layout-border-width: 1px;
+    --cui-chat-layout-border-width: var(--control-rim-width);
     --cui-chat-layout-shadow: var(--shadow-md);
+    --cui-chat-layout-scroll-button-gap: calc(var(--spacing) * 3);
     background: var(--cui-chat-layout-background);
   }
 
@@ -35,6 +36,23 @@
     background: var(--cui-chat-layout-background);
     mask-image: linear-gradient(to bottom, transparent, oklch(0 0 0 / 0.7) calc(var(--scroll-fade-size) * 3));
   }
+
+  :where([data-control-family="chat-layout"][data-slot="scroll-anchor"]) {
+    position: absolute;
+    inset-block-end: calc(100% + var(--cui-chat-layout-scroll-button-gap));
+    inset-inline: 0;
+    margin-inline: auto;
+    inline-size: fit-content;
+    transition-property: opacity, scale, visibility;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-emphasized);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="scroll-anchor"][data-hidden]) {
+    opacity: 0;
+    scale: 0.9;
+    visibility: hidden;
+  }
 }
 
 @property --cui-chat-layout-radius {
@@ -64,4 +82,10 @@
 @property --cui-chat-layout-shadow {
   syntax: "*";
   inherits: true;
+}
+
+@property --cui-chat-layout-scroll-button-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

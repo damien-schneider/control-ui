@@ -4,11 +4,19 @@
   "type": "registry:component",
   "title": "ChatLayout",
   "description": "A scrolling conversation with message turns and a floating composer dock.",
-  "dependencies": [],
+  "dependencies": [
+    "lucide-react@^1.47.0"
+  ],
   "registryDependencies": [
+    "button",
     "core"
   ],
   "files": [
+    {
+      "path": "src/registry/hooks/use-chat-thread-scroll.ts",
+      "target": "@components/control-ui/hooks/use-chat-thread-scroll.ts",
+      "type": "registry:hook"
+    },
     {
       "path": "src/registry/knob-contracts/chat-layout-knobs.ts",
       "target": "@components/control-ui/knob-contracts/chat-layout-knobs.ts",

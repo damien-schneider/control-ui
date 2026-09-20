@@ -125,6 +125,32 @@ export function ChatMessageContent({ className, ...props }: ChatMessageContentPr
   );
 }
 
+export type ChatMessagePendingProps = Omit<ComponentProps<"div">, "style" | "children"> & {
+  label?: string;
+  style?: CSSProperties & ChatMessageKnobStyle;
+};
+
+export function ChatMessagePending({ label = "Assistant is replying", className, ...props }: ChatMessagePendingProps) {
+  const message = useChatMessageContext();
+  if (!message.isPending) return null;
+
+  return (
+    <div
+      role="status"
+      aria-label={label}
+      data-control-ui="chat-message"
+      data-control-family="chat-message"
+      data-slot="pending"
+      className={cn("inline-flex items-center", className)}
+      {...props}
+    >
+      <span aria-hidden="true" />
+      <span aria-hidden="true" />
+      <span aria-hidden="true" />
+    </div>
+  );
+}
+
 export type ChatMessageActionsProps = Omit<ComponentProps<"div">, "style"> & {
   style?: CSSProperties & ChatMessageKnobStyle;
 };

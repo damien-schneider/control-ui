@@ -64,7 +64,7 @@
       "name": "--cui-inline-attachment-content-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "max(var(--radius-sm), calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding)))"
+      "defaultValue": "max(\n      var(--radius-sm),\n      calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding))\n    )"
     },
     {
       "name": "--cui-inline-attachment-content-background",

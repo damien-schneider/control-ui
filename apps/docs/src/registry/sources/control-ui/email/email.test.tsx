@@ -4,14 +4,24 @@ import { render, toPlainText } from "react-email";
 import { skinMetas } from "@/app/(features)/catalog/skins";
 import { emailLayouts } from "@/src/registry/examples/control-ui/email/options";
 import { renderEmailExample } from "@/src/registry/examples/control-ui/email/render-example";
-import { InvitationEmail } from "./templates";
+import { EmailLayout, EmailSocialLinks } from "./email";
+import { type EmailFooterContent, InvitationEmail } from "./templates";
 import { emailThemeFromCss } from "./theme";
 
 const coreCss = readFileSync(new URL("../theme.css", import.meta.url), "utf8");
 const refinedCss = readFileSync(new URL("../../../skin-packs/refined/theme.css", import.meta.url), "utf8");
+const footer: EmailFooterContent = {
+  tagline: "Made by the Studio team.",
+  socialLinks: [{ label: "LinkedIn", href: "https://example.com/linkedin" }],
+  helpLinks: [{ label: "Privacy", href: "https://example.com/privacy" }],
+  sender: { company: "Studio, Inc.", addressLines: ["1 Market Street", "San Francisco, CA 94105"] },
+  reason: "You receive this email because a teammate invited you.",
+  legal: "© 2026 Studio, Inc.",
+  mailing: "transactional",
+};
 const invitation = {
-  brand: "Studio",
-  footer: "An invitation from your team.",
+  brand: { name: "Studio", homeUrl: "https://example.com" },
+  footer,
   inviter: "Alex & Sam",
   workspace: "Research <Lab>",
   inviteUrl: "https://example.com/join?team=lab&token=123",
@@ -43,6 +53,8 @@ describe("email rendering", () => {
       expect(html).not.toMatch(/var\(|oklch\(|\drem\b|display:(flex|grid)/);
       expect(text).toContain("FIELDWORK");
       expect(text).toContain("https://example.com/");
+      expect(text).toContain("Fieldwork, Inc.");
+      expect(text).toContain("San Francisco, CA 94114");
       if (["product", "editorial", "newsletter"].includes(layout.id)) {
         expect(html).toMatch(/<img[^>]+alt="[^"]+"/);
         expect(html).toContain("https://images.unsplash.com/");
@@ -64,6 +76,51 @@ describe("email rendering", () => {
     expect(changedHtml).toContain(changed.colors.primary.replaceAll(" ", ""));
     expect(originalHtml).not.toContain(changed.colors.primary.replaceAll(" ", ""));
   });
+
+  test("marketing footers carry the unsubscribe, preference center, and reason lines", async () => {
+    const { html, text } = await renderEmailExample("newsletter", emailThemeFromCss([coreCss, refinedCss]));
+    expect(html).toContain('href="https://example.com/unsubscribe"');
+    expect(html).toContain('href="https://example.com/email-preferences"');
+    expect(text).toContain("Unsubscribe");
+    expect(text).toContain("Manage preferences");
+    expect(text).toContain("You receive this email because you subscribed to Fieldwork updates.");
+  });
+
+  test("transactional footers identify the sender without a marketing unsubscribe link", async () => {
+    const { html, text } = await renderEmailExample("verification", emailThemeFromCss([coreCss, refinedCss]));
+    expect(html).not.toContain("https://example.com/unsubscribe");
+    expect(text).not.toContain("Unsubscribe");
+    expect(text).toContain("You receive this email because you have a Fieldwork account.");
+    expect(text).toContain("418 902");
+  });
+
+  test("social links render hosted icons with their network name as alt text", async () => {
+    const html = await render(
+      <EmailLayout theme={emailThemeFromCss([coreCss, refinedCss])} preview="Footer">
+        <EmailSocialLinks
+          links={[{ label: "LinkedIn", href: "https://example.com/linkedin", iconUrl: "https://example.com/icons/linkedin.png" }]}
+        />
+      </EmailLayout>,
+    );
+    expect(html).toMatch(/<img[^>]+src="https:\/\/example\.com\/icons\/linkedin\.png"[^>]*>/);
+    expect(html).toContain('alt="LinkedIn"');
+    expect(html).toContain('href="https://example.com/linkedin"');
+  });
+
+  test("declares the baked color scheme so clients stop inverting the palette", async () => {
+    for (const mode of ["light", "dark"] as const) {
+      const html = await render(<InvitationEmail {...invitation} theme={emailThemeFromCss([coreCss, refinedCss], mode)} />);
+      expect(html).toContain(`<meta name="color-scheme" content="${mode}"`);
+      expect(html).toContain(`<meta name="supported-color-schemes" content="${mode}"`);
+    }
+  });
+
+  test("release notes keep every changelog bullet in the plain-text alternative", async () => {
+    const { html, text } = await renderEmailExample("release", emailThemeFromCss([coreCss, refinedCss]));
+    expect(html).toContain("<ul");
+    expect(text).toContain("Shared spaces");
+    expect(text).toContain("Recurring reminders no longer skip the first week of a new month.");
+  });
 });
 
 describe("email theme boundary", () => {
@@ -75,7 +132,7 @@ describe("email theme boundary", () => {
     ]);
     expect(theme.radii).toEqual({ control: "12px", panel: "16px", scene: "24px" });
     const html = await render(<InvitationEmail {...invitation} theme={theme} />);
-    const button = html.match(/<a\b[^>]*>/)?.[0];
+    const button = html.match(/<a\b[^>]*href="[^"]*\/join[^"]*"[^>]*>/)?.[0];
     expect(button).toContain("border-radius:12px");
     expect(button).toContain("min-height:44px");
     expect(button).toContain("padding-left:18px");

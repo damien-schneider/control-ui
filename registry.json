@@ -1811,11 +1811,19 @@
       "type": "registry:component",
       "title": "ChatLayout",
       "description": "A scrolling conversation with message turns and a floating composer dock.",
-      "dependencies": [],
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
       "registryDependencies": [
+        "damien-schneider/control-ui/button",
         "damien-schneider/control-ui/core"
       ],
       "files": [
+        {
+          "path": "apps/docs/src/registry/hooks/use-chat-thread-scroll.ts",
+          "target": "@components/control-ui/hooks/use-chat-thread-scroll.ts",
+          "type": "registry:hook"
+        },
         {
           "path": "apps/docs/src/registry/knob-contracts/chat-layout-knobs.ts",
           "target": "@components/control-ui/knob-contracts/chat-layout-knobs.ts",
@@ -2763,7 +2771,7 @@
       "name": "email",
       "type": "registry:component",
       "title": "Email",
-      "description": "React Email compositions with Control UI colors and typography, image layouts, columns, and HTML or plain-text export.",
+      "description": "React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts.",
       "dependencies": [
         "react-email@^6.9.5"
       ],

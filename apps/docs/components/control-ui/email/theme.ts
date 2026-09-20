@@ -19,9 +19,12 @@ type EmailColor = (typeof emailColors)[number];
 type EmailHeadingSize = (typeof headingSizes)[number];
 type EmailTypeStyle = { fontSize: string; lineHeight: string; fontWeight: string; letterSpacing: string };
 
+export type EmailColorScheme = "light" | "dark";
+
 export type EmailTheme = {
+  colorScheme: EmailColorScheme;
   colors: Record<EmailColor, string>;
-  fonts: { body: string; display: string };
+  fonts: { body: string; display: string; mono: string };
   radii: { control: string; panel: string; scene: string };
   button: { height: string; paddingInline: string; paddingBlock: string; fontSize: string; lineHeight: string };
   text: Record<EmailHeadingSize | "body" | "caption", EmailTypeStyle>;
@@ -55,7 +58,10 @@ function numericStyle(name: string, tokens: ReadonlyMap<string, string>, fallbac
   return value;
 }
 
-export function createEmailTheme(tokens: ReadonlyMap<string, string>, rootFontSize = 16): EmailTheme {
+export function createEmailTheme(
+  tokens: ReadonlyMap<string, string>,
+  { rootFontSize = 16, colorScheme = "light" }: { rootFontSize?: number; colorScheme?: EmailColorScheme } = {},
+): EmailTheme {
   if (!Number.isFinite(rootFontSize) || rootFontSize <= 0) throw new Error("Email theme: rootFontSize must be a positive pixel value.");
 
   function lengthPixels(name: string, allowZero = false) {
@@ -94,6 +100,7 @@ export function createEmailTheme(tokens: ReadonlyMap<string, string>, rootFontSi
   }
 
   return {
+    colorScheme,
     colors: {
       background: opaqueColor("background", background),
       foreground: opaqueColor("foreground", background),
@@ -106,7 +113,11 @@ export function createEmailTheme(tokens: ReadonlyMap<string, string>, rootFontSi
       "muted-foreground": opaqueColor("muted-foreground"),
       border: opaqueColor("border"),
     },
-    fonts: { body: tokenValue("--font-body", tokens), display: tokenValue("--font-display", tokens) },
+    fonts: {
+      body: tokenValue("--font-body", tokens),
+      display: tokenValue("--font-display", tokens),
+      mono: tokenValue("--font-mono", tokens),
+    },
     radii: {
       control: `${lengthPixels("--radius-control", true)}px`,
       panel: `${lengthPixels("--radius-panel", true)}px`,
@@ -130,6 +141,6 @@ export function createEmailTheme(tokens: ReadonlyMap<string, string>, rootFontSi
   };
 }
 
-export function emailThemeFromCss(cssSources: string[], mode: "light" | "dark" = "light", rootFontSize = 16): EmailTheme {
-  return createEmailTheme(tokenMaps(cssSources)[mode], rootFontSize);
+export function emailThemeFromCss(cssSources: string[], mode: EmailColorScheme = "light", rootFontSize = 16): EmailTheme {
+  return createEmailTheme(tokenMaps(cssSources)[mode], { rootFontSize, colorScheme: mode });
 }
