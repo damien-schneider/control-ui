@@ -338,7 +338,7 @@ export function ColorPickerContent({
         side={side}
         align={align}
         sideOffset={sideOffset}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <PopoverPrimitive.Popup
           data-control-ui="color-picker"
@@ -486,7 +486,7 @@ export function ColorPickerHue({ className, "aria-label": ariaLabel, "aria-label
       step={1}
       disabled={disabled}
       onValueChange={(next) => setHsva({ h: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex w-full touch-none select-none items-center", className)}
+      className={cn("relative flex w-full touch-pan-y select-none items-center", className)}
       {...props}
     >
       <SliderPrimitive.Control className="flex h-full w-full items-center">
@@ -531,7 +531,7 @@ export function ColorPickerAlpha({
       step={0.01}
       disabled={disabled}
       onValueChange={(next) => setHsva({ a: Array.isArray(next) ? next[0] : next })}
-      className={cn("relative flex w-full touch-none select-none items-center", className)}
+      className={cn("relative flex w-full touch-pan-y select-none items-center", className)}
       {...props}
     >
       <SliderPrimitive.Control className="flex h-full w-full items-center">

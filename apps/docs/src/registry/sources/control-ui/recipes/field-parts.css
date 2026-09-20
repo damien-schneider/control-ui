@@ -100,6 +100,7 @@
     color: var(--foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
+    text-wrap: balance;
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="label"]) {
@@ -115,6 +116,7 @@
   :where([data-control-family="field"][data-field-kind="field"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-caption);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="field"][data-field-kind="field"][data-slot="error"]) {

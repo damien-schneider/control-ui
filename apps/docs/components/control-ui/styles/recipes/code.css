@@ -108,6 +108,31 @@
     text-align: right;
     font-variant-numeric: tabular-nums;
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="code"][data-slot="editor"]) {
+      font-size: max(16px, var(--text-label));
+    }
+
+    :where([data-control-family="code"][data-slot="header"]) {
+      min-block-size: 44px;
+    }
+
+    :where([data-control-family="code"][data-slot="actions"] [data-control-family="button"]),
+    :where([data-control-family="button"][data-code-copy="true"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="code"][data-slot="actions"] [data-control-family="button"])::after,
+    :where([data-control-family="button"][data-code-copy="true"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
+  }
 }
 
 @property --cui-code-radius {

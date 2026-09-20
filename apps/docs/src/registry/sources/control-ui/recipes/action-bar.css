@@ -6,7 +6,7 @@
     opacity: 1;
   }
 
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     :where([data-control-family="chat-layout"][data-slot="turn"] [data-control-family="action-bar"][data-slot="root"]) {
       opacity: 0;
     }
@@ -18,5 +18,20 @@
 
   :where([data-control-family="chat-layout"][data-slot="turn"]:focus-within [data-control-family="action-bar"][data-slot="root"]) {
     opacity: 1;
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="action-bar"][data-slot="root"] [data-control-family="button"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="action-bar"][data-slot="root"] [data-control-family="button"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
   }
 }

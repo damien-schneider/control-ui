@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/damien-schneider/control-ui.git",
+    "url": "git+https://github.com/damien-schneider/control-ui.git",
     "directory": "packages/components"
   },
   "homepage": "https://control-ui.dev",
@@ -50,6 +50,7 @@
     "prosemirror-view": "^1.42.3",
     "react": "^19.2.8",
     "react-day-picker": "^10.0.1",
+    "react-dom": "^19.2.8",
     "react-email": "^6.9.5",
     "react-phone-number-input": "^3.4.18",
     "react-resizable-panels": "^4.12.4",

@@ -2169,7 +2169,7 @@
       "syntax": "<color>"
     },
     {
-      "name": "--cui-table-of-contents-item-indent",
+      "name": "--cui-table-of-contents-item-indent-size",
       "description": "Control UI table-of-contents knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
@@ -2229,7 +2229,7 @@
       "syntax": "<color>"
     },
     {
-      "name": "--cui-table-of-contents-rail-width",
+      "name": "--cui-table-of-contents-rail-size",
       "description": "Control UI table-of-contents knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },
@@ -2248,7 +2248,7 @@
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--cui-table-of-contents-trail-width",
+      "name": "--cui-table-of-contents-trail-size",
       "description": "Control UI table-of-contents knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
     },

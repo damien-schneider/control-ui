@@ -46,7 +46,7 @@ export function TokenContractTable() {
     <div className="grid min-w-0 gap-4">
       <div className="docs-panel overflow-hidden">
         <div className="border-b border-border bg-muted/30 px-4 py-2 text-caption font-medium text-muted-foreground">
-          Core — the {coreTokens.length} tokens a skin typically re-values first
+          Core — the <span className="tabular-nums">{coreTokens.length}</span> tokens a skin typically re-values first
         </div>
         <div className="divide-y divide-border">
           {coreTokens.map((token) => (
@@ -59,7 +59,8 @@ export function TokenContractTable() {
         <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
           <span className="font-medium">Derived — optional overrides</span>
           <span className="text-caption text-muted-foreground">
-            {derivedTokens.length} tokens with a core default; re-value one in theme.css only to diverge
+            <span className="tabular-nums">{derivedTokens.length}</span> tokens with a core default; re-value one in theme.css only to
+            diverge
           </span>
           <span aria-hidden className="ml-auto text-caption text-muted-foreground transition-transform group-open:rotate-90">
             ›
@@ -77,7 +78,7 @@ export function TokenContractTable() {
           <summary className="flex cursor-pointer list-none items-baseline gap-2 px-4 py-2 text-body [&::-webkit-details-marker]:hidden">
             <span className="font-medium">Advanced — {GROUP_LABELS[group]}</span>
             <span className="text-caption text-muted-foreground">
-              {tokens.length} {tokens.length === 1 ? "token" : "tokens"}
+              <span className="tabular-nums">{tokens.length}</span> {tokens.length === 1 ? "token" : "tokens"}
             </span>
             <span aria-hidden className="ml-auto text-caption text-muted-foreground transition-transform group-open:rotate-90">
               ›

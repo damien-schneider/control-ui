@@ -39,6 +39,7 @@
     transition-property: max-width, opacity;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+    font-variant-numeric: tabular-nums;
   }
 
   :where(
@@ -72,16 +73,19 @@
   :where([data-control-family="context"][data-slot="title"]) {
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
+    text-wrap: balance;
   }
 
   :where([data-control-family="context"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-caption);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="context"][data-slot="summary"]) {
     gap: calc(var(--spacing) * 3);
     font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="context"][data-slot="summary-value"]) {

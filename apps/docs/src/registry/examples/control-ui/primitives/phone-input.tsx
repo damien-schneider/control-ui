@@ -42,7 +42,7 @@ export function PrimitivePhoneInputExample() {
               defaultCountry="FR"
               required
               placeholder="7 50 32 67 15"
-              countrySearchPlaceholder="Search country or calling code..."
+              countrySearchPlaceholder="Search country or calling code…"
             />
           }
         />

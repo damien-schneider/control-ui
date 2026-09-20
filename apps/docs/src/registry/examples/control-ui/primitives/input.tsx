@@ -12,7 +12,7 @@ export function PrimitiveInputExample() {
       </Field>
       <Field>
         <FieldLabel>Search</FieldLabel>
-        <FieldControl render={<Input size="sm" placeholder="Search..." />} />
+        <FieldControl render={<Input size="sm" placeholder="Search…" />} />
       </Field>
     </div>
   );

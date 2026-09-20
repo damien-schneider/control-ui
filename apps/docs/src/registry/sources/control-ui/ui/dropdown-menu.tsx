@@ -106,7 +106,7 @@ export function DropdownMenuContent({
         collisionBoundary={collisionBoundary}
         collisionPadding={collisionPadding}
         collisionAvoidance={collisionAvoidance}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <MenuPrimitive.Popup
           data-control-ui="dropdown-menu"

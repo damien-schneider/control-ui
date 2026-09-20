@@ -26,7 +26,17 @@ export function OpenInAgent({ name, pathname }: { name: string; pathname: string
         }}
       >
         {isCopied ? <CheckCircle2Icon aria-hidden className="size-3.5" /> : <CopyIcon aria-hidden className="size-3.5" />}
-        {isCopied ? "Prompt copied — paste it in your agent" : "Open in your agent"}
+        <span className="grid">
+          <span aria-hidden className="invisible col-start-1 row-start-1">
+            Open in your agent
+          </span>
+          <span aria-hidden className="invisible col-start-1 row-start-1">
+            Prompt copied
+          </span>
+          <span aria-live="polite" className="col-start-1 row-start-1">
+            {isCopied ? "Prompt copied" : "Open in your agent"}
+          </span>
+        </span>
       </Button>
       {copyError ? (
         <p role="alert" className="mt-2 text-caption text-destructive-text">

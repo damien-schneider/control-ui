@@ -1836,7 +1836,7 @@ export const registryMetadata = {
   },
   command: {
     dependencies: ["cmdk@^1.1.1"],
-    registryDependencies: ["core", "dialog", "scroll-area", "surface-variants"],
+    registryDependencies: ["core", "dialog", "empty", "scroll-area", "surface-variants"],
     sourceManifestPath: "registry/control-ui/command.json",
     files: [
       {

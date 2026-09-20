@@ -12,6 +12,10 @@
     ) {
     font-family: "Control UI MS Sans Serif", Tahoma, Arial, sans-serif;
   }
+  [data-skin="windows-98"] :where([data-slot="root"][data-control-family="item"]) {
+    --cui-item-active-scale: 1;
+  }
+
   [data-skin="windows-98"] :where([data-control-family="button"][data-control="true"]) {
     --cui-button-radius: 0px;
     --cui-button-icon: 13px;

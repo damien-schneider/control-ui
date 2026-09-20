@@ -53,6 +53,7 @@
     color: var(--cui-environment-variables-title-foreground);
     font-size: var(--text-label);
     font-weight: var(--font-weight-semibold);
+    text-wrap: balance;
   }
 
   :where(

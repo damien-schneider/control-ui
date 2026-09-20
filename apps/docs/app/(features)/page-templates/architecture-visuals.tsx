@@ -65,15 +65,15 @@ export function SkinFileStack() {
     <GuideVisual title="One skin pack" description="Same three files; advanced packs use more of them">
       <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,0.7fr)]">
         <ol className="relative grid gap-2 pl-4">
-          <li className="relative z-30 translate-x-0 rounded-lg border border-primary/35 bg-background px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1">
+          <li className="relative z-30 translate-x-0 rounded-lg border border-primary/35 bg-background px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
             <div className="font-mono text-label">skin.config.tsx</div>
             <div className="mt-0.5 text-caption text-muted-foreground">typed slots · DS choices · adornments</div>
           </li>
-          <li className="relative z-20 ml-2 rounded-lg border border-border bg-muted/65 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1">
+          <li className="relative z-20 ml-2 rounded-lg border border-border bg-muted/65 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
             <div className="font-mono text-label">skin.css</div>
             <div className="mt-0.5 text-caption text-muted-foreground">pseudo-elements · keyframes · descendant families</div>
           </li>
-          <li className="relative z-10 ml-4 rounded-lg border border-border bg-muted/35 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1">
+          <li className="relative z-10 ml-4 rounded-lg border border-border bg-muted/35 px-4 py-3 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 motion-reduce:transition-none">
             <div className="font-mono text-label">theme.css</div>
             <div className="mt-0.5 text-caption text-muted-foreground">token values scoped by data-skin</div>
           </li>
@@ -81,7 +81,9 @@ export function SkinFileStack() {
         <FlowArrow className="hidden md:grid" />
         <FlowArrow direction="down" className="md:hidden" />
         <div className="grid place-items-center rounded-lg bg-primary/8 p-5 text-center ring-1 ring-primary/20">
-          <div className="grid size-16 place-items-center rounded-lg bg-background font-display text-heading-3 ring-1 ring-border">UI</div>
+          <div className="grid size-16 place-items-center rounded-[max(0px,calc(var(--radius-lg)-1.25rem))] bg-background font-display text-heading-3 ring-1 ring-border">
+            UI
+          </div>
           <div className="mt-3 font-medium text-label">One component tree</div>
           <div className="mt-1 text-caption text-muted-foreground">never a skin-specific fork</div>
         </div>
@@ -134,7 +136,7 @@ export function CustomizationLadder() {
           {customizationRungs.map((rung, index) => (
             <li
               key={rung.name}
-              className="group grid grid-cols-[1.5rem_minmax(0,0.8fr)_minmax(0,1.2fr)] items-center gap-2 rounded-lg px-2 py-2 transition-[background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 hover:bg-primary/7"
+              className="group grid grid-cols-[1.5rem_minmax(0,0.8fr)_minmax(0,1.2fr)] items-center gap-2 rounded-lg px-2 py-2 transition-[background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:translate-x-1 hover:bg-primary/7 motion-reduce:transition-none"
             >
               <span className="grid size-6 place-items-center rounded-md bg-foreground font-mono text-background text-micro">
                 {index + 1}

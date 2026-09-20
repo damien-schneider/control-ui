@@ -85,7 +85,7 @@ export function TooltipContent({
         data-slot="positioner"
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className="z-[90]"
+        className="z-(--z-tooltip)"
         {...positionerProps}
       >
         <TooltipPrimitive.Popup

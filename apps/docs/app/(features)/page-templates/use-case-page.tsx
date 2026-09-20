@@ -40,7 +40,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
         <section id="included-source" className="min-w-0 scroll-mt-20">
           <SectionTitle
             title="Owned source"
-            description="This block's recipe and private support files. Public dependencies stay linked above."
+            description="This block’s recipe and private support files. Public dependencies stay linked above."
           />
           <div className="grid gap-2">
             {files.map((file) => (

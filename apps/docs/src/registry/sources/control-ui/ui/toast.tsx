@@ -60,7 +60,7 @@ function ToastList({
         data-surface="floating"
         className={cn(
           "[--gap:0.75rem] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))]",
-          "absolute right-0 bottom-0 left-auto z-[calc(1000-var(--toast-index))] h-[var(--height)] w-full select-none data-[expanded]:h-[var(--toast-height)]",
+          "absolute right-0 bottom-0 left-auto z-[calc(var(--z-toast)-var(--toast-index))] h-[var(--height)] w-full select-none data-[expanded]:h-[var(--toast-height)]",
           "after:absolute after:top-full after:left-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
         )}
       >
@@ -132,7 +132,10 @@ export function Toaster({ className, timeout, limit, rootStyle, indicatorStyle, 
           data-slot="viewport"
           data-skin={skin.id}
           data-effects={controlEffectsAttribute(skin.effects)}
-          className={cn("fixed right-4 bottom-4 z-[95] mx-auto w-[calc(100vw-2rem)] sm:right-6 sm:bottom-6 sm:w-[22.5rem]", className)}
+          className={cn(
+            "fixed right-4 bottom-4 z-(--z-toast) mx-auto w-[calc(100vw-2rem)] sm:right-6 sm:bottom-6 sm:w-[22.5rem]",
+            className,
+          )}
         >
           <ToastList rootStyle={rootStyle} indicatorStyle={indicatorStyle} actionStyle={actionStyle} closeStyle={closeStyle} />
         </ToastPrimitive.Viewport>

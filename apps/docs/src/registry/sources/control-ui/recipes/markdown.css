@@ -89,6 +89,7 @@
   :where([data-control-family="markdown"][data-slot="paragraph"]) {
     margin-block: calc(var(--spacing) * 3);
     line-height: calc(var(--spacing) * 7);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="markdown"][data-slot="h3"]) {
@@ -97,6 +98,8 @@
     font-size: var(--text-base);
     line-height: var(--text-base--line-height);
     color: var(--foreground);
+    text-wrap: balance;
+    scroll-margin-block-start: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="markdown"][data-slot="h2"]) {
@@ -104,6 +107,8 @@
     font-size: var(--text-lg);
     line-height: var(--text-lg--line-height);
     color: var(--foreground);
+    text-wrap: balance;
+    scroll-margin-block-start: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="markdown"][data-slot="h1"]) {
@@ -111,6 +116,8 @@
     font-size: var(--text-xl);
     line-height: var(--text-xl--line-height);
     color: var(--foreground);
+    text-wrap: balance;
+    scroll-margin-block-start: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="markdown"][data-slot="h1"]),

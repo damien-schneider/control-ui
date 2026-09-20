@@ -15,7 +15,7 @@ import type { LabelMode } from "./types";
 
 export function VarTag({ children }: { children: ReactNode }) {
   return (
-    <code className="inline-flex max-w-full items-center rounded-[var(--radius-sm)] bg-foreground/5 px-1.5 py-0.5 font-mono text-[9px] leading-none text-muted-foreground ring-1 ring-inset ring-border/70">
+    <code className="inline-flex max-w-full items-center rounded-[var(--radius-sm)] bg-foreground/5 px-1.5 py-0.5 font-mono text-micro leading-none text-muted-foreground ring-1 ring-inset ring-border/70">
       <span className="min-w-0 break-all">{children}</span>
     </code>
   );
@@ -53,7 +53,7 @@ function TokenHead({ token, labelMode, overridden, changedBySkin, onReset }: Omi
       <span
         className={cn(
           "min-w-0 truncate",
-          labelMode === "css" ? "font-mono text-[10px] text-muted-foreground" : "text-[11px] font-medium text-muted-foreground",
+          labelMode === "css" ? "font-mono text-micro text-muted-foreground" : "text-caption font-medium text-muted-foreground",
         )}
       >
         {label}
@@ -64,7 +64,7 @@ function TokenHead({ token, labelMode, overridden, changedBySkin, onReset }: Omi
           onClick={onReset}
           aria-label={`Reset ${label}`}
           title={`Reset ${label} to the skin's value`}
-          className="ml-auto inline-flex shrink-0 cursor-pointer items-center rounded-full p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+          className="ml-auto inline-flex shrink-0 cursor-pointer items-center rounded-full p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none"
         >
           <RotateCcwIcon aria-hidden className="size-2.5" />
         </button>
@@ -102,7 +102,7 @@ function TextTokenField(props: TokenFieldProps) {
             e.currentTarget.blur();
           }
         }}
-        className="h-7 w-full rounded-[var(--radius-control)] border border-border bg-card/70 px-2 font-mono text-[10px] text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-ring/60"
+        className="h-7 w-full rounded-[var(--radius-control)] border border-border bg-card/70 px-2 font-mono text-micro text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none [@media(pointer:coarse)]:text-[16px]"
       />
     </div>
   );
@@ -129,7 +129,7 @@ function ColorTokenField(props: TokenFieldProps) {
           className="size-5 shrink-0 rounded-[var(--radius-sm)] shadow-[inset_0_0_0_1px_oklch(from_var(--foreground)_l_c_h_/_0.16)]"
           style={{ backgroundColor: hex ?? "transparent" }}
         />
-        <span className="min-w-0 truncate font-mono text-[10px] text-muted-foreground">{hex ?? "unset"}</span>
+        <span className="min-w-0 truncate font-mono text-micro text-muted-foreground">{hex ?? "unset"}</span>
       </Button>
       <input
         ref={inputRef}

@@ -109,8 +109,8 @@ function GuidePageContent({
     return (
       <section key={section.id} id={section.id} className="min-w-0 scroll-mt-20">
         <div className="max-w-2xl">
-          <h2 className="text-heading-2 font-display">{section.title}</h2>
-          {section.body ? <p className="mt-2 text-body leading-6 text-muted-foreground">{section.body}</p> : null}
+          <h2 className="text-heading-2 font-display text-balance">{section.title}</h2>
+          {section.body ? <p className="mt-2 text-body leading-6 text-pretty text-muted-foreground">{section.body}</p> : null}
         </div>
 
         {section.points ? (
@@ -154,10 +154,10 @@ export function GuidePage({
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div className="min-w-0 max-w-2xl">
             <div className="text-caption font-medium text-muted-foreground">Guide</div>
-            <h1 ref={focusWorkspaceHeading} tabIndex={-1} className="mt-1 text-heading-2 font-display">
+            <h1 ref={focusWorkspaceHeading} tabIndex={-1} className="mt-1 text-heading-2 font-display text-balance">
               {page.name}
             </h1>
-            <p className="mt-1 text-body text-muted-foreground">{page.summary}</p>
+            <p className="mt-1 text-body text-pretty text-muted-foreground">{page.summary}</p>
           </div>
           <OpenInAgent name={page.name} pathname={`/${page.id}`} />
         </div>
@@ -171,8 +171,8 @@ export function GuidePage({
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div className="max-w-2xl">
           <div className="text-caption font-medium text-muted-foreground">Guide</div>
-          <h1 className="mt-2 text-display font-display">{page.name}</h1>
-          <p className="mt-3 text-body-lg text-muted-foreground">{page.summary}</p>
+          <h1 className="mt-2 text-display font-display text-balance">{page.name}</h1>
+          <p className="mt-3 text-body-lg text-pretty text-muted-foreground">{page.summary}</p>
         </div>
         <OpenInAgent name={page.name} pathname={`/${page.id}`} />
       </div>
@@ -182,7 +182,7 @@ export function GuidePage({
         {page.faqs && page.faqs.length > 0 ? (
           <section id="faq" className="min-w-0 scroll-mt-20">
             <div className="max-w-2xl">
-              <h2 className="text-heading-2 font-display">Frequently asked questions</h2>
+              <h2 className="text-heading-2 font-display text-balance">Frequently asked questions</h2>
             </div>
             <dl className="mt-4 grid max-w-2xl gap-3">
               {page.faqs.map((faq) => (

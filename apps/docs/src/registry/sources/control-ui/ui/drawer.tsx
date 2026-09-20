@@ -125,7 +125,7 @@ export function DrawerContent({
         data-slot="backdrop"
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className="fixed inset-0 z-[70]"
+        className="fixed inset-0 z-(--z-overlay)"
         style={backdropStyle}
       />
       <DrawerPrimitive.Viewport
@@ -137,7 +137,7 @@ export function DrawerContent({
         data-variant={variant}
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className={cn("fixed inset-0 z-[71] flex", place.viewport)}
+        className={cn("fixed inset-0 z-(--z-modal) flex", place.viewport)}
       >
         <DrawerPrimitive.Popup
           data-control-ui="drawer"

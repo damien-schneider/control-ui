@@ -116,6 +116,13 @@
     font-size: var(--text-micro);
     color: var(--muted-foreground);
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"], [data-slot="placeholder"])),
+    :where([data-control-family="chat-composer"][data-slot="editor"] .ProseMirror) {
+      font-size: max(16px, var(--text-sm));
+    }
+  }
 }
 
 @property --cui-chat-composer-root-background {

@@ -378,7 +378,7 @@ function DefaultFile({ file }: { file: File }) {
       </ItemMedia>
       <ItemContent>
         <ItemTitle className="wrap-anywhere">{file.name}</ItemTitle>
-        <ItemDescription>{formatDropzoneFileSize(file.size)}</ItemDescription>
+        <ItemDescription className="tabular-nums">{formatDropzoneFileSize(file.size)}</ItemDescription>
       </ItemContent>
       <ItemActions>
         <DropzoneRemove file={file} />

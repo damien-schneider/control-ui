@@ -172,6 +172,12 @@
   :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="input"]) {
     padding-inline: calc(var(--spacing) * 3);
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="field"]:is(input, textarea)) {
+      font-size: max(16px, var(--cui-field-font-size));
+    }
+  }
 }
 
 @property --cui-field-radius {

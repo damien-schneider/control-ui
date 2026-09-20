@@ -177,6 +177,27 @@
   :where([data-control-family="toolbar"][data-slot="button"]) {
     outline-style: none;
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="toolbar"][data-slot="button"]),
+    :where([data-control-family="toolbar"][data-slot="link"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="toolbar"][data-slot="button"])::after,
+    :where([data-control-family="toolbar"][data-slot="link"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
+
+    :where([data-control-family="toolbar"][data-slot="input"]) {
+      font-size: max(16px, var(--text-label));
+    }
+  }
 }
 
 @property --cui-toolbar-radius {

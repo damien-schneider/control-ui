@@ -22,7 +22,11 @@ function sortNavItemsByName(items: DocsNavItem[]): DocsNavItem[] {
   return [...items].sort((a, b) => navCollator.compare(humanizeNavName(a.name), humanizeNavName(b.name)) || a.id.localeCompare(b.id));
 }
 
-export function sidebarPaneForActivePage(active: ActivePageId, searchItems: SearchItem[], referenceGroups: GuideNavGroup[]): SidebarPane {
+export function sidebarPaneForActivePage(
+  active: ActivePageId | undefined,
+  searchItems: SearchItem[],
+  referenceGroups: GuideNavGroup[],
+): SidebarPane {
   const kind = searchItems.find((item) => item.id === active)?.kind;
 
   if (active === "theme-editor") return "theme-editor";

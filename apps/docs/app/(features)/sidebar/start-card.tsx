@@ -30,13 +30,13 @@ function writeStoredMinimized(minimized: boolean) {
   }
 }
 
-function StartRow({ item, active, onNavigate }: { item: DocsNavItem; active: ActivePageId; onNavigate: () => void }) {
+function StartRow({ item, active, onNavigate }: { item: DocsNavItem; active: ActivePageId | undefined; onNavigate: () => void }) {
   return (
     <Link
       href={`/${item.id}`}
       onClick={onNavigate}
       aria-current={active === item.id ? "page" : undefined}
-      className="flex min-w-0 items-center rounded-[calc(var(--radius-panel)-0.25rem)] px-2 py-1.5 text-label text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground aria-[current=page]:font-medium aria-[current=page]:text-sidebar-foreground"
+      className="flex min-w-0 items-center rounded-[calc(var(--radius-panel)-0.25rem)] px-2 py-1.5 text-label text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground aria-[current=page]:text-sidebar-foreground"
     >
       <span className="min-w-0 truncate">{humanizeNavName(item.name)}</span>
     </Link>
@@ -50,7 +50,7 @@ export function StartCard({
   className,
 }: {
   steps: GuideNavGroup;
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   onNavigate: () => void;
   className?: string;
 }) {

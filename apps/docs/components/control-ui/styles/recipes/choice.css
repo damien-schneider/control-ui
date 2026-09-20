@@ -82,6 +82,18 @@
   :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"]) {
     outline-style: none;
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="choice"][data-choice-kind="checkbox"][data-slot="root"])::after,
+    :where([data-control-family="choice"][data-choice-kind="radio-group"][data-slot="item"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: max(100%, 44px);
+      block-size: max(100%, 44px);
+    }
+  }
 }
 
 @property --cui-choice-radius {

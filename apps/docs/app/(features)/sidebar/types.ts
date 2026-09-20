@@ -17,7 +17,7 @@ import type {
 } from "@/app/(features)/model/types";
 
 export type DocsSidebarContentProps = {
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   githubStars: number | null;
   guides: GuidePage[];
   skills: readonly DocsSkill[];

@@ -93,6 +93,7 @@
   :where([data-control-family="chat-composer-attachment"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-caption);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="description"][data-state="error"]) {

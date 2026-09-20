@@ -72,6 +72,7 @@
     margin-inline-start: calc(var(--spacing) * 3);
     top: 0;
     translate: 0 calc(var(--aui-rail-inset) + var(--aui-rail-active-index, 0) * var(--aui-rail-pitch) - 50%);
+    transform-origin: left center;
     scale: 0.98;
     opacity: 0;
     border-radius: var(--cui-thread-rail-popover-radius);
@@ -89,14 +90,19 @@
       height var(--duration-slow) var(--ease-standard),
       opacity var(--duration-base) var(--ease-standard),
       scale var(--duration-base) var(--ease-standard);
-    will-change: top, translate, height, opacity, scale;
     text-align: left;
   }
 
-  :where(
-    [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
-      [data-control-family="thread-rail"][data-slot="popover"]
-  ),
+  @media (hover: hover) and (pointer: fine) {
+    :where(
+        [data-control-family="thread-rail"][data-slot="root"]:has([data-control-family="thread-rail"][data-slot="item"]:hover)
+          [data-control-family="thread-rail"][data-slot="popover"]
+      ) {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
   :where([data-control-family="thread-rail"][data-slot="root"]:focus-within [data-control-family="thread-rail"][data-slot="popover"]) {
     scale: 1;
     opacity: 1;

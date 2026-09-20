@@ -49,7 +49,7 @@ test("the stylesheet entry imports every shipped stylesheet, without a skin", ()
 });
 
 test("peer dependencies mirror the closure manifests", () => {
-  expect(Object.keys(pkg.peerDependencies).sort()).toEqual([...dependencies.keys(), "react"].sort());
+  expect(Object.keys(pkg.peerDependencies).sort()).toEqual([...dependencies.keys(), "react", "react-dom"].sort());
   for (const [name, range] of dependencies) expect(pkg.peerDependencies).toHaveProperty(name, range);
   for (const name of Object.keys(pkg.peerDependenciesMeta)) expect(pkg.peerDependencies).toHaveProperty(name);
 });

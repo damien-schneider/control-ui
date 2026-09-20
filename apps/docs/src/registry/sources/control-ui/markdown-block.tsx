@@ -98,7 +98,7 @@ export function MarkdownBlockContent({ children, className, ...props }: Markdown
       data-control-ui="markdown-block"
       data-control-family="markdown-block"
       data-slot="content"
-      className={cn("max-h-[420px] overflow-auto mask-y-from-[calc(100%_-_var(--scroll-fade-size))]", className)}
+      className={cn("max-h-[420px] overflow-auto mask-b-from-[calc(100%_-_var(--scroll-fade-size))]", className)}
       {...props}
     >
       {children ?? <Markdown content={code} />}

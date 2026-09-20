@@ -20,12 +20,12 @@
     --cui-table-of-contents-item-root-font-weight: var(--font-weight-medium);
     --cui-table-of-contents-item-padding-block: calc(var(--spacing) * 1.5);
     --cui-table-of-contents-item-padding-inline: calc(var(--spacing) * 3);
-    --cui-table-of-contents-item-indent: calc(var(--spacing) * 2);
+    --cui-table-of-contents-item-indent-size: calc(var(--spacing) * 2);
     --cui-table-of-contents-rail-background: var(--border);
-    --cui-table-of-contents-rail-width: 1px;
+    --cui-table-of-contents-rail-size: 1px;
     --cui-table-of-contents-trail-background: var(--foreground);
-    --cui-table-of-contents-trail-width: 2px;
-    --cui-table-of-contents-trail-radius: var(--cui-table-of-contents-trail-width);
+    --cui-table-of-contents-trail-size: 2px;
+    --cui-table-of-contents-trail-radius: var(--cui-table-of-contents-trail-size);
     --cui-table-of-contents-highlight-radius: var(--radius-popup-item);
     --cui-table-of-contents-highlight-background: var(--active-fill);
     border: var(--cui-table-of-contents-border-width) solid var(--cui-table-of-contents-border-color);
@@ -47,7 +47,7 @@
   }
 
   :where([data-control-family="table-of-contents"][data-slot="rail"]) {
-    inline-size: var(--cui-table-of-contents-rail-width);
+    inline-size: var(--cui-table-of-contents-rail-size);
     background-color: var(--cui-table-of-contents-rail-background);
   }
 
@@ -57,7 +57,7 @@
     padding-inline-start: calc(
       var(--cui-table-of-contents-item-padding-inline) +
       var(--_toc-depth) *
-      var(--cui-table-of-contents-item-indent)
+      var(--cui-table-of-contents-item-indent-size)
     );
     color: var(--cui-table-of-contents-item-foreground);
     font-size: var(--cui-table-of-contents-item-font-size);
@@ -98,7 +98,7 @@
   }
 
   :where([data-control-family="table-of-contents"][data-slot="trail"]) {
-    inline-size: var(--cui-table-of-contents-trail-width);
+    inline-size: var(--cui-table-of-contents-trail-size);
     border-radius: var(--cui-table-of-contents-trail-radius);
     background-color: var(--cui-table-of-contents-trail-background);
   }
@@ -224,7 +224,7 @@
   initial-value: 0px;
 }
 
-@property --cui-table-of-contents-item-indent {
+@property --cui-table-of-contents-item-indent-size {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
@@ -236,7 +236,7 @@
   initial-value: transparent;
 }
 
-@property --cui-table-of-contents-rail-width {
+@property --cui-table-of-contents-rail-size {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
@@ -248,7 +248,7 @@
   initial-value: transparent;
 }
 
-@property --cui-table-of-contents-trail-width {
+@property --cui-table-of-contents-trail-size {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

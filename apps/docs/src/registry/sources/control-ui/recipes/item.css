@@ -4,7 +4,7 @@
     --cui-item-hover-background: transparent;
     --cui-item-hover-border-color: var(--_item-border-color);
     --cui-item-border-width: 0px;
-    --cui-item-active-scale: 1;
+    --cui-item-active-scale: 0.99;
     --_item-background: transparent;
     --_item-border-color: transparent;
     outline: var(--cui-item-border-width) solid var(--_item-border-color);
@@ -61,6 +61,7 @@
     font-size: var(--text-sm);
     line-height: var(--leading-relaxed);
     color: var(--muted-foreground);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="item"][data-slot="title"]) {
@@ -69,6 +70,7 @@
     font-weight: var(--font-weight-medium);
     line-height: 1;
     color: var(--foreground);
+    text-wrap: balance;
   }
 
   :where([data-control-family="item"][data-slot="media"]) {

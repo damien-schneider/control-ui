@@ -160,7 +160,7 @@ export function ComboboxContent({ className, children, sideOffset = 6, ...props 
         side="bottom"
         align="start"
         sideOffset={sideOffset}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <ComboboxPrimitive.Popup
           data-control-ui="combobox"

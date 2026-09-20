@@ -160,7 +160,7 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
           <div key={family.id} className="docs-panel overflow-hidden">
             <div className="flex items-baseline justify-between gap-3 border-b border-border bg-muted/30 px-4 py-2 text-caption text-muted-foreground">
               <span>
-                <KnobFamilyName id={family.id} href={family.href} /> · {family.knobs.length} knobs
+                <KnobFamilyName id={family.id} href={family.href} /> · <span className="tabular-nums">{family.knobs.length}</span> knobs
               </span>
               <Link href="/skins#component-knobs" className="shrink-0 underline underline-offset-4 hover:text-foreground">
                 How the cascade resolves

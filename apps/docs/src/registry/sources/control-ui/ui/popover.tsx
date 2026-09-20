@@ -57,7 +57,7 @@ export function PopoverContent({
         align={align}
         sideOffset={sideOffset}
         collisionPadding={collisionPadding}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <PopoverPrimitive.Popup
           data-control-ui="popover"

@@ -63,6 +63,7 @@
     font-size: var(--text-sm);
     font-weight: var(--font-weight-normal);
     line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
 
   @media (hover: hover) {
@@ -112,6 +113,26 @@
   :where([data-control-family="calendar"][data-slot="month-grid"]) {
     margin-block-start: calc(var(--spacing) * 1);
     border-collapse: collapse;
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="calendar"][data-slot="day"]) {
+      min-inline-size: 44px;
+      min-block-size: 44px;
+    }
+
+    :where([data-control-family="calendar"][data-slot="nav-button"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="calendar"][data-slot="nav-button"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
   }
 }
 

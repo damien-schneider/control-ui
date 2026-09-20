@@ -14128,7 +14128,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-item-active-scale",
         syntax: "<number>",
         initialValue: "1",
-        defaultValue: "1",
+        defaultValue: "0.99",
       },
     ],
     kbd: [
@@ -15226,7 +15226,7 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "calc(var(--spacing) * 3)",
       },
       {
-        name: "--cui-table-of-contents-item-indent",
+        name: "--cui-table-of-contents-item-indent-size",
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 2)",
@@ -15238,7 +15238,7 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--border)",
       },
       {
-        name: "--cui-table-of-contents-rail-width",
+        name: "--cui-table-of-contents-rail-size",
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "1px",
@@ -15250,7 +15250,7 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--foreground)",
       },
       {
-        name: "--cui-table-of-contents-trail-width",
+        name: "--cui-table-of-contents-trail-size",
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "2px",
@@ -15259,7 +15259,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-table-of-contents-trail-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--cui-table-of-contents-trail-width)",
+        defaultValue: "var(--cui-table-of-contents-trail-size)",
       },
       {
         name: "--cui-table-of-contents-highlight-radius",

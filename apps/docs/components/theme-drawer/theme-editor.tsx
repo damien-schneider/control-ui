@@ -64,7 +64,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
   const reduceMotionRow = (
     <div className="flex items-center justify-between gap-3 rounded-[var(--radius-control)] bg-foreground/5 px-3 py-2.5">
       <span className="flex min-w-0 flex-col">
-        <span className="text-[11px] font-medium text-foreground">Reduce motion</span>
+        <span className="text-caption font-medium text-foreground">Reduce motion</span>
         <VarTag>data-motion</VarTag>
       </span>
       <Toggle
@@ -96,7 +96,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
       ) : null}
 
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <span className="flex items-center gap-2 text-[11px] text-muted-foreground">
+        <span className="flex items-center gap-2 text-caption text-muted-foreground">
           CSS names
           <Switch
             aria-label="Caption every control with its CSS variable name"
@@ -128,10 +128,10 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
           {category === SKIN_CATEGORY ? (
             <section id="theme-skin" aria-labelledby="theme-skin-title" className="flex min-w-0 flex-col gap-3">
               <header className="min-w-0">
-                <h2 id="theme-skin-title" className="text-[13px] font-semibold text-foreground">
+                <h2 id="theme-skin-title" className="text-heading-4 font-semibold text-foreground">
                   {activeMeta.label} source
                 </h2>
-                <p className="mt-1 text-[10px] leading-4 text-muted-foreground">
+                <p className="mt-1 text-micro leading-4 text-muted-foreground">
                   Pick a pack from the sidebar. Its tokens and component anatomy ship as the files below.
                 </p>
               </header>

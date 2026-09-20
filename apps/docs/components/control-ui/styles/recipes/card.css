@@ -48,11 +48,13 @@
   :where([data-control-family="card"][data-slot="title"]) {
     font-weight: var(--font-weight-semibold);
     line-height: 1;
+    text-wrap: balance;
   }
 
   :where([data-control-family="card"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-body);
+    text-wrap: pretty;
   }
 }
 

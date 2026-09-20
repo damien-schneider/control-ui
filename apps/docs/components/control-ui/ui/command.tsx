@@ -1,11 +1,12 @@
 "use client";
 
 import { Command as CommandPrimitive, useCommandState } from "cmdk";
-import type { ComponentProps, CSSProperties } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/control-ui/ui/dialog";
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 
 export type CommandChrome = "standalone" | "embedded";
@@ -34,7 +35,7 @@ export function Command({ chrome = "standalone", className, ...props }: CommandP
 
 export function CommandDialog({
   title = "Command palette",
-  description = "Search for a command to run...",
+  description = "Search for a command to run…",
   children,
   className,
   commandProps,
@@ -135,9 +136,19 @@ export function CommandList({
   );
 }
 
-export type CommandEmptyProps = Omit<ComponentProps<typeof CommandPrimitive.Empty>, "style"> & { style?: CSSProperties & PopupKnobStyle };
+export type CommandEmptyProps = Omit<ComponentProps<typeof CommandPrimitive.Empty>, "style" | "title"> & {
+  style?: CSSProperties & PopupKnobStyle;
+  title?: ReactNode;
+  description?: ReactNode;
+};
 
-export function CommandEmpty({ className, children, ...props }: CommandEmptyProps) {
+export function CommandEmpty({
+  className,
+  children,
+  title = "No results found",
+  description = "Try a different search term.",
+  ...props
+}: CommandEmptyProps) {
   return (
     <CommandPrimitive.Empty
       asChild
@@ -148,8 +159,29 @@ export function CommandEmpty({ className, children, ...props }: CommandEmptyProp
       className={className}
       {...props}
     >
-      <div role="status">{children}</div>
+      <div role="status">
+        {children ?? (
+          <Empty>
+            <EmptyHeader>
+              <EmptyMedia>
+                <CommandEmptyIcon />
+              </EmptyMedia>
+              <EmptyTitle>{title}</EmptyTitle>
+              {description ? <EmptyDescription>{description}</EmptyDescription> : null}
+            </EmptyHeader>
+          </Empty>
+        )}
+      </div>
     </CommandPrimitive.Empty>
+  );
+}
+
+function CommandEmptyIcon() {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
+      <circle cx="7" cy="7" r="4.25" stroke="currentColor" strokeWidth="1.3" />
+      <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
   );
 }
 

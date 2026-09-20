@@ -65,7 +65,7 @@ export function HoverCardContent({
         side={side}
         align={align}
         sideOffset={sideOffset}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <PreviewCardPrimitive.Popup
           data-control-ui="hover-card"

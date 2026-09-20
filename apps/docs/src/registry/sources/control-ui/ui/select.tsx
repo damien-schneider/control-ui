@@ -119,7 +119,7 @@ export function SelectContent({ className, children, alignItemWithTrigger = fals
         align="start"
         sideOffset={6}
         alignItemWithTrigger={alignItemWithTrigger}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <SelectPrimitive.Popup
           data-control-ui="select"

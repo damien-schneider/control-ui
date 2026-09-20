@@ -95,7 +95,7 @@ export function ResizableHandle({ className, variant = "solid", withHandle, chil
       data-slot="handle"
       data-variant={variant}
       data-axis={axis}
-      className={cn("relative flex items-center justify-center", axis === "vertical" ? "w-px" : "h-px", className)}
+      className={cn("relative flex items-center justify-center", axis === "vertical" ? "w-px touch-pan-y" : "h-px touch-pan-x", className)}
       {...props}
     >
       {withHandle ? (

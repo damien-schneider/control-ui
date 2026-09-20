@@ -86,8 +86,8 @@ export function Slider({
       onValueChange={onValueChange}
       onValueCommitted={onValueCommitted}
       className={cn(
-        "group relative flex cursor-pointer touch-none select-none items-center data-[disabled]:cursor-not-allowed",
-        orientation === "vertical" ? "min-h-20 w-fit" : "w-full",
+        "group relative flex cursor-pointer select-none items-center data-[disabled]:cursor-not-allowed",
+        orientation === "vertical" ? "min-h-20 w-fit touch-pan-x" : "w-full touch-pan-y",
         className,
       )}
       style={style}

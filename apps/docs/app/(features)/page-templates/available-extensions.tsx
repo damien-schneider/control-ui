@@ -21,7 +21,7 @@ export function AvailableExtensions({ hostId, extensions }: { hostId: ComponentI
     <section id="extensions" className="min-w-0 scroll-mt-20">
       <SectionTitle
         title="Available extensions"
-        description="Optional, separately installed items this surface can host — not part of the component's bundle."
+        description="Optional, separately installed items this surface can host — not part of the component’s bundle."
       />
       <div className="grid gap-4">
         {available.map((extension) => (

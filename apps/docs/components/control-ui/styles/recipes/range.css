@@ -34,6 +34,7 @@
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="track"]) {
     block-size: calc(var(--spacing) * 1.5);
+    touch-action: pan-y;
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
@@ -94,19 +95,24 @@
     background: var(--cui-range-thumb-background);
     box-shadow: var(--cui-range-thumb-shadow);
     outline: none;
+    touch-action: pan-y;
     transition-property: scale, box-shadow, height, width;
     transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:focus-visible) {
     --cui-range-thumb-shadow: var(--shadow-sm);
   }
 
-  :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:where(:hover, [data-dragging])) {
-    scale: 1.1;
+  @media (hover: hover) and (pointer: fine) {
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"]:hover) {
+      scale: 1.1;
+    }
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-dragging]) {
+    scale: 1.1;
     box-shadow: var(--shadow-md);
   }
 
@@ -184,6 +190,11 @@
     padding-inline: 0;
   }
 
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="track"]),
+  :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="thumb"]) {
+    touch-action: pan-x;
+  }
+
   :where([data-control-family="range"][data-range-kind="slider"][data-orientation="vertical"][data-slot="track"]) {
     inline-size: calc(var(--spacing) * 1.5);
     block-size: 100%;
@@ -256,6 +267,17 @@
     font-size: var(--text-label);
     font-weight: var(--font-weight-medium);
     color: var(--foreground);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="range"][data-range-kind="slider"][data-slot="thumb"][data-variant="default"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: max(100%, 44px);
+      block-size: max(100%, 44px);
+    }
   }
 }
 

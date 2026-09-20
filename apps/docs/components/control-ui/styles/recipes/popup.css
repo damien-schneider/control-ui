@@ -61,7 +61,7 @@
     background-color: var(--cui-popup-backdrop-background);
     -webkit-backdrop-filter: blur(var(--backdrop-blur-overlay));
     backdrop-filter: blur(var(--backdrop-blur-overlay));
-    transition: opacity var(--duration-base) var(--ease-standard);
+    transition: opacity var(--duration-base) var(--ease-emphasized);
   }
   :where(.dark [data-control-family="popup"][data-popup-part="backdrop"]) {
     --cui-popup-backdrop-background: oklch(from var(--background) l c h / var(--overlay-opacity));
@@ -99,21 +99,21 @@
     font-weight: var(--font-weight-semibold);
     line-height: 1;
     letter-spacing: -0.025em;
+    text-wrap: balance;
   }
 
   :where([data-control-family="popup"][data-popup-kind="dialog"][data-slot="description"]),
-  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="description"]) {
+  :where([data-control-family="popup"][data-popup-kind="alert-dialog"][data-slot="description"]),
+  :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="description"]),
+  :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-body);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="title"]) {
     font-weight: var(--font-weight-semibold);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="sheet"][data-slot="description"]) {
-    color: var(--muted-foreground);
-    font-size: var(--text-body);
+    text-wrap: balance;
   }
 
   :where([data-control-family="popup"][data-popup-kind="tooltip"][data-slot="arrow"]) {
@@ -242,11 +242,7 @@
     font-weight: var(--font-weight-semibold);
     line-height: 1;
     letter-spacing: -0.01em;
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="popover"][data-slot="description"]) {
-    color: var(--muted-foreground);
-    font-size: var(--text-body);
+    text-wrap: balance;
   }
 
   :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="positioner"]) {

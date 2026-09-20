@@ -167,6 +167,7 @@
 
   :where([data-control-family="code-diff"][data-slot="title"]) {
     font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="code-diff"][data-slot="file-title"]) {

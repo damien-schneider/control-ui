@@ -44,6 +44,7 @@
     color: var(--cui-alert-description-foreground);
     font-size: var(--cui-alert-font-size);
     line-height: var(--text-sm--line-height);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="alert"][data-slot="description"] p) {
@@ -53,6 +54,7 @@
   :where([data-control-family="alert"][data-slot="title"]) {
     font-weight: var(--cui-alert-title-font-weight);
     letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
   }
 
   :where([data-control-family="alert"][data-slot="root"] > svg) {

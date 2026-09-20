@@ -112,7 +112,7 @@ export function ContextMenuContent({ className, children, ...props }: ContextMen
   const skin = useSkin();
   return (
     <ContextMenuPrimitive.Portal>
-      <ContextMenuPrimitive.Positioner data-skin={skin.id} data-effects={controlEffectsAttribute(skin.effects)} className="z-[80]">
+      <ContextMenuPrimitive.Positioner data-skin={skin.id} data-effects={controlEffectsAttribute(skin.effects)} className="z-(--z-popup)">
         <ContextMenuPrimitive.Popup
           data-control-ui="context-menu"
           data-popup-kind="context-menu"
@@ -288,7 +288,7 @@ export function ContextMenuSubContent({ className, children, ...props }: Context
       <ContextMenuPrimitive.Positioner
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className="z-[80]"
+        className="z-(--z-popup)"
         sideOffset={-4}
         alignOffset={-5}
       >

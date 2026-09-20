@@ -26,10 +26,16 @@ export function PageHeader({
     <div className="mb-7">
       <div className="text-caption font-medium text-muted-foreground">{label}</div>
       <div className="mt-2 flex flex-wrap items-center gap-3">
-        <h1 className="text-display font-display">{title}</h1>
+        <h1 className="text-display font-display text-balance">{title}</h1>
         {status ? <StatusBadge status={status} /> : null}
       </div>
-      <p className={wide ? "mt-3 max-w-2xl text-body-lg text-muted-foreground" : "mt-3 text-body-lg text-muted-foreground"}>{summary}</p>
+      <p
+        className={
+          wide ? "mt-3 max-w-2xl text-body-lg text-pretty text-muted-foreground" : "mt-3 text-body-lg text-pretty text-muted-foreground"
+        }
+      >
+        {summary}
+      </p>
     </div>
   );
 }
@@ -49,8 +55,8 @@ export function SectionStack({ children, className }: { children: ReactNode; cla
 export function SectionTitle({ title, description }: { title: string; description?: string }) {
   return (
     <div className="mb-3">
-      <h2 className="text-heading-2 font-display">{title}</h2>
-      {description ? <p className="mt-1 text-body text-muted-foreground">{description}</p> : null}
+      <h2 className="text-heading-2 font-display text-balance">{title}</h2>
+      {description ? <p className="mt-1 text-body text-pretty text-muted-foreground">{description}</p> : null}
     </div>
   );
 }
@@ -86,8 +92,8 @@ export function CompositionSection({ items }: { items: Composition }) {
       <div className="grid min-w-0 gap-12">
         {items.map((item) => (
           <div key={item.title} className="min-w-0">
-            <h3 className="text-body font-normal text-muted-foreground">{item.title}</h3>
-            {item.description ? <p className="mt-2 text-label text-muted-foreground">{item.description}</p> : null}
+            <h3 className="text-body font-normal text-balance text-muted-foreground">{item.title}</h3>
+            {item.description ? <p className="mt-2 text-label text-pretty text-muted-foreground">{item.description}</p> : null}
             <div className="mt-6 min-w-0">
               <CompositionTree tree={item.tree} ownParts={item.ownParts} />
             </div>

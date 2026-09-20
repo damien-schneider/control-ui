@@ -80,11 +80,13 @@
     font-weight: var(--font-weight-semibold);
     line-height: 1;
     letter-spacing: -0.025em;
+    text-wrap: balance;
   }
 
   :where([data-control-family="popup"][data-popup-kind="toast"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-body);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="button"][data-popup-kind="toast"][data-popup-part="close"]) {

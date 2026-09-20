@@ -129,7 +129,7 @@ export function AutocompleteContent({ className, children, sideOffset = 6, ...pr
         side="bottom"
         align="start"
         sideOffset={sideOffset}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <AutocompletePrimitive.Popup
           data-control-ui="autocomplete"

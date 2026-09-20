@@ -26,6 +26,7 @@
     gap: calc(var(--spacing) * 2);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
+    text-wrap: balance;
   }
 
   :where([data-control-family="markdown-block"][data-slot="content"]) {

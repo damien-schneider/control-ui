@@ -20,6 +20,7 @@
       inset 0 0 0 1px var(--_pagination-link-border-color),
       var(--cui-pagination-link-shadow);
     color: var(--cui-pagination-link-foreground);
+    font-variant-numeric: tabular-nums;
     outline: none;
   }
 
@@ -49,6 +50,21 @@
 
   :where([data-control-family="pagination"][data-slot="ellipsis"]) {
     color: var(--muted-foreground);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="pagination"][data-slot="link"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="pagination"][data-slot="link"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
   }
 }
 

@@ -33,7 +33,7 @@ function versionCopy(version: DocsComponentVersion | undefined, versionsShareIte
       installDescription: (
         <>This agent installs from the {registryKind} registry. Install the bundle with the command above, or inspect the source below.</>
       ),
-      sourceDescription: "This agent's owned source and private support files",
+      sourceDescription: "This agent’s owned source and private support files",
     };
   }
 

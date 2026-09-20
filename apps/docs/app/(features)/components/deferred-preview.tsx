@@ -2,6 +2,7 @@
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Skeleton } from "@/components/control-ui/ui/skeleton";
 
 const previewRootMargin = "720px 0px";
 
@@ -17,9 +18,14 @@ export function DeferredPreview({ children, className }: { children: ReactNode; 
       return () => cancelAnimationFrame(frame);
     }
 
-    const observer = new IntersectionObserver(([entry]) => setMounted(Boolean(entry?.isIntersecting)), {
-      rootMargin: previewRootMargin,
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setMounted(true);
+        observer.disconnect();
+      },
+      { rootMargin: previewRootMargin },
+    );
     observer.observe(host);
     return () => observer.disconnect();
   }, []);
@@ -37,10 +43,12 @@ export function DeferredPreview({ children, className }: { children: ReactNode; 
       )}
     >
       {mounted ? (
-        <div className="starting:opacity-0 grid h-full w-full min-w-0 place-items-center opacity-100 transition-opacity duration-[var(--duration-base)] ease-[var(--ease-standard)]">
+        <div className="starting:opacity-0 grid h-full w-full min-w-0 place-items-center opacity-100 transition-opacity duration-[var(--duration-base)] ease-[var(--ease-standard)] motion-reduce:transition-none">
           {children}
         </div>
-      ) : null}
+      ) : (
+        <Skeleton className="size-full" />
+      )}
     </div>
   );
 }

@@ -144,6 +144,7 @@
     opacity: 0.55;
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--tracking-wide);
+    text-wrap: balance;
   }
 
   :where([data-control-family="dynamic-notification"][data-slot="message"]) {

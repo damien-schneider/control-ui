@@ -14,10 +14,10 @@ function nestedEntryCount(value: object | undefined): number {
 function SectionHeading({ id, title, description }: { id: string; title: string; description: string }) {
   return (
     <div className="min-w-0">
-      <h3 id={id} className="text-[14px] font-semibold text-foreground">
+      <h3 id={id} className="text-body font-semibold text-foreground">
         {title}
       </h3>
-      <p className="mt-1 max-w-2xl text-[11px] leading-5 text-muted-foreground">{description}</p>
+      <p className="mt-1 max-w-2xl text-caption leading-5 text-muted-foreground">{description}</p>
     </div>
   );
 }
@@ -28,18 +28,18 @@ function SkinFileStack({ skin }: { skin: SkinId }) {
   return (
     <div className="min-w-0">
       <div className="mb-3 flex items-baseline justify-between gap-3">
-        <h4 className="text-[11px] font-semibold text-foreground">Pack files</h4>
-        <span className="text-[9px] text-muted-foreground">installed together</span>
+        <h4 className="text-caption font-semibold text-foreground">Pack files</h4>
+        <span className="text-micro text-muted-foreground">installed together</span>
       </div>
       <ol className="divide-y divide-border/70 border-y border-border/70">
         {files?.map((file, index) => {
           const [name, detail] = file.label.split(" — ");
           return (
             <li key={file.path} className="grid grid-cols-[1.5rem_minmax(0,1fr)] gap-2 py-3">
-              <span className="font-mono text-[9px] text-muted-foreground">0{index + 1}</span>
+              <span className="font-mono text-micro text-muted-foreground">0{index + 1}</span>
               <span className="min-w-0">
-                <code className="block font-mono text-[10px] font-medium text-foreground">{name}</code>
-                <span className="mt-0.5 block text-[10px] leading-4 text-muted-foreground">{detail}</span>
+                <code className="block font-mono text-micro font-medium text-foreground">{name}</code>
+                <span className="mt-0.5 block text-micro leading-4 text-muted-foreground">{detail}</span>
               </span>
             </li>
           );
@@ -60,8 +60,8 @@ function ResolutionOrder() {
   return (
     <div className="min-w-0">
       <div className="mb-3 flex items-baseline justify-between gap-3">
-        <h4 className="text-[11px] font-semibold text-foreground">Class resolution</h4>
-        <span className="text-[9px] text-muted-foreground">later layers win</span>
+        <h4 className="text-caption font-semibold text-foreground">Class resolution</h4>
+        <span className="text-micro text-muted-foreground">later layers win</span>
       </div>
       <ol className="grid gap-1.5">
         {layers.map((layer, index) => (
@@ -69,12 +69,12 @@ function ResolutionOrder() {
             key={layer.name}
             className="grid grid-cols-[1.5rem_minmax(0,1fr)] gap-2 rounded-[var(--radius-control)] bg-foreground/4 px-2.5 py-2"
           >
-            <span className="grid size-5 place-items-center rounded-[var(--radius-sm)] bg-foreground text-[9px] font-semibold text-background">
+            <span className="grid size-5 place-items-center rounded-[var(--radius-sm)] bg-foreground text-micro font-semibold text-background">
               {index + 1}
             </span>
             <span className="min-w-0">
-              <span className="block text-[10px] font-semibold text-foreground">{layer.name}</span>
-              <span className="block text-[9px] leading-4 text-muted-foreground">{layer.detail}</span>
+              <span className="block text-micro font-semibold text-foreground">{layer.name}</span>
+              <span className="block text-micro leading-4 text-muted-foreground">{layer.detail}</span>
             </span>
           </li>
         ))}
@@ -90,8 +90,8 @@ function ComponentAnatomyPreview() {
         <div className="w-full max-w-md rounded-[var(--radius-panel)] bg-card p-4 shadow-panel ring-1 ring-border">
           <div className="mb-4 flex items-center justify-between gap-3">
             <div>
-              <div className="text-[11px] font-semibold text-foreground">Live component tree</div>
-              <div className="mt-0.5 text-[9px] text-muted-foreground">Rendered by the active skin</div>
+              <div className="text-caption font-semibold text-foreground">Live component tree</div>
+              <div className="mt-0.5 text-micro text-muted-foreground">Rendered by the active skin</div>
             </div>
             <Badge variant="outline" size="sm">
               preview
@@ -123,22 +123,22 @@ function ComponentAnatomyPreview() {
       </div>
       <div className="flex flex-col justify-center gap-4 border-border/70 border-t bg-background p-5 lg:border-t-0 lg:border-l">
         <div>
-          <h4 className="text-[11px] font-semibold text-foreground">Anatomy is the contract</h4>
-          <p className="mt-1 text-[10px] leading-4 text-muted-foreground">
+          <h4 className="text-caption font-semibold text-foreground">Anatomy is the contract</h4>
+          <p className="mt-1 text-micro leading-4 text-muted-foreground">
             Components emit scope, part, and semantic state. Recipes paint that stable anatomy without forking component source.
           </p>
         </div>
         <div className="grid gap-2">
           <div className="flex items-center justify-between gap-3 border-border/70 border-b pb-2">
-            <span className="text-[10px] text-muted-foreground">Scope</span>
+            <span className="text-micro text-muted-foreground">Scope</span>
             <VarTag>data-control-ui=&quot;button&quot;</VarTag>
           </div>
           <div className="flex items-center justify-between gap-3 border-border/70 border-b pb-2">
-            <span className="text-[10px] text-muted-foreground">Part</span>
+            <span className="text-micro text-muted-foreground">Part</span>
             <VarTag>data-slot=&quot;root&quot;</VarTag>
           </div>
           <div className="flex items-center justify-between gap-3">
-            <span className="text-[10px] text-muted-foreground">Knob</span>
+            <span className="text-micro text-muted-foreground">Knob</span>
             <VarTag>--button-bg</VarTag>
           </div>
         </div>
@@ -167,11 +167,11 @@ export function ThemeArchitecture({ skin }: { skin: SkinId }) {
           <div className="mt-5">
             <div className="flex flex-wrap items-center gap-2">
               <Badge size="sm">{meta.kind === "theme" ? "Theme pack" : "Advanced pack"}</Badge>
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-micro text-muted-foreground">
                 {configuredCount === 0 ? "CSS and tokens only" : `${configuredCount} configured skin hooks`}
               </span>
             </div>
-            <p className="mt-3 max-w-lg text-[10px] leading-4 text-muted-foreground">{meta.description}</p>
+            <p className="mt-3 max-w-lg text-micro leading-4 text-muted-foreground">{meta.description}</p>
           </div>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">

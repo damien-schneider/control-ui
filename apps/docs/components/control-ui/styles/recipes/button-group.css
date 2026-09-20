@@ -83,6 +83,14 @@
   :where([data-control-family="button-group"][data-slot="root"] > [data-active="true"]:focus-within) {
     z-index: 3;
   }
+
+  @media (pointer: coarse) {
+    :where(
+        [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"] [data-control-family="button"][data-size="xs"]
+      )::after {
+      block-size: 100%;
+    }
+  }
 }
 
 @property --cui-button-group-text-radius {

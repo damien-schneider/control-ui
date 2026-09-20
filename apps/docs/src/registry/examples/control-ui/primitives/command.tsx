@@ -17,9 +17,9 @@ export function PrimitiveCommandExample() {
   return (
     <div className="w-full max-w-sm">
       <Command className="ring-1 ring-inset ring-border shadow-pop">
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="Type a command or search…" />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty />
           <CommandGroup heading="Suggestions">
             <CommandItem value="new-thread">
               New thread

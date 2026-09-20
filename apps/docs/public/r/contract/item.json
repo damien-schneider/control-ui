@@ -34,7 +34,7 @@
       "name": "--cui-item-active-scale",
       "syntax": "<number>",
       "initialValue": "1",
-      "defaultValue": "1"
+      "defaultValue": "0.99"
     }
   ],
   "parts": {

@@ -241,7 +241,7 @@ export function RichTooltipContent({
         sideOffset={sideOffset}
         anchor={anchor}
         collisionPadding={collisionPadding}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <PopoverPrimitive.Popup
           data-control-ui="rich-tooltip"

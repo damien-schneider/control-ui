@@ -49,6 +49,11 @@
   --duration-slow: 300ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --z-overlay: 70;
+  --z-modal: 71;
+  --z-popup: 80;
+  --z-tooltip: 90;
+  --z-toast: 95;
   --popover-padding: 0.25rem;
   --font-body: var(--font-sans);
   --font-display: var(--font-sans);
@@ -458,6 +463,35 @@
         --radius-scene: calc(var(--radius) * 2.8 * var(--corner-radius-fit));
       }
     }
+  }
+
+  body {
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :where(
+    [data-control-family]:is(
+      a[href],
+      button,
+      input,
+      label,
+      select,
+      summary,
+      textarea,
+      [role="button"],
+      [role="checkbox"],
+      [role="menuitem"],
+      [role="menuitemcheckbox"],
+      [role="menuitemradio"],
+      [role="option"],
+      [role="radio"],
+      [role="switch"],
+      [role="tab"]
+    )
+  ) {
+    touch-action: manipulation;
   }
 }
 

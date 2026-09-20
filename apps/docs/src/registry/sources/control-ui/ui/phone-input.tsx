@@ -101,8 +101,8 @@ function PhoneCountrySelect({
   disabled,
   readOnly,
   "aria-label": ariaLabel = "Country",
-  searchPlaceholder = "Search country...",
-  emptyMessage = "No country found.",
+  searchPlaceholder = "Search country…",
+  emptyMessage,
   knobStyle,
 }: PhoneCountrySelectProps) {
   const countryStyle = knobStyle;
@@ -138,7 +138,7 @@ function PhoneCountrySelect({
           <Command chrome="embedded">
             <CommandInput aria-label={searchPlaceholder} placeholder={searchPlaceholder} />
             <CommandList>
-              <CommandEmpty>{emptyMessage}</CommandEmpty>
+              <CommandEmpty title={emptyMessage} />
               <CommandGroup>
                 {options.map((option) => {
                   const callingCode = option.value ? `+${getCountryCallingCode(option.value)}` : "";

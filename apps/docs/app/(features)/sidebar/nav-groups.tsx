@@ -20,7 +20,7 @@ function NavMenu({
   onNavigate,
 }: {
   items: DocsNavItem[];
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   prefix: string;
   onNavigate: () => void;
 }) {
@@ -57,7 +57,7 @@ export function DocsNavGroup({
   title: string;
   icon?: IconSvgElement;
   items: DocsNavItem[];
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   prefix: string;
   onNavigate: () => void;
 }) {
@@ -105,7 +105,7 @@ export function SidebarDoorPane({
   children,
 }: {
   door: SidebarDoor;
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   onNavigate: () => void;
   onBack: () => void;
   children: ReactNode;
@@ -138,7 +138,7 @@ export function SkillConcernNavGroups({
 }: {
   concerns: readonly DocsSkillConcern[];
   skills: readonly DocsSkill[];
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   onNavigate: () => void;
 }) {
   const groups = concerns.map((concern) => {

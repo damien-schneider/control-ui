@@ -7,13 +7,16 @@ import { componentEntries } from "@/app/(features)/catalog/components";
 import { utilEntries } from "@/app/(features)/catalog/hooks-utils";
 import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import type { BlockId, ComponentId, IntegrationId, PrimitiveId, UtilId } from "@/app/(features)/model/types";
+import { Skeleton } from "@/components/control-ui/ui/skeleton";
+
+const previewFallback = <Skeleton className="min-h-40 w-full self-stretch" />;
 
 export function Preview({ componentId, integration }: { componentId: ComponentId; integration: IntegrationId }) {
   const entry = componentEntries.find((item) => item.id === componentId);
   const Example = entry?.preview.Component;
 
   return Example ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={previewFallback}>
       <Example integration={integration} />
     </Suspense>
   ) : null;
@@ -34,7 +37,7 @@ export function ComponentVersionPreview({
   const Example = version?.preview.Component;
 
   return Example ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={previewFallback}>
       <Example integration={integration} />
     </Suspense>
   ) : null;
@@ -45,7 +48,7 @@ export function BlockPreview({ blockId, integration }: { blockId: BlockId; integ
   const Example = entry?.preview.Component;
 
   return Example ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={previewFallback}>
       <Example integration={integration} />
     </Suspense>
   ) : null;
@@ -56,7 +59,7 @@ export function UtilPreview({ utilId }: { utilId: UtilId }) {
   const Example = entry && "preview" in entry ? entry.preview.Component : undefined;
 
   return Example ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={previewFallback}>
       <Example />
     </Suspense>
   ) : null;
@@ -67,7 +70,7 @@ export function PrimitivePreview({ primitiveId }: { primitiveId: PrimitiveId }) 
   const Example = entry?.preview.Component;
 
   return Example ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={previewFallback}>
       <Example />
     </Suspense>
   ) : null;
@@ -79,7 +82,7 @@ export function ComponentExamplePreview({ componentId, exampleId }: { componentI
   const Example = preview?.preview.Component;
 
   return Example ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={previewFallback}>
       <Example />
     </Suspense>
   ) : null;
@@ -91,7 +94,7 @@ export function PrimitiveExamplePreview({ primitiveId, exampleId }: { primitiveI
   const Example = preview?.preview.Component;
 
   return Example ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={previewFallback}>
       <Example />
     </Suspense>
   ) : null;

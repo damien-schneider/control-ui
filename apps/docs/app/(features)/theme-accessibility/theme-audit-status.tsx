@@ -26,7 +26,7 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
         ) : (
           <CheckCircle2Icon aria-hidden className="mt-0.5 size-3.5 shrink-0" />
         )}
-        <span>
+        <span className="tabular-nums">
           {errors.length > 0
             ? `${errors.length} required contrast ${errors.length === 1 ? "check fails" : "checks fail"} WCAG AA in this preview.`
             : `${requiredCount} required contrast checks clear WCAG AA in this preview.`}

@@ -43,7 +43,7 @@ export function SheetContent({ className, children, side = "right", ...props }: 
         data-popup-part="backdrop"
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className="fixed inset-0 z-[70]"
+        className="fixed inset-0 z-(--z-overlay)"
       />
       <SheetPrimitive.Popup
         data-skin={skin.id}
@@ -54,7 +54,11 @@ export function SheetContent({ className, children, side = "right", ...props }: 
         data-slot="content"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed inset-y-0 z-[71] flex h-full w-3/4 max-w-sm flex-col", side === "left" ? "left-0" : "right-0", className)}
+        className={cn(
+          "fixed inset-y-0 z-(--z-modal) flex h-full w-3/4 max-w-sm flex-col",
+          side === "left" ? "left-0" : "right-0",
+          className,
+        )}
         {...props}
         data-side={side}
       >

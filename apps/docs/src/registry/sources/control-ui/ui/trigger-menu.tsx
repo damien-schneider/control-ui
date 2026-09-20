@@ -63,7 +63,7 @@ export function TriggerMenu({
           side={side}
           align={align}
           sideOffset={sideOffset}
-          className="z-[80]"
+          className="z-(--z-popup)"
         >
           <PopoverPrimitive.Popup
             data-control-ui="trigger-menu"

@@ -39,7 +39,7 @@ import { useCloseMobileSidebar } from "./use-close-mobile-sidebar";
 
 const githubStarsFormatter = new Intl.NumberFormat("en-US");
 
-function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; active: ActivePageId; onNavigate: () => void }) {
+function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; active: ActivePageId | undefined; onNavigate: () => void }) {
   const cta = ctaGuide(guides);
   if (!cta) return null;
 
@@ -60,7 +60,7 @@ function GuideCtaLink({ guides, active, onNavigate }: { guides: GuidePage[]; act
 type DoorNavGroupsProps = Pick<DocsSidebarContentProps, "blocks" | "skills" | "skillConcerns"> & {
   doorId: SidebarDoorId;
   referenceGroups: GuideNavGroup[];
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   onNavigate: () => void;
 };
 
@@ -89,7 +89,7 @@ function DoorNavGroups({ doorId, referenceGroups, blocks, skills, skillConcerns,
 }
 
 type CatalogNavGroupsProps = Pick<DocsSidebarContentProps, "components" | "primitives" | "hooks" | "utils" | "extensions"> & {
-  active: ActivePageId;
+  active: ActivePageId | undefined;
   onNavigate: () => void;
 };
 
@@ -130,7 +130,7 @@ export function DocsSidebarContent({
   const guideSections = guideNavSections(guides);
   const startGroup = guideSections.top.find((group) => group.id === "start");
   const pane = sidebarPaneForActivePage(active, searchItems, guideSections.reference);
-  const [rootPaneOnPage, setRootPaneOnPage] = useState<ActivePageId | null>(null);
+  const [rootPaneOnPage, setRootPaneOnPage] = useState<ActivePageId>();
   const openDoor = rootPaneOnPage === active ? undefined : [...sidebarDoors, themeEditorDoor].find((door) => door.id === pane);
 
   return (
@@ -151,7 +151,8 @@ export function DocsSidebarContent({
             </div>
             <DocsSearchTrigger />
           </div>
-          <div role="toolbar" aria-label="Documentation controls" className="flex items-center gap-1.5">
+          {/* biome-ignore lint/a11y/useSemanticElements: a labelled row of sidebar controls, not a form fieldset. */}
+          <div role="group" aria-label="Documentation controls" className="flex items-center gap-1.5">
             <SkinPresetControls className="min-w-0 flex-1 justify-between" />
             <ButtonLink
               render={<Link href="/theme-editor" onClick={closeSidebar} />}

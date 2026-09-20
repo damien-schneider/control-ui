@@ -24,7 +24,7 @@ function LevelBadge({ level, state }: { level: WcagLevel; state: "pass" | "fail"
     <span
       title={level === "AA" ? "WCAG AA · 4.5:1" : "WCAG AAA · 7:1"}
       className={cn(
-        "shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide tabular-nums",
+        "shrink-0 rounded-full px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide tabular-nums",
         state === "pass" && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
         state === "fail" && "bg-red-500/15 text-red-700 dark:text-red-400",
         state === "unknown" && "bg-muted text-muted-foreground",
@@ -42,7 +42,7 @@ function FixChip({ level, onClick }: { level: WcagLevel; onClick: () => void }) 
       onClick={onClick}
       title={level === "AA" ? "Fix this pairing to WCAG AA (4.5:1)" : "Upgrade this pairing to WCAG AAA (7:1)"}
       className={cn(
-        "shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide transition-colors",
+        "shrink-0 rounded-full px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide transition-colors motion-reduce:transition-none",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
         level === "AA"
           ? "bg-foreground text-background hover:opacity-90"
@@ -111,7 +111,7 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
   return (
     <div className="flex flex-col gap-3">
       <span className="flex items-baseline justify-between gap-2.5">
-        <span className="text-[11px] font-medium text-muted-foreground">Accessibility · contrast</span>
+        <span className="text-caption font-medium text-muted-foreground">Accessibility · contrast</span>
         <VarTag>WCAG AA 4.5 · AAA 7</VarTag>
       </span>
       <div className="flex flex-col gap-1 rounded-[8px] border border-border p-1.5">
@@ -121,13 +121,13 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
             <div key={r.label} className="flex items-center gap-2.5 rounded-[6px] px-2 py-1.5">
               <span
                 aria-hidden
-                className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border text-[11px] font-semibold"
+                className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border text-caption font-semibold"
                 style={{ color: `var(${r.fg})`, background: `var(${r.bg})` }}
               >
                 Aa
               </span>
-              <span className="min-w-0 flex-1 truncate text-[12px] text-foreground">{r.label}</span>
-              <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+              <span className="min-w-0 flex-1 truncate text-label text-foreground">{r.label}</span>
+              <span className="font-mono text-caption tabular-nums text-muted-foreground">
                 {r.ratio === null ? "—" : `${r.ratio.toFixed(2)}:1`}
               </span>
               <span className="flex shrink-0 items-center gap-1.5">
@@ -139,7 +139,7 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
           );
         })}
       </div>
-      <span className="text-[10px] text-muted-foreground">{hint}</span>
+      <span className="text-micro text-muted-foreground">{hint}</span>
     </div>
   );
 }

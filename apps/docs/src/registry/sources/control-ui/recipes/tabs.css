@@ -178,6 +178,22 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="tabs"][data-slot="list"]:not([data-single="true"]) [data-slot="tab"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
+
+    :where([data-control-family="tabs"][data-slot="list"][data-orientation="vertical"]:not([data-single="true"]) [data-slot="tab"])::after {
+      inline-size: max(100%, 44px);
+      block-size: 100%;
+    }
+  }
 }
 
 @property --cui-tabs-trigger-radius {

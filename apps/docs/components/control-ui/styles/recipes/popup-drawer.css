@@ -85,11 +85,13 @@
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="title"]) {
     color: var(--foreground);
     font-weight: var(--font-weight-semibold);
+    text-wrap: balance;
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="description"]) {
     color: var(--muted-foreground);
     font-size: var(--text-sm);
+    text-wrap: pretty;
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"][data-side="bottom"]) {
@@ -150,7 +152,7 @@
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="backdrop"]) {
     transition-property: opacity;
-    transition-timing-function: var(--ease-standard);
+    transition-timing-function: var(--ease-emphasized);
     --_drawer-backdrop-transition-duration: var(--duration-base);
     transition-duration: var(--_drawer-backdrop-transition-duration);
   }

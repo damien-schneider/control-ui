@@ -10,6 +10,7 @@
   "registryDependencies": [
     "core",
     "dialog",
+    "empty",
     "scroll-area",
     "surface-variants"
   ],

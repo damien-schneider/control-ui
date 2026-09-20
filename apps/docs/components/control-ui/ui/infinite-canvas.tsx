@@ -315,6 +315,7 @@ export function InfiniteCanvasControls({ className, ...props }: InfiniteCanvasCo
         type="button"
         size="sm"
         variant="ghost"
+        className="tabular-nums"
         aria-label={`Reset canvas zoom, currently ${percentage}%`}
         onClick={() => canvas.reset("control")}
       >

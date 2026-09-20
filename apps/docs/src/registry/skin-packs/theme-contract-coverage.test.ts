@@ -294,12 +294,16 @@ describe("skin pack theme.css stays within the token contract", () => {
       expect(componentCssOffenders(themeRoot)).toEqual([]);
     });
 
-    test(`${id}/skin.css never redeclares contract tokens`, () => {
+    test(`${id}/skin.css redeclares contract tokens only under a component scope`, () => {
       const offenders = [
         ...new Set(
           customDeclarations(skinRoot)
-            .map((declaration) => declaration.prop)
-            .filter((name) => THEME_CONTRACT_NAMES.has(name)),
+            .filter((declaration) => THEME_CONTRACT_NAMES.has(declaration.prop))
+            .filter((declaration) => {
+              const rule = declarationRule(declaration);
+              return !rule || selectorOnlyScopesSkin(rule.selector, id);
+            })
+            .map(sourceLabel),
         ),
       ].sort();
       expect(offenders).toEqual([]);

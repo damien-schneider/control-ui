@@ -157,7 +157,7 @@ export function NumberFieldScrubArea({ className, children, ...props }: NumberFi
       data-control-family="field"
       data-field-kind="number-field"
       data-slot="scrub-area"
-      className={cn("cursor-ew-resize select-none", className)}
+      className={cn("cursor-ew-resize touch-pan-y select-none", className)}
       {...props}
     >
       {children}

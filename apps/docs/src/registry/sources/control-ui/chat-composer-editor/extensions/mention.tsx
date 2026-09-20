@@ -81,6 +81,10 @@ const mentionNode: NodeSpec = {
             {
               src: icon,
               alt: "",
+              width: "16",
+              height: "16",
+              loading: "lazy",
+              decoding: "async",
               class: "shrink-0",
               "data-control-ui": "chat-composer",
               "data-control-family": "chat-composer",

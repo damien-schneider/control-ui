@@ -15,6 +15,7 @@ import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
 import { useSkin } from "@/components/control-ui/skin-provider";
+import { ButtonLink } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
@@ -29,6 +30,8 @@ import {
   updateDocsSetupPreference,
   useIsHydrated,
 } from "./setup-preference";
+
+const docsMainId = "docs-main";
 
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
@@ -64,6 +67,46 @@ function activePageForPathname(pathname: string, searchItems: SearchItem[]): Act
   const path = normalizePathname(pathname);
   const currentPath = isThemeCategoryPath(path) ? THEME_EDITOR_PATH : path;
   return searchItems.find((item) => normalizePathname(item.href) === currentPath)?.id;
+}
+
+type ActivePageCatalog = Pick<
+  DocsShellData,
+  "guides" | "skills" | "components" | "blocks" | "primitives" | "hooks" | "utils" | "extensions" | "skinPages"
+>;
+
+function resolveActivePage(activePage: ActivePageId | undefined, catalog: ActivePageCatalog) {
+  const { guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages } = catalog;
+  const activeGuide = guides.find((item) => item.id === activePage);
+  const activeSkill = skills.find((item) => item.id === activePage);
+  const activeUseCase = blocks.find((item) => item.id === activePage);
+  const activePrimitive = primitives.find((item) => item.id === activePage);
+  const activeReference = hooks.find((item) => item.id === activePage) ?? utils.find((item) => item.id === activePage);
+  const activeExtension = extensions.find((item) => item.id === activePage);
+  const activeCatalogOverview = activePage === "ai" || activePage === "primitives" || activePage === "use-cases" ? activePage : undefined;
+  const activeSkinsOverview = activePage === skinsOverviewId;
+  const activeSkinPage = skinPages.find((item) => item.id === activePage);
+  const matchedElsewhere =
+    activeGuide ?? activeSkill ?? activeUseCase ?? activePrimitive ?? activeReference ?? activeExtension ?? activeCatalogOverview;
+  const component =
+    matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : components.find((item) => item.id === activePage);
+
+  return {
+    isWorkspace: activeGuide?.layout === "workspace",
+    links: pageLinks({
+      activeGuide,
+      activeSkill,
+      activeUseCase,
+      activePrimitive,
+      activeReference,
+      activeExtension,
+      activeSkinPage,
+      activeSkinsOverview,
+      activeCatalogOverview,
+      component,
+      primitives,
+      extensions,
+    }),
+  };
 }
 
 function PersistedDocsShell(props: PersistedDocsShellProps) {
@@ -151,44 +194,16 @@ function DocsShellContent({
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
 
-  if (!activePage) return <>{children}</>;
-
-  const activeGuide = guides.find((item) => item.id === activePage);
-  const activeSkill = skills.find((item) => item.id === activePage);
-  const activeUseCase = blocks.find((item) => item.id === activePage);
-  const activePrimitive = primitives.find((item) => item.id === activePage);
-  const activeHook = hooks.find((item) => item.id === activePage);
-  const activeUtil = utils.find((item) => item.id === activePage);
-  const activeExtension = extensions.find((item) => item.id === activePage);
-  const activeReference = activeHook ?? activeUtil;
-  const activeCatalogOverview = activePage === "ai" || activePage === "primitives" || activePage === "use-cases" ? activePage : undefined;
-  const activeSkinsOverview = activePage === skinsOverviewId;
-  const activeSkinPage = skinPages.find((item) => item.id === activePage);
-  const activeSkins = activeSkinsOverview || Boolean(activeSkinPage);
-  const activeComponent =
-    activeGuide ||
-    activeSkill ||
-    activeUseCase ||
-    activePrimitive ||
-    activeReference ||
-    activeExtension ||
-    activeCatalogOverview ||
-    activeSkins
-      ? undefined
-      : components.find((item) => item.id === activePage);
-  const links = pageLinks({
-    activeGuide,
-    activeSkill,
-    activeUseCase,
-    activePrimitive,
-    activeReference,
-    activeExtension,
-    activeSkinPage,
-    activeSkinsOverview,
-    activeCatalogOverview,
-    component: activeComponent,
+  const { links, isWorkspace } = resolveActivePage(activePage, {
+    guides,
+    skills,
+    components,
+    blocks,
     primitives,
+    hooks,
+    utils,
     extensions,
+    skinPages,
   });
   const pageContent = (
     <DocsPageIntegrationProvider
@@ -198,8 +213,7 @@ function DocsShellContent({
       {children}
     </DocsPageIntegrationProvider>
   );
-  const isWorkspace = activeGuide?.layout === "workspace";
-  const pageGrid = (
+  const body = activePage ? (
     <div data-docs-page-grid="" data-docs-page-layout={isWorkspace ? "workspace" : undefined}>
       {pageContent}
       {isWorkspace ? null : (
@@ -208,6 +222,8 @@ function DocsShellContent({
         </aside>
       )}
     </div>
+  ) : (
+    pageContent
   );
 
   return (
@@ -219,6 +235,14 @@ function DocsShellContent({
       width={sidebarWidth}
       onWidthChange={onSidebarWidthChange}
     >
+      <ButtonLink
+        href={`#${docsMainId}`}
+        variant="surface"
+        size="sm"
+        className="fixed start-3 top-3 z-(--z-popup) translate-y-[calc(-100%-1rem)] focus-visible:translate-y-0"
+      >
+        Skip to content
+      </ButtonLink>
       <DocsSearchProvider items={searchItems}>
         <DocsSidebarContent
           active={activePage}
@@ -235,7 +259,12 @@ function DocsShellContent({
           skinPages={skinPages}
           searchItems={searchItems}
         />
-        <SidebarInset data-docs-inset="" className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex">
+        <SidebarInset
+          data-docs-inset=""
+          id={docsMainId}
+          tabIndex={-1}
+          className="min-h-0 lg:peer-data-[state=collapsed]:[&_[data-docs-sidebar-trigger]]:flex"
+        >
           <div
             data-docs-content=""
             data-control-ui="sidebar-layout"
@@ -254,10 +283,10 @@ function DocsShellContent({
               <SidebarTrigger className="pointer-events-auto" />
             </div>
             {usesPageLayout ? (
-              pageGrid
+              body
             ) : (
               <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
-                {pageGrid}
+                {body}
               </ScrollArea>
             )}
           </div>

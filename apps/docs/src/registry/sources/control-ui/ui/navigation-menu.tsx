@@ -165,7 +165,7 @@ export function NavigationMenuViewport({ className, ...props }: NavigationMenuVi
         sideOffset={8}
         collisionPadding={{ top: 5, bottom: 5, left: 16, right: 16 }}
         collisionAvoidance={{ side: "none" }}
-        className="z-[80] h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] before:absolute before:inset-x-0 before:top-[-8px] before:h-2 before:content-['']"
+        className="z-(--z-popup) h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] before:absolute before:inset-x-0 before:top-[-8px] before:h-2 before:content-['']"
       >
         <NavigationMenuPrimitive.Popup
           data-control-ui="navigation-menu"

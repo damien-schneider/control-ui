@@ -24,7 +24,7 @@ export function PrimitiveInputGroupExample() {
               <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
             </svg>
           </InputGroupAddon>
-          <InputGroupInput placeholder="Search documentation..." />
+          <InputGroupInput placeholder="Search documentation…" />
           <InputGroupAddon>
             <Kbd>⌘K</Kbd>
           </InputGroupAddon>

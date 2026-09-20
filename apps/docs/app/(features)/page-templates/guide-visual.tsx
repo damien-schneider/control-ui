@@ -43,7 +43,7 @@ export function DiagramNode({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "rounded-lg border border-border/80 bg-background/80 px-3 py-2.5 text-label leading-5 transition-[border-color,background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:-translate-y-0.5 hover:border-primary/40 hover:bg-background",
+        "rounded-lg border border-border/80 bg-background/80 px-3 py-2.5 text-label leading-5 transition-[border-color,background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:-translate-y-0.5 hover:border-primary/40 hover:bg-background motion-reduce:transition-none",
         className,
       )}
       {...props}

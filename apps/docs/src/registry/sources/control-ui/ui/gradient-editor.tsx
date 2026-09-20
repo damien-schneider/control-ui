@@ -207,7 +207,7 @@ export function GradientEditorTrack({
       data-slot="track"
       aria-label={ariaLabelledBy === undefined ? (ariaLabel ?? "Gradient stops") : ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      className={cn("relative m-0 min-w-0 w-full cursor-copy p-0", className)}
+      className={cn("relative m-0 min-w-0 w-full cursor-copy touch-pan-y p-0", className)}
       style={{ ...style, backgroundImage: stripe }}
       onPointerDown={(event) => {
         // only bare track adds stop — click on handle is that handle's to deal with
@@ -327,7 +327,10 @@ export function GradientEditorStop({
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onDoubleClick={handleDoubleClick}
-      className={cn("-translate-x-1/2 absolute top-1/2 -translate-y-1/2 cursor-grab overflow-hidden active:cursor-grabbing", className)}
+      className={cn(
+        "-translate-x-1/2 absolute top-1/2 -translate-y-1/2 cursor-grab touch-pan-y overflow-hidden active:cursor-grabbing",
+        className,
+      )}
       style={{ ...style, left: `${stop.position * 100}%`, backgroundColor: stop.color }}
       {...props}
     />

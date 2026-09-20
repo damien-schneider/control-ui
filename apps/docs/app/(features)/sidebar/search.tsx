@@ -2,6 +2,7 @@
 
 import { Search01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createContext, type ReactNode, use, useEffect, useState } from "react";
 import { useIsHydrated } from "@/app/(features)/client/setup-preference";
@@ -9,8 +10,9 @@ import { StatusBadge } from "@/app/(features)/components/status";
 import type { SearchItem } from "@/app/(features)/model/types";
 import { matchSearchItems, scoreCommandSearchItem } from "@/app/(features)/registry-api/search";
 import { Badge } from "@/components/control-ui/ui/badge";
-import { Button } from "@/components/control-ui/ui/button";
+import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/control-ui/ui/command";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Kbd } from "@/components/control-ui/ui/kbd";
 import { useCloseMobileSidebar } from "./use-close-mobile-sidebar";
 
@@ -37,7 +39,7 @@ export function DocsSearchTrigger() {
         iconOnly
         aria-label="Search documentation"
         title="Search documentation"
-        aria-keyshortcuts="Meta+K Control+K"
+        aria-keyshortcuts="Meta+K Control+K /"
         onClick={openSearch}
         data-docs-sidebar-search=""
       >
@@ -85,6 +87,11 @@ export function DocsSearchProvider({ items, children }: { items: SearchItem[]; c
     closeSidebar();
   }
 
+  function leaveForCatalog() {
+    changeOpen(false);
+    closeSidebar();
+  }
+
   function renderItem(item: SearchItem) {
     return (
       <CommandItem key={item.id} value={item.id} keywords={[item.name, item.kind, item.summary]} onSelect={() => openItem(item)}>
@@ -110,9 +117,24 @@ export function DocsSearchProvider({ items, children }: { items: SearchItem[]; c
         description="Search guides, components, primitives, and patterns."
         commandProps={{ filter: scoreCommandSearchItem }}
       >
-        <CommandInput value={query} onValueChange={setQuery} aria-label="Search documentation" placeholder="Search documentation..." />
-        <CommandList key={query.trim() || "browse"}>
-          <CommandEmpty>No results found.</CommandEmpty>
+        <CommandInput value={query} onValueChange={setQuery} aria-label="Search documentation" placeholder="Search documentation…" />
+        <CommandList>
+          <CommandEmpty>
+            <Empty>
+              <EmptyHeader>
+                <EmptyMedia>
+                  <HugeiconsIcon aria-hidden icon={Search01Icon} strokeWidth={1.7} />
+                </EmptyMedia>
+                <EmptyTitle>No matches for “{query.trim()}”</EmptyTitle>
+                <EmptyDescription>Try a shorter term, or browse every component in the catalog.</EmptyDescription>
+              </EmptyHeader>
+              <EmptyContent>
+                <ButtonLink render={<Link href="/primitives" onClick={leaveForCatalog} />} variant="surface" size="sm">
+                  Browse components
+                </ButtonLink>
+              </EmptyContent>
+            </Empty>
+          </CommandEmpty>
           {searchResults ? (
             <CommandGroup>{searchResults.map(renderItem)}</CommandGroup>
           ) : (

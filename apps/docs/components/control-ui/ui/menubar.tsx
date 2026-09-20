@@ -108,7 +108,7 @@ export function MenubarContent({ className, children, ...props }: MenubarContent
         side="bottom"
         align="start"
         sideOffset={6}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <MenuPrimitive.Popup
           data-control-ui="menubar"
@@ -238,7 +238,7 @@ export function MenubarSubContent({ className, children, ...props }: MenubarSubC
         align="start"
         sideOffset={-4}
         alignOffset={-5}
-        className="z-[80]"
+        className="z-(--z-popup)"
       >
         <MenuPrimitive.Popup
           data-control-ui="menubar"

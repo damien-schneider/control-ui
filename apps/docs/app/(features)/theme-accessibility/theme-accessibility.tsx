@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
+import { Skeleton } from "@/components/control-ui/ui/skeleton";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { THEME_AUDIT_CATEGORIES, type ThemeAuditCategory, type ThemeAuditResult, type ThemeAuditStatus } from "./audit-contract";
 import { useThemeAudit } from "./use-theme-audit";
@@ -22,7 +24,7 @@ function AuditOutcome({ result }: { result: ThemeAuditResult }) {
   return (
     <span
       className={cn(
-        "inline-flex min-w-14 justify-center rounded-full px-2 py-1 text-[10px] font-semibold tabular-nums",
+        "inline-flex min-w-14 justify-center rounded-full px-2 py-1 text-micro font-semibold tabular-nums",
         result.status === "pass" && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
         result.status === "fail" && result.severity === "error" && "bg-red-500/15 text-red-700 dark:text-red-400",
         result.status === "fail" && result.severity === "warning" && "bg-amber-500/15 text-amber-800 dark:text-amber-300",
@@ -42,7 +44,7 @@ function ContrastSample({ result }: { result: ThemeAuditResult }) {
       style={{ background: result.surfacePaint ?? `var(${result.surface})` }}
     >
       <span
-        className="grid size-full place-items-center text-[11px] font-semibold"
+        className="grid size-full place-items-center text-caption font-semibold"
         style={{
           color: result.resolvedForeground ?? `var(${result.foreground})`,
           background: result.resolvedBackground ?? result.backgroundPaint ?? `var(${result.background})`,
@@ -60,10 +62,13 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
   return (
     <section className="grid gap-3" aria-labelledby={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}>
       <header className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id={`audit-${category.replaceAll(" ", "-").toLowerCase()}`} className="text-heading-4 font-semibold text-foreground">
+        <h2
+          id={`audit-${category.replaceAll(" ", "-").toLowerCase()}`}
+          className="text-balance text-heading-4 font-semibold text-foreground"
+        >
           {category}
         </h2>
-        <span className="text-caption text-muted-foreground">
+        <span className="text-caption tabular-nums text-muted-foreground">
           {issueCount === 0 ? `${results.length} passed` : `${issueCount} ${issueCount === 1 ? "issue" : "issues"}`}
         </span>
       </header>
@@ -101,14 +106,14 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
                     {result.severity === "warning" ? "Advisory" : "Required"} {result.threshold >= 4.5 ? "text" : "non-text"} contrast
                   </span>
                 </th>
-                <td className="py-2.5 pr-4 font-mono text-[10px] leading-5 text-muted-foreground">
+                <td className="py-2.5 pr-4 font-mono text-micro leading-5 text-muted-foreground">
                   <code>{result.foreground}</code>
                   <span aria-hidden> / </span>
                   <code>{result.background}</code>
                 </td>
                 <td className="py-2.5 pr-4 text-right font-mono tabular-nums text-foreground">
                   {result.ratio === null ? "—" : `${result.ratio.toFixed(2)}:1`}
-                  <span className="mt-0.5 block text-[10px] text-muted-foreground">min {result.threshold}:1</span>
+                  <span className="mt-0.5 block text-micro text-muted-foreground">min {result.threshold}:1</span>
                 </td>
                 <td className="py-2.5 text-right">
                   <AuditOutcome result={result} />
@@ -122,13 +127,50 @@ function AuditTable({ category, results }: { category: ThemeAuditCategory; resul
   );
 }
 
+function AuditResultsSkeleton() {
+  return (
+    <div className="grid gap-9">
+      <p role="status" className="sr-only">
+        Resolving theme tokens…
+      </p>
+      {[0, 1].map((group) => (
+        <div key={group} className="grid gap-3">
+          <div className="flex items-baseline justify-between gap-2">
+            <Skeleton className="h-5 w-44" />
+            <Skeleton className="h-3.5 w-16" />
+          </div>
+          <div className="grid gap-2 border-y border-border py-2.5">
+            <Skeleton className="h-4 w-full" />
+            {[0, 1, 2, 3].map((row) => (
+              <Skeleton key={row} className="h-10 w-full" />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function AuditResults({ loading, results }: { loading: boolean; results: ThemeAuditResult[] }) {
-  if (loading) return <p className="min-h-28 text-body text-muted-foreground">Resolving theme tokens…</p>;
+  if (loading) return <AuditResultsSkeleton />;
   if (results.length === 0) {
     return (
-      <div className="flex min-h-28 items-center gap-3 border-y border-border py-6 text-body text-foreground">
-        <CheckCircle2Icon aria-hidden className="size-5 text-emerald-600 dark:text-emerald-400" /> No contrast issues in this mode.
-      </div>
+      <Empty className="py-10" style={{ "--cui-empty-border-color": "var(--border)" }}>
+        <EmptyHeader>
+          <EmptyMedia>
+            <CheckCircle2Icon aria-hidden className="text-emerald-600 dark:text-emerald-400" />
+          </EmptyMedia>
+          <EmptyTitle>No contrast issues in this mode</EmptyTitle>
+          <EmptyDescription>
+            Every required and advisory pairing clears its ratio here. Change a token and the audit re-runs against the live theme.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <ButtonLink variant="surface" size="sm" render={<Link href="/theme-editor" />}>
+            <PaintbrushIcon aria-hidden className="size-3.5" /> Open the token editor
+          </ButtonLink>
+        </EmptyContent>
+      </Empty>
     );
   }
   return (
@@ -179,10 +221,10 @@ export function ThemeAccessibility() {
               )}
             </span>
             <div>
-              <h2 id="active-theme-audit" className="text-heading-4 font-semibold text-foreground">
+              <h2 id="active-theme-audit" className="text-balance text-heading-4 font-semibold tabular-nums text-foreground">
                 {auditSummary}
               </h2>
-              <p className="mt-1 max-w-2xl text-caption leading-5 text-muted-foreground">
+              <p className="mt-1 max-w-2xl text-caption leading-5 text-pretty text-muted-foreground">
                 Resolves contract colors and rendered active-tab paint, including alpha layers and sampled gradient stops. Switch modes to
                 inspect light and dark independently.
               </p>
@@ -197,7 +239,7 @@ export function ThemeAccessibility() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-caption text-muted-foreground">{advisorySummary}</p>
+          <p className="text-caption tabular-nums text-muted-foreground">{advisorySummary}</p>
           <Button variant="quiet" size="sm" active={issuesOnly} onClick={() => setIssuesOnly((current) => !current)}>
             {issuesOnly ? "Show all pairs" : "Show issues only"}
           </Button>
@@ -208,10 +250,10 @@ export function ThemeAccessibility() {
 
       <section className="grid gap-4 border-t border-border pt-8" aria-labelledby="optional-cli-check">
         <div className="max-w-2xl">
-          <h2 id="optional-cli-check" className="text-heading-4 font-semibold text-foreground">
+          <h2 id="optional-cli-check" className="text-balance text-heading-4 font-semibold text-foreground">
             Optional CLI check
           </h2>
-          <p className="mt-1.5 text-body leading-6 text-muted-foreground">
+          <p className="mt-1.5 text-body leading-6 text-pretty text-muted-foreground">
             Audit any skin <code>theme.css</code> in light and dark. A sibling <code>skin.css</code> is loaded when present; slot classes
             from <code>skin.config</code> remain a live-preview check. Required failures or unresolved paints exit non-zero.
           </p>

@@ -2260,6 +2260,7 @@
       "registryDependencies": [
         "damien-schneider/control-ui/core",
         "damien-schneider/control-ui/dialog",
+        "damien-schneider/control-ui/empty",
         "damien-schneider/control-ui/scroll-area",
         "damien-schneider/control-ui/surface-variants"
       ],

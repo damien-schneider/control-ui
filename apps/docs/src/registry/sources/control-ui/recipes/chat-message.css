@@ -72,7 +72,7 @@
     opacity: 1;
   }
 
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     :where([data-control-family="chat-message"][data-slot="actions"]) {
       opacity: 0;
     }

@@ -26,4 +26,10 @@
   :where([data-control-family="button"][data-dynamic-notification-close="true"]:hover) {
     color: inherit;
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="dynamic-notification"][data-slot="reply-input"]) {
+      font-size: max(16px, var(--text-body));
+    }
+  }
 }

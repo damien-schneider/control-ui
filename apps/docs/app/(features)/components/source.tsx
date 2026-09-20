@@ -137,7 +137,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
               <TabsTab key={file.path} value={file.path}>
                 {sourceFileName(file.path)}
                 {file.shared ? (
-                  <span className="ml-1.5 font-normal text-[10px] text-muted-foreground uppercase tracking-wide">shared</span>
+                  <span className="ml-1.5 font-normal text-micro text-muted-foreground uppercase tracking-wide">shared</span>
                 ) : null}
               </TabsTab>
             ))}

@@ -77,7 +77,7 @@ export function DialogContent({ className, children, showCloseButton = true, ...
         data-popup-part="backdrop"
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className="fixed inset-0 z-[70]"
+        className="fixed inset-0 z-(--z-overlay)"
       />
       <DialogPrimitive.Popup
         data-skin={skin.id}
@@ -88,7 +88,7 @@ export function DialogContent({ className, children, showCloseButton = true, ...
         data-control-family="popup"
         data-popup-part="surface"
         data-surface="modal"
-        className={cn("fixed left-1/2 top-[12vh] z-[71] grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2", className)}
+        className={cn("fixed left-1/2 top-[12vh] z-(--z-modal) grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2", className)}
         {...props}
       >
         {skinAdornment(skin, "dialog", "titlebar", {})}

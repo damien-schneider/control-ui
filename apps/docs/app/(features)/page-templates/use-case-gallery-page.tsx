@@ -29,8 +29,8 @@ export function UseCaseGalleryPage({
         {groups.map((group) => (
           <section key={group.id} id={group.id} className="min-w-0 scroll-mt-20">
             <div className="mb-5 grid max-w-2xl gap-1.5">
-              <h2 className="font-display text-heading-2">{group.title}</h2>
-              <p className="text-body-sm text-muted-foreground">{group.summary}</p>
+              <h2 className="font-display text-heading-2 text-balance">{group.title}</h2>
+              <p className="text-body-sm text-pretty text-muted-foreground">{group.summary}</p>
             </div>
             <div
               className={
@@ -64,7 +64,7 @@ function UseCasePreviewCard({ item, integration }: { item: UseCaseGalleryItem; i
         href={item.href}
         aria-labelledby={nameId}
         aria-describedby={summaryId}
-        className="absolute inset-0 z-10 rounded-[var(--radius-panel)] outline-none"
+        className="absolute inset-0 z-10 rounded-[inherit] outline-none"
       />
       {item.kind === "template" ? (
         <TemplatePreview item={item} integration={integration} />
@@ -88,7 +88,7 @@ function UseCasePreviewCard({ item, integration }: { item: UseCaseGalleryItem; i
 
 function TemplatePreview({ item, integration }: { item: UseCaseGalleryItem; integration: IntegrationId }) {
   return (
-    <div className="@container/use-case-card relative aspect-3/2 min-w-0 overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
+    <div className="@container/use-case-card relative aspect-3/2 min-w-0 overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
       <DeferredPreview className="absolute inset-0 p-0">
         <div className="absolute top-0 left-1/2 h-160 w-240 origin-top -translate-x-1/2 scale-32 @sm/use-case-card:scale-40 @md/use-case-card:scale-46 @lg/use-case-card:scale-53 @xl/use-case-card:scale-60 @2xl/use-case-card:scale-70 @3xl/use-case-card:scale-80">
           <BlockPreview blockId={item.id} integration={integration} />
@@ -100,7 +100,7 @@ function TemplatePreview({ item, integration }: { item: UseCaseGalleryItem; inte
 
 function PatternPreview({ item, integration }: { item: UseCaseGalleryItem; integration: IntegrationId }) {
   return (
-    <div className="relative grid h-60 min-w-0 place-items-center overflow-hidden rounded-[var(--radius-panel)] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
+    <div className="relative grid h-60 min-w-0 place-items-center overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
       <DeferredPreview>
         <BlockPreview blockId={item.id} integration={integration} />
       </DeferredPreview>
