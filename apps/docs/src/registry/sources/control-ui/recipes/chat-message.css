@@ -3,7 +3,7 @@
     --cui-chat-message-avatar-radius: 9999px;
     --cui-chat-message-avatar-background: var(--card);
     --cui-chat-message-avatar-border-color: var(--border);
-    --cui-chat-message-avatar-border-width: 1px;
+    --cui-chat-message-avatar-border-width: var(--control-rim-width);
     --cui-chat-message-radius: 0px;
     --cui-chat-message-corner-radius: 0px;
     --cui-chat-message-background: transparent;
@@ -70,6 +70,9 @@
     margin-block-start: calc(var(--spacing) * 1);
     gap: calc(var(--spacing) * 1);
     opacity: 1;
+    transition-property: opacity;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -92,6 +95,7 @@
     padding-inline: calc(var(--spacing) * 1);
     font-size: var(--text-caption);
     color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
   }
 }
 

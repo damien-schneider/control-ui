@@ -6,15 +6,31 @@ export const agentsCompositions = {
       "Email layout",
       part(
         "EmailLayout",
+        part("EmailHeader", part("EmailLogo"), part("EmailBrowserLink")),
         part(
           "Section",
           part("EmailHeading"),
           part("EmailText", part("EmailLink")),
+          part("EmailPanel", part("EmailDetailRow"), part("EmailDivider")),
+          part("EmailBulletList"),
+          part("EmailCode"),
           part("EmailButton"),
           part("Row", part("Column", part("Img"))),
         ),
       ),
       "Section, Row, Column, and Img come from React Email.",
+    ),
+    example(
+      "Footer",
+      part(
+        "EmailFooter",
+        part("EmailSocialLinks"),
+        part("EmailFooterLinks"),
+        part("EmailCaption"),
+        part("EmailAddress"),
+        part("EmailUnsubscribe"),
+      ),
+      "EmailUnsubscribe belongs to marketing sends; transactional messages keep the sender identity and address only.",
     ),
   ],
   "chat-message": [

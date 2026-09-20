@@ -29,6 +29,12 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "oklch(from var(--muted) l c h / 0.5)"
+    },
+    {
+      "name": "--cui-activity-code-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
     }
   ],
   "parts": {

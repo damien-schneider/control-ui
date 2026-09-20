@@ -1,6 +1,10 @@
 // Generated from src/registry/sources/control-ui/recipes/task-list.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const taskListKnobs = [
   "--cui-task-list-radius",
+  "--cui-task-list-ring-color",
+  "--cui-task-list-items-padding",
+  "--cui-task-list-item-radius",
+  "--cui-task-list-trigger-hover-background",
   "--cui-task-list-background",
   "--cui-task-list-foreground",
   "--cui-task-list-border-color",

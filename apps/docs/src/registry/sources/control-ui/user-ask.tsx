@@ -28,6 +28,7 @@ function useUserAskContext() {
 type UserAskQuestionContextValue = {
   id: string;
   active: boolean;
+  multiple: boolean;
 };
 
 const UserAskQuestionContext = createContext<UserAskQuestionContextValue | null>(null);
@@ -151,23 +152,30 @@ export function UserAskPagination({ className, ...props }: UserAskPaginationProp
 export type UserAskQuestionProps = Omit<ComponentProps<"div">, "title"> & {
   id: string;
   title: string;
-  /** Pre-selects option carrying this value (e.g. recommended one) until user picks another. */
-  defaultValue?: string;
+  /** Lets the question keep several answers; resolves to a string array. */
+  multiple?: boolean;
+  /** Pre-selects options carrying these values (e.g. recommended one) until user picks another. */
+  defaultValue?: string | string[];
 } & { style?: CSSProperties & UserAskKnobStyle };
 
-export function UserAskQuestion({ id, title, defaultValue, className, children, ...props }: UserAskQuestionProps) {
+export function UserAskQuestion({ id, title, multiple = false, defaultValue, className, children, ...props }: UserAskQuestionProps) {
   const ask = useUserAskContext();
   const key = useId();
   const active = ask.activeQuestion?.key === key;
 
-  useEffect(() => ask.registerQuestion({ key, id, title, defaultValue }), [ask.registerQuestion, key, id, title, defaultValue]);
+  const defaultKey = Array.isArray(defaultValue) ? defaultValue.join("\u0000") : defaultValue;
+  useEffect(() => {
+    const defaultValues = defaultKey === undefined ? undefined : defaultKey.split("\u0000");
+    return ask.registerQuestion({ key, id, title, multiple, defaultValues });
+  }, [ask.registerQuestion, key, id, title, multiple, defaultKey]);
   useEffect(() => () => ask.unregisterQuestion(key), [ask.unregisterQuestion, key]);
 
   return (
-    <UserAskQuestionContext.Provider value={{ id, active }}>
+    <UserAskQuestionContext.Provider value={{ id, active, multiple }}>
       {/* inactive questions stay mounted so their registrations keep pagination and answers alive */}
+      {/* biome-ignore lint/a11y/useAriaPropsSupportedByRole: role resolves to radiogroup or group at runtime; both support aria-labelledby. */}
       <div
-        role="radiogroup"
+        role={multiple ? "group" : "radiogroup"}
         aria-labelledby={active ? ask.titleId : undefined}
         hidden={!active}
         data-control-ui="user-ask"
@@ -229,15 +237,16 @@ export function UserAskOption({
 
   return (
     <UserAskOptionContext.Provider value={{ selected, recommended }}>
-      {/* biome-ignore lint/a11y/useSemanticElements: WAI-ARIA radio pattern on a rich multi-line row; a native input cannot carry the indicator/label/description anatomy. */}
+      {/* biome-ignore lint/a11y/useAriaPropsSupportedByRole: role resolves to radio or checkbox at runtime; both support aria-checked. */}
       <button
         type="button"
-        role="radio"
+        role={question.multiple ? "checkbox" : "radio"}
         aria-checked={selected}
         disabled={disabled}
         data-control-ui="user-ask"
         data-control-family="user-ask"
         data-slot="option"
+        data-multiple={question.multiple ? "" : undefined}
         data-selected={selected ? "" : undefined}
         data-recommended={recommended ? "" : undefined}
         onClick={handleClick}
@@ -249,6 +258,7 @@ export function UserAskOption({
           data-control-ui="user-ask"
           data-control-family="user-ask"
           data-slot="option-indicator"
+          data-multiple={question.multiple ? "" : undefined}
           data-selected={selected ? "" : undefined}
           className="inline-flex shrink-0 items-center justify-center"
         >
@@ -332,15 +342,16 @@ export function UserAskOptionInput({
 
   if (!selected) {
     return (
-      // biome-ignore lint/a11y/useSemanticElements: WAI-ARIA radio pattern on a rich row; selecting it swaps in the freeform input.
+      // biome-ignore lint/a11y/useAriaPropsSupportedByRole: role resolves to radio or checkbox at runtime; both support aria-checked.
       <button
         type="button"
-        role="radio"
+        role={question.multiple ? "checkbox" : "radio"}
         aria-checked={false}
         disabled={disabled}
         data-control-ui="user-ask"
         data-control-family="user-ask"
         data-slot="option"
+        data-multiple={question.multiple ? "" : undefined}
         data-freeform=""
         onClick={() => ask.select(question.id, key)}
         className={cn(optionRowClasses, "disabled:cursor-not-allowed", className)}
@@ -351,6 +362,7 @@ export function UserAskOptionInput({
           data-control-ui="user-ask"
           data-control-family="user-ask"
           data-slot="option-indicator"
+          data-multiple={question.multiple ? "" : undefined}
           className="inline-flex shrink-0 items-center justify-center"
         >
           {index + 1}
@@ -367,21 +379,41 @@ export function UserAskOptionInput({
       data-control-ui="user-ask"
       data-control-family="user-ask"
       data-slot="option"
+      data-multiple={question.multiple ? "" : undefined}
       data-selected=""
       data-freeform=""
       className={cn(optionRowClasses, className)}
       style={style}
     >
-      <span
-        aria-hidden="true"
-        data-control-ui="user-ask"
-        data-control-family="user-ask"
-        data-slot="option-indicator"
-        data-selected=""
-        className="inline-flex shrink-0 items-center justify-center"
-      >
-        <PencilLine className="size-3" />
-      </span>
+      {question.multiple ? (
+        // biome-ignore lint/a11y/useSemanticElements: the indicator doubles as the uncheck control for a row whose label is the text input beside it.
+        <button
+          type="button"
+          role="checkbox"
+          aria-checked={true}
+          aria-label={`Clear ${label}`}
+          data-control-ui="user-ask"
+          data-control-family="user-ask"
+          data-slot="option-indicator"
+          data-multiple=""
+          data-selected=""
+          onClick={() => ask.select(question.id, key)}
+          className="inline-flex shrink-0 items-center justify-center"
+        >
+          <Check className="size-3" />
+        </button>
+      ) : (
+        <span
+          aria-hidden="true"
+          data-control-ui="user-ask"
+          data-control-family="user-ask"
+          data-slot="option-indicator"
+          data-selected=""
+          className="inline-flex shrink-0 items-center justify-center"
+        >
+          <PencilLine className="size-3" />
+        </span>
+      )}
       <input
         {...props}
         ref={inputRef}

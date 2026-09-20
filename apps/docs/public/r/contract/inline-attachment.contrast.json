@@ -14,41 +14,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-attachment",
-          "data-control-ui": "inline-attachment",
-          "data-slot": "root",
-          "data-state": "ready",
-          "data-surface": "panel"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -73,7 +40,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -83,6 +51,80 @@
           "data-slot": "root",
           "data-state": "ready",
           "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "panel",
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-layout",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-attachment",
+          "data-control-ui": "inline-attachment",
+          "data-slot": "root",
+          "data-state": "ready",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-attachment",
+          "data-control-ui": "inline-attachment",
+          "data-slot": "root",
+          "data-state": "ready",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-attachment",
+          "data-control-ui": "inline-attachment",
+          "data-slot": "document"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-attachment",
+          "data-control-ui": "inline-attachment",
+          "data-slot": "content"
         }
       }
     ],
@@ -139,7 +181,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -155,7 +198,7 @@
         "attributes": {
           "data-control-family": "inline-attachment",
           "data-control-ui": "inline-attachment",
-          "data-slot": "content"
+          "data-slot": "document"
         }
       }
     ]
@@ -166,7 +209,7 @@
         "fill": "--cui-inline-attachment-background"
       },
       "anatomy": 0,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -174,7 +217,7 @@
         "fill": "--cui-inline-attachment-background"
       },
       "anatomy": 1,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -201,6 +244,14 @@
       },
       "anatomy": 4,
       "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-inline-attachment-document-background"
+      },
+      "anatomy": 5,
+      "rendersText": false,
       "state": false
     }
   ]

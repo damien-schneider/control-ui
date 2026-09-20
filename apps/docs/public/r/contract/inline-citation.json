@@ -65,6 +65,18 @@
       "syntax": "<length>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-inline-citation-favicon-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-inline-citation-favicon-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
     }
   ],
   "parts": {

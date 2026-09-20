@@ -2,12 +2,15 @@
   :where([data-control-family="context"][data-slot="root"]),
   :where([data-control-family="context"][data-slot="content"]) {
     --cui-context-graph-radius: 9999px;
+    --cui-context-legend-indicator-radius: 9999px;
     --cui-context-limit-marker-color: var(--destructive-text);
     --cui-context-overage-fill: oklch(from var(--destructive-text) l c h / 0.22);
     --cui-context-track-fill: var(--muted);
+    --cui-context-segment-cache-fill: oklch(from var(--muted-foreground) l c h / 0.55);
     --cui-context-segment-message-fill: oklch(from var(--primary) l c h / 0.65);
     --cui-context-segment-reasoning-fill: oklch(from var(--foreground) l c h / 0.5);
     --cui-context-segment-source-fill: oklch(from var(--accent-foreground) l c h / 0.65);
+    --cui-context-segment-system-fill: oklch(from var(--foreground) l c h / 0.75);
     --cui-context-segment-tool-fill: var(--primary);
   }
 
@@ -34,20 +37,7 @@
   }
 
   :where([data-control-family="context"][data-slot="trigger-label"]) {
-    max-inline-size: 0;
-    opacity: 0;
-    transition-property: max-width, opacity;
-    transition-duration: var(--duration-fast);
-    transition-timing-function: var(--ease-standard);
     font-variant-numeric: tabular-nums;
-  }
-
-  :where(
-    [data-context-trigger-button="true"]:is(:hover, :focus-visible, [data-popup-open])
-      [data-control-family="context"][data-slot="trigger-label"]
-  ) {
-    max-inline-size: calc(var(--spacing) * 32);
-    opacity: 1;
   }
 
   :where([data-control-family="context"][data-slot="content-grid"]) {
@@ -107,7 +97,7 @@
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="system"]) {
-    fill: oklch(from var(--foreground) l c h / 0.75);
+    fill: var(--cui-context-segment-system-fill);
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="tool"]) {
@@ -127,7 +117,7 @@
   }
 
   :where([data-control-family="context"][data-slot="segment"][data-kind="cache"]) {
-    fill: oklch(from var(--muted-foreground) l c h / 0.55);
+    fill: var(--cui-context-segment-cache-fill);
   }
 
   :where([data-control-family="context"][data-slot="overage"]) {
@@ -142,12 +132,12 @@
     margin-block-start: calc(var(--spacing) * 1);
     inline-size: calc(var(--spacing) * 2.5);
     block-size: calc(var(--spacing) * 2.5);
-    border-radius: 9999px;
+    border-radius: var(--cui-context-legend-indicator-radius);
     background: var(--border);
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="system"]) {
-    background: oklch(from var(--foreground) l c h / 0.75);
+    background: var(--cui-context-segment-system-fill);
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="tool"]) {
@@ -167,7 +157,7 @@
   }
 
   :where([data-control-family="context"][data-slot="legend-indicator"][data-kind="cache"]) {
-    background: oklch(from var(--muted-foreground) l c h / 0.55);
+    background: var(--cui-context-segment-cache-fill);
   }
 
   :where([data-control-family="context"][data-slot="legend-item"][data-tone="available"] [data-slot="legend-indicator"]) {
@@ -196,6 +186,24 @@
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-context-legend-indicator-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-context-segment-system-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-context-segment-cache-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-context-track-fill {

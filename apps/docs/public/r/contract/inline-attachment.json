@@ -10,19 +10,43 @@
       "name": "--cui-inline-attachment-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-scene)"
+      "defaultValue": "var(--radius-field)"
     },
     {
       "name": "--cui-inline-attachment-background",
       "syntax": "<color>",
       "initialValue": "transparent",
-      "defaultValue": "var(--muted)"
+      "defaultValue": "var(--card)"
     },
     {
       "name": "--cui-inline-attachment-ring-color",
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-inline-attachment-padding",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-inline-attachment-document-padding",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 5)"
+    },
+    {
+      "name": "--cui-inline-attachment-document-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted)"
+    },
+    {
+      "name": "--cui-inline-attachment-document-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
     },
     {
       "name": "--cui-inline-attachment-shadow",
@@ -40,7 +64,7 @@
       "name": "--cui-inline-attachment-content-radius",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-control)"
+      "defaultValue": "max(var(--radius-sm), calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding)))"
     },
     {
       "name": "--cui-inline-attachment-content-background",

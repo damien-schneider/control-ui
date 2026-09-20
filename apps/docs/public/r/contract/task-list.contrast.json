@@ -14,7 +14,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -40,7 +41,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -66,7 +68,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -81,6 +84,92 @@
       },
       {
         "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-closed": "",
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-slot": "root",
+          "data-state": "closed",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "task-list",
           "data-control-ui": "task-list",
           "data-slot": "item-indicator",
@@ -100,7 +189,55 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "task-list",
+          "data-control-ui": "task-list",
+          "data-slot": "item-indicator",
+          "data-status": "active"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -134,7 +271,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -168,7 +306,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -202,7 +341,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -236,7 +376,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -270,7 +411,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -314,19 +456,19 @@
     },
     {
       "knobs": {
-        "text": "--cui-task-list-indicator-active-foreground"
+        "fill": "--cui-task-list-trigger-hover-background"
       },
       "anatomy": 2,
       "rendersText": true,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
-        "text": "--cui-task-list-indicator-active-foreground"
+        "fill": "--cui-task-list-trigger-hover-background"
       },
       "anatomy": 3,
       "rendersText": true,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
@@ -338,7 +480,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-task-list-indicator-foreground"
+        "text": "--cui-task-list-indicator-active-foreground"
       },
       "anatomy": 5,
       "rendersText": true,
@@ -346,7 +488,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-task-list-item-foreground"
+        "text": "--cui-task-list-indicator-active-foreground"
       },
       "anatomy": 6,
       "rendersText": true,
@@ -354,7 +496,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-task-list-item-foreground"
+        "text": "--cui-task-list-indicator-active-foreground"
       },
       "anatomy": 7,
       "rendersText": true,
@@ -362,9 +504,33 @@
     },
     {
       "knobs": {
-        "text": "--cui-task-list-item-pending-foreground"
+        "text": "--cui-task-list-indicator-foreground"
       },
       "anatomy": 8,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-task-list-item-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-task-list-item-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-task-list-item-pending-foreground"
+      },
+      "anatomy": 11,
       "rendersText": true,
       "state": false
     }

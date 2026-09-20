@@ -1,27 +1,34 @@
 @layer components {
   :where([data-control-family="user-ask"][data-slot="root"]) {
-    --cui-user-ask-background: oklch(from var(--card) l c h / 0.9);
-    --cui-user-ask-border-color: var(--border);
-    --cui-user-ask-border-width: 1px;
-    --cui-user-ask-foreground: var(--foreground);
-    --cui-user-ask-radius: var(--radius-field);
-    --cui-user-ask-shadow: var(--shadow-md);
+    --cui-user-ask-background: var(--popover);
+    --cui-user-ask-backdrop-filter: blur(var(--backdrop-blur-popover));
+    --cui-user-ask-border-color: var(--control-rim);
+    --cui-user-ask-border-width: var(--control-rim-width);
+    --cui-user-ask-foreground: var(--popover-foreground);
+    --cui-user-ask-padding: calc(var(--spacing) * 3);
+    --cui-user-ask-radius: var(--radius-popover);
+    --cui-user-ask-shadow: var(--shadow-pop);
     --cui-user-ask-indicator-background: var(--muted);
     --cui-user-ask-indicator-foreground: var(--muted-foreground);
+    --cui-user-ask-indicator-radius: 9999px;
+    --cui-user-ask-indicator-multiple-radius: var(--radius-sm);
     --cui-user-ask-input-background: transparent;
     --cui-user-ask-input-foreground: var(--foreground);
-    --cui-user-ask-option-hover-background: oklch(from var(--muted) l c h / 0.5);
-    --cui-user-ask-option-radius: var(--radius-popup-item);
-    --cui-user-ask-option-selected-background: oklch(from var(--muted) l c h / 0.7);
-    border: var(--cui-user-ask-border-width) solid var(--cui-user-ask-border-color);
+    --cui-user-ask-option-hover-background: var(--hover-fill);
+    --cui-user-ask-option-radius: max(
+      var(--radius-sm),
+      min(var(--radius-popup-item-fit), calc(var(--cui-user-ask-radius) - var(--cui-user-ask-padding)))
+    );
+    --cui-user-ask-option-selected-background: var(--active-fill);
     border-radius: var(--cui-user-ask-radius);
     background: var(--cui-user-ask-background);
     color: var(--cui-user-ask-foreground);
     box-shadow:
-      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
+      inset 0 0 0 var(--cui-user-ask-border-width) var(--cui-user-ask-border-color),
       var(--cui-user-ask-shadow);
-    backdrop-filter: blur(var(--backdrop-blur-popover));
-    padding: calc(var(--spacing) * 3);
+    -webkit-backdrop-filter: var(--cui-user-ask-backdrop-filter);
+    backdrop-filter: var(--cui-user-ask-backdrop-filter);
+    padding: var(--cui-user-ask-padding);
     font-size: var(--text-body);
     transition-property: opacity, translate;
     transition-duration: var(--duration-base);
@@ -43,7 +50,7 @@
 
   :where([data-control-family="user-ask"][data-slot="title"]) {
     color: var(--foreground);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
   }
 
   :where([data-control-family="user-ask"][data-slot="pagination"]) {
@@ -61,7 +68,6 @@
     padding-inline: calc(var(--spacing) * 2);
     padding-block: calc(var(--spacing) * 1.5);
     border-radius: var(--cui-user-ask-option-radius);
-    font-size: var(--text-sm);
     text-align: left;
   }
 
@@ -75,6 +81,16 @@
     }
   }
 
+  :where([data-control-family="user-ask"][data-slot="option"]:focus-visible) {
+    background: var(--cui-user-ask-option-hover-background);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="user-ask"][data-slot="option"]) {
+      min-block-size: 44px;
+    }
+  }
+
   :where([data-control-family="user-ask"][data-slot="option"]:disabled) {
     opacity: 0.5;
   }
@@ -83,7 +99,7 @@
     margin-block-start: 1px;
     inline-size: calc(var(--spacing) * 5);
     block-size: calc(var(--spacing) * 5);
-    border-radius: var(--radius-control);
+    border-radius: var(--cui-user-ask-indicator-radius);
     background: var(--cui-user-ask-indicator-background);
     color: var(--cui-user-ask-indicator-foreground);
     font-size: var(--text-micro);
@@ -92,6 +108,10 @@
   :where([data-control-family="user-ask"][data-slot="option-indicator"][data-selected]) {
     background: var(--primary);
     color: var(--primary-foreground);
+  }
+
+  :where([data-control-family="user-ask"][data-slot="option-indicator"][data-multiple]) {
+    border-radius: var(--cui-user-ask-indicator-multiple-radius);
   }
 
   :where([data-control-family="user-ask"][data-slot="option-label"]) {
@@ -131,6 +151,29 @@
 }
 
 @property --cui-user-ask-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-user-ask-padding {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-user-ask-backdrop-filter {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-user-ask-indicator-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-user-ask-indicator-multiple-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

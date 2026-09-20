@@ -2,20 +2,27 @@
   :where([data-control-family="task-list"][data-slot="root"]) {
     --cui-task-list-background: oklch(from var(--card) l c h / 0.9);
     --cui-task-list-border-color: var(--border);
-    --cui-task-list-border-width: 1px;
+    --cui-task-list-border-width: var(--control-rim-width);
     --cui-task-list-foreground: var(--foreground);
     --cui-task-list-radius: var(--radius-field);
+    --cui-task-list-ring-color: oklch(from var(--foreground) l c h / 0.04);
     --cui-task-list-shadow: var(--shadow-md);
     --cui-task-list-indicator-active-foreground: var(--primary-text);
     --cui-task-list-indicator-foreground: oklch(from var(--muted-foreground) l c h / 0.7);
     --cui-task-list-item-foreground: var(--foreground);
     --cui-task-list-item-pending-foreground: var(--muted-foreground);
+    --cui-task-list-items-padding: calc(var(--spacing) * 2);
+    --cui-task-list-item-radius: max(
+      var(--radius-sm),
+      min(var(--radius-popup-item-fit), calc(var(--cui-task-list-radius) - var(--cui-task-list-items-padding)))
+    );
+    --cui-task-list-trigger-hover-background: oklch(from var(--muted) l c h / 0.4);
     border: var(--cui-task-list-border-width) solid var(--cui-task-list-border-color);
     border-radius: var(--cui-task-list-radius);
     background: var(--cui-task-list-background);
     color: var(--cui-task-list-foreground);
     box-shadow:
-      inset 0 0 0 1px oklch(from var(--foreground) l c h / 0.04),
+      inset 0 0 0 var(--control-rim-width) var(--cui-task-list-ring-color),
       var(--cui-task-list-shadow);
     backdrop-filter: blur(var(--backdrop-blur-popover));
     font-size: var(--text-body);
@@ -25,13 +32,31 @@
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 3);
     padding-block: calc(var(--spacing) * 2);
-    font-size: var(--text-sm);
     text-align: left;
   }
 
   @media (hover: hover) {
     :where([data-control-family="task-list"][data-slot="trigger"]:hover) {
-      background: oklch(from var(--muted) l c h / 0.4);
+      background: var(--cui-task-list-trigger-hover-background);
+    }
+  }
+
+  :where([data-control-family="task-list"][data-slot="trigger"]:focus-visible) {
+    background: var(--cui-task-list-trigger-hover-background);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="task-list"][data-slot="trigger"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="task-list"][data-slot="trigger"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
     }
   }
 
@@ -46,21 +71,25 @@
   :where([data-control-family="task-list"][data-slot="chevron"]) {
     inline-size: calc(var(--spacing) * 3.5);
     block-size: calc(var(--spacing) * 3.5);
+    transition: rotate var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="task-list"][data-slot="trigger"][data-state="open"] [data-slot="chevron"]) {
+    rotate: 90deg;
   }
 
   :where([data-control-family="task-list"][data-slot="items"]) {
     gap: calc(var(--spacing) * 0.5);
-    padding-inline: calc(var(--spacing) * 2);
-    padding-block-end: calc(var(--spacing) * 2);
+    padding-inline: var(--cui-task-list-items-padding);
+    padding-block-end: var(--cui-task-list-items-padding);
   }
 
   :where([data-control-family="task-list"][data-slot="item"]) {
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 1.5);
     padding-block: calc(var(--spacing) * 1);
-    border-radius: var(--radius-popup-item);
+    border-radius: var(--cui-task-list-item-radius);
     color: var(--cui-task-list-item-foreground);
-    font-size: var(--text-sm);
   }
 
   :where([data-control-family="task-list"][data-slot="item"][data-status="pending"]) {
@@ -96,6 +125,30 @@
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-task-list-ring-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-task-list-items-padding {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-task-list-item-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-task-list-trigger-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
 }
 
 @property --cui-task-list-background {

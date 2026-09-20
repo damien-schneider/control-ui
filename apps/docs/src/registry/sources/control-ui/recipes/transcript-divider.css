@@ -18,6 +18,7 @@
 
   :where([data-control-family="transcript-divider"][data-slot="label"]) {
     padding-inline: calc(var(--spacing) * 2);
+    font-variant-numeric: tabular-nums;
   }
 
   :where([data-control-family="transcript-divider"][data-slot="root"][data-tone="success"]) {

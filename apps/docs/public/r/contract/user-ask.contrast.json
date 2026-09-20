@@ -14,7 +14,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -39,7 +40,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -80,7 +82,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -120,7 +123,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -154,7 +158,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
@@ -189,7 +194,8 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {

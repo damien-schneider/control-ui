@@ -14,6 +14,31 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-slot": "root",
+          "data-variant": "both"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
           "data-slot": "inset"
         }
       },
@@ -23,6 +48,43 @@
           "data-control-ui": "table-of-contents",
           "data-slot": "root",
           "data-variant": "background"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-slot": "root",
+          "data-variant": "both"
+        }
+      },
+      {
+        "attributes": {
+          "data-active": "true",
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-depth": "0",
+          "data-level": "2",
+          "data-slot": "item",
+          "data-variant": "both",
+          "href": "#"
         }
       }
     ],
@@ -146,6 +208,42 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-slot": "root",
+          "data-variant": "both"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-depth": "0",
+          "data-level": "2",
+          "data-slot": "item",
+          "data-variant": "both",
+          "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
           "data-slot": "inset"
         }
       },
@@ -236,6 +334,38 @@
           "data-slot": "item",
           "data-variant": "background",
           "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-slot": "root",
+          "data-variant": "both"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "table-of-contents",
+          "data-control-ui": "table-of-contents",
+          "data-slot": "label"
         }
       }
     ],
@@ -282,7 +412,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-table-of-contents-item-active-foreground"
+        "fill": "--cui-table-of-contents-background"
       },
       "anatomy": 1,
       "rendersText": true,
@@ -306,7 +436,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-table-of-contents-item-foreground"
+        "text": "--cui-table-of-contents-item-active-foreground"
       },
       "anatomy": 4,
       "rendersText": true,
@@ -314,7 +444,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-table-of-contents-item-foreground"
+        "text": "--cui-table-of-contents-item-active-foreground"
       },
       "anatomy": 5,
       "rendersText": true,
@@ -330,9 +460,33 @@
     },
     {
       "knobs": {
+        "text": "--cui-table-of-contents-item-foreground"
+      },
+      "anatomy": 7,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-table-of-contents-item-foreground"
+      },
+      "anatomy": 8,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-table-of-contents-item-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
         "text": "--cui-table-of-contents-item-hover-foreground"
       },
-      "anatomy": 1,
+      "anatomy": 2,
       "rendersText": true,
       "state": true
     },
@@ -340,7 +494,7 @@
       "knobs": {
         "text": "--cui-table-of-contents-item-hover-foreground"
       },
-      "anatomy": 2,
+      "anatomy": 6,
       "rendersText": true,
       "state": true
     },
@@ -372,7 +526,23 @@
       "knobs": {
         "text": "--cui-table-of-contents-item-hover-foreground"
       },
-      "anatomy": 6,
+      "anatomy": 7,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-table-of-contents-item-hover-foreground"
+      },
+      "anatomy": 8,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-table-of-contents-item-hover-foreground"
+      },
+      "anatomy": 9,
       "rendersText": true,
       "state": true
     },
@@ -380,7 +550,15 @@
       "knobs": {
         "text": "--cui-table-of-contents-label-foreground"
       },
-      "anatomy": 7,
+      "anatomy": 10,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-table-of-contents-label-foreground"
+      },
+      "anatomy": 11,
       "rendersText": true,
       "state": false
     }

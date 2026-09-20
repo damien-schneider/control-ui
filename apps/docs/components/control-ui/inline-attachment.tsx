@@ -170,7 +170,7 @@ export function InlineAttachmentContent({ className, ...props }: InlineAttachmen
       data-control-ui="inline-attachment"
       data-control-family="inline-attachment"
       data-slot="content"
-      className={cn("absolute inset-x-3 bottom-3", className)}
+      className={cn("absolute", className)}
       {...props}
     />
   );

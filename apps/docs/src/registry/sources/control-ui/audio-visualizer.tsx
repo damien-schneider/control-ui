@@ -54,7 +54,7 @@ export function AudioVisualizer({ levels, points, active = true, className, styl
           const visibleLevel = MIN_VISIBLE_LEVEL + perceptualLevel * (1 - MIN_VISIBLE_LEVEL);
           const levelStyle: AudioVisualizerLevelStyle = {
             "--_audio-visualizer-level-opacity": `${0.48 + perceptualLevel * 0.52}`,
-            clipPath: `inset(${(1 - visibleLevel) * 50}% 0 round var(--radius-control))`,
+            clipPath: `inset(${(1 - visibleLevel) * 50}% 0 round var(--cui-audio-visualizer-bar-radius))`,
           };
 
           return (

@@ -5,7 +5,20 @@
   "registryItems": [
     "action-bar"
   ],
-  "knobs": [],
+  "knobs": [
+    {
+      "name": "--cui-action-bar-hidden-opacity",
+      "syntax": "<number>",
+      "initialValue": "0",
+      "defaultValue": "0"
+    },
+    {
+      "name": "--cui-action-bar-visible-opacity",
+      "syntax": "<number>",
+      "initialValue": "1",
+      "defaultValue": "1"
+    }
+  ],
   "parts": {
     "action-bar": {
       "root": {

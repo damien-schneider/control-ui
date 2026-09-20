@@ -63,9 +63,9 @@ export function ThreadRail({ className, children, style, ...props }: ThreadRailP
   }, [hovered]);
 
   // fallback for browsers without anchor positioning; anchor path ignores it
-  const railStyle: CSSProperties & Record<"--aui-rail-active-index", number> = {
+  const railStyle: CSSProperties & Record<"--_thread-rail-active-index", number> = {
     ...style,
-    "--aui-rail-active-index": hovered,
+    "--_thread-rail-active-index": hovered,
   };
 
   return (

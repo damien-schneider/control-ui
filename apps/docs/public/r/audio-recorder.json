@@ -29,7 +29,7 @@
       "path": "src/registry/knob-contracts/audio-visualizer-knobs.ts",
       "target": "@components/control-ui/knob-contracts/audio-visualizer-knobs.ts",
       "type": "registry:component",
-      "content": "// Generated from src/registry/sources/control-ui/recipes/audio-visualizer.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const audioVisualizerKnobs = [\n  \"--cui-audio-visualizer-radius\",\n  \"--cui-audio-visualizer-bar-background\",\n  \"--cui-audio-visualizer-line-fill\",\n  \"--cui-audio-visualizer-line-stroke\",\n] as const;\nexport type AudioVisualizerKnobStyle = Partial<Record<(typeof audioVisualizerKnobs)[number], string>>;\n"
+      "content": "// Generated from src/registry/sources/control-ui/recipes/audio-visualizer.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.\nexport const audioVisualizerKnobs = [\n  \"--cui-audio-visualizer-radius\",\n  \"--cui-audio-visualizer-bar-radius\",\n  \"--cui-audio-visualizer-bar-background\",\n  \"--cui-audio-visualizer-line-fill\",\n  \"--cui-audio-visualizer-line-stroke\",\n] as const;\nexport type AudioVisualizerKnobStyle = Partial<Record<(typeof audioVisualizerKnobs)[number], string>>;\n"
     },
     {
       "path": "src/registry/knob-contracts/button-knobs.ts",

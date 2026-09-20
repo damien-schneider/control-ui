@@ -1,6 +1,8 @@
 // Generated from src/registry/sources/control-ui/recipes/chat-composer-attachment.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const chatComposerAttachmentKnobs = [
   "--cui-chat-composer-attachment-radius",
+  "--cui-chat-composer-attachment-height",
+  "--cui-chat-composer-attachment-list-padding",
   "--cui-chat-composer-attachment-background",
   "--cui-chat-composer-attachment-border-color",
   "--cui-chat-composer-attachment-shadow",

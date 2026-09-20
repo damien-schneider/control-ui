@@ -6,11 +6,11 @@
     --cui-thread-rail-popover-radius: var(--radius-popover);
     --cui-thread-rail-popover-background: var(--popover);
     --cui-thread-rail-popover-border-color: var(--border);
-    --cui-thread-rail-popover-border-width: 1px;
+    --cui-thread-rail-popover-border-width: var(--control-rim-width);
     --cui-thread-rail-popover-shadow: var(--shadow-pop);
     --cui-thread-rail-popover-backdrop-blur: var(--backdrop-blur-popover);
-    --aui-rail-pitch: 9px;
-    --aui-rail-inset: 12.5px;
+    --_thread-rail-pitch: calc(var(--spacing) * 2 + 1px);
+    --_thread-rail-inset: calc(var(--spacing) * 2 + var(--_thread-rail-pitch) / 2);
     position: relative;
     inline-size: calc(var(--spacing) * 4);
   }
@@ -63,7 +63,7 @@
   }
 
   :where([data-control-family="thread-rail"][data-slot="item"][data-rail-current] [data-control-family="thread-rail"][data-slot="line"]) {
-    anchor-name: --aui-rail-active;
+    anchor-name: --_thread-rail-active;
   }
 
   :where([data-control-family="thread-rail"][data-slot="popover"]) {
@@ -71,7 +71,7 @@
     inset-inline-start: 100%;
     margin-inline-start: calc(var(--spacing) * 3);
     top: 0;
-    translate: 0 calc(var(--aui-rail-inset) + var(--aui-rail-active-index, 0) * var(--aui-rail-pitch) - 50%);
+    translate: 0 calc(var(--_thread-rail-inset) + var(--_thread-rail-active-index, 0) * var(--_thread-rail-pitch) - 50%);
     transform-origin: left center;
     scale: 0.98;
     opacity: 0;
@@ -119,9 +119,9 @@
     }
   }
 
-  @supports (top: anchor(--aui-rail-active center)) {
+  @supports (top: anchor(--_thread-rail-active center)) {
     :where([data-control-family="thread-rail"][data-slot="popover"]) {
-      top: anchor(--aui-rail-active center);
+      top: anchor(--_thread-rail-active center);
       translate: 0 -50%;
     }
   }
@@ -186,7 +186,7 @@
     margin-block-start: calc(var(--spacing) * 3);
     gap: calc(var(--spacing) * 2);
     padding-block-start: calc(var(--spacing) * 2.5);
-    border-block-start: 1px solid oklch(from var(--border) l c h / 0.6);
+    border-block-start: var(--control-rim-width) solid oklch(from var(--border) l c h / 0.6);
   }
 
   :where([data-control-family="thread-rail"][data-slot="summary"]) {

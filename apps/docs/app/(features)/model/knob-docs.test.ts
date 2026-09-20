@@ -16,7 +16,7 @@ describe("knob docs", () => {
   });
 
   test("a family without knobs shows no section", () => {
-    const actionBar = data.components.find((candidate) => candidate.id === "action-bar");
-    expect(actionBar?.knobs).toEqual([]);
+    const email = data.components.find((candidate) => candidate.id === "email");
+    expect(email?.knobs).toEqual([]);
   });
 });

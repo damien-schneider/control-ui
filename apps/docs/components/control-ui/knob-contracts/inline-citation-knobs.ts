@@ -10,5 +10,7 @@ export const inlineCitationKnobs = [
   "--cui-inline-citation-navigation-background",
   "--cui-inline-citation-quote-background",
   "--cui-inline-citation-quote-radius",
+  "--cui-inline-citation-favicon-background",
+  "--cui-inline-citation-favicon-radius",
 ] as const;
 export type InlineCitationKnobStyle = Partial<Record<(typeof inlineCitationKnobs)[number], string>>;

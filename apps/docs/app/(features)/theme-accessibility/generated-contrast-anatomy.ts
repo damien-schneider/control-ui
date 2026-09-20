@@ -719,6 +719,110 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-slot": "trigger",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "inline-citation",
+            "data-slot": "favicon",
+            "data-source-badge-favicon": "",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
+          },
+        },
+      ],
+      recipe: "avatar",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-avatar-fallback-background",
+        text: "--cui-avatar-fallback-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-popup-kind": "popover",
+            "data-slot": "trigger",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "inline-citation",
+            "data-slot": "favicon",
+            "data-source-badge-favicon": "",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "avatar",
+            "data-slot": "fallback",
+          },
+        },
+      ],
+      recipe: "avatar",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-avatar-fallback-background",
+        text: "--cui-avatar-fallback-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -796,108 +900,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-avatar-fallback-background",
-        text: "--cui-avatar-fallback-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-slot": "trigger",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "inline-citation",
-            "data-slot": "favicon",
-            "data-source-badge-favicon": "",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: false,
-      state: false,
-      route: "/ai/inline-citation",
-    },
-    {
-      knobs: {
-        fill: "--cui-avatar-fallback-background",
-        text: "--cui-avatar-fallback-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-popup-kind": "popover",
-            "data-slot": "trigger",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "inline-citation",
-            "data-slot": "favicon",
-            "data-source-badge-favicon": "",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "avatar",
-            "data-control-ui": "avatar",
-            "data-slot": "fallback",
-          },
-        },
-      ],
-      recipe: "avatar",
-      rendersText: false,
-      state: false,
-      route: "/ai/inline-citation",
-    },
-    {
-      knobs: {
         fill: "--cui-button-active-background",
         text: "--cui-button-active-foreground",
       },
@@ -2448,6 +2450,532 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "navigation",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "inline-citation",
+            "data-disabled": "",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "previous",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "navigation",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "inline-citation",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "next",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-disabled": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "user-ask",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "dismiss",
+            "data-tone": "neutral",
+            "data-user-ask-dismiss": "true",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "user-ask",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-user-ask-submit": "true",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/task-list",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -3041,46 +3569,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-size": "xs",
             "data-slot": "root",
             "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-active": "true",
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
             "data-variant": "surface",
             tabindex: "0",
           },
@@ -3241,135 +3729,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/primitives/color-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "inline-citation",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slide": "scope",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-slot": "navigation",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "inline-citation",
-            "data-disabled": "",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "previous",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/ai/inline-citation",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "inline-citation",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slide": "scope",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-slot": "navigation",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "inline-citation",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "next",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/ai/inline-citation",
     },
     {
       knobs: {
@@ -6732,201 +7091,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-disabled": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: false,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "user-ask",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "dismiss",
-            "data-tone": "neutral",
-            "data-user-ask-dismiss": "true",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "user-ask",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "submit",
-            "data-tone": "primary",
-            "data-user-ask-submit": "true",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "alert-dialog",
@@ -7493,100 +7657,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-shape": "default",
             "data-size": "lg",
             "data-slot": "root",
@@ -7905,45 +7975,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "root",
             "data-tone": "neutral",
             "data-variant": "quiet",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
             tabindex: "0",
           },
         },
@@ -8147,44 +8178,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/get-started",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-background",
-        text: "--cui-button-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/theme-ai-builder",
     },
     {
       knobs: {
@@ -8808,6 +8801,72 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "button",
             "data-icon-only": "true",
             "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
             "data-tone": "neutral",
@@ -8820,6 +8879,38 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/primitives/code",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-background",
+        text: "--cui-button-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -8917,7 +9008,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -9373,6 +9464,678 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "navigation",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "inline-citation",
+            "data-disabled": "",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "previous",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "navigation",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "inline-citation",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "next",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-disabled": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "user-ask",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "dismiss",
+            "data-tone": "neutral",
+            "data-user-ask-dismiss": "true",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "user-ask",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-user-ask-submit": "true",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/task-list",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -10331,135 +11094,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/color-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "inline-citation",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slide": "scope",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-slot": "navigation",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "inline-citation",
-            "data-disabled": "",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "previous",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/inline-citation",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "inline-citation",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slide": "scope",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-slot": "navigation",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "inline-citation",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "next",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/inline-citation",
     },
     {
       knobs: {
@@ -14581,201 +15215,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-disabled": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "user-ask",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "dismiss",
-            "data-tone": "neutral",
-            "data-user-ask-dismiss": "true",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "user-ask",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "submit",
-            "data-tone": "primary",
-            "data-user-ask-submit": "true",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "alert-dialog",
@@ -15383,158 +15822,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-popup-open": "",
             "data-shape": "default",
             "data-size": "sm",
@@ -15893,45 +16180,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "root",
             "data-tone": "neutral",
             "data-variant": "quiet",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
             tabindex: "0",
           },
         },
@@ -16135,44 +16383,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/get-started",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-hover-background",
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/theme-ai-builder",
     },
     {
       knobs: {
@@ -17213,6 +17423,72 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "button",
             "data-icon-only": "true",
             "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
             "data-tone": "neutral",
@@ -17225,6 +17501,38 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/code",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-hover-background",
+        text: "--cui-button-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -17322,7 +17630,111 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-open-background",
+        text: "--cui-button-open-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-open-background",
+        text: "--cui-button-open-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -17850,64 +18262,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/alert-dialog",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-open-background",
-        text: "--cui-button-open-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/ai/context",
     },
     {
       knobs: {
@@ -18531,6 +18885,665 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "navigation",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "inline-citation",
+            "data-disabled": "",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "previous",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "navigation",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "inline-citation",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "next",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-disabled": "",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "user-ask",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "dismiss",
+            "data-tone": "neutral",
+            "data-user-ask-dismiss": "true",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "user-ask",
+            "data-control-ui": "user-ask",
+            "data-slot": "root",
+            "data-surface": "panel",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "user-ask",
+            "data-shape": "default",
+            "data-size": "xs",
+            "data-slot": "submit",
+            "data-tone": "primary",
+            "data-user-ask-submit": "true",
+            "data-variant": "solid",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-popup-kind": "popover",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "quiet",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/task-list",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-open": "",
+            "data-popup-side": "bottom",
+            "data-pressed": "",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "trigger",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            role: "combobox",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -19469,133 +20482,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/color-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "inline-citation",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slide": "scope",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-slot": "navigation",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "inline-citation",
-            "data-disabled": "",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "previous",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/inline-citation",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "inline-citation",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slide": "scope",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-citation",
-            "data-control-ui": "inline-citation",
-            "data-slot": "navigation",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "inline-citation",
-            "data-icon-only": "true",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "next",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/inline-citation",
     },
     {
       knobs: {
@@ -23646,197 +24532,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-disabled": "",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: false,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "user-ask",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "dismiss",
-            "data-tone": "neutral",
-            "data-user-ask-dismiss": "true",
-            "data-variant": "quiet",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "user-ask",
-            "data-control-ui": "user-ask",
-            "data-slot": "root",
-            "data-surface": "panel",
-            tabindex: "-1",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "user-ask",
-            "data-shape": "default",
-            "data-size": "xs",
-            "data-slot": "submit",
-            "data-tone": "primary",
-            "data-user-ask-submit": "true",
-            "data-variant": "solid",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/user-ask",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "alert-dialog",
@@ -24429,155 +25124,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control": "true",
             "data-control-family": "button",
             "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
             "data-popup-open": "",
             "data-shape": "default",
             "data-size": "sm",
@@ -24927,44 +25473,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "root",
             "data-tone": "neutral",
             "data-variant": "quiet",
-            href: "#",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "quiet",
             tabindex: "0",
           },
         },
@@ -25163,43 +25671,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: true,
       route: "/get-started",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-press-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "primary",
-            "data-variant": "solid",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: true,
-      route: "/theme-ai-builder",
     },
     {
       knobs: {
@@ -26214,6 +26685,70 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-ui": "button",
             "data-icon-only": "true",
             "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "ghost",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "neutral",
+            "data-variant": "surface",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: false,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-icon-only": "true",
+            "data-shape": "default",
             "data-size": "xs",
             "data-slot": "root",
             "data-tone": "neutral",
@@ -26226,6 +26761,37 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: true,
       route: "/primitives/code",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-press-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control": "true",
+            "data-control-family": "button",
+            "data-control-ui": "button",
+            "data-shape": "default",
+            "data-size": "sm",
+            "data-slot": "root",
+            "data-tone": "primary",
+            "data-variant": "solid",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "button",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -26320,7 +26886,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -27953,6 +28519,79 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-code-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -28634,6 +29273,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -28690,6 +29330,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -28746,6 +29387,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -28787,6 +29429,63 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
+        fill: "--cui-context-segment-system-fill",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "context",
+            "data-control-ui": "context",
+            "data-slot": "content",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "context",
+            "data-control-ui": "context",
+            "data-kind": "system",
+            "data-slot": "legend-indicator",
+          },
+        },
+      ],
+      recipe: "context",
+      rendersText: false,
+      state: false,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
         fill: "--cui-context-segment-tool-fill",
       },
       anatomy: [
@@ -28802,6 +29501,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -28968,49 +29668,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-chrome": "panel",
-            "data-control-family": "chat-layout",
-            "data-control-ui": "chat-layout",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "inline-attachment",
-            "data-control-ui": "inline-attachment",
-            "data-slot": "root",
-            "data-state": "ready",
-            "data-surface": "panel",
-          },
-        },
-      ],
-      recipe: "inline-attachment",
-      rendersText: true,
-      state: false,
-      route: "/use-cases/chat",
-    },
-    {
-      knobs: {
-        fill: "--cui-inline-attachment-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29045,6 +29703,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29054,6 +29713,99 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "root",
             "data-state": "ready",
             "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "inline-attachment",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-inline-attachment-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "panel",
+            "data-control-family": "chat-layout",
+            "data-control-ui": "chat-layout",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-attachment",
+            "data-control-ui": "inline-attachment",
+            "data-slot": "root",
+            "data-state": "ready",
+            "data-surface": "panel",
+          },
+        },
+      ],
+      recipe: "inline-attachment",
+      rendersText: true,
+      state: false,
+      route: "/use-cases/chat",
+    },
+    {
+      knobs: {
+        fill: "--cui-inline-attachment-content-background",
+        text: "--cui-inline-attachment-content-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-attachment",
+            "data-control-ui": "inline-attachment",
+            "data-slot": "root",
+            "data-state": "ready",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-attachment",
+            "data-control-ui": "inline-attachment",
+            "data-slot": "document",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-attachment",
+            "data-control-ui": "inline-attachment",
+            "data-slot": "content",
           },
         },
       ],
@@ -29115,8 +29867,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-inline-attachment-content-background",
-        text: "--cui-inline-attachment-content-foreground",
+        fill: "--cui-inline-attachment-document-background",
       },
       anatomy: [
         {
@@ -29131,6 +29882,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29146,14 +29898,167 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control-family": "inline-attachment",
             "data-control-ui": "inline-attachment",
-            "data-slot": "content",
+            "data-slot": "document",
           },
         },
       ],
       recipe: "inline-attachment",
-      rendersText: true,
+      rendersText: false,
       state: false,
       route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-inline-citation-favicon-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "inline-citation",
+            "data-slot": "source-favicon",
+            "data-source-badge-favicon": "",
+          },
+        },
+      ],
+      recipe: "inline-citation",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-inline-citation-favicon-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-popup-kind": "popover",
+            "data-popup-open": "",
+            "data-pressed": "",
+            "data-slot": "trigger",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "inline-citation",
+            "data-slot": "favicon",
+            "data-source-badge-favicon": "",
+          },
+        },
+      ],
+      recipe: "inline-citation",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-inline-citation-favicon-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "inline-citation",
+            "data-control-ui": "inline-citation",
+            "data-popup-kind": "popover",
+            "data-slot": "trigger",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "avatar",
+            "data-control-ui": "inline-citation",
+            "data-slot": "favicon",
+            "data-source-badge-favicon": "",
+          },
+        },
+      ],
+      recipe: "inline-citation",
+      rendersText: false,
+      state: false,
+      route: "/ai/inline-citation",
     },
     {
       knobs: {
@@ -29172,6 +30077,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29222,6 +30128,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29264,6 +30171,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29308,6 +30216,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29347,23 +30256,17 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-control-family": "kbd",
             "data-control-ui": "kbd",
             "data-slot": "root",
+            "data-variant": "ghost",
           },
         },
       ],
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/primitives/kbd",
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -29383,6 +30286,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -29413,6 +30317,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "kbd",
             "data-control-ui": "kbd",
             "data-slot": "root",
+            "data-variant": "default",
           },
         },
       ],
@@ -29420,6 +30325,39 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/ai/user-ask",
+    },
+    {
+      knobs: {
+        fill: "--cui-kbd-background",
+        text: "--cui-kbd-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "kbd",
+            "data-control-ui": "kbd",
+            "data-slot": "root",
+          },
+        },
+      ],
+      recipe: "kbd",
+      rendersText: true,
+      state: false,
+      route: "/primitives/kbd",
     },
     {
       knobs: {
@@ -30290,6 +31228,145 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "end",
+            "data-control-family": "popup",
+            "data-control-ui": "popover",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "top",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/context",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "inline-citation",
+            "data-open": "",
+            "data-padding": "none",
+            "data-popup-kind": "popover",
+            "data-popup-part": "surface",
+            "data-side": "bottom",
+            "data-slide": "scope",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "dialog",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-citation",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-background",
+        text: "--cui-popup-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -30353,48 +31430,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/color-picker",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "end",
-            "data-control-family": "popup",
-            "data-control-ui": "popover",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "top",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/ai/context",
     },
     {
       knobs: {
@@ -30516,49 +31551,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/hover-card",
-    },
-    {
-      knobs: {
-        fill: "--cui-popup-background",
-        text: "--cui-popup-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-align": "start",
-            "data-control-family": "popup",
-            "data-control-ui": "inline-citation",
-            "data-open": "",
-            "data-padding": "none",
-            "data-popup-kind": "popover",
-            "data-popup-part": "surface",
-            "data-side": "bottom",
-            "data-slide": "scope",
-            "data-slot": "content",
-            "data-surface": "floating",
-            role: "dialog",
-            tabindex: "-1",
-          },
-        },
-      ],
-      recipe: "popup",
-      rendersText: true,
-      state: false,
-      route: "/ai/inline-citation",
     },
     {
       knobs: {
@@ -31737,6 +32729,72 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/dropdown-menu",
+    },
+    {
+      knobs: {
+        fill: "--cui-popup-item-highlight-background",
+        text: "--cui-popup-item-highlight-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -34471,6 +35529,32 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "sidebar",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-sidebar-inset-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -34591,7 +35675,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/primitives/code",
+      route: "/ai/context",
     },
     {
       knobs: {
@@ -34633,7 +35717,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/primitives/code",
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -35158,7 +36242,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/primitives/code",
+      route: "/ai/context",
     },
     {
       knobs: {
@@ -35200,7 +36284,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/primitives/code",
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -36064,135 +37148,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-content-mode": "current",
             "data-control-family": "stepper",
             "data-control-ui": "stepper",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-slot": "indicator",
-            "data-state": "complete",
-          },
-        },
-      ],
-      recipe: "stepper",
-      rendersText: true,
-      state: false,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-stepper-indicator-background",
-        text: "--cui-stepper-indicator-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-content-mode": "current",
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-slot": "indicator",
-            "data-state": "current",
-          },
-        },
-      ],
-      recipe: "stepper",
-      rendersText: true,
-      state: false,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-stepper-indicator-background",
-        text: "--cui-stepper-indicator-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-content-mode": "current",
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-slot": "indicator",
-            "data-state": "upcoming",
-          },
-        },
-      ],
-      recipe: "stepper",
-      rendersText: true,
-      state: false,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-stepper-indicator-background",
-        text: "--cui-stepper-indicator-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-content-mode": "current",
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
             "data-orientation": "vertical",
             "data-responsive": "true",
             "data-slot": "root",
@@ -36342,90 +37297,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/primitives/stepper",
-    },
-    {
-      knobs: {
-        fill: "--cui-stepper-separator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-content-mode": "current",
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-slot": "separator",
-            "data-state": "complete",
-          },
-        },
-      ],
-      recipe: "stepper",
-      rendersText: false,
-      state: false,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        fill: "--cui-stepper-separator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-content-mode": "current",
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-slot": "separator",
-            "data-state": "current",
-          },
-        },
-      ],
-      recipe: "stepper",
-      rendersText: false,
-      state: false,
-      route: "/theme-ai-builder",
     },
     {
       knobs: {
@@ -37320,6 +38191,40 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "both",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        fill: "--cui-table-of-contents-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -37422,6 +38327,54 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives",
+    },
+    {
+      knobs: {
+        fill: "--cui-tabs-list-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -37669,6 +38622,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -37705,6 +38659,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -37721,6 +38676,100 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
+      route: "/ai/task-list",
+    },
+    {
+      knobs: {
+        fill: "--cui-task-list-trigger-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-closed": "",
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-slot": "root",
+            "data-state": "closed",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "task-list",
+      rendersText: true,
+      state: true,
+      route: "/ai/task-list",
+    },
+    {
+      knobs: {
+        fill: "--cui-task-list-trigger-hover-background",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "trigger",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "task-list",
+      rendersText: true,
+      state: true,
       route: "/ai/task-list",
     },
     {
@@ -43174,6 +44223,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -43209,6 +44259,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -43260,6 +44311,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -43309,6 +44361,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -43352,6 +44405,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -43396,6 +44450,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -43438,6 +44493,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -46783,63 +47839,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
           attributes: {
             "data-control": "true",
             "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-popup-kind": "popover",
-            "data-popup-open": "",
-            "data-pressed": "",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-      ],
-      recipe: "button",
-      rendersText: true,
-      state: false,
-      route: "/ai/context",
-    },
-    {
-      knobs: {
-        text: "--cui-button-hover-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
             "data-control-ui": "dialog",
             "data-popup-kind": "dialog",
             "data-popup-open": "",
@@ -47425,6 +48424,95 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "grid",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-code-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -47516,49 +48604,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
         },
         {
           attributes: {
-            "data-chrome": "embedded",
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "root",
-            "data-surface": "panel",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "code",
-            "data-control-ui": "code",
-            "data-density": "default",
-            "data-slot": "grid",
-          },
-        },
-      ],
-      recipe: "code",
-      rendersText: true,
-      state: false,
-      route: "/doctor",
-    },
-    {
-      knobs: {
-        text: "--cui-code-text-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
             "data-chrome": "standalone",
             "data-control-family": "code",
             "data-control-ui": "code",
@@ -47624,6 +48669,50 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/code",
+    },
+    {
+      knobs: {
+        text: "--cui-code-title-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "compact",
+            "data-header": "true",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-slot": "title",
+          },
+        },
+      ],
+      recipe: "code",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -48312,6 +49401,134 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/phone-input",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "false",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-popup-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-chrome": "standalone",
+            "data-control-family": "code",
+            "data-control-ui": "code",
+            "data-density": "default",
+            "data-slot": "root",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "data-align": "start",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-open": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "list-surface",
+            "data-side": "bottom",
+            "data-slot": "content",
+            "data-surface": "floating",
+            role: "listbox",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "aria-selected": "true",
+            "data-control-family": "popup",
+            "data-control-ui": "select",
+            "data-highlighted": "",
+            "data-popup-kind": "select",
+            "data-popup-part": "item",
+            "data-selected": "",
+            "data-slot": "item",
+            role: "option",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "popup",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -49135,7 +50352,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives/code",
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -49489,7 +50706,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives/code",
+      route: "/ai/context",
     },
     {
       knobs: {
@@ -49530,7 +50747,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/primitives/code",
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -50054,47 +51271,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-content-mode": "current",
             "data-control-family": "stepper",
             "data-control-ui": "stepper",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
-            "data-slot": "title",
-          },
-        },
-      ],
-      recipe: "stepper",
-      rendersText: true,
-      state: false,
-      route: "/theme-ai-builder",
-    },
-    {
-      knobs: {
-        text: "--cui-stepper-title-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "wrapper",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "sidebar",
-            "data-control-ui": "sidebar",
-            "data-slot": "inset",
-          },
-        },
-        {
-          attributes: {
-            "data-content-mode": "current",
-            "data-control-family": "stepper",
-            "data-control-ui": "stepper",
             "data-orientation": "vertical",
             "data-responsive": "true",
             "data-slot": "root",
@@ -50169,6 +51345,52 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "both",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            "data-variant": "both",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -50304,6 +51526,51 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "both",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            "data-variant": "both",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -50418,6 +51685,97 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives/table-of-contents",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "both",
+          },
+        },
+        {
+          attributes: {
+            "data-active": "true",
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            "data-variant": "both",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-item-hover-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "both",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-depth": "0",
+            "data-level": "2",
+            "data-slot": "item",
+            "data-variant": "both",
+            href: "#",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: true,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -50703,6 +52061,47 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "root",
+            "data-variant": "both",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "table-of-contents",
+            "data-control-ui": "table-of-contents",
+            "data-slot": "label",
+          },
+        },
+      ],
+      recipe: "table-of-contents",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-table-of-contents-label-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -50938,6 +52337,78 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "indicator",
+            role: "presentation",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "true",
+            "data-activation-direction": "none",
+            "data-active": "",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "0",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
           },
         },
         {
@@ -51894,6 +53365,67 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: true,
       state: false,
       route: "/primitives",
+    },
+    {
+      knobs: {
+        text: "--cui-tabs-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slide": "scope",
+            "data-slot": "root",
+          },
+        },
+        {
+          attributes: {
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-size": "sm",
+            "data-slot": "list",
+            "data-variant": "browser",
+            role: "tablist",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "aria-selected": "false",
+            "data-activation-direction": "none",
+            "data-control-family": "tabs",
+            "data-control-ui": "tabs",
+            "data-orientation": "horizontal",
+            "data-slot": "tab",
+            role: "tab",
+            tabindex: "-1",
+          },
+        },
+      ],
+      recipe: "tabs",
+      rendersText: true,
+      state: false,
+      route: "/ai/inline-attachment",
     },
     {
       knobs: {
@@ -52963,6 +54495,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -52973,6 +54506,16 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-slot": "root",
             "data-state": "closed",
             "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-slot": "trigger",
+            "data-state": "closed",
+            tabindex: "0",
           },
         },
         {
@@ -53006,6 +54549,63 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-open": "",
+            "data-slot": "root",
+            "data-state": "open",
+            "data-surface": "panel",
+          },
+        },
+        {
+          attributes: {
+            "aria-disabled": "false",
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-open": "",
+            "data-panel-open": "",
+            "data-slot": "trigger",
+            "data-state": "open",
+            tabindex: "0",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "task-list",
+            "data-control-ui": "task-list",
+            "data-slot": "item-indicator",
+            "data-status": "active",
+          },
+        },
+      ],
+      recipe: "task-list",
+      rendersText: true,
+      state: false,
+      route: "/ai/task-list",
+    },
+    {
+      knobs: {
+        text: "--cui-task-list-indicator-active-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "wrapper",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "sidebar",
+            "data-control-ui": "sidebar",
+            "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -53049,6 +54649,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -53092,6 +54693,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -53135,6 +54737,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -53178,6 +54781,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -53221,6 +54825,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
             "data-control-family": "sidebar",
             "data-control-ui": "sidebar",
             "data-slot": "inset",
+            tabindex: "-1",
           },
         },
         {
@@ -53732,6 +55337,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     "--cui-code-diff-expand-button-hover-background",
     "--cui-code-diff-expand-button-hover-foreground",
     "--cui-code-line-highlight-background",
+    "--cui-context-segment-cache-fill",
     "--cui-dockable-panel-drop-zone-active-background",
     "--cui-dropzone-accept-border-color",
     "--cui-dropzone-overlay-background",

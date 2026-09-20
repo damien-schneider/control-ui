@@ -2,7 +2,7 @@ import type { ComponentProps, CSSProperties, KeyboardEvent, ReactNode } from "re
 import { useState } from "react";
 import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts/user-ask-knobs";
 
-export type UserAskAnswers = Record<string, string>;
+export type UserAskAnswers = Record<string, string | string[]>;
 
 export type UserAskProps = Omit<ComponentProps<"section">, "style"> & {
   children?: ReactNode;
@@ -15,7 +15,8 @@ export type UserAskQuestionEntry = {
   key: string;
   id: string;
   title: string;
-  defaultValue?: string;
+  multiple?: boolean;
+  defaultValues?: string[];
 };
 
 export type UserAskOptionEntry = {
@@ -29,6 +30,7 @@ export type UserAskOptionEntry = {
 function upsert<Entry extends { key: string }>(entries: Entry[], entry: Entry) {
   const index = entries.findIndex((existing) => existing.key === entry.key);
   if (index === -1) return [...entries, entry];
+  if (JSON.stringify(entries[index]) === JSON.stringify(entry)) return entries;
   const next = [...entries];
   next[index] = entry;
   return next;
@@ -38,7 +40,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
   const [questions, setQuestions] = useState<UserAskQuestionEntry[]>([]);
   const [optionsByQuestion, setOptionsByQuestion] = useState<Record<string, UserAskOptionEntry[]>>({});
   // Explicit picks by option registration key; question's defaultValue is DERIVED in selectionFor, never copied here.
-  const [selections, setSelections] = useState<Record<string, string>>({});
+  const [selections, setSelections] = useState<Record<string, string[]>>({});
   const [freeformTexts, setFreeformTexts] = useState<Record<string, string>>({});
   const [requestedIndex, setRequestedIndex] = useState(0);
 
@@ -70,20 +72,39 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     return optionsByQuestion[questionId] ?? [];
   }
 
-  function selectionFor(questionId: string) {
+  function allowsMultiple(questionId: string) {
+    return questions.find((question) => question.id === questionId)?.multiple === true;
+  }
+
+  function selectedKeysFor(questionId: string) {
     const explicit = selections[questionId];
     if (explicit) return explicit;
-    const defaultValue = questions.find((question) => question.id === questionId)?.defaultValue;
-    if (defaultValue === undefined) return undefined;
-    return optionsFor(questionId).find((option) => !option.freeform && option.value === defaultValue)?.key;
+    const defaults = questions.find((question) => question.id === questionId)?.defaultValues;
+    if (defaults === undefined) return [];
+    return optionsFor(questionId)
+      .filter((option) => !option.freeform && defaults.includes(option.value))
+      .map((option) => option.key);
+  }
+
+  function selectionFor(questionId: string) {
+    return selectedKeysFor(questionId)[0];
   }
 
   function isSelected(questionId: string, optionKey: string) {
-    return selectionFor(questionId) === optionKey;
+    return selectedKeysFor(questionId).includes(optionKey);
   }
 
   function select(questionId: string, optionKey: string) {
-    setSelections((previous) => ({ ...previous, [questionId]: optionKey }));
+    if (!allowsMultiple(questionId)) {
+      setSelections((previous) => ({ ...previous, [questionId]: [optionKey] }));
+      return;
+    }
+    const derived = selectedKeysFor(questionId);
+    setSelections((previous) => {
+      const current = previous[questionId] ?? derived;
+      const next = current.includes(optionKey) ? current.filter((entry) => entry !== optionKey) : [...current, optionKey];
+      return { ...previous, [questionId]: next };
+    });
   }
 
   function freeformTextFor(questionId: string) {
@@ -95,12 +116,19 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
   }
 
   function answerFor(questionId: string) {
-    const selectedKey = selectionFor(questionId);
-    const option = optionsFor(questionId).find((entry) => entry.key === selectedKey);
-    if (!option) return undefined;
-    if (!option.freeform) return option.value;
-    const text = freeformTextFor(questionId).trim();
-    return text.length > 0 ? text : undefined;
+    const options = optionsFor(questionId);
+    const resolve = (optionKey: string) => {
+      const option = options.find((entry) => entry.key === optionKey);
+      if (!option) return undefined;
+      if (!option.freeform) return option.value;
+      const text = freeformTextFor(questionId).trim();
+      return text.length > 0 ? text : undefined;
+    };
+    const values = selectedKeysFor(questionId)
+      .map(resolve)
+      .filter((value): value is string => value !== undefined);
+    if (!allowsMultiple(questionId)) return values[0];
+    return values.length > 0 ? values : undefined;
   }
 
   const canContinue = activeQuestion !== undefined && answerFor(activeQuestion.id) !== undefined;
@@ -152,6 +180,23 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     if (option && !option.disabled) select(activeQuestion.id, option.key);
   }
 
+  function moveActiveOption(event: KeyboardEvent<HTMLElement>, delta: number) {
+    if (!activeQuestion) return;
+    if (!allowsMultiple(activeQuestion.id)) {
+      moveSelection(delta);
+      return;
+    }
+    const group = event.currentTarget.querySelector('[data-slot="question"][data-active]');
+    const rows = [...(group?.querySelectorAll<HTMLElement>('[data-slot="option"]:not([disabled])') ?? [])];
+    if (rows.length === 0) return;
+    const focused = rows.findIndex((candidate) => candidate.contains(document.activeElement));
+    let start = focused;
+    if (focused === -1) start = delta > 0 ? -1 : 0;
+    const row = rows[(start + delta + rows.length) % rows.length];
+    const target = row?.matches("button, input") ? row : row?.querySelector<HTMLElement>("input, button");
+    target?.focus();
+  }
+
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
     if (event.defaultPrevented) return;
     if (event.key === "Escape") {
@@ -169,12 +214,12 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     if (event.target instanceof HTMLElement && event.target.closest("input, textarea, [contenteditable]")) return;
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      moveSelection(1);
+      moveActiveOption(event, 1);
       return;
     }
     if (event.key === "ArrowUp") {
       event.preventDefault();
-      moveSelection(-1);
+      moveActiveOption(event, -1);
       return;
     }
     if (/^[1-9]$/.test(event.key)) {
@@ -195,6 +240,7 @@ export function useUserAsk({ onComplete, onDismiss }: Pick<UserAskProps, "onComp
     registerOption,
     unregisterOption,
     optionsFor,
+    allowsMultiple,
     selectionFor,
     isSelected,
     select,

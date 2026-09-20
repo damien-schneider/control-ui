@@ -22,6 +22,26 @@
     }
   }
 
+  :where([data-control-family="badge"][data-source-badge][data-slot="root"]:focus-visible) {
+    background: var(--cui-source-badge-hover-background);
+    color: var(--cui-source-badge-hover-foreground);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="badge"][data-source-badge][data-slot="root"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="badge"][data-source-badge][data-slot="root"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
+  }
+
   :where([data-control-family="badge"][data-source-badge][data-slot="root"] [data-slot="label"]) {
     max-inline-size: calc(var(--spacing) * 44);
   }

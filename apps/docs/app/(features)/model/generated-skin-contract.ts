@@ -12341,6 +12341,12 @@ export const generatedSkinContract: SkinContract = {
               values: [],
             },
             {
+              attribute: "data-multiple",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-recommended",
               source: "control-ui",
               valueKind: "presence",
@@ -12363,6 +12369,12 @@ export const generatedSkinContract: SkinContract = {
           family: "user-ask",
           registryItems: ["user-ask"],
           states: [
+            {
+              attribute: "data-multiple",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
             {
               attribute: "data-selected",
               source: "control-ui",
@@ -12461,7 +12473,20 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--muted-foreground)",
       },
     ],
-    "action-bar": [],
+    "action-bar": [
+      {
+        name: "--cui-action-bar-hidden-opacity",
+        syntax: "<number>",
+        initialValue: "0",
+        defaultValue: "0",
+      },
+      {
+        name: "--cui-action-bar-visible-opacity",
+        syntax: "<number>",
+        initialValue: "1",
+        defaultValue: "1",
+      },
+    ],
     activity: [
       {
         name: "--cui-activity-row-foreground",
@@ -12486,6 +12511,12 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "oklch(from var(--muted) l c h / 0.5)",
+      },
+      {
+        name: "--cui-activity-code-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-control)",
       },
     ],
     alert: [
@@ -12609,6 +12640,12 @@ export const generatedSkinContract: SkinContract = {
     "audio-visualizer": [
       {
         name: "--cui-audio-visualizer-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-control)",
+      },
+      {
+        name: "--cui-audio-visualizer-bar-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue: "var(--radius-control)",
@@ -12987,7 +13024,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-chat-composer-shell-shadow",
@@ -13020,6 +13057,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--radius-popup-item)",
       },
       {
+        name: "--cui-chat-composer-mention-icon-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "min(var(--radius-sm), calc(var(--spacing) * 1))",
+      },
+      {
         name: "--cui-chat-composer-mention-border-color",
         syntax: "<color>",
         initialValue: "transparent",
@@ -13038,6 +13081,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "var(--radius-popover)",
+      },
+      {
+        name: "--cui-chat-composer-attachment-height",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 14)",
+      },
+      {
+        name: "--cui-chat-composer-attachment-list-padding",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
       },
       {
         name: "--cui-chat-composer-attachment-background",
@@ -13137,7 +13192,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-message-avatar-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-chat-message-radius",
@@ -13407,6 +13462,24 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "9999px",
+      },
+      {
+        name: "--cui-context-legend-indicator-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "9999px",
+      },
+      {
+        name: "--cui-context-segment-system-fill",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.75)",
+      },
+      {
+        name: "--cui-context-segment-cache-fill",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--muted-foreground) l c h / 0.55)",
       },
       {
         name: "--cui-context-track-fill",
@@ -13980,19 +14053,43 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-inline-attachment-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-scene)",
+        defaultValue: "var(--radius-field)",
       },
       {
         name: "--cui-inline-attachment-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--muted)",
+        defaultValue: "var(--card)",
       },
       {
         name: "--cui-inline-attachment-ring-color",
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-inline-attachment-padding",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-inline-attachment-document-padding",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 5)",
+      },
+      {
+        name: "--cui-inline-attachment-document-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted)",
+      },
+      {
+        name: "--cui-inline-attachment-document-background-image",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
       },
       {
         name: "--cui-inline-attachment-shadow",
@@ -14010,7 +14107,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-inline-attachment-content-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "max(var(--radius-sm), calc(var(--cui-inline-attachment-radius) - var(--cui-inline-attachment-padding)))",
       },
       {
         name: "--cui-inline-attachment-content-background",
@@ -14097,6 +14194,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "var(--radius-control)",
+      },
+      {
+        name: "--cui-inline-citation-favicon-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted)",
+      },
+      {
+        name: "--cui-inline-citation-favicon-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "9999px",
       },
     ],
     item: [
@@ -15357,6 +15466,31 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--radius-field)",
       },
       {
+        name: "--cui-task-list-ring-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.04)",
+      },
+      {
+        name: "--cui-task-list-items-padding",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-task-list-item-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue:
+          "max(\n      var(--radius-sm),\n      min(var(--radius-popup-item-fit), calc(var(--cui-task-list-radius) - var(--cui-task-list-items-padding)))\n    )",
+      },
+      {
+        name: "--cui-task-list-trigger-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--muted) l c h / 0.4)",
+      },
+      {
         name: "--cui-task-list-background",
         syntax: "<color>",
         initialValue: "transparent",
@@ -15378,7 +15512,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-task-list-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-task-list-shadow",
@@ -15452,7 +15586,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-thread-rail-popover-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-thread-rail-popover-shadow",
@@ -15735,55 +15869,80 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-user-ask-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-field)",
+        defaultValue: "var(--radius-popover)",
+      },
+      {
+        name: "--cui-user-ask-padding",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-user-ask-backdrop-filter",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "blur(var(--backdrop-blur-popover))",
+      },
+      {
+        name: "--cui-user-ask-indicator-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "9999px",
+      },
+      {
+        name: "--cui-user-ask-indicator-multiple-radius",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-sm)",
       },
       {
         name: "--cui-user-ask-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--card) l c h / 0.9)",
+        defaultValue: "var(--popover)",
       },
       {
         name: "--cui-user-ask-foreground",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--foreground)",
+        defaultValue: "var(--popover-foreground)",
       },
       {
         name: "--cui-user-ask-border-color",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--border)",
+        defaultValue: "var(--control-rim)",
       },
       {
         name: "--cui-user-ask-border-width",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "1px",
+        defaultValue: "var(--control-rim-width)",
       },
       {
         name: "--cui-user-ask-shadow",
         syntax: "*",
         initialValue: "",
-        defaultValue: "var(--shadow-md)",
+        defaultValue: "var(--shadow-pop)",
       },
       {
         name: "--cui-user-ask-option-radius",
         syntax: "<length>",
         initialValue: "0px",
-        defaultValue: "var(--radius-popup-item)",
+        defaultValue:
+          "max(\n      var(--radius-sm),\n      min(var(--radius-popup-item-fit), calc(var(--cui-user-ask-radius) - var(--cui-user-ask-padding)))\n    )",
       },
       {
         name: "--cui-user-ask-option-hover-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--muted) l c h / 0.5)",
+        defaultValue: "var(--hover-fill)",
       },
       {
         name: "--cui-user-ask-option-selected-background",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "oklch(from var(--muted) l c h / 0.7)",
+        defaultValue: "var(--active-fill)",
       },
       {
         name: "--cui-user-ask-indicator-background",

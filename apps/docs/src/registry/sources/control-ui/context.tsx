@@ -126,7 +126,6 @@ export function ContextTrigger({
       className="relative inline-flex"
     >
       <Button
-        data-context-trigger-button="true"
         {...props}
         render={<PopoverTrigger />}
         variant={variant}
@@ -171,7 +170,7 @@ export function ContextTrigger({
                 />
               ) : null}
             </svg>
-            <span data-control-ui="context" data-control-family="context" data-slot="trigger-label" className="overflow-hidden">
+            <span data-control-ui="context" data-control-family="context" data-slot="trigger-label">
               {shortLabel}
             </span>
           </>

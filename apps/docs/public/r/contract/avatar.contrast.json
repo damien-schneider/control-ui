@@ -14,6 +14,90 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-popup-kind": "popover",
+          "data-popup-open": "",
+          "data-pressed": "",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "inline-citation",
+          "data-slot": "favicon",
+          "data-source-badge-favicon": ""
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "inline-citation",
+          "data-control-ui": "inline-citation",
+          "data-popup-kind": "popover",
+          "data-slot": "trigger",
+          "tabindex": "0"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "inline-citation",
+          "data-slot": "favicon",
+          "data-source-badge-favicon": ""
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
           "data-slot": "inset"
         }
       },
@@ -74,88 +158,6 @@
           "data-slot": "fallback"
         }
       }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-popup-kind": "popover",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-slot": "trigger",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "inline-citation",
-          "data-slot": "favicon",
-          "data-source-badge-favicon": ""
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "fallback"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-popup-kind": "popover",
-          "data-slot": "trigger",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "inline-citation",
-          "data-slot": "favicon",
-          "data-source-badge-favicon": ""
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "fallback"
-        }
-      }
     ]
   ],
   "probes": [
@@ -174,7 +176,7 @@
         "text": "--cui-avatar-fallback-foreground"
       },
       "anatomy": 1,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -192,7 +194,7 @@
         "text": "--cui-avatar-fallback-foreground"
       },
       "anatomy": 3,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     }
   ]

@@ -13,6 +13,30 @@
       "defaultValue": "var(--radius-field)"
     },
     {
+      "name": "--cui-task-list-ring-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.04)"
+    },
+    {
+      "name": "--cui-task-list-items-padding",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-task-list-item-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "max(\n      var(--radius-sm),\n      min(var(--radius-popup-item-fit), calc(var(--cui-task-list-radius) - var(--cui-task-list-items-padding)))\n    )"
+    },
+    {
+      "name": "--cui-task-list-trigger-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted) l c h / 0.4)"
+    },
+    {
       "name": "--cui-task-list-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -34,7 +58,7 @@
       "name": "--cui-task-list-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "1px"
+      "defaultValue": "var(--control-rim-width)"
     },
     {
       "name": "--cui-task-list-shadow",

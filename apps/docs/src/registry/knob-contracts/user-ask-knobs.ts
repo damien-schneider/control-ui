@@ -1,6 +1,10 @@
 // Generated from src/registry/sources/control-ui/recipes/user-ask.css by scripts/gen-knob-contracts.ts — run `bun run sync:knobs`.
 export const userAskKnobs = [
   "--cui-user-ask-radius",
+  "--cui-user-ask-padding",
+  "--cui-user-ask-backdrop-filter",
+  "--cui-user-ask-indicator-radius",
+  "--cui-user-ask-indicator-multiple-radius",
   "--cui-user-ask-background",
   "--cui-user-ask-foreground",
   "--cui-user-ask-border-color",

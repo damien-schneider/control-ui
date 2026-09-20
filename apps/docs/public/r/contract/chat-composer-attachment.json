@@ -13,6 +13,18 @@
       "defaultValue": "var(--radius-popover)"
     },
     {
+      "name": "--cui-chat-composer-attachment-height",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 14)"
+    },
+    {
+      "name": "--cui-chat-composer-attachment-list-padding",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
       "name": "--cui-chat-composer-attachment-background",
       "syntax": "<color>",
       "initialValue": "transparent",

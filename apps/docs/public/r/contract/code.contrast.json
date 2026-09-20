@@ -14,6 +14,61 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "compact",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
           "data-slot": "inset"
         }
       },
@@ -52,6 +107,77 @@
           "data-density": "default",
           "data-slot": "root",
           "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "compact",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "compact",
+          "data-slot": "grid"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "default",
+          "data-slot": "grid"
         }
       }
     ],
@@ -141,40 +267,6 @@
       },
       {
         "attributes": {
-          "data-chrome": "embedded",
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "code",
-          "data-control-ui": "code",
-          "data-density": "default",
-          "data-slot": "grid"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
           "data-chrome": "standalone",
           "data-control-family": "code",
           "data-control-ui": "code",
@@ -224,6 +316,41 @@
           "data-control-ui": "code",
           "data-density": "default",
           "data-slot": "grid"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-chrome": "standalone",
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-density": "compact",
+          "data-header": "true",
+          "data-slot": "root",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "code",
+          "data-control-ui": "code",
+          "data-slot": "title"
         }
       }
     ],
@@ -349,7 +476,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-text-foreground"
+        "fill": "--cui-code-background"
       },
       "anatomy": 2,
       "rendersText": true,
@@ -357,7 +484,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-text-foreground"
+        "fill": "--cui-code-background"
       },
       "anatomy": 3,
       "rendersText": true,
@@ -389,7 +516,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-title-foreground"
+        "text": "--cui-code-text-foreground"
       },
       "anatomy": 7,
       "rendersText": true,
@@ -397,7 +524,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-title-foreground"
+        "text": "--cui-code-text-foreground"
       },
       "anatomy": 8,
       "rendersText": true,
@@ -405,9 +532,41 @@
     },
     {
       "knobs": {
-        "text": "--cui-code-title-foreground"
+        "text": "--cui-code-text-foreground"
       },
       "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-code-title-foreground"
+      },
+      "anatomy": 10,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-code-title-foreground"
+      },
+      "anatomy": 11,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-code-title-foreground"
+      },
+      "anatomy": 12,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-code-title-foreground"
+      },
+      "anatomy": 13,
       "rendersText": true,
       "state": false
     }

@@ -12,6 +12,7 @@ export const chatComposerKnobs = [
   "--cui-chat-composer-input-placeholder-foreground",
   "--cui-chat-composer-mention-background",
   "--cui-chat-composer-mention-radius",
+  "--cui-chat-composer-mention-icon-radius",
   "--cui-chat-composer-mention-border-color",
   "--cui-chat-composer-mention-border-width",
 ] as const;

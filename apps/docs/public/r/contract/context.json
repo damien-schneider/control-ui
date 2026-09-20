@@ -13,6 +13,24 @@
       "defaultValue": "9999px"
     },
     {
+      "name": "--cui-context-legend-indicator-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "9999px"
+    },
+    {
+      "name": "--cui-context-segment-system-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.75)"
+    },
+    {
+      "name": "--cui-context-segment-cache-fill",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--muted-foreground) l c h / 0.55)"
+    },
+    {
       "name": "--cui-context-track-fill",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -359,6 +377,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-context-segment-cache-fill"
+  ],
   "contrast": "/r/contract/context.contrast.json"
 }

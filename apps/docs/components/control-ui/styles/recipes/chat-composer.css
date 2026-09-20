@@ -5,12 +5,13 @@
     --cui-chat-composer-shell-background-image: none;
     --cui-chat-composer-shell-backdrop-filter: none;
     --cui-chat-composer-shell-border-color: var(--border);
-    --cui-chat-composer-shell-border-width: 1px;
+    --cui-chat-composer-shell-border-width: var(--control-rim-width);
     --cui-chat-composer-shell-radius: var(--radius-field);
     --cui-chat-composer-shell-shadow: var(--shadow-md);
     --cui-chat-composer-input-foreground: var(--card-foreground);
     --cui-chat-composer-input-placeholder-foreground: var(--muted-foreground);
     --cui-chat-composer-mention-radius: var(--radius-popup-item);
+    --cui-chat-composer-mention-icon-radius: min(var(--radius-sm), calc(var(--spacing) * 1));
     --cui-chat-composer-mention-border-color: transparent;
     --cui-chat-composer-mention-border-width: 0px;
     --cui-chat-composer-mention-background: oklch(from var(--primary) l c h / 0.1);
@@ -109,7 +110,7 @@
   :where([data-control-family="chat-composer"][data-slot="mention-icon"]) {
     inline-size: calc(var(--spacing) * 4);
     block-size: calc(var(--spacing) * 4);
-    border-radius: 3px;
+    border-radius: var(--cui-chat-composer-mention-icon-radius);
   }
 
   :where([data-control-family="chat-composer"][data-slot="mention-description"]) {
@@ -189,6 +190,12 @@
 }
 
 @property --cui-chat-composer-mention-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-composer-mention-icon-radius {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

@@ -46,7 +46,7 @@
       "name": "--cui-chat-composer-shell-border-width",
       "syntax": "<length>",
       "initialValue": "0px",
-      "defaultValue": "1px"
+      "defaultValue": "var(--control-rim-width)"
     },
     {
       "name": "--cui-chat-composer-shell-shadow",
@@ -77,6 +77,12 @@
       "syntax": "<length>",
       "initialValue": "0px",
       "defaultValue": "var(--radius-popup-item)"
+    },
+    {
+      "name": "--cui-chat-composer-mention-icon-radius",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "min(var(--radius-sm), calc(var(--spacing) * 1))"
     },
     {
       "name": "--cui-chat-composer-mention-border-color",

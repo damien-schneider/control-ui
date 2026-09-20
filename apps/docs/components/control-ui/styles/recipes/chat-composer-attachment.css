@@ -1,7 +1,12 @@
 @layer components {
+  :where([data-control-family="chat-composer-attachment"][data-slot="root"]:not([data-variant])) {
+    --cui-chat-composer-attachment-list-padding: calc(var(--spacing) * 3);
+  }
+
   :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant]) {
     --cui-chat-composer-attachment-background: var(--popover);
     --cui-chat-composer-attachment-border-color: var(--control-rim);
+    --cui-chat-composer-attachment-height: calc(var(--spacing) * 14);
     --cui-chat-composer-attachment-radius: var(--radius-popover);
     --cui-chat-composer-attachment-image-outline-color: oklch(from var(--foreground) l c h / 0.1);
     --cui-chat-composer-attachment-shadow:
@@ -9,7 +14,7 @@
     --cui-chat-composer-attachment-backdrop-filter: blur(var(--backdrop-blur-popover));
     --cui-chat-composer-attachment-progress-background: transparent;
     --cui-chat-composer-attachment-progress-foreground: oklch(from var(--background) l c h / var(--overlay-opacity));
-    block-size: calc(var(--spacing) * 14);
+    block-size: var(--cui-chat-composer-attachment-height);
     text-align: left;
     border-radius: var(--cui-chat-composer-attachment-radius);
     background: var(--cui-chat-composer-attachment-background);
@@ -22,7 +27,20 @@
 
   :where([data-control-family="chat-composer-attachment"][data-slot="list"]) {
     gap: calc(var(--spacing) * 2);
-    padding: calc(var(--spacing) * 3);
+    padding: var(--cui-chat-composer-attachment-list-padding);
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="shell"]
+      [data-control-family="chat-composer-attachment"][data-slot="root"][data-variant]
+  ) {
+    --cui-chat-composer-attachment-radius: max(
+      var(--radius-sm),
+      min(
+        calc(var(--cui-chat-composer-attachment-height) / 2),
+        calc(var(--cui-chat-composer-shell-radius) - var(--cui-chat-composer-attachment-list-padding))
+      )
+    );
   }
 
   :where([data-control-family="chat-composer-attachment"][data-slot="root"][data-variant="preview"]) {
@@ -130,6 +148,18 @@
 }
 
 @property --cui-chat-composer-attachment-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-composer-attachment-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-composer-attachment-list-padding {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

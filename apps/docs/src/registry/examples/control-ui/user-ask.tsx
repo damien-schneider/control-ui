@@ -61,6 +61,21 @@ export function UserAskExample() {
               </UserAskOption>
               <UserAskOptionInput label="Other" placeholder="Tell the agent what to do differently" />
             </UserAskQuestion>
+            <UserAskQuestion id="surfaces" title="Which surfaces should show the running timer?" multiple defaultValue={["Menu bar"]}>
+              <UserAskOption value="Menu bar" recommended>
+                <UserAskOptionLabel>Menu bar</UserAskOptionLabel>
+                <UserAskOptionDescription>A compact countdown next to the system clock.</UserAskOptionDescription>
+              </UserAskOption>
+              <UserAskOption value="Dock badge">
+                <UserAskOptionLabel>Dock badge</UserAskOptionLabel>
+                <UserAskOptionDescription>Remaining minutes drawn over the app icon.</UserAskOptionDescription>
+              </UserAskOption>
+              <UserAskOption value="Lock screen">
+                <UserAskOptionLabel>Lock screen</UserAskOptionLabel>
+                <UserAskOptionDescription>A live activity that survives stepping away from the desk.</UserAskOptionDescription>
+              </UserAskOption>
+              <UserAskOptionInput label="Somewhere else" placeholder="Name another surface" />
+            </UserAskQuestion>
             <UserAskQuestion id="sessions" title="Where should completed sessions be logged?">
               <UserAskOption value="On the task" recommended>
                 <UserAskOptionLabel>On the task</UserAskOptionLabel>
@@ -82,7 +97,11 @@ export function UserAskExample() {
               <ChatMessage from="user" aria-live="polite">
                 <ChatMessageRow>
                   <ChatMessageBody>
-                    <ChatMessageContent>{Object.values(answers).join(" · ")}</ChatMessageContent>
+                    <ChatMessageContent>
+                      {Object.values(answers)
+                        .map((answer) => (Array.isArray(answer) ? answer.join(" + ") : answer))
+                        .join(" · ")}
+                    </ChatMessageContent>
                   </ChatMessageBody>
                 </ChatMessageRow>
               </ChatMessage>

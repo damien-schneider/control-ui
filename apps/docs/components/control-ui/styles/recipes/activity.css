@@ -1,10 +1,11 @@
 @layer components {
   :where([data-control-family="activity"][data-slot="root"]) {
-    margin-block: calc(var(--spacing) * 1);
     --cui-activity-row-foreground: var(--muted-foreground);
     --cui-activity-trigger-hover-background: oklch(from var(--muted) l c h / 0.45);
     --cui-activity-trigger-radius: var(--radius-control);
     --cui-activity-code-background: oklch(from var(--muted) l c h / 0.5);
+    --cui-activity-code-radius: var(--radius-control);
+    margin-block: calc(var(--spacing) * 1);
     font-size: var(--text-body);
   }
 
@@ -36,6 +37,11 @@
     inline-size: calc(var(--spacing) * 3.5);
     block-size: calc(var(--spacing) * 3.5);
     color: oklch(from var(--muted-foreground) l c h / 0.75);
+    transition: rotate var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="activity"][data-slot="trigger"][data-state="open"] [data-slot="chevron"]) {
+    rotate: 90deg;
   }
 
   :where([data-control-family="activity"][data-slot="icon"]) {
@@ -59,7 +65,7 @@
   }
 
   :where([data-control-family="activity"][data-slot="root"][data-activity-state="running"] [data-slot="icon"][data-status-icon] svg) {
-    animation: spin var(--duration-slow) linear infinite;
+    animation: activity-spin calc(var(--duration-slow) * 2) linear infinite;
   }
 
   :where([data-control-family="activity"][data-slot="root"][data-activity-state="error"] [data-slot="icon"]) {
@@ -99,8 +105,29 @@
     padding-inline: calc(var(--spacing) * 2);
     padding-block: calc(var(--spacing) * 1.5);
     background: var(--cui-activity-code-background);
-    border-radius: var(--radius-control);
+    border-radius: var(--cui-activity-code-radius);
     font-size: var(--text-caption);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="activity"][data-slot="trigger"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="activity"][data-slot="trigger"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
+  }
+}
+
+@keyframes activity-spin {
+  to {
+    rotate: 360deg;
   }
 }
 
@@ -126,4 +153,10 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-activity-code-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
 }

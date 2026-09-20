@@ -1,6 +1,8 @@
 @layer components {
   :where([data-control-family="inline-citation"][data-slot="root"]),
   :where([data-control-ui="inline-citation"][data-slot="content"]) {
+    --cui-inline-citation-favicon-background: var(--muted);
+    --cui-inline-citation-favicon-radius: 9999px;
     --cui-inline-citation-navigation-background: oklch(from var(--muted) l c h / 0.45);
     --cui-inline-citation-quote-background: oklch(from var(--muted) l c h / 0.55);
     --cui-inline-citation-quote-radius: var(--radius-control);
@@ -34,19 +36,39 @@
     }
   }
 
+  :where([data-control-family="inline-citation"][data-slot="trigger"]:focus-visible) {
+    background: var(--cui-inline-citation-trigger-hover-background);
+    color: var(--cui-inline-citation-trigger-hover-foreground);
+  }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="inline-citation"][data-slot="trigger"]) {
+      position: relative;
+    }
+
+    :where([data-control-family="inline-citation"][data-slot="trigger"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, 44px);
+    }
+  }
+
   :where([data-control-ui="inline-citation"][data-slot="favicon"]) {
     inline-size: calc(var(--spacing) * 3.5);
     block-size: calc(var(--spacing) * 3.5);
-    border: 1px solid var(--background);
-    border-radius: 9999px;
-    background: var(--muted);
+    border: var(--control-rim-width) solid var(--background);
+    border-radius: var(--cui-inline-citation-favicon-radius);
+    background: var(--cui-inline-citation-favicon-background);
   }
 
   :where([data-control-family="inline-citation"][data-slot="navigation"]) {
     min-block-size: calc(var(--spacing) * 10);
     gap: calc(var(--spacing) * 1);
     padding-inline: calc(var(--spacing) * 2);
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--control-rim-width) solid var(--border);
     background: var(--cui-inline-citation-navigation-background);
   }
 
@@ -74,8 +96,8 @@
   :where([data-control-ui="inline-citation"][data-slot="source-favicon"]) {
     inline-size: calc(var(--spacing) * 5);
     block-size: calc(var(--spacing) * 5);
-    border-radius: 9999px;
-    background: var(--muted);
+    border-radius: var(--cui-inline-citation-favicon-radius);
+    background: var(--cui-inline-citation-favicon-background);
   }
 
   :where([data-control-family="inline-citation"][data-slot="source-title"]) {
@@ -177,6 +199,18 @@
 
 @property --cui-inline-citation-quote-radius {
   syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-inline-citation-favicon-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-inline-citation-favicon-radius {
+  syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
 }
