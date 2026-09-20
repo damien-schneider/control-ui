@@ -103,7 +103,12 @@ for (const entry of componentEntries) {
   if ("additionalPreviews" in entry) {
     for (const example of entry.additionalPreviews) {
       checkSourceFile(`${entry.id}.${example.id}.example`, example.source);
-      checkPreview(`${entry.id}.${example.id}`, example.source, example.preview, example.previewModule);
+      checkPreview(
+        `${entry.id}.${example.id}`,
+        example.source,
+        example.preview,
+        "previewModule" in example ? example.previewModule : undefined,
+      );
     }
   }
 

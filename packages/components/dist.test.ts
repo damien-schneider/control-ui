@@ -59,8 +59,16 @@ test("published email templates resolve the installed theme and render standalon
   const html = await render(
     createElement(InvitationEmail, {
       theme,
-      brand: "Control UI",
-      footer: "Built with Control UI",
+      brand: { name: "Control UI", homeUrl: "https://control-ui.dev" },
+      footer: {
+        tagline: "Built with Control UI",
+        socialLinks: [],
+        helpLinks: [],
+        sender: { company: "Control UI", addressLines: ["1 Rue Example", "75000 Paris"] },
+        reason: "You received this because you were invited to a workspace.",
+        legal: "© Control UI",
+        mailing: "transactional",
+      },
       inviter: "Alex",
       workspace: "Studio",
       inviteUrl: "https://example.com/invite",
