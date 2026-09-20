@@ -22,8 +22,8 @@ export function CatalogGalleryPage({
   const integration = useDocsIntegration();
 
   return (
-    <section className="@container/gallery mx-auto min-w-0 w-full max-w-6xl px-5 py-12">
-      <PageHeader label={label} title={title} summary={summary} wide />
+    <section className="@container/gallery docs-article">
+      <PageHeader label={label} title={title} summary={summary} />
       <div className="grid min-w-0 gap-12">
         {groups.map((group) => (
           <section key={group.id} id={group.id} className="min-w-0 scroll-mt-20">

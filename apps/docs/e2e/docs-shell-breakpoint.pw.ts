@@ -40,7 +40,6 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   const sidebarGap = page.locator('[data-control-ui="sidebar"][data-slot="gap"]');
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
   const contentPanel = page.locator('[data-control-ui="sidebar-layout"][data-slot="content"]');
-  const pageGrid = page.locator("[data-docs-page-grid]");
   const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
   const sidebarInner = page.locator('[data-control-ui="sidebar"][data-slot="inner"]');
 
@@ -64,11 +63,10 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   await expect(resizeHandle).toHaveAttribute("aria-valuetext", "collapsed");
 
   const collapsedPanelBox = await contentPanel.boundingBox();
-  const pageGridBox = await pageGrid.boundingBox();
   const triggerBox = await sidebarTrigger.boundingBox();
-  if (!collapsedPanelBox || !pageGridBox || !triggerBox) throw new Error("Collapsed shell geometry is unavailable");
+  if (!collapsedPanelBox || !triggerBox) throw new Error("Collapsed shell geometry is unavailable");
   expect(Math.abs(collapsedPanelBox.x - (width - collapsedPanelBox.x - collapsedPanelBox.width))).toBeLessThan(1);
-  expect(Math.abs(triggerBox.x - pageGridBox.x - 8)).toBeLessThan(2);
+  expect(Math.abs(triggerBox.x - collapsedPanelBox.x - 8)).toBeLessThan(2);
   await sidebarTrigger.click();
   await expect(sidebarRoot).toHaveAttribute("data-state", "expanded");
   await expect(sidebarTrigger).toBeHidden();

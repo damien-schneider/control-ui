@@ -110,9 +110,7 @@
 @utility docs-article {
   width: 100%;
   min-width: 0;
-  max-width: var(--docs-article-width, 48rem);
-  margin-inline: auto;
-  padding: 3rem var(--docs-article-gutter, 1.25rem);
+  padding-block: 3rem;
 }
 
 @utility docs-panel {

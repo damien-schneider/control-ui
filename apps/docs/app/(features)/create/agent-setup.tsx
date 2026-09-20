@@ -51,7 +51,7 @@ export function AgentSetup() {
   const { copyError, isCopied, copy } = useSetupPromptCopy();
 
   return (
-    <div className="mt-4 grid max-w-2xl gap-2">
+    <div className="mt-4 grid gap-2">
       <Code overflow="wrap" className="my-0">
         <CodeHeader>
           <CodeTitle>Agent setup prompt</CodeTitle>

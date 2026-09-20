@@ -8,7 +8,6 @@ import { CreateCommand } from "@/app/(features)/create/create-command";
 import { guideCode } from "@/app/(features)/model/registry";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
-import { cn } from "@/components/control-ui/lib/cn";
 import { Card } from "@/components/control-ui/ui/card";
 import { MarkdownRoot } from "@/components/control-ui/ui/markdown";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "@/components/theme-drawer/theme-categories";
@@ -108,10 +107,8 @@ function GuidePageContent({
     const code = guideCode(section, integration);
     return (
       <section key={section.id} id={section.id} className="min-w-0 scroll-mt-20">
-        <div className="max-w-2xl">
-          <h2 className="text-heading-2 font-display text-balance">{section.title}</h2>
-          {section.body ? <p className="mt-2 text-body leading-6 text-pretty text-muted-foreground">{section.body}</p> : null}
-        </div>
+        <h2 className="text-heading-2 font-display text-balance">{section.title}</h2>
+        {section.body ? <p className="mt-2 text-body leading-6 text-pretty text-muted-foreground">{section.body}</p> : null}
 
         {section.points ? (
           <div className="mt-4 grid gap-2">
@@ -167,9 +164,9 @@ export function GuidePage({
   }
 
   return (
-    <section className={cn("mx-auto min-w-0 w-full px-5 py-12", page.layout === "wide" ? "max-w-[90rem]" : "max-w-4xl")}>
+    <section className="docs-article">
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
-        <div className="max-w-2xl">
+        <div className="w-full max-w-2xl">
           <div className="text-caption font-medium text-muted-foreground">Guide</div>
           <h1 className="mt-2 text-display font-display text-balance">{page.name}</h1>
           <p className="mt-3 text-body-lg text-pretty text-muted-foreground">{page.summary}</p>
@@ -181,10 +178,8 @@ export function GuidePage({
         <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} Content={Content} />
         {page.faqs && page.faqs.length > 0 ? (
           <section id="faq" className="min-w-0 scroll-mt-20">
-            <div className="max-w-2xl">
-              <h2 className="text-heading-2 font-display text-balance">Frequently asked questions</h2>
-            </div>
-            <dl className="mt-4 grid max-w-2xl gap-3">
+            <h2 className="text-heading-2 font-display text-balance">Frequently asked questions</h2>
+            <dl className="mt-4 grid gap-3">
               {page.faqs.map((faq) => (
                 <Card key={faq.question} className="gap-1.5 px-4 py-3">
                   <dt className="font-medium text-label">{faq.question}</dt>

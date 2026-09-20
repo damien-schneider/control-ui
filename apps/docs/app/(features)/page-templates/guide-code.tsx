@@ -25,8 +25,8 @@ export function GuideCode({ kind, lang, integration }: GuideCodeMdxProps & { int
 export function GuideSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
     <section id={id} className="min-w-0 scroll-mt-20">
-      <h2 className="max-w-2xl text-heading-2 font-display text-balance">{title}</h2>
-      <div className="mt-2 min-w-0 text-body leading-6 text-muted-foreground [&>p]:max-w-2xl [&>p]:text-pretty">{children}</div>
+      <h2 className="text-heading-2 font-display text-balance">{title}</h2>
+      <div className="mt-2 min-w-0 text-body leading-6 text-muted-foreground [&>p]:text-pretty">{children}</div>
     </section>
   );
 }
@@ -49,7 +49,7 @@ export type InstallPathId = keyof typeof installPaths;
 
 export function InstallPaths({ current }: { current: InstallPathId }) {
   return (
-    <nav aria-label="Install path" className="max-w-2xl">
+    <nav aria-label="Install path">
       <ul className="flex flex-wrap items-end gap-6 border-border/70 border-b">
         {Object.entries(installPaths).map(([id, path]) => (
           <li key={id}>
@@ -71,7 +71,7 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
 export function GuideCheck({ children }: { children: ReactNode }) {
   return (
     <Card
-      className="mt-4 max-w-2xl gap-1 px-4 py-3"
+      className="mt-4 gap-1 px-4 py-3"
       style={{
         "--cui-card-border-color": "oklch(from var(--primary) l c h / 0.25)",
       }}
@@ -83,7 +83,7 @@ export function GuideCheck({ children }: { children: ReactNode }) {
 }
 
 export function GuidePoints({ children }: { children: ReactNode }) {
-  return <div className="mt-4 grid max-w-2xl divide-y divide-border/60 border-border/70 border-y">{children}</div>;
+  return <div className="mt-4 grid divide-y divide-border/60 border-border/70 border-y">{children}</div>;
 }
 
 export function GuidePoint({ className, ...props }: ComponentProps<"div">) {

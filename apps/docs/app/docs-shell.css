@@ -1,4 +1,12 @@
 @layer components {
+  [data-docs-layout] {
+    --docs-article-width: 40rem;
+    --docs-article-gutter: 1.25rem;
+    --docs-column-gap: calc(var(--spacing) * 5);
+    --docs-section-gap: 3rem;
+    --docs-toc-width: 11.25rem;
+  }
+
   :where([data-docs-inset]) {
     --cui-sidebar-inset-background: var(--canvas);
   }
@@ -11,25 +19,25 @@
     box-shadow: var(--shadow-pop);
   }
 
+  /* The grid is the only owner of the reading measure: one article column plus the table of contents. */
   :where([data-docs-page-grid]) {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: calc(var(--spacing) * 5);
+    gap: var(--docs-column-gap);
     width: 100%;
-    max-width: 80rem;
+    max-width: calc(var(--docs-article-width) + var(--docs-article-gutter) * 2);
     margin-inline: auto;
-    padding: calc(var(--control-h-sm) + 1rem) var(--spacing) 6rem;
+    padding-block: calc(var(--control-h-sm) + 1rem) 6rem;
+    padding-inline: var(--docs-article-gutter);
+  }
+
+  [data-docs-page-grid][data-docs-page-layout="wide"] {
+    --docs-article-width: 80rem;
   }
 
   :where([data-docs-page-toc]) {
     display: none;
     padding-block: 3rem;
-  }
-
-  [data-docs-layout="page"] {
-    --docs-article-width: 40rem;
-    --docs-article-gutter: 2rem;
-    --docs-section-gap: 3rem;
   }
 
   [data-docs-layout="page"] :where([data-docs-content]) {
@@ -45,8 +53,8 @@
   }
 
   @media (width >= 48rem) {
-    :where([data-docs-page-grid]) {
-      padding-inline: calc(var(--spacing) * 2);
+    [data-docs-layout] {
+      --docs-article-gutter: 2rem;
     }
   }
 
@@ -62,19 +70,9 @@
   }
 
   @media (width >= 80rem) {
-    [data-docs-layout="page"] :where([data-docs-page-grid]) {
-      max-width: 54rem;
-      grid-template-columns: minmax(0, 40rem) 11.25rem;
-    }
-
-    [data-docs-layout="page"] :where([data-docs-page-toc]) {
-      display: block;
-    }
-  }
-
-  @media (width >= 96rem) {
     :where([data-docs-page-grid]) {
-      grid-template-columns: minmax(0, 1fr) 11.25rem;
+      grid-template-columns: minmax(0, var(--docs-article-width)) var(--docs-toc-width);
+      max-width: calc(var(--docs-article-width) + var(--docs-column-gap) + var(--docs-toc-width) + var(--docs-article-gutter) * 2);
     }
 
     :where([data-docs-page-toc]) {

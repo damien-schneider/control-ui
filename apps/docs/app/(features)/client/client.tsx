@@ -4,8 +4,16 @@ import { useLiveQuery } from "@tanstack/react-db";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useLayoutEffect, useState } from "react";
+import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
-import type { ActivePageId, DocsShellData, IntegrationId, SearchItem, SetupPreferenceUpdate } from "@/app/(features)/model/types";
+import type {
+  ActivePageId,
+  DocsShellData,
+  GuidePage,
+  IntegrationId,
+  SearchItem,
+  SetupPreferenceUpdate,
+} from "@/app/(features)/model/types";
 import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/integration";
 import { buildSearchItems } from "@/app/(features)/registry-api/search";
 import { DocsSearchProvider } from "@/app/(features)/sidebar/search";
@@ -74,6 +82,12 @@ type ActivePageCatalog = Pick<
   "guides" | "skills" | "components" | "blocks" | "primitives" | "hooks" | "utils" | "extensions" | "skinPages"
 >;
 
+function guidePageLayout(guideLayout: GuidePage["layout"], catalogOverview: CatalogOverviewId | undefined) {
+  if (guideLayout === "workspace") return "workspace";
+  if (guideLayout === "wide" || catalogOverview) return "wide";
+  return undefined;
+}
+
 function resolveActivePage(activePage: ActivePageId | undefined, catalog: ActivePageCatalog) {
   const { guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages } = catalog;
   const activeGuide = guides.find((item) => item.id === activePage);
@@ -91,7 +105,7 @@ function resolveActivePage(activePage: ActivePageId | undefined, catalog: Active
     matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : components.find((item) => item.id === activePage);
 
   return {
-    isWorkspace: activeGuide?.layout === "workspace",
+    pageLayout: guidePageLayout(activeGuide?.layout, activeCatalogOverview),
     links: pageLinks({
       activeGuide,
       activeSkill,
@@ -194,7 +208,7 @@ function DocsShellContent({
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
 
-  const { links, isWorkspace } = resolveActivePage(activePage, {
+  const { links, pageLayout } = resolveActivePage(activePage, {
     guides,
     skills,
     components,
@@ -205,6 +219,7 @@ function DocsShellContent({
     extensions,
     skinPages,
   });
+  const isWorkspace = pageLayout === "workspace";
   const pageContent = (
     <DocsPageIntegrationProvider
       integration={integration}
@@ -214,7 +229,7 @@ function DocsShellContent({
     </DocsPageIntegrationProvider>
   );
   const body = activePage ? (
-    <div data-docs-page-grid="" data-docs-page-layout={isWorkspace ? "workspace" : undefined}>
+    <div data-docs-page-grid="" data-docs-page-layout={pageLayout}>
       {pageContent}
       {isWorkspace ? null : (
         <aside data-docs-page-toc="">

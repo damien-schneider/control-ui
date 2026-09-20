@@ -22,7 +22,7 @@ export function CreateCommand() {
   const command = createAppCommand({ packageManager, projectName, registryBaseUrl: env.NEXT_PUBLIC_REGISTRY_URL });
 
   return (
-    <div className="mt-4 min-w-0 max-w-2xl space-y-6">
+    <div className="mt-4 min-w-0 space-y-6">
       <div className="space-y-2">
         <label htmlFor="project-name" className="block text-label font-medium text-foreground">
           Project name

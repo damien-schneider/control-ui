@@ -11,7 +11,7 @@ for (const { name, width, height, reducedMotion } of [
     await page.emulateMedia({ reducedMotion });
     await page.goto("/primitives/code-diff", { waitUntil: "networkidle" });
 
-    const toolbar = page.getByRole("toolbar", { name: "Documentation controls" });
+    const toolbar = page.getByRole("group", { name: "Documentation controls" });
     const editTheme = toolbar.getByRole("link", { name: "Edit theme" });
     const openSidebarOnNarrowViewports = async () => {
       if (width >= 1024) return;

@@ -45,7 +45,7 @@ test("Windows 98 applies its palette before paint and restores the preferred mod
   await expect(page.locator("html")).toHaveAttribute("data-color-scheme-lock", "light");
   await expect(page.locator("html")).not.toHaveClass(/dark/);
   expect(await page.evaluate(() => localStorage.getItem("control-ui:theme:v1"))).toBe("dark");
-  const skinPicker = page.getByRole("toolbar", { name: "Documentation controls" }).getByRole("combobox", { name: "Skin", exact: true });
+  const skinPicker = page.getByRole("group", { name: "Documentation controls" }).getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(skinPicker);
   await skinPicker.click();
   await page.getByRole("option", { name: "Linear", exact: true }).click();

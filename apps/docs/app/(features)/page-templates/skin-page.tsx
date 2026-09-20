@@ -37,7 +37,7 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
             <Badge variant="outline" size="sm">
               Docs demonstration
             </Badge>
-            <p className="mt-3 max-w-2xl">
+            <p className="mt-3">
               {skin.label} is demonstrated live in these docs through the theme editor, but is not shipped as an installable pack — so there
               is no pack source to install here. Open the theme editor (paintbrush, top-right) to preview it over any page.
             </p>
@@ -120,11 +120,11 @@ const SKIN_REQUIREMENTS = [
 
 export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
   return (
-    <section className="mx-auto min-w-0 w-full max-w-4xl px-5 py-12">
-      <PageHeader label="Skins" title={skinsOverview.label} summary={skinsOverview.description} wide />
+    <section className="docs-article">
+      <PageHeader label="Skins" title={skinsOverview.label} summary={skinsOverview.description} />
 
       <SectionStack>
-        <p className="max-w-2xl text-body leading-6 text-pretty text-muted-foreground">
+        <p className="text-body leading-6 text-pretty text-muted-foreground">
           Not sure a skin is even the right tool? The{" "}
           <Link href="/architecture#customization-ladder" className="font-medium text-foreground underline underline-offset-4">
             customization ladder
@@ -160,7 +160,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
             title="The anatomy contract"
             description="Generated from canonical component DOM. Family is the selector key; slot names the part; scope identifies the component."
           />
-          <p className="mb-4 max-w-2xl text-body leading-6 text-pretty text-muted-foreground">
+          <p className="mb-4 text-body leading-6 text-pretty text-muted-foreground">
             Copy a selector as{" "}
             <code>[data-skin=&quot;brand&quot;] [data-slot=&quot;shell&quot;][data-control-family=&quot;chat-composer&quot;]</code>.
             Optional adornment anchors are listed separately in the{" "}
@@ -208,7 +208,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
 
         <section id="adornments" className="min-w-0 scroll-mt-20">
           <SectionTitle title="Adornments" description="JSX at named anchors — decorative chrome, or behavioral fx layers." />
-          <p className="max-w-2xl text-body leading-6 text-pretty text-muted-foreground">
+          <p className="text-body leading-6 text-pretty text-muted-foreground">
             Additive, render zero DOM when absent, never gate library behavior. Decorative anchors (window titlebars, window controls) take
             plain <code>aria-hidden</code> JSX. Behavioral anchors (like <code>chat-composer:send-layer</code>) take a{" "}
             <code>(ctx) =&gt; JSX</code> render prop whose ctx carries plain render-time values — this is how a pack activates an anchored
@@ -219,7 +219,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
 
         <section id="motion" className="min-w-0 scroll-mt-20">
           <SectionTitle title="Motion flag" description="One boolean, zero JavaScript." />
-          <p className="max-w-2xl text-body leading-6 text-pretty text-muted-foreground">
+          <p className="text-body leading-6 text-pretty text-muted-foreground">
             <code>motion: &quot;reduced&quot;</code> stamps <code>data-motion=&quot;reduced&quot;</code>, which collapses{" "}
             <code>--duration-fast/base/slow</code> to 0 — every cva transition, Base UI enter/exit and the shimmer/ripple keyframes flatten
             at once. The theme editor also exposes a manual “Reduce motion” toggle.
@@ -232,7 +232,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
             description="Tokens theme the whole app from :root. Knobs theme one family and live on its root element — every slot inherits."
           />
           <CodeBlock lang="css" code={knobCascadeExample} />
-          <p className="mt-3 max-w-2xl text-body leading-6 text-pretty text-muted-foreground">
+          <p className="mt-3 text-body leading-6 text-pretty text-muted-foreground">
             The recipe declares each knob’s default on the family root at zero specificity, so a value set on that element always wins:{" "}
             <code>style</code> beats a skin, a skin beats the recipe, a utility class beats both. Setting a knob on <code>:root</code> does
             nothing — the family root re-declares it; re-value the token it derives from instead. Portaled surfaces are their own root: set{" "}
