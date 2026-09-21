@@ -5,6 +5,7 @@
     --cui-page-layout-padding-inline: calc(var(--spacing) * 5);
     --cui-page-layout-padding-block: calc(var(--spacing) * 10) calc(var(--spacing) * 24);
     --cui-page-layout-column-gap: calc(var(--spacing) * 5);
+    --cui-page-layout-header-start-gap: calc(var(--spacing) * 10);
     --cui-page-layout-header-gap: calc(var(--spacing) * 8);
     --cui-page-layout-header-column-gap: calc(var(--spacing) * 4);
     --cui-page-layout-header-row-gap: calc(var(--spacing) * 2);
@@ -38,7 +39,7 @@
     column-gap: var(--cui-page-layout-header-column-gap);
     row-gap: var(--cui-page-layout-header-row-gap);
     padding-inline: var(--cui-page-layout-padding-inline);
-    padding-block-end: var(--cui-page-layout-header-gap);
+    padding-block: var(--cui-page-layout-header-start-gap) var(--cui-page-layout-header-gap);
   }
 
   :where([data-control-family="page-layout"][data-slot="body"]) {
@@ -50,6 +51,15 @@
     gap: var(--cui-page-layout-column-gap);
     padding-inline: var(--cui-page-layout-padding-inline);
     padding-block: var(--cui-page-layout-padding-block);
+  }
+
+  /* A flow or sticky header owns the leading space, so header-gap stays the only gap above the body.
+     A floating header is zero-height and overlays the body, so the body keeps its own lead. */
+  :where(
+    [data-control-family="page-layout"][data-slot="header"]:not([data-variant="floating"])
+      + [data-control-family="page-layout"][data-slot="body"]
+  ) {
+    padding-block-start: 0;
   }
 
   :where([data-control-family="page-layout"][data-slot="title"]) {
@@ -96,7 +106,7 @@
     z-index: 20;
     align-items: start;
     height: 0;
-    padding-block-end: 0;
+    padding-block: 0;
     pointer-events: none;
   }
 
@@ -168,6 +178,12 @@
 }
 
 @property --cui-page-layout-column-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-page-layout-header-start-gap {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

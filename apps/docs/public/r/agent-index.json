@@ -560,7 +560,7 @@
         "kind": "Component",
         "summary": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
         "href": "/components/email",
-        "status": "experimental",
+        "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/email.json"
       },
       {

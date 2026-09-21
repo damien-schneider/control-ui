@@ -84,7 +84,7 @@ export const emailEntry = {
   category: "content",
   kind: "Component",
   name: "Email",
-  status: "experimental",
+  status: "beta",
   summary:
     "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
   registryKind: "email",

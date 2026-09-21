@@ -313,7 +313,7 @@
       "registryItems": [
         "page-layout"
       ],
-      "knobs": 10,
+      "knobs": 11,
       "probes": 0
     },
     "pagination": {

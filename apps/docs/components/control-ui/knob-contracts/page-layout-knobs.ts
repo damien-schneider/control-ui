@@ -5,6 +5,7 @@ export const pageLayoutKnobs = [
   "--cui-page-layout-padding-inline",
   "--cui-page-layout-padding-block",
   "--cui-page-layout-column-gap",
+  "--cui-page-layout-header-start-gap",
   "--cui-page-layout-header-gap",
   "--cui-page-layout-header-column-gap",
   "--cui-page-layout-header-row-gap",

@@ -1647,6 +1647,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-page-layout-header-start-gap",
+      "description": "Control UI page-layout knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--cui-page-layout-padding-block",
       "description": "Control UI page-layout knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },

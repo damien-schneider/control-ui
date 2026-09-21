@@ -29,7 +29,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 ## Components
 
 - [Components](http://127.0.0.1:3000/components): Composed surfaces above the primitives, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.
-- [Email](http://127.0.0.1:3000/components/email): React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. Status: experimental.
+- [Email](http://127.0.0.1:3000/components/email): React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. Status: beta.
 - [ChatMessage](http://127.0.0.1:3000/components/chat-message): Composable chat message with typed role, density, and lifecycle state.
 - [ChatComposer](http://127.0.0.1:3000/components/chat-composer): Prompt composer with controlled text, submit state, and trigger-menu support.
 - [ChatComposerAttachment](http://127.0.0.1:3000/components/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.

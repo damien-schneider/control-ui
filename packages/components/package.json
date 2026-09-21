@@ -1,6 +1,6 @@
 {
   "name": "@ctrl-ui/react",
-  "version": "0.8.4",
+  "version": "0.8.6",
   "description": "Control UI components, blocks, and primitives with neutral defaults and consumer-owned themes.",
   "license": "MIT",
   "repository": {

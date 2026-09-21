@@ -10,9 +10,21 @@ import { primitiveEntries } from "../catalog/primitives";
 
 const docsRoot = resolve(import.meta.dir, "../../..");
 const composedEntries = [
-  ...componentEntries.map((entry) => ({ id: entry.id, source: entry.paths.source.path })),
-  ...primitiveEntries.map((entry) => ({ id: entry.id, source: entry.paths.registry.source.path })),
-  ...blockEntries.map((entry) => ({ id: entry.id, source: entry.paths.files[0].path })),
+  ...componentEntries.map((entry) => ({
+    id: entry.id,
+    source: entry.paths.source.path,
+    support: (entry.paths.supportFiles ?? []).map((file) => file.path),
+  })),
+  ...primitiveEntries.map((entry) => ({
+    id: entry.id,
+    source: entry.paths.registry.source.path,
+    support: ("supportFiles" in entry.paths.registry ? entry.paths.registry.supportFiles : []).map((file) => file.path),
+  })),
+  ...blockEntries.map((entry) => ({
+    id: entry.id,
+    source: entry.paths.files[0].path,
+    support: entry.paths.files.slice(1).map((file) => file.path),
+  })),
 ];
 
 function exportedParts(sourcePath: string): string[] {
@@ -60,8 +72,11 @@ function flattenTree(node: CompositionNode): CompositionNode[] {
 }
 
 const partsByEntry = new Map(composedEntries.map((entry) => [entry.id, exportedParts(entry.source)]));
-const publicParts = new Set([...partsByEntry.values()].flat());
-const emailParts = new Set(["Section", "Row", "Column", "Img"]);
+const publicParts = new Set([
+  ...[...partsByEntry.values()].flat(),
+  ...composedEntries.flatMap((entry) => entry.support.flatMap(exportedParts)),
+]);
+const reactEmailParts: Record<string, true> = { Img: true };
 
 describe("authored composition contract", () => {
   test("every catalog page has an explicit composition", () => {
@@ -81,7 +96,8 @@ describe("authored composition contract", () => {
         expect(new Set(node.children.map((child) => child.name)).size).toBe(node.children.length);
         if (node.kind !== "part") return;
         expect(node.name).toMatch(/^[A-Za-z][A-Za-z0-9]*$/);
-        const knownPart = /^[a-z]/.test(node.name) || publicParts.has(node.name) || (entry.id === "email" && emailParts.has(node.name));
+        const knownPart =
+          /^[a-z]/.test(node.name) || publicParts.has(node.name) || (entry.id === "email" && reactEmailParts[node.name] === true);
         expect(knownPart, `${entry.id}: unknown component ${node.name}`).toBe(true);
       });
       if (names.size > 1) expect(examples.some((example) => example.tree.children.length > 0)).toBe(true);

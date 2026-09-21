@@ -57,7 +57,7 @@
 - `dynamic-notification` (DynamicNotification) **[experimental]** — Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. — `npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json`
 
 **Content** — Render a document you authored or generated, from prose to code to email.
-- `email` (Email) **[experimental]** — React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. — `npx shadcn@latest add http://127.0.0.1:3000/r/email.json`
+- `email` (Email) **[beta]** — React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. — `npx shadcn@latest add http://127.0.0.1:3000/r/email.json`
 
 ### Blocks (pre-composed recipes)
 - `use-cases` (Templates & patterns) — Start from complete workspace templates or focused interaction patterns, then own and adapt the installed source.

@@ -14577,6 +14577,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "calc(var(--spacing) * 5)",
       },
       {
+        name: "--cui-page-layout-header-start-gap",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 10)",
+      },
+      {
         name: "--cui-page-layout-header-gap",
         syntax: "<length>",
         initialValue: "0px",
