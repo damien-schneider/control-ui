@@ -122,7 +122,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -167,7 +167,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -215,7 +215,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -265,7 +265,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -321,7 +321,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -379,7 +379,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -425,7 +425,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -473,7 +473,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -519,7 +519,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -567,7 +567,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -614,7 +614,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -663,7 +663,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -704,7 +704,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "audio-visualizer",
       rendersText: false,
       state: false,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -757,7 +757,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: false,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -808,7 +808,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: false,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -861,7 +861,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "avatar",
       rendersText: false,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -1076,7 +1076,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -1120,7 +1120,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -1744,7 +1744,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -1788,7 +1788,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -2435,7 +2435,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai",
+      route: "/components",
     },
     {
       knobs: {
@@ -2501,7 +2501,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -2566,7 +2566,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -2635,7 +2635,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -2684,7 +2684,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -2733,7 +2733,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -2784,7 +2784,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -2834,7 +2834,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -2884,7 +2884,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -2933,7 +2933,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -2983,7 +2983,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -3033,7 +3033,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -3088,7 +3088,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -3128,7 +3128,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -3381,7 +3381,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -3584,7 +3584,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -3628,7 +3628,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -4461,7 +4461,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -4530,7 +4530,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -4646,7 +4646,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -4705,7 +4705,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -4764,7 +4764,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -5167,7 +5167,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/markdown-block",
+      route: "/components/markdown-block",
     },
     {
       knobs: {
@@ -7272,7 +7272,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -7313,7 +7313,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -7353,7 +7353,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -7434,7 +7434,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -7474,7 +7474,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -7554,7 +7554,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -7674,7 +7674,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -8067,7 +8067,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -8340,7 +8340,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/action-bar",
+      route: "/components/action-bar",
     },
     {
       knobs: {
@@ -8903,7 +8903,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -8936,7 +8936,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -8969,7 +8969,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -9034,7 +9034,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -9132,7 +9132,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -9568,7 +9568,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai",
+      route: "/components",
     },
     {
       knobs: {
@@ -9634,7 +9634,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -9699,7 +9699,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -9768,7 +9768,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -9817,7 +9817,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -9866,7 +9866,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -9917,7 +9917,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -9967,7 +9967,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -10017,7 +10017,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -10066,7 +10066,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -10116,7 +10116,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -10166,7 +10166,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -10225,7 +10225,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -10280,7 +10280,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -10320,7 +10320,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -10365,7 +10365,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -10407,7 +10407,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -10745,7 +10745,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -10948,7 +10948,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -10992,7 +10992,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -12033,7 +12033,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -12091,7 +12091,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -12160,7 +12160,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -12229,7 +12229,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -12348,7 +12348,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -12408,7 +12408,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -12467,7 +12467,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -12529,7 +12529,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -12588,7 +12588,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -13040,7 +13040,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/markdown-block",
+      route: "/components/markdown-block",
     },
     {
       knobs: {
@@ -15556,7 +15556,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -15597,7 +15597,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -15637,7 +15637,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -15718,7 +15718,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -15758,7 +15758,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -15838,7 +15838,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -15958,7 +15958,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -16391,7 +16391,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -16664,7 +16664,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/action-bar",
+      route: "/components/action-bar",
     },
     {
       knobs: {
@@ -17644,7 +17644,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -17677,7 +17677,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -17710,7 +17710,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -17775,7 +17775,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -17873,7 +17873,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -17932,7 +17932,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -17977,7 +17977,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -18083,7 +18083,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -18145,7 +18145,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -19109,7 +19109,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai",
+      route: "/components",
     },
     {
       knobs: {
@@ -19174,7 +19174,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -19238,7 +19238,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -19306,7 +19306,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -19354,7 +19354,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -19402,7 +19402,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -19452,7 +19452,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -19501,7 +19501,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -19550,7 +19550,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -19598,7 +19598,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -19647,7 +19647,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -19696,7 +19696,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -19754,7 +19754,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -19808,7 +19808,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -19847,7 +19847,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -19891,7 +19891,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -19932,7 +19932,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -20262,7 +20262,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -20462,7 +20462,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/audio-visualizer",
+      route: "/components/audio-visualizer",
     },
     {
       knobs: {
@@ -20505,7 +20505,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -21526,7 +21526,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -21583,7 +21583,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -21651,7 +21651,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -21719,7 +21719,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -21836,7 +21836,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -21895,7 +21895,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -21953,7 +21953,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -22014,7 +22014,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -22072,7 +22072,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -22515,7 +22515,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/markdown-block",
+      route: "/components/markdown-block",
     },
     {
       knobs: {
@@ -24988,7 +24988,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -25028,7 +25028,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -25067,7 +25067,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -25146,7 +25146,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -25185,7 +25185,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -25263,7 +25263,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -25380,7 +25380,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -25802,7 +25802,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -26068,7 +26068,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/action-bar",
+      route: "/components/action-bar",
     },
     {
       knobs: {
@@ -27024,7 +27024,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -27056,7 +27056,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -27088,7 +27088,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: false,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -27151,7 +27151,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -27246,7 +27246,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "button",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -27421,7 +27421,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27464,7 +27464,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27507,7 +27507,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27539,7 +27539,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27592,7 +27592,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27645,7 +27645,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27698,7 +27698,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27741,7 +27741,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27791,7 +27791,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27851,7 +27851,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27901,7 +27901,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -27958,7 +27958,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -28025,7 +28025,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -28069,7 +28069,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -28121,7 +28121,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -28263,7 +28263,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -28297,7 +28297,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -28406,7 +28406,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -28516,7 +28516,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -28559,7 +28559,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -28659,7 +28659,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-layout",
       rendersText: true,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -28760,7 +28760,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -28814,7 +28814,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -28859,7 +28859,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -28903,7 +28903,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/ai/transcript-divider",
+      route: "/components/transcript-divider",
     },
     {
       knobs: {
@@ -28947,7 +28947,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-message",
       rendersText: true,
       state: false,
-      route: "/ai/action-bar",
+      route: "/components/action-bar",
     },
     {
       knobs: {
@@ -29050,7 +29050,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -29086,7 +29086,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -29824,7 +29824,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "context",
       rendersText: false,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -29881,7 +29881,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "context",
       rendersText: false,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -29938,7 +29938,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "context",
       rendersText: false,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -29995,7 +29995,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "context",
       rendersText: false,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -30052,7 +30052,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "context",
       rendersText: false,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -30197,7 +30197,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/inline-attachment",
+      route: "/components/inline-attachment",
     },
     {
       knobs: {
@@ -30232,7 +30232,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-attachment",
       rendersText: true,
       state: false,
-      route: "/ai/inline-attachment",
+      route: "/components/inline-attachment",
     },
     {
       knobs: {
@@ -30325,7 +30325,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-attachment",
       rendersText: true,
       state: false,
-      route: "/ai/inline-attachment",
+      route: "/components/inline-attachment",
     },
     {
       knobs: {
@@ -30418,7 +30418,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-attachment",
       rendersText: false,
       state: false,
-      route: "/ai/inline-attachment",
+      route: "/components/inline-attachment",
     },
     {
       knobs: {
@@ -30469,7 +30469,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-citation",
       rendersText: false,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -30521,7 +30521,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-citation",
       rendersText: false,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -30571,7 +30571,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-citation",
       rendersText: false,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -30621,7 +30621,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-citation",
       rendersText: true,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -30664,7 +30664,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-citation",
       rendersText: true,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -30709,7 +30709,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-citation",
       rendersText: true,
       state: true,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -30752,7 +30752,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "inline-citation",
       rendersText: true,
       state: true,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -30779,7 +30779,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -30837,7 +30837,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "kbd",
       rendersText: true,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -30945,7 +30945,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown-block",
       rendersText: true,
       state: false,
-      route: "/ai/markdown-block",
+      route: "/components/markdown-block",
     },
     {
       knobs: {
@@ -31042,7 +31042,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "markdown-block",
       rendersText: true,
       state: false,
-      route: "/ai/markdown-block",
+      route: "/components/markdown-block",
     },
     {
       knobs: {
@@ -31764,7 +31764,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/context",
+      route: "/components/context",
     },
     {
       knobs: {
@@ -31808,7 +31808,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/inline-citation",
+      route: "/components/inline-citation",
     },
     {
       knobs: {
@@ -31860,7 +31860,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -31983,7 +31983,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -32333,7 +32333,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -32410,7 +32410,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -33307,7 +33307,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -33361,7 +33361,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -33645,7 +33645,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -33736,7 +33736,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -36049,7 +36049,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -36188,7 +36188,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -36230,7 +36230,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -36556,7 +36556,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/ai",
+      route: "/components",
     },
     {
       knobs: {
@@ -36755,7 +36755,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -36797,7 +36797,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -37123,7 +37123,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: true,
-      route: "/ai",
+      route: "/components",
     },
     {
       knobs: {
@@ -37469,7 +37469,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "skeleton",
       rendersText: false,
       state: false,
-      route: "/ai/email",
+      route: "/components/email",
     },
     {
       knobs: {
@@ -37507,7 +37507,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "source-badge",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -37552,7 +37552,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "source-badge",
       rendersText: false,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -37590,7 +37590,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "source-badge",
       rendersText: true,
       state: true,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -38719,7 +38719,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -38887,7 +38887,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -39152,7 +39152,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -39189,7 +39189,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -39235,7 +39235,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: true,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -39283,7 +39283,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: true,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -39325,7 +39325,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "thread-rail",
       rendersText: false,
       state: false,
-      route: "/ai/thread-rail",
+      route: "/components/thread-rail",
     },
     {
       knobs: {
@@ -39366,7 +39366,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "thread-rail",
       rendersText: false,
       state: false,
-      route: "/ai/thread-rail",
+      route: "/components/thread-rail",
     },
     {
       knobs: {
@@ -39406,7 +39406,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "thread-rail",
       rendersText: false,
       state: false,
-      route: "/ai/thread-rail",
+      route: "/components/thread-rail",
     },
     {
       knobs: {
@@ -39445,7 +39445,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "timeline",
       rendersText: false,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -44752,7 +44752,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "user-ask",
       rendersText: true,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -44804,7 +44804,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "user-ask",
       rendersText: true,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -44855,7 +44855,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "user-ask",
       rendersText: true,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -44899,7 +44899,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "user-ask",
       rendersText: true,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -44944,7 +44944,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "user-ask",
       rendersText: true,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -44987,7 +44987,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "user-ask",
       rendersText: true,
       state: true,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -45032,7 +45032,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "user-ask",
       rendersText: true,
       state: false,
-      route: "/ai/user-ask",
+      route: "/components/user-ask",
     },
     {
       knobs: {
@@ -47288,7 +47288,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -47334,7 +47334,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47377,7 +47377,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47425,7 +47425,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47471,7 +47471,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47519,7 +47519,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47562,7 +47562,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47609,7 +47609,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47658,7 +47658,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "activity",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -47851,7 +47851,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "audio-recorder",
       rendersText: true,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -47886,7 +47886,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "audio-recorder",
       rendersText: true,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -47920,7 +47920,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "audio-recorder",
       rendersText: true,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -47954,7 +47954,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "audio-recorder",
       rendersText: true,
       state: false,
-      route: "/ai/audio-recorder",
+      route: "/components/audio-recorder",
     },
     {
       knobs: {
@@ -48431,7 +48431,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -48608,7 +48608,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer-attachment",
+      route: "/components/chat-composer-attachment",
     },
     {
       knobs: {
@@ -48658,7 +48658,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "chat-composer",
       rendersText: false,
       state: false,
-      route: "/ai/chat-composer",
+      route: "/components/chat-composer",
     },
     {
       knobs: {
@@ -48863,7 +48863,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -48907,7 +48907,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/ai/chat-layout",
+      route: "/components/chat-layout",
     },
     {
       knobs: {
@@ -49125,7 +49125,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "code",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -49338,7 +49338,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "dynamic-notification",
       rendersText: true,
       state: false,
-      route: "/ai/dynamic-notification",
+      route: "/components/dynamic-notification",
     },
     {
       knobs: {
@@ -49456,7 +49456,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "environment-variables",
       rendersText: true,
       state: false,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -49496,7 +49496,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "environment-variables",
       rendersText: true,
       state: false,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -49536,7 +49536,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "environment-variables",
       rendersText: true,
       state: false,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -49576,7 +49576,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "environment-variables",
       rendersText: true,
       state: false,
-      route: "/ai/environment-variables",
+      route: "/components/environment-variables",
     },
     {
       knobs: {
@@ -49876,7 +49876,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -49941,7 +49941,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "popup",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -50765,7 +50765,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -51119,7 +51119,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -51160,7 +51160,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -51430,7 +51430,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "sidebar-menu",
       rendersText: true,
       state: false,
-      route: "/ai",
+      route: "/components",
     },
     {
       knobs: {
@@ -51785,7 +51785,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -51965,7 +51965,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -52143,7 +52143,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -52188,7 +52188,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: true,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -52496,7 +52496,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "table-of-contents",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -52803,7 +52803,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -53838,7 +53838,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "tabs",
       rendersText: true,
       state: false,
-      route: "/ai/chat-message",
+      route: "/components/chat-message",
     },
     {
       knobs: {
@@ -54943,7 +54943,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -54999,7 +54999,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -55043,7 +55043,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -55087,7 +55087,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -55131,7 +55131,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -55175,7 +55175,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -55219,7 +55219,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -55263,7 +55263,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "task-list",
       rendersText: true,
       state: false,
-      route: "/ai/task-list",
+      route: "/components/task-list",
     },
     {
       knobs: {
@@ -55380,7 +55380,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "timeline",
       rendersText: false,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -55419,7 +55419,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "timeline",
       rendersText: true,
       state: false,
-      route: "/ai/activity",
+      route: "/components/activity",
     },
     {
       knobs: {
@@ -55452,7 +55452,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "transcript-divider",
       rendersText: true,
       state: false,
-      route: "/ai/transcript-divider",
+      route: "/components/transcript-divider",
     },
     {
       knobs: {
@@ -55485,7 +55485,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "transcript-divider",
       rendersText: true,
       state: false,
-      route: "/ai/transcript-divider",
+      route: "/components/transcript-divider",
     },
     {
       knobs: {
@@ -55518,7 +55518,7 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       recipe: "transcript-divider",
       rendersText: true,
       state: false,
-      route: "/ai/transcript-divider",
+      route: "/components/transcript-divider",
     },
     {
       knobs: {

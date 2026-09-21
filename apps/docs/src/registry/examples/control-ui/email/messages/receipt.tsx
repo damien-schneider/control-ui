@@ -1,11 +1,12 @@
 import { ReceiptEmail } from "@/components/control-ui/email/templates";
-import type { EmailTheme } from "@/components/control-ui/email/theme";
 import { brand, transactionalFooter } from "../content";
+import type { EmailExampleProps } from "../options";
 
-export function ReceiptEmailExample({ theme }: { theme: EmailTheme }) {
+export function ReceiptEmailExample({ theme, variant }: EmailExampleProps) {
   return (
     <ReceiptEmail
       theme={theme}
+      variant={variant}
       brand={brand}
       footer={transactionalFooter}
       orderNumber="FW-20418"

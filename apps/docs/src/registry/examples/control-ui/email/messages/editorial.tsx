@@ -1,11 +1,12 @@
 import { EditorialEmail } from "@/components/control-ui/email/templates";
-import type { EmailTheme } from "@/components/control-ui/email/theme";
 import { architectureImage, articleUrl, brand, browserUrl, marketingFooter } from "../content";
+import type { EmailExampleProps } from "../options";
 
-export function EditorialEmailExample({ theme }: { theme: EmailTheme }) {
+export function EditorialEmailExample({ theme, variant }: EmailExampleProps) {
   return (
     <EditorialEmail
       theme={theme}
+      variant={variant}
       brand={brand}
       browserUrl={browserUrl}
       footer={marketingFooter}

@@ -3,7 +3,7 @@
 import { useLiveQuery } from "@tanstack/react-db";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
 import { skinsOverviewId } from "@/app/(features)/catalog/skins";
 import type {
@@ -16,18 +16,23 @@ import type {
 } from "@/app/(features)/model/types";
 import { DocsPageIntegrationProvider } from "@/app/(features)/page-templates/integration";
 import { buildSearchItems } from "@/app/(features)/registry-api/search";
+import {
+  DOCS_SIDEBAR_MAX_WIDTH,
+  DOCS_SIDEBAR_MIN_WIDTH,
+  readStoredSidebarWidth,
+  storedSidebarCollapsed,
+  writeStoredSidebarWidth,
+} from "@/app/(features)/sidebar/persistence";
 import { DocsSearchProvider } from "@/app/(features)/sidebar/search";
 import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
-import { readStoredSidebarWidth, writeStoredSidebarWidth } from "@/app/(features)/sidebar/width";
-import { SIDEBAR_COOKIE_NAME } from "@/components/control-ui/control-props";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useSkin } from "@/components/control-ui/skin-provider";
 import { ButtonLink } from "@/components/control-ui/ui/button";
-import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { PageActions, PageBody, PageHeader, PageLayout, type PageWidth, usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/control-ui/ui/sidebar";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, THEME_EDITOR_PATH } from "@/components/theme-drawer/theme-categories";
+import { DocsGithubLink } from "./github-link";
 import { pageLinks } from "./page-links";
 import {
   defaultSetupPreference,
@@ -40,12 +45,6 @@ import {
 } from "./setup-preference";
 
 const docsMainId = "docs-main";
-
-const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
-
-function storedSidebarCollapsed() {
-  return document.cookie.split("; ").includes(`${SIDEBAR_COOKIE_NAME}=false`);
-}
 
 type DocsShellViewProps = DocsShellData & {
   children: ReactNode;
@@ -82,10 +81,10 @@ type ActivePageCatalog = Pick<
   "guides" | "skills" | "components" | "blocks" | "primitives" | "hooks" | "utils" | "extensions" | "skinPages"
 >;
 
-function guidePageLayout(guideLayout: GuidePage["layout"], catalogOverview: CatalogOverviewId | undefined) {
-  if (guideLayout === "workspace") return "workspace";
+function guidePageWidth(guideLayout: GuidePage["layout"], catalogOverview: CatalogOverviewId | undefined): PageWidth {
+  if (guideLayout === "workspace") return "full";
   if (guideLayout === "wide" || catalogOverview) return "wide";
-  return undefined;
+  return "prose";
 }
 
 function resolveActivePage(activePage: ActivePageId | undefined, catalog: ActivePageCatalog) {
@@ -96,7 +95,8 @@ function resolveActivePage(activePage: ActivePageId | undefined, catalog: Active
   const activePrimitive = primitives.find((item) => item.id === activePage);
   const activeReference = hooks.find((item) => item.id === activePage) ?? utils.find((item) => item.id === activePage);
   const activeExtension = extensions.find((item) => item.id === activePage);
-  const activeCatalogOverview = activePage === "ai" || activePage === "primitives" || activePage === "use-cases" ? activePage : undefined;
+  const activeCatalogOverview =
+    activePage === "components" || activePage === "primitives" || activePage === "use-cases" ? activePage : undefined;
   const activeSkinsOverview = activePage === skinsOverviewId;
   const activeSkinPage = skinPages.find((item) => item.id === activePage);
   const matchedElsewhere =
@@ -105,7 +105,7 @@ function resolveActivePage(activePage: ActivePageId | undefined, catalog: Active
     matchedElsewhere || activeSkinsOverview || activeSkinPage ? undefined : components.find((item) => item.id === activePage);
 
   return {
-    pageLayout: guidePageLayout(activeGuide?.layout, activeCatalogOverview),
+    pageWidth: guidePageWidth(activeGuide?.layout, activeCatalogOverview),
     links: pageLinks({
       activeGuide,
       activeSkill,
@@ -143,13 +143,10 @@ function PersistedDocsShell(props: PersistedDocsShellProps) {
 
 export function DocsShell(props: DocsShellViewProps) {
   const isHydrated = useIsHydrated();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [sidebarWidth, setSidebarWidth] = useState<number>();
-
-  useIsomorphicLayoutEffect(() => {
-    if (storedSidebarCollapsed()) setSidebarOpen(false);
-    setSidebarWidth(readStoredSidebarWidth() ?? undefined);
-  }, []);
+  // Same two sources the head script already applied to the DOM, read on the first client render so React's
+  // model matches what is painted instead of correcting it a frame later.
+  const [sidebarOpen, setSidebarOpen] = useState(() => !storedSidebarCollapsed());
+  const [sidebarWidth, setSidebarWidth] = useState(readStoredSidebarWidth);
 
   function updateSidebarWidth(width: number) {
     setSidebarWidth(width);
@@ -203,12 +200,11 @@ function DocsShellContent({
   updateSetupPreference,
 }: DocsShellContentProps) {
   const pathname = usePathname();
-  const skin = useSkin();
-  const usesPageLayout = skin.sidebarLayout === "page";
+  const scrollsPage = usePageScroll() === "page";
   const searchItems = buildSearchItems({ guides, skills, components, blocks, primitives, hooks, utils, extensions, skinPages });
   const activePage = activePageForPathname(pathname, searchItems);
 
-  const { links, pageLayout } = resolveActivePage(activePage, {
+  const { links, pageWidth } = resolveActivePage(activePage, {
     guides,
     skills,
     components,
@@ -219,7 +215,6 @@ function DocsShellContent({
     extensions,
     skinPages,
   });
-  const isWorkspace = pageLayout === "workspace";
   const pageContent = (
     <DocsPageIntegrationProvider
       integration={integration}
@@ -228,27 +223,17 @@ function DocsShellContent({
       {children}
     </DocsPageIntegrationProvider>
   );
-  const body = activePage ? (
-    <div data-docs-page-grid="" data-docs-page-layout={pageLayout}>
-      {pageContent}
-      {isWorkspace ? null : (
-        <aside data-docs-page-toc="">
-          <TableOfContents items={links} />
-        </aside>
-      )}
-    </div>
-  ) : (
-    pageContent
-  );
 
   return (
     <SidebarProvider
-      data-docs-layout={usesPageLayout ? "page" : "contained"}
-      className={cn("bg-canvas text-foreground", !usesPageLayout && "h-svh")}
+      data-docs-shell=""
+      className={cn("bg-canvas text-foreground", !scrollsPage && "h-svh")}
       open={sidebarOpen}
       onOpenChange={onSidebarOpenChange}
       width={sidebarWidth}
       onWidthChange={onSidebarWidthChange}
+      minWidth={DOCS_SIDEBAR_MIN_WIDTH}
+      maxWidth={DOCS_SIDEBAR_MAX_WIDTH}
     >
       <ButtonLink
         href={`#${docsMainId}`}
@@ -261,7 +246,6 @@ function DocsShellContent({
       <DocsSearchProvider items={searchItems}>
         <DocsSidebarContent
           active={activePage}
-          githubStars={githubStars}
           guides={guides}
           skills={skills}
           skillConcerns={skillConcerns}
@@ -286,24 +270,31 @@ function DocsShellContent({
             data-control-family="sidebar-layout"
             data-slot="content"
             data-surface="panel"
-            className={cn("relative flex min-h-0 flex-1 flex-col", !usesPageLayout && "overflow-hidden")}
+            className={cn("relative flex min-h-0 flex-1 flex-col", !scrollsPage && "overflow-hidden")}
           >
             <div
               data-docs-sidebar-trigger=""
               className={cn(
                 "pointer-events-none inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3 lg:hidden lg:peer-data-[state=collapsed]:flex",
-                usesPageLayout ? "fixed" : "absolute",
+                scrollsPage ? "fixed" : "absolute",
               )}
             >
               <SidebarTrigger className="pointer-events-auto" />
             </div>
-            {usesPageLayout ? (
-              body
-            ) : (
-              <ScrollArea className="min-h-0 flex-1" viewportClassName="scroll-smooth motion-reduce:scroll-auto">
-                {body}
-              </ScrollArea>
-            )}
+            <PageLayout width={pageWidth}>
+              <PageHeader variant="floating">
+                <PageActions>
+                  <DocsGithubLink stars={githubStars} />
+                </PageActions>
+              </PageHeader>
+              {activePage ? (
+                <PageBody aside={pageWidth === "full" ? undefined : <TableOfContents items={links} className="top-12" />}>
+                  {pageContent}
+                </PageBody>
+              ) : (
+                pageContent
+              )}
+            </PageLayout>
           </div>
         </SidebarInset>
       </DocsSearchProvider>

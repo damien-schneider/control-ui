@@ -1,6 +1,6 @@
 "use client";
 
-import { COLOR_SCHEME_LOCK_ATTR, MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS, preferredTheme } from "@/components/theme";
+import { COLOR_SCHEME_LOCK_ATTR, MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS, PAGE_LAYOUT_SKINS, preferredTheme } from "@/components/theme";
 import { THEME_CONTRACT_NAMES } from "@/src/registry/lib/theme-contract";
 import { hexToOklchColor } from "./color-utils";
 import { buildDarkColorDecls, buildOverrideDecls, buildOverrideSheetCss, exportedThemeScopeSelector } from "./override-decls";
@@ -26,6 +26,7 @@ function writeOverrideSheet(skin: string, decls: [string, string][]) {
 export function writeVars(t: ThemeState) {
   const html = document.documentElement;
   html.dataset.skin = t.skin;
+  html.dataset.docsLayout = PAGE_LAYOUT_SKINS.includes(t.skin) ? "page" : "contained";
 
   const forcedScheme = MODE_LOCKED_SKINS[t.skin];
   if (forcedScheme) {

@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
 
 test("Blocks owns block browsing and canonical detail routes", async ({ page }) => {
-  await page.goto("/ai");
+  await page.goto("/components");
   await page.waitForLoadState("networkidle");
 
   const sidebar = page.locator("[data-docs-sidebar-navigation]");
-  await expect(sidebar.getByText("Agents", { exact: true })).toBeVisible();
+  await expect(sidebar.getByText("Chat", { exact: true })).toBeVisible();
   await expect(sidebar.getByRole("link", { name: "Chat Message", exact: true })).toBeVisible();
   await expect(page.getByText("Templates", { exact: true })).toHaveCount(0);
 

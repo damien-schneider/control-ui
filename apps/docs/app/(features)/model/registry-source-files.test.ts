@@ -42,14 +42,17 @@ describe("installed dependency rows", () => {
     const data = getDocsData();
     const ownerByPath = new Map<string, string>([
       ...data.primitives.map((primitive) => [primitive.registry.source.path, `/primitives/${primitive.id}`] as const),
-      ...data.components.map((component) => [component.source.path, `/ai/${component.id}`] as const),
+      ...data.components.map((component) => [component.source.path, `/components/${component.id}`] as const),
     ]);
     const rows = [
       ...data.primitives.map((primitive) => ({
         page: `/primitives/${primitive.id}`,
         files: installedDependencyFiles(primitive.registry.supportFiles ?? []),
       })),
-      ...data.components.map((component) => ({ page: `/ai/${component.id}`, files: installedDependencyFiles(supportFilesFor(component)) })),
+      ...data.components.map((component) => ({
+        page: `/components/${component.id}`,
+        files: installedDependencyFiles(supportFilesFor(component)),
+      })),
     ];
 
     const repeated = rows.flatMap(({ page, files }) =>

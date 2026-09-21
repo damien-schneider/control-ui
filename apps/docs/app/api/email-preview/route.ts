@@ -9,7 +9,7 @@ import { renderEmailExample } from "@/src/registry/examples/control-ui/email/ren
 async function readEmailThemeCss(skin: SkinId) {
   "use cache";
   cacheLife("max");
-  const themePaths = ["src/registry/sources/control-ui/theme.css"];
+  const themePaths = ["src/registry/sources/control-ui/theme.css", "src/registry/sources/control-ui/code.css"];
   if (skin !== "none") themePaths.push(`src/registry/skin-packs/${skin}/theme.css`);
   return Promise.all(themePaths.map((themePath) => readFile(themePath, "utf8")));
 }
@@ -36,5 +36,5 @@ export async function POST(request: Request) {
   } catch (error) {
     return Response.json({ error: error instanceof Error ? error.message : "Could not resolve the email theme." }, { status: 422 });
   }
-  return Response.json(await renderEmailExample(parsed.data.layout, theme));
+  return Response.json(await renderEmailExample(parsed.data.layout, theme, parsed.data.variant));
 }

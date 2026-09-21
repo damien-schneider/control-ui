@@ -70,7 +70,8 @@ function ownSourceFiles(files: SourceFile[], registryKind: string) {
 
 function docsPageFor(kind: string): DocsRegistryDependency | undefined {
   const component = componentEntries.find((entry) => entry.registryKind === kind);
-  if (component) return { registryKind: component.registryKind, name: component.name, kind: "Agent", href: `/ai/${component.id}` };
+  if (component)
+    return { registryKind: component.registryKind, name: component.name, kind: "Component", href: `/components/${component.id}` };
 
   const primitive = primitiveEntries.find((entry) => entry.paths.registry.registryKind === kind);
   if (primitive)
@@ -134,7 +135,7 @@ function getGuides(): GuidePage[] {
     name: entry.name,
     summary: entry.summary,
     layout: "layout" in entry ? entry.layout : undefined,
-    cta: "cta" in entry ? entry.cta : undefined,
+    hiddenFromNav: "hiddenFromNav" in entry ? entry.hiddenFromNav : undefined,
     sections: entry.sections.map((section) => ({ ...section })),
     comparedApplications: "comparedApplications" in entry ? [...entry.comparedApplications] : undefined,
     faqs: "faqs" in entry ? [...entry.faqs] : undefined,
@@ -185,6 +186,7 @@ function getComponents(): DocsComponent[] {
 
     return {
       id: entry.id,
+      category: entry.category,
       composition: documentedComposition(entry.id, [installed.source, ...installed.supportFiles]),
       name: entry.name,
       summary: entry.summary,

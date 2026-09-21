@@ -1,14 +1,15 @@
 import { NewsletterEmail } from "@/components/control-ui/email/templates";
-import type { EmailTheme } from "@/components/control-ui/email/theme";
 import { articleUrl, brand, browserUrl, forestImage, marketingFooter } from "../content";
+import type { EmailExampleProps } from "../options";
 
-export function NewsletterEmailExample({ theme }: { theme: EmailTheme }) {
+export function NewsletterEmailExample({ theme, variant }: EmailExampleProps) {
   return (
     <NewsletterEmail
       theme={theme}
+      variant={variant}
       brand={brand}
       browserUrl={browserUrl}
-      footer={marketingFooter}
+      footer={{ ...marketingFooter, placement: "outside" }}
       articles={[
         {
           title: "Space to think.",

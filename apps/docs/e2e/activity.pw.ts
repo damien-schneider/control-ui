@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("activity disclosure bounds and scrolls a long trace", async ({ page }) => {
-  await page.goto("/ai/activity");
+  await page.goto("/components/activity");
 
   const trigger = page.getByRole("button", { name: /Thinking/ });
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
@@ -27,7 +27,7 @@ test("activity disclosure bounds and scrolls a long trace", async ({ page }) => 
 });
 
 test("web search composition keeps source links in content and falls back when a favicon fails", async ({ page }) => {
-  await page.goto("/ai/activity");
+  await page.goto("/components/activity");
 
   const trigger = page.getByRole("button", { name: /Searched the web for Base UI disclosure patterns/ });
   await expect(trigger.locator("a")).toHaveCount(0);

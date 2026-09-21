@@ -275,6 +275,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -389,6 +390,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -510,6 +512,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -631,6 +634,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -752,6 +756,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -873,6 +878,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -994,6 +1000,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -1115,6 +1122,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -1236,6 +1244,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",
@@ -1291,7 +1300,7 @@
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect ratio",
-      "description": "CSS aspect-ratio wrapper for media and previews.",
+      "description": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
       "dependencies": [],
       "registryDependencies": [
         "http://127.0.0.1:3000/r/core.json"
@@ -2918,7 +2927,7 @@
       "name": "email",
       "type": "registry:component",
       "title": "Email",
-      "description": "React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts.",
+      "description": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
       "dependencies": [
         "react-email@^6.9.5"
       ],
@@ -2930,6 +2939,21 @@
           "path": "src/registry/sources/control-ui/email/README.md",
           "target": "@components/control-ui/email/README.md",
           "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/email/email-brand.tsx",
+          "target": "@components/control-ui/email/email-brand.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/email/email-code.tsx",
+          "target": "@components/control-ui/email/email-code.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/email/email-footer.tsx",
+          "target": "@components/control-ui/email/email-footer.tsx",
+          "type": "registry:component"
         },
         {
           "path": "src/registry/sources/control-ui/email/email.tsx",
@@ -3932,6 +3956,41 @@
       },
       "meta": {
         "sourceManifestPath": "registry/control-ui/number-field.json"
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "page-layout",
+      "type": "registry:ui",
+      "title": "Page layout",
+      "description": "Page shell that owns the scroll container, the shared measure, and the title and actions row.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://127.0.0.1:3000/r/core.json",
+        "http://127.0.0.1:3000/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/knob-contracts/page-layout-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/page-layout-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/page-layout.css",
+          "target": "@components/control-ui/styles/recipes/page-layout.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/ui/page-layout.tsx",
+          "target": "@components/control-ui/ui/page-layout.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/page-layout.css\"": {}
+      },
+      "meta": {
+        "sourceManifestPath": "registry/control-ui/page-layout.json"
       }
     },
     {
@@ -5850,6 +5909,7 @@
         "http://127.0.0.1:3000/r/native-select.json",
         "http://127.0.0.1:3000/r/navigation-menu.json",
         "http://127.0.0.1:3000/r/number-field.json",
+        "http://127.0.0.1:3000/r/page-layout.json",
         "http://127.0.0.1:3000/r/pagination.json",
         "http://127.0.0.1:3000/r/phone-input.json",
         "http://127.0.0.1:3000/r/popover.json",

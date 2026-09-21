@@ -17,6 +17,8 @@ export const MODE_LOCKED_SKINS: Record<string, Theme> = { "windows-98": "light" 
 
 export const MOTION_REDUCED_SKINS: string[] = ["xp", "windows-98"];
 
+export const PAGE_LAYOUT_SKINS: string[] = ["refined"];
+
 export function preferredTheme(): Theme {
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);

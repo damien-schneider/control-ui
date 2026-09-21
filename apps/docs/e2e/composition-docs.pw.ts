@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
 test("Context keeps its hierarchy after loading and navigating between docs", async ({ page }) => {
-  await page.goto("/ai/activity");
+  await page.goto("/components/activity");
   const activity = page.locator("#composition:visible");
   await expect(activity.getByRole("heading", { name: "Static activity" })).toBeVisible();
   await expect(activity.getByRole("heading", { name: "Collapsible activity" })).toBeVisible();
@@ -10,8 +10,8 @@ test("Context keeps its hierarchy after loading and navigating between docs", as
   await expect(staticTree).toContainText("ActivityRow");
   await expect(staticTree).not.toContainText("ActivityTrigger");
 
-  await page.locator('a[href="/ai/context"]').first().click();
-  await expect(page).toHaveURL(/\/ai\/context$/);
+  await page.locator('a[href="/components/context"]').first().click();
+  await expect(page).toHaveURL(/\/components\/context$/);
   const composition = page.locator("#composition:visible");
   await expect(composition).toHaveCount(1);
   await expect(composition.getByRole("heading", { name: "Context inspector" })).toBeVisible();
@@ -28,7 +28,7 @@ test("Context keeps its hierarchy after loading and navigating between docs", as
   await expect(header.locator(":scope > ul > li")).toHaveCount(3);
 });
 
-for (const route of ["/ai/inline-citation", "/primitives/input-otp", "/primitives/dropdown-menu", "/use-cases/theme-toggle"]) {
+for (const route of ["/components/inline-citation", "/primitives/input-otp", "/primitives/dropdown-menu", "/use-cases/theme-toggle"]) {
   test(`${route} renders authored composition trees`, async ({ page }) => {
     await page.goto(route);
     const composition = page.locator("#composition:visible");
@@ -41,7 +41,7 @@ for (const route of ["/ai/inline-citation", "/primitives/input-otp", "/primitive
 test("long composition names scroll by keyboard without overflowing a narrow page", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/ai/environment-variables");
+  await page.goto("/components/environment-variables");
   const composition = page.locator("#composition:visible");
   const tree = composition.getByRole("region", { name: "Composition tree" }).nth(1);
   await waitForReactHydration(tree);

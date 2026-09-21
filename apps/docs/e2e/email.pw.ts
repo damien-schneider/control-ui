@@ -30,7 +30,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript((key) => {
     localStorage.setItem(key, JSON.stringify({ skin: "refined", overrides: {}, light: {}, dark: {}, reduceMotion: true }));
   }, THEME_EDITOR_STORAGE_KEY);
-  await page.goto("/ai/email");
+  await page.goto("/components/email");
   await waitForReactHydration(page.locator("#preview").getByRole("button", { name: "Desktop", exact: true }));
 });
 
@@ -42,10 +42,25 @@ test("renders every template with its images and the footer its mailing type req
     const unsubscribe = frame.getByRole("link", { name: "Unsubscribe", exact: true });
     if (mailing === "marketing") await expect(unsubscribe).toBeVisible();
     else await expect(unsubscribe).toHaveCount(0);
+    await expect(frame.getByRole("img", { name: "LinkedIn" })).toBeVisible();
     await expect(frame.getByText("Fieldwork, Inc.").first()).toBeVisible();
     await expect(page.locator(anchor).getByRole("button", { name: "Download HTML", exact: true })).toBeEnabled();
   }
   await page.screenshot({ path: "/tmp/control-ui-email-desktop.png", fullPage: true });
+});
+
+test("switches a preview between the contained card and the plain page surface", async ({ page }) => {
+  const section = page.locator("#example-verification");
+  const frame = emailFrame(page, "verification");
+  const container = frame.locator('table[style*="max-width"]').first();
+  await expect(renderedHeading(page, "verification")).toHaveText("Confirm your email address");
+  const bodyBackground = () => frame.locator("body").evaluate((element) => getComputedStyle(element).backgroundColor);
+  await expect(container).not.toHaveCSS("border-radius", "0px");
+  await expect(container).not.toHaveCSS("background-color", await bodyBackground());
+  await section.getByRole("button", { name: "Plain", exact: true }).click();
+  await expect(renderedHeading(page, "verification")).toHaveText("Confirm your email address");
+  await expect(container).toHaveCSS("border-radius", "0px");
+  await expect(container).toHaveCSS("background-color", await bodyBackground());
 });
 
 test("narrows a single preview to a mobile width without clipping its content", async ({ page }) => {

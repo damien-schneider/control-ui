@@ -8,7 +8,7 @@ for (const skin of ["refined", "xp", "linear"]) {
       ({ storageKey, activeSkin }) => localStorage.setItem(storageKey, JSON.stringify({ skin: activeSkin, mode: "light" })),
       { storageKey: THEME_EDITOR_STORAGE_KEY, activeSkin: skin },
     );
-    await page.goto("/ai/audio-recorder");
+    await page.goto("/components/audio-recorder");
     const input = page.getByRole("combobox", { name: "Microphone", exact: true });
     await waitForReactHydration(input);
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin);

@@ -30,6 +30,7 @@ import type { DropdownMenuTriggerVariant } from "../../src/registry/sources/cont
 import type { DropzoneOverlayScope } from "../../src/registry/sources/control-ui/ui/dropzone";
 import type { KbdVariant } from "../../src/registry/sources/control-ui/ui/kbd";
 import type { NavigationMenuLinkVariant } from "../../src/registry/sources/control-ui/ui/navigation-menu";
+import type { PageHeaderVariant, PageScrollMode, PageWidth } from "../../src/registry/sources/control-ui/ui/page-layout";
 import type { PopoverContentPadding } from "../../src/registry/sources/control-ui/ui/popover";
 import type { ProgressiveBlurSide } from "../../src/registry/sources/control-ui/ui/progressive-blur";
 import type { ResizableHandleVariant, ResizablePanelGroupVariant } from "../../src/registry/sources/control-ui/ui/resizable";
@@ -212,6 +213,10 @@ export type EmittedStateContract = {
   "sidebar:menu-action:data-show-on-hover": true;
   "sidebar:menu-button:data-size": SidebarMenuButtonSize;
   "sidebar:menu-button:data-variant": SidebarMenuButtonVariant;
+  "page-layout:root:data-scroll": PageScrollMode;
+  "page-layout:root:data-width": PageWidth;
+  "page-layout:header:data-variant": PageHeaderVariant;
+  "page-layout:body:data-aside": true;
   "skeleton:root:data-variant": SkeletonVariant;
   "slider:root:data-variant": SliderVariant;
   "slider:control:data-labeled": "true";

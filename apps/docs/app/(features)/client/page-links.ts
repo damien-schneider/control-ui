@@ -1,5 +1,7 @@
+import { categoriesWithEntries } from "@/app/(features)/catalog/categories";
+import { componentEntries } from "@/app/(features)/catalog/components";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
-import { primitiveCategories } from "@/app/(features)/catalog/primitives";
+import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import { installedDependencyFiles, supportFilesFor } from "@/app/(features)/model/registry";
 import type {
   DocsBlock,
@@ -64,13 +66,14 @@ function skinsOverviewPageLinks(): PageLink[] {
 }
 
 function catalogOverviewPageLinks(overview: CatalogOverviewId): PageLink[] {
-  if (overview === "ai") return [{ href: "#agents", label: "Agents" }];
+  if (overview === "components")
+    return categoriesWithEntries(componentEntries).map((category) => ({ href: `#${category.id}`, label: category.label }));
   if (overview === "use-cases")
     return [
       { href: "#templates", label: "Templates" },
       { href: "#patterns", label: "Patterns" },
     ];
-  return primitiveCategories.map((category) => ({ href: `#${category.id}`, label: category.label }));
+  return categoriesWithEntries(primitiveEntries).map((category) => ({ href: `#${category.id}`, label: category.label }));
 }
 
 function skinPageLinks(skin: DocsSkinPage): PageLink[] {

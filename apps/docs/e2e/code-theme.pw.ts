@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "@playwright/test";
+import { skinPackIds } from "../app/(features)/catalog/skins";
 
 const SKINS = ["refined", "xp", "none", "rig", "liquid-metal", "modern-apple", "cuicui", "linear"];
 const MODES = ["light", "dark"] as const;
@@ -18,14 +19,15 @@ const SYNTAX_TOKENS = [
   "--code-token-link",
 ];
 const DOCS_ROOT = fileURLToPath(new URL("../", import.meta.url));
+const CORE_THEME = readFileSync(path.join(DOCS_ROOT, "src/registry/sources/control-ui/theme.css"), "utf8");
 const CODE_THEME = readFileSync(path.join(DOCS_ROOT, "src/registry/sources/control-ui/code.css"), "utf8");
-const SKIN_THEMES = SKINS.map((skin) => readFileSync(path.join(DOCS_ROOT, "src/registry/skin-packs", skin, "theme.css"), "utf8")).join(
-  "\n",
-);
+const SKIN_THEMES = SKINS.filter((skin) => skinPackIds.some((packId) => packId === skin))
+  .map((skin) => readFileSync(path.join(DOCS_ROOT, "src/registry/skin-packs", skin, "theme.css"), "utf8"))
+  .join("\n");
 
 test.beforeEach(async ({ page }) => {
   await page.setContent("<!doctype html><html><body></body></html>");
-  await page.addStyleTag({ content: `${SKIN_THEMES}\n${CODE_THEME}` });
+  await page.addStyleTag({ content: `${CORE_THEME}\n${SKIN_THEMES}\n${CODE_THEME}` });
 });
 
 test("shared code colors clear WCAG AA across every skin and mode", async ({ page }) => {

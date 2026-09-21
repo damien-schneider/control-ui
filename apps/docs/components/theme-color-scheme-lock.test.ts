@@ -1,9 +1,9 @@
 import { describe, expect, test } from "bun:test";
 import { SKIN_CONFIGS } from "@/components/skin-registry";
-import { MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS, THEME_INIT_SKIN_IDS, type Theme } from "@/components/theme";
+import { MODE_LOCKED_SKINS, MOTION_REDUCED_SKINS, PAGE_LAYOUT_SKINS, THEME_INIT_SKIN_IDS, type Theme } from "@/components/theme";
 
 /*
- * Guard: MODE_LOCKED_SKINS/MOTION_REDUCED_SKINS (theme.ts) are hand-kept mirrors of colorScheme/motion on each skin.config.
+ * Guard: MODE_LOCKED_SKINS/MOTION_REDUCED_SKINS/PAGE_LAYOUT_SKINS (theme.ts) mirror colorScheme/motion/sidebarLayout on each skin.config.
  * Live in theme.ts, apart from skin-registry, so pre-paint init script can honor them without pulling React/skin-config graph.
  * Tests derive truth from actual configs, fail on drift — forces teaching init script when adding a dark-only/motion-reduced skin.
  */
@@ -38,5 +38,15 @@ describe("motion-reduced skins stay in sync with the skin.config contract", () =
   test("xp is motion-reduced (sanity: the Luna near-instant motion reading)", () => {
     expect(SKIN_CONFIGS.xp.motion).toBe("reduced");
     expect(MOTION_REDUCED_SKINS).toContain("xp");
+  });
+});
+
+describe("page-layout skins stay in sync with the skin.config contract", () => {
+  const fromConfigs = Object.entries(SKIN_CONFIGS)
+    .filter(([, config]) => config.sidebarLayout === "page")
+    .map(([id]) => id);
+
+  test("PAGE_LAYOUT_SKINS equals the set of skin.config sidebarLayout:page fields", () => {
+    expect([...PAGE_LAYOUT_SKINS].sort()).toEqual(fromConfigs.sort());
   });
 });

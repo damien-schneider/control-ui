@@ -1,7 +1,9 @@
 import {
   AiGenerativeIcon,
   BlocksIcon,
+  BlurIcon,
   Book04Icon,
+  BubbleChatIcon,
   CodeSquareIcon,
   ContractsIcon,
   CustomizeIcon,
@@ -16,6 +18,7 @@ import {
   Notification01Icon,
   PaintBrush01Icon,
   PlusSignSquareIcon,
+  TextFontIcon,
   ViewIcon,
   WebDesign01Icon,
 } from "@hugeicons/core-free-icons";
@@ -38,7 +41,7 @@ export const skillConcernSidebarIcons = {
 } as const satisfies Record<DocsSkillConcern["id"], IconSvgElement>;
 
 export const catalogNavGroupIcons = {
-  agents: AiGenerativeIcon,
+  chat: BubbleChatIcon,
   actions: MouseLeftClick01Icon,
   forms: FormIcon,
   overlays: Layers01Icon,
@@ -46,6 +49,8 @@ export const catalogNavGroupIcons = {
   feedback: Notification01Icon,
   layout: Layout01Icon,
   display: ViewIcon,
+  content: TextFontIcon,
+  effects: BlurIcon,
   hooks: FunctionSquareIcon,
   utils: ContractsIcon,
   extensions: PlusSignSquareIcon,

@@ -230,7 +230,3 @@ ${base}/.well-known/ai-catalog.json`;
 
   return undefined;
 }
-
-export function guideCode(section: GuideSection, integration: "mastra" | "ai-sdk") {
-  return guideCodeForKind(section.code, integration);
-}

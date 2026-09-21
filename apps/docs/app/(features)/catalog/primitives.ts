@@ -1,17 +1,5 @@
 import { preview, sourceFile } from "./shared";
 
-export const primitiveCategories = [
-  { id: "actions", label: "Actions" },
-  { id: "forms", label: "Forms" },
-  { id: "overlays", label: "Overlays" },
-  { id: "navigation", label: "Navigation" },
-  { id: "feedback", label: "Feedback" },
-  { id: "layout", label: "Layout" },
-  { id: "display", label: "Display" },
-] as const;
-
-export type PrimitiveCategoryId = (typeof primitiveCategories)[number]["id"];
-
 const surfaceVariantsFile = sourceFile("Surface variants", "src/registry/sources/control-ui/surface-variants.ts", "surface-variants");
 const buttonRecipeFile = sourceFile(
   "Button recipe — paint + @property knobs",
@@ -154,6 +142,11 @@ const sidebarRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/sidebar.css",
   "recipe-css",
 );
+const pageLayoutRecipeFile = sourceFile(
+  "Page layout recipe — measure + @property knobs",
+  "src/registry/sources/control-ui/recipes/page-layout.css",
+  "recipe-css",
+);
 const tableOfContentsRecipeFile = sourceFile(
   "Table of contents recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/table-of-contents.css",
@@ -251,7 +244,7 @@ export const primitiveEntries = [
   },
   {
     id: "collapsible",
-    category: "display",
+    category: "layout",
     kind: "Primitive",
     name: "Collapsible",
     summary: "Accessible disclosure primitive with measured open and close motion.",
@@ -291,7 +284,7 @@ export const primitiveEntries = [
   },
   {
     id: "track-highlight",
-    category: "navigation",
+    category: "effects",
     kind: "Primitive",
     name: "Track highlight",
     summary:
@@ -422,6 +415,26 @@ export const primitiveEntries = [
     ],
   },
   {
+    id: "page-layout",
+    category: "layout",
+    kind: "Primitive",
+    status: "beta",
+    name: "Page layout",
+    summary: "Page shell that owns the scroll container, the shared measure, and the title and actions row.",
+    paths: {
+      registry: {
+        target: "components/control-ui/ui/page-layout.tsx",
+        example: sourceFile("Page layout preview", "src/registry/examples/control-ui/primitives/page-layout.tsx", "example"),
+        source: sourceFile("Page layout slot", "src/registry/sources/control-ui/ui/page-layout.tsx", "component"),
+        supportFiles: [pageLayoutRecipeFile],
+        registryKind: "page-layout",
+      },
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/primitives/page-layout").then((mod) => ({ default: mod.PrimitivePageLayoutExample })),
+    ),
+  },
+  {
     id: "scroll-area",
     category: "layout",
     kind: "Primitive",
@@ -458,7 +471,7 @@ export const primitiveEntries = [
   },
   {
     id: "progressive-blur",
-    category: "layout",
+    category: "effects",
     kind: "Primitive",
     name: "Progressive blur",
     summary: "CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.",
@@ -690,7 +703,7 @@ export const primitiveEntries = [
   },
   {
     id: "toggle",
-    category: "actions",
+    category: "forms",
     kind: "Primitive",
     name: "Toggle",
     summary: "Pressed-state button and toggle group built on the Button surface.",
@@ -1118,7 +1131,7 @@ export const primitiveEntries = [
   },
   {
     id: "accordion",
-    category: "display",
+    category: "layout",
     kind: "Primitive",
     name: "Accordion",
     summary: "Stacked disclosure rows with measured panel animation.",
@@ -1441,7 +1454,7 @@ export const primitiveEntries = [
   },
   {
     id: "card",
-    category: "display",
+    category: "layout",
     kind: "Primitive",
     status: "beta",
     name: "Card",
@@ -1487,7 +1500,7 @@ export const primitiveEntries = [
     kind: "Primitive",
     status: "beta",
     name: "Aspect ratio",
-    summary: "CSS aspect-ratio wrapper for media and previews.",
+    summary: "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
     shadcnDocsUrl: "https://ui.shadcn.com/docs/components/aspect-ratio",
     paths: {
       registry: {
@@ -1500,6 +1513,19 @@ export const primitiveEntries = [
     preview: preview(() =>
       import("@/src/registry/examples/control-ui/primitives/aspect-ratio").then((mod) => ({ default: mod.PrimitiveAspectRatioExample })),
     ),
+    additionalPreviews: [
+      {
+        id: "runtime-ratio",
+        title: "Runtime ratio",
+        previewClassName: "min-h-80",
+        description:
+          "Reach for the component when the ratio only exists at runtime. Tailwind compiles the classes it can read in the source, so an aspect-[] class assembled from a variable never becomes a rule; the component writes the value as an inline style instead.",
+        source: sourceFile("Runtime aspect ratio", "src/registry/examples/control-ui/primitives/aspect-ratio.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/aspect-ratio").then((mod) => ({ default: mod.AspectRatioRuntimeExample })),
+        ),
+      },
+    ],
   },
   {
     id: "button-group",
@@ -1971,7 +1997,7 @@ export const primitiveEntries = [
   },
   {
     id: "typography",
-    category: "display",
+    category: "content",
     kind: "Primitive",
     name: "Typography",
     summary: "The token-driven type scale — one --text-* rung per size, named by role. Publish the utilities, not a component.",
@@ -1990,7 +2016,7 @@ export const primitiveEntries = [
   },
   {
     id: "code",
-    category: "display",
+    category: "content",
     kind: "Primitive",
     name: "Code",
     summary: "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
@@ -2039,7 +2065,7 @@ export const primitiveEntries = [
   },
   {
     id: "code-diff",
-    category: "display",
+    category: "content",
     kind: "Primitive",
     name: "Code Diff",
     summary: "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
@@ -2081,7 +2107,7 @@ export const primitiveEntries = [
   },
   {
     id: "markdown",
-    category: "display",
+    category: "content",
     kind: "Primitive",
     name: "Markdown",
     summary: "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",

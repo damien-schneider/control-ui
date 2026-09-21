@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 176,
+    "count": 177,
     "contracts": {
       "skin": "http://127.0.0.1:3000/r/contract/index.json",
       "theme": "http://127.0.0.1:3000/r/theme-contract.json"
@@ -85,17 +85,17 @@
         "id": "primitives",
         "label": "Library",
         "name": "Primitives",
-        "summary": "Browse every Control UI primitive through the same live examples used in its documentation.",
+        "summary": "Every Control UI primitive, grouped by what the control does, through the same live examples used in its documentation.",
         "kind": "Primitive",
         "href": "/primitives"
       },
       {
-        "id": "ai",
+        "id": "components",
         "label": "Library",
-        "name": "AI components",
-        "summary": "Explore composable surfaces for messages, input, activity, media, and agent workflows.",
-        "kind": "Agent",
-        "href": "/ai"
+        "name": "Components",
+        "summary": "Composed surfaces above the primitives, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.",
+        "kind": "Component",
+        "href": "/components"
       },
       {
         "id": "use-cases",
@@ -557,167 +557,167 @@
       {
         "id": "email",
         "name": "Email",
-        "kind": "Agent",
-        "summary": "React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts.",
-        "href": "/ai/email",
+        "kind": "Component",
+        "summary": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
+        "href": "/components/email",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/email.json"
       },
       {
         "id": "chat-message",
         "name": "ChatMessage",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Composable chat message with typed role, density, and lifecycle state.",
-        "href": "/ai/chat-message",
+        "href": "/components/chat-message",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-message.json"
       },
       {
         "id": "chat-composer",
         "name": "ChatComposer",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Prompt composer with controlled text, submit state, and trigger-menu support.",
-        "href": "/ai/chat-composer",
+        "href": "/components/chat-composer",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer.json"
       },
       {
         "id": "chat-composer-attachment",
         "name": "ChatComposerAttachment",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Composer attachment rail with file previews, upload progress, and removal.",
-        "href": "/ai/chat-composer-attachment",
+        "href": "/components/chat-composer-attachment",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-composer-attachment.json"
       },
       {
         "id": "user-ask",
         "name": "UserAsk",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
-        "href": "/ai/user-ask",
+        "href": "/components/user-ask",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/user-ask.json"
       },
       {
         "id": "task-list",
         "name": "TaskList",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Floating agent task progress pill above the composer that expands into the full task list.",
-        "href": "/ai/task-list",
+        "href": "/components/task-list",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/task-list.json"
       },
       {
         "id": "audio-recorder",
         "name": "AudioRecorder",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
-        "href": "/ai/audio-recorder",
+        "href": "/components/audio-recorder",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-recorder.json"
       },
       {
         "id": "audio-visualizer",
         "name": "AudioVisualizer",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
-        "href": "/ai/audio-visualizer",
+        "href": "/components/audio-visualizer",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/audio-visualizer.json"
       },
       {
         "id": "dynamic-notification",
         "name": "DynamicNotification",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
-        "href": "/ai/dynamic-notification",
+        "href": "/components/dynamic-notification",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/dynamic-notification.json"
       },
       {
         "id": "environment-variables",
         "name": "EnvironmentVariables",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
-        "href": "/ai/environment-variables",
+        "href": "/components/environment-variables",
         "status": "experimental",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/environment-variables.json"
       },
       {
         "id": "activity",
         "name": "Activity",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
-        "href": "/ai/activity",
+        "href": "/components/activity",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/activity.json"
       },
       {
         "id": "transcript-divider",
         "name": "TranscriptDivider",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
-        "href": "/ai/transcript-divider",
+        "href": "/components/transcript-divider",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/transcript-divider.json"
       },
       {
         "id": "context",
         "name": "Context",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
-        "href": "/ai/context",
+        "href": "/components/context",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/context.json"
       },
       {
         "id": "inline-citation",
         "name": "InlineCitation",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
-        "href": "/ai/inline-citation",
+        "href": "/components/inline-citation",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-citation.json"
       },
       {
         "id": "source-badge",
         "name": "SourceBadge",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
-        "href": "/ai/source-badge",
+        "href": "/components/source-badge",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/source-badge.json"
       },
       {
         "id": "action-bar",
         "name": "ActionBar",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Reusable hover actions for message and response controls.",
-        "href": "/ai/action-bar",
+        "href": "/components/action-bar",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/action-bar.json"
       },
       {
         "id": "inline-attachment",
         "name": "InlineAttachment",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Inline file and media previews for chat turns.",
-        "href": "/ai/inline-attachment",
+        "href": "/components/inline-attachment",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/inline-attachment.json"
       },
       {
         "id": "markdown-block",
         "name": "MarkdownBlock",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Assistant markdown output rendered to prose, with a header and copy-source action.",
-        "href": "/ai/markdown-block",
+        "href": "/components/markdown-block",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/markdown-block.json"
       },
       {
         "id": "chat-layout",
         "name": "ChatLayout",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "A scrolling conversation with message turns and a floating composer dock.",
-        "href": "/ai/chat-layout",
+        "href": "/components/chat-layout",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/chat-layout.json"
       },
       {
         "id": "thread-rail",
         "name": "ThreadRail",
-        "kind": "Agent",
+        "kind": "Component",
         "summary": "Conversation minimap for scanning and jumping between chat turns.",
-        "href": "/ai/thread-rail",
+        "href": "/components/thread-rail",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/thread-rail.json"
       },
       {
@@ -760,6 +760,15 @@
         "href": "/primitives/sidebar",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/sidebar.json"
+      },
+      {
+        "id": "page-layout",
+        "name": "Page layout",
+        "kind": "Primitive",
+        "summary": "Page shell that owns the scroll container, the shared measure, and the title and actions row.",
+        "href": "/primitives/page-layout",
+        "status": "beta",
+        "install": "npx shadcn@latest add http://127.0.0.1:3000/r/page-layout.json"
       },
       {
         "id": "scroll-area",
@@ -1122,7 +1131,7 @@
         "id": "aspect-ratio",
         "name": "Aspect ratio",
         "kind": "Primitive",
-        "summary": "CSS aspect-ratio wrapper for media and previews.",
+        "summary": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
         "href": "/primitives/aspect-ratio",
         "status": "beta",
         "install": "npx shadcn@latest add http://127.0.0.1:3000/r/aspect-ratio.json"

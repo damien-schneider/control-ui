@@ -309,6 +309,13 @@
       "knobs": 6,
       "probes": 6
     },
+    "page-layout": {
+      "registryItems": [
+        "page-layout"
+      ],
+      "knobs": 10,
+      "probes": 0
+    },
     "pagination": {
       "registryItems": [
         "pagination"

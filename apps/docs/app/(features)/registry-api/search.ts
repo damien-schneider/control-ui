@@ -74,9 +74,9 @@ export function buildSearchItems({
     ...components.map<SearchItem>((item) => ({
       id: item.id,
       name: item.name,
-      kind: "Agent",
+      kind: "Component",
       summary: item.summary,
-      href: `/ai/${item.id}`,
+      href: `/components/${item.id}`,
       status: item.status,
     })),
     ...primitives.map<SearchItem>((item) => ({

@@ -48,9 +48,41 @@ test("collapsed state survives reload", async ({ page }) => {
   await page.reload();
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
   await expect(page.locator('[data-control-ui="sidebar"][data-slot="inner"]')).toHaveAttribute("inert", "");
-  const navigationLink = page.getByRole("link", { name: "Create app", exact: true });
+  const navigationLink = page.locator("[data-docs-sidebar-navigation]").getByRole("link", { name: "Install", exact: true });
   await navigationLink.evaluate((link) => link.focus());
   await expect(navigationLink).not.toBeFocused();
+});
+
+test("saved collapse and width reach the first paint, before any hydration", async ({ page, context }) => {
+  await context.addCookies([{ name: "sidebar_state", value: "false", url: "http://127.0.0.1:3000" }]);
+  await context.addInitScript(() => localStorage.setItem("control-ui-docs:sidebar-width", "320"));
+  await page.route("**/*", (route) => (route.request().resourceType() === "script" ? route.abort() : route.continue()));
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/primitives/code-diff");
+
+  await expect(page.locator('[data-control-ui="sidebar"][data-slot="root"].peer')).toHaveAttribute("data-state", "collapsed");
+  await expect(page.locator('[data-control-ui="sidebar"][data-slot="wrapper"]')).toHaveCSS("--sidebar-width", "320px");
+
+  const container = await page.locator('[data-control-ui="sidebar"][data-slot="container"]').boundingBox();
+  expect(container).not.toBeNull();
+  expect((container?.x ?? 0) + (container?.width ?? 0)).toBeLessThanOrEqual(0);
+});
+
+test("restoring the saved sidebar hydrates without mismatch warnings", async ({ page, context }) => {
+  await context.addCookies([{ name: "sidebar_state", value: "false", url: "http://127.0.0.1:3000" }]);
+  await context.addInitScript(() => localStorage.setItem("control-ui-docs:sidebar-width", "320"));
+  const pageErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") pageErrors.push(message.text());
+  });
+  page.on("pageerror", (error) => pageErrors.push(String(error)));
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/primitives/sidebar");
+
+  const shellSidebar = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer').first();
+  await waitForSidebarHydration(shellSidebar.getByRole("separator", { name: /Resize sidebar/ }));
+  await expect(shellSidebar).toHaveAttribute("data-state", "collapsed");
+  expect(pageErrors.filter((error) => /hydrat/i.test(error))).toEqual([]);
 });
 
 test("drag collapse restores the committed width and drag expand tracks the pointer", async ({ page }) => {
@@ -118,7 +150,7 @@ test("sidebar shortcut moves focus out of collapsed navigation", async ({ page }
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/primitives/code-diff");
 
-  const activeLink = page.getByRole("link", { name: "Create app", exact: true });
+  const activeLink = page.locator("[data-docs-sidebar-navigation]").getByRole("link", { name: "Install", exact: true });
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
   const sidebarRoot = page.locator('[data-control-ui="sidebar"][data-slot="root"].peer');
   await waitForSidebarHydration(resizeHandle);
@@ -174,7 +206,7 @@ test("persisted desktop collapse leaves the mobile sheet interactive", async ({ 
 
   const sidebarNavigation = page.locator("[data-docs-sidebar-navigation]");
   await expect(sidebarNavigation).toBeVisible();
-  await expect(sidebarNavigation.getByRole("link", { name: "Create app", exact: true })).toBeEnabled();
+  await expect(sidebarNavigation.getByRole("link", { name: "Install", exact: true })).toBeEnabled();
 });
 
 test("sidebar inset confines wide content to the remaining panel", async ({ page }) => {

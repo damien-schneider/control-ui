@@ -1,6 +1,14 @@
-import type { EmailBrand, EmailFooterContent } from "@/components/control-ui/email/templates";
+import type { EmailBrand, EmailFooterContent } from "@/components/control-ui/email/email-brand";
+import { absoluteSiteUrl } from "@/lib/site-config";
 
-export const brand: EmailBrand = { name: "FIELDWORK", homeUrl: "https://example.com" };
+export const brand: EmailBrand = {
+  name: "FIELDWORK",
+  homeUrl: "https://example.com",
+  logoUrl: absoluteSiteUrl("/email/fieldwork.png"),
+  logoDarkUrl: absoluteSiteUrl("/email/fieldwork-dark.png"),
+  logoWidth: 157,
+  logoHeight: 24,
+};
 export const browserUrl = "https://example.com/emails/weekly-edit";
 export const articleUrl = "https://example.com/journal";
 export const forestImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?fit=crop&w=1104&h=600&q=85&fm=jpg";
@@ -8,10 +16,12 @@ export const architectureImage = "https://images.unsplash.com/photo-148640614692
 
 const footerBase = {
   tagline: "Made for the way you work. This is a sample email.",
+  socialIconBaseUrl: absoluteSiteUrl("/email/social"),
   socialLinks: [
-    { label: "Instagram", href: "https://example.com/instagram" },
-    { label: "LinkedIn", href: "https://example.com/linkedin" },
-    { label: "YouTube", href: "https://example.com/youtube" },
+    { platform: "instagram", href: "https://example.com/instagram" },
+    { platform: "linkedin", href: "https://example.com/linkedin" },
+    { platform: "youtube", href: "https://example.com/youtube" },
+    { platform: "x", href: "https://example.com/x" },
   ],
   helpLinks: [
     { label: "Help center", href: "https://example.com/help" },
@@ -23,10 +33,11 @@ const footerBase = {
     addressLines: ["2261 Market Street, Suite 5150", "San Francisco, CA 94114", "United States"],
   },
   legal: "© 2026 Fieldwork, Inc. All rights reserved.",
-};
+} satisfies Partial<EmailFooterContent>;
 
 export const marketingFooter: EmailFooterContent = {
   ...footerBase,
+  align: "center",
   reason: "You receive this email because you subscribed to Fieldwork updates.",
   mailing: "marketing",
   unsubscribeUrl: "https://example.com/unsubscribe",

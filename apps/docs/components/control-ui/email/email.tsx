@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import {
   Body,
   Button,
@@ -11,7 +11,6 @@ import {
   Hr,
   type HrProps,
   Html,
-  Img,
   Link,
   type LinkProps,
   Preview,
@@ -26,12 +25,20 @@ import {
 } from "react-email";
 import type { EmailTheme } from "./theme";
 
-function tailwindTheme(theme: EmailTheme): TailwindConfig {
+export type EmailVariant = "contained" | "plain";
+export type EmailFooterPlacement = "inside" | "outside";
+
+export function surfaceColors(theme: EmailTheme, variant: EmailVariant) {
+  if (variant === "contained") return theme.colors;
+  return { ...theme.colors, card: theme.colors.background, "card-foreground": theme.colors.foreground };
+}
+
+function tailwindTheme(theme: EmailTheme, variant: EmailVariant): TailwindConfig {
   return {
     presets: [pixelBasedPreset],
     theme: {
       extend: {
-        colors: theme.colors,
+        colors: surfaceColors(theme, variant),
         borderRadius: theme.radii,
         minHeight: { control: theme.button.height },
         padding: { "control-x": theme.button.paddingInline, "control-y": theme.button.paddingBlock },
@@ -49,56 +56,109 @@ export function EmailLayout({
   theme,
   preview,
   children,
+  footer,
+  footerPlacement = "inside",
   head,
   lang = "en",
   dir = "ltr",
+  variant = "contained",
 }: {
   theme: EmailTheme;
   preview: string;
   children: ReactNode;
+  footer?: ReactNode;
+  footerPlacement?: EmailFooterPlacement;
   head?: ReactNode;
   lang?: string;
   dir?: "ltr" | "rtl";
+  variant?: EmailVariant;
 }) {
+  const contained = variant === "contained";
+  const outside = contained && footerPlacement === "outside";
+  const backdrop = theme.colorScheme === "light" ? "bg-muted" : "bg-background";
   return (
     <Html lang={lang} dir={dir}>
-      <Tailwind config={tailwindTheme(theme)}>
+      <Tailwind config={tailwindTheme(theme, variant)}>
         <Head>
           <meta name="color-scheme" content={theme.colorScheme} />
           <meta name="supported-color-schemes" content={theme.colorScheme} />
           {head}
         </Head>
-        <Body className="m-0 bg-background p-4 font-body text-body text-foreground">
+        <Body className={`m-0 font-body text-body text-foreground ${contained ? `${backdrop} px-4 py-8` : "bg-background p-0"}`}>
           <Preview>{preview}</Preview>
-          <Container className="mx-auto w-full max-w-[600px] rounded-panel bg-card p-6 text-card-foreground">{children}</Container>
+          <Container
+            className={`mx-auto w-full max-w-[600px] bg-card text-card-foreground ${contained ? "rounded-panel border border-border border-solid p-6" : "px-6 py-8"}`}
+          >
+            {children}
+            {outside ? null : footer}
+          </Container>
+          {outside ? <Container className="mx-auto w-full max-w-[600px] px-6">{footer}</Container> : null}
         </Body>
       </Tailwind>
     </Html>
   );
 }
 
-const headingClasses = { h1: "text-heading-1", h2: "text-heading-2", h3: "text-heading-3", h4: "text-heading-4" };
+export type EmailAlign = "left" | "center" | "right";
 
-export function EmailHeading({ as = "h1", className = "", ...props }: Omit<HeadingProps, "as"> & { as?: keyof typeof headingClasses }) {
-  return <Heading {...props} as={as} className={`mb-4 mt-0 font-display text-card-foreground ${headingClasses[as]} ${className}`} />;
+const alignClasses = { left: "text-left", center: "text-center", right: "text-right" };
+
+function alignClass(align?: EmailAlign) {
+  return align ? alignClasses[align] : "";
 }
 
-export function EmailText({ tone = "default", className = "", style, ...props }: TextProps & { tone?: "default" | "muted" }) {
+const headingSizeClasses = {
+  display: "text-display",
+  "heading-1": "text-heading-1",
+  "heading-2": "text-heading-2",
+  "heading-3": "text-heading-3",
+  "heading-4": "text-heading-4",
+};
+
+type EmailHeadingSize = keyof typeof headingSizeClasses;
+
+const headingSizeForTag = { h1: "heading-1", h2: "heading-2", h3: "heading-3", h4: "heading-4" } as const;
+
+export function EmailHeading({
+  as = "h1",
+  size,
+  align,
+  className = "",
+  ...props
+}: Omit<HeadingProps, "as"> & { as?: keyof typeof headingSizeForTag; size?: EmailHeadingSize; align?: EmailAlign }) {
+  const sizeClass = headingSizeClasses[size ?? headingSizeForTag[as]];
+  return (
+    <Heading {...props} as={as} className={`mb-4 mt-0 font-display text-card-foreground ${sizeClass} ${alignClass(align)} ${className}`} />
+  );
+}
+
+export function EmailSection({ align, className = "", ...props }: SectionProps & { align?: EmailAlign }) {
+  return <Section {...props} className={`${alignClass(align)} ${className}`} />;
+}
+
+export function EmailText({
+  tone = "default",
+  align,
+  className = "",
+  style,
+  ...props
+}: TextProps & { tone?: "default" | "muted"; align?: EmailAlign }) {
   const textColor = tone === "muted" ? "text-muted-foreground" : "text-card-foreground";
   return (
     <Text
       {...props}
       style={{ overflowWrap: "break-word", ...style }}
-      className={`mb-4 mt-0 font-body text-body ${textColor} ${className}`}
+      className={`mb-4 mt-0 font-body text-body ${textColor} ${alignClass(align)} ${className}`}
     />
   );
 }
 
-export function EmailButton({ className = "", ...props }: ButtonProps) {
+export function EmailButton({ width = "auto", className = "", ...props }: ButtonProps & { width?: "auto" | "full" }) {
+  const widthClass = width === "full" ? "block w-full" : "inline-block";
   return (
     <Button
       {...props}
-      className={`box-border min-h-control rounded-control bg-primary px-control-x py-control-y text-center font-body text-control font-medium text-primary-foreground no-underline ${className}`}
+      className={`box-border min-h-control rounded-control bg-primary px-control-x py-control-y text-center font-body text-control font-medium text-primary-foreground no-underline ${widthClass} ${className}`}
     />
   );
 }
@@ -107,8 +167,12 @@ export function EmailLink({ className = "", ...props }: LinkProps) {
   return <Link {...props} className={`font-body text-primary-text underline ${className}`} />;
 }
 
-export function EmailCaption({ className = "", ...props }: TextProps) {
+export function EmailCaption({ className = "", ...props }: TextProps & { align?: EmailAlign }) {
   return <EmailText tone="muted" {...props} className={`text-caption ${className}`} />;
+}
+
+export function EmailMutedLink({ className = "", ...props }: LinkProps) {
+  return <EmailLink {...props} className={`text-caption text-muted-foreground ${className}`} />;
 }
 
 export function EmailDivider({ className = "", ...props }: HrProps) {
@@ -119,7 +183,7 @@ export function EmailPanel({ className = "", ...props }: SectionProps) {
   return <Section {...props} className={`my-6 rounded-panel bg-muted p-5 ${className}`} />;
 }
 
-export function EmailCode({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function EmailOneTimeCode({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <EmailPanel className={`text-center ${className}`}>
       <EmailText className="mb-0 text-center font-mono text-heading-2 font-semibold tracking-[0.25em]">{children}</EmailText>
@@ -141,6 +205,38 @@ export function EmailBulletList({ items, className = "" }: { items: ReactNode[];
   );
 }
 
+export function EmailColumns({
+  children,
+  widths,
+  gap = 20,
+  verticalAlign = "top",
+  className = "",
+}: {
+  children: ReactNode[];
+  widths?: string[];
+  gap?: number;
+  verticalAlign?: "top" | "middle" | "bottom";
+  className?: string;
+}) {
+  if (children.length === 0) return null;
+  const evenWidth = `${(100 / children.length).toFixed(4)}%`;
+  return (
+    <Row className={`mb-6 table-fixed ${className}`}>
+      {children.map((child, index) => (
+        <Column
+          // biome-ignore lint/suspicious/noArrayIndexKey: columns are positional slots with no stable identity.
+          key={index}
+          width={widths?.[index] ?? evenWidth}
+          className={`max-[480px]:block max-[480px]:w-full max-[480px]:pl-0 ${index === 0 ? "" : `max-[480px]:pt-[${gap}px]`}`}
+          style={{ verticalAlign, paddingLeft: index === 0 ? 0 : gap }}
+        >
+          {child}
+        </Column>
+      ))}
+    </Row>
+  );
+}
+
 export function EmailDetailRow({ label, value, emphasis = false }: { label: ReactNode; value: ReactNode; emphasis?: boolean }) {
   const valueWeight = emphasis ? "font-semibold" : "";
   return (
@@ -153,136 +249,4 @@ export function EmailDetailRow({ label, value, emphasis = false }: { label: Reac
       </Column>
     </Row>
   );
-}
-
-export function EmailLogo({
-  name,
-  src,
-  width = 120,
-  height = 32,
-  href,
-}: {
-  name: string;
-  src?: string;
-  width?: number;
-  height?: number;
-  href?: string;
-}) {
-  const mark = src ? (
-    <Img src={src} alt={name} width={width} height={height} className="inline-block" />
-  ) : (
-    <span className="font-display text-heading-4 font-semibold text-card-foreground">{name}</span>
-  );
-  return href ? (
-    <Link href={href} className="text-card-foreground no-underline">
-      {mark}
-    </Link>
-  ) : (
-    mark
-  );
-}
-
-export function EmailHeader({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
-  return (
-    <Row className="mb-8">
-      <Column className="align-middle">{children}</Column>
-      {aside ? (
-        <Column align="right" className="align-middle">
-          {aside}
-        </Column>
-      ) : null}
-    </Row>
-  );
-}
-
-export type EmailNavLink = { label: string; href: string };
-export type EmailSocialLink = EmailNavLink & { iconUrl?: string; iconAlt?: string };
-
-const captionLinkClasses = "text-caption text-muted-foreground";
-
-function separatedLinks(links: EmailNavLink[]) {
-  return links.map((link, index) => (
-    <Fragment key={link.href}>
-      {index > 0 ? " · " : null}
-      <EmailLink href={link.href} className={captionLinkClasses}>
-        {link.label}
-      </EmailLink>
-    </Fragment>
-  ));
-}
-
-export function EmailBrowserLink({ href, children = "View in browser" }: { href: string; children?: ReactNode }) {
-  return (
-    <EmailLink href={href} className={captionLinkClasses}>
-      {children}
-    </EmailLink>
-  );
-}
-
-export function EmailFooter({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <EmailDivider />
-      <Section>{children}</Section>
-    </>
-  );
-}
-
-export function EmailSocialLinks({ links, iconSize = 20 }: { links: EmailSocialLink[]; iconSize?: number }) {
-  if (links.length === 0) return null;
-  return (
-    <Section className="mb-4">
-      {links.map((link, index) => {
-        const spacing = index < links.length - 1 ? "mr-4" : "";
-        const decoration = link.iconUrl ? "no-underline" : "underline";
-        return (
-          <Fragment key={link.href}>
-            {index > 0 ? " " : null}
-            <EmailLink href={link.href} className={`${captionLinkClasses} ${decoration} ${spacing}`}>
-              {link.iconUrl ? (
-                <Img src={link.iconUrl} alt={link.iconAlt ?? link.label} width={iconSize} height={iconSize} className="inline-block" />
-              ) : (
-                link.label
-              )}
-            </EmailLink>
-          </Fragment>
-        );
-      })}
-    </Section>
-  );
-}
-
-export function EmailFooterLinks({ links }: { links: EmailNavLink[] }) {
-  if (links.length === 0) return null;
-  return <EmailCaption className="mb-2">{separatedLinks(links)}</EmailCaption>;
-}
-
-export function EmailAddress({ company, lines }: { company: string; lines: string[] }) {
-  return (
-    <EmailCaption className="mb-2">
-      {company}
-      {lines.map((line) => (
-        <Fragment key={line}>
-          <br />
-          {line}
-        </Fragment>
-      ))}
-    </EmailCaption>
-  );
-}
-
-export function EmailUnsubscribe({
-  unsubscribeUrl,
-  preferencesUrl,
-  unsubscribeLabel = "Unsubscribe",
-  preferencesLabel = "Manage preferences",
-}: {
-  unsubscribeUrl: string;
-  preferencesUrl?: string;
-  unsubscribeLabel?: string;
-  preferencesLabel?: string;
-}) {
-  const unsubscribe = { label: unsubscribeLabel, href: unsubscribeUrl };
-  const links = preferencesUrl ? [unsubscribe, { label: preferencesLabel, href: preferencesUrl }] : [unsubscribe];
-  return <EmailCaption className="mb-2">{separatedLinks(links)}</EmailCaption>;
 }

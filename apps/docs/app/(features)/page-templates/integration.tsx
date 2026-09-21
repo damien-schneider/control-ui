@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, type ReactNode, use } from "react";
-import { isCatalogIntegrationId } from "@/app/(features)/catalog/shared";
+import { integrationIds, isCatalogIntegrationId } from "@/app/(features)/catalog/shared";
 import type { IntegrationId } from "@/app/(features)/model/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 
@@ -28,6 +28,12 @@ function useDocsIntegrationSetting() {
 
 export function useDocsIntegration() {
   return useDocsIntegrationSetting().integration;
+}
+
+export function integrationChangesCode(codeForIntegration: (integration: IntegrationId) => string | undefined) {
+  const [baseline, ...others] = integrationIds;
+  const baselineCode = codeForIntegration(baseline);
+  return others.some((integration) => codeForIntegration(integration) !== baselineCode);
 }
 
 function MastraLogo({ className }: { className?: string }) {

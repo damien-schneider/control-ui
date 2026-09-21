@@ -1,16 +1,26 @@
-import { render, toPlainText } from "react-email";
-import type { EmailBrand, EmailFooterContent } from "@/components/control-ui/email/templates";
+import { Font, render, toPlainText } from "react-email";
+import type { EmailBrand, EmailFooterContent } from "@/components/control-ui/email/email-brand";
 import { NewsletterEmail } from "@/components/control-ui/email/templates";
 import { emailThemeFromCss } from "@/components/control-ui/email/theme";
 
 const brand: EmailBrand = { name: "Your company", homeUrl: "https://your-company.com" };
 
+const brandFont = (
+  <Font
+    fontFamily="Inter"
+    fallbackFontFamily="Helvetica"
+    webFont={{ url: "https://your-company.com/fonts/inter.woff2", format: "woff2" }}
+  />
+);
+
 function newsletterFooter(unsubscribeUrl: string): EmailFooterContent {
   return {
     tagline: "Product notes from the team.",
+    align: "center",
+    socialIconBaseUrl: "https://your-company.com/email/social",
     socialLinks: [
-      { label: "LinkedIn", href: "https://your-company.com/linkedin", iconUrl: "https://your-company.com/email/linkedin.png" },
-      { label: "YouTube", href: "https://your-company.com/youtube", iconUrl: "https://your-company.com/email/youtube.png" },
+      { platform: "linkedin", href: "https://your-company.com/linkedin" },
+      { platform: "youtube", href: "https://your-company.com/youtube" },
     ],
     helpLinks: [
       { label: "Help center", href: "https://your-company.com/help" },
@@ -27,6 +37,7 @@ function newsletterFooter(unsubscribeUrl: string): EmailFooterContent {
 
 export async function renderNewsletter({
   coreThemeCss,
+  codeThemeCss,
   skinThemeCss,
   overrideCss,
   browserUrl,
@@ -34,15 +45,24 @@ export async function renderNewsletter({
   articles,
 }: {
   coreThemeCss: string;
+  codeThemeCss: string;
   skinThemeCss: string;
   overrideCss: string;
   browserUrl: string;
   unsubscribeUrl: string;
   articles: Parameters<typeof NewsletterEmail>[0]["articles"];
 }) {
-  const theme = emailThemeFromCss([coreThemeCss, skinThemeCss, overrideCss], "light");
+  const theme = emailThemeFromCss([coreThemeCss, codeThemeCss, skinThemeCss, overrideCss], "light");
   const html = await render(
-    <NewsletterEmail theme={theme} brand={brand} browserUrl={browserUrl} footer={newsletterFooter(unsubscribeUrl)} articles={articles} />,
+    <NewsletterEmail
+      theme={theme}
+      variant="plain"
+      head={brandFont}
+      brand={brand}
+      browserUrl={browserUrl}
+      footer={newsletterFooter(unsubscribeUrl)}
+      articles={articles}
+    />,
   );
   return {
     html,

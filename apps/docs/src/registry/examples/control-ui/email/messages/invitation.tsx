@@ -1,11 +1,12 @@
 import { InvitationEmail } from "@/components/control-ui/email/templates";
-import type { EmailTheme } from "@/components/control-ui/email/theme";
 import { brand, browserUrl, transactionalFooter } from "../content";
+import type { EmailExampleProps } from "../options";
 
-export function InvitationEmailExample({ theme }: { theme: EmailTheme }) {
+export function InvitationEmailExample({ theme, variant }: EmailExampleProps) {
   return (
     <InvitationEmail
       theme={theme}
+      variant={variant}
       brand={brand}
       browserUrl={browserUrl}
       footer={transactionalFooter}

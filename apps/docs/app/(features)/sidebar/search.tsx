@@ -58,7 +58,7 @@ export function DocsSearchProvider({ items, children }: { items: SearchItem[]; c
   const guideItems = items.filter((item) => item.kind === "Guide");
   const skillItems = items.filter((item) => item.kind === "Skill");
   const skinItems = items.filter((item) => item.kind === "Skin");
-  const componentItems = items.filter((item) => item.kind === "Agent" || item.kind === "Primitive");
+  const componentItems = items.filter((item) => item.kind === "Component" || item.kind === "Primitive");
   const supportItems = items.filter((item) => item.kind === "Hook" || item.kind === "Util");
   const blockItems = items.filter((item) => item.kind === "Block");
   const searchResults = query.trim() ? matchSearchItems(items, query) : null;

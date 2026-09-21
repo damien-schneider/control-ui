@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "@playwright/test";
-import { skinMetas } from "../app/(features)/catalog/skins";
+import { skinMetas, skinPackIds } from "../app/(features)/catalog/skins";
 import { BADGE_COLORS } from "../components/control-ui/ui/badge";
 import { MODE_LOCKED_SKINS, type Theme } from "../components/theme";
 
@@ -14,9 +14,9 @@ const TAILWIND_PALETTE = readFileSync(path.join(DOCS_ROOT, "node_modules/tailwin
   "@theme default",
   ":root",
 );
-const SKIN_THEMES = SKINS.map((skin) => readFileSync(path.join(DOCS_ROOT, "src/registry/skin-packs", skin, "theme.css"), "utf8")).join(
-  "\n",
-);
+const SKIN_THEMES = skinPackIds
+  .map((skin) => readFileSync(path.join(DOCS_ROOT, "src/registry/skin-packs", skin, "theme.css"), "utf8"))
+  .join("\n");
 
 test("semantic fills and badges clear WCAG AA across every skin and mode", async ({ page }) => {
   await page.setContent("<!doctype html><html><body></body></html>");

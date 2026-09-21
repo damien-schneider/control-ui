@@ -6,14 +6,14 @@ import { MODE_LOCKED_SKINS } from "../components/theme";
 const SKINS = skinMetas.map((skin) => skin.id);
 const MODES = ["light", "dark"] as const;
 
-const galleries = ["/primitives", "/ai"];
+const galleries = ["/primitives", "/components"];
 
 const contentPages = ["/overview", "/get-started", "/create-a-skin", "/architecture", "/lock-in"];
 
 /** Portalled surfaces render outside their trigger's tree, so a gallery card never mounts them. */
 const portalPages = [
-  "/ai/context",
-  "/ai/inline-citation",
+  "/components/context",
+  "/components/inline-citation",
   "/primitives/popover",
   "/primitives/dropdown-menu",
   "/primitives/dialog",

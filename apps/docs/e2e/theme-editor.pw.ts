@@ -34,7 +34,11 @@ for (const { name, width, height, reducedMotion } of [
     await expect(toolbar.getByRole("combobox", { name: "Skin", exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: /^Radius & corners/ })).toBeVisible();
     await expect
-      .poll(() => page.locator("[data-docs-page-grid]").evaluate((element) => element.scrollWidth - element.clientWidth))
+      .poll(() =>
+        page
+          .locator('[data-control-family="page-layout"][data-slot="body"]')
+          .evaluate((element) => element.scrollWidth - element.clientWidth),
+      )
       .toBeLessThanOrEqual(1);
     await page.screenshot({ path: testInfo.outputPath(`theme-editor-${name}.png`) });
 
@@ -150,7 +154,10 @@ test("copy failure stays actionable without reporting success", async ({ page })
     document.execCommand = () => false;
   });
   await page.getByRole("button", { name: "Copy CSS variables", exact: true }).click();
-  const copyStatus = page.locator("[data-docs-page-grid]").getByRole("alert").filter({ hasText: "Could not copy CSS variables" });
+  const copyStatus = page
+    .locator('[data-control-family="page-layout"][data-slot="body"]')
+    .getByRole("alert")
+    .filter({ hasText: "Could not copy CSS variables" });
   await expect(copyStatus).toHaveText("Could not copy CSS variables. Try again or allow clipboard access.");
   await expect(page.getByRole("button", { name: "Copy CSS variables", exact: true })).toBeEnabled();
 });

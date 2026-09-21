@@ -7,6 +7,7 @@ import { publicRegistryHref, registryInstallCommands } from "@/app/(features)/mo
 import type { DocsBlock, IntegrationId, SourceFile } from "@/app/(features)/model/types";
 import { Card } from "@/components/control-ui/ui/card";
 import { blockPreviewCode } from "./block-preview-code";
+import { IntegrationSelect, integrationChangesCode } from "./integration";
 import {
   CompositionSection,
   InstallPanel,
@@ -24,6 +25,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
   const files = block.files;
   const previewCode = blockPreviewCode(block);
   const usageCode = block.usage[integration].code;
+  const usageChangesWithIntegration = integrationChangesCode((id) => block.usage[id].code);
 
   return (
     <section className="docs-article">
@@ -35,7 +37,7 @@ export function UseCasePage({ block, integration }: { block: DocsBlock; integrat
       <SectionStack>
         <CompositionSection items={block.composition} />
         <InstallPanel commands={commands} manifestHref={manifestHref} />
-        <SectionCode id="usage" title="Usage" code={usageCode} />
+        <SectionCode id="usage" title="Usage" code={usageCode} controls={usageChangesWithIntegration ? <IntegrationSelect /> : undefined} />
         <RegistryDependencyReferences dependencies={block.registryDependencies} />
         <section id="included-source" className="min-w-0 scroll-mt-20">
           <SectionTitle

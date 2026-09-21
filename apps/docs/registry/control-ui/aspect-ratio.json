@@ -3,7 +3,7 @@
   "name": "aspect-ratio",
   "type": "registry:ui",
   "title": "Aspect ratio",
-  "description": "CSS aspect-ratio wrapper for media and previews.",
+  "description": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
   "dependencies": [],
   "registryDependencies": [
     "core"

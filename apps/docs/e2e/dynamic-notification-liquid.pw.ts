@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("liquid notification initializes without a CSS backdrop-filter fallback", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/ai/dynamic-notification");
+  await page.goto("/components/dynamic-notification");
 
   const island = page.locator('[data-control-ui="dynamic-notification"][data-slot="island"][data-variant="liquid"]');
   const canvas = island.locator('[data-control-ui="dynamic-notification"][data-slot="liquid"]');
@@ -34,7 +34,7 @@ test("liquid notification transmits a PNG image beneath the surface", async ({ p
     await route.fulfill({ body: Buffer.from(fixturePng, "base64"), contentType: "image/png" });
   });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/ai/dynamic-notification");
+  await page.goto("/components/dynamic-notification");
 
   const scene = page.locator("[data-dn-scene]");
   await expect(scene).toHaveCount(1);
@@ -93,7 +93,7 @@ test("liquid notification transmits a PNG image beneath the surface", async ({ p
 
 test("liquid notification keeps a visible lens field beyond the antialiased rim", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/ai/dynamic-notification");
+  await page.goto("/components/dynamic-notification");
 
   const scene = page.locator("[data-dn-scene]");
   const island = page.locator('[data-control-ui="dynamic-notification"][data-slot="island"][data-variant="liquid"]');
@@ -334,7 +334,7 @@ const thinkingMaterials = [
 for (const material of thinkingMaterials) {
   test(`${material.label} thinking ribbon stays on the ink horizon`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/ai/dynamic-notification");
+    await page.goto("/components/dynamic-notification");
     if ("picker" in material) {
       const initialCanvas = page.locator(
         '[data-control-ui="dynamic-notification"][data-slot="island"][data-variant="liquid"] [data-control-ui="dynamic-notification"][data-slot="liquid"]',

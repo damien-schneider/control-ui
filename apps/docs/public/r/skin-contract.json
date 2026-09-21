@@ -200,6 +200,9 @@
     "number-field": [
       "number-field"
     ],
+    "page-layout": [
+      "page-layout"
+    ],
     "pagination": [
       "pagination"
     ],
@@ -10530,6 +10533,109 @@
         "number-field"
       ]
     },
+    "page-layout": {
+      "parts": {
+        "root": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": [
+            {
+              "attribute": "data-scroll",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "inset",
+                "none",
+                "page"
+              ]
+            },
+            {
+              "attribute": "data-width",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "content",
+                "full",
+                "prose",
+                "wide"
+              ]
+            }
+          ]
+        },
+        "actions": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": []
+        },
+        "aside": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": []
+        },
+        "body": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": [
+            {
+              "attribute": "data-aside",
+              "source": "control-ui",
+              "valueKind": "presence",
+              "values": []
+            }
+          ]
+        },
+        "content": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": []
+        },
+        "description": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": []
+        },
+        "header": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": [
+            {
+              "attribute": "data-variant",
+              "source": "control-ui",
+              "valueKind": "enum",
+              "values": [
+                "floating",
+                "flow",
+                "sticky"
+              ]
+            }
+          ]
+        },
+        "title": {
+          "family": "page-layout",
+          "registryItems": [
+            "page-layout"
+          ],
+          "states": []
+        }
+      },
+      "registryItems": [
+        "page-layout"
+      ]
+    },
     "pagination": {
       "parts": {
         "root": {
@@ -17952,6 +18058,68 @@
         "syntax": "<color>",
         "initialValue": "transparent",
         "defaultValue": "oklch(from var(--foreground) l c h / 0.06)"
+      }
+    ],
+    "page-layout": [
+      {
+        "name": "--cui-page-layout-article-size",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "40rem"
+      },
+      {
+        "name": "--cui-page-layout-aside-size",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "11.25rem"
+      },
+      {
+        "name": "--cui-page-layout-padding-inline",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 5)"
+      },
+      {
+        "name": "--cui-page-layout-padding-block",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "calc(var(--spacing) * 10) calc(var(--spacing) * 24)"
+      },
+      {
+        "name": "--cui-page-layout-column-gap",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 5)"
+      },
+      {
+        "name": "--cui-page-layout-header-gap",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 8)"
+      },
+      {
+        "name": "--cui-page-layout-header-column-gap",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 4)"
+      },
+      {
+        "name": "--cui-page-layout-header-row-gap",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "calc(var(--spacing) * 2)"
+      },
+      {
+        "name": "--cui-page-layout-size",
+        "syntax": "*",
+        "initialValue": "",
+        "defaultValue": "calc(var(--cui-page-layout-article-size) + var(--cui-page-layout-padding-inline) * 2)"
+      },
+      {
+        "name": "--cui-page-layout-sticky-gap",
+        "syntax": "<length>",
+        "initialValue": "0px",
+        "defaultValue": "0px"
       }
     ],
     "pagination": [

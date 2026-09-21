@@ -90,7 +90,7 @@ for (const skin of ["xp", "windows-98"]) {
       );
       localStorage.setItem("control-ui:theme:v1", "light");
     }, skin);
-    await page.goto("/ai/chat-composer-attachment");
+    await page.goto("/components/chat-composer-attachment");
     const remove = page
       .locator("main")
       .getByRole("button", { name: /^Remove / })

@@ -12,7 +12,7 @@ for (const theme of ["light", "dark"]) {
       },
       { editorKey: THEME_EDITOR_STORAGE_KEY, themeKey: THEME_STORAGE_KEY, appearance: theme },
     );
-    await page.goto("/ai/chat-composer-attachment");
+    await page.goto("/components/chat-composer-attachment");
     const shell = page.locator('#preview [data-control-family="chat-composer"][data-slot="shell"]');
     const image = shell.getByRole("listitem", { name: "vision-reference.png" });
     const remove = image.getByRole("button", { name: "Remove vision-reference.png" });

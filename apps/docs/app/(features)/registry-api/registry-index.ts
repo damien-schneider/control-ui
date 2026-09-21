@@ -55,7 +55,7 @@ function extensionRegistryKind(id: string) {
 export function registryItemIdFor(item: SearchItem): RegistryItemId | undefined {
   let id: string | undefined;
   switch (item.kind) {
-    case "Agent":
+    case "Component":
       id = componentRegistryKind(item.id);
       break;
     case "Block":
@@ -94,7 +94,7 @@ export function registryDeps(itemId: RegistryItemId | undefined): { dependencies
 
 export function installCommandsFor(item: SearchItem): InstallCommand[] {
   switch (item.kind) {
-    case "Agent": {
+    case "Component": {
       const kind = componentRegistryKind(item.id);
       return kind ? registryInstallCommands(kind) : [];
     }

@@ -27,7 +27,10 @@ export function CatalogGalleryPage({
       <div className="grid min-w-0 gap-12">
         {groups.map((group) => (
           <section key={group.id} id={group.id} className="min-w-0 scroll-mt-20">
-            <h2 className="mb-4 font-display text-heading-2 text-balance">{group.title}</h2>
+            <div className="mb-5 grid max-w-2xl gap-1.5">
+              <h2 className="font-display text-heading-2 text-balance">{group.title}</h2>
+              <p className="text-body-sm text-pretty text-muted-foreground">{group.summary}</p>
+            </div>
             <div className="grid min-w-0 gap-x-4 gap-y-8 @2xl/gallery:grid-cols-2 @4xl/gallery:grid-cols-3">
               {group.items.map((item) => (
                 <CatalogPreviewCard key={`${item.kind}-${item.id}`} item={item} integration={integration} />
@@ -64,7 +67,11 @@ function CatalogPreviewCard({
       />
       <div className="relative grid h-60 min-w-0 place-items-center overflow-hidden rounded-[inherit] border border-border/70 bg-canvas transition-[border-color,background-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:border-foreground/20 group-hover:bg-muted/35 group-focus-within:border-ring/60">
         <DeferredPreview className={item.previewClassName}>
-          {item.kind === "agent" ? <Preview componentId={item.id} integration={integration} /> : <PrimitivePreview primitiveId={item.id} />}
+          {item.kind === "component" ? (
+            <Preview componentId={item.id} integration={integration} />
+          ) : (
+            <PrimitivePreview primitiveId={item.id} />
+          )}
         </DeferredPreview>
       </div>
       <div className="mt-3 flex min-w-0 items-center gap-2 px-0.5">

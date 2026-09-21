@@ -1,6 +1,6 @@
 import { useCaseKinds } from "@/app/(features)/catalog/blocks";
+import { catalogCategories } from "@/app/(features)/catalog/categories";
 import { type GuideGroupId, guideGroups, referenceOverview } from "@/app/(features)/catalog/guides";
-import { primitiveCategories } from "@/app/(features)/catalog/primitives";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
 import type {
   ActivePageId,
@@ -52,7 +52,7 @@ export function humanizeNavName(name: string) {
 
 // Skins is a route, not a guide entry, and it opens the Theme group.
 const extraGroupItems: Partial<Record<GuideGroupId, DocsNavItem[]>> = {
-  theme: [{ id: skinsOverview.id, name: skinsOverview.label }],
+  theme: [{ id: skinsOverview.id, name: skinsOverview.label, href: `/${skinsOverview.id}` }],
 };
 
 export type GuideNavGroup = {
@@ -66,7 +66,9 @@ export function guideNavSections(guides: GuidePage[]): { top: GuideNavGroup[]; r
     ...group,
     items: [
       ...(extraGroupItems[group.id] ?? []),
-      ...guides.flatMap((guide) => (guide.cta || guide.group !== group.id ? [] : [{ id: guide.id, name: guide.name }])),
+      ...guides.flatMap((guide) =>
+        guide.hiddenFromNav || guide.group !== group.id ? [] : [{ id: guide.id, name: guide.name, href: `/${guide.id}` }],
+      ),
     ],
   }));
 
@@ -74,10 +76,6 @@ export function guideNavSections(guides: GuidePage[]): { top: GuideNavGroup[]; r
     top: groups.filter((group) => !("parent" in group)),
     reference: groups.filter((group) => "parent" in group),
   };
-}
-
-export function ctaGuide(guides: GuidePage[]) {
-  return guides.find((guide) => guide.cta);
 }
 
 export function getUseCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "useCaseKind" | "name" | "status">[]) {
@@ -92,6 +90,7 @@ export function getUseCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "use
               {
                 id: block.id,
                 name: block.name,
+                href: `/use-cases/${block.id}`,
                 status: block.status,
               },
             ]
@@ -104,33 +103,38 @@ export function getUseCaseNavGroups(blocks: readonly Pick<DocsBlock, "id" | "use
 export type CatalogNavGroup = {
   id: CatalogNavGroupId;
   title: string;
-  prefix: string;
   items: DocsNavItem[];
 };
 
 type CatalogNavSource = {
-  components: readonly Pick<DocsComponent, "id" | "name" | "status">[];
+  components: readonly Pick<DocsComponent, "id" | "category" | "name" | "status">[];
   primitives: readonly Pick<DocsPrimitive, "id" | "category" | "name" | "status">[];
   hooks: readonly Pick<DocsHook, "id" | "name">[];
   utils: readonly Pick<DocsUtil, "id" | "name">[];
   extensions: readonly Pick<DocsExtension, "id" | "name" | "status">[];
 };
 
-function navItem(entry: { id: string; name: string; status?: DocsStatus }): DocsNavItem {
-  return { id: entry.id, name: entry.name, status: entry.status };
+function navItem(section: string) {
+  return (entry: { id: string; name: string; status?: DocsStatus }): DocsNavItem => ({
+    id: entry.id,
+    name: entry.name,
+    href: `/${section}/${entry.id}`,
+    status: entry.status,
+  });
 }
 
 export function catalogNavGroups({ components, primitives, hooks, utils, extensions }: CatalogNavSource): CatalogNavGroup[] {
   return [
-    { id: "agents", title: "Agents", prefix: "/ai/", items: sortNavItemsByName(components.map(navItem)) },
-    ...primitiveCategories.map((category) => ({
+    ...catalogCategories.map((category) => ({
       id: category.id,
       title: category.label,
-      prefix: "/primitives/",
-      items: sortNavItemsByName(primitives.filter((primitive) => primitive.category === category.id).map(navItem)),
+      items: sortNavItemsByName([
+        ...components.filter((component) => component.category === category.id).map(navItem("components")),
+        ...primitives.filter((primitive) => primitive.category === category.id).map(navItem("primitives")),
+      ]),
     })),
-    { id: "hooks", title: "Hooks", prefix: "/hooks/", items: hooks.map(navItem) },
-    { id: "utils", title: "Utils", prefix: "/utils/", items: utils.map(navItem) },
-    { id: "extensions", title: "Extensions", prefix: "/extensions/", items: extensions.map(navItem) },
+    { id: "hooks", title: "Hooks", items: hooks.map(navItem("hooks")) },
+    { id: "utils", title: "Utils", items: utils.map(navItem("utils")) },
+    { id: "extensions", title: "Extensions", items: extensions.map(navItem("extensions")) },
   ];
 }

@@ -133,6 +133,8 @@ export const skinMetas = [
   },
 ] as const satisfies readonly CatalogSkinMeta[];
 
+export const skinPackIds = skinMetas.filter((skin) => !("docsOnly" in skin && skin.docsOnly)).map((skin) => skin.id);
+
 export const skinsOverview = {
   id: "skins",
   label: "Skinning Control UI",

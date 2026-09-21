@@ -260,6 +260,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -371,6 +372,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -489,6 +491,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -607,6 +610,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -725,6 +729,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -843,6 +848,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -961,6 +967,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -1079,6 +1086,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -1197,6 +1205,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",
@@ -1249,7 +1258,7 @@
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect ratio",
-      "description": "CSS aspect-ratio wrapper for media and previews.",
+      "description": "Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3].",
       "dependencies": [],
       "registryDependencies": [
         "damien-schneider/control-ui/core"
@@ -2771,7 +2780,7 @@
       "name": "email",
       "type": "registry:component",
       "title": "Email",
-      "description": "React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts.",
+      "description": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
       "dependencies": [
         "react-email@^6.9.5"
       ],
@@ -2783,6 +2792,21 @@
           "path": "apps/docs/src/registry/sources/control-ui/email/README.md",
           "target": "@components/control-ui/email/README.md",
           "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/email-brand.tsx",
+          "target": "@components/control-ui/email/email-brand.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/email-code.tsx",
+          "target": "@components/control-ui/email/email-code.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/email/email-footer.tsx",
+          "target": "@components/control-ui/email/email-footer.tsx",
+          "type": "registry:component"
         },
         {
           "path": "apps/docs/src/registry/sources/control-ui/email/email.tsx",
@@ -3710,6 +3734,38 @@
       "css": {
         "@import \"../components/control-ui/styles/recipes/field.css\"": {},
         "@import \"../components/control-ui/styles/recipes/field-parts.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "page-layout",
+      "type": "registry:ui",
+      "title": "Page layout",
+      "description": "Page shell that owns the scroll container, the shared measure, and the title and actions row.",
+      "dependencies": [],
+      "registryDependencies": [
+        "damien-schneider/control-ui/core",
+        "damien-schneider/control-ui/scroll-area"
+      ],
+      "files": [
+        {
+          "path": "apps/docs/src/registry/knob-contracts/page-layout-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/page-layout-knobs.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/recipes/page-layout.css",
+          "target": "@components/control-ui/styles/recipes/page-layout.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "apps/docs/src/registry/sources/control-ui/ui/page-layout.tsx",
+          "target": "@components/control-ui/ui/page-layout.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/page-layout.css\"": {}
       }
     },
     {
@@ -5493,6 +5549,7 @@
         "damien-schneider/control-ui/native-select",
         "damien-schneider/control-ui/navigation-menu",
         "damien-schneider/control-ui/number-field",
+        "damien-schneider/control-ui/page-layout",
         "damien-schneider/control-ui/pagination",
         "damien-schneider/control-ui/phone-input",
         "damien-schneider/control-ui/popover",

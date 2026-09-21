@@ -7,6 +7,7 @@ import { guideCodeForKind, languageForGuideCode } from "@/app/(features)/model/r
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Card } from "@/components/control-ui/ui/card";
+import { IntegrationSelect, integrationChangesCode } from "./integration";
 
 type GuideCodeKind = NonNullable<GuideSectionData["code"]>;
 export type GuideCodeMdxProps = { kind: GuideCodeKind; lang?: string };
@@ -14,9 +15,15 @@ export type GuideCodeMdxProps = { kind: GuideCodeKind; lang?: string };
 export function GuideCode({ kind, lang, integration }: GuideCodeMdxProps & { integration: IntegrationId }) {
   const code = guideCodeForKind(kind, integration);
   if (!code) return null;
+  const codeChangesWithIntegration = integrationChangesCode((id) => guideCodeForKind(kind, id));
 
   return (
     <div className="mt-4 min-w-0">
+      {codeChangesWithIntegration ? (
+        <div className="mb-3">
+          <IntegrationSelect />
+        </div>
+      ) : null}
       <CodeBlock code={code} lang={lang ?? languageForGuideCode(kind)} />
     </div>
   );
@@ -32,6 +39,12 @@ export function GuideSection({ id, title, children }: { id: string; title: strin
 }
 
 const installPaths = {
+  create: {
+    label: "New app",
+    href: "/create",
+    description:
+      "Start from nothing: one command scaffolds a Next.js app with every component, block, and primitive already installed as source you own.",
+  },
   agent: {
     label: "With an agent",
     href: "/setup-prompt",

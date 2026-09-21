@@ -9,7 +9,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-chat-message.ts",
     install: "the ChatMessage component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-chat-message.ts", "hook"),
-    references: [{ label: "ChatMessage", href: "/ai/chat-message" }],
+    references: [{ label: "ChatMessage", href: "/components/chat-message" }],
   },
   {
     id: "use-chat-composer",
@@ -19,7 +19,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-chat-composer.ts",
     install: "the ChatComposer component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-chat-composer.ts", "hook"),
-    references: [{ label: "ChatComposer", href: "/ai/chat-composer" }],
+    references: [{ label: "ChatComposer", href: "/components/chat-composer" }],
   },
   {
     id: "use-user-ask",
@@ -29,7 +29,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-user-ask.ts",
     install: "the UserAsk component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-user-ask.ts", "hook"),
-    references: [{ label: "UserAsk", href: "/ai/user-ask" }],
+    references: [{ label: "UserAsk", href: "/components/user-ask" }],
   },
   {
     id: "use-audio-recorder",
@@ -39,7 +39,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-audio-recorder.ts",
     install: "the AudioRecorder component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-audio-recorder.ts", "hook"),
-    references: [{ label: "AudioRecorder", href: "/ai/audio-recorder" }],
+    references: [{ label: "AudioRecorder", href: "/components/audio-recorder" }],
   },
   {
     id: "use-environment-variables",
@@ -49,7 +49,7 @@ export const hookEntries = [
     target: "components/control-ui/hooks/use-environment-variables.ts",
     install: "the EnvironmentVariables component",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-environment-variables.ts", "hook"),
-    references: [{ label: "EnvironmentVariables", href: "/ai/environment-variables" }],
+    references: [{ label: "EnvironmentVariables", href: "/components/environment-variables" }],
   },
   {
     id: "use-copy-to-clipboard",
@@ -60,8 +60,8 @@ export const hookEntries = [
     install: "copy-enabled components",
     source: sourceFile("Behavior hook", "src/registry/hooks/use-copy-to-clipboard.ts", "hook"),
     references: [
-      { label: "ActionBar", href: "/ai/action-bar" },
-      { label: "MarkdownBlock", href: "/ai/markdown-block" },
+      { label: "ActionBar", href: "/components/action-bar" },
+      { label: "MarkdownBlock", href: "/components/markdown-block" },
       { label: "Code", href: "/primitives/code" },
     ],
   },
@@ -95,7 +95,7 @@ export const utilEntries = [
     // Live preview: rich editor doc serializes to { text, mentions } as you type.
     preview: preview(() => import("@/src/registry/examples/control-ui/serialize").then((mod) => ({ default: mod.SerializeExample }))),
     references: [
-      { label: "ChatComposer", href: "/ai/chat-composer" },
+      { label: "ChatComposer", href: "/components/chat-composer" },
       { label: "Chat block", href: "/use-cases/chat" },
     ],
   },

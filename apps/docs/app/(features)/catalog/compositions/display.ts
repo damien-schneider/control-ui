@@ -62,6 +62,22 @@ export const displayCompositions = {
       ),
     ),
   ],
+  "page-layout": [
+    example(
+      "Page shell",
+      part(
+        "PageLayout",
+        part("PageHeader", part("PageTitle"), part("PageDescription"), part("PageActions")),
+        part("PageBody", content("page content")),
+      ),
+      "PageLayout owns the scroll container and the shared measure; the header and body align to the same edges.",
+    ),
+    example(
+      "Reading page with a rail",
+      part("PageLayout", part("PageBody", content("article"), content("aside prop", part("TableOfContents")))),
+      "Pass aside to add a secondary column; it widens the measure and hides below the breakpoint.",
+    ),
+  ],
   "scroll-area": [example("Scrollable content", part("ScrollArea", content("scrollable content")))],
   "progressive-blur": [
     example(

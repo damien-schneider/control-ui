@@ -161,13 +161,13 @@ function navigateResult(input: unknown): ToolTextResult {
 const navigateDocs: ModelContextTool = {
   name: "navigate_docs",
   description:
-    "Open a Control UI documentation route in the current tab, such as /ai/chat-message. Only same-origin paths on this site are accepted.",
+    "Open a Control UI documentation route in the current tab, such as /components/chat-message. Only same-origin paths on this site are accepted.",
   inputSchema: {
     type: "object",
     properties: {
       href: {
         type: "string",
-        description: 'Documentation path on this site, such as "/ai/chat-message" or "/guides/architecture".',
+        description: 'Documentation path on this site, such as "/components/chat-message" or "/guides/architecture".',
       },
     },
     required: ["href"],

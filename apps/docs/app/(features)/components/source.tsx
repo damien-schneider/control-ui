@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useSkin } from "@/components/control-ui/skin-provider";
 import {
   Code,
   CodeActions,
@@ -17,6 +16,7 @@ import {
   CodeTitle,
 } from "@/components/control-ui/ui/code";
 import { CollapsibleContent, CollapsibleTrigger, Collapsible as UICollapsible } from "@/components/control-ui/ui/collapsible";
+import { usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
 
@@ -122,7 +122,7 @@ function SourcePath({ path }: { path: string }) {
 
 export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?: CodeOverflow }) {
   const [activePath, setActivePath] = useState(files[0]?.path ?? "");
-  const usesPageLayout = useSkin().sidebarLayout === "page";
+  const scrollsPage = usePageScroll() === "page";
   const activeFile = files.find((file) => file.path === activePath) ?? files[0];
   const selectedPath = activeFile?.path ?? files[0]?.path ?? "";
 
@@ -132,7 +132,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
     <Tabs value={selectedPath} onValueChange={setActivePath}>
       {files.length > 1 ? (
         <ScrollArea scrollbarVisibility="hover">
-          <TabsList variant={usesPageLayout ? "default" : "browser"} className={usesPageLayout ? "mb-3 w-fit" : "w-full shadow-none"}>
+          <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}>
             {files.map((file) => (
               <TabsTab key={file.path} value={file.path}>
                 {sourceFileName(file.path)}
@@ -144,7 +144,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
           </TabsList>
         </ScrollArea>
       ) : null}
-      <Code overflow={overflow} className={cn("my-0", files.length > 1 && !usesPageLayout && "-mt-px")}>
+      <Code overflow={overflow} className={cn("my-0", files.length > 1 && !scrollsPage && "-mt-px")}>
         <CodeHeader>
           <SourcePath path={activeFile.path} />
           <CodeActions>
@@ -175,15 +175,15 @@ export function PreviewTabs({
   previewFramed?: boolean;
 }) {
   const [tab, setTab] = useState("preview");
-  const usesPageLayout = useSkin().sidebarLayout === "page";
-  const showPanelFrame = previewFramed && !usesPageLayout;
+  const scrollsPage = usePageScroll() === "page";
+  const showPanelFrame = previewFramed && !scrollsPage;
 
   return (
     <div id={anchorId ?? undefined} className="mb-8 min-w-0 scroll-mt-20">
       <Tabs value={tab} onValueChange={setTab}>
         {/* Base UI tablists consume arrow keys, so controls sit outside the list. */}
         <div className="relative">
-          <TabsList variant={usesPageLayout ? "default" : "browser"} className={usesPageLayout ? "mb-3 w-fit" : "w-full shadow-none"}>
+          <TabsList variant={scrollsPage ? "default" : "browser"} className={scrollsPage ? "mb-3 w-fit" : "w-full shadow-none"}>
             <TabsTab value="preview">Preview</TabsTab>
             <TabsTab value="code">Code</TabsTab>
           </TabsList>
@@ -192,7 +192,7 @@ export function PreviewTabs({
             {tab === "code" ? <CodeCopy value={code} /> : null}
           </div>
         </div>
-        <div className={cn(!usesPageLayout && "-mt-px", showPanelFrame && "docs-panel overflow-hidden")}>
+        <div className={cn(!scrollsPage && "-mt-px", showPanelFrame && "docs-panel overflow-hidden")}>
           <TabsPanel value="preview" className={cn("flex min-h-[280px] items-center justify-center p-6", previewClassName)}>
             {children}
           </TabsPanel>

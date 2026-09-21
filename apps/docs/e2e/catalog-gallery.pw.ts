@@ -1,13 +1,14 @@
 import { expect, test } from "@playwright/test";
+import { categoriesWithEntries } from "../app/(features)/catalog/categories";
 import { componentEntries } from "../app/(features)/catalog/components";
-import { primitiveCategories, primitiveEntries } from "../app/(features)/catalog/primitives";
+import { primitiveEntries } from "../app/(features)/catalog/primitives";
 
 test("catalog overviews render every live preview as one browse-only card", async ({ page }) => {
   await page.goto("/primitives");
 
   const primitiveCards = page.locator('[data-gallery-card="primitive"]');
   await expect(primitiveCards).toHaveCount(primitiveEntries.length);
-  for (const category of primitiveCategories) {
+  for (const category of categoriesWithEntries(primitiveEntries)) {
     await expect(page.getByRole("heading", { name: category.label, exact: true, level: 2 })).toBeVisible();
   }
 
@@ -20,9 +21,12 @@ test("catalog overviews render every live preview as one browse-only card", asyn
   await firstPrimitiveLink.focus();
   await expect(firstPrimitiveLink).toBeFocused();
 
-  await page.goto("/ai");
-  await expect(page.getByRole("heading", { name: "AI components", level: 1 })).toBeVisible();
-  await expect(page.locator('[data-gallery-card="agent"]')).toHaveCount(componentEntries.length);
+  await page.goto("/components");
+  await expect(page.getByRole("heading", { name: "Components", level: 1 })).toBeVisible();
+  for (const category of categoriesWithEntries(componentEntries)) {
+    await expect(page.getByRole("heading", { name: category.label, exact: true, level: 2 })).toBeVisible();
+  }
+  await expect(page.locator('[data-gallery-card="component"]')).toHaveCount(componentEntries.length);
 });
 
 test("gallery columns respond to their available width", async ({ page }) => {
@@ -66,7 +70,7 @@ test("gallery columns respond to their available width", async ({ page }) => {
     .toBe(true);
 });
 
-test("gallery previews mount near the viewport, unmount when distant, and navigate without console errors", async ({ page }) => {
+test("gallery previews mount near the viewport, stay mounted, and navigate without console errors", async ({ page }) => {
   const consoleErrors: string[] = [];
   page.on("console", (message) => {
     if (message.type() === "error" && !message.text().startsWith("Failed to load resource")) consoleErrors.push(message.text());
@@ -83,18 +87,18 @@ test("gallery previews mount near the viewport, unmount when distant, and naviga
   await lastPreview.scrollIntoViewIfNeeded();
   await expect(lastPreview).toHaveAttribute("data-gallery-preview-state", "mounted");
   await firstCard.scrollIntoViewIfNeeded();
-  await expect(lastPreview).toHaveAttribute("data-gallery-preview-state", "deferred");
+  await expect(lastPreview).toHaveAttribute("data-gallery-preview-state", "mounted");
 
   const firstHref = await firstCard.getByRole("link").getAttribute("href");
   expect(firstHref).toBeTruthy();
   await firstCard.getByRole("link").click();
   await expect(page).toHaveURL(firstHref ?? "");
 
-  await page.goto("/ai");
-  const agentCards = page.locator('[data-gallery-card="agent"]');
-  await expect(agentCards).toHaveCount(componentEntries.length);
-  await expect(agentCards.first().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
-  await agentCards.last().scrollIntoViewIfNeeded();
-  await expect(agentCards.last().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
+  await page.goto("/components");
+  const componentCards = page.locator('[data-gallery-card="component"]');
+  await expect(componentCards).toHaveCount(componentEntries.length);
+  await expect(componentCards.first().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
+  await componentCards.last().scrollIntoViewIfNeeded();
+  await expect(componentCards.last().locator("[data-gallery-preview]")).toHaveAttribute("data-gallery-preview-state", "mounted");
   expect(consoleErrors).toEqual([]);
 });

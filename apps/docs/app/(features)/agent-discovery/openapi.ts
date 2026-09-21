@@ -1,6 +1,6 @@
 import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
 
-const searchItemKinds = ["Guide", "Skill", "Agent", "Block", "Primitive", "Hook", "Util", "Extension", "Skin"];
+const searchItemKinds = ["Guide", "Skill", "Component", "Block", "Primitive", "Hook", "Util", "Extension", "Skin"];
 const registryItemKinds = [...searchItemKinds, "Bundle"];
 const statusValues = ["beta", "experimental"];
 
@@ -9,7 +9,7 @@ const searchItemProperties = {
   name: { type: "string", examples: ["ChatMessage"] },
   kind: { type: "string", enum: searchItemKinds },
   summary: { type: "string" },
-  href: { type: "string", description: "Documentation path on this site.", examples: ["/ai/chat-message"] },
+  href: { type: "string", description: "Documentation path on this site.", examples: ["/components/chat-message"] },
   status: { type: "string", enum: statusValues, description: "Maturity; absent means stable." },
   label: { type: "string", description: "Navigation label when the docs tree labels the page differently from its name." },
 };

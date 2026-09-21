@@ -44,7 +44,7 @@ for (const [skin, mode] of [
       },
       { skinId: skin, colorMode: mode },
     );
-    await page.goto("/ai/chat-message");
+    await page.goto("/components/chat-message");
     const userMessage = '[data-control-family="chat-message"][data-slot="content"][data-role="user"]';
     await expect(page.locator(userMessage).first()).toBeVisible();
     expect(await renderedContrast(page, userMessage, userMessage)).toBeGreaterThanOrEqual(4.5);

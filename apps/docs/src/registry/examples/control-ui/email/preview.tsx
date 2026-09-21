@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { z } from "zod";
+import type { EmailVariant } from "@/components/control-ui/email/email";
 import { Button } from "@/components/control-ui/ui/button";
 import { Skeleton } from "@/components/control-ui/ui/skeleton";
 import { downloadFile } from "@/components/theme-drawer/download";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
-import { type EmailLayoutId, type EmailPreviewResult, emailPreviewResult } from "./options";
+import { type EmailLayoutId, type EmailPreviewResult, emailPreviewResult, emailVariants } from "./options";
 
 type PreviewState = { status: "loading" } | { status: "error"; message: string } | { status: "ready"; result: EmailPreviewResult };
 const errorResponse = z.object({ error: z.string() });
@@ -112,10 +113,12 @@ function RenderedEmail({
 
 export function EmailPreview({ layout }: { layout: EmailLayoutId }) {
   const [mobile, setMobile] = useState(false);
+  const [variant, setVariant] = useState<EmailVariant>("contained");
   const [attempt, setAttempt] = useState(0);
   const { t, isDark } = useThemeRuntime();
   const requestBody = JSON.stringify({
     layout,
+    variant,
     skin: t.skin,
     mode: isDark ? "dark" : "light",
     tokens: { ...t.overrides, ...(isDark ? t.dark : t.light), ...t.textFixes },
@@ -125,14 +128,29 @@ export function EmailPreview({ layout }: { layout: EmailLayoutId }) {
     <div className="w-full min-w-0 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-caption text-muted-foreground">React Email · current Control UI theme</p>
-        <fieldset className="flex gap-1" aria-label={`${layout} preview width`}>
-          <Button size="sm" variant={!mobile ? "surface" : "ghost"} aria-pressed={!mobile} onClick={() => setMobile(false)}>
-            Desktop
-          </Button>
-          <Button size="sm" variant={mobile ? "surface" : "ghost"} aria-pressed={mobile} onClick={() => setMobile(true)}>
-            Mobile
-          </Button>
-        </fieldset>
+        <div className="flex flex-wrap items-center gap-3">
+          <fieldset className="flex gap-1" aria-label={`${layout} preview surface`}>
+            {emailVariants.map((option) => (
+              <Button
+                key={option.id}
+                size="sm"
+                variant={variant === option.id ? "surface" : "ghost"}
+                aria-pressed={variant === option.id}
+                onClick={() => setVariant(option.id)}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </fieldset>
+          <fieldset className="flex gap-1" aria-label={`${layout} preview width`}>
+            <Button size="sm" variant={!mobile ? "surface" : "ghost"} aria-pressed={!mobile} onClick={() => setMobile(false)}>
+              Desktop
+            </Button>
+            <Button size="sm" variant={mobile ? "surface" : "ghost"} aria-pressed={mobile} onClick={() => setMobile(true)}>
+              Mobile
+            </Button>
+          </fieldset>
+        </div>
       </div>
       <RenderedEmail
         key={`${requestBody}:${attempt}`}

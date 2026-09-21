@@ -23,7 +23,7 @@ const twitterImage = {
 const kindTitle = {
   Guide: "guide",
   Skill: "practice",
-  Agent: "AI component",
+  Component: "React component",
   Block: "UI block",
   Primitive: "React primitive",
   Hook: "React hook",

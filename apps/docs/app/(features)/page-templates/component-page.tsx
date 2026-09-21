@@ -19,7 +19,7 @@ import type {
 } from "@/app/(features)/model/types";
 import { Button } from "@/components/control-ui/ui/button";
 import { AvailableExtensions } from "./available-extensions";
-import { IntegrationSelect } from "./integration";
+import { IntegrationSelect, integrationChangesCode } from "./integration";
 import { RegistryItemPage } from "./registry-item-page";
 
 function selectedVersion(versions: DocsComponentVersion[] | undefined, pickedVersionId: string | undefined) {
@@ -85,11 +85,12 @@ export function ComponentPage({
   const manifestHref = publicRegistryHref(registryKind);
   const exampleCode = version ? version.example.code : component.example.code;
   const usageCode = component.usage[integration].code;
+  const usageChangesWithIntegration = integrationChangesCode((id) => component.usage[id].code);
   const { installDescription, sourceDescription } = versionCopy(version, versionsShareItem, registryKind);
 
   return (
     <RegistryItemPage
-      label="Agents"
+      label="Components"
       title={component.name}
       summary={component.summary}
       status={component.status}
@@ -131,7 +132,7 @@ export function ComponentPage({
         children: installDescription,
       }}
       usageCode={usageCode}
-      usageControls={<IntegrationSelect />}
+      usageControls={usageChangesWithIntegration ? <IntegrationSelect /> : undefined}
       knobs={component.knobs}
       dependencies={dependencyDetails(supportFilesFor(component, version))}
       libraryDependencies={component.registryDependencies}

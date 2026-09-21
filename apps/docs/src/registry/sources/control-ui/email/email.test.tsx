@@ -4,11 +4,14 @@ import { render, toPlainText } from "react-email";
 import { skinMetas } from "@/app/(features)/catalog/skins";
 import { emailLayouts } from "@/src/registry/examples/control-ui/email/options";
 import { renderEmailExample } from "@/src/registry/examples/control-ui/email/render-example";
-import { EmailLayout, EmailSocialLinks } from "./email";
-import { type EmailFooterContent, InvitationEmail } from "./templates";
+import { EmailLayout } from "./email";
+import type { EmailFooterContent } from "./email-brand";
+import { EmailSocialLinks } from "./email-footer";
+import { InvitationEmail, ReleaseNotesEmail } from "./templates";
 import { emailThemeFromCss } from "./theme";
 
 const coreCss = readFileSync(new URL("../theme.css", import.meta.url), "utf8");
+const codeCss = readFileSync(new URL("../code.css", import.meta.url), "utf8");
 const refinedCss = readFileSync(new URL("../../../skin-packs/refined/theme.css", import.meta.url), "utf8");
 const footer: EmailFooterContent = {
   tagline: "Made by the Studio team.",
@@ -25,6 +28,15 @@ const invitation = {
   inviter: "Alex & Sam",
   workspace: "Research <Lab>",
   inviteUrl: "https://example.com/join?team=lab&token=123",
+};
+const release = {
+  brand: { name: "Studio", homeUrl: "https://example.com" },
+  footer,
+  version: "2.4",
+  summary: "A quieter canvas and faster search.",
+  sections: [{ title: "New", changes: ["Shared spaces"] }],
+  migration: { notes: "### Upgrading\n\nTokens move to a scoped id.", language: "javascript" as const, code: "const id = 1;" },
+  changelogUrl: "https://example.com/changelog",
 };
 
 describe("email rendering", () => {
@@ -51,7 +63,7 @@ describe("email rendering", () => {
       expect(html).toContain("<!DOCTYPE html");
       expect(html).toContain("<h1");
       expect(html).not.toMatch(/var\(|oklch\(|\drem\b|display:(flex|grid)/);
-      expect(text).toContain("FIELDWORK");
+      expect(html).toContain('alt="FIELDWORK"');
       expect(text).toContain("https://example.com/");
       expect(text).toContain("Fieldwork, Inc.");
       expect(text).toContain("San Francisco, CA 94114");
@@ -94,17 +106,87 @@ describe("email rendering", () => {
     expect(text).toContain("418 902");
   });
 
-  test("social links render hosted icons with their network name as alt text", async () => {
-    const html = await render(
-      <EmailLayout theme={emailThemeFromCss([coreCss, refinedCss])} preview="Footer">
+  test("known social platforms resolve to hosted icons and degrade to their label without a base URL", async () => {
+    const theme = emailThemeFromCss([coreCss, refinedCss]);
+    const withIcons = await render(
+      <EmailLayout theme={theme} preview="Footer">
         <EmailSocialLinks
-          links={[{ label: "LinkedIn", href: "https://example.com/linkedin", iconUrl: "https://example.com/icons/linkedin.png" }]}
+          iconBaseUrl="https://example.com/email/social/"
+          links={[
+            { platform: "linkedin", href: "https://example.com/linkedin" },
+            { platform: "youtube", href: "https://example.com/youtube", iconUrl: "https://cdn.example.com/yt.png" },
+          ]}
         />
       </EmailLayout>,
     );
-    expect(html).toMatch(/<img[^>]+src="https:\/\/example\.com\/icons\/linkedin\.png"[^>]*>/);
-    expect(html).toContain('alt="LinkedIn"');
-    expect(html).toContain('href="https://example.com/linkedin"');
+    expect(withIcons).toMatch(/<img[^>]+src="https:\/\/example\.com\/email\/social\/linkedin\.png"[^>]*>/);
+    expect(withIcons).toContain('alt="LinkedIn"');
+    expect(withIcons).toContain('src="https://cdn.example.com/yt.png"');
+    expect(withIcons).toContain('href="https://example.com/linkedin"');
+
+    const withoutBase = await render(
+      <EmailLayout theme={theme} preview="Footer">
+        <EmailSocialLinks links={[{ platform: "linkedin", href: "https://example.com/linkedin" }]} />
+      </EmailLayout>,
+    );
+    expect(withoutBase).not.toContain("<img");
+    expect(toPlainText(withoutBase)).toContain("LinkedIn");
+  });
+
+  test("the plain variant drops the card so the message sits on the page background", async () => {
+    const theme = emailThemeFromCss([
+      coreCss,
+      codeCss,
+      refinedCss,
+      '[data-skin="refined"] { --background: oklch(0.2 0 0); --foreground: oklch(0.98 0 0); --card: oklch(1 0 0); --card-foreground: oklch(0.1 0 0); }',
+    ]);
+    const containerStyle = (html: string) => html.match(/style="([^"]*max-width:600px[^"]*)"/)?.[1] ?? "";
+    const contained = containerStyle(await render(<InvitationEmail {...invitation} theme={theme} />));
+    const plain = containerStyle(await render(<InvitationEmail {...invitation} theme={theme} variant="plain" />));
+    const cardSurface = theme.colors.card.replaceAll(" ", "");
+    expect(contained).toContain(`background-color:${cardSurface}`);
+    expect(contained).toContain(`border-radius:${theme.radii.panel}`);
+    expect(contained).toContain("border-style:solid");
+    expect(contained).toContain(`color:${theme.colors["card-foreground"].replaceAll(" ", "")}`);
+    expect(plain).not.toContain(`background-color:${cardSurface}`);
+    expect(plain).not.toContain("border-radius");
+    expect(plain).not.toContain("border-style");
+    expect(plain).toContain(`color:${theme.colors.foreground.replaceAll(" ", "")}`);
+
+    const plainMarkdown = await render(<ReleaseNotesEmail {...release} theme={theme} variant="plain" />);
+    expect(plainMarkdown).not.toContain(`color:${theme.colors["card-foreground"].replaceAll(" ", "")}`);
+  });
+
+  test("the footer groups the sender identity below the brand block", async () => {
+    const { text } = await renderEmailExample("newsletter", emailThemeFromCss([coreCss, refinedCss]));
+    const order = ["Help center", "Made for the way you work", "Fieldwork, Inc.", "United States", "You receive this email", "Unsubscribe"];
+    const positions = order.map((line) => text.indexOf(line));
+    expect(positions).not.toContain(-1);
+    expect(positions).toEqual([...positions].sort((left, right) => left - right));
+  });
+
+  test("an outside footer leaves the card and sits on the page backdrop", async () => {
+    const theme = emailThemeFromCss([coreCss, refinedCss]);
+    const secondContainer = (html: string) => html.indexOf("max-width:600px", html.indexOf("max-width:600px") + 1);
+
+    const { html: outside } = await renderEmailExample("newsletter", theme);
+    expect(secondContainer(outside)).toBeGreaterThan(-1);
+    expect(outside.slice(0, secondContainer(outside))).not.toContain("Unsubscribe");
+    expect(outside).toContain("Unsubscribe");
+
+    const { html: inside } = await renderEmailExample("product", theme);
+    expect(secondContainer(inside)).toBe(-1);
+    expect(inside).toContain("Unsubscribe");
+  });
+
+  test("markdown and code blocks take their colors from the active syntax palette", async () => {
+    const theme = emailThemeFromCss([coreCss, codeCss, refinedCss]);
+    const { html, text } = await renderEmailExample("release", theme);
+    expect(html).toContain("Upgrading");
+    expect(html).toContain('href="https://example.com/changelog/2-4"');
+    expect(html).toContain(theme.code.keyword);
+    expect(html).toContain(theme.code.comment);
+    expect(text).toContain("fieldwork.workspaces.get");
   });
 
   test("declares the baked color scheme so clients stop inverting the palette", async () => {

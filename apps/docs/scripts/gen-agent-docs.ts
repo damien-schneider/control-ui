@@ -1,7 +1,10 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
+import { type CatalogCategoryId, catalogCategories } from "@/app/(features)/catalog/categories";
+import { componentEntries } from "@/app/(features)/catalog/components";
 import { docsPageManifest } from "@/app/(features)/catalog/pages";
+import { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import type { SearchItem } from "@/app/(features)/model/types";
 import { listRegistry } from "@/app/(features)/registry-api/registry-index";
 import { contrastAgentRules } from "@/app/(features)/theme-accessibility/agent-rules";
@@ -10,7 +13,7 @@ import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
 import { publicPayloads } from "./public-payloads";
 
 const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
-  { kind: "Agent", heading: "Agents (installable components)" },
+  { kind: "Component", heading: "Components (installable surfaces)" },
   { kind: "Block", heading: "Blocks (pre-composed recipes)" },
   { kind: "Primitive", heading: "Primitives" },
   { kind: "Extension", heading: "Extensions" },
@@ -22,7 +25,7 @@ const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
 
 const LLMS_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
   { kind: "Guide", heading: "Documentation" },
-  { kind: "Agent", heading: "AI components" },
+  { kind: "Component", heading: "Components" },
   { kind: "Block", heading: "Blocks" },
   { kind: "Primitive", heading: "Primitives" },
   { kind: "Extension", heading: "Extensions" },
@@ -36,6 +39,20 @@ function itemLine(item: { id: string; name: string; summary: string; install?: s
   const install = item.install ? ` — \`${item.install}\`` : "";
   const status = item.status ? ` **[${item.status}]**` : "";
   return `- \`${item.id}\` (${item.name})${status} — ${item.summary}${install}`;
+}
+
+const categoryById = new Map<string, CatalogCategoryId>([
+  ...componentEntries.map((entry) => [entry.id, entry.category] as const),
+  ...primitiveEntries.map((entry) => [entry.id, entry.category] as const),
+]);
+
+function categorizedBlock(group: { id: string; name: string; summary: string; install?: string; status?: SearchItem["status"] }[]) {
+  return catalogCategories
+    .flatMap((category) => {
+      const items = group.filter((item) => categoryById.get(item.id) === category.id);
+      return items.length === 0 ? [] : [`**${category.label}** — ${category.summary}\n${items.map(itemLine).join("\n")}`];
+    })
+    .join("\n\n");
 }
 
 function skillsBlock() {
@@ -66,7 +83,8 @@ function buildLlmsFull() {
   const sections = KIND_SECTIONS.map(({ kind, heading }) => {
     const group = items.filter((item) => item.kind === kind);
     if (group.length === 0) return undefined;
-    return `### ${heading}\n${group.map(itemLine).join("\n")}`;
+    const body = kind === "Component" || kind === "Primitive" ? categorizedBlock(group) : group.map(itemLine).join("\n");
+    return `### ${heading}\n${body}`;
   }).filter(Boolean);
 
   return [

@@ -3,10 +3,11 @@ import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
 import { catalogEntries } from "../app/(features)/catalog";
 import { blockEntries, useCaseKinds } from "../app/(features)/catalog/blocks";
+import { catalogCategories } from "../app/(features)/catalog/categories";
 import { componentEntries } from "../app/(features)/catalog/components";
 import { extensionEntries } from "../app/(features)/catalog/extensions";
 import { hookEntries, utilEntries } from "../app/(features)/catalog/hooks-utils";
-import { primitiveCategories, primitiveEntries } from "../app/(features)/catalog/primitives";
+import { primitiveEntries } from "../app/(features)/catalog/primitives";
 import type { CatalogSourceFile } from "../app/(features)/catalog/shared";
 import { skinMetas } from "../app/(features)/catalog/skins";
 import { registryMetadata } from "../app/(features)/model/generated-registry";
@@ -76,12 +77,21 @@ for (const skill of practiceSkills) {
   }
 }
 
-const primitiveCategoryIds = new Set<string>(primitiveCategories.map((category) => category.id));
-const usedPrimitiveCategoryIds = new Set<string>();
+const categoryIds = new Set<string>(catalogCategories.map((category) => category.id));
+const usedCategoryIds = new Set<string>();
 const registryIds = new Set<string>(Object.keys(registryMetadata));
 
-if (primitiveCategoryIds.size !== primitiveCategories.length) {
-  failures.push("Primitive categories contain duplicate ids");
+if (categoryIds.size !== catalogCategories.length) {
+  failures.push("Catalog categories contain duplicate ids");
+}
+
+// One nav group now mixes both tiers, so a shared id collapses two links onto one key and one active page.
+const primitiveIds = new Set<string>(primitiveEntries.map((entry) => entry.id));
+
+for (const component of componentEntries) {
+  if (primitiveIds.has(component.id)) {
+    failures.push(`Id "${component.id}" is claimed by both a component and a primitive`);
+  }
 }
 
 function checkRegistryItem(owner: string, id: string) {
@@ -89,6 +99,10 @@ function checkRegistryItem(owner: string, id: string) {
 }
 
 for (const entry of componentEntries) {
+  if (!categoryIds.has(entry.category)) {
+    failures.push(`${entry.id} references unknown category "${entry.category}"`);
+  }
+  usedCategoryIds.add(entry.category);
   checkRegistryItem(entry.id, entry.registryKind);
   checkSourceFile(`${entry.id}.example`, entry.paths.example);
   checkRecord(`${entry.id}.usage`, entry.paths.usage);
@@ -144,10 +158,10 @@ for (const kind of useCaseKinds) {
 }
 
 for (const entry of primitiveEntries) {
-  if (!primitiveCategoryIds.has(entry.category)) {
-    failures.push(`${entry.id} references unknown primitive category "${entry.category}"`);
+  if (!categoryIds.has(entry.category)) {
+    failures.push(`${entry.id} references unknown category "${entry.category}"`);
   }
-  usedPrimitiveCategoryIds.add(entry.category);
+  usedCategoryIds.add(entry.category);
   checkRegistryItem(entry.id, entry.paths.registry.registryKind);
   checkSourceFile(`${entry.id}.example`, entry.paths.registry.example);
   checkSourceFile(`${entry.id}.source`, entry.paths.registry.source);
@@ -163,9 +177,9 @@ for (const entry of primitiveEntries) {
   }
 }
 
-for (const category of primitiveCategories) {
-  if (!usedPrimitiveCategoryIds.has(category.id)) {
-    failures.push(`Primitive category "${category.id}" has no entries`);
+for (const category of catalogCategories) {
+  if (!usedCategoryIds.has(category.id)) {
+    failures.push(`Catalog category "${category.id}" has no entries`);
   }
 }
 

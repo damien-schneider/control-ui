@@ -1,5 +1,5 @@
 import type { IconSvgElement } from "@hugeicons/react";
-import type { PrimitiveCategoryId } from "@/app/(features)/catalog/primitives";
+import type { CatalogCategoryId } from "@/app/(features)/catalog/categories";
 import type {
   ActivePageId,
   DocsBlock,
@@ -18,7 +18,6 @@ import type {
 
 export type DocsSidebarContentProps = {
   active: ActivePageId | undefined;
-  githubStars: number | null;
   guides: GuidePage[];
   skills: readonly DocsSkill[];
   skillConcerns: readonly DocsSkillConcern[];
@@ -32,7 +31,7 @@ export type DocsSidebarContentProps = {
   searchItems: SearchItem[];
 };
 
-export type CatalogNavGroupId = "agents" | PrimitiveCategoryId | "hooks" | "utils" | "extensions";
+export type CatalogNavGroupId = CatalogCategoryId | "hooks" | "utils" | "extensions";
 export type SidebarDoorId = "use-cases" | "practices" | "reference" | "theme-editor";
 export type SidebarPane = "root" | SidebarDoorId;
 export type SidebarDoor = {
@@ -45,5 +44,6 @@ export type SidebarDoor = {
 export type DocsNavItem = {
   id: string;
   name: string;
+  href: string;
   status?: DocsStatus;
 };

@@ -3,7 +3,7 @@
   "name": "email",
   "type": "registry:component",
   "title": "Email",
-  "description": "React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts.",
+  "description": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
   "dependencies": [
     "react-email@^6.9.5"
   ],
@@ -15,6 +15,21 @@
       "path": "src/registry/sources/control-ui/email/README.md",
       "target": "@components/control-ui/email/README.md",
       "type": "registry:file"
+    },
+    {
+      "path": "src/registry/sources/control-ui/email/email-brand.tsx",
+      "target": "@components/control-ui/email/email-brand.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/email/email-code.tsx",
+      "target": "@components/control-ui/email/email-code.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/email/email-footer.tsx",
+      "target": "@components/control-ui/email/email-footer.tsx",
+      "type": "registry:component"
     },
     {
       "path": "src/registry/sources/control-ui/email/email.tsx",

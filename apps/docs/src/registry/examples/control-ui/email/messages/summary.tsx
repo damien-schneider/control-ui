@@ -1,11 +1,12 @@
 import { SummaryEmail } from "@/components/control-ui/email/templates";
-import type { EmailTheme } from "@/components/control-ui/email/theme";
 import { brand, browserUrl, marketingFooter } from "../content";
+import type { EmailExampleProps } from "../options";
 
-export function SummaryEmailExample({ theme }: { theme: EmailTheme }) {
+export function SummaryEmailExample({ theme, variant }: EmailExampleProps) {
   return (
     <SummaryEmail
       theme={theme}
+      variant={variant}
       brand={brand}
       browserUrl={browserUrl}
       footer={marketingFooter}

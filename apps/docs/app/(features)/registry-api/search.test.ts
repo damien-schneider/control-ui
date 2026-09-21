@@ -55,9 +55,9 @@ const items = [
   {
     id: "chat-message",
     name: "ChatMessage",
-    kind: "Agent",
+    kind: "Component",
     summary: "Composable chat message with typed role and tone state.",
-    href: "/ai/chat-message",
+    href: "/components/chat-message",
   },
   {
     id: "chat",

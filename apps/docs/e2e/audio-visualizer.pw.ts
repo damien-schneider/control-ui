@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("audio visualizer knobs reach computed paint from the family root and from the painted slot", async ({ page }) => {
-  await page.goto("/ai/audio-visualizer");
+  await page.goto("/components/audio-visualizer");
 
   const bars = page.locator('[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="bars"]').first();
   const bar = bars.locator('[data-slot="bar"]').first();

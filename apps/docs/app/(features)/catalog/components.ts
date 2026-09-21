@@ -95,7 +95,8 @@ export const componentEntries = [
   emailEntry,
   {
     id: "chat-message",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "ChatMessage",
     summary: "Composable chat message with typed role, density, and lifecycle state.",
     registryKind: "chat-message",
@@ -114,7 +115,8 @@ export const componentEntries = [
   },
   {
     id: "chat-composer",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "ChatComposer",
     summary: "Prompt composer with controlled text, submit state, and trigger-menu support.",
     registryKind: "chat-composer",
@@ -142,7 +144,8 @@ export const componentEntries = [
   },
   {
     id: "chat-composer-attachment",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "ChatComposerAttachment",
     summary: "Composer attachment rail with file previews, upload progress, and removal.",
     registryKind: "chat-composer-attachment",
@@ -161,7 +164,8 @@ export const componentEntries = [
   },
   {
     id: "user-ask",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "UserAsk",
     summary: "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
     registryKind: "user-ask",
@@ -179,7 +183,8 @@ export const componentEntries = [
   },
   {
     id: "task-list",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "TaskList",
     summary: "Floating agent task progress pill above the composer that expands into the full task list.",
     registryKind: "task-list",
@@ -196,7 +201,8 @@ export const componentEntries = [
   },
   {
     id: "audio-recorder",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "AudioRecorder",
     summary: "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
     registryKind: "audio-recorder",
@@ -232,7 +238,8 @@ export const componentEntries = [
   },
   {
     id: "audio-visualizer",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "AudioVisualizer",
     summary:
       "Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract.",
@@ -283,7 +290,8 @@ export const componentEntries = [
   },
   {
     id: "dynamic-notification",
-    kind: "Agent",
+    category: "feedback",
+    kind: "Component",
     name: "DynamicNotification",
     summary:
       "Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass.",
@@ -367,7 +375,8 @@ export const componentEntries = [
   },
   {
     id: "environment-variables",
-    kind: "Agent",
+    category: "forms",
+    kind: "Component",
     name: "EnvironmentVariables",
     summary: "Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers.",
     status: "experimental",
@@ -388,7 +397,8 @@ export const componentEntries = [
   },
   {
     id: "activity",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "Activity",
     summary: "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
     registryKind: "activity",
@@ -405,7 +415,8 @@ export const componentEntries = [
   },
   {
     id: "transcript-divider",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "TranscriptDivider",
     summary: "Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.",
     registryKind: "transcript-divider",
@@ -424,7 +435,8 @@ export const componentEntries = [
   },
   {
     id: "context",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "Context",
     summary: "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
     status: "beta",
@@ -442,7 +454,8 @@ export const componentEntries = [
   },
   {
     id: "inline-citation",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "InlineCitation",
     summary: "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
     registryKind: "inline-citation",
@@ -461,7 +474,8 @@ export const componentEntries = [
   },
   {
     id: "source-badge",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "SourceBadge",
     summary: "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
     registryKind: "source-badge",
@@ -478,7 +492,8 @@ export const componentEntries = [
   },
   {
     id: "action-bar",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "ActionBar",
     summary: "Reusable hover actions for message and response controls.",
     registryKind: "action-bar",
@@ -495,7 +510,8 @@ export const componentEntries = [
   },
   {
     id: "inline-attachment",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "InlineAttachment",
     summary: "Inline file and media previews for chat turns.",
     status: "beta",
@@ -513,7 +529,8 @@ export const componentEntries = [
   },
   {
     id: "markdown-block",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "MarkdownBlock",
     summary: "Assistant markdown output rendered to prose, with a header and copy-source action.",
     registryKind: "markdown-block",
@@ -530,7 +547,8 @@ export const componentEntries = [
   },
   {
     id: "chat-layout",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "ChatLayout",
     summary: "A scrolling conversation with message turns and a floating composer dock.",
     registryKind: "chat-layout",
@@ -547,7 +565,8 @@ export const componentEntries = [
   },
   {
     id: "thread-rail",
-    kind: "Agent",
+    category: "chat",
+    kind: "Component",
     name: "ThreadRail",
     summary: "Conversation minimap for scanning and jumping between chat turns.",
     registryKind: "thread-rail",

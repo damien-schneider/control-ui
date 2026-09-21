@@ -3,9 +3,10 @@ import { Geist, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { WebMcpTools } from "@/app/(features)/agent-discovery/webmcp-tools";
 import { DocsShell } from "@/app/(features)/client/client";
+import { getControlUiGitHubStars } from "@/app/(features)/client/github-stars";
 import { getDocsShellData } from "@/app/(features)/model/data";
 import { SiteStructuredData, siteMetadata } from "@/app/(features)/seo/seo";
-import { getControlUiGitHubStars } from "@/app/(features)/sidebar/github-stars";
+import { sidebarFirstPaintScript } from "@/app/(features)/sidebar/persistence";
 import { ThemeFavicon } from "@/app/(features)/theme/favicon-client";
 import themeInitScript from "@/app/(features)/theme/generated-theme-init.json";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -34,6 +35,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static build output must execute before the first paint. */}
         <script id="control-ui-theme-init" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: The saved sidebar state must apply before the first paint. */}
+        <script id="control-ui-sidebar-init" dangerouslySetInnerHTML={{ __html: sidebarFirstPaintScript }} />
         <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
       </head>
       <body>

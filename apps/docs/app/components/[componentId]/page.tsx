@@ -12,7 +12,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { componentId } = await params;
-  return metadataForDocsPath(`/ai/${componentId}`);
+  return metadataForDocsPath(`/components/${componentId}`);
 }
 
 export default async function ComponentDocsPage({ params }: PageProps) {
@@ -26,7 +26,7 @@ export default async function ComponentDocsPage({ params }: PageProps) {
 
   return (
     <>
-      <DocsPageStructuredData pathname={`/ai/${componentId}`} />
+      <DocsPageStructuredData pathname={`/components/${componentId}`} />
       <RoutedComponentPage component={component} extensions={extensions} />
     </>
   );

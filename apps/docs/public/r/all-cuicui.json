@@ -69,6 +69,7 @@
     "http://127.0.0.1:3000/r/native-select.json",
     "http://127.0.0.1:3000/r/navigation-menu.json",
     "http://127.0.0.1:3000/r/number-field.json",
+    "http://127.0.0.1:3000/r/page-layout.json",
     "http://127.0.0.1:3000/r/pagination.json",
     "http://127.0.0.1:3000/r/phone-input.json",
     "http://127.0.0.1:3000/r/popover.json",

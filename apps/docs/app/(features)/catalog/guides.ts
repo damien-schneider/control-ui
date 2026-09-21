@@ -48,7 +48,7 @@ export const guideEntries = [
     name: "Create app",
     summary:
       "Scaffold a Next.js app with every Control UI component installed as source you own, or hand the whole install to the coding agent already open in your project.",
-    cta: true,
+    hiddenFromNav: true,
     sections: [
       { id: "command", title: "Create your app" },
       { id: "included", title: "What you get" },
@@ -344,7 +344,7 @@ export const guideEntries = [
   name: string;
   summary: string;
   layout?: "default" | "wide" | "workspace";
-  cta?: true;
+  hiddenFromNav?: true;
   sections: readonly GuideSectionCatalogEntry[];
   comparedApplications?: readonly { name: string; url: string }[];
   faqs?: readonly { question: string; answer: string }[];

@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { catalogOverview } from "@/app/(features)/catalog/overviews";
 import { docsPageManifest } from "@/app/(features)/catalog/pages";
 import { docsSeoForPath } from "@/app/(features)/seo/seo";
 
@@ -19,14 +20,14 @@ describe("docs social image metadata", () => {
     expect(docsSeoForPath("/primitives")).toMatchObject({
       pathname: "/primitives",
       title: "Primitives",
-      description: "Browse every Control UI primitive through the same live examples used in its documentation.",
+      description: catalogOverview("primitives").summary,
       socialImage: { label: "Component catalog", title: "Primitives" },
     });
-    expect(docsSeoForPath("/ai")).toMatchObject({
-      pathname: "/ai",
-      title: "AI components",
-      description: "Explore composable surfaces for messages, input, activity, media, and agent workflows.",
-      socialImage: { label: "Component catalog", title: "AI components" },
+    expect(docsSeoForPath("/components")).toMatchObject({
+      pathname: "/components",
+      title: "Components",
+      description: catalogOverview("components").summary,
+      socialImage: { label: "Component catalog", title: "Components" },
     });
   });
 

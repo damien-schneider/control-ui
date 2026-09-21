@@ -3,12 +3,12 @@ import { buildKnobReachabilityProbe } from "../scripts/knob-sentinels";
 
 const probe = buildKnobReachabilityProbe();
 
-const galleries = ["/primitives", "/ai"];
+const galleries = ["/primitives", "/components"];
 
 /** Portalled surfaces render outside their trigger's tree, so a gallery card never mounts them. */
 const portalPages = [
-  "/ai/context",
-  "/ai/inline-citation",
+  "/components/context",
+  "/components/inline-citation",
   "/primitives/popover",
   "/primitives/dropdown-menu",
   "/primitives/dialog",

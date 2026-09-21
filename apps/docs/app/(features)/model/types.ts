@@ -1,12 +1,13 @@
 import type { PracticeSkillId, SkillConcern, SkillConcernId } from "@control-ui/skills";
 import type { blockEntries, UseCaseKindId } from "@/app/(features)/catalog/blocks";
+import type { CatalogCategoryId } from "@/app/(features)/catalog/categories";
 import type { componentEntries } from "@/app/(features)/catalog/components";
 import type { CatalogCompositionExample } from "@/app/(features)/catalog/compositions/types";
 import type { extensionEntries } from "@/app/(features)/catalog/extensions";
 import type { GuideCodeId, GuideGroupId, guideEntries } from "@/app/(features)/catalog/guides";
 import type { hookEntries, utilEntries } from "@/app/(features)/catalog/hooks-utils";
 import type { CatalogOverviewId } from "@/app/(features)/catalog/overviews";
-import type { PrimitiveCategoryId, primitiveEntries } from "@/app/(features)/catalog/primitives";
+import type { primitiveEntries } from "@/app/(features)/catalog/primitives";
 import type { CatalogStatus, integrationIds, registryKindIds } from "@/app/(features)/catalog/shared";
 import type { CatalogSkinKind, skinMetas } from "@/app/(features)/catalog/skins";
 
@@ -49,7 +50,7 @@ export type DocsSkinPage = {
 export type SearchItem = {
   id: ActivePageId;
   name: string;
-  kind: "Guide" | "Skill" | "Agent" | "Block" | "Primitive" | "Hook" | "Util" | "Extension" | "Skin";
+  kind: "Guide" | "Skill" | "Component" | "Block" | "Primitive" | "Hook" | "Util" | "Extension" | "Skin";
   summary: string;
   href: string;
   status?: DocsStatus;
@@ -66,7 +67,7 @@ export type SourceFile = {
 export type DocsRegistryDependency = {
   registryKind: RegistryKindId;
   name: string;
-  kind: "Agent" | "Block" | "Extension" | "Primitive";
+  kind: "Component" | "Block" | "Extension" | "Primitive";
   href: string;
 };
 
@@ -89,7 +90,7 @@ export type DocsKnobFamily = { id: string; href?: string; knobs: DocsKnob[] };
 
 export type DocsPrimitive = {
   id: PrimitiveId;
-  category: PrimitiveCategoryId;
+  category: CatalogCategoryId;
   name: string;
   summary: string;
   status?: DocsStatus;
@@ -166,7 +167,7 @@ export type GuidePage = {
   name: string;
   summary: string;
   layout?: "default" | "wide" | "workspace";
-  cta?: boolean;
+  hiddenFromNav?: boolean;
   sections: GuideSection[];
   comparedApplications?: readonly ComparedApplication[];
   faqs?: readonly GuideFaq[];
@@ -201,6 +202,7 @@ export type DocsComponentVersion = {
 export type DocsComponent = {
   composition: Composition;
   id: ComponentId;
+  category: CatalogCategoryId;
   name: string;
   summary: string;
   status?: DocsStatus;

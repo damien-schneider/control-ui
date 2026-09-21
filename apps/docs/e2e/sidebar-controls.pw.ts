@@ -70,16 +70,45 @@ test("search shortcut still works when the sidebar collapses into its sheet", as
   await expect(dialog.getByRole("combobox", { name: "Search documentation" })).toBeFocused();
 });
 
-test("agent pages carry the integration selector in their usage section", async ({ page }) => {
-  await page.goto("/ai/chat-message");
+test("the integration selector shows up only where switching rewrites the code", async ({ page }) => {
+  await page.goto("/components/chat-message");
   const integration = page.locator("#usage").getByTestId("integration-select");
   await waitForReactHydration(integration);
   await expect(integration).toHaveText("Mastra");
 
+  const usage = page.locator('#usage [data-slot="grid"]').first();
+  await expect(usage).toContainText('from "@mastra/core/agent/message-list"');
   await integration.click();
   await page.getByRole("listbox").getByRole("option", { name: "AI SDK" }).click();
   await expect(integration).toHaveText("AI SDK");
+  await expect(usage).toContainText('type UIMessage } from "ai"');
+
+  await page.goto("/components/thread-rail");
+  await expect(page.locator("#usage")).toBeVisible();
+  await expect(page.getByTestId("integration-select")).toHaveCount(0);
 
   await page.goto("/primitives/button");
   await expect(page.getByTestId("integration-select")).toHaveCount(0);
+});
+
+test("integration-dependent block usage and guide code carry the selector", async ({ page }) => {
+  await page.goto("/use-cases/chat");
+  const blockIntegration = page.locator("#usage").getByTestId("integration-select");
+  await waitForReactHydration(blockIntegration);
+  await expect(blockIntegration).toHaveText("Mastra");
+
+  await page.goto("/use-cases/theme-toggle");
+  await expect(page.locator("#usage")).toBeVisible();
+  await expect(page.getByTestId("integration-select")).toHaveCount(0);
+
+  await page.goto("/build-a-screen");
+  const guideIntegration = page.getByTestId("integration-select");
+  await waitForReactHydration(guideIntegration);
+  const guideCode = page.locator('#compose [data-slot="grid"]').first();
+  await expect(guideCode).toContainText('from "@mastra/react"');
+
+  await guideIntegration.click();
+  await page.getByRole("listbox").getByRole("option", { name: "AI SDK" }).click();
+  await expect(guideIntegration).toHaveText("AI SDK");
+  await expect(guideCode).toContainText('import type { UIMessage } from "ai"');
 });

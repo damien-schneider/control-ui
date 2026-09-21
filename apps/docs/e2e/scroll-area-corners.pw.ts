@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("attachment corners take priority over blur and retain the edge fade", async ({ page }, testInfo) => {
-  await page.goto("/ai/chat-composer-attachment");
+  await page.goto("/components/chat-composer-attachment");
   const shell = page.locator('#preview [data-control-family="chat-composer"][data-slot="shell"]');
   const viewport = shell.locator("[data-scroll-area-viewport]");
   const scrollArea = viewport.locator("..");

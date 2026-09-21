@@ -101,7 +101,7 @@ test("search glass follows the scrolling page with JavaScript paused", async ({ 
   await page.goto("/primitives/popover");
   await expect(page.getByRole("combobox", { name: "Skin", exact: true })).toContainText("macOS");
   const viewport = page.locator("[data-docs-content] [data-scroll-area-viewport]").first();
-  await page.locator("[data-docs-page-grid]").evaluate((grid) => {
+  await page.locator('[data-control-family="page-layout"][data-slot="body"]').evaluate((grid) => {
     grid.style.position = "relative";
     grid.style.minHeight = "2400px";
     const backdrop = document.createElement("div");

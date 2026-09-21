@@ -149,7 +149,7 @@ function anatomyFor(itemId: string): RegistryAnatomySlice | undefined {
 function filesForItem(item: SearchItem): SourceFile[] {
   const data = getDocsData();
   switch (item.kind) {
-    case "Agent":
+    case "Component":
       return componentFiles(data, item.id);
     case "Block":
       return blockFiles(data, item.id);

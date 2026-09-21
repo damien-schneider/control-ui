@@ -13,10 +13,11 @@ const emailColors = [
   "muted-foreground",
   "border",
 ] as const;
-const headingSizes = ["heading-1", "heading-2", "heading-3", "heading-4"] as const;
+const titleSizes = ["display", "heading-1", "heading-2", "heading-3", "heading-4"] as const;
 
 type EmailColor = (typeof emailColors)[number];
-type EmailHeadingSize = (typeof headingSizes)[number];
+type EmailTitleSize = (typeof titleSizes)[number];
+type EmailCodeToken = "foreground" | "comment" | "keyword" | "string" | "function" | "constant" | "punctuation" | "parameter";
 type EmailTypeStyle = { fontSize: string; lineHeight: string; fontWeight: string; letterSpacing: string };
 
 export type EmailColorScheme = "light" | "dark";
@@ -27,7 +28,8 @@ export type EmailTheme = {
   fonts: { body: string; display: string; mono: string };
   radii: { control: string; panel: string; scene: string };
   button: { height: string; paddingInline: string; paddingBlock: string; fontSize: string; lineHeight: string };
-  text: Record<EmailHeadingSize | "body" | "caption", EmailTypeStyle>;
+  text: Record<EmailTitleSize | "body" | "caption", EmailTypeStyle>;
+  code: Record<EmailCodeToken, string>;
 };
 
 function resolveVariables(value: string, tokens: ReadonlyMap<string, string>, chain: string[] = []): string {
@@ -73,7 +75,7 @@ export function createEmailTheme(
   const reactEmailButtonLineHeight = buttonFontSize * 1.2;
   const buttonPaddingBlock = Math.max(0, (buttonHeight - reactEmailButtonLineHeight) / 2);
 
-  function color(name: EmailColor) {
+  function color(name: string) {
     const result = resolveColor(`var(--${name})`, tokens);
     if ("unresolved" in result) throw new Error(`Email theme: --${name}: ${result.unresolved}.`);
     return result;
@@ -83,12 +85,19 @@ export function createEmailTheme(
   if (background.alpha !== 1) throw new Error("Email theme: --background must be opaque.");
   const card = composite(color("card"), background);
   const primary = composite(color("primary"), card);
-  function opaqueColor(name: EmailColor, surface = card) {
+  const muted = composite(color("muted"), card);
+  function opaqueColor(name: string, surface = card) {
     const result = composite(color(name), surface);
     return `rgb(${Math.round(result.r)}, ${Math.round(result.g)}, ${Math.round(result.b)})`;
   }
 
-  function heading(name: EmailHeadingSize): EmailTypeStyle {
+  function codeColor(token: EmailCodeToken) {
+    const syntaxToken = token === "foreground" ? "code-foreground" : `code-token-${token}`;
+    const withoutCodeCss = token === "comment" ? "muted-foreground" : "card-foreground";
+    return opaqueColor(tokens.has(`--${syntaxToken}`) ? syntaxToken : withoutCodeCss, muted);
+  }
+
+  function title(name: EmailTitleSize): EmailTypeStyle {
     const spacing = tokenValue(`--text-${name}--letter-spacing`, tokens, "0");
     if (!/^-?\d*\.?\d+(px|em)?$/.test(spacing)) throw new Error(`Email theme: unsupported ${name} letter spacing: ${spacing}.`);
     return {
@@ -133,10 +142,21 @@ export function createEmailTheme(
     text: {
       body: { fontSize: pixelSize("--text-body-lg", tokens, rootFontSize), lineHeight: "1.6", fontWeight: "400", letterSpacing: "0" },
       caption: { fontSize: pixelSize("--text-body", tokens, rootFontSize), lineHeight: "1.5", fontWeight: "400", letterSpacing: "0" },
-      "heading-1": heading("heading-1"),
-      "heading-2": heading("heading-2"),
-      "heading-3": heading("heading-3"),
-      "heading-4": heading("heading-4"),
+      display: title("display"),
+      "heading-1": title("heading-1"),
+      "heading-2": title("heading-2"),
+      "heading-3": title("heading-3"),
+      "heading-4": title("heading-4"),
+    },
+    code: {
+      foreground: codeColor("foreground"),
+      comment: codeColor("comment"),
+      keyword: codeColor("keyword"),
+      string: codeColor("string"),
+      function: codeColor("function"),
+      constant: codeColor("constant"),
+      punctuation: codeColor("punctuation"),
+      parameter: codeColor("parameter"),
     },
   };
 }

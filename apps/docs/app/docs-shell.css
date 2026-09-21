@@ -1,10 +1,6 @@
 @layer components {
-  [data-docs-layout] {
-    --docs-article-width: 40rem;
-    --docs-article-gutter: 1.25rem;
-    --docs-column-gap: calc(var(--spacing) * 5);
+  :root {
     --docs-section-gap: 3rem;
-    --docs-toc-width: 11.25rem;
   }
 
   :where([data-docs-inset]) {
@@ -19,24 +15,15 @@
     box-shadow: var(--shadow-pop);
   }
 
-  /* The grid is the only owner of the reading measure: one article column plus the table of contents. */
-  :where([data-docs-page-grid]) {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--docs-column-gap);
-    width: 100%;
-    max-width: calc(var(--docs-article-width) + var(--docs-article-gutter) * 2);
-    margin-inline: auto;
-    padding-block: calc(var(--control-h-sm) + 1rem) 6rem;
-    padding-inline: var(--docs-article-gutter);
+  /* Docs tuning of the page measure. The reading column is narrower than the component default and the
+     floating shell actions clear the sticky offset. */
+  :where([data-docs-content]) :where([data-control-family="page-layout"][data-slot="root"]:not([data-width="full"])) {
+    --cui-page-layout-padding-inline: 1.25rem;
+    --cui-page-layout-padding-block: calc(var(--control-h-sm) + 1rem) 6rem;
+    --cui-page-layout-sticky-gap: calc(var(--spacing) * 2);
   }
 
-  [data-docs-page-grid][data-docs-page-layout="wide"] {
-    --docs-article-width: 80rem;
-  }
-
-  :where([data-docs-page-toc]) {
-    display: none;
+  :where([data-docs-content]) :where([data-control-family="page-layout"][data-slot="aside"]) {
     padding-block: 3rem;
   }
 
@@ -48,13 +35,18 @@
     box-shadow: none;
   }
 
-  [data-docs-layout="page"] :where([data-docs-page-grid]) {
-    padding-block-start: 4rem;
+  [data-docs-layout="page"] :where([data-docs-shell] > [data-control-family="sidebar"][data-slot="root"]) {
+    --cui-sidebar-inner-background: transparent;
+    background-color: transparent;
+  }
+
+  [data-docs-layout="page"] :where([data-control-family="page-layout"][data-slot="root"]) {
+    --cui-page-layout-padding-block: 4rem 6rem;
   }
 
   @media (width >= 48rem) {
-    [data-docs-layout] {
-      --docs-article-gutter: 2rem;
+    :where([data-docs-content]) :where([data-control-family="page-layout"][data-slot="root"]:not([data-width="full"])) {
+      --cui-page-layout-padding-inline: 2rem;
     }
   }
 
@@ -67,23 +59,5 @@
       padding-block: calc(var(--spacing) * 2);
       padding-inline-start: calc(var(--spacing) * 2);
     }
-  }
-
-  @media (width >= 80rem) {
-    :where([data-docs-page-grid]) {
-      grid-template-columns: minmax(0, var(--docs-article-width)) var(--docs-toc-width);
-      max-width: calc(var(--docs-article-width) + var(--docs-column-gap) + var(--docs-toc-width) + var(--docs-article-gutter) * 2);
-    }
-
-    :where([data-docs-page-toc]) {
-      display: block;
-    }
-  }
-
-  /* Workspace pages own their own panes: no article measure, no table of contents column. */
-  [data-docs-page-grid][data-docs-page-layout="workspace"] {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: none;
-    padding: 0;
   }
 }

@@ -2,10 +2,8 @@
 
 import type { MDXComponents } from "mdx/types";
 import { type ComponentType, createContext, use } from "react";
-import { CodeBlock } from "@/app/(features)/components/source";
 import { AgentSetup } from "@/app/(features)/create/agent-setup";
 import { CreateCommand } from "@/app/(features)/create/create-command";
-import { guideCode } from "@/app/(features)/model/registry";
 import type { GuideId, GuidePage as GuidePageData, IntegrationId } from "@/app/(features)/model/types";
 import { ThemeAccessibility } from "@/app/(features)/theme-accessibility/theme-accessibility";
 import { Card } from "@/components/control-ui/ui/card";
@@ -35,7 +33,9 @@ import { OpenInAgent } from "./open-in-agent";
 
 type GuideContent = ComponentType<{ components?: MDXComponents }>;
 
-const guideContent: Partial<Record<GuideId, GuideContent>> = {
+type ContentGuideId = Exclude<GuideId, "theme-editor" | "theme-accessibility">;
+
+const guideContent: Record<ContentGuideId, GuideContent> = {
   create: CreateContent,
   overview: OverviewContent,
   "get-started": GetStartedContent,
@@ -85,49 +85,22 @@ function GuidePageContent({
   page,
   integration,
   themeCategory,
-  Content,
 }: {
   page: GuidePageData;
   integration: IntegrationId;
   themeCategory: ThemeCategoryId;
-  Content?: GuideContent;
 }) {
   if (page.id === "theme-editor") return <ThemeEditor category={themeCategory} />;
   if (page.id === "theme-accessibility") return <ThemeAccessibility />;
-  if (Content) {
-    return (
-      <GuideIntegrationContext value={integration}>
-        <MarkdownRoot className="grid min-w-0 gap-12 text-body">
-          <Content components={guideComponents} />
-        </MarkdownRoot>
-      </GuideIntegrationContext>
-    );
-  }
-  return page.sections.map((section) => {
-    const code = guideCode(section, integration);
-    return (
-      <section key={section.id} id={section.id} className="min-w-0 scroll-mt-20">
-        <h2 className="text-heading-2 font-display text-balance">{section.title}</h2>
-        {section.body ? <p className="mt-2 text-body leading-6 text-pretty text-muted-foreground">{section.body}</p> : null}
+  const Content = guideContent[page.id];
 
-        {section.points ? (
-          <div className="mt-4 grid gap-2">
-            {section.points.map((point) => (
-              <Card key={point} className="px-4 py-3 text-body leading-6">
-                {point}
-              </Card>
-            ))}
-          </div>
-        ) : null}
-
-        {code ? (
-          <div className="mt-4 min-w-0">
-            <CodeBlock code={code} />
-          </div>
-        ) : null}
-      </section>
-    );
-  });
+  return (
+    <GuideIntegrationContext value={integration}>
+      <MarkdownRoot className="grid min-w-0 gap-12 text-body">
+        <Content components={guideComponents} />
+      </MarkdownRoot>
+    </GuideIntegrationContext>
+  );
 }
 
 function focusWorkspaceHeading(heading: HTMLHeadingElement | null) {
@@ -143,8 +116,6 @@ export function GuidePage({
   integration: IntegrationId;
   themeCategory?: ThemeCategoryId;
 }) {
-  const Content = guideContent[page.id];
-
   if (page.layout === "workspace") {
     return (
       <section className="flex min-w-0 w-full flex-col gap-4 px-4 pt-[calc(var(--control-h-sm)+1rem)] pb-6 lg:px-6 lg:pt-6">
@@ -158,7 +129,7 @@ export function GuidePage({
           </div>
           <OpenInAgent name={page.name} pathname={`/${page.id}`} />
         </div>
-        <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} Content={Content} />
+        <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />
       </section>
     );
   }
@@ -175,7 +146,7 @@ export function GuidePage({
       </div>
 
       <div className="grid min-w-0 gap-12">
-        <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} Content={Content} />
+        <GuidePageContent page={page} integration={integration} themeCategory={themeCategory} />
         {page.faqs && page.faqs.length > 0 ? (
           <section id="faq" className="min-w-0 scroll-mt-20">
             <h2 className="text-heading-2 font-display text-balance">Frequently asked questions</h2>

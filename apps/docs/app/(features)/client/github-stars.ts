@@ -1,6 +1,7 @@
 import { cacheLife } from "next/cache";
+import { siteConfig } from "@/lib/site-config";
 
-const controlUiRepositoryApiUrl = "https://api.github.com/repos/damien-schneider/control-ui";
+const controlUiRepositoryApiUrl = `https://api.github.com/repos/${siteConfig.registry.githubRepo}`;
 
 function stargazersCountFrom(value: unknown) {
   if (typeof value !== "object" || value === null || !("stargazers_count" in value)) return null;

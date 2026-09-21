@@ -119,7 +119,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -164,7 +164,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -212,7 +212,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -262,7 +262,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -318,7 +318,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -376,7 +376,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -422,7 +422,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -470,7 +470,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -516,7 +516,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -564,7 +564,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -611,7 +611,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -660,7 +660,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": true,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -701,7 +701,7 @@
       "recipe": "audio-visualizer",
       "rendersText": false,
       "state": false,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -754,7 +754,7 @@
       "recipe": "avatar",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -805,7 +805,7 @@
       "recipe": "avatar",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -858,7 +858,7 @@
       "recipe": "avatar",
       "rendersText": false,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -1073,7 +1073,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -1117,7 +1117,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -1741,7 +1741,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -1785,7 +1785,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -2432,7 +2432,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai"
+      "route": "/components"
     },
     {
       "knobs": {
@@ -2498,7 +2498,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -2563,7 +2563,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -2632,7 +2632,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -2681,7 +2681,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -2730,7 +2730,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -2781,7 +2781,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -2831,7 +2831,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -2881,7 +2881,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -2930,7 +2930,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -2980,7 +2980,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -3030,7 +3030,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -3085,7 +3085,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -3125,7 +3125,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -3378,7 +3378,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -3581,7 +3581,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -3625,7 +3625,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -4458,7 +4458,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -4527,7 +4527,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -4643,7 +4643,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -4702,7 +4702,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -4761,7 +4761,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -5164,7 +5164,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/markdown-block"
+      "route": "/components/markdown-block"
     },
     {
       "knobs": {
@@ -7269,7 +7269,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -7310,7 +7310,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -7350,7 +7350,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -7431,7 +7431,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -7471,7 +7471,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -7551,7 +7551,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -7671,7 +7671,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -8064,7 +8064,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -8337,7 +8337,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/action-bar"
+      "route": "/components/action-bar"
     },
     {
       "knobs": {
@@ -8900,7 +8900,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -8933,7 +8933,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -8966,7 +8966,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -9031,7 +9031,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -9129,7 +9129,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -9565,7 +9565,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai"
+      "route": "/components"
     },
     {
       "knobs": {
@@ -9631,7 +9631,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -9696,7 +9696,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -9765,7 +9765,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -9814,7 +9814,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -9863,7 +9863,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -9914,7 +9914,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -9964,7 +9964,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -10014,7 +10014,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -10063,7 +10063,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -10113,7 +10113,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -10163,7 +10163,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -10222,7 +10222,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -10277,7 +10277,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -10317,7 +10317,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -10362,7 +10362,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -10404,7 +10404,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -10742,7 +10742,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -10945,7 +10945,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -10989,7 +10989,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -12030,7 +12030,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -12088,7 +12088,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -12157,7 +12157,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -12226,7 +12226,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -12345,7 +12345,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -12405,7 +12405,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -12464,7 +12464,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -12526,7 +12526,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -12585,7 +12585,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -13037,7 +13037,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/markdown-block"
+      "route": "/components/markdown-block"
     },
     {
       "knobs": {
@@ -15553,7 +15553,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -15594,7 +15594,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -15634,7 +15634,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -15715,7 +15715,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -15755,7 +15755,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -15835,7 +15835,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -15955,7 +15955,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -16388,7 +16388,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -16661,7 +16661,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/action-bar"
+      "route": "/components/action-bar"
     },
     {
       "knobs": {
@@ -17641,7 +17641,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -17674,7 +17674,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -17707,7 +17707,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -17772,7 +17772,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -17870,7 +17870,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -17929,7 +17929,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -17974,7 +17974,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -18080,7 +18080,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -18142,7 +18142,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -19106,7 +19106,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai"
+      "route": "/components"
     },
     {
       "knobs": {
@@ -19171,7 +19171,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -19235,7 +19235,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -19303,7 +19303,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -19351,7 +19351,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -19399,7 +19399,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -19449,7 +19449,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -19498,7 +19498,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -19547,7 +19547,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -19595,7 +19595,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -19644,7 +19644,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -19693,7 +19693,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -19751,7 +19751,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -19805,7 +19805,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -19844,7 +19844,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -19888,7 +19888,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -19929,7 +19929,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -20259,7 +20259,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -20459,7 +20459,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/audio-visualizer"
+      "route": "/components/audio-visualizer"
     },
     {
       "knobs": {
@@ -20502,7 +20502,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -21523,7 +21523,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -21580,7 +21580,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -21648,7 +21648,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -21716,7 +21716,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -21833,7 +21833,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -21892,7 +21892,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -21950,7 +21950,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -22011,7 +22011,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -22069,7 +22069,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -22512,7 +22512,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/markdown-block"
+      "route": "/components/markdown-block"
     },
     {
       "knobs": {
@@ -24985,7 +24985,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -25025,7 +25025,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -25064,7 +25064,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -25143,7 +25143,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -25182,7 +25182,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -25260,7 +25260,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -25377,7 +25377,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -25799,7 +25799,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -26065,7 +26065,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/action-bar"
+      "route": "/components/action-bar"
     },
     {
       "knobs": {
@@ -27021,7 +27021,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -27053,7 +27053,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -27085,7 +27085,7 @@
       "recipe": "button",
       "rendersText": false,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -27148,7 +27148,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -27243,7 +27243,7 @@
       "recipe": "button",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -27418,7 +27418,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27461,7 +27461,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27504,7 +27504,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27536,7 +27536,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27589,7 +27589,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27642,7 +27642,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27695,7 +27695,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27738,7 +27738,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27788,7 +27788,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27848,7 +27848,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27898,7 +27898,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -27955,7 +27955,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -28022,7 +28022,7 @@
       "recipe": "chat-composer-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -28066,7 +28066,7 @@
       "recipe": "chat-composer",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -28118,7 +28118,7 @@
       "recipe": "chat-composer",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -28260,7 +28260,7 @@
       "recipe": "chat-composer",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -28294,7 +28294,7 @@
       "recipe": "chat-composer",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -28403,7 +28403,7 @@
       "recipe": "chat-composer",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -28513,7 +28513,7 @@
       "recipe": "chat-composer",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -28556,7 +28556,7 @@
       "recipe": "chat-composer",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -28656,7 +28656,7 @@
       "recipe": "chat-layout",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -28757,7 +28757,7 @@
       "recipe": "chat-message",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -28811,7 +28811,7 @@
       "recipe": "chat-message",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -28856,7 +28856,7 @@
       "recipe": "chat-message",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -28900,7 +28900,7 @@
       "recipe": "chat-message",
       "rendersText": true,
       "state": false,
-      "route": "/ai/transcript-divider"
+      "route": "/components/transcript-divider"
     },
     {
       "knobs": {
@@ -28944,7 +28944,7 @@
       "recipe": "chat-message",
       "rendersText": true,
       "state": false,
-      "route": "/ai/action-bar"
+      "route": "/components/action-bar"
     },
     {
       "knobs": {
@@ -29047,7 +29047,7 @@
       "recipe": "code",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -29083,7 +29083,7 @@
       "recipe": "code",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -29821,7 +29821,7 @@
       "recipe": "context",
       "rendersText": false,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -29878,7 +29878,7 @@
       "recipe": "context",
       "rendersText": false,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -29935,7 +29935,7 @@
       "recipe": "context",
       "rendersText": false,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -29992,7 +29992,7 @@
       "recipe": "context",
       "rendersText": false,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -30049,7 +30049,7 @@
       "recipe": "context",
       "rendersText": false,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -30194,7 +30194,7 @@
       "recipe": "inline-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-attachment"
+      "route": "/components/inline-attachment"
     },
     {
       "knobs": {
@@ -30229,7 +30229,7 @@
       "recipe": "inline-attachment",
       "rendersText": true,
       "state": false,
-      "route": "/ai/inline-attachment"
+      "route": "/components/inline-attachment"
     },
     {
       "knobs": {
@@ -30322,7 +30322,7 @@
       "recipe": "inline-attachment",
       "rendersText": true,
       "state": false,
-      "route": "/ai/inline-attachment"
+      "route": "/components/inline-attachment"
     },
     {
       "knobs": {
@@ -30415,7 +30415,7 @@
       "recipe": "inline-attachment",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-attachment"
+      "route": "/components/inline-attachment"
     },
     {
       "knobs": {
@@ -30466,7 +30466,7 @@
       "recipe": "inline-citation",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -30518,7 +30518,7 @@
       "recipe": "inline-citation",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -30568,7 +30568,7 @@
       "recipe": "inline-citation",
       "rendersText": false,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -30618,7 +30618,7 @@
       "recipe": "inline-citation",
       "rendersText": true,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -30661,7 +30661,7 @@
       "recipe": "inline-citation",
       "rendersText": true,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -30706,7 +30706,7 @@
       "recipe": "inline-citation",
       "rendersText": true,
       "state": true,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -30749,7 +30749,7 @@
       "recipe": "inline-citation",
       "rendersText": true,
       "state": true,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -30776,7 +30776,7 @@
       "recipe": "kbd",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -30834,7 +30834,7 @@
       "recipe": "kbd",
       "rendersText": true,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -30942,7 +30942,7 @@
       "recipe": "markdown-block",
       "rendersText": true,
       "state": false,
-      "route": "/ai/markdown-block"
+      "route": "/components/markdown-block"
     },
     {
       "knobs": {
@@ -31039,7 +31039,7 @@
       "recipe": "markdown-block",
       "rendersText": true,
       "state": false,
-      "route": "/ai/markdown-block"
+      "route": "/components/markdown-block"
     },
     {
       "knobs": {
@@ -31761,7 +31761,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/context"
+      "route": "/components/context"
     },
     {
       "knobs": {
@@ -31805,7 +31805,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/inline-citation"
+      "route": "/components/inline-citation"
     },
     {
       "knobs": {
@@ -31857,7 +31857,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -31980,7 +31980,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -32330,7 +32330,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -32407,7 +32407,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -33304,7 +33304,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -33358,7 +33358,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -33642,7 +33642,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -33733,7 +33733,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -36046,7 +36046,7 @@
       "recipe": "sidebar",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -36185,7 +36185,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -36227,7 +36227,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -36553,7 +36553,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": true,
-      "route": "/ai"
+      "route": "/components"
     },
     {
       "knobs": {
@@ -36752,7 +36752,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -36794,7 +36794,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -37120,7 +37120,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": true,
-      "route": "/ai"
+      "route": "/components"
     },
     {
       "knobs": {
@@ -37466,7 +37466,7 @@
       "recipe": "skeleton",
       "rendersText": false,
       "state": false,
-      "route": "/ai/email"
+      "route": "/components/email"
     },
     {
       "knobs": {
@@ -37504,7 +37504,7 @@
       "recipe": "source-badge",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -37549,7 +37549,7 @@
       "recipe": "source-badge",
       "rendersText": false,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -37587,7 +37587,7 @@
       "recipe": "source-badge",
       "rendersText": true,
       "state": true,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -38716,7 +38716,7 @@
       "recipe": "table-of-contents",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -38884,7 +38884,7 @@
       "recipe": "tabs",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -39149,7 +39149,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -39186,7 +39186,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -39232,7 +39232,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": true,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -39280,7 +39280,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": true,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -39322,7 +39322,7 @@
       "recipe": "thread-rail",
       "rendersText": false,
       "state": false,
-      "route": "/ai/thread-rail"
+      "route": "/components/thread-rail"
     },
     {
       "knobs": {
@@ -39363,7 +39363,7 @@
       "recipe": "thread-rail",
       "rendersText": false,
       "state": false,
-      "route": "/ai/thread-rail"
+      "route": "/components/thread-rail"
     },
     {
       "knobs": {
@@ -39403,7 +39403,7 @@
       "recipe": "thread-rail",
       "rendersText": false,
       "state": false,
-      "route": "/ai/thread-rail"
+      "route": "/components/thread-rail"
     },
     {
       "knobs": {
@@ -39442,7 +39442,7 @@
       "recipe": "timeline",
       "rendersText": false,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -44749,7 +44749,7 @@
       "recipe": "user-ask",
       "rendersText": true,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -44801,7 +44801,7 @@
       "recipe": "user-ask",
       "rendersText": true,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -44852,7 +44852,7 @@
       "recipe": "user-ask",
       "rendersText": true,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -44896,7 +44896,7 @@
       "recipe": "user-ask",
       "rendersText": true,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -44941,7 +44941,7 @@
       "recipe": "user-ask",
       "rendersText": true,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -44984,7 +44984,7 @@
       "recipe": "user-ask",
       "rendersText": true,
       "state": true,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -45029,7 +45029,7 @@
       "recipe": "user-ask",
       "rendersText": true,
       "state": false,
-      "route": "/ai/user-ask"
+      "route": "/components/user-ask"
     },
     {
       "knobs": {
@@ -47285,7 +47285,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -47331,7 +47331,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47374,7 +47374,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47422,7 +47422,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47468,7 +47468,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47516,7 +47516,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47559,7 +47559,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47606,7 +47606,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47655,7 +47655,7 @@
       "recipe": "activity",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -47848,7 +47848,7 @@
       "recipe": "audio-recorder",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -47883,7 +47883,7 @@
       "recipe": "audio-recorder",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -47917,7 +47917,7 @@
       "recipe": "audio-recorder",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -47951,7 +47951,7 @@
       "recipe": "audio-recorder",
       "rendersText": true,
       "state": false,
-      "route": "/ai/audio-recorder"
+      "route": "/components/audio-recorder"
     },
     {
       "knobs": {
@@ -48428,7 +48428,7 @@
       "recipe": "chat-composer",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -48605,7 +48605,7 @@
       "recipe": "chat-composer",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer-attachment"
+      "route": "/components/chat-composer-attachment"
     },
     {
       "knobs": {
@@ -48655,7 +48655,7 @@
       "recipe": "chat-composer",
       "rendersText": false,
       "state": false,
-      "route": "/ai/chat-composer"
+      "route": "/components/chat-composer"
     },
     {
       "knobs": {
@@ -48860,7 +48860,7 @@
       "recipe": "code",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -48904,7 +48904,7 @@
       "recipe": "code",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-layout"
+      "route": "/components/chat-layout"
     },
     {
       "knobs": {
@@ -49122,7 +49122,7 @@
       "recipe": "code",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -49335,7 +49335,7 @@
       "recipe": "dynamic-notification",
       "rendersText": true,
       "state": false,
-      "route": "/ai/dynamic-notification"
+      "route": "/components/dynamic-notification"
     },
     {
       "knobs": {
@@ -49453,7 +49453,7 @@
       "recipe": "environment-variables",
       "rendersText": true,
       "state": false,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -49493,7 +49493,7 @@
       "recipe": "environment-variables",
       "rendersText": true,
       "state": false,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -49533,7 +49533,7 @@
       "recipe": "environment-variables",
       "rendersText": true,
       "state": false,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -49573,7 +49573,7 @@
       "recipe": "environment-variables",
       "rendersText": true,
       "state": false,
-      "route": "/ai/environment-variables"
+      "route": "/components/environment-variables"
     },
     {
       "knobs": {
@@ -49873,7 +49873,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -49938,7 +49938,7 @@
       "recipe": "popup",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -50762,7 +50762,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -51116,7 +51116,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -51157,7 +51157,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -51427,7 +51427,7 @@
       "recipe": "sidebar-menu",
       "rendersText": true,
       "state": false,
-      "route": "/ai"
+      "route": "/components"
     },
     {
       "knobs": {
@@ -51782,7 +51782,7 @@
       "recipe": "table-of-contents",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -51962,7 +51962,7 @@
       "recipe": "table-of-contents",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -52140,7 +52140,7 @@
       "recipe": "table-of-contents",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -52185,7 +52185,7 @@
       "recipe": "table-of-contents",
       "rendersText": true,
       "state": true,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -52493,7 +52493,7 @@
       "recipe": "table-of-contents",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -52800,7 +52800,7 @@
       "recipe": "tabs",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -53835,7 +53835,7 @@
       "recipe": "tabs",
       "rendersText": true,
       "state": false,
-      "route": "/ai/chat-message"
+      "route": "/components/chat-message"
     },
     {
       "knobs": {
@@ -54940,7 +54940,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -54996,7 +54996,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -55040,7 +55040,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -55084,7 +55084,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -55128,7 +55128,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -55172,7 +55172,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -55216,7 +55216,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -55260,7 +55260,7 @@
       "recipe": "task-list",
       "rendersText": true,
       "state": false,
-      "route": "/ai/task-list"
+      "route": "/components/task-list"
     },
     {
       "knobs": {
@@ -55377,7 +55377,7 @@
       "recipe": "timeline",
       "rendersText": false,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -55416,7 +55416,7 @@
       "recipe": "timeline",
       "rendersText": true,
       "state": false,
-      "route": "/ai/activity"
+      "route": "/components/activity"
     },
     {
       "knobs": {
@@ -55449,7 +55449,7 @@
       "recipe": "transcript-divider",
       "rendersText": true,
       "state": false,
-      "route": "/ai/transcript-divider"
+      "route": "/components/transcript-divider"
     },
     {
       "knobs": {
@@ -55482,7 +55482,7 @@
       "recipe": "transcript-divider",
       "rendersText": true,
       "state": false,
-      "route": "/ai/transcript-divider"
+      "route": "/components/transcript-divider"
     },
     {
       "knobs": {
@@ -55515,7 +55515,7 @@
       "recipe": "transcript-divider",
       "rendersText": true,
       "state": false,
-      "route": "/ai/transcript-divider"
+      "route": "/components/transcript-divider"
     },
     {
       "knobs": {

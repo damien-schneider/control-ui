@@ -13,26 +13,15 @@ import { skillConcernSidebarIcons } from "./icons";
 import { humanizeNavName } from "./nav-items";
 import type { DocsNavItem, SidebarDoor } from "./types";
 
-function NavMenu({
-  items,
-  active,
-  prefix,
-  onNavigate,
-}: {
-  items: DocsNavItem[];
-  active: ActivePageId | undefined;
-  prefix: string;
-  onNavigate: () => void;
-}) {
+function NavMenu({ items, active, onNavigate }: { items: DocsNavItem[]; active: ActivePageId | undefined; onNavigate: () => void }) {
   return (
     <SidebarMenu indicator="hover">
       {items.map((item) => {
-        const href = `${prefix}${item.id}`;
         const name = humanizeNavName(item.name);
         return (
           <SidebarMenuItem key={item.id}>
             <SidebarMenuButton
-              render={<Link href={href} onClick={onNavigate} aria-current={active === item.id ? "page" : undefined} />}
+              render={<Link href={item.href} onClick={onNavigate} aria-current={active === item.id ? "page" : undefined} />}
               isActive={active === item.id}
               size="sm"
             >
@@ -51,14 +40,12 @@ export function DocsNavGroup({
   icon,
   items,
   active,
-  prefix,
   onNavigate,
 }: {
   title: string;
   icon?: IconSvgElement;
   items: DocsNavItem[];
   active: ActivePageId | undefined;
-  prefix: string;
   onNavigate: () => void;
 }) {
   if (items.length === 0) return null;
@@ -72,7 +59,7 @@ export function DocsNavGroup({
           <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} data-slot="chevron" />
         </SidebarGroupLabel>
         <CollapsibleContent>
-          <NavMenu items={items} active={active} prefix={prefix} onNavigate={onNavigate} />
+          <NavMenu items={items} active={active} onNavigate={onNavigate} />
         </CollapsibleContent>
       </Collapsible>
     </SidebarGroup>
@@ -122,7 +109,11 @@ export function SidebarDoorPane({
           </SidebarMenuItem>
         </SidebarMenu>
         {door.overviewId ? (
-          <NavMenu items={[{ id: door.overviewId, name: "Overview" }]} active={active} prefix="/" onNavigate={onNavigate} />
+          <NavMenu
+            items={[{ id: door.overviewId, name: "Overview", href: `/${door.overviewId}` }]}
+            active={active}
+            onNavigate={onNavigate}
+          />
         ) : null}
       </SidebarGroup>
       {children}
@@ -148,6 +139,7 @@ export function SkillConcernNavGroups({
         items.push({
           id: skill.id,
           name: skill.title,
+          href: `/skills/${skill.id}`,
         });
       }
     }
@@ -167,7 +159,6 @@ export function SkillConcernNavGroups({
           icon={skillConcernSidebarIcons[concern.id]}
           items={items}
           active={active}
-          prefix="/skills/"
           onNavigate={onNavigate}
         />
       ))}

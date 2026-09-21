@@ -26,29 +26,29 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Best React component libraries for AI interfaces](http://127.0.0.1:3000/best-react-component-libraries-for-ai-interfaces): Eight production options compared by ownership model, theming system, and agent-specific surfaces — from shadcn/ui and AI Elements to MUI to Control UI.
 - [Reference](http://127.0.0.1:3000/reference): Theme guides, the maintenance workflow, and the reasoning behind Control UI — everything beyond the install path.
 
-## AI components
+## Components
 
-- [AI components](http://127.0.0.1:3000/ai): Explore composable surfaces for messages, input, activity, media, and agent workflows.
-- [Email](http://127.0.0.1:3000/ai/email): React Email compositions with Control UI colors and typography, brand header, image layouts, and a footer with social, address, and unsubscribe parts. Status: experimental.
-- [ChatMessage](http://127.0.0.1:3000/ai/chat-message): Composable chat message with typed role, density, and lifecycle state.
-- [ChatComposer](http://127.0.0.1:3000/ai/chat-composer): Prompt composer with controlled text, submit state, and trigger-menu support.
-- [ChatComposerAttachment](http://127.0.0.1:3000/ai/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
-- [UserAsk](http://127.0.0.1:3000/ai/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
-- [TaskList](http://127.0.0.1:3000/ai/task-list): Floating agent task progress pill above the composer that expands into the full task list.
-- [AudioRecorder](http://127.0.0.1:3000/ai/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
-- [AudioVisualizer](http://127.0.0.1:3000/ai/audio-visualizer): Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract. Status: beta.
-- [DynamicNotification](http://127.0.0.1:3000/ai/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
-- [EnvironmentVariables](http://127.0.0.1:3000/ai/environment-variables): Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. Status: experimental.
-- [Activity](http://127.0.0.1:3000/ai/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
-- [TranscriptDivider](http://127.0.0.1:3000/ai/transcript-divider): Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.
-- [Context](http://127.0.0.1:3000/ai/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
-- [InlineCitation](http://127.0.0.1:3000/ai/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation.
-- [SourceBadge](http://127.0.0.1:3000/ai/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
-- [ActionBar](http://127.0.0.1:3000/ai/action-bar): Reusable hover actions for message and response controls.
-- [InlineAttachment](http://127.0.0.1:3000/ai/inline-attachment): Inline file and media previews for chat turns. Status: beta.
-- [MarkdownBlock](http://127.0.0.1:3000/ai/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
-- [ChatLayout](http://127.0.0.1:3000/ai/chat-layout): A scrolling conversation with message turns and a floating composer dock.
-- [ThreadRail](http://127.0.0.1:3000/ai/thread-rail): Conversation minimap for scanning and jumping between chat turns.
+- [Components](http://127.0.0.1:3000/components): Composed surfaces above the primitives, grouped by the part of the product they build: the chat screen, agent activity, voice capture, and the notification, email, and configuration surfaces around them.
+- [Email](http://127.0.0.1:3000/components/email): React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts. Status: experimental.
+- [ChatMessage](http://127.0.0.1:3000/components/chat-message): Composable chat message with typed role, density, and lifecycle state.
+- [ChatComposer](http://127.0.0.1:3000/components/chat-composer): Prompt composer with controlled text, submit state, and trigger-menu support.
+- [ChatComposerAttachment](http://127.0.0.1:3000/components/chat-composer-attachment): Composer attachment rail with file previews, upload progress, and removal.
+- [UserAsk](http://127.0.0.1:3000/components/user-ask): Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.
+- [TaskList](http://127.0.0.1:3000/components/task-list): Floating agent task progress pill above the composer that expands into the full task list.
+- [AudioRecorder](http://127.0.0.1:3000/components/audio-recorder): Voice recorder with realtime waveform, duration, cancel, and submit controls.
+- [AudioVisualizer](http://127.0.0.1:3000/components/audio-visualizer): Levels-driven realtime audio visualizer offered in two usage versions - bars and line - sharing one export and one props contract. Status: beta.
+- [DynamicNotification](http://127.0.0.1:3000/components/dynamic-notification): Dynamic Island-style AI notification pill with a thinking state that morphs into a reply bubble — token-driven surface, WebGL-enhanced backdrop blur, or real refractive liquid glass. Status: experimental.
+- [EnvironmentVariables](http://127.0.0.1:3000/components/environment-variables): Composable environment variable editor with .env upload, bulk paste, reveal controls, and submit helpers. Status: experimental.
+- [Activity](http://127.0.0.1:3000/components/activity): Shared static and collapsible activity anatomy with bounded, scrollable detail content.
+- [TranscriptDivider](http://127.0.0.1:3000/components/transcript-divider): Toned run-boundary separator for transcripts: steering, interruptions, and condensed context.
+- [Context](http://127.0.0.1:3000/components/context): Compact context-window usage with an automatically derived token graph and anchored detail inspector. Status: beta.
+- [InlineCitation](http://127.0.0.1:3000/components/inline-citation): Inline multi-source citation with a keyboard-accessible preview and source navigation.
+- [SourceBadge](http://127.0.0.1:3000/components/source-badge): Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.
+- [ActionBar](http://127.0.0.1:3000/components/action-bar): Reusable hover actions for message and response controls.
+- [InlineAttachment](http://127.0.0.1:3000/components/inline-attachment): Inline file and media previews for chat turns. Status: beta.
+- [MarkdownBlock](http://127.0.0.1:3000/components/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
+- [ChatLayout](http://127.0.0.1:3000/components/chat-layout): A scrolling conversation with message turns and a floating composer dock.
+- [ThreadRail](http://127.0.0.1:3000/components/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
 ## Blocks
 
@@ -61,12 +61,13 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 
 ## Primitives
 
-- [Primitives](http://127.0.0.1:3000/primitives): Browse every Control UI primitive through the same live examples used in its documentation.
+- [Primitives](http://127.0.0.1:3000/primitives): Every Control UI primitive, grouped by what the control does, through the same live examples used in its documentation.
 - [Button](http://127.0.0.1:3000/primitives/button): Accessible action button with size, variant, and semantic tone support.
 - [Collapsible](http://127.0.0.1:3000/primitives/collapsible): Accessible disclosure primitive with measured open and close motion.
 - [Tabs](http://127.0.0.1:3000/primitives/tabs): Segmented and browser-style navigation with a stable active indicator.
 - [Track highlight](http://127.0.0.1:3000/primitives/track-highlight): Shared fluid hover, keyboard-focus, and selection highlight for custom lists and groups, with CSS anchors and a measured fallback.
 - [Sidebar](http://127.0.0.1:3000/primitives/sidebar): Responsive app sidebar with resizing, offcanvas and icon collapse, mobile navigation, and nested menus. Status: beta.
+- [Page layout](http://127.0.0.1:3000/primitives/page-layout): Page shell that owns the scroll container, the shared measure, and the title and actions row. Status: beta.
 - [Scroll area](http://127.0.0.1:3000/primitives/scroll-area): Scroll container with overlay scrollbars, edge fades, and optional progressive blur.
 - [Progressive blur](http://127.0.0.1:3000/primitives/progressive-blur): CSS-driven backdrop blur that grows toward an edge, with masked layers and interruptible staggered transitions.
 - [Table of contents](http://127.0.0.1:3000/primitives/table-of-contents): Sticky in-page navigation with scroll-spy range highlighting.
@@ -111,7 +112,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [Badge](http://127.0.0.1:3000/primitives/badge): Compact status, label, or count chip. Status: beta.
 - [Card](http://127.0.0.1:3000/primitives/card): Content surface for panels, tiles, and settings groups. Status: beta.
 - [Table](http://127.0.0.1:3000/primitives/table): Responsive data table for lists, comparisons, and structured records.
-- [Aspect ratio](http://127.0.0.1:3000/primitives/aspect-ratio): CSS aspect-ratio wrapper for media and previews. Status: beta.
+- [Aspect ratio](http://127.0.0.1:3000/primitives/aspect-ratio): Holds a ratio computed at runtime. Ratios known at build time need no component: aspect-video, aspect-square, aspect-[4/3]. Status: beta.
 - [Button group](http://127.0.0.1:3000/primitives/button-group): Joined button group for toolbars, split actions, and segmented controls.
 - [Empty](http://127.0.0.1:3000/primitives/empty): Empty-state layout for blank lists, zero results, and new workspaces. Status: beta.
 - [Item](http://127.0.0.1:3000/primitives/item): List row with media, content, and trailing actions. Status: beta.

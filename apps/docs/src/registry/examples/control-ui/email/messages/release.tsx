@@ -1,11 +1,12 @@
 import { ReleaseNotesEmail } from "@/components/control-ui/email/templates";
-import type { EmailTheme } from "@/components/control-ui/email/theme";
 import { brand, browserUrl, marketingFooter } from "../content";
+import type { EmailExampleProps } from "../options";
 
-export function ReleaseNotesEmailExample({ theme }: { theme: EmailTheme }) {
+export function ReleaseNotesEmailExample({ theme, variant }: EmailExampleProps) {
   return (
     <ReleaseNotesEmail
       theme={theme}
+      variant={variant}
       brand={brand}
       browserUrl={browserUrl}
       footer={marketingFooter}
@@ -29,6 +30,12 @@ export function ReleaseNotesEmailExample({ theme }: { theme: EmailTheme }) {
         },
         { title: "Fixed", changes: ["Recurring reminders no longer skip the first week of a new month."] },
       ]}
+      migration={{
+        notes:
+          "### Upgrading\n\nWorkspace tokens move from `workspace.key` to a scoped `workspace.id` before [June 30](https://example.com/changelog/2-4), and the old keys keep working until then.",
+        language: "typescript",
+        code: 'const workspace = await fieldwork.workspaces.get({\n  id: "ws_7f3a", // was: key: "studio-north"\n  include: ["members", "projects"],\n});',
+      }}
     />
   );
 }
