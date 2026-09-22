@@ -237,7 +237,8 @@ export type EmittedStateContract = {
   "table-of-contents:item:data-active": true;
   "table-of-contents:item:data-depth": number;
   "table-of-contents:item:data-level": number;
-  "table-of-contents:item:data-variant": TableOfContentsVariant;
+  "table-of-contents:trail:data-visible": true;
+  "table-of-contents:indicator:data-visible": true;
   "tabs:list:data-size": ControlSize;
   "tabs:list:data-variant": TabsListVariant;
   "task-list:item:data-status": TaskStatus;

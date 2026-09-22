@@ -11018,7 +11018,19 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["background", "both", "trail"],
+              values: ["progress", "range"],
+            },
+          ],
+        },
+        indicator: {
+          family: "table-of-contents",
+          registryItems: ["table-of-contents"],
+          states: [
+            {
+              attribute: "data-visible",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
             },
           ],
         },
@@ -11043,12 +11055,6 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "open",
               values: [],
-            },
-            {
-              attribute: "data-variant",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["background", "both", "trail"],
             },
           ],
         },
@@ -11082,7 +11088,14 @@ export const generatedSkinContract: SkinContract = {
         trail: {
           family: "table-of-contents",
           registryItems: ["table-of-contents"],
-          states: [],
+          states: [
+            {
+              attribute: "data-visible",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
       },
       registryItems: ["table-of-contents"],
@@ -15520,7 +15533,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-table-of-contents-item-active-foreground",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--foreground)",
+        defaultValue: "var(--primary-text)",
       },
       {
         name: "--cui-table-of-contents-item-font-size",
@@ -15565,7 +15578,7 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "calc(var(--spacing) * 2)",
       },
       {
-        name: "--cui-table-of-contents-rail-background",
+        name: "--cui-table-of-contents-rail-stroke",
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--border)",
@@ -15577,10 +15590,10 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "1px",
       },
       {
-        name: "--cui-table-of-contents-trail-background",
+        name: "--cui-table-of-contents-trail-stroke",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--foreground)",
+        defaultValue: "var(--primary-text)",
       },
       {
         name: "--cui-table-of-contents-trail-size",
@@ -15589,22 +15602,10 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "2px",
       },
       {
-        name: "--cui-table-of-contents-trail-radius",
-        syntax: "<length-percentage>",
-        initialValue: "0px",
-        defaultValue: "var(--cui-table-of-contents-trail-size)",
-      },
-      {
-        name: "--cui-table-of-contents-highlight-radius",
-        syntax: "<length-percentage>",
-        initialValue: "0px",
-        defaultValue: "var(--radius-popup-item)",
-      },
-      {
-        name: "--cui-table-of-contents-highlight-background",
+        name: "--cui-table-of-contents-indicator-foreground",
         syntax: "<color>",
         initialValue: "transparent",
-        defaultValue: "var(--active-fill)",
+        defaultValue: "var(--cui-table-of-contents-trail-stroke)",
       },
     ],
     tabs: [

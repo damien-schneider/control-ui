@@ -2310,14 +2310,9 @@
       "syntax": "<length>"
     },
     {
-      "name": "--cui-table-of-contents-highlight-background",
+      "name": "--cui-table-of-contents-indicator-foreground",
       "description": "Control UI table-of-contents knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
-    },
-    {
-      "name": "--cui-table-of-contents-highlight-radius",
-      "description": "Control UI table-of-contents knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-table-of-contents-item-active-foreground",
@@ -2400,33 +2395,28 @@
       "syntax": "<length-percentage>"
     },
     {
-      "name": "--cui-table-of-contents-rail-background",
-      "description": "Control UI table-of-contents knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
       "name": "--cui-table-of-contents-rail-size",
       "description": "Control UI table-of-contents knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
+    },
+    {
+      "name": "--cui-table-of-contents-rail-stroke",
+      "description": "Control UI table-of-contents knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
     },
     {
       "name": "--cui-table-of-contents-shadow",
       "description": "Control UI table-of-contents knob — registered syntax *, fallback none. Re-value it under [data-skin] or per instance via style."
     },
     {
-      "name": "--cui-table-of-contents-trail-background",
-      "description": "Control UI table-of-contents knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<color>"
-    },
-    {
-      "name": "--cui-table-of-contents-trail-radius",
-      "description": "Control UI table-of-contents knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length-percentage>"
-    },
-    {
       "name": "--cui-table-of-contents-trail-size",
       "description": "Control UI table-of-contents knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
+    },
+    {
+      "name": "--cui-table-of-contents-trail-stroke",
+      "description": "Control UI table-of-contents knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
     },
     {
       "name": "--cui-table-row-hover-background",

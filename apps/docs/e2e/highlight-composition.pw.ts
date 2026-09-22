@@ -95,25 +95,3 @@ test("sliding trees apply root knobs to both rows and their highlight", async ({
   await page.mouse.move(0, 0);
   await expectHighlightOn(highlight, tree.locator('[data-slot="item-trigger"]').filter({ hasText: "README.md" }));
 });
-
-test("table of contents keeps scroll tracking and inherits highlight knobs without layout styles", async ({ page }) => {
-  await page.goto("/primitives/table-of-contents");
-  const navigation = page.getByRole("navigation", { name: "Background", exact: true });
-  const highlight = navigation.locator('[data-control-family="track-highlight"]');
-  await waitForReactHydration(navigation);
-  await navigation.evaluate((node) => {
-    node.style.width = "280px";
-    node.style.setProperty("--cui-table-of-contents-padding", "24px");
-    node.style.setProperty("--cui-table-of-contents-highlight-radius", "12px");
-    node.style.setProperty("--duration-base", "240ms");
-  });
-  await expect(highlight).toHaveCSS("border-radius", "12px");
-  await expect(navigation).toHaveCSS("padding-left", "24px");
-  await expect(highlight).toHaveCSS("padding-left", "0px");
-  await expect(highlight).toHaveCSS("transition-duration", "0.24s");
-  await expect(navigation.locator('[data-slot="rail"]')).toHaveCSS("width", "1px");
-  const release = navigation.getByRole("link", { name: "Release notes", exact: true });
-  await release.click();
-  await expect(release).toHaveAttribute("aria-current", "location");
-  await expect(highlight).toHaveCSS("opacity", "1");
-});

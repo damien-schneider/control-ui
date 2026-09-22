@@ -6,8 +6,7 @@
   "description": "Sticky in-page navigation with scroll-spy range highlighting.",
   "dependencies": [],
   "registryDependencies": [
-    "core",
-    "track-highlight"
+    "core"
   ],
   "files": [
     {

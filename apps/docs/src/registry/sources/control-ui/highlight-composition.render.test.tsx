@@ -32,12 +32,12 @@ describe("custom highlight composition", () => {
     const html = renderToStaticMarkup(
       <TableOfContents
         items={[{ href: "#overview", label: "Overview" }]}
-        style={{ width: 280, padding: 24, "--cui-table-of-contents-highlight-radius": "12px" }}
+        style={{ width: 280, padding: 24, "--cui-table-of-contents-trail-stroke": "red" }}
       />,
     );
 
     expect(html.match(/width:280px/g)).toHaveLength(1);
     expect(html.match(/padding:24px/g)).toHaveLength(1);
-    expect(html).toContain("--cui-table-of-contents-highlight-radius:12px");
+    expect(html).toContain("--cui-table-of-contents-trail-stroke:red");
   });
 });

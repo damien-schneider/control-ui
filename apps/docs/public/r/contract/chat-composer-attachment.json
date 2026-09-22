@@ -211,6 +211,9 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-chat-composer-attachment-progress-background",
+    "--cui-chat-composer-attachment-progress-foreground"
+  ],
   "contrast": "/r/contract/chat-composer-attachment.contrast.json"
 }

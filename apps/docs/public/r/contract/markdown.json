@@ -200,9 +200,7 @@
   "adornments": {},
   "uncovered": [
     "--cui-markdown-blockquote-border-color",
-    "--cui-markdown-blockquote-foreground",
-    "--cui-markdown-inline-code-background",
-    "--cui-markdown-inline-code-foreground"
+    "--cui-markdown-blockquote-foreground"
   ],
   "contrast": "/r/contract/markdown.contrast.json"
 }

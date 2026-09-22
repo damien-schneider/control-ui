@@ -3867,7 +3867,7 @@ export const registryMetadata = {
   },
   "table-of-contents": {
     dependencies: [],
-    registryDependencies: ["core", "track-highlight"],
+    registryDependencies: ["core"],
     sourceManifestPath: "registry/control-ui/table-of-contents.json",
     files: [
       {

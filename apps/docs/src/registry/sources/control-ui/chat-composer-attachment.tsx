@@ -259,7 +259,7 @@ export function ChatComposerAttachmentPreview({ className, children, ...props }:
       data-control-ui="chat-composer-attachment"
       data-control-family="chat-composer-attachment"
       data-slot="preview"
-      className={cn("relative grid shrink-0 place-items-center overflow-hidden", className)}
+      className={cn("relative flex shrink-0 items-center justify-center overflow-hidden", className)}
       {...props}
     >
       {children ??

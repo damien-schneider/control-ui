@@ -21,12 +21,10 @@ export const tableOfContentsKnobs = [
   "--cui-table-of-contents-item-padding-block",
   "--cui-table-of-contents-item-padding-inline",
   "--cui-table-of-contents-item-indent-size",
-  "--cui-table-of-contents-rail-background",
+  "--cui-table-of-contents-rail-stroke",
   "--cui-table-of-contents-rail-size",
-  "--cui-table-of-contents-trail-background",
+  "--cui-table-of-contents-trail-stroke",
   "--cui-table-of-contents-trail-size",
-  "--cui-table-of-contents-trail-radius",
-  "--cui-table-of-contents-highlight-radius",
-  "--cui-table-of-contents-highlight-background",
+  "--cui-table-of-contents-indicator-foreground",
 ] as const;
 export type TableOfContentsKnobStyle = Partial<Record<(typeof tableOfContentsKnobs)[number], string>>;

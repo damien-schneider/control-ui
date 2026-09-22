@@ -73,3 +73,29 @@ test("the rich editor releases file transfers instead of swallowing them", async
 
   expect(await pasteInto(editor, "text")).toBe(true);
 });
+
+test("a pasted image preview shows the whole image inside its tile", async ({ page }) => {
+  await page.goto("/components/chat-composer-attachment");
+  const shell = page.locator("#preview").locator('[data-control-family="chat-composer"][data-slot="shell"]');
+  const textarea = shell.locator("textarea");
+  await waitForReactHydration(textarea);
+
+  await textarea.evaluate(async (element) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 512;
+    canvas.height = 512;
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"));
+    if (!blob) throw new Error("Canvas could not encode a PNG.");
+    const data = new DataTransfer();
+    data.items.add(new File([blob], "square-screenshot.png", { type: "image/png" }));
+    element.dispatchEvent(new ClipboardEvent("paste", { clipboardData: data, bubbles: true, cancelable: true }));
+  });
+
+  const tile = shell.getByRole("listitem", { name: "square-screenshot.png" });
+  const image = tile.locator("img");
+  await image.scrollIntoViewIfNeeded();
+  await expect(image).toHaveJSProperty("complete", true);
+  const [tileBox, imageBox] = await Promise.all([tile.boundingBox(), image.boundingBox()]);
+  expect(imageBox?.height).toBeLessThanOrEqual(tileBox?.height ?? 0);
+  expect(imageBox?.width).toBeLessThanOrEqual(tileBox?.width ?? 0);
+});

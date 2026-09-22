@@ -5185,8 +5185,7 @@
       "description": "Sticky in-page navigation with scroll-spy range highlighting.",
       "dependencies": [],
       "registryDependencies": [
-        "http://127.0.0.1:3000/r/core.json",
-        "http://127.0.0.1:3000/r/track-highlight.json"
+        "http://127.0.0.1:3000/r/core.json"
       ],
       "files": [
         {

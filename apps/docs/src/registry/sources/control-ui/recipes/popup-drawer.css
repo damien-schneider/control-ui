@@ -7,6 +7,9 @@
     --cui-popup-shadow: var(--shadow-modal);
     --cui-popup-backdrop-filter: none;
     --_drawer-content-closed-translate: 0 100%;
+    /* Block padding lives inside the scroller, never on the popup: the scroll edge would clip a focus ring on the first or last row. */
+    --_drawer-scroll-padding-start: 0px;
+    --_drawer-scroll-padding-end: 0px;
     border: 0 solid var(--cui-popup-border-color);
     border-radius: 0;
     box-shadow: var(--cui-popup-shadow);
@@ -77,6 +80,7 @@
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="scroll"]) {
     gap: calc(var(--spacing) * 4);
+    padding-block: var(--_drawer-scroll-padding-start) var(--_drawer-scroll-padding-end);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="viewport"][data-variant="floating"]) {
@@ -95,12 +99,20 @@
     text-wrap: pretty;
   }
 
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-side="bottom"]) {
+    --_drawer-scroll-padding-start: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-side="top"]) {
+    --_drawer-scroll-padding-end: calc(var(--spacing) * 4);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"][data-side="bottom"]) {
-    padding-block-end: max(calc(var(--spacing) * 4), env(safe-area-inset-bottom));
+    --_drawer-scroll-padding-end: max(calc(var(--spacing) * 4), env(safe-area-inset-bottom));
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"][data-side="top"]) {
-    padding-block-start: calc(var(--spacing) * 4);
+    --_drawer-scroll-padding-start: calc(var(--spacing) * 4);
   }
 
   :where(
@@ -109,7 +121,8 @@
       [data-side="right"]
     )
   ) {
-    padding-block: calc(var(--spacing) * 4);
+    --_drawer-scroll-padding-start: calc(var(--spacing) * 4);
+    --_drawer-scroll-padding-end: calc(var(--spacing) * 4);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="footer"]) {
@@ -132,6 +145,18 @@
     text-align: var(--_drawer-header-text-align);
   }
 
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="header"]:first-child) {
+    top: calc(var(--_drawer-scroll-padding-start) * -1);
+    margin-block-start: calc(var(--_drawer-scroll-padding-start) * -1);
+    padding-block-start: var(--_drawer-scroll-padding-start);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="footer"]:last-child) {
+    bottom: calc(var(--_drawer-scroll-padding-end) * -1);
+    margin-block-end: calc(var(--_drawer-scroll-padding-end) * -1);
+    padding-block-end: var(--_drawer-scroll-padding-end);
+  }
+
   @media (width >= 40rem) {
     :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="header"]) {
       --_drawer-header-text-align: left;
@@ -140,7 +165,6 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"]) {
-    gap: calc(var(--spacing) * 4);
     outline-style: none;
     transform: translate(var(--drawer-swipe-movement-x, 0), var(--drawer-swipe-movement-y, 0));
     transition-property: transform, translate, scale, rotate, filter;

@@ -9,7 +9,7 @@
         "accordion"
       ],
       "knobs": 5,
-      "probes": 49
+      "probes": 25
     },
     "action-bar": {
       "registryItems": [
@@ -23,7 +23,7 @@
         "activity"
       ],
       "knobs": 5,
-      "probes": 22
+      "probes": 21
     },
     "alert": {
       "registryItems": [
@@ -44,7 +44,7 @@
         "audio-recorder"
       ],
       "knobs": 4,
-      "probes": 4
+      "probes": 3
     },
     "audio-visualizer": {
       "registryItems": [
@@ -86,14 +86,14 @@
         "toggle"
       ],
       "knobs": 24,
-      "probes": 547
+      "probes": 498
     },
     "button-group": {
       "registryItems": [
         "button-group"
       ],
       "knobs": 4,
-      "probes": 4
+      "probes": 2
     },
     "calendar": {
       "registryItems": [
@@ -107,28 +107,28 @@
         "card"
       ],
       "knobs": 6,
-      "probes": 1
+      "probes": 2
     },
     "chat-composer": {
       "registryItems": [
         "chat-composer"
       ],
       "knobs": 15,
-      "probes": 18
+      "probes": 21
     },
     "chat-composer-attachment": {
       "registryItems": [
         "chat-composer-attachment"
       ],
       "knobs": 10,
-      "probes": 13
+      "probes": 3
     },
     "chat-layout": {
       "registryItems": [
         "chat-layout"
       ],
       "knobs": 7,
-      "probes": 2
+      "probes": 3
     },
     "chat-message": {
       "registryItems": [
@@ -157,7 +157,7 @@
         "code"
       ],
       "knobs": 8,
-      "probes": 14
+      "probes": 12
     },
     "code-diff": {
       "registryItems": [
@@ -258,7 +258,7 @@
         "inline-attachment"
       ],
       "knobs": 14,
-      "probes": 6
+      "probes": 7
     },
     "inline-citation": {
       "registryItems": [
@@ -279,7 +279,7 @@
         "kbd"
       ],
       "knobs": 5,
-      "probes": 4
+      "probes": 5
     },
     "label": {
       "registryItems": [
@@ -293,28 +293,28 @@
         "markdown"
       ],
       "knobs": 10,
-      "probes": 4
+      "probes": 6
     },
     "markdown-block": {
       "registryItems": [
         "markdown-block"
       ],
       "knobs": 8,
-      "probes": 3
+      "probes": 4
     },
     "morphing-panel": {
       "registryItems": [
         "morphing-panel"
       ],
       "knobs": 6,
-      "probes": 6
+      "probes": 4
     },
     "page-layout": {
       "registryItems": [
         "page-layout"
       ],
       "knobs": 13,
-      "probes": 0
+      "probes": 5
     },
     "pagination": {
       "registryItems": [
@@ -355,7 +355,7 @@
         "trigger-menu"
       ],
       "knobs": 17,
-      "probes": 70
+      "probes": 101
     },
     "progressive-blur": {
       "registryItems": [
@@ -371,7 +371,7 @@
         "slider"
       ],
       "knobs": 8,
-      "probes": 18
+      "probes": 24
     },
     "resizable": {
       "registryItems": [
@@ -397,14 +397,14 @@
         "separator"
       ],
       "knobs": 1,
-      "probes": 2
+      "probes": 3
     },
     "sidebar": {
       "registryItems": [
         "sidebar"
       ],
       "knobs": 22,
-      "probes": 50
+      "probes": 21
     },
     "sidebar-layout": {
       "registryItems": [
@@ -418,7 +418,7 @@
         "skeleton"
       ],
       "knobs": 7,
-      "probes": 4
+      "probes": 3
     },
     "source-badge": {
       "registryItems": [
@@ -446,7 +446,7 @@
         "switch"
       ],
       "knobs": 13,
-      "probes": 19
+      "probes": 30
     },
     "table": {
       "registryItems": [
@@ -459,15 +459,15 @@
       "registryItems": [
         "table-of-contents"
       ],
-      "knobs": 28,
-      "probes": 20
+      "knobs": 26,
+      "probes": 30
     },
     "tabs": {
       "registryItems": [
         "tabs"
       ],
       "knobs": 12,
-      "probes": 39
+      "probes": 19
     },
     "task-list": {
       "registryItems": [
@@ -502,7 +502,7 @@
         "toolbar"
       ],
       "knobs": 16,
-      "probes": 85
+      "probes": 21
     },
     "track-highlight": {
       "registryItems": [
@@ -523,7 +523,7 @@
         "tree"
       ],
       "knobs": 8,
-      "probes": 11
+      "probes": 6
     },
     "user-ask": {
       "registryItems": [

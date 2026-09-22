@@ -14,7 +14,54 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "full"
+        }
+      },
+      {
+        "attributes": {
+          "data-checked": "",
+          "data-control-family": "switch",
+          "data-control-ui": "switch",
+          "data-filled": "",
+          "data-slot": "root",
+          "role": "switch",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -41,29 +88,26 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
         "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
+          "data-checked": "",
           "data-control-family": "switch",
           "data-control-ui": "switch",
+          "data-filled": "",
           "data-slot": "root",
-          "data-unchecked": "",
           "role": "switch",
           "tabindex": "0"
         }
@@ -81,16 +125,26 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
         "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-checked": "",
           "data-control-family": "switch",
           "data-control-ui": "switch",
-          "data-disabled": "",
+          "data-readonly": "",
           "data-slot": "root",
-          "data-unchecked": "",
           "role": "switch",
           "tabindex": "0"
         }
@@ -108,21 +162,55 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
         "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-checked": "",
           "data-control-family": "switch",
           "data-control-ui": "switch",
           "data-slot": "root",
-          "data-unchecked": "",
           "role": "switch",
           "tabindex": "0"
         }
       }
     ],
     [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
       {
         "attributes": {
           "data-control-family": "sidebar",
@@ -161,15 +249,39 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
           "data-slot": "inset"
         }
       },
       {
         "attributes": {
-          "data-checked": "",
           "data-control-family": "switch",
           "data-control-ui": "switch",
           "data-slot": "root",
+          "data-unchecked": "",
           "role": "switch",
           "tabindex": "0"
         }
@@ -187,9 +299,32 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "switch",
+          "data-control-ui": "switch",
+          "data-disabled": "",
+          "data-slot": "root",
+          "data-unchecked": "",
+          "role": "switch",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
       {
         "attributes": {
           "data-control-family": "sidebar",
@@ -201,16 +336,25 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
         "attributes": {
-          "data-checked": "",
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "switch",
           "data-control-ui": "switch",
-          "data-filled": "",
           "data-slot": "root",
+          "data-unchecked": "",
           "role": "switch",
           "tabindex": "0"
         }
@@ -232,7 +376,7 @@
       },
       "anatomy": 1,
       "rendersText": false,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
@@ -240,11 +384,83 @@
       },
       "anatomy": 2,
       "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-background"
+      },
+      "anatomy": 3,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-background"
+      },
+      "anatomy": 4,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-background"
+      },
+      "anatomy": 5,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-background"
+      },
+      "anatomy": 6,
+      "rendersText": false,
       "state": false
     },
     {
       "knobs": {
         "fill": "--cui-switch-background"
+      },
+      "anatomy": 7,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-background"
+      },
+      "anatomy": 8,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-checked-background"
+      },
+      "anatomy": 0,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-checked-background"
+      },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-checked-background"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-checked-background"
       },
       "anatomy": 3,
       "rendersText": false,
@@ -254,14 +470,6 @@
       "knobs": {
         "fill": "--cui-switch-checked-background"
       },
-      "anatomy": 0,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-switch-checked-background"
-      },
       "anatomy": 4,
       "rendersText": false,
       "state": false
@@ -271,14 +479,6 @@
         "fill": "--cui-switch-checked-background"
       },
       "anatomy": 5,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-switch-checked-background"
-      },
-      "anatomy": 6,
       "rendersText": false,
       "state": false
     },
@@ -294,6 +494,30 @@
       "knobs": {
         "fill": "--cui-switch-checked-hover-background"
       },
+      "anatomy": 1,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-checked-hover-background"
+      },
+      "anatomy": 2,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-checked-hover-background"
+      },
+      "anatomy": 3,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-checked-hover-background"
+      },
       "anatomy": 4,
       "rendersText": false,
       "state": true
@@ -303,14 +527,6 @@
         "fill": "--cui-switch-checked-hover-background"
       },
       "anatomy": 5,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-switch-checked-hover-background"
-      },
-      "anatomy": 6,
       "rendersText": false,
       "state": true
     },
@@ -319,30 +535,6 @@
         "fill": "--cui-switch-hover-background"
       },
       "anatomy": 0,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-switch-hover-background"
-      },
-      "anatomy": 4,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-switch-hover-background"
-      },
-      "anatomy": 5,
-      "rendersText": false,
-      "state": true
-    },
-    {
-      "knobs": {
-        "fill": "--cui-switch-hover-background"
-      },
-      "anatomy": 6,
       "rendersText": false,
       "state": true
     },
@@ -367,6 +559,46 @@
         "fill": "--cui-switch-hover-background"
       },
       "anatomy": 3,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-hover-background"
+      },
+      "anatomy": 4,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-hover-background"
+      },
+      "anatomy": 5,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-hover-background"
+      },
+      "anatomy": 6,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-hover-background"
+      },
+      "anatomy": 7,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-switch-hover-background"
+      },
+      "anatomy": 8,
       "rendersText": false,
       "state": true
     }

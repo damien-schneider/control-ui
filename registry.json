@@ -4873,8 +4873,7 @@
       "description": "Sticky in-page navigation with scroll-spy range highlighting.",
       "dependencies": [],
       "registryDependencies": [
-        "damien-schneider/control-ui/core",
-        "damien-schneider/control-ui/track-highlight"
+        "damien-schneider/control-ui/core"
       ],
       "files": [
         {

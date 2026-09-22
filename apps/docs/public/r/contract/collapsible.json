@@ -72,6 +72,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-collapsible-trigger-hover-background"
+  ],
   "contrast": "/r/contract/collapsible.contrast.json"
 }

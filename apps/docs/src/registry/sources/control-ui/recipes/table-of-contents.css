@@ -21,13 +21,11 @@
     --cui-table-of-contents-item-padding-block: calc(var(--spacing) * 1.5);
     --cui-table-of-contents-item-padding-inline: calc(var(--spacing) * 3);
     --cui-table-of-contents-item-indent-size: calc(var(--spacing) * 2);
-    --cui-table-of-contents-rail-color: var(--border);
+    --cui-table-of-contents-rail-stroke: var(--border);
     --cui-table-of-contents-rail-size: 1px;
-    --cui-table-of-contents-rail-bend-size: calc(var(--spacing) * 2);
-    --cui-table-of-contents-trail-color: var(--primary-text);
+    --cui-table-of-contents-trail-stroke: var(--primary-text);
     --cui-table-of-contents-trail-size: 2px;
-    --cui-table-of-contents-indicator-color: var(--cui-table-of-contents-trail-color);
-    --cui-table-of-contents-indicator-rotate: 0deg;
+    --cui-table-of-contents-indicator-foreground: var(--cui-table-of-contents-trail-stroke);
     border: var(--cui-table-of-contents-border-width) solid var(--cui-table-of-contents-border-color);
     border-radius: var(--cui-table-of-contents-radius);
     background-color: var(--cui-table-of-contents-background);
@@ -48,14 +46,14 @@
 
   :where([data-control-family="table-of-contents"][data-slot="rail"]) {
     fill: none;
-    stroke: var(--cui-table-of-contents-rail-color);
+    stroke: var(--cui-table-of-contents-rail-stroke);
     stroke-width: var(--cui-table-of-contents-rail-size);
     stroke-linejoin: round;
   }
 
   :where([data-control-family="table-of-contents"][data-slot="trail"]) {
     fill: none;
-    stroke: var(--cui-table-of-contents-trail-color);
+    stroke: var(--cui-table-of-contents-trail-stroke);
     stroke-width: var(--cui-table-of-contents-trail-size);
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -70,9 +68,9 @@
   :where([data-control-family="table-of-contents"][data-slot="indicator"]) {
     display: grid;
     place-items: center;
-    color: var(--cui-table-of-contents-indicator-color);
+    color: var(--cui-table-of-contents-indicator-foreground);
     offset-distance: var(--_toc-indicator-distance);
-    offset-rotate: var(--cui-table-of-contents-indicator-rotate);
+    offset-rotate: 0deg;
     opacity: 0;
     transition-property: offset-distance, opacity;
     transition-duration: var(--duration-base);
@@ -244,7 +242,7 @@
   initial-value: 0px;
 }
 
-@property --cui-table-of-contents-rail-color {
+@property --cui-table-of-contents-rail-stroke {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -256,13 +254,7 @@
   initial-value: 0px;
 }
 
-@property --cui-table-of-contents-rail-bend-size {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-table-of-contents-trail-color {
+@property --cui-table-of-contents-trail-stroke {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -274,14 +266,8 @@
   initial-value: 0px;
 }
 
-@property --cui-table-of-contents-indicator-color {
+@property --cui-table-of-contents-indicator-foreground {
   syntax: "<color>";
   inherits: true;
-  initial-value: currentcolor;
-}
-
-@property --cui-table-of-contents-indicator-rotate {
-  syntax: "*";
-  inherits: true;
-  initial-value: 0deg;
+  initial-value: transparent;
 }

@@ -14,7 +14,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -45,7 +55,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -82,7 +102,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -119,7 +149,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -156,7 +196,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -193,7 +243,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -230,7 +290,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -267,7 +337,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -303,7 +383,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -339,7 +429,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -375,7 +475,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -412,7 +522,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -449,7 +569,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -463,434 +593,6 @@
       {
         "attributes": {
           "aria-disabled": "false",
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-value": "what",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-index": "1",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-index": "1",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "skin",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-index": "1",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "what",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-index": "2",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-index": "2",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "install",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-index": "2",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "what",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "install",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-hidden": "",
-          "data-orientation": "vertical",
-          "data-slot": "trigger",
-          "data-value": "skin",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-index": "1",
-          "data-orientation": "vertical",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-value": "install",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-index": "2",
-          "data-orientation": "vertical",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-value": "skin",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "accordion",
-          "data-control-ui": "accordion",
-          "data-orientation": "vertical",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "accordion",
           "data-control-ui": "accordion",
           "data-orientation": "vertical",
@@ -1009,102 +711,6 @@
     },
     {
       "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 13,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 14,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 15,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 16,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 17,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 18,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 19,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 20,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 21,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 22,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 23,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-foreground"
-      },
-      "anatomy": 24,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
         "text": "--cui-accordion-trigger-hover-foreground"
       },
       "anatomy": 1,
@@ -1196,102 +802,6 @@
         "text": "--cui-accordion-trigger-hover-foreground"
       },
       "anatomy": 12,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 13,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 14,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 15,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 16,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 17,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 18,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 19,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 20,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 21,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 22,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 23,
-      "rendersText": true,
-      "state": true
-    },
-    {
-      "knobs": {
-        "text": "--cui-accordion-trigger-hover-foreground"
-      },
-      "anatomy": 24,
       "rendersText": true,
       "state": true
     }

@@ -179,7 +179,7 @@ test("a screenshot pasted into the prompt is the image the generator reads", asy
   expect(claimed).toBe(true);
 
   const attachment = composer.getByRole("listitem", { name: "screenshot.png" });
-  await expect(attachment.locator("img")).toHaveAttribute("src", /^data:image\/jpeg/);
+  await expect(attachment.locator("img")).toHaveAttribute("src", /^blob:/);
 
   await composer.getByRole("button", { name: "Generate" }).click();
   await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Pasted Clay");

@@ -407,6 +407,8 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-sidebar-inner-background"
+  ],
   "contrast": "/r/contract/sidebar.contrast.json"
 }

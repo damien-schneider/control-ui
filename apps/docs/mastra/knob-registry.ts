@@ -3155,21 +3155,15 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
       {
-        name: "--cui-table-of-contents-highlight-background",
+        name: "--cui-table-of-contents-indicator-foreground",
         syntax: "<color>",
-        defaultValue: "var(--active-fill)",
-        selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
-      },
-      {
-        name: "--cui-table-of-contents-highlight-radius",
-        syntax: "<length-percentage>",
-        defaultValue: "var(--radius-popup-item)",
+        defaultValue: "var(--cui-table-of-contents-trail-stroke)",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
       {
         name: "--cui-table-of-contents-item-active-foreground",
         syntax: "<color>",
-        defaultValue: "var(--foreground)",
+        defaultValue: "var(--primary-text)",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
       {
@@ -3263,15 +3257,15 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
       {
-        name: "--cui-table-of-contents-rail-background",
-        syntax: "<color>",
-        defaultValue: "var(--border)",
-        selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
-      },
-      {
         name: "--cui-table-of-contents-rail-size",
         syntax: "<length>",
         defaultValue: "1px",
+        selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
+      },
+      {
+        name: "--cui-table-of-contents-rail-stroke",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
       {
@@ -3281,21 +3275,15 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
       {
-        name: "--cui-table-of-contents-trail-background",
-        syntax: "<color>",
-        defaultValue: "var(--foreground)",
-        selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
-      },
-      {
-        name: "--cui-table-of-contents-trail-radius",
-        syntax: "<length-percentage>",
-        defaultValue: "var(--cui-table-of-contents-trail-size)",
-        selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
-      },
-      {
         name: "--cui-table-of-contents-trail-size",
         syntax: "<length>",
         defaultValue: "2px",
+        selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
+      },
+      {
+        name: "--cui-table-of-contents-trail-stroke",
+        syntax: "<color>",
+        defaultValue: "var(--primary-text)",
         selector: ':where([data-control-family="table-of-contents"][data-slot="root"])',
       },
     ],

@@ -20,6 +20,15 @@
       },
       {
         "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-activity-kind": "tool",
           "data-activity-name": "active_setup",
           "data-activity-state": "success",
@@ -51,7 +60,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -89,6 +108,207 @@
           "data-control-ui": "sidebar",
           "data-slot": "inset",
           "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-closed": "",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "default",
+          "data-activity-state": "success",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "reasoning",
+          "data-activity-state": "running",
+          "data-closed": "",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "reasoning",
+          "data-activity-state": "running",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -132,6 +352,15 @@
       },
       {
         "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-activity-kind": "tool",
           "data-activity-name": "active_setup",
           "data-activity-state": "success",
@@ -169,6 +398,113 @@
           "data-control-ui": "sidebar",
           "data-slot": "inset",
           "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "tool",
+          "data-activity-name": "read_registry",
+          "data-activity-state": "success",
+          "data-closed": "",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "root",
+          "data-state": "closed"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-slot": "trigger",
+          "data-state": "closed",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-activity-kind": "tool",
+          "data-activity-name": "read_registry",
+          "data-activity-state": "success",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-slot": "root",
+          "data-state": "open"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "data-control-family": "activity",
+          "data-control-ui": "activity",
+          "data-open": "",
+          "data-panel-open": "",
+          "data-slot": "trigger",
+          "data-state": "open",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "wrapper"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -220,6 +556,15 @@
       },
       {
         "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-chrome": "panel",
           "data-control-family": "chat-layout",
           "data-control-ui": "chat-layout",
@@ -263,237 +608,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
         }
       },
       {
         "attributes": {
-          "data-activity-kind": "default",
-          "data-activity-state": "success",
-          "data-closed": "",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
           "data-slot": "root",
-          "data-state": "closed"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "trigger",
-          "data-state": "closed",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "default",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-state": "open",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "reasoning",
-          "data-activity-state": "running",
-          "data-closed": "",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "root",
-          "data-state": "closed"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "trigger",
-          "data-state": "closed",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "reasoning",
-          "data-activity-state": "running",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-state": "open",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "tool",
-          "data-activity-name": "read_registry",
-          "data-activity-state": "success",
-          "data-closed": "",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "root",
-          "data-state": "closed"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-slot": "trigger",
-          "data-state": "closed",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
-        }
-      },
-      {
-        "attributes": {
-          "data-activity-kind": "tool",
-          "data-activity-name": "read_registry",
-          "data-activity-state": "success",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-slot": "root",
-          "data-state": "open"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "activity",
-          "data-control-ui": "activity",
-          "data-open": "",
-          "data-panel-open": "",
-          "data-slot": "trigger",
-          "data-state": "open",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "wrapper"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "sidebar",
-          "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-width": "prose"
         }
       },
       {
@@ -527,7 +652,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -561,7 +696,17 @@
         "attributes": {
           "data-control-family": "sidebar",
           "data-control-ui": "sidebar",
-          "data-slot": "inset"
+          "data-slot": "inset",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "prose"
         }
       },
       {
@@ -715,14 +860,6 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 6,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-activity-row-foreground"
-      },
       "anatomy": 12,
       "rendersText": true,
       "state": false
@@ -731,7 +868,7 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 7,
+      "anatomy": 3,
       "rendersText": true,
       "state": false
     },
@@ -739,7 +876,7 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 8,
+      "anatomy": 4,
       "rendersText": true,
       "state": false
     },
@@ -747,7 +884,7 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 9,
+      "anatomy": 5,
       "rendersText": true,
       "state": false
     },
@@ -763,7 +900,7 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 10,
+      "anatomy": 6,
       "rendersText": true,
       "state": false
     },
@@ -771,7 +908,7 @@
       "knobs": {
         "text": "--cui-activity-row-foreground"
       },
-      "anatomy": 11,
+      "anatomy": 9,
       "rendersText": true,
       "state": false
     },
