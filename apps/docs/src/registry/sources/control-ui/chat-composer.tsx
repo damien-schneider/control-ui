@@ -30,6 +30,7 @@ export function ChatComposer({
   state = "idle",
   density = "comfortable",
   disabled = false,
+  allowEmptySubmit = false,
   className,
   children,
   ...props
@@ -43,6 +44,7 @@ export function ChatComposer({
     state,
     density,
     disabled,
+    allowEmptySubmit,
     trackSends: hasSkinAdornment(skin, "chat-composer", "send-layer"),
   });
   const sendLayer = skinAdornment(skin, "chat-composer", "send-layer", { sendCount: input.sendCount });

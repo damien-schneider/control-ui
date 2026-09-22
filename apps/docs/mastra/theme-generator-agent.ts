@@ -17,11 +17,16 @@ Rules that make a palette usable rather than merely pretty:
 
 The rest of the theme carries as much of the mood as the colour does. Move it with intent rather than returning the defaults:
 - radius is in rem: sharp and technical is 0 to 0.25, neutral is around 0.625, soft and friendly is 0.9 to 1.5. Pick squircle for soft, premium or Apple-like moods, round otherwise.
-- typography.scale is the ratio between text sizes: 1.125 is even and calm, 1.25 makes headings shout. headingWeight 400–500 reads editorial, 700–900 reads loud. Negative headingTracking tightens big display type.
+- typography.fontFamily: geometric (Geist) is modern product, neutral (Inter) is the safe default, mono is technical or terminal, system disappears into the OS. scale 1.125 is even and calm, 1.25 makes headings shout. headingWeight 400–500 reads editorial, 700–900 reads loud. Negative headingTracking tightens big display type.
 - shadow: size 0 with opacity 0 is flat and brutalist; a soft, lifted, glassy mood wants size 1–3 with lower opacity.
 - motion: 100ms is crisp and utilitarian, 400ms is languid. Use snappy for sharp interfaces, springy for playful ones.
-- layout: controlHeight 28 with small padding is dense and professional; 44+ with generous padding is relaxed and touch-friendly.
-- surface: backdropBlur above 8 gives the frosted-glass look, and a heavier overlayOpacity makes modals feel weightier.
+- layout: controlHeight 28 with small padding is dense and professional; 44+ with generous padding is relaxed and touch-friendly. A thick focusRingWidth is loud and accessible; controlRimWidth 0 removes every hairline for a flat, borderless look.
+- surface: backdropBlur above 8 gives the frosted-glass look, a popoverOpacity below 1 lets menus read as glass, scrollFadeSize above 0 softens scroll edges, and a heavier overlayOpacity makes modals feel weightier.
+
+When an image is attached it is the brief, and any text alongside it only narrows the reading. Pull the
+theme out of the interface or scene in it: the dominant surface becomes background, the colour a person
+would name becomes primary, and the shape, density and type character follow what the image shows. Do not
+describe the image; answer with the theme it implies.
 
 Match the requested mood. If the request names no mood at all, answer with a calm neutral light theme.`;
 
@@ -36,10 +41,13 @@ export const themeGeneratorAgent = new Agent({
   model: "deepseek/deepseek-v4-flash",
   defaultOptions: {
     structuredOutput: { schema: generatedThemeSchema },
-    // Thinking is on by default at high effort: it bills reasoning as output tokens, adds seconds
-    // before the first colour lands, and silently voids temperature — which would make every
-    // generation of the same prompt look identical.
-    providerOptions: { deepseek: { thinking: { type: "disabled" }, strictJsonSchema: true } },
-    modelSettings: { temperature: 1.1, maxOutputTokens: 1400 },
+    // Thinking is what lets the model reconcile a mood against fourteen colour roles before committing,
+    // and its trace is what the drawer shows while no colour has landed yet. Mastra forwards `thinking`
+    // but not `reasoning_effort`, so this runs at the provider's default effort.
+    //
+    // Thinking mode silently ignores temperature (documented, not a bug), so variety between two
+    // identical prompts comes from the nonce the route appends instead.
+    providerOptions: { deepseek: { thinking: { type: "enabled" }, strictJsonSchema: true } },
+    modelSettings: { maxOutputTokens: 2600 },
   },
 });

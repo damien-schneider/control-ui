@@ -4,7 +4,10 @@ import { renderToStaticMarkup } from "react-dom/server";
 import type { ChatComposerProps } from "./use-chat-composer";
 import { useChatComposer } from "./use-chat-composer";
 
-type ComposerOptions = Pick<ChatComposerProps, "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled">;
+type ComposerOptions = Pick<
+  ChatComposerProps,
+  "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled" | "allowEmptySubmit"
+>;
 
 function renderComposer(options: ComposerOptions) {
   let composer: ReturnType<typeof useChatComposer> | undefined;
@@ -48,6 +51,20 @@ describe("useChatComposer", () => {
     renderComposerSubmit({ defaultValue: "   ", onSubmit })();
     renderComposerSubmit({ defaultValue: "hi", state: "submitting", onSubmit })();
     expect(submitted).toEqual(["hello"]);
+  });
+
+  // Composers that carry an attachment or a recording have something to send with no text at all.
+  test("lets an empty message send only when the composer allows it", () => {
+    const submitted: string[] = [];
+    const onSubmit = ({ value }: { value: string }) => {
+      submitted.push(value);
+    };
+
+    renderComposerSubmit({ defaultValue: "", allowEmptySubmit: true, onSubmit })();
+    expect(submitted).toEqual([""]);
+
+    renderComposerSubmit({ defaultValue: "", allowEmptySubmit: true, state: "submitting", onSubmit })();
+    expect(submitted).toEqual([""]);
   });
 
   test("sends on Enter and leaves Shift+Enter, IME composition, and other keys to the textarea", () => {

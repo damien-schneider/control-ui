@@ -19,6 +19,8 @@ export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit" | "style
   state?: "idle" | "submitting" | "disabled";
   density?: ChatDensity;
   disabled?: boolean;
+  /** Let an empty message send, for composers where an attachment or recording carries the turn. */
+  allowEmptySubmit?: boolean;
   style?: CSSProperties & ChatComposerKnobStyle;
 };
 
@@ -57,8 +59,12 @@ export function useChatComposer({
   state = "idle",
   density = "comfortable",
   disabled = false,
+  allowEmptySubmit = false,
   trackSends = false,
-}: Pick<ChatComposerProps, "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled"> & {
+}: Pick<
+  ChatComposerProps,
+  "value" | "defaultValue" | "onValueChange" | "onSubmit" | "state" | "density" | "disabled" | "allowEmptySubmit"
+> & {
   /** Count successful submits — only enabled when something reads counter (send-layer anchor), so idle apps pay no extra state update. */
   trackSends?: boolean;
 }) {
@@ -66,7 +72,7 @@ export function useChatComposer({
   const [sendCount, setSendCount] = useState(0);
   const normalizedValue = inputValue.trim();
   const isDisabled = disabled || state === "disabled" || state === "submitting";
-  const canSubmit = normalizedValue.length > 0 && !isDisabled;
+  const canSubmit = (normalizedValue.length > 0 || allowEmptySubmit) && !isDisabled;
   const isCompact = density === "compact";
 
   function clear() {

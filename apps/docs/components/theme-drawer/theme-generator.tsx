@@ -1,18 +1,8 @@
 "use client";
 
+import { PaperclipIcon } from "lucide-react";
 import { useRef, useState } from "react";
 
-import {
-  Activity,
-  ActivityContent,
-  ActivityDetail,
-  ActivityDetailContent,
-  ActivityDetailLabel,
-  ActivityIcon,
-  ActivityStatus,
-  ActivityTitle,
-  ActivityTrigger,
-} from "@/components/control-ui/activity";
 import {
   ChatComposer,
   ChatComposerShell,
@@ -21,41 +11,32 @@ import {
   ChatComposerToolbar,
   ChatComposerTools,
 } from "@/components/control-ui/chat-composer";
-import { ChatTurn } from "@/components/control-ui/chat-layout";
-import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
+import { ChatComposerAttachment, ChatComposerAttachments } from "@/components/control-ui/chat-composer-attachment";
 import { Button } from "@/components/control-ui/ui/button";
 import type { ContrastAdjustment } from "@/mastra/theme-generator-contract";
-import { THEME_CONTRACT, type ThemeContractGroup } from "@/src/registry/lib/theme-contract";
-import { TOKEN_GROUP_ORDER, TOKEN_GROUP_TITLES } from "./theme-categories";
+import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
 import { useThemeRuntime } from "./theme-runtime-context";
 
-type Generation = {
-  id: string;
-  prompt: string;
-  state: "running" | "success" | "error" | "stopped";
-  paintedTokens: string[];
-  paletteName: string | null;
-  adjustments: ContrastAdjustment[];
-  error: string | null;
-};
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"] as const;
 
-const GROUP_BY_TOKEN = new Map(THEME_CONTRACT.map((token) => [token.name, token.group]));
+type ThemeImage = { mediaType: (typeof ACCEPTED_IMAGE_TYPES)[number]; data: string; name: string; url: string };
 
-// A finished theme paints ~53 tokens across six groups, so naming each one would bury the signal.
-// Counting them per group still shows the work landing group by group as the model streams.
-function paintedSummary(paintedTokens: readonly string[]) {
-  const counts = new Map<ThemeContractGroup, number>();
-  for (const token of paintedTokens) {
-    const group = GROUP_BY_TOKEN.get(token);
-    if (group) counts.set(group, (counts.get(group) ?? 0) + 1);
-  }
+function isAcceptedImage(type: string): type is ThemeImage["mediaType"] {
+  return ACCEPTED_IMAGE_TYPES.some((accepted) => accepted === type);
+}
 
-  return TOKEN_GROUP_ORDER.filter((group) => counts.has(group))
-    .map((group) => `${TOKEN_GROUP_TITLES[group]} ${counts.get(group)}`)
-    .join(" · ");
+async function readThemeImage(file: File): Promise<ThemeImage | null> {
+  if (!isAcceptedImage(file.type)) return null;
+
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+
+  return { mediaType: file.type, data: btoa(binary), name: file.name, url: URL.createObjectURL(file) };
 }
 
 type StreamLine =
+  | { type: "reasoning"; text: string }
   | { type: "tokens"; tokens: Record<string, string> }
   | { type: "complete"; name: string; tokens: Record<string, string>; adjustments: ContrastAdjustment[] }
   | { type: "error"; error: string };
@@ -77,11 +58,11 @@ async function* readLines(response: Response): AsyncGenerator<StreamLine> {
   }
 }
 
-async function openGenerationStream(prompt: string, appearance: "light" | "dark", signal: AbortSignal) {
+async function openGenerationStream(body: unknown, signal: AbortSignal) {
   const response = await fetch("/api/theme", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ prompt, appearance }),
+    body: JSON.stringify(body),
     signal,
   });
   if (response.ok) return response;
@@ -91,41 +72,67 @@ async function openGenerationStream(prompt: string, appearance: "light" | "dark"
 }
 
 function applyChunk(generation: Generation, chunk: Exclude<StreamLine, { type: "error" }>): Generation {
-  const paintedTokens = Object.keys(chunk.tokens).filter((token) => GROUP_BY_TOKEN.has(token));
+  if (chunk.type === "reasoning") return { ...generation, reasoning: generation.reasoning + chunk.text };
+
+  const paintedTokens = paintedTokensOf(chunk.tokens);
   if (chunk.type !== "complete") return { ...generation, paintedTokens };
   return { ...generation, paintedTokens, state: "success", paletteName: chunk.name, adjustments: chunk.adjustments };
+}
+
+function startedGeneration(id: string, prompt: string, attachment: ThemeImage | null): Generation {
+  return {
+    id,
+    prompt,
+    imageName: attachment?.name ?? null,
+    reasoning: "",
+    state: "running",
+    paintedTokens: [],
+    paletteName: null,
+    adjustments: [],
+    error: null,
+  };
 }
 
 export function ThemeGenerator() {
   const { applyGeneratedTheme, isDark } = useThemeRuntime();
   const [generations, setGenerations] = useState<Generation[]>([]);
+  const [image, setImage] = useState<ThemeImage | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   function updateGeneration(id: string, update: (generation: Generation) => Generation) {
     setGenerations((current) => current.map((generation) => (generation.id === id ? update(generation) : generation)));
   }
 
-  async function generate(prompt: string) {
+  async function runGeneration(id: string, prompt: string, attachment: ThemeImage | null, signal: AbortSignal) {
+    const response = await openGenerationStream(
+      {
+        prompt,
+        appearance: isDark ? "dark" : "light",
+        image: attachment ? { mediaType: attachment.mediaType, data: attachment.data } : undefined,
+      },
+      signal,
+    );
+
+    for await (const chunk of readLines(response)) {
+      if (chunk.type === "error") throw new Error(chunk.error);
+
+      if (chunk.type !== "reasoning") applyGeneratedTheme(chunk.tokens);
+      updateGeneration(id, (generation) => applyChunk(generation, chunk));
+    }
+  }
+
+  async function generate(prompt: string, attachment: ThemeImage | null) {
     const id = crypto.randomUUID();
-    setGenerations((current) => [
-      ...current,
-      { id, prompt, state: "running", paintedTokens: [], paletteName: null, adjustments: [], error: null },
-    ]);
+    setGenerations((current) => [...current, startedGeneration(id, prompt, attachment)]);
 
     const controller = new AbortController();
     abortRef.current = controller;
     setIsRunning(true);
 
     try {
-      const response = await openGenerationStream(prompt, isDark ? "dark" : "light", controller.signal);
-
-      for await (const chunk of readLines(response)) {
-        if (chunk.type === "error") throw new Error(chunk.error);
-
-        applyGeneratedTheme(chunk.tokens);
-        updateGeneration(id, (generation) => applyChunk(generation, chunk));
-      }
+      await runGeneration(id, prompt, attachment, controller.signal);
     } catch (error) {
       const stopped = error instanceof DOMException && error.name === "AbortError";
       const message = error instanceof Error ? error.message : "Generation failed.";
@@ -151,71 +158,34 @@ export function ThemeGenerator() {
     <div className="flex min-w-0 flex-col gap-3">
       <div className="flex flex-col gap-2">
         {generations.map((generation) => (
-          <div key={generation.id} className="flex flex-col gap-2">
-            <ChatTurn from="user">
-              <ChatMessage from="user">
-                <ChatMessageRow>
-                  <ChatMessageBody>
-                    <ChatMessageContent>{generation.prompt}</ChatMessageContent>
-                  </ChatMessageBody>
-                </ChatMessageRow>
-              </ChatMessage>
-            </ChatTurn>
-
-            <Activity
-              kind="tool"
-              name={generation.paletteName ?? "Painting tokens"}
-              state={generation.state === "stopped" ? "pending" : generation.state}
-              statusLabel={generation.state === "stopped" ? "Stopped" : undefined}
-            >
-              <ActivityTrigger>
-                <ActivityIcon />
-                <ActivityTitle />
-                <ActivityStatus />
-              </ActivityTrigger>
-              <ActivityContent>
-                <ActivityDetail>
-                  <ActivityDetailLabel>Applied</ActivityDetailLabel>
-                  <ActivityDetailContent>
-                    {generation.paintedTokens.length === 0 ? "Waiting for the first token…" : paintedSummary(generation.paintedTokens)}
-                  </ActivityDetailContent>
-                </ActivityDetail>
-                {generation.adjustments.length > 0 ? (
-                  <ActivityDetail>
-                    <ActivityDetailLabel>Corrected for AA contrast</ActivityDetailLabel>
-                    <ActivityDetailContent>
-                      {generation.adjustments
-                        .map(
-                          (adjustment) =>
-                            `${adjustment.role}: L ${adjustment.from.L.toFixed(2)} → ${adjustment.to.L.toFixed(2)}${adjustment.to.C === 0 && adjustment.from.C > 0 ? ", chroma dropped" : ""} (${adjustment.ratio.toFixed(1)}:1)`,
-                        )
-                        .join("\n")}
-                    </ActivityDetailContent>
-                  </ActivityDetail>
-                ) : null}
-                {generation.error ? (
-                  <ActivityDetail>
-                    <ActivityDetailLabel>Error</ActivityDetailLabel>
-                    <ActivityDetailContent className="text-destructive-text">{generation.error}</ActivityDetailContent>
-                  </ActivityDetail>
-                ) : null}
-              </ActivityContent>
-            </Activity>
-          </div>
+          <ThemeGeneration key={generation.id} generation={generation} />
         ))}
       </div>
 
       <ChatComposer
         state={isRunning ? "submitting" : "idle"}
+        allowEmptySubmit={image !== null}
         onSubmit={async ({ value, clear }) => {
+          if (!value.trim() && !image) return;
           clear();
-          await generate(value);
+          setImage(null);
+          await generate(value, image);
         }}
       >
         <ChatComposerShell>
-          <ChatComposerTextarea placeholder="Describe a mood — warm brutalist terminal, calm clinical dashboard…" />
+          {image ? (
+            <ChatComposerAttachments>
+              <ChatComposerAttachment name={image.name} type={image.mediaType} previewUrl={image.url} onRemove={() => setImage(null)} />
+            </ChatComposerAttachments>
+          ) : null}
+          <ChatComposerTextarea placeholder="Describe a mood, or attach a screenshot to match…" />
           <ChatComposerToolbar>
-            <ChatComposerTools>Writes straight into the token editor</ChatComposerTools>
+            <ChatComposerTools>
+              <Button type="button" size="xs" variant="quiet" onClick={() => fileRef.current?.click()}>
+                <PaperclipIcon />
+                Image
+              </Button>
+            </ChatComposerTools>
             {isRunning ? (
               <Button type="button" size="xs" variant="quiet" onClick={() => abortRef.current?.abort()}>
                 Stop
@@ -226,6 +196,18 @@ export function ThemeGenerator() {
           </ChatComposerToolbar>
         </ChatComposerShell>
       </ChatComposer>
+
+      <input
+        ref={fileRef}
+        type="file"
+        accept={ACCEPTED_IMAGE_TYPES.join(",")}
+        hidden
+        onChange={async (event) => {
+          const file = event.target.files?.[0];
+          event.target.value = "";
+          if (file) setImage(await readThemeImage(file));
+        }}
+      />
     </div>
   );
 }

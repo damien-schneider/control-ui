@@ -10,11 +10,11 @@ const palette = {
   name: "Ember Terminal",
   radius: 0,
   cornerShape: "round",
-  typography: { baseSize: 0.8125, scale: 1.2, headingWeight: 700, headingTracking: -0.03 },
+  typography: { fontFamily: "mono", baseSize: 0.8125, scale: 1.2, headingWeight: 700, headingTracking: -0.03 },
   shadow: { size: 0, opacity: 0, y: 0 },
   motion: { baseDuration: 120, easing: "snappy" },
-  layout: { controlHeight: 30, paddingX: 12, paddingY: 6 },
-  surface: { overlayOpacity: 0.4, backdropBlur: 0 },
+  layout: { controlHeight: 30, paddingX: 12, paddingY: 6, focusRingWidth: 3, controlRimWidth: 0 },
+  surface: { overlayOpacity: 0.4, backdropBlur: 0, popoverOpacity: 0.9, scrollFadeSize: 0 },
   colors: {
     canvas: { L: 0.16, C: 0.012, H: 60 },
     background: { L: 0.2, C: 0.014, H: 60 },
@@ -42,6 +42,9 @@ const streamCannedPalette = () => ({
     chunkDelayInMs: 1,
     chunks: [
       { type: "stream-start" as const, warnings: [] },
+      { type: "reasoning-start" as const, id: "theme-thinking" },
+      { type: "reasoning-delta" as const, id: "theme-thinking", delta: "Amber on near-black reads as a terminal." },
+      { type: "reasoning-end" as const, id: "theme-thinking" },
       { type: "text-start" as const, id: textPartId },
       ...jsonDeltas.map((delta) => ({ type: "text-delta" as const, id: textPartId, delta })),
       { type: "text-end" as const, id: textPartId },
@@ -54,13 +57,18 @@ const streamCannedPalette = () => ({
   }),
 });
 
+let lastPrompt: unknown;
+
 const cannedModel: MastraLanguageModel = {
   specificationVersion: "v2",
   provider: "theme-generator-test",
   modelId: "canned",
   supportedUrls: {},
   doGenerate: async () => streamCannedPalette(),
-  doStream: async () => streamCannedPalette(),
+  doStream: async (options) => {
+    lastPrompt = options.prompt;
+    return streamCannedPalette();
+  },
 };
 
 mock.module("@/mastra/theme-generator-agent", () => ({
@@ -73,10 +81,14 @@ mock.module("@/mastra/theme-generator-agent", () => ({
   }),
 }));
 
+mock.module("@/mastra/theme-image-brief", () => ({
+  readImageBrief: async () => "A cream surface with near-black text and one terracotta accent, softly rounded and airy.",
+}));
+
 // Static import would bind the real agent before mock.module replaces it.
 const { POST } = await import("./route");
 
-type StreamLine = { type: string; tokens?: Record<string, string>; name?: string; error?: string };
+type StreamLine = { type: string; tokens?: Record<string, string>; name?: string; error?: string; text?: string };
 
 async function generate(prompt: unknown, cookie?: string) {
   return POST(
@@ -161,4 +173,36 @@ test("reports an unconfigured deployment instead of failing inside the stream", 
   const response = await generate({ prompt: "calm", appearance: "light" });
   expect(response.status).toBe(503);
   await expect(response.json()).resolves.toMatchObject({ error: expect.stringContaining("not configured") });
+});
+
+test("streams the reasoning trace before the first token lands", async () => {
+  const lines = await readLines(await generate({ prompt: "warm brutalist terminal", appearance: "dark" }));
+  const reasoning = lines.findIndex((line) => line.type === "reasoning");
+
+  expect(reasoning).toBeGreaterThanOrEqual(0);
+  expect(lines[reasoning]?.text).toContain("terminal");
+  expect(reasoning).toBeLessThan(lines.findIndex((line) => line.type === "tokens"));
+});
+
+// The theme model never sees the image, so the reading has to reach it — and the user, who otherwise
+// could not tell why a screenshot produced the theme it did.
+test("writes the theme from the image reading and shows that reading", async () => {
+  const lines = await readLines(
+    await generate({ prompt: "", appearance: "light", image: { mediaType: "image/png", data: "iVBORw0KGgo=" } }),
+  );
+
+  expect(lines.find((line) => line.type === "reasoning")?.text).toContain("terracotta");
+  expect(JSON.stringify(lastPrompt)).toContain("terracotta");
+});
+
+test("varies the brief between two runs of the same prompt", async () => {
+  await readLines(await generate({ prompt: "calm", appearance: "light" }));
+  const first = JSON.stringify(lastPrompt);
+  await readLines(await generate({ prompt: "calm", appearance: "light" }));
+
+  expect(JSON.stringify(lastPrompt)).not.toBe(first);
+});
+
+test("rejects a request with neither a prompt nor an image", async () => {
+  expect((await generate({ prompt: "  ", appearance: "light" })).status).toBe(400);
 });

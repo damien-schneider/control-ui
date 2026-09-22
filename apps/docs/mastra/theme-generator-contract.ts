@@ -42,6 +42,9 @@ export const generatedThemeSchema = z.object({
   radius: z.number().min(0).max(1.75).describe("Base corner radius in rem; 0 is square, 0.625 is the default"),
   cornerShape: z.enum(["round", "squircle"]).describe("round is a normal corner, squircle is the softer Apple-style curve"),
   typography: z.object({
+    fontFamily: z
+      .enum(["geometric", "neutral", "mono", "system"])
+      .describe("Typeface character: geometric is Geist, neutral is Inter, mono is JetBrains Mono, system is the OS default"),
     baseSize: z.number().min(0.75).max(1.125).describe("Body text size in rem; 0.875 is the default"),
     scale: z.number().min(1.05).max(1.25).describe("Ratio between type steps; 1.125 is the default, 1.25 is dramatic"),
     headingWeight: z.number().min(400).max(900).describe("Font weight for headings; 600 is the default"),
@@ -60,10 +63,14 @@ export const generatedThemeSchema = z.object({
     controlHeight: z.number().min(26).max(56).describe("Height of buttons and inputs in px; 36 is the default"),
     paddingX: z.number().min(6).max(32).describe("Horizontal padding inside controls in px; 16 is the default"),
     paddingY: z.number().min(2).max(20).describe("Vertical padding inside controls in px; 10 is the default"),
+    focusRingWidth: z.number().min(1).max(4).describe("Focus ring thickness in px; 2 is the default"),
+    controlRimWidth: z.number().min(0).max(2).describe("Hairline around controls in px; 1 is the default, 0 removes it"),
   }),
   surface: z.object({
     overlayOpacity: z.number().min(0).max(0.9).describe("Darkness of the scrim behind modals; 0.2 is the default"),
     backdropBlur: z.number().min(0).max(24).describe("Blur behind popovers and overlays in px; 0 is the default"),
+    popoverOpacity: z.number().min(0.5).max(1).describe("Opacity of popover surfaces; 1 is solid, below 1 reads as glass"),
+    scrollFadeSize: z.number().min(0).max(48).describe("Height of the fade at scroll edges in px; 0 is a hard edge"),
   }),
 });
 
@@ -162,6 +169,9 @@ function tokensFromColors(colors: Partial<Record<ColorRole, Oklch>>): TokenValue
   }
   if (colors.destructive) tokens["--destructive-foreground"] = cssColor(destructiveForeground(colors.destructive));
   if (colors.border) tokens["--input"] = cssColor(colors.border);
+  // A grey shadow under a warm palette reads as dirt. Keep it dark and mostly neutral, but carry the
+  // brand hue so depth belongs to the theme instead of sitting on top of it.
+  if (colors.primary) tokens["--shadow-color"] = cssColor({ L: 0.22, C: Math.min(colors.primary.C * 0.25, 0.05), H: colors.primary.H });
 
   return tokens;
 }
@@ -183,6 +193,15 @@ const TYPE_STEPS = [
 
 const HEADING_TOKENS = ["--text-heading-4", "--text-heading-3", "--text-heading-2", "--text-heading-1", "--text-display"] as const;
 
+// The only families the app actually loads (app/layout.tsx) plus the stock system stack. A family the
+// document never served would silently fall back to the current font, which looks like nothing happened.
+const FONT_STACKS: Record<GeneratedTheme["typography"]["fontFamily"], string> = {
+  geometric: "var(--font-geist-sans)",
+  neutral: "var(--font-inter)",
+  mono: "var(--font-jetbrains-mono)",
+  system: 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif',
+};
+
 const EASING_CURVES: Record<GeneratedTheme["motion"]["easing"], string> = {
   standard: "cubic-bezier(0.2, 0, 0, 1)",
   snappy: "cubic-bezier(0.3, 0, 0.1, 1)",
@@ -200,13 +219,19 @@ const MIN_REM = 0.625;
 const MAX_REM = 5;
 const STOCK_SCALE = 1.125;
 
-function typographyTokens({ baseSize, scale, headingWeight, headingTracking }: GeneratedTheme["typography"]): TokenValues {
-  const tokens: TokenValues = {};
+function typographyTokens({ fontFamily, baseSize, scale, headingWeight, headingTracking }: GeneratedTheme["typography"]): TokenValues {
+  const tokens: TokenValues = { "--font-sans": FONT_STACKS[fontFamily] };
   for (const [name, step] of TYPE_STEPS) {
     const size = baseSize * (step < 0 ? Math.min(scale, STOCK_SCALE) : scale) ** step;
     tokens[name] = `${round(Math.min(Math.max(size, MIN_REM), MAX_REM), 4)}rem`;
   }
-  for (const name of HEADING_TOKENS) tokens[`${name}--font-weight`] = `${Math.round(headingWeight)}`;
+  for (const [name, step] of TYPE_STEPS) {
+    if (!HEADING_TOKENS.some((heading) => heading === name)) continue;
+    tokens[`${name}--font-weight`] = `${Math.round(headingWeight)}`;
+    // Line height is unitless, so it only needs to tighten as the rung climbs; at the stock scale this
+    // lands within 0.05 of the hand-tuned defaults.
+    tokens[`${name}--line-height`] = `${round(Math.max(1.45 - step * 0.05, 1.05), 3)}`;
+  }
 
   tokens["--text-heading-1--letter-spacing"] = `${round(headingTracking, 4)}em`;
   tokens["--text-display--letter-spacing"] = `${round(headingTracking * 1.4, 4)}em`;
@@ -239,15 +264,22 @@ const GROUP_TOKENS = {
     "--ease-standard": EASING_CURVES[easing],
     "--ease-emphasized": EASING_CURVES[easing === "standard" ? "springy" : easing],
   })),
-  layout: groupTokens(layout, ({ controlHeight, paddingX, paddingY }) => ({
+  layout: groupTokens(layout, ({ controlHeight, paddingX, paddingY, focusRingWidth, controlRimWidth }) => ({
     "--control-h": `${Math.round(controlHeight)}px`,
     "--padding-x": `${Math.round(paddingX)}px`,
     "--padding-y": `${Math.round(paddingY)}px`,
+    "--focus-ring-width": `${Math.round(focusRingWidth)}px`,
+    "--control-rim-width": `${round(controlRimWidth, 2)}px`,
+    // Popover padding is the inner gutter of the same control language, so it tracks vertical padding
+    // rather than being a knob the model can set out of step with it.
+    "--popover-padding": `${round(Math.max(paddingY * 0.25, 2) / 16, 4)}rem`,
   })),
-  surface: groupTokens(surface, ({ overlayOpacity, backdropBlur }) => ({
+  surface: groupTokens(surface, ({ overlayOpacity, backdropBlur, popoverOpacity, scrollFadeSize }) => ({
     "--overlay-opacity": `${round(overlayOpacity, 3)}`,
     "--backdrop-blur-overlay": `${Math.round(backdropBlur)}px`,
     "--backdrop-blur-popover": `${Math.round(backdropBlur)}px`,
+    "--popover-opacity": `${round(popoverOpacity, 3)}`,
+    "--scroll-fade-size": `${Math.round(scrollFadeSize)}px`,
   })),
 };
 

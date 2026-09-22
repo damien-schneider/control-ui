@@ -9,11 +9,11 @@ const readable: GeneratedTheme = {
   name: "Readable",
   radius: 0.625,
   cornerShape: "round",
-  typography: { baseSize: 0.875, scale: 1.125, headingWeight: 600, headingTracking: -0.018 },
+  typography: { fontFamily: "neutral", baseSize: 0.875, scale: 1.125, headingWeight: 600, headingTracking: -0.018 },
   shadow: { size: 0, opacity: 1, y: 1 },
   motion: { baseDuration: 200, easing: "standard" },
-  layout: { controlHeight: 36, paddingX: 16, paddingY: 10 },
-  surface: { overlayOpacity: 0.2, backdropBlur: 0 },
+  layout: { controlHeight: 36, paddingX: 16, paddingY: 10, focusRingWidth: 2, controlRimWidth: 1 },
+  surface: { overlayOpacity: 0.2, backdropBlur: 0, popoverOpacity: 1, scrollFadeSize: 24 },
   colors: {
     canvas: flat(0.98, 0.004, 250),
     background: flat(1, 0, 0),
@@ -135,13 +135,38 @@ describe("toTokenValues", () => {
   test("keeps every rung legible at the loudest scale the schema allows", () => {
     const { tokens } = toTokenValues({
       ...readable,
-      typography: { baseSize: 0.875, scale: 1.25, headingWeight: 800, headingTracking: -0.04 },
+      typography: { fontFamily: "geometric", baseSize: 0.875, scale: 1.25, headingWeight: 800, headingTracking: -0.04 },
     });
     const rem = (name: string) => Number.parseFloat(tokens[name]);
 
     expect(rem("--text-micro")).toBeGreaterThanOrEqual(0.625);
     expect(rem("--text-caption")).toBeGreaterThanOrEqual(0.625);
     expect(rem("--text-display")).toBeLessThanOrEqual(5);
+  });
+
+  // A family the document never loaded falls back to the current font, so the theme would look unchanged.
+  test("resolves the typeface to a family the app actually serves", () => {
+    const family = (fontFamily: "geometric" | "neutral" | "mono" | "system") =>
+      toTokenValues({ ...readable, typography: { ...readable.typography, fontFamily } }).tokens["--font-sans"];
+
+    expect(family("geometric")).toBe("var(--font-geist-sans)");
+    expect(family("mono")).toBe("var(--font-jetbrains-mono)");
+    expect(family("system")).toContain("system-ui");
+  });
+
+  test("tightens heading line height as the rung climbs", () => {
+    const { tokens } = toTokenValues(readable);
+    const lineHeight = (name: string) => Number(tokens[`${name}--line-height`]);
+
+    expect(lineHeight("--text-heading-4")).toBeGreaterThan(lineHeight("--text-heading-1"));
+    expect(lineHeight("--text-display")).toBeGreaterThanOrEqual(1.05);
+  });
+
+  test("tints the shadow with the brand hue instead of leaving it grey", () => {
+    const { tokens } = toTokenValues({ ...readable, colors: { ...readable.colors, primary: { L: 0.6, C: 0.2, H: 300 } } });
+
+    expect(tokens["--shadow-color"]).toContain("300");
+    expect(Number.parseFloat(tokens["--shadow-color"].replace("oklch(", ""))).toBeLessThan(0.3);
   });
 
   test("derives the motion ramp and easing from one duration", () => {

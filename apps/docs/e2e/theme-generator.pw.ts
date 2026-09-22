@@ -89,3 +89,29 @@ test("a refused generation settles as failed instead of spinning", async ({ page
   await expect(activity).toContainText("Failed");
   await expect(composer.getByRole("button", { name: "Generate" })).toBeVisible();
 });
+
+// An attached screenshot is a complete brief on its own, and the composer's default rule — send only
+// what has text — silently disabled Generate until a mood was typed as well.
+test("an attached image alone is enough to generate", async ({ page }) => {
+  await page.route("**/api/theme", async (route) => {
+    const lines = [
+      { type: "reasoning", text: "Reading the image: a cream surface with one terracotta accent.\n\n" },
+      { type: "complete", name: "Terracotta Clay", tokens: { "--canvas": CANVAS }, adjustments: [] },
+    ];
+    await route.fulfill({ status: 200, contentType: "application/x-ndjson", body: lines.map((line) => JSON.stringify(line)).join("\n") });
+  });
+
+  const composer = await openGenerator(page);
+  await page.locator('input[type="file"]').setInputFiles("e2e/fixtures/brief.png");
+  await expect(composer.locator('[data-control-ui="chat-composer-attachment"][data-slot="root"]')).toBeVisible();
+
+  await composer.getByRole("button", { name: "Generate" }).click();
+
+  // The reading the theme was written from is the only account the user gets of why this palette.
+  const thinking = page.locator('[data-control-ui="activity"][data-slot="root"]').first();
+  await expect(thinking).toContainText("Thinking");
+  await thinking.getByRole("button").first().click();
+  await expect(thinking).toContainText("terracotta accent");
+
+  await expect(page.locator('[data-control-ui="activity"][data-slot="root"]').last()).toContainText("Terracotta Clay");
+});
