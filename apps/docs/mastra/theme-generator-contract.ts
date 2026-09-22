@@ -193,12 +193,14 @@ const TYPE_STEPS = [
 
 const HEADING_TOKENS = ["--text-heading-4", "--text-heading-3", "--text-heading-2", "--text-heading-1", "--text-display"] as const;
 
-// The only families the app actually loads (app/layout.tsx) plus the stock system stack. A family the
-// document never served would silently fall back to the current font, which looks like nothing happened.
+// The only families the app actually loads (app/layout.tsx), plus the stock system stack. The named face
+// sits inside the var() fallback, not after it: in an app without these next/font variables, an undefined
+// `var(--font-geist-sans), "Geist"` is invalid at computed-value time, so the whole declaration is thrown
+// away and the rest of the list never gets a turn.
 const FONT_STACKS: Record<GeneratedTheme["typography"]["fontFamily"], string> = {
-  geometric: "var(--font-geist-sans)",
-  neutral: "var(--font-inter)",
-  mono: "var(--font-jetbrains-mono)",
+  geometric: 'var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif',
+  neutral: 'var(--font-inter, "Inter"), ui-sans-serif, system-ui, sans-serif',
+  mono: 'var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, SFMono-Regular, monospace',
   system: 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif',
 };
 

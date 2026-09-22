@@ -48,6 +48,9 @@ export const themeGeneratorAgent = new Agent({
     // Thinking mode silently ignores temperature (documented, not a bug), so variety between two
     // identical prompts comes from the nonce the route appends instead.
     providerOptions: { deepseek: { thinking: { type: "enabled" }, strictJsonSchema: true } },
-    modelSettings: { maxOutputTokens: 2600 },
+    // Reasoning bills as output tokens, so it shares this budget with the theme JSON. A trace can run
+    // past 2000 tokens on a vague mood, and the object is ~800: too tight a cap truncates the answer
+    // mid-object, which surfaces as a schema error on the groups that never arrived.
+    modelSettings: { maxOutputTokens: 6000 },
   },
 });

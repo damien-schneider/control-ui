@@ -60,6 +60,9 @@ describe("useChatComposer", () => {
       submitted.push(value);
     };
 
+    renderComposerSubmit({ defaultValue: "", allowEmptySubmit: false, onSubmit })();
+    expect(submitted).toEqual([]);
+
     renderComposerSubmit({ defaultValue: "", allowEmptySubmit: true, onSubmit })();
     expect(submitted).toEqual([""]);
 

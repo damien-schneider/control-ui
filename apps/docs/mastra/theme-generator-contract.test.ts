@@ -149,9 +149,16 @@ describe("toTokenValues", () => {
     const family = (fontFamily: "geometric" | "neutral" | "mono" | "system") =>
       toTokenValues({ ...readable, typography: { ...readable.typography, fontFamily } }).tokens["--font-sans"];
 
-    expect(family("geometric")).toBe("var(--font-geist-sans)");
-    expect(family("mono")).toBe("var(--font-jetbrains-mono)");
+    expect(family("geometric")).toContain("--font-geist-sans");
+    expect(family("mono")).toContain("JetBrains Mono");
     expect(family("system")).toContain("system-ui");
+
+    for (const choice of ["geometric", "neutral", "mono", "system"] as const) {
+      // An undefined var() with no fallback of its own voids the whole declaration, taking the rest of
+      // the list with it, so a named face after the comma is the only thing a copied theme can land on.
+      expect(family(choice).replace(/var\(--[\w-]+, /g, "")).not.toContain("var(");
+      expect(family(choice)).toContain("ui-");
+    }
   });
 
   test("tightens heading line height as the rung climbs", () => {

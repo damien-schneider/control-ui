@@ -7,9 +7,10 @@ import { takeGeneration } from "./generation-limit";
 
 export const maxDuration = 60;
 
-// A data URL is the whole image inline, so the cap is the real abuse surface here: a 240-character mood
-// costs nothing to validate, an unbounded upload costs bandwidth and tokens on every retry.
-const MAX_IMAGE_BYTES = 4_000_000;
+// The image arrives inline as base64, so this bounds the request body itself. The client downscales to
+// 1024px first, which lands well under it; the cap only has to stay below Vercel's 4.5 MB body limit,
+// past which the platform rejects the request and no handler ever gets to explain why.
+const MAX_IMAGE_CHARS = 2_000_000;
 
 const requestSchema = z.object({
   prompt: z.string().trim().max(240),
@@ -17,7 +18,7 @@ const requestSchema = z.object({
   image: z
     .object({
       mediaType: z.enum(["image/jpeg", "image/png", "image/gif", "image/webp"]),
-      data: z.string().max(Math.ceil((MAX_IMAGE_BYTES * 4) / 3)),
+      data: z.string().max(MAX_IMAGE_CHARS),
     })
     .optional(),
 });

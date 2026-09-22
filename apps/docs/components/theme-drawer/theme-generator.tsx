@@ -19,20 +19,38 @@ import { useThemeRuntime } from "./theme-runtime-context";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"] as const;
 
-type ThemeImage = { mediaType: (typeof ACCEPTED_IMAGE_TYPES)[number]; data: string; name: string; url: string };
+// A phone photo base64s past Vercel's 4.5 MB request cap and would 413 at the edge, before any handler
+// could explain itself. It also carries no more theme signal than a 1024px reading of it, and the model
+// bills the same ≤384 tokens either way.
+const MAX_EDGE = 1024;
 
-function isAcceptedImage(type: string): type is ThemeImage["mediaType"] {
+type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; url: string };
+
+function isAcceptedImage(type: string) {
   return ACCEPTED_IMAGE_TYPES.some((accepted) => accepted === type);
 }
 
 async function readThemeImage(file: File): Promise<ThemeImage | null> {
   if (!isAcceptedImage(file.type)) return null;
 
-  const bytes = new Uint8Array(await file.arrayBuffer());
-  let binary = "";
-  for (const byte of bytes) binary += String.fromCharCode(byte);
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
 
-  return { mediaType: file.type, data: btoa(binary), name: file.name, url: URL.createObjectURL(file) };
+  const context = canvas.getContext("2d");
+  if (!context) return null;
+
+  // JPEG has no alpha, and an unpainted canvas would read transparent-as-black under a light screenshot.
+  context.fillStyle = "#ffffff";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+
+  // The data URL doubles as the preview source, so there is no object URL to revoke later.
+  const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+  return { mediaType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1), name: file.name, url: dataUrl };
 }
 
 type StreamLine =
@@ -166,7 +184,6 @@ export function ThemeGenerator() {
         state={isRunning ? "submitting" : "idle"}
         allowEmptySubmit={image !== null}
         onSubmit={async ({ value, clear }) => {
-          if (!value.trim() && !image) return;
           clear();
           setImage(null);
           await generate(value, image);

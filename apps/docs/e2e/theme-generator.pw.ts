@@ -6,6 +6,7 @@ const PRIMARY = "oklch(0.78 0.17 62)";
 // The route is stubbed so the check stays offline and deterministic; what it exercises is the half no
 // server test can reach — streamed lines landing on the document as custom properties.
 const streamedLines = [
+  { type: "reasoning", text: "Amber on near-black reads as a terminal." },
   { type: "tokens", tokens: { "--canvas": CANVAS } },
   { type: "tokens", tokens: { "--canvas": CANVAS, "--card": "oklch(0.24 0.016 60)" } },
   {
@@ -18,6 +19,13 @@ const streamedLines = [
       "--radius": "0rem",
       "--duration-base": "120ms",
       "--control-h": "30px",
+      "--font-sans": 'var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace, monospace',
+      "--shadow-color": "oklch(0.22 0.042 62)",
+      "--focus-ring-width": "3px",
+      "--control-rim-width": "0px",
+      "--popover-opacity": "0.9",
+      "--scroll-fade-size": "0px",
+      "--text-heading-1--line-height": "1.127",
     },
     adjustments: [],
   },
@@ -48,16 +56,42 @@ test("a generated palette streams onto the page and settles as complete", async 
 
   const applied = await page.evaluate(() => {
     const style = getComputedStyle(document.documentElement);
+    const read = (name: string) => style.getPropertyValue(name).trim();
     return {
-      canvas: style.getPropertyValue("--canvas").trim(),
-      primary: style.getPropertyValue("--primary").trim(),
-      radius: style.getPropertyValue("--radius").trim(),
-      duration: style.getPropertyValue("--duration-base").trim(),
-      controlHeight: style.getPropertyValue("--control-h").trim(),
+      canvas: read("--canvas"),
+      primary: read("--primary"),
+      radius: read("--radius"),
+      duration: read("--duration-base"),
+      controlHeight: read("--control-h"),
+      // Registered `@property` knobs reject a value they cannot parse, so a wrong unit reads back empty.
+      focusRing: read("--focus-ring-width"),
+      rim: read("--control-rim-width"),
+      popoverOpacity: read("--popover-opacity"),
+      scrollFade: read("--scroll-fade-size"),
+      headingLineHeight: read("--text-heading-1--line-height"),
+      fontIsMono: getComputedStyle(document.body).fontFamily.includes("Mono"),
+      shadowHue: read("--shadow-color"),
     };
   });
 
-  expect(applied).toEqual({ canvas: CANVAS, primary: PRIMARY, radius: "0rem", duration: "120ms", controlHeight: "30px" });
+  expect(applied).toEqual({
+    canvas: CANVAS,
+    primary: PRIMARY,
+    radius: "0rem",
+    duration: "120ms",
+    controlHeight: "30px",
+    focusRing: "3px",
+    rim: "0px",
+    popoverOpacity: "0.9",
+    scrollFade: "0px",
+    headingLineHeight: "1.127",
+    fontIsMono: true,
+    shadowHue: "oklch(0.22 0.042 62)",
+  });
+
+  const thinking = page.locator('[data-control-ui="activity"][data-slot="root"]').first();
+  await thinking.getByRole("button").first().click();
+  await expect(thinking).toContainText("reads as a terminal");
 });
 
 // Base UI dismisses a non-modal drawer on any outside press, which would unmount the generator and take a
