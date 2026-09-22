@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Drawer,
+  DrawerBody,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
@@ -77,7 +78,6 @@ export function ThemeGeneratorDrawer() {
         side="right"
         variant="floating"
         surface="card"
-        padding="none"
         className="w-full max-w-md"
         style={{ "--cui-popup-backdrop-background": "transparent", "--cui-popup-backdrop-blur": "none" }}
       >
@@ -112,7 +112,9 @@ export function ThemeGeneratorDrawer() {
             />
           </div>
         </DrawerHeader>
-        <ThemeGenerator />
+        <DrawerBody padding="none">
+          <ThemeGenerator />
+        </DrawerBody>
       </DrawerContent>
     </Drawer>
   );

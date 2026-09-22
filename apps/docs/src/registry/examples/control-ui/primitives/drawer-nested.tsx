@@ -3,6 +3,7 @@
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Drawer,
+  DrawerBody,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
@@ -34,14 +35,16 @@ export function PrimitiveNestedDrawerExample() {
           <DrawerDescription>Review the destination before publishing the current branch.</DrawerDescription>
         </DrawerHeader>
 
-        <dl className="grid gap-1 px-4">
-          {summaryRows.map(([label, value]) => (
-            <div key={label} className="flex items-center justify-between rounded-[var(--radius-control)] px-3 py-2 text-sm">
-              <dt className="text-muted-foreground">{label}</dt>
-              <dd className="font-medium text-foreground">{value}</dd>
-            </div>
-          ))}
-        </dl>
+        <DrawerBody>
+          <dl className="grid gap-1 px-4">
+            {summaryRows.map(([label, value]) => (
+              <div key={label} className="flex items-center justify-between rounded-[var(--radius-control)] px-3 py-2 text-sm">
+                <dt className="text-muted-foreground">{label}</dt>
+                <dd className="font-medium text-foreground">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </DrawerBody>
 
         <DrawerFooter>
           <DrawerClose render={<Button variant="ghost" />}>Cancel</DrawerClose>
@@ -53,17 +56,19 @@ export function PrimitiveNestedDrawerExample() {
                 <DrawerDescription>The parent drawer stays mounted while this step opens above it.</DrawerDescription>
               </DrawerHeader>
 
-              <dl className="grid gap-1 px-4">
-                {accessRows.map(([label, value]) => (
-                  <div
-                    key={label}
-                    className="flex items-center justify-between rounded-[var(--radius-control)] bg-foreground/4 px-3 py-2.5 text-sm"
-                  >
-                    <dt className="text-foreground">{label}</dt>
-                    <dd className="text-muted-foreground">{value}</dd>
-                  </div>
-                ))}
-              </dl>
+              <DrawerBody>
+                <dl className="grid gap-1 px-4">
+                  {accessRows.map(([label, value]) => (
+                    <div
+                      key={label}
+                      className="flex items-center justify-between rounded-[var(--radius-control)] bg-foreground/4 px-3 py-2.5 text-sm"
+                    >
+                      <dt className="text-foreground">{label}</dt>
+                      <dd className="text-muted-foreground">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </DrawerBody>
 
               <DrawerFooter>
                 <DrawerClose render={<Button variant="ghost" />}>Back</DrawerClose>
@@ -75,9 +80,11 @@ export function PrimitiveNestedDrawerExample() {
                       <DrawerDescription>Three drawers now share one focus-managed stack.</DrawerDescription>
                     </DrawerHeader>
 
-                    <div className="mx-4 rounded-[var(--radius-panel)] bg-primary/8 p-4 text-sm text-foreground ring-1 ring-inset ring-primary/20">
-                      Production will receive the latest commit from main. Existing deployments stay available during the rollout.
-                    </div>
+                    <DrawerBody>
+                      <div className="mx-4 rounded-[var(--radius-panel)] bg-primary/8 p-4 text-sm text-foreground ring-1 ring-inset ring-primary/20">
+                        Production will receive the latest commit from main. Existing deployments stay available during the rollout.
+                      </div>
+                    </DrawerBody>
 
                     <DrawerFooter>
                       <DrawerClose render={<Button variant="ghost" />}>Back</DrawerClose>

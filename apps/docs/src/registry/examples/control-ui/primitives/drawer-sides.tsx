@@ -3,6 +3,7 @@
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Drawer,
+  DrawerBody,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
@@ -30,11 +31,11 @@ export function PrimitiveDrawerSidesExample() {
               <DrawerTitle>{label} drawer</DrawerTitle>
               <DrawerDescription>Swipe toward the {side} edge or use the close action to dismiss.</DrawerDescription>
             </DrawerHeader>
-            <div className="flex min-h-24 flex-1 items-center justify-center px-4">
+            <DrawerBody className="min-h-24 items-center justify-center px-4">
               <div className="w-full rounded-[var(--radius-panel)] bg-foreground/4 p-4 text-center text-sm text-muted-foreground ring-1 ring-inset ring-border">
                 Edge-aligned content
               </div>
-            </div>
+            </DrawerBody>
             <DrawerFooter>
               <DrawerClose render={<Button variant="surface" />}>Close</DrawerClose>
             </DrawerFooter>

@@ -7,7 +7,7 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { DockablePanelKnobStyle } from "@/components/control-ui/knob-contracts/dockable-panel-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
-import { Drawer, DrawerContent } from "@/components/control-ui/ui/drawer";
+import { Drawer, DrawerBody, DrawerContent } from "@/components/control-ui/ui/drawer";
 import { clampDockablePanelPosition, dockablePanelSideAt, oppositeDockablePanelSide } from "./dockable-panel-geometry";
 
 export type DockablePanelPlacement = "left" | "right";
@@ -211,7 +211,6 @@ export function DockablePanel({
           <DrawerContent
             data-dockable-panel-root=""
             data-placement={placement}
-            padding="none"
             variant="floating"
             surface="card"
             aria-label={ariaLabel}
@@ -219,7 +218,7 @@ export function DockablePanel({
             style={style}
             {...props}
           >
-            {children}
+            <DrawerBody padding="none">{children}</DrawerBody>
           </DrawerContent>
         </Drawer>
       </DockablePanelContext.Provider>

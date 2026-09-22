@@ -3,6 +3,7 @@
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Drawer,
+  DrawerBody,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
@@ -35,14 +36,16 @@ export function PrimitiveScrollableDrawerExample() {
           <DrawerDescription>Header and actions remain available while the event log scrolls.</DrawerDescription>
         </DrawerHeader>
 
-        <ol className="grid gap-1 px-4">
-          {activity.map((event, index) => (
-            <li key={event} className="flex items-start gap-3 rounded-[var(--radius-control)] px-3 py-2.5 text-sm">
-              <span className="mt-0.5 font-medium tabular-nums text-foreground/40">{String(index + 1).padStart(2, "0")}</span>
-              <span className="text-foreground">{event}</span>
-            </li>
-          ))}
-        </ol>
+        <DrawerBody>
+          <ol className="grid gap-1 px-4">
+            {activity.map((event, index) => (
+              <li key={event} className="flex items-start gap-3 rounded-[var(--radius-control)] px-3 py-2.5 text-sm">
+                <span className="mt-0.5 font-medium tabular-nums text-foreground/40">{String(index + 1).padStart(2, "0")}</span>
+                <span className="text-foreground">{event}</span>
+              </li>
+            ))}
+          </ol>
+        </DrawerBody>
 
         <DrawerFooter>
           <DrawerClose render={<Button variant="surface" />}>Close activity</DrawerClose>

@@ -4645,6 +4645,24 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        body: {
+          family: "popup",
+          registryItems: ["drawer"],
+          states: [
+            {
+              attribute: "data-padding",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["default", "none"],
+            },
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["drawer"],
+            },
+          ],
+        },
         close: {
           registryItems: ["drawer"],
           states: [
@@ -4695,12 +4713,6 @@ export const generatedSkinContract: SkinContract = {
               source: "external",
               valueKind: "presence",
               values: [],
-            },
-            {
-              attribute: "data-padding",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["default", "none"],
             },
             {
               attribute: "data-popup-kind",
@@ -4789,18 +4801,6 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         header: {
-          family: "popup",
-          registryItems: ["drawer"],
-          states: [
-            {
-              attribute: "data-popup-kind",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["drawer"],
-            },
-          ],
-        },
-        scroll: {
           family: "popup",
           registryItems: ["drawer"],
           states: [

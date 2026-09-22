@@ -21,7 +21,7 @@ import type { DiffIndicators, DiffStyle } from "../../src/registry/sources/contr
 import type { CommandChrome } from "../../src/registry/sources/control-ui/ui/command";
 import type { DockablePanelContentPadding, DockablePanelPlacement } from "../../src/registry/sources/control-ui/ui/dockable-panel";
 import type {
-  DrawerContentPadding,
+  DrawerBodyPadding,
   DrawerContentSurface,
   DrawerContentVariant,
   DrawerSide,
@@ -165,7 +165,7 @@ export type EmittedStateContract = {
   "dropdown-menu:trigger:data-variant": DropdownMenuTriggerVariant;
   "navigation-menu:link:data-variant": NavigationMenuLinkVariant;
   "dockable-panel:content:data-padding": DockablePanelContentPadding;
-  "drawer:content:data-padding": DrawerContentPadding;
+  "drawer:body:data-padding": DrawerBodyPadding;
   "drawer:content:data-surface-variant": DrawerContentSurface;
   "drawer:content:data-variant": DrawerContentVariant;
   "drawer:content:data-side": DrawerSide;

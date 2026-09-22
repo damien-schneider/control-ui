@@ -19,6 +19,8 @@
 
   :where([data-popup-part="surface"] [data-control-family="chat-layout"][data-slot="root"][data-chrome="embedded"]) {
     --cui-chat-layout-background: var(--cui-popup-background);
+    --cui-chat-layout-radius: var(--cui-popup-radius);
+    border-radius: var(--cui-chat-layout-radius);
   }
 
   :where([data-control-family="chat-layout"][data-slot="thread-content"]) {

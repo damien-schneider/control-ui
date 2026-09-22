@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ReactGrabAPI } from "react-grab/core";
 import type { DevSourceFile } from "@/app/api/dev/source/route";
 import { Code, CodeContent, CodeFloatingCopy } from "@/components/control-ui/ui/code";
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "@/components/control-ui/ui/drawer";
+import { Drawer, DrawerBody, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "@/components/control-ui/ui/drawer";
 
 const REACT_GRAB_PLUGIN_NAME = "source-drawer";
 const CONTEXT_LINES_ABOVE_ELEMENT = 6;
@@ -102,7 +102,11 @@ export function SourceDrawer() {
               <DrawerTitle>{grabbed.title}</DrawerTitle>
               <DrawerDescription>{grabbed.description}</DrawerDescription>
             </DrawerHeader>
-            {grabbed.file ? <GrabbedFile file={grabbed.file} /> : null}
+            {grabbed.file ? (
+              <DrawerBody>
+                <GrabbedFile file={grabbed.file} />
+              </DrawerBody>
+            ) : null}
           </>
         ) : null}
       </DrawerContent>

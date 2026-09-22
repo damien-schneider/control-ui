@@ -69,7 +69,7 @@ export const overlaysCompositions = {
         part(
           "DrawerContent",
           part("DrawerHeader", part("DrawerTitle"), part("DrawerDescription")),
-          part("Button"),
+          part("DrawerBody", part("Button")),
           part("DrawerFooter", part("DrawerClose")),
         ),
       ),

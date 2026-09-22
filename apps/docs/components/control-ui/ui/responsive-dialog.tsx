@@ -19,6 +19,7 @@ import {
 } from "@/components/control-ui/ui/dialog";
 import {
   Drawer,
+  DrawerBody,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
@@ -148,7 +149,7 @@ export function ResponsiveDialogContent({
 
   return (
     <DrawerContent className={cn("relative", className, drawerClassName)} {...props}>
-      {children}
+      <DrawerBody padding="none">{children}</DrawerBody>
       {showCloseButton ? (
         <ResponsiveDialogClose variant="ghost" size="xs" className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0">
           <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none">

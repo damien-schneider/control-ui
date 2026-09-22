@@ -11,9 +11,9 @@ export const drawerSides = ["bottom", "top", "right", "left"] as const;
 
 export type DrawerSide = (typeof drawerSides)[number];
 
-export const drawerContentPaddings = ["default", "none"] as const;
+export const drawerBodyPaddings = ["default", "none"] as const;
 
-export type DrawerContentPadding = (typeof drawerContentPaddings)[number];
+export type DrawerBodyPadding = (typeof drawerBodyPaddings)[number];
 
 export const drawerContentSurfaces = ["background", "card"] as const;
 
@@ -104,14 +104,12 @@ export function DrawerContent({
   className,
   children,
   side = "bottom",
-  padding = "default",
   surface = "background",
   variant = "edge",
   style,
   ...props
 }: Omit<ComponentProps<typeof DrawerPrimitive.Popup>, "style"> & {
   side?: DrawerSide;
-  padding?: DrawerContentPadding;
   surface?: DrawerContentSurface;
   variant?: DrawerContentVariant;
   style?: CSSProperties & PopupKnobStyle;
@@ -158,7 +156,6 @@ export function DrawerContent({
           data-slot="content"
           data-side={side}
           data-surface="modal"
-          data-padding={padding}
           data-surface-variant={surface}
           data-variant={variant}
           className={cn("flex flex-col", place.popup, !modal && "pointer-events-auto", className)}
@@ -168,15 +165,7 @@ export function DrawerContent({
           {grabbable ? (
             <div data-control-ui="drawer" data-control-family="popup" data-popup-kind="drawer" data-slot="handle" className="shrink-0" />
           ) : null}
-          <DrawerPrimitive.Content
-            data-control-ui="drawer"
-            data-control-family="popup"
-            data-popup-kind="drawer"
-            data-slot="scroll"
-            className="flex min-h-0 flex-1 flex-col overflow-y-auto"
-          >
-            {children}
-          </DrawerPrimitive.Content>
+          {children}
         </DrawerPrimitive.Popup>
       </DrawerPrimitive.Viewport>
     </DrawerPrimitive.Portal>
@@ -190,7 +179,28 @@ export function DrawerHeader({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="drawer"
       data-slot="header"
-      className={cn("flex flex-col", className)}
+      className={cn("flex shrink-0 flex-col", className)}
+      {...props}
+    />
+  );
+}
+
+export function DrawerBody({
+  className,
+  padding = "default",
+  ...props
+}: Omit<ComponentProps<typeof DrawerPrimitive.Content>, "style"> & {
+  padding?: DrawerBodyPadding;
+  style?: CSSProperties & PopupKnobStyle;
+}) {
+  return (
+    <DrawerPrimitive.Content
+      data-control-ui="drawer"
+      data-control-family="popup"
+      data-popup-kind="drawer"
+      data-slot="body"
+      data-padding={padding}
+      className={cn("flex min-h-0 flex-1 flex-col overflow-y-auto", className)}
       {...props}
     />
   );
@@ -203,7 +213,7 @@ export function DrawerFooter({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="drawer"
       data-slot="footer"
-      className={cn("mt-auto flex flex-col sm:flex-row sm:justify-end", className)}
+      className={cn("mt-auto flex shrink-0 flex-col sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );

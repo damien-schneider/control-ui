@@ -7,9 +7,7 @@
     --cui-popup-shadow: var(--shadow-modal);
     --cui-popup-backdrop-filter: none;
     --_drawer-content-closed-translate: 0 100%;
-    /* Block padding lives inside the scroller, never on the popup: the scroll edge would clip a focus ring on the first or last row. */
-    --_drawer-scroll-padding-start: 0px;
-    --_drawer-scroll-padding-end: 0px;
+    --_drawer-edge-inset-end: calc(var(--spacing) * 4);
     border: 0 solid var(--cui-popup-border-color);
     border-radius: 0;
     box-shadow: var(--cui-popup-shadow);
@@ -78,9 +76,17 @@
     margin-block: calc(var(--spacing) * 1) calc(var(--spacing) * 2.5);
   }
 
-  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="scroll"]) {
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="body"]) {
     gap: calc(var(--spacing) * 4);
-    padding-block: var(--_drawer-scroll-padding-start) var(--_drawer-scroll-padding-end);
+  }
+
+  /* Block padding lives inside the scroller, never on the popup: the scroll edge would clip a focus ring on the first or last row. */
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="body"][data-padding="default"]) {
+    padding-block: calc(var(--spacing) * 4);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="body"][data-padding="default"]:last-child) {
+    padding-block-end: var(--_drawer-edge-inset-end);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="viewport"][data-variant="floating"]) {
@@ -100,61 +106,19 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-side="bottom"]) {
-    --_drawer-scroll-padding-start: calc(var(--spacing) * 4);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-side="top"]) {
-    --_drawer-scroll-padding-end: calc(var(--spacing) * 4);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"][data-side="bottom"]) {
-    --_drawer-scroll-padding-end: max(calc(var(--spacing) * 4), env(safe-area-inset-bottom));
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"][data-side="top"]) {
-    --_drawer-scroll-padding-start: calc(var(--spacing) * 4);
-  }
-
-  :where(
-    [data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-padding="default"]:is(
-      [data-side="left"],
-      [data-side="right"]
-    )
-  ) {
-    --_drawer-scroll-padding-start: calc(var(--spacing) * 4);
-    --_drawer-scroll-padding-end: calc(var(--spacing) * 4);
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="footer"]) {
-    position: sticky;
-    bottom: 0;
-    z-index: 1;
-    gap: calc(var(--spacing) * 2);
-    background: var(--cui-popup-background);
-    padding-inline: calc(var(--spacing) * 4);
+    --_drawer-edge-inset-end: max(calc(var(--spacing) * 4), env(safe-area-inset-bottom));
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="header"]) {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background: var(--cui-popup-background);
     gap: calc(var(--spacing) * 1.5);
-    padding-inline: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 4) 0;
     --_drawer-header-text-align: center;
     text-align: var(--_drawer-header-text-align);
   }
 
-  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="header"]:first-child) {
-    top: calc(var(--_drawer-scroll-padding-start) * -1);
-    margin-block-start: calc(var(--_drawer-scroll-padding-start) * -1);
-    padding-block-start: max(var(--_drawer-scroll-padding-start), calc(var(--spacing) * 4));
-  }
-
-  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="footer"]:last-child) {
-    bottom: calc(var(--_drawer-scroll-padding-end) * -1);
-    margin-block-end: calc(var(--_drawer-scroll-padding-end) * -1);
-    padding-block-end: max(var(--_drawer-scroll-padding-end), calc(var(--spacing) * 4));
+  :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="footer"]) {
+    gap: calc(var(--spacing) * 2);
+    padding: 0 calc(var(--spacing) * 4) var(--_drawer-edge-inset-end);
   }
 
   @media (width >= 40rem) {
