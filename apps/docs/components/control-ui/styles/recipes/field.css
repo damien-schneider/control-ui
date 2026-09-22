@@ -58,6 +58,13 @@
     color: var(--muted-foreground);
   }
 
+  :where(
+    input[type="search"][data-control-family="field"],
+    [data-control-family="field"] input[type="search"]
+  )::-webkit-search-cancel-button {
+    appearance: none;
+  }
+
   @media (hover: hover) {
     :where([data-control-family="field"][data-control="true"][data-field-kind="autocomplete"]:hover),
     :where([data-control-family="field"][data-control="true"][data-field-kind="combobox"]:hover),
