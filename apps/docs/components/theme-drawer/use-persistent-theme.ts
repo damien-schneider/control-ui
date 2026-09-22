@@ -44,21 +44,43 @@ export function usePersistentTheme() {
     setRuntime((current) => ({ ...current, theme: update(current.theme ?? DEFAULT_THEME) }));
   }
 
+  function writeTokens(next: ThemeState, tokenPatch: TokenValues, darkActive: boolean) {
+    for (const [name, value] of Object.entries(tokenPatch)) {
+      if (isColorValuedToken(name)) (darkActive ? next.dark : next.light)[name] = value;
+      else next.overrides[name] = value;
+    }
+    writeVars(next);
+    return next;
+  }
+
   function setTokens(tokenPatch: TokenValues) {
     updateTheme((previous) => {
       const darkActive = document.documentElement.classList.contains("dark");
-      const next: ThemeState = {
-        ...previous,
-        overrides: { ...previous.overrides },
-        light: { ...previous.light },
-        dark: { ...previous.dark },
-      };
-      for (const [name, value] of Object.entries(tokenPatch)) {
-        if (isColorValuedToken(name)) (darkActive ? next.dark : next.light)[name] = value;
-        else next.overrides[name] = value;
-      }
-      writeVars(next);
-      return next;
+      return writeTokens(
+        { ...previous, overrides: { ...previous.overrides }, light: { ...previous.light }, dark: { ...previous.dark } },
+        tokenPatch,
+        darkActive,
+      );
+    });
+  }
+
+  // Clears the generated mode and textFixes, never the other mode: a contrast "Fix" is written last by
+  // buildOverrideDecls and would otherwise pin old foregrounds over every future palette, while the
+  // untouched mode holds hand-tuned tokens the user never asked to discard.
+  function applyGeneratedTheme(tokenPatch: TokenValues) {
+    updateTheme((previous) => {
+      const darkActive = document.documentElement.classList.contains("dark");
+      return writeTokens(
+        {
+          ...previous,
+          overrides: { ...previous.overrides },
+          light: darkActive ? { ...previous.light } : {},
+          dark: darkActive ? {} : { ...previous.dark },
+          textFixes: {},
+        },
+        tokenPatch,
+        darkActive,
+      );
     });
   }
 
@@ -144,6 +166,7 @@ export function usePersistentTheme() {
     isDark,
     storageError,
     setTokens,
+    applyGeneratedTheme,
     resetToken,
     patch,
     selectSkin,

@@ -1,16 +1,7 @@
 import { describe, expect, test } from "bun:test";
-import type { Rgb } from "./color-utils";
-import { hexToOklch, oklchToRgb, rgbToHex } from "./color-utils";
-import {
-  analyzeContrast,
-  contrastFromRgb,
-  fixTextForeground,
-  maxForegroundRatio,
-  nextFixLevel,
-  offeredFixLevel,
-  textFailsAA,
-  wcagLevels,
-} from "./contrast";
+import { contrastFromRgb, hexToOklch, nextFixLevel, oklchToRgb, type Rgb, wcagLevels } from "./color-math";
+import { rgbToHex } from "./color-utils";
+import { analyzeContrast, fixTextForeground, maxForegroundRatio, offeredFixLevel, textFailsAA } from "./contrast";
 import { buildOverrideDecls } from "./override-decls";
 import { DEFAULT_THEME } from "./presets";
 

@@ -3,18 +3,9 @@
 import { useEffect, useState } from "react";
 
 import { cn } from "@/components/control-ui/lib/cn";
+import { TARGET_RATIO, type WcagLevel, type WcagLevels } from "./color-math";
 import { rgbToHex } from "./color-utils";
-import {
-  analyzeContrast,
-  type ContrastRow,
-  fixTextForeground,
-  maxForegroundRatio,
-  offeredFixLevel,
-  readVarRgb,
-  TARGET_RATIO,
-  type WcagLevel,
-  type WcagLevels,
-} from "./contrast";
+import { analyzeContrast, type ContrastRow, fixTextForeground, maxForegroundRatio, offeredFixLevel, readVarRgb } from "./contrast";
 import { VarTag } from "./controls";
 import type { ThemeState } from "./types";
 

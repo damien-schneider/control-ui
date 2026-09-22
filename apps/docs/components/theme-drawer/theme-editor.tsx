@@ -2,7 +2,7 @@
 
 import { ShieldCheckIcon } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { type ReactNode, useMemo, useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -11,6 +11,7 @@ import { Switch } from "@/components/control-ui/ui/switch";
 import { Toggle } from "@/components/control-ui/ui/toggle";
 import { BASE_SKIN_ID } from "@/components/theme";
 import { useThemeModePreference } from "@/components/theme-toggle";
+import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { ContrastPanel } from "./contrast-panel";
 import { VarTag } from "./controls";
 import { SKIN_META_BY_ID } from "./presets";
@@ -18,6 +19,7 @@ import { ThemePreviewCanvas } from "./preview-canvas";
 import { parseSkinTheme, skinChangedTokenNames, themeFile, useSkinSource } from "./skin-source";
 import { SkinSourceView } from "./skin-source-view";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "./theme-categories";
+import { ThemeGenerator } from "./theme-generator";
 import { useThemeRuntime } from "./theme-runtime-context";
 import { TOKEN_CATEGORIES } from "./token-metadata";
 import { type TokenEditorProps, TokenPanel } from "./token-panel";
@@ -82,6 +84,11 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
 
   const activeTokenCategory = TOKEN_CATEGORIES.find((item) => item.group === category);
 
+  const panelIntroByGroup: Partial<Record<ThemeContractGroup, ReactNode>> = {
+    motion: reduceMotionRow,
+    color: <ThemeGenerator />,
+  };
+
   return (
     <div className="flex min-w-0 flex-col gap-3">
       {storageError ? (
@@ -143,7 +150,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
             <TokenPanel
               category={activeTokenCategory}
               editor={editor}
-              beforeTokens={activeTokenCategory.group === "motion" ? reduceMotionRow : null}
+              beforeTokens={panelIntroByGroup[activeTokenCategory.group] ?? null}
               afterCore={
                 activeTokenCategory.group === "color" ? <ContrastPanel t={theme} onFix={(textFixes) => patch({ textFixes })} /> : null
               }
