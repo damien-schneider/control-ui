@@ -83,7 +83,7 @@ function ReasoningTrace({ generation }: { generation: Generation }) {
 
 export function ThemeGeneration({ generation }: { generation: Generation }) {
   return (
-    <div className="flex flex-col gap-2">
+    <>
       <ChatTurn from="user">
         <ChatMessage from="user">
           <ChatMessageRow>
@@ -94,58 +94,60 @@ export function ThemeGeneration({ generation }: { generation: Generation }) {
         </ChatMessage>
       </ChatTurn>
 
-      <ReasoningTrace generation={generation} />
+      <ChatTurn from="assistant">
+        <ReasoningTrace generation={generation} />
 
-      <Activity
-        kind="tool"
-        name={generation.paletteName ?? "Painting tokens"}
-        state={generation.state === "stopped" ? "pending" : generation.state}
-        statusLabel={generation.state === "stopped" ? "Stopped" : undefined}
-      >
-        <ActivityTrigger>
-          <ActivityIcon />
-          <ActivityTitle />
-          <ActivityStatus />
-        </ActivityTrigger>
-        <ActivityContent>
-          <ActivityDetail>
-            <ActivityDetailLabel>Applied</ActivityDetailLabel>
-            <ActivityDetailContent>
-              {generation.paintedTokens.length === 0 ? "Waiting for the first token…" : paintedSummary(generation.paintedTokens)}
-            </ActivityDetailContent>
-          </ActivityDetail>
-          {generation.skin ? (
+        <Activity
+          kind="tool"
+          name={generation.paletteName ?? "Painting tokens"}
+          state={generation.state === "stopped" ? "pending" : generation.state}
+          statusLabel={generation.state === "stopped" ? "Stopped" : undefined}
+        >
+          <ActivityTrigger>
+            <ActivityIcon />
+            <ActivityTitle />
+            <ActivityStatus />
+          </ActivityTrigger>
+          <ActivityContent>
             <ActivityDetail>
-              <ActivityDetailLabel>Skin</ActivityDetailLabel>
-              <ActivityDetailContent>{generation.skin}</ActivityDetailContent>
+              <ActivityDetailLabel>Applied</ActivityDetailLabel>
+              <ActivityDetailContent>
+                {generation.paintedTokens.length === 0 ? "Waiting for the first token…" : paintedSummary(generation.paintedTokens)}
+              </ActivityDetailContent>
             </ActivityDetail>
-          ) : null}
-          {generation.typeface ? (
-            <ActivityDetail>
-              <ActivityDetailLabel>Typeface</ActivityDetailLabel>
-              <ActivityDetailContent>{generation.typeface}</ActivityDetailContent>
-            </ActivityDetail>
-          ) : null}
-          {generation.knobs.length > 0 ? (
-            <ActivityDetail>
-              <ActivityDetailLabel>Component details</ActivityDetailLabel>
-              <ActivityDetailContent>{generation.knobs.join("\n")}</ActivityDetailContent>
-            </ActivityDetail>
-          ) : null}
-          {generation.adjustments.length > 0 ? (
-            <ActivityDetail>
-              <ActivityDetailLabel>Corrected for AA contrast</ActivityDetailLabel>
-              <ActivityDetailContent>{generation.adjustments.map(adjustmentLine).join("\n")}</ActivityDetailContent>
-            </ActivityDetail>
-          ) : null}
-          {generation.error ? (
-            <ActivityDetail>
-              <ActivityDetailLabel>Error</ActivityDetailLabel>
-              <ActivityDetailContent className="text-destructive-text">{generation.error}</ActivityDetailContent>
-            </ActivityDetail>
-          ) : null}
-        </ActivityContent>
-      </Activity>
-    </div>
+            {generation.skin ? (
+              <ActivityDetail>
+                <ActivityDetailLabel>Skin</ActivityDetailLabel>
+                <ActivityDetailContent>{generation.skin}</ActivityDetailContent>
+              </ActivityDetail>
+            ) : null}
+            {generation.typeface ? (
+              <ActivityDetail>
+                <ActivityDetailLabel>Typeface</ActivityDetailLabel>
+                <ActivityDetailContent>{generation.typeface}</ActivityDetailContent>
+              </ActivityDetail>
+            ) : null}
+            {generation.knobs.length > 0 ? (
+              <ActivityDetail>
+                <ActivityDetailLabel>Component details</ActivityDetailLabel>
+                <ActivityDetailContent>{generation.knobs.join("\n")}</ActivityDetailContent>
+              </ActivityDetail>
+            ) : null}
+            {generation.adjustments.length > 0 ? (
+              <ActivityDetail>
+                <ActivityDetailLabel>Corrected for AA contrast</ActivityDetailLabel>
+                <ActivityDetailContent>{generation.adjustments.map(adjustmentLine).join("\n")}</ActivityDetailContent>
+              </ActivityDetail>
+            ) : null}
+            {generation.error ? (
+              <ActivityDetail>
+                <ActivityDetailLabel>Error</ActivityDetailLabel>
+                <ActivityDetailContent className="text-destructive-text">{generation.error}</ActivityDetailContent>
+              </ActivityDetail>
+            ) : null}
+          </ActivityContent>
+        </Activity>
+      </ChatTurn>
+    </>
   );
 }

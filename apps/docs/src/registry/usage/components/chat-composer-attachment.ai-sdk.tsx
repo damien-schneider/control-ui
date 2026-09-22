@@ -63,16 +63,14 @@ function AttachmentComposer() {
             {dropzone.value.map((file) => (
               <ChatComposerAttachment
                 key={`${file.name}-${file.lastModified}-${file.size}`}
-                name={file.name}
-                type={file.type}
+                file={file}
                 onRemove={() => dropzone.removeFile(file)}
               />
             ))}
             {dropzone.fileRejections.map(({ file, errors }) => (
               <ChatComposerAttachment
                 key={`rejected-${file.name}-${file.lastModified}-${file.size}`}
-                name={file.name}
-                type={file.type}
+                file={file}
                 status="error"
                 description={errors[0]?.message}
                 onRemove={() => dropzone.removeRejection(file)}

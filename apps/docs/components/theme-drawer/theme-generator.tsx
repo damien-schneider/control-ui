@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 
+import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
 import type { ContrastAdjustment, GeneratedFont } from "@/mastra/theme-generator-contract";
 import { addGeneration, setRunning, updateGeneration, useGenerationState } from "./generation-store";
 import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
@@ -212,14 +213,12 @@ export function ThemeGenerator() {
   }
 
   return (
-    <div className="flex min-w-0 flex-col gap-3">
-      <div className="flex flex-col gap-2">
+    <ChatLayout chrome="embedded" style={{ "--cui-chat-layout-background": "var(--card)" }}>
+      <ChatThread composer={<ThemePromptComposer isRunning={isRunning} onGenerate={generate} onStop={() => abortRef.current?.abort()} />}>
         {generations.map((generation) => (
           <ThemeGeneration key={generation.id} generation={generation} />
         ))}
-      </div>
-
-      <ThemePromptComposer isRunning={isRunning} onGenerate={generate} onStop={() => abortRef.current?.abort()} />
-    </div>
+      </ChatThread>
+    </ChatLayout>
   );
 }

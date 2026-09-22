@@ -24,7 +24,7 @@ import {
 import { type ImagePalette, readImagePalette } from "./image-palette";
 
 const themeImagePolicy: DropzonePolicy = {
-  accept: { "image/jpeg": [], "image/png": [], "image/gif": [], "image/webp": [] },
+  accept: { "image/jpeg": [".jpeg", ".jpg"], "image/png": [".png"], "image/gif": [".gif"], "image/webp": [".webp"] },
   multiple: false,
   selectionMode: "replace",
 };
@@ -34,7 +34,7 @@ const themeImagePolicy: DropzonePolicy = {
 // bills the same ≤384 tokens either way.
 const MAX_EDGE = 1024;
 
-export type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; url: string; palette: ImagePalette | null };
+export type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; palette: ImagePalette | null };
 
 type ThemeAttachment = { file: File; image: ThemeImage | null; error: string | null };
 
@@ -58,9 +58,8 @@ async function readThemeImage(file: File): Promise<ThemeImage> {
   // screenshot at roughly 150 tokens.
   const palette = readImagePalette(context.getImageData(0, 0, canvas.width, canvas.height).data);
 
-  // The data URL doubles as the preview source, so there is no object URL to revoke later.
   const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
-  return { mediaType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1), name: file.name, url: dataUrl, palette };
+  return { mediaType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1), name: file.name, palette };
 }
 
 type ThemePromptComposerProps = {
@@ -117,8 +116,7 @@ function ThemePromptArea({ attachment, isRunning, onGenerate, onStop }: ThemePro
               {dropzone.fileRejections.map(({ file, errors }) => (
                 <ChatComposerAttachment
                   key={`${file.name}-${file.lastModified}`}
-                  name={file.name}
-                  type={file.type}
+                  file={file}
                   status="error"
                   description={errors[0]?.message}
                   onRemove={() => dropzone.removeRejection(file)}
@@ -149,9 +147,18 @@ function ThemePromptArea({ attachment, isRunning, onGenerate, onStop }: ThemePro
   );
 }
 
+function attachmentStatus({ image, error }: ThemeAttachment) {
+  if (error) return "error";
+  return image ? "idle" : "uploading";
+}
+
 function ThemeImageAttachment({ attachment, onRemove }: { attachment: ThemeAttachment; onRemove: () => void }) {
-  const { file, image, error } = attachment;
-  if (error) return <ChatComposerAttachment name={file.name} type={file.type} status="error" description={error} onRemove={onRemove} />;
-  if (!image) return <ChatComposerAttachment name={file.name} type={file.type} status="uploading" onRemove={onRemove} />;
-  return <ChatComposerAttachment name={file.name} type={image.mediaType} previewUrl={image.url} onRemove={onRemove} />;
+  return (
+    <ChatComposerAttachment
+      file={attachment.file}
+      status={attachmentStatus(attachment)}
+      description={attachment.error ?? undefined}
+      onRemove={onRemove}
+    />
+  );
 }

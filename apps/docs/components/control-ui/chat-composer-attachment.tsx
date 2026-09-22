@@ -2,7 +2,7 @@
 
 import { XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
 
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { ChatComposerAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-attachment-knobs";
@@ -61,6 +61,30 @@ function kindFromAttachment(type: string | undefined, name: string): ChatCompose
   if (mime.includes("zip") || ["7z", "gz", "rar", "tar", "zip"].includes(extension)) return "archive";
   if (mime.includes("document") || mime.includes("text") || ["doc", "docx", "md", "rtf", "txt"].includes(extension)) return "document";
   return "file";
+}
+
+function resolveVariant(
+  variant: ChatComposerAttachmentVariant,
+  kind: ChatComposerAttachmentKind,
+  status: ChatComposerAttachmentStatus,
+  previewUrl: string | undefined,
+): Exclude<ChatComposerAttachmentVariant, "auto"> {
+  if (variant !== "auto") return variant;
+  if (status === "error") return "file";
+  return previewUrl || kind === "image" ? "preview" : "file";
+}
+
+function useObjectUrl(blob: Blob | undefined) {
+  const [objectUrl, setObjectUrl] = useState<{ blob: Blob; url: string }>();
+
+  useLayoutEffect(() => {
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    setObjectUrl({ blob, url });
+    return () => URL.revokeObjectURL(url);
+  }, [blob]);
+
+  return blob && objectUrl?.blob === blob ? objectUrl.url : undefined;
 }
 
 function progressValue(progress: number | undefined) {
@@ -134,27 +158,30 @@ export function ChatComposerAttachments({
   );
 }
 
-export type ChatComposerAttachmentProps = Omit<ComponentProps<"li">, "style"> & {
-  name: string;
-  type?: string;
-  description?: ReactNode;
-  status?: ChatComposerAttachmentStatus;
-  progress?: number;
-  previewUrl?: string;
-  kind?: ChatComposerAttachmentKind;
-  variant?: ChatComposerAttachmentVariant;
-  onRemove?: () => void;
-  removeLabel?: string;
-  style?: CSSProperties & ChatComposerAttachmentKnobStyle;
-};
+type ChatComposerAttachmentSource = { file: File; name?: string } | { file?: undefined; name: string };
+
+export type ChatComposerAttachmentProps = Omit<ComponentProps<"li">, "style"> &
+  ChatComposerAttachmentSource & {
+    type?: string;
+    description?: ReactNode;
+    status?: ChatComposerAttachmentStatus;
+    progress?: number;
+    previewUrl?: string;
+    kind?: ChatComposerAttachmentKind;
+    variant?: ChatComposerAttachmentVariant;
+    onRemove?: () => void;
+    removeLabel?: string;
+    style?: CSSProperties & ChatComposerAttachmentKnobStyle;
+  };
 
 export function ChatComposerAttachment({
-  name,
-  type,
+  file,
+  name: nameInput,
+  type: typeInput,
   description,
   status = "idle",
   progress: progressInput,
-  previewUrl,
+  previewUrl: previewUrlInput,
   kind,
   variant = "auto",
   onRemove,
@@ -164,10 +191,12 @@ export function ChatComposerAttachment({
   "aria-label": ariaLabel,
   ...props
 }: ChatComposerAttachmentProps) {
+  const name = nameInput ?? file?.name ?? "";
+  const type = typeInput ?? file?.type;
   const resolvedKind = kind ?? kindFromAttachment(type, name);
-  let resolvedVariant: Exclude<ChatComposerAttachmentVariant, "auto">;
-  if (variant === "auto") resolvedVariant = previewUrl || resolvedKind === "image" ? "preview" : "file";
-  else resolvedVariant = variant;
+  const resolvedVariant = resolveVariant(variant, resolvedKind, status, previewUrlInput);
+  const filePreviewUrl = useObjectUrl(resolvedVariant === "preview" && !previewUrlInput ? file : undefined);
+  const previewUrl = previewUrlInput ?? filePreviewUrl;
   const extension = extensionFromName(name);
   const progress = progressValue(progressInput);
 

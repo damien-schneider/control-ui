@@ -16,6 +16,11 @@ export type ChatLayoutProps = Omit<ComponentProps<"section">, "style"> & {
   style?: CSSProperties & ChatLayoutKnobStyle;
 };
 
+const chromeSizing: Record<ChatLayoutChrome, string> = {
+  panel: "mx-auto min-h-[640px] max-w-3xl",
+  embedded: "h-full min-h-0 flex-1",
+};
+
 export function ChatLayout({ children, chrome = "panel", className, ...props }: ChatLayoutProps) {
   return (
     <section
@@ -24,7 +29,7 @@ export function ChatLayout({ children, chrome = "panel", className, ...props }: 
       data-slot="root"
       data-chrome={chrome}
       data-surface={chrome === "panel" ? "panel" : undefined}
-      className={cn("relative mx-auto flex min-h-[640px] w-full max-w-3xl flex-col overflow-hidden", className)}
+      className={cn("relative flex w-full flex-col overflow-hidden", chromeSizing[chrome], className)}
       {...props}
     >
       {chrome === "panel" ? <SkinAdornment scope="chat-layout" part="titlebar" context={{}} /> : null}

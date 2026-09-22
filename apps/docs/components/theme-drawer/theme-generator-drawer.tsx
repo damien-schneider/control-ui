@@ -37,7 +37,7 @@ export function ThemeGeneratorDrawer() {
         side="right"
         variant="floating"
         surface="card"
-        className="flex w-full max-w-md flex-col"
+        className="w-full max-w-md"
         style={{ "--cui-popup-backdrop-background": "transparent", "--cui-popup-backdrop-blur": "none" }}
       >
         <DrawerHeader className="flex flex-row items-start justify-between gap-3">
@@ -55,9 +55,7 @@ export function ThemeGeneratorDrawer() {
             }
           />
         </DrawerHeader>
-        <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
-          <ThemeGenerator />
-        </div>
+        <ThemeGenerator />
       </DrawerContent>
     </Drawer>
   );

@@ -263,7 +263,7 @@ export type CodingAgentConversationProps = Omit<ComponentProps<typeof ChatLayout
 
 export function CodingAgentConversation({ children, composer, className, ...props }: CodingAgentConversationProps) {
   return (
-    <ChatLayout chrome="embedded" className={cn("h-full min-h-0 max-w-none", className)} {...props}>
+    <ChatLayout chrome="embedded" className={className} {...props}>
       <ChatThread composer={<div className="mx-auto w-full max-w-3xl px-2 sm:px-6">{composer}</div>}>
         <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-8">{children}</div>
       </ChatThread>

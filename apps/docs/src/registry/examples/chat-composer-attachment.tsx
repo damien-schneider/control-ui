@@ -25,7 +25,6 @@ import {
   DropzoneInput,
   DropzoneOverlay,
   type DropzonePolicy,
-  type DropzoneValueChangeDetails,
   useDropzoneContext,
 } from "@/components/control-ui/ui/dropzone";
 
@@ -71,25 +70,9 @@ const attachmentPolicy: DropzonePolicy = {
   maxFiles: 8,
 };
 
-const previewUrls = new WeakMap<File, string>();
-
 export function ChatComposerAttachmentExample() {
-  const [files, setFiles] = useState<readonly File[]>([]);
-
-  function syncFiles(next: readonly File[], { addedFiles, removedFiles }: DropzoneValueChangeDetails) {
-    for (const file of addedFiles) {
-      if (file.type.startsWith("image/")) previewUrls.set(file, URL.createObjectURL(file));
-    }
-    for (const file of removedFiles) {
-      const url = previewUrls.get(file);
-      if (url) URL.revokeObjectURL(url);
-      previewUrls.delete(file);
-    }
-    setFiles(next);
-  }
-
   return (
-    <Dropzone value={files} onValueChange={syncFiles} policy={attachmentPolicy} className="w-full max-w-[34rem]">
+    <Dropzone policy={attachmentPolicy} className="w-full max-w-[34rem]">
       <DropzoneInput />
       <AttachmentComposer />
     </Dropzone>
@@ -148,18 +131,15 @@ function AttachmentComposer() {
             {dropzone.value.map((file) => (
               <ChatComposerAttachment
                 key={`${file.name}-${file.lastModified}-${file.size}`}
-                name={file.name}
-                type={file.type}
+                file={file}
                 status="uploaded"
-                previewUrl={previewUrls.get(file)}
                 onRemove={() => dropzone.removeFile(file)}
               />
             ))}
             {dropzone.fileRejections.map(({ file, errors }) => (
               <ChatComposerAttachment
                 key={`rejected-${file.name}-${file.lastModified}-${file.size}`}
-                name={file.name}
-                type={file.type}
+                file={file}
                 status="error"
                 description={errors[0]?.message}
                 onRemove={() => dropzone.removeRejection(file)}
