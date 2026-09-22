@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { themeGeneratorAgent } from "@/mastra/theme-generator-agent";
-import { toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
+import { generatedThemeSchema, toStreamingTokenValues, toTokenValues } from "@/mastra/theme-generator-contract";
 import { describeImageReading, readImageBrief, type ThemeImageReading } from "@/mastra/theme-image-brief";
 import { refineKnobs } from "@/mastra/theme-knob-agent";
 import { repairContrast } from "@/mastra/theme-repair-agent";
@@ -13,6 +13,8 @@ export const maxDuration = 60;
 // 1024px first, which lands well under it; the cap only has to stay below Vercel's 4.5 MB body limit,
 // past which the platform rejects the request and no handler ever gets to explain why.
 const MAX_IMAGE_CHARS = 2_000_000;
+
+const EARLIER_BRIEFS_KEPT = 8;
 
 const paletteColor = z.object({ L: z.number().min(0).max(1), C: z.number().min(0).max(0.5), H: z.number().min(0).max(360) });
 
@@ -35,12 +37,22 @@ const requestSchema = z.object({
         .optional(),
     })
     .optional(),
+  previous: z
+    .object({
+      theme: generatedThemeSchema,
+      briefs: z
+        .array(z.string().max(1000))
+        .min(1)
+        .max(50)
+        .transform((briefs) => briefs.slice(-EARLIER_BRIEFS_KEPT)),
+    })
+    .optional(),
 });
 
 type ThemeRequest = z.infer<typeof requestSchema>;
 
-// The request carries a mood, a target appearance and at most one image — never messages, a model id or
-// model settings. A generic agent endpoint would let a caller swap the pinned flash model for a pricier
+// The request carries a mood, a target appearance, at most one image and the theme it refines — never raw
+// messages, a model id or model settings. A generic agent endpoint would let a caller swap the pinned flash model for a pricier
 // one, so the whole call is assembled here and the model is fixed in the agent.
 //
 // Thinking mode ignores temperature, so without the nonce the same mood would return the same theme every
@@ -61,11 +73,23 @@ function describeReading(reading: ThemeImageReading) {
   ].join(" ");
 }
 
-function buildPrompt({ prompt, appearance, image }: ThemeRequest, reading: ThemeImageReading | null) {
+function describeConversation({ theme, briefs }: NonNullable<ThemeRequest["previous"]>) {
+  return [
+    "Earlier requests in this conversation, oldest first:",
+    ...briefs.map((brief) => `- ${brief}`),
+    `The theme they produced, which the user is looking at now: ${JSON.stringify(theme)}`,
+    "Refine that theme. Return it unchanged except for what the new request asks for, keeping its name and skin unless the request is about them. If its colours were made for the other appearance, flip their lightness and keep their hue.",
+  ].join("\n");
+}
+
+function buildPrompt({ prompt, appearance, image, previous }: ThemeRequest, reading: ThemeImageReading | null) {
   const seen = reading ? `\n\n${describeReading(reading)}` : "";
   const measured = image?.palette ? `\n\n${describePalette(image.palette)}` : "";
+  const ask = `${prompt || "Match the image."}${seen}${measured}\n\nTarget appearance: ${appearance}.`;
 
-  return `Mood: ${prompt || "Match the image."}${seen}${measured}\n\nTarget appearance: ${appearance}.\nVariation key: ${crypto.randomUUID()}.`;
+  // A refinement has to repeat the theme it was given, and the nonce would only invite it to drift.
+  if (previous) return `${describeConversation(previous)}\n\nNew request: ${ask}`;
+  return `Mood: ${ask}\nVariation key: ${crypto.randomUUID()}.`;
 }
 
 type Send = (payload: unknown) => void;
@@ -90,10 +114,13 @@ async function readImageOrSkip(image: NonNullable<ThemeRequest["image"]>, signal
   }
 }
 
-function knobMood({ prompt }: ThemeRequest, reading: ThemeImageReading | null) {
-  if (prompt) return prompt;
-  return reading ? describeImageReading(reading) : "Match the image.";
+// The image itself is never sent twice, so its reading travels on in the brief the client hands back.
+function briefOf({ prompt }: ThemeRequest, reading: ThemeImageReading | null) {
+  const seen = reading ? `an image showing ${describeImageReading(reading)}` : "";
+  return [prompt, seen].filter(Boolean).join(", from ") || "Match the image.";
 }
+
+const conversationMood = ({ previous }: ThemeRequest, brief: string) => [...(previous?.briefs ?? []), brief].join("; then ");
 
 async function streamGeneration(requested: ThemeRequest, send: Send, signal: AbortSignal) {
   const startedAt = Date.now();
@@ -140,13 +167,14 @@ async function streamGeneration(requested: ThemeRequest, send: Send, signal: Abo
   // token override, and moving between a page-scrolled and an inset-scrolled skin remounts everything
   // below PageLayout, so doing it mid-stream would wipe the painted colours and drop the drawer with the
   // generation still running inside it.
-  send({ type: "complete", name: theme.name, skin: theme.skin, tokens, adjustments, font });
+  const brief = briefOf(requested, reading);
+  send({ type: "complete", name: theme.name, skin: theme.skin, tokens, adjustments, font, theme, brief });
 
   // Knobs ride behind the finished theme rather than inside it. They are a second call over a 580-entry
   // registry, and holding the palette back for them would trade the whole paint for a detail.
   if (remainingBudget(startedAt) < MIN_PASS_MS) return;
 
-  const rules = await refineKnobs(theme, knobMood(requested, reading), withinBudget(startedAt, signal));
+  const rules = await refineKnobs(theme, conversationMood(requested, brief), withinBudget(startedAt, signal));
   if (rules.length > 0) send({ type: "knobs", rules });
 }
 

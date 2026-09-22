@@ -13,14 +13,16 @@ import {
 } from "@/components/control-ui/activity";
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
-import type { ContrastAdjustment } from "@/mastra/theme-generator-contract";
+import { InlineAttachment, InlineAttachmentMedia } from "@/components/control-ui/inline-attachment";
+import type { ContrastAdjustment, GeneratedTheme } from "@/mastra/theme-generator-contract";
 import { THEME_CONTRACT, type ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { TOKEN_GROUP_ORDER, TOKEN_GROUP_TITLES } from "./theme-categories";
+import type { ThemeImage } from "./theme-prompt-composer";
 
 export type Generation = {
   id: string;
   prompt: string;
-  imageName: string | null;
+  image: ThemeImage | null;
   skin: string | null;
   reasoning: string;
   state: "running" | "success" | "error" | "stopped";
@@ -30,6 +32,8 @@ export type Generation = {
   typeface: string | null;
   knobs: string[];
   error: string | null;
+  theme: GeneratedTheme | null;
+  brief: string | null;
 };
 
 const GROUP_BY_TOKEN = new Map(THEME_CONTRACT.map((token) => [token.name, token.group]));
@@ -57,9 +61,12 @@ function adjustmentLine({ role, from, to, ratio }: ContrastAdjustment) {
   return `${role}: L ${from.L.toFixed(2)} → ${to.L.toFixed(2)}${chroma} (${ratio.toFixed(1)}:1)`;
 }
 
-function askedFor({ imageName, prompt }: Generation) {
-  if (!imageName) return prompt;
-  return prompt ? `${imageName} — ${prompt}` : imageName;
+function SentImage({ image }: { image: ThemeImage }) {
+  return (
+    <InlineAttachment name={image.name} aspect={image.aspect}>
+      <InlineAttachmentMedia src={`data:${image.mediaType};base64,${image.data}`} />
+    </InlineAttachment>
+  );
 }
 
 function ReasoningTrace({ generation }: { generation: Generation }) {
@@ -85,13 +92,16 @@ export function ThemeGeneration({ generation }: { generation: Generation }) {
   return (
     <>
       <ChatTurn from="user">
-        <ChatMessage from="user">
-          <ChatMessageRow>
-            <ChatMessageBody>
-              <ChatMessageContent>{askedFor(generation)}</ChatMessageContent>
-            </ChatMessageBody>
-          </ChatMessageRow>
-        </ChatMessage>
+        {generation.image ? <SentImage image={generation.image} /> : null}
+        {generation.prompt ? (
+          <ChatMessage from="user">
+            <ChatMessageRow>
+              <ChatMessageBody>
+                <ChatMessageContent>{generation.prompt}</ChatMessageContent>
+              </ChatMessageBody>
+            </ChatMessageRow>
+          </ChatMessage>
+        ) : null}
       </ChatTurn>
 
       <ChatTurn from="assistant">

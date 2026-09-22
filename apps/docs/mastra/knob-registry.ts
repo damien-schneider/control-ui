@@ -787,6 +787,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         defaultValue: "var(--shadow-md)",
         selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
       },
+      {
+        name: "--cui-chat-layout-turn-gap",
+        syntax: "<length>",
+        defaultValue: "calc(var(--spacing) * 2)",
+        selector: ':where([data-control-family="chat-layout"][data-slot="root"][data-chrome])',
+      },
     ],
   },
   {

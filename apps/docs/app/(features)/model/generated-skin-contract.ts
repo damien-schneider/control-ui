@@ -13270,6 +13270,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "0px",
         defaultValue: "calc(var(--spacing) * 3)",
       },
+      {
+        name: "--cui-chat-layout-turn-gap",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
     ],
     "chat-message": [
       {

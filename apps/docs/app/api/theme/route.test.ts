@@ -115,6 +115,8 @@ type StreamLine = {
   text?: string;
   skin?: string;
   font?: { family: string; url: string | null };
+  theme?: { name: string };
+  brief?: string;
 };
 
 async function generate(prompt: unknown, cookie?: string) {
@@ -303,4 +305,29 @@ test("varies the brief between two runs of the same prompt", async () => {
 
 test("rejects a request with neither a prompt nor an image", async () => {
   expect((await generate({ prompt: "  ", appearance: "light" })).status).toBe(400);
+});
+
+// "With a playful font" after a first theme is a change to that theme, not a new mood to roll from scratch.
+test("a follow-up refines the theme on screen instead of starting over", async () => {
+  await readLines(
+    await generate({ prompt: "a playful font please", appearance: "light", previous: { theme: palette, briefs: ["sage studio"] } }),
+  );
+
+  const sent = JSON.stringify(lastPrompt);
+  expect(sent).toContain("Ember Terminal");
+  expect(sent).toContain("sage studio");
+  expect(sent).toContain("a playful font please");
+  expect(sent).not.toContain("Variation key");
+});
+
+// The image is sent once, so what the next turn knows of it is the reading carried in the brief.
+test("hands back the theme and a brief that keeps the image reading for the next turn", async () => {
+  const lines = await readLines(
+    await generate({ prompt: "calmer", appearance: "light", image: { mediaType: "image/png", data: "iVBORw0KGgo=" } }),
+  );
+  const complete = lines.find((line) => line.type === "complete");
+
+  expect(complete?.theme?.name).toBe("Ember Terminal");
+  expect(complete?.brief).toContain("calmer");
+  expect(complete?.brief).toContain("geometric sans at 600");
 });

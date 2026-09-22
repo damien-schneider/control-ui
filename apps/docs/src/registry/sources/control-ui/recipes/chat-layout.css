@@ -6,6 +6,7 @@
     --cui-chat-layout-border-width: var(--control-rim-width);
     --cui-chat-layout-shadow: var(--shadow-md);
     --cui-chat-layout-scroll-button-gap: calc(var(--spacing) * 3);
+    --cui-chat-layout-turn-gap: calc(var(--spacing) * 2);
     background: var(--cui-chat-layout-background);
   }
 
@@ -25,6 +26,10 @@
     :where([data-control-family="chat-layout"][data-slot="thread-content"]) {
       padding-inline: calc(var(--spacing) * 8);
     }
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="turn"]) {
+    gap: var(--cui-chat-layout-turn-gap);
   }
 
   :where([data-control-family="chat-layout"][data-slot="dock"])::before {
@@ -85,6 +90,12 @@
 }
 
 @property --cui-chat-layout-scroll-button-gap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-layout-turn-gap {
   syntax: "<length>";
   inherits: true;
   initial-value: 0px;

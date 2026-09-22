@@ -127,7 +127,7 @@
       "registryItems": [
         "chat-layout"
       ],
-      "knobs": 6,
+      "knobs": 7,
       "probes": 2
     },
     "chat-message": {

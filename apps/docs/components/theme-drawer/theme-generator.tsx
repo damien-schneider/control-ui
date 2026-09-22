@@ -3,7 +3,7 @@
 import { useRef } from "react";
 
 import { ChatLayout, ChatThread } from "@/components/control-ui/chat-layout";
-import type { ContrastAdjustment, GeneratedFont } from "@/mastra/theme-generator-contract";
+import type { ContrastAdjustment, GeneratedFont, GeneratedTheme } from "@/mastra/theme-generator-contract";
 import { addGeneration, setRunning, updateGeneration, useGenerationState } from "./generation-store";
 import { type Generation, paintedTokensOf, ThemeGeneration } from "./theme-generation";
 import { type ThemeImage, ThemePromptComposer } from "./theme-prompt-composer";
@@ -24,6 +24,8 @@ type StreamLine =
       tokens: Record<string, string>;
       adjustments: ContrastAdjustment[];
       font: GeneratedFont | null;
+      theme: GeneratedTheme;
+      brief: string;
     }
   | { type: "knobs"; rules: KnobRule[] }
   | { type: "error"; error: string };
@@ -71,6 +73,8 @@ function applyChunk(generation: Generation, chunk: PaintedLine): Generation {
     paletteName: chunk.name,
     adjustments: chunk.adjustments,
     typeface: chunk.font?.family ?? null,
+    theme: chunk.theme,
+    brief: chunk.brief,
   };
 }
 
@@ -97,11 +101,11 @@ function pacedReasoning(write: (text: string) => void) {
   };
 }
 
-function startedGeneration(id: string, prompt: string, attachment: ThemeImage | null): Generation {
+function startedGeneration(id: string, prompt: string, image: ThemeImage | null): Generation {
   return {
     id,
     prompt,
-    imageName: attachment?.name ?? null,
+    image,
     skin: null,
     reasoning: "",
     state: "running",
@@ -111,7 +115,16 @@ function startedGeneration(id: string, prompt: string, attachment: ThemeImage | 
     typeface: null,
     knobs: [],
     error: null,
+    theme: null,
+    brief: null,
   };
+}
+
+// Every finished turn feeds the next one, so a follow-up refines the theme on screen instead of starting over.
+function conversationSoFar(generations: readonly Generation[]) {
+  const finished = generations.flatMap(({ theme, brief }) => (theme && brief ? [{ theme, brief }] : []));
+  const latest = finished.at(-1);
+  return latest ? { theme: latest.theme, briefs: finished.map(({ brief }) => brief) } : undefined;
 }
 
 export function ThemeGenerator() {
@@ -143,6 +156,7 @@ export function ThemeGenerator() {
         prompt,
         appearance: isDark ? "dark" : "light",
         image: attachment ? { mediaType: attachment.mediaType, data: attachment.data, palette: attachment.palette } : undefined,
+        previous: conversationSoFar(generations),
       },
       signal,
     );

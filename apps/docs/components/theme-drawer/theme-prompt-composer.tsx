@@ -34,7 +34,7 @@ const themeImagePolicy: DropzonePolicy = {
 // bills the same ≤384 tokens either way.
 const MAX_EDGE = 1024;
 
-export type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; palette: ImagePalette | null };
+export type ThemeImage = { mediaType: "image/jpeg"; data: string; name: string; aspect: number; palette: ImagePalette | null };
 
 type ThemeAttachment = { file: File; image: ThemeImage | null; error: string | null };
 
@@ -59,7 +59,13 @@ async function readThemeImage(file: File): Promise<ThemeImage> {
   const palette = readImagePalette(context.getImageData(0, 0, canvas.width, canvas.height).data);
 
   const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
-  return { mediaType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1), name: file.name, palette };
+  return {
+    mediaType: "image/jpeg",
+    data: dataUrl.slice(dataUrl.indexOf(",") + 1),
+    name: file.name,
+    aspect: canvas.width / canvas.height,
+    palette,
+  };
 }
 
 type ThemePromptComposerProps = {
