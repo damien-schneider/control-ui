@@ -3,6 +3,7 @@
 import {
   type ChangeEvent,
   type ComponentProps,
+  type ClipboardEvent as ReactClipboardEvent,
   type DragEvent as ReactDragEvent,
   type Ref,
   type RefObject,
@@ -25,9 +26,9 @@ import {
 
 export type DropzoneVisualState = "idle" | "accept" | "reject" | "unknown" | "processing";
 
-export type DropzoneValueChangeReason = "drop" | "input" | "remove" | "clear";
+export type DropzoneValueChangeReason = "drop" | "input" | "paste" | "remove" | "clear";
 
-export type DropzoneEvent = ReactDragEvent<HTMLElement> | ChangeEvent<HTMLInputElement>;
+export type DropzoneEvent = ReactDragEvent<HTMLElement> | ReactClipboardEvent<HTMLElement> | ChangeEvent<HTMLInputElement>;
 export type DropzoneGetFilesFromEvent = (event: DropzoneEvent, signal: AbortSignal) => readonly File[] | Promise<readonly File[]>;
 export type DropzoneValueChangeDetails = {
   reason: DropzoneValueChangeReason;
@@ -46,6 +47,7 @@ export type UseDropzoneOptions = {
   policy?: DropzonePolicy;
   disabled?: boolean;
   drag?: boolean;
+  paste?: boolean;
   preventDropOnDocument?: boolean;
   trackDocumentDrag?: boolean;
   getFilesFromEvent?: DropzoneGetFilesFromEvent;
@@ -59,6 +61,7 @@ export type UseDropzoneReturn = {
   multiple: boolean;
   disabled: boolean;
   dragEnabled: boolean;
+  pasteEnabled: boolean;
   visualState: DropzoneVisualState;
   isDragActive: boolean;
   isDragAccept: boolean;
@@ -78,7 +81,7 @@ export type UseDropzoneReturn = {
   getInputProps: (props?: ComponentProps<"input">) => ComponentProps<"input">;
 };
 
-type IntakeReason = Extract<DropzoneValueChangeReason, "drop" | "input">;
+type IntakeReason = Extract<DropzoneValueChangeReason, "drop" | "input" | "paste">;
 type ActiveDragState = Exclude<DropzoneVisualState, "idle" | "processing">;
 
 const registeredDropzoneRoots = new WeakSet<EventTarget>();
@@ -92,6 +95,7 @@ export function useDropzone({
   policy,
   disabled = false,
   drag = true,
+  paste = true,
   preventDropOnDocument = true,
   trackDocumentDrag = false,
   getFilesFromEvent,
@@ -118,6 +122,8 @@ export function useDropzone({
   const disabledRef = useRef(disabled);
   const dragEnabled = drag && !disabled;
   const dragEnabledRef = useRef(dragEnabled);
+  const pasteEnabled = paste && !disabled;
+  const pasteEnabledRef = useRef(pasteEnabled);
   const policyRef = useRef(policy);
   const customExtractionRef = useRef(Boolean(getFilesFromEvent));
 
@@ -125,6 +131,7 @@ export function useDropzone({
     currentValueRef.current = currentValue;
     disabledRef.current = disabled;
     dragEnabledRef.current = dragEnabled;
+    pasteEnabledRef.current = pasteEnabled;
     policyRef.current = policy;
     customExtractionRef.current = Boolean(getFilesFromEvent);
   });
@@ -253,7 +260,7 @@ export function useDropzone({
   }
 
   function getRootProps(props: ComponentProps<"div"> = {}): ComponentProps<"div"> {
-    const { onDragEnter, onDragOver, onDragLeave, onDragEnd, onDrop: callerOnDrop, ref, ...rootProps } = props;
+    const { onDragEnter, onDragOver, onDragLeave, onDragEnd, onDrop: callerOnDrop, onPaste, ref, ...rootProps } = props;
 
     return {
       ...rootProps,
@@ -316,6 +323,14 @@ export function useDropzone({
         if (event.defaultPrevented || !dragEnabledRef.current) return;
         event.preventDefault();
         void intake(event, "drop");
+      },
+      onPaste: (event) => {
+        onPaste?.(event);
+        if (!isFilePaste(event.clipboardData)) return;
+        event.stopPropagation();
+        if (event.defaultPrevented || !pasteEnabledRef.current) return;
+        event.preventDefault();
+        void intake(event, "paste");
       },
     };
   }
@@ -455,6 +470,7 @@ export function useDropzone({
     multiple: policy?.multiple ?? true,
     disabled,
     dragEnabled,
+    pasteEnabled,
     visualState,
     isDragActive,
     isDragAccept: visualState === "accept",
@@ -476,11 +492,30 @@ export function useDropzone({
 }
 
 export function defaultGetFilesFromEvent(event: DropzoneEvent): readonly File[] {
-  return "dataTransfer" in event ? Array.from(event.dataTransfer.files) : Array.from(event.currentTarget.files ?? []);
+  if ("clipboardData" in event) return getClipboardFiles(event.clipboardData);
+  if ("dataTransfer" in event) return Array.from(event.dataTransfer.files);
+  return Array.from(event.currentTarget.files ?? []);
+}
+
+/** Safari exposes a pasted screenshot through `items` only, so `files` alone loses it. */
+function getClipboardFiles(clipboardData: DataTransfer): readonly File[] {
+  const files = Array.from(clipboardData.files);
+  if (files.length > 0) return files;
+  return Array.from(clipboardData.items)
+    .filter((item) => item.kind === "file")
+    .map((item) => item.getAsFile())
+    .filter((file): file is File => file !== null);
 }
 
 function isFileDrag(dataTransfer: DataTransfer | null) {
   return dataTransfer ? Array.from(dataTransfer.types).includes("Files") : false;
+}
+
+/** Clipboards that also carry text belong to the focused editor: only a text-free paste is an attachment. */
+function isFilePaste(clipboardData: DataTransfer | null) {
+  if (!clipboardData) return false;
+  const types = Array.from(clipboardData.types);
+  return types.includes("Files") && !types.includes("text/plain");
 }
 
 function getRegisteredDropzoneRoot(event: DragEvent) {

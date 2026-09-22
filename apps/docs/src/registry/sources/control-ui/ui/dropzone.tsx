@@ -24,6 +24,8 @@ export type DropzoneProps = Omit<ComponentProps<"div">, "defaultValue" | "onChan
   onValueChange?: (value: readonly File[], details: DropzoneValueChangeDetails) => void;
   policy?: DropzonePolicy;
   disabled?: boolean;
+  drag?: boolean;
+  paste?: boolean;
   getFilesFromEvent?: DropzoneGetFilesFromEvent;
   onDrop?: (details: DropzoneDropDetails) => void;
   onError?: (error: Error) => void;
@@ -80,6 +82,8 @@ export function Dropzone({
   onValueChange,
   policy,
   disabled,
+  drag,
+  paste,
   getFilesFromEvent,
   onDrop,
   onError,
@@ -103,6 +107,8 @@ export function Dropzone({
     onValueChange,
     policy,
     disabled,
+    drag,
+    paste,
     getFilesFromEvent,
     onDrop,
     onError,

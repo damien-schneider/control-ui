@@ -18,6 +18,21 @@ import type { ChatComposerEditorApi, ChatComposerEditorProps } from "./chat-comp
 
 const SUBMIT_KEY = "Enter";
 
+function releaseFileDrag(_view: EditorView, event: DragEvent) {
+  return event.dataTransfer ? Array.from(event.dataTransfer.types).includes("Files") : false;
+}
+
+/** ProseMirror claims every drag and paste over the editor. A transfer it cannot insert is not editor input, so it has to reach the surrounding drop zone with its default intact. */
+const fileTransferPassthrough = {
+  dragenter: releaseFileDrag,
+  dragover: releaseFileDrag,
+  drop: releaseFileDrag,
+  paste: (_view: EditorView, event: ClipboardEvent) => {
+    const types = event.clipboardData ? Array.from(event.clipboardData.types) : [];
+    return types.includes("Files") && !types.includes("text/plain");
+  },
+};
+
 export function ChatComposerEditor({
   className,
   placeholder,
@@ -80,6 +95,7 @@ export function ChatComposerEditor({
               for (const handler of keyHandlersRef.current) if (handler(event)) return true;
               return false;
             },
+            handleDOMEvents: fileTransferPassthrough,
           },
         }),
         ...extensionPlugins,

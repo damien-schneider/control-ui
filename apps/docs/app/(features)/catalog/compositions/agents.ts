@@ -84,6 +84,15 @@ export const agentsCompositions = {
         ),
       ),
     ),
+    example(
+      "File intake",
+      part(
+        "Dropzone",
+        part("DropzoneInput"),
+        part("DropzoneArea", part("ChatComposer", content("composer anatomy")), part("DropzoneOverlay")),
+      ),
+      "The area carries drop and paste, so a screenshot pasted into the composer and a file dropped on it reach the same policy as the file dialog. Open that dialog from the toolbar with the dropzone's open().",
+    ),
   ],
   "user-ask": [
     example(
