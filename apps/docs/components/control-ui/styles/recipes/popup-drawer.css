@@ -1,14 +1,15 @@
 @layer components {
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-popup-part="surface"]) {
-    /* The sheet sits on the page surface, and its edge is a real border the variants size per side. */
+    /* The edge is a real border drawn only on the sides the variant exposes, so the popup's inset ring stays off. */
     --cui-popup-radius: var(--radius-panel);
     --cui-popup-background: var(--background);
     --cui-popup-foreground: var(--foreground);
-    --cui-popup-border-width: 0px;
     --cui-popup-shadow: var(--shadow-modal);
+    --cui-popup-backdrop-filter: none;
     --_drawer-content-closed-translate: 0 100%;
     border: 0 solid var(--cui-popup-border-color);
     border-radius: 0;
+    box-shadow: var(--cui-popup-shadow);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-popup-part="surface"][data-surface-variant="card"]) {
@@ -16,28 +17,28 @@
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="floating"]) {
-    border-width: 1px;
+    border-width: var(--cui-popup-border-width);
     border-radius: var(--cui-popup-radius);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="edge"][data-side="bottom"]) {
-    border-top-width: 1px;
+    border-top-width: var(--cui-popup-border-width);
     border-radius: var(--cui-popup-radius) var(--cui-popup-radius) 0 0;
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="edge"][data-side="top"]) {
-    border-bottom-width: 1px;
+    border-bottom-width: var(--cui-popup-border-width);
     --_drawer-content-closed-translate: 0 -100%;
     border-radius: 0 0 var(--cui-popup-radius) var(--cui-popup-radius);
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="edge"][data-side="right"]) {
-    border-left-width: 1px;
+    border-left-width: var(--cui-popup-border-width);
     --_drawer-content-closed-translate: 100% 0;
   }
 
   :where([data-control-family="popup"][data-popup-kind="drawer"][data-slot="content"][data-variant="edge"][data-side="left"]) {
-    border-right-width: 1px;
+    border-right-width: var(--cui-popup-border-width);
     --_drawer-content-closed-translate: -100% 0;
   }
 
