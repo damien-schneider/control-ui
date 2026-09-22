@@ -14733,6 +14733,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "oklch(from var(--foreground) l c h / var(--overlay-opacity))",
       },
       {
+        name: "--cui-popup-backdrop-blur",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "blur(var(--backdrop-blur-overlay))",
+      },
+      {
         name: "--cui-popup-item-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",

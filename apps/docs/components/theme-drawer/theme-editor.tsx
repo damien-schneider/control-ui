@@ -19,7 +19,7 @@ import { ThemePreviewCanvas } from "./preview-canvas";
 import { parseSkinTheme, skinChangedTokenNames, themeFile, useSkinSource } from "./skin-source";
 import { SkinSourceView } from "./skin-source-view";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "./theme-categories";
-import { ThemeGenerator } from "./theme-generator";
+import { ThemeGeneratorDrawer } from "./theme-generator-drawer";
 import { useThemeRuntime } from "./theme-runtime-context";
 import { TOKEN_CATEGORIES } from "./token-metadata";
 import { type TokenEditorProps, TokenPanel } from "./token-panel";
@@ -84,10 +84,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
 
   const activeTokenCategory = TOKEN_CATEGORIES.find((item) => item.group === category);
 
-  const panelIntroByGroup: Partial<Record<ThemeContractGroup, ReactNode>> = {
-    motion: reduceMotionRow,
-    color: <ThemeGenerator />,
-  };
+  const panelIntroByGroup: Partial<Record<ThemeContractGroup, ReactNode>> = { motion: reduceMotionRow };
 
   return (
     <div className="flex min-w-0 flex-col gap-3">
@@ -103,6 +100,7 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
       ) : null}
 
       <div className="flex flex-wrap items-center justify-end gap-2">
+        <ThemeGeneratorDrawer />
         <span className="flex items-center gap-2 text-caption text-muted-foreground">
           CSS names
           <Switch

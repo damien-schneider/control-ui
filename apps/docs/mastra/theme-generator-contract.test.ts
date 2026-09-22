@@ -7,8 +7,13 @@ const flat = (L: number, C: number, H: number) => ({ L, C, H });
 
 const readable: GeneratedTheme = {
   name: "Readable",
-  appearance: "light",
   radius: 0.625,
+  cornerShape: "round",
+  typography: { baseSize: 0.875, scale: 1.125, headingWeight: 600, headingTracking: -0.018 },
+  shadow: { size: 0, opacity: 1, y: 1 },
+  motion: { baseDuration: 200, easing: "standard" },
+  layout: { controlHeight: 36, paddingX: 16, paddingY: 10 },
+  surface: { overlayOpacity: 0.2, backdropBlur: 0 },
   colors: {
     canvas: flat(0.98, 0.004, 250),
     background: flat(1, 0, 0),
@@ -108,6 +113,44 @@ describe("toTokenValues", () => {
     expect(onDarkFill).toContain("oklch(1");
     expect(toTokenValues(light).tokens["--destructive-foreground"]).toContain("oklch(0 ");
   });
+
+  // The exponents in the ladder were measured against these defaults, so drift here means a step moved.
+  test("reproduces the stock type ladder at the default base and scale", () => {
+    const { tokens } = toTokenValues(readable);
+    const stock = { "--text-micro": 0.625, "--text-label": 0.75, "--text-body": 0.875, "--text-heading-1": 1.875, "--text-display": 2.25 };
+
+    for (const [name, rem] of Object.entries(stock)) expect(Number.parseFloat(tokens[name])).toBeCloseTo(rem, 2);
+  });
+
+  test("spreads the ladder around the body size as the scale grows", () => {
+    const loud = { ...readable, typography: { ...readable.typography, baseSize: 1, scale: 1.25 } };
+    const { tokens } = toTokenValues(loud);
+
+    expect(tokens["--text-body"]).toBe("1rem");
+    expect(Number.parseFloat(tokens["--text-display"])).toBeGreaterThan(2.25);
+    expect(Number.parseFloat(tokens["--text-micro"])).toBeLessThan(1);
+  });
+
+  // A dramatic heading scale is no reason to render a 7px caption or a 200px display.
+  test("keeps every rung legible at the loudest scale the schema allows", () => {
+    const { tokens } = toTokenValues({
+      ...readable,
+      typography: { baseSize: 0.875, scale: 1.25, headingWeight: 800, headingTracking: -0.04 },
+    });
+    const rem = (name: string) => Number.parseFloat(tokens[name]);
+
+    expect(rem("--text-micro")).toBeGreaterThanOrEqual(0.625);
+    expect(rem("--text-caption")).toBeGreaterThanOrEqual(0.625);
+    expect(rem("--text-display")).toBeLessThanOrEqual(5);
+  });
+
+  test("derives the motion ramp and easing from one duration", () => {
+    const { tokens } = toTokenValues({ ...readable, motion: { baseDuration: 200, easing: "springy" } });
+
+    expect(tokens["--duration-fast"]).toBe("150ms");
+    expect(tokens["--duration-slow"]).toBe("300ms");
+    expect(tokens["--ease-standard"]).toBe("cubic-bezier(0.16, 1, 0.3, 1)");
+  });
 });
 
 describe("toStreamingTokenValues", () => {
@@ -124,6 +167,13 @@ describe("toStreamingTokenValues", () => {
 
     expect(tokens["--primary"]).toBeUndefined();
     expect(tokens["--border"]).toBe("oklch(0.9 0 0)");
+  });
+
+  test("paints a group as soon as it lands and skips one that is still being written", () => {
+    const tokens = toStreamingTokenValues({ motion: { baseDuration: 400, easing: "smooth" }, layout: { controlHeight: 44 } });
+
+    expect(tokens["--duration-base"]).toBe("400ms");
+    expect(tokens["--control-h"]).toBeUndefined();
   });
 
   test("returns nothing for a chunk that is not a theme", () => {

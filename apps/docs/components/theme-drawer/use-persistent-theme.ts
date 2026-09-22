@@ -65,8 +65,10 @@ export function usePersistentTheme() {
   }
 
   // Clears the generated mode and textFixes, never the other mode: a contrast "Fix" is written last by
-  // buildOverrideDecls and would otherwise pin old foregrounds over every future palette, while the
-  // untouched mode holds hand-tuned tokens the user never asked to discard.
+  // buildOverrideDecls and would otherwise pin old foregrounds over every future theme, while the
+  // untouched mode holds hand-tuned tokens the user never asked to discard. overrides survives for the
+  // same reason — every generation rewrites all 33 mode-independent tokens it knows, so nothing there can
+  // go stale, and what remains is tuning the generator has no vocabulary for.
   function applyGeneratedTheme(tokenPatch: TokenValues) {
     updateTheme((previous) => {
       const darkActive = document.documentElement.classList.contains("dark");

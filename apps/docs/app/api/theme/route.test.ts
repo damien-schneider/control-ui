@@ -8,8 +8,13 @@ import { resetGenerationLimits } from "./generation-limit";
 
 const palette = {
   name: "Ember Terminal",
-  appearance: "dark",
   radius: 0,
+  cornerShape: "round",
+  typography: { baseSize: 0.8125, scale: 1.2, headingWeight: 700, headingTracking: -0.03 },
+  shadow: { size: 0, opacity: 0, y: 0 },
+  motion: { baseDuration: 120, easing: "snappy" },
+  layout: { controlHeight: 30, paddingX: 12, paddingY: 6 },
+  surface: { overlayOpacity: 0.4, backdropBlur: 0 },
   colors: {
     canvas: { L: 0.16, C: 0.012, H: 60 },
     background: { L: 0.2, C: 0.014, H: 60 },

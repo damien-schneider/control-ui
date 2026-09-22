@@ -8,6 +8,7 @@ export const popupKnobs = [
   "--cui-popup-shadow",
   "--cui-popup-backdrop-filter",
   "--cui-popup-backdrop-background",
+  "--cui-popup-backdrop-blur",
   "--cui-popup-item-radius",
   "--cui-popup-item-foreground",
   "--cui-popup-item-highlight-background",

@@ -354,7 +354,7 @@
         "tooltip",
         "trigger-menu"
       ],
-      "knobs": 16,
+      "knobs": 17,
       "probes": 70
     },
     "progressive-blur": {

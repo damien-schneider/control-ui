@@ -59,8 +59,9 @@
   :where([data-control-family="popup"][data-popup-part="backdrop"]) {
     --cui-popup-backdrop-background: oklch(from var(--foreground) l c h / var(--overlay-opacity));
     background-color: var(--cui-popup-backdrop-background);
-    -webkit-backdrop-filter: blur(var(--backdrop-blur-overlay));
-    backdrop-filter: blur(var(--backdrop-blur-overlay));
+    --cui-popup-backdrop-blur: blur(var(--backdrop-blur-overlay));
+    -webkit-backdrop-filter: var(--cui-popup-backdrop-blur);
+    backdrop-filter: var(--cui-popup-backdrop-blur);
     transition: opacity var(--duration-base) var(--ease-emphasized);
   }
   :where(.dark [data-control-family="popup"][data-popup-part="backdrop"]) {
@@ -341,6 +342,11 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-popup-backdrop-blur {
+  syntax: "*";
+  inherits: true;
 }
 
 @property --cui-popup-item-radius {

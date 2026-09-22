@@ -1729,6 +1729,10 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-popup-backdrop-blur",
+      "description": "Control UI popup knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
       "name": "--cui-popup-backdrop-filter",
       "description": "Control UI popup knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
     },

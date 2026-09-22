@@ -1,7 +1,7 @@
 "use client";
 
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
-import type { ComponentProps, CSSProperties } from "react";
+import { type ComponentProps, type CSSProperties, createContext, useContext } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { controlEffectsAttribute } from "@/components/control-ui/skin";
@@ -72,9 +72,18 @@ const placement: Record<DrawerContentVariant, Record<DrawerSide, { viewport: str
   },
 };
 
+// Base UI leaves the backdrop pointer-capturing even when the drawer is not modal, and the viewport is a
+// full-screen positioning layer either way. A non-modal drawer that silently ate every click on the page
+// behind it would be worse than no drawer, so the content layers read the root's own modal flag.
+const DrawerModalContext = createContext(true);
+
 export function Drawer(props: ComponentProps<typeof DrawerPrimitive.Root> & { side?: DrawerSide }) {
-  const { side = "bottom", swipeDirection, ...rest } = props;
-  return <DrawerPrimitive.Root swipeDirection={swipeDirection ?? swipeFor[side]} {...rest} />;
+  const { side = "bottom", swipeDirection, modal = true, ...rest } = props;
+  return (
+    <DrawerModalContext value={modal === true}>
+      <DrawerPrimitive.Root swipeDirection={swipeDirection ?? swipeFor[side]} modal={modal} {...rest} />
+    </DrawerModalContext>
+  );
 }
 
 export function DrawerTrigger({
@@ -108,11 +117,13 @@ export function DrawerContent({
   style?: CSSProperties & PopupKnobStyle;
 }) {
   const skin = useSkin();
+  const modal = useContext(DrawerModalContext);
   const place = placement[variant][side];
   const grabbable = side === "bottom" || side === "top";
   const backdropStyle: (CSSProperties & PopupKnobStyle) | undefined = style
     ? {
         "--cui-popup-backdrop-background": style["--cui-popup-backdrop-background"],
+        "--cui-popup-backdrop-blur": style["--cui-popup-backdrop-blur"],
       }
     : undefined;
   return (
@@ -125,7 +136,7 @@ export function DrawerContent({
         data-slot="backdrop"
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className="fixed inset-0 z-(--z-overlay)"
+        className={cn("fixed inset-0 z-(--z-overlay)", !modal && "pointer-events-none")}
         style={backdropStyle}
       />
       <DrawerPrimitive.Viewport
@@ -137,7 +148,7 @@ export function DrawerContent({
         data-variant={variant}
         data-skin={skin.id}
         data-effects={controlEffectsAttribute(skin.effects)}
-        className={cn("fixed inset-0 z-(--z-modal) flex", place.viewport)}
+        className={cn("fixed inset-0 z-(--z-modal) flex", place.viewport, !modal && "pointer-events-none")}
       >
         <DrawerPrimitive.Popup
           data-control-ui="drawer"
@@ -150,7 +161,7 @@ export function DrawerContent({
           data-padding={padding}
           data-surface-variant={surface}
           data-variant={variant}
-          className={cn("flex flex-col", place.popup, className)}
+          className={cn("flex flex-col", place.popup, !modal && "pointer-events-auto", className)}
           style={style}
           {...props}
         >

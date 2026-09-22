@@ -24,7 +24,9 @@ import {
 import { ChatTurn } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 import { Button } from "@/components/control-ui/ui/button";
-import { COLOR_ROLE_TOKENS, type ContrastAdjustment } from "@/mastra/theme-generator-contract";
+import type { ContrastAdjustment } from "@/mastra/theme-generator-contract";
+import { THEME_CONTRACT, type ThemeContractGroup } from "@/src/registry/lib/theme-contract";
+import { TOKEN_GROUP_ORDER, TOKEN_GROUP_TITLES } from "./theme-categories";
 import { useThemeRuntime } from "./theme-runtime-context";
 
 type Generation = {
@@ -37,7 +39,21 @@ type Generation = {
   error: string | null;
 };
 
-const TOKEN_ROLE_LABELS: Record<string, string> = Object.fromEntries(COLOR_ROLE_TOKENS.map(([role, token]) => [token, role]));
+const GROUP_BY_TOKEN = new Map(THEME_CONTRACT.map((token) => [token.name, token.group]));
+
+// A finished theme paints ~53 tokens across six groups, so naming each one would bury the signal.
+// Counting them per group still shows the work landing group by group as the model streams.
+function paintedSummary(paintedTokens: readonly string[]) {
+  const counts = new Map<ThemeContractGroup, number>();
+  for (const token of paintedTokens) {
+    const group = GROUP_BY_TOKEN.get(token);
+    if (group) counts.set(group, (counts.get(group) ?? 0) + 1);
+  }
+
+  return TOKEN_GROUP_ORDER.filter((group) => counts.has(group))
+    .map((group) => `${TOKEN_GROUP_TITLES[group]} ${counts.get(group)}`)
+    .join(" · ");
+}
 
 type StreamLine =
   | { type: "tokens"; tokens: Record<string, string> }
@@ -75,7 +91,7 @@ async function openGenerationStream(prompt: string, appearance: "light" | "dark"
 }
 
 function applyChunk(generation: Generation, chunk: Exclude<StreamLine, { type: "error" }>): Generation {
-  const paintedTokens = Object.keys(chunk.tokens).filter((token) => token in TOKEN_ROLE_LABELS);
+  const paintedTokens = Object.keys(chunk.tokens).filter((token) => GROUP_BY_TOKEN.has(token));
   if (chunk.type !== "complete") return { ...generation, paintedTokens };
   return { ...generation, paintedTokens, state: "success", paletteName: chunk.name, adjustments: chunk.adjustments };
 }
@@ -161,9 +177,7 @@ export function ThemeGenerator() {
                 <ActivityDetail>
                   <ActivityDetailLabel>Applied</ActivityDetailLabel>
                   <ActivityDetailContent>
-                    {generation.paintedTokens.length === 0
-                      ? "Waiting for the first colour…"
-                      : generation.paintedTokens.map((token) => TOKEN_ROLE_LABELS[token]).join(", ")}
+                    {generation.paintedTokens.length === 0 ? "Waiting for the first token…" : paintedSummary(generation.paintedTokens)}
                   </ActivityDetailContent>
                 </ActivityDetail>
                 {generation.adjustments.length > 0 ? (

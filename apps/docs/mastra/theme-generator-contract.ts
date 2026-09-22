@@ -18,12 +18,11 @@ const lch = z.object({
   H: z.number().min(0).max(360).describe("OKLCH hue angle in degrees"),
 });
 
-// Every other contract token derives from these; asking for the full contract would quadruple output
-// tokens and give the model a hundred ways to contradict itself.
+// The model authors the roots of each group and nothing else. theme.css already derives the rest —
+// --radius-sm from --radius, --control-h-sm from --control-h — so a handful of numbers moves the whole
+// system, and asking for all 130 contract tokens would only give the model ways to contradict itself.
 export const generatedThemeSchema = z.object({
-  name: z.string().min(1).max(48).describe("Short human name for the palette"),
-  appearance: z.enum(["light", "dark"]).describe("Whether the palette reads as a light or dark theme"),
-  radius: z.number().min(0).max(1.75).describe("Base corner radius in rem; 0 is square, 0.625 is the default"),
+  name: z.string().min(1).max(48).describe("Short human name for the theme"),
   colors: z.object({
     canvas: lch.describe("Page paper behind every panel"),
     background: lch.describe("Base surface of panels and bubbles"),
@@ -39,6 +38,32 @@ export const generatedThemeSchema = z.object({
     destructive: lch.describe("Destructive action colour"),
     border: lch.describe("Hairline border colour"),
     ring: lch.describe("Focus ring colour"),
+  }),
+  radius: z.number().min(0).max(1.75).describe("Base corner radius in rem; 0 is square, 0.625 is the default"),
+  cornerShape: z.enum(["round", "squircle"]).describe("round is a normal corner, squircle is the softer Apple-style curve"),
+  typography: z.object({
+    baseSize: z.number().min(0.75).max(1.125).describe("Body text size in rem; 0.875 is the default"),
+    scale: z.number().min(1.05).max(1.25).describe("Ratio between type steps; 1.125 is the default, 1.25 is dramatic"),
+    headingWeight: z.number().min(400).max(900).describe("Font weight for headings; 600 is the default"),
+    headingTracking: z.number().min(-0.06).max(0.08).describe("Heading letter spacing in em; negative is tighter"),
+  }),
+  shadow: z.object({
+    size: z.number().min(0).max(3).describe("Shadow spread; 0 is flat, 1 is normal, 3 is dramatic"),
+    opacity: z.number().min(0).max(1).describe("Shadow strength"),
+    y: z.number().min(0).max(4).describe("Downward shadow offset"),
+  }),
+  motion: z.object({
+    baseDuration: z.number().min(60).max(600).describe("Base transition duration in ms; 200 is the default"),
+    easing: z.enum(["standard", "snappy", "smooth", "springy"]).describe("Character of the motion curve"),
+  }),
+  layout: z.object({
+    controlHeight: z.number().min(26).max(56).describe("Height of buttons and inputs in px; 36 is the default"),
+    paddingX: z.number().min(6).max(32).describe("Horizontal padding inside controls in px; 16 is the default"),
+    paddingY: z.number().min(2).max(20).describe("Vertical padding inside controls in px; 10 is the default"),
+  }),
+  surface: z.object({
+    overlayOpacity: z.number().min(0).max(0.9).describe("Darkness of the scrim behind modals; 0.2 is the default"),
+    backdropBlur: z.number().min(0).max(24).describe("Blur behind popovers and overlays in px; 0 is the default"),
   }),
 });
 
@@ -141,18 +166,115 @@ function tokensFromColors(colors: Partial<Record<ColorRole, Oklch>>): TokenValue
   return tokens;
 }
 
-export function toTokenValues(theme: GeneratedTheme): { tokens: TokenValues; adjustments: ContrastAdjustment[] } {
-  const { colors, adjustments } = gateContrast(theme.colors);
-  return { tokens: { ...tokensFromColors(colors), "--radius": `${theme.radius}rem` }, adjustments };
+// Exponents on the type scale, measured so that scale 1.125 with base 0.875rem reproduces the stock
+// ladder exactly. A larger scale then spreads the same ladder rather than inventing a new shape.
+const TYPE_STEPS = [
+  ["--text-micro", -2.86],
+  ["--text-caption", -2.05],
+  ["--text-label", -1.31],
+  ["--text-body", 0],
+  ["--text-heading-4", 0.59],
+  ["--text-body-lg", 1.13],
+  ["--text-heading-3", 2.13],
+  ["--text-heading-2", 3.84],
+  ["--text-heading-1", 6.47],
+  ["--text-display", 8.02],
+] as const;
+
+const HEADING_TOKENS = ["--text-heading-4", "--text-heading-3", "--text-heading-2", "--text-heading-1", "--text-display"] as const;
+
+const EASING_CURVES: Record<GeneratedTheme["motion"]["easing"], string> = {
+  standard: "cubic-bezier(0.2, 0, 0, 1)",
+  snappy: "cubic-bezier(0.3, 0, 0.1, 1)",
+  smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
+  springy: "cubic-bezier(0.16, 1, 0.3, 1)",
+};
+
+const round = (value: number, places: number) => Number(value.toFixed(places));
+
+// The ladder spans exponents -2.86 to 8.02, so it is exponentially sensitive at both ends. Below body the
+// scale is held at the stock ratio — small text has no room to shrink and a dramatic heading scale is no
+// reason to render a 7px caption — and every rung is clamped into a legible window, the typographic
+// equivalent of the contrast gate the colours get.
+const MIN_REM = 0.625;
+const MAX_REM = 5;
+const STOCK_SCALE = 1.125;
+
+function typographyTokens({ baseSize, scale, headingWeight, headingTracking }: GeneratedTheme["typography"]): TokenValues {
+  const tokens: TokenValues = {};
+  for (const [name, step] of TYPE_STEPS) {
+    const size = baseSize * (step < 0 ? Math.min(scale, STOCK_SCALE) : scale) ** step;
+    tokens[name] = `${round(Math.min(Math.max(size, MIN_REM), MAX_REM), 4)}rem`;
+  }
+  for (const name of HEADING_TOKENS) tokens[`${name}--font-weight`] = `${Math.round(headingWeight)}`;
+
+  tokens["--text-heading-1--letter-spacing"] = `${round(headingTracking, 4)}em`;
+  tokens["--text-display--letter-spacing"] = `${round(headingTracking * 1.4, 4)}em`;
+  return tokens;
 }
 
+// One builder per group, each parsing its own slice of the contract. The streaming path feeds it a group
+// that may still be half-written and the final path feeds it a validated one, so both paint from the same
+// rules and an incomplete group simply yields nothing.
+function groupTokens<T>(schema: z.ZodType<T>, build: (value: T) => TokenValues) {
+  return (value: unknown): TokenValues => {
+    const parsed = schema.safeParse(value);
+    return parsed.success ? build(parsed.data) : {};
+  };
+}
+
+const { typography, shadow, motion, layout, surface } = generatedThemeSchema.shape;
+
+const GROUP_TOKENS = {
+  typography: groupTokens(typography, typographyTokens),
+  shadow: groupTokens(shadow, ({ size, opacity, y }) => ({
+    "--shadow-size": `${round(size, 3)}`,
+    "--shadow-opacity": `${round(opacity, 3)}`,
+    "--shadow-y": `${round(y, 3)}`,
+  })),
+  motion: groupTokens(motion, ({ baseDuration, easing }) => ({
+    "--duration-fast": `${Math.round(baseDuration * 0.75)}ms`,
+    "--duration-base": `${Math.round(baseDuration)}ms`,
+    "--duration-slow": `${Math.round(baseDuration * 1.5)}ms`,
+    "--ease-standard": EASING_CURVES[easing],
+    "--ease-emphasized": EASING_CURVES[easing === "standard" ? "springy" : easing],
+  })),
+  layout: groupTokens(layout, ({ controlHeight, paddingX, paddingY }) => ({
+    "--control-h": `${Math.round(controlHeight)}px`,
+    "--padding-x": `${Math.round(paddingX)}px`,
+    "--padding-y": `${Math.round(paddingY)}px`,
+  })),
+  surface: groupTokens(surface, ({ overlayOpacity, backdropBlur }) => ({
+    "--overlay-opacity": `${round(overlayOpacity, 3)}`,
+    "--backdrop-blur-overlay": `${Math.round(backdropBlur)}px`,
+    "--backdrop-blur-popover": `${Math.round(backdropBlur)}px`,
+  })),
+};
+
+export function toTokenValues(theme: GeneratedTheme): { tokens: TokenValues; adjustments: ContrastAdjustment[] } {
+  const { colors, adjustments } = gateContrast(theme.colors);
+  const tokens: TokenValues = {
+    ...tokensFromColors(colors),
+    "--radius": `${theme.radius}rem`,
+    "--corner-shape": theme.cornerShape,
+    ...GROUP_TOKENS.typography(theme.typography),
+    ...GROUP_TOKENS.shadow(theme.shadow),
+    ...GROUP_TOKENS.motion(theme.motion),
+    ...GROUP_TOKENS.layout(theme.layout),
+    ...GROUP_TOKENS.surface(theme.surface),
+  };
+  return { tokens, adjustments };
+}
+
+// Every group is optional here because the model streams them one at a time: each lands the moment it is
+// complete and valid, and a half-written group simply is not painted yet. Contrast gating is deliberately
+// skipped, because a half-built palette has no stable pairs to gate against.
 const streamingThemeSchema = z.looseObject({
-  radius: z.number().min(0).max(1.75).optional(),
   colors: z.record(z.string(), z.unknown()).optional(),
+  radius: z.number().min(0).max(1.75).optional(),
+  cornerShape: generatedThemeSchema.shape.cornerShape.optional(),
 });
 
-// Roles arrive one at a time while the model streams, so the drawer paints each the moment it lands.
-// Contrast gating is deliberately skipped: a half-built palette has no stable pairs to gate against yet.
 export function toStreamingTokenValues(chunk: unknown): TokenValues {
   const streaming = streamingThemeSchema.safeParse(chunk);
   if (!streaming.success) return {};
@@ -165,5 +287,9 @@ export function toStreamingTokenValues(chunk: unknown): TokenValues {
 
   const tokens = tokensFromColors(landed);
   if (typeof streaming.data.radius === "number") tokens["--radius"] = `${streaming.data.radius}rem`;
+  if (streaming.data.cornerShape) tokens["--corner-shape"] = streaming.data.cornerShape;
+
+  for (const [group, build] of Object.entries(GROUP_TOKENS)) Object.assign(tokens, build(streaming.data[group]));
+
   return tokens;
 }

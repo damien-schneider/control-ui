@@ -21,7 +21,7 @@ function buildPrompt(prompt: string, appearance: "light" | "dark"): string {
 const line = (payload: unknown) => `${JSON.stringify(payload)}\n`;
 
 export async function POST(request: Request) {
-  // Read per request, not at module load: a key added or rotated on the host takes effect without a redeploy.
+  // Read per request rather than at module load, so a test can toggle the key between cases.
   if (!process.env.DEEPSEEK_API_KEY) {
     return Response.json({ error: "Theme generation is not configured on this deployment." }, { status: 503 });
   }
