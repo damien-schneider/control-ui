@@ -1,6 +1,5 @@
 @layer components {
   :where([data-control-family="code-diff"][data-slot="root"]) {
-    margin-block: calc(var(--spacing) * 4);
     --cui-code-diff-background: var(--background);
     --cui-code-diff-border-color: var(--border);
     --cui-code-diff-border-width: 1px;

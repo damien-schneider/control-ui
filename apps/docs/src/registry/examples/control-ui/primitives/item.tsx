@@ -2,20 +2,11 @@
 
 import { Bell, ChevronRight } from "lucide-react";
 import { Button } from "@/components/control-ui/ui/button";
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemGroup,
-  ItemMedia,
-  ItemSeparator,
-  ItemTitle,
-} from "@/components/control-ui/ui/item";
+import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 
 export function PrimitiveItemExample() {
   return (
-    <ItemGroup className="w-full max-w-md overflow-hidden rounded-[var(--radius-lg)] border">
+    <div className="flex w-full max-w-md flex-col gap-3">
       <Item variant="outline">
         <ItemMedia>
           <Bell />
@@ -31,9 +22,7 @@ export function PrimitiveItemExample() {
         </ItemActions>
       </Item>
 
-      <ItemSeparator />
-
-      <Item variant="muted" render={<a href="#workspace-settings" />} className="rounded-none">
+      <Item variant="muted" render={<a href="#workspace-settings" />}>
         <ItemContent>
           <ItemTitle>Workspace settings</ItemTitle>
           <ItemDescription>Members, billing and API keys.</ItemDescription>
@@ -42,6 +31,6 @@ export function PrimitiveItemExample() {
           <ChevronRight className="size-4 text-muted-foreground" />
         </ItemActions>
       </Item>
-    </ItemGroup>
+    </div>
   );
 }

@@ -16,6 +16,12 @@
     --cui-tabs-border-color: var(--border);
     --cui-tabs-border-width: 1px;
   }
+
+  :where([data-control-family="tabs"][data-slot="root"][data-orientation="vertical"]) {
+    display: flex;
+    gap: calc(var(--spacing) * 4);
+  }
+
   :where([data-control-family="tabs"][data-slot="list"]) {
     --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--_tabs-trigger-h) / 2));
     position: relative;
@@ -100,6 +106,7 @@
     /* One trigger radius for the flare, plus the surface corner arc it must clear. */
     --_tabs-browser-inset: calc(var(--_tabs-trigger-radius-fit) + var(--radius-panel));
     min-height: calc(var(--_tabs-trigger-h) + var(--cui-tabs-list-padding));
+    width: auto;
     align-items: flex-end;
     isolation: isolate;
     /* The slide machinery promotes the surface wrapper mid-switch — the strip stays above it. */
@@ -170,6 +177,20 @@
 
   :where([data-control-family="tabs"][data-slot="panel"]) {
     outline-style: none;
+  }
+
+  :where(
+    [data-control-family="tabs"][data-slot="list"][data-orientation="horizontal"]:not([data-variant="browser"]) ~ [data-slot="panel"]
+  ) {
+    margin-block-start: calc(var(--spacing) * 3);
+  }
+
+  :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] ~ [data-slot="panel"]) {
+    border: var(--cui-tabs-border-width) solid var(--cui-tabs-border-color);
+    border-top: none;
+    border-radius: 0 0 var(--radius-panel) var(--radius-panel);
+    background: var(--cui-tabs-indicator-background);
+    padding: calc(var(--spacing) * 4);
   }
 
   :where([data-control-family="tabs"][data-slot="list"][data-variant="browser"] [data-control-family="tabs"][data-slot="tab"]) {

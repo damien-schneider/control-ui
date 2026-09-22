@@ -1066,7 +1066,23 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       },
     ],
   },
-  { id: "collapsible", knobs: [] },
+  {
+    id: "collapsible",
+    knobs: [
+      {
+        name: "--cui-collapsible-trigger-hover-background",
+        syntax: "<color>",
+        defaultValue: "var(--hover-fill)",
+        selector: ':where([data-control-family="collapsible"][data-slot="root"])',
+      },
+      {
+        name: "--cui-collapsible-trigger-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--radius-control)",
+        selector: ':where([data-control-family="collapsible"][data-slot="root"])',
+      },
+    ],
+  },
   {
     id: "color-picker",
     knobs: [
@@ -2192,6 +2208,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
       {
+        name: "--cui-page-layout-background",
+        syntax: "<color>",
+        defaultValue: "var(--canvas)",
+        selector: ':where([data-control-family="page-layout"][data-slot="root"])',
+      },
+      {
         name: "--cui-page-layout-column-gap",
         syntax: "<length>",
         defaultValue: "calc(var(--spacing) * 5)",
@@ -2243,6 +2265,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-page-layout-sticky-gap",
         syntax: "<length>",
         defaultValue: "0px",
+        selector: ':where([data-control-family="page-layout"][data-slot="root"])',
+      },
+      {
+        name: "--cui-page-layout-sticky-header-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--cui-page-layout-background) l c h / 0.85)",
         selector: ':where([data-control-family="page-layout"][data-slot="root"])',
       },
     ],

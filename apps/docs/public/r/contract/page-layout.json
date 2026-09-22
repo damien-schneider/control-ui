@@ -71,6 +71,18 @@
       "syntax": "<length>",
       "initialValue": "0px",
       "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-page-layout-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--canvas)"
+    },
+    {
+      "name": "--cui-page-layout-sticky-header-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--cui-page-layout-background) l c h / 0.85)"
     }
   ],
   "parts": {

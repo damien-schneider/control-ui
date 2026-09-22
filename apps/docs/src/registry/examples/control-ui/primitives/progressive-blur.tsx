@@ -89,14 +89,7 @@ export function ProgressiveBlurScrollExample() {
           Fade
         </label>
       </div>
-      <ScrollArea
-        blur={blur}
-        mask={mask}
-        lockAxis="x"
-        maxHeight="260px"
-        className="rounded-(--radius-panel) border border-border bg-background"
-        viewportProps={{ "aria-label": "Places to explore" }}
-      >
+      <ScrollArea blur={blur} mask={mask} lockAxis="x" maxHeight="260px" viewportProps={{ "aria-label": "Places to explore" }}>
         <ol className="flex flex-col gap-1 p-4">
           {destinations.map((destination, index) => (
             <li key={destination}>
@@ -115,13 +108,7 @@ export function ProgressiveBlurScrollExample() {
 export function ProgressiveBlurHorizontalExample() {
   return (
     <DirectionProvider direction="rtl">
-      <ScrollArea
-        dir="rtl"
-        blur
-        lockAxis="y"
-        className="w-full max-w-md rounded-(--radius-panel) border border-border bg-background"
-        viewportProps={{ "aria-label": "Right-to-left destinations" }}
-      >
+      <ScrollArea dir="rtl" blur lockAxis="y" className="w-full max-w-md" viewportProps={{ "aria-label": "Right-to-left destinations" }}>
         <div className="flex w-max gap-3 p-4">
           {destinations.map((destination) => (
             <Button key={destination} variant="surface" className="shrink-0">

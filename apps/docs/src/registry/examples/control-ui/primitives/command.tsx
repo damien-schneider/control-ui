@@ -16,7 +16,7 @@ import {
 export function PrimitiveCommandExample() {
   return (
     <div className="w-full max-w-sm">
-      <Command className="ring-1 ring-inset ring-border shadow-pop">
+      <Command>
         <CommandInput placeholder="Type a command or search…" />
         <CommandList>
           <CommandEmpty />

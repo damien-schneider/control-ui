@@ -35,7 +35,7 @@ export const formsCompositions = {
     ),
   ],
   checkbox: [example("Choice control", part("Checkbox"))],
-  "radio-group": [example("Anatomy", part("RadioGroup", part("Radio")))],
+  "radio-group": [example("Anatomy", part("RadioGroup", part("RadioGroupItem", part("Radio"))))],
   field: [
     example(
       "Labeled control",

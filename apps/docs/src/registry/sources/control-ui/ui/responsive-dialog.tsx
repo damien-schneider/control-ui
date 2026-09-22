@@ -147,7 +147,7 @@ export function ResponsiveDialogContent({
   }
 
   return (
-    <DrawerContent className={cn("relative pb-[max(1rem,env(safe-area-inset-bottom))]", className, drawerClassName)} {...props}>
+    <DrawerContent className={cn("relative", className, drawerClassName)} {...props}>
       {children}
       {showCloseButton ? (
         <ResponsiveDialogClose variant="ghost" size="xs" className="absolute right-3 top-3 w-[var(--control-h-xs)] px-0">

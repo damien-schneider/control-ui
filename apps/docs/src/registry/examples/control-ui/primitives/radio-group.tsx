@@ -2,43 +2,28 @@
 
 import { useState } from "react";
 
-import { Radio, RadioGroup } from "@/components/control-ui/ui/radio-group";
+import { Radio, RadioGroup, RadioGroupItem } from "@/components/control-ui/ui/radio-group";
+
+const plans = [
+  { value: "starter", label: "Starter", detail: "1 project, community support" },
+  { value: "pro", label: "Pro", detail: "Unlimited projects, priority support" },
+  { value: "team", label: "Team", detail: "SSO, audit log, seats" },
+];
 
 export function PrimitiveRadioGroupExample() {
   const [plan, setPlan] = useState("pro");
 
   return (
     <RadioGroup value={plan} onValueChange={setPlan} aria-label="Billing plan" className="w-full max-w-xs">
-      <label
-        htmlFor="plan-starter"
-        className="flex cursor-pointer items-start gap-2.5 rounded-[var(--radius-md)] p-2 text-[13px] transition-colors hover:bg-foreground/4 has-[[data-checked]]:bg-foreground/4"
-      >
-        <Radio id="plan-starter" value="starter" className="mt-0.5" aria-label="Starter" />
-        <span className="flex flex-col">
-          <span className="font-medium text-foreground">Starter</span>
-          <span className="text-caption text-muted-foreground">1 project, community support</span>
-        </span>
-      </label>
-      <label
-        htmlFor="plan-pro"
-        className="flex cursor-pointer items-start gap-2.5 rounded-[var(--radius-md)] p-2 text-[13px] transition-colors hover:bg-foreground/4 has-[[data-checked]]:bg-foreground/4"
-      >
-        <Radio id="plan-pro" value="pro" className="mt-0.5" aria-label="Pro" />
-        <span className="flex flex-col">
-          <span className="font-medium text-foreground">Pro</span>
-          <span className="text-caption text-muted-foreground">Unlimited projects, priority support</span>
-        </span>
-      </label>
-      <label
-        htmlFor="plan-team"
-        className="flex cursor-pointer items-start gap-2.5 rounded-[var(--radius-md)] p-2 text-[13px] transition-colors hover:bg-foreground/4 has-[[data-checked]]:bg-foreground/4"
-      >
-        <Radio id="plan-team" value="team" className="mt-0.5" aria-label="Team" />
-        <span className="flex flex-col">
-          <span className="font-medium text-foreground">Team</span>
-          <span className="text-caption text-muted-foreground">SSO, audit log, seats</span>
-        </span>
-      </label>
+      {plans.map((option) => (
+        <RadioGroupItem key={option.value} htmlFor={`plan-${option.value}`}>
+          <Radio id={`plan-${option.value}`} value={option.value} aria-label={option.label} />
+          <span className="flex flex-col">
+            <span className="font-medium text-foreground">{option.label}</span>
+            <span className="text-caption text-muted-foreground">{option.detail}</span>
+          </span>
+        </RadioGroupItem>
+      ))}
     </RadioGroup>
   );
 }

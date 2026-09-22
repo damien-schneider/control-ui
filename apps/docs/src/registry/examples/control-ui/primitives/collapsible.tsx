@@ -6,8 +6,8 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 export function PrimitiveCollapsibleExample() {
   return (
     <Collapsible defaultOpen className="w-full max-w-sm">
-      <CollapsibleTrigger className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm font-medium hover:bg-foreground/4">
-        <ChevronRightIcon className="size-4 text-muted-foreground" />
+      <CollapsibleTrigger>
+        <ChevronRightIcon />
         Reasoning steps
       </CollapsibleTrigger>
       <CollapsibleContent>

@@ -11,7 +11,7 @@ export function PrimitiveSpinnerExample() {
       <Spinner size="md" />
       <Spinner size="lg" />
       <Button variant="solid" size="sm" disabled>
-        <Spinner size="sm" className="text-primary-foreground" />
+        <Spinner size="sm" />
         Saving…
       </Button>
     </div>

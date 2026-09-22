@@ -3,7 +3,7 @@
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/control-ui/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import { NativeSelect } from "@/components/control-ui/ui/native-select";
 import {
   PageActions,
@@ -26,8 +26,8 @@ export function PrimitivePageLayoutExample() {
   const [width, setWidth] = useState<PageWidth>("content");
 
   return (
-    <PageLayout scroll="inset" width={width} className="h-[26rem] rounded-panel border border-border bg-canvas">
-      <PageHeader variant="sticky" className="bg-canvas/85 backdrop-blur-md">
+    <PageLayout scroll="inset" width={width} className="h-[26rem]">
+      <PageHeader variant="sticky">
         <PageTitle>Surveys</PageTitle>
         <PageDescription>Every survey in this workspace, newest first.</PageDescription>
         <PageActions>
@@ -49,8 +49,8 @@ export function PrimitivePageLayoutExample() {
           <Card key={release.name}>
             <CardHeader>
               <CardTitle>{release.name}</CardTitle>
+              <CardDescription>{release.detail}</CardDescription>
             </CardHeader>
-            <CardContent className="text-body text-muted-foreground">{release.detail}</CardContent>
           </Card>
         ))}
       </PageBody>

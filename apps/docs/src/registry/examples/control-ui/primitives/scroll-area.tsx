@@ -21,7 +21,7 @@ const changelog = [
 export function PrimitiveScrollAreaExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
-      <ScrollArea maxHeight="200px" className="w-full max-w-sm rounded-xl border bg-background">
+      <ScrollArea maxHeight="200px">
         <ol className="flex flex-col gap-2 p-4 text-sm text-muted-foreground">
           {changelog.map((line, index) => (
             <li key={line} className="flex gap-2">

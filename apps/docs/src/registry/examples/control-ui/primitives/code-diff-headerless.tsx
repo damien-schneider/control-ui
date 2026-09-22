@@ -13,16 +13,7 @@ const NEW = `export function formatRun(status: string) {
 export function PrimitiveCodeDiffHeaderlessExample() {
   return (
     <div className="w-full max-w-2xl">
-      <CodeDiff
-        name="format-run.ts"
-        lang="ts"
-        oldText={OLD}
-        newText={NEW}
-        diffStyle="unified"
-        diffIndicators="classic"
-        header={false}
-        className="my-0"
-      />
+      <CodeDiff name="format-run.ts" lang="ts" oldText={OLD} newText={NEW} diffStyle="unified" diffIndicators="classic" header={false} />
     </div>
   );
 }

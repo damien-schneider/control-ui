@@ -213,7 +213,7 @@ function CodingAgentSidebar({
           <div className="grid gap-1">
             {projects.map((project) => (
               <Collapsible key={project.id} defaultOpen={project.open ?? true} className="min-w-0">
-                <CollapsibleTrigger className="flex h-[var(--control-h-sm)] w-full items-center gap-2 rounded-[var(--radius-popup-item)] px-2 text-caption font-medium hover:bg-foreground/6">
+                <CollapsibleTrigger>
                   <ChevronRightIcon className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
                   <span className="flex shrink-0 items-center text-muted-foreground">
                     {project.icon ?? <FolderIcon className="size-4" aria-hidden="true" />}

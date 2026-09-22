@@ -829,6 +829,16 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-collapsible-trigger-hover-background",
+      "description": "Control UI collapsible knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-collapsible-trigger-radius",
+      "description": "Control UI collapsible knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--cui-color-picker-area-radius",
       "description": "Control UI color-picker knob — registered syntax <length-percentage>+, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>+"
@@ -1632,6 +1642,11 @@
       "syntax": "<length>"
     },
     {
+      "name": "--cui-page-layout-background",
+      "description": "Control UI page-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-page-layout-column-gap",
       "description": "Control UI page-layout knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
@@ -1673,6 +1688,11 @@
       "name": "--cui-page-layout-sticky-gap",
       "description": "Control UI page-layout knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length>"
+    },
+    {
+      "name": "--cui-page-layout-sticky-header-background",
+      "description": "Control UI page-layout knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
     },
     {
       "name": "--cui-pagination-link-background",

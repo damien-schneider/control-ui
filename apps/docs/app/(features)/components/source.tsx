@@ -24,7 +24,7 @@ export function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string 
   if (!code.includes("\n")) return <CodeSnippet code={code} lang={lang} />;
 
   return (
-    <Code className="my-0">
+    <Code>
       <CodeContent code={code} lang={lang} />
     </Code>
   );
@@ -42,7 +42,7 @@ export function CodeSnippet({
   children?: ReactNode;
 }) {
   return (
-    <Code copy={false} density="compact" overflow="wrap" className="my-0 flex items-center gap-1 py-1 pr-1">
+    <Code copy={false} density="compact" overflow="wrap" className="flex items-center gap-1 py-1 pr-1">
       <CodeContent code={code} lang={lang} highlight={highlight} className="min-w-0 flex-1" />
       {children ?? <CodeCopy value={code} />}
     </Code>
@@ -51,7 +51,7 @@ export function CodeSnippet({
 
 export function CommandBlock({ label, command }: { label: string; command: string }) {
   return (
-    <Code density="compact" overflow="wrap" className="my-0">
+    <Code density="compact" overflow="wrap">
       <CodeHeader>
         <CodeTitle>{label}</CodeTitle>
         <CodeActions>
@@ -78,7 +78,7 @@ export function DocsCollapsible({
 }) {
   return (
     <UICollapsible id={id} defaultOpen={defaultOpen} className="docs-panel scroll-mt-20 overflow-hidden">
-      <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left text-body font-medium hover:bg-muted/30">
+      <CollapsibleTrigger className="justify-between gap-4 px-4 py-3 text-body" style={{ "--cui-collapsible-trigger-radius": "0px" }}>
         <span>
           {title}
           {subtitle ? <span className="ml-2 font-normal text-muted-foreground">{subtitle}</span> : null}
@@ -144,7 +144,7 @@ export function SourceTabs({ files, overflow }: { files: SourceFile[]; overflow?
           </TabsList>
         </ScrollArea>
       ) : null}
-      <Code overflow={overflow} className={cn("my-0", files.length > 1 && !scrollsPage && "-mt-px")}>
+      <Code overflow={overflow} className={cn(files.length > 1 && !scrollsPage && "-mt-px")}>
         <CodeHeader>
           <SourcePath path={activeFile.path} />
           <CodeActions>
@@ -197,7 +197,7 @@ export function PreviewTabs({
             {children}
           </TabsPanel>
           <TabsPanel value="code">
-            <Code copy={false} chrome={showPanelFrame ? "embedded" : "standalone"} className="my-0">
+            <Code copy={false} chrome={showPanelFrame ? "embedded" : "standalone"}>
               <CodeContent code={code} lang="tsx" />
             </Code>
           </TabsPanel>

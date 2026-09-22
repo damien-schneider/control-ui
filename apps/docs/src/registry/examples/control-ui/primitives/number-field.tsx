@@ -18,14 +18,7 @@ export function PrimitiveNumberFieldExample() {
     <div className="flex w-full max-w-sm flex-col gap-6">
       {/* Controlled, clamped 0–99. The label lives inside a ScrubArea, so it can be dragged left/right
           to change the value in addition to the ± buttons and keyboard arrows. */}
-      <NumberField
-        id="quantity"
-        value={quantity}
-        onValueChange={setQuantity}
-        min={0}
-        max={99}
-        className="flex flex-col items-start gap-1.5"
-      >
+      <NumberField id="quantity" value={quantity} onValueChange={setQuantity} min={0} max={99}>
         <NumberFieldScrubArea>
           <label htmlFor="quantity" className="cursor-ew-resize text-[11px] font-medium text-muted-foreground">
             Quantity
@@ -46,7 +39,6 @@ export function PrimitiveNumberFieldExample() {
         min={0}
         step={100}
         format={{ style: "currency", currency: "USD", maximumFractionDigits: 0 }}
-        className="flex flex-col items-start gap-1.5"
       >
         <label htmlFor="budget" className="text-[11px] font-medium text-muted-foreground">
           Monthly budget

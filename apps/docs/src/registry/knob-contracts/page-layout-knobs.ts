@@ -11,5 +11,7 @@ export const pageLayoutKnobs = [
   "--cui-page-layout-header-row-gap",
   "--cui-page-layout-size",
   "--cui-page-layout-sticky-gap",
+  "--cui-page-layout-background",
+  "--cui-page-layout-sticky-header-background",
 ] as const;
 export type PageLayoutKnobStyle = Partial<Record<(typeof pageLayoutKnobs)[number], string>>;

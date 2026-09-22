@@ -30,12 +30,12 @@ export function PrimitiveScrollableDrawerExample() {
     <Drawer>
       <DrawerTrigger render={<Button variant="surface" />}>View deployment activity</DrawerTrigger>
       <DrawerContent className="h-[min(38rem,85vh)]">
-        <DrawerHeader className="sticky top-0 z-10 bg-background pb-2">
+        <DrawerHeader>
           <DrawerTitle>Deployment activity</DrawerTitle>
           <DrawerDescription>Header and actions remain available while the event log scrolls.</DrawerDescription>
         </DrawerHeader>
 
-        <ol className="grid gap-1 px-4 pb-20">
+        <ol className="grid gap-1 px-4">
           {activity.map((event, index) => (
             <li key={event} className="flex items-start gap-3 rounded-[var(--radius-control)] px-3 py-2.5 text-sm">
               <span className="mt-0.5 font-medium tabular-nums text-foreground/40">{String(index + 1).padStart(2, "0")}</span>
@@ -44,7 +44,7 @@ export function PrimitiveScrollableDrawerExample() {
           ))}
         </ol>
 
-        <DrawerFooter className="sticky bottom-0 z-10 bg-background pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:justify-end">
+        <DrawerFooter>
           <DrawerClose render={<Button variant="surface" />}>Close activity</DrawerClose>
         </DrawerFooter>
       </DrawerContent>

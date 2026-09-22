@@ -203,7 +203,7 @@ export function DrawerFooter({ className, ...props }: ComponentProps<"div"> & { 
       data-control-family="popup"
       data-popup-kind="drawer"
       data-slot="footer"
-      className={cn("mt-auto flex flex-col", className)}
+      className={cn("mt-auto flex flex-col sm:flex-row sm:justify-end", className)}
       {...props}
     />
   );

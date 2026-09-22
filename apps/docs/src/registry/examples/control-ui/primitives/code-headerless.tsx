@@ -14,7 +14,7 @@ export function installSummary() {
 
 export function PrimitiveCodeHeaderlessExample() {
   return (
-    <Code overflow="wrap" className="my-0 w-full max-w-2xl">
+    <Code overflow="wrap" className="w-full max-w-2xl">
       <CodeContent code={SAMPLE} lang="tsx" />
     </Code>
   );

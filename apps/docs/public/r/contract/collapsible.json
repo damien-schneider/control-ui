@@ -5,7 +5,20 @@
   "registryItems": [
     "collapsible"
   ],
-  "knobs": [],
+  "knobs": [
+    {
+      "name": "--cui-collapsible-trigger-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "var(--radius-control)"
+    },
+    {
+      "name": "--cui-collapsible-trigger-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    }
+  ],
   "parts": {
     "collapsible": {
       "root": {

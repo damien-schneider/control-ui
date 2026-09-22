@@ -15,8 +15,7 @@ import {
   DynamicNotificationReplySubmit,
   DynamicNotificationTitle,
 } from "@/components/control-ui/dynamic-notification";
-import { Button } from "@/components/control-ui/ui/button";
-import { DynamicNotificationDemoBackdrop } from "./dynamic-notification-demo-backdrop";
+import { DynamicNotificationDemoBackdrop, DynamicNotificationDemoButton } from "./dynamic-notification-demo-scene";
 
 const MESSAGES = [
   "It'll be fantastic weather for your upcoming tennis lesson this Sunday.",
@@ -86,14 +85,9 @@ export function DynamicNotificationSurfaceExample() {
         </DynamicNotification>
 
         <div className="relative z-10 mt-auto flex w-full items-center justify-between gap-2">
-          <Button
-            variant="surface"
-            size="sm"
-            className="border-[oklch(1_0_0/0.45)] bg-[oklch(1_0_0/0.86)] text-[oklch(0.19_0.02_275)] shadow-sm backdrop-blur-sm hover:bg-[oklch(1_0_0/0.94)]"
-            onClick={() => think((messageIndex + 1) % MESSAGES.length)}
-          >
+          <DynamicNotificationDemoButton onClick={() => think((messageIndex + 1) % MESSAGES.length)}>
             Send a notification
-          </Button>
+          </DynamicNotificationDemoButton>
           <span className="truncate text-caption text-white/75">{statusMessage}</span>
         </div>
       </div>

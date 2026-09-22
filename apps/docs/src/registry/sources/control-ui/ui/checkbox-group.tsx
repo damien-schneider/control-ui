@@ -45,7 +45,7 @@ export function CheckboxGroupItem({ className, htmlFor, children, ...props }: Co
       data-slot="item"
       data-track-item=""
       className={cn(
-        "flex cursor-pointer items-start gap-2.5 rounded-(--radius-control) p-2 text-body has-[[data-disabled]]:cursor-not-allowed",
+        "flex cursor-pointer items-start gap-2.5 rounded-(--radius-control) p-2 text-body has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
         className,
       )}
       {...props}

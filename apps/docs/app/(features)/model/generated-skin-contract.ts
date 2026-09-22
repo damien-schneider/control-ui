@@ -8853,6 +8853,10 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        label: {
+          registryItems: ["radio-group"],
+          states: [],
+        },
       },
       registryItems: ["radio-group"],
     },
@@ -13531,7 +13535,20 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--foreground)",
       },
     ],
-    collapsible: [],
+    collapsible: [
+      {
+        name: "--cui-collapsible-trigger-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "var(--radius-control)",
+      },
+      {
+        name: "--cui-collapsible-trigger-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--hover-fill)",
+      },
+    ],
     "color-picker": [
       {
         name: "--cui-color-picker-output-swatch-radius",
@@ -14617,6 +14634,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length>",
         initialValue: "0px",
         defaultValue: "0px",
+      },
+      {
+        name: "--cui-page-layout-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--canvas)",
+      },
+      {
+        name: "--cui-page-layout-sticky-header-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--cui-page-layout-background) l c h / 0.85)",
       },
     ],
     pagination: [

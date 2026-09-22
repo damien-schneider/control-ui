@@ -70,3 +70,20 @@ export function Radio({ className, disabled, ...props }: RadioProps) {
     </RadioPrimitive.Root>
   );
 }
+
+export function RadioGroupItem({ className, htmlFor, children, ...props }: ComponentProps<"label">) {
+  return (
+    <label
+      htmlFor={htmlFor}
+      data-control-ui="radio-group"
+      data-slot="label"
+      className={cn(
+        "flex cursor-pointer items-start gap-2.5 rounded-(--radius-control) p-2 text-body has-[[data-disabled]]:cursor-not-allowed [&>[data-control-family=choice]]:mt-[calc((1lh_-_var(--spacing)*4)/2)]",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </label>
+  );
+}

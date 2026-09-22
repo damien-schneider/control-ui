@@ -28,7 +28,7 @@ export function PrimitiveNestedDrawerExample() {
   return (
     <Drawer>
       <DrawerTrigger render={<Button variant="surface" />}>Open drawer stack</DrawerTrigger>
-      <DrawerContent className="h-[min(32rem,85vh)] data-[nested-drawer-open]:brightness-95">
+      <DrawerContent className="h-[min(32rem,85vh)]">
         <DrawerHeader>
           <DrawerTitle>Publish project</DrawerTitle>
           <DrawerDescription>Review the destination before publishing the current branch.</DrawerDescription>
@@ -43,11 +43,11 @@ export function PrimitiveNestedDrawerExample() {
           ))}
         </dl>
 
-        <DrawerFooter className="sm:flex-row sm:justify-end">
+        <DrawerFooter>
           <DrawerClose render={<Button variant="ghost" />}>Cancel</DrawerClose>
           <Drawer>
             <DrawerTrigger render={<Button variant="solid" tone="primary" />}>Review access</DrawerTrigger>
-            <DrawerContent className="h-[min(27rem,80vh)] data-[nested-drawer-open]:brightness-95">
+            <DrawerContent className="h-[min(27rem,80vh)]">
               <DrawerHeader>
                 <DrawerTitle>Project access</DrawerTitle>
                 <DrawerDescription>The parent drawer stays mounted while this step opens above it.</DrawerDescription>
@@ -65,7 +65,7 @@ export function PrimitiveNestedDrawerExample() {
                 ))}
               </dl>
 
-              <DrawerFooter className="sm:flex-row sm:justify-end">
+              <DrawerFooter>
                 <DrawerClose render={<Button variant="ghost" />}>Back</DrawerClose>
                 <Drawer>
                   <DrawerTrigger render={<Button variant="solid" tone="primary" />}>Continue</DrawerTrigger>
@@ -79,7 +79,7 @@ export function PrimitiveNestedDrawerExample() {
                       Production will receive the latest commit from main. Existing deployments stay available during the rollout.
                     </div>
 
-                    <DrawerFooter className="sm:flex-row sm:justify-end">
+                    <DrawerFooter>
                       <DrawerClose render={<Button variant="ghost" />}>Back</DrawerClose>
                       <DrawerClose render={<Button variant="solid" tone="primary" />}>Publish</DrawerClose>
                     </DrawerFooter>

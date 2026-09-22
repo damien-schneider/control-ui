@@ -13,7 +13,7 @@
     --cui-table-of-contents-label-gap: calc(var(--spacing) * 3);
     --cui-table-of-contents-item-foreground: var(--muted-foreground);
     --cui-table-of-contents-item-hover-foreground: var(--foreground);
-    --cui-table-of-contents-item-active-foreground: var(--foreground);
+    --cui-table-of-contents-item-active-foreground: var(--primary-text);
     --cui-table-of-contents-item-font-size: var(--text-body);
     --cui-table-of-contents-item-line-height: var(--leading-normal);
     --cui-table-of-contents-item-font-weight: var(--font-weight-normal);
@@ -21,13 +21,13 @@
     --cui-table-of-contents-item-padding-block: calc(var(--spacing) * 1.5);
     --cui-table-of-contents-item-padding-inline: calc(var(--spacing) * 3);
     --cui-table-of-contents-item-indent-size: calc(var(--spacing) * 2);
-    --cui-table-of-contents-rail-background: var(--border);
+    --cui-table-of-contents-rail-color: var(--border);
     --cui-table-of-contents-rail-size: 1px;
-    --cui-table-of-contents-trail-background: var(--foreground);
+    --cui-table-of-contents-rail-bend-size: calc(var(--spacing) * 2);
+    --cui-table-of-contents-trail-color: var(--primary-text);
     --cui-table-of-contents-trail-size: 2px;
-    --cui-table-of-contents-trail-radius: var(--cui-table-of-contents-trail-size);
-    --cui-table-of-contents-highlight-radius: var(--radius-popup-item);
-    --cui-table-of-contents-highlight-background: var(--active-fill);
+    --cui-table-of-contents-indicator-color: var(--cui-table-of-contents-trail-color);
+    --cui-table-of-contents-indicator-rotate: 0deg;
     border: var(--cui-table-of-contents-border-width) solid var(--cui-table-of-contents-border-color);
     border-radius: var(--cui-table-of-contents-radius);
     background-color: var(--cui-table-of-contents-background);
@@ -47,8 +47,41 @@
   }
 
   :where([data-control-family="table-of-contents"][data-slot="rail"]) {
-    inline-size: var(--cui-table-of-contents-rail-size);
-    background-color: var(--cui-table-of-contents-rail-background);
+    fill: none;
+    stroke: var(--cui-table-of-contents-rail-color);
+    stroke-width: var(--cui-table-of-contents-rail-size);
+    stroke-linejoin: round;
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="trail"]) {
+    fill: none;
+    stroke: var(--cui-table-of-contents-trail-color);
+    stroke-width: var(--cui-table-of-contents-trail-size);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: var(--_toc-trail-length) var(--_toc-rail-length);
+    stroke-dashoffset: calc(-1 * var(--_toc-trail-start));
+    opacity: 0;
+    transition-property: stroke-dasharray, stroke-dashoffset, opacity;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="indicator"]) {
+    display: grid;
+    place-items: center;
+    color: var(--cui-table-of-contents-indicator-color);
+    offset-distance: var(--_toc-indicator-distance);
+    offset-rotate: var(--cui-table-of-contents-indicator-rotate);
+    opacity: 0;
+    transition-property: offset-distance, opacity;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="table-of-contents"][data-slot="trail"][data-visible]),
+  :where([data-control-family="table-of-contents"][data-slot="indicator"][data-visible]) {
+    opacity: 1;
   }
 
   :where([data-control-family="table-of-contents"][data-slot="item"]) {
@@ -82,25 +115,6 @@
 
   :where([data-control-family="table-of-contents"][data-slot="item"][data-active]) {
     color: var(--cui-table-of-contents-item-active-foreground);
-  }
-
-  :where([data-control-family="table-of-contents"][data-slot="root"] [data-control-family="track-highlight"][data-slot="root"]) {
-    --cui-track-highlight-transition-duration: var(--duration-base);
-    --cui-track-highlight-radius: var(--cui-table-of-contents-highlight-radius);
-    --cui-track-highlight-background: var(--cui-table-of-contents-highlight-background);
-    --cui-track-highlight-ring-color: transparent;
-    --cui-track-highlight-shadow: none;
-  }
-
-  :where([data-control-family="table-of-contents"][data-slot="root"][data-variant="trail"]) {
-    --cui-table-of-contents-highlight-radius: 0px;
-    --cui-table-of-contents-highlight-background: transparent;
-  }
-
-  :where([data-control-family="table-of-contents"][data-slot="trail"]) {
-    inline-size: var(--cui-table-of-contents-trail-size);
-    border-radius: var(--cui-table-of-contents-trail-radius);
-    background-color: var(--cui-table-of-contents-trail-background);
   }
 }
 
@@ -230,7 +244,7 @@
   initial-value: 0px;
 }
 
-@property --cui-table-of-contents-rail-background {
+@property --cui-table-of-contents-rail-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -242,7 +256,13 @@
   initial-value: 0px;
 }
 
-@property --cui-table-of-contents-trail-background {
+@property --cui-table-of-contents-rail-bend-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-table-of-contents-trail-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -254,20 +274,14 @@
   initial-value: 0px;
 }
 
-@property --cui-table-of-contents-trail-radius {
-  syntax: "<length-percentage>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-table-of-contents-highlight-radius {
-  syntax: "<length-percentage>";
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --cui-table-of-contents-highlight-background {
+@property --cui-table-of-contents-indicator-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: transparent;
+  initial-value: currentcolor;
+}
+
+@property --cui-table-of-contents-indicator-rotate {
+  syntax: "*";
+  inherits: true;
+  initial-value: 0deg;
 }

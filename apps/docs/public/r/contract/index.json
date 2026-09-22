@@ -170,7 +170,7 @@
       "registryItems": [
         "collapsible"
       ],
-      "knobs": 0,
+      "knobs": 2,
       "probes": 0
     },
     "color-picker": {
@@ -313,7 +313,7 @@
       "registryItems": [
         "page-layout"
       ],
-      "knobs": 11,
+      "knobs": 13,
       "probes": 0
     },
     "pagination": {

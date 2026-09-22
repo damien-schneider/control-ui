@@ -150,7 +150,7 @@ export function TokenPanel({
 
       {advancedTotal > 0 ? (
         <Collapsible className="border-border/70 border-t pt-3">
-          <CollapsibleTrigger className="flex w-full cursor-pointer items-center gap-2 text-left">
+          <CollapsibleTrigger>
             <ChevronDownIcon
               aria-hidden
               className="size-3 text-muted-foreground transition-transform in-data-[state=open]:rotate-180 motion-reduce:transition-none"

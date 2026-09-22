@@ -8,6 +8,16 @@
     color: var(--muted-foreground);
   }
 
+  :where([data-control-family="field"][data-slot="root"][data-control="true"]:is(button, a)) {
+    cursor: pointer;
+    color: var(--muted-foreground);
+    text-align: start;
+  }
+
+  :where([data-control-family="field"][data-slot="root"][data-control="true"]:is(button, a):hover) {
+    color: var(--foreground);
+  }
+
   :where([data-control-family="field"][data-field-kind="input-group"][data-slot="input"]),
   :where([data-control-family="field"][data-field-kind="phone-input"][data-slot="input"]),
   :where([data-control-family="field"][data-field-kind="number-field"][data-slot="input"]) {

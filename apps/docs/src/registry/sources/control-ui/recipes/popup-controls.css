@@ -7,6 +7,22 @@
     outline-style: none;
   }
 
+  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a)) {
+    border-radius: var(--radius-sm);
+    color: var(--foreground);
+    font-weight: var(--font-weight-medium);
+    text-decoration-line: underline;
+    text-decoration-color: var(--border);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    transition: text-decoration-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where([data-control-family="popup"][data-popup-kind="hover-card"][data-slot="trigger"]:is(a):is(:hover, [data-popup-open])) {
+    text-decoration-color: var(--foreground);
+  }
+
   :where([data-control-family="popup"][data-popup-kind="navigation-menu"][data-slot="link"]) {
     text-decoration-line: none;
   }

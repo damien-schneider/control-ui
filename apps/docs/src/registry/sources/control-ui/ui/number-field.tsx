@@ -75,11 +75,16 @@ export type NumberFieldScrubAreaProps = ComponentProps<"span"> & {
 // `size` lives on Root and reaches Group through context, so one prop resizes whole unit.
 const NumberFieldSizeContext = createContext<ControlSize>("md");
 
-export function NumberField({ size = "md", value, defaultValue, children, ...props }: NumberFieldProps) {
+export function NumberField({ size = "md", value, defaultValue, className, children, ...props }: NumberFieldProps) {
   return (
     <NumberFieldSizeContext.Provider value={size}>
       {/* explicit, never spread — Base UI decides controlled-ness from value !== undefined on first render */}
-      <NumberFieldPrimitive.Root value={value} defaultValue={defaultValue} {...props}>
+      <NumberFieldPrimitive.Root
+        value={value}
+        defaultValue={defaultValue}
+        className={cn("flex flex-col items-start gap-1.5", className)}
+        {...props}
+      >
         {children}
       </NumberFieldPrimitive.Root>
     </NumberFieldSizeContext.Provider>

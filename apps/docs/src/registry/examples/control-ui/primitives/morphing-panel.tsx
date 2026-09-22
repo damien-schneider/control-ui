@@ -4,7 +4,6 @@ import { CheckIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
 import type { OpenChangeEventDetails } from "@/components/control-ui/control-props";
 import { cn } from "@/components/control-ui/lib/cn";
-import { AspectRatio } from "@/components/control-ui/ui/aspect-ratio";
 import { Button } from "@/components/control-ui/ui/button";
 import { MorphingPanel, MorphingPanelContent, MorphingPanelTrigger } from "@/components/control-ui/ui/morphing-panel";
 import { Slider } from "@/components/control-ui/ui/slider";
@@ -123,7 +122,11 @@ export function PrimitiveMorphingPanelExample() {
                       }}
                       className="justify-start gap-2"
                     >
-                      <AspectRatio ratio={item.value} className="w-3.5 rounded-[var(--radius-sm)] border border-current bg-current/8" />
+                      <span
+                        aria-hidden="true"
+                        style={{ aspectRatio: item.value }}
+                        className="w-3.5 rounded-[var(--radius-sm)] border border-current bg-current/8"
+                      />
                       {item.label}
                     </Button>
                   );

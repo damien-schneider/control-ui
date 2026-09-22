@@ -7,13 +7,7 @@ export function PrimitiveHoverCardExample() {
     <div className="max-w-sm text-sm leading-relaxed text-foreground">
       Shipped by{" "}
       <HoverCard>
-        <HoverCardTrigger
-          href="#"
-          className="cursor-pointer font-medium text-foreground underline decoration-border decoration-1 underline-offset-2 transition-colors hover:decoration-foreground data-[popup-open]:decoration-foreground focus-visible:rounded-[var(--radius-sm)] focus-visible:outline-(--focus-ring) focus-visible:outline-offset-(--focus-ring-offset) focus-visible:outline-(length:--focus-ring-width)"
-        >
-          @ada
-        </HoverCardTrigger>{" "}
-        and the platform team.
+        <HoverCardTrigger href="#">@ada</HoverCardTrigger> and the platform team.
         <HoverCardContent align="start">
           <div className="flex gap-3">
             <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">

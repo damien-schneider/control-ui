@@ -52,7 +52,7 @@ export function AgentSetup() {
 
   return (
     <div className="mt-4 grid gap-2">
-      <Code overflow="wrap" className="my-0">
+      <Code overflow="wrap">
         <CodeHeader>
           <CodeTitle>Agent setup prompt</CodeTitle>
           <CodeActions>
