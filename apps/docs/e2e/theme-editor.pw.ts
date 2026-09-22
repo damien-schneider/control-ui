@@ -58,17 +58,22 @@ test("theme edits survive navigation, direct loads, and refresh", async ({ page,
   await page.getByRole("combobox", { name: "Skin", exact: true }).click();
   await page.getByRole("option", { name: "Refined", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
-  await page.getByRole("switch", { name: "Caption every control with its CSS variable name" }).check();
 
   const radius = page.getByRole("slider", { name: "--radius-control", exact: true });
-  const openRadiusTokens = async () => {
+  const openRadiusCategory = async () => {
     await page.getByRole("link", { name: /^Radius & corners/ }).click();
     await expect(page).toHaveURL(/\/theme-editor\/radius$/);
+  };
+  const openRadiusTokens = async () => {
+    await openRadiusCategory();
     await page.getByRole("button", { name: /Advanced/ }).click();
     await expect(radius).toBeVisible();
   };
 
-  await openRadiusTokens();
+  await openRadiusCategory();
+  await page.getByRole("switch", { name: "Caption every control with its CSS variable name" }).check();
+  await page.getByRole("button", { name: /Advanced/ }).click();
+  await expect(radius).toBeVisible();
   await radius.focus();
   await radius.press("Home");
   await radius.press("ArrowRight");
@@ -79,7 +84,7 @@ test("theme edits survive navigation, direct loads, and refresh", async ({ page,
 
   await page.getByRole("button", { name: "Copy CSS variables", exact: true }).click();
   await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toContain("--radius-control: 1px");
-  await page.getByRole("link", { name: "Open full accessibility audit" }).click();
+  await page.getByRole("link", { name: "Accessibility audit" }).click();
   await expect(page).toHaveURL(/\/theme-accessibility$/);
   await expect
     .poll(() => page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--radius-control").trim()))

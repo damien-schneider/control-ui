@@ -110,11 +110,13 @@ function BadgePaletteRows({ values, overridden, changedBySkin, onChange, onReset
 export function TokenPanel({
   category,
   editor,
+  headerAction,
   beforeTokens,
   afterCore,
 }: {
   category: TokenCategory;
   editor: TokenEditorProps;
+  headerAction: ReactNode;
   beforeTokens?: ReactNode;
   afterCore?: ReactNode;
 }) {
@@ -133,6 +135,7 @@ export function TokenPanel({
             {category.title}
           </h2>
           {touched > 0 ? <Badge size="sm">{touched} edited</Badge> : null}
+          <span className="ml-auto">{headerAction}</span>
         </div>
         <p className="mt-1 text-micro leading-4 text-muted-foreground">{category.description}</p>
         <p className="mt-1 text-micro tabular-nums text-muted-foreground">

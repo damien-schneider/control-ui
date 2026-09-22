@@ -14,10 +14,9 @@ import { useThemeModePreference } from "@/components/theme-toggle";
 import type { ThemeContractGroup } from "@/src/registry/lib/theme-contract";
 import { ContrastPanel } from "./contrast-panel";
 import { VarTag } from "./controls";
-import { SKIN_META_BY_ID } from "./presets";
 import { ThemePreviewCanvas } from "./preview-canvas";
 import { parseSkinTheme, skinChangedTokenNames, themeFile, useSkinSource } from "./skin-source";
-import { SkinSourceView } from "./skin-source-view";
+import { SkinSourcePanel } from "./skin-source-view";
 import { SKIN_CATEGORY, type ThemeCategoryId } from "./theme-categories";
 import { ThemeGeneratorDrawer } from "./theme-generator-drawer";
 import { useThemeRuntime } from "./theme-runtime-context";
@@ -37,7 +36,6 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
   const stacked = useIsMobile(WORKSPACE_BREAKPOINT);
   const { t: theme, values, isDark, storageError, setTokens, resetToken, patch } = useThemeRuntime();
   useThemeModePreference();
-  const activeMeta = SKIN_META_BY_ID[theme.skin];
   const { source: skinSource, retry: retrySource } = useSkinSource(theme.skin);
   const { source: baseSkinSource } = useSkinSource(BASE_SKIN_ID);
 
@@ -99,28 +97,23 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
         </p>
       ) : null}
 
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <ThemeGeneratorDrawer />
-        <span className="flex items-center gap-2 text-caption text-muted-foreground">
-          CSS names
-          <Switch
-            aria-label="Caption every control with its CSS variable name"
-            checked={theme.labelMode === "css"}
-            onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
-          />
-        </span>
-        <ButtonLink render={<Link href="/theme-accessibility" />} variant="quiet" size="sm">
-          <ShieldCheckIcon aria-hidden className="size-3.5" />
-          Open full accessibility audit
-        </ButtonLink>
-        <Button variant="solid" tone="primary" size="sm" onClick={cssCopy.handleCopy}>
-          {cssCopy.isCopied ? "Copied ✓" : "Copy CSS variables"}
-        </Button>
-      </div>
-
       <div className={cn("grid min-w-0 items-start gap-6", !stacked && "grid-cols-[minmax(0,1fr)_21rem]")}>
         <div className="min-w-0">
-          <ThemePreviewCanvas values={values} skin={theme.skin} />
+          <ThemePreviewCanvas
+            values={values}
+            actions={
+              <div className="flex flex-wrap items-center gap-2">
+                <ButtonLink render={<Link href="/theme-accessibility" />} variant="quiet" size="sm">
+                  <ShieldCheckIcon aria-hidden className="size-3.5" />
+                  Accessibility audit
+                </ButtonLink>
+                <ThemeGeneratorDrawer />
+                <Button variant="solid" tone="primary" size="sm" onClick={cssCopy.handleCopy}>
+                  {cssCopy.isCopied ? "Copied ✓" : "Copy CSS variables"}
+                </Button>
+              </div>
+            }
+          />
         </div>
 
         <aside
@@ -130,24 +123,22 @@ export function ThemeEditor({ category }: { category: ThemeCategoryId }) {
             stacked ? "order-first" : "sticky top-3 max-h-[calc(100svh-1.5rem)] overflow-y-auto",
           )}
         >
-          {category === SKIN_CATEGORY ? (
-            <section id="theme-skin" aria-labelledby="theme-skin-title" className="flex min-w-0 flex-col gap-3">
-              <header className="min-w-0">
-                <h2 id="theme-skin-title" className="text-heading-4 font-semibold text-foreground">
-                  {activeMeta.label} source
-                </h2>
-                <p className="mt-1 text-micro leading-4 text-muted-foreground">
-                  Pick a pack from the sidebar. Its tokens and component anatomy ship as the files below.
-                </p>
-              </header>
-              <SkinSourceView label={activeMeta.label} source={skinSource} onRetry={retrySource} />
-            </section>
-          ) : null}
+          {category === SKIN_CATEGORY ? <SkinSourcePanel skin={theme.skin} source={skinSource} onRetry={retrySource} /> : null}
 
           {activeTokenCategory ? (
             <TokenPanel
               category={activeTokenCategory}
               editor={editor}
+              headerAction={
+                <span className="flex items-center gap-2 text-micro text-muted-foreground">
+                  CSS names
+                  <Switch
+                    aria-label="Caption every control with its CSS variable name"
+                    checked={theme.labelMode === "css"}
+                    onCheckedChange={(checked) => patch({ labelMode: checked ? "css" : "friendly" })}
+                  />
+                </span>
+              }
               beforeTokens={panelIntroByGroup[activeTokenCategory.group] ?? null}
               afterCore={
                 activeTokenCategory.group === "color" ? <ContrastPanel t={theme} onFix={(textFixes) => patch({ textFixes })} /> : null

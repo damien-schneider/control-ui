@@ -5,8 +5,7 @@ import { BlockPreview, PrimitivePreview } from "@/app/(features)/components/prev
 import type { PrimitiveId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
-import { ThemeArchitecture } from "./theme-architecture";
-import type { SkinId, TokenValues } from "./types";
+import type { TokenValues } from "./types";
 
 export function ElevationPreview() {
   return (
@@ -59,14 +58,16 @@ function PreviewSection({ title, wide, children }: { title: string; wide?: boole
   );
 }
 
-export function ThemePreviewCanvas({ values, skin }: { values: TokenValues; skin: SkinId }) {
+export function ThemePreviewCanvas({ values, actions }: { values: TokenValues; actions: ReactNode }) {
   return (
-    <Tabs defaultValue="components" className="@container/canvas flex min-w-0 flex-col gap-3">
-      <TabsList className="self-start">
-        <TabsTab value="components">Components</TabsTab>
-        <TabsTab value="application">Application</TabsTab>
-        <TabsTab value="anatomy">Skin anatomy</TabsTab>
-      </TabsList>
+    <Tabs defaultValue="components" className="@container/canvas flex min-w-0 flex-col gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <TabsList>
+          <TabsTab value="components">Components</TabsTab>
+          <TabsTab value="application">Application</TabsTab>
+        </TabsList>
+        {actions}
+      </div>
 
       <TabsPanel value="components" className="min-w-0">
         <div className="grid min-w-0 gap-x-8 gap-y-10 @3xl/canvas:grid-cols-2">
@@ -86,10 +87,6 @@ export function ThemePreviewCanvas({ values, skin }: { values: TokenValues; skin
 
       <TabsPanel value="application" className="min-w-0">
         <BlockPreview blockId="settings" integration="mastra" />
-      </TabsPanel>
-
-      <TabsPanel value="anatomy" className="min-w-0">
-        <ThemeArchitecture skin={skin} />
       </TabsPanel>
     </Tabs>
   );
