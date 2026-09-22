@@ -1078,6 +1078,18 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
+        "item-text": {
+          family: "popup",
+          registryItems: ["autocomplete"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["autocomplete"],
+            },
+          ],
+        },
         list: {
           family: "popup",
           registryItems: ["autocomplete"],
@@ -3441,6 +3453,18 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-indicator": {
+          family: "popup",
+          registryItems: ["combobox"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["combobox"],
+            },
+          ],
+        },
+        "item-text": {
           family: "popup",
           registryItems: ["combobox"],
           states: [
@@ -9614,6 +9638,18 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "item-indicator": {
+          family: "popup",
+          registryItems: ["select"],
+          states: [
+            {
+              attribute: "data-popup-kind",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["select"],
+            },
+          ],
+        },
+        "item-text": {
           family: "popup",
           registryItems: ["select"],
           states: [

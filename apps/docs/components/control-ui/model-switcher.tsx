@@ -79,7 +79,7 @@ export function ModelSwitcher({
         {models.map((model) => (
           <SelectItem key={model.value} value={model.value} label={model.label}>
             {model.icon ? (
-              <span aria-hidden="true" className="me-2 flex shrink-0 [&_svg]:size-4">
+              <span aria-hidden="true" className="flex shrink-0 [&_svg]:size-4">
                 {model.icon}
               </span>
             ) : null}

@@ -229,7 +229,15 @@ export function ComboboxItem<Value = unknown>({ className, children, disabled, v
       className={cn(popupItemStructureClasses, className)}
       {...props}
     >
-      <span className="flex min-w-0 flex-1 items-center truncate">{children}</span>
+      <span
+        data-control-ui="combobox"
+        data-control-family="popup"
+        data-popup-kind="combobox"
+        data-slot="item-text"
+        className="flex min-w-0 flex-1 items-center truncate"
+      >
+        {children}
+      </span>
       <span
         data-control-ui="combobox"
         data-popup-kind="combobox"

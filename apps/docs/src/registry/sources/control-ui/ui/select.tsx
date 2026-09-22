@@ -150,7 +150,15 @@ export function SelectItem({ className, children, disabled, ...props }: SelectIt
       className={cn(popupItemStructureClasses, className)}
       {...props}
     >
-      <SelectPrimitive.ItemText className="flex min-w-0 flex-1 items-center">{children}</SelectPrimitive.ItemText>
+      <SelectPrimitive.ItemText
+        data-control-ui="select"
+        data-control-family="popup"
+        data-popup-kind="select"
+        data-slot="item-text"
+        className="flex min-w-0 flex-1 items-center"
+      >
+        {children}
+      </SelectPrimitive.ItemText>
       <span
         data-control-ui="select"
         data-control-family="popup"

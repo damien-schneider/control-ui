@@ -144,7 +144,7 @@
     outline-style: none;
   }
 
-  :where([data-control-family="popup"][data-popup-part="item"] > span:first-child) {
+  :where([data-control-family="popup"][data-slot="item-text"]) {
     gap: calc(var(--spacing) * 2);
   }
 

@@ -193,7 +193,15 @@ export function AutocompleteItem<Value = unknown>({ className, children, disable
       className={cn(popupItemStructureClasses, className)}
       {...props}
     >
-      <span className="flex min-w-0 flex-1 items-center truncate">{children}</span>
+      <span
+        data-control-ui="autocomplete"
+        data-control-family="popup"
+        data-popup-kind="autocomplete"
+        data-slot="item-text"
+        className="flex min-w-0 flex-1 items-center truncate"
+      >
+        {children}
+      </span>
     </AutocompletePrimitive.Item>
   );
 }
